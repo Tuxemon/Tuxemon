@@ -9,38 +9,41 @@ from dataclasses import dataclass, fields
 from typing import TYPE_CHECKING, Any, Optional
 from uuid import UUID, uuid4
 
-from tuxemon import formula, graphics, prepare, tools
+from tuxemon import formula, prepare
 from tuxemon.db import (
     Acquisition,
-    CategoryStatus,
     EffectPhase,
     EvolutionStage,
     GenderType,
     MonsterEvolutionItemModel,
-    MonsterFlairItemModel,
     MonsterHistoryItemModel,
     MonsterModel,
     MonsterMovesetItemModel,
     MonsterSpritesModel,
     PlagueType,
-    ResponseStatus,
     StatType,
     db,
 )
 from tuxemon.element import ElementTypesHandler
 from tuxemon.evolution import Evolution
 from tuxemon.fusion import Body
-from tuxemon.item.item import Item
 from tuxemon.locale import T
+from tuxemon.monster_dir.held_item import MonsterItemHandler
+from tuxemon.monster_dir.sprite import (
+    Flair,
+    FlairApplier,
+    MonsterSpriteHandler,
+    SpriteLoader,
+)
+from tuxemon.monster_dir.status import MonsterStatusHandler
 from tuxemon.shape import ShapeHandler
 from tuxemon.sprite import Sprite
-from tuxemon.status.status import Status, decode_status, encode_status
 from tuxemon.taste import Taste
 from tuxemon.technique.technique import Technique, decode_moves, encode_moves
 from tuxemon.time_handler import today_ordinal
 
 if TYPE_CHECKING:
-    from pygame.surface import Surface
+    pass
 
     from tuxemon.npc import NPC
     from tuxemon.session import Session
@@ -96,13 +99,6 @@ class TemporaryStatBoosts(BasicStats):
         valid_fields = {field.name for field in fields(cls)}
         filtered_data = {k: v for k, v in data.items() if k in valid_fields}
         return cls(**filtered_data)
-
-
-# class definition for tuxemon flairs:
-class Flair:
-    def __init__(self, category: str, name: str) -> None:
-        self.category = category
-        self.name = name
 
 
 class Monster:
@@ -589,334 +585,6 @@ class Monster:
             current = self.status.get_current_status()
             if current:
                 current.apply_phase_and_use(session, EffectPhase.ON_FAINT)
-
-
-class SpriteLoader:
-    def __init__(self) -> None:
-        self.sprite_cache: dict[str, Surface] = {}
-        self.animated_sprite_cache: dict[str, Sprite] = {}
-
-    def resolve_path(self, sprite: str) -> str:
-        try:
-            path = f"{sprite}.png" if not sprite.endswith(".png") else sprite
-            full_path = tools.transform_resource_filename(path)
-            if full_path:
-                return full_path
-        except OSError:
-            pass
-        logger.error(f"Could not find sprite {sprite}")
-        return prepare.MISSING_IMAGE
-
-    def load(self, path: str, **kwargs: Any) -> Surface:
-        """Loads the monster's sprite images as Pygame surfaces."""
-        if path not in self.sprite_cache:
-            self.sprite_cache[path] = graphics.load_sprite(
-                path, **kwargs
-            ).image
-        return self.sprite_cache[path]
-
-    def load_animated(
-        self, paths: list[str], frame_duration: float, scale: float
-    ) -> Sprite:
-        resolved = [self.resolve_path(p) for p in paths]
-        key = f"{'-'.join(resolved)}:{frame_duration}"
-        if key not in self.animated_sprite_cache:
-            sprite = graphics.load_animated_sprite(
-                resolved, frame_duration, scale
-            )
-            self.animated_sprite_cache[key] = sprite
-        return self.animated_sprite_cache[key]
-
-    def load_and_scale(self, path: str, scale: float) -> Surface:
-        cache_key = f"{path}:scale:{scale}"
-        if cache_key not in self.sprite_cache:
-            base_image = graphics.load_and_scale(path, scale)
-            self.sprite_cache[cache_key] = base_image
-        return self.sprite_cache[cache_key]
-
-
-class FlairApplier:
-    @staticmethod
-    def create(flairs: Sequence[MonsterFlairItemModel]) -> dict[str, Flair]:
-        _flairs: dict[str, Flair] = {}
-        for flair in flairs:
-            if flair.names:
-                new_flair = Flair(category=flair.category, name=flair.names[0])
-                _flairs[new_flair.category] = new_flair
-        return _flairs
-
-    @staticmethod
-    def apply(
-        image: Surface,
-        flairs: dict[str, Flair],
-        slug: str,
-        sprite_type: str,
-        loader: SpriteLoader,
-        **kwargs: Any,
-    ) -> Surface:
-        for flair in flairs.values():
-            path = loader.resolve_path(
-                f"gfx/sprites/battle/{slug}-{sprite_type}-{flair.name}"
-            )
-            if path != prepare.MISSING_IMAGE:
-                flair_surface = loader.load(path, **kwargs)
-                image.blit(flair_surface, (0, 0))
-        return image
-
-
-class MonsterSpriteHandler:
-    """Manages the loading, caching, and retrieval of monster sprites."""
-
-    def __init__(
-        self,
-        slug: str = "",
-        front_path: str = "",
-        back_path: str = "",
-        menu1_path: str = "",
-        menu2_path: str = "",
-        flairs: Optional[dict[str, Flair]] = None,
-    ):
-        self.loader = SpriteLoader()
-        self.slug = slug
-        self.front_path = front_path
-        self.back_path = back_path
-        self.menu1_path = menu1_path
-        self.menu2_path = menu2_path
-        self.flairs = flairs.copy() if flairs else {}
-
-    def get_sprite(
-        self,
-        sprite_type: str,
-        frame_duration: float = 0.25,
-        scale: float = prepare.SCALE,
-        **kwargs: Any,
-    ) -> Sprite:
-        """Returns a Sprite object, applying flairs if necessary."""
-        if sprite_type == "front":
-            sprite_path = self.front_path
-        elif sprite_type == "back":
-            sprite_path = self.back_path
-        elif sprite_type == "menu01":
-            sprite_path = self.menu1_path
-        elif sprite_type == "menu02":
-            sprite_path = self.menu2_path
-        elif sprite_type == "menu":
-            return self.loader.load_animated(
-                [self.menu1_path, self.menu2_path], frame_duration, scale
-            )
-        else:
-            raise ValueError(f"Cannot find sprite for: {sprite_type}")
-
-        image = self.loader.load(sprite_path, **kwargs)
-
-        if self.flairs:
-            image = FlairApplier.apply(
-                image,
-                self.flairs,
-                self.slug,
-                sprite_type,
-                self.loader,
-                **kwargs,
-            )
-
-        return Sprite(image=image)
-
-    def load_sprites(self, scale: float = prepare.SCALE) -> dict[str, Surface]:
-        """Loads all monster sprites and caches them."""
-        sprite_paths = {
-            "front": self.front_path,
-            "back": self.back_path,
-            "menu01": self.menu1_path,
-            "menu02": self.menu2_path,
-        }
-
-        return {
-            key: self.loader.load_and_scale(path, scale)
-            for key, path in sprite_paths.items()
-            if path
-        }
-
-
-@dataclass
-class StatusApplyResult:
-    applied: bool
-    blocked_by: Optional[str] = None
-
-
-class MonsterStatusHandler:
-    def __init__(self, status: Optional[list[Status]] = None):
-        self.status = status if status is not None else []
-
-    @property
-    def is_fainted(self) -> bool:
-        return self.has_status("faint")
-
-    def get_current_status(self) -> Optional[Status]:
-        if not self.status:
-            return None
-        return self.status[0]
-
-    def is_blocked(self, monster: Monster, status_slug: str) -> Optional[str]:
-        """Check if the monster's held item grants immunity to the given status."""
-        item = monster.held_item.get_item()
-        if item and item.is_immune(status_slug):
-            logger.debug(
-                f"Item '{item.name}' blocks status '{status_slug}' for monster '{monster.name}'."
-            )
-            return item.name
-        return None
-
-    def apply_status(
-        self, session: Session, new_status: Status, monster: Monster
-    ) -> StatusApplyResult:
-        """
-        Apply a status effect to a monster during combat by replacing or removing
-        the previous status effect.
-
-        This function manages status effects dynamically within a combat encounter,
-        ensuring proper transitions between statuses based on their category and
-        interaction rules.
-        """
-        logger.debug(
-            f"Trying to apply status '{new_status.slug}' to monster '{monster.name}'."
-        )
-
-        blocked_by = self.is_blocked(monster, new_status.slug)
-        if blocked_by:
-            logger.debug(
-                f"Status '{new_status.slug}' blocked by '{blocked_by}'."
-            )
-            return StatusApplyResult(applied=False, blocked_by=blocked_by)
-
-        current_status = self.get_current_status()
-        if current_status is None:
-            logger.debug("No current status, applying new status directly.")
-            self.add_status(new_status)
-            new_status.nr_turn = 1
-            new_status.apply_phase_and_use(session, EffectPhase.ON_START)
-            return StatusApplyResult(applied=True)
-
-        if self.has_status(new_status.slug):
-            logger.debug(
-                f"Monster already has status '{new_status.slug}', skipping."
-            )
-            current_status.stack_level = min(
-                current_status.stack_level + 1, Status.MAX_STACKS
-            )
-            logger.debug(
-                f"Stacking status '{new_status.slug}': now at {current_status.stack_level}/{Status.MAX_STACKS}."
-            )
-            return StatusApplyResult(
-                applied=False, blocked_by=current_status.name
-            )
-
-        logger.debug(
-            f"Ending current status '{current_status.slug}' with ON_END phase."
-        )
-        current_status.apply_phase_and_use(session, EffectPhase.ON_END)
-
-        new_status.nr_turn = 1
-        logger.debug(
-            f"Starting new status '{new_status.slug}' with ON_START phase."
-        )
-        new_status.apply_phase_and_use(session, EffectPhase.ON_START)
-
-        if current_status.category == CategoryStatus.positive:
-            logger.debug(
-                f"Current status is positive. Transition rule: {new_status.on_positive_status}"
-            )
-            if new_status.on_positive_status == ResponseStatus.replaced:
-                self.add_status(new_status)
-            elif new_status.on_positive_status == ResponseStatus.removed:
-                self.remove_status()
-        elif current_status.category == CategoryStatus.negative:
-            logger.debug(
-                f"Current status is negative. Transition rule: {new_status.on_negative_status}"
-            )
-            if new_status.on_negative_status == ResponseStatus.replaced:
-                self.add_status(new_status)
-            elif new_status.on_positive_status == ResponseStatus.removed:
-                self.remove_status()
-        else:
-            logger.debug(
-                "Current status has no category. Applying new status."
-            )
-            self.add_status(new_status)
-
-        logger.debug(
-            f"Status '{new_status.slug}' successfully applied to monster '{monster.name}'."
-        )
-        return StatusApplyResult(applied=True)
-
-    def add_status(self, status: Status) -> None:
-        if self.has_status(status.slug):
-            return
-        self.status = [status]
-
-    def remove_status(self) -> None:
-        if self.status:
-            self.status.clear()
-
-    def clear_status(self, session: Session) -> None:
-        """Clears the current status effect for monsters in combat."""
-        current_status = self.get_current_status()
-        if current_status:
-            current_status.apply_phase_and_use(session, EffectPhase.ON_END)
-            self.status.clear()
-
-    def apply_faint(self, monster: Monster) -> None:
-        self.add_status(Status.create("faint", monster))
-
-    def get_statuses(self) -> list[Status]:
-        return self.status
-
-    def has_status(self, status_slug: str) -> bool:
-        return any(status_slug == status.slug for status in self.status)
-
-    def status_exists(self) -> bool:
-        return bool(self.status)
-
-    def remove_bonded_statuses(self) -> None:
-        self.status = [sta for sta in self.get_statuses() if not sta.bond]
-
-    def encode_status(self) -> Sequence[Mapping[str, Any]]:
-        return encode_status(self.status)
-
-    def decode_status(
-        self, json_data: Optional[Mapping[str, Any]], monster: Monster
-    ) -> None:
-        if json_data and "status" in json_data:
-            self.status = [
-                cond for cond in decode_status(json_data["status"], monster)
-            ]
-
-
-class MonsterItemHandler:
-    def __init__(self, item: Optional[Item] = None):
-        self.item = item
-
-    def set_item(self, item: Item) -> None:
-        if item.behaviors.holdable:
-            self.item = item
-        else:
-            logger.error(f"{item.name} can't be held")
-
-    def get_item(self) -> Optional[Item]:
-        return self.item
-
-    def has_item(self) -> bool:
-        return self.item is not None
-
-    def clear_item(self) -> None:
-        self.item = None
-
-    def encode_item(self) -> Mapping[str, Any]:
-        return self.item.get_state() if self.item is not None else {}
-
-    def decode_item(
-        self, json_data: Optional[Mapping[str, Any]]
-    ) -> Optional[Item]:
-        return Item(save_data=json_data) if json_data is not None else None
 
 
 class MonsterMovesHandler:

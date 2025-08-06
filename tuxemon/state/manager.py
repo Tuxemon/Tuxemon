@@ -206,10 +206,15 @@ class StateManager:
             state_name: The name of the state to remove.
         """
         try:
-            state = self.state_stack.get_state_by_name(state_name)
-            self.pop_state(state)
-        except StopIteration:
-            raise ValueError(f"State with name '{state_name}' not found")
+            matches = self.state_stack.get_states_by_name(state_name)
+        except ValueError:
+            logger.warning(f"No states found with name '{state_name}'")
+            return
+
+        for state in matches:
+            logger.debug(f"Removing state: {state.name}")
+            self.state_stack.remove(state)
+            state.shutdown()
 
     @overload
     def push_state(

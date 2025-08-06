@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+from collections import deque
 from collections.abc import Mapping, Sequence
 from typing import TYPE_CHECKING, Any, Optional
 
@@ -26,7 +27,7 @@ class StateQueue:
                                that will activate the queued states.
         """
         self._state_manager_ref = state_manager_ref
-        self._state_queue: list[tuple[str, Mapping[str, Any]]] = []
+        self._state_queue: deque[tuple[str, Mapping[str, Any]]] = deque()
 
     def queue_state(self, state_name: str, **kwargs: Any) -> None:
         """
@@ -50,7 +51,7 @@ class StateQueue:
             True if a state was processed and activated, False otherwise.
         """
         if self._state_queue:
-            state_name, kwargs = self._state_queue.pop(0)
+            state_name, kwargs = self._state_queue.popleft()
             logger.debug(
                 f"Handling queued state: {state_name} (replacing current)"
             )
@@ -140,4 +141,4 @@ class StateQueue:
         Returns:
             List of queued states.
         """
-        return self._state_queue[:]
+        return list(self._state_queue)

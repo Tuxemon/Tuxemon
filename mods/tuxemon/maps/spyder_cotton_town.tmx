@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="600">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="600">
  <properties>
   <property name="east" value="route2"/>
   <property name="edges" value="clamped"/>
+  <property name="map_type" value="town"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="cotton_town"/>
   <property name="south" value="route1"/>
-  <property name="map_type" value="town"/>
   <property name="west" value="dryadsgrove"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_city_and_country.tsx"/>
@@ -378,7 +378,8 @@
     <property name="act13" value="create_npc spyder_papertown_mom,23,23"/>
     <property name="act14" value="pathfind spyder_papertown_mom,31,18"/>
     <property name="act15" value="unlock_controls"/>
-    <property name="act16" value="char_face player,down"/>
+    <property name="act16" value="char_face spyder_papertown_mom,player"/>
+    <property name="act17" value="char_face player,spyder_papertown_mom"/>
     <property name="act20" value="translated_dialog spyder_cottontown_mom"/>
     <property name="act25" value="add_item nu_phone"/>
     <property name="act26" value="translated_dialog nu_phone,,center,center,center"/>

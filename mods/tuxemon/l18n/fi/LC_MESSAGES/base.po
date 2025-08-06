@@ -1415,14 +1415,3 @@ msgstr "${{name}}:n talo"
 
 msgid "oedipus"
 msgstr "Oidipus"
-
-msgid "kennel_label"
-msgstr "{box} ({qty})"
-
-# Default mod names on selection menu
-msgid "xero_campaign"
-msgstr "Tuxemon: Xero"
-
-# Money notification
-msgid "player_wallet"
-msgstr "${{name}}:n lompakko: ${{money_formatted}}"

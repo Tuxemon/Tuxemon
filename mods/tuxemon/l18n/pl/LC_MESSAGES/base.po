@@ -2445,7 +2445,8 @@ msgstr "Sieć"
 
 msgid "cotton_breeder7b"
 msgstr ""
-"Dobry pomysł, nowa rodzina powinna być trzymana razem na tym ważnym etapie rozwoju dziecka.\n"
+"Dobry pomysł, nowa rodzina powinna być trzymana razem na tym ważnym etapie "
+"rozwoju dziecka.\n"
 "Wracajcie teraz, słyszeliście?"
 
 msgid "nudiflot_female_description"
@@ -2516,8 +2517,7 @@ msgid "37707_sign_foreign"
 msgstr "Ten znak jest napisany w obcym języku, którego nie rozumiesz."
 
 msgid "37707_house"
-msgstr ""
-"Dziwne: jest zamknięty. Wygląda na to, że nikt nie używa tego budynku."
+msgstr "Dziwne: jest zamknięty. Wygląda na to, że nikt nie używa tego budynku."
 
 msgid "37707_mail"
 msgstr "Jest puste i pełne pajęczyn."

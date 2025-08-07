@@ -16,7 +16,11 @@ from tuxemon.graphics import ColorLike, string_to_colorlike
 from tuxemon.item.item import Item
 from tuxemon.monster import Monster
 from tuxemon.session import Session
-from tuxemon.states.combat.combat_context import CombatContext
+from tuxemon.states.combat.combat_context import (
+    BattleMode,
+    CombatContext,
+    CombatType,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -112,9 +116,9 @@ class RandomEncounterAction(EventAction):
         context = CombatContext(
             session=session,
             teams=[player, npc],
-            combat_type="monster",
+            combat_type=CombatType.MONSTER,
             graphics=environment.battle_graphics,
-            battle_mode="single",
+            battle_mode=BattleMode.SINGLE,
         )
         session.client.queue_state("CombatState", context=context)
 

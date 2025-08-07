@@ -84,7 +84,7 @@ from .combat_classes import (
     MenuVisibility,
     MethodAnimationCache,
 )
-from .combat_context import CombatContext
+from .combat_context import CombatContext, CombatType
 from .reward_system import RewardSystem
 
 if TYPE_CHECKING:
@@ -159,7 +159,7 @@ class CombatState(CombatAnimations):
 
         super().__init__(context=context)
         self._lock_update = self.client.config.combat_click_to_continue
-        self.is_trainer_battle = context.combat_type == "trainer"
+        self.is_trainer_battle = context.combat_type == CombatType.TRAINER
         self.show_combat_dialog()
         self.transition_phase(CombatPhase.BEGIN)
         self.task(

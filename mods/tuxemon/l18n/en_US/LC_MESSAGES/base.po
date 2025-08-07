@@ -1609,6 +1609,9 @@ msgstr "That monster has fainted already!"
 msgid "combat_wild_appeared"
 msgstr "A wild {name} appeared!"
 
+msgid "combat_horde_appeared"
+msgstr "A horde of wild creatures surrounds you!"
+
 msgid "combat_monster_choice"
 msgstr "What will {name} do?"
 

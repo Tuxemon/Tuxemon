@@ -6,7 +6,7 @@ import logging
 from collections import deque
 from collections.abc import Callable
 from functools import partial
-from typing import TYPE_CHECKING, Deque, Optional
+from typing import TYPE_CHECKING, Optional
 
 from tuxemon.formula import config_combat
 
@@ -22,7 +22,7 @@ class TextAnimationManager:
     """
 
     def __init__(self) -> None:
-        self.text_queue: Deque[tuple[Callable[[], None], float]] = deque()
+        self.text_queue: deque[tuple[Callable[[], None], float]] = deque()
         self._text_time_left: float = 0
         self._xp_messages: list[str] = []
         self._pending_xp_duration: Optional[float] = None

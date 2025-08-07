@@ -26,6 +26,16 @@ from tuxemon.element import ElementTypesHandler
 from tuxemon.evolution import Evolution
 from tuxemon.fusion import Body
 from tuxemon.locale import T
+from tuxemon.monster_dir.held_item import MonsterItemHandler
+from tuxemon.monster_dir.moves import MonsterMovesHandler
+from tuxemon.monster_dir.plague import MonsterPlagueHandler
+from tuxemon.monster_dir.sprite import (
+    Flair,
+    FlairApplier,
+    MonsterSpriteHandler,
+    SpriteLoader,
+)
+from tuxemon.monster_dir.status import MonsterStatusHandler
 from tuxemon.shape import ShapeHandler
 from tuxemon.sprite import Sprite
 from tuxemon.taste import Taste
@@ -574,7 +584,6 @@ class Monster:
             current = self.status.get_current_status()
             if current:
                 current.apply_phase_and_use(session, EffectPhase.ON_FAINT)
-
 
 
 def decode_monsters(

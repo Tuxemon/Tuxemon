@@ -1516,13 +1516,41 @@ class EncounterItemModel(BaseModel):
         raise ValueError(f"the monster {v} doesn't exist in the db")
 
 
+class HordeEncounterModel(BaseModel):
+    monsters: Sequence[EncounterItemModel] = Field(
+        ..., description="The list of monsters that make up this horde."
+    )
+    horde_level_range: Optional[Sequence[int]] = Field(
+        None,
+        description="Optional: A base level range for the entire horde. If set, individual monster `level_range` can be ignored or used as a modification.",
+        max_length=2,
+    )
+    horde_exp_mod: Optional[float] = Field(
+        None,
+        description="Optional: A modifier for the experience points of the entire horde.",
+        gt=0.0,
+    )
+
+
+class EncounterType(str, Enum):
+    SINGLE = "single"
+    HORDE = "horde"
+
+
 class EncounterModel(BaseModel, BaseLookupModel):
     table_name: ClassVar[str] = "encounter"
     slug: str = Field(
         ..., description="Slug to uniquely identify this encounter"
     )
+    encounter_type: EncounterType = Field(
+        EncounterType.SINGLE,
+        description="The type of this encounter (single monster or a horde).",
+    )
     monsters: Sequence[EncounterItemModel] = Field(
         [], description="Monsters encounterable"
+    )
+    horde: Optional[HordeEncounterModel] = Field(
+        None, description="Horde data (for horde encounters)"
     )
     scaling_zone: bool = Field(
         False,

@@ -60,20 +60,12 @@ class RandomEncounterAction(EventAction):
 
         zone = EncounterData(self.encounter_slug)
         encounter = Encounter(zone)
-        results = encounter.get_valid_encounters(player)
+        results = encounter.get_single_encounter(player, self.total_prob)
 
-        if not results:
-            logger.error(
-                f"No wild monsters, check 'encounter/{self.encounter_slug}.json'"
-            )
+        if results is None:
             return
 
-        eligible = encounter.choose_encounter(results, self.total_prob)
-        if eligible is None:
-            return
-
-        held_item = encounter.get_held_item(eligible)
-        level = encounter.determine_level(player, eligible)
+        eligible, level, held_item = results
 
         logger.info("Starting random encounter!")
 

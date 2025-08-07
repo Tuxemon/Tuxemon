@@ -43,7 +43,7 @@ from typing import TYPE_CHECKING, Any, Optional, Union
 from pygame.rect import Rect
 from pygame.surface import Surface
 
-from tuxemon import graphics
+from tuxemon import graphics, prepare
 from tuxemon.ai import AIManager
 from tuxemon.animation import Animation, Task
 from tuxemon.combat import (
@@ -931,12 +931,31 @@ class CombatState(CombatAnimations):
             # retrieve tuxeball
             message += "\n" + T.translate("attempting_capture")
             action_time = result_item.num_shakes + 1.8
+
+            success_header_text = ""
+            if result_item.success:
+                success_header_text = T.translate("gotcha")
+                if len(user.monsters) >= prepare.PARTY_LIMIT:
+                    success_text = T.format(
+                        "gotcha_kennel", {"name": target.name.upper()}
+                    )
+                else:
+                    success_text = T.format(
+                        "gotcha_team", {"name": target.name.upper()}
+                    )
+                failure_text = ""
+            else:
+                success_text = ""
+                failure_text = T.translate(
+                    f"captured_failed_{result_item.num_shakes}"
+                )
+
             self.animate_capture_monster(
-                result_item.success,
-                result_item.num_shakes,
+                result_item,
                 target,
                 item,
                 item_sprite,
+                (success_header_text, success_text, failure_text),
             )
         else:
             if item.behaviors.throwable:

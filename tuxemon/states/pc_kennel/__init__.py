@@ -4,10 +4,10 @@ from __future__ import annotations
 
 import logging
 import math
-import uuid
 from collections.abc import Callable, Sequence
 from functools import partial
 from typing import TYPE_CHECKING, Any, Optional
+from uuid import UUID
 
 import pygame_menu
 from pygame_menu import locals
@@ -54,7 +54,7 @@ class MonsterTakeState(PygameMenuState):
         self.box = self.monster_boxes.get_monsters(self.box_name)
 
         def kennel_options(instance_id: str) -> None:
-            iid = uuid.UUID(instance_id)
+            iid = UUID(instance_id)
             mon = self.monster_boxes.get_monsters_by_iid(iid)
             if mon is None:
                 logger.error(f"Monster {iid} not found")

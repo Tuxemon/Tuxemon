@@ -1,27 +1,23 @@
 {
-  "tech_id": 50,
-  "accuracy": 0.8,
+  "tech_id": 242,
+  "accuracy": 1.0,
   "animation": "lance_ice",
   "effects": [
     {
-      "type": "give",
+      "type": "sacrifice",
       "parameters": [
-        "lifeleech",
-        "enemy_monster"
+        "0.5"
       ]
-    },
-    {
-      "type": "damage"
     }
   ],
   "flip_axes": "xy",
   "speed": "normal",
-  "potency": 1,
-  "power": 2.5,
+  "potency": 0.0,
+  "power": 0.0,
   "range": "melee",
   "recharge": 3,
   "sfx": "sfx_blaster",
-  "slug": "tonguespear",
+  "slug": "tooth_for_tooth",
   "sort": "damage",
   "modifiers": [],
   "target": {
@@ -32,13 +28,12 @@
     "own_team": false,
     "own_trainer": false
   },
-  "category": "powerful",
+  "category": "reserved",
   "tags": [
-    "bug",
-    "tongue"
+    "reserved"
   ],
   "types": [
-    "water"
+    "fire"
   ],
   "use_failure": "combat_miss",
   "use_success": null,

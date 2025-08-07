@@ -99,9 +99,7 @@ class GetMonsterTechAction(EventAction):
         player = self.session.player
         technique = menu_item.game_object
 
-        player.game_variables[self.variable_name] = str(
-            technique.instance_id.hex
-        )
+        player.game_variables[self.variable_name] = technique.instance_id.hex
         self.session.client.pop_state()
 
     def start(self, session: Session) -> None:

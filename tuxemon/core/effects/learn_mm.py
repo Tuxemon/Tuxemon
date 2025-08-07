@@ -45,7 +45,7 @@ class LearnMmEffect(CoreEffect):
             tech_slug = random.choice(available)
 
             client = session.client
-            var = f"{self.name}:{str(target.instance_id.hex)}"
+            var = f"{self.name}:{target.instance_id.hex}"
             client.event_engine.execute_action("set_variable", [var], True)
             client.event_engine.execute_action(
                 "add_tech", [self.name, tech_slug], True

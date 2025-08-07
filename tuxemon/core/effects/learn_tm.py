@@ -31,7 +31,7 @@ class LearnTmEffect(CoreEffect):
     ) -> ItemEffectResult:
         if not target.moves.has_move(self.technique):
             client = session.client
-            var = f"{self.name}:{str(target.instance_id.hex)}"
+            var = f"{self.name}:{target.instance_id.hex}"
             client.event_engine.execute_action("set_variable", [var], True)
             client.event_engine.execute_action(
                 "add_tech", [self.name, self.technique], True

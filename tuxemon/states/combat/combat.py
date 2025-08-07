@@ -1036,9 +1036,8 @@ class CombatState(CombatAnimations):
             monster: Monster that will faint.
         """
         monster.current_hp = 0
-        iid = str(monster.instance_id.hex)
         label = f"{self.name.lower()}_faint"
-        set_var(self.session, label, iid)
+        set_var(self.session, label, monster.instance_id.hex)
 
     def award_experience_and_money(self, monster: Monster) -> None:
         """

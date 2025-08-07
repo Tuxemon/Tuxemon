@@ -36,6 +36,4 @@ class GetPartyMonsterAction(EventAction):
             raise ValueError(f"NPC '{self.npc_slug}' not found")
 
         for index, mon in enumerate(trainer.monsters):
-            player.game_variables[f"iid_slot_{index}"] = str(
-                mon.instance_id.hex
-            )
+            player.game_variables[f"iid_slot_{index}"] = mon.instance_id.hex

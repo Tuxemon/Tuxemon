@@ -140,9 +140,7 @@ class GetPlayerMonsterAction(EventAction):
         player = self.session.player
         monster = menu_item.game_object
 
-        player.game_variables[self.variable_name] = str(
-            monster.instance_id.hex
-        )
+        player.game_variables[self.variable_name] = monster.instance_id.hex
         self.session.client.pop_state()
 
     def start(self, session: Session) -> None:

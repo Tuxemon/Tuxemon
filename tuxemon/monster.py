@@ -165,6 +165,9 @@ class Monster:
         self.height: float = 0.0
         self.weight: float = 0.0
 
+        self.mother_iid: Optional[UUID] = None
+        self.father_iid: Optional[UUID] = None
+
         # The multiplier for checks when a monster ball is thrown this should be a value between 0-100 meaning that
         # 0 is 0% capture rate and 100 has a very good chance of capture. This numbers are based on the capture system
         # calculations. This was originally inspired by the calculations which can be found at:
@@ -520,10 +523,16 @@ class Monster:
             if getattr(self, attr)
         }
 
-        save_data["instance_id"] = str(self.instance_id.hex)
+        save_data["instance_id"] = self.instance_id.hex
         save_data["gender"] = self.gender
         save_data["acquisition"] = self.acquisition
         save_data["plague"] = self.plague.encode_plagues()
+        save_data["mother_iid"] = (
+            self.mother_iid.hex if self.mother_iid else None
+        )
+        save_data["father_iid"] = (
+            self.father_iid.hex if self.father_iid else None
+        )
 
         body = self.body.get_state()
         if body:
@@ -562,6 +571,10 @@ class Monster:
                 self.gender = GenderType(value)
             elif key == "acquisition" and value:
                 self.acquisition = Acquisition(value)
+            elif key == "mother_iid":
+                self.mother_iid = UUID(value) if value else None
+            elif key == "father_iid":
+                self.father_iid = UUID(value) if value else None
             elif key in SIMPLE_PERSISTANCE_ATTRIBUTES:
                 setattr(self, key, value)
             elif key == "held_item" and value:

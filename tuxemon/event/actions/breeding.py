@@ -44,7 +44,7 @@ class BreedingAction(EventAction):
         parent = (
             "breeding_mother" if self.gender == "female" else "breeding_father"
         )
-        player.game_variables[parent] = str(monster.instance_id.hex)
+        player.game_variables[parent] = monster.instance_id.hex
         self.session.client.pop_state()
 
     def start(self, session: Session) -> None:

@@ -3,7 +3,9 @@
 from __future__ import annotations
 
 import logging
-from typing import TYPE_CHECKING
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any
+from uuid import UUID
 
 from tuxemon.db import MonsterEvolutionItemModel, SeenStatus, StatType
 from tuxemon.locale import T
@@ -178,3 +180,108 @@ class Evolution:
             return context.get("use_item", False)
 
         return all(conditions)
+
+
+class EvolutionRegistry:
+    def __init__(self) -> None:
+        self._missed_evolutions: dict[UUID, list[tuple[str, int, int]]] = {}
+        self._pending_evolutions: dict[UUID, list[str]] = {}
+
+    def log_missed(
+        self, monster_id: UUID, evolution_slug: str, level: int
+    ) -> None:
+        evolutions = self._missed_evolutions.setdefault(monster_id, [])
+        for i, (slug, lvl, count) in enumerate(evolutions):
+            if slug == evolution_slug and lvl == level:
+                evolutions[i] = (slug, lvl, count + 1)
+                logger.debug(
+                    f"Incremented refusal count for {slug} at level {lvl} (count={count + 1})"
+                )
+                return
+        evolutions.append((evolution_slug, level, 1))
+        logger.debug(
+            f"Logged missed evolution: {evolution_slug} at level {level} (count=1)"
+        )
+
+    def get_retryable_missed(
+        self, monster_id: UUID, max_attempts: int = 3
+    ) -> list[str]:
+        retryable = [
+            slug
+            for slug, lvl, count in self._missed_evolutions.get(monster_id, [])
+            if count < max_attempts
+        ]
+        logger.debug(
+            f"Retryable missed evolutions for {monster_id}: {retryable}"
+        )
+        return retryable
+
+    def clear_missed(
+        self, monster_id: UUID, evolution_slug: str | None = None
+    ) -> None:
+        if monster_id not in self._missed_evolutions:
+            logger.debug(f"No missed evolutions to clear for {monster_id}")
+            return
+        if evolution_slug is None:
+            del self._missed_evolutions[monster_id]
+            logger.debug(f"Cleared all missed evolutions for {monster_id}")
+        else:
+            before = len(self._missed_evolutions[monster_id])
+            self._missed_evolutions[monster_id] = [
+                evo
+                for evo in self._missed_evolutions[monster_id]
+                if evo[0] != evolution_slug
+            ]
+            after = len(self._missed_evolutions[monster_id])
+            logger.debug(
+                f"Cleared missed evolution '{evolution_slug}' for {monster_id} ({before - after} removed)"
+            )
+
+    def add_pending(self, monster_id: UUID, evolution_slug: str) -> None:
+        self._pending_evolutions.setdefault(monster_id, []).append(
+            evolution_slug
+        )
+        logger.debug(
+            f"Added pending evolution '{evolution_slug}' for {monster_id}"
+        )
+
+    def get_pending(self, monster_id: UUID) -> list[str]:
+        pending = self._pending_evolutions.get(monster_id, [])
+        logger.debug(f"Pending evolutions for {monster_id}: {pending}")
+        return pending
+
+    def clear_pending(self, monster_id: UUID) -> None:
+        if monster_id in self._pending_evolutions:
+            logger.debug(f"Cleared pending evolutions for {monster_id}")
+        else:
+            logger.debug(f"No pending evolutions to clear for {monster_id}")
+        self._pending_evolutions.pop(monster_id, None)
+
+    def encode_registry(self) -> Mapping[str, Any]:
+        return {
+            "missed": {
+                str(monster_id): [
+                    {"slug": slug, "level": level, "count": count}
+                    for slug, level, count in evolutions
+                ]
+                for monster_id, evolutions in self._missed_evolutions.items()
+            },
+            "pending": {
+                str(monster_id): slugs
+                for monster_id, slugs in self._pending_evolutions.items()
+            },
+        }
+
+    def decode_registry(self, data: Mapping[str, Any]) -> None:
+        self._missed_evolutions.clear()
+        self._pending_evolutions.clear()
+
+        for monster_id_str, evolutions in data.get("missed", {}).items():
+            monster_id = UUID(monster_id_str)
+            self._missed_evolutions[monster_id] = [
+                (evo["slug"], evo["level"], evo["count"]) for evo in evolutions
+            ]
+
+        for monster_id_str, slugs in data.get("pending", {}).items():
+            monster_id = UUID(monster_id_str)
+            self._pending_evolutions[monster_id] = slugs

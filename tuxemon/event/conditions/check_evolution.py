@@ -46,7 +46,9 @@ class CheckEvolutionCondition(EventCondition):
             "use_item": False,
         }
 
-        evolving_monsters = []
+        registry = character.evolution_registry
+        found_evolution = False
+
         for monster in character.monsters:
             if monster.evolutions:
                 for evolution in monster.evolutions:
@@ -56,9 +58,12 @@ class CheckEvolutionCondition(EventCondition):
                         evolved_monster = Monster.create(
                             evolution.monster_slug
                         )
-                        evolving_monsters.append((monster, evolved_monster))
+                        if evolved_monster.slug not in registry.get_pending(
+                            monster.instance_id
+                        ):
+                            registry.add_pending(
+                                monster.instance_id, evolved_monster.slug
+                            )
+                            found_evolution = True
 
-        if evolving_monsters:
-            character.pending_evolutions = evolving_monsters
-
-        return len(evolving_monsters) > 0
+        return found_evolution

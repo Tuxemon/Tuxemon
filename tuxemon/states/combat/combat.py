@@ -397,9 +397,9 @@ class CombatState(CombatAnimations):
             # show monster action menu for human players
             if self._decision_queue:
                 if self.is_double:
-                    self.handle_double_action(self._decision_queue)
+                    self.handle_pending_actions(self._decision_queue, 2)
                 else:
-                    self.handle_single_action(self._decision_queue)
+                    self.handle_pending_actions(self._decision_queue, 1)
 
         elif self.phase == CombatPhase.ACTION:
             self.handle_action_queue()
@@ -407,22 +407,17 @@ class CombatState(CombatAnimations):
         elif self.phase == CombatPhase.POST_ACTION:
             self.handle_action_queue()
 
-    def handle_single_action(self, pending_monsters: list[Monster]) -> None:
-        if pending_monsters:
+    def handle_pending_actions(
+        self, pending_monsters: list[Monster], num_actions: int
+    ) -> None:
+        actual_actions = min(num_actions, len(pending_monsters))
+        logger.debug(f"Handling {actual_actions} pending monster action(s)")
+
+        for i in range(actual_actions):
             monster = pending_monsters.pop(0)
+            logger.debug(f"Processing monster #{i + 1}: {monster.name}")
             monster.moves.recharge_moves()
             self.show_monster_action_menu(monster)
-
-    def handle_double_action(self, pending_monsters: list[Monster]) -> None:
-        if len(pending_monsters) >= 2:
-            monster1 = pending_monsters.pop(0)
-            monster1.moves.recharge_moves()
-            self.show_monster_action_menu(monster1)
-            monster2 = pending_monsters.pop(0)
-            monster2.moves.recharge_moves()
-            self.show_monster_action_menu(monster2)
-        elif pending_monsters:
-            self.handle_single_action(pending_monsters)
 
     def handle_action_queue(self) -> None:
         """Take one action from the queue and do it."""

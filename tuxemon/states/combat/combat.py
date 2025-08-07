@@ -654,6 +654,7 @@ class CombatState(CombatAnimations):
                 output=result_type,
                 player=player,
                 players=opponents if opponents else players,
+                turns=self._turn,
                 prize=self._prize if result_type == "won" else 0,
                 trainer_battle=self.is_trainer_battle,
             )

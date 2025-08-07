@@ -1,4 +1,4 @@
-.. autoscriptinfoclass:: tuxemon.event.conditions.battle_is.BattleIsCondition
+.. autoscriptinfoclass:: tuxemon.event.conditions.battle_outcome.BattleOutcomeCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.bill_is.BillIsCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.button_combo.ButtonComboCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.button_count.ButtonCountCondition

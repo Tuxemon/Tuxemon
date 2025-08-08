@@ -50,7 +50,6 @@ from tuxemon.combat import (
     alive_party,
     battlefield,
     defeated,
-    get_awake_monsters,
     set_var,
     track_battles,
 )
@@ -489,9 +488,6 @@ class CombatState(CombatAnimations):
         Parameters:
             ask: If True, then open dialog for human players.
         """
-        # TODO: let work for trainer battles
-        humans = list(self.human_players)
-
         # TODO: integrate some values for different match types
         for player in self.active_players:
 
@@ -509,15 +505,15 @@ class CombatState(CombatAnimations):
 
             positions_available = self.get_available_positions(player)
             if positions_available:
-                monsters = self.field_monsters.get_monsters(player)
-                available = get_awake_monsters(player, monsters, self._turn)
-                for _ in range(positions_available):
-                    if player in humans and ask:
-                        self.ask_player_for_monster(player)
-                    else:
-                        monster = next(available)
-                        self.add_monster_into_play(player, monster)
-                        self.update_tuxepedia(player, monster)
+                if player in self.human_players and ask:
+                    self.ask_player_for_monster(player)
+                else:
+                    replacement = self.ai_manager.choose_replacement_monster(
+                        player
+                    )
+                    if replacement:
+                        self.add_monster_into_play(player, replacement)
+                        self.update_tuxepedia(player, replacement)
 
     def update_tuxepedia(self, player: NPC, monster: Monster) -> None:
         """
@@ -662,15 +658,21 @@ class CombatState(CombatAnimations):
         Updates HUD and assigns monsters to the decision queue for players,
         while recharging moves and triggering AI actions for NPCs.
         """
-        for player in list(self.active_players):
-            self.update_hud(player, False, False)
-            monsters = self.field_monsters.get_monsters(player)
-            for monster in monsters:
-                if player in self.human_players:
-                    self._decision_queue.append(monster)
-                else:
-                    monster.moves.recharge_moves()
-                    self.ai_manager.process_ai_turn(monster, player)
+        self._decision_queue = []
+
+        for monster in self.active_monsters:
+            char = self.field_monsters.get_npc_for_monster(monster)
+            monster.moves.recharge_moves()
+            if char in self.human_players:
+                # Still add to queue for menu interaction
+                self._decision_queue.append(monster)
+            else:
+                # Ask AIManager to handle the decision for this monster
+                self.ai_manager.process_ai_turn(monster, char)
+
+        # Start the menu flow for human players
+        if self._decision_queue:
+            self.show_monster_action_menu(self._decision_queue.pop(0))
 
     def check_decisions(self) -> None:
         for player in list(self.active_players):

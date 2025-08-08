@@ -9,14 +9,13 @@ from __future__ import annotations
 
 import logging
 import random
-from collections.abc import Generator, Sequence
-from typing import TYPE_CHECKING, Optional
+from collections.abc import Sequence
+from typing import TYPE_CHECKING
 
 from tuxemon.db import (
     EffectPhase,
     GenderType,
     OutputBattle,
-    StatType,
     TargetType,
 )
 from tuxemon.locale import T
@@ -133,40 +132,6 @@ def has_effect_param(
         ele.name == effect_name and getattr(ele, attribute, None) == name
         for ele in tech.effects
     )
-
-
-def get_awake_monsters(
-    character: NPC,
-    monsters: list[Monster],
-    turn: int,
-    method: Optional[str] = None,
-) -> Generator[Monster, None, None]:
-    """
-    Iterate all non-fainted monsters in party.
-
-    Parameters:
-        character: The character.
-        monsters: List of monsters on the battlefield.
-        turn: Current turn of the battle.
-        method: Method to use when selecting a monster (default: None).
-
-    Yields:
-        Non-fainted monsters.
-    """
-    awake_monsters = [
-        monster
-        for monster in character.monsters
-        if not monster.is_fainted and monster not in monsters
-    ]
-
-    if awake_monsters:
-        if len(awake_monsters) == 1:
-            yield awake_monsters[0]
-        else:
-            if turn == 1 or method is None:
-                yield from awake_monsters
-            else:
-                yield retrieve_from_party(awake_monsters, method)
 
 
 def alive_party(character: NPC) -> list[Monster]:
@@ -457,44 +422,3 @@ def build_hud_text(
         symbol = "◉"
 
     return f"{monster.name}{icon} Lv.{monster.level}{symbol}"
-
-
-def retrieve_from_party(party: list[Monster], method: str) -> Monster:
-    """
-    Retrieves a monster from the party based on the specified method.
-
-    Parameters:
-        party: List of monsters in the party.
-        method: Method to use when selecting a monster
-            (e.g., 'lv_highest', 'healthiest', etc.).
-
-    Returns:
-        Monster: The selected monster.
-
-    Notes:
-        If the method is not recognized, a random monster from
-        the party will be returned.
-    """
-    methods = {
-        "lv_highest": ("level", max),
-        "lv_lowest": ("level", min),
-        "healthiest": ("current_hp", max),
-        "weakest": ("current_hp", min),
-        "oldest": ("steps", max),
-        "newest": ("steps", min),
-    }
-
-    # eg. speed_max, armour_max, etc.
-    methods.update(
-        {f"{stat.value}_max": (stat.value, max) for stat in StatType}
-    )
-    # eg. speed_min, armour_min, etc.
-    methods.update(
-        {f"{stat.value}_min": (stat.value, min) for stat in StatType}
-    )
-
-    if method not in methods:
-        return random.choice(party)
-
-    attr, func = methods[method]
-    return func(party, key=lambda m: getattr(m, attr))

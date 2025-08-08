@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="339">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="339">
  <properties>
   <property name="east" value="citypark"/>
   <property name="edges" value="clamped"/>
@@ -31,7 +31,12 @@
  </layer>
  <layer id="4" name="Above Player" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtlztOAzEQhgflAHQUSAkSJ+IQUAKhhSaQNzkJ7wNAkoo3Ha+adIRL8K3QSJHJbhyzq/Uij/TFcjzj/P6jtb0iIYrswKoh3uwbw6E7w4H1BZEN8CGy+i8vyyJX0IcBDGEyrunfwC3cwT2kFe2S1FrQhAbUQed+WBJ5hCfIKy7Qcw5ncAonoFo+0TWGrxz1vaPnDV7hBZ5B9WXVrmQ18T+Yt1URaUMHunAIPQgRHLBxYChSG0AfbPJdcibPtOhMyepccdGWZ80+z+kB1KEBTUiKIvime7W2Sev5y9jasnu1bz76psfd2VDpkwOb7CdbsA1V2IEowp3hxwebz70U3z1sfm/enGPP9c27npCfrwNxd5K4vUTVxtXpeFHbj0WREWibtA69k+w6PpOudUmapo0dOepzqVPftJ2mJ3xn54Dp4ay+3azpZxVVl6k7fWd+z/gNDLtZHw==
+   eAHtl0tOQjEUho9xAcwcmCgJK3IROvQ1hQnIS2QlPlmAAiPwuQmdqZvwI+QkpHAvpV64bdKTfDS97Wn//uS2vSIxQnagZIg360ZzrC5x4HBL5Ah8iHX9l497Ik/QhwEMYTZG1MfwDC/wCllFe1uqLWhCA+qgY7/tiLzDB+QVPfQ8wD3cwS2olm90/cBvjvpUyybL4iYnC2yu1r5IGy6hA1fQhRjRARsHhiLVAfTBpr9Ln9kzbXKmrOtccdGWZ06N9/QC6tCAJqRFCL7pXq1l2nr+03aw657tm4++6XF3Nmb65MAx+8kJnMIZnMMk4p1h6oPNbyXDbw+b+Vbtc+O5vlXXE/vn60DSnSRpL1G1SXnaHmr5WRD5Ai3T1qF3krLjO+mal6ZpUdu1oz6XPPVNy0V64jM7B0wPl9XtRs2+V6i6TN3ZOzM/4h+AxFJn
+  </data>
+ </layer>
+ <layer id="8" name="Above Player 2" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eAHt0NkJACAUA8EHNm6PXu2YLkSYwP6HqTICBAgQ+EHgtOo7rTTTSD/89pEAAQIECBAgQIAAAQIECBAgQIDAC4ELpOgGuQ==
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collisions">
@@ -496,7 +501,9 @@
     <property name="act1" value="translated_dialog spyder_leather_sarah_greeting"/>
     <property name="act2" value="translated_dialog_choice no:yes,sarah_flashback"/>
     <property name="behav1" value="talk spyder_leathermuseum_visitor"/>
-    <property name="cond1" value="not variable_set sarah_flashback"/>
+    <property name="cond1" value="not variable_set sarah_flashback:yes"/>
+    <property name="cond2" value="not variable_set sarah_flashback:no"/>
+    <property name="cond3" value="not variable_set sarah_flashback:done"/>
    </properties>
   </object>
   <object id="336" name="Flashback" type="event" x="176" y="16" width="16" height="16">
@@ -537,6 +544,7 @@
   <object id="338" name="Talk Sarah No" type="event" x="192" y="32" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_leather_sarah_no"/>
+    <property name="act2" value="set_variable sarah_flashback:"/>
     <property name="behav1" value="talk spyder_leathermuseum_visitor"/>
     <property name="cond1" value="is variable_set sarah_flashback:no"/>
    </properties>

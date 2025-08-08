@@ -2102,17 +2102,9 @@ Sounds
 [NenadSimic](https://www.freesound.org/people/NenadSimic/) has been dedicated to
 [Public Domain](https://creativecommons.org/publicdomain/zero/1.0/)
 
-* ["Kelvin Shadewing's Soundpack Vol. 1"](http://kelvinshadewing.net/sndPack1.php) by
-[Kelvin Shadewing](http://kelvinshadewing.net) is licensed under
-[XYG Open Source License v1.1](http://kelvinshadewing.net/license.php).
-
-* ["Kelvin Shadewing's Soundpack Vol. 2"](http://kelvinshadewing.net/sndPack2.php) by
-[Kelvin Shadewing](http://kelvinshadewing.net) is licensed under
-[XYG Open Source License v1.1](http://kelvinshadewing.net/license.php).
-
-* ["Kelvin Shadewing's Soundpack Vol. 3"](http://kelvinshadewing.net/sndPack3.php) by
-[Kelvin Shadewing](http://kelvinshadewing.net) is licensed under
-[XYG Open Source License v1.1](http://kelvinshadewing.net/license.php).
+* ["Kelvin Shadewing's Soundpacks Vol. 1, 2 and 3"](http://www.kelvinshadewing.net/res/sounds) by
+[Kelvin Shadewing](http://kelvinshadewing.net) are licensed under
+[CC BY 3.0](https://creativecommons.org/licenses/by/3.0/).
 
 * "Tux Sound" by
 [Hyperdriveguy](https://github.com/hyperdriveguy) is licensed under

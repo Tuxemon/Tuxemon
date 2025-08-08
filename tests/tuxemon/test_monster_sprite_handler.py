@@ -7,7 +7,7 @@ from pygame import SRCALPHA
 from pygame.surface import Surface
 
 from tuxemon import prepare
-from tuxemon.monster import MonsterSpriteHandler
+from tuxemon.monster_dir.sprite import MonsterSpriteHandler
 
 
 class TestMonsterSpriteHandler(unittest.TestCase):

@@ -3,7 +3,8 @@
 import unittest
 from unittest.mock import MagicMock, patch
 
-from tuxemon.monster import Monster, MonsterStatusHandler
+from tuxemon.monster import Monster
+from tuxemon.monster_dir.status import MonsterStatusHandler
 from tuxemon.npc import NPC
 from tuxemon.states.combat.combat_classes import DamageTracker
 from tuxemon.states.combat.reward_system import (

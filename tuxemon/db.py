@@ -1560,6 +1560,7 @@ class DialogueModel(BaseModel, BaseLookupModel):
     font_shadow_color: str = Field(..., description="RGB color (eg. 255:0:0)")
     border_slug: str = Field(..., description="Name of the border")
     border_path: str = Field(..., description="Path to the border")
+    line_spacing: int = Field(..., description="Line spacing value")
 
     @classmethod
     def lookup(cls, slug: str, db: ModData) -> DialogueModel:

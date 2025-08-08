@@ -13,7 +13,7 @@ from tuxemon import prepare
 from tuxemon.db import MissionStatus
 from tuxemon.locale import T
 from tuxemon.menu.menu import PygameMenuState
-from tuxemon.mission import Mission
+from tuxemon.mission.mission import Mission
 from tuxemon.npc import NPC
 from tuxemon.platform.const import buttons
 from tuxemon.platform.events import PlayerInput

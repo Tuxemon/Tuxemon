@@ -14577,7 +14577,7 @@ msgstr ""
 
 msgid "spyder_leatherhouse1_tennisplayer1"
 msgstr ""
-"Is Frostbite an Earth element technique or a Water element technique? "
+"Is Grinflare an Earth element tuxemon or a Fire element tuxemon?"
 
 msgid "spyder_leatherhouse1_tennisplayer2"
 msgstr "Trick question - it's both!"

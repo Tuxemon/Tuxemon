@@ -1754,12 +1754,13 @@ class MissionModel(BaseModel, BaseLookupModel):
         default_factory=list,
         description="List of missions that this one unlocks",
     )
-    required_items: Sequence[str] = Field(
-        default_factory=list, description="Items required to begin the mission"
+    required_items: dict[str, Optional[int]] = Field(
+        default_factory=dict,
+        description="Items required to begin the mission with optional quantity. None means at least one.",
     )
-    required_monsters: Sequence[str] = Field(
-        default_factory=list,
-        description="Monsters required to begin the mission",
+    required_monsters: dict[str, Optional[int]] = Field(
+        default_factory=dict,
+        description="Monsters required to begin the mission with optional minimum level. None means any level.",
     )
     required_missions: Sequence[str] = Field(
         default_factory=list,
@@ -1798,8 +1799,10 @@ class MissionModel(BaseModel, BaseLookupModel):
         raise ValueError(f"no translation exists with msgid: {v}")
 
     @field_validator("required_items")
-    def item_exists(cls: MissionModel, v: Sequence[str]) -> Sequence[str]:
-        for item_slug in v:
+    def item_exists(
+        cls: MissionModel, v: dict[str, Optional[int]]
+    ) -> dict[str, Optional[int]]:
+        for item_slug in v.keys():
             if not has.db_entry("item", item_slug):
                 raise ValueError(
                     f"The item '{item_slug}' doesn't exist in the db"
@@ -1807,8 +1810,10 @@ class MissionModel(BaseModel, BaseLookupModel):
         return v
 
     @field_validator("required_monsters")
-    def monster_exists(cls: MissionModel, v: Sequence[str]) -> Sequence[str]:
-        for monster_slug in v:
+    def monster_exists(
+        cls: MissionModel, v: dict[str, Optional[int]]
+    ) -> dict[str, Optional[int]]:
+        for monster_slug in v.keys():
             if not has.db_entry("monster", monster_slug):
                 raise ValueError(
                     f"The monster '{monster_slug}' doesn't exist in the db"

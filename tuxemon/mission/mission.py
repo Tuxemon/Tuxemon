@@ -31,8 +31,8 @@ class Mission:
         self.prerequisites: Sequence[dict[str, Any]] = []
         self.connected_missions: Sequence[dict[str, Any]] = []
         self.failure_conditions: Sequence[dict[str, Any]] = []
-        self.required_items: Sequence[str] = []
-        self.required_monsters: Sequence[str] = []
+        self.required_items: dict[str, Optional[int]] = {}
+        self.required_monsters: dict[str, Optional[int]] = {}
         self.required_missions: Sequence[str] = []
         self.steps: dict[str, MissionStepModel] = {}
         self.completed_steps: set[str] = set()
@@ -119,15 +119,25 @@ class Mission:
             self.completed_steps.add(slug)
 
     def check_required_items(self, character: NPC) -> bool:
-        return all(
-            character.items.find_item(item) for item in self.required_items
-        )
+        for item_slug, required_quantity in self.required_items.items():
+            item = character.items.find_item(item_slug)
+            if not item:
+                return False
+            if (
+                required_quantity is not None
+                and item.quantity < required_quantity
+            ):
+                return False
+        return True
 
     def check_required_monsters(self, character: NPC) -> bool:
-        return all(
-            character.party.find_monster(monster)
-            for monster in self.required_monsters
-        )
+        for monster_slug, min_level in self.required_monsters.items():
+            monster = character.party.find_monster(monster_slug)
+            if not monster:
+                return False
+            if min_level is not None and monster.level < min_level:
+                return False
+        return True
 
     def get_slug_missions(self, character: NPC) -> list[str]:
         return [

@@ -9,8 +9,8 @@
     ],
     "failure_conditions": [],
     "connected_missions": [],
-    "required_items": [],
-    "required_monsters": [],
+    "required_items": {},
+    "required_monsters": {},
     "required_missions": [],
     "repeatable": false,
     "steps": {

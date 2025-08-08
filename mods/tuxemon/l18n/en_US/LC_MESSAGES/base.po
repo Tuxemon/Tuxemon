@@ -3490,7 +3490,7 @@ msgid "suplex"
 msgstr "Suplex"
 
 msgid "surf_description"
-msgstr "AA massive wave crashes down upon the opponent."
+msgstr "A massive wave crashes down upon the opponent."
 
 msgid "surf"
 msgstr "Surf"

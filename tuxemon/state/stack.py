@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+from collections import deque
 from collections.abc import Sequence
 from typing import TYPE_CHECKING, Optional
 
@@ -18,13 +19,13 @@ class StateStack:
     """
 
     def __init__(self) -> None:
-        self._stack: list[State] = []
+        self._stack: deque[State] = deque()
         self._resume_set: set[State] = set()
 
     def push(self, state: State) -> None:
         """Push a new state onto the stack and mark it for resume."""
         self._resume_set.add(state)
-        self._stack.insert(0, state)
+        self._stack.appendleft(state)
 
     def pop(self, state: Optional[State] = None) -> State:
         """Pop a state from the stack."""
@@ -33,11 +34,11 @@ class StateStack:
 
         state = state or self._stack[0]
         try:
-            index = self._stack.index(state)
+            self._stack.remove(state)
         except ValueError:
             raise RuntimeError("State not found in stack")
 
-        return self._stack.pop(index)
+        return state
 
     def replace(self, new_state: State) -> State:
         """Replace the current state with a new one."""
@@ -46,7 +47,7 @@ class StateStack:
                 "Attempted to replace state when stack is empty"
             )
 
-        old_state = self._stack.pop(0)
+        old_state = self._stack.popleft()
         self.push(new_state)
         return old_state
 
@@ -76,11 +77,11 @@ class StateStack:
 
     def all(self) -> Sequence[State]:
         """Return all states in the stack."""
-        return self._stack[:]
+        return list(self._stack)
 
-    def get_state_by_name(self, name: str) -> State:
+    def get_states_by_name(self, name: str) -> list[State]:
         """Find a state in the stack by its name."""
-        for state in self._stack:
-            if state.name == name:
-                return state
-        raise ValueError(f"State with name '{name}' not found")
+        matches = [state for state in self._stack if state.name == name]
+        if not matches:
+            raise ValueError(f"State with name '{name}' not found")
+        return matches

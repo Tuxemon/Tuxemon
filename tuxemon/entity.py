@@ -2,10 +2,10 @@
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-import uuid
 from collections.abc import Mapping, Sequence
 from enum import Enum
 from typing import TYPE_CHECKING, Any, Generic, Optional, TypeVar
+from uuid import UUID, uuid4
 
 from tuxemon.db import Direction
 from tuxemon.map import dirs3, proj
@@ -161,7 +161,7 @@ class Entity(Generic[SaveDict]):
         self.slug = slug
         self.client = session.client
         self.world = session.world
-        self.instance_id = uuid.uuid4()
+        self.instance_id: UUID = uuid4()
         self.body = Body(position=Point3(0, 0, 0))
         self.mover = Mover(self.body, moverate=CONFIG.player_walkrate)
         self.tile_pos: tuple[int, int] = (0, 0)

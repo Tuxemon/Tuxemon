@@ -2118,6 +2118,11 @@ Sounds
 [Hyperdriveguy](https://github.com/hyperdriveguy) is licensed under
 [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/) based upon [magellanic penguin](http://www.freesound.org/people/soundbytez/sounds/111079/) by [soundbytez](http://www.freesound.org/people/soundbytez/)
 
+* "Ship Bell" by [Mike Koenig](https://soundbible.com/1746-Ship-Bell.html) is licensed under [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/)
+
+* "Temple Bell" by [Mike Koenig](https://soundbible.com/1531-Temple-Bell.html) is licensed under [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/)
+
+* "Japanese Temple Bell Small" by [Mike Koenig](https://soundbible.com/1496-Japanese-Temple-Bell-Small.html) is licensed under [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/)
 
 Translations
 --------------

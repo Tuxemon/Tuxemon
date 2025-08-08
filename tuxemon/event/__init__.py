@@ -3,9 +3,9 @@
 from __future__ import annotations
 
 import logging
-import uuid
 from collections.abc import Sequence
 from typing import TYPE_CHECKING, NamedTuple, Optional
+from uuid import UUID
 
 from tuxemon.session import Session
 
@@ -72,7 +72,7 @@ def get_npc(session: Session, slug: str) -> Optional[NPC]:
     return session.client.npc_manager.get_npc(slug)
 
 
-def get_npc_by_iid(session: Session, iid: uuid.UUID) -> Optional[NPC]:
+def get_npc_by_iid(session: Session, iid: UUID) -> Optional[NPC]:
     """
     Gets an NPC object by iid.
 
@@ -104,7 +104,7 @@ def get_npc_pos(session: Session, pos: tuple[int, int]) -> Optional[NPC]:
     return session.client.npc_manager.get_entity_pos(pos)
 
 
-def get_monster_by_iid(session: Session, iid: uuid.UUID) -> Optional[Monster]:
+def get_monster_by_iid(session: Session, iid: UUID) -> Optional[Monster]:
     """
     Gets a monster object by iid among all the entities.
 

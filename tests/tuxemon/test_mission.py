@@ -4,11 +4,9 @@ from unittest import TestCase
 from unittest.mock import MagicMock
 
 from tuxemon.db import MissionStatus
-from tuxemon.mission import (
-    Mission,
-    MissionController,
-    MissionManager,
-)
+from tuxemon.mission.controller import MissionController
+from tuxemon.mission.manager import MissionManager
+from tuxemon.mission.mission import Mission
 from tuxemon.npc import NPC, NPCBagHandler, PartyHandler
 
 

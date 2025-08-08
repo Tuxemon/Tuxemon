@@ -1,10 +1,12 @@
 # SPDX-License-Identifier: GPL-3.0
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
-import collections
+from __future__ import annotations
+
 import time
+from collections import deque
 from collections.abc import Callable
 from heapq import heapify, heappop, heappush, heappushpop
-from typing import Any, Deque, Optional, Union
+from typing import Any, Optional, Union
 
 __all__ = ("ScheduledItem", "Scheduler", "Clock")
 
@@ -48,7 +50,7 @@ class Scheduler:
         super().__init__()
         self._time = time_function
         self._last_ts: float = -1
-        self._times: Deque[int] = collections.deque(maxlen=10)
+        self._times: deque[int] = deque(maxlen=10)
         self._scheduled_items: list[ScheduledItem] = []
         self._next_tick_items: list[ScheduledItem] = []
         self.cumulative_time = 0.0

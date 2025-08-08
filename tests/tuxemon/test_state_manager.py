@@ -151,7 +151,7 @@ class RemoveWhenCurrent(StateManagerTestBase):
         self.state_a = self.sm.push_state("a")
         self.state_b = self.sm.push_state("b")
         # remove the current state
-        self.sm.remove_state(self.state_b)
+        self.sm.pop_state(self.state_b)
         self.sm.update(0)
 
     def test_current_state(self):
@@ -173,6 +173,13 @@ class RemoveWhenCurrent(StateManagerTestBase):
         self.assertEqual(1, self.state_a.pause.call_count)
         self.assertEqual(0, self.state_a.shutdown.call_count)
 
+    def test_remove_middle_state(self):
+        self.create_and_register_state("c")
+        state_c = self.sm.push_state("c")
+        self.sm.pop_state(self.state_a)  # Remove middle state
+        self.assertNotIn(self.state_a, self.sm.active_states)
+        self.assertEqual(1, self.state_a.shutdown.call_count)
+
 
 class RemoveWhenNotCurrent(StateManagerTestBase):
     def setUp(self):
@@ -182,7 +189,7 @@ class RemoveWhenNotCurrent(StateManagerTestBase):
         self.state_a = self.sm.push_state("a")
         self.state_b = self.sm.push_state("b")
         # remove a state that is not current
-        self.sm.remove_state(self.state_a)
+        self.sm.pop_state(self.state_a)
         self.sm.update(0)
 
     def test_current_state(self):

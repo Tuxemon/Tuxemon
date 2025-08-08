@@ -82,6 +82,7 @@ class TextArea(Sprite):
         v_alignment: VerticalAlignment = VerticalAlignment.TOP,
         overflow_behavior: TextOverflow = TextOverflow.CLIP,
         debug_rendering: bool = False,
+        line_spacing: int = 0,
     ) -> None:
         super().__init__()
         self.rect = Rect(0, 0, 0, 0)
@@ -99,6 +100,7 @@ class TextArea(Sprite):
         self.h_alignment = h_alignment
         self.v_alignment = v_alignment
         self.overflow_behavior = overflow_behavior
+        self.line_spacing = line_spacing
         self.diagnostics = TextAreaDiagnostics(enabled=debug_rendering)
         self._rendered_text = None
         self._text_rect = None
@@ -173,6 +175,7 @@ class TextArea(Sprite):
             v_alignment=self.v_alignment,
             text_renderer=self._text_renderer,
             overflow_behavior=self.overflow_behavior,
+            line_spacing=self.line_spacing,
         )
 
 

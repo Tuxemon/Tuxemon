@@ -1,27 +1,24 @@
 {
-  "tech_id": 54,
-  "accuracy": 0.8,
-  "animation": "sparks_gold_alt",
+  "tech_id": 244,
+  "accuracy": 1,
+  "animation": "ruby_radiate",
   "effects": [
     {
       "type": "give",
       "parameters": [
-        "recover",
-        "own_monster"
+        "sniping",
+        "enemy_monster"
       ]
-    },
-    {
-      "type": "damage"
     }
   ],
   "flip_axes": "",
-  "speed": "slow",
+  "speed": "fast",
   "potency": 1,
-  "power": 3,
-  "range": "touch",
-  "recharge": 3,
+  "power": 0,
+  "range": "special",
+  "recharge": 2,
   "sfx": "sfx_blaster",
-  "slug": "all_in",
+  "slug": "frighten",
   "sort": "damage",
   "modifiers": [],
   "target": {
@@ -32,14 +29,13 @@
     "own_team": false,
     "own_trainer": false
   },
-  "category": "powerful",
+  "category": "condition_imposer",
   "tags": [
-    "leadership",
-    "fury"
+    "ghost",
+    "mental"
   ],
   "types": [
-    "fire",
-    "wood"
+    "aether"
   ],
   "use_failure": "combat_miss",
   "use_success": null,

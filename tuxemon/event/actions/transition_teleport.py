@@ -50,8 +50,6 @@ class TransitionTeleportAction(EventAction):
             self.stop()
             return
 
-        session.client.current_music.stop()
-
         # Start the screen transition
         _time = TRANS_TIME if self.trans_time is None else self.trans_time
         rgb: ColorLike = BLACK_COLOR

@@ -1,6 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 import unittest
+from collections import deque
 from unittest.mock import MagicMock
 
 from tuxemon.state.queue import StateQueue
@@ -16,14 +17,15 @@ class TestStateQueue(unittest.TestCase):
         self.assertEqual(
             self.state_queue_manager._state_manager_ref, self.state_manager_ref
         )
-        self.assertEqual(self.state_queue_manager._state_queue, [])
+        self.assertEqual(self.state_queue_manager._state_queue, deque([]))
 
     def test_queue_state(self):
         state_name = "test_state"
         kwargs = {"arg1": "value1", "arg2": "value2"}
         self.state_queue_manager.queue_state(state_name, **kwargs)
         self.assertEqual(
-            self.state_queue_manager._state_queue, [(state_name, kwargs)]
+            self.state_queue_manager._state_queue,
+            deque([(state_name, kwargs)]),
         )
 
     def test_handle_next_queued_state(self):
@@ -89,7 +91,7 @@ class TestStateQueue(unittest.TestCase):
         state_name = "simple_state"
         self.state_queue_manager.queue_state(state_name)
         self.assertEqual(
-            self.state_queue_manager._state_queue, [(state_name, {})]
+            self.state_queue_manager._state_queue, deque([(state_name, {})])
         )
 
     def test_clear(self):

@@ -87,6 +87,7 @@ class TranslatedDialogAction(EventAction):
             "font_color": string_to_colorlike(style.font_color),
             "font_shadow": string_to_colorlike(style.font_shadow_color),
             "border": style.border_path,
+            "line_spacing": style.line_spacing,
             "h_alignment": h_alignment,
             "v_alignment": v_alignment,
         }

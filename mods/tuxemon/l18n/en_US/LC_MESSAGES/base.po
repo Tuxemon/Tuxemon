@@ -3580,6 +3580,12 @@ msgstr "The tongue is jabbed into the opponent, and their blood drained."
 msgid "tonguespear"
 msgstr "Tonguespear"
 
+msgid "tooth_for_tooth_description"
+msgstr "The user bares their fangs, taking pain to give it back."
+
+msgid "tooth_for_tooth"
+msgstr "Tooth for Tooth"
+
 msgid "torch_description"
 msgstr "A projectile that strikes the opponent."
 

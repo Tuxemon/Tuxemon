@@ -227,7 +227,6 @@ def battlefield(session: Session, monster: Monster) -> None:
     set_var(session, "battle_last_monster_name", monster.name)
     set_var(session, "battle_last_monster_level", str(monster.level))
     set_var(session, "battle_last_monster_type", monster.types.primary.slug)
-    set_var(session, "battle_last_monster_category", monster.category)
 
 
 def track_battles(

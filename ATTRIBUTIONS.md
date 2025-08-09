@@ -1700,6 +1700,42 @@ which is licensed under [CC-0 1.0](https://creativecommons.org/publicdomain/zero
 * ["Venom Type"](https://wiki.tuxemon.org/index.php?title=File:S_Poison01.png)
 Adapted by Sanglorian from a sprite by Henrique Lazarini from the CC0 "496 pixel art icons for medieval/fantasy RPG" set.
 
+* ["Fire Type - Small"](https://wiki.tuxemon.org/File:1.png)
+From the CC0 Superpowers Asset Packs. 
+
+* ["Earth Type - Small"](https://wiki.tuxemon.org/File:4.png)
+From the CC0 Superpowers Asset Packs. 
+
+* ["Cosmic Type - Small"](https://wiki.tuxemon.org/File:Cosmic2.png)
+From the CC0 gems by Winternaut on Open Game Art.
+
+* ["Frost Type - Small"](https://wiki.tuxemon.org/File:Frost-12px.png)
+From CC BY 3.0 sprites [https://opengameart.org/content/rock-rush-tiles-sprites-hud-backgrounds on Open Game Art] by EvidentlyCube. 
+
+* ["Heroic Type - Small"](https://wiki.tuxemon.org/File:Heroic-12px.png)
+From CC BY 3.0 military icons [https://opengameart.org/content/140-military-icons-set-fixed on Open Game Art] by AngryMeteor.com.
+
+* ["Lightning Type - Small"](https://wiki.tuxemon.org/File:3.png)
+From the CC0 Superpowers Asset Packs. 
+
+* ["Metal Type - Small"](https://wiki.tuxemon.org/File:Metal.png)
+From the CC0 Superpowers Asset Packs. 
+
+* ["Normal Type - Small"](https://wiki.tuxemon.org/File:7.png)
+From the CC0 Superpowers Asset Packs. 
+
+* ["Shadow Type - Small"](https://wiki.tuxemon.org/File:Darkness-12px.png)
+From CC BY 3.0 military icons [https://opengameart.org/content/140-military-icons-set-fixed on Open Game Art] by AngryMeteor.com.
+
+* ["Sky Type - Small"](https://wiki.tuxemon.org/File:Sky-12px.png)
+From CC BY 3.0 military icons [https://opengameart.org/content/140-military-icons-set-fixed on Open Game Art] by AngryMeteor.com.
+
+* ["Water Type - Small"](https://wiki.tuxemon.org/File:2.png)
+From the CC0 Superpowers Asset Packs. 
+
+* ["Wood Type - Small"](https://wiki.tuxemon.org/File:5.png)
+From the CC0 Superpowers Asset Packs. 
+
 ### Technique Icons
 
 * ["icon_blinded.png"](https://wiki.tuxemon.org/File:Blind.png)

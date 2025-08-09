@@ -21,6 +21,7 @@ from tuxemon.animation import (
     Task,
     remove_animations_of,
 )
+from tuxemon.event import get_event_bus
 from tuxemon.event.eventbus import Listener
 from tuxemon.platform.events import PlayerInput
 from tuxemon.session import local_session
@@ -68,6 +69,7 @@ class State(ABC):
 
         # TODO: fix local session
         self.client = local_session.client
+        self.event_bus = get_event_bus()
 
         self._scheduled_task: Optional[Task] = None
 
@@ -339,18 +341,18 @@ class State(ABC):
     def subscribe(
         self, event_name: str, callback: Callable[..., None], priority: int = 0
     ) -> None:
-        self.client.event_bus.subscribe(event_name, callback, priority)
+        self.event_bus.subscribe(event_name, callback, priority)
 
     def unsubscribe(
         self, event_name: str, callback: Callable[..., None]
     ) -> None:
-        if self.client.event_bus.has_listeners_for_event(event_name):
-            self.client.event_bus.unsubscribe(event_name, callback)
+        if self.event_bus.has_listeners_for_event(event_name):
+            self.event_bus.unsubscribe(event_name, callback)
 
     def publish(self, event_name: str, *args: Any, **kwargs: Any) -> None:
-        if self.client.event_bus.has_listeners_for_event(event_name):
-            self.client.event_bus.publish(event_name, *args, **kwargs)
+        if self.event_bus.has_listeners_for_event(event_name):
+            self.event_bus.publish(event_name, *args, **kwargs)
 
     def replace_events(self, event_name: str, events: list[Listener]) -> None:
-        if self.client.event_bus.has_listeners_for_event(event_name):
-            self.client.event_bus._listeners[event_name] = events
+        if self.event_bus.has_listeners_for_event(event_name):
+            self.event_bus._listeners[event_name] = events

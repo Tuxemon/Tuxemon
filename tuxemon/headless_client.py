@@ -14,8 +14,8 @@ from tuxemon.boundary import BoundaryChecker
 from tuxemon.camera import CameraManager
 from tuxemon.config import TuxemonConfig
 from tuxemon.constants import paths
+from tuxemon.event import get_event_bus
 from tuxemon.event.eventaction import ActionManager
-from tuxemon.event.eventbus import EventBus
 from tuxemon.event.eventcondition import ConditionManager
 from tuxemon.event.eventengine import EventEngine
 from tuxemon.event.eventmanager import EventManager
@@ -56,7 +56,7 @@ class HeadlessClient:
     def __init__(self, config: TuxemonConfig) -> None:
         self.config = config
 
-        self.event_bus = EventBus()
+        self.event_bus = get_event_bus()
         self.state_repository = StateRepository()
         loader = StateLoader(
             base_package="tuxemon.states", lib_dir=paths.LIBDIR

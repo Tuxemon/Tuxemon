@@ -1,5 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) ...
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -10,6 +11,14 @@ from tuxemon.core.core_condition import CoreCondition
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
     from tuxemon.session import Session
+
+
+
+        shape_list = (
+            self.shapes.split(":") if ":" in self.shapes else [self.shapes]
+        )
+        return target.shape.slug in shape_list
+
 
 
 @dataclass
@@ -25,10 +34,10 @@ class TagCondition(CoreCondition):
 
     def test_with_monster(self, session: Session, target: Monster) -> bool:
         # Split the colon-separated parameter string into a list
-        elements = (
-            self.elements.split(":")
-            if ":" in self.elements
-            else [self.elements]
-        )
-        # Check if the monster has any of the tags listed in `elements`
-        return any(tag in elements for tag in target.tags)
+        tag_list = [tag.lower() for tag in self.elements.split(":")]
+        monster_tags = [tag.lower() for tag in target.tags]
+        # Check if the monster has any of the tags listed in `monster_tags`
+        return any(tag in monster_tags for tag in tag_list)
+
+
+

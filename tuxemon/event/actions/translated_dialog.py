@@ -74,7 +74,7 @@ class TranslatedDialogAction(EventAction):
             get_avatar(session, self.avatar) if self.avatar else None
         )
 
-        dialogue = self.style or "thin-border"
+        dialogue = self.style or "default"
         style = style_cache.get(dialogue)
         h_alignment = safe_enum_value(
             HorizontalAlignment, self.h_alignment, HorizontalAlignment.LEFT

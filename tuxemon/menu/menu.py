@@ -337,7 +337,7 @@ class Menu(Generic[T], State):
     background_filename: Optional[str] = None
     menu_select_sound_filename = "sound_menu_select"
     font_filename = prepare.CONFIG.locale.font_file
-    borders_filename = "gfx/borders/borders-thin.png"
+    borders_filename = "gfx/borders/borders.png"
     cursor_filename = "gfx/arrow.png"
     cursor_move_duration = 0.20
     default_character_delay = 0.05

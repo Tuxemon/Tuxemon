@@ -1,6 +1,6 @@
 {
   "slug": "foxfire",
-  "category": "smoke",
+  "species": "smoke",
   "moveset": [
     {
       "level_learned": 1,

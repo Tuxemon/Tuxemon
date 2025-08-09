@@ -1,6 +1,6 @@
 {
   "slug": "cataspike",
-  "category": "pointy",
+  "species": "pointy",
   "moveset": [
     {
       "level_learned": 1,

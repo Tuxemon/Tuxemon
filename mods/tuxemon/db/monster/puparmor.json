@@ -1,6 +1,6 @@
 {
   "slug": "puparmor",
-  "category": "fortified",
+  "species": "fortified",
   "moveset": [
     {
       "level_learned": 1,

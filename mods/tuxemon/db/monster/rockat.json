@@ -1,6 +1,6 @@
 {
   "slug": "rockat",
-  "category": "sleek_boulder",
+  "species": "sleek_boulder",
   "moveset": [
     {
       "level_learned": 1,

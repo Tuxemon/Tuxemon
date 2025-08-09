@@ -686,7 +686,7 @@ class MonsterSoundsModel(BaseModel):
 class MonsterModel(BaseModel, BaseLookupModel, validate_assignment=True):
     table_name: ClassVar[str] = "monster"
     slug: str = Field(..., description="The slug of the monster")
-    category: str = Field(..., description="The category of monster")
+    species: str = Field(..., description="The species of monster")
     txmn_id: int = Field(..., description="The id of the monster")
     height: float = Field(..., description="The height of the monster", gt=0.0)
     weight: float = Field(..., description="The weight of the monster", gt=0.0)
@@ -769,8 +769,8 @@ class MonsterModel(BaseModel, BaseLookupModel, validate_assignment=True):
         )
         return v or default
 
-    @field_validator("category")
-    def translation_exists_category(cls: MonsterModel, v: str) -> str:
+    @field_validator("species")
+    def translation_exists_species(cls: MonsterModel, v: str) -> str:
         if has.translation(f"cat_{v}"):
             return v
         raise ValueError(f"no translation exists with msgid: {v}")

@@ -1,6 +1,6 @@
 {
   "slug": "allagon",
-  "category": "dragon",
+  "species": "dragon",
   "moveset": [
     {
       "level_learned": 1,

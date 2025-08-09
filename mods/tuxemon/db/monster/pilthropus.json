@@ -1,6 +1,6 @@
 {
   "slug": "pilthropus",
-  "category": "tool_maker",
+  "species": "tool_maker",
   "moveset": [
     {
       "level_learned": 1,

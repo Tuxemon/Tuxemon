@@ -254,11 +254,12 @@ class Monster:
         self.slug = results.slug
         self.name = T.translate(results.slug)
         self.description = T.translate(f"{results.slug}_description")
-        self.cat = results.category
-        self.category = T.translate(f"cat_{self.cat}")
+        self.species = results.species
+        self.species_name = T.translate(f"cat_{self.species}")
         self.shape = ShapeHandler(results.shape)
         self.stage = results.stage
         self.tags = results.tags
+        self.terrains = results.terrains
         self.taste_cold, self.taste_warm = Taste.generate(
             self.taste_cold, self.taste_warm
         )

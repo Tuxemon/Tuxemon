@@ -1,6 +1,6 @@
 {
   "slug": "baoby",
-  "category": "thirsty_okapi",
+  "species": "thirsty_okapi",
   "moveset": [
     {
       "level_learned": 1,

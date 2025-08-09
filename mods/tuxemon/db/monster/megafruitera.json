@@ -1,6 +1,6 @@
 {
   "slug": "megafruitera",
-  "category": "flying_fox_bat",
+  "species": "flying_fox_bat",
   "moveset": [
     {
       "level_learned": 1,

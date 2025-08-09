@@ -1,6 +1,6 @@
 {
   "slug": "fruitera",
-  "category": "tiny_bat",
+  "species": "tiny_bat",
   "moveset": [
     {
       "level_learned": 1,

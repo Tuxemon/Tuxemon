@@ -1,6 +1,6 @@
 {
   "slug": "devidra",
-  "category": "dog_toothed",
+  "species": "dog_toothed",
   "moveset": [
     {
       "level_learned": 1,

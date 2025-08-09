@@ -1,6 +1,6 @@
 {
   "slug": "ampystoma",
-  "category": "lightning_salamander",
+  "species": "lightning_salamander",
   "moveset": [
     {
       "level_learned": 1,

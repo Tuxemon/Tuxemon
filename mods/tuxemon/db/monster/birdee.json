@@ -1,6 +1,6 @@
 {
   "slug": "birdee",
-  "category": "chickenhawk",
+  "species": "chickenhawk",
   "moveset": [
     {
       "level_learned": 1,

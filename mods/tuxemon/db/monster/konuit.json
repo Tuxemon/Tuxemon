@@ -1,6 +1,6 @@
 {
   "slug": "konuit",
-  "category": "marsupial",
+  "species": "marsupial",
   "moveset": [
     {
       "level_learned": 1,

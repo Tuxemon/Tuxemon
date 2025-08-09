@@ -1,6 +1,6 @@
 {
   "slug": "sludgehog",
-  "category": "garbage",
+  "species": "garbage",
   "moveset": [
     {
       "level_learned": 1,

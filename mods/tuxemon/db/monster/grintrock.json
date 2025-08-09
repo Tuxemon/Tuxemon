@@ -1,6 +1,6 @@
 {
   "slug": "grintrock",
-  "category": "thunderstone",
+  "species": "thunderstone",
   "moveset": [
     {
       "level_learned": 1,

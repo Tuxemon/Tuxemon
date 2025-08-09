@@ -1,6 +1,6 @@
 {
   "slug": "masknake",
-  "category": "serpents_tooth",
+  "species": "serpents_tooth",
   "moveset": [
     {
       "level_learned": 1,

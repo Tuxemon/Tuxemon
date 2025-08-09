@@ -1,6 +1,6 @@
 {
   "slug": "manosting",
-  "category": "balloon",
+  "species": "balloon",
   "moveset": [
     {
       "level_learned": 1,

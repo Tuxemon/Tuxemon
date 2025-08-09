@@ -13,14 +13,6 @@ if TYPE_CHECKING:
     from tuxemon.session import Session
 
 
-
-        shape_list = (
-            self.shapes.split(":") if ":" in self.shapes else [self.shapes]
-        )
-        return target.shape.slug in shape_list
-
-
-
 @dataclass
 class TagCondition(CoreCondition):
     """

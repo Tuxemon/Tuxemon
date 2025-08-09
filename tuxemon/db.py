@@ -1736,6 +1736,14 @@ class MissionStepModel(BaseModel):
         default_factory=list,
         description="Slugs of next steps unlocked when this is completed",
     )
+    step_items_needed: dict[str, Optional[int]] = Field(
+        default_factory=dict,
+        description="Items required to complete this step. Quantity is optional; None means at least one.",
+    )
+    step_monsters_needed: dict[str, Optional[int]] = Field(
+        default_factory=dict,
+        description="Monsters required to complete this step. Level is optional; None means any level.",
+    )
     optional: bool = Field(False, description="Whether the step is optional")
 
 

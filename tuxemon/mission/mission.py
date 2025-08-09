@@ -28,6 +28,7 @@ class Mission:
         self.slug: str = ""
         self.name: str = ""
         self.description: str = ""
+        self.generated: bool = False
         self.prerequisites: Sequence[dict[str, Any]] = []
         self.connected_missions: Sequence[dict[str, Any]] = []
         self.failure_conditions: Sequence[dict[str, Any]] = []
@@ -97,6 +98,12 @@ class Mission:
         save_data["instance_id"] = self.instance_id.hex
         save_data["completed_steps"] = list(self.completed_steps)
         save_data["assigned_to"] = self.assigned_to
+
+        if self.generated and self.steps:
+            save_data["steps"] = {
+                slug: step.model_dump() for slug, step in self.steps.items()
+            }
+
         return save_data
 
     def set_state(self, save_data: Mapping[str, Any]) -> None:
@@ -109,10 +116,17 @@ class Mission:
         self.instance_id = UUID(save_data.get("instance_id", uuid4().hex))
         self.completed_steps = set(save_data.get("completed_steps", []))
         self.assigned_to = save_data.get("assigned_to", None)
+        self.generated = save_data.get("generated", False)
 
         for key in SIMPLE_PERSISTANCE_ATTRIBUTES:
             if key in save_data:
                 setattr(self, key, save_data[key])
+
+        if self.generated and "steps" in save_data:
+            self.steps = {
+                slug: MissionStepModel.model_validate(step_data)
+                for slug, step_data in save_data["steps"].items()
+            }
 
     def mark_step_completed(self, slug: str) -> None:
         if slug in self.steps:
@@ -264,3 +278,27 @@ class Mission:
 
     def is_completed(self) -> bool:
         return self.status == MissionStatus.completed
+
+
+def check_step_items(
+    character: NPC, step_items: dict[str, Optional[int]]
+) -> bool:
+    for item_slug, required_quantity in step_items.items():
+        item = character.items.find_item(item_slug)
+        if not item:
+            return False
+        if required_quantity is not None and item.quantity < required_quantity:
+            return False
+    return True
+
+
+def check_step_monsters(
+    character: NPC, step_monsters: dict[str, Optional[int]]
+) -> bool:
+    for monster_slug, required_level in step_monsters.items():
+        monster = character.party.find_monster(monster_slug)
+        if not monster:
+            return False
+        if required_level is not None and monster.level < required_level:
+            return False
+    return True

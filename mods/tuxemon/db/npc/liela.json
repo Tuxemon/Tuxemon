@@ -1,10 +1,8 @@
 {
   "slug": "liela",
-  "template": 
-    {
-      "sprite_name": "heroine",
-      "combat_front": "heroine",
-      "slug": "heroine"
-    }
-
+  "template": {
+    "sprite_name": "heroine",
+    "combat_front": "heroine",
+    "slug": "heroine"
+  }
 }

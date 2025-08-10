@@ -1,6 +1,6 @@
 {
   "slug": "squabbit",
-  "category": "rabbit",
+  "species": "rabbit",
   "moveset": [
     {
       "level_learned": 1,

@@ -1,6 +1,6 @@
 {
   "slug": "bedoo",
-  "category": "bed_trap",
+  "species": "bed_trap",
   "moveset": [
     {
       "level_learned": 1,

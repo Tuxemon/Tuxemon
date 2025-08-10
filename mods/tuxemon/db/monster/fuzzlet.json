@@ -1,6 +1,6 @@
 {
   "slug": "fuzzlet",
-  "category": "toy",
+  "species": "toy",
   "moveset": [
     {
       "level_learned": 1,

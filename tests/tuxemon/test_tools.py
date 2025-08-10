@@ -9,9 +9,11 @@ from unittest.mock import MagicMock
 from tuxemon.player import Player
 from tuxemon.tools import (
     cast_value,
+    check_condition,
     compare,
     copy_dict_with_keys,
     number_or_variable,
+    parse_flag,
     round_to_divisible,
 )
 
@@ -221,3 +223,58 @@ class TestCompare(unittest.TestCase):
             compare("<", "a", 5)
         with self.assertRaises(TypeError):
             compare(">", 3, "b")
+
+
+class TestParseFlag(unittest.TestCase):
+
+    def test_parse_flag_truthy(self):
+        self.assertTrue(parse_flag("true"))
+        self.assertTrue(parse_flag("True"))
+        self.assertTrue(parse_flag("1"))
+        self.assertTrue(parse_flag("yes"))
+        self.assertTrue(parse_flag("YeS"))
+
+    def test_parse_flag_falsy(self):
+        self.assertFalse(parse_flag("false"))
+        self.assertFalse(parse_flag("0"))
+        self.assertFalse(parse_flag("no"))
+        self.assertFalse(parse_flag(""))
+        self.assertFalse(parse_flag(None))
+        self.assertFalse(parse_flag("maybe"))
+
+    def test_parse_flag_edge_cases(self):
+        self.assertTrue(parse_flag("  yes  "))
+        self.assertFalse(parse_flag("  no  "))
+        self.assertFalse(parse_flag("YES!"))
+        self.assertFalse(parse_flag("truEly"))
+        self.assertFalse(parse_flag("2"))
+        self.assertFalse(parse_flag("-1"))
+
+
+class TestCheckCondition(unittest.TestCase):
+    def test_check_condition_positive(self):
+        dataset = {"fire", "water", "earth"}
+        self.assertTrue(check_condition("fire", dataset))
+        self.assertTrue(check_condition("Water", dataset))
+        self.assertFalse(check_condition("air", dataset))
+
+    def test_check_condition_negative(self):
+        dataset = {"fire", "water", "earth"}
+        self.assertTrue(check_condition("!air", dataset))
+        self.assertFalse(check_condition("!fire", dataset))
+
+    def test_check_condition_empty(self):
+        dataset = {"fire"}
+        self.assertFalse(check_condition("", dataset))
+        self.assertFalse(check_condition("   ", dataset))
+
+    def test_check_condition_edge_cases(self):
+        dataset = {"fire", "water"}
+        self.assertTrue(check_condition("  fire  ", dataset))
+        self.assertTrue(check_condition("!  earth  ", dataset))
+        self.assertTrue(check_condition("!!fire", dataset))
+        empty_set = set()
+        self.assertFalse(check_condition("fire", empty_set))
+        self.assertTrue(check_condition("!fire", empty_set))
+        self.assertTrue(check_condition("!", dataset))
+        self.assertFalse(check_condition("   ", dataset))

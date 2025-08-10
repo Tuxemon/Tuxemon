@@ -1,6 +1,6 @@
 {
   "slug": "gastronium",
-  "category": "plutonium",
+  "species": "plutonium",
   "moveset": [
     {
       "level_learned": 1,

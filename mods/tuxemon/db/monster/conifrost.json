@@ -1,6 +1,6 @@
 {
   "slug": "conifrost",
-  "category": "taiga",
+  "species": "taiga",
   "moveset": [
     {
       "level_learned": 1,

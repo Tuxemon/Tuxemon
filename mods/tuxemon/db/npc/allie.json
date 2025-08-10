@@ -1,10 +1,8 @@
 {
   "slug": "allie",
-  "template": 
-    {
-      "sprite_name": "omnichannelallie",
-      "combat_front": "goth_rose",
-      "slug": "heroine"
-    }
-
+  "template": {
+    "sprite_name": "omnichannelallie",
+    "combat_front": "goth_rose",
+    "slug": "heroine"
+  }
 }

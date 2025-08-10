@@ -103,8 +103,9 @@
     <property name="act52" value="set_variable visitedcottoncafe:yes"/>
     <property name="act53" value="add_item app_tuxepedia"/>
     <property name="act54" value="translated_dialog app_tuxepedia,,center,center,center"/>
-    <property name="act86" value="pathfind spyder_cottontown_hacker,6,5"/>
-    <property name="act87" value="char_face player,left"/>
+    <property name="act85" value="pathfind spyder_cottontown_hacker,6,5"/>
+    <property name="act86" value="char_face spyder_cottontown_hacker,player"/>
+    <property name="act87" value="char_face player,spyder_cottontown_hacker"/>
     <property name="act88" value="translated_dialog spyder_cotton_tuxepediaintro4"/>
     <property name="act90" value="unlock_controls"/>
     <property name="act91" value="pathfind spyder_cottontown_barmaid,0,4"/>
@@ -129,7 +130,7 @@
   <object id="23" name="Create Goth (1st)" type="event" x="80" y="96" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_cottoncafe_cayden,2,6"/>
-    <property name="act2" value="char_wander spyder_cottoncafe_cayden"/>
+    <property name="act2" value="char_wander spyder_cottoncafe_cayden,1,7,10,10"/>
     <property name="cond1" value="not char_exists spyder_cottoncafe_cayden"/>
    </properties>
   </object>

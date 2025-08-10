@@ -495,7 +495,7 @@
     <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
-  <object id="226" name="Billie1" type="event" x="48" y="176" width="16" height="80">
+  <object id="223" name="Billie1" type="event" x="48" y="176" width="16" height="80">
    <properties>
     <property name="act01" value="char_stop player"/>
     <property name="act02" value="lock_controls"/>

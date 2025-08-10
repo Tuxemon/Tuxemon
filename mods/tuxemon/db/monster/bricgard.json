@@ -1,6 +1,6 @@
 {
   "slug": "bricgard",
-  "category": "brick_wall",
+  "species": "brick_wall",
   "moveset": [
     {
       "level_learned": 1,

@@ -1,6 +1,6 @@
 {
   "slug": "equill",
-  "category": "cave_dweller",
+  "species": "cave_dweller",
   "moveset": [
     {
       "level_learned": 1,

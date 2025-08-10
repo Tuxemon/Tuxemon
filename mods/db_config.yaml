@@ -8,6 +8,7 @@ model_map:
   shape: tuxemon.db.ShapeModel
   template: tuxemon.db.TemplateModel
   mission: tuxemon.db.MissionModel
+  faction: tuxemon.db.FactionModel
   encounter: tuxemon.db.EncounterModel
   dialogue: tuxemon.db.DialogueModel
   environment: tuxemon.db.EnvironmentModel
@@ -77,6 +78,7 @@ mod_tables:
     - shape
     - template
     - mission
+    - faction
     - terrain
     - weather
 

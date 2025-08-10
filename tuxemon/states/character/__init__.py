@@ -87,7 +87,7 @@ class CharacterState(PygameMenuState):
             else T.translate("player_start_adventure_today")
         )
 
-        summary = self.char.battle_handler.get_battle_outcome_summary(player)
+        summary = self.char.battle_handler.get_battle_outcome_summary()
         tot, won, lost, draw = (
             summary["total"],
             summary["won"],

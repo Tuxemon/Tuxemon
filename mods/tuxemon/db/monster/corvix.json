@@ -1,6 +1,6 @@
 {
   "slug": "corvix",
-  "category": "horned_raptor",
+  "species": "horned_raptor",
   "moveset": [
     {
       "level_learned": 1,

@@ -1,6 +1,6 @@
 {
   "slug": "nuenflu",
-  "category": "snowball",
+  "species": "snowball",
   "moveset": [
     {
       "level_learned": 1,

@@ -1,6 +1,6 @@
 {
   "slug": "selket",
-  "category": "sand_scorpion",
+  "species": "sand_scorpion",
   "moveset": [
     {
       "level_learned": 1,

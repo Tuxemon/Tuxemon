@@ -1,10 +1,8 @@
 {
   "slug": "npc_mom",
-  "template": 
-    {
-      "sprite_name": "girl1",
-      "combat_front": "heroine",
-      "slug": "heroine"
-    }
-
+  "template": {
+    "sprite_name": "girl1",
+    "combat_front": "heroine",
+    "slug": "heroine"
+  }
 }

@@ -14,6 +14,7 @@ import yaml
 from tuxemon import prepare
 from tuxemon.combat import pre_checking
 from tuxemon.constants import paths
+from tuxemon.db import StatType
 from tuxemon.formula import simple_damage_multiplier
 from tuxemon.technique.technique import Technique
 
@@ -460,6 +461,68 @@ class AIManager:
         """Removes all tracked AI instances from the manager."""
         logger.debug("Clearing all AI instances.")
         self.active_ais.clear()
+
+    def choose_replacement_monster(self, character: NPC) -> Optional[Monster]:
+        """
+        AI logic to select a replacement monster to send out.
+
+        This method uses the available monsters and applies AI strategy.
+        """
+        available_monsters = self.combat.get_bench(character)
+
+        if not available_monsters:
+            logger.debug(f"No available monsters for {character.name}")
+            return None
+
+        if len(available_monsters) == 1:
+            logger.debug(
+                f"Only one monster available for {character.name}: {available_monsters[0].name}"
+            )
+            return available_monsters[0]
+
+        strategy = getattr(character, "strategy", None)
+        logger.debug(f"{character.name} strategy: {strategy}")
+
+        # If no strategy, pick the next available monster in order
+        if strategy is None:
+            logger.debug(
+                f"No strategy defined. Selecting first available monster: {available_monsters[0].name}"
+            )
+            return available_monsters[0]
+
+        methods = {
+            "lv_highest": ("level", max),
+            "lv_lowest": ("level", min),
+            "healthiest": ("current_hp", max),
+            "weakest": ("current_hp", min),
+            "oldest": ("steps", max),
+            "newest": ("steps", min),
+        }
+
+        methods.update(
+            {f"{stat.value}_max": (stat.value, max) for stat in StatType}
+        )
+        methods.update(
+            {f"{stat.value}_min": (stat.value, min) for stat in StatType}
+        )
+
+        if strategy == "random":
+            chosen = random.choice(available_monsters)
+            logger.debug(f"Random strategy selected: {chosen.name}")
+            return chosen
+
+        if strategy in methods:
+            attr, func = methods[strategy]
+            chosen = func(available_monsters, key=lambda m: getattr(m, attr))
+            logger.debug(
+                f"Strategy '{strategy}' selected monster: {chosen.name} (based on {attr})"
+            )
+            return chosen
+
+        logger.debug(
+            f"Unrecognized strategy '{strategy}'. Defaulting to first available: {available_monsters[0].name}"
+        )
+        return available_monsters[0]
 
 
 class AI:

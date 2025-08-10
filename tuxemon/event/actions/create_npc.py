@@ -7,7 +7,12 @@ from collections.abc import Sequence
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Any, Optional, final
 
-from tuxemon.db import NpcModel, db
+from tuxemon.db import (
+    DialogueContent,
+    DialogueProfile,
+    NpcModel,
+    db,
+)
 from tuxemon.event.eventaction import EventAction
 from tuxemon.item.item import Item
 from tuxemon.monster import Monster
@@ -67,6 +72,8 @@ class CreateNpcAction(EventAction):
         if npc_details.items:
             load_party_items(npc, npc_details, game_variables)
         npc.sprite_controller.load_sprites(npc.template)
+        if npc_details.speech:
+            npc.dialogue = merge_dialogue(npc_details.speech.profile, None)
 
 
 lookup_cache: dict[str, NpcModel] = {}
@@ -125,4 +132,74 @@ def check_variables(
             for key, value in variable.items()
         )
         for variable in npc_vars
+    )
+
+
+def merge_dialogue(
+    source: Optional[DialogueProfile],
+    fallback: Optional[DialogueProfile] = None,
+) -> DialogueProfile:
+    """
+    Merges a source DialogueProfile with a fallback.
+
+    Dialogue fields from the source take precedence.
+    Location-based overrides from both models are merged.
+    """
+    source = source or DialogueProfile(
+        default=DialogueContent(
+            greeting=None,
+            idle=None,
+            farewell=None,
+            pre_battle=None,
+            post_battle_win=None,
+            post_battle_lose=None,
+            post_battle_draw=None,
+        )
+    )
+    fallback = fallback or DialogueProfile(
+        default=DialogueContent(
+            greeting=None,
+            idle=None,
+            farewell=None,
+            pre_battle=None,
+            post_battle_win=None,
+            post_battle_lose=None,
+            post_battle_draw=None,
+        )
+    )
+
+    # Create the merged default DialogueContent
+    merged_default_content_dict = fallback.default.model_dump(
+        exclude_none=True
+    )
+    merged_default_content_dict.update(
+        source.default.model_dump(exclude_none=True)
+    )
+    merged_default = DialogueContent.model_validate(
+        merged_default_content_dict
+    )
+
+    # Merge the location-based overrides
+    merged_location_based = {
+        **fallback.location_based,
+        **source.location_based,
+    }
+
+    # For any shared locations, we need to perform a deeper merge
+    for location, source_content in source.location_based.items():
+        if location in fallback.location_based:
+            fallback_content = fallback.location_based[location]
+            merged_content_dict = fallback_content.model_dump(
+                exclude_none=True
+            )
+            merged_content_dict.update(
+                source_content.model_dump(exclude_none=True)
+            )
+            merged_location_based[location] = DialogueContent.model_validate(
+                merged_content_dict
+            )
+
+    return DialogueProfile(
+        default=merged_default,
+        location_based=merged_location_based,
     )

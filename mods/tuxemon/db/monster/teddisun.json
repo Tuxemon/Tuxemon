@@ -1,6 +1,6 @@
 {
   "slug": "teddisun",
-  "category": "cute_teddy",
+  "species": "cute_teddy",
   "moveset": [
     {
       "level_learned": 1,

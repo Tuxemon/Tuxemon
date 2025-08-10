@@ -1,6 +1,16 @@
 [
   {
     "slug": "spyder_lionmountain_jacques",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_lionmountain_jacques1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_lionmountain_jacques2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "miner_blue",
       "combat_front": "miner",
@@ -9,6 +19,16 @@
   },
   {
     "slug": "spyder_lionmountain_adam",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_lionmountain_adam1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_lionmountain_adam2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "miner_green",
       "combat_front": "miner",
@@ -17,6 +37,16 @@
   },
   {
     "slug": "spyder_lionmountain_arlene",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_lionmountain_arlene1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_lionmountain_arlene2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "miner_red",
       "combat_front": "miner",
@@ -25,6 +55,16 @@
   },
   {
     "slug": "spyder_lionmountain_david",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_lionmountain_david1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_lionmountain_david2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "miner_yellow",
       "combat_front": "miner",
@@ -33,6 +73,16 @@
   },
   {
     "slug": "spyder_lionmountain_alexander",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_lionmountain_alexander1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_lionmountain_alexander2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "miner",
       "combat_front": "miner",
@@ -41,6 +91,16 @@
   },
   {
     "slug": "spyder_lionmountain_chhurim",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_lionmountain_chhurim1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_lionmountain_chhurim2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "miner_blue",
       "combat_front": "miner",
@@ -49,6 +109,16 @@
   },
   {
     "slug": "spyder_lionmountain_emilio",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_lionmountain_emilio1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_lionmountain_emilio2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "miner_green",
       "combat_front": "miner",
@@ -57,6 +127,16 @@
   },
   {
     "slug": "spyder_lionmountain_tom",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_lionmountain_tom1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_lionmountain_tom2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "miner_red",
       "combat_front": "miner",
@@ -65,6 +145,16 @@
   },
   {
     "slug": "spyder_lionmountain_conrad",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_lionmountain_conrad1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_lionmountain_conrad2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "miner_yellow",
       "combat_front": "miner",
@@ -73,6 +163,16 @@
   },
   {
     "slug": "spyder_lionmountain_kurt",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_lionmountain_kurt1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_lionmountain_kurt2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "miner",
       "combat_front": "miner",

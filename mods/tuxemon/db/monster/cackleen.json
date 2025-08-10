@@ -1,6 +1,6 @@
 {
   "slug": "cackleen",
-  "category": "witch_spirit",
+  "species": "witch_spirit",
   "moveset": [
     {
       "level_learned": 1,

@@ -50,6 +50,13 @@ class FieldMonsters:
         """Returns a dictionary containing all NPCs and their active monsters."""
         return self.monsters_in_play
 
+    def get_npc_for_monster(self, monster: Monster) -> NPC:
+        """Returns the NPC that controls the given monster, or Raise if not found."""
+        for npc, monsters in self.monsters_in_play.items():
+            if monster in monsters:
+                return npc
+        raise ValueError(f"Monster '{monster}' not found in any NPC's roster.")
+
     def clear_all(self) -> None:
         """Removes all NPCs and their monsters from play."""
         self.monsters_in_play.clear()

@@ -6,15 +6,19 @@ from __future__ import annotations
 class CurrencyFormatter:
     """Formats a monetary value with a currency symbol."""
 
-    def __init__(self, symbol: str = "$", position: str = "before") -> None:
+    def __init__(
+        self, symbol: str = "$", position: str = "before", width: int = 4
+    ) -> None:
         self.symbol = symbol
         self.position = position
+        self.width = width
 
     def format(self, amount: int) -> str:
+        amount_str = f"{amount:>{self.width}}"
         if self.position == "before":
-            return f"{self.symbol}{amount}"
+            return f"{self.symbol}{amount_str}"
         else:
-            return f"{amount}{self.symbol}"
+            return f"{amount_str}{self.symbol}"
 
 
 class QuantityFormatter:

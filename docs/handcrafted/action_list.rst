@@ -16,6 +16,7 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.camera_shake.CameraShakeAction
 .. autoscriptinfoclass:: tuxemon.event.actions.celestial_cycles.CelestialCyclesAction
 .. autoscriptinfoclass:: tuxemon.event.actions.change_bg.ChangeBgAction
+.. autoscriptinfoclass:: tuxemon.event.actions.change_faction_membership.ChangeFactionMembershipAction
 .. autoscriptinfoclass:: tuxemon.event.actions.change_state.ChangeStateAction
 .. autoscriptinfoclass:: tuxemon.event.actions.change_taste.ChangeTasteAction
 .. autoscriptinfoclass:: tuxemon.event.actions.char_face.CharFaceAction
@@ -50,15 +51,17 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.get_monster_tech.GetMonsterTechAction
 .. autoscriptinfoclass:: tuxemon.event.actions.get_party_monsters.GetPartyMonsterAction
 .. autoscriptinfoclass:: tuxemon.event.actions.get_player_monster.GetPlayerMonsterAction
-.. autoscriptinfoclass:: tuxemon.event.actions.info.InfoAction
 .. autoscriptinfoclass:: tuxemon.event.actions.give_experience.GiveExperienceAction
+.. autoscriptinfoclass:: tuxemon.event.actions.info.InfoAction
 .. autoscriptinfoclass:: tuxemon.event.actions.input_variable.InputVariableAction
+.. autoscriptinfoclass:: tuxemon.event.actions.learn_tech_by_method.LearnTechByMethodAction
 .. autoscriptinfoclass:: tuxemon.event.actions.load_game.LoadGameAction
 .. autoscriptinfoclass:: tuxemon.event.actions.load_yaml.LoadYamlAction
 .. autoscriptinfoclass:: tuxemon.event.actions.menu.MenuAction
 .. autoscriptinfoclass:: tuxemon.event.actions.modify_bill.ModifyBillAction
 .. autoscriptinfoclass:: tuxemon.event.actions.modify_char_attribute.ModifyCharAttributeAction
 .. autoscriptinfoclass:: tuxemon.event.actions.modify_contacts.ModifyContactsAction
+.. autoscriptinfoclass:: tuxemon.event.actions.modify_faction_reputation.ModifyFactionReputationAction
 .. autoscriptinfoclass:: tuxemon.event.actions.modify_money.ModifyMoneyAction
 .. autoscriptinfoclass:: tuxemon.event.actions.modify_monster_bond.ModifyMonsterBondAction
 .. autoscriptinfoclass:: tuxemon.event.actions.modify_monster_health.ModifyMonsterHealthAction
@@ -98,9 +101,9 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.screen_transition.ScreenTransitionAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_battle.SetBattleAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_bill.SetBillAction
+.. autoscriptinfoclass:: tuxemon.event.actions.set_bubble.SetBubbleAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_char_attribute.SetCharAttributeAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_cipher.SetCipherAction
-.. autoscriptinfoclass:: tuxemon.event.actions.set_bubble.SetBubbleAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_economy.SetEconomyAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_kennel_visible.SetKennelVisibleAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_layer.SetLayerAction
@@ -115,6 +118,7 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.set_party_attribute.SetPartyAttributeAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_party_status.SetPartyStatusAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_player_name.SetPlayerNameAction
+.. autoscriptinfoclass:: tuxemon.event.actions.set_price_policy.SetPricePolicyAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_random_variable.SetRandomVariableAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_teleport_faint.SetTeleportFaintAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_template.SetTemplateAction
@@ -129,6 +133,7 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.store_monster.StoreMonsterAction
 .. autoscriptinfoclass:: tuxemon.event.actions.teleport_faint.TeleportFaintAction
 .. autoscriptinfoclass:: tuxemon.event.actions.teleport.TeleportAction
+.. autoscriptinfoclass:: tuxemon.event.actions.toggle_evolution_block.ToggleEvolutionBlockAction
 .. autoscriptinfoclass:: tuxemon.event.actions.trading.TradingAction
 .. autoscriptinfoclass:: tuxemon.event.actions.transfer_money.TransferMoneyAction
 .. autoscriptinfoclass:: tuxemon.event.actions.transition_teleport.TransitionTeleportAction

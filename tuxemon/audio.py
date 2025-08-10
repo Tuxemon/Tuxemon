@@ -9,6 +9,7 @@ from typing import Optional, Protocol
 import pygame
 
 from tuxemon import prepare
+from tuxemon.constants.asset_loader import fetch_asset
 from tuxemon.db import MusicStatus, db
 from tuxemon.platform import mixer as mixer2
 from tuxemon.tools import transform_resource_filename
@@ -52,7 +53,7 @@ class MusicPlayerState:
         if filename in self.cache:
             return self.cache[filename]
         else:
-            path = prepare.fetch("music", db.get_entry("music", filename))
+            path = fetch_asset("music", db.get_entry("music", filename))
             self.cache[filename] = path
             return path
 

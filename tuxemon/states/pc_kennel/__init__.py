@@ -429,7 +429,7 @@ class MonsterDropOff(MonsterMenuState):
     name: ClassVar[str] = "MonsterDropOff"
 
     def __init__(self, box_name: str, character: NPC) -> None:
-        super().__init__(character=character)
+        super().__init__(monsters=character.monsters)
 
         self.box_name = box_name
         self.char = character

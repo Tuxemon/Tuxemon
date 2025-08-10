@@ -1,6 +1,6 @@
 {
   "slug": "komodraw",
-  "category": "quickdraw",
+  "species": "quickdraw",
   "moveset": [
     {
       "level_learned": 1,

@@ -12,6 +12,7 @@ from pygame_menu.widgets.core.widget import Widget
 from pygame_menu.widgets.widget.menubar import MENUBAR_STYLE_ADAPTIVE
 
 from tuxemon import prepare
+from tuxemon.constants.asset_loader import fetch_asset
 from tuxemon.tools import scale, transform_resource_filename
 
 _theme: Optional[pygame_menu.Theme] = None
@@ -31,7 +32,7 @@ class TuxemonArrowSelection(Selection):
         #
 
         arrow = pygame_menu.BaseImage(
-            image_path=transform_resource_filename("gfx/arrow.png"),
+            image_path=transform_resource_filename(prepare.CONFIG.menu_cursor),
         ).scale(5, 5, smooth=False)
 
         super().__init__(
@@ -70,7 +71,7 @@ def get_theme() -> pygame_menu.Theme:
         return _theme
 
     tuxemon_border = pygame_menu.BaseImage(
-        image_path=transform_resource_filename("gfx/borders/borders.png"),
+        image_path=transform_resource_filename(prepare.CONFIG.menu_border),
     ).scale(5, 5, smooth=False)
 
     tuxemon_background_center_rect = tuxemon_border.get_rect()
@@ -107,7 +108,7 @@ def get_theme() -> pygame_menu.Theme:
     theme.title_font_color = prepare.FONT_COLOR
     theme.title_background_color = prepare.TRANSPARENT_COLOR
     theme.widget_font_shadow_color = prepare.FONT_SHADOW_COLOR
-    font = prepare.fetch("font", prepare.CONFIG.locale.font_file)
+    font = fetch_asset("font", prepare.CONFIG.locale.font_file)
     theme.title_font = font
     theme.widget_font = font
 

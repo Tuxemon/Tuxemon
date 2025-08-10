@@ -1,6 +1,6 @@
 {
   "slug": "erythroskyte",
-  "category": "erythrocyte",
+  "species": "erythrocyte",
   "moveset": [
     {
       "level_learned": 1,

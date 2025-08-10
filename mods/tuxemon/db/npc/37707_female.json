@@ -1,10 +1,8 @@
 {
   "slug": "37707_female",
-  "template": 
-    {
-      "sprite_name": "37707_female",
-      "combat_front": "heroine",
-      "slug": "heroine"
-    }
-
+  "template": {
+    "sprite_name": "37707_female",
+    "combat_front": "heroine",
+    "slug": "heroine"
+  }
 }

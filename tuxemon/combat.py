@@ -9,14 +9,13 @@ from __future__ import annotations
 
 import logging
 import random
-from collections.abc import Generator, Sequence
-from typing import TYPE_CHECKING, Optional
+from collections.abc import Sequence
+from typing import TYPE_CHECKING
 
 from tuxemon.db import (
     EffectPhase,
     GenderType,
     OutputBattle,
-    StatType,
     TargetType,
 )
 from tuxemon.locale import T
@@ -135,40 +134,6 @@ def has_effect_param(
     )
 
 
-def get_awake_monsters(
-    character: NPC,
-    monsters: list[Monster],
-    turn: int,
-    method: Optional[str] = None,
-) -> Generator[Monster, None, None]:
-    """
-    Iterate all non-fainted monsters in party.
-
-    Parameters:
-        character: The character.
-        monsters: List of monsters on the battlefield.
-        turn: Current turn of the battle.
-        method: Method to use when selecting a monster (default: None).
-
-    Yields:
-        Non-fainted monsters.
-    """
-    awake_monsters = [
-        monster
-        for monster in character.monsters
-        if not monster.is_fainted and monster not in monsters
-    ]
-
-    if awake_monsters:
-        if len(awake_monsters) == 1:
-            yield awake_monsters[0]
-        else:
-            if turn == 1 or method is None:
-                yield from awake_monsters
-            else:
-                yield retrieve_from_party(awake_monsters, method)
-
-
 def alive_party(character: NPC) -> list[Monster]:
     """
     Returns a list with all the monsters alive in the character's party.
@@ -227,7 +192,6 @@ def battlefield(session: Session, monster: Monster) -> None:
     set_var(session, "battle_last_monster_name", monster.name)
     set_var(session, "battle_last_monster_level", str(monster.level))
     set_var(session, "battle_last_monster_type", monster.types.primary.slug)
-    set_var(session, "battle_last_monster_category", monster.category)
 
 
 def track_battles(
@@ -235,6 +199,7 @@ def track_battles(
     output: str,
     player: NPC,
     players: Sequence[NPC],
+    turns: int,
     prize: int = 0,
     trainer_battle: bool = False,
 ) -> str:
@@ -248,6 +213,7 @@ def track_battles(
         players: All the players (eg if player is winner, players are losers)
         prize: Amount of money (prize) after fighting.
         trainer_battle: Whether a trainer or wild encounter.
+        turns: Number of turns the battle lasted.
 
     Returns:
         Message to display.
@@ -261,39 +227,43 @@ def track_battles(
     if output not in battle_outcomes:
         raise ValueError("Invalid battle output")
 
+    location = session.client.get_map_name()
+
     if output == "won":
-        return _handle_win(session, player, players, prize, trainer_battle)
+        return _handle_win(
+            session, player, players, turns, location, prize, trainer_battle
+        )
     elif output == "lost":
-        return _handle_loss(session, player, players, trainer_battle)
+        return _handle_loss(
+            session, player, players, turns, location, trainer_battle
+        )
     else:
-        return _handle_draw(session, player, players, trainer_battle)
+        return _handle_draw(
+            session, player, players, turns, location, trainer_battle
+        )
 
 
 def _handle_win(
     session: Session,
     winner: NPC,
     losers: Sequence[NPC],
+    turns: int,
+    location: str,
     prize: int,
     trainer_battle: bool,
 ) -> str:
-    """
-    Handles the case where the human player won the battle.
-
-    Parameters:
-        session: Session
-        winner: The human player.
-        losers: All the players that lost.
-        prize: Amount of money (prize) after fighting.
-        trainer_battle: Whether a trainer or wild encounter.
-
-    Returns:
-        Message to display.
-    """
+    """Handles the case where the human player won the battle."""
     info = {"name": winner.name.upper()}
 
     if trainer_battle:
         for loser in losers:
-            set_battle(session, OutputBattle.won, winner, loser)
+            winner.battle_handler.record_battle(
+                opponent=loser.slug,
+                outcome=OutputBattle.won,
+                steps=int(winner.steps),
+                location=location,
+                turns=turns,
+            )
 
         if winner.isplayer:
             set_var(session, "battle_last_result", OutputBattle.won.value)
@@ -324,20 +294,11 @@ def _handle_loss(
     session: Session,
     loser: NPC,
     winners: Sequence[NPC],
+    turns: int,
+    location: str,
     trainer_battle: bool,
 ) -> str:
-    """
-    Handles the case where the human player lost the battle.
-
-    Parameters:
-        session: Session
-        loser: The human player.
-        winners: All the players that won.
-        trainer_battle: Whether a trainer or wild encounter.
-
-    Returns:
-        Message to display.
-    """
+    """Handles the case where the human player lost the battle."""
     info = {"name": loser.name.upper()}
     set_var(session, "teleport_clinic", OutputBattle.lost.value)
 
@@ -350,7 +311,13 @@ def _handle_loss(
             set_var(session, "battle_last_trainer", loser.slug)
 
         for winner in winners:
-            set_battle(session, OutputBattle.lost, loser, winner)
+            loser.battle_handler.record_battle(
+                opponent=loser.slug,
+                outcome=OutputBattle.lost,
+                steps=int(winner.steps),
+                location=location,
+                turns=turns,
+            )
         return T.format("combat_defeat", info)
     return ""
 
@@ -359,20 +326,11 @@ def _handle_draw(
     session: Session,
     player: NPC,
     players: Sequence[NPC],
+    turns: int,
+    location: str,
     trainer_battle: bool,
 ) -> str:
-    """
-    Handles the case where the battle was a draw.
-
-    Parameters:
-        session: Session
-        player: The human player.
-        players: All the players.
-        trainer_battle: Whether a trainer or wild encounter.
-
-    Returns:
-        Message to display.
-    """
+    """Handles the case where the battle was a draw."""
     defeat = list(players)
     defeat.remove(player)
     set_var(session, "teleport_clinic", OutputBattle.draw.value)
@@ -381,7 +339,13 @@ def _handle_draw(
         set_var(session, "battle_last_result", OutputBattle.draw.value)
         for player_defeated in defeat:
             set_var(session, "battle_last_trainer", player_defeated.slug)
-            set_battle(session, OutputBattle.draw, player, player_defeated)
+            player.battle_handler.record_battle(
+                opponent=player_defeated.slug,
+                outcome=OutputBattle.draw,
+                steps=int(player.steps),
+                location=location,
+                turns=turns,
+            )
     return T.translate("combat_draw")
 
 
@@ -397,24 +361,6 @@ def set_var(session: Session, key: str, value: str) -> None:
     client = session.client.event_engine
     var = f"{key}:{value}"
     client.execute_action("set_variable", [var], True)
-
-
-def set_battle(
-    session: Session, output: OutputBattle, player: NPC, enemy: NPC
-) -> None:
-    """
-    Registers battles in Battle()
-
-    Parameters:
-        session: Session
-        output: Output of the battle: won, lost, draw
-        player: The human player.
-        enemy: The enemy player.
-    """
-    fighter = "player" if player.isplayer else player.slug
-    opponent = "player" if enemy.isplayer else enemy.slug
-    client = session.client.event_engine
-    client.execute_action("set_battle", [fighter, output, opponent], True)
 
 
 def build_hud_text(
@@ -457,44 +403,3 @@ def build_hud_text(
         symbol = "◉"
 
     return f"{monster.name}{icon} Lv.{monster.level}{symbol}"
-
-
-def retrieve_from_party(party: list[Monster], method: str) -> Monster:
-    """
-    Retrieves a monster from the party based on the specified method.
-
-    Parameters:
-        party: List of monsters in the party.
-        method: Method to use when selecting a monster
-            (e.g., 'lv_highest', 'healthiest', etc.).
-
-    Returns:
-        Monster: The selected monster.
-
-    Notes:
-        If the method is not recognized, a random monster from
-        the party will be returned.
-    """
-    methods = {
-        "lv_highest": ("level", max),
-        "lv_lowest": ("level", min),
-        "healthiest": ("current_hp", max),
-        "weakest": ("current_hp", min),
-        "oldest": ("steps", max),
-        "newest": ("steps", min),
-    }
-
-    # eg. speed_max, armour_max, etc.
-    methods.update(
-        {f"{stat.value}_max": (stat.value, max) for stat in StatType}
-    )
-    # eg. speed_min, armour_min, etc.
-    methods.update(
-        {f"{stat.value}_min": (stat.value, min) for stat in StatType}
-    )
-
-    if method not in methods:
-        return random.choice(party)
-
-    attr, func = methods[method]
-    return func(party, key=lambda m: getattr(m, attr))

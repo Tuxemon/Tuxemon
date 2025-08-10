@@ -1,6 +1,6 @@
 {
   "slug": "hatchling",
-  "category": "egg",
+  "species": "egg",
   "moveset": [
     {
       "level_learned": 1,

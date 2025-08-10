@@ -1,6 +1,6 @@
 {
   "slug": "nut",
-  "category": "hardware",
+  "species": "hardware",
   "moveset": [
     {
       "level_learned": 1,

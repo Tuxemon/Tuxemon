@@ -25,6 +25,7 @@ class TestRewardSystem(unittest.TestCase):
         self.loser.experience_modifier = 1.5
         self.loser.status = MagicMock(spec=MonsterStatusHandler)
         self.loser.current_hp = 0
+        self.loser.stage = "basic"
         self.loser.moves = MagicMock()
 
         self.winner = MagicMock(spec=Monster)
@@ -33,6 +34,7 @@ class TestRewardSystem(unittest.TestCase):
         self.winner.level = 5
         self.winner.moves = MagicMock()
         self.winner.current_hp = 50
+        self.winner.stage = "basic"
         self.winner.owner = MagicMock(spec=NPC)
         self.winner.owner.isplayer = True
         self.winner.owner.monsters = [self.winner]
@@ -97,13 +99,25 @@ class TestRewardSystem(unittest.TestCase):
     def test_calculate_experience_with_transmitter(self, alive_party_mock):
         mock_monsters = [
             MagicMock(
-                spec=Monster, name="participant1", current_hp=50, status=[]
+                spec=Monster,
+                name="participant1",
+                current_hp=50,
+                status=[],
+                stage="basic",
             ),
             MagicMock(
-                spec=Monster, name="participant2", current_hp=50, status=[]
+                spec=Monster,
+                name="participant2",
+                current_hp=50,
+                status=[],
+                stage="basic",
             ),
             MagicMock(
-                spec=Monster, name="non_participant", current_hp=50, status=[]
+                spec=Monster,
+                name="non_participant",
+                current_hp=50,
+                status=[],
+                stage="basic",
             ),
         ]
         alive_party_mock.return_value = mock_monsters
@@ -147,6 +161,7 @@ class TestRewardSystem(unittest.TestCase):
                 status=MonsterStatusHandler(),
                 current_hp=50,
                 is_fainted=False,
+                stage="basic",
             )
             for _ in range(3)
         ]
@@ -196,6 +211,7 @@ class TestRewardSystem(unittest.TestCase):
         self.winner.moves.update_moves.return_value = ["Fireball"]
         second_winner = MagicMock(spec=Monster)
         second_winner.name = "rockitten"
+        second_winner.stage = "basic"
         second_winner.level = 5
         second_winner.moves = MagicMock()
         second_winner.moves.update_moves.return_value = ["Ram"]

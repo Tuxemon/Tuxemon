@@ -1,6 +1,6 @@
 {
   "slug": "primordia",
-  "category": "microbe",
+  "species": "microbe",
   "moveset": [
     {
       "level_learned": 1,

@@ -1,6 +1,6 @@
 {
   "slug": "seirein",
-  "category": "spirit_fire",
+  "species": "spirit_fire",
   "moveset": [
     {
       "level_learned": 1,

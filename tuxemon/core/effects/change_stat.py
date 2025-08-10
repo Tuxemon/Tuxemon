@@ -36,7 +36,7 @@ class ChangeStatEffect(CoreEffect):
         if self.statistic not in list(StatType):
             raise ValueError(f"{self.statistic} isn't among {list(StatType)}")
 
-        set_var(session, self.name, str(target.instance_id.hex))
+        set_var(session, self.name, target.instance_id.hex)
         client = session.client.event_engine
         params = [self.name, self.statistic, self.percentage]
         client.execute_action("modify_monster_stats", params, True)

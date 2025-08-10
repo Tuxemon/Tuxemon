@@ -4,11 +4,9 @@ from unittest import TestCase
 from unittest.mock import MagicMock
 
 from tuxemon.db import MissionStatus
-from tuxemon.mission import (
-    Mission,
-    MissionController,
-    MissionManager,
-)
+from tuxemon.mission.controller import MissionController
+from tuxemon.mission.manager import MissionManager
+from tuxemon.mission.mission import Mission, check_items, check_monsters
 from tuxemon.npc import NPC, NPCBagHandler, PartyHandler
 
 
@@ -73,32 +71,47 @@ class TestMissionManager(TestCase):
         self.assertFalse(self.mission_controller.check_all_prerequisites())
 
     def test_check_required_items(self):
-        self.mission.required_items = ["potion", "lotion"]
+        self.mission.required_items = {"potion": None, "lotion": 2}
 
         item1 = MagicMock()
         item1.slug = "potion"
+        item1.quantity = 1
+
         item2 = MagicMock()
         item2.slug = "lotion"
+        item2.quantity = 2
 
         self.character.items = MagicMock(spec=NPCBagHandler)
         self.character.items.find_item.side_effect = lambda slug: (
             item1 if slug == "potion" else item2 if slug == "lotion" else None
         )
 
-        self.assertTrue(self.mission.check_required_items(self.character))
+        self.assertTrue(
+            check_items(self.character, self.mission.required_items)
+        )
+
+        item2.quantity = 1
+        self.assertFalse(
+            check_items(self.character, self.mission.required_items)
+        )
 
         self.character.items.find_item.side_effect = lambda slug: (
             item1 if slug == "potion" else None
         )
-        self.assertFalse(self.mission.check_required_items(self.character))
+        self.assertFalse(
+            check_items(self.character, self.mission.required_items)
+        )
 
     def test_check_required_monsters(self):
-        self.mission.required_monsters = ["monster1", "monster2"]
+        self.mission.required_monsters = {"monster1": None, "monster2": 5}
 
         monster1 = MagicMock()
         monster1.slug = "monster1"
+        monster1.level = 3
+
         monster2 = MagicMock()
         monster2.slug = "monster2"
+        monster2.level = 5
 
         self.character.party = MagicMock(spec=PartyHandler)
         self.character.party.find_monster.side_effect = lambda slug: (
@@ -107,12 +120,21 @@ class TestMissionManager(TestCase):
             else monster2 if slug == "monster2" else None
         )
 
-        self.assertTrue(self.mission.check_required_monsters(self.character))
+        self.assertTrue(
+            check_monsters(self.character, self.mission.required_monsters)
+        )
+
+        monster2.level = 4
+        self.assertFalse(
+            check_monsters(self.character, self.mission.required_monsters)
+        )
 
         self.character.party.find_monster.side_effect = lambda slug: (
             monster1 if slug == "monster1" else None
         )
-        self.assertFalse(self.mission.check_required_monsters(self.character))
+        self.assertFalse(
+            check_monsters(self.character, self.mission.required_monsters)
+        )
 
     def test_check_all_prerequisites_with_no_missions(self):
         self.assertTrue(self.mission_controller.check_all_prerequisites())

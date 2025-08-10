@@ -1,6 +1,6 @@
 {
   "slug": "dark_robo",
-  "category": "threat",
+  "species": "threat",
   "moveset": [
     {
       "level_learned": 1,

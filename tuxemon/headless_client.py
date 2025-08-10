@@ -14,6 +14,7 @@ from tuxemon.boundary import BoundaryChecker
 from tuxemon.camera import CameraManager
 from tuxemon.config import TuxemonConfig
 from tuxemon.constants import paths
+from tuxemon.event import get_event_bus
 from tuxemon.event.eventaction import ActionManager
 from tuxemon.event.eventcondition import ConditionManager
 from tuxemon.event.eventengine import EventEngine
@@ -29,7 +30,7 @@ from tuxemon.session import local_session
 from tuxemon.state.loader import StateLoader
 from tuxemon.state.manager import StateManager
 from tuxemon.state.repository import StateRepository
-from tuxemon.state.state import HookManager, State
+from tuxemon.state.state import State
 
 StateType = TypeVar("StateType", bound=State)
 
@@ -55,7 +56,7 @@ class HeadlessClient:
     def __init__(self, config: TuxemonConfig) -> None:
         self.config = config
 
-        self.hook_manager = HookManager()
+        self.event_bus = get_event_bus()
         self.state_repository = StateRepository()
         loader = StateLoader(
             base_package="tuxemon.states", lib_dir=paths.LIBDIR
@@ -63,7 +64,7 @@ class HeadlessClient:
         loader.auto_state_discovery(self.state_repository)
         self.state_manager = StateManager(
             package="tuxemon.states",
-            hook=self.hook_manager,
+            event=self.event_bus,
             repository=self.state_repository,
             on_state_change=self.on_state_change,
         )

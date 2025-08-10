@@ -135,7 +135,13 @@ class TechniqueMenuState(Menu[Technique]):
         # show technique description
         if technique:
             if technique.description:
-                self.alert(technique.description)
+                self.dialog.alert(technique.description, dialog_speed="max")
+
+    def is_valid_entry(self, technique: Optional[Technique]) -> bool:
+        """
+        Used to determine if a given technique should be selectable.
+        """
+        return technique is not None
 
     def create_technique_menu_item(
         self, tech: Technique

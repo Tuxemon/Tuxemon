@@ -18,7 +18,6 @@ from pygame.transform import flip as pg_flip
 from tuxemon import graphics, prepare
 from tuxemon.combat import alive_party, build_hud_text
 from tuxemon.formula import config_combat
-from tuxemon.locale import T
 from tuxemon.menu.menu import Menu
 from tuxemon.sprite import CaptureDeviceSprite, Sprite
 from tuxemon.tools import scale
@@ -37,6 +36,7 @@ from tuxemon.ui.text_alignment import HorizontalAlignment
 
 if TYPE_CHECKING:
     from tuxemon.animation import Animation
+    from tuxemon.core.core_effect import ItemEffectResult
     from tuxemon.item.item import Item
     from tuxemon.monster import Monster
     from tuxemon.npc import NPC
@@ -70,10 +70,11 @@ class CombatAnimations(Menu[None], ABC):
 
     def __init__(self, context: CombatContext) -> None:
         super().__init__()
+        self.context = context
         self.session = context.session
         self.players = context.teams
         self.graphics = context.graphics
-        self.is_double = context.battle_mode == "double"
+        self.is_double = context.is_double_battle
         self.field_monsters = FieldMonsters()
         self.sprite_map = MonsterSpriteMap()
         self.is_trainer_battle = False
@@ -629,7 +630,9 @@ class CombatAnimations(Menu[None], ABC):
         if not self.is_trainer_battle:
             sound = self.players[1].monsters[0].combat_call
             self.play_sound_effect(sound, 1.5)
-        self.display_alert_message()
+
+        start_message = self.context.get_start_message()
+        self.dialog.alert(start_message)
 
     def flip_sprites(self, enemy: Sprite, player_back: Sprite) -> None:
         """Flip the sprites horizontally."""
@@ -687,15 +690,6 @@ class CombatAnimations(Menu[None], ABC):
         """Play the sound effect."""
         self.client.sound_manager.play_sound(sound, value)
 
-    def display_alert_message(self) -> None:
-        """Display the alert message."""
-        if self.is_trainer_battle:
-            params = {"name": self.players[1].name.upper()}
-            self.alert(T.format("combat_trainer_appeared", params))
-        else:
-            params = {"name": self.players[1].monsters[0].name.upper()}
-            self.alert(T.format("combat_wild_appeared", params))
-
     def animate_throwing(
         self,
         monster: Monster,
@@ -726,22 +720,25 @@ class CombatAnimations(Menu[None], ABC):
 
     def animate_capture_monster(
         self,
-        is_captured: bool,
-        num_shakes: int,
+        result: ItemEffectResult,
         monster: Monster,
         item: Item,
         sprite: Sprite,
+        texts: tuple[str, str, str],
     ) -> None:
         """
         Animation for capturing monsters.
 
         Parameters:
-            is_captured: Whether the monster will be successfully captured.
-            num_shakes: The number of times the capture device will shake.
+            result: Result of the capture plugin.
             monster: The monster being captured.
             item: The capture device used to capture the monster.
             sprite: The sprite to animate.
+            messages: Success header, success and failture text.
         """
+        num_shakes = result.num_shakes
+        is_captured = result.success
+        success_header_text, success_text, failure_text = texts
         monster_sprite = self.sprite_map.get_sprite(monster)
         if monster_sprite is None:
             raise KeyError(f"Sprite not found for entity: {monster.name}")
@@ -783,21 +780,14 @@ class CombatAnimations(Menu[None], ABC):
 
         if is_captured and monster.owner:
             combat = item.get_combat_state()
-            trainer = monster.get_owner()
             combat._captured_mon = monster
 
             def show_success(delay: float) -> None:
                 self.task(combat.end_combat, interval=delay + 4)
-                gotcha = T.translate("gotcha")
-                params = {"name": monster.name.upper()}
-                if len(trainer.monsters) >= prepare.PARTY_LIMIT:
-                    info = T.format("gotcha_kennel", params)
-                else:
-                    info = T.format("gotcha_team", params)
-                gotcha += "\n" + info
-                delay += len(gotcha) * config_combat.letter_time
+                full_text = success_header_text + "\n" + success_text
+                delay += len(full_text) * config_combat.letter_time
                 self.task(
-                    partial(self.alert, gotcha),
+                    partial(self.dialog.alert, full_text),
                     interval=delay,
                 )
 
@@ -822,11 +812,9 @@ class CombatAnimations(Menu[None], ABC):
                 self.task(partial(self.blink, sprite), interval=delay + 0.5)
 
             def show_failure(delay: float) -> None:
-                label = f"captured_failed_{num_shakes}"
-                failed = T.translate(label)
-                delay += len(failed) * config_combat.letter_time
+                delay += len(failure_text) * config_combat.letter_time
                 self.task(
-                    partial(self.alert, failed),
+                    partial(self.dialog.alert, failure_text),
                     interval=delay,
                 )
 

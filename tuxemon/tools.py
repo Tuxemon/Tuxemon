@@ -15,6 +15,7 @@ from collections.abc import Callable, Iterable, Mapping, Sequence
 from dataclasses import fields
 from enum import Enum
 from operator import add, eq, floordiv, ge, gt, le, lt, mul, ne, sub
+from pathlib import Path
 from typing import (
     TYPE_CHECKING,
     Any,
@@ -27,6 +28,7 @@ from typing import (
 
 from tuxemon import prepare
 from tuxemon.compat.rect import ReadOnlyRect
+from tuxemon.constants.asset_loader import fetch_asset
 from tuxemon.db import Comparison
 from tuxemon.locale import T
 from tuxemon.math import Vector2
@@ -81,6 +83,21 @@ class NamedTupleProtocol(Protocol):
 NamedTupleTypeVar = TypeVar("NamedTupleTypeVar", bound=NamedTupleProtocol)
 
 
+def extract_mod_name(map_path: str) -> str:
+    """
+    Extracts the mod name from a map path. Assumes the map is located in a
+    'mods/<mod_name>/...' structure and returns the folder name immediately
+    following 'mods'. If the structure is invalid, a ValueError is raised
+    instead of returning a fallback.
+    """
+    path = Path(map_path)
+    try:
+        mods_index = path.parts.index("mods")
+        return path.parts[mods_index + 1]
+    except (ValueError, IndexError) as e:
+        raise ValueError(f"Invalid mod path structure: {path}") from e
+
+
 def get_cell_coordinates(
     rect: ReadOnlyRect,
     point: tuple[int, int],
@@ -103,7 +120,7 @@ def transform_resource_filename(*filename: str) -> str:
     Returns:
         The absolute path of the resource.
     """
-    return prepare.fetch(*filename)
+    return fetch_asset(*filename)
 
 
 def get_screen_rect(sprite: Sprite, internal_rect: Rect) -> Rect:
@@ -492,3 +509,25 @@ def parse_flag(value: Optional[str]) -> bool:
     All other values (including None) return False.
     """
     return str(value or "").strip().lower() in {"true", "1", "yes"}
+
+
+def check_condition(value: str, dataset: set[str]) -> bool:
+    """
+    Check if a condition is satisfied against a set of values.
+
+    - If the input starts with '!', it asserts that the value is NOT in the dataset.
+    - Otherwise, it asserts that the value IS in the dataset.
+    """
+    value = value.strip().lower()
+    if not value:
+        logging.debug("Empty condition skipped.")
+        return False
+
+    if value.startswith("!"):
+        result = value[1:] not in dataset
+        logging.debug(f"Checking NOT '{value[1:]}' in {dataset}: {result}")
+        return result
+
+    result = value in dataset
+    logging.debug(f"Checking '{value}' in {dataset}: {result}")
+    return result

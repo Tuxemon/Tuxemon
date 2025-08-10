@@ -3,9 +3,9 @@
 from __future__ import annotations
 
 import logging
-import uuid
 from dataclasses import dataclass
 from typing import Optional, final
+from uuid import UUID
 
 from tuxemon.event import get_monster_by_iid
 from tuxemon.event.eventaction import EventAction
@@ -33,7 +33,6 @@ class GiveExperienceAction(EventAction):
 
     eg. "give_experience name_variable,steps_variable"
     eg. "give_experience name_variable,420"
-
     """
 
     name = "give_experience"
@@ -58,7 +57,7 @@ class GiveExperienceAction(EventAction):
             if variable not in player.game_variables:
                 return
 
-            monster_id = uuid.UUID(player.game_variables[variable])
+            monster_id = UUID(player.game_variables[variable])
             monster = get_monster_by_iid(session, monster_id)
             if monster is None:
                 monster = player.monster_boxes.get_monsters_by_iid(monster_id)
@@ -72,5 +71,5 @@ class GiveExperienceAction(EventAction):
                 level = mon.give_experience(exp)
                 logger.info(f"{mon.name} +{exp} exp")
                 if level > 0:
-                    mon.moves.update_moves(mon.level, level)
+                    mon.moves.update_moves(mon.level, level, mon.stage)
                     logger.info(f"{mon.name} +{level} levels")

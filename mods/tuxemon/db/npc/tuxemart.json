@@ -1,10 +1,8 @@
 {
   "slug": "tuxemart_keeper",
-  "template": 
-    {
-      "sprite_name": "shopassistant",
-      "combat_front": "adventurer",
-      "slug": "shopassistant"
-    }
-
+  "template": {
+    "sprite_name": "shopassistant",
+    "combat_front": "adventurer",
+    "slug": "shopassistant"
+  }
 }

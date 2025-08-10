@@ -1,6 +1,6 @@
 {
   "slug": "rockitten",
-  "category": "cute_boulder",
+  "species": "cute_boulder",
   "moveset": [
     {
       "level_learned": 1,

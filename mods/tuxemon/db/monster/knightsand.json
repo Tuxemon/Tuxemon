@@ -1,6 +1,6 @@
 {
   "slug": "knightsand",
-  "category": "sand_knight",
+  "species": "sand_knight",
   "moveset": [
     {
       "level_learned": 1,

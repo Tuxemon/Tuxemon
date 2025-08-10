@@ -8,7 +8,6 @@ from __future__ import annotations
 
 import logging
 import re
-from pathlib import Path
 from typing import TYPE_CHECKING
 
 import yaml
@@ -69,9 +68,6 @@ def _setup_user_environment() -> config.TuxemonConfig:
 
 # How it would be called in the main part of the file:
 CONFIG = _setup_user_environment()
-
-# Starting map
-STARTING_MAP = "start_"
 
 # Set up the screen size and caption
 SCREEN_SIZE = CONFIG.resolution
@@ -371,33 +367,3 @@ def init(platform: str = "pygame") -> None:
         headless_init()
     else:
         raise ValueError(f"Unsupported platform: {platform}")
-
-
-# Fetches a resource file
-# note: this has the potential of being a bottle neck doing to all the checking of paths
-# eventually, this should be configured at game launch, or in a config file instead
-# of looking all over creation for the required files.
-def fetch(*args: str) -> str:
-    relative_path = Path(*args)
-
-    for mod_name in CONFIG.mods:
-        # when assets are in folder with the source
-        path = paths.mods_folder / mod_name / relative_path
-        logger.debug(f"searching asset: {path}")
-        if path.exists():
-            return path.as_posix()
-
-        # when assets are in a system path (like for OS packages and Android)
-        for root_path in paths.system_installed_folders:
-            path = root_path / "mods" / mod_name / relative_path
-            logger.debug(f"searching asset: {path}")
-            if path.exists():
-                return path.as_posix()
-
-        # mods folder is in the same folder as the launch script
-        path = paths.BASEDIR / "mods" / mod_name / relative_path
-        logger.debug(f"searching asset: {path}")
-        if path.exists():
-            return path.as_posix()
-
-    raise OSError(f"Cannot load file {relative_path}")

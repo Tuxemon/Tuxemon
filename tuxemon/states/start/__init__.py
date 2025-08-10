@@ -13,6 +13,7 @@ from pygame.surface import Surface
 from pygame_menu import locals
 
 from tuxemon import prepare
+from tuxemon.db import db
 from tuxemon.locale import T
 from tuxemon.menu.menu import PygameMenuState
 from tuxemon.platform.const import buttons
@@ -20,11 +21,10 @@ from tuxemon.platform.events import PlayerInput
 from tuxemon.save import get_index_of_latest_save
 from tuxemon.session import local_session
 from tuxemon.state.state import State
+from tuxemon.states.start.launcher import GameLauncher
 from tuxemon.time_handler import today_ordinal
 
 logger = logging.getLogger(__name__)
-
-StartGameObj = Callable[[], object]
 
 
 class BackgroundState(State):
@@ -59,14 +59,12 @@ class StartState(PygameMenuState):
         config = prepare.CONFIG
 
         def new_game() -> None:
-            destination = f"{prepare.STARTING_MAP}{config.mods[0]}.tmx"
-            map_path = prepare.fetch("maps", destination)
-            self.client.push_state(
-                "WorldState", session=local_session, map_name=map_path
+            launcher = GameLauncher(self.client, db)
+            launcher.launch(
+                session=local_session,
+                mod_name=config.mods[0],
+                remove_states=["StartState"],
             )
-            game_var = local_session.player.game_variables
-            game_var["date_start_game"] = today_ordinal()
-            self.client.remove_state_by_name("StartState")
 
         def change_state(
             state: Union[State, str],
@@ -104,7 +102,7 @@ class StartState(PygameMenuState):
             )
         menu.add.button(
             title=T.translate("menu_minigame"),
-            action=change_state("MinigameState"),
+            action=change_state("DifficultySelectState"),
             font_size=self.font_type.big,
             button_id="menu_minigame",
         )
@@ -154,15 +152,12 @@ class ModsChoice(PygameMenuState):
     ) -> None:
 
         def new_game(mod_name: str) -> None:
-            destination = f"{prepare.STARTING_MAP}{mod_name}.tmx"
-            map_path = prepare.fetch("maps", destination)
-            self.client.push_state(
-                "WorldState", session=local_session, map_name=map_path
+            launcher = GameLauncher(self.client, db)
+            launcher.launch(
+                session=local_session,
+                mod_name=mod_name,
+                remove_states=["StartState", "ModsChoice"],
             )
-            game_var = local_session.player.game_variables
-            game_var["date_start_game"] = today_ordinal()
-            self.client.remove_state_by_name("StartState")
-            self.client.remove_state_by_name("ModsChoice")
 
         for mod_name in self.mods:
             menu.add.button(

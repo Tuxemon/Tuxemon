@@ -1,6 +1,6 @@
 {
   "slug": "ziggurat",
-  "category": "mazerunner",
+  "species": "mazerunner",
   "moveset": [
     {
       "level_learned": 1,

@@ -1,6 +1,6 @@
 {
   "slug": "possessun",
-  "category": "visitor",
+  "species": "visitor",
   "moveset": [
     {
       "level_learned": 1,

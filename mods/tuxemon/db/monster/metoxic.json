@@ -1,6 +1,6 @@
 {
   "slug": "metoxic",
-  "category": "toxic_flag",
+  "species": "toxic_flag",
   "moveset": [
     {
       "level_learned": 1,

@@ -9,6 +9,16 @@
   },
   {
     "slug": "spyder_omnichannel_schwartz",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_omnichannel_schwartz1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_omnichannel_schwartz2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "rogue",
       "combat_front": "rogue",
@@ -17,6 +27,16 @@
   },
   {
     "slug": "spyder_omnichannel_strauss",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_omnichannel_strauss1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_omnichannel_strauss2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "warrior",
       "combat_front": "warrior",
@@ -25,6 +45,16 @@
   },
   {
     "slug": "spyder_omnichannel_william",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_omnichannel_william1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_omnichannel_william2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "beachcomber_black",
       "combat_front": "yellowbelt",
@@ -33,6 +63,16 @@
   },
   {
     "slug": "spyder_omnichannel_tohei",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_omnichannel_tohei1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_omnichannel_tohei2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "spyderrookie",
       "combat_front": "spyder_rookie",
@@ -65,6 +105,16 @@
   },
   {
     "slug": "spyder_omnichannel_dempsey",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_omnichannel_dempsey1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_omnichannel_dempsey2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "spyderboss",
       "combat_front": "spyder_boss",
@@ -73,6 +123,16 @@
   },
   {
     "slug": "spyder_omnichannel_crane",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_omnichannel_crane1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_omnichannel_crane2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "spyderrookie",
       "combat_front": "spyder_rookie",
@@ -81,6 +141,16 @@
   },
   {
     "slug": "spyder_omnichannel_carnegie",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_omnichannel_carnegie1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_omnichannel_carnegie2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "cooldude",
       "combat_front": "cooldude",
@@ -89,6 +159,16 @@
   },
   {
     "slug": "spyder_omnichannel_byrne",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_omnichannel_byrne1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_omnichannel_byrne2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "professor_green",
       "combat_front": "professor",
@@ -97,6 +177,16 @@
   },
   {
     "slug": "spyder_omnichannel_bettger",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_omnichannel_bettger1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_omnichannel_bettger2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "rogue_copper",
       "combat_front": "rogue",

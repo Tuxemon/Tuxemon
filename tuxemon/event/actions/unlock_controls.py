@@ -31,4 +31,4 @@ class UnlockControlsAction(
         sink_state = session.client.get_state_by_name(SinkState)
 
         if sink_state:
-            session.client.remove_state(sink_state)
+            session.client.pop_state(sink_state)

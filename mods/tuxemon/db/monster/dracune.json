@@ -1,6 +1,6 @@
 {
   "slug": "dracune",
-  "category": "cloaked",
+  "species": "cloaked",
   "moveset": [
     {
       "level_learned": 1,

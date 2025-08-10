@@ -54,9 +54,13 @@ class SetMonsterLevelAction(EventAction):
                 return
             new_level = monster.level + self.levels_added
             monster.set_level(new_level)
-            monster.moves.update_moves(monster.level, self.levels_added)
+            monster.moves.update_moves(
+                monster.level, self.levels_added, monster.stage
+            )
         else:
             for monster in player.monsters:
                 new_level = monster.level + self.levels_added
                 monster.set_level(new_level)
-                monster.moves.update_moves(monster.level, self.levels_added)
+                monster.moves.update_moves(
+                    monster.level, self.levels_added, monster.stage
+                )

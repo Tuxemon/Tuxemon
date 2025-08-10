@@ -1,6 +1,6 @@
 {
   "slug": "weedsea",
-  "category": "seaweed",
+  "species": "seaweed",
   "moveset": [
     {
       "level_learned": 1,

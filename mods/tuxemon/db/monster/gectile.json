@@ -1,6 +1,6 @@
 {
   "slug": "gectile",
-  "category": "climbing",
+  "species": "climbing",
   "moveset": [
     {
       "level_learned": 1,

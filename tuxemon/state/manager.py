@@ -15,8 +15,8 @@ from tuxemon.state.stack import StateStack
 from tuxemon.state.state import State
 
 if TYPE_CHECKING:
+    from tuxemon.event.eventbus import EventBus
     from tuxemon.state.repository import StateRepository
-    from tuxemon.state.state import HookManager
 
 logger = logging.getLogger(__name__)
 
@@ -30,7 +30,7 @@ class StateManager:
 
     Parameters:
         package: Name of package to search for states.
-        hook: Manages hooks for executing custom logic during state changes.
+        event: Manages events for executing custom logic during state changes.
         repository: Repository for accessing state instances.
         on_state_change: Optional callback to be executed when top state
             changes.
@@ -39,13 +39,13 @@ class StateManager:
     def __init__(
         self,
         package: str,
-        hook: HookManager,
+        event: EventBus,
         repository: StateRepository,
         on_state_change: Optional[Callable[..., None]] = None,
         state_loader: Optional[StateLoader] = None,
     ) -> None:
         self.package = package
-        self.hook_manager = hook
+        self.event_bus = event
         self.state_repository = repository
         self.state_loader = state_loader or StateLoader(package, paths.LIBDIR)
         self.state_stack = StateStack()
@@ -53,32 +53,34 @@ class StateManager:
         self.state_queue = StateQueue(self)
 
         if on_state_change:
-            self.register_global_hook("on_state_change", on_state_change)
+            self.register_global_event("on_state_change", on_state_change)
         else:
-            self.register_global_hook(
+            self.register_global_event(
                 "on_state_change", lambda *args, **kwargs: None
             )
 
-        self.register_global_hook("pre_state_update", lambda time_delta: None)
-        self.register_global_hook("post_state_update", lambda time_delta: None)
+        self.register_global_event("pre_state_update", lambda time_delta: None)
+        self.register_global_event(
+            "post_state_update", lambda time_delta: None
+        )
 
-    def register_global_hook(
-        self, hook_name: str, callback: Callable[..., None], priority: int = 0
+    def register_global_event(
+        self, event_name: str, callback: Callable[..., None], priority: int = 0
     ) -> None:
-        self.hook_manager.register_hook(hook_name, callback, priority)
+        self.event_bus.subscribe(event_name, callback, priority)
 
-    def unregister_global_hook(
-        self, hook_name: str, callback: Callable[..., None]
+    def unregister_global_event(
+        self, event_name: str, callback: Callable[..., None]
     ) -> None:
-        self.hook_manager.unregister_hook(hook_name, callback)
+        self.event_bus.unsubscribe(event_name, callback)
 
-    def trigger_global_hook(
-        self, hook_name: str, *args: Any, **kwargs: Any
+    def trigger_global_event(
+        self, event_name: str, *args: Any, **kwargs: Any
     ) -> None:
-        self.hook_manager.trigger_hook(hook_name, *args, **kwargs)
+        self.event_bus.publish(event_name, *args, **kwargs)
 
-    def is_hook_registered(self, hook_name: str) -> bool:
-        return self.hook_manager.is_hook_registered(hook_name)
+    def has_listeners_for_event(self, event_name: str) -> bool:
+        return self.event_bus.has_listeners_for_event(event_name)
 
     def register_state(self, state: type[State]) -> None:
         """Add a state class."""
@@ -97,11 +99,11 @@ class StateManager:
             time_delta: Amount of time passed since last frame.
         """
         logger.debug("updating states")
-        self.trigger_global_hook("pre_state_update", time_delta)
+        self.trigger_global_event("pre_state_update", time_delta)
         for state in self.active_states:
             self._check_resume(state)
             state.update(time_delta)
-        self.trigger_global_hook("post_state_update", time_delta)
+        self.trigger_global_event("post_state_update", time_delta)
 
     def _check_resume(self, state: State) -> None:
         """
@@ -146,8 +148,8 @@ class StateManager:
         if current is not None:
             self.state_stack.mark_for_resume(current)
 
-        if self.is_hook_registered("on_state_change"):
-            self.trigger_global_hook("on_state_change")
+        if self.has_listeners_for_event("on_state_change"):
+            self.trigger_global_event("on_state_change")
 
     def handle_queued_state(self) -> None:
         """Handle a queued state if one exists."""
@@ -194,10 +196,6 @@ class StateManager:
             logger.critical("Attempted to remove a state not in the stack")
             raise RuntimeError
 
-    def remove_state(self, state: State) -> None:
-        """Remove a state from the stack by reference."""
-        self.pop_state(state)
-
     def remove_state_by_name(self, state_name: str) -> None:
         """
         Remove a state from the stack by its name.
@@ -206,10 +204,15 @@ class StateManager:
             state_name: The name of the state to remove.
         """
         try:
-            state = self.state_stack.get_state_by_name(state_name)
-            self.pop_state(state)
-        except StopIteration:
-            raise ValueError(f"State with name '{state_name}' not found")
+            matches = self.state_stack.get_states_by_name(state_name)
+        except ValueError:
+            logger.warning(f"No states found with name '{state_name}'")
+            return
+
+        for state in matches:
+            logger.debug(f"Removing state: {state.name}")
+            self.state_stack.remove(state)
+            state.shutdown()
 
     @overload
     def push_state(
@@ -260,8 +263,8 @@ class StateManager:
 
         self.state_stack.push(instance)
 
-        if self.is_hook_registered("on_state_change"):
-            self.trigger_global_hook("on_state_change")
+        if self.has_listeners_for_event("on_state_change"):
+            self.trigger_global_event("on_state_change")
 
         return instance
 
@@ -309,7 +312,7 @@ class StateManager:
         previous = self.state_stack.current()
         instance = self.push_state(state_name, **kwargs)
         if previous is not None:
-            self.remove_state(previous)
+            self.pop_state(previous)
         return instance
 
     def push_state_with_timeout(

@@ -12,14 +12,6 @@
     "slug": "music_night_dizzy_spells"
   },
   {
-    "file": "Arpanauts.ogg",
-    "slug": "music_arpanauts"
-  },
-  {
-    "file": "Ascending.ogg",
-    "slug": "music_ascending"
-  },
-  {
     "file": "back34.mp3",
     "slug": "music_city_park"
   },
@@ -36,10 +28,6 @@
     "slug": "music_come_and_find_me"
   },
   {
-    "file": "Come and Find Me - B mix.ogg",
-    "slug": "music_come_and_find_me_mix"
-  },
-  {
     "file": "Digital Native.ogg",
     "slug": "music_sphalian_theme"
   },
@@ -54,14 +42,6 @@
   {
     "file": "HHavok-main.ogg",
     "slug": "music_hhavok_main"
-  },
-  {
-    "file": "JRPG_battleBoss_loop.ogg",
-    "slug": "music_battleboss_loop"
-  },
-  {
-    "file": "JRPG_battleFinal.ogg",
-    "slug": "music_battlefinal"
   },
   {
     "file": "JRPG_docks_loop.ogg",
@@ -112,20 +92,8 @@
     "slug": "music_lunar_joyride"
   },
   {
-    "file": "melody_eternal.ogg",
-    "slug": "music_mansion_theme"
-  },
-  {
     "file": "peasant_kingdom.ogg",
     "slug": "music_the_wild_places"
-  },
-  {
-    "file": "Prologue.ogg",
-    "slug": "music_prologue"
-  },
-  {
-    "file": "Searching.ogg",
-    "slug": "music_searching"
   },
   {
     "file": "stand_with_us.ogg",
@@ -140,31 +108,7 @@
     "slug": "music_adventure_begins"
   },
   {
-    "file": "Underclocked.ogg",
-    "slug": "music_underclocked"
-  },
-  {
-    "file": "Unending Strike.mp3",
-    "slug": "music_unending_strike"
-  },
-  {
-    "file": "Valor of Heroes.ogg",
-    "slug": "music_valor_heroes"
-  },
-  {
-    "file": "We Persist.ogg",
-    "slug": "music_persist"
-  },
-  {
-    "file": "We're all under the stars.ogg",
-    "slug": "music_underthestars"
-  },
-  {
-    "file": "We're the Resistors.ogg",
-    "slug": "music_resistors"
-  },
-  {
-    "file": "Why_do_the_nations.ogg",
-    "slug": "music_why_do_nations"
+    "file": "Jester Theme.mp3",
+    "slug": "music_jester_theme"
   }
 ]

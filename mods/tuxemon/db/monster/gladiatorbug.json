@@ -1,6 +1,6 @@
 {
   "slug": "gladiatorbug",
-  "category": "bustuarius",
+  "species": "bustuarius",
   "moveset": [
     {
       "level_learned": 1,

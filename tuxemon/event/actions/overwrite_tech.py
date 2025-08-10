@@ -3,9 +3,9 @@
 from __future__ import annotations
 
 import logging
-import uuid
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, final
+from uuid import UUID
 
 from tuxemon.event.eventaction import EventAction
 from tuxemon.technique.technique import Technique
@@ -21,7 +21,10 @@ logger = logging.getLogger(__name__)
 @dataclass
 class OverwriteTechAction(EventAction):
     """
-    Overwrite / replace a technique with another.
+    Replaces a known technique with another for a specific monster.
+
+    This action is typically used when a monster chooses to forget a move
+    and learn a new one.
 
     Script usage:
         .. code-block::
@@ -29,11 +32,12 @@ class OverwriteTechAction(EventAction):
             overwrite_tech <removed>,<added>
 
     Script parameters:
-        removed: Name of the variable where to store the tech id.
-        added: Slug technique.
+        removed: Name of the game variable that stores the UUID of the
+            technique to be replaced.
+        added: Slug of the technique to be added (e.g., "peck", "fireball")
 
-    eg. "overwrite_tech name_variable,peck"
-
+    Example:
+        "overwrite_tech name_variable,peck"
     """
 
     name = "overwrite_tech"
@@ -41,20 +45,38 @@ class OverwriteTechAction(EventAction):
     added: str
 
     def overwrite(self, monster: Monster, removed: Technique) -> None:
-        slot = monster.moves.current_moves.index(removed)
-        added = Technique.create(self.added)
-        monster.moves.replace_move(slot, added)
-        logger.info(f"{removed.name} replaced by {added.name}")
+        try:
+            slot = monster.moves.current_moves.index(removed)
+        except ValueError:
+            logger.error(
+                f"{removed.slug} not found in current moves of {monster.name}"
+            )
+            return
+
+        if monster.moves.has_move(self.added):
+            logger.warning(
+                f"{monster.name} already knows {self.added}. Overwrite skipped."
+            )
+            return
+
+        added_tech = Technique.create(self.added)
+        monster.moves.replace_move(slot, added_tech)
+        logger.info(
+            f"{monster.name} forgot {removed.name} and learned {added_tech.name}"
+        )
 
     def start(self, session: Session) -> None:
         player = session.player
         if self.removed not in player.game_variables:
-            logger.error(f"Game variable {self.removed} not found")
+            logger.error(f"Game variable '{self.removed}' not found")
             return
-        tech_id = uuid.UUID(player.game_variables[self.removed])
+
+        tech_id = UUID(player.game_variables[self.removed])
+
         for monster in player.monsters:
             technique = monster.moves.find_tech_by_id(tech_id)
             if technique is None:
                 logger.error(f"Technique not found in {monster.name}")
-                return
+                continue
+
             self.overwrite(monster, technique)

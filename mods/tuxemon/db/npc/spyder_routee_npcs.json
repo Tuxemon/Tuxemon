@@ -1,6 +1,16 @@
 [
   {
     "slug": "spyder_routee_calliope",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_routee_calliope1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_routee_calliope2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "knight_red",
       "combat_front": "enforcer_agent",
@@ -9,6 +19,16 @@
   },
   {
     "slug": "spyder_routee_aiolos",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_routee_aiolos1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_routee_aiolos2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "knight_green",
       "combat_front": "enforcer_rookie",

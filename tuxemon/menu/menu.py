@@ -20,13 +20,14 @@ from tuxemon import graphics, prepare, tools
 from tuxemon.animation import Animation, ScheduleType
 from tuxemon.constants.asset_loader import fetch_asset
 from tuxemon.graphics import ColorLike
+from tuxemon.menu.alert import AlertManager
 from tuxemon.menu.controller import MenuController
+from tuxemon.menu.cursor import MenuCursor, MenuCursorController
 from tuxemon.menu.events import playerinput_to_event
-from tuxemon.menu.interface import MenuCursor, MenuItem
+from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.theme import get_sound_engine, get_theme
 from tuxemon.platform.const import buttons, intentions
 from tuxemon.platform.events import PlayerInput
-from tuxemon.prepare import CONFIG
 from tuxemon.sprite import (
     RelativeGroup,
     SpriteGroup,
@@ -34,7 +35,6 @@ from tuxemon.sprite import (
 )
 from tuxemon.state.state import State
 from tuxemon.ui.graphic_box import GraphicBox
-from tuxemon.ui.text import TextArea
 from tuxemon.ui.text_renderer import TextRenderer
 
 logger = logging.getLogger(__name__)
@@ -115,7 +115,7 @@ class PygameMenuState(State):
 
         if sound_engine is None:
             sound_file = self.client.sound_manager.get_sound_filename(
-                "sound_menu_select"
+                prepare.CONFIG.menu_sound
             )
             sound_volume = self.client.config.sound_volume
             sound_engine = get_sound_engine(sound_volume, sound_file)
@@ -319,7 +319,6 @@ class Menu(Generic[T], State):
         state: An arbitrary state of the menu. E.g. MenuState.OPENING or MenuState.CLOSING.
         selected_index: The index position of the currently selected menu item.
         menu_items: A list of available menu items.
-
     """
 
     # defaults for the menu
@@ -336,12 +335,11 @@ class Menu(Generic[T], State):
     unavailable_color_shop: ColorLike = prepare.UNAVAILABLE_COLOR_SHOP
     # File to load for image background
     background_filename: Optional[str] = None
-    menu_select_sound_filename = "sound_menu_select"
+    menu_select_sound_filename = prepare.CONFIG.menu_sound
     font_filename = prepare.CONFIG.locale.font_file
-    borders_filename = "gfx/borders/borders.png"
-    cursor_filename = "gfx/arrow.png"
+    borders_filename = prepare.CONFIG.menu_border
+    cursor_filename = prepare.CONFIG.menu_cursor
     cursor_move_duration = 0.20
-    default_character_delay = 0.05
     shrink_to_items = False  # fit the border to contents
     escape_key_exits = True  # escape key closes menu
     animate_contents = False  # show contents while window opens
@@ -357,6 +355,7 @@ class Menu(Generic[T], State):
         self.state_controller = MenuController()
         self._show_contents = False
         self._needs_refresh = False
+        self.dialog = AlertManager(self.sprites, self.task)
         self._anchors: dict[str, Union[int, tuple[int, int]]] = {}
         self.__dict__.update(kwargs)
 
@@ -379,6 +378,15 @@ class Menu(Generic[T], State):
             font_filename=self.font_filename,
             font_color=self.font_color,
             font_shadow_color=self.font_shadow_color,
+        )
+
+        self.cursor_controller: MenuCursorController[T] = MenuCursorController(
+            cursor_filename=self.cursor_filename,
+            menu_sprites=self.menu_sprites,
+            get_selected_item=self.get_selected_item,
+            animate=self.animate,
+            duration=self.cursor_move_duration,
+            remove_animations=self.remove_animations_of,
         )
 
     def set_input_handler(self, handler: InputHandler) -> None:
@@ -414,91 +422,9 @@ class Menu(Generic[T], State):
 
         self.client.event_manager.release_controls(self.client.input_manager)
 
-        del self.arrow
         del self.menu_items
         del self.menu_sprites
-
-    def start_text_animation(
-        self,
-        text_area: TextArea,
-        callback: Optional[Callable[[], None]] = None,
-    ) -> None:
-        """
-        Start an animation to show text area, one character at a time.
-
-        Parameters:
-            text_area: Text area to animate.
-            callback: Function called when alert is complete.
-        """
-
-        def next_character() -> None:
-            try:
-                next(text_area)
-            except StopIteration:
-                if callback:
-                    callback()
-            else:
-                self.task(next_character, interval=self.character_delay)
-
-        self.character_delay = self.default_character_delay
-        next_character()
-
-    def animate_text(
-        self,
-        text_area: TextArea,
-        text: str,
-        callback: Optional[Callable[[], None]] = None,
-        dialog_speed: str = "slow",
-    ) -> None:
-        """
-        Set and animate a text area.
-
-        Parameters:
-            text_area: Text area to animate.
-            text: Text to display.
-            callback: Function called when alert is complete.
-            dialog_speed: Speed of blitting chars to the dialog box.
-        """
-        text_area.text = text
-        if CONFIG.dialog_speed == "max" or dialog_speed == "max":
-            # exhaust the iterator to immediately blit every char to the dialog
-            # box
-            for _ in text_area:
-                pass
-            if callback:
-                callback()
-        else:
-            self.start_text_animation(text_area, callback)
-
-    def alert(
-        self,
-        message: str,
-        callback: Optional[Callable[[], None]] = None,
-        dialog_speed: str = "slow",
-    ) -> None:
-        """
-        Write a message to the first available text area.
-
-        Generally, a state will have just one, if any, text area.
-        The first one found will be used to display the message.
-        If no text area is found, a RuntimeError will be raised.
-
-        Parameters:
-            message: Message to write.
-            callback: Function called when alert is complete.
-            dialog_speed: Speed of blitting chars to the dialog box.
-        """
-
-        def find_textarea() -> TextArea:
-            for sprite in self.sprites:
-                if isinstance(sprite, TextArea):
-                    return sprite
-            raise RuntimeError(
-                "attempted to use 'alert' on state without a TextArea",
-                message,
-            )
-
-        self.animate_text(find_textarea(), message, callback, dialog_speed)
+        del self.cursor_controller
 
     def initialize_items(self) -> Optional[Iterable[MenuItem[T]]]:
         """
@@ -650,32 +576,17 @@ class Menu(Generic[T], State):
             # set the helper to draw the _background
             self.window = GraphicBox(border, background, self.background_color)
 
-        # handle the arrow cursor
-        image = graphics.load_and_scale(self.cursor_filename)
-        self.arrow = MenuCursor(image)
-
     def update_background(self, new_filename: str) -> None:
         self.background_filename = new_filename
         self.load_graphics()
 
     def show_cursor(self) -> None:
         """Show the cursor that indicates the selected object."""
-        if self.arrow not in self.menu_sprites:
-            self.menu_sprites.add(self.arrow)
-        self.trigger_cursor_update(False)
-        selected = self.get_selected_item()
-        assert selected
-        selected.in_focus = True
-        selected.update_image()
+        self.cursor_controller.show_cursor()
 
     def hide_cursor(self) -> None:
         """Hide the cursor that indicates the selected object."""
-        if self.arrow in self.menu_sprites:
-            self.menu_sprites.remove(self.arrow)
-            selected = self.get_selected_item()
-            if selected is not None:
-                selected.in_focus = False
-                selected.update_image()
+        self.cursor_controller.hide_cursor()
 
     def refresh_layout(self) -> None:
         """Fit border to contents and hide/show cursor."""
@@ -685,9 +596,9 @@ class Menu(Generic[T], State):
         disabled = all(not i.enabled for i in self.menu_items)
 
         if self.menu_items and not disabled:
-            self.show_cursor()
+            self.cursor_controller.show_cursor()
         else:
-            self.hide_cursor()
+            self.cursor_controller.hide_cursor()
 
         if self.shrink_to_items:
             self.fit_border()
@@ -779,16 +690,10 @@ class Menu(Generic[T], State):
         Move also cursor and trigger focus changes.
         """
         previous = self.get_selected_item()
-        if previous is not None:
-            previous.in_focus = False
-            previous.update_image()
         self.selected_index = index
         self.menu_select_sound.play()
-        self.trigger_cursor_update(animate)
         selected = self.get_selected_item()
-        assert selected
-        selected.in_focus = True
-        selected.update_image()
+        self.cursor_controller.update_selection_focus(previous, selected)
         self.on_menu_selection_change()
 
     def search_items(self, target_object: Any) -> Optional[MenuItem[T]]:
@@ -809,38 +714,6 @@ class Menu(Generic[T], State):
             ),
             None,
         )
-
-    def trigger_cursor_update(
-        self, animate: bool = True
-    ) -> Optional[Animation]:
-        """
-        Force the menu cursor to move into the correct position.
-
-        Parameters:
-            animate: If True, then arrow will move smoothly into position.
-
-        Returns:
-            Animation of the cursor if ``animate`` is ``True``. ``None``
-            otherwise.
-        """
-        selected = self.get_selected_item()
-        if not selected:
-            return None
-
-        x, y = selected.rect.midleft
-        x -= tools.scale(2)
-
-        if animate:
-            self.remove_animations_of(self.arrow.rect)
-            return self.animate(
-                self.arrow.rect,
-                right=x,
-                centery=y,
-                duration=self.cursor_move_duration,
-            )
-        else:
-            self.arrow.rect.midright = x, y
-            return None
 
     def get_selected_item(self) -> Optional[MenuItem[T]]:
         """
@@ -939,9 +812,7 @@ class Menu(Generic[T], State):
         Returns:
             Rectangle that contains the menu items.
         """
-        # WARNING: hardcoded values related to menu arrow size
-        #          if menu arrow image changes, this should be adjusted
-        cursor_margin = -tools.scale(11), -tools.scale(5)
+        cursor_margin = self.cursor_controller.get_margin()
         inner = self.calc_internal_rect()
         menu_rect = inner.inflate(*cursor_margin)
         menu_rect.bottomright = inner.bottomright

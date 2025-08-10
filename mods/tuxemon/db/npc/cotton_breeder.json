@@ -1,10 +1,8 @@
 {
   "slug": "cotton_breeder",
-  "template": 
-    {
-      "sprite_name": "bob",
-      "combat_front": "adventurer",
-      "slug": "noclass"
-    }
-
+  "template": {
+    "sprite_name": "bob",
+    "combat_front": "adventurer",
+    "slug": "noclass"
+  }
 }

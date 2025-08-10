@@ -1,6 +1,6 @@
 {
   "slug": "ned",
-  "category": "red_hands",
+  "species": "red_hands",
   "moveset": [
     {
       "level_learned": 1,

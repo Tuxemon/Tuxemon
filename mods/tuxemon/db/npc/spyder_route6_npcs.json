@@ -1,6 +1,16 @@
 [
   {
     "slug": "spyder_route6_frances",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_route6_frances1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_route6_frances2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "florist_brown",
       "combat_front": "florist",
@@ -9,6 +19,16 @@
   },
   {
     "slug": "spyder_route6_orion",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_route6_orion1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_route6_orion2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "professor",
       "combat_front": "professor",
@@ -17,6 +37,16 @@
   },
   {
     "slug": "spyder_route6_ping",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_route6_ping1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_route6_ping2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "picnicker",
       "combat_front": "picnicker",
@@ -25,6 +55,16 @@
   },
   {
     "slug": "spyder_route6_rigel",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_route6_rigel1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_route6_rigel2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "scientist_fiery",
       "combat_front": "scientist",
@@ -33,6 +73,16 @@
   },
   {
     "slug": "spyder_route6_richard",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_route6_richard1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_route6_richard2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "magician_grey",
       "combat_front": "magician",
@@ -41,6 +91,16 @@
   },
   {
     "slug": "spyder_route6_blair",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_route6_blair1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_route6_blair2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "miner_yellow",
       "combat_front": "miner",
@@ -49,6 +109,16 @@
   },
   {
     "slug": "spyder_route6_gunner",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_route6_gunner1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_route6_gunner2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "knight",
       "combat_front": "enforcer_rookie",
@@ -57,6 +127,16 @@
   },
   {
     "slug": "spyder_route6_mungo",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_route6_mungo1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_route6_mungo2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "scientist_brown",
       "combat_front": "scientist",
@@ -65,6 +145,16 @@
   },
   {
     "slug": "spyder_route6_maxwell",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_route6_maxwell1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_route6_maxwell2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "professor_blue",
       "combat_front": "professor",

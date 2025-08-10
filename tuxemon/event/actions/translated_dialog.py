@@ -74,7 +74,7 @@ class TranslatedDialogAction(EventAction):
             get_avatar(session, self.avatar) if self.avatar else None
         )
 
-        dialogue = self.style or "default"
+        dialogue = self.style or session.client.config.dialog_box_style
         style = style_cache.get(dialogue)
         h_alignment = safe_enum_value(
             HorizontalAlignment, self.h_alignment, HorizontalAlignment.LEFT
@@ -87,6 +87,7 @@ class TranslatedDialogAction(EventAction):
             "font_color": string_to_colorlike(style.font_color),
             "font_shadow": string_to_colorlike(style.font_shadow_color),
             "border": style.border_path,
+            "line_spacing": style.line_spacing,
             "h_alignment": h_alignment,
             "v_alignment": v_alignment,
         }

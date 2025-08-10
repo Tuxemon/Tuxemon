@@ -1,6 +1,6 @@
 {
   "slug": "rooksand",
-  "category": "sand_rock",
+  "species": "sand_rock",
   "moveset": [
     {
       "level_learned": 1,

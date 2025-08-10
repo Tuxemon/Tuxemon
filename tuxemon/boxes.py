@@ -3,9 +3,9 @@
 from __future__ import annotations
 
 import logging
-import uuid
 from collections.abc import Mapping, Sequence
 from typing import TYPE_CHECKING, Any, Optional
+from uuid import UUID
 
 from tuxemon import prepare
 from tuxemon.item.item import decode_items, encode_items
@@ -113,7 +113,7 @@ class BoxCollection:
         if box_id in self.monster_boxes:
             self.monster_boxes[box_id].remove(monster)
 
-    def get_items_by_iid(self, instance_id: uuid.UUID) -> Optional[Item]:
+    def get_items_by_iid(self, instance_id: UUID) -> Optional[Item]:
         """
         Retrieves an item by its instance ID.
 
@@ -133,7 +133,7 @@ class BoxCollection:
             None,
         )
 
-    def get_monsters_by_iid(self, instance_id: uuid.UUID) -> Optional[Monster]:
+    def get_monsters_by_iid(self, instance_id: UUID) -> Optional[Monster]:
         """
         Retrieves a monster by its instance ID.
 
@@ -392,7 +392,7 @@ class MonsterBoxes(BoxCollection):
         """
         return list(self.monster_boxes.keys())
 
-    def get_box_name(self, instance_id: uuid.UUID) -> Optional[str]:
+    def get_box_name(self, instance_id: UUID) -> Optional[str]:
         """
         Retrieves the name of the monster box that contains the monster
         with the given instance ID.
@@ -494,7 +494,7 @@ class MonsterBoxes(BoxCollection):
             raise ValueError("Monster not found in box.")
 
     def swap_with_external_monster_by_iid(
-        self, instance_id: uuid.UUID, external_monster: Monster
+        self, instance_id: UUID, external_monster: Monster
     ) -> Monster:
         """
         Swaps a monster in a box with an external monster by instance ID.

@@ -65,6 +65,7 @@ class Item:
         self.use_success: str = ""
         self.use_failure: str = ""
         self.usable_in: Sequence[State] = []
+        self.immunity_to_status: Sequence[str] = []
         self.cost: int = 0
         self.wear: int = 0
         self.max_wear: int = 0
@@ -138,6 +139,7 @@ class Item:
         self.max_wear = results.max_wear
         self.break_chance = results.break_chance
         self.sort = results.sort
+        self.immunity_to_status = results.immunity_to_status
         self.category = results.category
         self.sprite = results.sprite
         self.usable_in = results.usable_in
@@ -161,6 +163,12 @@ class Item:
         if not self.combat_state:
             raise ValueError("No CombatState.")
         return self.combat_state
+
+    def is_immune(self, status: str) -> bool:
+        return (
+            "all" in self.immunity_to_status
+            or status in self.immunity_to_status
+        )
 
     def set_combat_state(self, combat_state: Optional[CombatState]) -> None:
         """Sets the CombatState."""

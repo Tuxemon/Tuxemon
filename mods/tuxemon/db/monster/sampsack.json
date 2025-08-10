@@ -1,6 +1,6 @@
 {
   "slug": "sampsack",
-  "category": "brawn",
+  "species": "brawn",
   "moveset": [
     {
       "level_learned": 1,

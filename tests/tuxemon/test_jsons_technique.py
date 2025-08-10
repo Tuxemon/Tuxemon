@@ -7,8 +7,8 @@ from typing import Any
 
 from tuxemon.constants.asset_loader import fetch_asset
 
-ALL_TECHNIQUES: int = 247
-MAX_TECH_ID: int = 241
+ALL_TECHNIQUES: int = 250
+MAX_TECH_ID: int = 244
 # effects with simple_damage_calculate()
 SIMPLE_DAMAGE_EFFECT = ("damage", "retaliate", "revenge", "money", "splash")
 # effects with simple_heal()

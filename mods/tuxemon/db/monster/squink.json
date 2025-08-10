@@ -1,6 +1,6 @@
 {
   "slug": "squink",
-  "category": "sea_spray",
+  "species": "sea_spray",
   "moveset": [
     {
       "level_learned": 1,

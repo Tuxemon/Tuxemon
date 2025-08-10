@@ -1,6 +1,6 @@
 {
   "slug": "hoodoll",
-  "category": "old_man",
+  "species": "old_man",
   "moveset": [
     {
       "level_learned": 1,

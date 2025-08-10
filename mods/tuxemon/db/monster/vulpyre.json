@@ -1,6 +1,6 @@
 {
   "slug": "vulpyre",
-  "category": "firefox",
+  "species": "firefox",
   "moveset": [
     {
       "level_learned": 1,

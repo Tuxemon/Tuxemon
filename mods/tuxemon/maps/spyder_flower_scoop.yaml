@@ -62,7 +62,7 @@ events:
     actions:
     - char_face spyder_shopassistant,right
     - translated_dialog spyder_scoop_welcome
-    - open_shop spyder_shopassistant
+    - open_shop spyder_shopassistant,both_item
     conditions:
     - is char_facing_tile player
     - is button_pressed K_RETURN
@@ -73,7 +73,7 @@ events:
     actions:
     - char_face spyder_shopassistant,down
     - translated_dialog spyder_scoop_welcome
-    - open_shop spyder_shopassistant
+    - open_shop spyder_shopassistant,both_item
     conditions:
     - is char_facing_tile player
     - is button_pressed K_RETURN

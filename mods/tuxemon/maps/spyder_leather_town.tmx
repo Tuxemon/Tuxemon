@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="339">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="339">
  <properties>
   <property name="east" value="citypark"/>
   <property name="edges" value="clamped"/>
@@ -26,12 +26,17 @@
  </layer>
  <layer id="3" name="Layer 3" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHNmMlzVUUUhxsZQhjMAIIDSZAwLACB0oUrpwVkQKzCYcfwP4ALhirfHwB7oJBhAc4DJBGwGDbqRsGVCAhkZFCGFTKFgN/R+yu6um7fN9RNpKs+zrvdfU9/Oenb7wbnnBtf51w1KK6dTmekHa5x7kjCgQbnDkIHdEIXZI1dXOxcOXQz39pC3F4CxY8y/C7gptaDTy/0QT8MgFraWH+1K/SUSDfzmpY8rpnyFou+X02jc7VQB/UwBdTSxiZOcIV19c6thw9BrREPYX32uYq55qeaaW6x+FStc6NhAzV+DZ/X4Q14E96CrDHz24bXdtiR+LUlPvLTtfyK+eQ13kAtzO8YXsfhROInL0Wt93/5ycPiLOcK/rV93jLKua0gPz2z8h6uqPr5PvpdWt/+0a6wDzQuv3L3n/n/xXN6Da7DDbgJfrvF9d9wG+7AXTC/l/n9hs+vPafmdAq3k56f5lZSv+d4Dp6HF2AGNIDfmrmeDXNgLsyDVTisDujlfLM6qWYb2ZObYDOor5L6tbBeK7RBOywHv63k+l14D96HDyCtWU3Nz8bMZzdee2AvqIX1e0SNX4UheACDoLl5R/ktI7H5/YDXj/AT6CwP6zdvjCusxWkOcTY0Qyledh6W2+QXntnmqucjrN87+KyAt2E5tEO56/rzv290hSNwGA7Bd9AFNsf80s5s3y+sn587j89/4nIVrsBluAQDYLnll3Zmh/U7yllp9+Tdnm1yhekwDZ6BqTAFbB35Wb1C5Kf6DQyTX9bPKz/NMUf7TjHkp/03aVR6/a4w9zJcAuXJK8pP32nmZ98phvxUv1cifnm5pOUxP31PhN8rizgXK3n/0zqD1PN+wr1IbTt5DjrgIByAb0H3W1yF32qPZvLouonPaxhT/Tp4L+5M3o0tdnnvyX5OfW6m3rMSXozUvh+fPuiFHugG3V9q1P47E/icC67DfO04tSW0RvzqeU7roBZq4GkI88Su5aX6lesXy5tXv7zk+aT5yUueWX5Zf2/mVa8wj7zkOcR+e5jsOYuPvP2X9fdmmDeva3nJM6+8fp49PK+7YRd8DDvBxrPeGXS/vOSp/rR4l7PoDtyGtPFY36/4nIKT8Av8DDY3651BueQlT/WnxZmcH03QGDlH0u6xvof4DMEDGIT7YP1Z7ww2bk1e8vyvN/3fSv3Ss5XWKy95Zt3VQt2WwdIy65eVMzams0Je8ozNH+l+nRXykudIexRbr1Kvz9njn8Gn8AnsB1srdpbI4xvmfQ1fwZfwBWgsz3iWvGfgdzgNv4Hlj50lWvsi8y7AefgDzoHGsuI4/q+sChSz5trYeN5BqmAcjIUxYP2xs8TGrE1m3iSYCBOgGv4diPyj/TcftwWgGJk+4t3af6qb4oiLRBaM1a/Pey+I3Dqs3fIK62eLhjUsdq1csVjJDyIv3at9N9bbg/LSWHite5UrFmPepfbbOv8AD2aRsg==
+   eAHNl0tzFUUYhjuQCyFILqAIkgQTkAUXtXThytuCSxKhSpRdAj/AYiMuVKo4PwD2SqnEhQgKSkLAhELYgBsFVyIXc09ARV0hIAH1+WTecqozPSfn1BDtquf06ct8/eQ70z0T55ybVetcJajeuoDOQOmtdq4voqveuW44Aj1wFNLGBp5wrhAGmW9lFW6rQfXOFL9+3FSG8BmGERiFMVBJGhutdLmhKTLIvMYn/82Z4uar437VDc7VQC3UwTxQSRqrmu1yr9c5tx3eAJUGPIT12fcK5pqfcqa5+eoZNc7NhDfJ8bP4PAfPwwvwIqSNmd87eL0LeyK/lshHfmrLL59PVuP15ML8vsTrJJyK/OSlWuv9V37ysLrJuVy8bd93lTi3G+SnPSvv+1Urf3Ef/ZbWt2+my30EGpdfofef+f/MPr0Gv8Cv8BvEy3Xav8MNuAm3wPye4vf196/tU3M6h9vZmJ/mFpO/heyDRfAILIZ6iJdm2kthGTwGy6Edhw6PYc43y5Ny9hb35NuwA9RXTP7Wsd56aIFWaIN4eZn2JngFXoXNkFQsp+ZnY+azF69O+BBU/Pz9RY6fgbtwByZAc7Ou5beWwOZ3Gq8z8BXoLPfzt7zU5bbitIx6KTTDVLzsPCy0yM8/s81V+8PP30Z8NsBL0AatUOi68fnHG1yuD3rhCzgGR8HmmF/SmR338/MXj53F959w+RGuwhUYhzGw2PJLOrP9/J3grLRrsi4PN7rcAngIHoT5MA9sHflZvnzkp/yN3Se/tL9XfppjjvZMMeSn+29OSXL+rjL3CoyD4mRVy0/PNPOzZ4ohP+Xv6YBfVi5JccxPzwn/ufI452Ix739aZ4J83o74I5DbHvbBEeiGLjgMut7qdvw6YjQTR+1Gvm9hTPl7jXc6Z1BKqLdF3+/1TP5sJt9NEY8Gcj+KzwgMwxAMwuRI6T26/y7E3tvtikte24/SilNLxPqAXx37tBZqoBrmgh8n1JaX8leoXyhuVv3ykuf/zU9e8kzzS/t/M6t8+XHkJc9j7Ie+aE8cp+6N7Y+0/zf9uFm15SXPrOLG43SyX/fCB/A+vAc2nvbOoOvlJU/1J9W3OItuwg1IGg/1fYvPOTgL38DXYHPT3hkUS17yVH9SvYTzoxEaAudI0jXW9yc+d+EOTMBtsP60dwYbtyIved7rTf4s1i852tR65SXPtKvWkbe1sKbA/KXFDI3prJCXPEPzp7tfZ4W85DndHvnWK9brE+7xA7AfPoZ9YGuFzhJ5fM68z+AQHIRPQWNZ1heJewG+h/PwHVj80FmitQeY1w8/wGW4BBpLq8t5TlSA6rS5NjaLd5AKKIcyKAXrD50lNmblAebNgSqYDZXwz0DgQ/ffCtxWgurA9Gnv1v2nvKmedpHAgqH8jeR5Lw2Ey6xbXn7+bAE/h/naihWqi5GWl67VfVcWuwflpTG/rWsVK1SHvKfab+v8DQRajq4=
   </data>
  </layer>
  <layer id="4" name="Above Player" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtlztOAzEQhgflAHQUSAkSJ+IQUAKhhSaQNzkJ7wNAkoo3Ha+adIRL8K3QSJHJbhyzq/Uij/TFcjzj/P6jtb0iIYrswKoh3uwbw6E7w4H1BZEN8CGy+i8vyyJX0IcBDGEyrunfwC3cwT2kFe2S1FrQhAbUQed+WBJ5hCfIKy7Qcw5ncAonoFo+0TWGrxz1vaPnDV7hBZ5B9WXVrmQ18T+Yt1URaUMHunAIPQgRHLBxYChSG0AfbPJdcibPtOhMyepccdGWZ80+z+kB1KEBTUiKIvime7W2Sev5y9jasnu1bz76psfd2VDpkwOb7CdbsA1V2IEowp3hxwebz70U3z1sfm/enGPP9c27npCfrwNxd5K4vUTVxtXpeFHbj0WREWibtA69k+w6PpOudUmapo0dOepzqVPftJ2mJ3xn54Dp4ay+3azpZxVVl6k7fWd+z/gNDLtZHw==
+   eAHtl0tOQjEUho9xAcwcmCgJK3IROvQ1hQnIS2QlPlmAAiPwuQmdqZvwI+QkpHAvpV64bdKTfDS97Wn//uS2vSIxQnagZIg360ZzrC5x4HBL5Ah8iHX9l497Ik/QhwEMYTZG1MfwDC/wCllFe1uqLWhCA+qgY7/tiLzDB+QVPfQ8wD3cwS2olm90/cBvjvpUyybL4iYnC2yu1r5IGy6hA1fQhRjRARsHhiLVAfTBpr9Ln9kzbXKmrOtccdGWZ06N9/QC6tCAJqRFCL7pXq1l2nr+03aw657tm4++6XF3Nmb65MAx+8kJnMIZnMMk4p1h6oPNbyXDbw+b+Vbtc+O5vlXXE/vn60DSnSRpL1G1SXnaHmr5WRD5Ai3T1qF3krLjO+mal6ZpUdu1oz6XPPVNy0V64jM7B0wPl9XtRs2+V6i6TN3ZOzM/4h+AxFJn
+  </data>
+ </layer>
+ <layer id="8" name="Above Player 2" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eAHt0NkJACAUA8EHNm6PXu2YLkSYwP6HqTICBAgQ+EHgtOo7rTTTSD/89pEAAQIECBAgQIAAAQIECBAgQIDAC4ELpOgGuQ==
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collisions">
@@ -436,22 +441,6 @@
     <property name="cond2" value="is char_facing player,left"/>
    </properties>
   </object>
-  <object id="320" name="Teleport to Route" type="event" x="624" y="128" width="16" height="16">
-   <properties>
-    <property name="act1" value="transition_teleport spyder_routef.tmx,0,8,0.3"/>
-    <property name="act2" value="char_face player,right"/>
-    <property name="cond1" value="is char_at player"/>
-    <property name="cond2" value="is char_facing player,right"/>
-   </properties>
-  </object>
-  <object id="321" name="Teleport to Route" type="event" x="624" y="144" width="16" height="16">
-   <properties>
-    <property name="act1" value="transition_teleport spyder_routef.tmx,0,9,0.3"/>
-    <property name="act2" value="char_face player,right"/>
-    <property name="cond1" value="is char_at player"/>
-    <property name="cond2" value="is char_facing player,right"/>
-   </properties>
-  </object>
   <object id="322" name="Door locked" type="event" x="432" y="544" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_door_locked"/>
@@ -512,7 +501,9 @@
     <property name="act1" value="translated_dialog spyder_leather_sarah_greeting"/>
     <property name="act2" value="translated_dialog_choice no:yes,sarah_flashback"/>
     <property name="behav1" value="talk spyder_leathermuseum_visitor"/>
-    <property name="cond1" value="not variable_set sarah_flashback"/>
+    <property name="cond1" value="not variable_set sarah_flashback:yes"/>
+    <property name="cond2" value="not variable_set sarah_flashback:no"/>
+    <property name="cond3" value="not variable_set sarah_flashback:done"/>
    </properties>
   </object>
   <object id="336" name="Flashback" type="event" x="176" y="16" width="16" height="16">
@@ -553,6 +544,7 @@
   <object id="338" name="Talk Sarah No" type="event" x="192" y="32" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_leather_sarah_no"/>
+    <property name="act2" value="set_variable sarah_flashback:"/>
     <property name="behav1" value="talk spyder_leathermuseum_visitor"/>
     <property name="cond1" value="is variable_set sarah_flashback:no"/>
    </properties>

@@ -2,7 +2,7 @@
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-from typing import Generic, Optional, TypeVar
+from typing import Any, Generic, Optional, TypeVar
 
 from pygame import draw as pg_draw
 from pygame.rect import Rect
@@ -11,7 +11,7 @@ from pygame.surface import Surface
 from tuxemon import prepare, tools
 from tuxemon.graphics import ColorLike, load_and_scale
 from tuxemon.sprite import Sprite
-from tuxemon.ui.draw import GraphicBox
+from tuxemon.ui.graphic_box import GraphicBox
 
 
 class Bar:
@@ -195,6 +195,7 @@ class MenuItem(Generic[T], Sprite):
         self.game_object = game_object
         self._enabled = enabled
         self._in_focus = False
+        self.metadata: dict[str, Any] = {}
 
         if position is not None:
             self.set_position(*position)
@@ -240,28 +241,3 @@ class MenuItem(Generic[T], Sprite):
             f"<{self.__class__.__name__} at 0x{id(self):x} "
             f"label={self.label!r}, enabled={self.enabled}>"
         )
-
-
-class MenuCursor(Sprite):
-    """
-    Visual indicator for the currently selected menu item.
-
-    Typically rendered as an arrow or icon, the MenuCursor tracks the selected item
-    in a menu interface. It supports optional pixel offsets to fine-tune its position
-    relative to the target item.
-
-    Inherits from:
-        Sprite: Provides image, rect, and positioning logic.
-
-    Parameters:
-        image: The visual representation of the cursor.
-        x_offset: Horizontal offset from the anchor point. Defaults to 0.
-        y_offset: Vertical offset from the anchor point. Defaults to 0.
-    """
-
-    def __init__(
-        self, image: Surface, x_offset: int = 0, y_offset: int = 0
-    ) -> None:
-        super().__init__(image=image)
-        self.x_offset = x_offset
-        self.y_offset = y_offset

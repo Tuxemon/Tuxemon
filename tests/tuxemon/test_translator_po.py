@@ -4,7 +4,7 @@ import unittest
 from pathlib import Path
 from unittest.mock import MagicMock, patch
 
-from tuxemon.locale import TranslatorPo
+from tuxemon.locale_dir.translator import TranslatorPo
 
 
 class TestTranslatorPo(unittest.TestCase):

@@ -4,33 +4,36 @@ from unittest import TestCase
 from unittest.mock import MagicMock
 
 from tuxemon.db import MissionStatus
-from tuxemon.mission import (
-    Mission,
-    MissionController,
-    MissionProgress,
-)
+from tuxemon.mission.controller import MissionController
+from tuxemon.mission.manager import MissionManager
+from tuxemon.mission.mission import Mission, check_items, check_monsters
 from tuxemon.npc import NPC, NPCBagHandler, PartyHandler
 
 
 class TestMissionManager(TestCase):
     def setUp(self):
         self.character = MagicMock(spec=NPC)
+        self.character.slug = "test_character"
         self.mission = Mission()
-        self.mission_controller = MissionController(self.character)
+        self.manager = MissionManager()
+        self.mission_controller = MissionController(
+            self.character, self.manager
+        )
         self.mission_manager = self.mission_controller.mission_manager
 
     def test_add_mission(self):
         self.mission_manager.add_mission(self.mission)
-        self.assertEqual(self.mission_manager.missions, [self.mission])
+        output = {self.mission.slug: self.mission}
+        self.assertEqual(self.mission_manager.missions, output)
 
     def test_remove_mission(self):
         self.mission_manager.add_mission(self.mission)
         self.mission_manager.remove_mission(self.mission)
-        self.assertEqual(self.mission_manager.missions, [])
+        self.assertEqual(self.mission_manager.missions, {})
 
     def test_remove_mission_not_found(self):
-        with self.assertRaises(ValueError):
-            self.mission_manager.remove_mission(self.mission)
+        self.mission_manager.remove_mission(self.mission)
+        self.assertEqual(self.mission_manager.get_mission_count(), 0)
 
     def test_find_mission(self):
         self.mission.slug = "test_mission"
@@ -68,32 +71,47 @@ class TestMissionManager(TestCase):
         self.assertFalse(self.mission_controller.check_all_prerequisites())
 
     def test_check_required_items(self):
-        self.mission.required_items = ["potion", "lotion"]
+        self.mission.required_items = {"potion": None, "lotion": 2}
 
         item1 = MagicMock()
         item1.slug = "potion"
+        item1.quantity = 1
+
         item2 = MagicMock()
         item2.slug = "lotion"
+        item2.quantity = 2
 
         self.character.items = MagicMock(spec=NPCBagHandler)
         self.character.items.find_item.side_effect = lambda slug: (
             item1 if slug == "potion" else item2 if slug == "lotion" else None
         )
 
-        self.assertTrue(self.mission.check_required_items(self.character))
+        self.assertTrue(
+            check_items(self.character, self.mission.required_items)
+        )
+
+        item2.quantity = 1
+        self.assertFalse(
+            check_items(self.character, self.mission.required_items)
+        )
 
         self.character.items.find_item.side_effect = lambda slug: (
             item1 if slug == "potion" else None
         )
-        self.assertFalse(self.mission.check_required_items(self.character))
+        self.assertFalse(
+            check_items(self.character, self.mission.required_items)
+        )
 
     def test_check_required_monsters(self):
-        self.mission.required_monsters = ["monster1", "monster2"]
+        self.mission.required_monsters = {"monster1": None, "monster2": 5}
 
         monster1 = MagicMock()
         monster1.slug = "monster1"
+        monster1.level = 3
+
         monster2 = MagicMock()
         monster2.slug = "monster2"
+        monster2.level = 5
 
         self.character.party = MagicMock(spec=PartyHandler)
         self.character.party.find_monster.side_effect = lambda slug: (
@@ -102,60 +120,21 @@ class TestMissionManager(TestCase):
             else monster2 if slug == "monster2" else None
         )
 
-        self.assertTrue(self.mission.check_required_monsters(self.character))
+        self.assertTrue(
+            check_monsters(self.character, self.mission.required_monsters)
+        )
+
+        monster2.level = 4
+        self.assertFalse(
+            check_monsters(self.character, self.mission.required_monsters)
+        )
 
         self.character.party.find_monster.side_effect = lambda slug: (
             monster1 if slug == "monster1" else None
         )
-        self.assertFalse(self.mission.check_required_monsters(self.character))
-
-    def test_get_progress(self):
-        self.mission.progress = []
-        self.character.game_variables = {"key": "value"}
-        self.assertEqual(self.mission.get_progress(self.character), 0.0)
-
-        self.mission.progress = [
-            MissionProgress(
-                game_variables={"key": "wrong_value"},
-                completion_percentage=50.0,
-            ),
-        ]
-        self.character.game_variables = {"key": "value"}
-        self.assertEqual(self.mission.get_progress(self.character), 0.0)
-
-        self.mission.progress = [
-            MissionProgress(
-                game_variables={"key": "value"}, completion_percentage=100.0
-            ),
-            MissionProgress(
-                game_variables={"key": "value"}, completion_percentage=50.0
-            ),
-        ]
-        self.character.game_variables = {"key": "value"}
-        self.assertEqual(self.mission.get_progress(self.character), 75.0)
-
-        self.mission.progress = [
-            MissionProgress(
-                game_variables={"key": "value"}, completion_percentage=100.0
-            ),
-            MissionProgress(
-                game_variables={"key": "wrong_value"},
-                completion_percentage=50.0,
-            ),
-        ]
-        self.character.game_variables = {"key": "value"}
-        self.assertEqual(self.mission.get_progress(self.character), 100.0)
-
-        self.mission.progress = [
-            MissionProgress(
-                game_variables={"key": "value"}, completion_percentage=0.0
-            ),
-            MissionProgress(
-                game_variables={"key": "value"}, completion_percentage=0.0
-            ),
-        ]
-        self.character.game_variables = {"key": "value"}
-        self.assertEqual(self.mission.get_progress(self.character), 0.0)
+        self.assertFalse(
+            check_monsters(self.character, self.mission.required_monsters)
+        )
 
     def test_check_all_prerequisites_with_no_missions(self):
         self.assertTrue(self.mission_controller.check_all_prerequisites())
@@ -194,3 +173,18 @@ class TestMissionManager(TestCase):
             self.mission_manager.add_mission(mock_mission)
 
         self.assertEqual(self.mission_manager.get_mission_count(), 1000)
+
+    def test_remove_duplicate_mission(self):
+        self.mission_manager.add_mission(self.mission)
+        self.mission_manager.remove_mission(self.mission)
+        self.assertEqual(self.mission_manager.get_mission_count(), 0)
+
+    def test_add_and_remove_mission(self):
+        self.mission_manager.add_mission(self.mission)
+        self.mission_manager.remove_mission(self.mission)
+        self.assertEqual(self.mission_manager.get_mission_count(), 0)
+
+    def test_add_duplicate_mission(self):
+        self.mission_manager.add_mission(self.mission)
+        self.mission_manager.add_mission(self.mission)
+        self.assertEqual(self.mission_manager.get_mission_count(), 1)

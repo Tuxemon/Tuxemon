@@ -35,8 +35,8 @@
  </layer>
  <objectgroup color="#ff0000" id="3" name="Collisions">
   <object id="32" type="collision" x="0" y="0" width="320" height="48"/>
-  <object id="48" type="collision" x="48" y="80" width="80" height="48"/>
-  <object id="49" type="collision" x="16" y="160" width="64" height="48"/>
+  <object id="40" type="collision" x="48" y="80" width="80" height="48"/>
+  <object id="43" type="collision" x="16" y="160" width="64" height="48"/>
   <object id="50" type="collision" x="48" y="240" width="80" height="48"/>
   <object id="52" type="collision" x="144" y="80" width="80" height="48"/>
   <object id="56" type="collision" x="0" y="80" width="32" height="48"/>
@@ -48,13 +48,13 @@
   <object id="47" type="collision" x="288" y="160" width="32" height="48"/>
   <object id="48" type="collision" x="240" y="240" width="80" height="48"/>
   <object id="49" type="collision" x="16" y="128" width="16" height="32"/>
-  <object id="50" type="collision" x="96" y="128" width="16" height="32"/>
+  <object id="64" type="collision" x="96" y="128" width="16" height="32"/>
   <object id="51" type="collision" x="80" y="48" width="16" height="32"/>
-  <object id="52" type="collision" x="176" y="48" width="16" height="32"/>
+  <object id="70" type="collision" x="176" y="48" width="16" height="32"/>
   <object id="53" type="collision" x="64" y="208" width="16" height="32"/>
   <object id="54" type="collision" x="160" y="208" width="16" height="32"/>
   <object id="55" type="collision" x="192" y="208" width="16" height="32"/>
-  <object id="57" type="collision" x="112" y="48" width="32" height="16"/>
+  <object id="75" type="collision" x="112" y="48" width="32" height="16"/>
   <object id="58" type="collision" x="240" y="48" width="32" height="16"/>
   <object id="59" type="collision" x="16" y="48" width="32" height="16"/>
   <object id="63" type="collision" x="64" y="128" width="32" height="16"/>
@@ -85,7 +85,7 @@
     <property name="cond1" value="not variable_set environment:interior"/>
    </properties>
   </object>
-  <object id="56" name="Teleport to Route B" type="event" x="32" y="304" width="16" height="16">
+  <object id="76" name="Teleport to Route B" type="event" x="32" y="304" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_routeb.tmx,6,4,0.3"/>
     <property name="act2" value="char_face player,down"/>
@@ -93,7 +93,7 @@
     <property name="cond2" value="is char_facing player,down"/>
    </properties>
   </object>
-  <object id="61" name="PC2" type="event" x="112" y="48" width="16" height="16">
+  <object id="93" name="PC2" type="event" x="112" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_data_pc02"/>
     <property name="act2" value="wild_encounter kernel,50,3"/>
@@ -296,7 +296,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_box_goldpass1"/>
     <property name="act2" value="add_item gold_pass"/>
-    <property name="act3" value="translated_dialog gold_pass,,center,center,middle"/>
+    <property name="act3" value="translated_dialog gold_pass,,center,center,center"/>
     <property name="act4" value="remove_npc spyder_box_goldpass"/>
     <property name="behav1" value="talk spyder_box_goldpass"/>
    </properties>

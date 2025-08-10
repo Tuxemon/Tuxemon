@@ -43,14 +43,13 @@ from typing import TYPE_CHECKING, Any, Optional, Union
 from pygame.rect import Rect
 from pygame.surface import Surface
 
-from tuxemon import graphics
+from tuxemon import graphics, prepare
 from tuxemon.ai import AIManager
 from tuxemon.animation import Animation, Task
 from tuxemon.combat import (
     alive_party,
     battlefield,
     defeated,
-    get_awake_monsters,
     set_var,
     track_battles,
 )
@@ -66,13 +65,14 @@ from tuxemon.menu.interface import MenuItem
 from tuxemon.monster import Monster
 from tuxemon.npc import NPC
 from tuxemon.platform.const import buttons
-from tuxemon.state import State
+from tuxemon.state.state import State
 from tuxemon.states.monster import MonsterMenuState
 from tuxemon.status.status import Status
 from tuxemon.technique.technique import Technique
 from tuxemon.tools import assert_never
+from tuxemon.ui.combat_notifier import CombatNotifier, TextAnimationManager
 from tuxemon.ui.combat_swap import SwapTracker
-from tuxemon.ui.draw import GraphicBox
+from tuxemon.ui.graphic_box import GraphicBox
 from tuxemon.ui.text import TextArea
 
 from .combat_animations import CombatAnimations
@@ -82,10 +82,8 @@ from .combat_classes import (
     EnqueuedAction,
     MenuVisibility,
     MethodAnimationCache,
-    TextAnimationManager,
-    compute_text_anim_time,
 )
-from .combat_context import CombatContext
+from .combat_context import CombatContext, CombatType
 from .reward_system import RewardSystem
 
 if TYPE_CHECKING:
@@ -160,7 +158,7 @@ class CombatState(CombatAnimations):
 
         super().__init__(context=context)
         self._lock_update = self.client.config.combat_click_to_continue
-        self.is_trainer_battle = context.combat_type == "trainer"
+        self.is_trainer_battle = context.combat_type == CombatType.TRAINER
         self.show_combat_dialog()
         self.transition_phase(CombatPhase.BEGIN)
         self.task(
@@ -168,6 +166,12 @@ class CombatState(CombatAnimations):
         )
         self.ai_manager = AIManager(self.session, self)
         self.swap_tracker = SwapTracker()
+        self.notifier = CombatNotifier(
+            state=self,
+            text_anim_manager=self.text_anim,
+            alert_method=self.dialog.alert,
+            lock_update=self._lock_update,
+        )
 
     @staticmethod
     def is_task_finished(task: Union[Task, Animation]) -> bool:
@@ -339,6 +343,7 @@ class CombatState(CombatAnimations):
         elif phase == CombatPhase.DECISION:
             self.update_icons_for_monsters()
             self.animate_update_party_hud()
+            self.check_decisions()
             if not self._decision_queue:
                 self.initialize_hit_chances()
                 self.process_player_decisions()
@@ -391,9 +396,9 @@ class CombatState(CombatAnimations):
             # show monster action menu for human players
             if self._decision_queue:
                 if self.is_double:
-                    self.handle_double_action(self._decision_queue)
+                    self.handle_pending_actions(self._decision_queue, 2)
                 else:
-                    self.handle_single_action(self._decision_queue)
+                    self.handle_pending_actions(self._decision_queue, 1)
 
         elif self.phase == CombatPhase.ACTION:
             self.handle_action_queue()
@@ -401,22 +406,17 @@ class CombatState(CombatAnimations):
         elif self.phase == CombatPhase.POST_ACTION:
             self.handle_action_queue()
 
-    def handle_single_action(self, pending_monsters: list[Monster]) -> None:
-        if pending_monsters:
+    def handle_pending_actions(
+        self, pending_monsters: list[Monster], num_actions: int
+    ) -> None:
+        actual_actions = min(num_actions, len(pending_monsters))
+        logger.debug(f"Handling {actual_actions} pending monster action(s)")
+
+        for i in range(actual_actions):
             monster = pending_monsters.pop(0)
+            logger.debug(f"Processing monster #{i + 1}: {monster.name}")
             monster.moves.recharge_moves()
             self.show_monster_action_menu(monster)
-
-    def handle_double_action(self, pending_monsters: list[Monster]) -> None:
-        if len(pending_monsters) >= 2:
-            monster1 = pending_monsters.pop(0)
-            monster1.moves.recharge_moves()
-            self.show_monster_action_menu(monster1)
-            monster2 = pending_monsters.pop(0)
-            monster2.moves.recharge_moves()
-            self.show_monster_action_menu(monster2)
-        elif pending_monsters:
-            self.handle_single_action(pending_monsters)
 
     def handle_action_queue(self) -> None:
         """Take one action from the queue and do it."""
@@ -425,10 +425,7 @@ class CombatState(CombatAnimations):
             self.perform_action(action.user, action.method, action.target)
             self.task(self.check_party_hp, interval=1)
             self.task(self.animate_party_status, interval=3)
-            self.task(
-                partial(self.text_anim.trigger_xp_animation, self.alert),
-                interval=3,
-            )
+            self.notifier.trigger_xp_and_wait_for_input()
 
     def ask_player_for_monster(self, player: NPC) -> None:
         """
@@ -452,11 +449,12 @@ class CombatState(CombatAnimations):
                 return True
             return False
 
-        state = self.client.push_state(MonsterMenuState(player))
+        state = self.client.push_state(MonsterMenuState(player.monsters))
         # must use a partial because alert relies on a text box that may not
         # exist until after the state hs been startup
         state.task(
-            partial(state.alert, T.translate("combat_replacement")), interval=0
+            partial(state.dialog.alert, T.translate("combat_replacement")),
+            interval=0,
         )
         state.is_valid_entry = validate  # type: ignore[assignment]
         state.on_menu_selection = add  # type: ignore[assignment]
@@ -486,9 +484,6 @@ class CombatState(CombatAnimations):
         Parameters:
             ask: If True, then open dialog for human players.
         """
-        # TODO: let work for trainer battles
-        humans = list(self.human_players)
-
         # TODO: integrate some values for different match types
         for player in self.active_players:
 
@@ -506,15 +501,15 @@ class CombatState(CombatAnimations):
 
             positions_available = self.get_available_positions(player)
             if positions_available:
-                monsters = self.field_monsters.get_monsters(player)
-                available = get_awake_monsters(player, monsters, self._turn)
-                for _ in range(positions_available):
-                    if player in humans and ask:
-                        self.ask_player_for_monster(player)
-                    else:
-                        monster = next(available)
-                        self.add_monster_into_play(player, monster)
-                        self.update_tuxepedia(player, monster)
+                if player in self.human_players and ask:
+                    self.ask_player_for_monster(player)
+                else:
+                    replacement = self.ai_manager.choose_replacement_monster(
+                        player
+                    )
+                    if replacement:
+                        self.add_monster_into_play(player, replacement)
+                        self.update_tuxepedia(player, replacement)
 
     def update_tuxepedia(self, player: NPC, monster: Monster) -> None:
         """
@@ -576,7 +571,9 @@ class CombatState(CombatAnimations):
         }
         if self._turn > 1:
             message = T.format("combat_swap", format_params)
-            self.text_anim.add_text_animation(partial(self.alert, message), 0)
+            self.text_anim.add_text_animation(
+                partial(self.dialog.alert, message), 0
+            )
 
     def update_icons_for_monsters(self) -> None:
         """Update/reset status icons for monsters."""
@@ -618,22 +615,7 @@ class CombatState(CombatAnimations):
         Handles combat messages by triggering text animation and blocking input
         until the message has been processed.
         """
-        if message:
-            action_time = compute_text_anim_time(message)
-            self.lock_and_wait(delay=action_time, message=message)
-
-    def lock_and_wait(
-        self, delay: float, message: Optional[str] = None
-    ) -> None:
-        if message:
-            self.text_anim.add_text_animation(
-                partial(self.alert, message), delay
-            )
-        if self._lock_update:
-            self.task(
-                partial(self.client.push_state, "WaitForInputState"),
-                interval=delay,
-            )
+        self.notifier.show_message_and_wait_for_input(message)
 
     def track_battle_results(
         self,
@@ -654,6 +636,7 @@ class CombatState(CombatAnimations):
                 output=result_type,
                 player=player,
                 players=opponents if opponents else players,
+                turns=self._turn,
                 prize=self._prize if result_type == "won" else 0,
                 trainer_battle=self.is_trainer_battle,
             )
@@ -674,15 +657,36 @@ class CombatState(CombatAnimations):
         Updates HUD and assigns monsters to the decision queue for players,
         while recharging moves and triggering AI actions for NPCs.
         """
+        self._decision_queue = []
+
+        for monster in self.active_monsters:
+            char = self.field_monsters.get_npc_for_monster(monster)
+            monster.moves.recharge_moves()
+            if char in self.human_players:
+                # Still add to queue for menu interaction
+                self._decision_queue.append(monster)
+            else:
+                # Ask AIManager to handle the decision for this monster
+                self.ai_manager.process_ai_turn(monster, char)
+
+        # Start the menu flow for human players
+        if self._decision_queue:
+            self.show_monster_action_menu(self._decision_queue.pop(0))
+
+    def check_decisions(self) -> None:
         for player in list(self.active_players):
-            self.update_hud(player, False, False)
             monsters = self.field_monsters.get_monsters(player)
             for monster in monsters:
-                if player in self.human_players:
-                    self._decision_queue.append(monster)
-                else:
-                    monster.moves.recharge_moves()
-                    self.ai_manager.process_ai_turn(monster, player)
+                held_item = monster.held_item.get_item()
+                if held_item:
+                    held_item.execute_item_action(
+                        self.session, self, player, monster
+                    )
+                status = monster.status.get_current_status()
+                if status:
+                    status.execute_status_action(
+                        self.session, self, monster, EffectPhase.ON_DECISION
+                    )
 
     def apply_statuses(self) -> None:
         """
@@ -695,8 +699,6 @@ class CombatState(CombatAnimations):
                         status.set_combat_state(self)
                         status.nr_turn += 1
                         self.enqueue_action(None, status, monster)
-            # avoid multiple effect status
-            monster.set_stats()
 
     def enqueue_damage(
         self, attacker: Monster, defender: Monster, damage: int
@@ -822,7 +824,7 @@ class CombatState(CombatAnimations):
                 message += "\n" + template
             if result_status.statuses:
                 status = random.choice(result_status.statuses)
-                user.status.apply_status(self.session, status)
+                user.status.apply_status(self.session, status, user)
 
         if result_tech.success and method.use_success:
             template = getattr(method, "use_success")
@@ -840,7 +842,7 @@ class CombatState(CombatAnimations):
 
         if m:
             message += "\n" + m
-            action_time += compute_text_anim_time(message)
+            action_time += self.text_anim.compute_text_anim_time(message)
 
         self.play_sound_effect(method.sfx)
         # animation own_monster, technique doesn't tackle
@@ -881,10 +883,12 @@ class CombatState(CombatAnimations):
                 if element_damage_key:
                     m = T.translate(element_damage_key)
                     message += "\n" + m
-                    action_time += compute_text_anim_time(message)
+                    action_time += self.text_anim.compute_text_anim_time(
+                        message
+                    )
 
         self.text_anim.add_text_animation(
-            partial(self.alert, message), action_time
+            partial(self.dialog.alert, message), action_time
         )
 
         is_flipped = False
@@ -926,12 +930,31 @@ class CombatState(CombatAnimations):
             # retrieve tuxeball
             message += "\n" + T.translate("attempting_capture")
             action_time = result_item.num_shakes + 1.8
+
+            success_header_text = ""
+            if result_item.success:
+                success_header_text = T.translate("gotcha")
+                if len(user.monsters) >= prepare.PARTY_LIMIT:
+                    success_text = T.format(
+                        "gotcha_kennel", {"name": target.name.upper()}
+                    )
+                else:
+                    success_text = T.format(
+                        "gotcha_team", {"name": target.name.upper()}
+                    )
+                failure_text = ""
+            else:
+                success_text = ""
+                failure_text = T.translate(
+                    f"captured_failed_{result_item.num_shakes}"
+                )
+
             self.animate_capture_monster(
-                result_item.success,
-                result_item.num_shakes,
+                result_item,
                 target,
                 item,
                 item_sprite,
+                (success_header_text, success_text, failure_text),
             )
         else:
             if item.behaviors.throwable:
@@ -948,11 +971,11 @@ class CombatState(CombatAnimations):
                 tmpl = "\n".join(extra_tmpls)
             if template:
                 message += "\n" + tmpl
-                action_time += compute_text_anim_time(message)
+                action_time += self.text_anim.compute_text_anim_time(message)
             self.play_animation(item, target, None, action_time)
 
         self.text_anim.add_text_animation(
-            partial(self.alert, message), action_time
+            partial(self.dialog.alert, message), action_time
         )
 
     def _handle_status(self, status: Status, target: Monster) -> None:
@@ -985,9 +1008,9 @@ class CombatState(CombatAnimations):
             templates = [T.translate(extra) for extra in result.extras]
             message = message + "\n" + "\n".join(templates)
         if message:
-            action_time += compute_text_anim_time(message)
+            action_time += self.text_anim.compute_text_anim_time(message)
             self.text_anim.add_text_animation(
-                partial(self.alert, message), action_time
+                partial(self.dialog.alert, message), action_time
             )
         self.play_animation(status, target, None, action_time)
 
@@ -1031,9 +1054,8 @@ class CombatState(CombatAnimations):
             monster: Monster that will faint.
         """
         monster.current_hp = 0
-        iid = str(monster.instance_id.hex)
         label = f"{self.name.lower()}_faint"
-        set_var(self.session, label, iid)
+        set_var(self.session, label, monster.instance_id.hex)
 
     def award_experience_and_money(self, monster: Monster) -> None:
         """
@@ -1075,7 +1097,7 @@ class CombatState(CombatAnimations):
             if owner.isplayer:
                 self.task(partial(self.animate_exp, winner), interval=2.5)
                 self.task(
-                    partial(self.update_hud, owner, False, True), interval=3.2
+                    partial(self.update_hud, owner, False, True), interval=4.0
                 )
 
     def animate_party_status(self) -> None:
@@ -1091,7 +1113,8 @@ class CombatState(CombatAnimations):
                     params = {"name": monster.name.upper()}
                     msg = T.format("combat_fainted", params)
                     self.text_anim.add_text_animation(
-                        partial(self.alert, msg), config_combat.action_time
+                        partial(self.dialog.alert, msg),
+                        config_combat.action_time,
                     )
                     self.animate_monster_faint(monster)
 
@@ -1134,9 +1157,9 @@ class CombatState(CombatAnimations):
                     T.translate(extra) for extra in result_status.extras
                 ]
                 extra = "\n".join(templates)
-                action_time = compute_text_anim_time(extra)
+                action_time = self.text_anim.compute_text_anim_time(extra)
                 self.text_anim.add_text_animation(
-                    partial(self.alert, extra), action_time
+                    partial(self.dialog.alert, extra), action_time
                 )
 
     def handle_monster_defeat(self, monster: Monster) -> None:

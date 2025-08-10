@@ -6,7 +6,8 @@ import logging
 from dataclasses import dataclass
 from typing import Optional, final
 
-from tuxemon import prepare, save
+from tuxemon import save
+from tuxemon.constants.asset_loader import fetch_asset
 from tuxemon.event.eventaction import EventAction
 from tuxemon.npc import NPCState
 from tuxemon.session import Session
@@ -63,7 +64,7 @@ class LoadGameAction(EventAction):
                 if self.index is not None:
                     client.remove_state_by_name("StartState")
 
-            map_path = prepare.fetch(
+            map_path = fetch_asset(
                 "maps", save_data["npc_state"]["current_map"]
             )
             client.push_state("WorldState", session=session, map_name=map_path)
@@ -79,6 +80,7 @@ class LoadGameAction(EventAction):
 
             # teleport the player to the correct position using an event
             # engine action
+            client.current_music.stop()
             tele_x, tele_y = save_data["npc_state"]["tile_pos"]
             params = [
                 "player",

@@ -3,9 +3,9 @@
 from __future__ import annotations
 
 import logging
-import uuid
 from dataclasses import dataclass
 from typing import Optional, final
+from uuid import UUID
 
 from tuxemon import prepare
 from tuxemon.event import get_monster_by_iid
@@ -28,12 +28,15 @@ class AddTechAction(EventAction):
             add_tech <variable>,<technique>[,power][,potency][,accuracy]
 
     Script parameters:
-        variable: Name of the variable where to store the monster id.
-        technique: Slug of the technique (e.g. "bullet").
-        power: Power between 0.0 and 3.0
-        potency: Potency between 0.0 and 1.0
-        accuracy: Accuracy between 0.0 and 1.0
+        variable: Name of the variable where the monster UUID is stored.
+        technique: Slug of the technique to add (e.g. "bullet").
+        power: Optional float (0.0-3.0). Overrides default power.
+        potency: Optional float (0.0-1.0). Overrides default potency.
+        accuracy: Optional float (0.0-1.0). Overrides default accuracy.
 
+    Examples:
+        "add_tech monster_id,flamethrower"
+        "add_tech monster_id,flamethrower,2.5,0.8,0.95"
     """
 
     name = "add_tech"
@@ -45,40 +48,38 @@ class AddTechAction(EventAction):
 
     def start(self, session: Session) -> None:
         player = session.player
+
         if self.variable not in player.game_variables:
-            logger.error(f"Game variable {self.variable} not found")
+            logger.error(f"Game variable '{self.variable}' not found")
             return
 
-        monster_id = uuid.UUID(player.game_variables[self.variable])
+        monster_id = UUID(player.game_variables[self.variable])
         monster = get_monster_by_iid(session, monster_id)
         if monster is None:
             logger.error("Monster not found")
             return
 
         tech = Technique.create(self.technique)
-        if self.power:
-            lower, upper = prepare.POWER_RANGE
-            if lower <= self.power <= upper:
-                tech.power = self.power
-            else:
-                raise ValueError(
-                    f"{self.power} must be between {lower} and {upper}",
-                )
-        if self.potency:
-            lower, upper = prepare.POTENCY_RANGE
-            if lower <= self.potency <= upper:
-                tech.potency = self.potency
-            else:
-                raise ValueError(
-                    f"{self.potency} must be between {lower} and {upper}",
-                )
-        if self.accuracy:
-            lower, upper = prepare.ACCURACY_RANGE
-            if lower <= self.accuracy <= upper:
-                tech.accuracy = self.accuracy
-            else:
-                raise ValueError(
-                    f"{self.accuracy} must be between {lower} and {upper}",
-                )
-        logger.info(f"{monster.name} learned {tech.name}!")
-        monster.moves.learn(tech)
+
+        overrides = {
+            "power": (self.power, prepare.POWER_RANGE),
+            "potency": (self.potency, prepare.POTENCY_RANGE),
+            "accuracy": (self.accuracy, prepare.ACCURACY_RANGE),
+        }
+
+        for attr, (val, bounds) in overrides.items():
+            if val is not None:
+                lower, upper = bounds
+                if lower <= val <= upper:
+                    setattr(tech, attr, val)
+                    logger.debug(f"Set {tech.slug}.{attr} = {val}")
+                else:
+                    raise ValueError(
+                        f"{attr} value {val} must be between {lower} and {upper}"
+                    )
+
+        if monster.moves.has_move(tech.slug):
+            logger.warning(f"{monster.name} already knows {tech.name}")
+        else:
+            monster.moves.learn(tech)
+            logger.info(f"{monster.name} learned {tech.name}!")

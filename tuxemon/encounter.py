@@ -5,10 +5,16 @@ from __future__ import annotations
 import logging
 import random
 from collections.abc import Sequence
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING, Optional, Union
 
 from tuxemon import prepare
-from tuxemon.db import EncounterItemModel, EncounterModel, db
+from tuxemon.db import (
+    EncounterItemModel,
+    EncounterModel,
+    EncounterType,
+    HordeEncounterModel,
+    db,
+)
 
 if TYPE_CHECKING:
     from tuxemon.npc import NPC
@@ -20,7 +26,9 @@ class EncounterData:
     def __init__(self, slug: str) -> None:
         self.slug = slug
         self.encounter_model = EncounterModel.lookup(slug, db)
+        self.encounter_type = self.encounter_model.encounter_type
         self.encounters = self.encounter_model.monsters
+        self.horde = self.encounter_model.horde
         self.scaling_zone = self.encounter_model.scaling_zone
         self.override_level_range = self.encounter_model.override_level_range
         self.scale_offset_range = self.encounter_model.scale_offset_range
@@ -33,20 +41,22 @@ class EncounterData:
 
 class Encounter:
     def __init__(self, zone: EncounterData) -> None:
-        self.zone_cache: dict[str, Sequence[EncounterItemModel]] = {}
         self.zone = zone
+        self.zone_cache: dict[
+            str, Sequence[Union[EncounterItemModel, HordeEncounterModel]]
+        ] = {}
 
     def is_scaling_zone(self) -> bool:
         return self.zone.scaling_zone
 
-    def get_valid_encounters(self, character: NPC) -> list[EncounterItemModel]:
+    def _get_valid_single_encounters(
+        self, character: NPC
+    ) -> list[EncounterItemModel]:
         """
-        Returns a list of valid encounters for the given character,
-        considering variables, time of day, weather, and player level.
+        Internal helper to get a list of valid single monster encounters.
         """
         if self.zone.slug not in self.zone_cache:
-            encounters = self.zone.get_encounters()
-            self.zone_cache[self.zone.slug] = encounters
+            self.zone_cache[self.zone.slug] = self.zone.get_encounters()
 
         player_avg_level = character.party.level_average
         if player_avg_level is None:
@@ -54,54 +64,56 @@ class Encounter:
 
         valid_encs = []
         for _enc in self.zone_cache[self.zone.slug]:
-            is_variable_match = True
+            if not isinstance(_enc, EncounterItemModel):
+                continue
+
+            is_valid = True
             if _enc.variables:
                 for variable in _enc.variables:
                     for key, value in variable.items():
                         if character.game_variables.get(key) != value:
-                            is_variable_match = False
+                            is_valid = False
                             break
-                    if not is_variable_match:
+                    if not is_valid:
                         break
-            if not is_variable_match:
+            if not is_valid:
                 continue
-
-            # Player Level check
-            if not is_variable_match:
-                logger.debug(
-                    f"[Filter] Encounter '{_enc.monster}' excluded due to variable mismatch"
-                )
-                continue
-
             if (
                 _enc.min_player_level is not None
                 and player_avg_level < _enc.min_player_level
             ):
-                logger.debug(
-                    f"[Filter] '{_enc.monster}' excluded (player level too low)"
-                )
+                continue
+            if (
+                _enc.max_player_level is not None
+                and player_avg_level > _enc.max_player_level
+            ):
                 continue
 
             valid_encs.append(_enc)
-        logger.debug(f"[Valid] Encounter '{_enc.monster}' is valid")
+            logger.debug(f"[Valid] Single monster '{_enc.monster}' is valid")
+
+        if not valid_encs:
+            logger.error(
+                f"No wild monsters, check 'encounter/{self.zone.slug}.json'"
+            )
         return valid_encs
 
-    def choose_encounter(
-        self,
-        encounters: list[EncounterItemModel],
-        total_prob: Optional[float],
+    def _choose_single_encounter(
+        self, encounters: list[EncounterItemModel], total_prob: Optional[float]
     ) -> Optional[EncounterItemModel]:
-        """Chooses a random encounter based on encounter rates and dynamic modifiers."""
+        """
+        Internal helper to choose one single monster based on rates.
+        """
         if not encounters:
             return None
 
         total_prob = total_prob or 1.0
-        encounter_rate_modifier = prepare.CONFIG.encounter_rate_modifier
 
         sum_rates = sum(enc.encounter_rate for enc in encounters)
         if sum_rates == 0:
             return None
 
+        encounter_rate_modifier = prepare.CONFIG.encounter_rate_modifier
         scale = (total_prob / sum_rates) * encounter_rate_modifier
 
         total = 0.0
@@ -117,8 +129,50 @@ class Encounter:
                     f"[Chosen] Rolled {roll:.2f}, selected '{encounter.monster}'"
                 )
                 return encounter
+        return None
+
+    def get_single_encounter(
+        self, character: NPC, total_prob: Optional[float]
+    ) -> Optional[tuple[EncounterItemModel, int, Optional[str]]]:
+        """
+        Public method to get a single monster encounter.
+        """
+        if self.zone.encounter_type != EncounterType.SINGLE:
+            return None
+
+        valid_encs = self._get_valid_single_encounters(character)
+        chosen_encounter = self._choose_single_encounter(
+            valid_encs, total_prob
+        )
+
+        if chosen_encounter:
+            level = self.determine_level(character, chosen_encounter)
+            held_item = self.get_held_item(chosen_encounter)
+            return (chosen_encounter, level, held_item)
 
         return None
+
+    def get_horde_encounter(
+        self,
+        character: NPC,
+    ) -> Optional[list[tuple[EncounterItemModel, int, Optional[str]]]]:
+        """
+        Public method to get a horde encounter.
+        """
+        if self.zone.encounter_type != EncounterType.HORDE:
+            return None
+
+        horde_model = self.zone.horde
+        if not horde_model or not horde_model.monsters:
+            return None
+
+        battle_monsters = []
+        for monster_in_horde in horde_model.monsters:
+            level = self.determine_level(character, monster_in_horde)
+            held_item = self.get_held_item(monster_in_horde)
+            battle_monsters.append((monster_in_horde, level, held_item))
+
+        return battle_monsters
 
     def get_level(self, encounter: EncounterItemModel) -> int:
         """Returns a random level for the encounter, applying the level offset."""

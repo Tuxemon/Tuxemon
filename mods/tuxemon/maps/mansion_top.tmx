@@ -24,7 +24,7 @@
    eJyzYWFgsBnFo3gUjxj8Xop4PNjMpmWYjJo9PMwGAA+fgz0=
   </data>
  </layer>
- <layer id="2" name="Tile Layer 4" width="23" height="19">
+ <layer id="2" name="Tile Layer 2" width="23" height="19">
   <data encoding="base64" compression="zlib">
    eJw7KMXAICdNPj6KQ/9hoPh7IK6SJh9/wqH/I9RsSsAnHPrRzV6ng0ojA1xyxJodCNQXBMTBWMzGJacgTZzZ5IAaGpqNC4DM/kxhGjxMILwpSYMfiYxLcoAskh9WIoU9NcyuRPJDNZrZxIb3Dai+W3jCGBmQEt4wN1XiCWN0s8kByPqOQNnL0fz5hQpmw/J8pTT+9HMEiY/uDmQsL41pNj770dWhuwNb2BNj9g9BBoafgrjV4QOEzFYVYmBQEyLfbA1d7GYDAGxHc/Y=
   </data>
@@ -63,8 +63,8 @@
   </object>
   <object id="27" name="Play Music" type="event" x="0" y="0" width="16" height="16">
    <properties>
-    <property name="act10" value="play_music music_mansion_theme"/>
-    <property name="cond10" value="not music_playing music_mansion_theme"/>
+    <property name="act10" value="play_music music_jester_theme"/>
+    <property name="cond10" value="not music_playing music_jester_theme"/>
    </properties>
   </object>
  </objectgroup>

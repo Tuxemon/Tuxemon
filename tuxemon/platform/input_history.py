@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from collections import deque
-from typing import Deque, Optional
+from typing import Optional
 
 from tuxemon.platform.events import PlayerInput
 from tuxemon.platform.tools import translate_input_event
@@ -11,8 +11,8 @@ from tuxemon.platform.tools import translate_input_event
 
 class InputHistory:
     def __init__(self, max_size: int = 25):
-        self.raw_history: Deque[PlayerInput] = deque(maxlen=max_size * 10)
-        self.history: Deque[PlayerInput] = deque(maxlen=max_size)
+        self.raw_history: deque[PlayerInput] = deque(maxlen=max_size * 10)
+        self.history: deque[PlayerInput] = deque(maxlen=max_size)
         self.last_history_event: Optional[PlayerInput] = None
 
     def add(self, event: PlayerInput) -> None:

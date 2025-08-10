@@ -12,7 +12,7 @@ from pygame.surface import Surface
 from tuxemon import prepare
 from tuxemon.graphics import ColorLike
 from tuxemon.platform.events import PlayerInput
-from tuxemon.state import State
+from tuxemon.state.state import State
 
 logger = logging.getLogger(__name__)
 

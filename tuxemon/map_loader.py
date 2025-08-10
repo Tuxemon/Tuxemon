@@ -1,12 +1,14 @@
 # SPDX-License-Identifier: GPL-3.0
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+from __future__ import annotations
+
 import logging
-import uuid
 from collections import defaultdict
 from collections.abc import Generator, MutableMapping
 from math import cos, pi, sin
 from pathlib import Path
 from typing import Any, Optional
+from uuid import uuid4
 
 import pytmx
 import yaml
@@ -14,6 +16,7 @@ from natsort import natsorted
 
 from tuxemon import prepare
 from tuxemon.compat import Rect
+from tuxemon.constants.asset_loader import fetch_asset
 from tuxemon.db import Direction, Orientation
 from tuxemon.event import EventObject, MapAction, MapCondition
 from tuxemon.graphics import scaled_image_loader
@@ -222,7 +225,7 @@ class MapLoader:
         """
         yaml_files = [Path(path).with_suffix(".yaml")]
         if txmn_map.scenario:
-            _scenario = prepare.fetch("maps", f"{txmn_map.scenario}.yaml")
+            _scenario = fetch_asset("maps", f"{txmn_map.scenario}.yaml")
             yaml_files.append(Path(_scenario))
 
         yaml_collision, events = self._process_events(yaml_files)
@@ -289,7 +292,7 @@ class YAMLEventLoader:
         events_dict: dict[str, list[EventObject]] = {"event": [], "init": []}
 
         for name, event_data in yaml_data["events"].items():
-            _id = uuid.uuid4().int
+            _id = uuid4().int
             conds = []
             acts = []
             x = event_data.get("x", 0)
@@ -616,7 +619,7 @@ class TMXMapLoader:
         Returns:
             Loaded event.
         """
-        event_id = uuid.uuid4().int
+        event_id = uuid4().int
         conditions = []
         actions = []
         x, y, w, h = (

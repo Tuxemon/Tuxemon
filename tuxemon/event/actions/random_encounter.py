@@ -16,7 +16,11 @@ from tuxemon.graphics import ColorLike, string_to_colorlike
 from tuxemon.item.item import Item
 from tuxemon.monster import Monster
 from tuxemon.session import Session
-from tuxemon.states.combat.combat_context import CombatContext
+from tuxemon.states.combat.combat_context import (
+    BattleMode,
+    CombatContext,
+    CombatType,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -60,20 +64,12 @@ class RandomEncounterAction(EventAction):
 
         zone = EncounterData(self.encounter_slug)
         encounter = Encounter(zone)
-        results = encounter.get_valid_encounters(player)
+        results = encounter.get_single_encounter(player, self.total_prob)
 
-        if not results:
-            logger.error(
-                f"No wild monsters, check 'encounter/{self.encounter_slug}.json'"
-            )
+        if results is None:
             return
 
-        eligible = encounter.choose_encounter(results, self.total_prob)
-        if eligible is None:
-            return
-
-        held_item = encounter.get_held_item(eligible)
-        level = encounter.determine_level(player, eligible)
+        eligible, level, held_item = results
 
         logger.info("Starting random encounter!")
 
@@ -112,9 +108,9 @@ class RandomEncounterAction(EventAction):
         context = CombatContext(
             session=session,
             teams=[player, npc],
-            combat_type="monster",
+            combat_type=CombatType.MONSTER,
             graphics=environment.battle_graphics,
-            battle_mode="single",
+            battle_mode=BattleMode.SINGLE,
         )
         session.client.queue_state("CombatState", context=context)
 

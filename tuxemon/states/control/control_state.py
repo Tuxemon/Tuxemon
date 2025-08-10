@@ -18,7 +18,7 @@ from tuxemon.menu.theme import get_theme
 from tuxemon.platform.const import buttons
 from tuxemon.platform.events import PlayerInput
 from tuxemon.platform.platform_pygame.events import PygameKeyboardInput
-from tuxemon.state import State
+from tuxemon.state.state import State
 
 
 class ControlState(PygameMenuState):

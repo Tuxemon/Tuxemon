@@ -1,6 +1,6 @@
 {
   "tech_id": 229,
-  "accuracy": 0.99,
+  "accuracy": 0.95,
   "animation": "foodthrow",
   "effects": [
     {

@@ -24,24 +24,22 @@ class SetPlayerNameAction(EventAction):
         .. code-block::
 
             set_player_name name
-            set_player_name name:name
+            set_player_name name1:name2
 
     Script parameters:
-        choice: single name or multiple names
-        separated by ":" (random choice)
-        the names must be in the PO file
-
+        choice: A single name or multiple names separated by ":".
+            If multiple, one will be randomly selected.
     """
 
     name = "set_player_name"
     choice: str
 
     def start(self, session: Session) -> None:
-        name: str = ""
-        if self.choice.find(":"):
+        if ":" in self.choice:
             elements = self.choice.split(":")
-            name = random.choice(elements)
+            selected_name = random.choice(elements)
         else:
-            name = self.choice
-        session.player.name = T.translate(name)
-        logger.info(f"Player name is {T.translate(name)}")
+            selected_name = self.choice
+
+        session.player.name = T.translate(selected_name)
+        logger.info(f"Player name is {session.player.name}")

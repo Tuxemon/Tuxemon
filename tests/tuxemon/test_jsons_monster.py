@@ -5,7 +5,7 @@ import unittest
 from pathlib import Path
 from typing import Any
 
-from tuxemon import prepare
+from tuxemon.constants.asset_loader import fetch_asset
 
 ALL_MONSTERS: int = 411
 MAX_TXMN_ID: int = 393
@@ -13,7 +13,7 @@ MAX_TXMN_ID: int = 393
 
 def process_json_data(directory: str) -> list[dict[str, Any]]:
     data_list = []
-    directory_path = Path(prepare.fetch("db")) / directory
+    directory_path = Path(fetch_asset("db")) / directory
     for file in directory_path.iterdir():
         if file.suffix == ".json" and file.is_file():
             with file.open("r") as f:

@@ -1,6 +1,6 @@
 {
   "slug": "angrito",
-  "category": "enraged_emotion",
+  "species": "enraged_emotion",
   "moveset": [
     {
       "level_learned": 1,

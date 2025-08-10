@@ -7,8 +7,10 @@ from typing import TYPE_CHECKING, Optional
 
 from tuxemon import log, prepare
 from tuxemon.client import LocalPygameClient
+from tuxemon.db import db
 from tuxemon.headless_client import HeadlessClient
 from tuxemon.session import local_session
+from tuxemon.states.start.launcher import GameLauncher
 
 if TYPE_CHECKING:
 
@@ -73,11 +75,8 @@ def configure_game_states(
 
     if config.skip_titlescreen and config.mods:
         if len(config.mods) == 1:
-            destination = f"{prepare.STARTING_MAP}{config.mods[0]}.tmx"
-            map_name = prepare.fetch("maps", destination)
-            client.push_state(
-                "WorldState", session=local_session, map_name=map_name
-            )
+            launcher = GameLauncher(client, db)
+            launcher.launch(mod_name=config.mods[0], session=local_session)
         else:
             client.push_state("ModsChoice", mods=config.mods)
 

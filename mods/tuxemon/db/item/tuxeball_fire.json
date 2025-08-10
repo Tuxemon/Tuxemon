@@ -5,11 +5,12 @@
       "operator": "is"
     },
     {
-      "type": "category",
+      "type": "base",
       "parameters": [
-        "threat"
+        "species",
+        "!threat"
       ],
-      "operator": "not"
+      "operator": "is"
     }
   ],
   "effects": [

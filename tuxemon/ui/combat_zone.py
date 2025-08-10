@@ -6,7 +6,7 @@ import logging
 
 from pygame.rect import Rect
 
-from tuxemon.ui.text import HorizontalAlignment, VerticalAlignment
+from tuxemon.ui.text_alignment import HorizontalAlignment, VerticalAlignment
 
 logger = logging.getLogger(__name__)
 

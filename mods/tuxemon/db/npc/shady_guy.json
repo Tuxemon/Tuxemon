@@ -1,10 +1,8 @@
 {
   "slug": "shady_guy",
-  "template": 
-    {
-      "sprite_name": "ninja",
-      "combat_front": "ninja",
-      "slug": "ninja"
-    }
-
+  "template": {
+    "sprite_name": "ninja",
+    "combat_front": "ninja",
+    "slug": "ninja"
+  }
 }

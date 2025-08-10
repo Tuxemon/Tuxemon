@@ -34,14 +34,20 @@ class StuckEffect(CoreEffect):
     def apply_status_target(
         self, session: Session, status: Status, target: Monster
     ) -> StatusEffectResult:
+        if self.divisor == 0:
+            raise ValueError("StuckEffect divisor must be non-zero.")
+
         done: bool = False
         ranges = self.ranges.split(":")
         moves = [
             tech for tech in target.moves.get_moves() if tech.range in ranges
         ]
+
         if status.has_phase(EffectPhase.PERFORM_STATUS):
             done = True
-        # applies effect on techniques
+        elif status.has_phase(EffectPhase.ON_END):
+            target.moves.set_stats()
+
         if done and moves:
             for move in moves:
                 move.potency = move.default_potency / self.divisor

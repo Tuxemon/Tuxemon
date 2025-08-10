@@ -2,8 +2,10 @@
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-import uuid
-from typing import TYPE_CHECKING, Optional
+import logging
+from collections.abc import Mapping, Sequence
+from typing import TYPE_CHECKING, Any, Optional
+from uuid import UUID
 
 from tuxemon import prepare
 from tuxemon.item.item import decode_items, encode_items
@@ -15,6 +17,8 @@ if TYPE_CHECKING:
     from tuxemon.item.item import Item
     from tuxemon.monster import Monster
     from tuxemon.npc import NPC, NPCState
+
+logger = logging.getLogger(__name__)
 
 
 class BoxCollection:
@@ -109,7 +113,7 @@ class BoxCollection:
         if box_id in self.monster_boxes:
             self.monster_boxes[box_id].remove(monster)
 
-    def get_items_by_iid(self, instance_id: uuid.UUID) -> Optional[Item]:
+    def get_items_by_iid(self, instance_id: UUID) -> Optional[Item]:
         """
         Retrieves an item by its instance ID.
 
@@ -129,7 +133,7 @@ class BoxCollection:
             None,
         )
 
-    def get_monsters_by_iid(self, instance_id: uuid.UUID) -> Optional[Monster]:
+    def get_monsters_by_iid(self, instance_id: UUID) -> Optional[Monster]:
         """
         Retrieves a monster by its instance ID.
 
@@ -328,42 +332,6 @@ class BoxCollection:
                 f"{source_box_id} doesn't exist or {monster.slug} isn't in the {source_box_id} box"
             )
 
-    def save(self, state: NPCState) -> None:
-        """
-        Saves the current state of the box collection.
-
-        Parameters:
-            state: The state to save the box collection to.
-        """
-        state["item_boxes"] = {}
-        state["monster_boxes"] = {}
-        for box_id, items in self.item_boxes.items():
-            state["item_boxes"][box_id] = encode_items(items)
-        for box_id, monsters in self.monster_boxes.items():
-            state["monster_boxes"][box_id] = encode_monsters(monsters)
-
-    def load(self, char: NPC, save_data: NPCState) -> None:
-        """
-        Loads the box collection from a saved state.
-
-        Parameters:
-            save_data: The saved state to load the box collection from.
-        """
-        self.item_boxes = {
-            box_id: decode_items(items)
-            for box_id, items in save_data.get("item_boxes", {}).items()
-        }
-
-        self.monster_boxes = {}
-
-        for box_id, encoded_monsters in save_data.get(
-            "monster_boxes", {}
-        ).items():
-            monsters = decode_monsters(encoded_monsters)
-            for monster in monsters:
-                monster.set_owner(char)
-            self.monster_boxes[box_id] = monsters
-
 
 class ItemBoxes(BoxCollection):
     def __init__(self) -> None:
@@ -372,23 +340,28 @@ class ItemBoxes(BoxCollection):
         """
         super().__init__()
 
-    def save(self, state: NPCState) -> None:
+    def get_state(self) -> dict[str, Sequence[Mapping[str, Any]]]:
         """
         Saves the current state of the item boxes.
-
-        Parameters:
-            state: The state to save the item boxes to.
         """
-        super().save(state)
+        return {
+            box_id: encode_items(items)
+            for box_id, items in self.item_boxes.items()
+        }
 
-    def load(self, char: NPC, save_data: NPCState) -> None:
+    def load(self, save_data: NPCState) -> None:
         """
         Loads the item boxes from a saved state.
-
-        Parameters:
-            save_data: The saved state to load the item boxes from.
         """
-        super().load(char, save_data)
+        self.item_boxes = {
+            box_id: decode_items(items)
+            for box_id, items in save_data.get("item_boxes", {}).items()
+        }
+
+        for box_id, items in self.item_boxes.items():
+            item_count = len(items)
+            if item_count == 0:
+                logger.debug(f"Warning: loaded box '{box_id}' is empty")
 
 
 class MonsterBoxes(BoxCollection):
@@ -419,7 +392,7 @@ class MonsterBoxes(BoxCollection):
         """
         return list(self.monster_boxes.keys())
 
-    def get_box_name(self, instance_id: uuid.UUID) -> Optional[str]:
+    def get_box_name(self, instance_id: UUID) -> Optional[str]:
         """
         Retrieves the name of the monster box that contains the monster
         with the given instance ID.
@@ -521,7 +494,7 @@ class MonsterBoxes(BoxCollection):
             raise ValueError("Monster not found in box.")
 
     def swap_with_external_monster_by_iid(
-        self, instance_id: uuid.UUID, external_monster: Monster
+        self, instance_id: UUID, external_monster: Monster
     ) -> Monster:
         """
         Swaps a monster in a box with an external monster by instance ID.
@@ -542,20 +515,35 @@ class MonsterBoxes(BoxCollection):
         else:
             raise ValueError("Monster not found in box.")
 
-    def save(self, state: NPCState) -> None:
+    def get_state(self) -> dict[str, Sequence[Mapping[str, Any]]]:
         """
         Saves the current state of the monster boxes.
-
-        Parameters:
-            state: The state to save the monster boxes to.
         """
-        super().save(state)
+        return {
+            box_id: encode_monsters(monsters)
+            for box_id, monsters in self.monster_boxes.items()
+        }
 
     def load(self, char: NPC, save_data: NPCState) -> None:
         """
         Loads the monster boxes from a saved state.
-
-        Parameters:
-            save_data: The saved state to load the monster boxes from.
         """
-        super().load(char, save_data)
+        self.monster_boxes = {}
+
+        for box_id, encoded_monsters in save_data.get(
+            "monster_boxes", {}
+        ).items():
+            monsters = decode_monsters(encoded_monsters)
+            monster_count = len(monsters)
+            logger.debug(
+                f"Loaded box '{box_id}' with {monster_count} monsters."
+            )
+            if monster_count == 0:
+                logger.debug(
+                    f"Warning: loaded monster box '{box_id}' is empty"
+                )
+            for monster in monsters:
+                monster.set_owner(char)
+            self.monster_boxes[box_id] = monsters
+
+        logger.debug(f"Loaded {len(self.monster_boxes)} monster boxes.")

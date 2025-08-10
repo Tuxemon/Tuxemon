@@ -113,6 +113,8 @@ class SpawnMonsterAction(EventAction):
             f"Taste inherited from parents: warm='{taste_warm}', cold='{taste_cold}'"
         )
         child.set_stats()
+        child.mother_iid = mother_id
+        child.father_iid = father_id
 
         # Add the child to the character's monsters
         character = get_npc(session, self.character)

@@ -1,6 +1,6 @@
 {
   "slug": "shrab",
-  "category": "muscly_crab",
+  "species": "muscly_crab",
   "moveset": [
     {
       "level_learned": 1,

@@ -109,26 +109,31 @@ events:
     actions:
     - lock_controls
     - translated_dialog spyder_intro_shopkeeper3
+    - pathfind spyder_billie,5,7
     - pathfind spyder_billie,6,7
     - char_face spyder_billie,right
     - wait 0.5
     - pathfind spyder_billie,6,10
     - remove_npc spyder_billie
+    - pathfind spyder_papermart_harith,5,7
     - pathfind spyder_papermart_harith,6,7
     - char_face spyder_papermart_harith,right
     - wait 0.5
     - pathfind spyder_papermart_harith,6,10
     - remove_npc spyder_papermart_harith
+    - pathfind spyder_route2_roddick,5,7
     - pathfind spyder_route2_roddick,6,7
     - char_face spyder_route2_roddick,right
     - wait 0.5
     - pathfind spyder_route2_roddick,6,10
     - remove_npc spyder_route2_roddick
+    - pathfind spyder_papermart_shirley,5,7
     - pathfind spyder_papermart_shirley,6,7
     - char_face spyder_papermart_shirley,right
     - wait 0.5
     - pathfind spyder_papermart_shirley,6,10
     - remove_npc spyder_papermart_shirley
+    - pathfind spyder_papermart_miles,5,7
     - pathfind spyder_papermart_miles,6,7
     - char_face spyder_papermart_miles,right
     - wait 0.5
@@ -144,10 +149,10 @@ events:
     - pathfind spyder_shopassistant,6,6
     - wait 0.5
     - char_face spyder_shopassistant,down
+    - char_face player,up
     - wait 0.5
     - char_face spyder_dante,left
     - wait 0.5
-    - char_face player,up
     - translated_dialog spyder_intro_shopkeeper4
     - wait 0.5
     - wait 0.5

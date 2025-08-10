@@ -362,7 +362,7 @@ class CaptureDeviceSprite(Sprite):
     def resolve_status(self) -> str:
         if self.monster is None:
             return "empty"
-        if self.monster.status.is_fainted:
+        if self.monster.is_fainted:
             return "faint"
         if self.monster.status.status_exists():
             return "effected"

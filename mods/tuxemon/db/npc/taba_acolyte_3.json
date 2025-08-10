@@ -1,11 +1,8 @@
 {
-    "slug": "acolyte3",
-    "template": 
-      {
-        "sprite_name": "disciple",
-        "combat_front": "disciple",
-        "slug": "disciple"
-      }
-  
+  "slug": "acolyte3",
+  "template": {
+    "sprite_name": "disciple",
+    "combat_front": "disciple",
+    "slug": "disciple"
   }
-  
+}

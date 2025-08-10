@@ -6,7 +6,7 @@ from unittest.mock import MagicMock, patch
 import pygame
 
 from tuxemon import prepare
-from tuxemon.state_draw import EventDebugDrawer, Renderer, StateDrawer
+from tuxemon.state.draw import EventDebugDrawer, Renderer, StateDrawer
 
 
 class TestRenderer(unittest.TestCase):

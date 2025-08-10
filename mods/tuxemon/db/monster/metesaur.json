@@ -1,6 +1,6 @@
 {
   "slug": "metesaur",
-  "category": "meteor",
+  "species": "meteor",
   "moveset": [
     {
       "level_learned": 1,

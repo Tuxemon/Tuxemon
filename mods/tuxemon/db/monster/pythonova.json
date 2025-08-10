@@ -1,6 +1,6 @@
 {
   "slug": "pythonova",
-  "category": "nova_snake",
+  "species": "nova_snake",
   "moveset": [
     {
       "level_learned": 1,

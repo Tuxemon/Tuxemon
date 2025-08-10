@@ -42,7 +42,7 @@ msgid "combat_state_recover_failure"
 msgstr "{user} kan ikke heles ytterligere."
 
 msgid "super_potion_description"
-msgstr "Heler et monster med 150 HP."
+msgstr "Heler et monster med 100 HP."
 
 msgid "orange_description"
 msgstr "Heler et monster med 20 HP."

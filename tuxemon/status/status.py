@@ -44,6 +44,8 @@ class Status:
     Particular status that tuxemon monsters can be affected.
     """
 
+    MAX_STACKS: int = 5
+
     effect_manager: Optional[EffectManager] = None
     condition_manager: Optional[ConditionManager] = None
 
@@ -54,6 +56,8 @@ class Status:
         save_data: Optional[Mapping[str, Any]] = None,
     ) -> None:
         save_data = save_data or {}
+
+        self._effect_applied: set[str] = set()
 
         self.instance_id: UUID = uuid4()
         self.set_steps(steps)
@@ -73,6 +77,7 @@ class Status:
         self.duration: int = 0
         self.phase: EffectPhase = EffectPhase.DEFAULT
         self.range: Range = Range.melee
+        self.stack_level: int = 1
         self.on_positive_status: Optional[ResponseStatus] = None
         self.on_negative_status: Optional[ResponseStatus] = None
         self.on_tech_use: Optional[str] = None
@@ -257,7 +262,7 @@ class Status:
             if getattr(self, attr)
         }
 
-        save_data["instance_id"] = str(self.instance_id.hex)
+        save_data["instance_id"] = self.instance_id.hex
 
         return save_data
 

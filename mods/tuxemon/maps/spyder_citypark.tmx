@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="296">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="296">
  <properties>
   <property name="edges" value="clamped"/>
+  <property name="map_type" value="route"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="citypark"/>
   <property name="south" value="route2"/>
-  <property name="map_type" value="route"/>
   <property name="west" value="leather_town"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/Superpowers_Tilesheet.tsx"/>
@@ -25,7 +25,7 @@
  </layer>
  <layer id="3" name="Tile Layer 3" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer id="4" name="Above Player" width="40" height="40">

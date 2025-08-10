@@ -101,13 +101,55 @@ class EvolutionAction(EventAction):
     def process_pending_evolutions(self) -> None:
         """Process pending evolutions for the character"""
         registry = self.char.evolution_registry
+        logger.debug(
+            f"Checking pending evolutions for character: {self.char.name}"
+        )
+
+        evolve_candidates: list[Monster] = []
         for monster in self.char.monsters:
-            for slug in registry.get_pending(monster.instance_id):
-                if monster.got_experience and monster.levelling_up:
-                    evolved = Monster.create(slug)
-                    self._pending_map[monster.instance_id] = slug
-                    self.question_evolution(monster, evolved)
-            registry.clear_pending(monster.instance_id)
+            logger.debug(
+                f"Evaluating monster: {monster.name} (ID: {monster.instance_id})"
+            )
+            logger.debug(
+                f"  got_experience={monster.got_experience}, levelling_up={monster.levelling_up}"
+            )
+
+            pending = registry.get_pending(monster.instance_id)
+            logger.debug(f"  Pending evolutions: {pending}")
+
+            if monster.got_experience and monster.levelling_up and pending:
+                evolve_candidates.append(monster)
+                logger.debug(f"  -> Added to evolve_candidates")
+
+        if not evolve_candidates:
+            logger.debug("No evolve candidates found. Returning from action.")
+            return
+
+        monster_to_evolve = evolve_candidates[0]
+        logger.debug(
+            f"Selected monster for evolution: {monster_to_evolve.name}"
+        )
+
+        pending_evolutions = registry.get_pending(
+            monster_to_evolve.instance_id
+        )
+        logger.debug(
+            f"Pending evolutions for selected monster: {pending_evolutions}"
+        )
+
+        registry.clear_pending(monster_to_evolve.instance_id)
+        logger.debug(
+            f"Cleared pending evolutions for monster: {monster_to_evolve.name}"
+        )
+
+        slug = pending_evolutions[0]
+        evolved = Monster.create(slug)
+        logger.debug(f"Created evolved monster: {evolved.name} (slug: {slug})")
+
+        self._pending_map[monster_to_evolve.instance_id] = slug
+        logger.debug(f"Stored pending evolution slug for denial logic")
+
+        self.question_evolution(monster_to_evolve, evolved)
 
     def question_evolution(self, monster: Monster, evolved: Monster) -> None:
         """Ask the user to confirm the evolution"""

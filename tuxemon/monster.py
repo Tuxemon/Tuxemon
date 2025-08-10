@@ -25,9 +25,9 @@ from tuxemon.db import (
     db,
 )
 from tuxemon.element import ElementTypesHandler
-from tuxemon.evolution import Evolution
 from tuxemon.fusion import Body
 from tuxemon.locale import T
+from tuxemon.monster_dir.evolution import Evolution
 from tuxemon.monster_dir.held_item import MonsterItemHandler
 from tuxemon.monster_dir.sprite import (
     Flair,

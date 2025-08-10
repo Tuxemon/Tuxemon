@@ -129,6 +129,7 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.store_monster.StoreMonsterAction
 .. autoscriptinfoclass:: tuxemon.event.actions.teleport_faint.TeleportFaintAction
 .. autoscriptinfoclass:: tuxemon.event.actions.teleport.TeleportAction
+.. autoscriptinfoclass:: tuxemon.event.actions.toggle_evolution_block.ToggleEvolutionBlockAction
 .. autoscriptinfoclass:: tuxemon.event.actions.trading.TradingAction
 .. autoscriptinfoclass:: tuxemon.event.actions.transfer_money.TransferMoneyAction
 .. autoscriptinfoclass:: tuxemon.event.actions.transition_teleport.TransitionTeleportAction

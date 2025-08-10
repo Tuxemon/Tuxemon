@@ -14,7 +14,6 @@ from tuxemon.battle import BattlesHandler
 from tuxemon.boxes import ItemBoxes, MonsterBoxes
 from tuxemon.db import Direction, NpcModel, db
 from tuxemon.entity import Entity
-from tuxemon.evolution import EvolutionRegistry
 from tuxemon.item.item import Item, decode_items, encode_items
 from tuxemon.locale import T
 from tuxemon.map import dirs2, get_direction, proj
@@ -23,6 +22,7 @@ from tuxemon.math import Vector2
 from tuxemon.mission import MissionController, MissionManager
 from tuxemon.money import MoneyController
 from tuxemon.monster import Monster, decode_monsters, encode_monsters
+from tuxemon.monster_dir.evolution_registry import EvolutionRegistry
 from tuxemon.movement import get_tile_moverate
 from tuxemon.relationship import (
     Relationships,
@@ -209,7 +209,7 @@ class NPC(Entity[NPCState]):
         self.money_controller.load(save_data)
         self.unlocked_letters = decode_cipher(save_data)
         self.evolution_registry.decode_registry(
-            save_data.get("evolution_registry")
+            save_data.get("evolution_registry", {})
         )
         self.monster_boxes.load(self, save_data)
         self.item_boxes.load(save_data)

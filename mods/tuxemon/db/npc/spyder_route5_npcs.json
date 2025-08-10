@@ -1,6 +1,16 @@
 [
   {
     "slug": "spyder_route5_cleo",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_route5_cleo1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_route5_cleo2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "catgirl_blonde",
       "combat_front": "catgirl",
@@ -9,6 +19,16 @@
   },
   {
     "slug": "spyder_route5_edith",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_route5_edith1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_route5_edith2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "picnicker",
       "combat_front": "picnicker",
@@ -17,6 +37,16 @@
   },
   {
     "slug": "spyder_route5_hunter",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_route5_hunter1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_route5_hunter2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "soldier",
       "combat_front": "soldier",
@@ -25,6 +55,16 @@
   },
   {
     "slug": "spyder_route5_goliath",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_route5_goliath1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_route5_goliath2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "spyderrookie",
       "combat_front": "spyder_rookie",
@@ -33,6 +73,16 @@
   },
   {
     "slug": "spyder_route5_sara",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_route5_sara1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_route5_sara2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "picnicker",
       "combat_front": "picnicker",
@@ -41,6 +91,16 @@
   },
   {
     "slug": "spyder_route5_tryphaena",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_route5_tryphaena1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_route5_tryphaena2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "florist_blue",
       "combat_front": "florist",

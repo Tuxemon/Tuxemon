@@ -1,6 +1,6 @@
 {
   "slug": "yamada",
-  "category": "samurai_ghost",
+  "species": "samurai_ghost",
   "moveset": [
     {
       "level_learned": 1,

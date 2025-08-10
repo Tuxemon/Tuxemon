@@ -1,6 +1,16 @@
 [
   {
     "slug": "spyder_tunnelb_beryll",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_tunnelb_beryll1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_tunnelb_beryll2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "scientist",
       "combat_front": "scientist",
@@ -9,6 +19,16 @@
   },
   {
     "slug": "spyder_tunnelb_greta",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_tunnelb_greta1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_tunnelb_greta2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "picnicker",
       "combat_front": "picnicker",
@@ -17,6 +37,16 @@
   },
   {
     "slug": "spyder_tunnelb_iris",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_tunnelb_iris1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_tunnelb_iris2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "florist_brown",
       "combat_front": "florist",
@@ -25,6 +55,16 @@
   },
   {
     "slug": "spyder_tunnelb_meitner",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_tunnelb_meitner1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_tunnelb_meitner2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "scientist_fiery",
       "combat_front": "scientist",
@@ -33,6 +73,16 @@
   },
   {
     "slug": "spyder_tunnelb_lute",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_tunnelb_lute1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_tunnelb_lute2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "scientist_black",
       "combat_front": "scientist",
@@ -41,6 +91,16 @@
   },
   {
     "slug": "spyder_tunnelb_tommy",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_tunnelb_tommy1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_tunnelb_tommy2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "beachcomber_gray",
       "combat_front": "yellowbelt",

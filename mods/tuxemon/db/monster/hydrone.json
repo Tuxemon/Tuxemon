@@ -1,6 +1,6 @@
 {
   "slug": "hydrone",
-  "category": "short_circuit",
+  "species": "short_circuit",
   "moveset": [
     {
       "level_learned": 1,

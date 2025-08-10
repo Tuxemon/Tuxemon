@@ -1,6 +1,6 @@
 {
   "slug": "ruffalo",
-  "category": "buffalo",
+  "species": "buffalo",
   "moveset": [
     {
       "level_learned": 1,

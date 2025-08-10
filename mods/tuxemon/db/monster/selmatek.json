@@ -1,6 +1,6 @@
 {
   "slug": "selmatek",
-  "category": "sand_steed",
+  "species": "sand_steed",
   "moveset": [
     {
       "level_learned": 1,

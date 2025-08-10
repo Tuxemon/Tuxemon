@@ -1,6 +1,6 @@
 {
   "slug": "pharavion",
-  "category": "spirit_elephant",
+  "species": "spirit_elephant",
   "moveset": [
     {
       "level_learned": 1,

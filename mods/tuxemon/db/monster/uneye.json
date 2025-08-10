@@ -1,6 +1,6 @@
 {
   "slug": "uneye",
-  "category": "vision",
+  "species": "vision",
   "moveset": [
     {
       "level_learned": 1,

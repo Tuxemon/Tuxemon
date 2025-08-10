@@ -1,6 +1,6 @@
 {
   "slug": "marvillar",
-  "category": "ant_mimic",
+  "species": "ant_mimic",
   "moveset": [
     {
       "level_learned": 1,

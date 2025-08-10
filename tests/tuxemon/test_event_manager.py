@@ -5,7 +5,7 @@ from unittest.mock import Mock
 
 from tuxemon.event.eventmanager import EventManager
 from tuxemon.platform.events import PlayerInput
-from tuxemon.state import StateManager
+from tuxemon.state.manager import StateManager
 
 
 class TestEventManager(unittest.TestCase):

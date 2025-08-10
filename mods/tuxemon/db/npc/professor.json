@@ -1,10 +1,8 @@
 {
   "slug": "professor",
-  "template": 
-    {
-      "sprite_name": "professor",
-      "combat_front": "professor",
-      "slug": "professor"
-    }
-
+  "template": {
+    "sprite_name": "professor",
+    "combat_front": "professor",
+    "slug": "professor"
+  }
 }

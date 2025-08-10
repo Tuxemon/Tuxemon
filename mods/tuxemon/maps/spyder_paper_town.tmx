@@ -30,7 +30,7 @@
    eAHV1ckyA0Ecx/F2sVfZDpQD3oByVMp2IG+BM0koYjuoXDyDSOxl3x5DRBIO9u0JuBJ7+U7RZUzNX0SlIv5VH53p6e75TWcylLKvmlylam1U06fLboxxvi9HqX6Bh/6CcqUKUYRilECqOcbPw9pK4xuLpDOf/T7Wk8rPuQbyNKIJzWiB9fr6WFonkX53mfK64EQ3uiDNN/I5yeOCGz3ohVQ6p7WVxtv1+8uUCmASU5iGVEa+SfJMYRozmIX1+vpYWsfoH2eeDxPwIwBrGd93iDy7CCOCKAZNz6l1Tph1IohiD/uQSufUrR7nyFNqm3lB7CCEXfy0Rr/J98g6T3jGC17xm7pl3h1iuMcDfvL7+M21pDnWfZPGpUN/XWY6pPiawbx/Ot9YCnPq60utOa3OV0++Ed5hwxjCIAbggXm8/rxVqryb2MA61qDPJbM151vgHbGIJSxjBauwqyvyXOIC5ziD3Ti7PmnfdP8278sgjDLnOyDLIY5wjBOcosHy/y2L43z2NQ/Guy+HNlvY5/erJPb3mmw3H/na+V470Jmmz98dtxbDfWK3mLLRFRlKVaIKqSr9nEmtOcdf5DNfP97nVvatDY4E9k+672T1x8v8388na5+kdd4AQu+w+w==
   </data>
  </layer>
- <layer id="4" name="Above Player" width="40" height="20">
+ <layer id="4" name="Tile Layer 4" width="40" height="20">
   <data encoding="base64" compression="zlib">
    eAFjYBg+QFhq+Phl1Ce0CQEFQdqYSy1T7Qe5+6jlz1FzRkOAHiGwkJOBYREQj4LREBiKIQBLv+TSQ9HPo24eOSEAAJsPDKw=
   </data>
@@ -241,7 +241,7 @@
   <object id="219" name="Chosen - Rockitten" type="event" x="512" y="128" width="16" height="16">
    <properties>
     <property name="act1" value="add_monster rockitten,5"/>
-    <property name="act2" value="translated_dialog rockitten,,center,center,middle"/>
+    <property name="act2" value="translated_dialog rockitten,,center,center,center"/>
     <property name="act3" value="set_variable firstfightdue:yes"/>
     <property name="act4" value="set_variable mymonchoice:rockitten"/>
     <property name="cond1" value="is variable_set rockittenchosen:yes"/>
@@ -251,7 +251,7 @@
   <object id="220" name="Chosen - Lambert" type="event" x="512" y="160" width="16" height="16">
    <properties>
     <property name="act1" value="add_monster lambert,5"/>
-    <property name="act2" value="translated_dialog lambert,,center,center,middle"/>
+    <property name="act2" value="translated_dialog lambert,,center,center,center"/>
     <property name="act3" value="set_variable firstfightdue:yes"/>
     <property name="act4" value="set_variable mymonchoice:lambert"/>
     <property name="cond1" value="is variable_set lambertchosen:yes"/>
@@ -261,7 +261,7 @@
   <object id="221" name="Chosen - Nut" type="event" x="512" y="192" width="16" height="16">
    <properties>
     <property name="act1" value="add_monster nut,5"/>
-    <property name="act2" value="translated_dialog nut,,center,center,middle"/>
+    <property name="act2" value="translated_dialog nut,,center,center,center"/>
     <property name="act3" value="set_variable firstfightdue:yes"/>
     <property name="act4" value="set_variable mymonchoice:nut"/>
     <property name="cond1" value="is variable_set nutchosen:yes"/>
@@ -271,7 +271,7 @@
   <object id="222" name="Chosen - Tweesher" type="event" x="512" y="224" width="16" height="16">
    <properties>
     <property name="act1" value="add_monster tweesher,5"/>
-    <property name="act2" value="translated_dialog tweesher,,center,center,middle"/>
+    <property name="act2" value="translated_dialog tweesher,,center,center,center"/>
     <property name="act3" value="set_variable firstfightdue:yes"/>
     <property name="act4" value="set_variable mymonchoice:tweesher"/>
     <property name="cond1" value="is variable_set tweesherchosen:yes"/>
@@ -281,7 +281,7 @@
   <object id="223" name="Chosen - Agnite" type="event" x="512" y="256" width="16" height="16">
    <properties>
     <property name="act1" value="add_monster agnite,5"/>
-    <property name="act2" value="translated_dialog agnite,,center,center,middle"/>
+    <property name="act2" value="translated_dialog agnite,,center,center,center"/>
     <property name="act3" value="set_variable firstfightdue:yes"/>
     <property name="act4" value="set_variable mymonchoice:agnite"/>
     <property name="cond1" value="is variable_set agnitechosen:yes"/>
@@ -295,8 +295,9 @@
     <property name="act20" value="create_npc spyder_billie,13,14"/>
     <property name="act30" value="pathfind spyder_billie,25,13"/>
     <property name="act40" value="wait 1.0"/>
-    <property name="act50" value="pathfind_to_char player,spyder_billie"/>
+    <property name="act50" value="pathfind_to_char player,spyder_billie,down"/>
     <property name="act51" value="char_face spyder_billie,player"/>
+    <property name="act52" value="char_face player,spyder_billie"/>
     <property name="act60" value="translated_dialog spyder_papertown_firstfight"/>
     <property name="act61" value="add_monster billie_choice,5,spyder_billie,5,10"/>
     <property name="act62" value="set_monster_attribute add_monster,gender,male"/>

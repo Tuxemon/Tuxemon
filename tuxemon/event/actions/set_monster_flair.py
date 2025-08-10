@@ -9,7 +9,7 @@ from uuid import UUID
 
 from tuxemon.event import get_monster_by_iid
 from tuxemon.event.eventaction import EventAction
-from tuxemon.monster import Flair
+from tuxemon.monster_dir.sprite import Flair
 from tuxemon.session import Session
 
 logger = logging.getLogger(__name__)

@@ -112,8 +112,8 @@
   </object>
   <object id="30" name="Play Music" type="event" x="0" y="16" width="16" height="16">
    <properties>
-    <property name="act1" value="play_music music_mansion_theme"/>
-    <property name="cond1" value="not music_playing music_mansion_theme"/>
+    <property name="act1" value="play_music music_jester_theme"/>
+    <property name="cond1" value="not music_playing music_jester_theme"/>
    </properties>
   </object>
   <object id="32" name="Teleport to Side Route" type="event" x="176" y="272" width="16" height="16">
@@ -310,7 +310,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_mansion_lucy3"/>
     <property name="act2" value="add_item mystery_tea"/>
-    <property name="act3" value="translated_dialog mystery_tea,,center,center,middle"/>
+    <property name="act3" value="translated_dialog mystery_tea,,center,center,center"/>
     <property name="act4" value="set_variable tealucy:yes"/>
     <property name="behav1" value="talk spyder_mansion_lucy"/>
     <property name="cond1" value="is variable_set mansionlucy:yes"/>

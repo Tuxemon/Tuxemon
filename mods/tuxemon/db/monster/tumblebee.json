@@ -1,6 +1,6 @@
 {
   "slug": "tumblebee",
-  "category": "drone",
+  "species": "drone",
   "moveset": [
     {
       "level_learned": 1,

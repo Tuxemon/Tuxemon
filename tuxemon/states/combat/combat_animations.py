@@ -33,7 +33,7 @@ from tuxemon.ui.combat_layout import (
 from tuxemon.ui.combat_monsters import FieldMonsters, MonsterSpriteMap
 from tuxemon.ui.combat_status import StatusIconManager
 from tuxemon.ui.combat_zone import CombatZone
-from tuxemon.ui.text import HorizontalAlignment
+from tuxemon.ui.text_alignment import HorizontalAlignment
 
 if TYPE_CHECKING:
     from tuxemon.animation import Animation
@@ -68,10 +68,11 @@ class CombatAnimations(Menu[None], ABC):
 
     def __init__(self, context: CombatContext) -> None:
         super().__init__()
+        self.context = context
         self.session = context.session
         self.players = context.teams
         self.graphics = context.graphics
-        self.is_double = context.battle_mode == "double"
+        self.is_double = context.is_double_battle
         self.field_monsters = FieldMonsters()
         self.sprite_map = MonsterSpriteMap()
         self.is_trainer_battle = False
@@ -271,21 +272,71 @@ class CombatAnimations(Menu[None], ABC):
             transition="out_quint",
         )
 
-    def animate_exp(self, monster: Monster) -> None:
-        target_previous = monster.experience_required()
-        target_next = monster.experience_required(1)
-        diff_value = monster.total_experience - target_previous
-        diff_target = target_next - target_previous
-        value = max(0, min(1, (diff_value) / (diff_target)))
-        if monster.levelling_up:
-            value = 1.0
-        exp_bar = self.bars.get_exp_bar(monster)
-        self.animate(
-            exp_bar,
-            value=value,
-            duration=0.7,
-            transition="out_quint",
+    def calculate_bar_value(
+        self, total_experience: int, xp_start: int, xp_end: int
+    ) -> float:
+        """
+        Calculates normalized bar progress as a float between 0.0 and 1.0.
+        Prevents overflow/underflow visually.
+        """
+        return max(
+            0.0, min(1.0, (total_experience - xp_start) / (xp_end - xp_start))
         )
+
+    def animate_exp(self, monster: Monster) -> None:
+        exp_bar = self.bars.get_exp_bar(monster)
+
+        if monster.levelling_up:
+
+            def fill_to_max() -> Animation:
+                return self.animate(
+                    exp_bar,
+                    value=1.0,
+                    duration=0.3,
+                    transition="linear",
+                )
+
+            def reset_bar() -> Animation:
+                return self.animate(
+                    exp_bar,
+                    value=0.0,
+                    duration=0.1,
+                    transition="linear",
+                    delay=1.0,
+                )
+
+            def animate_new_level_progress() -> Animation:
+                value_for_new_level = self.calculate_bar_value(
+                    total_experience=monster.total_experience,
+                    xp_start=monster.experience_required(),
+                    xp_end=monster.experience_required(1),
+                )
+                return self.animate(
+                    exp_bar,
+                    value=value_for_new_level,
+                    duration=0.7,
+                    transition="linear",
+                    delay=0.5,
+                )
+
+            self.chain_animations(
+                fill_to_max,
+                reset_bar,
+                animate_new_level_progress,
+            )
+
+        else:
+            value = self.calculate_bar_value(
+                total_experience=monster.total_experience,
+                xp_start=monster.experience_required(),
+                xp_end=monster.experience_required(1),
+            )
+            self.animate(
+                exp_bar,
+                value=value,
+                duration=0.7,
+                transition="out_quint",
+            )
 
     def animate_monster_leave(self, monster: Monster) -> None:
         sprite = self.sprite_map.get_sprite(monster)
@@ -577,7 +628,9 @@ class CombatAnimations(Menu[None], ABC):
         if not self.is_trainer_battle:
             sound = self.players[1].monsters[0].combat_call
             self.play_sound_effect(sound, 1.5)
-        self.display_alert_message()
+
+        start_message = self.context.get_start_message()
+        self.dialog.alert(start_message)
 
     def flip_sprites(self, enemy: Sprite, player_back: Sprite) -> None:
         """Flip the sprites horizontally."""
@@ -634,15 +687,6 @@ class CombatAnimations(Menu[None], ABC):
     ) -> None:
         """Play the sound effect."""
         self.client.sound_manager.play_sound(sound, value)
-
-    def display_alert_message(self) -> None:
-        """Display the alert message."""
-        if self.is_trainer_battle:
-            params = {"name": self.players[1].name.upper()}
-            self.alert(T.format("combat_trainer_appeared", params))
-        else:
-            params = {"name": self.players[1].monsters[0].name.upper()}
-            self.alert(T.format("combat_wild_appeared", params))
 
     def animate_throwing(
         self,
@@ -745,7 +789,7 @@ class CombatAnimations(Menu[None], ABC):
                 gotcha += "\n" + info
                 delay += len(gotcha) * config_combat.letter_time
                 self.task(
-                    partial(self.alert, gotcha),
+                    partial(self.dialog.alert, gotcha),
                     interval=delay,
                 )
 
@@ -774,7 +818,7 @@ class CombatAnimations(Menu[None], ABC):
                 failed = T.translate(label)
                 delay += len(failed) * config_combat.letter_time
                 self.task(
-                    partial(self.alert, failed),
+                    partial(self.dialog.alert, failed),
                     interval=delay,
                 )
 

@@ -1,6 +1,16 @@
 [
   {
     "slug": "spyder_routea_connie",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_routea_connie1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_routea_connie2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "beachcomber_copper",
       "combat_front": "beachgoer",
@@ -9,6 +19,16 @@
   },
   {
     "slug": "spyder_routea_dagger",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_routea_dagger1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_routea_dagger2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "boss_orange",
       "combat_front": "rocker",
@@ -17,6 +37,16 @@
   },
   {
     "slug": "spyder_routea_doris",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_routea_doris1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_routea_doris2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "florist_blue",
       "combat_front": "florist",
@@ -25,6 +55,16 @@
   },
   {
     "slug": "spyder_routea_joe",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_routea_joe1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_routea_joe2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "beachcomber_fiery",
       "combat_front": "yellowbelt",
@@ -33,6 +73,16 @@
   },
   {
     "slug": "spyder_routea_koan",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_routea_koan1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_routea_koan2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "boss_red",
       "combat_front": "rocker",
@@ -41,6 +91,16 @@
   },
   {
     "slug": "spyder_routea_lexi",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_routea_lexi1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_routea_lexi2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "catgirl_violet",
       "combat_front": "catgirl",
@@ -49,6 +109,16 @@
   },
   {
     "slug": "spyder_routea_lotu",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_routea_lotu1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_routea_lotu2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "monk_red",
       "combat_front": "monk",
@@ -57,6 +127,16 @@
   },
   {
     "slug": "spyder_routea_rosy",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_routea_rosy1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_routea_rosy2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "picnicker",
       "combat_front": "picnicker",
@@ -65,6 +145,16 @@
   },
   {
     "slug": "spyder_routea_vince",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_routea_vince1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_routea_vince2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "goth",
       "combat_front": "goth",

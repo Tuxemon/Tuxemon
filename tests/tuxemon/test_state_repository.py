@@ -3,10 +3,11 @@
 import unittest
 from unittest.mock import Mock
 
-from tuxemon.state import StateRepository
+from tuxemon.state.repository import StateRepository
 
 
 class TestStateRepository(unittest.TestCase):
+
     def setUp(self):
         self.state_repository = StateRepository()
         self.mock_state1 = Mock()

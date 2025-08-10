@@ -377,7 +377,7 @@ msgid "imperial_potion"
 msgstr "Cesarski eliksir"
 
 msgid "super_potion_description"
-msgstr "Leczy potwora, dając mu 150 HP."
+msgstr "Leczy potwora, dając mu 100 HP."
 
 # Super Potion
 msgid "super_potion"

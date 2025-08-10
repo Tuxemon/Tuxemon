@@ -1,6 +1,6 @@
 {
   "slug": "furnursus",
-  "category": "fireplace",
+  "species": "fireplace",
   "moveset": [
     {
       "level_learned": 1,

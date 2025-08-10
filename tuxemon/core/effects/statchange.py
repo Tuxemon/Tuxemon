@@ -25,23 +25,32 @@ class StatChangeEffect(CoreEffect):
     Applies a stat-altering effect to a target monster during combat.
 
     This effect modifies one or more combat-relevant stats on a monster, either
-    through addition, subtraction, or division, depending on configuration. The affected
-    stats are pulled from the status's stat components (e.g. `status.statmelee`, etc.),
-    and can impact either permanent base stats or temporary health values.
+    through value-based operations (e.g., add/subtract) or step-based scaling,
+    depending on configuration. Step-based changes allow incremental percentage
+    adjustments relative to a stat's base value, with clamping via `max_step_limit`
+    to ensure balance.
 
-    This class supports optional randomness via `max_deviation`, and HP overrides using
-    `overridetofull` which resets current HP to the max HP.
+    Stats are pulled from the status's stat components (e.g. `status.statmelee`, etc.),
+    and can impact either permanent base stats or runtime health values.
+
+    This class supports:
+    - Optional randomness via `max_deviation`
+    - HP overrides using `overridetofull`, which resets current HP to max HP
+    - Clamping of final values to avoid death or stat corruption
 
     Effect Trigger:
-        - Only applies if the status has phase `PERFORM_STATUS`.
+        - Only applies if the status has phase `PERFORM_STATUS`
 
     JSON SYNTAX (per stat object inside Status):
-        {
-            "value": int,               # Amount to apply to the stat (positive or negative)
-            "max_deviation": int,       # Optional random deviation applied to value
-            "operation": str,           # Operation: "add", "subtract", "divide" (from ops_dict)
-            "overridetofull": bool      # Special case for HP: resets current HP to max HP if True
-        }
+    {
+        "value": float,             # Direct stat adjustment (ignored if using step)
+        "step": int,                # Optional step delta (e.g., +2 steps to speed); used in scaling
+        "max_deviation": int,       # Optional random deviation applied to step or value
+        "max_step_limit": float,    # Max cumulative scaling boundary (e.g., ±0.5 for ±50% total change)
+        "scaling_mode": str,        # "linear" uses base*(1 + step), "nonlinear" uses tiered multipliers
+        "operation": str,           # Arithmetic operation: "add", "subtract", "divide" (for value logic only)
+        "overridetofull": bool      # If True and stat is HP, fully restores current HP to max
+    }
 
     Stats Supported:
         - speed
@@ -56,7 +65,8 @@ class StatChangeEffect(CoreEffect):
         name: Effect name, used for identification and serialization.
 
     Returns:
-        StatusEffectResult: Indicates if the stat change was successful and references the status name.
+        StatusEffectResult: Indicates whether the stat change was successful
+        and contains the status name.
     """
 
     name = "statchange"
@@ -72,33 +82,31 @@ class StatChangeEffect(CoreEffect):
             status.statranged,
             status.statdodge,
         ]
-        statslugs = [
+        slugs = [
             "speed",
-            "current_hp",  # special case
+            "current_hp",  # special case for current HP
             "armour",
             "melee",
             "ranged",
             "dodge",
         ]
-        newstatvalue = 0
 
-        if status.has_phase(EffectPhase.PERFORM_STATUS):
-            for stat, slug in zip(statsmaster, statslugs):
-                if not stat:
+        if (
+            status.has_phase(EffectPhase.PERFORM_STATUS)
+            and self.name not in status._effect_applied
+        ):
+            status._effect_applied.add("statchange")
+            for stat_model, slug in zip(statsmaster, slugs):
+                if not stat_model:
                     continue
 
-                value = stat.value
-                max_dev = stat.max_deviation
-                override = stat.overridetofull
-                operation = stat.operation
+                step_delta = stat_model.step
+                raw_value = stat_model.value
+                max_dev = stat_model.max_deviation
+                override = stat_model.overridetofull
+                operation = stat_model.operation
 
-                # Apply deviation properly for positive or negative values
-                if max_dev:
-                    min_val = value - max_dev
-                    max_val = value + max_dev
-                    value = random.randint(int(min_val), int(max_val))
-
-                # Handle HP override explicitly
+                # Handle HP override
                 if slug == "current_hp" and override:
                     target.current_hp = target.hp
                     logger.info(
@@ -106,27 +114,92 @@ class StatChangeEffect(CoreEffect):
                     )
                     continue
 
-                base_value = (
-                    getattr(target, slug)
-                    if slug == "current_hp"
-                    else getattr(target.base_stats, slug, None)
-                )
-                if base_value is None:
-                    continue
+                new_value = 0
 
-                newstatvalue = ops_dict[operation](base_value, value)
+                if step_delta is not None:
+                    scaling_mode = stat_model.scaling_mode
+                    max_step = stat_model.max_step_limit
 
-                if newstatvalue <= 0:
-                    newstatvalue = 1  # avoid death via stat drop
+                    actual_step = (
+                        random.randint(
+                            step_delta - max_dev, step_delta + max_dev
+                        )
+                        if max_dev
+                        else step_delta
+                    )
 
-                # Assign value
+                    # Clamp actual step to allowable range
+                    actual_step = int(
+                        max(-max_step, min(max_step, actual_step))
+                    )
+
+                    if slug == "current_hp":
+                        base = target.hp
+                    else:
+                        base = getattr(target.base_stats, slug)
+
+                    current = target.return_stat(StatType(slug))
+                    old_step = (current - base) / base
+                    total_step = max(
+                        -max_step,
+                        min(max_step, old_step + actual_step),
+                    )
+
+                    if scaling_mode == "linear":
+                        new_value = int(base * (1 + total_step))
+                    else:
+                        # Nonlinear tiered formula
+                        if total_step > 0:
+                            new_value = int(
+                                base * (max_step + total_step) / max_step
+                            )
+                        else:
+                            new_value = int(
+                                base * max_step / (max_step - total_step)
+                            )
+
+                    logger.debug(
+                        f"[{status.name}] {slug} changed via {scaling_mode} step on {target.name}: "
+                        f"step {old_step:.3f} > {total_step:.3f}, value {current:.2f} > {new_value:.2f}"
+                    )
+
+                else:
+                    # Value-based logic
+                    applied_value = (
+                        random.randint(
+                            int(raw_value - max_dev), int(raw_value + max_dev)
+                        )
+                        if max_dev
+                        else raw_value
+                    )
+
+                    stat_base = (
+                        getattr(target, slug)
+                        if slug == "current_hp"
+                        else getattr(target.base_stats, slug, None)
+                    )
+                    if stat_base is None:
+                        continue
+
+                    op_func = ops_dict.get(operation, lambda a, b: a)
+                    new_value = int(op_func(stat_base, applied_value))
+
+                    logger.debug(
+                        f"[{status.name}] {slug} changed via value on {target.name}: "
+                        f"{stat_base} > {new_value}"
+                    )
+
+                # Safety: Clamp stat values
+                if new_value <= 0 and slug != "current_hp":
+                    new_value = 1
+
+                # Assignment
                 if slug == "current_hp":
-                    setattr(target, slug, newstatvalue)
+                    target.current_hp = min(new_value, target.hp)
                 elif slug in StatType.__members__:
-                    setattr(target.base_stats, slug, newstatvalue)
+                    setattr(target.base_stats, slug, int(new_value))
 
-                logger.debug(
-                    f"[{status.name}] {slug} changed on {target.name}: {base_value} > {newstatvalue}"
-                )
+        elif status.has_phase(EffectPhase.ON_END):
+            target.set_stats()
 
-        return StatusEffectResult(name=status.name, success=bool(newstatvalue))
+        return StatusEffectResult(name=status.name, success=True)

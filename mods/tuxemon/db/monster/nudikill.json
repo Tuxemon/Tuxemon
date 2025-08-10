@@ -1,6 +1,6 @@
 {
   "slug": "nudikill",
-  "category": "dark_bishop",
+  "species": "dark_bishop",
   "moveset": [
     {
       "level_learned": 1,

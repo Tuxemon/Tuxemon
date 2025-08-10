@@ -1,8 +1,8 @@
 # SPDX-License-Identifier: GPL-3.0
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 import unittest
-import uuid
 from unittest.mock import MagicMock
+from uuid import uuid4
 
 from tuxemon.npc_manager import NPCManager
 
@@ -10,8 +10,8 @@ from tuxemon.npc_manager import NPCManager
 class TestNPCManager(unittest.TestCase):
     def setUp(self) -> None:
         self.manager = NPCManager()
-        self.npc1 = MagicMock(slug="npc_1", instance_id=uuid.uuid4())
-        self.npc2 = MagicMock(slug="npc_2", instance_id=uuid.uuid4())
+        self.npc1 = MagicMock(slug="npc_1", instance_id=uuid4())
+        self.npc2 = MagicMock(slug="npc_2", instance_id=uuid4())
 
     def test_add_npc(self) -> None:
         self.manager.add_npc(self.npc1)

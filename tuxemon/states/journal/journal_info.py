@@ -142,7 +142,7 @@ class JournalInfoState(PygameMenuState):
         )
         lab6.translate(fxw(0.50), fxh(0.40))
         # species
-        spec = T.translate(f"cat_{monster.category}")
+        spec = T.translate(f"cat_{monster.species}")
         spec = self._safe_display(spec)
         species = T.translate("monster_menu_species") + ": " + spec
         lab7: Any = menu.add.label(

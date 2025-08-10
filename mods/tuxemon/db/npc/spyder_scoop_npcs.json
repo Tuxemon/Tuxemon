@@ -1,6 +1,16 @@
 [
   {
     "slug": "spyder_scoop_alyssa",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_scoop_alyssa1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_scoop_alyssa2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "nurse_blonde",
       "combat_front": "nurse",
@@ -9,6 +19,16 @@
   },
   {
     "slug": "spyder_scoop_paine",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_scoop_paine1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_scoop_paine2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "nurse_green",
       "combat_front": "nurse",
@@ -17,6 +37,16 @@
   },
   {
     "slug": "spyder_scoop_orba",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_scoop_orba1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_scoop_orba2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "spyderrookie",
       "combat_front": "spyder_rookie",
@@ -25,6 +55,16 @@
   },
   {
     "slug": "spyder_scoop_rubid",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_scoop_rubid1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_scoop_rubid2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "scientist",
       "combat_front": "scientist",
@@ -33,6 +73,16 @@
   },
   {
     "slug": "spyder_scoop_weaver",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_scoop_weaver1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_scoop_weaver2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "spyderrookie",
       "combat_front": "spyder_rookie",
@@ -41,6 +91,16 @@
   },
   {
     "slug": "spyder_scoop_turner",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_scoop_turner1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_scoop_turner2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "knight",
       "combat_front": "enforcer_rookie",
@@ -49,6 +109,16 @@
   },
   {
     "slug": "spyder_scoop_taggart",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_scoop_taggart1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_scoop_taggart2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "nurse_red",
       "combat_front": "nurse",
@@ -65,6 +135,16 @@
   },
   {
     "slug": "spyder_scoop_berys",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_scoop_berys1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_scoop_berys2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "professor_black",
       "combat_front": "professor",
@@ -97,6 +177,16 @@
   },
   {
     "slug": "spyder_scoop_donald",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_scoop_donald1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_scoop_donald2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "cooldude_fiery",
       "combat_front": "cooldude",
@@ -113,6 +203,16 @@
   },
   {
     "slug": "spyder_scoop_lanth",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_scoop_lanth1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_scoop_lanth2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "professor",
       "combat_front": "professor",

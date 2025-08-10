@@ -19,7 +19,7 @@ from tuxemon.platform.const import buttons
 from tuxemon.platform.events import PlayerInput
 from tuxemon.save import get_index_of_latest_save
 from tuxemon.session import local_session
-from tuxemon.state import State
+from tuxemon.state.state import State
 from tuxemon.time_handler import today_ordinal
 
 logger = logging.getLogger(__name__)
@@ -100,7 +100,7 @@ class StartState(PygameMenuState):
             )
         menu.add.button(
             title=T.translate("menu_minigame"),
-            action=change_state("MinigameState"),
+            action=change_state("DifficultySelectState"),
             font_size=self.font_type.big,
             button_id="menu_minigame",
         )

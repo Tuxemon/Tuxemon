@@ -9,6 +9,7 @@ from typing import final
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.session import Session
+from tuxemon.states.pc import PCMenuBuilder
 
 logger = logging.getLogger()
 
@@ -54,7 +55,12 @@ class AccessPCAction(EventAction):
             )
             return
 
-        self.client.push_state("PCState", character=character)
+        menu_builder = PCMenuBuilder(
+            client=self.client, character=character, menu_providers=None
+        )
+        self.client.push_state(
+            "PCState", character=character, menu_builder=menu_builder
+        )
 
     def update(self, session: Session) -> None:
         try:

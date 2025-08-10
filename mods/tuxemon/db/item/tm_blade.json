@@ -1,6 +1,14 @@
 {
   "conditions": [
     {
+      "type": "base",
+      "parameters": [
+        "tags",
+        "sharp:steel"
+      ],
+      "operator": "is"
+    },
+    {
       "type": "has_tech",
       "parameters": [
         "blade"

@@ -153,6 +153,44 @@
   },
   {
     "background": "gfx/ui/item/item_menu_bg.png",
+    "items": [],
+    "monsters": [
+      {
+        "cost": 50,
+        "name": "squink",
+        "price": 500,
+        "level": 10
+      },
+      {
+        "cost": 50,
+        "name": "potturmeist",
+        "price": 500,
+        "level": 10
+      },
+      {
+        "cost": 50,
+        "name": "fuzzlet",
+        "price": 500,
+        "level": 10
+      },
+      {
+        "cost": 50,
+        "name": "woodoor",
+        "price": 500,
+        "level": 10
+      },
+      {
+        "cost": 50,
+        "name": "ziggurat",
+        "price": 500,
+        "level": 10
+      }
+    ],
+    "resale_multiplier": 0.5,
+    "slug": "spyder_flower_petshop"
+  },
+  {
+    "background": "gfx/ui/item/item_menu_bg.png",
     "items": [
       {
         "cost": 10,

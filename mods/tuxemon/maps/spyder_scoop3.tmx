@@ -15,12 +15,12 @@
    eAGbKs7AMJUEvAWolhR8GaieFHyLlYFhJOBnnKT5k9bqyQ1zAB+UetE=
   </data>
  </layer>
- <layer id="2" name="Tile Layer 4" width="12" height="12">
+ <layer id="2" name="Tile Layer 2" width="12" height="12">
   <data encoding="base64" compression="zlib">
    eAGNjsENgkAURCehBcFmlItVcEfb4cBBoBDEmwnaiDTC/LBjNhuBneQxy9/HDwBwIRb18rY8NVPbtHaC+n4EGlIRzdRO/ZU5PXkQxWbjAXiTrZwTICcn8qU7Ob9NgY6EudK7kZL4Geg+A39th/+df/63w7+PPX/4HzHYPvNi8or0tCv0i0w3+z0D4mQfPg==
   </data>
  </layer>
- <layer id="3" name="Tile Layer 2" width="12" height="12">
+ <layer id="3" name="Tile Layer 3" width="12" height="12">
   <data encoding="base64" compression="zlib">
    eAFjYBgFgz0EFoqS5kJS1ZNmOqpqAL3GAW0=
   </data>

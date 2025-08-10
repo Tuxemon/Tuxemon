@@ -1,6 +1,16 @@
 [
   {
     "slug": "spyder_datacenter_fermi",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_datacenter_fermi1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_datacenter_fermi2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "scientist_black",
       "combat_front": "scientist",
@@ -9,6 +19,16 @@
   },
   {
     "slug": "spyder_datacenter_onnes",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_datacenter_onnes1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_datacenter_onnes2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "scientist_fiery",
       "combat_front": "scientist",
@@ -17,6 +37,16 @@
   },
   {
     "slug": "spyder_datacenter_bayliss",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_datacenter_bayliss1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_datacenter_bayliss2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "scientist_brown",
       "combat_front": "scientist",
@@ -25,6 +55,16 @@
   },
   {
     "slug": "spyder_datacenter_chomsky",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_datacenter_chomsky1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_datacenter_chomsky2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "scientist_fiery",
       "combat_front": "scientist",
@@ -33,6 +73,16 @@
   },
   {
     "slug": "spyder_datacenter_lagrange",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_datacenter_lagrange1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_datacenter_lagrange2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "scientist",
       "combat_front": "scientist",

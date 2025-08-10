@@ -1,41 +1,74 @@
 [
   {
-    "connected_missions": [],
+    "slug": "spyder_maniac_achievement1",
     "description": "spyder_maniac_achievement2",
     "prerequisites": [
       {
         "maniac_achievements": "yes"
       }
     ],
-    "progress": [
-      {
-        "completion_percentage": 5.0,
-        "game_variables": {
-          "maniac_achievements": "yes"
-        }
-      },
-      {
-        "completion_percentage": 50.0,
-        "game_variables": {
-          "got_both_fossils": "yes"
-        }
-      },
-      {
-        "completion_percentage": 50.0,
-        "game_variables": {
-          "got_shammer": "yes"
-        }
-      },
-      {
-        "completion_percentage": 100.0,
-        "game_variables": {
-          "catgirl_candy_hastraded": "yes"
-        }
-      }
-    ],
-    "required_items": [],
+    "failure_conditions": [],
+    "connected_missions": [],
+    "required_items": {},
+    "required_monsters": {},
     "required_missions": [],
-    "required_monsters": [],
-    "slug": "spyder_maniac_achievement1"
+    "repeatable": false,
+    "steps": {
+      "start_validation": {
+        "slug": "start_validation",
+        "order": 0,
+        "description": "Verify maniac achievements unlocked.",
+        "conditions": {
+          "maniac_achievements": "yes"
+        },
+        "next_steps": [
+          "fossil_check",
+          "shammer_check"
+        ],
+        "optional": false
+      },
+      "fossil_check": {
+        "slug": "fossil_check",
+        "order": 1,
+        "description": "Confirm player has both fossils.",
+        "conditions": {
+          "got_both_fossils": "yes"
+        },
+        "next_steps": [
+          "candy_trade"
+        ],
+        "optional": false
+      },
+      "shammer_check": {
+        "slug": "shammer_check",
+        "order": 1,
+        "description": "Verify possession of Shammer monster.",
+        "conditions": {
+          "got_shammer": "yes"
+        },
+        "next_steps": [
+          "candy_trade"
+        ],
+        "optional": false
+      },
+      "candy_trade": {
+        "slug": "candy_trade",
+        "order": 2,
+        "description": "Confirm candy trade with catgirl was completed.",
+        "conditions": {
+          "any_of": [
+            {
+              "got_both_fossils": "yes"
+            },
+            {
+              "got_shammer": "yes"
+            }
+          ],
+          "catgirl_candy_hastraded": "yes"
+        },
+        "next_steps": [],
+        "optional": false
+      }
+    }
   }
 ]

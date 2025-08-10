@@ -1,6 +1,6 @@
 {
   "slug": "firomenis",
-  "category": "dragon_moth",
+  "species": "dragon_moth",
   "moveset": [
     {
       "level_learned": 1,

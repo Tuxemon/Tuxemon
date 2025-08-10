@@ -1,6 +1,6 @@
 {
   "slug": "sockeserp",
-  "category": "power_socket_snake",
+  "species": "power_socket_snake",
   "moveset": [
     {
       "level_learned": 1,

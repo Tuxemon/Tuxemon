@@ -132,27 +132,6 @@ class Mission:
         if slug in self.steps:
             self.completed_steps.add(slug)
 
-    def check_required_items(self, character: NPC) -> bool:
-        for item_slug, required_quantity in self.required_items.items():
-            item = character.items.find_item(item_slug)
-            if not item:
-                return False
-            if (
-                required_quantity is not None
-                and item.quantity < required_quantity
-            ):
-                return False
-        return True
-
-    def check_required_monsters(self, character: NPC) -> bool:
-        for monster_slug, min_level in self.required_monsters.items():
-            monster = character.party.find_monster(monster_slug)
-            if not monster:
-                return False
-            if min_level is not None and monster.level < min_level:
-                return False
-        return True
-
     def get_slug_missions(self, character: NPC) -> list[str]:
         return [
             mission.slug
@@ -278,8 +257,8 @@ class Mission:
     def check_all_prerequisites(self, character: NPC) -> bool:
         return (
             self.check_required_missions(character)
-            and self.check_required_items(character)
-            and self.check_required_monsters(character)
+            and check_items(character, self.required_items)
+            and check_monsters(character, self.required_monsters)
             and self.check_prerequisites(character)
         )
 
@@ -290,9 +269,7 @@ class Mission:
         return self.status == MissionStatus.completed
 
 
-def check_step_items(
-    character: NPC, step_items: dict[str, Optional[int]]
-) -> bool:
+def check_items(character: NPC, step_items: dict[str, Optional[int]]) -> bool:
     for item_slug, required_quantity in step_items.items():
         item = character.items.find_item(item_slug)
         if not item:
@@ -302,7 +279,7 @@ def check_step_items(
     return True
 
 
-def check_step_monsters(
+def check_monsters(
     character: NPC, step_monsters: dict[str, Optional[int]]
 ) -> bool:
     for monster_slug, required_level in step_monsters.items():

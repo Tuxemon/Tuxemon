@@ -6,7 +6,7 @@ from unittest.mock import MagicMock
 from tuxemon.db import MissionStatus
 from tuxemon.mission.controller import MissionController
 from tuxemon.mission.manager import MissionManager
-from tuxemon.mission.mission import Mission
+from tuxemon.mission.mission import Mission, check_items, check_monsters
 from tuxemon.npc import NPC, NPCBagHandler, PartyHandler
 
 
@@ -86,15 +86,21 @@ class TestMissionManager(TestCase):
             item1 if slug == "potion" else item2 if slug == "lotion" else None
         )
 
-        self.assertTrue(self.mission.check_required_items(self.character))
+        self.assertTrue(
+            check_items(self.character, self.mission.required_items)
+        )
 
         item2.quantity = 1
-        self.assertFalse(self.mission.check_required_items(self.character))
+        self.assertFalse(
+            check_items(self.character, self.mission.required_items)
+        )
 
         self.character.items.find_item.side_effect = lambda slug: (
             item1 if slug == "potion" else None
         )
-        self.assertFalse(self.mission.check_required_items(self.character))
+        self.assertFalse(
+            check_items(self.character, self.mission.required_items)
+        )
 
     def test_check_required_monsters(self):
         self.mission.required_monsters = {"monster1": None, "monster2": 5}
@@ -114,15 +120,21 @@ class TestMissionManager(TestCase):
             else monster2 if slug == "monster2" else None
         )
 
-        self.assertTrue(self.mission.check_required_monsters(self.character))
+        self.assertTrue(
+            check_monsters(self.character, self.mission.required_monsters)
+        )
 
         monster2.level = 4
-        self.assertFalse(self.mission.check_required_monsters(self.character))
+        self.assertFalse(
+            check_monsters(self.character, self.mission.required_monsters)
+        )
 
         self.character.party.find_monster.side_effect = lambda slug: (
             monster1 if slug == "monster1" else None
         )
-        self.assertFalse(self.mission.check_required_monsters(self.character))
+        self.assertFalse(
+            check_monsters(self.character, self.mission.required_monsters)
+        )
 
     def test_check_all_prerequisites_with_no_missions(self):
         self.assertTrue(self.mission_controller.check_all_prerequisites())

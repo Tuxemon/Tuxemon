@@ -8,11 +8,7 @@ from typing import TYPE_CHECKING, Any, Optional
 
 from tuxemon.db import MissionStatus
 from tuxemon.mission.manager import MissionManager
-from tuxemon.mission.mission import (
-    Mission,
-    check_step_items,
-    check_step_monsters,
-)
+from tuxemon.mission.mission import Mission, check_items, check_monsters
 
 if TYPE_CHECKING:
     from tuxemon.npc import NPC
@@ -81,11 +77,9 @@ class MissionController:
                     continue
 
                 # Check step-specific requirements
-                if not check_step_items(
-                    self.character, step.step_items_needed
-                ):
+                if not check_items(self.character, step.step_items_needed):
                     continue
-                if not check_step_monsters(
+                if not check_monsters(
                     self.character, step.step_monsters_needed
                 ):
                     continue

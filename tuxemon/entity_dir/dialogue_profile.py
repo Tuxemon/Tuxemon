@@ -61,6 +61,27 @@ class DialogueProfileManager:
         content = self.get_npc_dialogue_content(npc_slug, location)
         return self.get_dialogue_line(content, "pre_battle")
 
+    def get_post_battle_win_dialogue(
+        self, npc_slug: str, location: Optional[str] = None
+    ) -> Optional[str]:
+        """Convenience method to get the post-battle dialogue for an NPC."""
+        content = self.get_npc_dialogue_content(npc_slug, location)
+        return self.get_dialogue_line(content, "post_battle_win")
+
+    def get_post_battle_lose_dialogue(
+        self, npc_slug: str, location: Optional[str] = None
+    ) -> Optional[str]:
+        """Convenience method to get the post-battle dialogue for an NPC."""
+        content = self.get_npc_dialogue_content(npc_slug, location)
+        return self.get_dialogue_line(content, "post_battle_lose")
+
+    def get_post_battle_draw_dialogue(
+        self, npc_slug: str, location: Optional[str] = None
+    ) -> Optional[str]:
+        """Convenience method to get the post-battle dialogue for an NPC."""
+        content = self.get_npc_dialogue_content(npc_slug, location)
+        return self.get_dialogue_line(content, "post_battle_draw")
+
     def get_greeting_dialogue(
         self, npc_slug: str, location: Optional[str] = None
     ) -> Optional[str]:

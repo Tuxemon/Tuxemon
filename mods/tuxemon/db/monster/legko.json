@@ -1,6 +1,6 @@
 {
   "slug": "legko",
-  "category": "lizard",
+  "species": "lizard",
   "moveset": [
     {
       "level_learned": 1,

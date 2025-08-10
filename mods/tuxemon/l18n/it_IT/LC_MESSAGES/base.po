@@ -1058,12 +1058,6 @@ msgstr ""
 msgid "tumbleworm"
 msgstr "Tumbleworm"
 
-msgid "tux_description"
-msgstr "<<MISSING>>"
-
-msgid "tux"
-msgstr "Tux"
-
 msgid "tweesher_description"
 msgstr ""
 "Più l'acqua è fredda e più il suo becco diventa duro. Sotto i 0°C, è più "

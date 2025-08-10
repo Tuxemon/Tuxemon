@@ -142,6 +142,7 @@ class Technique:
         self.range = results.range
         self.tech_id = results.tech_id
         self.menu_actions_data = results.menu_actions
+        self.tags = results.tags
 
         if self.effect_manager and results.effects:
             self.effects = self.effect_manager.parse_effects(results.effects)

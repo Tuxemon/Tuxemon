@@ -5,7 +5,12 @@ from __future__ import annotations
 import logging
 from typing import TYPE_CHECKING
 
-from tuxemon.db import MonsterEvolutionItemModel, SeenStatus, StatType
+from tuxemon.db import (
+    LearningMethod,
+    MonsterEvolutionItemModel,
+    SeenStatus,
+    StatType,
+)
 from tuxemon.locale import T
 from tuxemon.tools import compare
 
@@ -37,6 +42,16 @@ class Evolution:
         owner = self.monster.get_owner()
         monster_index = owner.monsters.index(self.monster)
         self.update_new_monster_properties(new_monster)
+
+        for move in new_monster.moves.moveset:
+            if (
+                move.learning_method
+                and move.learning_method == LearningMethod.EVOLUTION
+            ):
+                new_monster.moves.learn_by_method(
+                    move.technique, move.learning_method
+                )
+
         owner.party.remove_monster(self.monster)
         owner.party.add_monster(new_monster, monster_index)
         owner.tuxepedia.add_entry(new_monster.slug, SeenStatus.caught)

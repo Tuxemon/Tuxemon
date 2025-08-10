@@ -19,7 +19,8 @@ from tuxemon.locale import T
 from tuxemon.map import dirs2, get_direction, proj
 from tuxemon.map_view import SpriteController
 from tuxemon.math import Vector2
-from tuxemon.mission import MissionController, MissionManager
+from tuxemon.mission.controller import MissionController
+from tuxemon.mission.manager import MissionManager
 from tuxemon.money import MoneyController
 from tuxemon.monster import Monster, decode_monsters, encode_monsters
 from tuxemon.movement import get_tile_moverate
@@ -165,7 +166,7 @@ class NPC(Entity[NPCState]):
             "battles": self.battle_handler.encode_battle(),
             "tuxepedia": encode_tuxepedia(self.tuxepedia),
             "relationships": encode_relationships(self.relationships),
-            "money": dict(),
+            "money": self.money_controller.save(),
             "items": self.items.encode_items(),
             "template": self.template.model_dump(),
             "missions": self.mission_controller.encode_missions(),
@@ -180,9 +181,6 @@ class NPC(Entity[NPCState]):
             "step_tracker": encode_steps(self.step_tracker),
             "unlocked_letters": encode_cipher(self.unlocked_letters),
         }
-
-        state["money"] = self.money_controller.save()
-
         return state
 
     def set_state(self, session: Session, save_data: NPCState) -> None:

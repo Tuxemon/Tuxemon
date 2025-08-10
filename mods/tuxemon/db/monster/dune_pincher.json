@@ -1,6 +1,6 @@
 {
   "slug": "dune_pincher",
-  "category": "hermit",
+  "species": "hermit",
   "moveset": [
     {
       "level_learned": 1,

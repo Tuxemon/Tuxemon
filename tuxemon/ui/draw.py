@@ -239,13 +239,14 @@ def iter_render_text(
     text_renderer: Optional[TextRenderer] = None,
     mode: RenderMode = RenderMode.CHARACTER,
     overflow_behavior: TextOverflow = TextOverflow.CLIP,
+    line_spacing: int = 0,
 ) -> Generator[RenderedChar, None, None]:
 
     lines = _prepare_text_lines(text, font, rect.width, overflow_behavior)
     if not lines:
         return
 
-    line_height = get_font_height(font)
+    line_height = get_font_height(font) + line_spacing
     total_text_height = len(lines) * line_height
 
     _, vertical_offset = calculate_alignment_offset(

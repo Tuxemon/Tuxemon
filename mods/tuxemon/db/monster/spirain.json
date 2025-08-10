@@ -1,6 +1,6 @@
 {
   "slug": "spirain",
-  "category": "water_sprite",
+  "species": "water_sprite",
   "moveset": [
     {
       "level_learned": 1,

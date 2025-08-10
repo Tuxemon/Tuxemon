@@ -1,6 +1,6 @@
 {
   "slug": "trapsnap",
-  "category": "barb",
+  "species": "barb",
   "moveset": [
     {
       "level_learned": 1,

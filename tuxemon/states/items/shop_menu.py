@@ -103,7 +103,7 @@ class ShopMenuState(Menu[Item]):
             self.item_sprite.image = image
             self.item_sprite.rect = image.get_rect(center=self.image_center)
             if item.description:
-                self.alert(item.description)
+                self.dialog.alert(item.description, dialog_speed="max")
 
     def generate_item_label(
         self,

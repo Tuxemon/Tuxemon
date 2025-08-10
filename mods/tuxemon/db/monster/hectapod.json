@@ -1,6 +1,6 @@
 {
   "slug": "hectapod",
-  "category": "sea_storm",
+  "species": "sea_storm",
   "moveset": [
     {
       "level_learned": 1,

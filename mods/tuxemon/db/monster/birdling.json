@@ -1,6 +1,6 @@
 {
   "slug": "birdling",
-  "category": "bird_brain",
+  "species": "bird_brain",
   "moveset": [
     {
       "level_learned": 1,

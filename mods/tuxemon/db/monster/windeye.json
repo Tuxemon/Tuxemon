@@ -1,6 +1,6 @@
 {
   "slug": "windeye",
-  "category": "tower",
+  "species": "tower",
   "moveset": [
     {
       "level_learned": 1,

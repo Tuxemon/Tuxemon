@@ -3,7 +3,7 @@
 import unittest
 from unittest.mock import MagicMock
 
-from tuxemon.monster import MonsterItemHandler
+from tuxemon.monster_dir.held_item import MonsterItemHandler
 
 
 class TestMonsterItemHandler(unittest.TestCase):

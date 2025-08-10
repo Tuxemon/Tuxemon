@@ -1,6 +1,6 @@
 {
   "slug": "pawsand",
-  "category": "sand_pawn",
+  "species": "sand_pawn",
   "moveset": [
     {
       "level_learned": 1,

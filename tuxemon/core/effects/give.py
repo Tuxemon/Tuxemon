@@ -9,6 +9,7 @@ from typing import TYPE_CHECKING
 from tuxemon.combat import get_target_monsters
 from tuxemon.core.core_effect import CoreEffect, TechEffectResult
 from tuxemon.locale import T
+from tuxemon.monster_dir.status import BlockedReason
 from tuxemon.status.status import Status
 
 if TYPE_CHECKING:
@@ -58,7 +59,7 @@ class GiveEffect(CoreEffect):
             result = monster.status.apply_status(session, status, monster)
             if result.applied:
                 successful_targets.append(monster)
-            elif result.blocked_by:
+            elif result.blocked_reason == BlockedReason.IMMUNE_BY_ITEM:
                 immune_info.append(f"{monster.name} ({result.blocked_by})")
 
         if immune_info:

@@ -41,9 +41,14 @@ class MonsterMenuState(Menu[Optional[Monster]]):
     background_filename = prepare.BG_MONSTERS
     draw_borders = False
 
-    def __init__(self, character: NPC) -> None:
-        self.char = character
+    def __init__(
+        self,
+        monsters: list[Monster],
+        monster_filter: Optional[MonsterFilter] = None,
+    ) -> None:
         super().__init__()
+        self.monster_filter = monster_filter or MonsterFilter()
+        self.monsters = self.monster_filter.get_filtered_monsters(monsters)
 
         # make a text area to show messages
         self.text_area = TextArea(self.font, self.font_color, (96, 96, 96))
@@ -62,8 +67,8 @@ class MonsterMenuState(Menu[Optional[Monster]]):
         )
         self.monster_slot_border = MonsterSlotBorder()
 
-        # TODO: something better than this global, load_sprites stuff
-        for monster in self.char.monsters:
+        # Load monster visuals
+        for monster in self.monsters:
             monster.load_sprites()
 
     def calc_menu_items_rect(self) -> Rect:
@@ -78,7 +83,7 @@ class MonsterMenuState(Menu[Optional[Monster]]):
     ) -> Generator[MenuItem[Optional[Monster]], None, None]:
         # position the monster portrait
         try:
-            monster = self.char.monsters[self.selected_index]
+            monster = self.monsters[self.selected_index]
             self.monster_portrait_display.update(monster)
         except IndexError:
             self.monster_portrait_display.update(None)
@@ -138,7 +143,7 @@ class MonsterMenuState(Menu[Optional[Monster]]):
         for index, item in enumerate(self.menu_items):
             monster: Optional[Monster]
             try:
-                monster = self.char.monsters[index]
+                monster = self.monsters[index]
             except IndexError:
                 monster = None
             item.game_object = monster
@@ -169,7 +174,7 @@ class MonsterMenuState(Menu[Optional[Monster]]):
 
     def on_menu_selection_change(self) -> None:
         try:
-            monster = self.char.monsters[self.selected_index]
+            monster = self.monsters[self.selected_index]
             self.monster_portrait_display.update(monster)
         except IndexError:
             self.monster_portrait_display.update(None)
@@ -325,7 +330,9 @@ class MonsterMenuHandler:
 
     def open_monster_menu(self) -> None:
         """Pushes the monster menu state."""
-        self.monster_menu = self.client.push_state(MonsterMenuState(self.char))
+        self.monster_menu = self.client.push_state(
+            MonsterMenuState(self.char.monsters)
+        )
         self.monster_menu.on_menu_selection = lambda item: self.handle_selection(item, self.monster_menu)  # type: ignore[assignment]
         self.monster_menu.on_menu_selection_change = partial(self.monster_menu_hook, self.monster_menu)  # type: ignore[method-assign]
 
@@ -514,3 +521,99 @@ class MonsterSlotBorder:
             return self.borders["filled"]
         else:
             return self.borders["empty"]
+
+
+def or_monster_filter(
+    *filters: Callable[[Monster], bool]
+) -> Callable[[Monster], bool]:
+    return lambda monster: any(f(monster) for f in filters)
+
+
+def and_monster_filter(
+    *filters: Callable[[Monster], bool]
+) -> Callable[[Monster], bool]:
+    return lambda monster: all(f(monster) for f in filters)
+
+
+def not_monster_filter(
+    filter_func: Callable[[Monster], bool],
+) -> Callable[[Monster], bool]:
+    return lambda monster: not filter_func(monster)
+
+
+class MonsterFilter:
+    def __init__(self) -> None:
+        self._filters: list[Callable[[Monster], bool]] = []
+
+    def clear_filters(self) -> None:
+        """Remove all applied filters."""
+        self._filters.clear()
+
+    def add_filter(self, filter_func: Callable[[Monster], bool]) -> None:
+        """Add a single filter to the filter stack."""
+        self._filters.append(filter_func)
+
+    def set_filter_custom_or(
+        self, *filter_funcs: Callable[[Monster], bool]
+    ) -> None:
+        """Set filters with logical OR — any condition passes."""
+        self.clear_filters()
+        self.add_filter(or_monster_filter(*filter_funcs))
+
+    def set_filter_custom_and(
+        self, *filter_funcs: Callable[[Monster], bool]
+    ) -> None:
+        """Set filters with logical AND — all conditions must pass."""
+        self.clear_filters()
+        self.add_filter(and_monster_filter(*filter_funcs))
+
+    def set_filter_custom_not(
+        self, filter_func: Callable[[Monster], bool]
+    ) -> None:
+        """Exclude monsters matching the given condition."""
+        self.clear_filters()
+        self.add_filter(not_monster_filter(filter_func))
+
+    def filter_by_type(self, type_name: str) -> None:
+        self.clear_filters()
+        self.add_filter(
+            lambda monster: any(
+                m.slug == type_name for m in monster.types.current
+            )
+        )
+
+    def filter_by_status(self, status_slug: str) -> None:
+        self.clear_filters()
+        self.add_filter(
+            lambda monster: (
+                (status := monster.status.get_current_status()) is not None
+                and status.slug == status_slug
+            )
+        )
+
+    def filter_fainted(self) -> None:
+        self.clear_filters()
+        self.add_filter(lambda m: m.is_fainted)
+
+    def filter_active(self) -> None:
+        self.clear_filters()
+        self.add_filter(lambda m: not m.is_fainted)
+
+    def get_filtered_monsters(self, monsters: list[Monster]) -> list[Monster]:
+        """Return only monsters that satisfy all filters."""
+        if not self._filters:
+            return monsters
+
+        filtered = [m for m in monsters if all(f(m) for f in self._filters)]
+
+        if not filtered:
+            active_filters = [
+                f.__name__ if hasattr(f, "__name__") else repr(f)
+                for f in self._filters
+            ]
+            print(
+                f"[MonsterFilter] No monsters passed current filters. "
+                f"Total monsters: {len(monsters)}. Filters applied: {active_filters}"
+            )
+
+        return filtered

@@ -1,6 +1,6 @@
 {
   "slug": "galnec",
-  "category": "dry_desert",
+  "species": "dry_desert",
   "moveset": [
     {
       "level_learned": 1,

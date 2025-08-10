@@ -2,6 +2,7 @@
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import logging
 from collections.abc import Sequence
 from typing import TYPE_CHECKING, Any, Optional
 
@@ -10,6 +11,7 @@ from tuxemon.menu.menu import PopUpMenu
 from tuxemon.platform.const import buttons
 from tuxemon.platform.events import PlayerInput
 from tuxemon.sprite import Sprite
+from tuxemon.tools import scale
 from tuxemon.ui.text import TextArea
 from tuxemon.ui.text_alignment import HorizontalAlignment, VerticalAlignment
 
@@ -17,9 +19,7 @@ if TYPE_CHECKING:
     from tuxemon.platform.events import PlayerInput
     from tuxemon.sprite import Sprite
 
-
-DEFAULT_CHARACTER_DELAY: float = 0.05
-CHARACTER_DELAY: float = 0.001
+logger = logging.getLogger(__name__)
 
 
 class DialogState(PopUpMenu[None]):
@@ -42,13 +42,13 @@ class DialogState(PopUpMenu[None]):
         super().__init__(**kwargs)
         self.text_queue = list(text)
         self.avatar = avatar
-        self.character_delay = DEFAULT_CHARACTER_DELAY
 
         default_box_style: dict[str, Any] = {
             "bg_color": self.background_color,
             "font_color": self.font_color,
             "font_shadow": self.font_shadow_color,
             "border": self.borders_filename,
+            "line_spacing": 0,
             "h_alignment": HorizontalAlignment.LEFT,
             "v_alignment": VerticalAlignment.TOP,
         }
@@ -60,6 +60,7 @@ class DialogState(PopUpMenu[None]):
         _border = load_and_scale(final_box_style["border"])
         self.window._set_border(_border)
         self.window._color = final_box_style["bg_color"]
+        line_spacing = scale(final_box_style["line_spacing"])
 
         self.dialog_box = TextArea(
             font=self.font,
@@ -67,6 +68,7 @@ class DialogState(PopUpMenu[None]):
             font_shadow=final_box_style["font_shadow"],
             h_alignment=final_box_style["h_alignment"],
             v_alignment=final_box_style["v_alignment"],
+            line_spacing=line_spacing,
         )
         self.dialog_box.rect = self.calc_internal_rect()
         self.sprites.add(self.dialog_box)
@@ -81,11 +83,12 @@ class DialogState(PopUpMenu[None]):
 
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
         if event.pressed and event.button == buttons.A:
-            if self.dialog_box.drawing_text:
-                self.character_delay = CHARACTER_DELAY
-            elif not self.dialog_box.drawing_text:
+            if not self.dialog.is_dialog_complete(self.dialog_box):
+                logger.debug("Fast-forwarding current dialog line")
+                self.dialog.dump_remaining_text(self.dialog_box)
+            else:
+                logger.debug("Dialog line complete, advancing to next")
                 self.next_text()
-
         return None
 
     def next_text(self) -> Optional[str]:
@@ -94,7 +97,7 @@ class DialogState(PopUpMenu[None]):
 
         try:
             text = self.text_queue.pop(0)
-            self.alert(text)
+            self.dialog.alert(text)
             return text
         except IndexError:
             self.client.pop_state(self)

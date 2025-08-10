@@ -1,6 +1,6 @@
 {
   "slug": "scarlant",
-  "category": "myrmidon",
+  "species": "myrmidon",
   "moveset": [
     {
       "level_learned": 1,

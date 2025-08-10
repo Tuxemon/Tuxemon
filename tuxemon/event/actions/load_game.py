@@ -79,6 +79,7 @@ class LoadGameAction(EventAction):
 
             # teleport the player to the correct position using an event
             # engine action
+            client.current_music.stop()
             tele_x, tele_y = save_data["npc_state"]["tile_pos"]
             params = [
                 "player",

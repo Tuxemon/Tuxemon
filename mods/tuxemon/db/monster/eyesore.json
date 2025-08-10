@@ -1,6 +1,6 @@
 {
   "slug": "eyesore",
-  "category": "overseer",
+  "species": "overseer",
   "moveset": [
     {
       "level_learned": 1,

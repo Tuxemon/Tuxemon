@@ -1,6 +1,6 @@
 {
   "slug": "dandylion",
-  "category": "lions_tooth",
+  "species": "lions_tooth",
   "moveset": [
     {
       "level_learned": 1,

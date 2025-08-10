@@ -1,6 +1,6 @@
 {
   "slug": "slichen",
-  "category": "gel",
+  "species": "gel",
   "moveset": [
     {
       "level_learned": 1,

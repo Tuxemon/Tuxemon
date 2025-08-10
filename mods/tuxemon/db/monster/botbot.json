@@ -1,6 +1,6 @@
 {
   "slug": "botbot",
-  "category": "socket",
+  "species": "socket",
   "moveset": [
     {
       "level_learned": 1,

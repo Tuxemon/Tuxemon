@@ -3,18 +3,21 @@
 from __future__ import annotations
 
 import logging
-import uuid
 from dataclasses import dataclass
-from typing import Optional, final
+from typing import TYPE_CHECKING, Optional, final
+from uuid import UUID
 
 from tuxemon.db import Comparison, Range
 from tuxemon.event import get_monster_by_iid
 from tuxemon.event.eventaction import EventAction
 from tuxemon.menu.interface import MenuItem
-from tuxemon.session import Session
 from tuxemon.states.techniques import TechniqueMenuState
-from tuxemon.technique.technique import Technique
-from tuxemon.tools import compare
+from tuxemon.tools import compare, parse_flag
+
+if TYPE_CHECKING:
+    from tuxemon.monster import Monster
+    from tuxemon.session import Session
+    from tuxemon.technique.technique import Technique
 
 logger = logging.getLogger(__name__)
 
@@ -24,47 +27,83 @@ logger = logging.getLogger(__name__)
 @dataclass
 class GetMonsterTechAction(EventAction):
     """
-    Select a tech among the monster's moves.
-    It allows filtering: slug, element, range.
+    Select a tech among the monster's moves. Supports filtering by slug, element,
+    range, and numeric comparisons for power and accuracy.
 
-    eg "get_monster_tech name_variable"
-
-    For the definition: power and accuracy (all numeric values) is necessary
-    to use a numeric comparison operator. Accepted values are "less_than",
-    "less_or_equal", "greater_than", "greater_or_equal", "equals" and
-    "not_equals".
+    Accepted comparison operators: "less_than", "less_or_equal", "greater_than",
+    "greater_or_equal", "equals", and "not_equals".
 
     Script usage:
         .. code-block::
 
-            get_monster_tech <variable_name>,<monster_id>[,filter_name][,value_name][,extra]
+            get_monster_tech <variable_name>,<monster_id>[,skip_eligibility_check]
+                            [,filter_name][,value_name][,extra]
 
     Script parameters:
-        variable_name: Variable where to store the technique id.
-        monster_id: Variable where is stored the monster id.
-        filter_name: the name of the first filter
-        value_name: the actual value to filter
-        extra: used to filter more
+        variable_name: Name of the game variable where the technique ID will be
+            stored.
+        monster_id: Name of the game variable that contains the monster ID.
+        skip_eligibility_check: Optional string flag to bypass level/evolution
+            eligibility checks. Accepts "true", "1", or "yes" (case-insensitive).
+        filter_name: Optional filter key—e.g., "slug", "element", "range",
+            "power", or "accuracy".
+        value_name: Value to apply against the filter (e.g., "water", "stage1",
+            "greater_than").
+        extra: Optional numeric value for comparison filters (e.g., "1.6").
 
-    eg. "get_monster_tech name_variable,monster_id"
-    eg. "get_monster_tech name_variable,monster_id,element,water"
-    eg, "get_monster_tech name_variable,monster_id,power,less_than,1.6"
+    Examples:
+        "get_monster_tech chosen_id,monster_ref"
+        "get_monster_tech chosen_id,monster_ref,true"
+        "get_monster_tech chosen_id,monster_ref,false,element,water"
+        "get_monster_tech chosen_id,monster_ref,true,power,greater_than,2.0"
     """
 
     name = "get_monster_tech"
     variable_name: str
     monster_id: Optional[str] = None
+    skip_eligibility_check: Optional[str] = None
     filter_name: Optional[str] = None
     value_name: Optional[str] = None
     extra: Optional[str] = None
 
     def validate(self, technique: Optional[Technique]) -> bool:
+        monster = self.monster
+
         filter_name = self.filter_name
         value_name = self.value_name
+
+        if technique is None:
+            return False
+
+        skip_check = parse_flag(self.skip_eligibility_check)
+
+        if not skip_check:
+            if not monster.moves.can_forget(technique):
+                logger.debug(f"{technique.slug} is not forgettable, skipping.")
+                return False
+            entry = next(
+                (
+                    m
+                    for m in monster.moves.moveset
+                    if m.technique == technique.slug
+                ),
+                None,
+            )
+            if entry is None:
+                logger.warning(f"No moveset entry found for {technique.slug}")
+                return False
+            if not monster.moves.is_move_eligible(
+                move=entry, level=monster.level, evolution_stage=monster.stage
+            ):
+                logger.debug(
+                    f"{technique.slug} not eligible for {monster.name} at level {monster.level} and stage {monster.stage}"
+                )
+                return False
+
         if filter_name is None and value_name is None:
             self.result = True
             return self.result
-        if filter_name and value_name and technique:
+        if filter_name and value_name:
             # filter slug
             if filter_name == "slug" and technique.slug == value_name:
                 self.result = True
@@ -118,7 +157,7 @@ class GetMonsterTechAction(EventAction):
             if self.monster_id not in player.game_variables:
                 logger.error(f"Game variable {self.monster_id} not found")
                 return
-            monster_id = uuid.UUID(
+            monster_id = UUID(
                 player.game_variables[self.monster_id],
             )
             monster = get_monster_by_iid(self.session, monster_id)
@@ -128,7 +167,7 @@ class GetMonsterTechAction(EventAction):
             monsters = [monster]
 
         for mon in monsters:
-            # pull up the monster menu so we know which one we are saving
+            self.monster: Monster = mon
             menu = session.client.push_state(
                 TechniqueMenuState(
                     character=session.player,
@@ -136,7 +175,7 @@ class GetMonsterTechAction(EventAction):
                     monster=mon,
                 )
             )
-            menu.is_valid_entry = self.validate  # type: ignore[assignment]
+            menu.is_valid_entry = self.validate  # type: ignore[method-assign]
             menu.on_menu_selection = self.set_var  # type: ignore[assignment]
 
         # if without filters, no closing by clicking back

@@ -3,11 +3,12 @@
 import unittest
 from unittest.mock import MagicMock, patch
 
+from tuxemon.event.eventbus import EventBus
 from tuxemon.menu.input import InputMenu
 from tuxemon.state.factory import StateFactory
 from tuxemon.state.manager import StateManager
 from tuxemon.state.repository import StateRepository
-from tuxemon.state.state import HookManager, State
+from tuxemon.state.state import State
 from tuxemon.states.world.worldstate import WorldState
 
 
@@ -27,7 +28,7 @@ class StateManagerTestBase(unittest.TestCase):
 
 class PushWhenEmpty(StateManagerTestBase):
     def setUp(self):
-        self.sm = StateManager("head.tail", HookManager(), StateRepository())
+        self.sm = StateManager("head.tail", EventBus(), StateRepository())
         self.create_and_register_state("a")
         self.state_a = self.sm.push_state("a")
         self.sm.update(0)
@@ -46,7 +47,7 @@ class PushWhenEmpty(StateManagerTestBase):
 
 class PushWhenNotEmpty(StateManagerTestBase):
     def setUp(self):
-        self.sm = StateManager("head.tail", HookManager(), StateRepository())
+        self.sm = StateManager("head.tail", EventBus(), StateRepository())
         self.create_and_register_state("a")
         self.create_and_register_state("b")
         self.state_a = self.sm.push_state("a")
@@ -75,7 +76,7 @@ class PushWhenNotEmpty(StateManagerTestBase):
 
 class Pop(StateManagerTestBase):
     def setUp(self):
-        self.sm = StateManager("head.tail", HookManager(), StateRepository())
+        self.sm = StateManager("head.tail", EventBus(), StateRepository())
         self.create_and_register_state("a")
         self.create_and_register_state("b")
         self.state_a = self.sm.push_state("a")
@@ -115,7 +116,7 @@ class Pop(StateManagerTestBase):
 
 class Resume(StateManagerTestBase):
     def setUp(self):
-        self.sm = StateManager("head.tail", HookManager(), StateRepository())
+        self.sm = StateManager("head.tail", EventBus(), StateRepository())
         self.create_and_register_state("a")
         self.create_and_register_state("b")
         self.state_a = self.sm.push_state("a")
@@ -145,13 +146,13 @@ class Resume(StateManagerTestBase):
 
 class RemoveWhenCurrent(StateManagerTestBase):
     def setUp(self):
-        self.sm = StateManager("head.tail", HookManager(), StateRepository())
+        self.sm = StateManager("head.tail", EventBus(), StateRepository())
         self.create_and_register_state("a")
         self.create_and_register_state("b")
         self.state_a = self.sm.push_state("a")
         self.state_b = self.sm.push_state("b")
         # remove the current state
-        self.sm.remove_state(self.state_b)
+        self.sm.pop_state(self.state_b)
         self.sm.update(0)
 
     def test_current_state(self):
@@ -173,16 +174,23 @@ class RemoveWhenCurrent(StateManagerTestBase):
         self.assertEqual(1, self.state_a.pause.call_count)
         self.assertEqual(0, self.state_a.shutdown.call_count)
 
+    def test_remove_middle_state(self):
+        self.create_and_register_state("c")
+        state_c = self.sm.push_state("c")
+        self.sm.pop_state(self.state_a)  # Remove middle state
+        self.assertNotIn(self.state_a, self.sm.active_states)
+        self.assertEqual(1, self.state_a.shutdown.call_count)
+
 
 class RemoveWhenNotCurrent(StateManagerTestBase):
     def setUp(self):
-        self.sm = StateManager("head.tail", HookManager(), StateRepository())
+        self.sm = StateManager("head.tail", EventBus(), StateRepository())
         self.create_and_register_state("a")
         self.create_and_register_state("b")
         self.state_a = self.sm.push_state("a")
         self.state_b = self.sm.push_state("b")
         # remove a state that is not current
-        self.sm.remove_state(self.state_a)
+        self.sm.pop_state(self.state_a)
         self.sm.update(0)
 
     def test_current_state(self):
@@ -207,7 +215,7 @@ class RemoveWhenNotCurrent(StateManagerTestBase):
 
 class Replace(StateManagerTestBase):
     def setUp(self):
-        self.sm = StateManager("head.tail", HookManager(), StateRepository())
+        self.sm = StateManager("head.tail", EventBus(), StateRepository())
         self.create_and_register_state("a")
         self.create_and_register_state("b")
         self.state_a = self.sm.push_state("a")
@@ -236,7 +244,7 @@ class Replace(StateManagerTestBase):
 
 class Enqueue(StateManagerTestBase):
     def setUp(self):
-        self.sm = StateManager("head.tail", HookManager(), StateRepository())
+        self.sm = StateManager("head.tail", EventBus(), StateRepository())
         self.create_and_register_state("a")
         self.create_and_register_state("b")
         self.create_and_register_state("c")
@@ -255,7 +263,7 @@ class Enqueue(StateManagerTestBase):
 
 class EnqueueThenPop(StateManagerTestBase):
     def setUp(self):
-        self.sm = StateManager("head.tail", HookManager(), StateRepository())
+        self.sm = StateManager("head.tail", EventBus(), StateRepository())
         self.create_and_register_state("a")
         self.create_and_register_state("b")
         self.create_and_register_state("c")
@@ -288,7 +296,7 @@ class EnqueueThenPop(StateManagerTestBase):
 
 class WhenEmpty(StateManagerTestBase):
     def setUp(self):
-        self.sm = StateManager("head.tail", HookManager(), StateRepository())
+        self.sm = StateManager("head.tail", EventBus(), StateRepository())
 
     def test_pop_raises_runtimeError(self):
         with self.assertRaises(RuntimeError):
@@ -305,7 +313,7 @@ class WhenEmpty(StateManagerTestBase):
 class TestStateManagerResumeCallCount(unittest.TestCase):
     def setUp(self):
         self.state_manager = StateManager(
-            "game", HookManager(), StateRepository()
+            "game", EventBus(), StateRepository()
         )
         self.world_state = MagicMock(spec=WorldState)
         self.input_menu = MagicMock(spec=InputMenu)

@@ -1,6 +1,6 @@
 {
   "slug": "komoduel",
-  "category": "gunslinger",
+  "species": "gunslinger",
   "moveset": [
     {
       "level_learned": 1,

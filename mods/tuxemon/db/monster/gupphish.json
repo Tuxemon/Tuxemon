@@ -1,6 +1,6 @@
 {
   "slug": "gupphish",
-  "category": "boiling_goldfish",
+  "species": "boiling_goldfish",
   "moveset": [
     {
       "level_learned": 1,

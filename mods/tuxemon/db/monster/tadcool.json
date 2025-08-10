@@ -1,6 +1,6 @@
 {
   "slug": "tadcool",
-  "category": "alarm",
+  "species": "alarm",
   "moveset": [
     {
       "level_learned": 1,

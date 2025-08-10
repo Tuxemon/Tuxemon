@@ -1,6 +1,6 @@
 {
   "slug": "pythock",
-  "category": "puppet_master",
+  "species": "puppet_master",
   "moveset": [
     {
       "level_learned": 1,

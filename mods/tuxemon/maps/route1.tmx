@@ -830,7 +830,7 @@
     <property name="cond1" value="is variable_set christieknows:stop"/>
    </properties>
   </object>
-  <object id="153" name="enter the battle area" type="event" x="864" y="528" width="16" height="16">
+  <object id="152" name="enter the battle area" type="event" x="864" y="528" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport taba_ba_foyer.tmx,2,9,0.5"/>
     <property name="cond1" value="is char_at player"/>

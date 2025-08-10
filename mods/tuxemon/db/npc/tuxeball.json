@@ -1,10 +1,8 @@
 {
   "slug": "tuxeball",
-  "template": 
-    {
-      "sprite_name": "tuxeball",
-      "combat_front": "noclass",
-      "slug": "interactive_obj"
-    }
-
+  "template": {
+    "sprite_name": "tuxeball",
+    "combat_front": "noclass",
+    "slug": "interactive_obj"
+  }
 }

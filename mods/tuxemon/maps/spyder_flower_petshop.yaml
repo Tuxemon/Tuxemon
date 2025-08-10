@@ -1,52 +1,8 @@
 events:
-  Buy fuzzlet:
-    actions:
-    - translated_dialog fuzzlet
-    - add_monster fuzzlet,10
-    - clear_variable petshopbuy
-    - modify_money player,-500
-    conditions:
-    - is variable_set petshopbuy:fuzzlet
-    type: event
-  Buy potturmeist:
-    actions:
-    - translated_dialog potturmeist
-    - add_monster potturmeist,10
-    - clear_variable petshopbuy
-    - modify_money player,-500
-    conditions:
-    - is variable_set petshopbuy:potturmeist
-    type: event
-  Buy squink:
-    actions:
-    - translated_dialog squink
-    - add_monster squink,10
-    - clear_variable petshopbuy
-    - modify_money player,-500
-    conditions:
-    - is variable_set petshopbuy:squink
-    type: event
-  Buy woodoor:
-    actions:
-    - translated_dialog woodoor
-    - add_monster woodoor,10
-    - clear_variable petshopbuy
-    - modify_money player,-500
-    conditions:
-    - is variable_set petshopbuy:woodoor
-    type: event
-  Buy ziggurat:
-    actions:
-    - translated_dialog ziggurat
-    - add_monster ziggurat,10
-    - clear_variable petshopbuy
-    - modify_money player,-500
-    conditions:
-    - is variable_set petshopbuy:ziggurat
-    type: event
   Create Shop Assistant:
     actions:
     - create_npc spyder_flowerpetshop_titus,7,4
+    - set_economy spyder_flowerpetshop_titus,spyder_flower_petshop
     conditions:
     - not char_exists spyder_flowerpetshop_titus
     type: event
@@ -68,14 +24,10 @@ events:
     - char_face spyder_flowerpetshop_titus,down
     - translated_dialog spyder_flower_petshopassistant_welcome
     - translated_dialog spyder_flower_petshopassistant
-    - translated_dialog spyder_flower_petshopassistant1
-    - translated_dialog player_wallet
-    - translated_dialog_choice ziggurat:woodoor:fuzzlet:potturmeist:squink:no,petshopbuy
+    - open_shop spyder_flowerpetshop_titus,buy_monster
     conditions:
     - is char_facing_tile player
     - is button_pressed K_RETURN
-    - not variable_set chooses:yes
-    - is money_is player,greater_or_equal,500
     type: event
     x: 7
     y: 5
@@ -84,36 +36,10 @@ events:
     - char_face spyder_flowerpetshop_titus,right
     - translated_dialog spyder_flower_petshopassistant_welcome
     - translated_dialog spyder_flower_petshopassistant
-    - translated_dialog spyder_flower_petshopassistant1
-    - translated_dialog player_wallet
-    - translated_dialog_choice ziggurat:woodoor:fuzzlet:potturmeist:squink:no,petshopbuy
+    - open_shop spyder_flowerpetshop_titus,buy_monster
     conditions:
     - is char_facing_tile player
     - is button_pressed K_RETURN
-    - not variable_set chooses:yes
-    - is money_is player,greater_or_equal,500
-    type: event
-    x: 8
-    y: 4
-  Talk Shop Assistant3:
-    actions:
-    - char_face spyder_flowerpetshop_titus,down
-    - translated_dialog spyder_flower_petshopassistant_welcome
-    conditions:
-    - is char_facing_tile player
-    - is button_pressed K_RETURN
-    - not money_is player,greater_or_equal,500
-    type: event
-    x: 7
-    y: 5
-  Talk Shop Assistant4:
-    actions:
-    - char_face spyder_flowerpetshop_titus,right
-    - translated_dialog spyder_flower_petshopassistant_welcome
-    conditions:
-    - is char_facing_tile player
-    - is button_pressed K_RETURN
-    - not money_is player,greater_or_equal,500
     type: event
     x: 8
     y: 4

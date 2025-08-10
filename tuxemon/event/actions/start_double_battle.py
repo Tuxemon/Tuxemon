@@ -12,7 +12,11 @@ from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.prepare import MONSTERS_DOUBLE
 from tuxemon.session import Session
-from tuxemon.states.combat.combat_context import CombatContext
+from tuxemon.states.combat.combat_context import (
+    BattleMode,
+    CombatContext,
+    CombatType,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -84,9 +88,9 @@ class StartDoubleBattleAction(EventAction):
         context = CombatContext(
             session=session,
             teams=fighters,
-            combat_type="trainer",
+            combat_type=CombatType.TRAINER,
             graphics=env.battle_graphics,
-            battle_mode="double",
+            battle_mode=BattleMode.DOUBLE,
         )
         session.client.push_state("CombatState", context=context)
         # music

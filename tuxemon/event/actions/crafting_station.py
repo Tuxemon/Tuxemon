@@ -48,7 +48,7 @@ class CraftingStationAction(EventAction):
             )
             return
 
-        character = get_npc(self.session, self.character_slug)
+        character = get_npc(session, self.character_slug)
         if character is None:
             logger.error(
                 f"Character '{self.character_slug}' not found for CraftMenuState."

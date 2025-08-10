@@ -69,3 +69,11 @@ class CombatContext:
     @property
     def is_horde_battle(self) -> bool:
         return self.combat_type is CombatType.HORDE
+
+    @property
+    def is_single_battle(self) -> bool:
+        return self.battle_mode is BattleMode.SINGLE
+
+    @property
+    def is_double_battle(self) -> bool:
+        return self.battle_mode is BattleMode.DOUBLE

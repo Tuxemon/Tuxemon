@@ -2,7 +2,7 @@
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 import unittest
 from pathlib import Path
-from unittest.mock import MagicMock
+from unittest.mock import MagicMock, patch
 
 from tuxemon.locale import TranslatorManager
 
@@ -27,9 +27,13 @@ class TestTranslatorManager(unittest.TestCase):
         self.gettext_compiler.get_mo_path.return_value = Path("dummy.mo")
         self.gettext_compiler.compile_gettext = MagicMock()
 
-        self.manager.collect_and_compile_translations(
-            recompile_translations=True
-        )
+        with patch.object(Path, "stat") as mock_stat:
+            mock_stat.return_value.st_mtime = 1753513785.0
+
+            self.manager.collect_and_compile_translations(
+                recompile_translations=True
+            )
+
         self.gettext_compiler.compile_gettext.assert_called_once()
 
     def test_load_translator_for_domain(self):

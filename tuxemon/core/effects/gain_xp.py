@@ -30,7 +30,7 @@ class GainXpEffect(CoreEffect):
     def apply_item_target(
         self, session: Session, item: Item, target: Monster
     ) -> ItemEffectResult:
-        set_var(session, self.name, str(target.instance_id.hex))
+        set_var(session, self.name, target.instance_id.hex)
         client = session.client.event_engine
         _params = [self.name, self.amount]
         client.execute_action("give_experience", _params, True)

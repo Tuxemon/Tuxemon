@@ -11,7 +11,11 @@ from tuxemon.db import EnvironmentModel, db
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.session import Session
-from tuxemon.states.combat.combat_context import CombatContext
+from tuxemon.states.combat.combat_context import (
+    BattleMode,
+    CombatContext,
+    CombatType,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -76,9 +80,9 @@ class StartBattleAction(EventAction):
         context = CombatContext(
             session=session,
             teams=fighters,
-            combat_type="trainer",
+            combat_type=CombatType.TRAINER,
             graphics=env.battle_graphics,
-            battle_mode="single",
+            battle_mode=BattleMode.SINGLE,
         )
         session.client.push_state("CombatState", context=context)
 

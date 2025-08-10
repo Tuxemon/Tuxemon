@@ -450,7 +450,7 @@
     <property name="cond2" value="is variable_set walledmidas:yes"/>
    </properties>
   </object>
-  <object id="385" name="Door locked" type="event" x="64" y="192" width="16" height="16">
+  <object id="378" name="Door locked" type="event" x="64" y="192" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_door_locked"/>
     <property name="cond1" value="is char_facing_tile player"/>

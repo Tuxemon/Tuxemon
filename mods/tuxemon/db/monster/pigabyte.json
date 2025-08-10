@@ -1,6 +1,6 @@
 {
   "slug": "pigabyte",
-  "category": "electric_pig",
+  "species": "electric_pig",
   "moveset": [
     {
       "level_learned": 1,

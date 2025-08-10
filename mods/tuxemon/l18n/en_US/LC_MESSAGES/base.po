@@ -1609,6 +1609,9 @@ msgstr "That monster has fainted already!"
 msgid "combat_wild_appeared"
 msgstr "A wild {name} appeared!"
 
+msgid "combat_horde_appeared"
+msgstr "A horde of wild creatures surrounds you!"
+
 msgid "combat_monster_choice"
 msgstr "What will {name} do?"
 
@@ -1844,6 +1847,33 @@ msgstr "It failed!"
 
 msgid "who_is_that"
 msgstr "Name That Tuxemon"
+
+msgid "score_label"
+msgstr "Score"
+
+msgid "streak_label"
+msgstr "Streak"
+
+msgid "streak_bonus"
+msgstr "Streak Bonus! You're on fire!"
+
+msgid "choose_difficulty"
+msgstr "Choose your difficulty level"
+
+msgid "level_beginner"
+msgstr "Beginner"
+
+msgid "level_easy"
+msgstr "Easy"
+
+msgid "level_normal"
+msgstr "Normal"
+
+msgid "level_hard"
+msgstr "Hard"
+
+msgid "level_expert"
+msgstr "Expert"
 
 msgid "generic_right"
 msgstr "Correct!"
@@ -2559,6 +2589,14 @@ msgstr ""
 
 msgid "food_fight"
 msgstr "Food Fight"
+
+msgid "frighten_description"
+msgstr ""
+"A spooked opponent takes to the higher ground, helping ranged attacks at the"
+" expense of close combat."
+
+msgid "frighten"
+msgstr "Frighten"
 
 msgid "frostbite_description"
 msgstr ""
@@ -3490,7 +3528,7 @@ msgid "suplex"
 msgstr "Suplex"
 
 msgid "surf_description"
-msgstr "AA massive wave crashes down upon the opponent."
+msgstr "A massive wave crashes down upon the opponent."
 
 msgid "surf"
 msgstr "Surf"
@@ -3520,6 +3558,12 @@ msgstr "The user assumes a defensive stance, increasing its accuracy."
 
 msgid "take_cover"
 msgstr "Take Cover"
+
+msgid "taunt_description"
+msgstr "A quick jab provokes the opponent into a powerful but distracted rage."
+
+msgid "taunt"
+msgstr "Taunt"
 
 msgid "ten_thousand_feathers_description"
 msgstr ""
@@ -4106,17 +4150,53 @@ msgstr "Evolution"
 msgid "yes_evolutions"
 msgstr "Evolutions"
 
-msgid "tuxepedia_capture_today"
+msgid "tuxepedia_acquisition_unknown_today"
+msgstr "Acquired today"
+
+msgid "tuxepedia_acquisition_unknown_days_ago"
+msgstr "Acquired {doc} days ago"
+
+msgid "tuxepedia_acquisition_captured_today"
 msgstr "Captured today"
 
-msgid "tuxepedia_trade_today"
-msgstr "Traded today"
-
-msgid "tuxepedia_capture"
+msgid "tuxepedia_acquisition_captured_days_ago"
 msgstr "Captured {doc} days ago"
 
-msgid "tuxepedia_trade"
+msgid "tuxepedia_acquisition_traded_today"
+msgstr "Traded today"
+
+msgid "tuxepedia_acquisition_traded_days_ago"
 msgstr "Traded {doc} days ago"
+
+msgid "tuxepedia_acquisition_bred_today"
+msgstr "Bred today"
+
+msgid "tuxepedia_acquisition_bred_days_ago"
+msgstr "Bred {doc} days ago"
+
+msgid "tuxepedia_acquisition_gifted_today"
+msgstr "Gifted today"
+
+msgid "tuxepedia_acquisition_gifted_days_ago"
+msgstr "Gifted {doc} days ago"
+
+msgid "tuxepedia_acquisition_purchased_today"
+msgstr "Purchased today"
+
+msgid "tuxepedia_acquisition_purchased_days_ago"
+msgstr "Purchased {doc} days ago"
+
+msgid "tuxepedia_acquisition_rescued_today"
+msgstr "Rescued today"
+
+msgid "tuxepedia_acquisition_rescued_days_ago"
+msgstr "Rescued {doc} days ago"
+
+msgid "tuxepedia_acquisition_created_today"
+msgstr "Created today"
+
+msgid "tuxepedia_acquisition_created_days_ago"
+msgstr "Created {doc} days ago"
 
 msgid "tuxepedia_exp"
 msgstr "{exp_lv}xp to Lv {lv}"
@@ -8631,6 +8711,10 @@ msgstr "Bland"
 msgid "taste_bland_description"
 msgstr "A vague, chalky taste, like powdered mashed potatoes made with a sigh instead of water."
 
+# Factions
+msgid "faction_enforcers"
+msgstr "Enforcers"
+
 # Terrains
 msgid "terrain_freshwater"
 msgstr "Freshwater"
@@ -12754,9 +12838,6 @@ msgstr "Hello - we are the Pet Shop Boys."
 msgid "spyder_flower_petshopassistant"
 msgstr "Are you interested in buying a tuxemon?"
 
-msgid "spyder_flower_petshopassistant1"
-msgstr "Each for ${{currency}}500"
-
 msgid "spyder_flower_petshopkeeper1"
 msgstr ""
 "I found these eggs in the bough of a tree, and hatched them! \n"
@@ -14583,7 +14664,7 @@ msgstr ""
 
 msgid "spyder_leatherhouse1_tennisplayer1"
 msgstr ""
-"Is Frostbite an Earth element technique or a Water element technique? "
+"Is Grinflare an Earth element tuxemon or a Fire element tuxemon?"
 
 msgid "spyder_leatherhouse1_tennisplayer2"
 msgstr "Trick question - it's both!"

@@ -57,6 +57,8 @@ class Status:
     ) -> None:
         save_data = save_data or {}
 
+        self._effect_applied: set[str] = set()
+
         self.instance_id: UUID = uuid4()
         self.set_steps(steps)
         self.bond: bool = False
@@ -260,7 +262,7 @@ class Status:
             if getattr(self, attr)
         }
 
-        save_data["instance_id"] = str(self.instance_id.hex)
+        save_data["instance_id"] = self.instance_id.hex
 
         return save_data
 

@@ -1,6 +1,16 @@
 [
   {
     "slug": "spyder_route2_marion",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_route2_marion1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_route2_marion2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "picnicker",
       "combat_front": "picnicker",
@@ -9,6 +19,16 @@
   },
   {
     "slug": "spyder_route2_graf",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_route2_graf1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_route2_graf2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "tennisplayer_green",
       "combat_front": "tennisplayer",
@@ -17,6 +37,16 @@
   },
   {
     "slug": "spyder_route2_roddick",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_route2_roddick1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_route2_roddick2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "tennisplayer_fiery",
       "combat_front": "tennisplayer",

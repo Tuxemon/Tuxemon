@@ -1,6 +1,6 @@
 {
   "slug": "tetrchimp",
-  "category": "chip",
+  "species": "chip",
   "moveset": [
     {
       "level_learned": 1,

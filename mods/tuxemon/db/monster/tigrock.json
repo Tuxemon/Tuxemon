@@ -1,6 +1,6 @@
 {
   "slug": "tigrock",
-  "category": "ex_machina",
+  "species": "ex_machina",
   "moveset": [
     {
       "level_learned": 1,

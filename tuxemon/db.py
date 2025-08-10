@@ -31,9 +31,14 @@ from pydantic import (
     ValidationError,
     ValidationInfo,
     field_validator,
+    model_validator,
 )
 
 from tuxemon import prepare
+from tuxemon.constants.asset_loader import (
+    fetch_asset,
+    fetch_mod_asset_roots,
+)
 from tuxemon.constants.paths import mods_folder
 from tuxemon.formula import config_monster
 from tuxemon.locale import T
@@ -425,6 +430,13 @@ class ShapeModel(BaseModel, BaseLookupModel):
         raise ValueError(f"no translation exists with msgid: {v}")
 
 
+class LearningMethod(str, Enum):
+    LEVEL_UP = "level_up"
+    TM = "tm"
+    EVENT = "event"
+    EVOLUTION = "evolution"
+
+
 class MonsterMovesetItemModel(BaseModel):
     level_learned: int = Field(
         ..., description="Monster level in which this moveset is learned", gt=0
@@ -432,7 +444,18 @@ class MonsterMovesetItemModel(BaseModel):
     technique: str = Field(
         ...,
         description="Name of the technique for this moveset item",
-        json_schema_extra={"unique": True},
+    )
+    evolution_stage_learned: Optional[EvolutionStage] = Field(
+        None,
+        description="Evolution stage at which this technique is learned. If None, not tied to a specific evolution stage beyond level.",
+    )
+    can_be_forgotten: bool = Field(
+        True,
+        description="Indicates if this technique can be forgotten by the monster.",
+    )
+    learning_method: LearningMethod = Field(
+        LearningMethod.LEVEL_UP,
+        description="Method by which the technique is learned.",
     )
 
     @field_validator("technique")
@@ -686,7 +709,7 @@ class MonsterSoundsModel(BaseModel):
 class MonsterModel(BaseModel, BaseLookupModel, validate_assignment=True):
     table_name: ClassVar[str] = "monster"
     slug: str = Field(..., description="The slug of the monster")
-    category: str = Field(..., description="The category of monster")
+    species: str = Field(..., description="The species of monster")
     txmn_id: int = Field(..., description="The id of the monster")
     height: float = Field(..., description="The height of the monster", gt=0.0)
     weight: float = Field(..., description="The weight of the monster", gt=0.0)
@@ -769,8 +792,8 @@ class MonsterModel(BaseModel, BaseLookupModel, validate_assignment=True):
         )
         return v or default
 
-    @field_validator("category")
-    def translation_exists_category(cls: MonsterModel, v: str) -> str:
+    @field_validator("species")
+    def translation_exists_species(cls: MonsterModel, v: str) -> str:
         if has.translation(f"cat_{v}"):
             return v
         raise ValueError(f"no translation exists with msgid: {v}")
@@ -813,16 +836,34 @@ class MonsterModel(BaseModel, BaseLookupModel, validate_assignment=True):
 
 class StatModel(BaseModel):
     value: float = Field(
-        0.0, description="The value of the stat", ge=0.0, le=2.0
+        0.0,
+        description="Direct value adjustment (used when step is not provided)",
+    )
+    step: Optional[int] = Field(
+        None,
+        description="Optional step delta to apply (e.g., +2 step to speed)",
+        ge=-6,
+        le=6,
     )
     max_deviation: int = Field(
-        0, description="The maximum deviation of the stat"
+        0,
+        description="Maximum random deviation for the value or calculated step impact",
     )
     operation: str = Field(
-        "+", description="The operation to be done to the stat"
+        "+",
+        description="Operation applied to stat (ignored if using step)",
     )
     overridetofull: bool = Field(
-        False, description="Whether or not to override to full"
+        False,
+        description="If True and stat is HP, override current HP to full",
+    )
+    max_step_limit: float = Field(
+        6.0,
+        description="Maximum absolute value for stat steps used in nonlinear scaling (e.g., 6.0 for ±6)",
+    )
+    scaling_mode: str = Field(
+        "nonlinear",
+        description="Defines how step scaling is applied: 'linear' for base*(1+step), 'nonlinear' for tiered scaling",
     )
 
 
@@ -1299,6 +1340,69 @@ class NpcTemplateModel(BaseModel):
         raise ValueError(f"the template {v} doesn't exist in the db")
 
 
+class DialogueContent(BaseModel):
+    # This model holds all dialogue types
+    greeting: Optional[Union[str, list[str]]] = Field(
+        None, description="Greeting dialogue"
+    )
+    idle: Optional[Union[str, list[str]]] = Field(
+        None, description="Idle chatter"
+    )
+    farewell: Optional[Union[str, list[str]]] = Field(
+        None, description="Dialogue when saying goodbye"
+    )
+    pre_battle: Optional[Union[str, list[str]]] = Field(
+        None, description="Dialogue before a battle"
+    )
+    post_battle_win: Optional[Union[str, list[str]]] = Field(
+        None, description="Dialogue if NPC wins"
+    )
+    post_battle_lose: Optional[Union[str, list[str]]] = Field(
+        None, description="Dialogue if NPC loses"
+    )
+    post_battle_draw: Optional[Union[str, list[str]]] = Field(
+        None, description="Dialogue if battle is a draw"
+    )
+
+    @field_validator("*")
+    def translation_exists(
+        cls, v: Optional[Union[str, list[str]]]
+    ) -> Optional[Union[str, list[str]]]:
+        if not v:
+            return v
+
+        if isinstance(v, str):
+            if not has.translation(v):
+                raise ValueError(f"No translation exists with msgid: {v}")
+        elif isinstance(v, list):
+            for msgid in v:
+                if not has.translation(msgid):
+                    raise ValueError(
+                        f"No translation exists with msgid: {msgid}"
+                    )
+        return v
+
+
+class DialogueProfile(BaseModel):
+    default: DialogueContent = Field(
+        ..., description="The default dialogue for the NPC"
+    )
+    location_based: dict[str, DialogueContent] = Field(
+        default_factory=dict,
+        description="Overrides for dialogue based on location (map.tmx)",
+    )
+
+    def get_dialogue_for_location(self, location: str) -> DialogueContent:
+        """Returns location-specific dialogue if available, otherwise default."""
+        return self.location_based.get(location, self.default)
+
+
+class NpcSpeech(BaseModel):
+    profile: DialogueProfile = Field(
+        ..., description="All dialogue for the NPC"
+    )
+
+
 class NpcModel(BaseModel, BaseLookupModel):
     table_name: ClassVar[str] = "npc"
     slug: str = Field(..., description="Slug of the name of the NPC")
@@ -1309,6 +1413,9 @@ class NpcModel(BaseModel, BaseLookupModel):
     )
     items: Sequence[BagItemModel] = Field(
         [], description="List of items in the NPCs bag"
+    )
+    speech: Optional[NpcSpeech] = Field(
+        None, description="Dialogue for this NPC"
     )
 
     @classmethod
@@ -1516,13 +1623,41 @@ class EncounterItemModel(BaseModel):
         raise ValueError(f"the monster {v} doesn't exist in the db")
 
 
+class HordeEncounterModel(BaseModel):
+    monsters: Sequence[EncounterItemModel] = Field(
+        ..., description="The list of monsters that make up this horde."
+    )
+    horde_level_range: Optional[Sequence[int]] = Field(
+        None,
+        description="Optional: A base level range for the entire horde. If set, individual monster `level_range` can be ignored or used as a modification.",
+        max_length=2,
+    )
+    horde_exp_mod: Optional[float] = Field(
+        None,
+        description="Optional: A modifier for the experience points of the entire horde.",
+        gt=0.0,
+    )
+
+
+class EncounterType(str, Enum):
+    SINGLE = "single"
+    HORDE = "horde"
+
+
 class EncounterModel(BaseModel, BaseLookupModel):
     table_name: ClassVar[str] = "encounter"
     slug: str = Field(
         ..., description="Slug to uniquely identify this encounter"
     )
+    encounter_type: EncounterType = Field(
+        EncounterType.SINGLE,
+        description="The type of this encounter (single monster or a horde).",
+    )
     monsters: Sequence[EncounterItemModel] = Field(
         [], description="Monsters encounterable"
+    )
+    horde: Optional[HordeEncounterModel] = Field(
+        None, description="Horde data (for horde encounters)"
     )
     scaling_zone: bool = Field(
         False,
@@ -1560,7 +1695,7 @@ class DialogueModel(BaseModel, BaseLookupModel):
     font_shadow_color: str = Field(..., description="RGB color (eg. 255:0:0)")
     border_slug: str = Field(..., description="Name of the border")
     border_path: str = Field(..., description="Path to the border")
-    line_spacing: int = Field(..., description="Line spacing value")
+    line_spacing: int = Field(0, description="Line spacing value")
 
     @classmethod
     def lookup(cls, slug: str, db: ModData) -> DialogueModel:
@@ -1649,8 +1784,8 @@ class TasteModel(BaseModel, BaseLookupModel):
 
 
 class EconomyEntityModel(BaseModel):
-    price: int = Field(0, description="Price of the entity")
-    cost: int = Field(0, description="Cost of the entity")
+    price: int = Field(..., description="Price of the entity")
+    cost: int = Field(..., description="Cost of the entity")
     inventory: int = Field(-1, description="Quantity of the entity")
     variables: Sequence[dict[str, str]] = Field(
         [],
@@ -1673,7 +1808,7 @@ class EconomyItemModel(EconomyEntityModel):
 class EconomyMonsterModel(EconomyEntityModel):
     name: str = Field(..., description="Name of the entity")
     inventory: int = Field(1, description="Quantity of the entity", gt=0)
-    level: int = Field(1, description="Level of the entity", gt=0)
+    level: int = Field(..., description="Level of the entity", gt=0)
 
     @field_validator("name")
     def monster_exists(cls: EconomyEntityModel, v: str) -> str:
@@ -1711,6 +1846,145 @@ class TemplateModel(BaseModel):
     )
 
 
+class FactionKind(str, Enum):
+    GYM = "gym"
+    TEAM = "team"
+    LEAGUE = "league"
+    CLUB = "club"
+    VILLAGE = "village"
+    ORGANIZATION = "organization"
+    ELITE = "elite"
+    ACADEMY = "academy"
+
+
+class FactionAlignment(str, Enum):
+    HEROIC = "heroic"
+    VILLAINOUS = "villainous"
+    ROGUE = "rogue"
+    NEUTRAL = "neutral"
+    CHAOTIC = "chaotic"
+    LAWFUL = "lawful"
+
+
+class FactionRelationStatus(str, Enum):
+    ALLY = "ally"
+    RIVAL = "rival"
+    HOSTILE = "hostile"
+    NEUTRAL = "neutral"
+    UNKNOWN = "unknown"
+
+
+class RankRequirement(BaseModel):
+    min_reputation: int = 0
+    variables: Sequence[dict[str, Any]] = Field(
+        [],
+        description="List of variables that affect the requirement.",
+        min_length=1,
+    )
+
+
+class RankStep(BaseModel):
+    title: str
+    threshold: int
+    requirement: Optional[RankRequirement] = None
+
+
+class FactionModel(BaseModel, BaseLookupModel):
+    table_name: ClassVar[str] = "faction"
+
+    slug: str = Field(..., description="Unique ID of the faction")
+    kind: Optional[FactionKind] = Field(
+        FactionKind.TEAM, description="Faction type (gym, team, league, etc.)"
+    )
+    alignment: Optional[FactionAlignment] = Field(
+        None, description="Faction alignment: heroic, villainous, rogue, etc."
+    )
+    badge_id: Optional[str] = Field(
+        None, description="Associated badge ID if applicable"
+    )
+    leader_char: Optional[str] = Field(
+        None, description="Slug of the faction leader NPC"
+    )
+    ranks: list[RankStep] = Field(
+        default_factory=lambda: [
+            RankStep(title="Recruit", threshold=0),
+            RankStep(title="Agent", threshold=50),
+            RankStep(title="Elite", threshold=100),
+        ],
+        description="Rank steps based on reputation",
+    )
+    members: list[str] = Field(
+        default_factory=list,
+        description="NPC slugs that belong to this faction",
+    )
+    reputation: dict[str, int] = Field(
+        default_factory=dict,
+        description="Reputation scores for NPC members, used for rank evaluation and internal hierarchy",
+    )
+    relations: dict[str, FactionRelationStatus] = Field(
+        default_factory=dict, description="Relationships with other factions"
+    )
+    public_reputation: int = Field(
+        0, description="General public reputation score of the faction."
+    )
+
+    @classmethod
+    def lookup(cls, slug: str, db: ModData) -> FactionModel:
+        """Retrieve an instance from the database using a slug."""
+        try:
+            return cast(FactionModel, db.lookup(slug, table=cls.table_name))
+        except EntryNotFoundError:
+            raise RuntimeError(f"Mission {slug} not found")
+
+    @field_validator("slug")
+    def translation_exists_faction(cls: FactionModel, v: str) -> str:
+        if has.translation(v):
+            return v
+        raise ValueError(f"no translation exists with msgid: {v}")
+
+    @field_validator("members")
+    def member_exists(cls: FactionModel, v: Sequence[str]) -> Sequence[str]:
+        for npc_slug in v:
+            if not has.db_entry("npc", npc_slug):
+                raise ValueError(
+                    f"The npc '{npc_slug}' doesn't exist in the db"
+                )
+        return v
+
+    @field_validator("leader_char")
+    def leader_exists(cls: FactionModel, v: Optional[str]) -> Optional[str]:
+        if v:
+            if not has.db_entry("npc", v):
+                raise ValueError(f"The npc '{v}' doesn't exist in the db")
+        return v
+
+    @model_validator(mode="before")
+    def validate_faction_integrity(
+        cls, values: dict[str, Any]
+    ) -> dict[str, Any]:
+        members = values.get("members", [])
+        reputation = values.get("reputation", {})
+        leader = values.get("leader_char")
+
+        missing_reputation = [m for m in members if m not in reputation]
+        if missing_reputation:
+            raise ValueError(
+                f"Missing reputation entries for members: {', '.join(missing_reputation)}"
+            )
+
+        if leader and leader not in members:
+            raise ValueError(
+                f"Faction leader '{leader}' must also be a member."
+            )
+
+        if leader and leader not in reputation:
+            raise ValueError(
+                f"Faction leader '{leader}' is missing a reputation score."
+            )
+
+        return values
+
+
 class MissionStepModel(BaseModel):
     slug: str = Field(..., description="Unique identifier for the step")
     order: int = Field(
@@ -1736,6 +2010,14 @@ class MissionStepModel(BaseModel):
         default_factory=list,
         description="Slugs of next steps unlocked when this is completed",
     )
+    step_items_needed: dict[str, Optional[int]] = Field(
+        default_factory=dict,
+        description="Items required to complete this step. Quantity is optional; None means at least one.",
+    )
+    step_monsters_needed: dict[str, Optional[int]] = Field(
+        default_factory=dict,
+        description="Monsters required to complete this step. Level is optional; None means any level.",
+    )
     optional: bool = Field(False, description="Whether the step is optional")
 
 
@@ -1754,12 +2036,13 @@ class MissionModel(BaseModel, BaseLookupModel):
         default_factory=list,
         description="List of missions that this one unlocks",
     )
-    required_items: Sequence[str] = Field(
-        default_factory=list, description="Items required to begin the mission"
+    required_items: dict[str, Optional[int]] = Field(
+        default_factory=dict,
+        description="Items required to begin the mission with optional quantity. None means at least one.",
     )
-    required_monsters: Sequence[str] = Field(
-        default_factory=list,
-        description="Monsters required to begin the mission",
+    required_monsters: dict[str, Optional[int]] = Field(
+        default_factory=dict,
+        description="Monsters required to begin the mission with optional minimum level. None means any level.",
     )
     required_missions: Sequence[str] = Field(
         default_factory=list,
@@ -1798,8 +2081,10 @@ class MissionModel(BaseModel, BaseLookupModel):
         raise ValueError(f"no translation exists with msgid: {v}")
 
     @field_validator("required_items")
-    def item_exists(cls: MissionModel, v: Sequence[str]) -> Sequence[str]:
-        for item_slug in v:
+    def item_exists(
+        cls: MissionModel, v: dict[str, Optional[int]]
+    ) -> dict[str, Optional[int]]:
+        for item_slug in v.keys():
             if not has.db_entry("item", item_slug):
                 raise ValueError(
                     f"The item '{item_slug}' doesn't exist in the db"
@@ -1807,8 +2092,10 @@ class MissionModel(BaseModel, BaseLookupModel):
         return v
 
     @field_validator("required_monsters")
-    def monster_exists(cls: MissionModel, v: Sequence[str]) -> Sequence[str]:
-        for monster_slug in v:
+    def monster_exists(
+        cls: MissionModel, v: dict[str, Optional[int]]
+    ) -> dict[str, Optional[int]]:
+        for monster_slug in v.keys():
             if not has.db_entry("monster", monster_slug):
                 raise ValueError(
                     f"The monster '{monster_slug}' doesn't exist in the db"
@@ -1929,6 +2216,7 @@ DataModel = Union[
     SoundModel,
     StatusModel,
     TechniqueModel,
+    FactionModel,
 ]
 
 
@@ -2347,6 +2635,38 @@ class ModData:
                 f"Unexpected error while adding entry to table '{table}': {ex}"
             )
 
+    def get_mod_attribute(
+        self, mod_name: str, attribute_name: str
+    ) -> Optional[Any]:
+        """
+        Retrieves a specific attribute (field) from a mod's metadata.
+
+        Parameters:
+            mod_name: The directory name of the mod (e.g., "tuxemon").
+            attribute_name: The name of the attribute/field to retrieve
+                (e.g., "starting_map", "name", "authors").
+
+        Returns:
+            The value of the attribute if found, otherwise None.
+        """
+        mod_meta = self.mod_metadata.get(mod_name)
+        if mod_meta:
+            value = mod_meta.get(attribute_name)
+            if value is None:
+                logger.debug(
+                    f"Attribute '{attribute_name}' not found in mod '{mod_name}'"
+                )
+            return value
+        return None
+
+    def require_mod_attribute(self, mod_name: str, attribute_name: str) -> Any:
+        value = self.get_mod_attribute(mod_name, attribute_name)
+        if value is None:
+            raise ValueError(
+                f"mod.yaml in '{mod_name}' lacks required attribute '{attribute_name}'"
+            )
+        return value
+
 
 def load_files(
     directory: str, path: Path, config: DatabaseConfig
@@ -2443,7 +2763,7 @@ class Validator:
             True if file exists
         """
         try:
-            path = Path(prepare.fetch(file))
+            path = Path(fetch_asset(file))
             return path.exists()
         except OSError:
             return False
@@ -2459,7 +2779,7 @@ class Validator:
         Returns:
             True if file respects
         """
-        path = prepare.fetch(file)
+        path = fetch_asset(file)
         with Image.open(path) as sprite:
             native = prepare.NATIVE_RESOLUTION
             if size == native:
@@ -2493,7 +2813,8 @@ class Validator:
         return slug in self.db.preloaded[table]
 
 
-path = prepare.fetch(mods_folder.as_posix(), "db_config.yaml")
+fetch_mod_asset_roots(prepare.CONFIG)
+path = fetch_asset(mods_folder.as_posix(), "db_config.yaml")
 config = load_config(path)
 model_map = load_model_map(config.model_map)
 loader = ModelLoader(model_map)

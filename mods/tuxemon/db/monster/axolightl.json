@@ -1,6 +1,6 @@
 {
   "slug": "axolightl",
-  "category": "inchoate",
+  "species": "inchoate",
   "moveset": [
     {
       "level_learned": 1,
@@ -68,7 +68,8 @@
     "swamp"
   ],
   "tags": [
-    "light"
+    "light",
+    "amphibian"
   ],
   "shape": "polliwog",
   "stage": "basic",

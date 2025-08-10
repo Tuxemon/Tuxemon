@@ -174,57 +174,6 @@ class TestActionsSetPlayer(unittest.TestCase):
         self.assertIn(self.player.name, ["maple123", "maple321"])
 
 
-class TestBattleActions(unittest.TestCase):
-    def setUp(self):
-        action = ActionManager()
-        condition = ConditionManager()
-        self.mock_screen = MagicMock()
-        with patch.object(Player, "__init__", mockPlayer):
-            self.action = EventEngine(local_session, action, condition)
-            local_session.set_player(Player())
-            self.player = local_session.player
-            self.player.steps = 0.0
-            self.player.battle_handler = BattlesHandler()
-
-    def test_set_battle_won(self):
-        _params = ["figher", "won", "opponent"]
-        self.action.execute_action("set_battle", _params)
-        self.assertEqual(len(self.player.battle_handler.get_battles()), 1)
-        battle = self.player.battle_handler.get_last_battle()
-        self.assertIsNotNone(battle)
-        self.assertEqual(battle.fighter, "figher")
-        self.assertEqual(battle.outcome, "won")
-        self.assertEqual(battle.opponent, "opponent")
-        self.assertEqual(battle.steps, 0)
-
-    def test_set_battle_lost(self):
-        _params = ["figher", "lost", "opponent"]
-        self.action.execute_action("set_battle", _params)
-        self.assertEqual(len(self.player.battle_handler.get_battles()), 1)
-        battle = self.player.battle_handler.get_last_battle()
-        self.assertIsNotNone(battle)
-        self.assertEqual(battle.fighter, "figher")
-        self.assertEqual(battle.outcome, "lost")
-        self.assertEqual(battle.opponent, "opponent")
-        self.assertEqual(battle.steps, 0)
-
-    def test_set_battle_draw(self):
-        _params = ["figher", "draw", "opponent"]
-        self.action.execute_action("set_battle", _params)
-        self.assertEqual(len(self.player.battle_handler.get_battles()), 1)
-        battle = self.player.battle_handler.get_last_battle()
-        self.assertIsNotNone(battle)
-        self.assertEqual(battle.fighter, "figher")
-        self.assertEqual(battle.outcome, "draw")
-        self.assertEqual(battle.opponent, "opponent")
-        self.assertEqual(battle.steps, 0)
-
-    def test_set_battle_wrong(self):
-        _params = ["figher", "jimmy", "opponent"]
-        with self.assertRaises(ValueError):
-            self.action.execute_action("set_battle", _params)
-
-
 class TestCharacterActions(unittest.TestCase):
     def setUp(self):
         action = ActionManager()

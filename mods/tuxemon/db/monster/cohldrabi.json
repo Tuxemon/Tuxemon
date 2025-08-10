@@ -1,6 +1,6 @@
 {
   "slug": "cohldrabi",
-  "category": "frozen_produce",
+  "species": "frozen_produce",
   "moveset": [
     {
       "level_learned": 1,

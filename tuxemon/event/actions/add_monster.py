@@ -68,4 +68,4 @@ class AddMonsterAction(EventAction):
 
         trainer.party.add_monster(monster, len(trainer.monsters))
         trainer.tuxepedia.add_entry(monster.slug, SeenStatus.caught)
-        player.game_variables[self.name] = str(monster.instance_id.hex)
+        player.game_variables[self.name] = monster.instance_id.hex

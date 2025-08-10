@@ -1,6 +1,6 @@
 {
   "slug": "araignee",
-  "category": "weaver",
+  "species": "weaver",
   "moveset": [
     {
       "level_learned": 1,

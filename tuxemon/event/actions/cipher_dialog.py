@@ -80,7 +80,7 @@ class CipherDialogAction(EventAction):
             get_avatar(session, self.avatar) if self.avatar else None
         )
 
-        dialogue = self.style or "default"
+        dialogue = self.style or session.client.config.dialog_box_style
         style = _get_style(dialogue)
         h_alignment = safe_enum_value(
             HorizontalAlignment, self.h_alignment, HorizontalAlignment.LEFT

@@ -16,6 +16,7 @@ from natsort import natsorted
 
 from tuxemon import prepare
 from tuxemon.compat import Rect
+from tuxemon.constants.asset_loader import fetch_asset
 from tuxemon.db import Direction, Orientation
 from tuxemon.event import EventObject, MapAction, MapCondition
 from tuxemon.graphics import scaled_image_loader
@@ -224,7 +225,7 @@ class MapLoader:
         """
         yaml_files = [Path(path).with_suffix(".yaml")]
         if txmn_map.scenario:
-            _scenario = prepare.fetch("maps", f"{txmn_map.scenario}.yaml")
+            _scenario = fetch_asset("maps", f"{txmn_map.scenario}.yaml")
             yaml_files.append(Path(_scenario))
 
         yaml_collision, events = self._process_events(yaml_files)

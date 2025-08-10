@@ -140,9 +140,7 @@ class GetPlayerMonsterAction(EventAction):
         player = self.session.player
         monster = menu_item.game_object
 
-        player.game_variables[self.variable_name] = str(
-            monster.instance_id.hex
-        )
+        player.game_variables[self.variable_name] = monster.instance_id.hex
         self.session.client.pop_state()
 
     def start(self, session: Session) -> None:
@@ -150,7 +148,9 @@ class GetPlayerMonsterAction(EventAction):
         self.result = False
         self.choose = False
         # pull up the monster menu so we know which one we are saving
-        menu = session.client.push_state(MonsterMenuState(session.player))
+        menu = session.client.push_state(
+            MonsterMenuState(session.player.monsters)
+        )
         menu.is_valid_entry = self.validate  # type: ignore[assignment]
         menu.on_menu_selection = self.set_var  # type: ignore[assignment]
         # if without filters, no closing by clicking back

@@ -28,11 +28,12 @@ class Mission:
         self.slug: str = ""
         self.name: str = ""
         self.description: str = ""
+        self.generated: bool = False
         self.prerequisites: Sequence[dict[str, Any]] = []
         self.connected_missions: Sequence[dict[str, Any]] = []
         self.failure_conditions: Sequence[dict[str, Any]] = []
-        self.required_items: Sequence[str] = []
-        self.required_monsters: Sequence[str] = []
+        self.required_items: dict[str, Optional[int]] = {}
+        self.required_monsters: dict[str, Optional[int]] = {}
         self.required_missions: Sequence[str] = []
         self.steps: dict[str, MissionStepModel] = {}
         self.completed_steps: set[str] = set()
@@ -97,6 +98,12 @@ class Mission:
         save_data["instance_id"] = self.instance_id.hex
         save_data["completed_steps"] = list(self.completed_steps)
         save_data["assigned_to"] = self.assigned_to
+
+        if self.generated and self.steps:
+            save_data["steps"] = {
+                slug: step.model_dump() for slug, step in self.steps.items()
+            }
+
         return save_data
 
     def set_state(self, save_data: Mapping[str, Any]) -> None:
@@ -109,25 +116,21 @@ class Mission:
         self.instance_id = UUID(save_data.get("instance_id", uuid4().hex))
         self.completed_steps = set(save_data.get("completed_steps", []))
         self.assigned_to = save_data.get("assigned_to", None)
+        self.generated = save_data.get("generated", False)
 
         for key in SIMPLE_PERSISTANCE_ATTRIBUTES:
             if key in save_data:
                 setattr(self, key, save_data[key])
 
+        if self.generated and "steps" in save_data:
+            self.steps = {
+                slug: MissionStepModel.model_validate(step_data)
+                for slug, step_data in save_data["steps"].items()
+            }
+
     def mark_step_completed(self, slug: str) -> None:
         if slug in self.steps:
             self.completed_steps.add(slug)
-
-    def check_required_items(self, character: NPC) -> bool:
-        return all(
-            character.items.find_item(item) for item in self.required_items
-        )
-
-    def check_required_monsters(self, character: NPC) -> bool:
-        return all(
-            character.party.find_monster(monster)
-            for monster in self.required_monsters
-        )
 
     def get_slug_missions(self, character: NPC) -> list[str]:
         return [
@@ -254,8 +257,8 @@ class Mission:
     def check_all_prerequisites(self, character: NPC) -> bool:
         return (
             self.check_required_missions(character)
-            and self.check_required_items(character)
-            and self.check_required_monsters(character)
+            and check_items(character, self.required_items)
+            and check_monsters(character, self.required_monsters)
             and self.check_prerequisites(character)
         )
 
@@ -264,3 +267,25 @@ class Mission:
 
     def is_completed(self) -> bool:
         return self.status == MissionStatus.completed
+
+
+def check_items(character: NPC, step_items: dict[str, Optional[int]]) -> bool:
+    for item_slug, required_quantity in step_items.items():
+        item = character.items.find_item(item_slug)
+        if not item:
+            return False
+        if required_quantity is not None and item.quantity < required_quantity:
+            return False
+    return True
+
+
+def check_monsters(
+    character: NPC, step_monsters: dict[str, Optional[int]]
+) -> bool:
+    for monster_slug, required_level in step_monsters.items():
+        monster = character.party.find_monster(monster_slug)
+        if not monster:
+            return False
+        if required_level is not None and monster.level < required_level:
+            return False
+    return True

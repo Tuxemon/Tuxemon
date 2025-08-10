@@ -1,6 +1,6 @@
 {
   "slug": "bishosand",
-  "category": "sand_bishop",
+  "species": "sand_bishop",
   "moveset": [
     {
       "level_learned": 1,

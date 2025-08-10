@@ -1,6 +1,6 @@
 {
   "slug": "chillimp",
-  "category": "frost_ape",
+  "species": "frost_ape",
   "moveset": [
     {
       "level_learned": 1,

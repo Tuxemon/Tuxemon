@@ -20,6 +20,7 @@ from tuxemon.cli.processor import CommandProcessor
 from tuxemon.collision_manager import CollisionManager
 from tuxemon.config import TuxemonConfig
 from tuxemon.constants import paths
+from tuxemon.event import get_event_bus
 from tuxemon.event.eventaction import ActionManager
 from tuxemon.event.eventcondition import ConditionManager
 from tuxemon.event.eventengine import EventEngine
@@ -40,7 +41,7 @@ from tuxemon.state.draw import EventDebugDrawer, Renderer, StateDrawer
 from tuxemon.state.loader import StateLoader
 from tuxemon.state.manager import StateManager
 from tuxemon.state.repository import StateRepository
-from tuxemon.state.state import HookManager, State
+from tuxemon.state.state import State
 from tuxemon.ui.cipher_processor import CipherProcessor
 
 StateType = TypeVar("StateType", bound=State)
@@ -89,7 +90,7 @@ class LocalPygameClient:
     def __init__(self, config: TuxemonConfig, screen: Surface) -> None:
         self.config = config
 
-        self.hook_manager = HookManager()
+        self.event_bus = get_event_bus()
         self.state_repository = StateRepository()
         loader = StateLoader(
             base_package="tuxemon.states", lib_dir=paths.LIBDIR
@@ -97,7 +98,7 @@ class LocalPygameClient:
         loader.auto_state_discovery(self.state_repository)
         self.state_manager = StateManager(
             package="tuxemon.states",
-            hook=self.hook_manager,
+            event=self.event_bus,
             repository=self.state_repository,
             on_state_change=self.on_state_change,
         )

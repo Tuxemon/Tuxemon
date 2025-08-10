@@ -8,6 +8,7 @@ from collections.abc import Iterable
 from pygame.surface import Surface
 
 from tuxemon import prepare
+from tuxemon.constants.asset_loader import fetch_asset
 from tuxemon.db import AnimationModel, db
 from tuxemon.graphics import create_animation, load_frames_files
 from tuxemon.map_view import AnimationInfo
@@ -38,7 +39,7 @@ class AnimationEntity:
         self.slug = results.slug
         self.file = results.file
 
-        self.directory = prepare.fetch("animations", self.file)
+        self.directory = fetch_asset("animations", self.file)
         self.frames = load_frames_files(self.directory, self.slug)
         self.play = create_animation(self.frames, self.duration, self.loop)
 

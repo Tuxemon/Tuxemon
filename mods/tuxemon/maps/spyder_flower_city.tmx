@@ -360,7 +360,7 @@
     <property name="cond2" value="is char_facing player,right"/>
    </properties>
   </object>
-  <object id="450" name="Seen Flower" type="event" x="608" y="64" width="16" height="32">
+  <object id="444" name="Seen Flower" type="event" x="608" y="64" width="16" height="32">
    <properties>
     <property name="act1" value="add_tracker player,flower_city"/>
     <property name="cond1" value="is char_at player"/>

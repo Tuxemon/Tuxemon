@@ -8,7 +8,7 @@ from typing import TYPE_CHECKING, Any, Optional
 
 from tuxemon.db import MissionStatus
 from tuxemon.mission.manager import MissionManager
-from tuxemon.mission.mission import Mission
+from tuxemon.mission.mission import Mission, check_items, check_monsters
 
 if TYPE_CHECKING:
     from tuxemon.npc import NPC
@@ -69,8 +69,20 @@ class MissionController:
                 mission.update_status(MissionStatus.failed)
                 continue
 
-            if mission.check_all_prerequisites(self.character):
-                mission.check_step_conditions(self.character)
+            if not mission.check_all_prerequisites(self.character):
+                continue
+
+            for step_slug, step in mission.steps.items():
+                if step_slug in mission.completed_steps:
+                    continue
+
+                # Check step-specific requirements
+                if not check_items(self.character, step.step_items_needed):
+                    continue
+                if not check_monsters(
+                    self.character, step.step_monsters_needed
+                ):
+                    continue
 
                 if mission.get_progress() >= 100.0:
                     mission.update_status(MissionStatus.completed)

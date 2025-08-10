@@ -17,6 +17,7 @@ from pygame.surface import Surface
 from tuxemon import networking, prepare
 from tuxemon.camera import Camera
 from tuxemon.db import Direction
+from tuxemon.faction.manager import FactionManager
 from tuxemon.map_view import MapRenderer
 from tuxemon.platform.const import intentions
 from tuxemon.platform.events import PlayerInput
@@ -27,6 +28,7 @@ from tuxemon.state.state import State
 from tuxemon.states.world.world_menus import WorldMenuManager
 from tuxemon.states.world.world_transition import WorldTransition
 from tuxemon.teleporter import Teleporter
+from tuxemon.tools import extract_mod_name
 
 if TYPE_CHECKING:
     from tuxemon.entity import Entity
@@ -43,6 +45,7 @@ direction_map: Mapping[int, Direction] = {
 
 
 class WorldSave(TypedDict, total=False):
+    factions_manager: dict[str, Any]
     menu_flags: dict[str, bool]
 
 
@@ -51,6 +54,7 @@ class WorldState(State):
 
     def __init__(self, session: Session, map_name: str) -> None:
         super().__init__()
+        self.mod_name = extract_mod_name(map_name)
         self.session = session
         self.session.set_world(self)
         self.screen = self.client.screen
@@ -64,6 +68,7 @@ class WorldState(State):
         self.camera = Camera(self.player, self.client.boundary)
         self.client.camera_manager.add_camera(self.camera)
         self.map_renderer = MapRenderer(self.client)
+        self.faction_manager = FactionManager()
 
         if map_name:
             self.client.map_transition.change_map(map_name)
@@ -72,12 +77,17 @@ class WorldState(State):
 
     def get_state(self, session: Session) -> WorldSave:
         """Returns a dictionary of the World to be saved."""
-        state: WorldSave = {}
-        state["menu_flags"] = self.menu_manager.menu_flags.export()
+        state: WorldSave = {
+            "factions_manager": self.faction_manager.set_state(
+                self.client.npc_manager
+            ),
+            "menu_flags": self.menu_manager.menu_flags.export(),
+        }
         return state
 
     def set_state(self, session: Session, save_data: WorldSave) -> None:
         """Recreates the World from the provided saved data."""
+        self.faction_manager.get_state(save_data.get("factions_manager", {}))
         self.menu_manager.menu_flags.import_flags(
             save_data.get("menu_flags", {})
         )

@@ -1,6 +1,6 @@
 {
   "slug": "agnidon",
-  "category": "false_dragon",
+  "species": "false_dragon",
   "moveset": [
     {
       "level_learned": 1,

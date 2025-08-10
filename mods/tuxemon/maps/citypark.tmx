@@ -57,7 +57,7 @@
   <object id="97" type="collision" x="608" y="160" width="16" height="16"/>
   <object id="98" type="collision" x="512" y="48" width="64" height="16"/>
   <object id="100" type="collision" x="32" y="544" width="32" height="64"/>
-  <object id="115" type="collision" x="32" y="384" width="16" height="16"/>
+  <object id="114" type="collision" x="32" y="384" width="16" height="16"/>
   <object id="127" type="collision" x="576" y="32" width="16" height="16"/>
   <object id="128" type="collision" x="592" y="48" width="16" height="16"/>
   <object id="130" type="collision" x="96" y="512" width="48" height="32"/>

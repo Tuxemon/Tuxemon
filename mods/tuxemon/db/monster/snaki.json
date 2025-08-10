@@ -1,6 +1,6 @@
 {
   "slug": "snaki",
-  "category": "false_serpent",
+  "species": "false_serpent",
   "moveset": [
     {
       "level_learned": 1,

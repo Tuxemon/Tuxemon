@@ -18,7 +18,6 @@ from pygame.transform import flip as pg_flip
 from tuxemon import graphics, prepare
 from tuxemon.combat import alive_party, build_hud_text
 from tuxemon.formula import config_combat
-from tuxemon.locale import T
 from tuxemon.menu.menu import Menu
 from tuxemon.sprite import CaptureDeviceSprite, Sprite
 from tuxemon.tools import scale

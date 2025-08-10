@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from collections.abc import Generator
 from functools import partial
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING, ClassVar, Optional
 
 from pygame.rect import Rect
 
@@ -32,6 +32,8 @@ if TYPE_CHECKING:
 
 
 class ShopMonsterMenuState(Menu[Monster]):
+
+    name: ClassVar[str] = "ShopMonsterMenuState"
     draw_borders = False
 
     def __init__(
@@ -202,6 +204,8 @@ class ShopMonsterMenuState(Menu[Monster]):
 class ShopMonsterBuyMenuState(ShopMonsterMenuState):
     """State for buying monsters."""
 
+    name: ClassVar[str] = "ShopMonsterBuyMenuState"
+
     def on_menu_selection(self, menu_monster: MenuItem[Monster]) -> None:
         monster = menu_monster.game_object
         price: int = menu_monster.metadata.get("price", 1)
@@ -240,6 +244,8 @@ class ShopMonsterBuyMenuState(ShopMonsterMenuState):
 
 class ShopMonsterSellMenuState(ShopMonsterMenuState):
     """State for selling monsters."""
+
+    name: ClassVar[str] = "ShopMonsterSellMenuState"
 
     def on_menu_selection(self, menu_monster: MenuItem[Monster]) -> None:
         monster = menu_monster.game_object

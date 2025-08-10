@@ -1,8 +1,8 @@
 [
   {
     "slug": "spyder_route2_marion",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_route2_marion1",
           "post_battle_win": null,
@@ -19,8 +19,8 @@
   },
   {
     "slug": "spyder_route2_graf",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_route2_graf1",
           "post_battle_win": null,
@@ -37,8 +37,8 @@
   },
   {
     "slug": "spyder_route2_roddick",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_route2_roddick1",
           "post_battle_win": null,

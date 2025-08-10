@@ -1,6 +1,6 @@
 [
   {
-    "slug": "spyder_crystal_magician_fiery",
+    "slug": "eclipse_crystal_magician_fiery",
     "template": {
       "sprite_name": "magician_fiery",
       "combat_front": "magician",
@@ -8,7 +8,7 @@
     }
   },
   {
-    "slug": "spyder_crystal_homemaker",
+    "slug": "eclipse_crystal_homemaker",
     "template": {
       "sprite_name": "homemaker_fiery",
       "combat_front": "heroine",
@@ -16,7 +16,7 @@
     }
   },
   {
-    "slug": "spyder_crystal_barmaid",
+    "slug": "eclipse_crystal_barmaid",
     "template": {
       "sprite_name": "barmaid_red",
       "combat_front": "barmaid",
@@ -24,7 +24,7 @@
     }
   },
   {
-    "slug": "spyder_crystal_granny",
+    "slug": "eclipse_crystal_granny",
     "template": {
       "sprite_name": "granny",
       "combat_front": "adventurer",
@@ -32,7 +32,7 @@
     }
   },
   {
-    "slug": "spyder_crystal_maniac_green",
+    "slug": "eclipse_crystal_maniac_green",
     "template": {
       "sprite_name": "maniac_green",
       "combat_front": "adventurer",
@@ -40,7 +40,7 @@
     }
   },
   {
-    "slug": "spyder_crystal_monk_orange",
+    "slug": "eclipse_crystal_monk_orange",
     "template": {
       "sprite_name": "monk_orange",
       "combat_front": "monk",
@@ -48,7 +48,7 @@
     }
   },
   {
-    "slug": "spyder_crystal_tennisplayer",
+    "slug": "eclipse_crystal_tennisplayer",
     "template": {
       "sprite_name": "tennisplayer",
       "combat_front": "tennisplayer",
@@ -56,7 +56,7 @@
     }
   },
   {
-    "slug": "spyder_crystal_shopkeeper",
+    "slug": "eclipse_crystal_shopkeeper",
     "template": {
       "sprite_name": "shopassistant_black",
       "combat_front": "shopassistant",

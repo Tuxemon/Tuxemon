@@ -1,8 +1,8 @@
 [
   {
     "slug": "spyder_top_jackson",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_top_jackson1",
           "post_battle_win": null,
@@ -19,8 +19,8 @@
   },
   {
     "slug": "spyder_top_mickey",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_top_mickey1",
           "post_battle_win": null,
@@ -37,8 +37,8 @@
   },
   {
     "slug": "spyder_top_ricardo",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_top_ricardo1",
           "post_battle_win": null,
@@ -55,8 +55,8 @@
   },
   {
     "slug": "spyder_top_russell",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_top_russell1",
           "post_battle_win": null,
@@ -113,8 +113,8 @@
   },
   {
     "slug": "spyder_mansion_lyle",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_mansion_pirate1",
           "post_battle_win": null,
@@ -131,8 +131,8 @@
   },
   {
     "slug": "spyder_mansion_lucy",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_mansion_lucy1",
           "post_battle_win": null,
@@ -149,8 +149,8 @@
   },
   {
     "slug": "spyder_mansion_gillette",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_mansion_gillette1",
           "post_battle_win": null,
@@ -215,8 +215,8 @@
   },
   {
     "slug": "spyder_basement_bobby",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_basement_bobby1",
           "post_battle_win": null,
@@ -233,8 +233,8 @@
   },
   {
     "slug": "spyder_basement_catholi",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_basement_catholi1",
           "post_battle_win": null,
@@ -251,8 +251,8 @@
   },
   {
     "slug": "spyder_basement_coralli",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_basement_coralli1",
           "post_battle_win": null,
@@ -277,8 +277,8 @@
   },
   {
     "slug": "spyder_basement_roger",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_basement_roger1",
           "post_battle_win": null,

@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import logging
 from abc import abstractmethod
-from typing import Optional
+from typing import ClassVar, Optional
 
 from pygame import SRCALPHA
 from pygame.surface import Surface
@@ -20,6 +20,7 @@ logger = logging.getLogger(__name__)
 class FadeTransitionBase(State):
     """The state responsible for the battle transitions."""
 
+    name: ClassVar[str] = "FadeTransitionBase"
     force_draw = True
     state_duration = 1.0
     fade_duration = 1.5
@@ -74,6 +75,8 @@ class FadeTransitionBase(State):
 
 
 class FadeOutTransition(FadeTransitionBase):
+    name: ClassVar[str] = "FadeOutTransition"
+
     def create_fade_animation(self) -> None:
         self.animate(
             self.transition_surface,
@@ -92,6 +95,8 @@ class FadeOutTransition(FadeTransitionBase):
 
 
 class FadeInTransition(FadeTransitionBase):
+    name: ClassVar[str] = "FadeInTransition"
+
     def create_fade_animation(self) -> None:
         self.animate(
             self.transition_surface,

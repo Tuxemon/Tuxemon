@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import logging
-from typing import Optional
+from typing import ClassVar, Optional
 
 from pygame.surface import Surface
 
@@ -19,6 +19,7 @@ logger = logging.getLogger(__name__)
 class FlashTransition(State):
     """The state responsible for the battle transitions."""
 
+    name: ClassVar[str] = "FlashTransition"
     force_draw = True
 
     def __init__(

@@ -2,7 +2,7 @@
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-from typing import Any, Optional
+from typing import Any, ClassVar, Optional
 
 import pygame_menu
 from pygame_menu import locals
@@ -24,6 +24,8 @@ class MonsterItemState(PygameMenuState):
     """
     Shows details of the single monster held item.
     """
+
+    name: ClassVar[str] = "MonsterItemState"
 
     def add_menu_items(
         self,

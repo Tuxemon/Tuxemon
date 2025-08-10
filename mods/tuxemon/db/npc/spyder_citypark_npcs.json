@@ -1,8 +1,8 @@
 [
   {
     "slug": "spyder_citypark_bobette",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_citypark_bobette1",
           "post_battle_win": null,
@@ -19,8 +19,8 @@
   },
   {
     "slug": "spyder_citypark_edith",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_citypark_edith1",
           "post_battle_win": null,
@@ -45,8 +45,8 @@
   },
   {
     "slug": "spyder_citypark_frances",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_citypark_frances1",
           "post_battle_win": null,

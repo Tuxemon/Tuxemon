@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import logging
 from collections.abc import Callable, Generator
-from typing import Optional
+from typing import ClassVar, Optional
 
 from tuxemon.item.item import INFINITE_ITEMS
 from tuxemon.locale import T
@@ -24,6 +24,8 @@ MIN_QUANTITY = 1
 
 class QuantityMenu(Menu[None]):
     """Menu used to select quantities."""
+
+    name: ClassVar[str] = "QuantityMenu"
 
     def __init__(
         self,
@@ -121,6 +123,8 @@ class QuantityMenu(Menu[None]):
 class QuantityAndPriceMenu(QuantityMenu):
     """Menu used to select quantities, and also shows the price of items."""
 
+    name: ClassVar[str] = "QuantityAndPriceMenu"
+
     def on_open(self) -> None:
         # Do this to force the menu to resize when first opened, as currently
         # it's way too big initially and then resizes after you change quantity.
@@ -143,6 +147,8 @@ class QuantityAndPriceMenu(QuantityMenu):
 
 class QuantityAndCostMenu(QuantityMenu):
     """Menu used to select quantities, and also shows the cost of items."""
+
+    name: ClassVar[str] = "QuantityAndCostMenu"
 
     def on_open(self) -> None:
         # Do this to force the menu to resize when first opened, as currently

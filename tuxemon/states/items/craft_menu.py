@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from functools import partial
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING, ClassVar, Optional
 
 import pygame_menu
 from pygame_menu import locals
@@ -24,6 +24,8 @@ class CraftMenuState(PygameMenuState):
     """
     This state is responsible for the craft menu.
     """
+
+    name: ClassVar[str] = "CraftMenuState"
 
     def __init__(
         self, character: NPC, file_yaml: str, method: Optional[str] = None

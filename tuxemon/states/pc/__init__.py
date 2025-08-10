@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from collections.abc import Callable
 from functools import partial
-from typing import TYPE_CHECKING, Any, Optional
+from typing import TYPE_CHECKING, Any, ClassVar, Optional
 
 import pygame_menu
 
@@ -122,6 +122,8 @@ class PCMenuBuilder:
 
 class PCState(PygameMenuState):
     """The PC State: deposit monster, deposit item, etc."""
+
+    name: ClassVar[str] = "PCState"
 
     def __init__(
         self, character: NPC, menu_builder: Optional[PCMenuBuilder] = None

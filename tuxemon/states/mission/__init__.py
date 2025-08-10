@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from collections.abc import Callable
 from functools import partial
-from typing import Any, Optional
+from typing import Any, ClassVar, Optional
 
 import pygame_menu
 from pygame_menu import locals
@@ -27,6 +27,8 @@ class MissionState(PygameMenuState):
     """
     This state is responsible for the mission menu.
     """
+
+    name: ClassVar[str] = "MissionState"
 
     def __init__(self, character: NPC) -> None:
         self.character = character
@@ -74,6 +76,8 @@ class MissionState(PygameMenuState):
 
 
 class SingleMissionState(PygameMenuState):
+    name: ClassVar[str] = "SingleMissionState"
+
     def __init__(self, mission: Mission, character: NPC) -> None:
         self.mission = mission
         self.character = character

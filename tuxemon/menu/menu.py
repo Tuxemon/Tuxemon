@@ -7,7 +7,7 @@ from abc import ABC, abstractmethod
 from collections.abc import Callable, Iterable
 from dataclasses import dataclass
 from functools import partial
-from typing import Any, Generic, Optional, TypeVar, Union
+from typing import Any, ClassVar, Generic, Optional, TypeVar, Union
 
 import pygame_menu
 from pygame.font import Font
@@ -57,6 +57,7 @@ class PygameMenuState(State):
     A Pygame menu state class.
     """
 
+    name: ClassVar[str] = "PygameMenuState"
     transparent = True
 
     def __init__(
@@ -321,6 +322,7 @@ class Menu(Generic[T], State):
         menu_items: A list of available menu items.
     """
 
+    name: ClassVar[str] = "Menu"
     # defaults for the menu
     columns = 1
     min_font_size = 4
@@ -909,6 +911,7 @@ class Menu(Generic[T], State):
 class PopUpMenu(Menu[T]):
     """Menu with "pop up" style animation."""
 
+    name: ClassVar[str] = "PopUpMenu"
     ANIMATION_DURATION = 0.20
 
     def __init__(self, initial_scale: float = 0.1, **kwargs: Any):

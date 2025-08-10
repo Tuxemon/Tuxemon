@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import logging
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING, ClassVar, Optional
 
 from pygame.surface import Surface
 
@@ -20,6 +20,7 @@ logger = logging.getLogger(__name__)
 class SplashState(State):
     """The state responsible for the splash screen."""
 
+    name: ClassVar[str] = "SplashState"
     default_duration = 3
 
     def __init__(self, parent: StateManager) -> None:

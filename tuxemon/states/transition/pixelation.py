@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import logging
-from typing import Optional
+from typing import ClassVar, Optional
 
 from pygame.surface import Surface
 from pygame.transform import scale
@@ -17,6 +17,7 @@ logger = logging.getLogger(__name__)
 class PixelationTransition(State):
     """The state responsible for the pixelation transitions."""
 
+    name: ClassVar[str] = "PixelationTransition"
     force_draw = True
 
     def __init__(

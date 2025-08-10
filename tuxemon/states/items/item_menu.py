@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from collections.abc import Generator, Sequence
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING, ClassVar, Optional
 
 from pygame.rect import Rect
 
@@ -70,6 +70,7 @@ def sort_inventory(
 class ItemMenuState(Menu[Item]):
     """The item menu allows you to view and use items in your inventory."""
 
+    name: ClassVar[str] = "ItemMenuState"
     background_filename = prepare.BG_ITEMS
     draw_borders = False
 

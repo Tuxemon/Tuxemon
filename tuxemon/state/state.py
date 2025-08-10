@@ -7,7 +7,7 @@ import random
 from abc import ABC
 from collections.abc import Callable
 from functools import partial
-from typing import Any, Optional, Union
+from typing import Any, ClassVar, Optional, Union
 
 from pygame.rect import Rect
 from pygame.sprite import Group
@@ -44,6 +44,7 @@ class State(ABC):
      * shutdown      - Called before state is destroyed
     """
 
+    name: ClassVar[str] = "State"
     rect = Rect((0, 0), prepare.SCREEN_SIZE)
     transparent = False  # ignore all background/borders
     force_draw = False  # draw even if completely under another state
@@ -73,9 +74,14 @@ class State(ABC):
 
         self._scheduled_task: Optional[Task] = None
 
-    @property
-    def name(self) -> str:
-        return self.__class__.__name__
+    def __init_subclass__(cls: type[State], **kwargs: Any) -> None:
+        """Ensure subclasses define a class variable 'name'."""
+        super().__init_subclass__(**kwargs)
+        if "name" not in cls.__dict__:
+            logger.error(f"Missing 'name' in subclass: {cls.__name__}")
+            raise TypeError(
+                f"{cls.__name__} must define a class variable 'name'"
+            )
 
     def load_sprite(self, filename: str, **kwargs: Any) -> Sprite:
         """

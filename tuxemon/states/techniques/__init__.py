@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from collections.abc import Generator
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING, ClassVar, Optional
 
 from pygame.rect import Rect
 
@@ -31,6 +31,7 @@ if TYPE_CHECKING:
 class TechniqueMenuState(Menu[Technique]):
     """The technique menu allows you to view and use techniques of your party."""
 
+    name: ClassVar[str] = "TechniqueMenuState"
     background_filename = prepare.BG_MOVES
     draw_borders = False
 

@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from collections.abc import Callable
-from typing import Any, Optional
+from typing import Any, ClassVar, Optional
 
 import pygame_menu
 from pygame_menu import locals
@@ -34,6 +34,8 @@ class MonsterInfoState(PygameMenuState):
     Shows details of the single monster with the journal
     background graphic.
     """
+
+    name: ClassVar[str] = "MonsterInfoState"
 
     def add_menu_items(
         self,

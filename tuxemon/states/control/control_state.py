@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from collections.abc import Callable
 from functools import partial
-from typing import Any, Optional, Union
+from typing import Any, ClassVar, Optional, Union
 
 import pygame_menu
 from pygame_menu.locals import ALIGN_CENTER, POSITION_EAST
@@ -23,6 +23,8 @@ from tuxemon.state.state import State
 
 class ControlState(PygameMenuState):
     """This state is responsible for the option menu."""
+
+    name: ClassVar[str] = "ControlState"
 
     def __init__(self, **kwargs: Any) -> None:
         """Used when initializing the state."""

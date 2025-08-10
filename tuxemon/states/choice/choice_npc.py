@@ -5,7 +5,7 @@ from __future__ import annotations
 import math
 from collections.abc import Callable
 from dataclasses import dataclass
-from typing import Any, Optional
+from typing import Any, ClassVar, Optional
 
 from pygame_menu.locals import ALIGN_CENTER, POSITION_EAST
 from pygame_menu.widgets.selection.highlight import HighlightSelection
@@ -35,6 +35,8 @@ class ChoiceNpc(PygameMenuState):
     """
     Game state with a graphic box and NPCs (images) + labels.
     """
+
+    name: ClassVar[str] = "ChoiceNpc"
 
     def __init__(
         self,

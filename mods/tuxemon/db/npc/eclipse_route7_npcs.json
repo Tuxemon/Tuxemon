@@ -1,6 +1,6 @@
 [
   {
-    "slug": "spyder_route7_arnold",
+    "slug": "eclipse_route7_arnold",
     "template": {
       "sprite_name": "scientist",
       "combat_front": "scientist",
@@ -8,7 +8,7 @@
     }
   },
   {
-    "slug": "spyder_route7_sylvester",
+    "slug": "eclipse_route7_sylvester",
     "template": {
       "sprite_name": "beachcomber_copper",
       "combat_front": "beachgoer",
@@ -16,7 +16,7 @@
     }
   },
   {
-    "slug": "spyder_route7_fritz",
+    "slug": "eclipse_route7_fritz",
     "template": {
       "sprite_name": "maniac_violet",
       "combat_front": "adventurer",
@@ -24,13 +24,13 @@
     }
   },
   {
-    "slug": "spyder_route7_statius",
-    "dialogue": {
-      "dialogue": {
+    "slug": "eclipse_route7_statius",
+    "speech": {
+      "profile": {
         "default": {
-          "pre_battle": "spyder_route7_statius1",
+          "pre_battle": "eclipse_route7_statius1",
           "post_battle_win": null,
-          "post_battle_lose": "spyder_route7_statius2",
+          "post_battle_lose": "eclipse_route7_statius2",
           "post_battle_draw": null
         }
       }
@@ -42,13 +42,13 @@
     }
   },
   {
-    "slug": "spyder_route7_jacopo",
-    "dialogue": {
-      "dialogue": {
+    "slug": "eclipse_route7_jacopo",
+    "speech": {
+      "profile": {
         "default": {
-          "pre_battle": "spyder_route7_jacopo1",
+          "pre_battle": "eclipse_route7_jacopo1",
           "post_battle_win": null,
-          "post_battle_lose": "spyder_route7_jacopo2",
+          "post_battle_lose": "eclipse_route7_jacopo2",
           "post_battle_draw": null
         }
       }
@@ -60,13 +60,13 @@
     }
   },
   {
-    "slug": "spyder_route7_pia",
-    "dialogue": {
-      "dialogue": {
+    "slug": "eclipse_route7_pia",
+    "speech": {
+      "profile": {
         "default": {
-          "pre_battle": "spyder_route7_pia1",
+          "pre_battle": "eclipse_route7_pia1",
           "post_battle_win": null,
-          "post_battle_lose": "spyder_route7_pia2",
+          "post_battle_lose": "eclipse_route7_pia2",
           "post_battle_draw": null
         }
       }
@@ -78,13 +78,13 @@
     }
   },
   {
-    "slug": "spyder_route7_penitent",
-    "dialogue": {
-      "dialogue": {
+    "slug": "eclipse_route7_penitent",
+    "speech": {
+      "profile": {
         "default": {
-          "pre_battle": "spyder_route7_penitent1",
+          "pre_battle": "eclipse_route7_penitent1",
           "post_battle_win": null,
-          "post_battle_lose": "spyder_route7_penitent2",
+          "post_battle_lose": "eclipse_route7_penitent2",
           "post_battle_draw": null
         }
       }
@@ -96,13 +96,13 @@
     }
   },
   {
-    "slug": "spyder_route7_nino",
-    "dialogue": {
-      "dialogue": {
+    "slug": "eclipse_route7_nino",
+    "speech": {
+      "profile": {
         "default": {
-          "pre_battle": "spyder_route7_nino1",
+          "pre_battle": "eclipse_route7_nino1",
           "post_battle_win": null,
-          "post_battle_lose": "spyder_route7_nino2",
+          "post_battle_lose": "eclipse_route7_nino2",
           "post_battle_draw": null
         }
       }
@@ -114,13 +114,13 @@
     }
   },
   {
-    "slug": "spyder_route7_hugh",
-    "dialogue": {
-      "dialogue": {
+    "slug": "eclipse_route7_hugh",
+    "speech": {
+      "profile": {
         "default": {
-          "pre_battle": "spyder_route7_hugh1",
+          "pre_battle": "eclipse_route7_hugh1",
           "post_battle_win": null,
-          "post_battle_lose": "spyder_route7_hugh2",
+          "post_battle_lose": "eclipse_route7_hugh2",
           "post_battle_draw": null
         }
       }
@@ -132,13 +132,13 @@
     }
   },
   {
-    "slug": "spyder_route7_arnaut",
-    "dialogue": {
-      "dialogue": {
+    "slug": "eclipse_route7_arnaut",
+    "speech": {
+      "profile": {
         "default": {
-          "pre_battle": "spyder_route7_arnaut1",
+          "pre_battle": "eclipse_route7_arnaut1",
           "post_battle_win": null,
-          "post_battle_lose": "spyder_route7_arnaut2",
+          "post_battle_lose": "eclipse_route7_arnaut2",
           "post_battle_draw": null
         }
       }
@@ -150,13 +150,13 @@
     }
   },
   {
-    "slug": "spyder_route7_conrad",
-    "dialogue": {
-      "dialogue": {
+    "slug": "eclipse_route7_conrad",
+    "speech": {
+      "profile": {
         "default": {
-          "pre_battle": "spyder_route7_conrad1",
+          "pre_battle": "eclipse_route7_conrad1",
           "post_battle_win": null,
-          "post_battle_lose": "spyder_route7_conrad2",
+          "post_battle_lose": "eclipse_route7_conrad2",
           "post_battle_draw": null
         }
       }
@@ -168,13 +168,13 @@
     }
   },
   {
-    "slug": "spyder_route7_manfred",
-    "dialogue": {
-      "dialogue": {
+    "slug": "eclipse_route7_manfred",
+    "speech": {
+      "profile": {
         "default": {
-          "pre_battle": "spyder_route7_manfred1",
+          "pre_battle": "eclipse_route7_manfred1",
           "post_battle_win": null,
-          "post_battle_lose": "spyder_route7_manfred2",
+          "post_battle_lose": "eclipse_route7_manfred2",
           "post_battle_draw": null
         }
       }
@@ -186,13 +186,13 @@
     }
   },
   {
-    "slug": "spyder_route7_sordello",
-    "dialogue": {
-      "dialogue": {
+    "slug": "eclipse_route7_sordello",
+    "speech": {
+      "profile": {
         "default": {
-          "pre_battle": "spyder_route7_sordello1",
+          "pre_battle": "eclipse_route7_sordello1",
           "post_battle_win": null,
-          "post_battle_lose": "spyder_route7_sordello2",
+          "post_battle_lose": "eclipse_route7_sordello2",
           "post_battle_draw": null
         }
       }
@@ -204,7 +204,7 @@
     }
   },
   {
-    "slug": "spyder_route7_nurse",
+    "slug": "eclipse_route7_nurse",
     "template": {
       "sprite_name": "nurse_lapi",
       "combat_front": "nurse",

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from collections.abc import Callable
+from typing import ClassVar
 
 import pygame_menu
 from pygame_menu import locals
@@ -19,6 +20,8 @@ class ParkState(PygameMenuState):
     """
     This state is responsible for the park menu.
     """
+
+    name: ClassVar[str] = "ParkState"
 
     def __init__(self, session: Session) -> None:
         self.session = session

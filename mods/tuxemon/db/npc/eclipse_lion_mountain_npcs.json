@@ -1,12 +1,12 @@
 [
   {
-    "slug": "spyder_lionmountain_jacques",
-    "dialogue": {
-      "dialogue": {
+    "slug": "eclipse_lionmountain_jacques",
+    "speech": {
+      "profile": {
         "default": {
-          "pre_battle": "spyder_lionmountain_jacques1",
+          "pre_battle": "eclipse_lionmountain_jacques1",
           "post_battle_win": null,
-          "post_battle_lose": "spyder_lionmountain_jacques2",
+          "post_battle_lose": "eclipse_lionmountain_jacques2",
           "post_battle_draw": null
         }
       }
@@ -18,13 +18,13 @@
     }
   },
   {
-    "slug": "spyder_lionmountain_adam",
-    "dialogue": {
-      "dialogue": {
+    "slug": "eclipse_lionmountain_adam",
+    "speech": {
+      "profile": {
         "default": {
-          "pre_battle": "spyder_lionmountain_adam1",
+          "pre_battle": "eclipse_lionmountain_adam1",
           "post_battle_win": null,
-          "post_battle_lose": "spyder_lionmountain_adam2",
+          "post_battle_lose": "eclipse_lionmountain_adam2",
           "post_battle_draw": null
         }
       }
@@ -36,13 +36,13 @@
     }
   },
   {
-    "slug": "spyder_lionmountain_arlene",
-    "dialogue": {
-      "dialogue": {
+    "slug": "eclipse_lionmountain_arlene",
+    "speech": {
+      "profile": {
         "default": {
-          "pre_battle": "spyder_lionmountain_arlene1",
+          "pre_battle": "eclipse_lionmountain_arlene1",
           "post_battle_win": null,
-          "post_battle_lose": "spyder_lionmountain_arlene2",
+          "post_battle_lose": "eclipse_lionmountain_arlene2",
           "post_battle_draw": null
         }
       }
@@ -54,13 +54,13 @@
     }
   },
   {
-    "slug": "spyder_lionmountain_david",
-    "dialogue": {
-      "dialogue": {
+    "slug": "eclipse_lionmountain_david",
+    "speech": {
+      "profile": {
         "default": {
-          "pre_battle": "spyder_lionmountain_david1",
+          "pre_battle": "eclipse_lionmountain_david1",
           "post_battle_win": null,
-          "post_battle_lose": "spyder_lionmountain_david2",
+          "post_battle_lose": "eclipse_lionmountain_david2",
           "post_battle_draw": null
         }
       }
@@ -72,13 +72,13 @@
     }
   },
   {
-    "slug": "spyder_lionmountain_alexander",
-    "dialogue": {
-      "dialogue": {
+    "slug": "eclipse_lionmountain_alexander",
+    "speech": {
+      "profile": {
         "default": {
-          "pre_battle": "spyder_lionmountain_alexander1",
+          "pre_battle": "eclipse_lionmountain_alexander1",
           "post_battle_win": null,
-          "post_battle_lose": "spyder_lionmountain_alexander2",
+          "post_battle_lose": "eclipse_lionmountain_alexander2",
           "post_battle_draw": null
         }
       }
@@ -90,13 +90,13 @@
     }
   },
   {
-    "slug": "spyder_lionmountain_chhurim",
-    "dialogue": {
-      "dialogue": {
+    "slug": "eclipse_lionmountain_chhurim",
+    "speech": {
+      "profile": {
         "default": {
-          "pre_battle": "spyder_lionmountain_chhurim1",
+          "pre_battle": "eclipse_lionmountain_chhurim1",
           "post_battle_win": null,
-          "post_battle_lose": "spyder_lionmountain_chhurim2",
+          "post_battle_lose": "eclipse_lionmountain_chhurim2",
           "post_battle_draw": null
         }
       }
@@ -108,13 +108,13 @@
     }
   },
   {
-    "slug": "spyder_lionmountain_emilio",
-    "dialogue": {
-      "dialogue": {
+    "slug": "eclipse_lionmountain_emilio",
+    "speech": {
+      "profile": {
         "default": {
-          "pre_battle": "spyder_lionmountain_emilio1",
+          "pre_battle": "eclipse_lionmountain_emilio1",
           "post_battle_win": null,
-          "post_battle_lose": "spyder_lionmountain_emilio2",
+          "post_battle_lose": "eclipse_lionmountain_emilio2",
           "post_battle_draw": null
         }
       }
@@ -126,13 +126,13 @@
     }
   },
   {
-    "slug": "spyder_lionmountain_tom",
-    "dialogue": {
-      "dialogue": {
+    "slug": "eclipse_lionmountain_tom",
+    "speech": {
+      "profile": {
         "default": {
-          "pre_battle": "spyder_lionmountain_tom1",
+          "pre_battle": "eclipse_lionmountain_tom1",
           "post_battle_win": null,
-          "post_battle_lose": "spyder_lionmountain_tom2",
+          "post_battle_lose": "eclipse_lionmountain_tom2",
           "post_battle_draw": null
         }
       }
@@ -144,13 +144,13 @@
     }
   },
   {
-    "slug": "spyder_lionmountain_conrad",
-    "dialogue": {
-      "dialogue": {
+    "slug": "eclipse_lionmountain_conrad",
+    "speech": {
+      "profile": {
         "default": {
-          "pre_battle": "spyder_lionmountain_conrad1",
+          "pre_battle": "eclipse_lionmountain_conrad1",
           "post_battle_win": null,
-          "post_battle_lose": "spyder_lionmountain_conrad2",
+          "post_battle_lose": "eclipse_lionmountain_conrad2",
           "post_battle_draw": null
         }
       }
@@ -162,13 +162,13 @@
     }
   },
   {
-    "slug": "spyder_lionmountain_kurt",
-    "dialogue": {
-      "dialogue": {
+    "slug": "eclipse_lionmountain_kurt",
+    "speech": {
+      "profile": {
         "default": {
-          "pre_battle": "spyder_lionmountain_kurt1",
+          "pre_battle": "eclipse_lionmountain_kurt1",
           "post_battle_win": null,
-          "post_battle_lose": "spyder_lionmountain_kurt2",
+          "post_battle_lose": "eclipse_lionmountain_kurt2",
           "post_battle_draw": null
         }
       }
@@ -180,7 +180,7 @@
     }
   },
   {
-    "slug": "spyder_lionmountain_scientist",
+    "slug": "eclipse_lionmountain_scientist",
     "template": {
       "sprite_name": "scientist_fiery",
       "combat_front": "scientist",
@@ -188,7 +188,7 @@
     }
   },
   {
-    "slug": "spyder_lionmountain_enforcer",
+    "slug": "eclipse_lionmountain_enforcer",
     "template": {
       "sprite_name": "knight_green",
       "combat_front": "enforcer_agent",
@@ -196,7 +196,7 @@
     }
   },
   {
-    "slug": "spyder_lionmountain_nurse",
+    "slug": "eclipse_lionmountain_nurse",
     "template": {
       "sprite_name": "nurse",
       "combat_front": "nurse",
@@ -204,7 +204,7 @@
     }
   },
   {
-    "slug": "spyder_lionmountain_snarlon",
+    "slug": "eclipse_lionmountain_snarlon",
     "template": {
       "sprite_name": "landrace",
       "combat_front": "sludgehog",

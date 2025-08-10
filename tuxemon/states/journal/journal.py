@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from collections.abc import Callable
 from functools import partial
-from typing import TYPE_CHECKING, Any, Optional
+from typing import TYPE_CHECKING, Any, ClassVar, Optional
 
 import pygame_menu
 from pygame_menu import locals
@@ -36,6 +36,8 @@ def _lookup_monsters() -> None:
 
 class JournalState(PygameMenuState):
     """Shows journal (screen 2/3)."""
+
+    name: ClassVar[str] = "JournalState"
 
     def add_menu_items(
         self,

@@ -1,8 +1,8 @@
 [
   {
     "slug": "spyder_wayfarer1_bismuth",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_wayfarer1_bismuth1",
           "post_battle_win": null,
@@ -19,8 +19,8 @@
   },
   {
     "slug": "spyder_wayfarer1_victor",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_wayfarer1_victor1",
           "post_battle_win": null,
@@ -37,8 +37,8 @@
   },
   {
     "slug": "spyder_wayfarer1_ratcher",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_wayfarer1_ratcher1",
           "post_battle_win": null,
@@ -55,8 +55,8 @@
   },
   {
     "slug": "spyder_wayfarer1_nightshade",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_wayfarer1_nightshade1",
           "post_battle_win": null,
@@ -73,8 +73,8 @@
   },
   {
     "slug": "spyder_wayfarer1_morton",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_wayfarer1_morton1",
           "post_battle_win": null,
@@ -91,8 +91,8 @@
   },
   {
     "slug": "spyder_wayfarer1_jessie",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_wayfarer1_jessie1",
           "post_battle_win": null,
@@ -109,8 +109,8 @@
   },
   {
     "slug": "spyder_wayfarer1_morningstar",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_wayfarer1_morningstar1",
           "post_battle_win": null,
@@ -127,8 +127,8 @@
   },
   {
     "slug": "spyder_wayfarer1_james",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_wayfarer1_james1",
           "post_battle_win": null,
@@ -145,8 +145,8 @@
   },
   {
     "slug": "spyder_wayfarer1_bravo",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_wayfarer1_bravo1",
           "post_battle_win": null,

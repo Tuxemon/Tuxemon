@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import logging
-from typing import Optional
+from typing import ClassVar, Optional
 
 from pygame.rect import Rect
 
@@ -15,6 +15,8 @@ logger = logging.getLogger(__name__)
 
 
 class LoadMenuState(SaveMenuState):
+    name: ClassVar[str] = "LoadMenuState"
+
     def __init__(self, load_slot: Optional[int] = None) -> None:
         super().__init__()
         if load_slot:

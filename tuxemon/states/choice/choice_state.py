@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Any, Optional
+from typing import Any, ClassVar, Optional
 
 from pygame_menu.locals import POSITION_EAST
 
@@ -32,6 +32,8 @@ class ChoiceState(PygameMenuState):
     * when text is displayed completely, then will show the next message
     * if there are no more messages, then the dialog will close
     """
+
+    name: ClassVar[str] = "ChoiceState"
 
     def __init__(
         self,

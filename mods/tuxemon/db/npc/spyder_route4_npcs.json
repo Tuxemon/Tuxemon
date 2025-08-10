@@ -1,8 +1,8 @@
 [
   {
     "slug": "spyder_route4_beck",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_route4_beck1",
           "post_battle_win": null,
@@ -19,8 +19,8 @@
   },
   {
     "slug": "spyder_route4_marshall",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_route4_marshall1",
           "post_battle_win": null,
@@ -37,8 +37,8 @@
   },
   {
     "slug": "spyder_route4_rincewind",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_route4_rincewind1",
           "post_battle_win": null,
@@ -55,8 +55,8 @@
   },
   {
     "slug": "spyder_route4_roger",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_route4_roger1",
           "post_battle_win": null,
@@ -73,8 +73,8 @@
   },
   {
     "slug": "spyder_route4_wulf",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_route4_wulf1",
           "post_battle_win": null,
@@ -91,8 +91,8 @@
   },
   {
     "slug": "spyder_route4_rosamund",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_route4_rosamund1",
           "post_battle_win": null,

@@ -6,7 +6,7 @@ from __future__ import annotations
 import logging
 from collections.abc import Callable
 from functools import partial
-from typing import Any, Optional, Union
+from typing import Any, ClassVar, Optional, Union
 
 import pygame_menu
 from pygame.surface import Surface
@@ -39,12 +39,16 @@ class BackgroundState(State):
     Eventually the need for this will be phased out.
     """
 
+    name: ClassVar[str] = "BackgroundState"
+
     def draw(self, surface: Surface) -> None:
         surface.fill(prepare.BLACK_COLOR)
 
 
 class StartState(PygameMenuState):
     """The state responsible for the start menu."""
+
+    name: ClassVar[str] = "StartState"
 
     def add_menu_items(
         self,
@@ -139,6 +143,8 @@ class StartState(PygameMenuState):
 
 class ModsChoice(PygameMenuState):
     """The state responsible for the mods menu."""
+
+    name: ClassVar[str] = "ModsChoice"
 
     def add_menu_items(
         self,

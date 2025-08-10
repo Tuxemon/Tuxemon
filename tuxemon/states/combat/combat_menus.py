@@ -6,7 +6,7 @@ import logging
 from collections import defaultdict
 from collections.abc import Callable, Generator
 from functools import partial
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING, ClassVar, Optional
 
 from pygame import SRCALPHA
 from pygame.rect import Rect
@@ -44,6 +44,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
     query what player is doing what. There's lots of spaghetti right now.
     """
 
+    name: ClassVar[str] = "MainCombatMenuState"
     escape_key_exits = False
     columns = 2
 
@@ -398,6 +399,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
 class CombatTargetMenuState(Menu[Monster]):
     """Menu for selecting targets of techniques and items."""
 
+    name: ClassVar[str] = "CombatTargetMenuState"
     transparent = True
 
     def __init__(

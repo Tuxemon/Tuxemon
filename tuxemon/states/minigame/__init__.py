@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import random
 from functools import partial
+from typing import ClassVar
 
 import pygame_menu
 from pygame_menu import locals
@@ -33,6 +34,8 @@ class DifficultySelectState(PygameMenuState):
     """
     A state that allows players to choose the difficulty level before entering the minigame.
     """
+
+    name: ClassVar[str] = "DifficultySelectState"
 
     def __init__(self) -> None:
         width, height = prepare.SCREEN_SIZE
@@ -72,6 +75,8 @@ class DifficultySelectState(PygameMenuState):
 
 class MinigameState(PygameMenuState):
     """Minigame where player guesses a monster using image or description."""
+
+    name: ClassVar[str] = "MinigameState"
 
     def __init__(
         self, difficulty: str = "easy", streak: int = 0, score: int = 0

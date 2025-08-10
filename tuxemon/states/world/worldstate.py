@@ -7,6 +7,7 @@ from collections.abc import Mapping, Sequence
 from typing import (
     TYPE_CHECKING,
     Any,
+    ClassVar,
     Optional,
     TypedDict,
     no_type_check,
@@ -51,6 +52,8 @@ class WorldSave(TypedDict, total=False):
 
 class WorldState(State):
     """The state responsible for the world game play"""
+
+    name: ClassVar[str] = "WorldState"
 
     def __init__(self, session: Session, map_name: str) -> None:
         super().__init__()

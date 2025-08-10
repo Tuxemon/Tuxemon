@@ -268,15 +268,14 @@ def _handle_win(
         if winner.isplayer:
             set_var(session, "battle_last_result", OutputBattle.won.value)
             set_var(session, "battle_last_winner", "player")
-            client = session.client.event_engine
-            var = ["player", prize]
-            client.execute_action("modify_money", var, True)
+            money_manager = winner.money_controller.money_manager
+            remaining = money_manager.apply_all_battle_shares(prize)
+            money_manager.add_money(remaining)
 
-            if prize > 0:
+            if remaining > 0:
                 formatter = CurrencyFormatter()
-                formatted_prize = formatter.format(prize)
+                formatted_prize = formatter.format(remaining)
                 info["prize"] = formatted_prize
-                set_var(session, "battle_last_prize", str(prize))
                 return T.format("combat_victory_trainer", info)
             else:
                 return T.format("combat_victory", info)

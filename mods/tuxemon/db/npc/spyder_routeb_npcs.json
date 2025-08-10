@@ -1,8 +1,8 @@
 [
   {
     "slug": "spyder_routeb_electra",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_routeb_electra1",
           "post_battle_win": null,
@@ -19,8 +19,8 @@
   },
   {
     "slug": "spyder_routeb_cytherea",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_routeb_cytherea1",
           "post_battle_win": null,
@@ -37,8 +37,8 @@
   },
   {
     "slug": "spyder_routeb_nephthys",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_routeb_nephthys1",
           "post_battle_win": null,
@@ -55,8 +55,8 @@
   },
   {
     "slug": "spyder_routeb_sedna",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_routeb_sedna1",
           "post_battle_win": null,
@@ -73,8 +73,8 @@
   },
   {
     "slug": "spyder_routeb_calypso",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_routeb_calypso1",
           "post_battle_win": null,

@@ -38,7 +38,7 @@ import random
 from collections.abc import Iterable, Sequence
 from enum import Enum
 from functools import partial
-from typing import TYPE_CHECKING, Any, Optional, Union
+from typing import TYPE_CHECKING, Any, ClassVar, Optional, Union
 
 from pygame.rect import Rect
 from pygame.surface import Surface
@@ -111,6 +111,8 @@ class CombatPhase(Enum):
 class WaitForInputState(State):
     """Just wait for input blocking everything"""
 
+    name: ClassVar[str] = "WaitForInputState"
+
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
         if event.pressed and event.button == buttons.A:
             self.client.pop_state(self)
@@ -134,6 +136,7 @@ class CombatState(CombatAnimations):
        obvs, not ideal, maybe someday make it better? (see transition_phase)
     """
 
+    name: ClassVar[str] = "CombatState"
     draw_borders = False
     escape_key_exits = False
 

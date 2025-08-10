@@ -2,7 +2,7 @@
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-from typing import Any, Optional
+from typing import Any, ClassVar, Optional
 
 import pygame
 from pygame_menu import locals
@@ -19,6 +19,8 @@ class SetKeyState(PygameMenuState):
     This state is responsible for setting the input keys.
     This only works for pygame events.
     """
+
+    name: ClassVar[str] = "SetKeyState"
 
     def __init__(self, value: str, **kwargs: Any) -> None:
         """

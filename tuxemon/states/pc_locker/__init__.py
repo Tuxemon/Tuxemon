@@ -7,7 +7,7 @@ import math
 import uuid
 from collections.abc import Callable, Sequence
 from functools import partial
-from typing import TYPE_CHECKING, Any, Optional
+from typing import TYPE_CHECKING, Any, ClassVar, Optional
 
 import pygame_menu
 from pygame_menu import locals
@@ -46,6 +46,8 @@ class ItemTakeState(PygameMenuState):
     Shows all items currently in a storage locker, and selecting one puts it
     into your bag.
     """
+
+    name: ClassVar[str] = "ItemTakeState"
 
     def add_menu_items(
         self,
@@ -259,6 +261,8 @@ class ItemTakeState(PygameMenuState):
 class ItemBoxState(PygameMenuState):
     """Menu to choose an item box."""
 
+    name: ClassVar[str] = "ItemBoxState"
+
     def __init__(self, character: NPC) -> None:
         _, height = prepare.SCREEN_SIZE
 
@@ -342,6 +346,8 @@ class ItemBoxState(PygameMenuState):
 class ItemStorageState(ItemBoxState):
     """Menu to choose a box, which you can then take an item from."""
 
+    name: ClassVar[str] = "ItemStorageState"
+
     def get_menu_items_map(self) -> Sequence[tuple[str, MenuGameObj]]:
         item_boxes = self.char.item_boxes
         menu_items_map = []
@@ -366,6 +372,8 @@ class ItemStorageState(ItemBoxState):
 class ItemDropOffState(ItemBoxState):
     """Menu to choose a box, which you can then drop off an item into."""
 
+    name: ClassVar[str] = "ItemDropOffState"
+
     def get_menu_items_map(self) -> Sequence[tuple[str, MenuGameObj]]:
         item_boxes = self.char.item_boxes
         menu_items_map = []
@@ -380,6 +388,8 @@ class ItemDropOffState(ItemBoxState):
 
 class ItemDropOff(ItemMenuState):
     """Shows all items in player's bag, puts it into box if selected."""
+
+    name: ClassVar[str] = "ItemDropOff"
 
     def __init__(self, box_name: str, character: NPC) -> None:
         items_filtered = ItemFilter(character)

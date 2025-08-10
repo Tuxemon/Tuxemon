@@ -6,7 +6,7 @@ import logging
 from collections.abc import Callable
 from dataclasses import dataclass
 from pathlib import Path
-from typing import TYPE_CHECKING, Any, Optional
+from typing import TYPE_CHECKING, Any, ClassVar, Optional
 
 import pygame_menu
 import yaml
@@ -84,6 +84,8 @@ class NuPhoneMap(PygameMenuState):
     If there are no trackers (locations), then it'll be not possible to consult
     the app. It'll appear a pop up with: "GPS tracker not updating."
     """
+
+    name: ClassVar[str] = "NuPhoneMap"
 
     def add_menu_items(
         self,

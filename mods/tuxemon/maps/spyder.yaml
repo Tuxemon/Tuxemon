@@ -41,7 +41,7 @@ events:
     type: event
   Cathedral:
     actions:
-    - set_bill player,bill_cathedral
+    - set_bill player,bill_cathedral,0,0.1,100,0.5
     - set_variable cathedral_share:0.5
     - format_variable cathedral_share,float
     - set_variable cathedral_interest:0.1
@@ -53,20 +53,6 @@ events:
     - not variable_set cathedral_interest
     - not variable_set cathedral_fee
     - not variable_set scoop_coeff
-    type: event
-  Cathedral Share:
-    actions:
-    - variable_math battle_last_prize,*,cathedral_share
-    - format_variable battle_last_prize,int
-    - modify_bill player,bill_cathedral,,battle_last_prize
-    - format_variable battle_last_prize,-int
-    - modify_money player,,battle_last_prize
-    - set_variable battle_last_prize:0
-    conditions:
-    - is variable_set battle_last_result:won
-    - is variable_set battle_last_winner:player
-    - is bill_is player,bill_cathedral,greater_than,0
-    - is variable_is battle_last_prize,greater_than,0
     type: event
   Cheat Code ApexPlayer:
     actions:

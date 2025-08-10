@@ -12,14 +12,15 @@ from typing import TYPE_CHECKING, Any, Optional, TypedDict
 from tuxemon import prepare
 from tuxemon.battle import BattlesHandler
 from tuxemon.boxes import ItemBoxes, MonsterBoxes
-from tuxemon.db import Direction, NpcModel, db
+from tuxemon.db import DialogueProfile, Direction, NpcModel, db
 from tuxemon.entity import Entity
 from tuxemon.item.item import Item, decode_items, encode_items
 from tuxemon.locale import T
 from tuxemon.map import dirs2, get_direction, proj
 from tuxemon.map_view import SpriteController
 from tuxemon.math import Vector2
-from tuxemon.mission import MissionController, MissionManager
+from tuxemon.mission.controller import MissionController
+from tuxemon.mission.manager import MissionManager
 from tuxemon.money import MoneyController
 from tuxemon.monster import Monster, decode_monsters, encode_monsters
 from tuxemon.movement import get_tile_moverate
@@ -36,7 +37,8 @@ from tuxemon.tuxepedia import Tuxepedia, decode_tuxepedia, encode_tuxepedia
 from tuxemon.ui.cipher_processor import decode_cipher, encode_cipher
 
 if TYPE_CHECKING:
-    from tuxemon.economy import Economy, ShopInventory
+    from tuxemon.economy.applier import ShopInventory
+    from tuxemon.economy.economy import Economy
     from tuxemon.session import Session
 
 
@@ -127,6 +129,7 @@ class NPC(Entity[NPCState]):
         self.items = NPCBagHandler(item_boxes=self.item_boxes)
         self.pending_evolutions: list[tuple[Monster, Monster]] = []
         self.steps: float = 0.0
+        self.dialogue: Optional[DialogueProfile] = None
 
         # pathfinding and waypoint related
         self.pathfinding: Optional[tuple[int, int]] = None
@@ -165,7 +168,7 @@ class NPC(Entity[NPCState]):
             "battles": self.battle_handler.encode_battle(),
             "tuxepedia": encode_tuxepedia(self.tuxepedia),
             "relationships": encode_relationships(self.relationships),
-            "money": dict(),
+            "money": self.money_controller.save(),
             "items": self.items.encode_items(),
             "template": self.template.model_dump(),
             "missions": self.mission_controller.encode_missions(),
@@ -180,9 +183,6 @@ class NPC(Entity[NPCState]):
             "step_tracker": encode_steps(self.step_tracker),
             "unlocked_letters": encode_cipher(self.unlocked_letters),
         }
-
-        state["money"] = self.money_controller.save()
-
         return state
 
     def set_state(self, session: Session, save_data: NPCState) -> None:

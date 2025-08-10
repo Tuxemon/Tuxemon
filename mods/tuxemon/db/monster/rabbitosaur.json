@@ -1,6 +1,6 @@
 {
   "slug": "rabbitosaur",
-  "category": "rabbit",
+  "species": "rabbit",
   "moveset": [
     {
       "level_learned": 1,

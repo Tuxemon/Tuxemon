@@ -1,6 +1,6 @@
 {
   "slug": "katacoon",
-  "category": "stance",
+  "species": "stance",
   "moveset": [
     {
       "level_learned": 1,

@@ -1,6 +1,6 @@
 {
   "slug": "hissiorite",
-  "category": "meteor_snake",
+  "species": "meteor_snake",
   "moveset": [
     {
       "level_learned": 1,

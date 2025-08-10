@@ -1,6 +1,6 @@
 {
   "slug": "fluoresfin",
-  "category": "light_fin",
+  "species": "light_fin",
   "moveset": [
     {
       "level_learned": 1,

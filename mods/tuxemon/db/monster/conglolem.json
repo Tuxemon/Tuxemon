@@ -1,6 +1,6 @@
 {
   "slug": "conglolem",
-  "category": "golem",
+  "species": "golem",
   "moveset": [
     {
       "level_learned": 1,

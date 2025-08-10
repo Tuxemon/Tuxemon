@@ -133,3 +133,10 @@ class NPCManager:
                 elif client_map != current_map:
                     self.npcs_off_map[sprite.slug] = sprite
                     self.npcs.pop(sprite.slug, None)
+
+    def get_all_npc_slugs(self, include_off_map: bool = False) -> list[str]:
+        """Returns all NPC slugs. Optionally includes off-map NPCs."""
+        slugs = list(self.npcs.keys())
+        if include_off_map:
+            slugs.extend(self.npcs_off_map.keys())
+        return slugs

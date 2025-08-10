@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import logging
 from dataclasses import dataclass
-from typing import final
+from typing import Optional, final
 
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
@@ -22,19 +22,21 @@ class CraftingStationAction(EventAction):
     Script usage:
         .. code-block::
 
-            crafting_station <state_name>[,optional]
+            crafting_station <character_slug>,<method>[,file_yaml]
 
     Script parameters:
         character_slug: The slug of the character (NPC).
         method: Suggests how the recipe is executed, e.g., cooking, forging.
+        file_yaml: The YAML file (like `recipe.yaml`) that contains the recipe
+            definitions to load into the system (mods folder).
     """
 
     name = "crafting_station"
     character_slug: str
     method: str
+    file_yaml: Optional[str] = None
 
     def start(self, session: Session) -> None:
-        self.session = session
         self.client = session.client
 
         if self.client.current_state is None:
@@ -53,8 +55,12 @@ class CraftingStationAction(EventAction):
             )
             return
 
+        file_yaml = self.file_yaml or "recipes.yaml"
         self.client.push_state(
-            "CraftMenuState", character=character, method=self.method
+            "CraftMenuState",
+            character=character,
+            file_yaml=file_yaml,
+            method=self.method,
         )
 
     def update(self, session: Session) -> None:

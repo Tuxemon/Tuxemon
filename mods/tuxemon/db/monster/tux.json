@@ -1,6 +1,6 @@
 {
   "slug": "tux",
-  "category": "penguin",
+  "species": "penguin",
   "moveset": [
     {
       "level_learned": 1,

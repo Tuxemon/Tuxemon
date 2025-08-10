@@ -1,6 +1,6 @@
 {
   "slug": "merlicun",
-  "category": "dragon_worm",
+  "species": "dragon_worm",
   "moveset": [
     {
       "level_learned": 1,

@@ -1,6 +1,6 @@
 {
   "slug": "mk01_proto",
-  "category": "threat",
+  "species": "threat",
   "moveset": [
     {
       "level_learned": 1,

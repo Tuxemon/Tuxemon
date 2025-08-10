@@ -1,6 +1,6 @@
 {
   "slug": "jeluna",
-  "category": "moon_phase",
+  "species": "moon_phase",
   "moveset": [
     {
       "level_learned": 1,

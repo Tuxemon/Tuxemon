@@ -1,6 +1,6 @@
 {
   "slug": "stomic",
-  "category": "radioactive",
+  "species": "radioactive",
   "moveset": [
     {
       "level_learned": 1,

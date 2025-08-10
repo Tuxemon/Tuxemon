@@ -1,6 +1,6 @@
 {
   "slug": "pythwire",
-  "category": "power_socket",
+  "species": "power_socket",
   "moveset": [
     {
       "level_learned": 1,

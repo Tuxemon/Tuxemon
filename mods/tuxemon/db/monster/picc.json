@@ -1,6 +1,6 @@
 {
   "slug": "picc",
-  "category": "bladder",
+  "species": "bladder",
   "moveset": [
     {
       "level_learned": 1,

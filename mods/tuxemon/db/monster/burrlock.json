@@ -1,6 +1,6 @@
 {
   "slug": "burrlock",
-  "category": "biting_pear",
+  "species": "biting_pear",
   "moveset": [
     {
       "level_learned": 1,

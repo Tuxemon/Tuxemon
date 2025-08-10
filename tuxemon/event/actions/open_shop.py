@@ -5,7 +5,7 @@ from __future__ import annotations
 import logging
 from dataclasses import dataclass
 from functools import partial
-from typing import Optional, final
+from typing import final
 
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
@@ -22,87 +22,134 @@ logger = logging.getLogger(__name__)
 @dataclass
 class OpenShopAction(EventAction):
     """
-    Open the shop menu for a NPC.
+    Opens a shop interface between the player and a target NPC.
 
     Script usage:
-        .. code-block::
+        open_shop <npc_slug>,<menu>
 
-            open_shop <npc_slug>[,menu]
+    Parameters:
+        npc_slug: Either "player" or the NPC slug identifier (e.g. "npc_maple").
+        menu: Type of shop interaction to open. Must be one of:
+            - "buy_item"
+            - "sell_item"
+            - "both_item"
+            - "buy_monster"
+            - "sell_monster"
+            - "both_monster"
 
-    Script parameters:
-        npc_slug: Either "player" or npc slug name (e.g. "npc_maple").
-        menu: Either "buy", "sell" or "both". Default is "both".
+    Notes:
+        - The target NPC must have an economy assigned.
+        - If menu is "both_*", a choice dialog is shown for selection.
     """
 
     name = "open_shop"
     npc_slug: str
-    menu: Optional[str] = None
+    menu: str
 
     def start(self, session: Session) -> None:
-        menu = self.menu or "both"
-        valid_menus = {"buy", "sell", "both"}
+        valid_menus = {
+            "buy_item",
+            "sell_item",
+            "both_item",
+            "buy_monster",
+            "sell_monster",
+            "both_monster",
+        }
 
-        if menu not in valid_menus:
+        if self.menu not in valid_menus:
             raise ValueError(
-                f"Invalid menu value '{menu}'. Must be one of: {valid_menus}."
+                f"Invalid menu: '{self.menu}'. Must be one of: {', '.join(sorted(valid_menus))}"
             )
 
         character = get_npc(session, self.npc_slug)
         if character is None:
-            logger.error(f"{self.npc_slug} not found")
+            logger.error(f"NPC '{self.npc_slug}' not found.")
             return
 
         if character.economy is None:
             raise ValueError(
-                f"'{character.slug}' has no assigned economy. Use the 'set_economy' EventAction first."
+                f"NPC '{character.slug}' has no assigned economy."
+                "Use the 'set_economy' EventAction first."
             )
 
         economy = character.economy
 
-        def push_buy_menu(npc: NPC) -> None:
+        def push_state(state_name: str, buyer: NPC, seller: NPC) -> None:
             session.client.push_state(
-                "ShopBuyMenuState",
-                buyer=session.player,
-                seller=npc,
+                state_name,
+                buyer=buyer,
+                seller=seller,
                 economy=economy,
             )
 
-        def push_sell_menu(npc: NPC) -> None:
-            session.client.push_state(
-                "ShopSellMenuState",
-                buyer=npc,
-                seller=session.player,
-                economy=economy,
+        def wrap_choice_dialog(options: MenuOptions) -> None:
+            open_choice_dialog(
+                client=session.client,
+                menu=options,
+                escape_key_exits=True,
             )
 
-        def buy_menu(npc: NPC) -> None:
-            session.client.remove_state_by_name("ChoiceState")
-            push_buy_menu(npc)
-
-        def sell_menu(npc: NPC) -> None:
-            session.client.remove_state_by_name("ChoiceState")
-            push_sell_menu(npc)
-
-        var_menu = MenuOptions(
+        # Define menu option groups
+        items = MenuOptions(
             [
                 ChoiceOption(
                     key="buy",
                     display_text=T.translate("buy"),
-                    action=partial(buy_menu, character),
+                    action=partial(
+                        push_state,
+                        "ShopItemBuyMenuState",
+                        session.player,
+                        character,
+                    ),
                 ),
                 ChoiceOption(
                     key="sell",
                     display_text=T.translate("sell"),
-                    action=partial(sell_menu, character),
+                    action=partial(
+                        push_state,
+                        "ShopItemSellMenuState",
+                        character,
+                        session.player,
+                    ),
                 ),
             ]
         )
 
-        if menu == "both":
-            open_choice_dialog(
-                client=session.client, menu=var_menu, escape_key_exits=True
-            )
-        elif menu == "buy":
-            push_buy_menu(character)
-        elif menu == "sell":
-            push_sell_menu(character)
+        monsters = MenuOptions(
+            [
+                ChoiceOption(
+                    key="buy",
+                    display_text=T.translate("buy"),
+                    action=partial(
+                        push_state,
+                        "ShopMonsterBuyMenuState",
+                        session.player,
+                        character,
+                    ),
+                ),
+                ChoiceOption(
+                    key="sell",
+                    display_text=T.translate("sell"),
+                    action=partial(
+                        push_state,
+                        "ShopMonsterSellMenuState",
+                        character,
+                        session.player,
+                    ),
+                ),
+            ]
+        )
+
+        # Dispatch based on menu mode
+        if self.menu == "both_item":
+            wrap_choice_dialog(items)
+        elif self.menu == "both_monster":
+            wrap_choice_dialog(monsters)
+        elif self.menu == "buy_item":
+            push_state("ShopItemBuyMenuState", session.player, character)
+        elif self.menu == "sell_item":
+            push_state("ShopItemSellMenuState", character, session.player)
+        elif self.menu == "buy_monster":
+            push_state("ShopMonsterBuyMenuState", session.player, character)
+        elif self.menu == "sell_monster":
+            push_state("ShopMonsterSellMenuState", character, session.player)

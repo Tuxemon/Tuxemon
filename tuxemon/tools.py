@@ -492,3 +492,25 @@ def parse_flag(value: Optional[str]) -> bool:
     All other values (including None) return False.
     """
     return str(value or "").strip().lower() in {"true", "1", "yes"}
+
+
+def check_condition(value: str, dataset: set[str]) -> bool:
+    """
+    Check if a condition is satisfied against a set of values.
+
+    - If the input starts with '!', it asserts that the value is NOT in the dataset.
+    - Otherwise, it asserts that the value IS in the dataset.
+    """
+    value = value.strip().lower()
+    if not value:
+        logging.debug("Empty condition skipped.")
+        return False
+
+    if value.startswith("!"):
+        result = value[1:] not in dataset
+        logging.debug(f"Checking NOT '{value[1:]}' in {dataset}: {result}")
+        return result
+
+    result = value in dataset
+    logging.debug(f"Checking '{value}' in {dataset}: {result}")
+    return result

@@ -1,6 +1,6 @@
 {
   "slug": "krokivip",
-  "category": "crocodile",
+  "species": "crocodile",
   "moveset": [
     {
       "level_learned": 1,

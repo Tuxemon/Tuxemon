@@ -19,6 +19,7 @@ from pygame_menu.widgets.core.widget import Widget
 from tuxemon import graphics, prepare, tools
 from tuxemon.animation import Animation, ScheduleType
 from tuxemon.graphics import ColorLike
+from tuxemon.menu.alert import AlertManager
 from tuxemon.menu.controller import MenuController
 from tuxemon.menu.cursor import MenuCursor, MenuCursorController
 from tuxemon.menu.events import playerinput_to_event
@@ -26,15 +27,14 @@ from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.theme import get_sound_engine, get_theme
 from tuxemon.platform.const import buttons, intentions
 from tuxemon.platform.events import PlayerInput
-from tuxemon.prepare import CONFIG
 from tuxemon.sprite import (
     RelativeGroup,
     SpriteGroup,
     VisualSpriteList,
 )
-from tuxemon.state import State
-from tuxemon.ui.draw import GraphicBox, TextRenderer
-from tuxemon.ui.text import TextArea
+from tuxemon.state.state import State
+from tuxemon.ui.graphic_box import GraphicBox
+from tuxemon.ui.text_renderer import TextRenderer
 
 logger = logging.getLogger(__name__)
 
@@ -114,7 +114,7 @@ class PygameMenuState(State):
 
         if sound_engine is None:
             sound_file = self.client.sound_manager.get_sound_filename(
-                "sound_menu_select"
+                prepare.CONFIG.menu_sound
             )
             sound_volume = self.client.config.sound_volume
             sound_engine = get_sound_engine(sound_volume, sound_file)
@@ -318,7 +318,6 @@ class Menu(Generic[T], State):
         state: An arbitrary state of the menu. E.g. MenuState.OPENING or MenuState.CLOSING.
         selected_index: The index position of the currently selected menu item.
         menu_items: A list of available menu items.
-
     """
 
     # defaults for the menu
@@ -335,12 +334,11 @@ class Menu(Generic[T], State):
     unavailable_color_shop: ColorLike = prepare.UNAVAILABLE_COLOR_SHOP
     # File to load for image background
     background_filename: Optional[str] = None
-    menu_select_sound_filename = "sound_menu_select"
+    menu_select_sound_filename = prepare.CONFIG.menu_sound
     font_filename = prepare.CONFIG.locale.font_file
-    borders_filename = "gfx/borders/borders.png"
-    cursor_filename = "gfx/arrow.png"
+    borders_filename = prepare.CONFIG.menu_border
+    cursor_filename = prepare.CONFIG.menu_cursor
     cursor_move_duration = 0.20
-    default_character_delay = 0.05
     shrink_to_items = False  # fit the border to contents
     escape_key_exits = True  # escape key closes menu
     animate_contents = False  # show contents while window opens
@@ -356,6 +354,7 @@ class Menu(Generic[T], State):
         self.state_controller = MenuController()
         self._show_contents = False
         self._needs_refresh = False
+        self.dialog = AlertManager(self.sprites, self.task)
         self._anchors: dict[str, Union[int, tuple[int, int]]] = {}
         self.__dict__.update(kwargs)
 
@@ -425,88 +424,6 @@ class Menu(Generic[T], State):
         del self.menu_items
         del self.menu_sprites
         del self.cursor_controller
-
-    def start_text_animation(
-        self,
-        text_area: TextArea,
-        callback: Optional[Callable[[], None]] = None,
-    ) -> None:
-        """
-        Start an animation to show text area, one character at a time.
-
-        Parameters:
-            text_area: Text area to animate.
-            callback: Function called when alert is complete.
-        """
-
-        def next_character() -> None:
-            try:
-                next(text_area)
-            except StopIteration:
-                if callback:
-                    callback()
-            else:
-                self.task(next_character, interval=self.character_delay)
-
-        self.character_delay = self.default_character_delay
-        next_character()
-
-    def animate_text(
-        self,
-        text_area: TextArea,
-        text: str,
-        callback: Optional[Callable[[], None]] = None,
-        dialog_speed: str = "slow",
-    ) -> None:
-        """
-        Set and animate a text area.
-
-        Parameters:
-            text_area: Text area to animate.
-            text: Text to display.
-            callback: Function called when alert is complete.
-            dialog_speed: Speed of blitting chars to the dialog box.
-        """
-        text_area.text = text
-        if CONFIG.dialog_speed == "max" or dialog_speed == "max":
-            # exhaust the iterator to immediately blit every char to the dialog
-            # box
-            for _ in text_area:
-                pass
-            if callback:
-                callback()
-        else:
-            self.start_text_animation(text_area, callback)
-
-    def alert(
-        self,
-        message: str,
-        callback: Optional[Callable[[], None]] = None,
-        dialog_speed: str = "slow",
-    ) -> None:
-        """
-        Write a message to the first available text area.
-
-        Generally, a state will have just one, if any, text area.
-        The first one found will be used to display the message.
-        If no text area is found, a RuntimeError will be raised.
-
-        Parameters:
-            message: Message to write.
-            callback: Function called when alert is complete.
-            dialog_speed: Speed of blitting chars to the dialog box.
-        """
-
-        def find_textarea() -> TextArea:
-            for sprite in self.sprites:
-                if isinstance(sprite, TextArea):
-                    return sprite
-            raise RuntimeError(
-                "attempted to use 'alert' on state without a TextArea",
-                message,
-            )
-
-        self.animate_text(find_textarea(), message, callback, dialog_speed)
 
     def initialize_items(self) -> Optional[Iterable[MenuItem[T]]]:
         """
@@ -707,7 +624,7 @@ class Menu(Generic[T], State):
 
     def set_font(
         self,
-        size: int = 5,
+        size: int = prepare.FONT_SIZE,
         font: Optional[str] = None,
         line_spacing: int = 10,
     ) -> Font:

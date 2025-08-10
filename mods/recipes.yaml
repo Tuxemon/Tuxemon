@@ -5,12 +5,15 @@
 #     - slug: potion                    # Common result — must be a valid item slug
 #       quantity: 1
 #       weight: 0.8                     # 80% chance to get a regular potion
+#       type: item                      # Explicitly state if item, quest_trigger or lore_trigger
 #     - slug: super_potion
 #       quantity: 1
 #       weight: 0.15                    # 15% chance for an enhanced version
+#       type: item                      # Explicitly state if item, quest_trigger or lore_trigger
 #     - slug: imperial_potion
 #       quantity: 1
 #       weight: 0.05                    # 5% chance to craft something rare and fancy
+#       type: item                      # Explicitly state if item, quest_trigger or lore_trigger
 #   required_ingredients:               # Items the player must spend to perform crafting
 #     tea: 2                            # Needs 2 units of 'tea'
 #   required_tools:
@@ -32,9 +35,11 @@
     - slug: rub_pork_chops
       quantity: 1
       weight: 0.9
+      type: item
     - slug: bite_of_despair
       quantity: 1
       weight: 0.1
+      type: item
   crafting_method: cooking  
 
 - recipe_slug: mille_feuille
@@ -50,9 +55,11 @@
     - slug: mille_feuille
       quantity: 1
       weight: 0.8
+      type: item
     - slug: whispersoup
       quantity: 1
       weight: 0.2
+      type: item
   crafting_method: cooking  
 
 - recipe_slug: cheesecake
@@ -67,9 +74,11 @@
     - slug: cheesecake
       quantity: 1
       weight: 0.8
+      type: item
     - slug: inferno_custard
       quantity: 1
       weight: 0.2
+      type: item
   crafting_method: cooking  
 
 - recipe_slug: cream_puffs
@@ -85,9 +94,11 @@
     - slug: cream_puffs
       quantity: 1
       weight: 0.9
+      type: item
     - slug: bite_of_despair
       quantity: 1
       weight: 0.1
+      type: item
   crafting_method: cooking  
 
 - recipe_slug: crepes
@@ -103,9 +114,11 @@
     - slug: crepes
       quantity: 1
       weight: 0.9
+      type: item
     - slug: whispersoup
       quantity: 1
       weight: 0.1
+      type: item
   crafting_method: cooking  
 
 - recipe_slug: rub_steak
@@ -120,9 +133,11 @@
     - slug: rub_steak
       quantity: 1
       weight: 0.9
+      type: item
     - slug: bite_of_despair
       quantity: 1
       weight: 0.1
+      type: item
   crafting_method: cooking  
 
 - recipe_slug: meatballs
@@ -138,9 +153,11 @@
     - slug: meatballs
       quantity: 2
       weight: 0.8
+      type: item
     - slug: inferno_custard
       quantity: 1
       weight: 0.2
+      type: item
   crafting_method: cooking  
 
 - recipe_slug: shell_tacos
@@ -155,9 +172,11 @@
     - slug: shell_tacos
       quantity: 1
       weight: 0.9
+      type: item
     - slug: bite_of_despair
       quantity: 1
       weight: 0.1
+      type: item
   crafting_method: cooking  
 
 - recipe_slug: potato_casserole
@@ -172,9 +191,11 @@
     - slug: potato_casserole
       quantity: 1
       weight: 0.8
+      type: item
     - slug: dread_omelette
       quantity: 1
       weight: 0.2
+      type: item
   crafting_method: cooking  
 
 - recipe_slug: phyllo
@@ -190,9 +211,11 @@
     - slug: phyllo
       quantity: 1
       weight: 0.9
+      type: item
     - slug: bite_of_despair
       quantity: 1
       weight: 0.1
+      type: item
   crafting_method: cooking  
 
 - recipe_slug: croissants
@@ -208,9 +231,11 @@
     - slug: croissants
       quantity: 1
       weight: 0.8
+      type: item
     - slug: dread_omelette
       quantity: 1
       weight: 0.2
+      type: item
   crafting_method: cooking  
 
 - recipe_slug: rub_chicken
@@ -224,9 +249,11 @@
     - slug: rub_chicken
       quantity: 1
       weight: 0.9
+      type: item
     - slug: bite_of_despair
       quantity: 1
       weight: 0.1
+      type: item
   crafting_method: cooking  
 
 - recipe_slug: potato_fries
@@ -240,9 +267,11 @@
     - slug: potato_fries
       quantity: 1
       weight: 0.8
+      type: item
     - slug: dread_omelette
       quantity: 1
       weight: 0.2
+      type: item
   crafting_method: cooking  
 
 - recipe_slug: pretzels
@@ -258,9 +287,11 @@
     - slug: pretzels
       quantity: 2
       weight: 0.9
+      type: item
     - slug: bite_of_despair
       quantity: 1
       weight: 0.1
+      type: item
   crafting_method: cooking  
 
 - recipe_slug: mashed_potatoes
@@ -273,9 +304,11 @@
     - slug: mashed_potatoes
       quantity: 1
       weight: 0.8
+      type: item
     - slug: inferno_custard
       quantity: 1
       weight: 0.2
+      type: item
   crafting_method: cooking  
 
 - recipe_slug: rub_ribs
@@ -289,9 +322,11 @@
     - slug: rub_ribs
       quantity: 1
       weight: 0.9
+      type: item
     - slug: bite_of_despair
       quantity: 1
       weight: 0.1
+      type: item
   crafting_method: cooking  
 
 - recipe_slug: pie
@@ -306,9 +341,11 @@
     - slug: pie
       quantity: 1
       weight: 0.8
+      type: item
     - slug: whispersoup
       quantity: 1
       weight: 0.2
+      type: item
   crafting_method: cooking  
 
 - recipe_slug: honey_cake
@@ -323,9 +360,11 @@
     - slug: honey_cake
       quantity: 1
       weight: 0.9
+      type: item
     - slug: bite_of_despair
       quantity: 1
       weight: 0.1
+      type: item
   crafting_method: cooking  
 
 - recipe_slug: souffle
@@ -340,9 +379,11 @@
     - slug: souffle
       quantity: 1
       weight: 0.8
+      type: item
     - slug: dread_omelette
       quantity: 1
       weight: 0.2
+      type: item
   crafting_method: cooking  
 
 - recipe_slug: hash
@@ -357,9 +398,11 @@
     - slug: hash
       quantity: 1
       weight: 0.9
+      type: item
     - slug: bite_of_despair
       quantity: 1
       weight: 0.1
+      type: item
   crafting_method: cooking  
 
 - recipe_slug: pita
@@ -373,9 +416,11 @@
     - slug: pita
       quantity: 1
       weight: 0.8
+      type: item
     - slug: whispersoup
       quantity: 1
       weight: 0.2
+      type: item
   crafting_method: cooking  
 
 - recipe_slug: pastry
@@ -390,9 +435,11 @@
     - slug: pastry
       quantity: 1
       weight: 0.9
+      type: item
     - slug: bite_of_despair
       quantity: 1
       weight: 0.1
+      type: item
   crafting_method: cooking  
 
 - recipe_slug: pudding
@@ -407,9 +454,11 @@
     - slug: pudding
       quantity: 1
       weight: 0.8
+      type: item
     - slug: inferno_custard
       quantity: 1
       weight: 0.2
+      type: item
   crafting_method: cooking  
 
 - recipe_slug: pancakes
@@ -424,9 +473,11 @@
     - slug: pancakes
       quantity: 2
       weight: 0.9
+      type: item
     - slug: bite_of_despair
       quantity: 1
       weight: 0.1
+      type: item
   crafting_method: cooking  
 
 - recipe_slug: wings
@@ -441,7 +492,9 @@
     - slug: wings
       quantity: 1
       weight: 0.8
+      type: item
     - slug: inferno_custard
       quantity: 1
       weight: 0.2
+      type: item
   crafting_method: cooking  

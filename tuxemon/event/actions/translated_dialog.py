@@ -10,8 +10,13 @@ from tuxemon.event.eventaction import EventAction
 from tuxemon.graphics import get_avatar, string_to_colorlike
 from tuxemon.locale import T
 from tuxemon.session import Session
-from tuxemon.tools import open_dialog
+from tuxemon.tools import open_dialog, safe_enum_value
 from tuxemon.ui.dialogue import DialogueStyleCache
+from tuxemon.ui.text_alignment import (
+    DialogPosition,
+    HorizontalAlignment,
+    VerticalAlignment,
+)
 from tuxemon.ui.text_formatter import TextFormatter
 
 logger = logging.getLogger(__name__)
@@ -41,10 +46,10 @@ class TranslatedDialogAction(EventAction):
         position: Position of the dialog box. Can be 'top', 'bottom', 'center',
             'topleft', 'topright', 'bottomleft', 'bottomright', 'right', 'left'.
             Default 'bottom'.
-        alignment: Alignment of text in the dialog box, it can be 'left', 'center'
+        h_alignment: Alignment of text in the dialog box, it can be 'left', 'center'
             or 'right'. Default 'left'.
-        vertical_alignment: Alignment of text in the dialog box, it can be 'bottom',
-            'middle' or 'top'. Default 'top'.
+        v_alignment: Alignment of text in the dialog box, it can be 'bottom',
+            'center' or 'top'. Default 'top'.
         style: a predefined style in db/dialogue/dialogue.json
     """
 
@@ -52,7 +57,7 @@ class TranslatedDialogAction(EventAction):
     raw_parameters: str
     avatar: Optional[str] = None
     position: Optional[str] = None
-    alignment: Optional[str] = None
+    h_alignment: Optional[str] = None
     v_alignment: Optional[str] = None
     style: Optional[str] = None
 
@@ -69,23 +74,33 @@ class TranslatedDialogAction(EventAction):
             get_avatar(session, self.avatar) if self.avatar else None
         )
 
-        dialogue = self.style or "default"
+        dialogue = self.style or session.client.config.dialog_box_style
         style = style_cache.get(dialogue)
+        h_alignment = safe_enum_value(
+            HorizontalAlignment, self.h_alignment, HorizontalAlignment.LEFT
+        )
+        v_alignment = safe_enum_value(
+            VerticalAlignment, self.v_alignment, VerticalAlignment.TOP
+        )
         box_style: dict[str, Any] = {
             "bg_color": string_to_colorlike(style.bg_color),
             "font_color": string_to_colorlike(style.font_color),
             "font_shadow": string_to_colorlike(style.font_shadow_color),
             "border": style.border_path,
-            "alignment": self.alignment or "left",
-            "v_alignment": self.v_alignment or "top",
+            "line_spacing": style.line_spacing,
+            "h_alignment": h_alignment,
+            "v_alignment": v_alignment,
         }
 
+        position = safe_enum_value(
+            DialogPosition, self.position, DialogPosition.BOTTOM
+        )
         open_dialog(
             client=session.client,
             text=key,
             avatar=avatar_sprite,
             box_style=box_style,
-            position=self.position or "bottom",
+            position=position,
             target_coords=None,
             custom_rect=None,
         )

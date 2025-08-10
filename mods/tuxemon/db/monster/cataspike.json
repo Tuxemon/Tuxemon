@@ -8,7 +8,7 @@
     },
     {
       "level_learned": 1,
-      "technique": "wallow"
+      "technique": "frighten"
     },
     {
       "level_learned": 4,
@@ -28,11 +28,11 @@
     },
     {
       "level_learned": 16,
-      "technique": "viper"
+      "technique": "lineage"
     },
     {
       "level_learned": 19,
-      "technique": "lineage"
+      "technique": "viper"
     },
     {
       "level_learned": 22,
@@ -41,10 +41,6 @@
     {
       "level_learned": 25,
       "technique": "eyebite"
-    },
-    {
-      "level_learned": 55,
-      "technique": "tornado"
     }
   ],
   "evolutions": [

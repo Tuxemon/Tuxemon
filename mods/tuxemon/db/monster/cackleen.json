@@ -35,7 +35,11 @@
     {
       "at_level": 16,
       "monster_slug": "brumi",
-      "variable": "daytime:false"
+      "variables": [
+        {
+          "daytime": "false"
+        }
+      ]
     }
   ],
   "history": [

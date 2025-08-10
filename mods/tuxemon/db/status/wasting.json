@@ -5,7 +5,9 @@
   "effects": [
     {
       "type": "wasting",
-      "parameters": ["16"]
+      "parameters": [
+        "16"
+      ]
     }
   ],
   "flip_axes": "",

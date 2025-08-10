@@ -42,8 +42,7 @@ from tuxemon.surfanim import FlipAxes
 logger = logging.getLogger(__name__)
 
 # Load the default translator for data validation
-T.collect_languages(False)
-T.load_translator()
+T.initialize_translations()
 
 
 class Direction(str, Enum):
@@ -167,6 +166,7 @@ class EffectPhase(Enum):
     ON_END = "on_end"
     ON_FAINT = "on_faint"
     ON_START = "on_start"
+    ON_DECISION = "on_decision"
     PERFORM_ITEM = "perform_item"
     PERFORM_STATUS = "perform_status"
     PERFORM_TECH = "perform_tech"
@@ -268,6 +268,7 @@ class WorldMenuEntry(BaseModel):
     position: int
     label_key: str
     state: str
+    enabled: bool = True
 
 
 class ItemModel(BaseModel, BaseLookupModel):
@@ -286,10 +287,13 @@ class ItemModel(BaseModel, BaseLookupModel):
         "item_confirm_use",
         description="Translation key for the label used when confirming item usage.",
     )
-
     cancel_text: str = Field(
         "item_confirm_cancel",
         description="Translation key for the label used when canceling item usage.",
+    )
+    menu_actions: Sequence[dict[str, str]] = Field(
+        [],
+        description="Custom list of menu actions (key, display_text) for this item.",
     )
     use_failure: str = Field(
         "generic_failure",
@@ -334,6 +338,9 @@ class ItemModel(BaseModel, BaseLookupModel):
         le=1.0,
     )
     modifiers: list[Modifier] = Field(..., description="Various modifiers")
+    immunity_to_status: Sequence[str] = Field(
+        [], description="Statuses this item grants immunity to"
+    )
 
     @classmethod
     def lookup(cls, slug: str, db: ModData) -> ItemModel:
@@ -374,6 +381,16 @@ class ItemModel(BaseModel, BaseLookupModel):
             return v
         raise ValueError(f"the animation {v} doesn't exist in the db")
 
+    @field_validator("immunity_to_status")
+    def status_exists(cls: ItemModel, v: Sequence[str]) -> Sequence[str]:
+        if v:
+            for status in v:
+                if status != "all" and not has.db_entry("status", status):
+                    raise ValueError(
+                        f"A status {status} doesn't exist in the db"
+                    )
+        return v
+
 
 class AttributesModel(BaseModel):
     armour: int = Field(..., description="Armour value")
@@ -408,6 +425,13 @@ class ShapeModel(BaseModel, BaseLookupModel):
         raise ValueError(f"no translation exists with msgid: {v}")
 
 
+class LearningMethod(str, Enum):
+    LEVEL_UP = "level_up"
+    TM = "tm"
+    EVENT = "event"
+    EVOLUTION = "evolution"
+
+
 class MonsterMovesetItemModel(BaseModel):
     level_learned: int = Field(
         ..., description="Monster level in which this moveset is learned", gt=0
@@ -415,7 +439,18 @@ class MonsterMovesetItemModel(BaseModel):
     technique: str = Field(
         ...,
         description="Name of the technique for this moveset item",
-        json_schema_extra={"unique": True},
+    )
+    evolution_stage_learned: Optional[EvolutionStage] = Field(
+        None,
+        description="Evolution stage at which this technique is learned. If None, not tied to a specific evolution stage beyond level.",
+    )
+    can_be_forgotten: bool = Field(
+        True,
+        description="Indicates if this technique can be forgotten by the monster.",
+    )
+    learning_method: LearningMethod = Field(
+        LearningMethod.LEVEL_UP,
+        description="Method by which the technique is learned.",
     )
 
     @field_validator("technique")
@@ -819,6 +854,7 @@ class Range(str, Enum):
 
 
 class TechCategory(str, Enum):
+    special = "special"
     animal = "animal"
     simple = "simple"
     basic = "basic"
@@ -959,10 +995,13 @@ class TechniqueModel(BaseModel, BaseLookupModel):
         "item_confirm_use",
         description="Translation key for the label used when confirming tech usage.",
     )
-
     cancel_text: str = Field(
         "item_confirm_cancel",
         description="Translation key for the label used when canceling tech usage.",
+    )
+    menu_actions: Sequence[dict[str, str]] = Field(
+        [],
+        description="Custom list of menu actions (key, display_text) for this technique.",
     )
     types: Sequence[str] = Field([], description="Type(s) of the technique")
     usable_on: bool = Field(
@@ -1418,13 +1457,32 @@ class EnvironmentModel(BaseModel, BaseLookupModel):
         raise ValueError(f"the music {v} doesn't exist in the db")
 
 
+class HeldItemProbability(BaseModel):
+    item_slug: str = Field(
+        ..., description="Slug of the item that can be held."
+    )
+    probability: float = Field(
+        ...,
+        ge=0.0,
+        le=1.0,
+        description="Probability (0.0-1.0) of this item being held.",
+    )
+
+    @field_validator("item_slug")
+    def item_exists(cls, v: str) -> str:
+        if not has.db_entry("item", v):
+            raise ValueError(f"the item '{v}' doesn't exist in the db")
+        return v
+
+
 class EncounterItemModel(BaseModel):
     monster: str = Field(..., description="Monster slug for this encounter")
     encounter_rate: float = Field(
         ..., description="Probability of encountering this monster."
     )
-    held_items: Sequence[str] = Field(
-        ..., description="A list of items that will be held."
+    held_items: Sequence[HeldItemProbability] = Field(
+        [],
+        description="A list of items that will be held with their probabilities.",
     )
     level_range: Sequence[int] = Field(
         ...,
@@ -1440,24 +1498,40 @@ class EncounterItemModel(BaseModel):
         description="Modifier for the experience points required to defeat this wild monster.",
         gt=0.0,
     )
+    level_offset: Optional[int] = Field(
+        None,
+        description="Offset (+/- levels) to apply to the monster's level.",
+    )
+    level_offset_range: Optional[tuple[int, int]] = Field(
+        None,
+        description="Range of offset (+/- levels) to apply randomly to base level.",
+    )
+    min_player_level: Optional[int] = Field(
+        None,
+        description="Minimum average level of player's party for this encounter.",
+    )
+    max_player_level: Optional[int] = Field(
+        None,
+        description="Maximum average level of player's party for this encounter.",
+    )
+    scaling_enabled: bool = Field(
+        False,
+        description="If true, scales the monster level based on player's party level average.",
+    )
+    override_level_range: bool = Field(
+        False,
+        description="If true, allows scaling to override a monster's declared level_range and match party average directly.",
+    )
+    scaling_offset_range: Optional[tuple[int, int]] = Field(
+        None,
+        description="Range used for random offset when scaling level overrides are applied (e.g. [-3, +4])",
+    )
 
     @field_validator("monster")
     def monster_exists(cls: EncounterItemModel, v: str) -> str:
         if has.db_entry("monster", v):
             return v
         raise ValueError(f"the monster {v} doesn't exist in the db")
-
-    @field_validator("held_items")
-    def item_exists(
-        cls: EncounterItemModel, v: Sequence[str]
-    ) -> Sequence[str]:
-        if v:
-            for item in v:
-                if not has.db_entry("item", item):
-                    raise ValueError(
-                        f"the item '{item}' doesn't exist in the db"
-                    )
-        return v
 
 
 class EncounterModel(BaseModel, BaseLookupModel):
@@ -1467,6 +1541,22 @@ class EncounterModel(BaseModel, BaseLookupModel):
     )
     monsters: Sequence[EncounterItemModel] = Field(
         [], description="Monsters encounterable"
+    )
+    scaling_zone: bool = Field(
+        False,
+        description="If true, this zone applies level scaling to all monsters",
+    )
+    scale_offset_range: Optional[tuple[int, int]] = Field(
+        None,
+        description="Custom offset range applied when scaling override is active (e.g. -3 to +5)",
+    )
+    scale_multiplier: float = Field(
+        1.0,
+        description="Multiplier applied to party average to define base scaled level",
+    )
+    override_level_range: bool = Field(
+        False,
+        description="If true, allows scaling to override a monster's declared level_range and match party average directly.",
     )
 
     @classmethod
@@ -1488,6 +1578,7 @@ class DialogueModel(BaseModel, BaseLookupModel):
     font_shadow_color: str = Field(..., description="RGB color (eg. 255:0:0)")
     border_slug: str = Field(..., description="Name of the border")
     border_path: str = Field(..., description="Path to the border")
+    line_spacing: int = Field(0, description="Line spacing value")
 
     @classmethod
     def lookup(cls, slug: str, db: ModData) -> DialogueModel:
@@ -1638,42 +1729,70 @@ class TemplateModel(BaseModel):
     )
 
 
-class ProgressModel(BaseModel):
-    game_variables: dict[str, Any] = Field(
-        ...,
-        description="Dictionary of game variables tracking the mission's progress",
+class MissionStepModel(BaseModel):
+    slug: str = Field(..., description="Unique identifier for the step")
+    order: int = Field(
+        default=0,
+        description="Progression order index used to sequence mission steps",
     )
-    completion_percentage: float = Field(
-        ..., ge=0.0, le=100.0, description="Percentage of mission completed"
+    description: str = Field(
+        ..., description="Describes what the step requires or represents"
     )
+    conditions: dict[str, Any] = Field(
+        default_factory=dict,
+        description="Simple conditions on game_variables (all must be true)",
+    )
+    any_of: list[dict[str, Any]] = Field(
+        default_factory=list,
+        description="Alternative condition sets; step completes if any are satisfied",
+    )
+    all_of: list[dict[str, Any]] = Field(
+        default_factory=list,
+        description="Additional condition sets; all must be satisfied",
+    )
+    next_steps: list[str] = Field(
+        default_factory=list,
+        description="Slugs of next steps unlocked when this is completed",
+    )
+    optional: bool = Field(False, description="Whether the step is optional")
 
 
 class MissionModel(BaseModel, BaseLookupModel):
     table_name: ClassVar[str] = "mission"
+
     slug: str = Field(..., description="Slug uniquely identifying the mission")
     description: str = Field(
         ..., description="Detailed description of the mission objectives"
     )
     prerequisites: Sequence[dict[str, Any]] = Field(
-        ...,
-        description="List of prerequisite missions and their game variables",
+        default_factory=list,
+        description="List of game variables required to unlock the mission",
     )
     connected_missions: Sequence[dict[str, Any]] = Field(
-        ...,
-        description="List of missions accessible once this mission is complete",
-    )
-    progress: Sequence[ProgressModel] = Field(
-        ..., description="List of progress tracking entries for the mission"
+        default_factory=list,
+        description="List of missions that this one unlocks",
     )
     required_items: Sequence[str] = Field(
-        ..., description="List of items required to start the mission"
+        default_factory=list, description="Items required to begin the mission"
     )
     required_monsters: Sequence[str] = Field(
-        ..., description="List of monsters required to start the mission"
+        default_factory=list,
+        description="Monsters required to begin the mission",
     )
     required_missions: Sequence[str] = Field(
-        ...,
-        description="List of mission slugs that must be completed before this mission",
+        default_factory=list,
+        description="Slugs of missions that must be completed before this one",
+    )
+    steps: dict[str, MissionStepModel] = Field(
+        default_factory=dict,
+        description="Dictionary of steps defining structure and branching logic",
+    )
+    repeatable: bool = Field(
+        False, description="Whether the mission can be repeated"
+    )
+    failure_conditions: Sequence[dict[str, Any]] = Field(
+        default_factory=list,
+        description="List of game variables that, if met, cause the mission to fail",
     )
 
     @classmethod

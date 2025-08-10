@@ -5,7 +5,10 @@
   "effects": [
     {
       "type": "prickly",
-      "parameters": ["8","touch:melee"]
+      "parameters": [
+        "8",
+        "touch:melee"
+      ]
     }
   ],
   "flip_axes": "",

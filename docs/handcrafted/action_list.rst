@@ -50,9 +50,10 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.get_monster_tech.GetMonsterTechAction
 .. autoscriptinfoclass:: tuxemon.event.actions.get_party_monsters.GetPartyMonsterAction
 .. autoscriptinfoclass:: tuxemon.event.actions.get_player_monster.GetPlayerMonsterAction
-.. autoscriptinfoclass:: tuxemon.event.actions.info.InfoAction
 .. autoscriptinfoclass:: tuxemon.event.actions.give_experience.GiveExperienceAction
+.. autoscriptinfoclass:: tuxemon.event.actions.info.InfoAction
 .. autoscriptinfoclass:: tuxemon.event.actions.input_variable.InputVariableAction
+.. autoscriptinfoclass:: tuxemon.event.actions.learn_tech_by_method.LearnTechByMethodAction
 .. autoscriptinfoclass:: tuxemon.event.actions.load_game.LoadGameAction
 .. autoscriptinfoclass:: tuxemon.event.actions.load_yaml.LoadYamlAction
 .. autoscriptinfoclass:: tuxemon.event.actions.menu.MenuAction

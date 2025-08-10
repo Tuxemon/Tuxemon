@@ -17,6 +17,7 @@ from tuxemon.core.core_manager import ConditionManager, EffectManager
 from tuxemon.core.core_processor import ConditionProcessor, EffectProcessor
 from tuxemon.db import ItemCategory, ItemModel, State, db
 from tuxemon.locale import T
+from tuxemon.modifiers import ModifiersHandler
 from tuxemon.surfanim import FlipAxes
 
 if TYPE_CHECKING:
@@ -49,6 +50,7 @@ class Item:
         self.quantity: int = 1
         self.animation: Optional[str] = None
         self.flip_axes: FlipAxes = FlipAxes.NONE
+        self.modifiers: ModifiersHandler = ModifiersHandler()
         # The path to the sprite to load.
         self.sprite: str = ""
         self.category: ItemCategory = ItemCategory.none
@@ -63,10 +65,12 @@ class Item:
         self.use_success: str = ""
         self.use_failure: str = ""
         self.usable_in: Sequence[State] = []
+        self.immunity_to_status: Sequence[str] = []
         self.cost: int = 0
         self.wear: int = 0
         self.max_wear: int = 0
         self.break_chance: float = 0.0
+        self.menu_actions_data: Sequence[Mapping[str, str]] = []
 
         if Item.effect_manager is None:
             Item.effect_manager = EffectManager(
@@ -119,7 +123,7 @@ class Item:
         self.slug = results.slug
         self.name = T.translate(self.slug)
         self.description = T.translate(f"{self.slug}_description")
-        self.modifiers = results.modifiers
+        self.modifiers = ModifiersHandler(results.modifiers)
 
         # item use notifications (translated!)
         self.use_item = T.translate(results.use_item)
@@ -128,13 +132,14 @@ class Item:
         self.confirm_text = T.translate(results.confirm_text)
         self.cancel_text = T.translate(results.cancel_text)
 
-        # misc attributes (not translated!)
+        self.menu_actions_data = results.menu_actions
         self.world_menu = results.world_menu
         self.behaviors = results.behaviors
         self.cost = results.cost
         self.max_wear = results.max_wear
         self.break_chance = results.break_chance
         self.sort = results.sort
+        self.immunity_to_status = results.immunity_to_status
         self.category = results.category
         self.sprite = results.sprite
         self.usable_in = results.usable_in
@@ -158,6 +163,12 @@ class Item:
         if not self.combat_state:
             raise ValueError("No CombatState.")
         return self.combat_state
+
+    def is_immune(self, status: str) -> bool:
+        return (
+            "all" in self.immunity_to_status
+            or status in self.immunity_to_status
+        )
 
     def set_combat_state(self, combat_state: Optional[CombatState]) -> None:
         """Sets the CombatState."""

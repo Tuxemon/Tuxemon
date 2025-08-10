@@ -4,35 +4,43 @@
   "moveset": [
     {
       "level_learned": 1,
-      "technique": "tail_lash"
+      "technique": "stick"
     },
     {
       "level_learned": 1,
       "technique": "clamp_on"
     },
     {
-      "level_learned": 4,
-      "technique": "poison_courtship"
-    },
-    {
       "level_learned": 7,
-      "technique": "stabilo"
+      "technique": "mending"
     },
     {
-      "level_learned": 13,
-      "technique": "ram"
+      "level_learned": 10,
+      "technique": "tail_lash"
     },
     {
-      "level_learned": 19,
+      "level_learned": 16,
       "technique": "blade"
     },
     {
+      "level_learned": 22,
+      "technique": "stabilo"
+    },
+    {
       "level_learned": 25,
-      "technique": "staff_smash"
+      "technique": "one_two"
     },
     {
       "level_learned": 28,
+      "technique": "all_in"
+    },
+    {
+      "level_learned": 31,
       "technique": "woodsmash"
+    },
+    {
+      "level_learned": 34,
+      "technique": "give_all"
     }
   ],
   "evolutions": [],

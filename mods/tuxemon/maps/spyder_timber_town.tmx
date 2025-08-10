@@ -140,7 +140,7 @@
     <property name="act03" value="pathfind spyder_dante,29,25"/>
     <property name="act04" value="translated_dialog spyder_timber_dante2"/>
     <property name="act05" value="add_item app_contacts"/>
-    <property name="act06" value="translated_dialog app_contacts,,center,center,middle"/>
+    <property name="act06" value="translated_dialog app_contacts,,center,center,center"/>
     <property name="act07" value="add_contacts player,spyder_papertown_mom,family,100"/>
     <property name="act08" value="add_contacts player,spyder_dante,friend,80"/>
     <property name="act09" value="pathfind spyder_dante,24,31"/>
@@ -367,7 +367,7 @@
     <property name="act07" value="char_face spyder_papertown_mom,up"/>
     <property name="act08" value="translated_dialog spyder_timber_mom1"/>
     <property name="act09" value="add_item surfboard"/>
-    <property name="act10" value="translated_dialog surfboard,,center,center,middle"/>
+    <property name="act10" value="translated_dialog surfboard,,center,center,center"/>
     <property name="act11" value="translated_dialog spyder_timber_mom2"/>
     <property name="act12" value="pathfind spyder_papertown_mom,26,23"/>
     <property name="act13" value="remove_npc spyder_papertown_mom"/>

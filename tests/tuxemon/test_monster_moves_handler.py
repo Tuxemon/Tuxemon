@@ -3,7 +3,7 @@
 import unittest
 from unittest.mock import MagicMock, patch
 
-from tuxemon.monster import MonsterMovesHandler
+from tuxemon.monster_dir.moves import MonsterMovesHandler
 
 
 class TestMonsterMovesHandler(unittest.TestCase):
@@ -43,8 +43,18 @@ class TestMonsterMovesHandler(unittest.TestCase):
 
     def test_set_moves(self):
         moveset = [
-            MagicMock(level_learned=1, technique=MagicMock(slug="technique1")),
-            MagicMock(level_learned=2, technique=MagicMock(slug="technique2")),
+            MagicMock(
+                level_learned=1,
+                technique=MagicMock(slug="technique1"),
+                evolution_stage_learned=None,
+                learning_method="level_up",
+            ),
+            MagicMock(
+                level_learned=2,
+                technique=MagicMock(slug="technique2"),
+                evolution_stage_learned=None,
+                learning_method="level_up",
+            ),
         ]
         with patch(
             "tuxemon.technique.technique.Technique.create"
@@ -56,9 +66,24 @@ class TestMonsterMovesHandler(unittest.TestCase):
 
     def test_update_moves(self):
         moveset = [
-            MagicMock(level_learned=1, technique=MagicMock(slug="technique1")),
-            MagicMock(level_learned=2, technique=MagicMock(slug="technique2")),
-            MagicMock(level_learned=3, technique=MagicMock(slug="technique3")),
+            MagicMock(
+                level_learned=1,
+                technique=MagicMock(slug="technique1"),
+                evolution_stage_learned=None,
+                learning_method="level_up",
+            ),
+            MagicMock(
+                level_learned=2,
+                technique=MagicMock(slug="technique2"),
+                evolution_stage_learned=None,
+                learning_method="level_up",
+            ),
+            MagicMock(
+                level_learned=3,
+                technique=MagicMock(slug="technique3"),
+                evolution_stage_learned=None,
+                learning_method="level_up",
+            ),
         ]
         with patch(
             "tuxemon.technique.technique.Technique.create"
@@ -101,3 +126,44 @@ class TestMonsterMovesHandler(unittest.TestCase):
         self.handler.learn(self.technique)
         moves = self.handler.get_moves()
         self.assertIn(self.technique, moves)
+
+    def test_can_forget_true(self):
+        entry = MagicMock(technique="fireball", can_be_forgotten=True)
+        self.handler.set_moveset([entry])
+        self.assertTrue(self.handler.can_forget(MagicMock(slug="fireball")))
+
+    def test_can_forget_false(self):
+        entry = MagicMock(technique="icewall", can_be_forgotten=False)
+        self.handler.set_moveset([entry])
+        self.assertFalse(self.handler.can_forget(MagicMock(slug="icewall")))
+
+    def test_remove_forced(self):
+        self.technique.slug = "shockwave"
+        self.handler.learn(self.technique)
+        removed = self.handler.remove_forced(self.technique)
+        self.assertTrue(removed)
+        self.assertNotIn(self.technique, self.handler.moves)
+
+    def test_is_move_eligible_stage_mismatch(self):
+        move = MagicMock(
+            level_learned=3,
+            evolution_stage_learned="stage2",
+            technique="wave",
+            learning_method="level_up",
+        )
+        result = self.handler.is_move_eligible(
+            move=move, level=4, evolution_stage="basic"
+        )
+        self.assertFalse(result)
+
+    def test_is_move_eligible_stage_match(self):
+        move = MagicMock(
+            level_learned=2,
+            evolution_stage_learned="basic",
+            technique="zap",
+            learning_method="level_up",
+        )
+        result = self.handler.is_move_eligible(
+            move=move, level=3, evolution_stage="basic"
+        )
+        self.assertTrue(result)

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="12" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="44">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="12" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="44">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
+  <property name="map_type" value="notype"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="cotton_cafe"/>
-  <property name="map_type" value="notype"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_set pieces.tsx"/>
  <tileset firstgid="1551" source="../gfx/tilesets/core_outdoor.tsx"/>
@@ -18,7 +18,7 @@
  </layer>
  <layer id="2" name="Tile Layer 5" width="12" height="12">
   <data encoding="base64" compression="zlib">
-   eJxjYCAduLMQz/4MxF+A+DYQ3wHiPGbc5hryMjAIMTIwCAPxLyD/NxD34lEfxosptgaPehA4wQzBJ4H4FBCfRlN/gQmCYcAfjUYGl4DqNgDpjUB8kQmLAjTzQOrPg8RwqCfGPHT1+MyjNigF2lEGxOVQu3YAww4AxhUf2g==
+   eJxjYCAduLMQz/4MxF+gYreAOI8Zt7mGvAwMQowMDMKMEP5PIO7Foz6MF1NsDR71IHCCGYJPAvEpID6Npv4CEwTDgD8ajQwuAdVtANIbgfgiExYFaOaB1J8HieFQT4x56OrxmUdtUAq0owyIy6F27QCGHQCNIB4B
   </data>
  </layer>
  <layer id="3" name="Tile Layer 4" width="12" height="12">
@@ -55,10 +55,11 @@
     <property name="cond1" value="not char_exists spyder_cottontown_hacker"/>
    </properties>
   </object>
-  <object id="17" name="Create Barmaid" type="event" x="0" y="64" width="16" height="16">
+  <object id="17" name="Create Barmaid - hidden away" type="event" x="0" y="64" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_cottontown_barmaid,0,4"/>
+    <property name="act1" value="create_npc spyder_cottontown_barmaid,2,3"/>
     <property name="cond1" value="not char_exists spyder_cottontown_barmaid"/>
+    <property name="cond2" value="not variable_set visitedcottoncafe:yes"/>
    </properties>
   </object>
   <object id="18" name="Talk Hacker" type="event" x="128" y="80" width="16" height="16">
@@ -82,6 +83,7 @@
   <object id="20" name="First Visit to Cotton Cafe" type="event" x="160" y="48" width="16" height="16">
    <properties>
     <property name="act01" value="wait 0.1"/>
+    <property name="act09" value="translated_dialog spyder_cotton_tuxepediawelcome"/>
     <property name="act10" value="char_stop player"/>
     <property name="act11" value="lock_controls"/>
     <property name="act15" value="pathfind spyder_cottontown_hacker,7,3"/>
@@ -100,9 +102,14 @@
     <property name="act51" value="wait 0.5"/>
     <property name="act52" value="set_variable visitedcottoncafe:yes"/>
     <property name="act53" value="add_item app_tuxepedia"/>
-    <property name="act54" value="translated_dialog app_tuxepedia,,center,center,middle"/>
+    <property name="act54" value="translated_dialog app_tuxepedia,,center,center,center"/>
+    <property name="act85" value="pathfind spyder_cottontown_hacker,6,5"/>
+    <property name="act86" value="char_face spyder_cottontown_hacker,player"/>
+    <property name="act87" value="char_face player,spyder_cottontown_hacker"/>
     <property name="act88" value="translated_dialog spyder_cotton_tuxepediaintro4"/>
     <property name="act90" value="unlock_controls"/>
+    <property name="act91" value="pathfind spyder_cottontown_barmaid,0,4"/>
+    <property name="act92" value="char_face spyder_cottontown_barmaid,down"/>
     <property name="behav1" value="talk spyder_cottontown_hacker"/>
     <property name="cond1" value="not variable_set visitedcottoncafe:yes"/>
    </properties>
@@ -123,7 +130,7 @@
   <object id="23" name="Create Goth (1st)" type="event" x="80" y="96" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_cottoncafe_cayden,2,6"/>
-    <property name="act2" value="char_wander spyder_cottoncafe_cayden"/>
+    <property name="act2" value="char_wander spyder_cottoncafe_cayden,1,7,10,10"/>
     <property name="cond1" value="not char_exists spyder_cottoncafe_cayden"/>
    </properties>
   </object>
@@ -144,8 +151,8 @@
    <properties>
     <property name="act10" value="set_monster_health"/>
     <property name="act11" value="set_monster_status"/>
-    <property name="act21" value="lock_controls"/>
     <property name="act20" value="translated_dialog okaythen"/>
+    <property name="act21" value="lock_controls"/>
     <property name="act30" value="char_face spyder_cottontown_barmaid,up"/>
     <property name="act40" value="wait 1"/>
     <property name="act50" value="char_face spyder_cottontown_barmaid,down"/>
@@ -238,9 +245,7 @@
     <property name="act1" value="char_face spyder_cottoncafe_wilford,left"/>
     <property name="act2" value="wait 1.5"/>
     <property name="act20" value="char_face spyder_cottoncafe_juliana,down"/>
-    <property name="act30" value="char_face spyder_cottontown_barmaid,up"/>
     <property name="act40" value="wait 1.5"/>
-    <property name="act50" value="char_face spyder_cottontown_barmaid,down"/>
     <property name="act60" value="char_face spyder_cottoncafe_juliana,right"/>
     <property name="act65" value="wait 1.5"/>
     <property name="act66" value="char_face spyder_cottoncafe_wilford,up"/>
@@ -253,6 +258,13 @@
     <property name="act2" value="translated_dialog_choice yes:no,cafebattle"/>
     <property name="behav1" value="talk spyder_cottoncafe_cayden"/>
     <property name="cond1" value="not variable_set foughtincafe:yes"/>
+   </properties>
+  </object>
+  <object id="44" name="Create Barmaid - accessible" type="event" x="16" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_cottontown_barmaid,0,4"/>
+    <property name="cond1" value="not char_exists spyder_cottontown_barmaid"/>
+    <property name="cond2" value="is variable_set visitedcottoncafe:yes"/>
    </properties>
   </object>
  </objectgroup>

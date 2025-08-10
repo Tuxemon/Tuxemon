@@ -12,6 +12,9 @@
     "consumable": false,
     "holdable": true
   },
+  "immunity_to_status": [
+    "grabbed"
+  ],
   "use_failure": "generic_failure",
   "use_item": "combat_used_x",
   "use_success": "generic_success"

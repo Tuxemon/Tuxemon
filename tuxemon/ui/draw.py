@@ -3,237 +3,229 @@
 from __future__ import annotations
 
 import logging
-import math
-from collections.abc import Callable, Generator, Iterable, Sequence
-from itertools import product
+import re
+from collections.abc import Generator, Iterable
+from dataclasses import dataclass
+from enum import Enum
 from typing import Optional
 
-from pygame import SRCALPHA
 from pygame.font import Font
 from pygame.rect import Rect
 from pygame.surface import Surface
-from pygame.transform import scale
 
-from tuxemon import prepare, tools
 from tuxemon.graphics import ColorLike
-from tuxemon.sprite import Sprite
+from tuxemon.ui.text_alignment import HorizontalAlignment, VerticalAlignment
+from tuxemon.ui.text_renderer import TextRenderer
 
 logger = logging.getLogger(__name__)
 
 __all__ = ("GraphicBox",)
 
-
-def create_layout(
-    scale: float,
-) -> Callable[[Sequence[float]], Sequence[float]]:
-    def func(area: Sequence[float]) -> Sequence[float]:
-        return [scale * i for i in area]
-
-    return func
+font_size_cache: dict[str, tuple[int, int]] = {}
 
 
-layout = create_layout(prepare.SCALE)
+class RenderMode(Enum):
+    # Renders text character by character
+    CHARACTER = "char"
+    # Renders text token by token (e.g., words or phrases)
+    TOKEN = "token"
+    # Renders text line by line
+    LINE = "line"
 
 
-class TileLayout:
-    """
-    Extracts a grid of tiles from a border image and assigns logical names
-    like 'nw', 'n', 'ne', etc. Assumes a 3x3 layout by default.
-    """
-
-    def __init__(self, image: Surface, grid_size: int = 3) -> None:
-        if grid_size <= 0:
-            raise ValueError("Grid size must be a positive integer")
-        self.grid_size = grid_size
-        self.tiles: dict[str, Surface] = self._extract_tiles(image)
-
-    def _extract_tiles(self, image: Surface) -> dict[str, Surface]:
-        if image.get_size() == (0, 0):
-            raise ValueError("Image cannot be empty")
-
-        iw, ih = image.get_size()
-
-        if iw % self.grid_size != 0 or ih % self.grid_size != 0:
-            raise ValueError("Image dimensions must be divisible by grid size")
-
-        tw, th = iw // self.grid_size, ih // self.grid_size
-        layout_map = {
-            (0, 0): "nw",
-            (0, 1): "n",
-            (0, 2): "ne",
-            (1, 0): "w",
-            (1, 1): "c",
-            (1, 2): "e",
-            (2, 0): "sw",
-            (2, 1): "s",
-            (2, 2): "se",
-        }
-
-        tiles: dict[str, Surface] = {}
-        for (row, col), label in layout_map.items():
-            x, y = col * tw, row * th
-            rect = Rect(x, y, tw, th)
-            tiles[label] = image.subsurface(rect)
-
-        if len(tiles) != self.grid_size**2:
-            raise ValueError(
-                f"Expected {self.grid_size ** 2} tiles, got {len(tiles)}"
-            )
-
-        return tiles
+class TextOverflow(Enum):
+    # Truncates text when it reaches the boundary
+    CLIP = "clip"
+    # Adds "…" when clipping occurs
+    ELLIPSIS = "ellipsis"
+    # Allows overflow (useful for scrollable views)
+    EXPAND = "expand"
+    # Moves overflow text to next line (if vertical space allows)
+    WRAP = "wrap"
+    # Dynamically reduces font size to fit within bounds
+    SHRINK = "shrink"
 
 
-class GraphicBox(Sprite):
-    """
-    Generic class for drawing graphical boxes.
-
-    Draws a border and can fill in the box with a _color from the border file,
-    an external file, or a solid _color.
-
-    box = GraphicBox('border.png')
-    box.draw(surface, rect)
-
-    The border graphic must contain 9 tiles laid out in a box.
-    """
-
-    TILE_GRID_SIZE = 3
-
-    def __init__(
-        self,
-        border: Optional[Surface] = None,
-        background: Optional[Surface] = None,
-        color: Optional[ColorLike] = None,
-        fill_tiles: bool = False,
-    ) -> None:
-        """
-        Initializes the GraphicBox object.
-
-        Parameters:
-            border: The border image.
-            background: The background image.
-            color: The fill color.
-            fill_tiles: Whether to fill the box with tiles from the border image.
-        """
-        super().__init__()
-        self._background = background
-        self._color = color
-        self._fill_tiles = fill_tiles
-        self._tiles: dict[str, Surface] = {}
-        self._tile_size = 0, 0
-
-        if border:
-            self._set_border(border)
-
-    def calc_inner_rect(self, rect: Rect) -> Rect:
-        """
-        Calculates the inner rectangle of the box.
-
-        Parameters:
-            rect: The outer rectangle of the box.
-
-        Returns:
-            The inner rectangle of the box.
-        """
-        if self._tiles:
-            tw, th = self._tile_size
-            return rect.inflate(-tw * 2, -th * 2)
-        else:
-            return rect
-
-    def _set_border(self, image: Surface) -> None:
-        """
-        Sets the border image and extracts the individual tiles.
-        The border graphic must contain 9 tiles laid out in a 3x3 grid.
-
-        Parameters:
-            image: The border image.
-        """
-        layout = TileLayout(image, self.TILE_GRID_SIZE)
-        self._tiles = layout.tiles
-        self._tile_size = next(iter(self._tiles.values())).get_size()
-        self._needs_update = True
-
-    def update_image(self) -> None:
-        """
-        Updates the object's image by drawing the box on a new surface.
-        """
-        rect = Rect((0, 0), self._rect.size)
-        surface = Surface(rect.size, SRCALPHA)
-        self._draw(surface, rect)
-        self.image = surface
-
-    def _draw(
-        self,
-        surface: Surface,
-        rect: Rect,
-    ) -> Rect:
-        inner = self.calc_inner_rect(rect)
-
-        # Fill center
-        if self._background:
-            surface.blit(scale(self._background, inner.size), inner)
-        elif self._color:
-            surface.fill(self._color, inner)
-        elif self._fill_tiles:
-            self._draw_tiled_fill(surface, inner)
-
-        # Draw border
-        if self._tiles:
-            self._draw_border(surface, rect, inner)
-
-        return rect
-
-    def _draw_tiled_fill(self, surface: Surface, inner: Rect) -> None:
-        tw, th = self._tile_size
-        center_tile = self._tiles["c"]
-        for x in range(inner.left, inner.right, tw):
-            for y in range(inner.top, inner.bottom, th):
-                surface.blit(center_tile, (x, y))
-
-    def _draw_border(self, surface: Surface, rect: Rect, inner: Rect) -> None:
-        """
-        Draws the tiled border around the inner rectangle.
-        """
-        left, top = rect.topleft
-        tw, th = self._tile_size
-        surface_blit = surface.blit  # cache the blit method
-
-        # Draw top and bottom border tiles
-        for x in range(inner.left, inner.right, tw):
-            area = (
-                (0, 0, tw, th)
-                if x + tw < inner.right
-                else (0, 0, tw - (x + tw - inner.right), th)
-            )
-            surface_blit(self._tiles["n"], (x, top), area)
-            surface_blit(self._tiles["s"], (x, inner.bottom), area)
-
-        # Draw left and right border tiles
-        for y in range(inner.top, inner.bottom, th):
-            area = (
-                (0, 0, tw, th)
-                if y + th < inner.bottom
-                else (0, 0, tw, th - (y + th - inner.bottom))
-            )
-            surface_blit(self._tiles["w"], (left, y), area)
-            surface_blit(self._tiles["e"], (inner.right, y), area)
-
-        # Draw corner tiles
-        surface_blit(self._tiles["nw"], (left, top))
-        surface_blit(self._tiles["sw"], (left, inner.bottom))
-        surface_blit(self._tiles["ne"], (inner.right, top))
-        surface_blit(self._tiles["se"], (inner.right, inner.bottom))
+@dataclass
+class RenderedChar:
+    rect: Rect
+    surface: Surface
+    char: str
+    delay: float = 0.0
 
 
-def guest_font_height(font: Font) -> int:
-    return guess_rendered_text_size("Tg", font)[1]
+def get_font_height(font: Font) -> int:
+    return get_text_size("Tg", font)[1]
 
 
-def guess_rendered_text_size(
+def get_text_size(
     text: str,
     font: Font,
 ) -> tuple[int, int]:
-    return font.size(text)
+    if text not in font_size_cache:
+        font_size_cache[text] = font.size(text)
+    return font_size_cache[text]
+
+
+class OverflowHandler:
+    def __init__(self, font: Font, rect: Rect, behavior: TextOverflow):
+        self.font = font
+        self.rect = rect
+        self.behavior = behavior
+        self.ellipsis = "…"
+        self.ellipsis_width = font.size(self.ellipsis)[0]
+
+    def get_ellipsis_char(
+        self, top: int, fg: ColorLike, bg: ColorLike, renderer: TextRenderer
+    ) -> RenderedChar:
+        surface = renderer.shadow_text(self.ellipsis, bg=bg, fg=fg)
+        update_rect = surface.get_rect(
+            top=top, left=self.rect.right - self.ellipsis_width
+        )
+        return RenderedChar(
+            rect=update_rect, surface=surface, char=self.ellipsis
+        )
+
+    def handle_render_attempt(
+        self,
+        current_x_position: int,
+        segment_width: int,
+        top: int,
+        fg: ColorLike,
+        bg: ColorLike,
+        renderer: TextRenderer,
+    ) -> tuple[bool, Optional[RenderedChar]]:
+        """
+        Determines if a segment should be rendered and if an ellipsis
+        is needed.
+
+        Returns:
+            A tuple: (should_render_segment, optional_ellipsis_char).
+            should_render_segment: True if the segment fits and should
+                be rendered.
+            optional_ellipsis_char: A RenderedChar for ellipsis if needed,
+                otherwise None.
+        """
+        if self.behavior == TextOverflow.EXPAND:
+            return True, None
+
+        if current_x_position + segment_width <= self.rect.right:
+            return True, None
+
+        if self.behavior == TextOverflow.ELLIPSIS:
+            if current_x_position + self.ellipsis_width <= self.rect.right:
+                return False, self.get_ellipsis_char(top, fg, bg, renderer)
+            else:
+                return False, None
+
+        return False, None
+
+
+def _prepare_text_lines(
+    text: str,
+    font: Font,
+    rect_width: int,
+    overflow_behavior: TextOverflow,
+) -> list[str]:
+    """
+    Prepares and returns a list of text lines based on overflow behavior.
+    """
+    if not text.strip():
+        return [""]
+    if overflow_behavior == TextOverflow.WRAP:
+        return list(
+            break_text_into_lines(
+                text, font, rect_width, allow_word_overflow=True
+            )
+        )
+    elif overflow_behavior in (
+        TextOverflow.CLIP,
+        TextOverflow.EXPAND,
+        TextOverflow.ELLIPSIS,
+    ):
+        return list(
+            break_text_into_lines(
+                text, font, rect_width, allow_word_overflow=False
+            )
+        )
+    else:
+        return list(iterate_paragraphs(text))
+
+
+def _iter_chars_for_line(
+    line: str,
+    font: Font,
+    fg: ColorLike,
+    bg: ColorLike,
+    top: int,
+    x_start: int,
+    overflow_handler: OverflowHandler,
+    text_renderer: TextRenderer,
+) -> Generator[RenderedChar, None, None]:
+    """
+    Generates RenderedChar objects for each character in a line.
+    Handles horizontal overflow using the provided overflow_handler.
+    """
+    x_position = x_start
+    for index in range(1, len(line) + 1):
+        char = line[index - 1]
+        advance = font.size(char)[0]
+
+        should_render, ellipsis_char = overflow_handler.handle_render_attempt(
+            x_position, advance, top, fg, bg, text_renderer
+        )
+
+        if ellipsis_char:
+            yield ellipsis_char
+            return
+
+        if not should_render:
+            return
+
+        if char != " ":
+            surface = text_renderer.shadow_text(char, bg=bg, fg=fg)
+            update_rect = surface.get_rect(top=top, left=x_position)
+            yield RenderedChar(rect=update_rect, surface=surface, char=char)
+
+        x_position += advance
+
+
+def _iter_tokens_for_line(
+    line: str,
+    font: Font,
+    fg: ColorLike,
+    bg: ColorLike,
+    top: int,
+    x_start: int,
+    overflow_handler: OverflowHandler,
+    text_renderer: TextRenderer,
+) -> Generator[RenderedChar, None, None]:
+    """
+    Generates RenderedChar objects for each token (word/spacing) in a line.
+    Handles horizontal overflow using the provided overflow_handler.
+    """
+    x_offset = 0
+    for token in tokenize_preserving_spacing(line):
+        token_width = font.size(token)[0]
+        current_x = x_start + x_offset
+
+        should_render, ellipsis_char = overflow_handler.handle_render_attempt(
+            current_x, token_width, top, fg, bg, text_renderer
+        )
+
+        if ellipsis_char:
+            yield ellipsis_char
+            return
+
+        if not should_render:
+            return
+
+        if token.strip():
+            surface = text_renderer.shadow_text(token, bg=bg, fg=fg)
+            update_rect = surface.get_rect(top=top, left=current_x)
+            yield RenderedChar(rect=update_rect, surface=surface, char=token)
+
+        x_offset += token_width
 
 
 def iter_render_text(
@@ -242,54 +234,95 @@ def iter_render_text(
     fg: ColorLike,
     bg: ColorLike,
     rect: Rect,
-    alignment: str = "left",
-    vertical_alignment: str = "top",
+    h_alignment: HorizontalAlignment = HorizontalAlignment.LEFT,
+    v_alignment: VerticalAlignment = VerticalAlignment.TOP,
     text_renderer: Optional[TextRenderer] = None,
-) -> Generator[tuple[Rect, Surface], None, None]:
-    line_height = guest_font_height(font)
+    mode: RenderMode = RenderMode.CHARACTER,
+    overflow_behavior: TextOverflow = TextOverflow.CLIP,
+    line_spacing: int = 0,
+) -> Generator[RenderedChar, None, None]:
 
-    # Convert generator to list to calculate total height
-    lines = list(constrain_width(text, font, rect.width))
+    lines = _prepare_text_lines(text, font, rect.width, overflow_behavior)
+    if not lines:
+        return
+
+    line_height = get_font_height(font) + line_spacing
     total_text_height = len(lines) * line_height
 
-    # Calculate vertical alignment offset
-    if vertical_alignment == "middle":
-        vertical_offset = (rect.height - total_text_height) // 2
-    elif vertical_alignment == "bottom":
-        vertical_offset = rect.height - total_text_height
-    else:
-        vertical_offset = 0
+    _, vertical_offset = calculate_alignment_offset(
+        rect, 0, total_text_height, HorizontalAlignment.LEFT, v_alignment
+    )
 
     if text_renderer is None:
         text_renderer = TextRenderer(
-            font_color=fg,
-            font_shadow_color=bg,
-            font=font,
+            font_color=fg, font_shadow_color=bg, font=font
         )
 
     for line_index, line in enumerate(lines):
-        # Adjust `top` based on the vertical alignment
-        top = rect.top + line_index * line_height + vertical_offset
+        current_line_y = rect.top + line_index * line_height + vertical_offset
+        line_width = font.size(line)[0]
 
-        # Calculate horizontal alignment offset
-        if alignment == "center":
-            offset = (rect.width - font.size(line)[0]) // 2
-        elif alignment == "right":
-            offset = rect.width - font.size(line)[0]
-        else:
-            offset = 0
+        offset_x_for_line, _ = calculate_alignment_offset(
+            rect, line_width, 0, h_alignment, VerticalAlignment.TOP
+        )
+        current_line_x = rect.left + offset_x_for_line
 
-        for scrap in build_line(line):
-            if scrap[-1] == " ":
-                # No need to blit a white sprite onto a white background
-                continue
-            dirty_length = font.size(scrap[:-1])[0]
-            surface = text_renderer.shadow_text(scrap[-1], bg=bg, fg=fg)
-            update_rect = surface.get_rect(
-                top=top,
-                left=rect.left + dirty_length + offset,
+        overflow_handler = OverflowHandler(
+            font=font, rect=rect, behavior=overflow_behavior
+        )
+
+        if mode == RenderMode.CHARACTER:
+            yield from _iter_chars_for_line(
+                line,
+                font,
+                fg,
+                bg,
+                current_line_y,
+                current_line_x,
+                overflow_handler,
+                text_renderer,
             )
-            yield update_rect, surface
+
+        elif mode == RenderMode.TOKEN:
+            yield from _iter_tokens_for_line(
+                line,
+                font,
+                fg,
+                bg,
+                current_line_y,
+                current_line_x,
+                overflow_handler,
+                text_renderer,
+            )
+
+        elif mode == RenderMode.LINE:
+            should_render, ellipsis_char = (
+                overflow_handler.handle_render_attempt(
+                    current_line_x,
+                    line_width,
+                    current_line_y,
+                    fg,
+                    bg,
+                    text_renderer,
+                )
+            )
+
+            if ellipsis_char:
+                yield ellipsis_char
+                continue
+
+            if not should_render:
+                continue
+
+            surface = text_renderer.shadow_text(line, bg=bg, fg=fg)
+            update_rect = surface.get_rect(
+                top=current_line_y, left=current_line_x
+            )
+            yield RenderedChar(rect=update_rect, surface=surface, char=line)
+
+
+def tokenize_preserving_spacing(text: str) -> list[str]:
+    return re.findall(r"\S+|\s+", text)
 
 
 def build_line(text: str) -> Generator[str, None, None]:
@@ -301,19 +334,40 @@ def constrain_width(
     text: str,
     font: Font,
     width: int,
+    strict_mode: bool = True,
+    diagnostic: bool = False,
 ) -> Generator[str, None, None]:
+    if not text.strip():
+        yield ""
+        return
     for line in iterate_word_lines(text):
         scrap = ""
         for word in line:
-            test = scrap + " " + word if scrap else word
+            test = f"{scrap} {word}" if scrap else word
             if font.size(test)[0] >= width:
                 if not scrap:
-                    raise RuntimeError("message is too large for width", text)
+                    if strict_mode:
+                        raise RuntimeError(
+                            "message is too large for width", text
+                        )
+                    else:
+                        logger.error(
+                            f"Layout issue: word '{word}' is too wide "
+                            f"({font.size(word)[0]}px ≥ {width}px) in text: '{text[:60]}...'"
+                        )
+                        if diagnostic:
+                            logger.debug(
+                                f"[diagnostic] word overflow → '{word}' with width {font.size(word)[0]}px"
+                            )
+                        yield word
+                        scrap = ""
+                        continue
                 yield scrap
                 scrap = word
             else:
                 scrap = test
-        yield scrap
+        if scrap:
+            yield scrap
 
 
 def iterate_words(text: str) -> Generator[str, None, None]:
@@ -322,6 +376,10 @@ def iterate_words(text: str) -> Generator[str, None, None]:
 
 def iterate_lines(text: str) -> Generator[str, None, None]:
     yield from text.strip().split("\n")
+
+
+def iterate_paragraphs(text: str) -> Generator[str, None, None]:
+    yield from text.split("\n")
 
 
 def iterate_word_lines(text: str) -> Generator[Iterable[str], None, None]:
@@ -361,145 +419,115 @@ def blit_alpha(
     target.blit(temp, location)
 
 
-def layout_func(scale: float) -> Callable[[Sequence[float]], Sequence[float]]:
-    def func(area: Sequence[float]) -> Sequence[float]:
-        return [scale * i for i in area]
+def break_text_into_lines(
+    text: str,
+    font: Font,
+    max_width: int,
+    allow_word_overflow: bool = False,
+) -> Generator[str, None, None]:
+    """
+    Breaks a block of *normalized* text into lines that fit within max_width.
+    Yields each formatted line as a string.
 
-    return func
+    Parameters:
+        text: The input text. It's assumed that any literal '\\n' sequences
+              have already been converted to actual newline characters '\n'
+              before being passed to this function. Actual '\n' characters
+              are treated as paragraph breaks.
+        font: The Pygame Font object to use for measuring text.
+        max_width: The maximum width allowed for each line in pixels.
+        allow_word_overflow: If True, a single word wider than max_width
+            will be yielded on its own line, potentially exceeding max_width.
+            If False, a warning might be logged if a word exceeds width and no
+            wrapping is possible.
+    """
+    if not text.strip():
+        yield ""
+        return
 
+    paragraphs = list(iterate_paragraphs(text))
 
-layout = layout_func(prepare.SCALE)
+    for i, paragraph in enumerate(paragraphs):
+        if not paragraph.strip():
+            if i == 0:
+                continue
+            yield ""
+            continue
 
-
-class TextRenderer:
-    def __init__(
-        self,
-        font_color: ColorLike,
-        font_shadow_color: Optional[ColorLike] = None,
-        font_filename: Optional[str] = None,
-        font: Optional[Font] = None,
-    ) -> None:
-        self.font_color = font_color
-        if font_shadow_color is None:
-            font_shadow_color = prepare.FONT_SHADOW_COLOR
-        self.font_shadow_color = font_shadow_color
-        self.font = font or Font(font_filename, tools.scale(5))
-
-    def shadow_text(
-        self,
-        text: str,
-        bg: Optional[ColorLike] = None,
-        fg: Optional[ColorLike] = None,
-        offset: tuple[float, float] = (0.5, 0.5),
-    ) -> Surface:
-        """
-        Render shadowed text using the current font and shadow color settings.
-
-        Parameters:
-            text: The text string to render.
-            bg: Shadow color. If None, uses the default font shadow color.
-            fg: Foreground font color. If None, uses the default font color.
-            offset: Tuple representing the x and y shadow offset in pixels.
-
-        Returns:
-            A Surface containing the rendered text with its shadow applied.
-        """
-        if not fg:
-            fg = self.font_color
-        if not bg:
-            bg = self.font_shadow_color
-        font_color = self.font.render(text, True, fg)
-        shadow_color = self.font.render(text, True, bg)
-        _offset = layout(offset)
-        size = [
-            int(math.ceil(a + b))
-            for a, b in zip(_offset, font_color.get_size())
-        ]
-        image = Surface(size, SRCALPHA)
-        image.blit(shadow_color, tuple(_offset))
-        image.blit(font_color, (0, 0))
-        return image
-
-
-class MultilineTextRenderer:
-    def __init__(
-        self,
-        text_renderer: TextRenderer,
-        line_spacing: int = 0,
-    ) -> None:
-        self.text_renderer = text_renderer
-        self.line_spacing = line_spacing
-
-    def render_lines(
-        self, text: str, max_width: int
-    ) -> list[tuple[Surface, int]]:
-        if not text:
-            return []
-
-        lines_to_render = []
         current_line_words: list[str] = []
+        words = list(iterate_words(paragraph))
 
-        paragraphs = text.split("\\n")
+        for word in words:
+            if word.strip() == "":
+                continue
 
-        for paragraph in paragraphs:
-            words = paragraph.split(" ")
-            current_line_words = []
+            test_line = " ".join(current_line_words + [word])
+            text_width, _ = get_text_size(test_line, font)
 
-            for word in words:
-                test_line = " ".join(current_line_words + [word])
-                text_width, _ = self.text_renderer.font.size(test_line)
-
-                if text_width > max_width and current_line_words:
-                    lines_to_render.append(
-                        (
-                            " ".join(current_line_words),
-                            self.text_renderer.shadow_text(
-                                " ".join(current_line_words)
-                            ).get_height(),
-                        )
+            if text_width > max_width and current_line_words:
+                yield " ".join(current_line_words)
+                current_line_words = [word]
+            elif text_width > max_width and not current_line_words:
+                if not allow_word_overflow:
+                    logger.warning(
+                        f"Word '{word}' (width: {text_width}px) is too wide for max_width ({max_width}px). "
+                        "It will be displayed on its own line and might overflow visually if clipped."
                     )
-                    current_line_words = [word]
-                else:
-                    current_line_words.append(word)
-
-            if current_line_words:
-                lines_to_render.append(
-                    (
-                        " ".join(current_line_words),
-                        self.text_renderer.shadow_text(
-                            " ".join(current_line_words)
-                        ).get_height(),
-                    )
-                )
-
-            if paragraph == "" and len(paragraphs) > 1:
-                if lines_to_render and lines_to_render[-1][0] != "":
-                    lines_to_render.append(("", 0))
-
-        rendered_surfaces = []
-        for i, (line_text, height) in enumerate(lines_to_render):
-            if line_text == "":
-                empty_line_surface = self.text_renderer.shadow_text(
-                    " ",
-                    fg=self.text_renderer.font_color,
-                    bg=self.text_renderer.font_shadow_color,
-                )
-                rendered_surfaces.append(
-                    (empty_line_surface, empty_line_surface.get_height())
-                )
+                yield word
+                current_line_words = []
             else:
-                rendered_surfaces.append(
-                    (self.text_renderer.shadow_text(line_text), height)
-                )
+                current_line_words.append(word)
 
-            # Add extra space between lines
-            if i < len(lines_to_render) - 1:
-                if self.line_spacing > 0:
-                    spacing_surface = Surface(
-                        (max_width, self.line_spacing), SRCALPHA
-                    )
-                    rendered_surfaces.append(
-                        (spacing_surface, self.line_spacing)
-                    )
+        if current_line_words:
+            yield " ".join(current_line_words)
 
-        return rendered_surfaces
+
+def calculate_alignment_offset(
+    container_rect: Rect,
+    content_width: int,
+    content_height: int,
+    h_alignment: HorizontalAlignment,
+    v_alignment: VerticalAlignment,
+) -> tuple[int, int]:
+    """
+    Calculates the top-left offset (x, y) for content within a container rect
+    based on horizontal and vertical alignment. Returns (0, 0) if container has no size.
+    Raises ValueError for negative dimensions.
+
+    Parameters:
+        container_rect: The Rect representing the area where content will be placed.
+        content_width: The total width of the content to be aligned.
+        content_height: The total height of the content to be aligned.
+        h_alignment: Horizontal alignment preference (LEFT, CENTER, RIGHT).
+        v_alignment: Vertical alignment preference (TOP, CENTER, BOTTOM).
+
+    Returns:
+        A tuple (offset_x, offset_y) representing the pixel offset
+        from the top-left of the container_rect.
+    """
+    if container_rect.width < 0 or container_rect.height < 0:
+        raise ValueError("Container dimensions cannot be negative")
+    if content_width < 0 or content_height < 0:
+        raise ValueError("Content dimensions cannot be negative")
+
+    # If container width or height is zero, offset is always (0, 0)
+    if container_rect.width == 0 or container_rect.height == 0:
+        return 0, 0
+
+    # Horizontal alignment
+    if h_alignment == HorizontalAlignment.CENTER:
+        offset_x = max(0, (container_rect.width - content_width) // 2)
+    elif h_alignment == HorizontalAlignment.RIGHT:
+        offset_x = max(0, container_rect.width - content_width)
+    else:
+        offset_x = 0  # LEFT
+
+    # Vertical alignment
+    if v_alignment == VerticalAlignment.CENTER:
+        offset_y = max(0, (container_rect.height - content_height) // 2)
+    elif v_alignment == VerticalAlignment.BOTTOM:
+        offset_y = max(0, container_rect.height - content_height)
+    else:
+        offset_y = 0  # TOP
+
+    return offset_x, offset_y

@@ -148,5 +148,35 @@
     "rarity_score": 1.0,
     "slug": "refined",
     "taste_type": "warm"
+  },
+  {
+    "modifiers": [
+      {
+        "attribute": "stat",
+        "multiplier": 1.05,
+        "values": [
+          "hp"
+        ]
+      }
+    ],
+    "name": "taste_savory",
+    "rarity_score": 0.4,
+    "slug": "savory",
+    "taste_type": "warm"
+  },
+  {
+    "modifiers": [
+      {
+        "attribute": "stat",
+        "multiplier": 0.95,
+        "values": [
+          "hp"
+        ]
+      }
+    ],
+    "name": "taste_bland",
+    "rarity_score": 0.4,
+    "slug": "bland",
+    "taste_type": "cold"
   }
 ]

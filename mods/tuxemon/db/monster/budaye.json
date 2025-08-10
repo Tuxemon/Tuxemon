@@ -4,23 +4,39 @@
   "moveset": [
     {
       "level_learned": 1,
-      "technique": "tail_lash"
+      "technique": "stick"
     },
     {
       "level_learned": 1,
       "technique": "clamp_on"
     },
     {
-      "level_learned": 4,
-      "technique": "poison_courtship"
+      "level_learned": 7,
+      "technique": "mending"
     },
     {
-      "level_learned": 7,
+      "level_learned": 10,
+      "technique": "tail_lash"
+    },
+    {
+      "level_learned": 16,
+      "technique": "mobbing"
+    },
+    {
+      "level_learned": 22,
       "technique": "stabilo"
     },
     {
-      "level_learned": 13,
-      "technique": "ram"
+      "level_learned": 25,
+      "technique": "overgrowth"
+    },
+    {
+      "level_learned": 28,
+      "technique": "all_in"
+    },
+    {
+      "level_learned": 34,
+      "technique": "flower_bloom"
     }
   ],
   "evolutions": [

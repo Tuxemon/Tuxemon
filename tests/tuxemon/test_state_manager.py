@@ -4,7 +4,10 @@ import unittest
 from unittest.mock import MagicMock, patch
 
 from tuxemon.menu.input import InputMenu
-from tuxemon.state import HookManager, State, StateManager, StateRepository
+from tuxemon.state.factory import StateFactory
+from tuxemon.state.manager import StateManager
+from tuxemon.state.repository import StateRepository
+from tuxemon.state.state import HookManager, State
 from tuxemon.states.world.worldstate import WorldState
 
 
@@ -148,7 +151,7 @@ class RemoveWhenCurrent(StateManagerTestBase):
         self.state_a = self.sm.push_state("a")
         self.state_b = self.sm.push_state("b")
         # remove the current state
-        self.sm.remove_state(self.state_b)
+        self.sm.pop_state(self.state_b)
         self.sm.update(0)
 
     def test_current_state(self):
@@ -170,6 +173,13 @@ class RemoveWhenCurrent(StateManagerTestBase):
         self.assertEqual(1, self.state_a.pause.call_count)
         self.assertEqual(0, self.state_a.shutdown.call_count)
 
+    def test_remove_middle_state(self):
+        self.create_and_register_state("c")
+        state_c = self.sm.push_state("c")
+        self.sm.pop_state(self.state_a)  # Remove middle state
+        self.assertNotIn(self.state_a, self.sm.active_states)
+        self.assertEqual(1, self.state_a.shutdown.call_count)
+
 
 class RemoveWhenNotCurrent(StateManagerTestBase):
     def setUp(self):
@@ -179,7 +189,7 @@ class RemoveWhenNotCurrent(StateManagerTestBase):
         self.state_a = self.sm.push_state("a")
         self.state_b = self.sm.push_state("b")
         # remove a state that is not current
-        self.sm.remove_state(self.state_a)
+        self.sm.pop_state(self.state_a)
         self.sm.update(0)
 
     def test_current_state(self):
@@ -262,7 +272,7 @@ class EnqueueThenPop(StateManagerTestBase):
         self.sm.pop_state()
         self.sm.update(0)
 
-    @patch.object(StateManager, "_instance")
+    @patch.object(StateFactory, "create_state")
     def test_current_state(self, mock_instance):
         mock_state_c = self.create_and_register_state("c")
         mock_instance.return_value = mock_state_c

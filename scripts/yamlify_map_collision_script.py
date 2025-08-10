@@ -24,6 +24,10 @@ if one already exists.
 USAGE
 
 python yamlify_map_collision_script.py FILE0 FILE1 FILE2 ...
+
+You can run the script from the /scripts/ folder like this:
+
+    python yamlify_map_collision_script.py ../mods/tuxemon/maps/map.tmx
 """
 
 import logging
@@ -50,9 +54,7 @@ def process_collisions(tmx_filename: Path):
 
     if yaml_filename.exists():
         logger.error(f"YAML file already exists: {yaml_filename}")
-        yaml_filename = tmx_filename.with_name(
-            f"{tmx_filename.stem}_copy.yaml"
-        )
+        yaml_filename = tmx_filename.with_name(f"{tmx_filename.stem}_copy.yaml")
         logger.error(f"Creating a copy: {yaml_filename}")
 
     yaml_doc = {"collisions": []}
@@ -60,8 +62,7 @@ def process_collisions(tmx_filename: Path):
     for object_group in root.findall(".//objectgroup[@name='Collisions']"):
         for obj in object_group.findall("object"):
             collision_data = {
-                "x": int(float(obj.get("x", 0)))
-                // 16,  # Dividing by tile size
+                "x": int(float(obj.get("x", 0))) // 16,  # Dividing by tile size
                 "y": int(float(obj.get("y", 0))) // 16,
                 "width": int(float(obj.get("width", 0))) // 16,
                 "height": int(float(obj.get("height", 0))) // 16,

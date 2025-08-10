@@ -215,7 +215,7 @@
     <property name="act32" value="set_variable rockittenball:yes"/>
     <property name="act40" value="pathfind professor,10,9"/>
     <property name="act41" value="char_face professor,up"/>
-    <property name="act42" value="add_monster cardiling,3,professor,27,40"/>
+    <property name="act42" value="add_monster cardiling,3,professor,20,40"/>
     <property name="act43" value="remove_npc tuxeball_red"/>
     <property name="act44" value="set_variable cardilingball:yes"/>
     <property name="act45" value="set_variable prof_choice:cardiling"/>
@@ -260,7 +260,7 @@
     <property name="act32" value="set_variable cardilingball:yes"/>
     <property name="act40" value="pathfind professor,11,9"/>
     <property name="act41" value="char_face professor,up"/>
-    <property name="act42" value="add_monster tweesher,3,professor,27,40"/>
+    <property name="act42" value="add_monster tweesher,3,professor,20,40"/>
     <property name="act43" value="remove_npc tuxeball_yellow"/>
     <property name="act44" value="set_variable tweesherball:yes"/>
     <property name="act45" value="set_variable prof_choice:tweesher"/>
@@ -289,7 +289,7 @@
     <property name="act32" value="set_variable tweesherball:yes"/>
     <property name="act40" value="pathfind professor,9,9"/>
     <property name="act50" value="char_face professor,up"/>
-    <property name="act51" value="add_monster rockitten,3,professor,27,40"/>
+    <property name="act51" value="add_monster rockitten,3,professor,20,40"/>
     <property name="act53" value="remove_npc tuxeball_green"/>
     <property name="act54" value="set_variable rockittenball:yes"/>
     <property name="act55" value="set_variable prof_choice:rockitten"/>

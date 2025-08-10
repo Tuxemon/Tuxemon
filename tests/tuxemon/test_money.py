@@ -14,33 +14,32 @@ from tuxemon.money import (
 
 class TestMoneyManager(TestCase):
 
+    def setUp(self):
+        self.money_manager = MoneyManager()
+
     def test_init(self):
-        money_manager = MoneyManager()
-        self.assertEqual(money_manager.money, 0)
-        self.assertEqual(money_manager.bank_account, 0)
-        self.assertEqual(money_manager.bills, {})
+        self.assertEqual(self.money_manager.money, 0)
+        self.assertEqual(self.money_manager.bank_account, 0)
+        self.assertEqual(self.money_manager.bills, {})
 
     def test_add_money(self):
-        money_manager = MoneyManager()
-        money_manager.add_money(100)
-        self.assertEqual(money_manager.money, 100)
-        money_manager.add_money(-50)
-        self.assertEqual(money_manager.money, 50)
-        money_manager.add_money(-100)
-        self.assertEqual(money_manager.money, 0)
+        self.money_manager.add_money(100)
+        self.assertEqual(self.money_manager.money, 100)
+        self.money_manager.add_money(-50)
+        self.assertEqual(self.money_manager.money, 50)
+        self.money_manager.add_money(-100)
+        self.assertEqual(self.money_manager.money, 0)
 
     def test_remove_money(self):
-        money_manager = MoneyManager()
-        money_manager.add_money(100)
-        money_manager.remove_money(50)
-        self.assertEqual(money_manager.money, 50)
-        money_manager.remove_money(100)
-        self.assertEqual(money_manager.money, 0)
+        self.money_manager.add_money(100)
+        self.money_manager.remove_money(50)
+        self.assertEqual(self.money_manager.money, 50)
+        self.money_manager.remove_money(100)
+        self.assertEqual(self.money_manager.money, 0)
 
     def test_get_money(self):
-        money_manager = MoneyManager()
-        money_manager.add_money(100)
-        self.assertEqual(money_manager.get_money(), 100)
+        self.money_manager.add_money(100)
+        self.assertEqual(self.money_manager.get_money(), 100)
 
     def test_transfer_money_to(self):
         npc1 = MagicMock()
@@ -69,94 +68,93 @@ class TestMoneyManager(TestCase):
         self.assertEqual(npc2.money_controller.money_manager.bank_account, 50)
 
     def test_deposit_to_bank(self):
-        money_manager = MoneyManager()
-        money_manager.deposit_to_bank(100)
-        self.assertEqual(money_manager.bank_account, 100)
+        self.money_manager.deposit_to_bank(100)
+        self.assertEqual(self.money_manager.bank_account, 100)
 
     def test_withdraw_from_bank(self):
-        money_manager = MoneyManager()
-        money_manager.deposit_to_bank(100)
-        money_manager.withdraw_from_bank(50)
-        self.assertEqual(money_manager.bank_account, 50)
+        self.money_manager.deposit_to_bank(100)
+        self.money_manager.withdraw_from_bank(50)
+        self.assertEqual(self.money_manager.bank_account, 50)
         with self.assertRaises(ValueError):
-            money_manager.withdraw_from_bank(100)
+            self.money_manager.withdraw_from_bank(100)
 
     def test_get_bank_balance(self):
-        money_manager = MoneyManager()
-        money_manager.deposit_to_bank(100)
-        self.assertEqual(money_manager.get_bank_balance(), 100)
+        self.money_manager.deposit_to_bank(100)
+        self.assertEqual(self.money_manager.get_bank_balance(), 100)
 
     def test_add_bill(self):
-        money_manager = MoneyManager()
-        money_manager.add_bill("bill1", 100)
-        self.assertEqual(money_manager.bills, {"bill1": BillEntry(amount=100)})
-        money_manager.add_bill("bill1", 50)
-        self.assertEqual(money_manager.bills, {"bill1": BillEntry(amount=150)})
+        self.money_manager.set_bill("bill1", 100)
+        self.assertEqual(
+            self.money_manager.bills, {"bill1": BillEntry(amount=100)}
+        )
+        self.money_manager.add_bill("bill1", 50)
+        self.assertEqual(
+            self.money_manager.bills, {"bill1": BillEntry(amount=150)}
+        )
 
     def test_remove_bill(self):
-        money_manager = MoneyManager()
-        money_manager.add_bill("bill1", 100)
-        money_manager.remove_bill("bill1", -50)
-        self.assertEqual(money_manager.bills, {"bill1": BillEntry(amount=50)})
-        money_manager.remove_bill("bill1", -50)
-        self.assertEqual(money_manager.bills, {"bill1": BillEntry(amount=0)})
+        self.money_manager.set_bill("bill1", 100)
+        self.money_manager.remove_bill("bill1", -50)
+        self.assertEqual(
+            self.money_manager.bills, {"bill1": BillEntry(amount=50)}
+        )
+        self.money_manager.remove_bill("bill1", -50)
+        self.assertEqual(
+            self.money_manager.bills, {"bill1": BillEntry(amount=0)}
+        )
 
     def test_pay_bill_with_money(self):
-        money_manager = MoneyManager()
-        money_manager.add_money(100)
-        money_manager.add_bill("bill1", 50)
-        money_manager.pay_bill_with_money("bill1", 50)
-        self.assertEqual(money_manager.money, 50)
-        self.assertEqual(money_manager.bills, {"bill1": BillEntry(amount=0)})
+        self.money_manager.add_money(100)
+        self.money_manager.set_bill("bill1", 50)
+        self.money_manager.pay_bill_with_money("bill1", 50)
+        self.assertEqual(self.money_manager.money, 50)
+        self.assertEqual(
+            self.money_manager.bills, {"bill1": BillEntry(amount=0)}
+        )
 
     def test_pay_bill_with_deposit(self):
-        money_manager = MoneyManager()
-        money_manager.deposit_to_bank(100)
-        money_manager.add_bill("bill1", 50)
-        money_manager.pay_bill_with_deposit("bill1", 50)
-        self.assertEqual(money_manager.bank_account, 50)
-        self.assertEqual(money_manager.bills, {"bill1": BillEntry(amount=0)})
+        self.money_manager.deposit_to_bank(100)
+        self.money_manager.set_bill("bill1", 50)
+        self.money_manager.pay_bill_with_deposit("bill1", 50)
+        self.assertEqual(self.money_manager.bank_account, 50)
+        self.assertEqual(
+            self.money_manager.bills, {"bill1": BillEntry(amount=0)}
+        )
 
     def test_get_bills(self):
-        money_manager = MoneyManager()
-        money_manager.add_bill("bill1", 100)
-        money_manager.add_bill("bill2", 50)
+        self.money_manager.set_bill("bill1", 100)
+        self.money_manager.set_bill("bill2", 50)
         self.assertEqual(
-            money_manager.get_bills(),
+            self.money_manager.get_bills(),
             {"bill1": BillEntry(amount=100), "bill2": BillEntry(amount=50)},
         )
 
     def test_get_bill(self):
-        money_manager = MoneyManager()
-        money_manager.add_bill("bill1", 100)
-        self.assertEqual(money_manager.get_bill("bill1").amount, 100)
-        self.assertEqual(money_manager.get_bill("bill2").amount, 0)
+        self.money_manager.set_bill("bill1", 100)
+        self.assertEqual(self.money_manager.get_bill("bill1").amount, 100)
+        self.assertEqual(self.money_manager.get_bill("bill2").amount, 0)
 
     def test_get_total_bills(self):
-        money_manager = MoneyManager()
-        money_manager.add_bill("bill1", 100)
-        money_manager.add_bill("bill2", 50)
-        self.assertEqual(money_manager.get_total_bills(), 150)
+        self.money_manager.set_bill("bill1", 100)
+        self.money_manager.set_bill("bill2", 50)
+        self.assertEqual(self.money_manager.get_total_bills(), 150)
 
     def test_get_total_wealth(self):
-        money_manager = MoneyManager()
-        money_manager.add_money(100)
-        money_manager.deposit_to_bank(50)
-        self.assertEqual(money_manager.get_total_wealth(), 150)
+        self.money_manager.add_money(100)
+        self.money_manager.deposit_to_bank(50)
+        self.assertEqual(self.money_manager.get_total_wealth(), 150)
 
     def test_transfer_all_money_to_bank(self):
-        money_manager = MoneyManager()
-        money_manager.add_money(100)
-        money_manager.transfer_all_money_to_bank()
-        self.assertEqual(money_manager.money, 0)
-        self.assertEqual(money_manager.bank_account, 100)
+        self.money_manager.add_money(100)
+        self.money_manager.transfer_all_money_to_bank()
+        self.assertEqual(self.money_manager.money, 0)
+        self.assertEqual(self.money_manager.bank_account, 100)
 
     def test_withdraw_all_money_from_bank(self):
-        money_manager = MoneyManager()
-        money_manager.deposit_to_bank(100)
-        money_manager.withdraw_all_money_from_bank()
-        self.assertEqual(money_manager.money, 100)
-        self.assertEqual(money_manager.bank_account, 0)
+        self.money_manager.deposit_to_bank(100)
+        self.money_manager.withdraw_all_money_from_bank()
+        self.assertEqual(self.money_manager.money, 100)
+        self.assertEqual(self.money_manager.bank_account, 0)
 
     def test_decode_money(self):
         json_data = {
@@ -179,20 +177,23 @@ class TestMoneyManager(TestCase):
         )
 
     def test_encode_money(self):
-        money_manager = MoneyManager()
-        money_manager.add_money(100)
-        money_manager.deposit_to_bank(50)
-        money_manager.add_bill("bill1", 20)
-        money_manager.add_bill("bill2", 30)
-        json_data = encode_money(money_manager)
+        self.money_manager.add_money(100)
+        self.money_manager.deposit_to_bank(50)
+        self.money_manager.set_bill("bill1", 20)
+        self.money_manager.set_bill("bill2", 30)
+        json_data = encode_money(self.money_manager)
         self.assertEqual(
             json_data,
             {
                 "money": 100,
                 "bank_account": 50,
                 "bills": {
-                    "bill1": {"amount": 20},
-                    "bill2": {"amount": 30},
+                    "bill1": {
+                        "amount": 20,
+                    },
+                    "bill2": {
+                        "amount": 30,
+                    },
                 },
             },
         )
@@ -210,3 +211,128 @@ class TestMoneyManager(TestCase):
         self.assertEqual(money_manager.money, 0)
         self.assertEqual(money_manager.bank_account, 0)
         self.assertEqual(money_manager.bills, {})
+
+    def test_add_bill_with_interest_and_fee(self):
+        self.money_manager.set_bill(
+            "bill1", 100, interest_rate=0.1, late_fee=25
+        )
+        bill = self.money_manager.get_bill("bill1")
+        self.assertEqual(bill.amount, 100)
+        self.assertEqual(bill.interest_rate, 0.1)
+        self.assertEqual(bill.late_fee, 25)
+
+    def test_apply_bank_interest(self):
+        self.money_manager.deposit_to_bank(100)
+        self.money_manager.apply_bank_interest(0.05)
+        self.assertEqual(self.money_manager.bank_account, 105)
+
+    def test_apply_bank_interest_rounding(self):
+        self.money_manager.deposit_to_bank(99)
+        self.money_manager.apply_bank_interest(0.1)
+        self.assertAlmostEqual(self.money_manager.bank_account, 108)
+
+    def test_apply_interest_to_bill(self):
+        self.money_manager.set_bill("bill1", 100, interest_rate=0.2)
+        self.money_manager.apply_interest_to_bill("bill1")
+        self.assertEqual(self.money_manager.get_bill("bill1").amount, 120)
+
+    def test_apply_interest_to_bill_no_rate(self):
+        self.money_manager.set_bill("bill1", 100)
+        self.money_manager.apply_interest_to_bill("bill1")
+        self.assertEqual(self.money_manager.get_bill("bill1").amount, 100)
+
+    def test_apply_interest_to_nonexistent_bill(self):
+        with self.assertRaises(KeyError):
+            self.money_manager.apply_interest_to_bill("missing_bill")
+
+    def test_apply_late_fee_to_bill(self):
+        self.money_manager.set_bill("bill1", 100, late_fee=15)
+        self.money_manager.apply_late_fee_to_bill("bill1")
+        self.assertEqual(self.money_manager.get_bill("bill1").amount, 115)
+
+    def test_apply_late_fee_to_bill_no_fee(self):
+        self.money_manager.set_bill("bill1", 100)
+        self.money_manager.apply_late_fee_to_bill("bill1")
+        self.assertEqual(self.money_manager.get_bill("bill1").amount, 100)
+
+    def test_apply_late_fee_to_nonexistent_bill(self):
+        with self.assertRaises(KeyError):
+            self.money_manager.apply_late_fee_to_bill("missing_bill")
+
+    def test_encode_money_with_interest_and_fee(self):
+        self.money_manager.set_bill(
+            "bill1", 100, interest_rate=0.1, late_fee=20
+        )
+        json_data = encode_money(self.money_manager)
+        self.assertEqual(json_data["bills"]["bill1"]["amount"], 100)
+        self.assertEqual(json_data["bills"]["bill1"]["interest_rate"], 0.1)
+        self.assertEqual(json_data["bills"]["bill1"]["late_fee"], 20)
+
+    def test_decode_money_with_interest_and_fee(self):
+        json_data = {
+            "money": 0,
+            "bank_account": 0,
+            "bills": {
+                "bill1": {
+                    "amount": 100,
+                    "interest_rate": 0.1,
+                    "late_fee": 20,
+                }
+            },
+        }
+        money_manager = decode_money(json_data)
+        bill = money_manager.get_bill("bill1")
+        self.assertEqual(bill.amount, 100)
+        self.assertEqual(bill.interest_rate, 0.1)
+        self.assertEqual(bill.late_fee, 20)
+
+    def test_apply_negative_interest_to_bill(self):
+        self.money_manager.set_bill("bill1", 100, interest_rate=-0.1)
+        self.money_manager.apply_interest_to_bill("bill1")
+        self.assertEqual(self.money_manager.get_bill("bill1").amount, 100)
+
+    def test_apply_negative_late_fee_to_bill(self):
+        self.money_manager.set_bill("bill1", 100, late_fee=-20)
+        self.money_manager.apply_late_fee_to_bill("bill1")
+        self.assertEqual(self.money_manager.get_bill("bill1").amount, 100)
+
+    def test_apply_zero_interest_and_fee(self):
+        self.money_manager.set_bill(
+            "bill1", 100, interest_rate=None, late_fee=None
+        )
+        self.money_manager.apply_interest_to_bill("bill1")
+        self.money_manager.apply_late_fee_to_bill("bill1")
+        self.assertEqual(self.money_manager.get_bill("bill1").amount, 100)
+
+    def test_overpay_bill_with_money(self):
+        self.money_manager.add_money(200)
+        self.money_manager.set_bill("bill1", 100)
+        self.money_manager.pay_bill_with_money("bill1", 150)
+        self.assertEqual(self.money_manager.money, 100)
+        self.assertEqual(self.money_manager.get_bill("bill1").amount, 0)
+
+    def test_overpay_bill_with_deposit(self):
+        self.money_manager.deposit_to_bank(200)
+        self.money_manager.set_bill("bill1", 100)
+        self.money_manager.pay_bill_with_deposit("bill1", 150)
+        self.assertEqual(self.money_manager.bank_account, 100)
+        self.assertEqual(self.money_manager.get_bill("bill1").amount, 0)
+
+    def test_bill_entry_defaults(self):
+        bill = BillEntry(amount=100)
+        self.assertEqual(bill.interest_rate, None)
+        self.assertEqual(bill.late_fee, None)
+
+    def test_apply_interest_precision(self):
+        self.money_manager.set_bill("bill1", 99.99, interest_rate=0.05)
+        self.money_manager.apply_interest_to_bill("bill1")
+        self.assertAlmostEqual(
+            self.money_manager.get_bill("bill1").amount, 103.99
+        )
+
+    def test_apply_fee_precision(self):
+        self.money_manager.set_bill("bill1", 99.99, late_fee=0.01)
+        self.money_manager.apply_late_fee_to_bill("bill1")
+        self.assertAlmostEqual(
+            self.money_manager.get_bill("bill1").amount, 100.00
+        )

@@ -18,38 +18,67 @@ logger = logging.getLogger(__name__)
 @dataclass
 class SetBillAction(EventAction):
     """
-    Set a bill.
+    Initializes or updates a bill for a character, including its amount,
+    interest rate, late fee and share rate.
 
     Script usage:
         .. code-block::
 
-            set_bill <slug>,<bill_slug>,[amount]
+            set_bill <character>,<bill_slug>[,amount][,interest_rate][,late_fee][,share_rate]
 
     Script parameters:
-        character: Either "player" or character slug name (e.g. "npc_maple").
-        bill_slug: Slug of the bill.
-        amount: Amount of money (>= 0) (default 0)
+        character: "player" or the slug of an NPC (e.g. "npc_maple").
+        bill_slug: identifier for the bill (must be translated in en_US base.po).
+        amount: initial amount of the bill (optional, defaults to 0).
+        interest_rate: interest rate applied to the bill (optional, e.g. 0.1 for 10%).
+        late_fee: flat fee added to the bill when triggered (optional, eg. 10).
+        share_rate: percentage of battle earnings automatically applied to the bill
+            (optional, e.g. 0.2 for 20%).
+
+    Examples:
+        set_bill player,bill_cathedral,100,0.1,50,0.5
+        set_bill npc_maple,bill_rent,,0.05,25,0.2
+
+    Notes:
+        - Interest and late fee are stored but not automatically applied.
+        - Use separate actions to trigger interest or fee accumulation.
+        - Amount must be non-negative.
     """
 
     name = "set_bill"
     character: str
     bill_slug: str
     amount: Optional[int] = None
+    interest_rate: Optional[float] = None
+    late_fee: Optional[int] = None
+    share_rate: Optional[float] = None
 
     def start(self, session: Session) -> None:
         character = get_npc(session, self.character)
 
         if character is None:
-            logger.error(f"Character '{self.character}' not found")
+            logger.error(f"Character '{self.character}' not found.")
             return
 
         if not T.has_translation("en_US", self.bill_slug):
-            logger.error(f"Please add {self.bill_slug} to the en_US base.po")
+            logger.warning(
+                f"Missing translation for bill_slug '{self.bill_slug}' in en_US base.po."
+            )
 
         amount = 0 if self.amount is None else self.amount
         if amount < 0:
-            raise AttributeError(f"{amount} must be >= 0")
-        else:
-            money_manager = character.money_controller.money_manager
-            money_manager.add_entry(self.bill_slug, amount)
-            logger.info(f"{character.name}'s have {amount}")
+            raise ValueError(f"Amount must be >= 0, got {amount}.")
+
+        money_manager = character.money_controller.money_manager
+        money_manager.set_bill(
+            bill_name=self.bill_slug,
+            amount=amount,
+            interest_rate=self.interest_rate,
+            late_fee=self.late_fee,
+            share_rate=self.share_rate,
+        )
+
+        logger.info(
+            f"Set bill '{self.bill_slug}' for {character.name} with amount {amount}, "
+            f"interest rate {self.interest_rate}, and late fee {self.late_fee}."
+        )

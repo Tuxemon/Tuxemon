@@ -5,7 +5,7 @@ from __future__ import annotations
 import logging
 from collections.abc import Mapping
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, Any
+from typing import TYPE_CHECKING, Any, Optional
 
 if TYPE_CHECKING:
     from tuxemon.npc import NPC, NPCState
@@ -16,11 +16,49 @@ logger = logging.getLogger(__name__)
 @dataclass
 class BillEntry:
     amount: int = 0
+    interest_rate: Optional[float] = None
+    late_fee: Optional[int] = None
+    share_rate: Optional[float] = None
 
     def get_state(self) -> dict[str, Any]:
-        return {
-            "amount": self.amount,
-        }
+        state: dict[str, Any] = {"amount": self.amount}
+        if self.interest_rate is not None:
+            state["interest_rate"] = self.interest_rate
+        if self.late_fee is not None:
+            state["late_fee"] = self.late_fee
+        return state
+
+    def apply_interest(self) -> None:
+        """Apply interest based on current amount."""
+        if (
+            self.amount > 0
+            and self.interest_rate is not None
+            and self.interest_rate > 0
+        ):
+            interest = int(self.amount * self.interest_rate)
+            self.amount += interest
+
+    def apply_late_fee(self) -> None:
+        """Apply a flat late fee."""
+        if self.amount > 0 and self.late_fee is not None and self.late_fee > 0:
+            self.amount += self.late_fee
+
+    def apply_share(self, earnings: int) -> int:
+        """
+        Deduct a share of earnings and apply it to the bill.
+        Returns the remaining earnings after deduction.
+        """
+        if (
+            self.amount > 0
+            and self.share_rate is not None
+            and self.share_rate > 0
+        ):
+            deduction = int(earnings * self.share_rate)
+            self.amount -= deduction
+            if self.amount < 0:
+                self.amount = 0
+            return earnings - deduction
+        return earnings
 
 
 class MoneyController:
@@ -78,36 +116,54 @@ class MoneyManager:
     def get_bank_balance(self) -> int:
         return self.bank_account
 
-    def add_entry(self, bill_name: str, amount: int) -> None:
-        self.bills[bill_name] = BillEntry(amount)
+    def set_bill(
+        self,
+        bill_name: str,
+        amount: int,
+        interest_rate: Optional[float] = None,
+        late_fee: Optional[int] = None,
+        share_rate: Optional[float] = None,
+    ) -> None:
+        self.bills[bill_name] = BillEntry(
+            amount=amount,
+            interest_rate=interest_rate,
+            late_fee=late_fee,
+            share_rate=share_rate,
+        )
 
     def add_bill(self, bill_name: str, amount: int) -> None:
-        if bill_name in self.bills:
-            self.bills[bill_name].amount += amount
-        else:
-            self.bills[bill_name] = BillEntry(amount)
+        if bill_name not in self.bills:
+            raise KeyError(f"No such bill: {bill_name}")
+
+        self.bills[bill_name].amount += amount
 
     def remove_bill(self, bill_name: str, amount: int) -> None:
-        if bill_name in self.bills:
-            self.bills[bill_name].amount += amount
-            if self.bills[bill_name].amount < 0:
-                del self.bills[bill_name]
-        else:
+        if bill_name not in self.bills:
             raise KeyError(f"No such bill: {bill_name}")
+
+        self.bills[bill_name].amount += amount
+        if self.bills[bill_name].amount < 0:
+            del self.bills[bill_name]
 
     def pay_bill_with_money(self, bill_name: str, amount: int) -> None:
-        if bill_name in self.bills:
-            self.remove_money(amount)
-            self.remove_bill(bill_name, -abs(amount))
-        else:
+        if bill_name not in self.bills:
             raise KeyError(f"No such bill: {bill_name}")
 
+        bill = self.bills[bill_name]
+        payment = min(amount, bill.amount)
+
+        self.remove_money(payment)
+        self.remove_bill(bill_name, -payment)
+
     def pay_bill_with_deposit(self, bill_name: str, amount: int) -> None:
-        if bill_name in self.bills:
-            self.withdraw_from_bank(amount)
-            self.remove_bill(bill_name, -abs(amount))
-        else:
+        if bill_name not in self.bills:
             raise KeyError(f"No such bill: {bill_name}")
+
+        bill = self.bills[bill_name]
+        payment = min(amount, bill.amount)
+
+        self.withdraw_from_bank(payment)
+        self.remove_bill(bill_name, -payment)
 
     def get_bills(self) -> dict[str, BillEntry]:
         return self.bills
@@ -128,6 +184,49 @@ class MoneyManager:
     def withdraw_all_money_from_bank(self) -> None:
         self.money += self.bank_account
         self.bank_account = 0
+
+    def apply_bank_interest(self, interest_rate: float) -> None:
+        if interest_rate < 0:
+            raise ValueError("Interest rate must be non-negative")
+        interest = int(self.bank_account * interest_rate)
+        self.bank_account += interest
+
+    def apply_interest_to_bill(self, bill_name: str) -> None:
+        if bill_name not in self.bills:
+            raise KeyError(f"No such bill: {bill_name}")
+
+        self.bills[bill_name].apply_interest()
+
+    def apply_late_fee_to_bill(self, bill_name: str) -> None:
+        if bill_name not in self.bills:
+            raise KeyError(f"No such bill: {bill_name}")
+
+        self.bills[bill_name].apply_late_fee()
+
+    def apply_share_to_bill(self, bill_name: str, earnings: int) -> int:
+        if bill_name not in self.bills:
+            raise KeyError(f"No such bill: {bill_name}")
+
+        bill = self.bills[bill_name]
+        remaining_earnings = bill.apply_share(earnings)
+
+        if bill.amount <= 0:
+            del self.bills[bill_name]
+
+        return remaining_earnings
+
+    def apply_all_battle_shares(self, earnings: int) -> int:
+        """
+        Applies share deductions from battle earnings to all active bills.
+        Bills with zero or negative amount are removed.
+        Returns the remaining earnings after all deductions.
+        """
+        for bill_name in list(self.bills.keys()):
+            bill = self.bills[bill_name]
+            earnings = bill.apply_share(earnings)
+            if bill.amount <= 0:
+                del self.bills[bill_name]
+        return earnings
 
 
 def decode_money(json_data: Mapping[str, Any]) -> MoneyManager:

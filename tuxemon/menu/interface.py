@@ -2,7 +2,7 @@
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-from typing import Generic, Optional, TypeVar
+from typing import Any, Generic, Optional, TypeVar
 
 from pygame import draw as pg_draw
 from pygame.rect import Rect
@@ -195,6 +195,7 @@ class MenuItem(Generic[T], Sprite):
         self.game_object = game_object
         self._enabled = enabled
         self._in_focus = False
+        self.metadata: dict[str, Any] = {}
 
         if position is not None:
             self.set_position(*position)

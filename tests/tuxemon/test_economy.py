@@ -3,14 +3,10 @@
 import unittest
 
 from tuxemon.db import EconomyItemModel, EconomyModel
-from tuxemon.economy import Economy
+from tuxemon.economy.economy import Economy
 
 
 class EconomyTestBase(unittest.TestCase):
-    pass
-
-
-class GetDefaultPriceAndCost(EconomyTestBase):
     def setUp(self):
         self.economy = Economy()
         self.economy.model = EconomyModel(
@@ -24,51 +20,15 @@ class GetDefaultPriceAndCost(EconomyTestBase):
                     cost=5,
                     inventory=10,
                 ),
-                EconomyItemModel(name="revive", price=100),
-                EconomyItemModel(name="tuxeball", cost=10),
+                EconomyItemModel(name="revive", price=100, cost=0),
+                EconomyItemModel(name="tuxeball", price=0, cost=10),
             ],
             monsters=[],
         )
 
-    def test_lookup_item_price_with_valid_item(self):
-        price = self.economy.lookup_item_price("potion")
-        self.assertEqual(price, 20)
-
-    def test_lookup_item_price_with_missing_price(self):
-        price = self.economy.lookup_item_price("tuxeball")
-        self.assertEqual(price, 0)
-
-    def test_lookup_item_price_with_unknown_item(self):
-        with self.assertRaises(RuntimeError):
-            self.economy.lookup_item_price("unknown_item")
-
-    def test_lookup_item_cost_with_valid_item(self):
-        cost = self.economy.lookup_item_cost("potion")
-        self.assertEqual(cost, 5)
-
-    def test_lookup_item_cost_with_missing_cost(self):
-        cost = self.economy.lookup_item_cost("revive")
-        self.assertEqual(cost, 0)
-
-    def test_lookup_item_cost_with_unknown_item(self):
-        with self.assertRaises(RuntimeError):
-            self.economy.lookup_item_cost("unknown_item")
-
-    def test_lookup_item_inventory_with_valid_item(self):
-        inventory = self.economy.lookup_item_inventory("potion")
-        self.assertEqual(inventory, 10)
-
-    def test_lookup_item_inventory_with_missing_inventory(self):
-        inventory = self.economy.lookup_item_inventory("revive")
-        self.assertEqual(inventory, -1)
-
-    def test_lookup_item_inventory_with_unknown_item(self):
-        with self.assertRaises(RuntimeError):
-            self.economy.lookup_item_inventory("unknown_item")
-
     def test_update_item_field_with_valid_item(self):
         self.economy.update_item_field("potion", "price", 30)
-        price = self.economy.lookup_item_price("potion")
+        price = self.economy.lookup_item_field("potion", "price")
         self.assertEqual(price, 30)
 
     def test_update_item_field_with_unknown_item(self):
@@ -77,7 +37,7 @@ class GetDefaultPriceAndCost(EconomyTestBase):
 
     def test_update_item_quantity_with_valid_item(self):
         self.economy.update_item_quantity("potion", 20)
-        inventory = self.economy.lookup_item_inventory("potion")
+        inventory = self.economy.lookup_item_field("potion", "inventory")
         self.assertEqual(inventory, 20)
 
     def test_update_item_quantity_with_unknown_item(self):

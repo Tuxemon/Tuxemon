@@ -35,7 +35,8 @@ from tuxemon.tuxepedia import Tuxepedia, decode_tuxepedia, encode_tuxepedia
 from tuxemon.ui.cipher_processor import decode_cipher, encode_cipher
 
 if TYPE_CHECKING:
-    from tuxemon.economy import Economy, ShopInventory
+    from tuxemon.economy.applier import ShopInventory
+    from tuxemon.economy.economy import Economy
     from tuxemon.session import Session
 
 

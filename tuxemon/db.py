@@ -1575,8 +1575,8 @@ class TasteModel(BaseModel, BaseLookupModel):
 
 
 class EconomyEntityModel(BaseModel):
-    price: int = Field(0, description="Price of the entity")
-    cost: int = Field(0, description="Cost of the entity")
+    price: int = Field(..., description="Price of the entity")
+    cost: int = Field(..., description="Cost of the entity")
     inventory: int = Field(-1, description="Quantity of the entity")
     variables: Sequence[dict[str, str]] = Field(
         [],
@@ -1599,7 +1599,7 @@ class EconomyItemModel(EconomyEntityModel):
 class EconomyMonsterModel(EconomyEntityModel):
     name: str = Field(..., description="Name of the entity")
     inventory: int = Field(1, description="Quantity of the entity", gt=0)
-    level: int = Field(1, description="Level of the entity", gt=0)
+    level: int = Field(..., description="Level of the entity", gt=0)
 
     @field_validator("name")
     def monster_exists(cls: EconomyEntityModel, v: str) -> str:

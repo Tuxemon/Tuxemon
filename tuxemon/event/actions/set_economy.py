@@ -6,7 +6,8 @@ import logging
 from dataclasses import dataclass
 from typing import final
 
-from tuxemon.economy import Economy, EconomyApplier
+from tuxemon.economy.applier import EconomyApplier
+from tuxemon.economy.economy import Economy
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.session import Session

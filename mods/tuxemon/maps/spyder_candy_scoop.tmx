@@ -68,7 +68,7 @@
    <properties>
     <property name="act1" value="char_face spyder_shopassistant,right"/>
     <property name="act2" value="translated_dialog spyder_scoop_welcome"/>
-    <property name="act3" value="open_shop spyder_shopassistant"/>
+    <property name="act3" value="open_shop spyder_shopassistant,both_item"/>
     <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
@@ -77,7 +77,7 @@
    <properties>
     <property name="act1" value="char_face spyder_shopassistant,down"/>
     <property name="act2" value="translated_dialog spyder_scoop_welcome"/>
-    <property name="act3" value="open_shop spyder_shopassistant"/>
+    <property name="act3" value="open_shop spyder_shopassistant,both_item"/>
     <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>

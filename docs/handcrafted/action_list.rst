@@ -98,9 +98,9 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.screen_transition.ScreenTransitionAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_battle.SetBattleAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_bill.SetBillAction
+.. autoscriptinfoclass:: tuxemon.event.actions.set_bubble.SetBubbleAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_char_attribute.SetCharAttributeAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_cipher.SetCipherAction
-.. autoscriptinfoclass:: tuxemon.event.actions.set_bubble.SetBubbleAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_economy.SetEconomyAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_kennel_visible.SetKennelVisibleAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_layer.SetLayerAction
@@ -115,6 +115,7 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.set_party_attribute.SetPartyAttributeAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_party_status.SetPartyStatusAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_player_name.SetPlayerNameAction
+.. autoscriptinfoclass:: tuxemon.event.actions.set_price_policy.SetPricePolicyAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_random_variable.SetRandomVariableAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_teleport_faint.SetTeleportFaintAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_template.SetTemplateAction

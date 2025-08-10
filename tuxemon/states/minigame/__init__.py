@@ -35,6 +35,8 @@ class DifficultySelectState(PygameMenuState):
     A state that allows players to choose the difficulty level before entering the minigame.
     """
 
+    name: ClassVar[str] = "DifficultySelectState"
+
     def __init__(self) -> None:
         width, height = prepare.SCREEN_SIZE
         super().__init__(height=height, width=width)

@@ -2,7 +2,7 @@
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-from collections.abc import Callable, Generator, Sequence
+from collections.abc import Callable, Generator
 from functools import partial
 from typing import TYPE_CHECKING, Any, Optional
 
@@ -270,6 +270,11 @@ class MonsterMenuHandler:
             msg = T.format("tuxemon_released", params)
             open_dialog(self.client, [msg])
             self.monster_menu.remove_monster_sprite_display(monster)
+
+            num_monsters = len(self.char.monsters)
+            if self.monster_menu.selected_index >= num_monsters:
+                self.monster_menu.change_selection(max(0, num_monsters - 1))
+
             self.monster_menu.refresh_menu_items()
             self.monster_menu.on_menu_selection_change()
         else:
@@ -285,34 +290,53 @@ class MonsterMenuHandler:
         original = monster_menu.get_selected_item()
         if original and original.game_object:
             mon = original.game_object
+            options: list[ChoiceOption] = []
 
-            options = [
+            options.append(
                 ChoiceOption(
                     key="info",
                     display_text=T.translate("monster_menu_info").upper(),
                     action=partial(self.monster_stats, mon),
-                ),
-                ChoiceOption(
-                    key="tech",
-                    display_text=T.translate("monster_menu_tech").upper(),
-                    action=partial(self.monster_techs, mon),
-                ),
-                ChoiceOption(
-                    key="item",
-                    display_text=T.translate("monster_menu_item").upper(),
-                    action=partial(self.monster_item, mon),
-                ),
-                ChoiceOption(
-                    key="move",
-                    display_text=T.translate("monster_menu_move").upper(),
-                    action=partial(self.select_monster, mon),
-                ),
-                ChoiceOption(
-                    key="release",
-                    display_text=T.translate("monster_menu_release").upper(),
-                    action=partial(self.release_monster, mon),
-                ),
-            ]
+                )
+            )
+
+            if mon.moves.moves:
+                options.append(
+                    ChoiceOption(
+                        key="tech",
+                        display_text=T.translate("monster_menu_tech").upper(),
+                        action=partial(self.monster_techs, mon),
+                    )
+                )
+
+            if mon.held_item.item:
+                options.append(
+                    ChoiceOption(
+                        key="item",
+                        display_text=T.translate("monster_menu_item").upper(),
+                        action=partial(self.monster_item, mon),
+                    )
+                )
+
+            if mon.owner and mon.owner.party.party_size > 1:
+                options.append(
+                    ChoiceOption(
+                        key="move",
+                        display_text=T.translate("monster_menu_move").upper(),
+                        action=partial(self.select_monster, mon),
+                    )
+                )
+
+            if mon.owner and mon.owner.party.party_size > 1:
+                options.append(
+                    ChoiceOption(
+                        key="release",
+                        display_text=T.translate(
+                            "monster_menu_release"
+                        ).upper(),
+                        action=partial(self.release_monster, mon),
+                    )
+                )
 
             menu = MenuOptions(options)
             open_choice_dialog(self.client, menu, escape_key_exits=True)

@@ -46,9 +46,11 @@ class GiveEffect(CoreEffect):
         value = combat.get_tech_hit(user)
         success = tech.potency >= potency and tech.accuracy >= value
 
+        if not success:
+            return TechEffectResult(name=tech.name)
+
         status = Status.create(self.condition, user, player.steps)
-        if success:
-            status.set_combat_state(combat)
+        status.set_combat_state(combat)
 
         immune_info = []
         successful_targets = []

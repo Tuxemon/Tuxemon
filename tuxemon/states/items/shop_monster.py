@@ -106,7 +106,7 @@ class ShopMonsterMenuState(Menu[Monster]):
                 center=self.image_center
             )
             if monster.description:
-                self.alert(monster.description)
+                self.dialog.alert(monster.description, dialog_speed="max")
 
     def generate_monster_label(
         self,

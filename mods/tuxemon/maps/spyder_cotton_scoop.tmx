@@ -152,7 +152,7 @@
    <properties>
     <property name="act1" value="char_face spyder_wayfarer1_norm,right"/>
     <property name="act2" value="translated_dialog spyder_scoop_welcome"/>
-    <property name="act3" value="open_shop spyder_wayfarer1_norm"/>
+    <property name="act3" value="open_shop spyder_wayfarer1_norm,both_item"/>
     <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>

@@ -1,6 +1,16 @@
 [
   {
     "slug": "spyder_routeb_electra",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_routeb_electra1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_routeb_electra2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "knight_green",
       "combat_front": "enforcer_agent",
@@ -9,6 +19,16 @@
   },
   {
     "slug": "spyder_routeb_cytherea",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_routeb_cytherea1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_routeb_cytherea2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "knight",
       "combat_front": "enforcer_rookie",
@@ -17,6 +37,16 @@
   },
   {
     "slug": "spyder_routeb_nephthys",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_routeb_nephthys1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_routeb_nephthys2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "knight_red",
       "combat_front": "enforcer_agent",
@@ -25,6 +55,16 @@
   },
   {
     "slug": "spyder_routeb_sedna",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_routeb_sedna1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_routeb_sedna2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "knight_red",
       "combat_front": "enforcer_rookie",
@@ -33,6 +73,16 @@
   },
   {
     "slug": "spyder_routeb_calypso",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_routeb_calypso1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_routeb_calypso2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "knight_yellow",
       "combat_front": "enforcer_boss",

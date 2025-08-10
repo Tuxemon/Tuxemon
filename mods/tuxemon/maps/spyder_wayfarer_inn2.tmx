@@ -16,17 +16,17 @@
    eAG9UdsNwkAMuw14rlP1ugNb8FiTlhWYA/UXW4olKypH+aGSlZwTX+LeppRyCRwsb3Gs7YAOGAPV8hbHWg9Q+8RAoiI/ITrIqe7xFy3v+6R94f4jsA3QD/sHRHlnnIPXXPbcwcmj/JCviZ8WtOxz8F5pnVfuc/fR6zXmt8R7nf+Z5zOi+7oG/1ihzX7lS3Ny9J1z7dvZtXwj35k536n1yW/eWe+0Rru0I/dqfZr7b+0bgJRdjw==
   </data>
  </layer>
- <layer id="2" name="Tile Layer 3" width="15" height="16">
+ <layer id="2" name="Tile Layer 2" width="15" height="16">
   <data encoding="base64" compression="zlib">
    eAFjYKAMGMsxMJgAMTkgCKgvmAS9d4QRthQC9RWRqRdhCnEsThGEOmQ2QhTBildkYEgAYnzgqSADw3MgfgbEyKAOqK+egF5HIQYGZyB2AmJqgflAOxcQsJcYu5iAZjBSwRxi7CKkZhowbbwFuuUdEBMTJ8jmbQXq5VFiYOAFYmLiBFkviK0N1KcDxJSCtUSEJQCn/hRN
   </data>
  </layer>
- <layer id="3" name="Tile Layer 2" width="15" height="16">
+ <layer id="3" name="Tile Layer 3" width="15" height="16">
   <data encoding="base64" compression="zlib">
    eAFjYBgcwEudfHdEKGHXWw40U18euxy1RF8qYjfJVo6BwQ6I8QEOHO6OAeqLJaBXHYdefPbRWo4ZGBYsOMKD1naPVPMBQqUFSg==
   </data>
  </layer>
- <layer id="4" name="Above Player" width="15" height="16">
+ <layer id="4" name="Tile Layer 4" width="15" height="16">
   <data encoding="base64" compression="zlib">
    eAFjYBgFoyGACIEnCgwMT4F4FAyNEAAAbskCCg==
   </data>

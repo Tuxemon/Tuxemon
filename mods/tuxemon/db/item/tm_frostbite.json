@@ -1,6 +1,14 @@
 {
   "conditions": [
     {
+      "type": "base",
+      "parameters": [
+        "tags",
+        "bite:ice"
+      ],
+      "operator": "is"
+    },
+    {
       "type": "has_tech",
       "parameters": [
         "frostbite"

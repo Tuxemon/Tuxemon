@@ -6920,9 +6920,6 @@ msgstr "有进化型"
 msgid "yes_evolutions"
 msgstr "进化型"
 
-msgid "tuxepedia_capture"
-msgstr "捕获了{doc}天"
-
 msgid "tuxepedia_exp"
 msgstr "需要{exp_lv}经验到等级{lv}"
 

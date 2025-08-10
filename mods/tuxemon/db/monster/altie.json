@@ -1,6 +1,6 @@
 {
   "slug": "altie",
-  "category": "alien",
+  "species": "alien",
   "moveset": [
     {
       "level_learned": 1,

@@ -1,6 +1,6 @@
 {
   "slug": "criniotherme",
-  "category": "mercury",
+  "species": "mercury",
   "moveset": [
     {
       "level_learned": 1,

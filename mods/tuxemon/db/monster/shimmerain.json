@@ -1,6 +1,6 @@
 {
   "slug": "shimmerain",
-  "category": "percomorph_fish",
+  "species": "percomorph_fish",
   "moveset": [
     {
       "level_learned": 1,

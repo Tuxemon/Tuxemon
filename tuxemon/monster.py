@@ -18,9 +18,7 @@ from tuxemon.db import (
     MonsterEvolutionItemModel,
     MonsterHistoryItemModel,
     MonsterModel,
-    MonsterMovesetItemModel,
     MonsterSpritesModel,
-    PlagueType,
     StatType,
     db,
 )
@@ -29,6 +27,8 @@ from tuxemon.evolution import Evolution
 from tuxemon.fusion import Body
 from tuxemon.locale import T
 from tuxemon.monster_dir.held_item import MonsterItemHandler
+from tuxemon.monster_dir.moves import MonsterMovesHandler
+from tuxemon.monster_dir.plague import MonsterPlagueHandler
 from tuxemon.monster_dir.sprite import (
     Flair,
     FlairApplier,
@@ -39,7 +39,6 @@ from tuxemon.monster_dir.status import MonsterStatusHandler
 from tuxemon.shape import ShapeHandler
 from tuxemon.sprite import Sprite
 from tuxemon.taste import Taste
-from tuxemon.technique.technique import Technique, decode_moves, encode_moves
 from tuxemon.time_handler import today_ordinal
 
 if TYPE_CHECKING:
@@ -114,7 +113,7 @@ class Monster:
 
         self.slug: str = ""
         self.name: str = ""
-        self.cat: str = ""
+        self.species_name: str = ""
         self.description: str = ""
         self.instance_id: UUID = uuid4()
 
@@ -200,7 +199,7 @@ class Monster:
     def spawn_base(cls, slug: str, level: int) -> Monster:
         monster = cls.create(slug)
         monster.set_level(level)
-        monster.moves.set_moves(level)
+        monster.moves.set_moves(level, monster.stage)
         monster.current_hp = monster.hp
         return monster
 
@@ -254,11 +253,12 @@ class Monster:
         self.slug = results.slug
         self.name = T.translate(results.slug)
         self.description = T.translate(f"{results.slug}_description")
-        self.cat = results.category
-        self.category = T.translate(f"cat_{self.cat}")
+        self.species = results.species
+        self.species_name = T.translate(f"cat_{self.species}")
         self.shape = ShapeHandler(results.shape)
         self.stage = results.stage
         self.tags = results.tags
+        self.terrains = results.terrains
         self.taste_cold, self.taste_warm = Taste.generate(
             self.taste_cold, self.taste_warm
         )
@@ -585,201 +585,6 @@ class Monster:
             current = self.status.get_current_status()
             if current:
                 current.apply_phase_and_use(session, EffectPhase.ON_FAINT)
-
-
-class MonsterMovesHandler:
-    def __init__(
-        self,
-        moves: Optional[list[Technique]] = None,
-        moveset: Optional[Sequence[MonsterMovesetItemModel]] = None,
-    ):
-        self.moves = moves if moves is not None else []
-        self.moveset = moveset if moveset is not None else []
-
-    @property
-    def current_moves(self) -> list[Technique]:
-        return self.moves
-
-    def set_moveset(self, moveset: Sequence[MonsterMovesetItemModel]) -> None:
-        """Sets the raw moveset data from the database."""
-        self.moveset = moveset
-
-    def learn(self, technique: Technique) -> None:
-        """
-        Adds a technique to this tuxemon's moveset.
-
-        Parameters:
-            technique: The technique for the monster to learn.
-        """
-
-        self.moves.append(technique)
-
-    def forget(self, technique: Technique) -> None:
-        """
-        Removes a technique from the monster's moveset.
-
-        Parameters:
-            technique: The technique to forget.
-        """
-        if technique in self.moves:
-            self.moves.remove(technique)
-
-    def replace_move(self, index: int, new_move: Technique) -> None:
-        """
-        Replaces a move at a given index with a new technique.
-
-        Parameters:
-            index: The position of the move to replace.
-            new_move: The new technique to insert.
-        """
-        if 0 <= index < len(self.moves):
-            self.moves[index] = new_move
-
-    def set_moves(
-        self, level: int, max_moves: int = prepare.MAX_MOVES
-    ) -> None:
-        """
-        Set monster moves according to the level.
-
-        Parameters:
-            level: The level of the monster.
-            max_moves: The maximum number of moves the monster can learn.
-        """
-        eligible_moves = [
-            move.technique
-            for move in self.moveset
-            if move.level_learned <= level
-        ]
-        moves_to_learn = eligible_moves[-max_moves:]
-        for move in moves_to_learn:
-            tech = Technique.create(move)
-            self.learn(tech)
-
-    def update_moves(
-        self, monster_level: int, levels_earned: int
-    ) -> list[Technique]:
-        """
-        Set monster moves according to the levels increased.
-        Excludes the moves already learned.
-
-        Parameters:
-            monster_level: The current level of the monster.
-            levels_earned: Number of levels earned.
-
-        Returns:
-            techniques: list containing the learned techniques
-        """
-        new_level = monster_level - levels_earned
-        new_moves = self.moves.copy()
-        new_techniques = []
-        for move in self.moveset:
-            if (
-                move.technique not in (m.slug for m in self.moves)
-                and new_level < move.level_learned <= monster_level
-            ):
-                technique = Technique.create(move.technique)
-                new_moves.append(technique)
-                new_techniques.append(technique)
-
-        self.moves = new_moves
-        return new_techniques
-
-    def recharge_moves(self) -> None:
-        for move in self.moves:
-            move.recharge()
-
-    def full_recharge_moves(self) -> None:
-        for move in self.moves:
-            move.full_recharge()
-
-    def set_stats(self) -> None:
-        for move in self.moves:
-            move.set_stats()
-
-    def find_tech_by_id(self, instance_id: UUID) -> Optional[Technique]:
-        """Finds a technique among the monster's moves which has the given id."""
-        return next(
-            (m for m in self.moves if m.instance_id == instance_id), None
-        )
-
-    def has_moves(self) -> bool:
-        return bool(self.moves)
-
-    def has_move(self, move_slug: str) -> bool:
-        return any(move.slug == move_slug for move in self.get_moves())
-
-    def get_moves(self) -> list[Technique]:
-        return self.moves
-
-    def encode_moves(self) -> Sequence[Mapping[str, Any]]:
-        return encode_moves(self.moves)
-
-    def decode_moves(self, json_data: Optional[Mapping[str, Any]]) -> None:
-        if json_data and "moves" in json_data:
-            self.moves = [mov for mov in decode_moves(json_data["moves"])]
-
-
-class MonsterPlagueHandler:
-    """
-    Manages the various plagues affecting a monster.
-    """
-
-    def __init__(
-        self, plagues: Optional[dict[str, PlagueType]] = None
-    ) -> None:
-        self._plagues = plagues or {}
-
-    @property
-    def current_plagues(self) -> dict[str, PlagueType]:
-        return self._plagues
-
-    def infect(self, plague_slug: str) -> None:
-        self._plagues[plague_slug] = PlagueType.infected
-
-    def inoculate(self, plague_slug: str) -> None:
-        self._plagues[plague_slug] = PlagueType.inoculated
-
-    def is_infected(self) -> bool:
-        return any(
-            plague_type == PlagueType.infected
-            for plague_type in self._plagues.values()
-        )
-
-    def remove_plague(self, plague_slug: str) -> None:
-        if plague_slug in self._plagues:
-            del self._plagues[plague_slug]
-
-    def has_plague(self, plague_slug: str) -> bool:
-        return plague_slug in self._plagues
-
-    def get_plague_type(self, plague_slug: str) -> Optional[PlagueType]:
-        type_str = self._plagues.get(plague_slug)
-        if type_str:
-            return PlagueType(type_str)
-        return None
-
-    def get_infected_slugs(self) -> list[str]:
-        return [
-            slug
-            for slug, plague in self._plagues.items()
-            if plague == PlagueType.infected
-        ]
-
-    def is_infected_with(self, plague_slug: str) -> bool:
-        return self.get_plague_type(plague_slug) == PlagueType.infected
-
-    def is_inoculated_against(self, plague_slug: str) -> bool:
-        return self.get_plague_type(plague_slug) == PlagueType.inoculated
-
-    def clear_plagues(self) -> None:
-        self._plagues.clear()
-
-    def encode_plagues(self) -> dict[str, PlagueType]:
-        return self._plagues.copy()
-
-    def decode_plagues(self, json_data: Optional[Mapping[str, Any]]) -> None:
-        if json_data and "plague" in json_data:
-            self._plagues.update(json_data["plague"])
 
 
 def decode_monsters(

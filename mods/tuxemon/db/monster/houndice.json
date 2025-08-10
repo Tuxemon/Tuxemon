@@ -1,6 +1,6 @@
 {
   "slug": "houndice",
-  "category": "snowy",
+  "species": "snowy",
   "moveset": [
     {
       "level_learned": 1,

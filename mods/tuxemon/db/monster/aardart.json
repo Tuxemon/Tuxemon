@@ -1,6 +1,6 @@
 {
   "slug": "aardart",
-  "category": "anteater",
+  "species": "anteater",
   "moveset": [
     {
       "level_learned": 1,

@@ -1,6 +1,6 @@
 {
   "slug": "grimachin",
-  "category": "spook",
+  "species": "spook",
   "moveset": [
     {
       "level_learned": 1,

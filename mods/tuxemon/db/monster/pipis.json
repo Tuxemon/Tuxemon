@@ -1,6 +1,6 @@
 {
   "slug": "pipis",
-  "category": "echo",
+  "species": "echo",
   "moveset": [
     {
       "level_learned": 1,

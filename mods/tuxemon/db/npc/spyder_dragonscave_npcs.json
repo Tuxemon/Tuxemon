@@ -9,6 +9,16 @@
   },
   {
     "slug": "spyder_dragonscave_benden",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_dragonscave_benden1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_dragonscave_benden2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "dragonrider_black",
       "combat_front": "dragonrider",
@@ -17,6 +27,16 @@
   },
   {
     "slug": "spyder_dragonscave_cailin",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_dragonscave_cailin1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_dragonscave_cailin2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "dragonrider_blue",
       "combat_front": "dragonrider",
@@ -33,6 +53,16 @@
   },
   {
     "slug": "spyder_dragonscave_daenny",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_dragonscave_daenny1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_dragonscave_daenny2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "dragonrider",
       "combat_front": "dragonrider",
@@ -41,6 +71,16 @@
   },
   {
     "slug": "spyder_dragonscave_griffin",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_dragonscave_griffin1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_dragonscave_griffin2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "dragonrider_fiery",
       "combat_front": "dragonrider",
@@ -57,6 +97,16 @@
   },
   {
     "slug": "spyder_dragonscave_lessa",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_dragonscave_lessa1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_dragonscave_lessa2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "dragonrider_black",
       "combat_front": "dragonrider",
@@ -65,6 +115,16 @@
   },
   {
     "slug": "spyder_dragonscave_lucille",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_dragonscave_lucille1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_dragonscave_lucille2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "knight",
       "combat_front": "enforcer_agent",
@@ -73,6 +133,16 @@
   },
   {
     "slug": "spyder_dragonscave_mal",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_dragonscave_mal1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_dragonscave_mal2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "spyderboss_fiery",
       "combat_front": "spyder_boss",
@@ -81,6 +151,16 @@
   },
   {
     "slug": "spyder_dragonscave_ray",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_dragonscave_ray1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_dragonscave_ray2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "spyderrookie",
       "combat_front": "spyder_rookie",
@@ -89,6 +169,16 @@
   },
   {
     "slug": "spyder_dragonscave_tomas",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_dragonscave_tomas1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_dragonscave_tomas2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "dragonrider_green",
       "combat_front": "dragonrider",
@@ -97,6 +187,16 @@
   },
   {
     "slug": "spyder_dragonscave_tru",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_dragonscave_tru1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_dragonscave_tru2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "knight",
       "combat_front": "knightlord",

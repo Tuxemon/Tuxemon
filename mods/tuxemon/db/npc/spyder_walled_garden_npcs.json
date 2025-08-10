@@ -1,6 +1,16 @@
 [
   {
     "slug": "spyder_walled_crassus",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_walled_crassus1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_walled_crassus2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "ceo",
       "combat_front": "ceo",
@@ -9,6 +19,16 @@
   },
   {
     "slug": "spyder_walled_alexander",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_walled_alexander1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_walled_alexander2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "ceo",
       "combat_front": "ceo",
@@ -17,6 +37,16 @@
   },
   {
     "slug": "spyder_walled_rufus",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_walled_rufus1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_walled_rufus2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "cooldude",
       "combat_front": "cooldude",
@@ -25,6 +55,16 @@
   },
   {
     "slug": "spyder_walled_vanderbilt",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_walled_vanderbilt1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_walled_vanderbilt2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "ceo",
       "combat_front": "ceo",
@@ -33,6 +73,16 @@
   },
   {
     "slug": "spyder_walled_astor",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_walled_astor1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_walled_astor2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "cooldude",
       "combat_front": "cooldude",
@@ -41,6 +91,16 @@
   },
   {
     "slug": "spyder_walled_ford",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_walled_ford1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_walled_ford2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "picnicker",
       "combat_front": "picnicker",
@@ -49,6 +109,16 @@
   },
   {
     "slug": "spyder_walled_girard",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_walled_girard1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_walled_girard2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "ceo",
       "combat_front": "ceo",
@@ -57,6 +127,16 @@
   },
   {
     "slug": "spyder_walled_augustus",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_walled_augustus1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_walled_augustus2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "ceo",
       "combat_front": "ceo",
@@ -65,6 +145,16 @@
   },
   {
     "slug": "spyder_walled_fugger",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_walled_fugger1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_walled_fugger2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "ceo",
       "combat_front": "ceo",
@@ -73,6 +163,16 @@
   },
   {
     "slug": "spyder_walled_carnegie",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_walled_carnegie1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_walled_carnegie2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "ceo",
       "combat_front": "ceo",
@@ -81,6 +181,16 @@
   },
   {
     "slug": "spyder_walled_osman",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_walled_osman1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_walled_osman2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "cooldude",
       "combat_front": "cooldude",
@@ -89,6 +199,16 @@
   },
   {
     "slug": "spyder_walled_musa",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_walled_musa1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_walled_musa2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "ceo",
       "combat_front": "ceo",
@@ -97,6 +217,16 @@
   },
   {
     "slug": "spyder_walled_midas",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_walled_midas1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_walled_midas2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "picnicker",
       "combat_front": "picnicker",

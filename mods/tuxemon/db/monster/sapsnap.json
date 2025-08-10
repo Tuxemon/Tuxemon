@@ -1,6 +1,6 @@
 {
   "slug": "sapsnap",
-  "category": "barbed",
+  "species": "barbed",
   "moveset": [
     {
       "level_learned": 1,

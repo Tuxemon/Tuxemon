@@ -14,7 +14,11 @@ from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.monster import Monster
 from tuxemon.session import Session
-from tuxemon.states.combat.combat_context import CombatContext
+from tuxemon.states.combat.combat_context import (
+    BattleMode,
+    CombatContext,
+    CombatType,
+)
 from tuxemon.time_handler import today_ordinal
 
 logger = logging.getLogger(__name__)
@@ -96,9 +100,9 @@ class RandomBattleAction(EventAction):
         context = CombatContext(
             session=session,
             teams=[player, npc],
-            combat_type="trainer",
+            combat_type=CombatType.TRAINER,
             graphics=env.battle_graphics,
-            battle_mode="single",
+            battle_mode=BattleMode.SINGLE,
         )
         session.client.push_state("CombatState", context=context)
 

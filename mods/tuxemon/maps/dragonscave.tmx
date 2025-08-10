@@ -19,12 +19,12 @@
    eAHtlEsKgDAMBSOu9Q5+76C38zZ6Ir9H8TcFF24tQq1kYOgqaXkpEfkXfSQy4IgTzrigLSu1G+54mD6xSIC2JNSmmGGOBZaoaAKagCbwVgJtKNJcdpxPudebPj5Q6R71YUxO3qh/w0nsn7601n3hfD4nN3sQRA==
   </data>
  </layer>
- <layer id="3" name="Filler" width="20" height="40">
+ <layer id="3" name="Tile Layer 3" width="20" height="40">
   <data encoding="base64" compression="zlib">
    eAFjYBgYsIKZgaERC37BCBFfCZQbBaMhMBoCpIUArnyFLa/BxJpG8xppgTyqejQERkMAHgINWOpxUNkyWofDg2iUQWEIIKcxQvUVrA4kpI5CJ41qp0IIAACvYhRA
   </data>
  </layer>
- <layer id="7" name="Above Player" width="20" height="40">
+ <layer id="7" name="Tile Layer 4" width="20" height="40">
   <data encoding="base64" compression="zlib">
    eAHt0AkNACAQxMA1gH8fHI896uIS0iY1MElvcyTFizcfvmwKKKCAAgoooIACCijwn8ADTbwEig==
   </data>

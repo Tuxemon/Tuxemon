@@ -1,6 +1,6 @@
 {
   "slug": "flambear",
-  "category": "too_hot",
+  "species": "too_hot",
   "moveset": [
     {
       "level_learned": 1,

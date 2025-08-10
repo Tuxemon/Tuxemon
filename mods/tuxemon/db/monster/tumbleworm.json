@@ -1,6 +1,6 @@
 {
   "slug": "tumbleworm",
-  "category": "buzzkill",
+  "species": "buzzkill",
   "moveset": [
     {
       "level_learned": 1,

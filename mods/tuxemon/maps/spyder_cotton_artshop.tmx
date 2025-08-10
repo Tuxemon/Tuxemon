@@ -208,7 +208,7 @@
     <property name="cond4" value="is money_is player,greater_or_equal,1000"/>
    </properties>
   </object>
-  <object id="38" name="Barmaid Sell Monsters Op" type="event" x="112" y="16" width="32" height="16">
+  <object id="41" name="Barmaid Sell Monsters Op" type="event" x="112" y="16" width="32" height="16">
    <properties>
     <property name="act1" value="set_variable has_sold_painting:yes"/>
     <property name="act2" value="add_item p_monsters_eyes"/>

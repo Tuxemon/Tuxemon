@@ -71,12 +71,15 @@ class TestMissionManager(TestCase):
         self.assertFalse(self.mission_controller.check_all_prerequisites())
 
     def test_check_required_items(self):
-        self.mission.required_items = ["potion", "lotion"]
+        self.mission.required_items = {"potion": None, "lotion": 2}
 
         item1 = MagicMock()
         item1.slug = "potion"
+        item1.quantity = 1
+
         item2 = MagicMock()
         item2.slug = "lotion"
+        item2.quantity = 2
 
         self.character.items = MagicMock(spec=NPCBagHandler)
         self.character.items.find_item.side_effect = lambda slug: (
@@ -85,18 +88,24 @@ class TestMissionManager(TestCase):
 
         self.assertTrue(self.mission.check_required_items(self.character))
 
+        item2.quantity = 1
+        self.assertFalse(self.mission.check_required_items(self.character))
+
         self.character.items.find_item.side_effect = lambda slug: (
             item1 if slug == "potion" else None
         )
         self.assertFalse(self.mission.check_required_items(self.character))
 
     def test_check_required_monsters(self):
-        self.mission.required_monsters = ["monster1", "monster2"]
+        self.mission.required_monsters = {"monster1": None, "monster2": 5}
 
         monster1 = MagicMock()
         monster1.slug = "monster1"
+        monster1.level = 3
+
         monster2 = MagicMock()
         monster2.slug = "monster2"
+        monster2.level = 5
 
         self.character.party = MagicMock(spec=PartyHandler)
         self.character.party.find_monster.side_effect = lambda slug: (
@@ -106,6 +115,9 @@ class TestMissionManager(TestCase):
         )
 
         self.assertTrue(self.mission.check_required_monsters(self.character))
+
+        monster2.level = 4
+        self.assertFalse(self.mission.check_required_monsters(self.character))
 
         self.character.party.find_monster.side_effect = lambda slug: (
             monster1 if slug == "monster1" else None

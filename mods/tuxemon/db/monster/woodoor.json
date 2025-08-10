@@ -1,6 +1,6 @@
 {
   "slug": "woodoor",
-  "category": "portal",
+  "species": "portal",
   "moveset": [
     {
       "level_learned": 1,

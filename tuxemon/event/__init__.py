@@ -7,7 +7,10 @@ from collections.abc import Sequence
 from typing import TYPE_CHECKING, NamedTuple, Optional
 from uuid import UUID
 
+from tuxemon.event.eventbus import EventBus
 from tuxemon.session import Session
+
+_GLOBAL_EVENT_BUS = EventBus()
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
@@ -52,7 +55,20 @@ __all__ = [
     "get_npc_by_iid",
     "get_npc_pos",
     "get_monster_by_iid",
+    "get_event_bus",
 ]
+
+
+def get_event_bus() -> EventBus:
+    """
+    Returns the global EventBus instance used for dispatching and listening
+    to events throughout the application.
+
+    This ensures a centralized event handling mechanism, allowing different
+    parts of the system to communicate via published events and registered
+    listeners.
+    """
+    return _GLOBAL_EVENT_BUS
 
 
 def get_npc(session: Session, slug: str) -> Optional[NPC]:

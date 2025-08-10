@@ -1,6 +1,6 @@
 {
   "slug": "crankus",
-  "category": "cranky",
+  "species": "cranky",
   "moveset": [
     {
       "level_learned": 1,

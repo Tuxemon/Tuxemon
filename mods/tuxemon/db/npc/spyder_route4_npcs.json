@@ -1,6 +1,16 @@
 [
   {
     "slug": "spyder_route4_beck",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_route4_beck1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_route4_beck2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "tennisplayer",
       "combat_front": "yellowbelt",
@@ -9,6 +19,16 @@
   },
   {
     "slug": "spyder_route4_marshall",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_route4_marshall1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_route4_marshall2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "soldier",
       "combat_front": "soldier",
@@ -17,6 +37,16 @@
   },
   {
     "slug": "spyder_route4_rincewind",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_route4_rincewind1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_route4_rincewind2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "beachcomber_blue",
       "combat_front": "yellowbelt",
@@ -25,6 +55,16 @@
   },
   {
     "slug": "spyder_route4_roger",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_route4_roger1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_route4_roger2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "soldier",
       "combat_front": "soldier",
@@ -33,6 +73,16 @@
   },
   {
     "slug": "spyder_route4_wulf",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_route4_wulf1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_route4_wulf2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "maniac",
       "combat_front": "alchemist",
@@ -41,6 +91,16 @@
   },
   {
     "slug": "spyder_route4_rosamund",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_route4_rosamund1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_route4_rosamund2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "picnicker",
       "combat_front": "picnicker",

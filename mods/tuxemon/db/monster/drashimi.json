@@ -1,6 +1,6 @@
 {
   "slug": "drashimi",
-  "category": "dragon_roll",
+  "species": "dragon_roll",
   "moveset": [
     {
       "level_learned": 1,

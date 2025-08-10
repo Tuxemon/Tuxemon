@@ -1,8 +1,9 @@
 {
   "conditions": [
     {
-      "type": "type",
+      "type": "base",
       "parameters": [
+        "types",
         "wood"
       ],
       "operator": "is"

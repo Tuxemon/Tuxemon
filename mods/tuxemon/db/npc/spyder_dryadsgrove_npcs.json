@@ -1,6 +1,16 @@
 [
   {
     "slug": "spyder_dryadsgrove_aquemini",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_dryadsgrove_aquemini1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_dryadsgrove_aquemini2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "woodnymph",
       "combat_front": "waternymph",
@@ -9,6 +19,16 @@
   },
   {
     "slug": "spyder_dryadsgrove_ferris",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_dryadsgrove_ferris1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_dryadsgrove_ferris2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "woodnymph",
       "combat_front": "metalnymph",
@@ -17,6 +37,16 @@
   },
   {
     "slug": "spyder_dryadsgrove_ignatia",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_dryadsgrove_ignatia1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_dryadsgrove_ignatia2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "firenymph",
       "combat_front": "firenymph",
@@ -25,6 +55,16 @@
   },
   {
     "slug": "spyder_dryadsgrove_petra",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_dryadsgrove_petra1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_dryadsgrove_petra2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "woodnymph",
       "combat_front": "earthnymph",
@@ -33,6 +73,16 @@
   },
   {
     "slug": "spyder_dryadsgrove_sylvia",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_dryadsgrove_sylvia1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_dryadsgrove_sylvia2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "woodnymph",
       "combat_front": "woodnymph",

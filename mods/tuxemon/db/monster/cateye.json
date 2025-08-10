@@ -1,6 +1,6 @@
 {
   "slug": "cateye",
-  "category": "sentinel",
+  "species": "sentinel",
   "moveset": [
     {
       "level_learned": 1,

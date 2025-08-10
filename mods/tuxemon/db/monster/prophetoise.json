@@ -1,6 +1,6 @@
 {
   "slug": "prophetoise",
-  "category": "dragon_bone",
+  "species": "dragon_bone",
   "moveset": [
     {
       "level_learned": 1,

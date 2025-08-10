@@ -1,10 +1,8 @@
 {
   "slug": "nurse1",
-  "template": 
-    {
-      "sprite_name": "nurse",
-      "combat_front": "nurse",
-      "slug": "heroine"
-    }
-
+  "template": {
+    "sprite_name": "nurse",
+    "combat_front": "nurse",
+    "slug": "heroine"
+  }
 }

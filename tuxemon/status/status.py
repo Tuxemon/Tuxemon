@@ -57,6 +57,8 @@ class Status:
     ) -> None:
         save_data = save_data or {}
 
+        self._effect_applied: set[str] = set()
+
         self.instance_id: UUID = uuid4()
         self.set_steps(steps)
         self.bond: bool = False

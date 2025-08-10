@@ -49,6 +49,16 @@
   },
   {
     "slug": "spyder_cottoncafe_cayden",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": null,
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_lostfight",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "goth",
       "combat_front": "goth",
@@ -217,6 +227,16 @@
   },
   {
     "slug": "spyder_cottontunnel_carlos",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_cottontunnel_carlos1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_cottontunnel_carlos2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "dragonrider_black",
       "combat_front": "dragonrider",
@@ -225,6 +245,16 @@
   },
   {
     "slug": "spyder_confusedperson",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": null,
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_confused2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "childactor_fiery",
       "combat_front": "tennisplayer_fiery",

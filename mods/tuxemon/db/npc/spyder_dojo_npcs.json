@@ -1,6 +1,16 @@
 [
   {
     "slug": "spyder_dojo_ares",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_dojo_ares1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_dojo_ares2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "monk_black",
       "combat_front": "monk",
@@ -33,6 +43,16 @@
   },
   {
     "slug": "spyder_dojo_kataro",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_dojo_kataro1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_dojo_kataro2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "monk_orange",
       "combat_front": "monk",
@@ -41,6 +61,16 @@
   },
   {
     "slug": "spyder_dojo_iroh",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_dojo_iroh1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_dojo_iroh2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "monk_red",
       "combat_front": "monk",
@@ -49,6 +79,16 @@
   },
   {
     "slug": "spyder_dojo_hermes",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_dojo_hermes1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_dojo_hermes2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "monk_orange",
       "combat_front": "monk",
@@ -57,6 +97,16 @@
   },
   {
     "slug": "spyder_dojo_hephastus",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_dojo_hephastus1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_dojo_hephastus2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "monk_blue",
       "combat_front": "monk",
@@ -65,6 +115,16 @@
   },
   {
     "slug": "spyder_dojo_orion",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_dojo_orion1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_dojo_orion2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "monk_green",
       "combat_front": "monk",
@@ -73,6 +133,16 @@
   },
   {
     "slug": "spyder_dojo_saturn",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_dojo_saturn1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_dojo_saturn2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "monk_red",
       "combat_front": "monk",
@@ -81,6 +151,16 @@
   },
   {
     "slug": "spyder_dojo_sokka",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_dojo_sokka1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_dojo_sokka2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "monk_green",
       "combat_front": "monk",
@@ -97,6 +177,16 @@
   },
   {
     "slug": "spyder_dojo_toph",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_dojo_toph1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_dojo_toph2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "monk_black",
       "combat_front": "monk",
@@ -129,6 +219,16 @@
   },
   {
     "slug": "spyder_dojo_yangchen",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_dojo_yangchen1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_dojo_yangchen2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "monk_blue",
       "combat_front": "monk",

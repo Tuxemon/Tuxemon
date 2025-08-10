@@ -1,6 +1,6 @@
 {
   "slug": "ignibus",
-  "category": "hot_rock",
+  "species": "hot_rock",
   "moveset": [
     {
       "level_learned": 1,

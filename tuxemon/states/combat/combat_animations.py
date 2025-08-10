@@ -69,10 +69,11 @@ class CombatAnimations(Menu[None], ABC):
 
     def __init__(self, context: CombatContext) -> None:
         super().__init__()
+        self.context = context
         self.session = context.session
         self.players = context.teams
         self.graphics = context.graphics
-        self.is_double = context.battle_mode == "double"
+        self.is_double = context.is_double_battle
         self.field_monsters = FieldMonsters()
         self.sprite_map = MonsterSpriteMap()
         self.is_trainer_battle = False
@@ -628,7 +629,9 @@ class CombatAnimations(Menu[None], ABC):
         if not self.is_trainer_battle:
             sound = self.players[1].monsters[0].combat_call
             self.play_sound_effect(sound, 1.5)
-        self.display_alert_message()
+
+        start_message = self.context.get_start_message()
+        self.dialog.alert(start_message)
 
     def flip_sprites(self, enemy: Sprite, player_back: Sprite) -> None:
         """Flip the sprites horizontally."""
@@ -685,15 +688,6 @@ class CombatAnimations(Menu[None], ABC):
     ) -> None:
         """Play the sound effect."""
         self.client.sound_manager.play_sound(sound, value)
-
-    def display_alert_message(self) -> None:
-        """Display the alert message."""
-        if self.is_trainer_battle:
-            params = {"name": self.players[1].name.upper()}
-            self.alert(T.format("combat_trainer_appeared", params))
-        else:
-            params = {"name": self.players[1].monsters[0].name.upper()}
-            self.alert(T.format("combat_wild_appeared", params))
 
     def animate_throwing(
         self,
@@ -792,7 +786,7 @@ class CombatAnimations(Menu[None], ABC):
                 full_text = success_header_text + "\n" + success_text
                 delay += len(full_text) * config_combat.letter_time
                 self.task(
-                    partial(self.alert, full_text),
+                    partial(self.dialog.alert, full_text),
                     interval=delay,
                 )
 
@@ -819,7 +813,7 @@ class CombatAnimations(Menu[None], ABC):
             def show_failure(delay: float) -> None:
                 delay += len(failure_text) * config_combat.letter_time
                 self.task(
-                    partial(self.alert, failure_text),
+                    partial(self.dialog.alert, failure_text),
                     interval=delay,
                 )
 

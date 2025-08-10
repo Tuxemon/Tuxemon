@@ -21,6 +21,8 @@ from tuxemon.animation import (
     Task,
     remove_animations_of,
 )
+from tuxemon.event import get_event_bus
+from tuxemon.event.eventbus import Listener
 from tuxemon.platform.events import PlayerInput
 from tuxemon.session import local_session
 from tuxemon.sprite import Sprite, SpriteGroup
@@ -67,6 +69,7 @@ class State(ABC):
 
         # TODO: fix local session
         self.client = local_session.client
+        self.event_bus = get_event_bus()
 
         self._scheduled_task: Optional[Task] = None
 
@@ -235,7 +238,7 @@ class State(ABC):
         """
         self.animations.update(time_delta)
         self.sprites.update(time_delta)
-        self.trigger_hook("state_update", time_delta)
+        self.publish("state_update", time_delta)
 
     def draw(self, surface: Surface) -> None:
         """
@@ -248,7 +251,7 @@ class State(ABC):
         Parameters:
             surface: Surface to be rendered onto.
         """
-        self.trigger_hook("state_draw", surface)
+        self.publish("state_draw", surface)
 
     def resume(self) -> None:
         """
@@ -264,7 +267,7 @@ class State(ABC):
         Example uses: starting music, open menu, starting animations,
         timers, etc.
         """
-        self.trigger_hook("state_resume")
+        self.publish("state_resume")
 
     def pause(self) -> None:
         """
@@ -280,7 +283,7 @@ class State(ABC):
         Example uses: stopping music, sounds, fading out, making state
         graphics dim, etc.
         """
-        self.trigger_hook("state_pause")
+        self.publish("state_pause")
 
     def shutdown(self) -> None:
         """
@@ -292,7 +295,7 @@ class State(ABC):
         Make sure to release any references to objects that may cause
         cyclical dependencies.
         """
-        self.trigger_hook("state_shutdown")
+        self.publish("state_shutdown")
 
     def stop_scheduled_callbacks(self) -> None:
         """Stops any further scheduled callbacks by killing the task."""
@@ -335,111 +338,21 @@ class State(ABC):
         )
         callback()
 
-    def register_hook(
-        self, hook_name: str, callback: Callable[..., None], priority: int = 0
+    def subscribe(
+        self, event_name: str, callback: Callable[..., None], priority: int = 0
     ) -> None:
-        self.client.hook_manager.register_hook(hook_name, callback, priority)
+        self.event_bus.subscribe(event_name, callback, priority)
 
-    def unregister_hook(
-        self, hook_name: str, callback: Callable[..., None]
+    def unsubscribe(
+        self, event_name: str, callback: Callable[..., None]
     ) -> None:
-        if self.client.hook_manager.is_hook_registered(hook_name):
-            self.client.hook_manager.unregister_hook(hook_name, callback)
+        if self.event_bus.has_listeners_for_event(event_name):
+            self.event_bus.unsubscribe(event_name, callback)
 
-    def trigger_hook(self, hook_name: str, *args: Any, **kwargs: Any) -> None:
-        if self.client.hook_manager.is_hook_registered(hook_name):
-            self.client.hook_manager.trigger_hook(hook_name, *args, **kwargs)
+    def publish(self, event_name: str, *args: Any, **kwargs: Any) -> None:
+        if self.event_bus.has_listeners_for_event(event_name):
+            self.event_bus.publish(event_name, *args, **kwargs)
 
-    def replace_hooks(
-        self, hook_name: str, hooks: list[tuple[int, Callable[..., None]]]
-    ) -> None:
-        if self.client.hook_manager.is_hook_registered(hook_name):
-            self.client.hook_manager._hooks[hook_name] = hooks
-
-
-class HookManager:
-    def __init__(self) -> None:
-        self._hooks: dict[str, list[tuple[int, Callable[..., None]]]] = {}
-
-    def register_hook(
-        self, name: str, callback: Callable[..., None], priority: int = 0
-    ) -> None:
-        """
-        Registers a callback function for a specified hook.
-
-        Parameters:
-            name: The unique name of the hook (non-empty string).
-            callback: A callable function for the hook.
-            priority: Execution priority (default is 0).
-
-        Raises:
-            ValueError: If the name is empty or callback is not callable.
-        """
-        if not isinstance(name, str) or not name:
-            raise ValueError("Hook name must be a non-empty string.")
-        if not callable(callback):
-            raise ValueError("Callback must be callable.")
-
-        if name not in self._hooks:
-            self._hooks[name] = []
-        self._hooks[name].append((priority, callback))
-        self._hooks[name].sort(reverse=True, key=lambda hook: hook[0])
-
-    def unregister_hook(
-        self,
-        name: str,
-        callback: Callable[..., None],
-        priority: Optional[int] = None,
-    ) -> None:
-        """
-        Unregisters a callback function from a specified hook.
-
-        Parameters:
-            name: The unique name of the hook.
-            callback: The callback function to remove.
-            priority: The priority of the callback (optional).
-
-        Raises:
-            ValueError: If the hook does not exist.
-        """
-        if name not in self._hooks:
-            raise ValueError(f"Hook '{name}' not found.")
-        self._hooks[name] = [
-            (p, cb)
-            for p, cb in self._hooks[name]
-            if cb != callback or (priority is not None and p != priority)
-        ]
-        if not self._hooks[name]:
-            del self._hooks[name]
-
-    def trigger_hook(self, name: str, *args: Any, **kwargs: Any) -> None:
-        """
-        Triggers all registered callback functions for a specific hook
-        name, passing in any additional arguments.
-
-        Parameters:
-            hook_name: The name of the hook.
-            *args: Additional positional arguments to pass to the callbacks.
-            **kwargs: Additional keyword arguments to pass to the callbacks.
-        """
-        if name not in self._hooks:
-            raise ValueError(f"Hook '{name}' is not registered.")
-        for _, callback in self._hooks[name]:
-            callback(*args, **kwargs)
-
-    def debug_hooks(self) -> None:
-        """Log all hooks and their priorities."""
-        for name, callbacks in self._hooks.items():
-            logger.debug(f"Hook: {name}")
-            for priority, callback in callbacks:
-                logger.debug(f"  Priority {priority}: {callback.__name__}")
-
-    def reset_hooks(self) -> None:
-        """Reset all hooks."""
-        self._hooks.clear()
-
-    def is_hook_registered(self, name: str) -> bool:
-        """
-        Checks if a hook with the given name is registered.
-        """
-        return name in self._hooks
+    def replace_events(self, event_name: str, events: list[Listener]) -> None:
+        if self.event_bus.has_listeners_for_event(event_name):
+            self.event_bus._listeners[event_name] = events

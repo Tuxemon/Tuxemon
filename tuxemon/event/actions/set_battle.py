@@ -6,8 +6,8 @@ import logging
 from dataclasses import dataclass
 from typing import final
 
-from tuxemon.battle import Battle
 from tuxemon.db import OutputBattle
+from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.session import Session
 
@@ -41,21 +41,21 @@ class SetBattleAction(EventAction):
     opponent_slug: str
 
     def start(self, session: Session) -> None:
-        player = session.player
-
         if self.outcome not in list(OutputBattle):
             raise ValueError(
                 f"{self.outcome} isn't among {list(OutputBattle)}"
             )
 
-        data = {
-            "fighter": self.fighter_slug,
-            "opponent": self.opponent_slug,
-            "outcome": OutputBattle(self.outcome),
-            "steps": int(player.steps),
-        }
-        battle = Battle(data)
+        character = get_npc(session, self.fighter_slug)
+        if character is None:
+            logger.error(f"Character '{self.fighter_slug}' not found")
+            return
+
+        character.battle_handler.record_battle(
+            self.opponent_slug,
+            OutputBattle(self.outcome),
+            int(character.steps),
+        )
         logger.info(
             f"{self.fighter_slug} {self.outcome} against {self.opponent_slug}"
         )
-        player.battle_handler.add_battle(battle)

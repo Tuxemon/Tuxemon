@@ -1,6 +1,16 @@
 [
   {
     "slug": "spyder_route3_qqq",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_route3_qqq1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_route3_qqq2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "spyderrookie",
       "combat_front": "spyder_rookie",
@@ -9,6 +19,16 @@
   },
   {
     "slug": "spyder_route3_zoolander",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_route3_zoolander1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_route3_zoolander2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "overseer",
       "combat_front": "overseer",
@@ -17,6 +37,16 @@
   },
   {
     "slug": "spyder_route3_weaver",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_route3_weaver1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_route3_weaver2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "knight",
       "combat_front": "knight",
@@ -25,6 +55,16 @@
   },
   {
     "slug": "spyder_route3_wanda",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_route3_wanda1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_route3_wanda2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "fisher",
       "combat_front": "fisher",
@@ -33,6 +73,16 @@
   },
   {
     "slug": "spyder_route3_twig",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_route3_twig1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_route3_twig2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "miner_yellow",
       "combat_front": "miner",
@@ -41,6 +91,16 @@
   },
   {
     "slug": "spyder_route3_surat",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_route3_surat1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_route3_surat2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "miner_red",
       "combat_front": "miner",
@@ -49,6 +109,16 @@
   },
   {
     "slug": "spyder_route3_roxby",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_route3_roxby1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_route3_roxby2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "miner_green",
       "combat_front": "miner",
@@ -57,6 +127,16 @@
   },
   {
     "slug": "spyder_route3_novak",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_route3_novak1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_route3_novak2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "tennisplayer",
       "combat_front": "tennisplayer",
@@ -65,6 +145,16 @@
   },
   {
     "slug": "spyder_route3_curie",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_route3_curie1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_route3_curie2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "scientist",
       "combat_front": "scientist",
@@ -73,6 +163,16 @@
   },
   {
     "slug": "spyder_route3_connor",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_route3_connor1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_route3_connor2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "tennisplayer",
       "combat_front": "tennisplayer",

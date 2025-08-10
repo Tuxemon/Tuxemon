@@ -61,7 +61,7 @@ class MainParkMenuState(PopUpMenu[MenuGameObj]):
         self.itm_description: Optional[str] = None
         params = {"player": monster.get_owner().name}
         message = T.format("combat_player_choice", params)
-        self.combat.alert(message)
+        self.combat.dialog.alert(message)
 
     def calculate_menu_rectangle(self) -> Rect:
         rect_screen = self.client.screen.get_rect()

@@ -1,6 +1,6 @@
 {
   "slug": "noctula",
-  "category": "nightcrawler",
+  "species": "nightcrawler",
   "moveset": [
     {
       "level_learned": 1,

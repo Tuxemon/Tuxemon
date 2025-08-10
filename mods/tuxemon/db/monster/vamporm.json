@@ -1,6 +1,6 @@
 {
   "slug": "vamporm",
-  "category": "clot",
+  "species": "clot",
   "moveset": [
     {
       "level_learned": 1,

@@ -14,19 +14,19 @@ class TestStateStack(unittest.TestCase):
         self.state = Mock(spec=State)
 
     def test_init(self):
-        self.assertEqual(self.stack._stack, [])
+        self.assertEqual(list(self.stack._stack), [])
         self.assertEqual(self.stack._resume_set, set())
 
     def test_push(self):
         self.stack.push(self.state)
-        self.assertEqual(self.stack._stack, [self.state])
+        self.assertEqual(list(self.stack._stack), [self.state])
         self.assertIn(self.state, self.stack._resume_set)
 
     def test_pop(self):
         self.stack.push(self.state)
         popped_state = self.stack.pop()
         self.assertEqual(popped_state, self.state)
-        self.assertEqual(self.stack._stack, [])
+        self.assertEqual(list(self.stack._stack), [])
 
     def test_pop_with_state(self):
         state1 = Mock(spec=State)
@@ -35,7 +35,7 @@ class TestStateStack(unittest.TestCase):
         self.stack.push(state2)
         popped_state = self.stack.pop(state1)
         self.assertEqual(popped_state, state1)
-        self.assertEqual(self.stack._stack, [state2])
+        self.assertEqual(list(self.stack._stack), [state2])
 
     def test_pop_empty_stack(self):
         with self.assertRaises(RuntimeError):
@@ -54,7 +54,7 @@ class TestStateStack(unittest.TestCase):
         self.stack.push(state1)
         replaced_state = self.stack.replace(state2)
         self.assertEqual(replaced_state, state1)
-        self.assertEqual(self.stack._stack, [state2])
+        self.assertEqual(list(self.stack._stack), [state2])
 
     def test_replace_empty_stack(self):
         with self.assertRaises(RuntimeError):
@@ -76,7 +76,7 @@ class TestStateStack(unittest.TestCase):
     def test_remove(self):
         self.stack.push(self.state)
         self.stack.remove(self.state)
-        self.assertEqual(self.stack._stack, [])
+        self.assertEqual(list(self.stack._stack), [])
 
     def test_remove_state_not_found(self):
         with self.assertRaises(RuntimeError):
@@ -96,7 +96,7 @@ class TestStateStack(unittest.TestCase):
         self.stack.push(state2)
         self.assertEqual(self.stack.all(), [state2, state1])
 
-    def test_get_state_by_name(self):
+    def test_get_states_by_name(self):
 
         class StateImpl(State):
             def __init__(self, name: str) -> None:
@@ -108,11 +108,11 @@ class TestStateStack(unittest.TestCase):
 
         state = StateImpl("test_state")
         self.stack.push(state)
-        self.assertEqual(self.stack.get_state_by_name("test_state"), state)
+        self.assertEqual(self.stack.get_states_by_name("test_state")[0], state)
 
-    def test_get_state_by_name_not_found(self):
+    def test_get_states_by_name_not_found(self):
         with self.assertRaises(ValueError):
-            self.stack.get_state_by_name("test_state")
+            self.stack.get_states_by_name("test_state")
 
     def test_push_duplicate_state(self):
         self.stack.push(self.state)
@@ -150,7 +150,7 @@ class TestStateStack(unittest.TestCase):
         self.stack.remove(self.state)
         self.assertFalse(self.stack.should_resume(self.state))
 
-    def test_get_state_by_name_multiple_matches(self):
+    def test_get_states_by_name_multiple_matches(self):
         class NamedState(State):
             def __init__(self, name):
                 self._name = name
@@ -163,5 +163,5 @@ class TestStateStack(unittest.TestCase):
         state2 = NamedState("duplicate")
         self.stack.push(state2)
         self.stack.push(state1)
-        found = self.stack.get_state_by_name("duplicate")
-        self.assertEqual(found, state1)
+        found = self.stack.get_states_by_name("duplicate")
+        self.assertEqual(found[0], state1)

@@ -4,7 +4,9 @@ import unittest
 from unittest.mock import MagicMock
 
 from tuxemon.db import CategoryStatus, ResponseStatus
-from tuxemon.monster import Monster, MonsterItemHandler, MonsterStatusHandler
+from tuxemon.monster import Monster
+from tuxemon.monster_dir.held_item import MonsterItemHandler
+from tuxemon.monster_dir.status import MonsterStatusHandler
 
 
 class TestMonsterStatusHandler(unittest.TestCase):

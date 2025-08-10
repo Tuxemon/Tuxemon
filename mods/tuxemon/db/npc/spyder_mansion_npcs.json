@@ -1,6 +1,16 @@
 [
   {
     "slug": "spyder_top_jackson",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_top_jackson1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_top_jackson2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "rogue_copper",
       "combat_front": "rogue",
@@ -9,6 +19,16 @@
   },
   {
     "slug": "spyder_top_mickey",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_top_mickey1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_top_mickey2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "scientist_fiery",
       "combat_front": "scientist",
@@ -17,6 +37,16 @@
   },
   {
     "slug": "spyder_top_ricardo",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_top_ricardo1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_top_ricardo2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "rogue_red",
       "combat_front": "rogue",
@@ -25,6 +55,16 @@
   },
   {
     "slug": "spyder_top_russell",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_top_russell1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_top_russell2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "magician_fiery",
       "combat_front": "mage",
@@ -73,6 +113,16 @@
   },
   {
     "slug": "spyder_mansion_lyle",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_mansion_pirate1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_mansion_pirate2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "riverboatcaptain",
       "combat_front": "pirate",
@@ -81,6 +131,16 @@
   },
   {
     "slug": "spyder_mansion_lucy",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_mansion_lucy1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_mansion_lucy2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "barmaid_red",
       "combat_front": "barmaid",
@@ -89,6 +149,16 @@
   },
   {
     "slug": "spyder_mansion_gillette",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_mansion_gillette1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_mansion_gillette2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "magician_brown",
       "combat_front": "magician",
@@ -145,6 +215,16 @@
   },
   {
     "slug": "spyder_basement_bobby",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_basement_bobby1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_basement_bobby2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "postboy",
       "combat_front": "rocker",
@@ -153,6 +233,16 @@
   },
   {
     "slug": "spyder_basement_catholi",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_basement_catholi1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_basement_catholi2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "disciple",
       "combat_front": "healer",
@@ -161,6 +251,16 @@
   },
   {
     "slug": "spyder_basement_coralli",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_basement_coralli1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_basement_coralli2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "barmaid_blonde",
       "combat_front": "dancer",
@@ -177,6 +277,16 @@
   },
   {
     "slug": "spyder_basement_roger",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_basement_roger1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_basement_roger2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "tennisplayer_lapi",
       "combat_front": "tennisplayer",

@@ -8,6 +8,7 @@ from typing import TYPE_CHECKING
 
 from tuxemon.core.core_effect import CoreEffect, ItemEffectResult
 from tuxemon.db import TechniqueModel, db
+from tuxemon.technique.technique import Technique
 
 if TYPE_CHECKING:
     from tuxemon.item.item import Item
@@ -21,11 +22,10 @@ lookup_cache: dict[str, TechniqueModel] = {}
 @dataclass
 class LearnMmEffect(CoreEffect):
     """
-    This effect teaches the target a random type technique.
+    Teaches the target a random technique of a specified element.
 
     Parameters:
-        element: type of element (wood, water, etc.)
-
+        element: Type of element (e.g., wood, water, etc.)
     """
 
     name = "learn_mm"
@@ -37,19 +37,17 @@ class LearnMmEffect(CoreEffect):
         if not lookup_cache:
             _lookup_techniques(self.element)
 
-        moves = [tech.slug for tech in target.moves.get_moves()]
-
-        available = list(set(list(lookup_cache.keys())) - set(moves))
+        known_moves = [tech.slug for tech in target.moves.get_moves()]
+        available = list(set(lookup_cache.keys()) - set(known_moves))
 
         if available:
             tech_slug = random.choice(available)
 
-            client = session.client
-            var = f"{self.name}:{str(target.instance_id.hex)}"
-            client.event_engine.execute_action("set_variable", [var], True)
-            client.event_engine.execute_action(
-                "add_tech", [self.name, tech_slug], True
-            )
+            if target.moves.has_move(tech_slug):
+                return ItemEffectResult(name=item.name)
+
+            tech = Technique.create(tech_slug)
+            target.moves.learn(tech)
 
             return ItemEffectResult(name=item.name, success=True)
 

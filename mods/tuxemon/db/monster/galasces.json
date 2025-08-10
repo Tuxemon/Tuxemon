@@ -1,6 +1,6 @@
 {
   "slug": "galasces",
-  "category": "sea_angel",
+  "species": "sea_angel",
   "moveset": [
     {
       "level_learned": 1,

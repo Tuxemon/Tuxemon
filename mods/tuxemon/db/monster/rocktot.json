@@ -1,6 +1,6 @@
 {
   "slug": "rocktot",
-  "category": "threat",
+  "species": "threat",
   "moveset": [
     {
       "level_learned": 1,

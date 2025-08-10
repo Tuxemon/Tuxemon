@@ -1,6 +1,6 @@
 {
   "slug": "medipup",
-  "category": "erythrocyte",
+  "species": "erythrocyte",
   "moveset": [
     {
       "level_learned": 1,

@@ -1,15 +1,17 @@
 {
   "conditions": [
     {
-      "type": "type",
+      "type": "base",
       "parameters": [
+        "types",
         "water"
       ],
       "operator": "is"
     },
     {
-      "type": "shape",
+      "type": "base",
       "parameters": [
+        "shape",
         "piscine:polliwog:leviathan"
       ],
       "operator": "is"

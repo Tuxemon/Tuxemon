@@ -1,8 +1,9 @@
 {
   "conditions": [
     {
-      "type": "tag",
+      "type": "base",
       "parameters": [
+        "tags",
         "celestial:light"
       ],
       "operator": "is"

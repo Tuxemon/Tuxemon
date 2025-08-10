@@ -1,8 +1,9 @@
 {
   "conditions": [
     {
-      "type": "tag",
+      "type": "base",
       "parameters": [
+        "tags",
         "plant:healing:bug"
       ],
       "operator": "is"

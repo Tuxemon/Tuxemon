@@ -11,6 +11,7 @@ from tuxemon.tools import check_condition, parse_flag
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
     from tuxemon.session import Session
+    from tuxemon.technique.technique import Technique
 
 
 @dataclass
@@ -27,7 +28,7 @@ class BaseCondition(CoreCondition):
     options: str  # e.g., "water:!fire"
     match: str = "false"  # "true" for all, "false" for any
 
-    def get_dataset(self, target: Monster) -> set[str]:
+    def get_dataset_monster(self, target: Monster) -> set[str]:
         """
         Extracts a set of normalized strings from the target based on the source.
         """
@@ -46,11 +47,30 @@ class BaseCondition(CoreCondition):
         elif self.source == "species":
             return {target.species.strip().lower()}
 
-        raise ValueError(f"Unsupported source: {self.source}")
+        else:
+            raise ValueError(f"Unsupported source: {self.source}")
 
-    def test_with_monster(self, session: Session, target: Monster) -> bool:
-        base = self.get_dataset(target)
+    def get_dataset_technique(self, target: Technique) -> set[str]:
+        """
+        Extracts a set of normalized strings from the target based on the source.
+        """
+        if self.source == "tags":
+            return {tag.strip().lower() for tag in target.tags}
+
+        elif self.source == "types":
+            return {ele.slug.strip().lower() for ele in target.types.current}
+
+        else:
+            raise ValueError(f"Unsupported source: {self.source}")
+
+    def _test_conditions(self, base: set[str]) -> bool:
         conditions = [opt.strip().lower() for opt in self.options.split(":")]
         match_all = parse_flag(self.match)
         results = [check_condition(opt, base) for opt in conditions]
         return all(results) if match_all else any(results)
+
+    def test_with_monster(self, session: Session, target: Monster) -> bool:
+        return self._test_conditions(self.get_dataset_monster(target))
+
+    def test_with_tech(self, session: Session, target: Technique) -> bool:
+        return self._test_conditions(self.get_dataset_technique(target))

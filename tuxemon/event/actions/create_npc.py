@@ -75,21 +75,6 @@ class CreateNpcAction(EventAction):
         if npc_details.speech:
             npc.dialogue = merge_dialogue(npc_details.speech.profile, None)
 
-        dialogue = npc_details.dialogue or NpcDialogueModel(
-            pre_battle=None,
-            post_battle_win=None,
-            post_battle_lose=None,
-            post_battle_draw=None,
-        )
-
-        npc.dialogue = NpcDialogueModel(
-            pre_battle=dialogue.pre_battle,
-            post_battle_win=dialogue.post_battle_win,
-            post_battle_lose=dialogue.post_battle_lose,
-            post_battle_draw=dialogue.post_battle_draw,
-            dialogtrees=dialogue.dialogtrees,
-        )
-
 
 lookup_cache: dict[str, NpcModel] = {}
 

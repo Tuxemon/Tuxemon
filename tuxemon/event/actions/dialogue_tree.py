@@ -53,7 +53,7 @@ class DialogTreeAction(EventAction):
             logger.debug(f"NPC '{self.character}' has no dialogue object.")
             return
 
-        dialog_trees = char.dialogue.dialogtrees
+        dialog_trees = char.dialogue.default.dialogtrees
         if not dialog_trees:
             logger.debug(
                 f"NPC '{self.character}' has no dialogue trees defined."

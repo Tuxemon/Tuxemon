@@ -1283,7 +1283,7 @@ class DialogueChoice(BaseModel):
     )
 
     @field_validator("slug")
-    def translation_exists(cls: NpcDialogueModel, v: str) -> str:
+    def translation_exists(cls: DialogueChoice, v: str) -> str:
         if has.translation(v):
             return v
         raise ValueError(f"no translation exists with msgid: {v}")
@@ -1299,7 +1299,7 @@ class DialogueNode(BaseModel):
     )
 
     @field_validator("slug")
-    def translation_exists(cls: NpcDialogueModel, v: str) -> str:
+    def translation_exists(cls: DialogueNode, v: str) -> str:
         if has.translation(v):
             return v
         raise ValueError(f"no translation exists with msgid: {v}")
@@ -1407,6 +1407,10 @@ class DialogueContent(BaseModel):
     )
     post_battle_draw: Optional[Union[str, list[str]]] = Field(
         None, description="Dialogue if battle is a draw"
+    )
+    dialogtrees: dict[str, DialogueNode] = Field(
+        default_factory=dict,
+        description="Named branching dialogue trees for different contexts",
     )
 
     @field_validator("*")

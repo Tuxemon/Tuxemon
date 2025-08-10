@@ -6,6 +6,7 @@ import logging
 from dataclasses import dataclass
 from typing import final
 
+from tuxemon.db import MissionStatus
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.session import Session
@@ -34,13 +35,28 @@ class SetMissionAction(EventAction):
     def start(self, session: Session) -> None:
         character = get_npc(session, self.character)
         if character is None:
-            logger.error(f"{self.character} not found")
+            logger.error(f"Character '{self.character}' not found.")
             return
 
         missions = (
             character.mission_controller.get_missions_with_met_prerequisites()
         )
         if not missions:
+            logger.info(f"No missions met prerequisites for {self.character}.")
             return
-        else:
-            character.mission_controller.update_mission_progress()
+
+        for mission in missions:
+            if mission.assigned_to not in (None, character.slug):
+                continue
+
+            if mission.assigned_to is None:
+                character.mission_controller.assign_mission(mission)
+
+            mission.check_step_conditions(character)
+
+            progress = mission.get_progress()
+            if progress >= 100.0:
+                mission.update_status(MissionStatus.completed)
+                if mission.repeatable:
+                    mission.completed_steps.clear()
+                    mission.update_status(MissionStatus.pending)

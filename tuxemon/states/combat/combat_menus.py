@@ -14,6 +14,7 @@ from pygame.surface import Surface
 
 from tuxemon import combat, graphics, prepare, tools
 from tuxemon.db import EffectPhase, State, TechSort
+from tuxemon.item.filter import ItemFilter
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import Menu, PopUpMenu
@@ -22,7 +23,7 @@ from tuxemon.sprite import SpriteGroup, VisualSpriteList
 from tuxemon.states.items.item_menu import ItemMenuState
 from tuxemon.states.monster import MonsterMenuState
 from tuxemon.technique.technique import Technique
-from tuxemon.ui.draw import GraphicBox
+from tuxemon.ui.graphic_box import GraphicBox
 from tuxemon.ui.text import TextArea
 
 if TYPE_CHECKING:
@@ -67,7 +68,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
         self.menu_visibility.menu_forfeit = self.enemy.forfeit
         params = {"name": monster.name}
         message = T.format("combat_monster_choice", params)
-        self.combat.alert(message)
+        self.combat.dialog.alert(message)
 
     def calculate_menu_rectangle(self) -> Rect:
         rect_screen = self.client.screen.get_rect()
@@ -184,8 +185,10 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
 
         def choose_item() -> None:
             # open menu to choose item
+            items_filtered = ItemFilter(self.character)
+            items_filtered.set_filter_usable_in_state("MainCombatMenuState")
             menu = self.client.push_state(
-                ItemMenuState(self.character, self.name)
+                ItemMenuState(self.character, self.name, items_filtered)
             )
 
             # set next menu after the selection is made
@@ -314,12 +317,12 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                         "rec": str(tech.game_object.recharge_length),
                     },
                 )
-                self.combat.alert(label, dialog_speed="max")
+                self.combat.dialog.alert(label, dialog_speed="max")
 
             def hide() -> None:
                 params = {"name": self.monster.name}
                 message = T.format("combat_monster_choice", params)
-                self.combat.alert(message, dialog_speed="max")
+                self.combat.dialog.alert(message, dialog_speed="max")
 
             menu.on_menu_selection_change_callback = show
             menu.on_close_callback = hide
@@ -507,7 +510,7 @@ class CombatTargetMenuState(Menu[Monster]):
             self.border.draw(selected.image)
 
             if selected.description:
-                self.alert(selected.description)
+                self.dialog.alert(selected.description)
 
     def on_menu_selection_change(self) -> None:
         """Handles border updates when selection changes."""

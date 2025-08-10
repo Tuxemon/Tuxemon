@@ -1,6 +1,13 @@
 {
   "conditions": [
     {
+      "type": "tag",
+      "parameters": [
+        "gadgets:calamity:bomber"
+      ],
+      "operator": "is"
+    },
+    {
       "type": "has_tech",
       "parameters": [
         "panjandrum"

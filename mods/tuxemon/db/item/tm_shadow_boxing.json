@@ -1,6 +1,13 @@
 {
   "conditions": [
     {
+      "type": "tag",
+      "parameters": [
+        "fists:darkness"
+      ],
+      "operator": "is"
+    },
+    {
       "type": "has_tech",
       "parameters": [
         "shadow_boxing"

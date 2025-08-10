@@ -3,9 +3,9 @@
 from __future__ import annotations
 
 import logging
-import uuid
 from dataclasses import dataclass
 from typing import Optional, final
+from uuid import UUID
 
 from tuxemon.event import get_monster_by_iid
 from tuxemon.event.eventaction import EventAction
@@ -30,7 +30,6 @@ class SetMonsterLevelAction(EventAction):
             variable is specified, all monsters level up.
         levels_added: Number of levels to add. Negative numbers are allowed.
             Default 1.
-
     """
 
     name = "set_monster_level"
@@ -48,16 +47,20 @@ class SetMonsterLevelAction(EventAction):
             if self.variable not in player.game_variables:
                 logger.error(f"Game variable {self.variable} not found")
                 return
-            monster_id = uuid.UUID(player.game_variables[self.variable])
+            monster_id = UUID(player.game_variables[self.variable])
             monster = get_monster_by_iid(session, monster_id)
             if monster is None:
                 logger.error("Monster not found")
                 return
             new_level = monster.level + self.levels_added
             monster.set_level(new_level)
-            monster.moves.update_moves(monster.level, self.levels_added)
+            monster.moves.update_moves(
+                monster.level, self.levels_added, monster.stage
+            )
         else:
             for monster in player.monsters:
                 new_level = monster.level + self.levels_added
                 monster.set_level(new_level)
-                monster.moves.update_moves(monster.level, self.levels_added)
+                monster.moves.update_moves(
+                    monster.level, self.levels_added, monster.stage
+                )

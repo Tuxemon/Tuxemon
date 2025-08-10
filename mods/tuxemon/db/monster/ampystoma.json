@@ -70,7 +70,8 @@
     "light",
     "weather",
     "water",
-    "electricity"
+    "electricity",
+    "amphibian"
   ],
   "shape": "brute",
   "stage": "stage1",

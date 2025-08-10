@@ -9,7 +9,7 @@ from typing import TYPE_CHECKING, Optional
 if TYPE_CHECKING:
     from tuxemon.platform.events import PlayerInput
     from tuxemon.platform.input_manager import InputManager
-    from tuxemon.state import StateManager
+    from tuxemon.state.manager import StateManager
 
 logger = logging.getLogger(__name__)
 

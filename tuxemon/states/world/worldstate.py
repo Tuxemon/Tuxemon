@@ -23,7 +23,7 @@ from tuxemon.platform.events import PlayerInput
 from tuxemon.platform.tools import translate_input_event
 from tuxemon.player import Player
 from tuxemon.session import Session
-from tuxemon.state import State
+from tuxemon.state.state import State
 from tuxemon.states.world.world_menus import WorldMenuManager
 from tuxemon.states.world.world_transition import WorldTransition
 from tuxemon.teleporter import Teleporter
@@ -43,7 +43,7 @@ direction_map: Mapping[int, Direction] = {
 
 
 class WorldSave(TypedDict, total=False):
-    pass
+    menu_flags: dict[str, bool]
 
 
 class WorldState(State):
@@ -73,10 +73,14 @@ class WorldState(State):
     def get_state(self, session: Session) -> WorldSave:
         """Returns a dictionary of the World to be saved."""
         state: WorldSave = {}
+        state["menu_flags"] = self.menu_manager.menu_flags.export()
         return state
 
     def set_state(self, session: Session, save_data: WorldSave) -> None:
         """Recreates the World from the provided saved data."""
+        self.menu_manager.menu_flags.import_flags(
+            save_data.get("menu_flags", {})
+        )
 
     def resume(self) -> None:
         """Called after returning focus to this state"""

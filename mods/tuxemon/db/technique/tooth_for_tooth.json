@@ -1,0 +1,41 @@
+{
+  "tech_id": 242,
+  "accuracy": 1.0,
+  "animation": "lance_ice",
+  "effects": [
+    {
+      "type": "sacrifice",
+      "parameters": [
+        "0.5"
+      ]
+    }
+  ],
+  "flip_axes": "xy",
+  "speed": "normal",
+  "potency": 0.0,
+  "power": 0.0,
+  "range": "melee",
+  "recharge": 3,
+  "sfx": "sfx_blaster",
+  "slug": "tooth_for_tooth",
+  "sort": "damage",
+  "modifiers": [],
+  "target": {
+    "enemy_monster": true,
+    "enemy_team": false,
+    "enemy_trainer": false,
+    "own_monster": false,
+    "own_team": false,
+    "own_trainer": false
+  },
+  "category": "reserved",
+  "tags": [
+    "reserved"
+  ],
+  "types": [
+    "fire"
+  ],
+  "use_failure": "combat_miss",
+  "use_success": null,
+  "use_tech": "combat_used_x"
+}

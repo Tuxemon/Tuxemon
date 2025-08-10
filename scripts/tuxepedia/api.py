@@ -4,6 +4,7 @@
     author: Andy Mender <andymenderunix@gmail.com>
     license: GPLv3
 """
+
 import json
 import logging
 import os
@@ -63,15 +64,18 @@ class TuxepediaStore:
         for txmn_name in txmn_json_full:
 
             # full path to tuxemon JSON file
-            txmn_json_path = os.path.join(RESOURCE_PATHS.monster_stats,
-                                          fix_name(txmn_name.lower()) + ".json")
+            txmn_json_path = os.path.join(
+                RESOURCE_PATHS.monster_stats, fix_name(txmn_name.lower()) + ".json"
+            )
 
             # update tuxemon JSON record if it already exists
             if os.path.isfile(txmn_json_path):
                 self.update_txmn_json(txmn_name, txmn_json_full[txmn_name])
 
                 # log overwrite operation
-                self.get_logger().debug("JSON record for {} exists and was overwritten.".format(txmn_name))
+                self.get_logger().debug(
+                    "JSON record for {} exists and was overwritten.".format(txmn_name)
+                )
 
             # create new tuxemon JSON entry
             else:
@@ -94,8 +98,9 @@ class TuxepediaStore:
         """
 
         # full path to tuxemon JSON file
-        txmn_json_path = os.path.join(RESOURCE_PATHS.monster_stats,
-                                      fix_name(txmn_name.lower()) + ".json")
+        txmn_json_path = os.path.join(
+            RESOURCE_PATHS.monster_stats, fix_name(txmn_name.lower()) + ".json"
+        )
 
         # load previous tuxemon JSON from file
         with open(txmn_json_path) as f:
@@ -128,8 +133,9 @@ class TuxepediaStore:
         txmn_json = None
 
         # full path to tuxemon JSON file
-        txmn_json_path = os.path.join(RESOURCE_PATHS.monster_stats,
-                                      txmn_name.lower() + ".json")
+        txmn_json_path = os.path.join(
+            RESOURCE_PATHS.monster_stats, txmn_name.lower() + ".json"
+        )
 
         if os.path.isfile(txmn_json_path):
             with open(txmn_json_path) as f:
@@ -137,6 +143,8 @@ class TuxepediaStore:
 
         # report if no JSON record was found
         else:
-            self.get_logger().warning("Valid JSON record for {} not found.".format(txmn_name))
+            self.get_logger().warning(
+                "Valid JSON record for {} not found.".format(txmn_name)
+            )
 
         return txmn_json

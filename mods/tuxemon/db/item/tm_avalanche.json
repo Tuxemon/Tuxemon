@@ -1,9 +1,9 @@
 {
   "conditions": [
     {
-      "type": "type",
+      "type": "tag",
       "parameters": [
-        "earth:water"
+        "calamity:ice:rock"
       ],
       "operator": "is"
     },

@@ -31,13 +31,13 @@ msgid "potion"
 msgstr "Potion"
 
 msgid "potion_description"
-msgstr "Heals a monster by 20 HP."
+msgstr "Heals a monster by 50 HP."
 
 msgid "super_potion"
 msgstr "Super Potion"
 
 msgid "super_potion_description"
-msgstr "Heals a monster by 50 HP."
+msgstr "Heals a monster by 100 HP."
 
 msgid "imperial_potion"
 msgstr "Imperial Potion"
@@ -1517,7 +1517,7 @@ msgstr ""
 "{npc} is disappointed."
 
 msgid "combat_cannot_run_away"
-msgstr "You can't run away!"
+msgstr "Your run attempt failed this time."
 
 msgid "combat_player_run"
 msgstr "You ran away!"
@@ -1787,6 +1787,9 @@ msgstr "{target} is wasting away."
 msgid "combat_state_flinching_get"
 msgstr "{target} flinches and may not act."
 
+msgid "combat_state_charmed_get"
+msgstr "{target} is charmed and might hesitate to act."
+
 msgid "combat_state_wild_get"
 msgstr "{target} has gone wild."
 
@@ -1810,6 +1813,9 @@ msgstr "{target} is turning ranged attacks back on the attacker."
 
 msgid "combat_state_immune"
 msgstr "{target} is immune to {method}"
+
+msgid "combat_state_immune_multiple"
+msgstr "{target} are immune to {method}"
 
 # Generic notifications
 msgid "empty_slot"
@@ -1911,6 +1917,9 @@ msgstr "Charged Up"
 
 msgid "charging"
 msgstr "Charging"
+
+msgid "charmed"
+msgstr "Charmed"
 
 msgid "confused"
 msgstr "Confused"
@@ -2427,8 +2436,8 @@ msgstr "Energy Field"
 
 msgid "evasion_description"
 msgstr ""
-"The user becomes a blur of motion, making it difficult in the next round to "
-"miss."
+"The user becomes a blur of motion, making it difficult to hit with ranged "
+"attacks."
 
 msgid "evasion"
 msgstr "Evasion"
@@ -2550,6 +2559,14 @@ msgstr ""
 
 msgid "food_fight"
 msgstr "Food Fight"
+
+msgid "frighten_description"
+msgstr ""
+"A spooked opponent takes to the higher ground, helping ranged attacks at the"
+" expense of close combat."
+
+msgid "frighten"
+msgstr "Frighten"
 
 msgid "frostbite_description"
 msgstr ""
@@ -2749,9 +2766,7 @@ msgid "kraken"
 msgstr "Kraken"
 
 msgid "lantern_description"
-msgstr ""
-"The user creates a bright light that illuminates the battlefield, boosts its"
-" accuracy and damages the opponent."
+msgstr "The user damages the target with bright light."
 
 msgid "lantern"
 msgstr "Lantern"
@@ -3373,7 +3388,7 @@ msgid "staff_smash"
 msgstr "Staff Smash"
 
 msgid "stampede_description"
-msgstr "A powerful, overwhelming charge that inflicts heavy physical damage."
+msgstr "A powerful charge that puts the user in motion."
 
 msgid "stampede"
 msgstr "Stampede"
@@ -3483,7 +3498,7 @@ msgid "suplex"
 msgstr "Suplex"
 
 msgid "surf_description"
-msgstr "AA massive wave crashes down upon the opponent."
+msgstr "A massive wave crashes down upon the opponent."
 
 msgid "surf"
 msgstr "Surf"
@@ -3513,6 +3528,12 @@ msgstr "The user assumes a defensive stance, increasing its accuracy."
 
 msgid "take_cover"
 msgstr "Take Cover"
+
+msgid "taunt_description"
+msgstr "A quick jab provokes the opponent into a powerful but distracted rage."
+
+msgid "taunt"
+msgstr "Taunt"
 
 msgid "ten_thousand_feathers_description"
 msgstr ""
@@ -3572,6 +3593,12 @@ msgstr "The tongue is jabbed into the opponent, and their blood drained."
 
 msgid "tonguespear"
 msgstr "Tonguespear"
+
+msgid "tooth_for_tooth_description"
+msgstr "The user bares their fangs, taking pain to give it back."
+
+msgid "tooth_for_tooth"
+msgstr "Tooth for Tooth"
 
 msgid "torch_description"
 msgstr "A projectile that strikes the opponent."
@@ -3962,7 +3989,7 @@ msgid "menu_alphabet"
 msgstr "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890.-!"
 
 msgid "dont_care"
-msgstr "DON'T CARE"
+msgstr "RANDOM"
 
 # Monster Menu notifications
 msgid "monster_menu_info"
@@ -4042,8 +4069,21 @@ msgstr ""
 msgid "uninstall_app"
 msgstr "Unable to uninstall the app."
 
+# Missions
 msgid "mission_deletion"
 msgstr "Do you want to delete this mission?"
+
+msgid "mission_next"
+msgstr "Next mission"
+
+msgid "mission_repeatable"
+msgstr "This mission is repeatable."
+
+msgid "mission_delete"
+msgstr "Delete mission"
+
+msgid "mission_progress"
+msgstr "Progress"
 
 # Player State
 msgid "tuxepedia_progress"
@@ -4128,6 +4168,9 @@ msgstr "To The Bottom"
 
 msgid "menu_party_level_lowest"
 msgstr "Lowest Level"
+
+msgid "menu_party_alignment"
+msgstr "Alignment"
 
 msgid "menu_party_level_highest"
 msgstr "Highest Level"
@@ -8590,6 +8633,18 @@ msgstr "Dry"
 msgid "taste_dry_description"
 msgstr "A parched, dusty flavor, like stale crackers that dull your senses."
 
+msgid "taste_savory"
+msgstr "Savory"
+
+msgid "taste_savory_description"
+msgstr "A rich, slow-roasted flavor, like smoky mushrooms and caramelized onions that settle warmly in your core."
+
+msgid "taste_bland"
+msgstr "Bland"
+
+msgid "taste_bland_description"
+msgstr "A vague, chalky taste, like powdered mashed potatoes made with a sigh instead of water."
+
 # Terrains
 msgid "terrain_freshwater"
 msgstr "Freshwater"
@@ -11243,7 +11298,8 @@ msgstr ""
 
 msgid "spyder_intro_shopkeeper4"
 msgstr ""
-"I'm sorry, you are not a Gold member. This offer is for Gold members only."
+"I'm sorry, you are not a Gold member. This offer is for Gold members only.\n"
+"Please go home now."
 
 msgid "spyder_preintro00"
 msgstr ""
@@ -11430,6 +11486,9 @@ msgid "spyder_papertown_firstfight_win"
 msgstr ""
 "Huh, must be a fluke. There's no way the new model would be worse than the "
 "old!"
+
+msgid "spyder_papertown_firstfight_pause"
+msgstr "..."
 
 msgid "spyder_papertown_firstfight_lose"
 msgstr "As expected! Old models can't compare to new ones!"
@@ -11662,6 +11721,9 @@ msgstr ""
 "Tuxeballs allow you to capture tuxemon and keep them as servants. \n"
 " They're most effective when used on injured and low-level tuxemon. Select them during battle from your Item menu. \n"
 " Thank you for listening. Here's five Tuxeballs as a free sample. "
+
+msgid "spyder_cotton_tuxepediawelcome"
+msgstr "Good to see you. You're just in time."
 
 msgid "spyder_cotton_tuxepediaahem"
 msgstr "Ahem."
@@ -14003,115 +14065,6 @@ msgstr ""
 msgid "spyder_dragonscave_drokoro1"
 msgstr "Rawr!"
 
-msgid "spyder_park_welcome"
-msgstr ""
-"Welcome to Pepper Park. Entry is ${{currency}}500. You'll get 25 Park "
-"Tuxeball. Are you ready?"
-
-msgid "spyder_park_assistant"
-msgstr "Welcome!"
-
-msgid "spyder_park_guardian1"
-msgstr "Do you want to interrupt your experience?"
-
-msgid "spyder_park_guardian2"
-msgstr "Have you seen tree stumps?"
-
-msgid "spyder_park_guardian3"
-msgstr ""
-"Illegal logging. The authority's pledge to curb illegal logging exists only on paper. In reality they have not been able to stop it.\n"
-"I have no faith that the authority will protect the forests and the environment. We have to take this matter into our own hands."
-
-msgid "spyder_park_guardian4"
-msgstr "It's revolting!"
-
-msgid "spyder_park_guardian5"
-msgstr ""
-"Do you think we got sewer systems and centralised treatment plants inside a "
-"park?!"
-
-msgid "spyder_park_nomoney"
-msgstr "Unfortunately you don't have enough money!"
-
-msgid "spyder_park_yesmoney"
-msgstr "Enjoy your experience!"
-
-msgid "spyder_park_steps100"
-msgstr "You still have 100 steps left!"
-
-msgid "spyder_park_scientist1"
-msgstr ""
-"Many parks limit or even prohibit scientific activities, but we are at the "
-"forefront of ecological knowledge!"
-
-msgid "spyder_park_tennisplayer1"
-msgstr "Fingers crossed your next encounter is with a friendly one!"
-
-msgid "spyder_park_professor1"
-msgstr ""
-"There are fences for the visitors, but no fences around the park for the "
-"monsters, and that's the way a park is supposed to be."
-
-msgid "spyder_park_soldier1"
-msgstr ""
-"I think the park has done a pretty good job of being everyone's friend."
-
-msgid "spyder_park_billie"
-msgstr ""
-"Hey ${{name}}! Maybe I'll see you deeper in the park. Bet I'll catch more "
-"than you!"
-
-msgid "menu_park_summary"
-msgstr "Park Summary"
-
-msgid "menu_park_seen"
-msgstr "Unique monsters seen"
-
-msgid "menu_park_total"
-msgstr "Total attempts"
-
-msgid "menu_park_capture"
-msgstr "Successful captures"
-
-msgid "menu_park_failed"
-msgstr "Failed attempts"
-
-msgid "menu_park_success_rate"
-msgstr "Capture success rate"
-
-msgid "menu_park_sighting"
-msgstr "Most frequent sightings"
-
-msgid "menu_park_no_sighting"
-msgstr "No sightings recorded."
-
-msgid "menu_park_highlights"
-msgstr "Encounter behavior highlights"
-
-msgid "menu_park_no_highlights"
-msgstr "No encounter history recorded."
-
-msgid "menu_park_thanks"
-msgstr "Thanks for exploring the park!"
-
-msgid "menu_park_afraid"
-msgstr "{user} recoils, its body tense and ready to flee."
-
-msgid "menu_park_stare"
-msgstr "{user} fixes its gaze on you, unreadable and still."
-
-msgid "menu_park_wander"
-msgstr "{user} moves slowly, lost in thought or instinct."
-
-msgid "menu_park_resting"
-msgstr "{user} curls up, its breath slow and steady."
-
-msgid "menu_park_playful"
-msgstr "{user} dashes around, kicking up dust in excitement."
-
-msgid "menu_park_alert"
-msgstr "{user} suddenly stops, sensing something nearby."
-
 msgid "0floor"
 msgstr "Ground Floor"
 
@@ -14641,7 +14594,7 @@ msgstr ""
 
 msgid "spyder_leatherhouse1_tennisplayer1"
 msgstr ""
-"Is Frostbite an Earth element technique or a Water element technique? "
+"Is Grinflare an Earth element tuxemon or a Fire element tuxemon?"
 
 msgid "spyder_leatherhouse1_tennisplayer2"
 msgstr "Trick question - it's both!"
@@ -17259,285 +17212,389 @@ msgstr ""
 "You and Fruitera will be very compatible together.\n"
 "Now get to school! We don't want you in trouble on your first day."
 
-# Spin Off Spyder ##
-msgid "spyder_route7_arnold"
+# Spin Off Spyder - Eclipse ##
+msgid "eclipse_route7_arnold"
 msgstr "Arnold"
 
-msgid "spyder_route7_sylvester"
+msgid "eclipse_route7_sylvester"
 msgstr "Sylvester"
 
-msgid "spyder_route7_fritz"
+msgid "eclipse_route7_fritz"
 msgstr "Fritz"
 
-msgid "spyder_route7_statius"
+msgid "eclipse_route7_statius"
 msgstr "Statius"
 
-msgid "spyder_route7_jacopo"
+msgid "eclipse_route7_jacopo"
 msgstr "Jacopo"
 
-msgid "spyder_route7_pia"
+msgid "eclipse_route7_pia"
 msgstr "Pia"
 
-msgid "spyder_route7_penitent"
+msgid "eclipse_route7_penitent"
 msgstr "Penitent"
 
-msgid "spyder_route7_nino"
+msgid "eclipse_route7_nino"
 msgstr "Nino"
 
-msgid "spyder_route7_hugh"
+msgid "eclipse_route7_hugh"
 msgstr "Hugh"
 
-msgid "spyder_route7_arnaut"
+msgid "eclipse_route7_arnaut"
 msgstr "Arnaut"
 
-msgid "spyder_route7_conrad"
+msgid "eclipse_route7_conrad"
 msgstr "Conrad"
 
-msgid "spyder_route7_manfred"
+msgid "eclipse_route7_manfred"
 msgstr "Manfred"
 
-msgid "spyder_route7_sordello"
+msgid "eclipse_route7_sordello"
 msgstr "Sordello"
 
-msgid "spyder_route7_arnold1"
+msgid "eclipse_route7_arnold1"
 msgstr "Did you hear about the new tuxemon discovered in the Archipelago?"
 
-msgid "spyder_route7_sylvester1"
+msgid "eclipse_route7_sylvester1"
 msgstr "The sea is a long way from here."
 
-msgid "spyder_route7_fritz1"
+msgid "eclipse_route7_fritz1"
 msgstr ""
 "A typical Crystal breakfast consists of white sausage, wheat beer and "
 "pretzels."
 
-msgid "spyder_route7_statius1"
+msgid "eclipse_route7_statius1"
 msgstr "What would you change about yourself if you could change one thing?"
 
-msgid "spyder_route7_statius2"
+msgid "eclipse_route7_statius2"
 msgstr "Probably my party, monsters party."
 
-msgid "spyder_route7_jacopo1"
+msgid "eclipse_route7_jacopo1"
 msgstr "Are you interested to download an app?"
 
-msgid "spyder_route7_jacopo2"
+msgid "eclipse_route7_jacopo2"
 msgstr "The app matches zombies with victims."
 
-msgid "spyder_route7_pia1"
+msgid "eclipse_route7_pia1"
 msgstr "Are you really going to ignore me?"
 
-msgid "spyder_route7_pia2"
+msgid "eclipse_route7_pia2"
 msgstr "After everything that happened during this fight?"
 
-msgid "spyder_route7_penitent1"
+msgid "eclipse_route7_penitent1"
 msgstr ""
 "The chocolate chip cookies smelled so good that I ate one without asking."
 
-msgid "spyder_route7_penitent2"
+msgid "eclipse_route7_penitent2"
 msgstr "Please, don't tell anyone!"
 
-msgid "spyder_route7_nino1"
+msgid "eclipse_route7_nino1"
 msgstr "I enjoyed the peacefulness of nature on the mountain bushwalk."
 
-msgid "spyder_route7_nino2"
+msgid "eclipse_route7_nino2"
 msgstr "Not so peaceful!"
 
-msgid "spyder_route7_hugh1"
+msgid "eclipse_route7_hugh1"
 msgstr "Do you mind if I smoke?"
 
-msgid "spyder_route7_hugh2"
+msgid "eclipse_route7_hugh2"
 msgstr "How to quit?"
 
-msgid "spyder_route7_arnaut1"
+msgid "eclipse_route7_arnaut1"
 msgstr ""
 "The bad thing about inferiority complexes is that the wrong people have "
 "them."
 
-msgid "spyder_route7_arnaut2"
+msgid "eclipse_route7_arnaut2"
 msgstr "Oops!"
 
-msgid "spyder_route7_conrad1"
+msgid "eclipse_route7_conrad1"
 msgstr "The Lion Mountain got snow, and all the tourists are very excited."
 
-msgid "spyder_route7_conrad2"
+msgid "eclipse_route7_conrad2"
 msgstr "Too many tourists."
 
-msgid "spyder_route7_manfred1"
+msgid "eclipse_route7_manfred1"
 msgstr "Do you think our lives will ever go back to normal?"
 
-msgid "spyder_route7_manfred2"
+msgid "eclipse_route7_manfred2"
 msgstr "I mean... after Cotton Town."
 
-msgid "spyder_route7_sordello1"
+msgid "eclipse_route7_sordello1"
 msgstr "If you could buy anything you wanted, what would you buy?"
 
-msgid "spyder_route7_sordello2"
+msgid "eclipse_route7_sordello2"
 msgstr "Probably a couple of revives and some potions."
 
-msgid "spyder_crystal_alert_skating"
+msgid "eclipse_crystal_alert_skating"
 msgstr "Always be cautious! Always bring safety gear!"
 
-msgid "spyder_crystal_hackerchat"
+msgid "eclipse_crystal_hackerchat"
 msgstr "Two weeks ago a tremendous blizzard struck ${{map_name}}."
 
-msgid "spyder_crystal_barmaid"
+msgid "eclipse_crystal_barmaid"
 msgstr "I don't skate very well."
 
-msgid "spyder_mountain_road_interrupted"
+msgid "eclipse_mountain_road_interrupted"
 msgstr "Road blocked due to landslide."
 
-msgid "spyder_crystal_grannypiper"
+msgid "eclipse_crystal_grannypiper"
 msgstr ""
 "The Great Blizzard's impact was so great that, still today, survivors met to"
 " commemorate."
 
-msgid "spyder_crystal_monk"
+msgid "eclipse_crystal_monk"
 msgstr "I'm reminded of the time the blizzard killed my friend."
 
-msgid "spyder_crystal_granny"
+msgid "eclipse_crystal_granny"
 msgstr "That's, uh... heavy. I'm sorry to hear that."
 
-msgid "spyder_crystal_shopkeeper"
+msgid "eclipse_crystal_shopkeeper"
 msgstr ""
 "We worship and have deep respect for the mountain, we trust it will save us "
 "from whatever comes."
 
-msgid "spyder_crystal_maniac"
+msgid "eclipse_crystal_maniac"
 msgstr ""
 "Climbers need to wake up and understand that climbing Lion Mountain is extremely risky.\n"
 "They need to stop believing just because they have strong tuxemon that they will be able to climb."
 
-msgid "spyder_crystal_beck"
+msgid "eclipse_crystal_beck"
 msgstr "That's not even a little bit funny, buddy."
 
-msgid "spyder_crystal_tvwatch"
+msgid "eclipse_crystal_tvwatch"
 msgstr "A journalist travels the globe hunting for lost civilizations."
 
-msgid "spyder_lionmountain_jacques"
+msgid "eclipse_lionmountain_jacques"
 msgstr "Jacques"
 
-msgid "spyder_lionmountain_adam"
+msgid "eclipse_lionmountain_adam"
 msgstr "Adam"
 
-msgid "spyder_lionmountain_arlene"
+msgid "eclipse_lionmountain_arlene"
 msgstr "Arlene"
 
-msgid "spyder_lionmountain_david"
+msgid "eclipse_lionmountain_david"
 msgstr "David"
 
-msgid "spyder_lionmountain_alexander"
+msgid "eclipse_lionmountain_alexander"
 msgstr "Alexander"
 
-msgid "spyder_lionmountain_emilio"
+msgid "eclipse_lionmountain_emilio"
 msgstr "Emilio"
 
-msgid "spyder_lionmountain_chhurim"
+msgid "eclipse_lionmountain_chhurim"
 msgstr "Chhurim"
 
-msgid "spyder_lionmountain_tom"
+msgid "eclipse_lionmountain_tom"
 msgstr "Tom"
 
-msgid "spyder_lionmountain_conrad"
+msgid "eclipse_lionmountain_conrad"
 msgstr "Conrad"
 
-msgid "spyder_lionmountain_kurt"
+msgid "eclipse_lionmountain_kurt"
 msgstr "Kurt"
 
-msgid "spyder_lionmountain_snarlon"
+msgid "eclipse_lionmountain_snarlon"
 msgstr "Snarlon"
 
-msgid "spyder_lionmountain_jacques1"
+msgid "eclipse_lionmountain_jacques1"
 msgstr ""
 "I've never been that high before \n"
 " and it's very very strenuous to climb ice like that."
 
-msgid "spyder_lionmountain_jacques2"
+msgid "eclipse_lionmountain_jacques2"
 msgstr ""
 "Not only is it technically difficult and unstable and frightening \n"
 " but your heart goes like crazy because of the altitude."
 
-msgid "spyder_lionmountain_adam1"
+msgid "eclipse_lionmountain_adam1"
 msgstr "I was up, it was windy."
 
-msgid "spyder_lionmountain_adam2"
+msgid "eclipse_lionmountain_adam2"
 msgstr "Then it started snowing."
 
-msgid "spyder_lionmountain_arlene1"
+msgid "eclipse_lionmountain_arlene1"
 msgstr "No anchors at any point."
 
-msgid "spyder_lionmountain_arlene2"
+msgid "eclipse_lionmountain_arlene2"
 msgstr "It was physically very, very tiring, full-body climbing really."
 
-msgid "spyder_lionmountain_david1"
+msgid "eclipse_lionmountain_david1"
 msgstr ""
 "It took me the best part of five or six hours to climb about the last piece."
 
-msgid "spyder_lionmountain_david2"
+msgid "eclipse_lionmountain_david2"
 msgstr "Carried on way after it got dark."
 
-msgid "spyder_lionmountain_alexander1"
+msgid "eclipse_lionmountain_alexander1"
 msgstr "Already the clouds are coming in from the east. Big clouds."
 
-msgid "spyder_lionmountain_alexander2"
+msgid "eclipse_lionmountain_alexander2"
 msgstr "I expect this ridge to be quite ... Brace yourself."
 
-msgid "spyder_lionmountain_emilio1"
+msgid "eclipse_lionmountain_emilio1"
 msgstr "Half an hour to an hour after leaving the summit, I was lost."
 
-msgid "spyder_lionmountain_emilio2"
+msgid "eclipse_lionmountain_emilio2"
 msgstr "I was in the wild, I couldn't see anything."
 
-msgid "spyder_lionmountain_chhurim1"
+msgid "eclipse_lionmountain_chhurim1"
 msgstr "I'm going to make the summit, I can actually make the summit."
 
-msgid "spyder_lionmountain_chhurim2"
+msgid "eclipse_lionmountain_chhurim2"
 msgstr "Will there be anyone there?"
 
-msgid "spyder_lionmountain_tom1"
+msgid "eclipse_lionmountain_tom1"
 msgstr "I don't know entirely what happened for the rest of that night."
 
-msgid "spyder_lionmountain_tom2"
+msgid "eclipse_lionmountain_tom2"
 msgstr ""
 "I stopped looking at the watch, and everything just started to go apart."
 
-msgid "spyder_lionmountain_conrad1"
+msgid "eclipse_lionmountain_conrad1"
 msgstr "I remember smelling something."
 
-msgid "spyder_lionmountain_conrad2"
+msgid "eclipse_lionmountain_conrad2"
 msgstr "It was a really strong smell."
 
-msgid "spyder_lionmountain_kurt1"
+msgid "eclipse_lionmountain_kurt1"
 msgstr "I'm not capable of going any further."
 
-msgid "spyder_lionmountain_kurt2"
+msgid "eclipse_lionmountain_kurt2"
 msgstr "I made the mistake of having a little bit of hope."
 
-msgid "spyder_lionmountain_snarlon1"
+msgid "eclipse_lionmountain_snarlon1"
 msgstr "Graar!"
 
-msgid "spyder_lionmountain_snarlon2"
+msgid "eclipse_lionmountain_snarlon2"
 msgstr "Ufff."
 
-msgid "spyder_lionmountain_nurse1"
+msgid "eclipse_lionmountain_nurse1"
 msgstr "To be honest with you, I am older than you think."
 
-msgid "spyder_lionmountain_scientist1"
+msgid "eclipse_lionmountain_scientist1"
 msgstr "That's the biggest grasshopper I've ever seen."
 
-msgid "spyder_lionmountain_enforcer1"
+msgid "eclipse_lionmountain_enforcer1"
 msgstr "So the incident at the Datacenter has been resolved?"
 
-msgid "spyder_lionmountain_enforcer2"
+msgid "eclipse_lionmountain_enforcer2"
 msgstr ""
 "It could have been so much worse.\n"
 " Omnichannel was developing a tuxemon that can control human emotion.\n"
 " If Kernel had gotten access to Chromeye, there would have been no stopping it."
 
-msgid "spyder_lionmountain_enforcer3"
+msgid "eclipse_lionmountain_enforcer3"
 msgstr "So when the breakdown occurred, I retreated here."
 
-msgid "spyder_lionmountain_enforcer4"
+msgid "eclipse_lionmountain_enforcer4"
 msgstr ""
 "It looks like you can handle this. Maybe you are the only one who can."
+
+msgid "eclipse_park_welcome"
+msgstr ""
+"Welcome to Pepper Park. Entry is ${{currency}}500. You'll get 25 Park "
+"Tuxeball. Are you ready?"
+
+msgid "eclipse_park_assistant"
+msgstr "Welcome!"
+
+msgid "eclipse_park_guardian1"
+msgstr "Do you want to interrupt your experience?"
+
+msgid "eclipse_park_guardian2"
+msgstr "Have you seen tree stumps?"
+
+msgid "eclipse_park_guardian3"
+msgstr ""
+"Illegal logging. The authority's pledge to curb illegal logging exists only on paper. In reality they have not been able to stop it.\n"
+"I have no faith that the authority will protect the forests and the environment. We have to take this matter into our own hands."
+
+msgid "eclipse_park_guardian4"
+msgstr "It's revolting!"
+
+msgid "eclipse_park_guardian5"
+msgstr ""
+"Do you think we got sewer systems and centralised treatment plants inside a "
+"park?!"
+
+msgid "eclipse_park_nomoney"
+msgstr "Unfortunately you don't have enough money!"
+
+msgid "eclipse_park_yesmoney"
+msgstr "Enjoy your experience!"
+
+msgid "eclipse_park_steps100"
+msgstr "You still have 100 steps left!"
+
+msgid "eclipse_park_scientist1"
+msgstr ""
+"Many parks limit or even prohibit scientific activities, but we are at the "
+"forefront of ecological knowledge!"
+
+msgid "eclipse_park_tennisplayer1"
+msgstr "Fingers crossed your next encounter is with a friendly one!"
+
+msgid "eclipse_park_professor1"
+msgstr ""
+"There are fences for the visitors, but no fences around the park for the "
+"monsters, and that's the way a park is supposed to be."
+
+msgid "eclipse_park_soldier1"
+msgstr ""
+"I think the park has done a pretty good job of being everyone's friend."
+
+msgid "menu_park_summary"
+msgstr "Park Summary"
+
+msgid "menu_park_seen"
+msgstr "Unique monsters seen"
+
+msgid "menu_park_total"
+msgstr "Total attempts"
+
+msgid "menu_park_capture"
+msgstr "Successful captures"
+
+msgid "menu_park_failed"
+msgstr "Failed attempts"
+
+msgid "menu_park_success_rate"
+msgstr "Capture success rate"
+
+msgid "menu_park_sighting"
+msgstr "Most frequent sightings"
+
+msgid "menu_park_no_sighting"
+msgstr "No sightings recorded."
+
+msgid "menu_park_highlights"
+msgstr "Encounter behavior highlights"
+
+msgid "menu_park_no_highlights"
+msgstr "No encounter history recorded."
+
+msgid "menu_park_thanks"
+msgstr "Thanks for exploring the park!"
+
+msgid "menu_park_afraid"
+msgstr "{user} recoils, its body tense and ready to flee."
+
+msgid "menu_park_stare"
+msgstr "{user} fixes its gaze on you, unreadable and still."
+
+msgid "menu_park_wander"
+msgstr "{user} moves slowly, lost in thought or instinct."
+
+msgid "menu_park_resting"
+msgstr "{user} curls up, its breath slow and steady."
+
+msgid "menu_park_playful"
+msgstr "{user} dashes around, kicking up dust in excitement."
+
+msgid "menu_park_alert"
+msgstr "{user} suddenly stops, sensing something nearby."
 
 # JUNKYARD ##
 msgid "junkyard_01"

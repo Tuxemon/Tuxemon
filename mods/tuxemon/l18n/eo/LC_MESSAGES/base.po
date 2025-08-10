@@ -55,7 +55,7 @@ msgid "super_potion"
 msgstr "Ega pocio"
 
 msgid "super_potion_description"
-msgstr "Ĝi sanigas monstron de 150 SP."
+msgstr "Ĝi sanigas monstron de 100 SP."
 
 # Imperial Potion
 msgid "imperial_potion"

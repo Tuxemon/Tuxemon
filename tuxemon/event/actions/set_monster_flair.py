@@ -3,13 +3,13 @@
 from __future__ import annotations
 
 import logging
-import uuid
 from dataclasses import dataclass
 from typing import final
+from uuid import UUID
 
 from tuxemon.event import get_monster_by_iid
 from tuxemon.event.eventaction import EventAction
-from tuxemon.monster import Flair
+from tuxemon.monster_dir.sprite import Flair
 from tuxemon.session import Session
 
 logger = logging.getLogger(__name__)
@@ -31,7 +31,6 @@ class SetMonsterFlairAction(EventAction):
             variable is specified, all monsters are changed.
         category: Category of the monster flair.
         flair: Name of the monster flair.
-
     """
 
     name = "set_monster_flair"
@@ -44,7 +43,7 @@ class SetMonsterFlairAction(EventAction):
         if self.variable not in player.game_variables:
             logger.error(f"Game variable {self.variable} not found")
             return
-        monster_id = uuid.UUID(player.game_variables[self.variable])
+        monster_id = UUID(player.game_variables[self.variable])
         monster = get_monster_by_iid(session, monster_id)
         if monster is None:
             logger.error("Monster not found")

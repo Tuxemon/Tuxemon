@@ -166,7 +166,8 @@ class TextFormatter:
             # Register common attributes
             for key, func in monster_attributes.items():
                 self.register_replacement(
-                    f"${{monster_{i}_{key}}}", partial(func, monster)
+                    "${{monster_" + str(i) + "_" + key + "}}",
+                    partial(func, monster),
                 )
 
             # Register unit-dependent attributes
@@ -175,16 +176,19 @@ class TextFormatter:
                 unit_key
             ].items():
                 self.register_replacement(
-                    f"${{monster_{i}_{key}}}", partial(func, monster)
+                    "${{monster_" + str(i) + "_" + key + "}}",
+                    partial(func, monster),
                 )
 
     def _register_game_variable_replacements(self) -> None:
         """Registers replacements for game-specific variables."""
         player = self.session.player
         for key, value in player.game_variables.items():
-            self.register_replacement(f"${{var:{key}}}", partial(str, value))
             self.register_replacement(
-                f"${{msgid:{key}}}",
+                "${{var:" + key + "}}", partial(str, value)
+            )
+            self.register_replacement(
+                "${{msgid:" + key + "}}",
                 partial(self.translator.translate, str(value)),
             )
 

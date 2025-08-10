@@ -3,12 +3,16 @@
   "modifiers": [
     {
       "attribute": "type",
-      "values": ["fire"],
+      "values": [
+        "fire"
+      ],
       "multiplier": 0.0
     },
     {
       "attribute": "type",
-      "values": ["frost"],
+      "values": [
+        "frost"
+      ],
       "multiplier": 2.0
     }
   ],
@@ -16,7 +20,10 @@
   "effects": [
     {
       "type": "burnt",
-      "parameters": ["8"]
+      "parameters": [
+        "8",
+        "weakest"
+      ]
     }
   ],
   "flip_axes": "",

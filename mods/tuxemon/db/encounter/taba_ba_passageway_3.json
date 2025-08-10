@@ -2,7 +2,7 @@
   "monsters": [
     {
       "encounter_rate": 3,
-      "exp_req_mod": 15,
+      "exp_req_mod": 3,
       "held_items": [],
       "level_range": [
         5,
@@ -13,7 +13,7 @@
     },
     {
       "encounter_rate": 3,
-      "exp_req_mod": 15,
+      "exp_req_mod": 3,
       "held_items": [],
       "level_range": [
         5,
@@ -24,7 +24,7 @@
     },
     {
       "encounter_rate": 0.8,
-      "exp_req_mod": 15,
+      "exp_req_mod": 3,
       "held_items": [],
       "level_range": [
         6,

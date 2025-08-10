@@ -144,7 +144,7 @@ class MonsterInfoState(PygameMenuState):
         lab7.translate(fxw(0.65), fxh(0.35))
         # species
         lab8: Any = menu.add.label(
-            title=monster.category,
+            title=monster.species_name,
             label_id="species",
             font_size=self.font_type.smaller,
             align=locals.ALIGN_LEFT,

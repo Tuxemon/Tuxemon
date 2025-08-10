@@ -94,7 +94,7 @@ class RewardSystem:
                 for non_participant in non_participants:
                     levels = non_participant.give_experience(awarded_exp)
                     non_participant.moves.update_moves(
-                        non_participant.level, levels
+                        non_participant.level, levels, non_participant.stage
                     )
 
             for winner in winners:
@@ -115,7 +115,9 @@ class RewardSystem:
                 # Grant experience and update moves
                 if winner.owner and winner.owner.isplayer:
                     levels = winner.give_experience(awarded_exp)
-                    new_moves = winner.moves.update_moves(winner.level, levels)
+                    new_moves = winner.moves.update_moves(
+                        winner.level, levels, winner.stage
+                    )
                     if new_moves:
                         rewards_data.moves.extend(new_moves)
                     rewards_data.messages.append(

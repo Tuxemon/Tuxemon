@@ -11,6 +11,7 @@ import yaml
 
 from tuxemon.animation import Animation
 from tuxemon.constants import paths
+from tuxemon.constants.dialog_speed import DIALOG_SPEED_PROFILES
 from tuxemon.platform.const import buttons, events
 
 Animation.default_transition = "out_quint"
@@ -95,9 +96,9 @@ class TuxemonConfig:
             "encounter_rate_modifier"
         ]
         self.dialog_speed: str = gameplay["dialog_speed"]
-        if self.dialog_speed not in ("slow", "max"):
+        if self.dialog_speed not in DIALOG_SPEED_PROFILES:
             raise ValueError(
-                "Invalid value for dialog_speed. Allowed: 'slow', 'max'"
+                f"Invalid value for dialog_speed. Allowed: {', '.join(DIALOG_SPEED_PROFILES.keys())}"
             )
         self.unit_measure: str = gameplay["unit_measure"]
         if self.unit_measure not in ("metric", "imperial"):
@@ -117,6 +118,13 @@ class TuxemonConfig:
         self.combat_click_to_continue: bool = gameplay[
             "combat_click_to_continue"
         ]
+
+        # [graphics]
+        graphics = self.config["graphics"]
+        self.dialog_box_style: str = graphics["dialog_box_style"]
+        self.menu_border: str = graphics["menu_border"]
+        self.menu_cursor: str = graphics["menu_cursor"]
+        self.menu_sound: str = graphics["menu_sound"]
 
         # [player]
         player = self.config["player"]
@@ -318,6 +326,12 @@ def generate_default_config() -> dict[str, Any]:
             "sound_volume": 0.2,
             "music_volume": 0.5,
             "combat_click_to_continue": False,
+        },
+        "graphics": {
+            "dialog_box_style": "default",
+            "menu_border": "gfx/borders/borders.png",
+            "menu_cursor": "gfx/arrow.png",
+            "menu_sound": "sound_menu_select",
         },
         "player": {
             "animation_speed": 0.15,

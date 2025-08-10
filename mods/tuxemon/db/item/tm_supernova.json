@@ -1,6 +1,13 @@
 {
   "conditions": [
     {
+      "type": "tag",
+      "parameters": [
+        "celestial:light"
+      ],
+      "operator": "is"
+    },
+    {
       "type": "has_tech",
       "parameters": [
         "supernova"

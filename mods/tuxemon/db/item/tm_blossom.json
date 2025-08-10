@@ -1,9 +1,9 @@
 {
   "conditions": [
     {
-      "type": "type",
+      "type": "tag",
       "parameters": [
-        "wood"
+        "plant:healing:bug"
       ],
       "operator": "is"
     },

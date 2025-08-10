@@ -2560,6 +2560,14 @@ msgstr ""
 msgid "food_fight"
 msgstr "Food Fight"
 
+msgid "frighten_description"
+msgstr ""
+"A spooked opponent takes to the higher ground, helping ranged attacks at the"
+" expense of close combat."
+
+msgid "frighten"
+msgstr "Frighten"
+
 msgid "frostbite_description"
 msgstr ""
 "The user shoots a freezing blast that inflicts poison on the opponent."
@@ -3490,7 +3498,7 @@ msgid "suplex"
 msgstr "Suplex"
 
 msgid "surf_description"
-msgstr "AA massive wave crashes down upon the opponent."
+msgstr "A massive wave crashes down upon the opponent."
 
 msgid "surf"
 msgstr "Surf"
@@ -3520,6 +3528,12 @@ msgstr "The user assumes a defensive stance, increasing its accuracy."
 
 msgid "take_cover"
 msgstr "Take Cover"
+
+msgid "taunt_description"
+msgstr "A quick jab provokes the opponent into a powerful but distracted rage."
+
+msgid "taunt"
+msgstr "Taunt"
 
 msgid "ten_thousand_feathers_description"
 msgstr ""
@@ -14583,7 +14597,7 @@ msgstr ""
 
 msgid "spyder_leatherhouse1_tennisplayer1"
 msgstr ""
-"Is Frostbite an Earth element technique or a Water element technique? "
+"Is Grinflare an Earth element tuxemon or a Fire element tuxemon?"
 
 msgid "spyder_leatherhouse1_tennisplayer2"
 msgstr "Trick question - it's both!"

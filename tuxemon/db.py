@@ -425,6 +425,13 @@ class ShapeModel(BaseModel, BaseLookupModel):
         raise ValueError(f"no translation exists with msgid: {v}")
 
 
+class LearningMethod(str, Enum):
+    LEVEL_UP = "level_up"
+    TM = "tm"
+    EVENT = "event"
+    EVOLUTION = "evolution"
+
+
 class MonsterMovesetItemModel(BaseModel):
     level_learned: int = Field(
         ..., description="Monster level in which this moveset is learned", gt=0
@@ -432,7 +439,18 @@ class MonsterMovesetItemModel(BaseModel):
     technique: str = Field(
         ...,
         description="Name of the technique for this moveset item",
-        json_schema_extra={"unique": True},
+    )
+    evolution_stage_learned: Optional[EvolutionStage] = Field(
+        None,
+        description="Evolution stage at which this technique is learned. If None, not tied to a specific evolution stage beyond level.",
+    )
+    can_be_forgotten: bool = Field(
+        True,
+        description="Indicates if this technique can be forgotten by the monster.",
+    )
+    learning_method: LearningMethod = Field(
+        LearningMethod.LEVEL_UP,
+        description="Method by which the technique is learned.",
     )
 
     @field_validator("technique")
@@ -1560,7 +1578,7 @@ class DialogueModel(BaseModel, BaseLookupModel):
     font_shadow_color: str = Field(..., description="RGB color (eg. 255:0:0)")
     border_slug: str = Field(..., description="Name of the border")
     border_path: str = Field(..., description="Path to the border")
-    line_spacing: int = Field(..., description="Line spacing value")
+    line_spacing: int = Field(0, description="Line spacing value")
 
     @classmethod
     def lookup(cls, slug: str, db: ModData) -> DialogueModel:

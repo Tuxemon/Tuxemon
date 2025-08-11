@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import logging
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING, ClassVar, Optional
 
 import pygame
 from pygame.surface import Surface
@@ -33,6 +33,7 @@ PHASE_3_END = 75.0
 class EvolutionTransition(State):
     """The state responsible for the evolution transition."""
 
+    name: ClassVar[str] = "EvolutionTransition"
     force_draw = True
 
     def __init__(

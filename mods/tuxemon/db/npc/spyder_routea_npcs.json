@@ -1,8 +1,8 @@
 [
   {
     "slug": "spyder_routea_connie",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_routea_connie1",
           "post_battle_win": null,
@@ -19,8 +19,8 @@
   },
   {
     "slug": "spyder_routea_dagger",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_routea_dagger1",
           "post_battle_win": null,
@@ -37,8 +37,8 @@
   },
   {
     "slug": "spyder_routea_doris",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_routea_doris1",
           "post_battle_win": null,
@@ -55,8 +55,8 @@
   },
   {
     "slug": "spyder_routea_joe",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_routea_joe1",
           "post_battle_win": null,
@@ -73,8 +73,8 @@
   },
   {
     "slug": "spyder_routea_koan",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_routea_koan1",
           "post_battle_win": null,
@@ -91,8 +91,8 @@
   },
   {
     "slug": "spyder_routea_lexi",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_routea_lexi1",
           "post_battle_win": null,
@@ -109,8 +109,8 @@
   },
   {
     "slug": "spyder_routea_lotu",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_routea_lotu1",
           "post_battle_win": null,
@@ -127,8 +127,8 @@
   },
   {
     "slug": "spyder_routea_rosy",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_routea_rosy1",
           "post_battle_win": null,
@@ -145,8 +145,8 @@
   },
   {
     "slug": "spyder_routea_vince",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_routea_vince1",
           "post_battle_win": null,

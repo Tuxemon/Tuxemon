@@ -8618,6 +8618,24 @@ msgstr "Glitch"
 msgid "normal"
 msgstr "Normal"
 
+msgid "lightning"
+msgstr "Lightning"
+
+msgid "frost"
+msgstr "Frost"
+
+msgid "heroic"
+msgstr "Heroic"
+
+msgid "cosmic"
+msgstr "Cosmic"
+
+msgid "shadow"
+msgstr "Shadow"
+
+msgid "sky"
+msgstr "Sky"
+
 # Monster tastes
 msgid "taste"
 msgstr "Taste"

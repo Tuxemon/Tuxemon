@@ -1,8 +1,8 @@
 [
   {
     "slug": "spyder_tunnelb_beryll",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_tunnelb_beryll1",
           "post_battle_win": null,
@@ -19,8 +19,8 @@
   },
   {
     "slug": "spyder_tunnelb_greta",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_tunnelb_greta1",
           "post_battle_win": null,
@@ -37,8 +37,8 @@
   },
   {
     "slug": "spyder_tunnelb_iris",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_tunnelb_iris1",
           "post_battle_win": null,
@@ -55,8 +55,8 @@
   },
   {
     "slug": "spyder_tunnelb_meitner",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_tunnelb_meitner1",
           "post_battle_win": null,
@@ -73,8 +73,8 @@
   },
   {
     "slug": "spyder_tunnelb_lute",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_tunnelb_lute1",
           "post_battle_win": null,
@@ -91,8 +91,8 @@
   },
   {
     "slug": "spyder_tunnelb_tommy",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_tunnelb_tommy1",
           "post_battle_win": null,

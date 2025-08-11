@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from collections.abc import Callable, Generator
+from typing import ClassVar
 
 import pygame_menu
 
@@ -31,6 +32,7 @@ class MultiplayerMenu(PygameMenuState):
     code salvaged from commit 6fa20da714c7b794cbe1e8a22168fa66cda13a9e
     """
 
+    name: ClassVar[str] = "MultiplayerMenu"
     shrink_to_items = True
 
     def __init__(self) -> None:
@@ -131,6 +133,7 @@ class MultiplayerMenu(PygameMenuState):
 class MultiplayerSelect(PopUpMenu[None]):
     """Menu to show games found by the network game scanner"""
 
+    name: ClassVar[str] = "MultiplayerSelect"
     shrink_to_items = True
 
     def __init__(self) -> None:

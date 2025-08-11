@@ -5,7 +5,7 @@ from __future__ import annotations
 import random as rd
 from collections.abc import Callable, Generator
 from functools import partial
-from typing import Any, Optional
+from typing import Any, ClassVar, Optional
 
 import yaml
 from pygame.rect import Rect
@@ -227,6 +227,7 @@ class InputMenu(Menu[InputMenuObj]):
     selection, and external button injection via plug-in functions.
     """
 
+    name: ClassVar[str] = "InputMenu"
     background = None
     draw_borders = False
 

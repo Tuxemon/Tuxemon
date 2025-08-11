@@ -1,8 +1,8 @@
 [
   {
     "slug": "spyder_route6_frances",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_route6_frances1",
           "post_battle_win": null,
@@ -19,8 +19,8 @@
   },
   {
     "slug": "spyder_route6_orion",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_route6_orion1",
           "post_battle_win": null,
@@ -37,8 +37,8 @@
   },
   {
     "slug": "spyder_route6_ping",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_route6_ping1",
           "post_battle_win": null,
@@ -55,8 +55,8 @@
   },
   {
     "slug": "spyder_route6_rigel",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_route6_rigel1",
           "post_battle_win": null,
@@ -73,8 +73,8 @@
   },
   {
     "slug": "spyder_route6_richard",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_route6_richard1",
           "post_battle_win": null,
@@ -91,8 +91,8 @@
   },
   {
     "slug": "spyder_route6_blair",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_route6_blair1",
           "post_battle_win": null,
@@ -109,8 +109,8 @@
   },
   {
     "slug": "spyder_route6_gunner",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_route6_gunner1",
           "post_battle_win": null,
@@ -127,8 +127,8 @@
   },
   {
     "slug": "spyder_route6_mungo",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_route6_mungo1",
           "post_battle_win": null,
@@ -145,8 +145,8 @@
   },
   {
     "slug": "spyder_route6_maxwell",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_route6_maxwell1",
           "post_battle_win": null,

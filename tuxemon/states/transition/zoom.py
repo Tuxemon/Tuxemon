@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import logging
-from typing import Optional
+from typing import ClassVar, Optional
 
 from pygame.surface import Surface
 from pygame.transform import scale
@@ -18,6 +18,7 @@ logger = logging.getLogger(__name__)
 class ZoomOutTransition(State):
     """The state responsible for the zoom out transitions."""
 
+    name: ClassVar[str] = "ZoomOutTransition"
     force_draw = True
 
     def __init__(
@@ -71,6 +72,7 @@ class ZoomOutTransition(State):
 class ZoomInTransition(State):
     """The state responsible for the zoom in transitions."""
 
+    name: ClassVar[str] = "ZoomInTransition"
     force_draw = True
 
     def __init__(

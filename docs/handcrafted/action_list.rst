@@ -7,6 +7,7 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.add_step_tracker.AddStepTrackerAction
 .. autoscriptinfoclass:: tuxemon.event.actions.add_tech.AddTechAction
 .. autoscriptinfoclass:: tuxemon.event.actions.add_tracker.AddTrackerAction
+.. autoscriptinfoclass:: tuxemon.event.actions.adjust_bill_penalty.AdjustBillPenaltyAction
 .. autoscriptinfoclass:: tuxemon.event.actions.breeding.BreedingAction
 .. autoscriptinfoclass:: tuxemon.event.actions.call_event.CallEventAction
 .. autoscriptinfoclass:: tuxemon.event.actions.camera_follow.CameraFollowAction
@@ -28,6 +29,7 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.char_run.CharRunAction
 .. autoscriptinfoclass:: tuxemon.event.actions.char_speed.CharSpeedAction
 .. autoscriptinfoclass:: tuxemon.event.actions.char_stop.CharStopAction
+.. autoscriptinfoclass:: tuxemon.event.actions.char_talk.CharTalkAction
 .. autoscriptinfoclass:: tuxemon.event.actions.char_walk.CharWalkAction
 .. autoscriptinfoclass:: tuxemon.event.actions.char_wander.CharWanderAction
 .. autoscriptinfoclass:: tuxemon.event.actions.choice_item.ChoiceItemAction

@@ -49,8 +49,8 @@
   },
   {
     "slug": "spyder_cottoncafe_cayden",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": null,
           "post_battle_win": null,
@@ -227,8 +227,8 @@
   },
   {
     "slug": "spyder_cottontunnel_carlos",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_cottontunnel_carlos1",
           "post_battle_win": null,
@@ -245,8 +245,8 @@
   },
   {
     "slug": "spyder_confusedperson",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": null,
           "post_battle_win": null,

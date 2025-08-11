@@ -1,8 +1,8 @@
 [
   {
     "slug": "spyder_greenwash_aissa",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_greenwash_aissa1",
           "post_battle_win": null,
@@ -19,8 +19,8 @@
   },
   {
     "slug": "spyder_greenwash_alex",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_greenwash_alex1",
           "post_battle_win": null,
@@ -37,8 +37,8 @@
   },
   {
     "slug": "spyder_greenwash_broer",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_greenwash_broer1",
           "post_battle_win": null,
@@ -55,8 +55,8 @@
   },
   {
     "slug": "spyder_greenwash_chip",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_greenwash_chip1",
           "post_battle_win": null,
@@ -73,8 +73,8 @@
   },
   {
     "slug": "spyder_greenwash_clarence",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_greenwash_clarence1",
           "post_battle_win": null,
@@ -91,8 +91,8 @@
   },
   {
     "slug": "spyder_greenwash_dempsey",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_greenwash_dempsey1",
           "post_battle_win": null,
@@ -109,8 +109,8 @@
   },
   {
     "slug": "spyder_greenwash_dippel",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_greenwash_dippel1",
           "post_battle_win": null,
@@ -127,8 +127,8 @@
   },
   {
     "slug": "spyder_greenwash_gluck",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_greenwash_gluck1",
           "post_battle_win": null,
@@ -145,8 +145,8 @@
   },
   {
     "slug": "spyder_greenwash_gregor",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_greenwash_gregor1",
           "post_battle_win": null,
@@ -171,8 +171,8 @@
   },
   {
     "slug": "spyder_greenwash_heidenstam",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_greenwash_heidenstam1",
           "post_battle_win": null,
@@ -189,8 +189,8 @@
   },
   {
     "slug": "spyder_greenwash_hunt",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_greenwash_hunt1",
           "post_battle_win": null,
@@ -207,8 +207,8 @@
   },
   {
     "slug": "spyder_greenwash_lewie",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_greenwash_lewie1",
           "post_battle_win": null,
@@ -225,8 +225,8 @@
   },
   {
     "slug": "spyder_greenwash_lewis",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_greenwash_lewis1",
           "post_battle_win": null,
@@ -243,8 +243,8 @@
   },
   {
     "slug": "spyder_greenwash_looten",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_greenwash_looten1",
           "post_battle_win": null,
@@ -261,8 +261,8 @@
   },
   {
     "slug": "spyder_greenwash_louis",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_greenwash_louis1",
           "post_battle_win": null,
@@ -279,8 +279,8 @@
   },
   {
     "slug": "spyder_greenwash_moreau",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_greenwash_moreau1",
           "post_battle_win": null,
@@ -297,8 +297,8 @@
   },
   {
     "slug": "spyder_greenwash_morehouse",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_greenwash_morehouse1",
           "post_battle_win": null,

@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import logging
-from typing import Optional
+from typing import ClassVar, Optional
 
 from pygame import draw as pg_draw
 from pygame.surface import Surface
@@ -19,6 +19,7 @@ logger = logging.getLogger(__name__)
 class WipeTransition(State):
     """The state responsible for the wipe transitions."""
 
+    name: ClassVar[str] = "WipeTransition"
     force_draw = True
 
     def __init__(

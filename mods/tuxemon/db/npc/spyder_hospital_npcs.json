@@ -1,8 +1,8 @@
 [
   {
     "slug": "spyder_hospital1_aurora",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_hospital1_aurora1",
           "post_battle_win": null,
@@ -27,8 +27,8 @@
   },
   {
     "slug": "spyder_hospital1_luzia",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_hospital1_luzia1",
           "post_battle_win": null,
@@ -45,8 +45,8 @@
   },
   {
     "slug": "spyder_hospital1_liane",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_hospital1_liane1",
           "post_battle_win": null,
@@ -63,8 +63,8 @@
   },
   {
     "slug": "spyder_hospital1_fring",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_hospital1_fring1",
           "post_battle_win": null,
@@ -81,8 +81,8 @@
   },
   {
     "slug": "spyder_hospital1_felu",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_hospital1_felu1",
           "post_battle_win": null,
@@ -99,8 +99,8 @@
   },
   {
     "slug": "spyder_hospital1_eleni",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_hospital1_eleni1",
           "post_battle_win": null,
@@ -117,8 +117,8 @@
   },
   {
     "slug": "spyder_hospital1_rakez",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_hospital1_rakez1",
           "post_battle_win": null,
@@ -143,8 +143,8 @@
   },
   {
     "slug": "spyder_hospital1_zekar",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_hospital1_zekar1",
           "post_battle_win": null,
@@ -161,8 +161,8 @@
   },
   {
     "slug": "spyder_hospital1_walt",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_hospital1_walt1",
           "post_battle_win": null,
@@ -179,8 +179,8 @@
   },
   {
     "slug": "spyder_hospital1_rhizome",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_hospital1_rhizome1",
           "post_battle_win": null,

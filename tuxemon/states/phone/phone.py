@@ -5,7 +5,7 @@ from __future__ import annotations
 import math
 from collections.abc import Callable, Sequence
 from functools import partial
-from typing import TYPE_CHECKING, Any
+from typing import TYPE_CHECKING, Any, ClassVar
 
 import pygame_menu
 from pygame_menu import locals
@@ -26,6 +26,8 @@ MenuGameObj = Callable[[], Any]
 
 class NuPhone(PygameMenuState):
     """Menu for Nu Phone."""
+
+    name: ClassVar[str] = "NuPhone"
 
     def add_menu_items(
         self,

@@ -1,6 +1,6 @@
 [
   {
-    "slug": "spyder_park_reception",
+    "slug": "eclipse_park_reception",
     "template": {
       "sprite_name": "magician_grey",
       "combat_front": "magician",
@@ -8,7 +8,7 @@
     }
   },
   {
-    "slug": "spyder_park_florist",
+    "slug": "eclipse_park_florist",
     "template": {
       "sprite_name": "florist_fiery",
       "combat_front": "florist",
@@ -16,7 +16,7 @@
     }
   },
   {
-    "slug": "spyder_park_guardian",
+    "slug": "eclipse_park_guardian",
     "template": {
       "sprite_name": "magician_fiery",
       "combat_front": "magician",
@@ -24,7 +24,7 @@
     }
   },
   {
-    "slug": "spyder_park_soldier",
+    "slug": "eclipse_park_soldier",
     "template": {
       "sprite_name": "soldier",
       "combat_front": "soldier",
@@ -32,7 +32,7 @@
     }
   },
   {
-    "slug": "spyder_park_scientist",
+    "slug": "eclipse_park_scientist",
     "template": {
       "sprite_name": "scientist",
       "combat_front": "scientist",
@@ -40,7 +40,7 @@
     }
   },
   {
-    "slug": "spyder_park_professor",
+    "slug": "eclipse_park_professor",
     "template": {
       "sprite_name": "professor_brown",
       "combat_front": "professor",
@@ -48,7 +48,7 @@
     }
   },
   {
-    "slug": "spyder_park_tennisplayer",
+    "slug": "eclipse_park_tennisplayer",
     "template": {
       "sprite_name": "tennisplayer",
       "combat_front": "tennisplayer",

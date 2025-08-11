@@ -5,7 +5,7 @@ from __future__ import annotations
 import logging
 from collections.abc import Callable, Generator
 from enum import Enum, auto
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING, ClassVar, Optional
 
 from pygame.rect import Rect
 
@@ -37,6 +37,7 @@ class ParkMenuKeys(Enum):
 class MainParkMenuState(PopUpMenu[MenuGameObj]):
     """Main menu Park: ball, food, doll and run"""
 
+    name: ClassVar[str] = "MainParkMenuState"
     escape_key_exits = False
     columns = 2
 

@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from collections.abc import Callable
 from dataclasses import dataclass
-from typing import Any, Optional
+from typing import Any, ClassVar, Optional
 
 from pygame_menu.locals import POSITION_EAST
 from pygame_menu.widgets.selection.highlight import HighlightSelection
@@ -34,6 +34,8 @@ class ChoiceItem(PygameMenuState):
     """
     Game state with a graphic box and items (images) + labels.
     """
+
+    name: ClassVar[str] = "ChoiceItem"
 
     def __init__(
         self,

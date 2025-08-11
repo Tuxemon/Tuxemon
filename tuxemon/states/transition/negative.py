@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import logging
-from typing import Optional
+from typing import ClassVar, Optional
 
 from pygame.surface import Surface
 
@@ -16,6 +16,7 @@ logger = logging.getLogger(__name__)
 class NegativeTransition(State):
     """The state responsible for the negative transitions."""
 
+    name: ClassVar[str] = "NegativeTransition"
     force_draw = True
 
     def __init__(self, duration: float = 1.0) -> None:

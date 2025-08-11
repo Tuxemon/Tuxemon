@@ -9,8 +9,8 @@
   },
   {
     "slug": "spyder_omnichannel_schwartz",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_omnichannel_schwartz1",
           "post_battle_win": null,
@@ -27,8 +27,8 @@
   },
   {
     "slug": "spyder_omnichannel_strauss",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_omnichannel_strauss1",
           "post_battle_win": null,
@@ -45,8 +45,8 @@
   },
   {
     "slug": "spyder_omnichannel_william",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_omnichannel_william1",
           "post_battle_win": null,
@@ -63,8 +63,8 @@
   },
   {
     "slug": "spyder_omnichannel_tohei",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_omnichannel_tohei1",
           "post_battle_win": null,
@@ -105,8 +105,8 @@
   },
   {
     "slug": "spyder_omnichannel_dempsey",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_omnichannel_dempsey1",
           "post_battle_win": null,
@@ -123,8 +123,8 @@
   },
   {
     "slug": "spyder_omnichannel_crane",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_omnichannel_crane1",
           "post_battle_win": null,
@@ -141,8 +141,8 @@
   },
   {
     "slug": "spyder_omnichannel_carnegie",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_omnichannel_carnegie1",
           "post_battle_win": null,
@@ -159,8 +159,8 @@
   },
   {
     "slug": "spyder_omnichannel_byrne",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_omnichannel_byrne1",
           "post_battle_win": null,
@@ -177,8 +177,8 @@
   },
   {
     "slug": "spyder_omnichannel_bettger",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_omnichannel_bettger1",
           "post_battle_win": null,

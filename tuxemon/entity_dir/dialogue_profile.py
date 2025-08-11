@@ -28,7 +28,7 @@ class DialogueProfileManager:
             if npc_details.speech:
                 self.dialogue_cache[npc_slug] = npc_details.speech.profile
 
-        dialogue_model: DialogueProfile = self.dialogue_cache[npc_slug]
+        dialogue_model = self.dialogue_cache[npc_slug]
 
         if location:
             return dialogue_model.get_dialogue_for_location(location)

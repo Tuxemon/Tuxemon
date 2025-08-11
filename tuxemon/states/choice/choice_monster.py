@@ -5,7 +5,7 @@ from __future__ import annotations
 import math
 from collections.abc import Callable
 from dataclasses import dataclass
-from typing import Any, Optional
+from typing import Any, ClassVar, Optional
 
 from pygame_menu.locals import ALIGN_CENTER, POSITION_EAST
 from pygame_menu.widgets.selection.highlight import HighlightSelection
@@ -36,6 +36,8 @@ class ChoiceMonster(PygameMenuState):
     """
     Game state with a graphic box and monsters (images) + labels.
     """
+
+    name: ClassVar[str] = "ChoiceMonster"
 
     def __init__(
         self,

@@ -1,8 +1,8 @@
 [
   {
     "slug": "spyder_dojo_ares",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_dojo_ares1",
           "post_battle_win": null,
@@ -43,8 +43,8 @@
   },
   {
     "slug": "spyder_dojo_kataro",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_dojo_kataro1",
           "post_battle_win": null,
@@ -61,8 +61,8 @@
   },
   {
     "slug": "spyder_dojo_iroh",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_dojo_iroh1",
           "post_battle_win": null,
@@ -79,8 +79,8 @@
   },
   {
     "slug": "spyder_dojo_hermes",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_dojo_hermes1",
           "post_battle_win": null,
@@ -97,8 +97,8 @@
   },
   {
     "slug": "spyder_dojo_hephastus",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_dojo_hephastus1",
           "post_battle_win": null,
@@ -115,8 +115,8 @@
   },
   {
     "slug": "spyder_dojo_orion",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_dojo_orion1",
           "post_battle_win": null,
@@ -133,8 +133,8 @@
   },
   {
     "slug": "spyder_dojo_saturn",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_dojo_saturn1",
           "post_battle_win": null,
@@ -151,8 +151,8 @@
   },
   {
     "slug": "spyder_dojo_sokka",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_dojo_sokka1",
           "post_battle_win": null,
@@ -177,8 +177,8 @@
   },
   {
     "slug": "spyder_dojo_toph",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_dojo_toph1",
           "post_battle_win": null,
@@ -219,8 +219,8 @@
   },
   {
     "slug": "spyder_dojo_yangchen",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_dojo_yangchen1",
           "post_battle_win": null,

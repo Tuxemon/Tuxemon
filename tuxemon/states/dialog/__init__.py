@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import logging
 from collections.abc import Sequence
-from typing import TYPE_CHECKING, Any, Optional
+from typing import TYPE_CHECKING, Any, ClassVar, Optional
 
 from tuxemon.graphics import load_and_scale
 from tuxemon.menu.menu import PopUpMenu
@@ -31,6 +31,8 @@ class DialogState(PopUpMenu[None]):
     * when text is displayed completely, then will show the next message
     * if there are no more messages, then the dialog will close
     """
+
+    name: ClassVar[str] = "DialogState"
 
     def __init__(
         self,

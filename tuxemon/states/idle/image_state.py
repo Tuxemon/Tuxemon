@@ -2,7 +2,7 @@
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-from typing import Optional
+from typing import ClassVar, Optional
 
 from pygame_menu.locals import ALIGN_CENTER
 
@@ -16,6 +16,8 @@ class ImageState(PygameMenuState):
     A state that overlays an image over the game world, useful for displaying
     dialogues, menus, or other UI elements.
     """
+
+    name: ClassVar[str] = "ImageState"
 
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
         return None

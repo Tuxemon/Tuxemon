@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from collections.abc import Generator
 from functools import partial
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING, ClassVar, Optional
 
 from pygame.rect import Rect
 
@@ -31,6 +31,8 @@ if TYPE_CHECKING:
 
 
 class ShopItemMenuState(Menu[Item]):
+
+    name: ClassVar[str] = "ShopItemMenuState"
     draw_borders = False
 
     def __init__(
@@ -194,6 +196,8 @@ class ShopItemMenuState(Menu[Item]):
 class ShopItemBuyMenuState(ShopItemMenuState):
     """State for buying items."""
 
+    name: ClassVar[str] = "ShopItemBuyMenuState"
+
     def on_menu_selection(self, menu_item: MenuItem[Item]) -> None:
         item = menu_item.game_object
         price: int = menu_item.metadata.get("price", 1)
@@ -232,6 +236,8 @@ class ShopItemBuyMenuState(ShopItemMenuState):
 
 class ShopItemSellMenuState(ShopItemMenuState):
     """State for selling items."""
+
+    name: ClassVar[str] = "ShopItemSellMenuState"
 
     def on_menu_selection(self, menu_item: MenuItem[Item]) -> None:
         item = menu_item.game_object

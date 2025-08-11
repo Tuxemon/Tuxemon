@@ -1,8 +1,8 @@
 [
   {
     "slug": "spyder_route3_qqq",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_route3_qqq1",
           "post_battle_win": null,
@@ -19,8 +19,8 @@
   },
   {
     "slug": "spyder_route3_zoolander",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_route3_zoolander1",
           "post_battle_win": null,
@@ -37,8 +37,8 @@
   },
   {
     "slug": "spyder_route3_weaver",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_route3_weaver1",
           "post_battle_win": null,
@@ -55,8 +55,8 @@
   },
   {
     "slug": "spyder_route3_wanda",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_route3_wanda1",
           "post_battle_win": null,
@@ -73,8 +73,8 @@
   },
   {
     "slug": "spyder_route3_twig",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_route3_twig1",
           "post_battle_win": null,
@@ -91,8 +91,8 @@
   },
   {
     "slug": "spyder_route3_surat",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_route3_surat1",
           "post_battle_win": null,
@@ -109,8 +109,8 @@
   },
   {
     "slug": "spyder_route3_roxby",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_route3_roxby1",
           "post_battle_win": null,
@@ -127,8 +127,8 @@
   },
   {
     "slug": "spyder_route3_novak",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_route3_novak1",
           "post_battle_win": null,
@@ -145,8 +145,8 @@
   },
   {
     "slug": "spyder_route3_curie",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_route3_curie1",
           "post_battle_win": null,
@@ -163,8 +163,8 @@
   },
   {
     "slug": "spyder_route3_connor",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_route3_connor1",
           "post_battle_win": null,

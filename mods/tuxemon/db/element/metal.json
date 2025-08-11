@@ -8,14 +8,46 @@
     },
     {
       "against": "earth",
-      "multiplier": 1
+      "multiplier": 2
     },
     {
       "against": "fire",
+      "multiplier": 0.5
+    },
+    {
+      "against": "frost",
       "multiplier": 1
     },
     {
+      "against": "heroic",
+      "multiplier": 1
+    },
+    {
+      "against": "lightning",
+      "multiplier": 1
+    },
+    {
+      "against": "cosmic",
+      "multiplier": 2
+    },
+    {
       "against": "metal",
+      "multiplier": 0.5
+    },
+    {
+      "against": "normal",
+      "multiplier": 1
+    },
+    {
+      "against": "shadow",
+      "multiplier": 1
+    },
+    {
+      "against": "sky",
+      "multiplier": 1
+    },
+    {
+      "against": "venom",
       "multiplier": 1
     },
     {
@@ -24,7 +56,7 @@
     },
     {
       "against": "wood",
-      "multiplier": 2
+      "multiplier": 1
     }
   ]
 }

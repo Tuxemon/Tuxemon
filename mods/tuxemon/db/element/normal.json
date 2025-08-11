@@ -1,0 +1,62 @@
+{
+  "slug": "normal",
+  "icon": "gfx/ui/icons/element/normal_type.png",
+  "types": [
+    {
+      "against": "aether",
+      "multiplier": 1
+    },
+    {
+      "against": "earth",
+      "multiplier": 1
+    },
+    {
+      "against": "fire",
+      "multiplier": 1
+    },
+    {
+      "against": "frost",
+      "multiplier": 1
+    },
+    {
+      "against": "heroic",
+      "multiplier": 1
+    },
+    {
+      "against": "lightning",
+      "multiplier": 1
+    },
+    {
+      "against": "cosmic",
+      "multiplier": 1
+    },
+    {
+      "against": "metal",
+      "multiplier": 1
+    },
+    {
+      "against": "normal",
+      "multiplier": 0.5
+    },
+    {
+      "against": "shadow",
+      "multiplier": 1
+    },
+    {
+      "against": "sky",
+      "multiplier": 1
+    },
+    {
+      "against": "venom",
+      "multiplier": 1
+    },
+    {
+      "against": "water",
+      "multiplier": 1
+    },
+    {
+      "against": "wood",
+      "multiplier": 1
+    }
+  ]
+}

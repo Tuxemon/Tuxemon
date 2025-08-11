@@ -6,7 +6,7 @@ import logging
 import math
 from collections.abc import Callable, Sequence
 from functools import partial
-from typing import TYPE_CHECKING, Any, Optional
+from typing import TYPE_CHECKING, Any, ClassVar, Optional
 from uuid import UUID
 
 import pygame_menu
@@ -44,6 +44,8 @@ class MonsterTakeState(PygameMenuState):
 
     Shows all tuxemon currently in a storage kennel, and selecting one puts it
     into your current party."""
+
+    name: ClassVar[str] = "MonsterTakeState"
 
     def add_menu_items(
         self,
@@ -288,6 +290,8 @@ class MonsterTakeState(PygameMenuState):
 class MonsterBoxState(PygameMenuState):
     """Menu to choose a tuxemon box."""
 
+    name: ClassVar[str] = "MonsterBoxState"
+
     def __init__(self, character: NPC) -> None:
         _, height = prepare.SCREEN_SIZE
 
@@ -370,6 +374,8 @@ class MonsterBoxState(PygameMenuState):
 class MonsterStorageState(MonsterBoxState):
     """Menu to choose a box, which you can then take a tuxemon from."""
 
+    name: ClassVar[str] = "MonsterStorageState"
+
     def get_menu_items_map(self) -> Sequence[tuple[str, MenuGameObj]]:
         menu_items_map = []
         monster_boxes = self.char.monster_boxes
@@ -394,6 +400,8 @@ class MonsterStorageState(MonsterBoxState):
 class MonsterDropOffState(MonsterBoxState):
     """Menu to choose a box, which you can then drop off a tuxemon into."""
 
+    name: ClassVar[str] = "MonsterDropOffState"
+
     def get_menu_items_map(self) -> Sequence[tuple[str, MenuGameObj]]:
         menu_items_map = []
         monster_boxes = self.char.monster_boxes
@@ -417,6 +425,8 @@ class MonsterDropOffState(MonsterBoxState):
 
 class MonsterDropOff(MonsterMenuState):
     """Shows all Tuxemon in player's party, puts it into box if selected."""
+
+    name: ClassVar[str] = "MonsterDropOff"
 
     def __init__(self, box_name: str, character: NPC) -> None:
         super().__init__(monsters=character.monsters)

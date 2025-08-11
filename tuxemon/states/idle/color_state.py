@@ -2,7 +2,7 @@
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-from typing import Optional
+from typing import ClassVar, Optional
 
 from tuxemon import prepare
 from tuxemon.graphics import string_to_colorlike
@@ -16,6 +16,8 @@ class ColorState(PygameMenuState):
     A state that overlays a solid color over the game world, allowing for
     dialogues, menus, or other UI elements to be displayed.
     """
+
+    name: ClassVar[str] = "ColorState"
 
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
         return None

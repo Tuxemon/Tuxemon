@@ -5,7 +5,7 @@ from __future__ import annotations
 import math
 from collections.abc import Callable
 from functools import partial
-from typing import TYPE_CHECKING, Any
+from typing import TYPE_CHECKING, Any, ClassVar
 
 import pygame_menu
 from pygame_menu import locals
@@ -36,6 +36,8 @@ def _lookup_monsters() -> None:
 
 class JournalChoice(PygameMenuState):
     """Shows journal (screen 1/3)."""
+
+    name: ClassVar[str] = "JournalChoice"
 
     def add_menu_items(
         self,

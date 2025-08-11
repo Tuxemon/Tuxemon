@@ -1,8 +1,8 @@
 [
   {
     "slug": "spyder_routee_calliope",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_routee_calliope1",
           "post_battle_win": null,
@@ -19,8 +19,8 @@
   },
   {
     "slug": "spyder_routee_aiolos",
-    "dialogue": {
-      "dialogue": {
+    "speech": {
+      "profile": {
         "default": {
           "pre_battle": "spyder_routee_aiolos1",
           "post_battle_win": null,

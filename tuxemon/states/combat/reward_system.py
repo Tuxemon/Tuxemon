@@ -163,12 +163,17 @@ def calculate_experience(
     total_hits, monster_hits = damages.count_hits(loser, winner)
 
     def default_method() -> tuple[int, int]:
-        exp = calculate_experience_base(
+        total_exp = calculate_experience_base(
             loser.total_experience,
             loser.level,
             loser.experience_modifier,
         )
-        return exp, 0
+
+        participants = damages.get_attackers(loser)
+        num_participants = len(participants) if participants else 1
+
+        divided_exp = total_exp // num_participants
+        return divided_exp, 0
 
     def equal_method() -> tuple[int, int]:
         total_exp = calculate_experience_base(

@@ -3815,7 +3815,7 @@ msgid "brideswood"
 msgstr "Brideswood"
 
 msgid "citypark"
-msgstr "Citypark"
+msgstr "City Park"
 
 msgid "cotton_town"
 msgstr "Cotton"

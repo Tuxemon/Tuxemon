@@ -937,7 +937,7 @@ class CombatState(CombatAnimations):
             success_header_text = ""
             if result_item.success:
                 success_header_text = T.translate("gotcha")
-                if len(user.monsters) >= prepare.PARTY_LIMIT:
+                if len(user.monsters) > prepare.PARTY_LIMIT:
                     success_text = T.format(
                         "gotcha_kennel", {"name": target.name.upper()}
                     )

@@ -14,7 +14,7 @@ from tuxemon.db import Direction
 
 if TYPE_CHECKING:
     from tuxemon.event import EventObject
-    from tuxemon.map import RegionProperties, TuxemonMap
+    from tuxemon.map.map import RegionProperties, TuxemonMap
 
 logger = logging.getLogger(__name__)
 

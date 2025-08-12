@@ -5,7 +5,7 @@ from __future__ import annotations
 import logging
 from typing import TYPE_CHECKING
 
-from tuxemon.map import proj
+from tuxemon.map.map import proj
 from tuxemon.npc import NPC
 from tuxemon.prepare import PLAYER_NPC
 

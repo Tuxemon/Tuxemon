@@ -9,7 +9,7 @@ from typing import final
 from tuxemon.db import Direction
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
-from tuxemon.map import get_direction
+from tuxemon.map.map import get_direction
 from tuxemon.session import Session
 from tuxemon.states.world.worldstate import WorldState
 

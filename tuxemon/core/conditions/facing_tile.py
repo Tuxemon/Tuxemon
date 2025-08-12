@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 from tuxemon.core.core_condition import CoreCondition
-from tuxemon.map import get_coords, get_direction
+from tuxemon.map.map import get_coords, get_direction
 from tuxemon.prepare import SURFACE_KEYS
 
 if TYPE_CHECKING:

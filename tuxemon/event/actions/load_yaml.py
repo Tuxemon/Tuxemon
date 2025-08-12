@@ -9,7 +9,7 @@ from typing import final
 
 from tuxemon.constants.asset_loader import fetch_asset
 from tuxemon.event.eventaction import EventAction
-from tuxemon.map_loader import YAMLEventLoader
+from tuxemon.map.loader import YAMLEventLoader
 from tuxemon.session import Session
 
 logger = logging.getLogger(__name__)

@@ -4,7 +4,7 @@ import unittest
 from pathlib import Path
 from unittest.mock import Mock, patch
 
-from tuxemon.map_loader import EventLoader, YAMLEventLoader
+from tuxemon.map.loader import EventLoader, YAMLEventLoader
 
 
 class TestEventLoader(unittest.TestCase):

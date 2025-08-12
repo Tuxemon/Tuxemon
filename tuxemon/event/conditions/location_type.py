@@ -6,7 +6,7 @@ from dataclasses import dataclass
 
 from tuxemon.event import MapCondition
 from tuxemon.event.eventcondition import EventCondition
-from tuxemon.map_manager import map_types_list
+from tuxemon.map.manager import map_types_list
 from tuxemon.session import Session
 
 

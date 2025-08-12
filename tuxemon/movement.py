@@ -6,7 +6,7 @@ import logging
 from collections.abc import MutableMapping, Sequence
 from typing import TYPE_CHECKING, Optional
 
-from tuxemon.map import (
+from tuxemon.map.map import (
     dirs2,
     get_adjacent_position,
     get_coords_ext,
@@ -20,7 +20,7 @@ if TYPE_CHECKING:
     from tuxemon.collision_manager import CollisionManager, CollisionMap
     from tuxemon.db import Direction
     from tuxemon.event.eventmanager import EventManager
-    from tuxemon.map_manager import MapManager
+    from tuxemon.map.manager import MapManager
     from tuxemon.npc import NPC
     from tuxemon.npc_manager import NPCManager
     from tuxemon.platform.input_manager import InputManager

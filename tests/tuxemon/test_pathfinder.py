@@ -7,8 +7,8 @@ from tuxemon.boundary import BoundaryChecker
 from tuxemon.client import LocalPygameClient
 from tuxemon.collision_manager import CollisionManager
 from tuxemon.db import Direction
-from tuxemon.map import RegionProperties, dirs2
-from tuxemon.map_manager import MapManager
+from tuxemon.map.manager import MapManager
+from tuxemon.map.map import RegionProperties, dirs2
 from tuxemon.movement import Pathfinder, PathfindNode, get_tile_moverate
 from tuxemon.npc import NPC
 from tuxemon.npc_manager import NPCManager

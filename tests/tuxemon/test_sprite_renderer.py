@@ -8,7 +8,7 @@ import pygame
 from pygame.surface import Surface
 
 from tuxemon import prepare
-from tuxemon.map_view import EntityFacing, SpriteController
+from tuxemon.map.view import EntityFacing, SpriteController
 from tuxemon.npc import NPC
 from tuxemon.surfanim import SurfaceAnimation
 

@@ -11,7 +11,7 @@ from tuxemon import prepare
 from tuxemon.constants.asset_loader import fetch_asset
 from tuxemon.db import AnimationModel, db
 from tuxemon.graphics import create_animation, load_frames_files
-from tuxemon.map_view import AnimationInfo
+from tuxemon.map.view import AnimationInfo
 
 logger = logging.getLogger(__name__)
 

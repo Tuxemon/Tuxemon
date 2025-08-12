@@ -16,8 +16,8 @@ from tuxemon.db import DialogueProfile, Direction, NpcModel, db
 from tuxemon.entity import Entity
 from tuxemon.item.item import Item, decode_items, encode_items
 from tuxemon.locale import T
-from tuxemon.map import dirs2, get_direction, proj
-from tuxemon.map_view import SpriteController
+from tuxemon.map.map import dirs2, get_direction, proj
+from tuxemon.map.view import SpriteController
 from tuxemon.math import Vector2
 from tuxemon.mission.controller import MissionController
 from tuxemon.mission.manager import MissionManager

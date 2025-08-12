@@ -18,7 +18,7 @@ from pygame.surface import Surface
 from tuxemon import prepare
 from tuxemon.camera import project
 from tuxemon.graphics import ColorLike, apply_cinema_bars, load_and_scale
-from tuxemon.map import get_pos_from_tilepos, proj
+from tuxemon.map.map import get_pos_from_tilepos, proj
 from tuxemon.math import Vector2
 from tuxemon.surfanim import SurfaceAnimation, SurfaceAnimationCollection
 
@@ -27,7 +27,7 @@ logger = logging.getLogger(__name__)
 if TYPE_CHECKING:
     from tuxemon.client import LocalPygameClient
     from tuxemon.db import NpcTemplateModel
-    from tuxemon.map import TuxemonMap
+    from tuxemon.map.map import TuxemonMap
     from tuxemon.npc import NPC
 
 

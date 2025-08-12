@@ -3,7 +3,7 @@
 import unittest
 from pathlib import Path
 
-from tuxemon.map_loader import YAMLEventLoader, parse_yaml
+from tuxemon.map.loader import YAMLEventLoader, parse_yaml
 
 
 class TestYAMLEventLoader(unittest.TestCase):

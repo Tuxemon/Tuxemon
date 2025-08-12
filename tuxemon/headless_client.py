@@ -20,8 +20,8 @@ from tuxemon.event.eventcondition import ConditionManager
 from tuxemon.event.eventengine import EventEngine
 from tuxemon.event.eventmanager import EventManager
 from tuxemon.event.eventpersist import EventPersist
-from tuxemon.map_loader import MapLoader
-from tuxemon.map_manager import MapManager
+from tuxemon.map.loader import MapLoader
+from tuxemon.map.manager import MapManager
 from tuxemon.npc_manager import NPCManager
 from tuxemon.platform.events import PlayerInput
 from tuxemon.platform.input_manager import InputManager

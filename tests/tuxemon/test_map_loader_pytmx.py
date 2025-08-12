@@ -6,8 +6,8 @@ from operator import is_not
 from unittest.mock import Mock
 
 from tuxemon.db import Direction as Dir
-from tuxemon.map import RegionProperties as RP
-from tuxemon.map_loader import TMXMapLoader
+from tuxemon.map.loader import TMXMapLoader
+from tuxemon.map.map import RegionProperties as RP
 
 
 class TestTMXMapLoaderRegionTiles(unittest.TestCase):

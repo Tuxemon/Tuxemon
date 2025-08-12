@@ -10,8 +10,8 @@ from typing import Any
 from tuxemon import prepare
 from tuxemon.constants.asset_loader import fetch_asset
 from tuxemon.db import db
-from tuxemon.map_loader import region_properties
-from tuxemon.map_manager import map_types_list
+from tuxemon.map.loader import region_properties
+from tuxemon.map.manager import map_types_list
 from tuxemon.script.parser import parse_action_string
 
 # Constants

@@ -8,7 +8,7 @@ from typing import TYPE_CHECKING, Any, Generic, Optional, TypeVar
 from uuid import UUID, uuid4
 
 from tuxemon.db import Direction
-from tuxemon.map import dirs3, proj
+from tuxemon.map.map import dirs3, proj
 from tuxemon.math import Point3, Vector3
 from tuxemon.prepare import CONFIG
 from tuxemon.tools import vector2_to_tile_pos

@@ -3,7 +3,7 @@
 import unittest
 
 from tuxemon.db import Direction
-from tuxemon.map import RegionProperties, extract_region_properties
+from tuxemon.map.map import RegionProperties, extract_region_properties
 
 
 class TestExtractRegionProperties(unittest.TestCase):

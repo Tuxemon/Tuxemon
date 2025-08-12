@@ -9,7 +9,7 @@ from typing import Any, final
 
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
-from tuxemon.map import parse_path_parameters
+from tuxemon.map.map import parse_path_parameters
 from tuxemon.session import Session
 
 logger = logging.getLogger(__name__)

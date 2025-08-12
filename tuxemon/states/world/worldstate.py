@@ -19,7 +19,7 @@ from tuxemon import networking, prepare
 from tuxemon.camera import Camera
 from tuxemon.db import Direction
 from tuxemon.faction.manager import FactionManager
-from tuxemon.map_view import MapRenderer
+from tuxemon.map.view import MapRenderer
 from tuxemon.platform.const import intentions
 from tuxemon.platform.events import PlayerInput
 from tuxemon.platform.tools import translate_input_event

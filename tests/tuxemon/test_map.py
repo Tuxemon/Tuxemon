@@ -7,7 +7,7 @@ from unittest.mock import MagicMock
 from tuxemon import prepare
 from tuxemon.compat import Rect
 from tuxemon.db import Direction, Orientation
-from tuxemon.map import (
+from tuxemon.map.map import (
     angle_of_points,
     direction_to_list,
     get_adjacent_position,

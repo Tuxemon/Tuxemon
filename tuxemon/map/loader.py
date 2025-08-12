@@ -21,7 +21,7 @@ from tuxemon.db import Direction, Orientation
 from tuxemon.event import EventObject, MapAction, MapCondition
 from tuxemon.graphics import scaled_image_loader
 from tuxemon.lib.bresenham import bresenham
-from tuxemon.map import (
+from tuxemon.map.map import (
     RegionProperties,
     TuxemonMap,
     angle_of_points,

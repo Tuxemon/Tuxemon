@@ -3,7 +3,7 @@
 import unittest
 from unittest.mock import MagicMock
 
-from tuxemon.map_transition import MapTransition
+from tuxemon.map.transition import MapTransition
 
 
 class TestMapTransition(unittest.TestCase):

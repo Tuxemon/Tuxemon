@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 from tuxemon.core.core_condition import CoreCondition
-from tuxemon.map_manager import map_types_list
+from tuxemon.map.manager import map_types_list
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster

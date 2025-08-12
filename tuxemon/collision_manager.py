@@ -9,12 +9,12 @@ from typing import TYPE_CHECKING, Any, DefaultDict, Optional, Union
 
 from tuxemon import prepare
 from tuxemon.db import Direction
-from tuxemon.map import RegionProperties
+from tuxemon.map.map import RegionProperties
 
 if TYPE_CHECKING:
 
     from tuxemon.entity import Entity
-    from tuxemon.map_manager import MapManager
+    from tuxemon.map.manager import MapManager
     from tuxemon.npc import NPC
     from tuxemon.npc_manager import NPCManager
 

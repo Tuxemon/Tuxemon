@@ -3,8 +3,8 @@
 import unittest
 from unittest.mock import MagicMock
 
-from tuxemon.map import TuxemonMap
-from tuxemon.map_manager import MapManager, MapType
+from tuxemon.map.manager import MapManager, MapType
+from tuxemon.map.map import TuxemonMap
 
 
 class TestMapManager(unittest.TestCase):

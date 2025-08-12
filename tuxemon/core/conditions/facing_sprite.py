@@ -7,7 +7,7 @@ from typing import TYPE_CHECKING
 
 from tuxemon.core.core_condition import CoreCondition
 from tuxemon.event import get_npc_pos
-from tuxemon.map import get_coords, get_direction
+from tuxemon.map.map import get_coords, get_direction
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster

@@ -7,7 +7,7 @@ from dataclasses import dataclass
 
 from tuxemon.event import MapCondition, get_npc
 from tuxemon.event.eventcondition import EventCondition
-from tuxemon.map import get_coords, get_direction
+from tuxemon.map.map import get_coords, get_direction
 from tuxemon.session import Session
 
 logger = logging.getLogger(__name__)

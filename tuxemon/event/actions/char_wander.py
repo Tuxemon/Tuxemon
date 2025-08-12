@@ -10,7 +10,7 @@ from typing import Optional, final
 
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
-from tuxemon.map import get_coords, get_direction
+from tuxemon.map.map import get_coords, get_direction
 from tuxemon.session import Session
 from tuxemon.states.world.worldstate import WorldState
 

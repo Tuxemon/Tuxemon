@@ -13,23 +13,22 @@ logger = logging.getLogger(__name__)
 
 
 @dataclass
-class CharPositionCondition(EventCondition):
+class CharAtPositionCondition(EventCondition):
     """
     Check to see if the character is at the position on the map.
 
     Script usage:
         .. code-block::
 
-            is char_position <character>,<tile_pos_x>,<tile_pos_y>
+            is char_at_position <character>,<tile_pos_x>,<tile_pos_y>
 
     Script parameters:
         character: Either "player" or character slug name (e.g. "npc_maple").
         tile_pos_x: X position to set the character to.
         tile_pos_y: Y position to set the character to.
-
     """
 
-    name = "char_position"
+    name = "char_at_position"
 
     def test(self, session: Session, condition: MapCondition) -> bool:
         character = get_npc(session, condition.parameters[0])

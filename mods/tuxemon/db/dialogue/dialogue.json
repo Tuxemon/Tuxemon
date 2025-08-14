@@ -140,6 +140,7 @@
     "border_slug": "borders",
     "font_color": "10:10:10",
     "font_shadow_color": "192:192:192",
+	"line_spacing": 4,
     "slug": "thin-border"
   }
 ]

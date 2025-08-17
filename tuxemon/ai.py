@@ -248,7 +248,10 @@ class OpponentEvaluator:
         Scores opponents based on their current health, status effects, and power level.
         Higher scores indicate better targets.
         """
-        if not self.combat.is_trainer_battle or not self.combat.is_double:
+        if (
+            not self.combat.context.is_trainer_battle
+            or not self.combat.is_double
+        ):
             return 1.0
 
         owner = self.user.get_owner()
@@ -552,7 +555,7 @@ class AI:
 
         self.decision_strategy = (
             TrainerAIDecisionStrategy(self.evaluator, self.tracker)
-            if self.combat.is_trainer_battle
+            if self.combat.context.is_trainer_battle
             else WildAIDecisionStrategy(self.evaluator, self.tracker)
         )
 

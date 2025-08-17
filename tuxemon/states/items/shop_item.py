@@ -84,7 +84,7 @@ class ShopItemMenuState(Menu[Item]):
         """Check if the selected item is valid for purchase or sale."""
         if not item:
             return False
-        if self.buyer.isplayer:
+        if self.buyer.is_player:
             _, _, price = generate_label(item, self.economy, 1)
             wallet = self.buyer_manager.get_money()
             key = f"{self.economy.model.slug}:{item.slug}"
@@ -117,7 +117,7 @@ class ShopItemMenuState(Menu[Item]):
         self, inventory: list[Item]
     ) -> Generator[MenuItem[Item], None, None]:
         for item in inventory:
-            if self.buyer.isplayer:
+            if self.buyer.is_player:
                 key = f"{self.economy.model.slug}:{item.slug}"
                 qty = self.buyer.game_variables.get(key, 0)
                 label, discount, price = self.generate_label(item, qty)
@@ -131,7 +131,7 @@ class ShopItemMenuState(Menu[Item]):
                 yield menu_item
                 menu_item.metadata["price"] = price
                 self.add(menu_item)
-            elif self.seller.isplayer:
+            elif self.seller.is_player:
                 label, discount, cost = self.generate_label(
                     item, qty=None, seller_mode=True
                 )

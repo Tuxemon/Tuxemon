@@ -25,7 +25,7 @@ class Player(NPC):
         session: Session,
     ) -> None:
         super().__init__(npc_slug, session=session)
-        self.isplayer = True
+        self.is_player = True
 
     @classmethod
     def create(cls, session: Session, slug: str = PLAYER_NPC) -> Player:

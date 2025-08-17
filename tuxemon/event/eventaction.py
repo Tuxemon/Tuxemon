@@ -9,7 +9,7 @@ from dataclasses import dataclass, field
 from types import TracebackType
 from typing import Any, ClassVar, Optional
 
-from tuxemon.constants.paths import ACTIONS_PATH
+from tuxemon.constants.paths import ACTIONS_PATH, LIBDIR
 from tuxemon.plugin import load_plugins
 from tuxemon.session import Session
 from tuxemon.tools import cast_dataclass_parameters
@@ -264,8 +264,9 @@ class EventAction(ABC):
 class ActionManager:
     def __init__(self) -> None:
         self.actions = load_plugins(
-            ACTIONS_PATH,
-            "actions",
+            paths=[ACTIONS_PATH],
+            root_path=LIBDIR.parent,
+            category="actions",
             interface=EventAction,  # type: ignore[type-abstract]
         )
 

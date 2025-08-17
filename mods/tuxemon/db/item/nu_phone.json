@@ -12,9 +12,10 @@
     "consumable": false,
     "visible": false
   },
-  "world_menu": {
+  "dynamic_menu": {
     "position": 3,
     "label_key": "nu_phone",
+    "menu_type": "world",
     "state": "NuPhone"
   },
   "use_failure": "generic_failure",

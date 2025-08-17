@@ -85,14 +85,14 @@ class ShopMonsterMenuState(Menu[Monster]):
         """Check if the selected monster is valid for purchase or sale."""
         if not monster:
             return False
-        if self.buyer.isplayer:
+        if self.buyer.is_player:
             _, _, price = generate_label(monster, self.economy, 1)
             wallet = self.buyer_manager.get_money()
             key = f"{self.economy.model.slug}:{monster.slug}"
             qty = self.buyer.game_variables.get(key, 0)
             if price > wallet or qty == 0:
                 return False
-        if self.seller.isplayer:
+        if self.seller.is_player:
             if self.seller.party.party_size == 1:
                 return False
         return True
@@ -123,7 +123,7 @@ class ShopMonsterMenuState(Menu[Monster]):
         self, inventory: list[Monster]
     ) -> Generator[MenuItem[Monster], None, None]:
         for monster in inventory:
-            if self.buyer.isplayer:
+            if self.buyer.is_player:
                 key = f"{self.economy.model.slug}:{monster.slug}"
                 qty = self.buyer.game_variables.get(key, 0)
                 label, discount, price = self.generate_monster_label(
@@ -141,7 +141,7 @@ class ShopMonsterMenuState(Menu[Monster]):
                 yield menu_monster
                 menu_monster.metadata["price"] = price
                 self.add(menu_monster)
-            elif self.seller.isplayer:
+            elif self.seller.is_player:
                 label, discount, cost = self.generate_monster_label(
                     monster, qty=None, seller_mode=True
                 )

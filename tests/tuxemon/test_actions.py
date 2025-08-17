@@ -211,7 +211,7 @@ class TestCharacterActions(unittest.TestCase):
         self.assertEqual(self.player.moverate, prepare.CONFIG.player_runrate)
 
     def test_char_face(self):
-        self.player.isplayer = False
+        self.player.is_player = False
         self.player.set_facing(Direction.down)
         self.action.execute_action("char_face", ["player", "up"])
         self.assertEqual(self.player.facing, Direction.up)

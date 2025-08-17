@@ -161,7 +161,6 @@ class CombatState(CombatAnimations):
 
         super().__init__(context=context)
         self._lock_update = self.client.config.combat_click_to_continue
-        self.is_trainer_battle = context.combat_type == CombatType.TRAINER
         self.show_combat_dialog()
         self.transition_phase(CombatPhase.BEGIN)
         self.task(
@@ -523,7 +522,7 @@ class CombatState(CombatAnimations):
             monster: The monster that was encountered.
         """
         for other_player in self.players:
-            if other_player.isplayer and other_player != player:
+            if other_player.is_player and other_player != player:
                 if monster.slug not in self._combat_variables:
                     other_player.tuxepedia.add_entry(monster.slug)
                     self._combat_variables[monster.slug] = True
@@ -641,7 +640,7 @@ class CombatState(CombatAnimations):
                 players=opponents if opponents else players,
                 turns=self._turn,
                 prize=self._prize if result_type == "won" else 0,
-                trainer_battle=self.is_trainer_battle,
+                trainer_battle=self.context.is_trainer_battle,
             )
         return message
 
@@ -651,7 +650,7 @@ class CombatState(CombatAnimations):
         """
         for player in self.remaining_players:
             monsters = self.field_monsters.get_monsters(player)
-            if monsters and not player.isplayer:
+            if monsters and not player.is_player:
                 for mon in monsters:
                     battlefield(self.session, mon)
 
@@ -937,7 +936,7 @@ class CombatState(CombatAnimations):
             success_header_text = ""
             if result_item.success:
                 success_header_text = T.translate("gotcha")
-                if len(user.monsters) >= prepare.PARTY_LIMIT:
+                if len(user.monsters) > prepare.PARTY_LIMIT:
                     success_text = T.format(
                         "gotcha_kennel", {"name": target.name.upper()}
                     )
@@ -1067,7 +1066,7 @@ class CombatState(CombatAnimations):
         Parameters:
             monster: Monster that was fainted.
         """
-        reward_system = RewardSystem(self._damage_map, self.is_trainer_battle)
+        reward_system = RewardSystem(self._damage_map, self.context)
         rewards = reward_system.award_rewards(monster)
 
         # Update combat state with rewards
@@ -1097,7 +1096,7 @@ class CombatState(CombatAnimations):
                 mex = T.format("tuxemon_new_tech", params)
                 self.text_anim.add_xp_message(mex)
             owner = winner.get_owner()
-            if owner.isplayer:
+            if owner.is_player:
                 self.task(partial(self.animate_exp, winner), interval=2.5)
                 self.task(
                     partial(self.update_hud, owner, False, True), interval=4.0
@@ -1207,7 +1206,7 @@ class CombatState(CombatAnimations):
     def human_players(self) -> Iterable[NPC]:
         """Players controlled by humans."""
         for player in self.players:
-            if player.isplayer:
+            if player.is_player:
                 yield player
 
     @property

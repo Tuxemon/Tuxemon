@@ -12,6 +12,12 @@
     "consumable": false,
     "visible": false
   },
+  "dynamic_menu": {
+    "position": 2,
+    "label_key": "app_map",
+    "menu_type": "phone",
+    "state": "NuPhoneMap"
+  },
   "use_failure": "generic_failure",
   "use_item": "combat_used_x",
   "use_success": "generic_success"

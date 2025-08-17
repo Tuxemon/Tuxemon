@@ -269,10 +269,11 @@ class ItemBehaviors(BaseModel):
     )
 
 
-class WorldMenuEntry(BaseModel):
+class DynamicMenuEntry(BaseModel):
     position: int
     label_key: str
     state: str
+    menu_type: str
     enabled: bool = True
 
 
@@ -326,9 +327,9 @@ class ItemModel(BaseModel, BaseLookupModel):
     animation: Optional[str] = Field(
         None, description="Animation to play for this item"
     )
-    world_menu: Optional[WorldMenuEntry] = Field(
+    dynamic_menu: Optional[DynamicMenuEntry] = Field(
         None,
-        description="Item adds to World Menu a button (position, label -inside the PO -,state, eg. 3:nu_phone:PhoneState)",
+        description="Item adds a button to a specific menu (world, phone, etc.).",
     )
     cost: int = Field(0, description="The standard cost of the item.", ge=0)
     max_wear: int = Field(

@@ -96,11 +96,9 @@ class StateLoader:
         """
         Scan a package's folder, load states found in it, and register them
         with the provided StateRepository.
+        Supports both subfolders and flat .py files.
         """
         state_folder = self.lib_dir / Path(*self.base_package.split(".")[1:])
-        exclude_endings = {".py", ".pyc", ".pyo"}
-        exclude_names = {"__pycache__"}
-
         logger.info(f"Initiating game state discovery from {state_folder}")
 
         if not state_folder.is_dir():
@@ -110,25 +108,27 @@ class StateLoader:
             return
 
         for entry in state_folder.iterdir():
-            if (
-                entry.is_dir()
-                and not any(
-                    entry.name.endswith(end) for end in exclude_endings
-                )
-                and entry.name not in exclude_names
+            # Handle subfolders (legacy behavior)
+            if entry.is_dir() and (entry / "__init__.py").exists():
+                import_name = f"{self.base_package}.{entry.name}"
+            # Handle flat .py files
+            elif (
+                entry.is_file()
+                and entry.suffix == ".py"
+                and entry.name != "__init__.py"
             ):
-                logger.debug(
-                    f"Attempting to load states from directory: {entry.name}"
+                import_name = f"{self.base_package}.{entry.stem}"
+            else:
+                continue
+
+            logger.debug(f"Attempting to load states from: {import_name}")
+            try:
+                for state_cls in self._collect_states_from_module(import_name):
+                    repository.add_state(state_cls)
+                    state_name = getattr(state_cls, "name", state_cls.__name__)
+                    logger.debug(f"Registered state: {state_name}")
+            except Exception:
+                logger.error(
+                    f"Skipping '{entry.name}' due to errors during state collection.",
+                    exc_info=True,
                 )
-                try:
-                    for state_cls in self.collect_states_from_path(entry):
-                        repository.add_state(state_cls)
-                        state_name = getattr(
-                            state_cls, "name", state_cls.__name__
-                        )
-                        logger.debug(f"Registered state: {state_name}")
-                except Exception:
-                    logger.error(
-                        f"Skipping directory '{entry.name}' due to errors during state collection.",
-                        exc_info=True,
-                    )

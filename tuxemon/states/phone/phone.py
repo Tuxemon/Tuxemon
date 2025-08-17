@@ -29,119 +29,112 @@ class NuPhone(PygameMenuState):
 
     name: ClassVar[str] = "NuPhone"
 
-    def add_menu_items(
-        self,
-        menu: pygame_menu.Menu,
-        items: Sequence[Item],
-    ) -> None:
-        self._no_signal = False
-
-        def _change_state(state: str, **kwargs: Any) -> MenuGameObj:
-            return partial(self.client.push_state, state, **kwargs)
-
-        def _no_trackers() -> None:
-            no_trackers = T.translate("nu_map_missing")
-            open_dialog(self.client, [no_trackers])
-
-        def _no_signal() -> None:
-            no_signal = T.translate("no_signal")
-            open_dialog(self.client, [no_signal])
-
-        def _uninstall(itm: Item) -> None:
-            open_dialog(
-                self.client,
-                [T.translate("uninstall_app")],
-            )
-
-        column_width = fix_measure(menu._width, 0.25)
-        menu._column_max_width = [
-            column_width,
-            column_width,
-            column_width,
-            column_width,
-        ]
-
-        # menu
-        network = [
-            mt for mt in MAP_TYPES if mt.name in {"town", "clinic", "shop"}
-        ]
-        desc = T.translate("nu_phone")
-        if self.client.map_manager.map_type in network:
-            desc = T.translate("omnichannel_mobile")
-        else:
-            desc = T.translate("no_signal")
-            self._no_signal = True
-        menu.set_title(desc).center_content()
-
-        # no gps tracker (nu map)
-        trackers = self.char.tracker.locations
-
-        for item in items:
-            label = T.translate(item.name).upper()
-            change = None
-            if item.slug == "app_banking":
-                change = (
-                    _no_signal
-                    if self._no_signal
-                    else _change_state("NuPhoneBanking", character=self.char)
-                )
-            elif item.slug == "app_contacts":
-                change = _change_state("NuPhoneContacts", character=self.char)
-            elif item.slug == "app_map":
-                change = (
-                    _change_state("NuPhoneMap", character=self.char)
-                    if trackers
-                    else _no_trackers
-                )
-            new_image = self._create_image(item.sprite)
-            new_image.scale(prepare.SCALE, prepare.SCALE)
-            # image of the app
-            menu.add.banner(
-                new_image,
-                change,
-                selection_effect=HighlightSelection(),
-            )
-            # name of the app
-            menu.add.button(
-                label,
-                action=partial(_uninstall, item),
-                font_size=self.font_type.smaller,
-            )
-            # description of the app
-            menu.add.label(
-                item.description,
-                font_size=self.font_type.smaller,
-                wordwrap=True,
-            )
-
     def __init__(self, character: NPC) -> None:
         width, height = prepare.SCREEN_SIZE
+        self.char = character
 
         theme = self._setup_theme(prepare.BG_PHONE)
         theme.scrollarea_position = locals.POSITION_EAST
         theme.widget_alignment = locals.ALIGN_CENTER
-
-        # menu
         theme.title = True
 
-        self.char = character
-
-        menu_items_map = []
+        self.menu_apps: list[Item] = []
         for itm in self.char.items.get_items():
-            if (
-                itm.category == "phone"
-                and itm.slug != "nu_phone"
-                and itm.slug != "app_tuxepedia"
-            ):
-                menu_items_map.append(itm)
+            if itm.dynamic_menu and itm.dynamic_menu.menu_type == "phone":
+                self.menu_apps.append(itm)
 
-        # 4 columns, then 3 rows (image + label + description)
         columns = 4
-        rows = math.ceil(len(menu_items_map) / columns) * 3
+        rows = math.ceil(len(self.menu_apps) / columns) * 3
 
         super().__init__(
             height=height, width=width, columns=columns, rows=rows
         )
 
-        self.add_menu_items(self.menu, menu_items_map)
+        self.add_menu_items(self.menu, self.menu_apps)
         self.reset_theme()
+
+    def _get_app_callback(self, item: Item) -> Callable[[], Any]:
+        """
+        Returns the appropriate callback for a dynamic menu entry,
+        handling conditional logic based on the item and game state.
+        """
+        dm = item.dynamic_menu
+        if not dm:
+            return lambda: None
+
+        state_name = dm.state
+
+        def _no_trackers() -> None:
+            open_dialog(self.client, [T.translate("nu_map_missing")])
+
+        def _no_signal() -> None:
+            open_dialog(self.client, [T.translate("no_signal")])
+
+        if state_name == "NuPhoneBanking":
+            # Banking app requires a network signal
+            network = [
+                mt for mt in MAP_TYPES if mt.name in {"town", "clinic", "shop"}
+            ]
+            if self.client.map_manager.map_type not in network:
+                return _no_signal
+
+        if state_name == "NuPhoneMap":
+            # Map app requires a tracker
+            if not self.char.tracker.locations:
+                return _no_trackers
+
+        return partial(self.client.push_state, state_name, character=self.char)
+
+    def add_menu_items(
+        self,
+        menu: pygame_menu.Menu,
+        items: Sequence[Item],
+    ) -> None:
+        """Dynamically adds app items to the phone menu."""
+
+        def _uninstall(itm: Item) -> None:
+            open_dialog(self.client, [T.translate("uninstall_app")])
+
+        column_width = fix_measure(menu._width, 0.25)
+        menu._column_max_width = [column_width] * 4
+
+        network = [
+            mt for mt in MAP_TYPES if mt.name in {"town", "clinic", "shop"}
+        ]
+        if self.client.map_manager.map_type in network:
+            desc = T.translate("omnichannel_mobile")
+        else:
+            desc = T.translate("no_signal")
+
+        menu.set_title(desc).center_content()
+
+        for item in items:
+            dm = item.dynamic_menu
+            if dm:
+                label = T.translate(dm.label_key).upper()
+
+                change = self._get_app_callback(item)
+
+                new_image = self._create_image(item.sprite)
+                new_image.scale(prepare.SCALE, prepare.SCALE)
+
+                # App image (banner)
+                menu.add.banner(
+                    new_image,
+                    change,
+                    selection_effect=HighlightSelection(),
+                )
+
+                # App name (button with uninstall action)
+                menu.add.button(
+                    label,
+                    action=partial(_uninstall, item),
+                    font_size=self.font_type.smaller,
+                )
+
+                # App description
+                menu.add.label(
+                    item.description,
+                    font_size=self.font_type.smaller,
+                    wordwrap=True,
+                )

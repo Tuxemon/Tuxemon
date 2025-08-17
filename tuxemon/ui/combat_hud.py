@@ -58,7 +58,7 @@ class CombatLayoutManager:
         if monster in self._monster_ui:
             logger.debug(f"{monster.name} already assigned, skipping.")
             return
-        side = Side.PLAYER if npc.isplayer else Side.OPPONENT
+        side = Side.PLAYER if npc.is_player else Side.OPPONENT
         slot_index = self.get_open_slot(npc)
 
         if not is_double and nr_players == 2 and side == Side.PLAYER:

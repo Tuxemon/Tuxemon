@@ -90,7 +90,7 @@ def calc_internal_rect(base_rect: Rect) -> Rect:
 def filter_inventory(buyer: NPC, seller: NPC, economy: Economy) -> list[Item]:
 
     # Player is buying — pull from the seller's shop inventory
-    if buyer.isplayer:
+    if buyer.is_player:
         raw_inventory = (
             seller.shop_inventory.items if seller.shop_inventory else []
         )
@@ -115,7 +115,7 @@ def filter_inventory(buyer: NPC, seller: NPC, economy: Economy) -> list[Item]:
 def filter_party(buyer: NPC, seller: NPC, economy: Economy) -> list[Monster]:
 
     # Player is buying — pull from the seller's shop inventory
-    if buyer.isplayer:
+    if buyer.is_player:
         raw_inventory = (
             seller.shop_inventory.monsters if seller.shop_inventory else []
         )

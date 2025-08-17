@@ -5,6 +5,7 @@ import unittest
 from pathlib import Path
 from unittest.mock import MagicMock, patch
 
+from tuxemon.constants.paths import LIBDIR
 from tuxemon.core.core_manager import (
     ConditionManager,
     CoreManager,
@@ -21,7 +22,7 @@ class TestCoreManager(unittest.TestCase):
         self.category = "category"
         self.plugin_interface = MagicMock(spec=PluginObject)
         self.manager = CoreManager(
-            self.plugin_interface, self.path, self.category
+            self.plugin_interface, self.path, LIBDIR.parent, self.category
         )
 
     def tearDown(self):
@@ -34,7 +35,7 @@ class TestCoreManager(unittest.TestCase):
     def test_load_plugins(self, mock_load_plugins):
         mock_load_plugins.return_value = {"TestPlugin": MagicMock()}
         self.manager.load_plugins(
-            self.plugin_interface, self.path, self.category
+            self.plugin_interface, self.path, LIBDIR.parent, self.category
         )
         self.assertIn("TestPlugin", self.manager.classes)
 
@@ -85,7 +86,7 @@ class TestEffectManager(unittest.TestCase):
         self.path = self.temp_dir / "tuxemon"
         self.category = "effects"
         self.manager = EffectManager(
-            self.effect_class, self.path, self.category
+            self.effect_class, self.path, self.temp_dir.parent, self.category
         )
 
     def tearDown(self):
@@ -111,7 +112,10 @@ class TestConditionManager(unittest.TestCase):
         self.path = self.temp_dir / "tuxemon"
         self.category = "conditions"
         self.manager = ConditionManager(
-            self.condition_class, self.path, self.category
+            self.condition_class,
+            self.path,
+            self.temp_dir.parent,
+            self.category,
         )
 
     def tearDown(self):

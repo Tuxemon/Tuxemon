@@ -85,7 +85,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             ("menu_item", self.open_item_menu),
         )
 
-        if self.combat.is_trainer_battle:
+        if self.combat.context.is_trainer_battle:
             menu_items_map = common_menu_items + (
                 ("menu_forfeit", self.forfeit),
             )

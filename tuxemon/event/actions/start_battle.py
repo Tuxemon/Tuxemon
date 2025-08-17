@@ -61,7 +61,7 @@ class StartBattleAction(EventAction):
 
         env_slug = "grass"
         for fighter in [character1, character2]:
-            if fighter.isplayer:
+            if fighter.is_player:
                 env_slug = fighter.game_variables.get("environment", "grass")
             else:
                 env_slug = session.player.game_variables.get(
@@ -71,7 +71,7 @@ class StartBattleAction(EventAction):
         env = EnvironmentModel.lookup(env_slug, db)
 
         fighters = sorted(
-            [character1, character2], key=lambda x: not x.isplayer
+            [character1, character2], key=lambda x: not x.is_player
         )
 
         logger.info(

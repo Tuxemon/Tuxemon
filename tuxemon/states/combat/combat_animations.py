@@ -77,7 +77,6 @@ class CombatAnimations(Menu[None], ABC):
         self.is_double = context.is_double_battle
         self.field_monsters = FieldMonsters()
         self.sprite_map = MonsterSpriteMap()
-        self.is_trainer_battle = False
         self.capdevs: list[CaptureDeviceSprite] = []
         self.bars = CombatBars(self.graphics)
         layout_manager = LayoutManager(scaled_layouts, layout_groups)
@@ -96,7 +95,9 @@ class CombatAnimations(Menu[None], ABC):
         for player, layout in self.hud_manager.layout.items():
             self.animate_party_hud_in(player, layout["party"][0])
 
-        for player in self.players[: 2 if self.is_trainer_battle else 1]:
+        for player in self.players[
+            : 2 if self.context.is_trainer_battle else 1
+        ]:
             self.task(partial(self.animate_trainer_leave, player), interval=3)
 
     def blink(self, sprite: Sprite) -> None:
@@ -400,7 +401,7 @@ class CombatAnimations(Menu[None], ABC):
                 displayed (e.g. "hud0", etc.).
             animate: Whether the HUD should be animated (slide in) or not.
         """
-        trainer_battle = self.is_trainer_battle
+        trainer_battle = self.context.is_trainer_battle
         menu = self.graphics.menu
         owner = monster.get_owner()
         hud_rect = self.hud_manager.get_rect(owner, hud_position)
@@ -470,7 +471,7 @@ class CombatAnimations(Menu[None], ABC):
     def animate_party_hud_left(
         self, home: Rect
     ) -> tuple[Optional[Sprite], int, int]:
-        if self.is_trainer_battle and not self.is_double:
+        if self.context.is_trainer_battle and not self.is_double:
             tray = self._load_sprite(
                 self.graphics.hud.tray_opponent,
                 {"bottom": home.bottom, "right": 0, "layer": hud_layer},
@@ -589,7 +590,7 @@ class CombatAnimations(Menu[None], ABC):
         )
 
         # Load and animate opponent
-        if self.is_trainer_battle:
+        if self.context.is_trainer_battle:
             combat_front = opponent.template.combat_front
             enemy = self.load_sprite(
                 f"gfx/sprites/player/{combat_front}.png",
@@ -627,7 +628,7 @@ class CombatAnimations(Menu[None], ABC):
         self.sprite_map.add_sprite(player, player_back)
         self.flip_sprites(enemy, player_back)
         self.animate_sprites(enemy, back_island, front_island, player_back)
-        if not self.is_trainer_battle:
+        if not self.context.is_trainer_battle:
             sound = self.players[1].monsters[0].combat_call
             self.play_sound_effect(sound, 1.5)
 

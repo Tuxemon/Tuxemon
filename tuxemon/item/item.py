@@ -74,11 +74,11 @@ class Item:
 
         if Item.effect_manager is None:
             Item.effect_manager = EffectManager(
-                CoreEffect, paths.CORE_EFFECT_PATH
+                CoreEffect, paths.CORE_EFFECT_PATH, paths.LIBDIR.parent
             )
         if Item.condition_manager is None:
             Item.condition_manager = ConditionManager(
-                CoreCondition, paths.CORE_CONDITION_PATH
+                CoreCondition, paths.CORE_CONDITION_PATH, paths.LIBDIR.parent
             )
 
         self.effects: Sequence[PluginObject] = []
@@ -133,7 +133,7 @@ class Item:
         self.cancel_text = T.translate(results.cancel_text)
 
         self.menu_actions_data = results.menu_actions
-        self.world_menu = results.world_menu
+        self.dynamic_menu = results.dynamic_menu
         self.behaviors = results.behaviors
         self.cost = results.cost
         self.max_wear = results.max_wear

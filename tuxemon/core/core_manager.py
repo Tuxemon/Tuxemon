@@ -18,17 +18,30 @@ class CoreManager:
     """Core class for managing the loading and unloading of plugins."""
 
     def __init__(
-        self, interface: type[PluginObject], path: Path, category: str
+        self,
+        interface: type[PluginObject],
+        path: Path,
+        root_path: Path,
+        category: str,
     ) -> None:
         self.classes: dict[str, type[PluginObject]] = {}
-        self.load_plugins(interface, path, category)
+        self.load_plugins(interface, path, root_path, category)
 
     def load_plugins(
-        self, interface: type[PluginObject], path: Path, category: str
+        self,
+        interface: type[PluginObject],
+        path: Path,
+        root_path: Path,
+        category: str,
     ) -> None:
         """Load all available plugins using the existing plugin system."""
         self.classes.update(
-            plugin.load_plugins(path, category, interface=interface)
+            plugin.load_plugins(
+                paths=[path],
+                root_path=root_path,
+                category=category,
+                interface=interface,
+            )
         )
 
     def load_plugin(self, name: str) -> None:
@@ -117,12 +130,13 @@ class EffectManager(CoreManager):
         self,
         effect_class: type[PluginObject],
         path: Path,
+        root_path: Path,
         category: str = "effects",
     ) -> None:
         """
         Initialize the EffectManager with the specific effect type.
         """
-        super().__init__(effect_class, path, category)
+        super().__init__(effect_class, path, root_path, category)
         self.effect_class = effect_class
 
     def parse_effects(
@@ -139,12 +153,13 @@ class ConditionManager(CoreManager):
         self,
         condition_class: type[PluginObject],
         path: Path,
+        root_path: Path,
         category: str = "conditions",
     ) -> None:
         """
         Initialize the ConditionManager with the specific condition type.
         """
-        super().__init__(condition_class, path, category)
+        super().__init__(condition_class, path, root_path, category)
         self.condition_class = condition_class
 
     def parse_conditions(

@@ -185,24 +185,28 @@ class WorldMenuManager:
         entries: list[tuple[int, MenuItem]] = []
 
         for itm in player.items.get_items():
-            wm = itm.world_menu
-            if wm and all(
-                hasattr(wm, attr)
-                for attr in ["position", "label_key", "state", "enabled"]
+            dm = itm.dynamic_menu
+            if (
+                dm
+                and dm.menu_type == "world"
+                and all(
+                    hasattr(dm, attr)
+                    for attr in ["position", "label_key", "state", "enabled"]
+                )
             ):
-                if wm.enabled and wm.label_key not in self.menu_flags._flags:
-                    self.menu_flags.set_enabled(wm.label_key, True)
+                if dm.enabled and dm.label_key not in self.menu_flags._flags:
+                    self.menu_flags.set_enabled(dm.label_key, True)
 
-                if not self.menu_flags.is_enabled(wm.label_key):
+                if not self.menu_flags.is_enabled(dm.label_key):
                     continue
 
-                if not self.item_exists(wm.label_key, current_menu):
-                    label = T.translate(wm.label_key).upper()
+                if not self.item_exists(dm.label_key, current_menu):
+                    label = T.translate(dm.label_key).upper()
                     callback = self._get_change_state_callback(
-                        wm.state, character=player
+                        dm.state, character=player
                     )
                     entries.append(
-                        (wm.position, MenuItem(wm.label_key, label, callback))
+                        (dm.position, MenuItem(dm.label_key, label, callback))
                     )
 
         # Sort and insert to avoid position shifting issues

@@ -14,6 +14,7 @@ from pygame_menu import locals
 
 from tuxemon import prepare
 from tuxemon.db import db
+from tuxemon.launcher import GameLauncher
 from tuxemon.locale import T
 from tuxemon.menu.menu import PygameMenuState
 from tuxemon.platform.const import buttons
@@ -21,8 +22,6 @@ from tuxemon.platform.events import PlayerInput
 from tuxemon.save import get_index_of_latest_save
 from tuxemon.session import local_session
 from tuxemon.state.state import State
-from tuxemon.states.start.launcher import GameLauncher
-from tuxemon.time_handler import today_ordinal
 
 logger = logging.getLogger(__name__)
 

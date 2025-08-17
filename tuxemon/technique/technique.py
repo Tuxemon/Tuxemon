@@ -78,11 +78,11 @@ class Technique:
 
         if Technique.effect_manager is None:
             Technique.effect_manager = EffectManager(
-                CoreEffect, paths.CORE_EFFECT_PATH
+                CoreEffect, paths.CORE_EFFECT_PATH, paths.LIBDIR.parent
             )
         if Technique.condition_manager is None:
             Technique.condition_manager = ConditionManager(
-                CoreCondition, paths.CORE_CONDITION_PATH
+                CoreCondition, paths.CORE_CONDITION_PATH, paths.LIBDIR.parent
             )
 
         self.effects: Sequence[PluginObject] = []

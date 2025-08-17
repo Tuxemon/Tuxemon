@@ -13,6 +13,7 @@ from tuxemon.cli.clicommand import CLICommand
 from tuxemon.cli.context import InvokeContext
 from tuxemon.cli.exceptions import CommandNotFoundError, ParseError
 from tuxemon.cli.formatter import Formatter
+from tuxemon.constants.paths import LIBDIR
 from tuxemon.plugin import (
     get_available_classes,
     load_directory,
@@ -129,7 +130,10 @@ class CommandProcessor:
             folder: Folder to search.
         """
         pm = load_directory(
-            folder, include=["commands"], exclude=["CLICommand"]
+            plugin_folders=[folder],
+            root_path=LIBDIR.parent,
+            include=["commands"],
+            exclude=["CLICommand"],
         )
         for cmd_class in get_available_classes(pm, interface=CLICommand):
             if cmd_class.usable_from_root:

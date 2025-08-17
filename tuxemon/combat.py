@@ -265,7 +265,7 @@ def _handle_win(
                 turns=turns,
             )
 
-        if winner.isplayer:
+        if winner.is_player:
             set_var(session, "battle_last_result", OutputBattle.won.value)
             set_var(session, "battle_last_winner", "player")
             money_manager = winner.money_controller.money_manager
@@ -302,7 +302,7 @@ def _handle_loss(
     set_var(session, "teleport_clinic", OutputBattle.lost.value)
 
     if trainer_battle:
-        if loser.isplayer:
+        if loser.is_player:
             set_var(session, "battle_last_result", OutputBattle.lost.value)
             set_var(session, "battle_last_loser", "player")
         else:

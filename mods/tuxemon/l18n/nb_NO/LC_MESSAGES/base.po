@@ -39,7 +39,7 @@ msgid "combat_state_lifeleech_failure"
 msgstr "{link} kan ikke heles ytterligere."
 
 msgid "combat_state_recover_failure"
-msgstr "{user} kan ikke heles ytterligere."
+msgstr "{target} kan ikke heles ytterligere."
 
 msgid "super_potion_description"
 msgstr "Heler et monster med 100 HP."

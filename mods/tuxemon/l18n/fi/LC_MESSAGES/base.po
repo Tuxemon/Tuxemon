@@ -65,7 +65,7 @@ msgid "combat_amnesia_get"
 msgstr "{user} kärsii muistinmenetyksestä."
 
 msgid "combat_state_recover_failure"
-msgstr "{user} enempää ei voida parantaa."
+msgstr "{target} enempää ei voida parantaa."
 
 msgid "combat_defeat"
 msgstr "Sinut päihitettiin!"

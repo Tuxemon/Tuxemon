@@ -13,6 +13,19 @@ logger = logging.getLogger(__name__)
 FALLBACK_LOCALE = "en_US"
 
 
+class SafeDict(dict[str, str]):
+    _msgid: str
+
+    def __missing__(self, key: str) -> str:
+        logger.warning(
+            f"Missing parameter '{key}' in translation for msgid: '{self._msgid}'"
+        )
+        return f"<{key}>"
+
+    def set_msgid(self, msgid: str) -> None:
+        self._msgid = msgid
+
+
 class TranslatorPo:
     """
     A class used to translate text using a specific gettext translation
@@ -134,10 +147,20 @@ class TranslatorPo:
             The formatted string.
         """
         text = text.replace(r"\n", "\n")
-        text = self.translate(text)
+        translated_text = self.translate(text)
+
         if parameters:
-            text = text.format(**parameters)
-        return text
+            safe_params = SafeDict(parameters)
+            safe_params.set_msgid(text)  # original msgid before translation
+            try:
+                translated_text = translated_text.format_map(safe_params)
+            except Exception as e:
+                logger.error(
+                    f"Unexpected formatting error for msgid '{text}': {e}"
+                )
+                raise
+
+        return translated_text
 
     def maybe_translate(self, text: Optional[str]) -> str:
         """

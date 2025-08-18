@@ -166,7 +166,7 @@ msgid "combat_state_recover_success"
 msgstr "¡{user} recuperó salud!"
 
 msgid "combat_state_recover_failure"
-msgstr "{user} no puede curarse más."
+msgstr "{target} no puede curarse más."
 
 msgid "combat_status_damage"
 msgstr "¡{name} sufrió {status} de daño!"

@@ -188,7 +188,7 @@ msgid "combat_state_recover_success"
 msgstr "{user}恢复健康了!"
 
 msgid "combat_state_recover_failure"
-msgstr "{user}不能再愈合了."
+msgstr "{target}不能再愈合了."
 
 msgid "combat_status_damage"
 msgstr "{name}的{status}造成了伤害!"

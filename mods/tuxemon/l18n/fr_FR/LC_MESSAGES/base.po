@@ -1552,7 +1552,7 @@ msgid "combat_trainer_appeared"
 msgstr "{name} veut se battre !"
 
 msgid "combat_state_recover_failure"
-msgstr "{user} ne peut pas se soigner davantage."
+msgstr "{target} ne peut pas se soigner davantage."
 
 msgid "combat_state_recover_get"
 msgstr "{target} commence à regagner ses PV."

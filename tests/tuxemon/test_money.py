@@ -132,7 +132,7 @@ class TestMoneyManager(TestCase):
     def test_get_bill(self):
         self.money_manager.set_bill("bill1", 100)
         self.assertEqual(self.money_manager.get_bill("bill1").amount, 100)
-        self.assertEqual(self.money_manager.get_bill("bill2").amount, 0)
+        self.assertIsNone(self.money_manager.get_bill("bill2"))
 
     def test_get_total_bills(self):
         self.money_manager.set_bill("bill1", 100)

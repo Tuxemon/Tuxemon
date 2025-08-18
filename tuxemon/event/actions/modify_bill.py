@@ -50,19 +50,19 @@ class ModifyBillAction(EventAction):
 
         player = session.player
         money_manager = character.money_controller.money_manager
+        amount = 0
         if self.amount is None:
             if self.variable:
-                _amount = player.game_variables.get(self.variable, 0)
+                _amount = player.game_variables.get(self.variable, amount)
                 if isinstance(_amount, int):
                     amount = int(_amount)
                 elif isinstance(_amount, float):
                     _value = float(_amount)
                     _wallet = money_manager.get_bill(self.bill_slug)
-                    amount = int(_wallet.amount * _value)
+                    if _wallet:
+                        amount = int(_wallet.amount * _value)
                 else:
                     raise ValueError("It must be float or int")
-            else:
-                amount = 0
         else:
             amount = self.amount
 

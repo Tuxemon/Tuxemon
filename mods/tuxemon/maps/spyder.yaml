@@ -54,6 +54,12 @@ events:
     - not variable_set cathedral_fee
     - not variable_set scoop_coeff
     type: event
+  Cathedral Bill:
+    actions:
+    - set_bill player,bill_cathedral,0,0.1,100,0.5
+    conditions:
+    - not bill_exists player,bill_cathedral
+    type: event
   Cheat Code ApexPlayer:
     actions:
     - get_party_monster

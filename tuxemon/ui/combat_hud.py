@@ -9,13 +9,13 @@ from typing import TYPE_CHECKING, Optional
 
 from pygame.rect import Rect
 
-from tuxemon.sprite import Sprite
-
-logger = logging.getLogger(__name__)
-
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
     from tuxemon.npc import NPC
+    from tuxemon.sprite import Sprite
+
+
+logger = logging.getLogger(__name__)
 
 
 class Side(Enum):
@@ -58,15 +58,11 @@ class CombatLayoutManager:
         if monster in self._monster_ui:
             logger.debug(f"{monster.name} already assigned, skipping.")
             return
-        side = Side.PLAYER if npc.is_player else Side.OPPONENT
-        slot_index = self.get_open_slot(npc)
 
-        if not is_double and nr_players == 2 and side == Side.PLAYER:
-            slot_index = 1
-
-        if not is_double and nr_players == 2 and side == Side.OPPONENT:
-            slot_index = 0
-
+        side = self.determine_side(npc, nr_players, is_double)
+        slot_index = self.determine_slot_index(
+            npc, side, nr_players, is_double
+        )
         key = f"home{slot_index}" if is_double else "home"
         feet = self.get_feet_position(npc, monster)
 
@@ -134,3 +130,38 @@ class CombatLayoutManager:
                 icon.kill()
 
         logger.debug(f"[unassign] {monster.name} removed from layout and HUD")
+
+    def determine_side(
+        self, npc: NPC, nr_players: int, is_double: bool
+    ) -> Side:
+        if npc.is_player:
+            return Side.PLAYER
+
+        # Special case: NPC vs NPC
+        if nr_players == 2 and not is_double:
+            # Assign PLAYER to the first NPC, OPPONENT to the second
+            npc_list = list(self._layouts.keys())
+            return Side.PLAYER if npc == npc_list[0] else Side.OPPONENT
+
+        return Side.OPPONENT
+
+    def determine_slot_index(
+        self, npc: NPC, side: Side, nr_players: int, is_double: bool
+    ) -> int:
+        if is_double:
+            # Double battle: assign slot based on side-local usage
+            used_slots = {
+                index
+                for monster, (s, index) in self._positions.items()
+                if s == side
+            }
+
+            for i in range(2):  # supports up to 2 monsters per side
+                if i not in used_slots:
+                    return i
+
+            return 0  # fallback
+
+        else:
+            # Single battle: opponent on left (slot 0), player on right (slot 1)
+            return 1 if side == Side.PLAYER else 0

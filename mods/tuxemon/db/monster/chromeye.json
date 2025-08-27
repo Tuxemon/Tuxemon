@@ -90,7 +90,8 @@
   "shape": "blob",
   "stage": "basic",
   "types": [
-    "metal"
+    "metal",
+    "cosmic"
   ],
   "possible_genders": [
     "neuter"

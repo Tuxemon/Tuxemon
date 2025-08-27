@@ -71,7 +71,8 @@
   "shape": "leviathan",
   "stage": "stage2",
   "types": [
-    "water"
+    "water",
+    "venom"
   ],
   "possible_genders": [
     "male",

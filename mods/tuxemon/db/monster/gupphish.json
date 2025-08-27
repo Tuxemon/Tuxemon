@@ -78,8 +78,8 @@
   "shape": "piscine",
   "stage": "basic",
   "types": [
-    "fire",
-    "water"
+    "water",
+    "fire"
   ],
   "possible_genders": [
     "male",

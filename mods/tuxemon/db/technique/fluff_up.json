@@ -34,7 +34,7 @@
     "shielded"
   ],
   "types": [
-    "aether"
+    "normal"
   ],
   "use_failure": "combat_miss",
   "use_success": null,

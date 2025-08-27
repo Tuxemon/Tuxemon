@@ -12,9 +12,10 @@
     "consumable": false,
     "visible": false
   },
-  "world_menu": {
+  "dynamic_menu": {
     "position": 0,
     "label_key": "menu_tuxepedia",
+    "menu_type": "world",
     "state": "JournalChoice"
   },
   "use_failure": "generic_failure",

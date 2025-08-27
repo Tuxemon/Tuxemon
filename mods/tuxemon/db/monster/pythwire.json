@@ -52,6 +52,7 @@
   "shape": "serpent",
   "stage": "basic",
   "types": [
+    "lightning",
     "metal"
   ],
   "possible_genders": [

@@ -74,6 +74,7 @@
   "shape": "piscine",
   "stage": "stage1",
   "types": [
+    "lightning",
     "water"
   ],
   "possible_genders": [

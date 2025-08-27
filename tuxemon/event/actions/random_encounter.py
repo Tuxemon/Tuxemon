@@ -7,7 +7,12 @@ from dataclasses import dataclass
 from typing import Optional, final
 
 from tuxemon import prepare
-from tuxemon.combat import check_battle_legal
+from tuxemon.combat.combat_context import (
+    BattleMode,
+    CombatContext,
+    CombatType,
+)
+from tuxemon.combat.utils import check_battle_legal
 from tuxemon.db import EnvironmentModel, db
 from tuxemon.encounter import Encounter, EncounterData
 from tuxemon.event import get_npc
@@ -16,11 +21,6 @@ from tuxemon.graphics import ColorLike, string_to_colorlike
 from tuxemon.item.item import Item
 from tuxemon.monster import Monster
 from tuxemon.session import Session
-from tuxemon.states.combat.combat_context import (
-    BattleMode,
-    CombatContext,
-    CombatType,
-)
 
 logger = logging.getLogger(__name__)
 

@@ -72,7 +72,8 @@
   "shape": "grub",
   "stage": "basic",
   "types": [
-    "water"
+    "venom",
+    "shadow"
   ],
   "possible_genders": [
     "male",

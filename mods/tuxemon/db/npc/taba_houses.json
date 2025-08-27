@@ -1,6 +1,8 @@
 [
   {
     "slug": "taba_house1_husband",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "maniac",
       "combat_front": "adventurer",
@@ -9,6 +11,8 @@
   },
   {
     "slug": "taba_house1_wife",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "granny",
       "combat_front": "heroine",
@@ -17,6 +21,8 @@
   },
   {
     "slug": "taba_house2_owner",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "homemaker_fiery",
       "combat_front": "heroine",
@@ -25,6 +31,8 @@
   },
   {
     "slug": "taba_house2_reader1",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "heroine_brown",
       "combat_front": "heroine",
@@ -33,6 +41,8 @@
   },
   {
     "slug": "taba_house2_reader2",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "heroine_red",
       "combat_front": "heroine",
@@ -41,6 +51,8 @@
   },
   {
     "slug": "taba_house3_owner",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "homemaker_black",
       "combat_front": "heroine",
@@ -49,6 +61,8 @@
   },
   {
     "slug": "taba_house3_client1",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "florist_rose",
       "combat_front": "florist",
@@ -57,6 +71,8 @@
   },
   {
     "slug": "taba_house3_client2",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "homemaker_fiery",
       "combat_front": "heroine",
@@ -65,6 +81,8 @@
   },
   {
     "slug": "taba_house4_client1",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "professor_green",
       "combat_front": "professor",
@@ -73,6 +91,8 @@
   },
   {
     "slug": "taba_house4_waiter",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "shopassistant_grey",
       "combat_front": "adventurer",
@@ -81,6 +101,8 @@
   },
   {
     "slug": "taba_house4_client2",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "shopassistant_red",
       "combat_front": "adventurer",
@@ -89,6 +111,8 @@
   },
   {
     "slug": "taba_house4_owner",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "florist_fiery",
       "combat_front": "florist",

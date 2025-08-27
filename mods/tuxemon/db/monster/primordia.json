@@ -56,7 +56,7 @@
   "stage": "standalone",
   "types": [
     "fire",
-    "water"
+    "frost"
   ],
   "possible_genders": [
     "neuter"

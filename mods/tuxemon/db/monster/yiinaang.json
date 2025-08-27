@@ -67,8 +67,8 @@
   "shape": "blob",
   "stage": "standalone",
   "types": [
-    "fire",
-    "water"
+    "shadow",
+    "cosmic"
   ],
   "possible_genders": [
     "neuter"

@@ -76,7 +76,8 @@
   "shape": "blob",
   "stage": "stage1",
   "types": [
-    "earth"
+    "earth",
+    "heroic"
   ],
   "possible_genders": [
     "male",

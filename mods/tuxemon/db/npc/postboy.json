@@ -1,5 +1,7 @@
 {
   "slug": "postboy",
+  "speech": {"profile": {"default": {}}},
+  "combat": {},
   "template": {
     "sprite_name": "postboy",
     "combat_front": "adventurer",

@@ -44,8 +44,8 @@
   "shape": "polliwog",
   "stage": "stage2",
   "types": [
-    "metal",
-    "water"
+    "water",
+    "venom"
   ],
   "possible_genders": [
     "neuter"

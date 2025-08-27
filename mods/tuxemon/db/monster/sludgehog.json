@@ -64,7 +64,8 @@
   "shape": "landrace",
   "stage": "standalone",
   "types": [
-    "earth"
+    "earth",
+    "wood"
   ],
   "possible_genders": [
     "male",

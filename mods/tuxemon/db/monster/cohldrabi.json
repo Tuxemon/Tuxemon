@@ -71,8 +71,8 @@
   "shape": "sprite",
   "stage": "basic",
   "types": [
-    "water",
-    "wood"
+    "wood",
+    "frost"
   ],
   "possible_genders": [
     "male",

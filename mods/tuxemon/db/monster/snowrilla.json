@@ -53,7 +53,8 @@
   "shape": "brute",
   "stage": "stage1",
   "types": [
-    "water"
+    "frost",
+    "heroic"
   ],
   "possible_genders": [
     "male",

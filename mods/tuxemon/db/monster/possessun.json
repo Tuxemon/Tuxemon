@@ -67,7 +67,7 @@
   "shape": "blob",
   "stage": "stage1",
   "types": [
-    "metal"
+    "shadow"
   ],
   "possible_genders": [
     "neuter"

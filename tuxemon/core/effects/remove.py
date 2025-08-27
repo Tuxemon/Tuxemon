@@ -6,7 +6,6 @@ import random
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from tuxemon.combat import get_target_monsters
 from tuxemon.core.core_effect import CoreEffect, TechEffectResult
 
 if TYPE_CHECKING:
@@ -37,15 +36,16 @@ class RemoveEffect(CoreEffect):
         self, session: Session, tech: Technique, user: Monster, target: Monster
     ) -> TechEffectResult:
         monsters: list[Monster] = []
-        combat = tech.get_combat_state()
 
         objectives = self.objectives.split(":")
         potency = random.random()
-        value = combat.get_tech_hit(user)
+        value = session.client.combat_session.get_tech_hit(user)
         success = tech.potency >= potency and tech.accuracy >= value
 
         if success:
-            monsters = get_target_monsters(objectives, tech, user, target)
+            monsters = session.client.combat_session.get_target_monsters(
+                objectives, user, target
+            )
             if self.status == "all":
                 for monster in monsters:
                     monster.status.clear_status(session)
@@ -55,7 +55,8 @@ class RemoveEffect(CoreEffect):
                         monster.status.clear_status(session)
 
         if monsters:
-            combat.update_icons_for_monsters()
-            combat.animate_update_party_hud()
+            event_bus = session.client.event_bus
+            event_bus.publish("status_applied")
+            event_bus.publish("update_party_hud")
 
         return TechEffectResult(name=tech.name, success=bool(monsters))

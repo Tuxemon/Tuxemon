@@ -58,8 +58,6 @@ class CharacterState(PygameMenuState):
             else self.char.name
         )
 
-        player = "player" if self.char.isplayer else self.char.slug
-
         # tuxepedia data
         filters = list(lookup_cache.values())
         completeness = self.char.tuxepedia.get_completeness(len(filters))
@@ -89,21 +87,24 @@ class CharacterState(PygameMenuState):
             else T.translate("player_start_adventure_today")
         )
 
-        summary = self.char.battle_handler.get_battle_outcome_summary()
-        tot, won, lost, draw = (
-            summary["total"],
-            summary["won"],
-            summary["lost"],
-            summary["draw"],
-        )
+        if self.char.battle_handler.get_battles():
+            summary = self.char.battle_handler.get_battle_outcome_summary()
+            tot, won, lost, draw = (
+                summary["total"],
+                summary["won"],
+                summary["lost"],
+                summary["draw"],
+            )
 
-        _msg_battles = {
-            "tot": str(tot),
-            "won": str(won),
-            "draw": str(draw),
-            "lost": str(lost),
-        }
-        msg_battles = T.format("player_battles", _msg_battles)
+            _msg_battles = {
+                "tot": str(tot),
+                "won": str(won),
+                "draw": str(draw),
+                "lost": str(lost),
+            }
+            msg_battles = T.format("player_battles", _msg_battles)
+        else:
+            msg_battles = ""
         # steps
         steps = self.char.steps
         unit = self.client.config.unit_measure
@@ -215,7 +216,7 @@ class CharacterState(PygameMenuState):
 
         bg = (
             pre.BG_PLAYER2
-            if self.char.monsters and self.char.isplayer
+            if self.char.monsters and self.char.is_player
             else pre.BG_PLAYER1
         )
 

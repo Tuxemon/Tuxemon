@@ -65,7 +65,8 @@
   "shape": "sprite",
   "stage": "stage1",
   "types": [
-    "wood"
+    "wood",
+    "heroic"
   ],
   "possible_genders": [
     "male",

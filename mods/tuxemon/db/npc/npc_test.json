@@ -1,5 +1,7 @@
 {
   "slug": "npc_test",
+  "speech": {"profile": {"default": {}}},
+  "combat": {},
   "template": {
     "sprite_name": "adventurer",
     "combat_front": "adventurer",

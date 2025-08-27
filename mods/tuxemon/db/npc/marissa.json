@@ -1,5 +1,7 @@
 {
   "slug": "marissa",
+  "speech": {"profile": {"default": {}}},
+  "combat": {},
   "template": {
     "sprite_name": "girl1",
     "combat_front": "heroine",

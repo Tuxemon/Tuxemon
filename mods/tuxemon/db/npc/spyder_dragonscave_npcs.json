@@ -1,6 +1,8 @@
 [
   {
     "slug": "spyder_dragonscave_angrybrute",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "knight",
       "combat_front": "enforcer_rookie",
@@ -19,6 +21,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "dragonrider_black",
       "combat_front": "dragonrider",
@@ -37,6 +40,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "dragonrider_blue",
       "combat_front": "dragonrider",
@@ -45,6 +49,8 @@
   },
   {
     "slug": "spyder_dragonscave_concernedbrute",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "knight",
       "combat_front": "enforcer_rookie",
@@ -63,6 +69,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "dragonrider",
       "combat_front": "dragonrider",
@@ -81,6 +88,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "dragonrider_fiery",
       "combat_front": "dragonrider",
@@ -89,6 +97,8 @@
   },
   {
     "slug": "spyder_dragonscave_lazybrute",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "knight",
       "combat_front": "enforcer_rookie",
@@ -107,6 +117,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "dragonrider_black",
       "combat_front": "dragonrider",
@@ -125,6 +136,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "knight",
       "combat_front": "enforcer_agent",
@@ -143,6 +155,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "spyderboss_fiery",
       "combat_front": "spyder_boss",
@@ -161,6 +174,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "spyderrookie",
       "combat_front": "spyder_rookie",
@@ -179,6 +193,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "dragonrider_green",
       "combat_front": "dragonrider",
@@ -197,6 +212,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "knight",
       "combat_front": "knightlord",
@@ -205,6 +221,8 @@
   },
   {
     "slug": "spyder_drokoro",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "drokoro",
       "combat_front": "noclass",
@@ -213,6 +231,8 @@
   },
   {
     "slug": "spyder_dragonscave_nurse",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "nurse_green",
       "combat_front": "nurse",

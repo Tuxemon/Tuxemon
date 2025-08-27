@@ -66,8 +66,8 @@
   "shape": "sprite",
   "stage": "standalone",
   "types": [
-    "wood",
-    "earth"
+    "lightning",
+    "wood"
   ],
   "possible_genders": [
     "male",

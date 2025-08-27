@@ -11,6 +11,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "spyderrookie",
       "combat_front": "spyder_rookie",
@@ -29,6 +30,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "overseer",
       "combat_front": "overseer",
@@ -47,6 +49,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "knight",
       "combat_front": "knight",
@@ -65,6 +68,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "fisher",
       "combat_front": "fisher",
@@ -83,6 +87,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "miner_yellow",
       "combat_front": "miner",
@@ -101,6 +106,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "miner_red",
       "combat_front": "miner",
@@ -119,6 +125,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "miner_green",
       "combat_front": "miner",
@@ -137,6 +144,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "tennisplayer",
       "combat_front": "tennisplayer",
@@ -155,6 +163,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "scientist",
       "combat_front": "scientist",
@@ -173,6 +182,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "tennisplayer",
       "combat_front": "tennisplayer",
@@ -181,6 +191,8 @@
   },
   {
     "slug": "spyder_route3_ryland",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "spyderrookie",
       "combat_front": "spyder_rookie",
@@ -189,6 +201,8 @@
   },
   {
     "slug": "spyder_route3_miner1",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "miner_blue",
       "combat_front": "miner",
@@ -197,6 +211,8 @@
   },
   {
     "slug": "spyder_route3_miner2",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "miner_red",
       "combat_front": "miner",
@@ -205,6 +221,8 @@
   },
   {
     "slug": "spyder_route3_miner3",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "miner_yellow",
       "combat_front": "miner",

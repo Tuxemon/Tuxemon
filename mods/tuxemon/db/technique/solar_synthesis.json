@@ -36,7 +36,7 @@
     "plant"
   ],
   "types": [
-    "aether"
+    "wood"
   ],
   "use_failure": "solar_synthesis_fail",
   "use_success": null,

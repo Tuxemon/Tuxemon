@@ -1,5 +1,7 @@
 {
   "slug": "liela",
+  "speech": {"profile": {"default": {}}},
+  "combat": {},
   "template": {
     "sprite_name": "heroine",
     "combat_front": "heroine",

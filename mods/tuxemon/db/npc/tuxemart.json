@@ -1,5 +1,7 @@
 {
   "slug": "tuxemart_keeper",
+  "speech": {"profile": {"default": {}}},
+  "combat": {},
   "template": {
     "sprite_name": "shopassistant",
     "combat_front": "adventurer",

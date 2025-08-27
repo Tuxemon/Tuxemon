@@ -6,7 +6,6 @@ import math
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from tuxemon.combat import get_target_monsters
 from tuxemon.core.core_effect import CoreEffect, TechEffectResult
 from tuxemon.formula import simple_heal
 
@@ -41,13 +40,15 @@ class StepHealingEffect(CoreEffect):
         monsters: list[Monster] = []
         extra: list[str] = []
         done: bool = False
-        combat = tech.get_combat_state()
+        hit = session.client.combat_session.get_tech_hit(user)
 
         objectives = self.objectives.split(":")
-        tech.hit = tech.accuracy >= combat.get_tech_hit(user)
+        tech.hit = tech.accuracy >= hit
 
         if tech.hit:
-            monsters = get_target_monsters(objectives, tech, user, target)
+            monsters = session.client.combat_session.get_target_monsters(
+                objectives, user, target
+            )
 
         if monsters:
             for monster in monsters:

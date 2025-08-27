@@ -67,7 +67,8 @@
   "shape": "brute",
   "stage": "standalone",
   "types": [
-    "wood"
+    "shadow",
+    "heroic"
   ],
   "possible_genders": [
     "male",

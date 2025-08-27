@@ -6,84 +6,78 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING, Any, Optional
 
 from tuxemon import formula
-from tuxemon.combat import set_var
+from tuxemon.combat.utils import set_var
 from tuxemon.core.core_effect import CoreEffect, TechEffectResult
 from tuxemon.locale import T
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
     from tuxemon.session import Session
-    from tuxemon.states.combat.combat import CombatState
     from tuxemon.technique.technique import Technique
 
 
 @dataclass
 class RunEffect(CoreEffect):
-    """Run allows monster to run."""
+    """
+    Represents a combat action where the monster attempts to flee.
+    """
 
     name = "run"
 
     def apply_tech_target(
         self, session: Session, tech: Technique, user: Monster, target: Monster
     ) -> TechEffectResult:
-        extra: list[str] = []
-        ran: bool = False
-        combat = tech.get_combat_state()
         self.session = session
+        self.combat_session = session.client.combat_session
 
-        game_variables = session.player.game_variables
-        attempts = game_variables.get("run_attempts", 0)
+        game_vars = session.player.game_variables
+        attempts = game_vars.get("run_attempts", 0)
+        escape_method = self._determine_escape_method(user, game_vars)
 
-        method = self._determine_escape_method(combat, user, game_variables)
-        if not method:
+        if not escape_method:
             return TechEffectResult(name=tech.name, success=True)
 
-        if formula.attempt_escape(method, user, target, attempts):
-            self._trigger_escape(combat, game_variables, extra)
-            ran = True
-        else:
-            game_variables["run_attempts"] = attempts + 1
+        success = formula.attempt_escape(escape_method, user, target, attempts)
+        extras: list[str] = []
 
-        return TechEffectResult(name=tech.name, success=ran, extras=extra)
+        if success:
+            self._handle_successful_escape(game_vars, extras)
+        else:
+            game_vars["run_attempts"] = attempts + 1
+
+        return TechEffectResult(name=tech.name, success=success, extras=extras)
 
     def _determine_escape_method(
-        self,
-        combat: CombatState,
-        user: Monster,
-        game_variables: dict[str, Any],
+        self, user: Monster, game_vars: dict[str, Any]
     ) -> Optional[str]:
         """
-        Determine the appropriate escape method based on combat state.
+        Determines which escape method to use based on monster position.
         """
-        escape_method = str(game_variables.get("method_escape", "default"))
-        escape_ai_method = str(
-            game_variables.get("method_escape_ai", "default")
-        )
+        method_player = str(game_vars.get("method_escape", "default"))
+        method_ai = str(game_vars.get("method_escape_ai", "default"))
 
-        if user in combat.monsters_in_play_right:
-            return escape_method
-        elif user in combat.monsters_in_play_left:
-            return escape_ai_method
-        else:
-            return None
+        if user in self.combat_session.monsters_in_play_right:
+            return method_player
+        elif user in self.combat_session.monsters_in_play_left:
+            return method_ai
+        return None
 
-    def _trigger_escape(
-        self,
-        combat: CombatState,
-        game_variables: dict[str, Any],
-        extra: list[str],
+    def _handle_successful_escape(
+        self, game_vars: dict[str, Any], extras: list[str]
     ) -> None:
-        """
-        Handle the escape trigger and clean up the combat state.
-        """
-        combat._run = True
-        extra.append(T.translate("combat_player_run"))
-        game_variables["run_attempts"] = 0
+        self.combat_session.set_variable("run", True)
+        extras.append(T.translate("combat_player_run"))
+        game_vars["run_attempts"] = 0
         set_var(self.session, "battle_last_result", self.name)
 
-        # Clean up combat for all players
-        players_to_remove = list(combat.players)
-        for player in players_to_remove:
-            combat.clean_combat()
-            combat.field_monsters.remove_npc(player)
-            combat.players.remove(player)
+        self._clean_combat_state()
+
+    def _clean_combat_state(self) -> None:
+        event_bus = self.session.client.event_bus
+        event_bus.publish("clean_combat")
+
+        for player in self.combat_session.players:
+            self.combat_session.field_monsters.remove_npc(player)
+            self.combat_session.remove_player(player)
+
+        self.combat_session.reset()

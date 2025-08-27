@@ -54,7 +54,7 @@
   "shape": "serpent",
   "stage": "stage1",
   "types": [
-    "water"
+    "normal"
   ],
   "possible_genders": [
     "male",

@@ -71,7 +71,7 @@
   "shape": "blob",
   "stage": "basic",
   "types": [
-    "earth"
+    "normal"
   ],
   "possible_genders": [
     "neuter"

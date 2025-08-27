@@ -71,7 +71,8 @@
   "shape": "piscine",
   "stage": "stage1",
   "types": [
-    "water"
+    "water",
+    "wood"
   ],
   "possible_genders": [
     "male",

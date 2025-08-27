@@ -66,7 +66,8 @@
   "shape": "grub",
   "stage": "standalone",
   "types": [
-    "metal"
+    "metal",
+    "cosmic"
   ],
   "possible_genders": [
     "neuter"

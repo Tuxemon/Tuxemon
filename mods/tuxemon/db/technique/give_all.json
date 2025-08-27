@@ -38,7 +38,7 @@
     "fury"
   ],
   "types": [
-    "fire"
+    "heroic"
   ],
   "use_failure": "combat_miss",
   "use_success": null,

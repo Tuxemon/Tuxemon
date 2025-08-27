@@ -31,10 +31,12 @@ class MultiAttackEffect(CoreEffect):
     def apply_tech_target(
         self, session: Session, tech: Technique, user: Monster, target: Monster
     ) -> TechEffectResult:
-        combat = tech.get_combat_state()
-        combat.set_tech_hit(user)
+        combat_session = session.client.combat_session
+        combat_session.set_tech_hit(user)
         # Track previous actions with the same technique, user, and target
-        log = combat._action_queue.history.get_actions_by_turn(combat._turn)
+        turn = combat_session.turn
+        action_queue = combat_session.action_queue
+        log = action_queue.history.get_actions_by_turn(turn)
         track = [
             action
             for action in log
@@ -45,10 +47,10 @@ class MultiAttackEffect(CoreEffect):
         # Check if the technique has been used the maximum number of times
         done = len(track) < self.times
         # Check if the technique hits
-        hit = tech.accuracy >= combat.get_tech_hit(user)
+        hit = tech.accuracy >= combat_session.get_tech_hit(user)
         # If the technique is done and hits, enqueue the action
         if done and hit:
-            combat.enqueue_action(user, tech, target)
+            combat_session.enqueue_action(user, tech, target)
 
         return TechEffectResult(
             name=tech.name, should_tackle=done, success=done

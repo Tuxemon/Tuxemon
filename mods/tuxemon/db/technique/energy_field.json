@@ -41,7 +41,7 @@
     "machine"
   ],
   "types": [
-    "aether"
+    "lightning"
   ],
   "use_failure": "combat_miss",
   "use_success": null,

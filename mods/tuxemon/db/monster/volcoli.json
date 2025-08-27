@@ -61,7 +61,8 @@
   "shape": "humanoid",
   "stage": "standalone",
   "types": [
-    "fire"
+    "wood",
+    "cosmic"
   ],
   "possible_genders": [
     "neuter"

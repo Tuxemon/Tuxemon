@@ -52,6 +52,7 @@
   "shape": "sprite",
   "stage": "stage1",
   "types": [
+    "lightning",
     "metal"
   ],
   "possible_genders": [

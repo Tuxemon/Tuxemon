@@ -62,7 +62,8 @@
   "shape": "varmint",
   "stage": "standalone",
   "types": [
-    "water"
+    "venom",
+    "frost"
   ],
   "possible_genders": [
     "male",

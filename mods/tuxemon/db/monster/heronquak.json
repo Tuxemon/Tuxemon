@@ -76,7 +76,8 @@
   "shape": "flier",
   "stage": "stage1",
   "types": [
-    "water"
+    "frost",
+    "sky"
   ],
   "possible_genders": [
     "male",

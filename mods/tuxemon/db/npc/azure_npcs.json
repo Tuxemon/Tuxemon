@@ -1,6 +1,8 @@
 [
   {
     "slug": "unknownwitch",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "witch",
       "combat_front": "witch",
@@ -9,6 +11,8 @@
   },
   {
     "slug": "azure_enforcer",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "knight",
       "combat_front": "enforcer_rookie",
@@ -17,6 +21,8 @@
   },
   {
     "slug": "azure_enforcer2",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "knight",
       "combat_front": "enforcer_rookie",
@@ -25,6 +31,8 @@
   },
   {
     "slug": "azure_knight",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "knight",
       "combat_front": "knight",

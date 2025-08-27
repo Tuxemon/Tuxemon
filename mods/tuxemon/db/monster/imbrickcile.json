@@ -76,7 +76,8 @@
   "shape": "sprite",
   "stage": "basic",
   "types": [
-    "earth"
+    "earth",
+    "heroic"
   ],
   "possible_genders": [
     "male",

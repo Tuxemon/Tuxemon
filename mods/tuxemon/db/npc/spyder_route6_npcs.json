@@ -11,6 +11,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "florist_brown",
       "combat_front": "florist",
@@ -29,6 +30,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "professor",
       "combat_front": "professor",
@@ -47,6 +49,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "picnicker",
       "combat_front": "picnicker",
@@ -65,6 +68,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "scientist_fiery",
       "combat_front": "scientist",
@@ -83,6 +87,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "magician_grey",
       "combat_front": "magician",
@@ -101,6 +106,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "miner_yellow",
       "combat_front": "miner",
@@ -119,6 +125,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "knight",
       "combat_front": "enforcer_rookie",
@@ -137,6 +144,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "scientist_brown",
       "combat_front": "scientist",
@@ -155,6 +163,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "professor_blue",
       "combat_front": "professor",

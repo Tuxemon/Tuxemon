@@ -5,13 +5,14 @@ from __future__ import annotations
 from enum import Enum
 from typing import TYPE_CHECKING
 
-from tuxemon.combat import alive_party
+from tuxemon.combat.utils import alive_party
 from tuxemon.locale import T
 
 if TYPE_CHECKING:
-    from tuxemon.states.combat.combat_classes import DamageTracker
+    from tuxemon.combat.damage_tracker import DamageTracker
     from tuxemon.technique.technique import Technique
     from tuxemon.monster import Monster
+    from tuxemon.session import Session
 
 from dataclasses import dataclass
 
@@ -41,10 +42,12 @@ class RewardData:
 
 class RewardSystem:
     def __init__(
-        self, damage_map: DamageTracker, is_trainer_battle: bool
+        self,
+        session: Session,
+        damage_map: DamageTracker,
     ) -> None:
+        self.session = session
         self.damage_map = damage_map
-        self.is_trainer_battle = is_trainer_battle
 
     def award_rewards(self, monster: Monster) -> RewardData:
         """
@@ -113,7 +116,7 @@ class RewardSystem:
                 )
 
                 # Grant experience and update moves
-                if winner.owner and winner.owner.isplayer:
+                if winner.owner and winner.owner.is_player:
                     levels = winner.give_experience(awarded_exp)
                     new_moves = winner.moves.update_moves(
                         winner.level, levels, winner.stage
@@ -128,7 +131,7 @@ class RewardSystem:
                     )
 
                     # Add money for trainer battles
-                    if self.is_trainer_battle:
+                    if self.session.client.combat_session.is_trainer_battle:
                         rewards_data.prize += awarded_money
 
                     # Update HUD or handle level-up externally

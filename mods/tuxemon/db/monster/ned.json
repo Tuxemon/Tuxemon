@@ -40,7 +40,7 @@
   "shape": "brute",
   "stage": "standalone",
   "types": [
-    "earth"
+    "normal"
   ],
   "possible_genders": [
     "male",

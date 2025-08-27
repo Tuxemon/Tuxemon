@@ -45,7 +45,6 @@
     "reserved"
   ],
   "types": [
-    "earth",
     "metal"
   ],
   "use_failure": "combat_miss",

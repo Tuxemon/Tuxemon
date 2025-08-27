@@ -7,8 +7,6 @@ from dataclasses import dataclass
 from enum import Enum
 from typing import TYPE_CHECKING
 
-from tuxemon.locale import T
-
 if TYPE_CHECKING:
     from tuxemon.db import BattleGraphicsModel
     from tuxemon.npc import NPC
@@ -44,31 +42,6 @@ class CombatContext:
             raise NotImplementedError(
                 "Multi-team combat is not yet supported."
             )
-
-    def get_start_message(self) -> str:
-        """Determines and returns the appropriate alert message for combat start."""
-        if self.combat_type is CombatType.TRAINER:
-            params = {"name": self.teams[1].name.upper()}
-            return T.format("combat_trainer_appeared", params)
-        elif self.combat_type is CombatType.MONSTER:
-            params = {"name": self.teams[1].monsters[0].name.upper()}
-            return T.format("combat_wild_appeared", params)
-        elif self.combat_type is CombatType.HORDE:
-            return T.translate("combat_horde_appeared")
-        else:
-            raise ValueError(f"Unexpected combat_type: {self.combat_type}")
-
-    @property
-    def is_trainer_battle(self) -> bool:
-        return self.combat_type is CombatType.TRAINER
-
-    @property
-    def is_monster_battle(self) -> bool:
-        return self.combat_type is CombatType.MONSTER
-
-    @property
-    def is_horde_battle(self) -> bool:
-        return self.combat_type is CombatType.HORDE
 
     @property
     def is_single_battle(self) -> bool:

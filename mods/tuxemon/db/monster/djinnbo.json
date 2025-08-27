@@ -69,7 +69,8 @@
   "shape": "humanoid",
   "stage": "standalone",
   "types": [
-    "fire"
+    "fire",
+    "shadow"
   ],
   "possible_genders": [
     "neuter"

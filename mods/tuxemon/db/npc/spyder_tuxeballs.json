@@ -1,6 +1,8 @@
 [
   {
     "slug": "spyder_tuxeball_green",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "tuxeball_green",
       "combat_front": "noclass",
@@ -9,6 +11,8 @@
   },
   {
     "slug": "spyder_tuxeball_red",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "tuxeball_red",
       "combat_front": "noclass",
@@ -17,6 +21,8 @@
   },
   {
     "slug": "spyder_tuxeball_violet",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "tuxeball_violet",
       "combat_front": "noclass",
@@ -25,6 +31,8 @@
   },
   {
     "slug": "spyder_tuxeball_yellow",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "tuxeball_yellow",
       "combat_front": "noclass",
@@ -33,6 +41,8 @@
   },
   {
     "slug": "spyder_tuxeball",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "tuxeball",
       "combat_front": "noclass",

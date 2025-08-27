@@ -1,5 +1,7 @@
 {
   "slug": "nurse1",
+  "speech": {"profile": {"default": {}}},
+  "combat": {},
   "template": {
     "sprite_name": "nurse",
     "combat_front": "nurse",

@@ -59,7 +59,8 @@
   "shape": "hunter",
   "stage": "basic",
   "types": [
-    "fire"
+    "fire",
+    "normal"
   ],
   "possible_genders": [
     "male",

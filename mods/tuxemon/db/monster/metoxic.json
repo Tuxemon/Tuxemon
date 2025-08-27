@@ -47,8 +47,7 @@
   "shape": "blob",
   "stage": "standalone",
   "types": [
-    "metal",
-    "wood"
+    "venom"
   ],
   "possible_genders": [
     "neuter"

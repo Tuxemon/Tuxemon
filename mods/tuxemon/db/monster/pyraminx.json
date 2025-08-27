@@ -57,7 +57,8 @@
   "shape": "hunter",
   "stage": "stage1",
   "types": [
-    "metal"
+    "cosmic",
+    "normal"
   ],
   "possible_genders": [
     "male",

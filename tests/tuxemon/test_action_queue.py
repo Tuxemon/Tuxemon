@@ -3,8 +3,9 @@
 import unittest
 from unittest.mock import MagicMock, call
 
+from tuxemon.combat.action_queue import EnqueuedAction
+from tuxemon.combat.sort_manager import SortManager
 from tuxemon.monster import Monster
-from tuxemon.states.combat.combat_classes import EnqueuedAction, SortManager
 from tuxemon.technique.technique import Technique
 
 

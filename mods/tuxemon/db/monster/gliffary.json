@@ -47,7 +47,7 @@
   "shape": "sprite",
   "stage": "standalone",
   "types": [
-    "fire"
+    "cosmic"
   ],
   "possible_genders": [
     "neuter"

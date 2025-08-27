@@ -47,7 +47,8 @@
   "shape": "varmint",
   "stage": "stage1",
   "types": [
-    "fire"
+    "fire",
+    "normal"
   ],
   "possible_genders": [
     "male",

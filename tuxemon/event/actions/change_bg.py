@@ -51,7 +51,7 @@ class ChangeBgAction(EventAction):
 
     Notes:
         - Background images must be in `gfx/ui/background/`.
-        - Background dimensions must be 240x160 pixels.
+        - Background dimensions must be 256x144 pixels.
     """
 
     name = "change_bg"

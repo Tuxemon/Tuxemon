@@ -1,5 +1,7 @@
 {
   "slug": "37707_male",
+  "speech": {"profile": {"default": {}}},
+  "combat": {},
   "template": {
     "sprite_name": "37707_male",
     "combat_front": "adventurer",

@@ -71,7 +71,8 @@
   "shape": "varmint",
   "stage": "basic",
   "types": [
-    "earth"
+    "earth",
+    "normal"
   ],
   "possible_genders": [
     "male",

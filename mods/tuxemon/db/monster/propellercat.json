@@ -61,7 +61,8 @@
   "shape": "flier",
   "stage": "standalone",
   "types": [
-    "metal"
+    "normal",
+    "sky"
   ],
   "possible_genders": [
     "male",

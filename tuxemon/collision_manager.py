@@ -138,10 +138,10 @@ class CollisionManager:
         coords = (int(pos[0]), int(pos[1]))
         region = self._map_manager.collision_map.get(coords)
 
-        enter_from = region.enter_from if entity.isplayer and region else []
-        exit_from = region.exit_from if entity.isplayer and region else []
-        endure = region.endure if entity.isplayer and region else []
-        key = region.key if entity.isplayer and region else None
+        enter_from = region.enter_from if entity.is_player and region else []
+        exit_from = region.exit_from if entity.is_player and region else []
+        endure = region.endure if entity.is_player and region else []
+        key = region.key if entity.is_player and region else None
 
         prop = RegionProperties(
             enter_from=enter_from,

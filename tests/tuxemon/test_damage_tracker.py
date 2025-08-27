@@ -3,8 +3,8 @@
 import unittest
 from unittest.mock import MagicMock
 
+from tuxemon.combat.damage_tracker import DamageTracker
 from tuxemon.monster import Monster
-from tuxemon.states.combat.combat_classes import DamageTracker
 
 
 class TestDamageTracker(unittest.TestCase):

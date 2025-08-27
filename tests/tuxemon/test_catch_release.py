@@ -10,7 +10,7 @@ from tuxemon.prepare import KENNEL, PARTY_LIMIT
 
 
 def mockNPC(self) -> None:
-    self.isplayer = True
+    self.is_player = True
     self.game_variables = {}
     self.monster_boxes = MonsterBoxes()
     self.monster_boxes.create_box(KENNEL, "monster")

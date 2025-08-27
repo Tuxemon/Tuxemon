@@ -51,7 +51,8 @@
     "speed"
   ],
   "types": [
-    "metal"
+    "lightning",
+    "cosmic"
   ],
   "use_failure": "rift_dash_fail",
   "use_success": "rift_dash_success",

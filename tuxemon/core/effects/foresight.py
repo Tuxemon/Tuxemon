@@ -5,8 +5,8 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
+from tuxemon.combat.action_queue import EnqueuedAction
 from tuxemon.core.core_effect import CoreEffect, TechEffectResult
-from tuxemon.states.combat.combat_classes import EnqueuedAction
 from tuxemon.technique.technique import Technique
 
 if TYPE_CHECKING:
@@ -42,13 +42,13 @@ class ForesightEffect(CoreEffect):
         if self.turn <= 0:
             raise ValueError(f"{self.turn} cannot be 0 or negative")
 
-        combat = tech.get_combat_state()
+        combat_session = session.client.combat_session
 
         set_technique = Technique.create(tech.slug)
         set_technique.power = self.turn
 
-        next_turn = combat._turn + self.turn
+        next_turn = combat_session.turn + self.turn
         action = EnqueuedAction(user, set_technique, target)
-        combat._action_queue.add_pending(action, next_turn)
+        combat_session.action_queue.add_pending(action, next_turn)
 
         return TechEffectResult(name=tech.name, success=True)

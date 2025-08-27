@@ -166,7 +166,7 @@ class Entity(Generic[SaveDict]):
         self.mover = Mover(self.body, moverate=CONFIG.player_walkrate)
         self.tile_pos: tuple[int, int] = (0, 0)
         self.update_location: bool = False
-        self.isplayer: bool = False
+        self.is_player: bool = False
         self.ignore_collisions: bool = False
 
     # === PHYSICS START =======================================================

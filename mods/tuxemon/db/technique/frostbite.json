@@ -41,8 +41,7 @@
     "bite"
   ],
   "types": [
-    "earth",
-    "water"
+    "frost"
   ],
   "use_failure": "combat_miss",
   "use_success": null,

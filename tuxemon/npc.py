@@ -100,6 +100,7 @@ class NPC(Entity[NPCState]):
         # load initial data from the npc database
         npc_data = NpcModel.lookup(npc_slug, db)
         self.template = npc_data.template
+        self.combat = npc_data.combat
 
         # This is the NPC's name to be used in dialog
         self.name = T.translate(self.slug)
@@ -108,7 +109,6 @@ class NPC(Entity[NPCState]):
         self.behavior: Optional[str] = "wander"  # not used for now
         self.game_variables: dict[str, Any] = {}  # Tracks the game state
         self.battle_handler = BattlesHandler()
-        self.forfeit: bool = False
         # Tracks Tuxepedia (monster seen or caught)
         self.tuxepedia = Tuxepedia()
         self.relationships = Relationships()

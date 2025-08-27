@@ -5,7 +5,6 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from tuxemon.combat import get_target_monsters
 from tuxemon.core.core_effect import CoreEffect, TechEffectResult
 
 if TYPE_CHECKING:
@@ -42,14 +41,16 @@ class PropDamageEffect(CoreEffect):
 
         damage = 0
         monsters: list[Monster] = []
-        combat = tech.get_combat_state()
 
         objectives = self.objectives.split(":")
-        tech.hit = tech.accuracy >= combat.get_tech_hit(user)
+        hit = session.client.combat_session.get_tech_hit(user)
+        tech.hit = tech.accuracy >= hit
         reference_hp = target.hp
 
         if tech.hit:
-            monsters = get_target_monsters(objectives, tech, user, target)
+            monsters = session.client.combat_session.get_target_monsters(
+                objectives, user, target
+            )
 
         if monsters:
             damage = int(float(reference_hp) * self.proportional)
@@ -57,7 +58,9 @@ class PropDamageEffect(CoreEffect):
                 monster.current_hp = max(0, monster.current_hp - damage)
                 # to avoid double registration in the self._damage_map
                 if monster != target:
-                    combat.enqueue_damage(user, monster, damage)
+                    session.client.combat_session.enqueue_damage(
+                        user, monster, damage
+                    )
 
         return TechEffectResult(
             name=tech.name,

@@ -65,7 +65,8 @@
   "shape": "brute",
   "stage": "standalone",
   "types": [
-    "metal"
+    "heroic",
+    "sky"
   ],
   "possible_genders": [
     "male",

@@ -54,7 +54,8 @@
   "shape": "sprite",
   "stage": "basic",
   "types": [
-    "metal"
+    "lightning",
+    "sky"
   ],
   "possible_genders": [
     "male",

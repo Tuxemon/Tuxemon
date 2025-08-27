@@ -25,8 +25,7 @@ class DialogueProfileManager:
         """
         if npc_slug not in self.dialogue_cache:
             npc_details: NpcModel = NpcModel.lookup(npc_slug, db)
-            if npc_details.speech:
-                self.dialogue_cache[npc_slug] = npc_details.speech.profile
+            self.dialogue_cache[npc_slug] = npc_details.speech.profile
 
         dialogue_model = self.dialogue_cache[npc_slug]
 

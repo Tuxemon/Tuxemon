@@ -30,7 +30,7 @@
     "universal"
   ],
   "types": [
-    "aether"
+    "normal"
   ],
   "use_failure": "combat_none",
   "use_success": null,

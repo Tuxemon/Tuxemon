@@ -75,7 +75,8 @@
   "shape": "landrace",
   "stage": "stage1",
   "types": [
-    "earth"
+    "earth",
+    "fire"
   ],
   "possible_genders": [
     "male",

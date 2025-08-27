@@ -66,7 +66,7 @@ class TestCollisionManager(unittest.TestCase):
 
     def test_add_collision(self):
         entity = MagicMock(spec=Entity)
-        entity.isplayer = True
+        entity.is_player = True
         entity.tile_pos = (0, 0)
         region = RegionProperties([], [], [], None, "label1")
         self.map_manager.collision_map = {(0, 0): region}

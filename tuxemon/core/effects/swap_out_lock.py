@@ -53,18 +53,18 @@ class SwapOutLockEffect(CoreEffect):
     def apply_tech_target(
         self, session: Session, tech: Technique, user: Monster, target: Monster
     ) -> TechEffectResult:
-        combat_state = tech.get_combat_state()
+        combat_session = session.client.combat_session
         persistent = self.method == "persistent"
 
         if self.action == "block":
-            combat_state.swap_tracker.block_swap(
+            combat_session.swap_tracker.block_swap(
                 monster=target, reason=tech.slug, persistent=persistent
             )
             logger.debug(
                 f"Blocked swap ({target.name}) via technique {tech.name}"
             )
         elif self.action == "unblock":
-            combat_state.swap_tracker.unblock_swap(monster=target)
+            combat_session.swap_tracker.unblock_swap(monster=target)
             logger.debug(
                 f"Unblocked swap for {target.name} via technique {tech.name}"
             )
@@ -74,19 +74,19 @@ class SwapOutLockEffect(CoreEffect):
     def apply_status_target(
         self, session: Session, status: Status, target: Monster
     ) -> StatusEffectResult:
-        combat_state = status.get_combat_state()
+        combat_session = session.client.combat_session
         persistent = self.method == "persistent"
 
         if status.has_phase(EffectPhase.PERFORM_STATUS):
             if self.action == "block":
-                combat_state.swap_tracker.block_swap(
+                combat_session.swap_tracker.block_swap(
                     monster=target, reason=status.slug, persistent=persistent
                 )
                 logger.debug(
                     f"Blocked swap ({target.name}) via status {status.name}"
                 )
             elif self.action == "unblock":
-                combat_state.swap_tracker.unblock_swap(monster=target)
+                combat_session.swap_tracker.unblock_swap(monster=target)
                 logger.debug(
                     f"Unblocked swap for {target.name} via status {status.name}"
                 )
@@ -96,7 +96,7 @@ class SwapOutLockEffect(CoreEffect):
                 self.action == "block"
                 and self.until_status_gone.lower() == "true"
             ):
-                combat_state.swap_tracker.unblock_swap(monster=target)
+                combat_session.swap_tracker.unblock_swap(monster=target)
                 logger.debug(
                     f"Effect {status.name} ended—unblocking {target.name} from swap-in due to until_status_gone",
                 )

@@ -105,7 +105,7 @@ ELEMENT_SIZE: tuple[int, int] = (24, 24)
 # set island size, battle terrains (grass, etc.)
 ISLAND_SIZE: tuple[int, int] = (96, 57)
 # set battle background size (grass, etc.)
-BATTLE_BG_SIZE: tuple[int, int] = (280, 112)
+BATTLE_BG_SIZE: tuple[int, int] = (256, 108)
 
 # Set the healthbar _color
 GFX_HP_BAR: str = "gfx/ui/monster/hp_bar.png"
@@ -197,7 +197,7 @@ BG_MONSTERS: str = "gfx/ui/monster/monster_menu_bg.png"
 
 # Native resolution is similar to the old gameboy resolution. This is
 # used for scaling.
-NATIVE_RESOLUTION: tuple[int, int] = (240, 160)
+NATIVE_RESOLUTION: tuple[int, int] = (256, 144)
 
 # Maps
 # 1 tile = 1 m (3.28 ft) large

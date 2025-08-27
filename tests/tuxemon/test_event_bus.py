@@ -52,8 +52,10 @@ class TestEventBus(unittest.TestCase):
         self.assertFalse(self.event_bus._listeners)
 
     def test_unregister_nonexistent_event(self):
-        with self.assertRaises(ValueError):
+        try:
             self.event_bus.unsubscribe("nonexistent_event", self.mock_callback)
+        except Exception as e:
+            self.fail(f"unsubscribe raised an unexpected exception: {e}")
 
     def test_multiple_callbacks_priority_order(self):
         calls = []
@@ -170,10 +172,12 @@ class TestStateManagerEvents(unittest.TestCase):
 
     def test_global_events_unregister_nonexistent(self):
         self.manager.event_bus.reset_all_events()
-        with self.assertRaises(ValueError):
+        try:
             self.manager.unregister_global_event(
                 "pre_state_update", self.mock_callback
             )
+        except Exception as e:
+            self.fail(f"Unexpected exception raised: {e}")
 
     def test_reset_events(self):
         self.manager.register_global_event(

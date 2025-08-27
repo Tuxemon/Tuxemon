@@ -72,7 +72,8 @@
   "shape": "sprite",
   "stage": "stage1",
   "types": [
-    "metal"
+    "metal",
+    "cosmic"
   ],
   "possible_genders": [
     "neuter"

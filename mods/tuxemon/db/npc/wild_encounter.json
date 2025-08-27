@@ -1,5 +1,7 @@
 {
   "slug": "wild_encounter",
+  "speech": {"profile": {"default": {}}},
+  "combat": {},
   "template": {
     "sprite_name": "invisible",
     "combat_front": "noclass",

@@ -1,6 +1,8 @@
 [
   {
     "slug": "spyder_omnichannel_beaverbrook",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "ceo",
       "combat_front": "ceo",
@@ -19,6 +21,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "rogue",
       "combat_front": "rogue",
@@ -37,6 +40,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "warrior",
       "combat_front": "warrior",
@@ -55,6 +59,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "beachcomber_black",
       "combat_front": "yellowbelt",
@@ -73,6 +78,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "spyderrookie",
       "combat_front": "spyder_rookie",
@@ -81,6 +87,8 @@
   },
   {
     "slug": "spyder_omnichannel_worm",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "37707_female",
       "combat_front": "ceo",
@@ -89,6 +97,8 @@
   },
   {
     "slug": "spyder_omnichannel_enforcer",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "knight",
       "combat_front": "enforcer_rookie",
@@ -97,6 +107,8 @@
   },
   {
     "slug": "spyder_omnichannel_thedukeofdeadair",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "rogue_red",
       "combat_front": "rogue",
@@ -115,6 +127,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "spyderboss",
       "combat_front": "spyder_boss",
@@ -133,6 +146,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "spyderrookie",
       "combat_front": "spyder_rookie",
@@ -151,6 +165,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "cooldude",
       "combat_front": "cooldude",
@@ -169,6 +184,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "professor_green",
       "combat_front": "professor",
@@ -187,6 +203,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "rogue_copper",
       "combat_front": "rogue",
@@ -195,6 +212,8 @@
   },
   {
     "slug": "spyder_omnichannel_talbot",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "spyderrookie",
       "combat_front": "spyder_rookie",
@@ -203,6 +222,8 @@
   },
   {
     "slug": "spyder_omnichannel_gore",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "spyderrookie",
       "combat_front": "spyder_rookie",
@@ -211,6 +232,8 @@
   },
   {
     "slug": "spyder_omnichannel_danita",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "nurse",
       "combat_front": "nurse",
@@ -219,6 +242,8 @@
   },
   {
     "slug": "spyder_omnichannel_ethan",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "maniac_yellow",
       "combat_front": "adventurer",

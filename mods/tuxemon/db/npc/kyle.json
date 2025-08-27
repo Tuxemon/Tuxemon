@@ -1,5 +1,7 @@
 {
   "slug": "kyle",
+  "speech": {"profile": {"default": {}}},
+  "combat": {},
   "template": {
     "sprite_name": "cooldude",
     "combat_front": "cooldude",

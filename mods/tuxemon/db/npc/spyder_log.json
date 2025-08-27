@@ -1,5 +1,7 @@
 {
   "slug": "spyder_log",
+  "speech": {"profile": {"default": {}}},
+  "combat": {},
   "template": {
     "sprite_name": "log",
     "combat_front": "noclass",

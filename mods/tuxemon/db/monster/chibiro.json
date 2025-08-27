@@ -61,7 +61,8 @@
   "shape": "varmint",
   "stage": "standalone",
   "types": [
-    "wood"
+    "wood",
+    "normal"
   ],
   "possible_genders": [
     "male",

@@ -25,25 +25,15 @@ class AppearEffect(CoreEffect):
     def apply_tech_target(
         self, session: Session, tech: Technique, user: Monster, target: Monster
     ) -> TechEffectResult:
-        combat = tech.get_combat_state()
-        # Check if the user is disappeared
-        user_sprite = combat.sprite_map.get_sprite(user)
-        if user_sprite and not user_sprite.is_visible():
-            # Make the user appear
-            user_sprite.toggle_visible()
+        if user.out_of_range:
             user.out_of_range = False
+            event_bus = session.client.event_bus
+            event_bus.publish("monster_appeared", user=user)
 
-        # Check if the target is disappeared
-        target_sprite = combat.sprite_map.get_sprite(target)
-        if target_sprite and not target_sprite.is_visible():
-            # If the target is disappeared, don't tackle
-            target_is_disappeared = True
-        else:
-            target_is_disappeared = False
+        target_is_out_of_range = target.out_of_range
 
-        # Return the result
         return TechEffectResult(
             name=tech.name,
-            success=not target_is_disappeared,
-            should_tackle=not target_is_disappeared,
+            success=not target_is_out_of_range,
+            should_tackle=not target_is_out_of_range,
         )

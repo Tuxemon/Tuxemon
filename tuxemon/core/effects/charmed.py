@@ -36,9 +36,8 @@ class CharmedEffect(CoreEffect):
             and random.random() > self.chance
         ):
             user = status.get_host()
-            combat = status.get_combat_state()
-            slug = combat._combat_variables.get("action_tech", "skip")
-            technique = Technique.create(slug)
+            action = session.client.combat_session.get_variable("action_tech")
+            technique = Technique.create(str(action) or "skip")
             if any(
                 technique.target.get(target_type, True)
                 for target_type in [
@@ -47,5 +46,5 @@ class CharmedEffect(CoreEffect):
                     "enemy_trainer",
                 ]
             ):
-                combat.set_tech_hit(user, 1.0)
+                session.client.combat_session.set_tech_hit(user, 1.0)
         return StatusEffectResult(name=status.name, success=True)

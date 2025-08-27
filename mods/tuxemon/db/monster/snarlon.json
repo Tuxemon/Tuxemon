@@ -65,7 +65,8 @@
   "shape": "hunter",
   "stage": "standalone",
   "types": [
-    "earth"
+    "shadow",
+    "normal"
   ],
   "possible_genders": [
     "male",

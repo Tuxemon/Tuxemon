@@ -32,12 +32,13 @@ class CaptureCombinedEffect(CoreEffect):
         self, session: Session, item: Item, target: Monster
     ) -> ItemEffectResult:
         self.session = session
+        self.client = session.client
 
         # Calculate status modifier
         status_modifier = formula.calculate_status_modifier(item, target)
 
         # Calculate tuxeball modifier
-        tuxeball_modifier = self._calculate_tuxeball_modifier(item, target)
+        tuxeball_modifier = self._calculate_tuxeball_modifier(target)
 
         # Perform shake check and capture calculation
         shake_check = formula.shake_check(
@@ -55,16 +56,15 @@ class CaptureCombinedEffect(CoreEffect):
             name=item.name, success=True, num_shakes=shakes
         )
 
-    def _calculate_tuxeball_modifier(
-        self, item: Item, target: Monster
-    ) -> float:
+    def _calculate_tuxeball_modifier(self, target: Monster) -> float:
         """
         Calculate the status effectiveness modifier based on the opponent's
         status.
         """
         capdev_modifier = formula.config_capdev.capdev_modifier
-        combat = item.get_combat_state()
-        our_monster = combat.field_monsters.get_monsters(self.session.player)
+        our_monster = self.client.combat_session.field_monsters.get_monsters(
+            self.session.player
+        )
 
         if not our_monster:
             return capdev_modifier
@@ -90,9 +90,8 @@ class CaptureCombinedEffect(CoreEffect):
             return capdev_modifier
 
     def _apply_capture_effects(self, item: Item, target: Monster) -> None:
-        combat = item.get_combat_state()
         if self.session.player.tuxepedia.is_seen(target.slug):
-            combat._new_tuxepedia = True
+            self.client.combat_session.set_variable("new_tuxepedia", True)
         self.session.player.tuxepedia.add_entry(target.slug, SeenStatus.caught)
         target.capture_device = item.slug
         target.wild = False

@@ -34,8 +34,8 @@ class MoneyEffect(CoreEffect):
     ) -> TechEffectResult:
         extra: list[str] = []
         player = user.get_owner()
-        combat = tech.get_combat_state()
-        tech.hit = tech.accuracy >= combat.get_tech_hit(user)
+        hit = session.client.combat_session.get_tech_hit(user)
+        tech.hit = tech.accuracy >= hit
 
         damage, mult = formula.simple_damage_calculate(tech, user, target)
 
@@ -57,7 +57,7 @@ class MoneyEffect(CoreEffect):
 
 
 def _give_money(session: Session, character: NPC, amount: int) -> None:
-    recipient = "player" if character.isplayer else character.slug
+    recipient = "player" if character.is_player else character.slug
     client = session.client.event_engine
     var = [recipient, amount]
     client.execute_action("modify_money", var, True)

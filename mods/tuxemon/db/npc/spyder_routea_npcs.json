@@ -11,6 +11,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "beachcomber_copper",
       "combat_front": "beachgoer",
@@ -29,6 +30,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "boss_orange",
       "combat_front": "rocker",
@@ -47,6 +49,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "florist_blue",
       "combat_front": "florist",
@@ -65,6 +68,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "beachcomber_fiery",
       "combat_front": "yellowbelt",
@@ -83,6 +87,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "boss_red",
       "combat_front": "rocker",
@@ -101,6 +106,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "catgirl_violet",
       "combat_front": "catgirl",
@@ -119,6 +125,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "monk_red",
       "combat_front": "monk",
@@ -137,6 +144,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "picnicker",
       "combat_front": "picnicker",
@@ -155,6 +163,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "goth",
       "combat_front": "goth",
@@ -163,6 +172,8 @@
   },
   {
     "slug": "spyder_routea_jarod",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "firefighter",
       "combat_front": "firefighter",
@@ -171,6 +182,8 @@
   },
   {
     "slug": "spyder_routea_john",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "maniac_green",
       "combat_front": "adventurer",
@@ -179,6 +192,8 @@
   },
   {
     "slug": "spyder_routea_super",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "box",
       "combat_front": "noclass",
@@ -187,6 +202,8 @@
   },
   {
     "slug": "spyder_routea_cureall",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "box",
       "combat_front": "noclass",
@@ -195,6 +212,8 @@
   },
   {
     "slug": "spyder_routea_tea",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "box",
       "combat_front": "noclass",
@@ -203,6 +222,8 @@
   },
   {
     "slug": "spyder_routea_nurse",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "nurse_blonde",
       "combat_front": "nurse",

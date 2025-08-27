@@ -48,10 +48,14 @@ class MainParkMenuState(PopUpMenu[MenuGameObj]):
         self.rect = self.calculate_menu_rectangle()
         self.session = session
         self.combat = cmb
-        self.player = cmb.players[0]  # human
-        self.enemy = cmb.players[1]  # ai
+        self.player = session.client.combat_session.left_player  # human
+        self.enemy = session.client.combat_session.right_player  # ai
         self.monster = monster
-        self.opponents = cmb.field_monsters.get_monsters(self.enemy)
+        self.opponents = (
+            session.client.combat_session.field_monsters.get_monsters(
+                self.enemy
+            )
+        )
         if not self.client.park_session.is_active:
             raise ValueError(
                 "Use the event action 'park_experience start' to enable the Park Session"
@@ -115,8 +119,7 @@ class MainParkMenuState(PopUpMenu[MenuGameObj]):
 
     def run(self) -> None:
         self.combat.clean_combat()
-        self.combat.field_monsters.clear_all()
-        self.combat.players.clear()
+        self.client.combat_session.reset()
 
     def check_category(self, cat_slug: str) -> int:
         category = sum(
@@ -182,5 +185,5 @@ class MainParkMenuState(PopUpMenu[MenuGameObj]):
         elif item.category == ItemCategory.doll:
             self.encounter.apply_doll_effect(item)
 
-        self.combat.enqueue_action(self.player, item, enemy)
+        self.client.combat_session.enqueue_action(self.player, item, enemy)
         self.client.pop_state()

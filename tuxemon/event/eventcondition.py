@@ -6,7 +6,7 @@ import logging
 from dataclasses import dataclass
 from typing import ClassVar, Optional
 
-from tuxemon.constants.paths import CONDITIONS_PATH
+from tuxemon.constants.paths import CONDITIONS_PATH, LIBDIR
 from tuxemon.event import MapCondition
 from tuxemon.plugin import load_plugins
 from tuxemon.session import Session
@@ -39,8 +39,9 @@ class EventCondition:
 class ConditionManager:
     def __init__(self) -> None:
         self.conditions = load_plugins(
-            CONDITIONS_PATH,
-            "conditions",
+            paths=[CONDITIONS_PATH],
+            root_path=LIBDIR.parent,
+            category="conditions",
             interface=EventCondition,
         )
 

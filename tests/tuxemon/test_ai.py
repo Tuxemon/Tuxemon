@@ -15,7 +15,7 @@ from tuxemon.ai import (
 
 class TestOpponentEvaluator(unittest.TestCase):
     def setUp(self):
-        self.mock_combat = MagicMock()
+        self.mock_session = MagicMock()
         self.mock_user = MagicMock(
             slug="rockitten", current_hp=50, hp=100, level=10
         )
@@ -24,7 +24,7 @@ class TestOpponentEvaluator(unittest.TestCase):
         mock_opponent = MagicMock(current_hp=50, hp=100, level=10)
 
         evaluator = OpponentEvaluator(
-            combat=self.mock_combat,
+            session=self.mock_session,
             user=self.mock_user,
             opponents=[mock_opponent],
         )
@@ -40,7 +40,7 @@ class TestOpponentEvaluator(unittest.TestCase):
         mock_opponent_2 = MagicMock(current_hp=80, hp=100, level=10)
 
         evaluator = OpponentEvaluator(
-            combat=self.mock_combat,
+            session=self.mock_session,
             user=self.mock_user,
             opponents=[mock_opponent_1, mock_opponent_2],
         )

@@ -72,7 +72,8 @@
   "shape": "humanoid",
   "stage": "stage1",
   "types": [
-    "water"
+    "frost",
+    "cosmic"
   ],
   "possible_genders": [
     "neuter"

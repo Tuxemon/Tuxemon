@@ -77,7 +77,10 @@ class EventBus:
             ValueError: If the event does not exist.
         """
         if event_name not in self._listeners:
-            raise ValueError(f"Event '{event_name}' not found.")
+            logger.warning(
+                f"Tried to unsubscribe from non-existent event '{event_name}'"
+            )
+            return
 
         self._listeners[event_name] = [
             l
@@ -128,8 +131,17 @@ class EventBus:
                     f"  Priority {listener.priority}: {listener_name}"
                 )
 
+    def clear_event(self, event_name: str) -> None:
+        """Removes all listeners associated with the specified event."""
+        if event_name in self._listeners:
+            del self._listeners[event_name]
+            logger.debug(f"Cleared all listeners for event '{event_name}'")
+        else:
+            logger.warning(f"Tried to clear non-existent event '{event_name}'")
+
     def reset_all_events(self) -> None:
         """Resets (clears) all registered events and their listeners."""
+        logger.debug(f"Resetting all {len(self._listeners)} events")
         self._listeners.clear()
 
     def has_listeners_for_event(self, event_name: str) -> bool:

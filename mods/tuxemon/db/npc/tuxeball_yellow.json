@@ -1,5 +1,7 @@
 {
   "slug": "tuxeball_yellow",
+  "speech": {"profile": {"default": {}}},
+  "combat": {},
   "template": {
     "sprite_name": "tuxeball_yellow",
     "combat_front": "noclass",

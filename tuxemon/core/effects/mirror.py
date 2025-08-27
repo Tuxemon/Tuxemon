@@ -6,7 +6,6 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 from tuxemon.core.core_effect import CoreEffect, TechEffectResult
-from tuxemon.ui.text_alignment import HorizontalAlignment
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
@@ -32,47 +31,8 @@ class MirrorEffect(CoreEffect):
     def apply_tech_target(
         self, session: Session, tech: Technique, user: Monster, target: Monster
     ) -> TechEffectResult:
-        combat = tech.get_combat_state()
-
-        user_sprite = combat.sprite_map.get_sprite(user)
-        target_sprite = combat.sprite_map.get_sprite(target)
-
-        assert user_sprite and target_sprite
-
-        if self.direction == "both":
-            front_user = user.get_sprite(
-                "front", midbottom=target_sprite.rect.midbottom
-            )
-            back_target = target.get_sprite(
-                "back", midbottom=user_sprite.rect.midbottom
-            )
-            combat.sprites.add(front_user)
-            combat.sprites.add(back_target)
-            combat.sprite_map.add_sprite(user, back_target)
-            combat.sprite_map.add_sprite(target, front_user)
-            combat.sprites.remove(user_sprite)
-            combat.sprites.remove(target_sprite)
-
-        elif self.direction == "user_to_target":
-            _, h_align = combat.combat_zone.get_zone(user_sprite.rect)
-            side = "front" if h_align is HorizontalAlignment.LEFT else "back"
-
-            front_user = user.get_sprite(
-                side, midbottom=target_sprite.rect.midbottom
-            )
-            combat.sprites.add(front_user)
-            combat.sprite_map.add_sprite(target, front_user)
-            combat.sprites.remove(target_sprite)
-
-        elif self.direction == "target_to_user":
-            _, h_align = combat.combat_zone.get_zone(user_sprite.rect)
-            side = "back" if h_align is HorizontalAlignment.LEFT else "front"
-
-            back_target = target.get_sprite(
-                side, midbottom=user_sprite.rect.midbottom
-            )
-            combat.sprites.add(back_target)
-            combat.sprite_map.add_sprite(user, back_target)
-            combat.sprites.remove(user_sprite)
-
+        event_bus = session.client.event_bus
+        event_bus.publish(
+            "mirror_effect", user=user, target=target, direction=self.direction
+        )
         return TechEffectResult(name=tech.name, success=True)

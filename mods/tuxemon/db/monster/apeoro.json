@@ -59,7 +59,8 @@
   "shape": "humanoid",
   "stage": "stage1",
   "types": [
-    "metal"
+    "lightning",
+    "cosmic"
   ],
   "possible_genders": [
     "male",

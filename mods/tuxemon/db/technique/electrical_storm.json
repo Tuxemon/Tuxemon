@@ -34,8 +34,7 @@
     "weather"
   ],
   "types": [
-    "fire",
-    "earth"
+    "lightning"
   ],
   "use_failure": "combat_miss",
   "use_success": null,

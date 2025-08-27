@@ -70,7 +70,8 @@
   "shape": "flier",
   "stage": "stage2",
   "types": [
-    "water"
+    "normal",
+    "sky"
   ],
   "possible_genders": [
     "male",

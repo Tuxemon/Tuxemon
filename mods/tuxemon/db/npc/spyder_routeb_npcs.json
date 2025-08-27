@@ -11,6 +11,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "knight_green",
       "combat_front": "enforcer_agent",
@@ -29,6 +30,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "knight",
       "combat_front": "enforcer_rookie",
@@ -47,6 +49,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "knight_red",
       "combat_front": "enforcer_agent",
@@ -65,6 +68,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "knight_red",
       "combat_front": "enforcer_rookie",
@@ -83,6 +87,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "knight_yellow",
       "combat_front": "enforcer_boss",

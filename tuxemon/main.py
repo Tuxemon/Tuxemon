@@ -9,8 +9,8 @@ from tuxemon import log, prepare
 from tuxemon.client import LocalPygameClient
 from tuxemon.db import db
 from tuxemon.headless_client import HeadlessClient
+from tuxemon.launcher import GameLauncher
 from tuxemon.session import local_session
-from tuxemon.states.start.launcher import GameLauncher
 
 if TYPE_CHECKING:
 

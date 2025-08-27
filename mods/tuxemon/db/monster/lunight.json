@@ -66,8 +66,8 @@
   "shape": "sprite",
   "stage": "standalone",
   "types": [
-    "metal",
-    "water"
+    "shadow",
+    "cosmic"
   ],
   "possible_genders": [
     "neuter"

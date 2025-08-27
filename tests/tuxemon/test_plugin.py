@@ -5,6 +5,7 @@ from collections.abc import Iterable
 from pathlib import Path
 from unittest.mock import MagicMock, patch
 
+from tuxemon.constants.paths import LIBDIR
 from tuxemon.plugin import (
     FileSystemPluginDiscovery,
     ImportLibPluginLoader,
@@ -19,7 +20,7 @@ from tuxemon.plugin import (
 
 class TestPluginManager(unittest.TestCase):
     def setUp(self):
-        self.discovery = FileSystemPluginDiscovery([])
+        self.discovery = FileSystemPluginDiscovery([], LIBDIR)
         self.loader = PluginLoader(ImportLibPluginLoader())
         self.filter = PluginFilter()
         self.manager = PluginManager(self.discovery, self.loader, self.filter)
@@ -31,14 +32,14 @@ class TestPluginManager(unittest.TestCase):
 
     def test_set_plugin_places(self):
         plugin_folders = ["folder1", "folder2"]
-        discovery = FileSystemPluginDiscovery(plugin_folders)
+        discovery = FileSystemPluginDiscovery(plugin_folders, LIBDIR)
         manager = PluginManager(discovery, self.loader, self.filter)
         self.assertEqual(manager.discovery.folders, plugin_folders)
 
     def test_collect_plugins(self):
         plugin_folders = ["folder1", "folder2"]
 
-        discovery = FileSystemPluginDiscovery(plugin_folders)
+        discovery = FileSystemPluginDiscovery(plugin_folders, LIBDIR)
         discovery.discover_plugins = MagicMock(
             return_value=["plugin1", "plugin2"]
         )
@@ -63,12 +64,12 @@ class TestPluginManager(unittest.TestCase):
 
     def test_load_directory(self):
         plugin_folder = Path("folder1")
-        loaded_manager = load_directory(plugin_folder)
+        loaded_manager = load_directory([plugin_folder], LIBDIR)
         self.assertIsInstance(loaded_manager, PluginManager)
 
     def test_get_available_classes(self):
         plugin_folder = Path("folder1")
-        manager = load_directory(plugin_folder)
+        manager = load_directory([plugin_folder], LIBDIR)
         classes = get_available_classes(manager, interface=self.interface)
         self.assertIsInstance(classes, list)
 
@@ -106,7 +107,7 @@ class TestPluginManager(unittest.TestCase):
                 self.loader.load_plugin(module_name)
 
     def test_collect_plugins_no_plugins_found(self):
-        discovery = FileSystemPluginDiscovery([])
+        discovery = FileSystemPluginDiscovery([], LIBDIR)
         discovery.discover_plugins = MagicMock(return_value=[])
 
         manager = PluginManager(discovery, self.loader, self.filter)
@@ -115,7 +116,7 @@ class TestPluginManager(unittest.TestCase):
         self.assertEqual(manager.modules, [])
 
     def test_mock_discover_plugins(self):
-        discovery = FileSystemPluginDiscovery([])
+        discovery = FileSystemPluginDiscovery([], LIBDIR)
         discovery.discover_plugins = MagicMock(
             return_value=["mock_plugin1", "mock_plugin2"]
         )

@@ -35,11 +35,11 @@ class PhotogenesisEffect(CoreEffect):
     def apply_tech_target(
         self, session: Session, tech: Technique, user: Monster, target: Monster
     ) -> TechEffectResult:
-        combat = tech.get_combat_state()
+        hit = session.client.combat_session.get_tech_hit(user)
         extra: list[str] = []
         done: bool = False
 
-        tech.hit = tech.accuracy >= combat.get_tech_hit(user)
+        tech.hit = tech.accuracy >= hit
 
         hour = int(session.player.game_variables.get("hour", 0))
         hp = user.shape.attributes.hp

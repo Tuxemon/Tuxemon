@@ -54,7 +54,8 @@
   "shape": "flier",
   "stage": "basic",
   "types": [
-    "water"
+    "sky",
+    "shadow"
   ],
   "possible_genders": [
     "male",

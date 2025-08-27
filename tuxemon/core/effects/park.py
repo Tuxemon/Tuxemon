@@ -31,6 +31,7 @@ class ParkEffect(CoreEffect):
     ) -> ItemEffectResult:
         self.extras: list[str] = []
         self.session = session
+        self.client = session.client
         if self.method == "capture":
             return self._capture(item, target)
         elif self.method == "doll":
@@ -80,18 +81,16 @@ class ParkEffect(CoreEffect):
             "menu_park_playful",
             "menu_park_alert",
         ]
-        combat_state = item.get_combat_state()
         empty = Technique.create("empty")
         empty.use_tech = random.choice(labels)
-        combat_state._action_queue.rewrite(target, empty)
+        self.session.client.combat_session.action_queue.rewrite(target, empty)
         self.session.client.park_session.record_failure()
 
     def _apply_capture_effects(self, item: Item, target: Monster) -> None:
         formula.on_capture_success(item, target, self.session.player)
-        combat_state = item.get_combat_state()
 
         if self.session.player.tuxepedia.is_seen(target.slug):
-            combat_state._new_tuxepedia = True
+            self.client.combat_session.set_variable("new_tuxepedia", True)
         self.session.player.tuxepedia.add_entry(target.slug, SeenStatus.caught)
         target.capture_device = item.slug
         target.wild = False

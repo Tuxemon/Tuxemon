@@ -1,5 +1,7 @@
 {
   "slug": "spyder_screen",
+  "speech": {"profile": {"default": {}}},
+  "combat": {},
   "template": {
     "sprite_name": "screen",
     "combat_front": "noclass",

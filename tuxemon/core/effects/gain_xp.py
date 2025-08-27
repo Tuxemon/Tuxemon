@@ -5,7 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from tuxemon.combat import set_var
+from tuxemon.combat.utils import set_var
 from tuxemon.core.core_effect import CoreEffect, ItemEffectResult
 
 if TYPE_CHECKING:

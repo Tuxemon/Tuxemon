@@ -986,7 +986,7 @@ def populate_client(
     )
     sprite = get_npc(local_session, "char_name")
     assert sprite
-    sprite.isplayer = True
+    sprite.is_player = True
     sprite.final_move_dest = sprite.tile_pos
     sprite.interactions = ["TRADE", "DUEL"]
 

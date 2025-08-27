@@ -40,7 +40,7 @@
   "shape": "humanoid",
   "stage": "standalone",
   "types": [
-    "earth"
+    "normal"
   ],
   "possible_genders": [
     "male",

@@ -1,5 +1,7 @@
 {
   "slug": "cotton_misa_gramps",
+  "speech": {"profile": {"default": {}}},
+  "combat": {},
   "template": {
     "sprite_name": "granny",
     "combat_front": "heroine",

@@ -63,7 +63,8 @@
   "shape": "humanoid",
   "stage": "basic",
   "types": [
-    "fire"
+    "fire",
+    "cosmic"
   ],
   "possible_genders": [
     "male",

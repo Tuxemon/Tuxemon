@@ -20,7 +20,7 @@ class PartyInfectedCondition(EventCondition):
     Script usage:
         .. code-block::
 
-            is party_infected <character>,<value>
+            is party_infected <character>,<plague_slug>,<value>
 
     Script parameters:
         character: Either "player" or npc slug name (e.g. "npc_maple").

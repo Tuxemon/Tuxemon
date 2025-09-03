@@ -1,5 +1,7 @@
 {
   "slug": "allie",
+  "speech": {"profile": {"default": {}}},
+  "combat": {},
   "template": {
     "sprite_name": "omnichannelallie",
     "combat_front": "goth_rose",

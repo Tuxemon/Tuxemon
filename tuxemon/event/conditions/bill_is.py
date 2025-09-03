@@ -33,7 +33,6 @@ class BillIsCondition(EventCondition):
 
     eg. "is bill_is player,bill_slug,equals,50"
     eg. "is bill_is player,bill_slug,equals,name_variable" (name_variable:75)
-
     """
 
     name = "bill_is"
@@ -46,6 +45,11 @@ class BillIsCondition(EventCondition):
             logger.error(f"Character '{character_name}' not found")
             return False
 
+        money_manager = character.money_controller.money_manager
+        bill = money_manager.get_bill(_bill)
+        if bill is None:
+            return False
+
         if not _amount.isdigit():
             amount = 0
             if _amount in player.game_variables:
@@ -53,9 +57,7 @@ class BillIsCondition(EventCondition):
         else:
             amount = int(_amount)
 
-        money_manager = character.money_controller.money_manager
-        bill_amount = money_manager.get_bill(_bill).amount
-        if bill_amount == 0:
+        if bill.amount == 0:
             return False
         else:
-            return compare(operator, bill_amount, amount)
+            return compare(operator, bill.amount, amount)

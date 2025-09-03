@@ -28,7 +28,6 @@ if TYPE_CHECKING:
     from tuxemon.monster import Monster
     from tuxemon.plugin import PluginObject
     from tuxemon.session import Session
-    from tuxemon.states.combat.combat import CombatState
 
 logger = logging.getLogger(__name__)
 
@@ -66,7 +65,6 @@ class Status:
         self.cond_id: int = 0
         self.animation: Optional[str] = None
         self.category: Optional[CategoryStatus] = None
-        self.combat_state: Optional[CombatState] = None
         self.description: str = ""
         self.flip_axes: FlipAxes = FlipAxes.NONE
         self.gain_cond: str = ""
@@ -172,16 +170,6 @@ class Status:
         # Load the sound effect for this status
         self.sfx = results.sfx
 
-    def get_combat_state(self) -> CombatState:
-        """Returns the CombatState."""
-        if not self.combat_state:
-            raise ValueError("No CombatState.")
-        return self.combat_state
-
-    def set_combat_state(self, combat_state: Optional[CombatState]) -> None:
-        """Sets the CombatState."""
-        self.combat_state = combat_state
-
     def has_phase(self, phase: EffectPhase) -> bool:
         """Returns True if the current phase is equal to the provided phase, False otherwise."""
         return self.phase == phase
@@ -196,8 +184,7 @@ class Status:
         """
         Sets the phase for a given status and immediately applies its effect.
         """
-        self.set_phase(phase)
-        return self.use(session, self.get_host())
+        return self.use(session, self.get_host(), phase)
 
     def advance_round(self) -> None:
         """Advance the counter for this status if used."""
@@ -229,22 +216,13 @@ class Status:
         """Checks if the status has lasted beyond its intended duration."""
         return self.nr_turn > self.duration
 
-    def execute_status_action(
-        self,
-        session: Session,
-        combat_instance: CombatState,
-        target: Monster,
-        phase: EffectPhase,
+    def use(
+        self, session: Session, target: Monster, phase: EffectPhase
     ) -> StatusEffectResult:
-        """Executes the current status action and returns the result."""
-        self.set_combat_state(combat_instance)
-        self.set_phase(phase)
-        return self.use(session, target)
-
-    def use(self, session: Session, target: Monster) -> StatusEffectResult:
         """
         Applies the status's effects using EffectProcessor and returns the results.
         """
+        self.set_phase(phase)
         result = self.effect_handler.process_status(
             session=session,
             source=self,

@@ -1,5 +1,7 @@
 {
   "slug": "37707_female",
+  "speech": {"profile": {"default": {}}},
+  "combat": {},
   "template": {
     "sprite_name": "37707_female",
     "combat_front": "heroine",

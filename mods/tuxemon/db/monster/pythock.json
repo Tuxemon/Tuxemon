@@ -63,7 +63,8 @@
   "shape": "serpent",
   "stage": "stage1",
   "types": [
-    "metal"
+    "shadow",
+    "normal"
   ],
   "possible_genders": [
     "male",

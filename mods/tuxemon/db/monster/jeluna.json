@@ -55,7 +55,8 @@
   "shape": "blob",
   "stage": "standalone",
   "types": [
-    "water"
+    "water",
+    "cosmic"
   ],
   "possible_genders": [
     "neuter"

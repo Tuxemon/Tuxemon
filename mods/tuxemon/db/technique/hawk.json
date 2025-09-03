@@ -33,8 +33,7 @@
     "bird"
   ],
   "types": [
-    "wood",
-    "earth"
+    "sky"
   ],
   "use_failure": "combat_miss",
   "use_success": null,

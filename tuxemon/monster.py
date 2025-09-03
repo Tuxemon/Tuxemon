@@ -202,7 +202,7 @@ class Monster:
     def spawn_base(cls, slug: str, level: int) -> Monster:
         monster = cls.create(slug)
         monster.set_level(level)
-        monster.moves.set_moves(level, monster.stage)
+        monster.moves.set_moves(monster.instance_id, level, monster.stage)
         monster.current_hp = monster.hp
         return monster
 

@@ -64,8 +64,8 @@
   "shape": "polliwog",
   "stage": "standalone",
   "types": [
-    "fire",
-    "water"
+    "lightning",
+    "venom"
   ],
   "possible_genders": [
     "male",

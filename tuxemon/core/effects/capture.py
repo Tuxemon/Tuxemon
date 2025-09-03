@@ -28,6 +28,7 @@ class CaptureEffect(CoreEffect):
         self, session: Session, item: Item, target: Monster
     ) -> ItemEffectResult:
         self.session = session
+        self.client = session.client
 
         # Calculate status modifier
         status_modifier = formula.calculate_status_modifier(item, target)
@@ -60,9 +61,8 @@ class CaptureEffect(CoreEffect):
 
     def _apply_capture_effects(self, item: Item, target: Monster) -> None:
         formula.on_capture_success(item, target, self.session.player)
-        combat = item.get_combat_state()
         if self.session.player.tuxepedia.is_seen(target.slug):
-            combat._new_tuxepedia = True
+            self.client.combat_session.set_variable("new_tuxepedia", True)
         self.session.player.tuxepedia.add_entry(target.slug, SeenStatus.caught)
         target.capture_device = item.slug
         target.wild = False

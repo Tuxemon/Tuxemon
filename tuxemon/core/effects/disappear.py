@@ -5,8 +5,9 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
+from tuxemon.combat.action_queue import EnqueuedAction
 from tuxemon.core.core_effect import CoreEffect, TechEffectResult
-from tuxemon.states.combat.combat_classes import EnqueuedAction
+from tuxemon.event import get_event_bus
 from tuxemon.technique.technique import Technique
 
 if TYPE_CHECKING:
@@ -29,18 +30,11 @@ class DisappearEffect(CoreEffect):
     def apply_tech_target(
         self, session: Session, tech: Technique, user: Monster, target: Monster
     ) -> TechEffectResult:
-        combat = tech.get_combat_state()
-
-        # Get the user's sprite
-        user_sprite = combat.sprite_map.get_sprite(user)
-        if user_sprite and user_sprite.is_visible():
-            # Make the user disappear
-            user_sprite.toggle_visible()
-            user.out_of_range = True
-            # Create a new technique to land the user
-            land_technique = Technique.create(self.attack)
-            # Add the land action to the pending queue
-            land_action = EnqueuedAction(user, land_technique, target)
-            combat._action_queue.add_pending(land_action, combat._turn)
-
-        return TechEffectResult(name=tech.name, success=user.out_of_range)
+        combat_session = session.client.combat_session
+        get_event_bus().publish("monster_disappeared", user=user)
+        user.out_of_range = True
+        land_technique = Technique.create(self.attack)
+        land_action = EnqueuedAction(user, land_technique, target)
+        turn = combat_session.turn
+        combat_session.action_queue.add_pending(land_action, turn)
+        return TechEffectResult(name=tech.name, success=True)

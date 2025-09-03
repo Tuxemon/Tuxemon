@@ -177,9 +177,19 @@ class PluginFilter:
 
     def is_valid_plugin(self, class_name: str, class_obj: type) -> bool:
         """Check if a plugin should be included."""
-        return not self.is_excluded(class_name) and self.matches_patterns(
-            class_obj
-        )
+        if self.is_excluded(class_name):
+            logger.debug(
+                f"Skipping class '{class_name}' because it's in the exclusion list."
+            )
+            return False
+
+        if not self.matches_patterns(class_obj):
+            logger.debug(
+                f"Skipping class '{class_name}' because its name does not match an include pattern."
+            )
+            return False
+
+        return True
 
 
 class PluginManager:
@@ -218,7 +228,7 @@ class PluginManager:
                 )
             except ImportError as e:
                 logger.error(
-                    f"Skipping module {module_name} due to import error: {e}"
+                    f"Skipping module '{module_name}' due to import error: {e}"
                 )
         return imported_plugins
 

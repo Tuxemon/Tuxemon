@@ -64,8 +64,8 @@
   "shape": "humanoid",
   "stage": "stage2",
   "types": [
-    "water",
-    "wood"
+    "wood",
+    "frost"
   ],
   "possible_genders": [
     "male",

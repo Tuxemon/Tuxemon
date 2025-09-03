@@ -30,6 +30,7 @@
     "plant"
   ],
   "types": [
+    "heroic",
     "wood"
   ],
   "use_failure": "combat_miss",

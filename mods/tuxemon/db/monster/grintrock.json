@@ -54,8 +54,8 @@
   "shape": "brute",
   "stage": "stage1",
   "types": [
-    "earth",
-    "metal"
+    "lightning",
+    "earth"
   ],
   "possible_genders": [
     "male",

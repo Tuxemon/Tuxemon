@@ -30,7 +30,7 @@ jobs:
 
       - name: Install nsis
         run: |
-          Invoke-WebRequest -Uri "https://sourceforge.net/projects/nsis/files/NSIS%203/3.10/nsis-3.10-setup.exe" -OutFile "nsis.exe"
+          Invoke-WebRequest -Uri "https://sourceforge.net/projects/nsis/files/NSIS%203/3.11/nsis-3.11-setup.exe" -OutFile "nsis.exe"
 
       - name: Build Installer
         run: |

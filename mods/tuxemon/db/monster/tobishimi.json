@@ -70,7 +70,6 @@
   "shape": "dragon",
   "stage": "stage2",
   "types": [
-    "water",
     "wood"
   ],
   "possible_genders": [

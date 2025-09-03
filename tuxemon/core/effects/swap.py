@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import logging
 from dataclasses import dataclass
-from functools import partial
 from typing import TYPE_CHECKING
 
 from tuxemon.core.core_effect import CoreEffect, TechEffectResult
@@ -30,25 +29,13 @@ class SwapEffect(CoreEffect):
     def apply_tech_target(
         self, session: Session, tech: Technique, user: Monster, target: Monster
     ) -> TechEffectResult:
+        logger.debug(f"Swap: removing {user.name}, adding {target.name}")
+        combat_session = session.client.combat_session
+        combat_session.action_queue.swap(user, target)
         player = user.get_owner()
-        combat_state = tech.get_combat_state()
-
-        logger.debug(
-            f"Initiating swap: removing {user.name}, adding {target.name}"
+        event_bus = session.client.event_bus
+        event_bus.publish("monster_swapped_out", monster=user)
+        event_bus.publish(
+            "monster_swapped_in", removed=user, added=target, player=player
         )
-
-        def swap_add(removed: Monster) -> None:
-            logger.debug(
-                f"Swap add triggered: replacing {removed.name} with {target.name}"
-            )
-            combat_state.add_monster_into_play(player, target, removed)
-
-        combat_state._action_queue.swap(user, target)
-        logger.debug(f"Action queue updated: {user.name} > {target.name}")
-
-        combat_state.remove_monster_from_play(user)
-        logger.debug(f"{user.name} removed from play")
-
-        combat_state.task(partial(swap_add, user), interval=0.75)
-
         return TechEffectResult(name=tech.name, success=True)

@@ -56,6 +56,7 @@
   "shape": "landrace",
   "stage": "stage1",
   "types": [
+    "earth",
     "fire"
   ],
   "possible_genders": [

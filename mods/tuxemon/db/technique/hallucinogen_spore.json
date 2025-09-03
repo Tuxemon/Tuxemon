@@ -37,6 +37,7 @@
     "spore"
   ],
   "types": [
+    "cosmic",
     "wood"
   ],
   "use_failure": "combat_miss",

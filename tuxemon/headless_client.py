@@ -7,11 +7,13 @@ import time
 from collections.abc import Mapping, Sequence
 from enum import Enum
 from pathlib import Path
+from threading import Thread
 from typing import Any, Optional, TypeVar, Union, overload
 
 from tuxemon.audio import MusicPlayerState, SoundManager
 from tuxemon.boundary import BoundaryChecker
 from tuxemon.camera import CameraManager
+from tuxemon.cli.processor import CommandProcessor
 from tuxemon.config import TuxemonConfig
 from tuxemon.constants import paths
 from tuxemon.event import get_event_bus
@@ -98,11 +100,11 @@ class HeadlessClient:
         self.current_music = MusicPlayerState()
         self.sound_manager = SoundManager()
 
-        # if self.config.cli:
-        #    self.cli = CommandProcessor(self)
-        #    thread = Thread(target=self.cli.run)
-        #    thread.daemon = True
-        #    thread.start()
+        if self.config.cli:
+            self.cli = CommandProcessor(local_session)
+            thread = Thread(target=self.cli.run)
+            thread.daemon = True
+            thread.start()
 
         # Set up rumble support for gamepads
         self.rumble_manager = RumbleManager()
@@ -185,6 +187,7 @@ class HeadlessClient:
     def perform_cleanup(self) -> None:
         """Handles necessary cleanup before shutting down."""
         self.current_music.stop()
+        local_session.reset()
         logger.info("Performing cleanup before exiting...")
 
     def update_states(self, time_delta: float) -> None:

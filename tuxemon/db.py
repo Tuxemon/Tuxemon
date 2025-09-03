@@ -1300,15 +1300,18 @@ class BagItemModel(BaseModel):
         raise ValueError(f"the item {v} doesn't exist in the db")
 
 
-class NpcTemplateModel(BaseModel):
+class TemplateModel(BaseModel):
+    slug: str = Field(
+        ..., description="Slug uniquely identifying the template"
+    )
+
+
+class NpcTemplateModel(TemplateModel):
     sprite_name: str = Field(
         ..., description="Name of the overworld sprite filename"
     )
     combat_front: str = Field(
         ..., description="Name of the battle front sprite filename"
-    )
-    slug: str = Field(
-        ..., description="Name of the battle back sprite filename"
     )
 
     @field_validator("combat_front")
@@ -1404,20 +1407,32 @@ class NpcSpeech(BaseModel):
     )
 
 
+class NpcCombatModel(BaseModel):
+    forfeit: bool = Field(
+        False,
+        description="Whether the NPC allows the player to forfeit during combat",
+    )
+    switch_logic: Optional[str] = Field(
+        None,
+        description=(
+            "Defines how the NPC selects a replacement monster when one faints. "
+            "Examples include 'random', 'lv_highest', or 'healthiest'."
+        ),
+    )
+
+
 class NpcModel(BaseModel, BaseLookupModel):
     table_name: ClassVar[str] = "npc"
     slug: str = Field(..., description="Slug of the name of the NPC")
-    forfeit: bool = Field(False, description="Whether you can forfeit or not")
     template: NpcTemplateModel
+    combat: NpcCombatModel
     monsters: Sequence[PartyMemberModel] = Field(
         [], description="List of monsters in the NPCs party"
     )
     items: Sequence[BagItemModel] = Field(
         [], description="List of items in the NPCs bag"
     )
-    speech: Optional[NpcSpeech] = Field(
-        None, description="Dialogue for this NPC"
-    )
+    speech: NpcSpeech
 
     @classmethod
     def lookup(cls, slug: str, db: ModData) -> NpcModel:
@@ -1745,6 +1760,18 @@ class ElementModel(BaseModel, BaseLookupModel):
             return v
         raise ValueError(f"no translation exists with msgid: {v}")
 
+    @field_validator("slug")
+    def sound_call_exists(cls: ElementModel, v: str) -> str:
+        if has.db_entry("sounds", f"sound_{v}_call"):
+            return v
+        raise ValueError(f"the sound {v} doesn't exist in the db")
+
+    @field_validator("slug")
+    def sound_faint_exists(cls: ElementModel, v: str) -> str:
+        if has.db_entry("sounds", f"sound_{v}_faint"):
+            return v
+        raise ValueError(f"the sound {v} doesn't exist in the db")
+
     @field_validator("icon")
     def file_exists(cls: ElementModel, v: str) -> str:
         if has.file(v) and has.size(v, prepare.ELEMENT_SIZE):
@@ -1839,12 +1866,6 @@ class EconomyModel(BaseModel, BaseLookupModel):
         if has.file(v) and has.size(v, prepare.NATIVE_RESOLUTION):
             return v
         raise ValueError(f"no resource exists with path: {v}")
-
-
-class TemplateModel(BaseModel):
-    slug: str = Field(
-        ..., description="Slug uniquely identifying the template"
-    )
 
 
 class FactionKind(str, Enum):

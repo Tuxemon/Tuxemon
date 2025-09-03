@@ -1,5 +1,7 @@
 {
   "slug": "bob",
+  "speech": {"profile": {"default": {}}},
+  "combat": {},
   "template": {
     "sprite_name": "bob",
     "combat_front": "adventurer",

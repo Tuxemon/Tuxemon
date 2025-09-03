@@ -69,7 +69,7 @@
   "stage": "stage1",
   "types": [
     "water",
-    "wood"
+    "heroic"
   ],
   "possible_genders": [
     "male",

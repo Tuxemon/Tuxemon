@@ -42,6 +42,7 @@ class StatusIconManager:
         for monster in active_monsters:
             ui = self._tracker._monster_ui.get(monster)
             if not ui:
+                logger.warning(f"No UI found for monster '{monster}'")
                 continue
 
             index = ui.slot_index
@@ -53,12 +54,19 @@ class StatusIconManager:
                     key = (status.icon, position)
 
                     if key not in self._status_icon_cache:
+                        logger.debug(
+                            f"Loading new icon '{status.icon}' at {position}"
+                        )
                         sprite = self._state.load_sprite(
                             status.icon,
                             layer=self._layer,
                             center=position,
                         )
                         self._status_icon_cache[key] = sprite
+                    else:
+                        logger.debug(
+                            f"Using cached icon '{status.icon}' at {position}"
+                        )
 
                     ui.status_icons.append(self._status_icon_cache[key])
 
@@ -118,8 +126,21 @@ class StatusIconManager:
     ) -> tuple[float, float]:
         owner = monster.get_owner()
         layout_data = self._layouts.get(owner, {})
-        rects = layout_data.get(f"monster_status_icon_slot_{index}", [])
-        return rects[0].topleft if rects else (0, 0)
+        key = f"monster_status_icon_slot_{index}"
+        rects = layout_data.get(key, [])
+
+        if not rects:
+            logger.warning(
+                f"No layout rects found for key '{key}' (owner: {owner})"
+            )
+            return (0, 0)
+
+        position = rects[0].topleft
+        logger.debug(
+            f"Icon position for monster '{monster}' (owner: {owner}, index: {index}) "
+            f"resolved to {position} using key '{key}'"
+        )
+        return position
 
     def recalculate_icon_positions(self) -> None:
         for monster, ui in self._tracker._monster_ui.items():

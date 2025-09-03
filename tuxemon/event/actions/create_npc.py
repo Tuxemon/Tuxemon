@@ -65,15 +65,14 @@ class CreateNpcAction(EventAction):
         npc.behavior = self.behavior
         npc_details = load_party(slug)
         npc.template = npc_details.template
-        npc.forfeit = npc_details.forfeit
+        npc.combat = npc_details.combat
         game_variables = session.player.game_variables
         if npc_details.monsters:
             load_party_monsters(npc, npc_details, game_variables)
         if npc_details.items:
             load_party_items(npc, npc_details, game_variables)
         npc.sprite_controller.load_sprites(npc.template)
-        if npc_details.speech:
-            npc.dialogue = merge_dialogue(npc_details.speech.profile, None)
+        npc.dialogue = merge_dialogue(npc_details.speech.profile, None)
 
 
 lookup_cache: dict[str, NpcModel] = {}

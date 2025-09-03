@@ -62,7 +62,8 @@
   "shape": "varmint",
   "stage": "basic",
   "types": [
-    "fire"
+    "cosmic",
+    "normal"
   ],
   "possible_genders": [
     "male",

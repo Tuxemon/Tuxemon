@@ -63,7 +63,8 @@
   "shape": "flier",
   "stage": "stage2",
   "types": [
-    "earth"
+    "earth",
+    "shadow"
   ],
   "possible_genders": [
     "neuter"

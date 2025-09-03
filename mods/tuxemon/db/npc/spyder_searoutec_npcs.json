@@ -1,6 +1,8 @@
 [
   {
     "slug": "spyder_searoutec_alpha",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "swimmer_red",
       "combat_front": "swimmer",
@@ -19,6 +21,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "swimmer_orange",
       "combat_front": "swimmer",
@@ -37,6 +40,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "dragonrider_blue",
       "combat_front": "dragonrider",
@@ -55,6 +59,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "swimmer_green",
       "combat_front": "swimmer",
@@ -73,6 +78,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "scientist",
       "combat_front": "scientist",
@@ -91,6 +97,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "fisher",
       "combat_front": "fisher",
@@ -109,6 +116,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "fisher_fiery",
       "combat_front": "fisher",
@@ -127,6 +135,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "swimmer",
       "combat_front": "swimmer",
@@ -145,6 +154,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "swimmer_blue",
       "combat_front": "swimmer",
@@ -163,6 +173,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "beachcomber_copper",
       "combat_front": "yellowbelt",
@@ -181,6 +192,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "swimmer_blue",
       "combat_front": "swimmer",
@@ -199,6 +211,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "beachcomber_blue",
       "combat_front": "yellowbelt",
@@ -217,6 +230,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "swimmer_red",
       "combat_front": "swimmer",
@@ -225,6 +239,8 @@
   },
   {
     "slug": "spyder_searoutec_beta",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "swimmer_orange",
       "combat_front": "swimmer",

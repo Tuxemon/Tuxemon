@@ -75,7 +75,7 @@
   "shape": "humanoid",
   "stage": "stage1",
   "types": [
-    "fire"
+    "normal"
   ],
   "possible_genders": [
     "male",

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="449">
+<map version="1.8" tiledversion="1.8.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="449">
  <properties>
   <property name="east" value="routec"/>
   <property name="edges" value="clamped"/>
@@ -21,7 +21,7 @@
  </layer>
  <layer id="2" name="Tile Layer 4" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer id="3" name="Tile Layer 2" width="40" height="40">
@@ -169,25 +169,6 @@
     <property name="cond2" value="is char_facing player,up"/>
    </properties>
   </object>
-  <object id="184" name="Seen Candy + Land" type="event" x="480" y="16" width="16" height="16">
-   <properties>
-    <property name="act01" value="char_stop player"/>
-    <property name="act02" value="lock_controls"/>
-    <property name="act03" value="create_npc spyder_candy_henrik,21,5"/>
-    <property name="act04" value="pathfind spyder_candy_henrik,30,2"/>
-    <property name="act05" value="unlock_controls"/>
-    <property name="act06" value="wait 0.5"/>
-    <property name="act07" value="char_face spyder_candy_henrik,up"/>
-    <property name="act08" value="wait 0.5"/>
-    <property name="act10" value="translated_dialog spyder_enforcer_candy1"/>
-    <property name="act19" value="set_variable seencandy:yes"/>
-    <property name="act20" value="set_variable confiscation_candy:yes"/>
-    <property name="act30" value="set_variable confiscation_location:land1"/>
-    <property name="act40" value="add_tracker player,candy_town"/>
-    <property name="cond1" value="is char_at player"/>
-    <property name="cond2" value="not variable_set confiscation_candy:yes"/>
-   </properties>
-  </object>
   <object id="186" name="Teleport all infected" type="event" x="576" y="48" width="16" height="16">
    <properties>
     <property name="act05" value="wait 0.5"/>
@@ -195,55 +176,32 @@
     <property name="act15" value="wait 1"/>
     <property name="act20" value="translated_dialog spyder_enforcer_candy4"/>
     <property name="act25" value="wait 1"/>
-    <property name="act30" value="transition_teleport spyder_candy_cafe.tmx,5,3,0.3"/>
-    <property name="act40" value="set_variable party_all_sick:yes"/>
-    <property name="act50" value="set_variable confiscation_done:yes"/>
-    <property name="act60" value="remove_npc spyder_candy_henrik"/>
+    <property name="act30" value="set_variable confiscation_done:yes"/>
+    <property name="act40" value="transition_teleport spyder_candy_cafe.tmx,5,3,0.3"/>
+    <property name="act50" value="remove_npc spyder_candy_henrik"/>
     <property name="cond1" value="is variable_set confiscation_candy:yes"/>
-    <property name="cond2" value="not variable_set party_all_sick:yes"/>
     <property name="cond3" value="is party_infected player,spyderbite,all"/>
     <property name="cond4" value="not variable_set confiscation_done:yes"/>
    </properties>
   </object>
-  <object id="190" name="Seen Candy + Not Infected" type="event" x="576" y="16" width="16" height="16">
+  <object id="185" name="Entry Candy" type="event" x="224" y="48" width="352" height="16">
    <properties>
-    <property name="act05" value="wait 0.5"/>
-    <property name="act10" value="translated_dialog spyder_enforcer_candy2"/>
-    <property name="act15" value="wait 0.5"/>
-    <property name="act30" value="pathfind spyder_candy_henrik,35,10"/>
-    <property name="act40" value="set_variable confiscation_done:yes"/>
-    <property name="act50" value="remove_npc spyder_candy_henrik"/>
-    <property name="cond1" value="is variable_set confiscation_candy:yes"/>
-    <property name="cond3" value="is party_infected player,spyderbite,none"/>
-    <property name="cond4" value="not variable_set confiscation_done:yes"/>
-    <property name="cond5" value="not variable_set party_sick:yes"/>
-    <property name="cond6" value="is variable_set confiscation_location:river"/>
+    <property name="act01" value="char_stop player"/>
+    <property name="act02" value="lock_controls"/>
+    <property name="act03" value="create_npc spyder_candy_henrik,6,4"/>
+    <property name="act04" value="pathfind_to_char player,spyder_candy_henrik,down"/>
+    <property name="act05" value="unlock_controls"/>
+    <property name="act07" value="char_face spyder_candy_henrik,up"/>
+    <property name="act10" value="translated_dialog spyder_enforcer_candy1"/>
+    <property name="act20" value="set_variable confiscation_candy:yes"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="not variable_set confiscation_candy:yes"/>
    </properties>
   </object>
-  <object id="191" name="Seen Candy + Infected" type="event" x="576" y="32" width="16" height="16">
-   <properties>
-    <property name="act05" value="wait 0.5"/>
-    <property name="act10" value="translated_dialog spyder_enforcer_candy3"/>
-    <property name="act15" value="wait 1"/>
-    <property name="act20" value="translated_dialog spyder_enforcer_candy4"/>
-    <property name="act25" value="wait 1"/>
-    <property name="act30" value="quarantine player,spyderbite,in"/>
-    <property name="act40" value="set_variable party_sick:yes"/>
-    <property name="act45" value="pathfind spyder_candy_henrik,35,10"/>
-    <property name="act50" value="set_variable confiscation_done:yes"/>
-    <property name="act60" value="remove_npc spyder_candy_henrik"/>
-    <property name="cond1" value="is variable_set confiscation_candy:yes"/>
-    <property name="cond2" value="not variable_set party_sick:yes"/>
-    <property name="cond3" value="is party_infected player,spyderbite,some"/>
-    <property name="cond4" value="not variable_set confiscation_done:yes"/>
-    <property name="cond5" value="is variable_set confiscation_location:river"/>
-   </properties>
-  </object>
-  <object id="185" name="Seen Candy" type="event" x="224" y="16" width="96" height="16">
+  <object id="193" name="Seen Candy" type="event" x="176" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable seencandy:yes"/>
     <property name="act2" value="add_tracker player,candy_town"/>
-    <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="not tracker player,candy_town"/>
    </properties>
   </object>
@@ -422,38 +380,20 @@
     <property name="cond2" value="is char_facing player,down"/>
    </properties>
   </object>
-  <object id="445" name="Seen Candy + River" type="event" x="528" y="16" width="48" height="16">
-   <properties>
-    <property name="act01" value="char_stop player"/>
-    <property name="act02" value="lock_controls"/>
-    <property name="act03" value="create_npc spyder_candy_henrik,35,10"/>
-    <property name="act04" value="pathfind_to_char player,spyder_candy_henrik"/>
-    <property name="act05" value="unlock_controls"/>
-    <property name="act06" value="wait 0.5"/>
-    <property name="act07" value="char_face spyder_candy_henrik,up"/>
-    <property name="act08" value="wait 0.5"/>
-    <property name="act10" value="translated_dialog spyder_enforcer_candy1"/>
-    <property name="act19" value="set_variable seencandy:yes"/>
-    <property name="act20" value="set_variable confiscation_candy:yes"/>
-    <property name="act30" value="set_variable confiscation_location:river"/>
-    <property name="act40" value="add_tracker player,candy_town"/>
-    <property name="cond1" value="is char_at player"/>
-    <property name="cond2" value="not variable_set confiscation_candy:yes"/>
-   </properties>
-  </object>
   <object id="447" name="Seen Candy + Not Infected" type="event" x="464" y="16" width="16" height="16">
    <properties>
     <property name="act05" value="wait 0.5"/>
     <property name="act10" value="translated_dialog spyder_enforcer_candy2"/>
     <property name="act15" value="wait 0.5"/>
+    <property name="act20" value="lock_controls"/>
     <property name="act30" value="pathfind spyder_candy_henrik,21,5"/>
     <property name="act40" value="set_variable confiscation_done:yes"/>
     <property name="act50" value="remove_npc spyder_candy_henrik"/>
+    <property name="act60" value="unlock_controls"/>
     <property name="cond1" value="is variable_set confiscation_candy:yes"/>
     <property name="cond3" value="is party_infected player,spyderbite,none"/>
     <property name="cond4" value="not variable_set confiscation_done:yes"/>
     <property name="cond5" value="not variable_set party_sick:yes"/>
-    <property name="cond6" value="is variable_set confiscation_location:land1"/>
    </properties>
   </object>
   <object id="448" name="Seen Candy + Infected" type="event" x="464" y="32" width="16" height="16">
@@ -463,16 +403,17 @@
     <property name="act15" value="wait 1"/>
     <property name="act20" value="translated_dialog spyder_enforcer_candy4"/>
     <property name="act25" value="wait 1"/>
+    <property name="act27" value="lock_controls"/>
     <property name="act30" value="quarantine player,spyderbite,in"/>
     <property name="act40" value="set_variable party_sick:yes"/>
     <property name="act45" value="pathfind spyder_candy_henrik,21,5"/>
     <property name="act50" value="set_variable confiscation_done:yes"/>
     <property name="act60" value="remove_npc spyder_candy_henrik"/>
+    <property name="act70" value="unlock_controls"/>
     <property name="cond1" value="is variable_set confiscation_candy:yes"/>
     <property name="cond2" value="not variable_set party_sick:yes"/>
     <property name="cond3" value="is party_infected player,spyderbite,some"/>
     <property name="cond4" value="not variable_set confiscation_done:yes"/>
-    <property name="cond5" value="is variable_set confiscation_location:land1"/>
    </properties>
   </object>
  </objectgroup>

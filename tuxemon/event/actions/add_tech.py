@@ -81,5 +81,5 @@ class AddTechAction(EventAction):
         if monster.moves.has_move(tech.slug):
             logger.warning(f"{monster.name} already knows {tech.name}")
         else:
-            monster.moves.learn(tech)
+            monster.moves.learn(monster.instance_id, tech)
             logger.info(f"{monster.name} learned {tech.name}!")

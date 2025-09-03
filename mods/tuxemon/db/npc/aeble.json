@@ -1,5 +1,7 @@
 {
   "slug": "aeble",
+  "speech": {"profile": {"default": {}}},
+  "combat": {},
   "template": {
     "sprite_name": "ceo",
     "combat_front": "adventurer",

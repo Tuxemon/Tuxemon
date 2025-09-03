@@ -69,6 +69,7 @@
   "shape": "humanoid",
   "stage": "stage2",
   "types": [
+    "lightning",
     "metal"
   ],
   "possible_genders": [

@@ -57,8 +57,8 @@
   "shape": "polliwog",
   "stage": "stage1",
   "types": [
-    "fire",
-    "metal"
+    "metal",
+    "fire"
   ],
   "possible_genders": [
     "male",

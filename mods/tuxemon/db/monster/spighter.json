@@ -61,7 +61,8 @@
   "shape": "grub",
   "stage": "standalone",
   "types": [
-    "wood"
+    "venom",
+    "shadow"
   ],
   "possible_genders": [
     "male",

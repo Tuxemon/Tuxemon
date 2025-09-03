@@ -38,8 +38,7 @@
     "mental"
   ],
   "types": [
-    "metal",
-    "fire"
+    "cosmic"
   ],
   "use_failure": "combat_miss",
   "use_success": null,

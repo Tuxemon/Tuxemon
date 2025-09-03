@@ -1509,7 +1509,7 @@ msgid "combat_state_recover_success"
 msgstr "¡{user} recuperó la salud!"
 
 msgid "combat_state_recover_failure"
-msgstr "{user} no puede sanar más."
+msgstr "{target} no puede sanar más."
 
 msgid "combat_state_lifeleech_success"
 msgstr "¡{user} perdió salud por absorbe-vidas!"

@@ -49,7 +49,9 @@ class Evolution:
                 and move.learning_method == LearningMethod.EVOLUTION
             ):
                 new_monster.moves.learn_by_method(
-                    move.technique, move.learning_method
+                    new_monster.instance_id,
+                    move.technique,
+                    move.learning_method,
                 )
 
         owner.party.remove_monster(self.monster)

@@ -64,7 +64,8 @@
   "shape": "blob",
   "stage": "basic",
   "types": [
-    "metal"
+    "metal",
+    "venom"
   ],
   "possible_genders": [
     "neuter"

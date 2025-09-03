@@ -72,7 +72,7 @@
   "shape": "sprite",
   "stage": "basic",
   "types": [
-    "water"
+    "frost"
   ],
   "possible_genders": [
     "neuter"

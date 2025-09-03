@@ -35,5 +35,5 @@ class LearnTmEffect(CoreEffect):
         if target.moves.has_move(self.technique):
             return ItemEffectResult(name=item.name)
         tech = Technique.create(self.technique)
-        target.moves.learn(tech)
+        target.moves.learn(target.instance_id, tech)
         return ItemEffectResult(name=item.name, success=True)

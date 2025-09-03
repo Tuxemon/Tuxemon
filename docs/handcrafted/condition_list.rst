@@ -1,4 +1,5 @@
 .. autoscriptinfoclass:: tuxemon.event.conditions.battle_outcome.BattleOutcomeCondition
+.. autoscriptinfoclass:: tuxemon.event.conditions.bill_exists.BillExistsCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.bill_is.BillIsCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.button_combo.ButtonComboCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.button_count.ButtonCountCondition
@@ -6,6 +7,7 @@
 .. autoscriptinfoclass:: tuxemon.event.conditions.button_pressed.ButtonPressedCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.camera_position.CameraPositionCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.char_at.CharAtCondition
+.. autoscriptinfoclass:: tuxemon.event.conditions.char_at_position.CharAtPositionCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.char_defeated.CharDefeatedCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.char_exists.CharExistsCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.char_facing.CharFacingCondition
@@ -13,7 +15,6 @@
 .. autoscriptinfoclass:: tuxemon.event.conditions.char_facing_tile.CharFacingTileCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.char_in.CharInCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.char_moved.CharMovedCondition
-.. autoscriptinfoclass:: tuxemon.event.conditions.char_position.CharPositionCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.char_sprite.CharSpriteCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.check_char_parameter.CheckCharParameterCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.check_evolution.CheckEvolutionCondition

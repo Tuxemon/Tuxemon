@@ -58,7 +58,8 @@
   "shape": "varmint",
   "stage": "basic",
   "types": [
-    "metal"
+    "earth",
+    "heroic"
   ],
   "possible_genders": [
     "male",

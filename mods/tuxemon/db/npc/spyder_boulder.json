@@ -1,5 +1,7 @@
 {
   "slug": "spyder_boulder",
+  "speech": {"profile": {"default": {}}},
+  "combat": {},
   "template": {
     "sprite_name": "boulder",
     "combat_front": "noclass",

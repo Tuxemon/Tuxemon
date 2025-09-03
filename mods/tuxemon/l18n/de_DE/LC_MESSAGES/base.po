@@ -176,7 +176,7 @@ msgid "combat_state_recover_success"
 msgstr "{user} hat sie geheilt!"
 
 msgid "combat_state_recover_failure"
-msgstr "{link} kann nicht weiter geheilt werden."
+msgstr "{target} kann nicht weiter geheilt werden."
 
 msgid "combat_status_damage"
 msgstr "{name} erleidet Schaden durch {status}!"

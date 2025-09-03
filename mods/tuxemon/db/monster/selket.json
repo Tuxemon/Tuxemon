@@ -56,7 +56,8 @@
   "shape": "grub",
   "stage": "basic",
   "types": [
-    "earth"
+    "earth",
+    "venom"
   ],
   "possible_genders": [
     "male",

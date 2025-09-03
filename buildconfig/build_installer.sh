@@ -1,5 +1,5 @@
 #!/bin/bash
-NSIS_DOWNLOAD_LINK="https://sourceforge.net/projects/nsis/files/NSIS%203/3.10/nsis-3.10-setup.exe"
+NSIS_DOWNLOAD_LINK="https://sourceforge.net/projects/nsis/files/NSIS%203/3.11/nsis-3.11-setup.exe"
 NSIS_INSTALLER="nsis.exe"
 INSTALLER_OUTPUT="tuxemon-installer.exe"
 DIST_DIR="../dist"

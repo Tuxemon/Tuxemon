@@ -75,7 +75,8 @@
   "shape": "humanoid",
   "stage": "stage2",
   "types": [
-    "wood"
+    "wood",
+    "venom"
   ],
   "possible_genders": [
     "male",

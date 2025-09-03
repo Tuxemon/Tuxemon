@@ -77,7 +77,8 @@
   "shape": "dragon",
   "stage": "stage2",
   "types": [
-    "wood"
+    "wood",
+    "cosmic"
   ],
   "possible_genders": [
     "male",

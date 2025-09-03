@@ -66,8 +66,8 @@
   "shape": "sprite",
   "stage": "standalone",
   "types": [
-    "fire",
-    "wood"
+    "wood",
+    "fire"
   ],
   "possible_genders": [
     "neuter"

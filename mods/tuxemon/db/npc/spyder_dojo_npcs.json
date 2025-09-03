@@ -11,6 +11,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "monk_black",
       "combat_front": "monk",
@@ -19,6 +20,8 @@
   },
   {
     "slug": "spyder_dojo_fu",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "granny_yellow",
       "combat_front": "adventurer",
@@ -27,6 +30,8 @@
   },
   {
     "slug": "spyder_dojo_fu_student1",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "childactor_black",
       "combat_front": "childactor",
@@ -35,6 +40,8 @@
   },
   {
     "slug": "spyder_dojo_fu_student2",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "childactor_blonde",
       "combat_front": "childactor",
@@ -53,6 +60,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "monk_orange",
       "combat_front": "monk",
@@ -71,6 +79,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "monk_red",
       "combat_front": "monk",
@@ -89,6 +98,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "monk_orange",
       "combat_front": "monk",
@@ -107,6 +117,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "monk_blue",
       "combat_front": "monk",
@@ -125,6 +136,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "monk_green",
       "combat_front": "monk",
@@ -143,6 +155,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "monk_red",
       "combat_front": "monk",
@@ -161,6 +174,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "monk_green",
       "combat_front": "monk",
@@ -169,6 +183,8 @@
   },
   {
     "slug": "spyder_dojo_thri",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "maniac_yellow",
       "combat_front": "riddler",
@@ -187,6 +203,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "monk_black",
       "combat_front": "monk",
@@ -195,6 +212,8 @@
   },
   {
     "slug": "spyder_dojo_tu",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "ninja_red",
       "combat_front": "ninja",
@@ -203,6 +222,8 @@
   },
   {
     "slug": "spyder_dojo_wan",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "ninja_blue",
       "combat_front": "ninja",
@@ -211,6 +232,8 @@
   },
   {
     "slug": "spyder_dojo_xiang",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "granny_green",
       "combat_front": "adventurer",
@@ -229,6 +252,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "monk_blue",
       "combat_front": "monk",
@@ -237,6 +261,8 @@
   },
   {
     "slug": "spyder_dojo_yin",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "maniac_violet",
       "combat_front": "adventurer",
@@ -245,6 +271,8 @@
   },
   {
     "slug": "spyder_dojo_zhao",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "maniac_green",
       "combat_front": "adventurer",
@@ -253,6 +281,8 @@
   },
   {
     "slug": "spyder_dojo_zhu",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "maniac_rose",
       "combat_front": "adventurer",

@@ -58,8 +58,8 @@
   "shape": "grub",
   "stage": "stage1",
   "types": [
-    "fire",
-    "wood"
+    "sky",
+    "normal"
   ],
   "possible_genders": [
     "male",

@@ -82,7 +82,8 @@
   "shape": "humanoid",
   "stage": "basic",
   "types": [
-    "earth"
+    "earth",
+    "heroic"
   ],
   "possible_genders": [
     "neuter"

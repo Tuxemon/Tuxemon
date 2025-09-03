@@ -80,7 +80,8 @@
   "shape": "hunter",
   "stage": "stage2",
   "types": [
-    "metal"
+    "metal",
+    "normal"
   ],
   "possible_genders": [
     "male",

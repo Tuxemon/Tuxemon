@@ -62,7 +62,8 @@
   "shape": "brute",
   "stage": "standalone",
   "types": [
-    "earth"
+    "earth",
+    "heroic"
   ],
   "possible_genders": [
     "male",

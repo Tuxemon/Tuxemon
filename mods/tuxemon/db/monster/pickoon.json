@@ -59,8 +59,7 @@
   "shape": "hunter",
   "stage": "basic",
   "types": [
-    "earth",
-    "metal"
+    "normal"
   ],
   "possible_genders": [
     "male",

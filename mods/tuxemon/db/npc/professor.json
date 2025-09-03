@@ -1,5 +1,7 @@
 {
   "slug": "professor",
+  "speech": {"profile": {"default": {}}},
+  "combat": {},
   "template": {
     "sprite_name": "professor",
     "combat_front": "professor",

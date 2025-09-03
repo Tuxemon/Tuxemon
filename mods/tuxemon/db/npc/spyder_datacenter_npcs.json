@@ -11,6 +11,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "scientist_black",
       "combat_front": "scientist",
@@ -29,6 +30,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "scientist_fiery",
       "combat_front": "scientist",
@@ -47,6 +49,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "scientist_brown",
       "combat_front": "scientist",
@@ -65,6 +68,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "scientist_fiery",
       "combat_front": "scientist",
@@ -83,6 +87,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "scientist",
       "combat_front": "scientist",
@@ -91,6 +96,8 @@
   },
   {
     "slug": "spyder_box_goldpass",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "box",
       "combat_front": "noclass",
@@ -99,6 +106,8 @@
   },
   {
     "slug": "spyder_datacenter_s1",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "screen_small",
       "combat_front": "noclass",
@@ -107,6 +116,8 @@
   },
   {
     "slug": "spyder_datacenter_s2",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "screen_small",
       "combat_front": "noclass",
@@ -115,6 +126,8 @@
   },
   {
     "slug": "spyder_datacenter_s3",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "screen_small",
       "combat_front": "noclass",
@@ -123,6 +136,8 @@
   },
   {
     "slug": "spyder_datacenter_s4",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "screen_small",
       "combat_front": "noclass",
@@ -131,6 +146,8 @@
   },
   {
     "slug": "spyder_datacenter_s5",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "screen_small",
       "combat_front": "noclass",
@@ -139,6 +156,8 @@
   },
   {
     "slug": "spyder_datacenter_s6",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "screen_small",
       "combat_front": "noclass",
@@ -147,6 +166,8 @@
   },
   {
     "slug": "spyder_datacenter_s7",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "screen_small",
       "combat_front": "noclass",

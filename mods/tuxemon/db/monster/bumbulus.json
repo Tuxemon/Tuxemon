@@ -72,7 +72,7 @@
   "shape": "blob",
   "stage": "basic",
   "types": [
-    "water"
+    "sky"
   ],
   "possible_genders": [
     "neuter"

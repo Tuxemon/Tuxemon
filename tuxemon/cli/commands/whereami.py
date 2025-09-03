@@ -23,7 +23,7 @@ class WhereAmICommand(CLICommand):
             ctx: Contains references to parts of the game and CLI interface.
             line: Input text after the command name.
         """
-        current_map = ctx.client.event_engine.current_map
+        current_map = ctx.session.client.event_engine.current_map
         if current_map:
             name = current_map.data.filename
             print(name)

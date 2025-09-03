@@ -1,5 +1,7 @@
 {
   "slug": "cotton_misa_bro",
+  "speech": {"profile": {"default": {}}},
+  "combat": {},
   "template": {
     "sprite_name": "childactor_fiery",
     "combat_front": "yellowbelt",

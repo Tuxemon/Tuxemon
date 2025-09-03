@@ -55,8 +55,8 @@
   "shape": "humanoid",
   "stage": "stage2",
   "types": [
-    "metal",
-    "wood"
+    "shadow",
+    "cosmic"
   ],
   "possible_genders": [
     "neuter"

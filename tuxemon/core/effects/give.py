@@ -6,7 +6,6 @@ import random
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from tuxemon.combat import get_target_monsters
 from tuxemon.core.core_effect import CoreEffect, TechEffectResult
 from tuxemon.locale import T
 from tuxemon.monster_dir.status import BlockedReason
@@ -38,24 +37,24 @@ class GiveEffect(CoreEffect):
     def apply_tech_target(
         self, session: Session, tech: Technique, user: Monster, target: Monster
     ) -> TechEffectResult:
-        combat = tech.get_combat_state()
         player = user.get_owner()
 
         objectives = self.objectives.split(":")
         potency = random.random()
-        value = combat.get_tech_hit(user)
-        success = tech.potency >= potency and tech.accuracy >= value
+        hit = session.client.combat_session.get_tech_hit(user)
+        success = tech.potency >= potency and tech.accuracy >= hit
 
         if not success:
             return TechEffectResult(name=tech.name)
 
         status = Status.create(self.condition, user, player.steps)
-        status.set_combat_state(combat)
 
         immune_info = []
         successful_targets = []
         extras = []
-        monsters = get_target_monsters(objectives, tech, user, target)
+        monsters = session.client.combat_session.get_target_monsters(
+            objectives, user, target
+        )
 
         for monster in monsters:
             result = monster.status.apply_status(session, status, monster)

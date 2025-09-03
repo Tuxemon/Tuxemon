@@ -75,7 +75,8 @@
   "shape": "blob",
   "stage": "basic",
   "types": [
-    "wood"
+    "wood",
+    "sky"
   ],
   "possible_genders": [
     "male",

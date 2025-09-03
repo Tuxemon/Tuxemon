@@ -11,6 +11,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "scientist",
       "combat_front": "scientist",
@@ -29,6 +30,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "picnicker",
       "combat_front": "picnicker",
@@ -47,6 +49,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "florist_brown",
       "combat_front": "florist",
@@ -65,6 +68,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "scientist_fiery",
       "combat_front": "scientist",
@@ -83,6 +87,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "scientist_black",
       "combat_front": "scientist",
@@ -101,6 +106,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "beachcomber_gray",
       "combat_front": "yellowbelt",
@@ -109,6 +115,8 @@
   },
   {
     "slug": "spyder_tunnelb_rhincus",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "box",
       "combat_front": "noclass",
@@ -117,6 +125,8 @@
   },
   {
     "slug": "spyder_tunnelb_shammer",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "box",
       "combat_front": "noclass",
@@ -125,6 +135,8 @@
   },
   {
     "slug": "spyder_tunnelb_nurse",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "nurse_red",
       "combat_front": "nurse",

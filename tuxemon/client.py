@@ -18,6 +18,7 @@ from tuxemon.boundary import BoundaryChecker
 from tuxemon.camera import CameraManager
 from tuxemon.cli.processor import CommandProcessor
 from tuxemon.collision_manager import CollisionManager
+from tuxemon.combat.session import CombatSession
 from tuxemon.config import TuxemonConfig
 from tuxemon.constants import paths
 from tuxemon.event import get_event_bus
@@ -129,7 +130,8 @@ class LocalPygameClient:
         self.network_manager.initialize()
 
         # Set up our combat engine and router.
-        # self.combat_engine = CombatEngine(self)
+        self.combat_session = CombatSession()
+        # self.combat_engine = CombatEngine(self, self.combat_session)
         # self.combat_router = CombatRouter(self, self.combat_engine)
 
         # Set up our game's event engine which executes actions based on
@@ -177,7 +179,7 @@ class LocalPygameClient:
             # behavior for the game.  at some point, a lock should be
             # implemented so that actions executed here have exclusive
             # control of the game loop and state.
-            self.cli = CommandProcessor(self)
+            self.cli = CommandProcessor(local_session)
             thread = Thread(target=self.cli.run)
             thread.daemon = True
             thread.start()

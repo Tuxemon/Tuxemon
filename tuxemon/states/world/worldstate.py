@@ -26,10 +26,10 @@ from tuxemon.platform.tools import translate_input_event
 from tuxemon.player import Player
 from tuxemon.session import Session
 from tuxemon.state.state import State
-from tuxemon.states.world.world_menus import WorldMenuManager
-from tuxemon.states.world.world_transition import WorldTransition
 from tuxemon.teleporter import Teleporter
 from tuxemon.tools import extract_mod_name
+from tuxemon.world.manager import WorldMenuManager
+from tuxemon.world.transition import WorldTransition
 
 if TYPE_CHECKING:
     from tuxemon.entity import Entity

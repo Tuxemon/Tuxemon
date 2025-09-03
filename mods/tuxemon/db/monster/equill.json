@@ -56,7 +56,8 @@
   "shape": "landrace",
   "stage": "stage1",
   "types": [
-    "earth"
+    "shadow",
+    "normal"
   ],
   "possible_genders": [
     "male",

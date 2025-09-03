@@ -63,7 +63,8 @@
   "shape": "landrace",
   "stage": "stage1",
   "types": [
-    "water"
+    "frost",
+    "normal"
   ],
   "possible_genders": [
     "male",

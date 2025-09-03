@@ -65,7 +65,8 @@
   "shape": "hunter",
   "stage": "standalone",
   "types": [
-    "wood"
+    "wood",
+    "frost"
   ],
   "possible_genders": [
     "male",

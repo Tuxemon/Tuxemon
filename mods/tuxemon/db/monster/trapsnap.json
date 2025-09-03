@@ -59,7 +59,8 @@
   "shape": "brute",
   "stage": "basic",
   "types": [
-    "wood"
+    "wood",
+    "shadow"
   ],
   "possible_genders": [
     "male",

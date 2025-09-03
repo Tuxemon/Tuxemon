@@ -40,7 +40,9 @@ class TestConditionParentCommand(CLICommand):
         Parameters:
             ctx: Contains references to parts of the game and CLI interface.
         """
-        conditions = ctx.client.event_engine.condition_manager.get_conditions()
+        conditions = (
+            ctx.session.client.event_engine.condition_manager.get_conditions()
+        )
         for condition in conditions:
             command = TestConditionCommand()
             command.name = condition.name
@@ -74,7 +76,7 @@ class TestConditionCommand(CLICommand):
         except ValueError:
             raise ParseError
         try:
-            result = ctx.client.event_engine.check_condition(cond)
+            result = ctx.session.client.event_engine.check_condition(cond)
             print(result)
         except Exception:
             traceback.print_exc()

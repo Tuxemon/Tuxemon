@@ -8,15 +8,12 @@ Code here might be shared by states, actions, conditions, etc.
 from __future__ import annotations
 
 import logging
-import random
 from collections.abc import Sequence
 from typing import TYPE_CHECKING
 
 from tuxemon.db import (
-    EffectPhase,
     GenderType,
     OutputBattle,
-    TargetType,
 )
 from tuxemon.locale import T
 from tuxemon.menu.formatter import CurrencyFormatter
@@ -26,7 +23,6 @@ if TYPE_CHECKING:
     from tuxemon.monster import Monster
     from tuxemon.npc import NPC
     from tuxemon.session import Session
-    from tuxemon.states.combat.combat import CombatState
 
 
 logger = logging.getLogger()
@@ -59,40 +55,6 @@ def check_battle_legal(character: NPC) -> bool:
         return False
 
     return True
-
-
-def pre_checking(
-    session: Session,
-    monster: Monster,
-    technique: Technique,
-    target: Monster,
-    combat: CombatState,
-) -> Technique:
-    """
-    Pre checking allows to check if there are statuses
-    or other conditions that change the chosen technique.
-    """
-    status = monster.status.get_current_status()
-    if status:
-        result_status = status.execute_status_action(
-            session, combat, target, EffectPhase.PRE_CHECKING
-        )
-        if result_status.techniques:
-            technique = random.choice(result_status.techniques)
-
-    if monster.plague.is_infected() and any(
-        technique.target.get(target_type, False)
-        for target_type in ["enemy_monster", "enemy_team", "enemy_trainer"]
-    ):
-        infected_slugs = monster.plague.get_infected_slugs()
-        slug = random.choice(infected_slugs)
-        method = Technique.create(slug)
-        result_tech = method.execute_tech_action(
-            session, combat, monster, target
-        )
-        if result_tech.success:
-            technique = method
-    return technique
 
 
 def has_effect(technique: Technique, effect_name: str) -> bool:
@@ -151,33 +113,6 @@ def defeated(character: NPC) -> bool:
     Whether all the character's party is fainted.
     """
     return fainted_party(character.monsters)
-
-
-def get_target_monsters(
-    targets: list[str], technique: Technique, user: Monster, target: Monster
-) -> list[Monster]:
-    """
-    Retrieves a list of monsters based on the provided targets and combat state.
-
-    Parameters:
-        targets: A list of targets to retrieve monsters for (own_monster, etc.).
-        technique: The technique object containing the combat state.
-        user: The monster initiating the combat.
-        target: The target monster in the combat.
-
-    Returns:
-        A list of monsters matching the provided targets.
-
-    Raises:
-        ValueError: If an objective is not a valid TargetType.
-    """
-    combat = technique.get_combat_state()
-    monsters = []
-    for objective in targets:
-        if objective not in list(TargetType):
-            raise ValueError(f"{objective} isn't among {list(TargetType)}")
-        monsters.extend(combat.get_targets_from_map(objective, user, target))
-    return monsters
 
 
 def battlefield(session: Session, monster: Monster) -> None:

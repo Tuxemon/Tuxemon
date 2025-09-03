@@ -58,7 +58,8 @@
   "shape": "humanoid",
   "stage": "stage1",
   "types": [
-    "metal"
+    "metal",
+    "shadow"
   ],
   "possible_genders": [
     "male",

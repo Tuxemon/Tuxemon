@@ -37,8 +37,7 @@
     "machine"
   ],
   "types": [
-    "fire",
-    "earth"
+    "venom"
   ],
   "use_failure": "combat_miss",
   "use_success": null,

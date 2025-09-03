@@ -52,7 +52,7 @@ class ActionParentCommand(CLICommand):
         Parameters:
             ctx: Contains references to parts of the game and CLI interface.
         """
-        actions = ctx.client.event_engine.action_manager.get_actions()
+        actions = ctx.session.client.event_engine.action_manager.get_actions()
         for action in actions:
             command = ActionCommand()
             command.name = action.name
@@ -76,7 +76,7 @@ class ActionCommand(CLICommand):
         line = f"{self.name} {line}"
         name, args = parse_action_string(line)
         try:
-            ctx.client.event_engine.execute_action(name, args)
+            ctx.session.client.event_engine.execute_action(name, args)
         except Exception as e:
             print(f"Error executing action {e}", file=sys.stderr)
             traceback.print_exc()

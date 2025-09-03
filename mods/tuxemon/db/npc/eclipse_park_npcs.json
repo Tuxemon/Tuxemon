@@ -1,6 +1,8 @@
 [
   {
     "slug": "eclipse_park_reception",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "magician_grey",
       "combat_front": "magician",
@@ -9,6 +11,8 @@
   },
   {
     "slug": "eclipse_park_florist",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "florist_fiery",
       "combat_front": "florist",
@@ -17,6 +21,8 @@
   },
   {
     "slug": "eclipse_park_guardian",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "magician_fiery",
       "combat_front": "magician",
@@ -25,6 +31,8 @@
   },
   {
     "slug": "eclipse_park_soldier",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "soldier",
       "combat_front": "soldier",
@@ -33,6 +41,8 @@
   },
   {
     "slug": "eclipse_park_scientist",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "scientist",
       "combat_front": "scientist",
@@ -41,6 +51,8 @@
   },
   {
     "slug": "eclipse_park_professor",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "professor_brown",
       "combat_front": "professor",
@@ -49,6 +61,8 @@
   },
   {
     "slug": "eclipse_park_tennisplayer",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "tennisplayer",
       "combat_front": "tennisplayer",

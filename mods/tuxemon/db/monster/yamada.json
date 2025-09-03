@@ -59,7 +59,8 @@
   "shape": "sprite",
   "stage": "standalone",
   "types": [
-    "metal"
+    "shadow",
+    "heroic"
   ],
   "possible_genders": [
     "neuter"

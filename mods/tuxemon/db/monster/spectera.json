@@ -76,7 +76,8 @@
   "shape": "flier",
   "stage": "stage2",
   "types": [
-    "wood"
+    "wood",
+    "sky"
   ],
   "possible_genders": [
     "male",

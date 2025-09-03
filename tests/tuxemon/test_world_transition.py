@@ -7,7 +7,7 @@ from pygame.surface import Surface
 
 from tuxemon.client import LocalPygameClient
 from tuxemon.movement import MovementManager
-from tuxemon.states.world.world_transition import WorldTransition
+from tuxemon.world.transition import WorldTransition
 
 
 class TestTransition(TestCase):

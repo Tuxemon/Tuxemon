@@ -33,11 +33,13 @@ class HealingEffect(CoreEffect):
         extra: list[str] = []
         done: bool = False
 
-        combat = tech.get_combat_state()
-        tech.hit = tech.accuracy >= combat.get_tech_hit(user)
+        hit = session.client.combat_session.get_tech_hit(user)
+        tech.hit = tech.accuracy >= hit
 
         if tech.hit:
-            targets = combat.get_targets(tech, user, target)
+            targets = session.client.combat_session.get_targets(
+                tech, user, target
+            )
 
         if targets:
             for monster in targets:

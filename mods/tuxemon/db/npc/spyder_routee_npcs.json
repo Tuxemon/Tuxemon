@@ -11,6 +11,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "knight_red",
       "combat_front": "enforcer_agent",
@@ -29,6 +30,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "knight_green",
       "combat_front": "enforcer_rookie",

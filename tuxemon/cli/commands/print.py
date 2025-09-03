@@ -23,6 +23,6 @@ class PrintCommand(CLICommand):
         """
         variable = line.strip()
         if variable:
-            ctx.client.event_engine.execute_action("print", [variable])
+            ctx.session.client.event_engine.execute_action("print", [variable])
         else:
-            ctx.client.event_engine.execute_action("print", [])
+            ctx.session.client.event_engine.execute_action("print", [])

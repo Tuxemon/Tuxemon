@@ -5,7 +5,6 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from tuxemon.combat import get_target_monsters
 from tuxemon.core.core_effect import CoreEffect, TechEffectResult
 
 if TYPE_CHECKING:
@@ -34,15 +33,17 @@ class ReverseEffect(CoreEffect):
     def apply_tech_target(
         self, session: Session, tech: Technique, user: Monster, target: Monster
     ) -> TechEffectResult:
-        combat = tech.get_combat_state()
+        hit = session.client.combat_session.get_tech_hit(user)
 
-        tech.hit = tech.accuracy >= combat.get_tech_hit(user)
+        tech.hit = tech.accuracy >= hit
 
         if not tech.hit:
             return TechEffectResult(name=tech.name, success=tech.hit)
 
         objectives = self.objectives.split(":")
-        monsters = get_target_monsters(objectives, tech, user, target)
+        monsters = session.client.combat_session.get_target_monsters(
+            objectives, user, target
+        )
         for monster in monsters:
             monster.types.reset_to_default()
 

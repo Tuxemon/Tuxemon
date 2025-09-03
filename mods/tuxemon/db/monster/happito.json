@@ -55,8 +55,8 @@
   "shape": "blob",
   "stage": "stage1",
   "types": [
-    "earth",
-    "metal"
+    "metal",
+    "cosmic"
   ],
   "possible_genders": [
     "neuter"

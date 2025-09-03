@@ -66,7 +66,8 @@
   "shape": "blob",
   "stage": "stage1",
   "types": [
-    "earth"
+    "earth",
+    "shadow"
   ],
   "possible_genders": [
     "neuter"

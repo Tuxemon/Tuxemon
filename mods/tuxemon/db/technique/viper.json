@@ -30,7 +30,7 @@
     "toxic"
   ],
   "types": [
-    "metal"
+    "venom"
   ],
   "use_failure": "combat_miss",
   "use_success": null,

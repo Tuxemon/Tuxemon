@@ -70,7 +70,8 @@
   "shape": "varmint",
   "stage": "standalone",
   "types": [
-    "metal"
+    "water",
+    "shadow"
   ],
   "possible_genders": [
     "neuter"

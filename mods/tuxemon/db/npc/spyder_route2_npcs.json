@@ -11,6 +11,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "picnicker",
       "combat_front": "picnicker",
@@ -29,6 +30,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "tennisplayer_green",
       "combat_front": "tennisplayer",
@@ -47,6 +49,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "tennisplayer_fiery",
       "combat_front": "tennisplayer",

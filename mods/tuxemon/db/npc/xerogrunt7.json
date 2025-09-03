@@ -1,5 +1,7 @@
 {
   "slug": "xerogrunt7",
+  "speech": {"profile": {"default": {}}},
+  "combat": {},
   "template": {
     "sprite_name": "xerogrunt",
     "combat_front": "adventurer",

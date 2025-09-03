@@ -22,7 +22,6 @@ if TYPE_CHECKING:
     from tuxemon.monster import Monster
     from tuxemon.plugin import PluginObject
     from tuxemon.session import Session
-    from tuxemon.states.combat.combat import CombatState
 
 logger = logging.getLogger(__name__)
 
@@ -48,7 +47,6 @@ class Technique:
         self.tech_id: int = 0
         self.accuracy: float = 0.0
         self.animation: Optional[str] = None
-        self.combat_state: Optional[CombatState] = None
         self.description: str = ""
         self.flip_axes: FlipAxes = FlipAxes.NONE
         self.hit: bool = False
@@ -163,16 +161,6 @@ class Technique:
         # Load the sound effect for this technique
         self.sfx = results.sfx
 
-    def get_combat_state(self) -> CombatState:
-        """Returns the CombatState."""
-        if not self.combat_state:
-            raise ValueError("No CombatState.")
-        return self.combat_state
-
-    def set_combat_state(self, combat_state: Optional[CombatState]) -> None:
-        """Sets the CombatState."""
-        self.combat_state = combat_state
-
     def advance_round(self) -> None:
         """
         Advance the counter for this technique if used.
@@ -190,17 +178,6 @@ class Technique:
 
     def full_recharge(self) -> None:
         self.next_use = 0
-
-    def execute_tech_action(
-        self,
-        session: Session,
-        combat_instance: CombatState,
-        user: Monster,
-        target: Monster,
-    ) -> TechEffectResult:
-        """Executes the tech action and returns the result."""
-        self.set_combat_state(combat_instance)
-        return self.use(session, user, target)
 
     def use(
         self, session: Session, user: Monster, target: Monster

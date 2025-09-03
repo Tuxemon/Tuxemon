@@ -11,6 +11,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "nurse_red",
       "combat_front": "nurse",
@@ -29,6 +30,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "florist_rose",
       "combat_front": "florist",
@@ -47,6 +49,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "nurse_lapi",
       "combat_front": "nurse",
@@ -65,6 +68,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "scientist_fiery",
       "combat_front": "scientist",
@@ -83,6 +87,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "scientist_brown",
       "combat_front": "aviator",
@@ -101,6 +106,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "rogue_copper",
       "combat_front": "rogue",
@@ -119,6 +125,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "scientist_fiery",
       "combat_front": "scientist",
@@ -137,6 +144,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "florist_fiery",
       "combat_front": "florist",
@@ -155,6 +163,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "scientist_brown",
       "combat_front": "scientist",
@@ -163,6 +172,8 @@
   },
   {
     "slug": "spyder_greenwash_guard",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "soldier",
       "combat_front": "soldier",
@@ -181,6 +192,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "postboy_red",
       "combat_front": "cooldude",
@@ -199,6 +211,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "scientist_black",
       "combat_front": "scientist",
@@ -217,6 +230,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "firefighter",
       "combat_front": "firefighter",
@@ -235,6 +249,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "firefighter",
       "combat_front": "firefighter",
@@ -253,6 +268,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "goth",
       "combat_front": "goth",
@@ -271,6 +287,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "scientist",
       "combat_front": "scientist",
@@ -289,6 +306,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "scientist_black",
       "combat_front": "scientist",
@@ -307,6 +325,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "scientist",
       "combat_front": "scientist",
@@ -315,6 +334,8 @@
   },
   {
     "slug": "spyder_greenwash_norton",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "firefighter",
       "combat_front": "firefighter",
@@ -323,6 +344,8 @@
   },
   {
     "slug": "spyder_greenwash_selby",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "scientist_fiery",
       "combat_front": "scientist",

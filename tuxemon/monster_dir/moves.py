@@ -30,6 +30,7 @@ class MonsterMovesHandler:
     ):
         self.moves = moves if moves is not None else []
         self.moveset = list(moveset) if moveset is not None else []
+        self.pending_moves: dict[UUID, list[str]] = {}
 
     @property
     def current_moves(self) -> list[Technique]:
@@ -39,15 +40,26 @@ class MonsterMovesHandler:
         """Sets the raw moveset data from the database."""
         self.moveset = list(moveset)
 
-    def learn(self, technique: Technique) -> None:
+    def add_move(self, technique: Technique) -> None:
         """
         Adds a technique to this tuxemon's moveset.
-
-        Parameters:
-            technique: The technique for the monster to learn.
         """
-
         self.moves.append(technique)
+
+    def learn(
+        self,
+        monster_iid: UUID,
+        technique: Technique,
+        max_moves: int = prepare.MAX_MOVES,
+    ) -> None:
+        """
+        Adds a technique to this tuxemon's moveset.
+        """
+        if len(self.moves) >= max_moves:
+            # self.pending_moves.setdefault(monster_iid, []).append(technique.slug)
+            self.moves.append(technique)
+        else:
+            self.moves.append(technique)
 
     def forget(self, technique: Technique) -> bool:
         """
@@ -74,20 +86,51 @@ class MonsterMovesHandler:
         method: LearningMethod = LearningMethod.LEVEL_UP,
     ) -> bool:
         if move.learning_method != method:
-            return False
-        return move.level_learned <= level and (
-            move.evolution_stage_learned is None
-            or (
-                evolution_stage is not None
-                and move.evolution_stage_learned == evolution_stage
+            logger.debug(
+                f"Move '{move.technique}' not eligible: learning method is '{move.learning_method}', expected '{method}'."
             )
-        )
+            return False
+
+        if move.level_learned > level:
+            logger.debug(
+                f"Move '{move.technique}' not eligible: requires level {move.level_learned}, current level is {level}."
+            )
+            return False
+
+        if move.evolution_stage_learned is not None:
+            if evolution_stage is None:
+                logger.debug(
+                    f"Move '{move.technique}' not eligible: requires evolution stage '{move.evolution_stage_learned}', but none provided."
+                )
+                return False
+            if move.evolution_stage_learned != evolution_stage:
+                logger.debug(
+                    f"Move '{move.technique}' not eligible: requires evolution stage '{move.evolution_stage_learned}', current stage is '{evolution_stage}'."
+                )
+                return False
+
+        logger.debug(f"Move '{move.technique}' is eligible.")
+        return True
 
     def can_forget(self, technique: Technique) -> bool:
         entry = next(
             (m for m in self.moveset if m.technique == technique.slug), None
         )
-        return entry is not None and entry.can_be_forgotten
+
+        if entry is None:
+            logger.debug(
+                f"Technique '{technique.slug}' not found in moveset — assuming it can be forgotten."
+            )
+            return True
+
+        if not entry.can_be_forgotten:
+            logger.debug(
+                f"Technique '{technique.slug}' is marked as non-forgettable."
+            )
+            return False
+
+        logger.debug(f"Technique '{technique.slug}' can be forgotten.")
+        return True
 
     def remove_forced(self, technique: Technique) -> bool:
         if technique in self.moves:
@@ -108,6 +151,7 @@ class MonsterMovesHandler:
 
     def set_moves(
         self,
+        monster_iid: UUID,
         level: int,
         evolution_stage: Optional[EvolutionStage] = None,
         max_moves: int = prepare.MAX_MOVES,
@@ -139,7 +183,7 @@ class MonsterMovesHandler:
         moves_to_learn = eligible_moves[-max_moves:]
         for move_name in moves_to_learn:
             technique = Technique.create(move_name)
-            self.learn(technique)
+            self.learn(monster_iid, technique)
             logger.debug(
                 f"Monster learned technique: {technique.slug} at level {level} and stage {evolution_stage}"
             )
@@ -176,6 +220,7 @@ class MonsterMovesHandler:
 
     def learn_by_method(
         self,
+        monster_iid: UUID,
         technique_slug: str,
         methods: Union[LearningMethod, set[LearningMethod]],
     ) -> Optional[Technique]:
@@ -190,7 +235,7 @@ class MonsterMovesHandler:
             return None
 
         technique = Technique.create(technique_slug)
-        self.learn(technique)
+        self.learn(monster_iid, technique)
         logger.debug(
             f"Monster learned technique via {move_data.learning_method.value.upper()}: {technique_slug}"
         )
@@ -222,6 +267,12 @@ class MonsterMovesHandler:
 
     def get_moves(self) -> list[Technique]:
         return self.moves
+
+    def get_pending_moves(self, monster_iid: UUID) -> list[str]:
+        return self.pending_moves.get(monster_iid, [])
+
+    def clear_pending_moves(self, monster_iid: UUID) -> None:
+        self.pending_moves.pop(monster_iid, None)
 
     def encode_moves(self) -> Sequence[Mapping[str, Any]]:
         return encode_moves(self.moves)

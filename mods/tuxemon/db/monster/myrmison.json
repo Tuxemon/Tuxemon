@@ -71,8 +71,8 @@
   "shape": "humanoid",
   "stage": "stage2",
   "types": [
-    "fire",
-    "metal"
+    "earth",
+    "heroic"
   ],
   "possible_genders": [
     "male",

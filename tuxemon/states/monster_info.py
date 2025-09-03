@@ -9,7 +9,7 @@ import pygame_menu
 from pygame_menu import locals
 
 from tuxemon import formula, prepare
-from tuxemon.db import Acquisition, MonsterModel, db
+from tuxemon.db import MonsterModel, db
 from tuxemon.locale import T
 from tuxemon.menu.menu import PygameMenuState
 from tuxemon.monster import Monster

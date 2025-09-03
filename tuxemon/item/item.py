@@ -25,7 +25,6 @@ if TYPE_CHECKING:
     from tuxemon.npc import NPC
     from tuxemon.plugin import PluginObject
     from tuxemon.session import Session
-    from tuxemon.states.combat.combat import CombatState
 
 logger = logging.getLogger(__name__)
 
@@ -56,7 +55,6 @@ class Item:
         self.category: ItemCategory = ItemCategory.none
         self.surface: Optional[Surface] = None
         self.surface_size_original: tuple[int, int] = (0, 0)
-        self.combat_state: Optional[CombatState] = None
 
         self.sort: str = ""
         self.confirm_text: str = ""
@@ -158,21 +156,11 @@ class Item:
         self.animation = results.animation
         self.flip_axes = results.flip_axes
 
-    def get_combat_state(self) -> CombatState:
-        """Returns the CombatState."""
-        if not self.combat_state:
-            raise ValueError("No CombatState.")
-        return self.combat_state
-
     def is_immune(self, status: str) -> bool:
         return (
             "all" in self.immunity_to_status
             or status in self.immunity_to_status
         )
-
-    def set_combat_state(self, combat_state: Optional[CombatState]) -> None:
-        """Sets the CombatState."""
-        self.combat_state = combat_state
 
     def set_quantity(self, amount: int = 1) -> None:
         """Set item quantity with clamping at zero, unless it's infinite (-1)."""
@@ -242,17 +230,6 @@ class Item:
         Check if the target meets all conditions that the item has on it's use.
         """
         return self.condition_handler.validate(session=session, target=target)
-
-    def execute_item_action(
-        self,
-        session: Session,
-        combat_instance: CombatState,
-        user: NPC,
-        target: Optional[Monster],
-    ) -> ItemEffectResult:
-        """Executes the item action and returns the result."""
-        self.set_combat_state(combat_instance)
-        return self.use(session, user, target)
 
     def use(
         self, session: Session, user: NPC, target: Optional[Monster]

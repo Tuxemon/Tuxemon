@@ -61,7 +61,8 @@
   "shape": "polliwog",
   "stage": "standalone",
   "types": [
-    "water"
+    "water",
+    "venom"
   ],
   "possible_genders": [
     "male",

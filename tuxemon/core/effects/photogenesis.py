@@ -17,14 +17,18 @@ if TYPE_CHECKING:
 @dataclass
 class PhotogenesisEffect(CoreEffect):
     """
-    Healing effect based on photogenesis or not.
+    Healing effect based on photogenesis.
+
+    Heals the user based on time of day, with maximum healing at `peak_hour`.
+    Healing is skipped if the user is indoors, the technique misses, or the user
+    is at full health.
 
     Parameters:
-        start_hour: The hour when the effect starts healing.
-        peak_hour: The hour when the effect heals (maximum)
-        end_hour: The hour when the effect stops healing.
+        start_hour: Hour when healing begins.
+        peak_hour: Hour of maximum healing.
+        end_hour: Hour when healing ends.
 
-    eg "photogenesis 18,0,6"
+    Example: "photogenesis 18,0,6" — heals from 6 PM to 6 AM, peaking at midnight.
     """
 
     name = "photogenesis"
@@ -35,11 +39,18 @@ class PhotogenesisEffect(CoreEffect):
     def apply_tech_target(
         self, session: Session, tech: Technique, user: Monster, target: Monster
     ) -> TechEffectResult:
-        combat = tech.get_combat_state()
+
+        if session.client.map_manager.map_inside:
+            return TechEffectResult(name=tech.name)
+
+        hit = session.client.combat_session.get_tech_hit(user)
         extra: list[str] = []
         done: bool = False
 
-        tech.hit = tech.accuracy >= combat.get_tech_hit(user)
+        tech.hit = tech.accuracy >= hit
+
+        if not tech.hit:
+            return TechEffectResult(name=tech.name)
 
         hour = int(session.player.game_variables.get("hour", 0))
         hp = user.shape.attributes.hp
@@ -55,15 +66,15 @@ class PhotogenesisEffect(CoreEffect):
 
         factors = {self.name: multiplier}
 
-        if tech.hit and not session.client.map_manager.map_inside:
-            heal = formula.simple_heal(tech, user, factors)
-            if heal == 0:
-                extra = [tech.use_failure]
-            else:
-                if user.hp_ratio < 1.0:
-                    heal_amount = min(heal, user.missing_hp)
-                    user.current_hp += heal_amount
-                    done = True
-                elif user.hp_ratio == 1.0:
-                    extra = ["combat_full_health"]
-        return TechEffectResult(name=tech.name, success=done, extras=extra)
+        heal = formula.simple_heal(tech, user, factors)
+        if heal == 0:
+            extra = [tech.use_failure]
+            return TechEffectResult(name=tech.name, extras=extra)
+
+        if user.hp_ratio < 1.0:
+            heal_amount = min(heal, user.missing_hp)
+            user.current_hp += heal_amount
+            return TechEffectResult(name=tech.name, success=True)
+
+        extra = ["combat_full_health"]
+        return TechEffectResult(name=tech.name, extras=extra)

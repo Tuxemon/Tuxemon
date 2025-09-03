@@ -69,6 +69,7 @@
   "shape": "leviathan",
   "stage": "stage2",
   "types": [
+    "lightning",
     "water"
   ],
   "possible_genders": [

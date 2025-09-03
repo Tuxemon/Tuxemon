@@ -37,7 +37,7 @@
     "pseudopod"
   ],
   "types": [
-    "wood"
+    "venom"
   ],
   "use_failure": "combat_miss",
   "use_success": null,

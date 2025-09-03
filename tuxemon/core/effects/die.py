@@ -16,7 +16,6 @@ if TYPE_CHECKING:
 
 
 @dataclass
-@dataclass
 class DieEffect(CoreEffect):
     """
     This effect applies one random status from a list to the target monster.
@@ -35,11 +34,12 @@ class DieEffect(CoreEffect):
     def apply_item_target(
         self, session: Session, item: Item, target: Monster
     ) -> ItemEffectResult:
-        combat = item.get_combat_state()
-        if combat._turn == 1:
+        if session.client.combat_session.turn == 1:
             statuses = self.statuses.split(":")
             status_slug = random.choice(statuses)
             status = Status.create(status_slug, target)
             target.status.apply_status(session, status, target)
-            combat.update_icons_for_monsters()
+            event_bus = session.client.event_bus
+            event_bus.publish("status_applied")
+            event_bus.publish("update_party_hud")
         return ItemEffectResult(name=item.name, success=True)

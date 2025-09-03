@@ -75,7 +75,8 @@
   "shape": "landrace",
   "stage": "stage1",
   "types": [
-    "water"
+    "water",
+    "heroic"
   ],
   "possible_genders": [
     "male",

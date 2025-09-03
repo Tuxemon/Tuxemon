@@ -31,8 +31,7 @@
     "calamity"
   ],
   "types": [
-    "water",
-    "earth"
+    "water"
   ],
   "use_failure": "combat_miss",
   "use_success": null,

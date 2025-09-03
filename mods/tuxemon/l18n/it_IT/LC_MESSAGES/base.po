@@ -122,7 +122,7 @@ msgid "combat_state_recover_success"
 msgstr "{user} ha recuperato vita!"
 
 msgid "combat_state_recover_failure"
-msgstr "{user} non può guarire maggiormente."
+msgstr "{target} non può guarire maggiormente."
 
 msgid "combat_status_damage"
 msgstr "{name} ha subito danno da {status}!"

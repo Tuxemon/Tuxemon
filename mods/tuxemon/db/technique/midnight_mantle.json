@@ -31,7 +31,7 @@
     "celestial"
   ],
   "types": [
-    "water"
+    "shadow"
   ],
   "use_failure": "combat_miss",
   "use_success": null,

@@ -68,7 +68,8 @@
   "shape": "grub",
   "stage": "stage2",
   "types": [
-    "water"
+    "sky",
+    "shadow"
   ],
   "possible_genders": [
     "male",

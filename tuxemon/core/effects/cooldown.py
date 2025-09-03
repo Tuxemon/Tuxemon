@@ -5,7 +5,6 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from tuxemon.combat import get_target_monsters
 from tuxemon.core.core_effect import CoreEffect, TechEffectResult
 from tuxemon.event.conditions.common import CommonCondition
 from tuxemon.prepare import RECHARGE_RANGE
@@ -46,13 +45,15 @@ class CoolDownEffect(CoreEffect):
                 f"{self.name}: {self.next_use} must be between {RECHARGE_RANGE}"
             )
 
-        combat = tech.get_combat_state()
-        tech.hit = tech.accuracy >= combat.get_tech_hit(user)
+        hit = session.client.combat_session.get_tech_hit(user)
+        tech.hit = tech.accuracy >= hit
         if not tech.hit:
             return TechEffectResult(name=tech.name)
 
         objectives = self.objectives.split(":")
-        monsters = get_target_monsters(objectives, tech, user, target)
+        monsters = session.client.combat_session.get_target_monsters(
+            objectives, user, target
+        )
         moves_to_update = [
             move for mon in monsters for move in mon.moves.get_moves()
         ]

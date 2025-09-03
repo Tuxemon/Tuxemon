@@ -94,8 +94,8 @@
   "shape": "flier",
   "stage": "standalone",
   "types": [
-    "fire",
-    "water"
+    "frost",
+    "cosmic"
   ],
   "possible_genders": [
     "neuter"

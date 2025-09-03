@@ -133,13 +133,17 @@ class MoneyManager:
 
     def add_bill(self, bill_name: str, amount: int) -> None:
         if bill_name not in self.bills:
-            raise KeyError(f"No such bill: {bill_name}")
+            raise KeyError(
+                f"Method 'add_bill' failed. No such bill: {bill_name}"
+            )
 
         self.bills[bill_name].amount += amount
 
     def remove_bill(self, bill_name: str, amount: int) -> None:
         if bill_name not in self.bills:
-            raise KeyError(f"No such bill: {bill_name}")
+            raise KeyError(
+                f"Method 'remove_bill' failed. No such bill: {bill_name}"
+            )
 
         self.bills[bill_name].amount += amount
         if self.bills[bill_name].amount < 0:
@@ -147,7 +151,9 @@ class MoneyManager:
 
     def pay_bill_with_money(self, bill_name: str, amount: int) -> None:
         if bill_name not in self.bills:
-            raise KeyError(f"No such bill: {bill_name}")
+            raise KeyError(
+                f"Method 'pay_bill_with_money' failed. No such bill: {bill_name}"
+            )
 
         bill = self.bills[bill_name]
         payment = min(amount, bill.amount)
@@ -157,7 +163,9 @@ class MoneyManager:
 
     def pay_bill_with_deposit(self, bill_name: str, amount: int) -> None:
         if bill_name not in self.bills:
-            raise KeyError(f"No such bill: {bill_name}")
+            raise KeyError(
+                f"Method 'pay_bill_with_deposit' failed. No such bill: {bill_name}"
+            )
 
         bill = self.bills[bill_name]
         payment = min(amount, bill.amount)
@@ -168,8 +176,8 @@ class MoneyManager:
     def get_bills(self) -> dict[str, BillEntry]:
         return self.bills
 
-    def get_bill(self, bill_name: str) -> BillEntry:
-        return self.bills.get(bill_name, BillEntry())
+    def get_bill(self, bill_name: str) -> Optional[BillEntry]:
+        return self.bills.get(bill_name)
 
     def get_total_bills(self) -> int:
         return sum(bill.amount for bill in self.bills.values())
@@ -193,19 +201,25 @@ class MoneyManager:
 
     def apply_interest_to_bill(self, bill_name: str) -> None:
         if bill_name not in self.bills:
-            raise KeyError(f"No such bill: {bill_name}")
+            raise KeyError(
+                f"Method 'apply_interest_to_bill' failed. No such bill: {bill_name}"
+            )
 
         self.bills[bill_name].apply_interest()
 
     def apply_late_fee_to_bill(self, bill_name: str) -> None:
         if bill_name not in self.bills:
-            raise KeyError(f"No such bill: {bill_name}")
+            raise KeyError(
+                f"Method 'apply_late_fee_to_bill' failed. No such bill: {bill_name}"
+            )
 
         self.bills[bill_name].apply_late_fee()
 
     def apply_share_to_bill(self, bill_name: str, earnings: int) -> int:
         if bill_name not in self.bills:
-            raise KeyError(f"No such bill: {bill_name}")
+            raise KeyError(
+                f"Method 'apply_share_to_bill' failed. No such bill: {bill_name}"
+            )
 
         bill = self.bills[bill_name]
         remaining_earnings = bill.apply_share(earnings)

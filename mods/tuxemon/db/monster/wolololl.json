@@ -65,7 +65,8 @@
   "shape": "humanoid",
   "stage": "stage1",
   "types": [
-    "wood"
+    "wood",
+    "venom"
   ],
   "possible_genders": [
     "neuter"

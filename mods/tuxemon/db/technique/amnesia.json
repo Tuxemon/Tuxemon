@@ -37,8 +37,7 @@
     "mental"
   ],
   "types": [
-    "fire",
-    "metal"
+    "cosmic"
   ],
   "use_failure": "combat_miss",
   "use_success": "combat_amnesia_get",

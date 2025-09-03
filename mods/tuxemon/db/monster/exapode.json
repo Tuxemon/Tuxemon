@@ -50,7 +50,7 @@
   "shape": "grub",
   "stage": "stage1",
   "types": [
-    "earth"
+    "normal"
   ],
   "possible_genders": [
     "male",

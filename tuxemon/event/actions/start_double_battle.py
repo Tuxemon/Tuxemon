@@ -6,17 +6,17 @@ import logging
 from dataclasses import dataclass
 from typing import Optional, final
 
-from tuxemon.combat import check_battle_legal
+from tuxemon.combat.combat_context import (
+    BattleMode,
+    CombatContext,
+    CombatType,
+)
+from tuxemon.combat.utils import check_battle_legal
 from tuxemon.db import EnvironmentModel, db
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.prepare import MONSTERS_DOUBLE
 from tuxemon.session import Session
-from tuxemon.states.combat.combat_context import (
-    BattleMode,
-    CombatContext,
-    CombatType,
-)
 
 logger = logging.getLogger(__name__)
 

@@ -34,7 +34,7 @@
     "shapeshifter"
   ],
   "types": [
-    "aether"
+    "water"
   ],
   "use_failure": "combat_miss",
   "use_success": null,

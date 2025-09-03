@@ -8,17 +8,17 @@ from dataclasses import dataclass
 from typing import final
 
 from tuxemon import prepare
-from tuxemon.combat import check_battle_legal
+from tuxemon.combat.combat_context import (
+    BattleMode,
+    CombatContext,
+    CombatType,
+)
+from tuxemon.combat.utils import check_battle_legal
 from tuxemon.db import EnvironmentModel, MonsterModel, NpcModel, db
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.monster import Monster
 from tuxemon.session import Session
-from tuxemon.states.combat.combat_context import (
-    BattleMode,
-    CombatContext,
-    CombatType,
-)
 from tuxemon.time_handler import today_ordinal
 
 logger = logging.getLogger(__name__)

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+from collections import deque
 from collections.abc import MutableMapping, Sequence
 from typing import TYPE_CHECKING, Optional
 
@@ -157,57 +158,21 @@ class Pathfinder:
             A sequence of positions representing the path if found, or None if no path
                 exists.
         """
-        pathnode = self.pathfind_r(
-            dest=dest,
-            queue=[PathfindNode(start)],
-            known_nodes=set(),
-            facing=facing,
-        )
         logger.info(f"Pathfinding from {start} to {dest}.")
-        if pathnode:
-            path = pathnode.reconstruct_path()
-            return path
-        else:
-            character = self.npc_manager.get_entity_pos(start)
-            if character and self.map_manager.current_map:
-                filename = self.map_manager.current_map.filename
-                logger.error(
-                    f"{character.name}'s pathfinding failed in {filename}."
-                )
-            else:
-                logger.error(f"No character found at start position {start}.")
-            return None
 
-    def pathfind_r(
-        self,
-        dest: tuple[int, int],
-        queue: list[PathfindNode],
-        known_nodes: set[tuple[int, int]],
-        facing: Direction,
-    ) -> Optional[PathfindNode]:
-        """
-        A recursive helper method that explores possible paths to the destination.
-
-        Parameters:
-            dest: The destination position as a tuple of (x, y) coordinates.
-            queue: A deque of PathfindNode objects representing the current nodes to
-                explore.
-            known_nodes: A set of positions that have already been explored.
-            facing: The direction the character is currently facing, which guides path
-                exploration.
-
-        Returns:
-            The PathfindNode representing the destination if found, or None if no path exists.
-        """
-        if not queue:
-            return None
+        queue = deque([PathfindNode(start)])
+        known_nodes: set[tuple[int, int]] = set()
         collision_map = self.collision_manager.get_collision_map()
+
         while queue:
-            node = queue.pop(0)
+            node = queue.popleft()
             logger.debug(f"Checking node {node.get_value()}.")
+
             if node.get_value() == dest:
                 logger.info(f"Destination {dest} reached.")
-                return node
+                path = node.reconstruct_path()
+                return path
+
             for adj_pos in self.get_exits(
                 position=node.get_value(),
                 facing=facing,
@@ -216,12 +181,20 @@ class Pathfinder:
             ):
                 if adj_pos not in known_nodes:
                     known_nodes.add(adj_pos)
-                    new_node = PathfindNode(adj_pos)
-                    new_node.set_parent(node)
+                    new_node = PathfindNode(adj_pos, node)
                     queue.append(new_node)
                     logger.debug(
                         f"Added adjacent position {adj_pos} to the queue."
                     )
+
+        character = self.npc_manager.get_entity_pos(start)
+        if character and self.map_manager.current_map:
+            filename = self.map_manager.current_map.filename
+            logger.error(
+                f"{character.name}'s pathfinding failed in {filename}."
+            )
+        else:
+            logger.error(f"No character found at start position {start}.")
         logger.warning(f"No path found to destination {dest}.")
         return None
 

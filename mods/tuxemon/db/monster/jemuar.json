@@ -76,7 +76,8 @@
   "shape": "hunter",
   "stage": "stage2",
   "types": [
-    "earth"
+    "earth",
+    "cosmic"
   ],
   "possible_genders": [
     "male",

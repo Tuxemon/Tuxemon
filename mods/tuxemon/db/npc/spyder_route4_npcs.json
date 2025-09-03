@@ -11,6 +11,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "tennisplayer",
       "combat_front": "yellowbelt",
@@ -29,6 +30,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "soldier",
       "combat_front": "soldier",
@@ -47,6 +49,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "beachcomber_blue",
       "combat_front": "yellowbelt",
@@ -65,6 +68,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "soldier",
       "combat_front": "soldier",
@@ -83,6 +87,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "maniac",
       "combat_front": "alchemist",
@@ -101,6 +106,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "picnicker",
       "combat_front": "picnicker",
@@ -109,6 +115,8 @@
   },
   {
     "slug": "spyder_route4_super",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "box",
       "combat_front": "noclass",
@@ -117,6 +125,8 @@
   },
   {
     "slug": "spyder_route4_boost",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "box",
       "combat_front": "noclass",
@@ -125,6 +135,8 @@
   },
   {
     "slug": "spyder_route4_nurse",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "nurse_green",
       "combat_front": "nurse",

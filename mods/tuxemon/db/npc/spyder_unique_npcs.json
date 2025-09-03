@@ -1,6 +1,8 @@
 [
   {
     "slug": "spyder_dante",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "shopassistant",
       "combat_front": "adventurer",
@@ -9,6 +11,8 @@
   },
   {
     "slug": "spyder_shady",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "cooldude_blue",
       "combat_front": "cooldude",
@@ -17,6 +21,8 @@
   },
   {
     "slug": "spyder_captain",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "riverboatcaptain",
       "combat_front": "enforcer_rookie",
@@ -25,6 +31,8 @@
   },
   {
     "slug": "spyder_billie",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "fashionista",
       "combat_front": "fashionista",
@@ -33,6 +41,8 @@
   },
   {
     "slug": "spyder_cathedral_nurse",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "nurse",
       "combat_front": "nurse",
@@ -41,6 +51,8 @@
   },
   {
     "slug": "spyder_shopkeeper",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "shopassistant",
       "combat_front": "shopassistant",
@@ -49,6 +61,8 @@
   },
   {
     "slug": "spyder_shopassistant",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "shopassistant",
       "combat_front": "shopassistant",

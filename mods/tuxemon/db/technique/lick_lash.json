@@ -37,6 +37,7 @@
     "tongue"
   ],
   "types": [
+    "normal",
     "earth"
   ],
   "use_failure": "combat_miss",

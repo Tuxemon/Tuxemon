@@ -60,7 +60,7 @@
   "shape": "blob",
   "stage": "standalone",
   "types": [
-    "metal"
+    "normal"
   ],
   "possible_genders": [
     "male",

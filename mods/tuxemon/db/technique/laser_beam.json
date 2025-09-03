@@ -38,6 +38,7 @@
     "electricity"
   ],
   "types": [
+    "lightning",
     "metal"
   ],
   "use_failure": "combat_miss",

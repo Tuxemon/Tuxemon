@@ -53,7 +53,8 @@
   "shape": "hunter",
   "stage": "stage1",
   "types": [
-    "earth"
+    "earth",
+    "shadow"
   ],
   "possible_genders": [
     "male",

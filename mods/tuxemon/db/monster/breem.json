@@ -52,8 +52,7 @@
   "shape": "flier",
   "stage": "stage1",
   "types": [
-    "earth",
-    "wood"
+    "venom"
   ],
   "possible_genders": [
     "male",

@@ -6,7 +6,7 @@ import random
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from tuxemon.combat import has_effect_param
+from tuxemon.combat.utils import has_effect_param
 from tuxemon.core.core_effect import CoreEffect, StatusEffectResult
 from tuxemon.db import EffectPhase
 from tuxemon.locale import T
@@ -37,6 +37,7 @@ class ConfusedEffect(CoreEffect):
         self, session: Session, status: Status, target: Monster
     ) -> StatusEffectResult:
         CONFUSED_KEY = self.name
+        var = session.client.combat_session.get_variable(CONFUSED_KEY)
 
         if not 0 <= self.chance <= 1:
             raise ValueError(f"{self.chance} must be between 0 and 1")
@@ -48,11 +49,10 @@ class ConfusedEffect(CoreEffect):
             status.has_phase(EffectPhase.PRE_CHECKING)
             and random.random() > self.chance
         ):
-            combat = status.get_combat_state()
-            if CONFUSED_KEY in combat._combat_variables:
-                combat._combat_variables[CONFUSED_KEY] = "off"
+            if var:
+                session.client.combat_session.set_variable(CONFUSED_KEY, "off")
             user = status.get_host()
-            combat._combat_variables[CONFUSED_KEY] = "on"
+            session.client.combat_session.set_variable(CONFUSED_KEY, "on")
             available_techniques = _get_available_techniques(user)
             if available_techniques:
                 chosen_technique = random.choice(available_techniques)
@@ -62,12 +62,13 @@ class ConfusedEffect(CoreEffect):
                 tech = [replacement_technique]
 
         if status.has_phase(EffectPhase.PERFORM_TECH):
-            combat = status.get_combat_state()
-            if CONFUSED_KEY in combat._combat_variables:
-                combat._combat_variables[CONFUSED_KEY] = "off"
-            if combat._combat_variables[CONFUSED_KEY] == "on":
-                slug = combat._combat_variables.get("action_tech", "skip")
-                replacement = Technique.create(slug)
+            if var:
+                session.client.combat_session.set_variable(CONFUSED_KEY, "off")
+            if var and str(var) == "on":
+                action = session.client.combat_session.get_variable(
+                    "action_tech"
+                )
+                replacement = Technique.create(str(action) or "skip")
                 extra = _get_extra_message(target, replacement)
 
         return StatusEffectResult(

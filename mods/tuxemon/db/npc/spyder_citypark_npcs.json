@@ -11,6 +11,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "catgirl_green",
       "combat_front": "catgirl",
@@ -29,6 +30,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "picnicker",
       "combat_front": "picnicker",
@@ -37,6 +39,8 @@
   },
   {
     "slug": "spyder_citypark_florist",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "florist_fiery",
       "combat_front": "florist",
@@ -55,6 +59,7 @@
         }
       }
     },
+    "combat": {},
     "template": {
       "sprite_name": "florist_black",
       "combat_front": "florist",
@@ -63,6 +68,8 @@
   },
   {
     "slug": "spyder_citypark_magdalene",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "granny",
       "combat_front": "adventurer",
@@ -71,6 +78,8 @@
   },
   {
     "slug": "spyder_citypark_prue",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "florist_rose",
       "combat_front": "florist",
@@ -79,6 +88,8 @@
   },
   {
     "slug": "spyder_citypark_mack",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "maniac_green",
       "combat_front": "adventurer",
@@ -87,6 +98,8 @@
   },
   {
     "slug": "spyder_citypark_nurse",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "nurse_red",
       "combat_front": "nurse",
@@ -95,6 +108,8 @@
   },
   {
     "slug": "spyder_citypark_cd1",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "box",
       "combat_front": "noclass",
@@ -103,6 +118,8 @@
   },
   {
     "slug": "spyder_citypark_cd2",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "box",
       "combat_front": "noclass",
@@ -111,6 +128,8 @@
   },
   {
     "slug": "spyder_citypark_restoration",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "box",
       "combat_front": "noclass",
@@ -119,6 +138,8 @@
   },
   {
     "slug": "spyder_citypark_potion1",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "box",
       "combat_front": "noclass",
@@ -127,6 +148,8 @@
   },
   {
     "slug": "spyder_citypark_potion2",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "box",
       "combat_front": "noclass",
@@ -135,6 +158,8 @@
   },
   {
     "slug": "spyder_citypark_house_maniac",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
     "template": {
       "sprite_name": "maniac_green",
       "combat_front": "adventurer",

@@ -37,6 +37,7 @@
     "bite"
   ],
   "types": [
+    "venom",
     "wood"
   ],
   "use_failure": "combat_miss",

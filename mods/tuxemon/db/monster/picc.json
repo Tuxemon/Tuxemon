@@ -52,7 +52,8 @@
   "shape": "piscine",
   "stage": "stage1",
   "types": [
-    "metal"
+    "metal",
+    "water"
   ],
   "possible_genders": [
     "neuter"

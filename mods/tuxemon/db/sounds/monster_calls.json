@@ -86,5 +86,69 @@
   {
     "file": "monster/reverse_robot2.ogg",
     "slug": "sound_av8r_faint"
+  },
+  {
+    "file": "monster/oddGrowl.ogg",
+    "slug": "sound_sky_call"
+  },
+  {
+    "file": "monster/reverse_oddGrowl.ogg",
+    "slug": "sound_sky_faint"
+  },
+  {
+    "file": "monster/oddGrowl.ogg",
+    "slug": "sound_shadow_call"
+  },
+  {
+    "file": "monster/reverse_oddGrowl.ogg",
+    "slug": "sound_shadow_faint"
+  },
+  {
+    "file": "monster/oddGrowl.ogg",
+    "slug": "sound_cosmic_call"
+  },
+  {
+    "file": "monster/reverse_oddGrowl.ogg",
+    "slug": "sound_cosmic_faint"
+  },
+  {
+    "file": "monster/oddGrowl.ogg",
+    "slug": "sound_frost_call"
+  },
+  {
+    "file": "monster/reverse_oddGrowl.ogg",
+    "slug": "sound_frost_faint"
+  },
+  {
+    "file": "monster/oddGrowl.ogg",
+    "slug": "sound_heroic_call"
+  },
+  {
+    "file": "monster/reverse_oddGrowl.ogg",
+    "slug": "sound_heroic_faint"
+  },
+  {
+    "file": "monster/oddGrowl.ogg",
+    "slug": "sound_lightning_call"
+  },
+  {
+    "file": "monster/reverse_oddGrowl.ogg",
+    "slug": "sound_lightning_faint"
+  },
+  {
+    "file": "monster/oddGrowl.ogg",
+    "slug": "sound_normal_call"
+  },
+  {
+    "file": "monster/reverse_oddGrowl.ogg",
+    "slug": "sound_normal_faint"
+  },
+  {
+    "file": "monster/oddGrowl.ogg",
+    "slug": "sound_venom_call"
+  },
+  {
+    "file": "monster/reverse_oddGrowl.ogg",
+    "slug": "sound_venom_faint"
   }
 ]

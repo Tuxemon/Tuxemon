@@ -1,5 +1,7 @@
 {
   "slug": "37707_male_missing",
+  "speech": {"profile": {"default": {}}},
+  "combat": {},
   "template": {
     "sprite_name": "37707_male_missing",
     "combat_front": "adventurer",

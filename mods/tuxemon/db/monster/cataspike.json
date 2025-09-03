@@ -67,7 +67,8 @@
   "shape": "grub",
   "stage": "basic",
   "types": [
-    "metal"
+    "metal",
+    "venom"
   ],
   "possible_genders": [
     "male",

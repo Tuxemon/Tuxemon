@@ -62,7 +62,6 @@
   "shape": "varmint",
   "stage": "standalone",
   "types": [
-    "metal",
     "wood"
   ],
   "possible_genders": [

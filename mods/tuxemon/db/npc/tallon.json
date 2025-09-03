@@ -1,5 +1,7 @@
 {
   "slug": "tallon",
+  "speech": {"profile": {"default": {}}},
+  "combat": {},
   "template": {
     "sprite_name": "ninja",
     "combat_front": "ninja",

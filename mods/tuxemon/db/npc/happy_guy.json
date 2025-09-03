@@ -1,5 +1,7 @@
 {
   "slug": "happy_guy",
+  "speech": {"profile": {"default": {}}},
+  "combat": {},
   "template": {
     "sprite_name": "ceo",
     "combat_front": "adventurer",

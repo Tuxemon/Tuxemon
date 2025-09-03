@@ -38,8 +38,7 @@
     "celestial"
   ],
   "types": [
-    "fire",
-    "metal"
+    "fire"
   ],
   "use_failure": "combat_miss",
   "use_success": null,

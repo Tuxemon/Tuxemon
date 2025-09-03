@@ -70,7 +70,8 @@
   "shape": "humanoid",
   "stage": "stage2",
   "types": [
-    "wood"
+    "metal",
+    "heroic"
   ],
   "possible_genders": [
     "male",

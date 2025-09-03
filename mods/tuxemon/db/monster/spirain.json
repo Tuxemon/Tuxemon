@@ -67,7 +67,8 @@
   "shape": "sprite",
   "stage": "stage1",
   "types": [
-    "water"
+    "water",
+    "sky"
   ],
   "possible_genders": [
     "neuter"

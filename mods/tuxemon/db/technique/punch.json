@@ -30,8 +30,7 @@
     "fists"
   ],
   "types": [
-    "fire",
-    "metal"
+    "heroic"
   ],
   "use_failure": "combat_miss",
   "use_success": null,

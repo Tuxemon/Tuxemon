@@ -53,7 +53,8 @@
   "shape": "polliwog",
   "stage": "stage1",
   "types": [
-    "water"
+    "water",
+    "cosmic"
   ],
   "possible_genders": [
     "female"

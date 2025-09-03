@@ -42,8 +42,8 @@
   "shape": "varmint",
   "stage": "basic",
   "types": [
-    "earth",
-    "wood"
+    "wood",
+    "venom"
   ],
   "possible_genders": [
     "male",

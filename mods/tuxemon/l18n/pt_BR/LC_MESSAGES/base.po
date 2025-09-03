@@ -1037,7 +1037,7 @@ msgid "combat_state_overfeed_get"
 msgstr "{user} Sobrealimentou {target}."
 
 msgid "combat_state_recover_failure"
-msgstr "{user} não pode sarar mais que isso."
+msgstr "{target} não pode sarar mais que isso."
 
 msgid "combat_status_damage"
 msgstr "{name} levou dano de {status}!"

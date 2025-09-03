@@ -5,14 +5,14 @@ from __future__ import annotations
 from enum import Enum
 from typing import TYPE_CHECKING
 
-from tuxemon.combat import alive_party
+from tuxemon.combat.utils import alive_party
 from tuxemon.locale import T
 
 if TYPE_CHECKING:
-    from tuxemon.states.combat.combat_classes import DamageTracker
+    from tuxemon.combat.damage_tracker import DamageTracker
     from tuxemon.technique.technique import Technique
     from tuxemon.monster import Monster
-    from .combat_context import CombatContext
+    from tuxemon.session import Session
 
 from dataclasses import dataclass
 
@@ -42,10 +42,12 @@ class RewardData:
 
 class RewardSystem:
     def __init__(
-        self, damage_map: DamageTracker, combat_context: CombatContext
+        self,
+        session: Session,
+        damage_map: DamageTracker,
     ) -> None:
+        self.session = session
         self.damage_map = damage_map
-        self.combat_context = combat_context
 
     def award_rewards(self, monster: Monster) -> RewardData:
         """
@@ -129,7 +131,7 @@ class RewardSystem:
                     )
 
                     # Add money for trainer battles
-                    if self.combat_context.is_trainer_battle:
+                    if self.session.client.combat_session.is_trainer_battle:
                         rewards_data.prize += awarded_money
 
                     # Update HUD or handle level-up externally
@@ -164,12 +166,17 @@ def calculate_experience(
     total_hits, monster_hits = damages.count_hits(loser, winner)
 
     def default_method() -> tuple[int, int]:
-        exp = calculate_experience_base(
+        total_exp = calculate_experience_base(
             loser.total_experience,
             loser.level,
             loser.experience_modifier,
         )
-        return exp, 0
+
+        participants = damages.get_attackers(loser)
+        num_participants = len(participants) if participants else 1
+
+        divided_exp = total_exp // num_participants
+        return divided_exp, 0
 
     def equal_method() -> tuple[int, int]:
         total_exp = calculate_experience_base(

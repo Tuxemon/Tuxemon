@@ -14,7 +14,7 @@ from pygame_menu.widgets.selection.highlight import HighlightSelection
 from tuxemon import prepare
 from tuxemon.item.item import Item
 from tuxemon.locale import T
-from tuxemon.map.manager import MAP_TYPES
+from tuxemon.map_manager import MAP_TYPES
 from tuxemon.menu.menu import PygameMenuState
 from tuxemon.tools import fix_measure, open_dialog
 

@@ -170,21 +170,11 @@ class TestMonsterActions(unittest.TestCase):
         self.action.execute_action("random_monster", _params)
         self.assertEqual(self.player.monsters[0].slug, "nut")
 
-    def test_random_monster_shape_wrong(self):
-        _params = [5, None, None, None, "chad"]
-        with self.assertRaises(ValueError):
-            self.action.execute_action("random_monster", _params)
-
     def test_random_monster_evolution(self):
         _params = [5, None, None, None, None, "basic"]
         _basic = EvolutionStage.basic
         self.action.execute_action("random_monster", _params)
         self.assertEqual(self.player.monsters[0].stage, _basic)
-
-    def test_random_monster_evolution_wrong(self):
-        _params = [5, None, None, None, None, "stage69"]
-        with self.assertRaises(ValueError):
-            self.action.execute_action("random_monster", _params)
 
     def test_give_experience(self):
         _params = [5]

@@ -2,13 +2,16 @@
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-import random as rd
+import logging
+import random
 from dataclasses import dataclass
 from typing import Optional, final
 
 from tuxemon.db import EvolutionStage, MonsterModel, db
 from tuxemon.event.eventaction import EventAction
 from tuxemon.session import Session
+
+logger = logging.getLogger(__name__)
 
 lookup_cache: dict[str, MonsterModel] = {}
 
@@ -17,7 +20,7 @@ lookup_cache: dict[str, MonsterModel] = {}
 @dataclass
 class RandomMonsterAction(EventAction):
     """
-    Add a monster to the specified trainer's party if there is room.
+    Adds a random monster to the specified trainer's party, if there is room.
 
     Script usage:
         .. code-block::
@@ -25,14 +28,13 @@ class RandomMonsterAction(EventAction):
             random_monster <level>[,npc_slug][,exp][,mon][,shape][,evo]
 
     Script parameters:
-        level: Level of the added monster.
-        npc_slug: Slug of the trainer that will receive the monster. It
-            defaults to the current player.
-        exp: Experience modifier
-        mon: Money modifier
-        shape: Shape (eg. varmint, brute, etc.)
-        evo: Stage (eg. basic, stage1, etc.)
-
+        level: The level of the added monster.
+        npc_slug: The slug of the trainer to receive the monster
+            Defaults to the current player.
+        exp: A modifier for the monster's experience.
+        mon: A modifier for the monster's money yield.
+        shape: The monster's shape (e.g., 'varmint', 'brute').
+        evo: The monster's evolution stage (e.g., 'basic', 'stage1').
     """
 
     name = "random_monster"
@@ -47,10 +49,11 @@ class RandomMonsterAction(EventAction):
         if not lookup_cache:
             _lookup_monsters()
 
-        valid_evos = list(EvolutionStage)
-
-        if self.evo and self.evo not in valid_evos:
-            raise ValueError(f"{self.evo} is not a valid evolution stage.")
+        try:
+            evo_stage = EvolutionStage(self.evo) if self.evo else None
+        except ValueError:
+            logger.error(f"'{self.evo}' is not a valid evolution stage.")
+            return
 
         filters = [
             monster.slug
@@ -58,23 +61,17 @@ class RandomMonsterAction(EventAction):
             if monster.txmn_id > 0
             and monster.randomly
             and (not self.shape or monster.shape == self.shape)
-            and (not self.evo or monster.stage == self.evo)
+            and (not self.evo or monster.stage == evo_stage)
         ]
 
         if not filters:
-            if self.shape and not self.evo:
-                raise ValueError(f"No monsters found with shape: {self.shape}")
-            elif self.evo and not self.shape:
-                raise ValueError(
-                    f"No monsters found with evolution stage: {self.evo}"
-                )
-            else:
-                raise ValueError(
-                    f"No monsters found with evolution stage: {self.evo} and shape: {self.shape}.\n"
-                    "Please open an issue on Github to request new monsters with these characteristics."
-                )
+            logger.error(
+                f"No valid monsters found for the given criteria "
+                f"(shape: {self.shape}, evo: {self.evo})."
+            )
+            return
 
-        monster_slug = rd.choice(filters)
+        monster_slug = random.choice(filters)
 
         session.client.event_engine.execute_action(
             "add_monster",
@@ -90,8 +87,9 @@ class RandomMonsterAction(EventAction):
 
 
 def _lookup_monsters() -> None:
-    monsters = list(db.database["monster"])
-    for mon in monsters:
-        results = MonsterModel.lookup(mon, db)
-        if results.txmn_id > 0:
-            lookup_cache[mon] = results
+    global lookup_cache
+    lookup_cache = {
+        mon_name: result
+        for mon_name in db.database["monster"]
+        if (result := MonsterModel.lookup(mon_name, db)).txmn_id > 0
+    }

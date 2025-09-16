@@ -419,6 +419,12 @@ msgstr "Nu Phone"
 msgid "nu_phone_description"
 msgstr "You can do a lot with this, e.g. phone home."
 
+msgid "bivouac"
+msgstr "Bivouac"
+
+msgid "bivouac_description"
+msgstr "Rest as if you were at a proper healing centre. Consumed on use."
+
 msgid "spyder_pass"
 msgstr "Spyder Pass"
 
@@ -9020,6 +9026,9 @@ msgstr "Acolyte Corren"
 # general dialogs
 msgid "fishing_rod_failure"
 msgstr "The water ripples, but nothing bites."
+
+msgid "bivouac_success"
+msgstr "The bivouac restored your team's strength!"
 
 msgid "itsswimmingtime"
 msgstr "Do you want to swim?"

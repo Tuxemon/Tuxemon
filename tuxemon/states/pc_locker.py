@@ -307,7 +307,9 @@ class ItemBoxState(PygameMenuState):
         return []
 
     def change_state(self, state: str, **kwargs: Any) -> partial[State]:
-        return partial(self.client.replace_state, state, **kwargs)
+        return partial(
+            self.client.state_manager.replace_state, state, **kwargs
+        )
 
     def update_animation_position(self) -> None:
         self.menu.translate(-self.animation_offset, 0)

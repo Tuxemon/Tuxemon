@@ -153,7 +153,7 @@ class Teleporter:
         self.movement_manager.stop_char(character)
 
         if len(self.state_manager.active_states) == 2:
-            self.client.push_state_with_timeout("TeleporterState", 15)
+            self.state_manager.push_state_with_timeout("TeleporterState", 15)
 
         self.movement_manager.lock_controls(character)
         logger.info(f"{character.slug} is prepared for teleportation.")

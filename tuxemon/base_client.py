@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import logging
 from abc import ABC, abstractmethod
-from collections.abc import Mapping, Sequence
+from collections.abc import Sequence
 from enum import Enum
 from pathlib import Path
 from threading import Thread
@@ -231,19 +231,6 @@ class BaseClient(ABC):
         """
         return self.state_manager.get_state_by_name(state_name)
 
-    def get_queued_state_by_name(
-        self,
-        state_name: str,
-    ) -> tuple[str, Mapping[str, Any]]:
-        """
-        Query the state stack for a state by the name supplied.
-        """
-        return self.state_manager.get_queued_state_by_name(state_name)
-
-    def queue_state(self, state_name: str, **kwargs: Any) -> None:
-        """Queue a state"""
-        self.state_manager.queue_state(state_name, **kwargs)
-
     def pop_state(self, state: Optional[State] = None) -> None:
         """Pop current state, or another"""
         self.state_manager.pop_state(state)
@@ -271,46 +258,3 @@ class BaseClient(ABC):
     ) -> State:
         """Push new state, by name"""
         return self.state_manager.push_state(state_name, **kwargs)
-
-    @overload
-    def replace_state(self, state_name: str, **kwargs: Any) -> State:
-        pass
-
-    @overload
-    def replace_state(
-        self,
-        state_name: StateType,
-        **kwargs: Any,
-    ) -> StateType:
-        pass
-
-    def replace_state(
-        self,
-        state_name: Union[str, State],
-        **kwargs: Any,
-    ) -> State:
-        """Replace current state with new one"""
-        return self.state_manager.replace_state(state_name, **kwargs)
-
-    def push_state_with_timeout(
-        self,
-        state_name: Union[str, StateType],
-        updates: int = 1,
-    ) -> None:
-        """Push new state, by name, by with timeout"""
-        self.state_manager.push_state_with_timeout(state_name, updates)
-
-    @property
-    def active_states(self) -> Sequence[State]:
-        """List of active states"""
-        return self.state_manager.active_states
-
-    @property
-    def current_state(self) -> Optional[State]:
-        """Current State object, or None"""
-        return self.state_manager.current_state
-
-    @property
-    def active_state_names(self) -> Sequence[str]:
-        """List of names of active states"""
-        return self.state_manager.get_active_state_names()

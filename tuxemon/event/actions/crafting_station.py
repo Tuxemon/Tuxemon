@@ -39,10 +39,10 @@ class CraftingStationAction(EventAction):
     def start(self, session: Session) -> None:
         self.client = session.client
 
-        if self.client.current_state is None:
+        if self.client.state_manager.current_state is None:
             raise RuntimeError("No current state active. This is unexpected.")
 
-        if self.client.current_state.name == "CraftMenuState":
+        if self.client.state_manager.current_state.name == "CraftMenuState":
             logger.error(
                 f"The state 'CraftMenuState' is already active. No action taken."
             )

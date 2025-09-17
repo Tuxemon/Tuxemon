@@ -62,7 +62,7 @@ class ChangeBgAction(EventAction):
     def start(self, session: Session) -> None:
         # don't override previous state if we are still in the state.
         client = session.client
-        if client.current_state is None:
+        if client.state_manager.current_state is None:
             # obligatory "should not happen"
             raise RuntimeError
 
@@ -88,7 +88,7 @@ class ChangeBgAction(EventAction):
                 )
                 return
 
-        if client.current_state.name != "ImageState":
+        if client.state_manager.current_state.name != "ImageState":
             if self.background is None:
                 if len(client.state_manager.active_states) > 2:
                     client.pop_state()

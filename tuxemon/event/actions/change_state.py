@@ -37,10 +37,10 @@ class ChangeStateAction(EventAction):
         self.session = session
         self.client = session.client
 
-        if self.client.current_state is None:
+        if self.client.state_manager.current_state is None:
             raise RuntimeError("No current state active. This is unexpected.")
 
-        if self.client.current_state.name == self.state_name:
+        if self.client.state_manager.current_state.name == self.state_name:
             logger.error(
                 f"The state '{self.state_name}' is already active. No action taken."
             )

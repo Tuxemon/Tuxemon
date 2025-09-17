@@ -48,7 +48,7 @@ class TeleportFaintAction(EventAction):
             return
 
         client = session.client
-        current_state = client.current_state
+        current_state = client.state_manager.current_state
         if current_state and current_state.name == "DialogState":
             client.remove_state_by_name("DialogState")
 

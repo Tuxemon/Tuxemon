@@ -102,7 +102,9 @@ class WildEncounterAction(EventAction):
             graphics=environment.battle_graphics,
             battle_mode=BattleMode.SINGLE,
         )
-        session.client.queue_state("CombatState", context=context)
+        session.client.state_manager.queue_state(
+            "CombatState", context=context
+        )
 
         session.client.movement_manager.lock_controls(player)
         session.client.movement_manager.stop_char(player)
@@ -118,7 +120,9 @@ class WildEncounterAction(EventAction):
 
     def update(self, session: Session) -> None:
         try:
-            session.client.get_queued_state_by_name("CombatState")
+            session.client.state_manager.get_queued_state_by_name(
+                "CombatState"
+            )
         except ValueError:
             try:
                 session.client.get_state_by_name("CombatState")

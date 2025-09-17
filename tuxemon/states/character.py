@@ -233,7 +233,9 @@ class CharacterState(PygameMenuState):
         party = self.char.monsters
         if event.button == buttons.RIGHT and event.pressed and party:
             params = {"party": party}
-            self.client.replace_state("PartyState", kwargs=params)
+            self.client.state_manager.replace_state(
+                "PartyState", kwargs=params
+            )
         if (
             event.button in (buttons.BACK, buttons.B, buttons.A)
             and event.pressed

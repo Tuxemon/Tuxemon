@@ -43,7 +43,7 @@ class ParkExperienceAction(EventAction):
         self.client = session.client
         session.player.game_variables.remove("park_out")
 
-        if self.client.current_state is None:
+        if self.client.state_manager.current_state is None:
             raise RuntimeError("No current state active. This is unexpected.")
 
         self.client.push_state("ParkState", session=session)

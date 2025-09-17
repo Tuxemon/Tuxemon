@@ -194,7 +194,7 @@ class SingleMissionState(PygameMenuState):
                 if event.button == buttons.RIGHT
                 else (current_index - 1) % len(missions)
             )
-            client.replace_state(
+            client.state_manager.replace_state(
                 "SingleMissionState",
                 mission=missions[new_index],
                 character=self.character,

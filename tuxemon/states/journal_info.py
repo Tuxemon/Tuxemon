@@ -284,7 +284,7 @@ class JournalInfoState(PygameMenuState):
                 if event.button == buttons.RIGHT
                 else (current_monster_index - 1) % len(monster_models)
             )
-            client.replace_state(
+            client.state_manager.replace_state(
                 "JournalInfoState",
                 character=self.char,
                 monster=monster_models[new_index],

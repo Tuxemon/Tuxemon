@@ -158,8 +158,11 @@ class CombatState(CombatAnimations):
         """
         Update the combat phase.
         """
-        if self.client.current_state:
-            if self.client.current_state.name == "WaitForInputState":
+        if self.client.state_manager.current_state:
+            if (
+                self.client.state_manager.current_state.name
+                == "WaitForInputState"
+            ):
                 return
         time_left = self.text_anim.get_text_animation_time_left()
         if time_left <= 0 and all(map(self.is_task_finished, self.animations)):
@@ -912,7 +915,9 @@ class CombatState(CombatAnimations):
         """
         Removes any states stacked on top of the combat state
         """
-        while not isinstance(self.client.current_state, CombatState):
+        while not isinstance(
+            self.client.state_manager.current_state, CombatState
+        ):
             self.client.pop_state()
 
     def end_combat(self) -> None:

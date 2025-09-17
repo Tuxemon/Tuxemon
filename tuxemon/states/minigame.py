@@ -70,7 +70,9 @@ class DifficultySelectState(PygameMenuState):
         """
         Transitions to the minigame with the selected difficulty.
         """
-        self.client.replace_state("MinigameState", difficulty=difficulty)
+        self.client.state_manager.replace_state(
+            "MinigameState", difficulty=difficulty
+        )
 
 
 class MinigameState(PygameMenuState):
@@ -190,7 +192,7 @@ class MinigameState(PygameMenuState):
                 "normal": 2,
                 "hard": 3,
             }[self.difficulty]
-            self.client.replace_state(
+            self.client.state_manager.replace_state(
                 "MinigameState",
                 difficulty=self.difficulty,
                 streak=self.streak,

@@ -162,7 +162,9 @@ class PartyState(PygameMenuState):
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
         params = {"character": self.char}
         if event.button == buttons.LEFT and event.pressed:
-            self.client.replace_state("CharacterState", kwargs=params)
+            self.client.state_manager.replace_state(
+                "CharacterState", kwargs=params
+            )
         if (
             event.button in (buttons.BACK, buttons.B, buttons.A)
             and event.pressed

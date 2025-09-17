@@ -393,11 +393,15 @@ class MonsterMovesState(PygameMenuState):
             if event.button == buttons.RIGHT and event.pressed:
                 slot = (slot + 1) % len(monsters)
                 param["monster"] = monsters[slot]
-                client.replace_state("MonsterMovesState", kwargs=param)
+                client.state_manager.replace_state(
+                    "MonsterMovesState", kwargs=param
+                )
             elif event.button == buttons.LEFT and event.pressed:
                 slot = (slot - 1) % len(monsters)
                 param["monster"] = monsters[slot]
-                client.replace_state("MonsterMovesState", kwargs=param)
+                client.state_manager.replace_state(
+                    "MonsterMovesState", kwargs=param
+                )
             else:
                 self.update_selected_widget()
                 menu = self.menu.get_current()

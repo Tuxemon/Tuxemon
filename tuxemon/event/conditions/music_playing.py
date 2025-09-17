@@ -32,7 +32,7 @@ class MusicPlayingCondition(EventCondition):
         combat_states = {"FlashTransition", "CombatState"}
         if any(
             state in combat_states
-            for state in session.client.active_state_names
+            for state in session.client.state_manager.get_active_state_names()
         ):
             return True
 

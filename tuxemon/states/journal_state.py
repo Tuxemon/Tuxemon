@@ -150,7 +150,7 @@ class JournalState(PygameMenuState):
             self._page = (
                 self._page + (1 if event.button == buttons.RIGHT else -1)
             ) % max_page
-            client.replace_state(
+            client.state_manager.replace_state(
                 "JournalState",
                 character=self.char,
                 monsters=box,

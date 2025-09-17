@@ -144,7 +144,8 @@ class ItemMenuState(Menu[Item]):
             open_dialog(self.client, [error_message])
         # Check if the item can be used in the current state
         elif not any(
-            s.name in self.client.active_state_names for s in item.usable_in
+            s.name in self.client.state_manager.get_active_state_names()
+            for s in item.usable_in
         ):
             error_message = T.format(
                 "item_cannot_use_here", {"name": item.name}

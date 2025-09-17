@@ -134,11 +134,15 @@ class MonsterItemState(PygameMenuState):
             if event.button == buttons.RIGHT and event.pressed:
                 slot = (slot + 1) % len(monsters)
                 param["monster"] = monsters[slot]
-                client.replace_state("MonsterItemState", kwargs=param)
+                client.state_manager.replace_state(
+                    "MonsterItemState", kwargs=param
+                )
             elif event.button == buttons.LEFT and event.pressed:
                 slot = (slot - 1) % len(monsters)
                 param["monster"] = monsters[slot]
-                client.replace_state("MonsterItemState", kwargs=param)
+                client.state_manager.replace_state(
+                    "MonsterItemState", kwargs=param
+                )
 
         if event.button in (buttons.BACK, buttons.B) and event.pressed:
             client.remove_state_by_name("MonsterItemState")

@@ -41,18 +41,20 @@ class RemoveStateAction(EventAction):
         client = session.client
         state_name = self.state_name
 
-        if client.current_state is None:
+        if client.state_manager.current_state is None:
             raise RuntimeError("No current state active. This is unexpected.")
 
         if state_name is None:
-            if client.current_state.name not in [
+            if client.state_manager.current_state.name not in [
                 "WorldState",
                 "BackgroundState",
             ]:
-                logger.info(f"{client.current_state.name} is removed.")
+                logger.info(
+                    f"{client.state_manager.current_state.name} is removed."
+                )
                 client.pop_state()
         else:
-            if state_name not in client.active_state_names:
+            if state_name not in client.state_manager.get_active_state_names():
                 logger.error(f"{state_name} isn't active.")
                 return
             client.remove_state_by_name(state_name)

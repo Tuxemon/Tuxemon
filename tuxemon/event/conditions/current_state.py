@@ -31,7 +31,7 @@ class CurrentStateCondition(EventCondition):
     name = "current_state"
 
     def test(self, session: Session, condition: MapCondition) -> bool:
-        current_state = session.client.current_state
+        current_state = session.client.state_manager.current_state
         assert current_state
         states = condition.parameters[0].split(":")
         return current_state.name in states

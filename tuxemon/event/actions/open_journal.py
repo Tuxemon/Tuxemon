@@ -39,10 +39,10 @@ class OpenJournalAction(EventAction):
         self.client = session.client
         self.action = self.client.event_engine
 
-        if self.client.current_state is None:
+        if self.client.state_manager.current_state is None:
             raise RuntimeError("No current state active. This is unexpected.")
 
-        if self.client.current_state.name == "JournalInfoState":
+        if self.client.state_manager.current_state.name == "JournalInfoState":
             logger.error(
                 f"The state 'JournalInfoState' is already active. No action taken."
             )

@@ -408,8 +408,10 @@ class ControllerServer:
             key_events_buffer = list(self.game.key_events)
             for controller_event in controller_events:
                 key_events_buffer.append(controller_event)
-                if self.game.current_state:
-                    self.game.current_state.process_event(controller_event)
+                if self.game.state_manager.current_state:
+                    self.game.state_manager.current_state.process_event(
+                        controller_event
+                    )
             self.game.key_events = tuple(key_events_buffer)
 
     def net_controller_loop(self) -> Sequence[PlayerInput]:
@@ -771,8 +773,9 @@ class TuxemonClient:
 
         :type event: Dictionary
         """
-        if self.game.current_state != self.game.get_state_by_name(
-            world.WorldState
+        if (
+            self.game.state_manager.current_state
+            != self.game.get_state_by_name(world.WorldState)
         ):
             return
 

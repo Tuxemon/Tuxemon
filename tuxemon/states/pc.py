@@ -54,7 +54,9 @@ class PCMenuBuilder:
         )
 
     def _change_state(self, state: str, **kwargs: Any) -> partial[State]:
-        return partial(self.client.replace_state, state, **kwargs)
+        return partial(
+            self.client.state_manager.replace_state, state, **kwargs
+        )
 
     def _not_implemented_dialog(self) -> None:
         open_dialog(self.client, [T.translate("not_implemented")])

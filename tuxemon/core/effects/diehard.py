@@ -36,12 +36,11 @@ class DieHardEffect(CoreEffect):
         extra: list[str] = []
         if status.has_phase(EffectPhase.CHECK_PARTY_HP):
             params = {"target": target.name.upper()}
+            if target.current_hp == self.hp:
+                target.status.clear_status(session)
+                extra = [T.format("combat_state_diehard_end", params)]
             if target.is_fainted:
                 target.current_hp = self.hp
                 target.status.clear_status(session)
                 extra = [T.format("combat_state_diehard_tech", params)]
-            if target.current_hp == self.hp:
-                target.status.clear_status(session)
-                extra = [T.format("combat_state_diehard_end", params)]
-
         return StatusEffectResult(name=status.name, success=True, extras=extra)

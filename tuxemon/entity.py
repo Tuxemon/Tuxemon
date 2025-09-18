@@ -24,6 +24,7 @@ class EntityState(Enum):
     IDLE = "idle"
     WALKING = "walking"
     RUNNING = "running"
+    JUMPING = "jumping"
 
 
 class Body:
@@ -137,6 +138,13 @@ class Mover:
             self.base_moverate = CONFIG.player_walkrate
             self.state = EntityState.WALKING
 
+    def jump(self, strength: float = 5.0) -> None:
+        """Applies a vertical impulse to simulate a jump."""
+        if self.state != EntityState.JUMPING and self.body.position.z == 0:
+            self.body.velocity.z = strength
+            self.body.acceleration.z = -9.8  # gravity-like pull
+            self.state = EntityState.JUMPING
+
     def update_movement_state(self, running: bool) -> None:
         """
         Updates movement state based on whether the player is running
@@ -197,6 +205,15 @@ class Entity(Generic[SaveDict]):
         """
         self.body.update(td)
         self.pos_update()
+
+        if (
+            self.mover.state == EntityState.JUMPING
+            and self.body.position.z <= 0
+        ):
+            self.body.position.z = 0
+            self.body.velocity.z = 0
+            self.body.acceleration.z = 0
+            self.mover.state = EntityState.IDLE
 
     def set_position(self, pos: Sequence[float]) -> None:
         """
@@ -285,6 +302,10 @@ class Entity(Generic[SaveDict]):
         return self.mover.facing
 
     @property
+    def is_airborne(self) -> bool:
+        return self.body.position.z > 0
+
+    @property
     def move_direction(self) -> Optional[Direction]:
         """
         Move direction allows other functions to move the entity in a
@@ -293,6 +314,10 @@ class Entity(Generic[SaveDict]):
         move one tile in that direction until it is set to None.
         """
         return self.mover.move_direction
+
+    def jump(self, strength: float = 5.0) -> None:
+        """Triggers a jump for the entity."""
+        self.mover.jump(strength)
 
     def get_state(self, session: Session) -> SaveDict:
         """

@@ -88,28 +88,41 @@ class TestSpriteRenderer(TestCase):
         duration = self.sprite_renderer._calculate_frame_duration(rate=rate)
         self.assertEqual(duration, 1 / 3)
 
-    def test_get_frame_standing(self):
-        self.npc.moving = False
-        self.mock_standing_surface = Surface((80, 160))
+    def test_get_facing_frame_standing(self):
+        mock_standing_surface = Surface((80, 160))
         self.sprite_renderer.standing[EntityFacing.front] = (
-            self.mock_standing_surface
+            mock_standing_surface
         )
-        self.mock_surface_animation = MagicMock(spec=SurfaceAnimation)
-        self.sprite_renderer.sprite["front_walk"] = self.mock_surface_animation
-        frame = self.sprite_renderer.get_frame("front", self.npc)
-        self.assertEqual(frame, self.mock_standing_surface)
 
-    @patch("tuxemon.surfanim.SurfaceAnimation.get_current_frame")
-    def test_get_frame_walking(self, mock_get_current_frame):
-        self.npc.moving = True
+        frame = self.sprite_renderer.get_facing_frame(
+            EntityFacing.front,
+            self.sprite_renderer.standing,
+        )
+
+        self.assertEqual(frame, mock_standing_surface)
+
+    def test_get_animation_frame_walking(self):
         mock_surface = MagicMock(spec=Surface)
-        mock_get_current_frame.return_value = mock_surface
-        frame = self.sprite_renderer.get_frame("front_walk", self.npc)
+        mock_anim = MagicMock(spec=SurfaceAnimation)
+        mock_anim.get_current_frame.return_value = mock_surface
+
+        self.sprite_renderer.sprite["front_walk"] = mock_anim
+
+        frame = self.sprite_renderer.get_animation_frame(
+            "front_walk",
+            self.sprite_renderer.sprite,
+            self.npc,
+        )
+
         self.assertEqual(frame, mock_surface)
 
-    def test_get_frame_animation_not_found(self):
+    def test_get_animation_frame_not_found(self):
         with self.assertRaises(ValueError):
-            self.sprite_renderer.get_frame("nonexistent_animation", self.npc)
+            self.sprite_renderer.get_animation_frame(
+                "nonexistent_animation",
+                self.sprite_renderer.sprite,
+                self.npc,
+            )
 
     @patch("tuxemon.graphics.load_and_scale")
     def adventurer_loading_paths(self, mock_load_and_scale):

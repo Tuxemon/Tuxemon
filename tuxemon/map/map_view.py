@@ -17,6 +17,8 @@ from pygame.surface import Surface
 
 from tuxemon import prepare
 from tuxemon.camera.camera import project
+from tuxemon.db import Direction
+from tuxemon.entity import EntityState
 from tuxemon.graphics import ColorLike, apply_cinema_bars, load_and_scale
 from tuxemon.map.map import get_pos_from_tilepos, proj
 from tuxemon.math import Vector2
@@ -36,6 +38,14 @@ class EntityFacing(str, Enum):
     back = "back"
     left = "left"
     right = "right"
+
+
+DIRECTION_TO_FACING: dict[Direction, EntityFacing] = {
+    Direction.up: EntityFacing.back,
+    Direction.down: EntityFacing.front,
+    Direction.left: EntityFacing.left,
+    Direction.right: EntityFacing.right,
+}
 
 
 @dataclass
@@ -109,7 +119,9 @@ class SpriteController:
 
     def update(self, time_delta: float) -> None:
         """Update the sprite renderer."""
-        self.sprite_renderer.set_position(self.npc.tile_pos)
+        self.sprite_renderer.set_position(
+            self.npc.tile_pos, self.npc.body.position.z
+        )
         self.sprite_renderer.update(time_delta)
 
     def update_template(self, template: NpcTemplateModel) -> None:
@@ -122,9 +134,17 @@ class SpriteController:
         )
         self.sprite_renderer.play()
 
-    def get_frame(self, ani: str) -> Surface:
-        """Get the current frame of the sprite animation."""
-        return self.sprite_renderer.get_frame(ani, self.npc)
+    def get_animation_frame(self, ani: str) -> Surface:
+        """Returns the current animation frame for the given animation key."""
+        return self.sprite_renderer.get_animation_frame(
+            ani, self.sprite_renderer.sprite, self.npc
+        )
+
+    def get_facing_frame(self, facing: EntityFacing) -> Surface:
+        """Returns the static sprite frame for the given facing direction."""
+        return self.sprite_renderer.get_facing_frame(
+            facing, self.sprite_renderer.standing
+        )
 
     def get_sprite_renderer(self) -> SpriteRenderer:
         """Returns the sprite renderer."""
@@ -164,6 +184,12 @@ class SpriteRenderer:
             "down": "front",
             "left": "left",
             "right": "right",
+        },
+        "jumping": {
+            "up": "back_walk",
+            "down": "front_walk",
+            "left": "left_walk",
+            "right": "right_walk",
         },
     }
 
@@ -248,31 +274,33 @@ class SpriteRenderer:
         """Calculate the frame duration for walking animations."""
         return (time_scale / rate) / frame_divisor / time_scale * speed_factor
 
-    def set_position(self, position: tuple[int, int]) -> None:
-        """Set the position of the sprite."""
-        self.rect.topleft = position
+    def set_position(
+        self, position: tuple[int, int], z_offset: float = 0.0
+    ) -> None:
+        """Set the position of the sprite, optionally offset by vertical jump."""
+        self.rect.topleft = (position[0], position[1] - int(z_offset))
 
     def update(self, time_delta: float) -> None:
         """Update the sprite animation."""
         self.surface_animations.update(time_delta)
 
-    def get_frame(self, ani: str, npc: NPC) -> Surface:
-        """Get the current frame of the sprite animation."""
-        if npc.moving:
-            frame_dict = self.sprite
-            if ani in frame_dict:
-                frame = frame_dict[ani]
-                if isinstance(frame, SurfaceAnimation):
-                    frame.rate = npc.moverate / prepare.CONFIG.player_walkrate
-                    return frame.get_current_frame()
-                else:
-                    raise ValueError(
-                        f"Expected SurfaceAnimation, got {type(frame)}"
-                    )
+    def get_animation_frame(
+        self, ani: str, animations: dict[str, SurfaceAnimation], npc: NPC
+    ) -> Surface:
+        """Get current frame from animation dictionary."""
+        if ani not in animations:
             raise ValueError(f"Animation '{ani}' not found.")
-        else:
-            facing = EntityFacing(ani)
-            return self.standing[facing]
+        animation = animations[ani]
+        animation.rate = npc.moverate / prepare.CONFIG.player_walkrate
+        return animation.get_current_frame()
+
+    def get_facing_frame(
+        self, facing: EntityFacing, sprites: dict[EntityFacing, Surface]
+    ) -> Surface:
+        """Get static frame based on facing direction."""
+        if facing not in sprites:
+            raise ValueError(f"Facing '{facing}' not found.")
+        return sprites[facing]
 
     def play(self) -> None:
         """Play the sprite animation."""
@@ -399,10 +427,28 @@ class MapRenderer:
     def _get_sprites(self, npc: NPC, layer: int) -> list[WorldSurfaces]:
         """Retrieves sprite surfaces for an NPC."""
         sprite_renderer = npc.sprite_controller.get_sprite_renderer()
-        moving = npc.mover.state.value
-        state = sprite_renderer.ANIMATION_MAPPING[moving][npc.facing.value]
-        frame = sprite_renderer.get_frame(state, npc)
-        return [WorldSurfaces(frame, proj(npc.position), layer)]
+
+        if npc.mover.state in (
+            EntityState.WALKING,
+            EntityState.RUNNING,
+            EntityState.JUMPING,
+        ):
+            ani_key = sprite_renderer.ANIMATION_MAPPING[npc.mover.state.value][
+                npc.facing.value
+            ]
+            frame = sprite_renderer.get_animation_frame(
+                ani_key, sprite_renderer.sprite, npc
+            )
+        else:
+            frame = sprite_renderer.get_facing_frame(
+                DIRECTION_TO_FACING[npc.facing],
+                sprite_renderer.standing,
+            )
+
+        pixel_x, pixel_y = proj(npc.position)
+        z_offset = npc.body.position.z if npc.is_airborne else 0.0
+        adjusted_y = pixel_y - z_offset
+        return [WorldSurfaces(frame, Vector2(pixel_x, adjusted_y), layer)]
 
 
 class BubbleManager:

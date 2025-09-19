@@ -804,8 +804,8 @@ is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/
 [Sanglorian](https://wiki.tuxemon.org/index.php?title=Sanglorian)
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
-* ["Cherry & Berry Item"](https://forum.tuxemon.org/thread.php?pid=882#p882) by
-[josepharaoh99](https://wiki.tuxemon.org/Josepharaoh99)
+* ["Element Berries"](https://forum.tuxemon.org/thread.php?pid=882#p882) by
+[josepharaoh99](https://wiki.tuxemon.org/Josepharaoh99), colors tweaked by Sanglorian, 
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
 * ["Gems"](https://forum.tuxemon.org/thread.php?pid=887#p887) by

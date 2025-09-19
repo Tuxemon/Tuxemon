@@ -4,7 +4,7 @@
       "type": "base",
       "parameters": [
         "types",
-        "fire"
+        "heroic"
       ],
       "operator": "not"
     }
@@ -13,13 +13,13 @@
     {
       "type": "switch_type",
       "parameters": [
-        "fire"
+        "heroic"
       ]
     }
   ],
-  "slug": "fire_berry",
+  "slug": "heroic_berry",
   "sort": "utility",
-  "sprite": "gfx/items/fire_berry.png",
+  "sprite": "gfx/items/heroic_berry.png",
   "category": "elements",
   "cost": 450,
   "usable_in": [

@@ -4,7 +4,7 @@
       "type": "base",
       "parameters": [
         "types",
-        "fire"
+        "wood"
       ],
       "operator": "not"
     }
@@ -13,13 +13,13 @@
     {
       "type": "switch_type",
       "parameters": [
-        "fire"
+        "wood"
       ]
     }
   ],
-  "slug": "fire_berry",
+  "slug": "wood_berry",
   "sort": "utility",
-  "sprite": "gfx/items/fire_berry.png",
+  "sprite": "gfx/items/wood_berry.png",
   "category": "elements",
   "cost": 450,
   "usable_in": [

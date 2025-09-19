@@ -4,7 +4,7 @@
       "type": "base",
       "parameters": [
         "types",
-        "fire"
+        "venom"
       ],
       "operator": "not"
     }
@@ -13,13 +13,13 @@
     {
       "type": "switch_type",
       "parameters": [
-        "fire"
+        "venom"
       ]
     }
   ],
-  "slug": "fire_berry",
+  "slug": "venom_berry",
   "sort": "utility",
-  "sprite": "gfx/items/fire_berry.png",
+  "sprite": "gfx/items/venom_berry.png",
   "category": "elements",
   "cost": 450,
   "usable_in": [

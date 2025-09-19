@@ -4,7 +4,7 @@
       "type": "base",
       "parameters": [
         "types",
-        "fire"
+        "metal"
       ],
       "operator": "not"
     }
@@ -13,13 +13,13 @@
     {
       "type": "switch_type",
       "parameters": [
-        "fire"
+        "metal"
       ]
     }
   ],
-  "slug": "fire_berry",
+  "slug": "metal_berry",
   "sort": "utility",
-  "sprite": "gfx/items/fire_berry.png",
+  "sprite": "gfx/items/metal_berry.png",
   "category": "elements",
   "cost": 450,
   "usable_in": [

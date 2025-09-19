@@ -4,7 +4,7 @@
       "type": "base",
       "parameters": [
         "types",
-        "fire"
+        "frost"
       ],
       "operator": "not"
     }
@@ -13,13 +13,13 @@
     {
       "type": "switch_type",
       "parameters": [
-        "fire"
+        "frost"
       ]
     }
   ],
-  "slug": "fire_berry",
+  "slug": "frost_berry",
   "sort": "utility",
-  "sprite": "gfx/items/fire_berry.png",
+  "sprite": "gfx/items/frost_berry.png",
   "category": "elements",
   "cost": 450,
   "usable_in": [

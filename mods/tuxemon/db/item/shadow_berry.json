@@ -4,7 +4,7 @@
       "type": "base",
       "parameters": [
         "types",
-        "fire"
+        "shadow"
       ],
       "operator": "not"
     }
@@ -13,13 +13,13 @@
     {
       "type": "switch_type",
       "parameters": [
-        "fire"
+        "shadow"
       ]
     }
   ],
-  "slug": "fire_berry",
+  "slug": "shadow_berry",
   "sort": "utility",
-  "sprite": "gfx/items/fire_berry.png",
+  "sprite": "gfx/items/shadow_berry.png",
   "category": "elements",
   "cost": 450,
   "usable_in": [

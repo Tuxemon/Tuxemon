@@ -4,7 +4,7 @@
       "type": "base",
       "parameters": [
         "types",
-        "fire"
+        "sky"
       ],
       "operator": "not"
     }
@@ -13,13 +13,13 @@
     {
       "type": "switch_type",
       "parameters": [
-        "fire"
+        "sky"
       ]
     }
   ],
-  "slug": "fire_berry",
+  "slug": "sky_berry",
   "sort": "utility",
-  "sprite": "gfx/items/fire_berry.png",
+  "sprite": "gfx/items/sky_berry.png",
   "category": "elements",
   "cost": 450,
   "usable_in": [

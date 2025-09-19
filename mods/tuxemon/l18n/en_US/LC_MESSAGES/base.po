@@ -15,17 +15,83 @@ msgstr ""
 "X-Generator: Weblate 4.3.2\n"
 
 # ITEM TRANSLATIONS ##
+msgid "cosmic_berry"
+msgstr "Cosmic Berry"
+
+msgid "cosmic_berry_description"
+msgstr "It changes monster type to Cosmic."
+
+msgid "earth_berry"
+msgstr "Earth Berry"
+
+msgid "earth_berry_description"
+msgstr "It changes monster type to Earth."
+
 msgid "fire_berry"
 msgstr "Fire Berry"
 
 msgid "fire_berry_description"
 msgstr "It changes monster type to Fire."
 
-msgid "metal_cherry"
-msgstr "Metal Cherry"
+msgid "frost_berry"
+msgstr "Frost Berry"
 
-msgid "metal_cherry_description"
+msgid "frost_berry_description"
+msgstr "It changes monster type to Frost."
+
+msgid "heroic_berry"
+msgstr "Heroic Berry"
+
+msgid "heroic_berry_description"
+msgstr "It changes monster type to Heroic."
+
+msgid "metal_berry"
+msgstr "Metal Berry"
+
+msgid "metal_berry_description"
 msgstr "It changes monster type to Metal."
+
+msgid "lightning_berry"
+msgstr "Lightning Berry"
+
+msgid "lightning_berry_description"
+msgstr "It changes monster type to Lightning."
+
+msgid "normal_berry"
+msgstr "Normal Berry"
+
+msgid "normal_berry_description"
+msgstr "It changes monster type to Normal."
+
+msgid "shadow_berry"
+msgstr "Shadow Berry"
+
+msgid "shadow_berry_description"
+msgstr "It changes monster type to Shadow."
+
+msgid "sky_berry"
+msgstr "Sky Berry"
+
+msgid "sky_berry_description"
+msgstr "It changes monster type to Sky."
+
+msgid "venom_berry"
+msgstr "Venom Berry"
+
+msgid "venom_berry_description"
+msgstr "It changes monster type to Venom."
+
+msgid "water_berry"
+msgstr "Water Berry"
+
+msgid "water_berry_description"
+msgstr "It changes monster type to Water."
+
+msgid "wood_berry"
+msgstr "Wood Berry"
+
+msgid "wood_berry_description"
+msgstr "It changes monster type to Wood."
 
 msgid "potion"
 msgstr "Potion"

@@ -597,7 +597,7 @@ class Monster:
             self.status.apply_faint(self)
             current = self.status.get_current_status()
             if current:
-                current.apply_phase_and_use(session, EffectPhase.ON_FAINT)
+                current.use(session, EffectPhase.ON_FAINT)
 
 
 def decode_monsters(

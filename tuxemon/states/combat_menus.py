@@ -240,7 +240,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             status = target.status.get_current_status()
             if status:
                 result_status = status.use(
-                    self.session, target, EffectPhase.ENQUEUE_ITEM
+                    self.session, EffectPhase.ENQUEUE_ITEM
                 )
                 if result_status.extras:
                     templates = [

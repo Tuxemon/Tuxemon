@@ -418,7 +418,7 @@ class CombatSession:
                     held_item.use(session, player, monster)
                 status = monster.status.get_current_status()
                 if status:
-                    status.use(session, monster, EffectPhase.ON_DECISION)
+                    status.use(session, EffectPhase.ON_DECISION)
 
     def apply_statuses(self, session: Session) -> None:
         """
@@ -488,12 +488,12 @@ class CombatSession:
 
         entry_status = monster.status.get_current_status()
         if entry_status:
-            entry_status.use(session, monster, phase)
+            entry_status.use(session, phase)
 
         if removed:
             exit_status = removed.status.get_current_status()
             if exit_status:
-                exit_status.use(session, removed, phase)
+                exit_status.use(session, phase)
 
         self.event_bus.publish(
             "monster_added", player=player, monster=monster, removed=removed
@@ -513,9 +513,7 @@ class CombatSession:
         logger.debug(f"[PreCheck Start] {monster.name} using {technique.slug}")
         status = monster.status.get_current_status()
         if status:
-            result_status = status.use(
-                session, target, EffectPhase.PRE_CHECKING
-            )
+            result_status = status.use(session, EffectPhase.PRE_CHECKING)
             if result_status.techniques:
                 technique = random.choice(result_status.techniques)
 
@@ -544,10 +542,10 @@ class CombatSession:
         status_result = None
         status = user.status.get_current_status()
         if status:
-            status_result = status.use(session, user, EffectPhase.PERFORM_TECH)
+            status_result = status.use(session, EffectPhase.PERFORM_TECH)
             if status_result.statuses:
                 chosen = random.choice(status_result.statuses)
-                user.status.apply_status(session, chosen, user)
+                user.status.apply_status(session, chosen)
 
         return result, status_result
 
@@ -566,7 +564,7 @@ class CombatSession:
         if target:
             status = target.status.get_current_status()
             if result.success and status:
-                status.use(session, target, EffectPhase.PERFORM_ITEM)
+                status.use(session, EffectPhase.PERFORM_ITEM)
         return result
 
     def apply_status(
@@ -576,8 +574,7 @@ class CombatSession:
         target: Monster,
         phase: EffectPhase,
     ) -> StatusEffectResult:
-        result = status.use(session, target, phase)
-        status.advance_round()
+        result = status.use(session, phase)
         logger.debug(
             f"{status.slug} applied to {target.name} during {phase.name}"
         )

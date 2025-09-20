@@ -70,6 +70,7 @@ class Status:
         self.gain_cond: str = ""
         self.icon: str = ""
         self.set_host(host)
+        self.linked_monster: Optional[Monster] = None
         self.name: str = ""
         self.nr_turn: int = 0
         self.duration: int = 0
@@ -178,14 +179,6 @@ class Status:
         """Sets the phase to the provided value."""
         self.phase = phase
 
-    def apply_phase_and_use(
-        self, session: Session, phase: EffectPhase
-    ) -> StatusEffectResult:
-        """
-        Sets the phase for a given status and immediately applies its effect.
-        """
-        return self.use(session, self.get_host(), phase)
-
     def advance_round(self) -> None:
         """Advance the counter for this status if used."""
         self.counter += 1
@@ -204,6 +197,14 @@ class Status:
         """Sets the monster associated with this status."""
         self.host = monster
 
+    def get_linked_monster(self) -> Optional[Monster]:
+        """Returns the monster linked to this status effect."""
+        return self.linked_monster
+
+    def set_linked_monster(self, monster: Monster) -> None:
+        """Assigns a linked monster that benefits from this status."""
+        self.linked_monster = monster
+
     def set_steps(self, steps: float) -> None:
         """Sets the steps."""
         self.steps = steps
@@ -216,9 +217,7 @@ class Status:
         """Checks if the status has lasted beyond its intended duration."""
         return self.nr_turn > self.duration
 
-    def use(
-        self, session: Session, target: Monster, phase: EffectPhase
-    ) -> StatusEffectResult:
+    def use(self, session: Session, phase: EffectPhase) -> StatusEffectResult:
         """
         Applies the status's effects using EffectProcessor and returns the results.
         """
@@ -226,7 +225,6 @@ class Status:
         result = self.effect_handler.process_status(
             session=session,
             source=self,
-            target=target,
         )
         return result
 

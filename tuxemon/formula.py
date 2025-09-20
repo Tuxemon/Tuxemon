@@ -435,24 +435,23 @@ def simple_recover(target: Monster, divisor: int) -> int:
 
     Returns:
         Recovered health.
-
     """
     heal = min(target.hp // divisor, target.missing_hp)
     return heal
 
 
-def simple_lifeleech(user: Monster, target: Monster, divisor: int) -> int:
+def calculate_hp_transfer(user: Monster, target: Monster, divisor: int) -> int:
     """
-    Simple lifeleech based on a few factors.
+    Calculates the amount of HP transferred from one monster to another.
 
     Parameters:
-        user: The monster getting HPs.
-        target: The monster losing HPs.
-        divisor: The number by which target HP is to be divided.
+        user: The monster receiving HP.
+        target: The monster donating HP.
+        divisor: Scaling factor based on target's max HP.
 
     Returns:
-        Damage/Gain of HPs.
-
+        The amount of HP to be transferred, capped by target's current HP
+        and user's missing HP.
     """
     heal = min(target.hp // divisor, target.current_hp, user.missing_hp)
     return heal

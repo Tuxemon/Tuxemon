@@ -12,7 +12,6 @@ from tuxemon.db import EffectPhase, StatType
 from tuxemon.tools import ops_dict
 
 if TYPE_CHECKING:
-    from tuxemon.monster import Monster
     from tuxemon.session import Session
     from tuxemon.status.status import Status
 
@@ -71,9 +70,12 @@ class StatChangeEffect(CoreEffect):
 
     name = "statchange"
 
-    def apply_status_target(
-        self, session: Session, status: Status, target: Monster
+    def apply_status(
+        self,
+        session: Session,
+        status: Status,
     ) -> StatusEffectResult:
+        host = status.get_host()
         statsmaster = [
             status.statspeed,
             status.stathp,
@@ -108,9 +110,9 @@ class StatChangeEffect(CoreEffect):
 
                 # Handle HP override
                 if slug == "current_hp" and override:
-                    target.current_hp = target.hp
+                    host.current_hp = host.hp
                     logger.info(
-                        f"[{status.name}] Overriding current HP > {target.name}: {target.hp}"
+                        f"[{status.name}] Overriding current HP > {host.name}: {host.hp}"
                     )
                     continue
 
@@ -134,11 +136,11 @@ class StatChangeEffect(CoreEffect):
                     )
 
                     if slug == "current_hp":
-                        base = target.hp
+                        base = host.hp
                     else:
-                        base = getattr(target.base_stats, slug)
+                        base = getattr(host.base_stats, slug)
 
-                    current = target.return_stat(StatType(slug))
+                    current = host.return_stat(StatType(slug))
                     old_step = (current - base) / base
                     total_step = max(
                         -max_step,
@@ -159,7 +161,7 @@ class StatChangeEffect(CoreEffect):
                             )
 
                     logger.debug(
-                        f"[{status.name}] {slug} changed via {scaling_mode} step on {target.name}: "
+                        f"[{status.name}] {slug} changed via {scaling_mode} step on {host.name}: "
                         f"step {old_step:.3f} > {total_step:.3f}, value {current:.2f} > {new_value:.2f}"
                     )
 
@@ -174,9 +176,9 @@ class StatChangeEffect(CoreEffect):
                     )
 
                     stat_base = (
-                        getattr(target, slug)
+                        getattr(host, slug)
                         if slug == "current_hp"
-                        else getattr(target.base_stats, slug, None)
+                        else getattr(host.base_stats, slug, None)
                     )
                     if stat_base is None:
                         continue
@@ -185,7 +187,7 @@ class StatChangeEffect(CoreEffect):
                     new_value = int(op_func(stat_base, applied_value))
 
                     logger.debug(
-                        f"[{status.name}] {slug} changed via value on {target.name}: "
+                        f"[{status.name}] {slug} changed via value on {host.name}: "
                         f"{stat_base} > {new_value}"
                     )
 
@@ -195,11 +197,11 @@ class StatChangeEffect(CoreEffect):
 
                 # Assignment
                 if slug == "current_hp":
-                    target.current_hp = min(new_value, target.hp)
+                    host.current_hp = min(new_value, host.hp)
                 elif slug in StatType.__members__:
-                    setattr(target.base_stats, slug, int(new_value))
+                    setattr(host.base_stats, slug, int(new_value))
 
         elif status.has_phase(EffectPhase.ON_END):
-            target.set_stats()
+            host.set_stats()
 
         return StatusEffectResult(name=status.name, success=True)

@@ -534,7 +534,7 @@ class CombatState(CombatAnimations):
                 message += "\n" + template
             if status_result.statuses:
                 status = random.choice(status_result.statuses)
-                user.status.apply_status(self.session, status, user)
+                user.status.apply_status(self.session, status)
 
         if result_tech.success and method.use_success:
             template = getattr(method, "use_success")
@@ -868,7 +868,7 @@ class CombatState(CombatAnimations):
         status = monster.status.get_current_status()
         if status:
             result_status = status.use(
-                self.session, monster, EffectPhase.CHECK_PARTY_HP
+                self.session, EffectPhase.CHECK_PARTY_HP
             )
             if result_status.extras:
                 templates = [

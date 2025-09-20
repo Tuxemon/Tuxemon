@@ -59,7 +59,9 @@ class MonsterStatusHandler:
         return None
 
     def apply_status(
-        self, session: Session, new_status: Status, monster: Monster
+        self,
+        session: Session,
+        new_status: Status,
     ) -> StatusApplyResult:
         """
         Apply a status effect to a monster during combat by replacing or removing
@@ -69,11 +71,12 @@ class MonsterStatusHandler:
         ensuring proper transitions between statuses based on their category and
         interaction rules.
         """
+        host = new_status.get_host()
         logger.debug(
-            f"Trying to apply status '{new_status.slug}' to monster '{monster.name}'."
+            f"Trying to apply status '{new_status.slug}' to monster '{host.name}'."
         )
 
-        blocked_by = self.is_blocked(monster, new_status.slug)
+        blocked_by = self.is_blocked(host, new_status.slug)
         if blocked_by:
             logger.debug(
                 f"Status '{new_status.slug}' blocked by '{blocked_by}'."
@@ -89,7 +92,7 @@ class MonsterStatusHandler:
             logger.debug("No current status, applying new status directly.")
             self.add_status(new_status)
             new_status.nr_turn = 1
-            new_status.apply_phase_and_use(session, EffectPhase.ON_START)
+            new_status.use(session, EffectPhase.ON_START)
             return StatusApplyResult(applied=True)
 
         if self.has_status(new_status.slug):
@@ -111,13 +114,13 @@ class MonsterStatusHandler:
         logger.debug(
             f"Ending current status '{current_status.slug}' with ON_END phase."
         )
-        current_status.apply_phase_and_use(session, EffectPhase.ON_END)
+        current_status.use(session, EffectPhase.ON_END)
 
         new_status.nr_turn = 1
         logger.debug(
             f"Starting new status '{new_status.slug}' with ON_START phase."
         )
-        new_status.apply_phase_and_use(session, EffectPhase.ON_START)
+        new_status.use(session, EffectPhase.ON_START)
 
         if current_status.category == CategoryStatus.positive:
             logger.debug(
@@ -142,7 +145,7 @@ class MonsterStatusHandler:
             self.add_status(new_status)
 
         logger.debug(
-            f"Status '{new_status.slug}' successfully applied to monster '{monster.name}'."
+            f"Status '{new_status.slug}' successfully applied to monster '{host.name}'."
         )
         return StatusApplyResult(applied=True)
 
@@ -159,7 +162,7 @@ class MonsterStatusHandler:
         """Clears the current status effect for monsters in combat."""
         current_status = self.get_current_status()
         if current_status:
-            current_status.apply_phase_and_use(session, EffectPhase.ON_END)
+            current_status.use(session, EffectPhase.ON_END)
             self.status.clear()
 
     def apply_faint(self, monster: Monster) -> None:

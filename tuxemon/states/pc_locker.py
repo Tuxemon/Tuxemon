@@ -392,7 +392,7 @@ class ItemDropOff(ItemMenuState):
     name: ClassVar[str] = "ItemDropOff"
 
     def __init__(self, box_name: str, character: NPC) -> None:
-        items_filtered = ItemFilter(character)
+        items_filtered = ItemFilter(character.items.get_items())
         items_filtered.set_filter_all_visible()
         super().__init__(
             character=character, source=self.name, item_filter=items_filtered

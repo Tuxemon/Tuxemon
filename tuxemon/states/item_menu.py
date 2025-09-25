@@ -2,12 +2,13 @@
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-from collections.abc import Generator, Sequence
+from collections.abc import Generator
 from typing import TYPE_CHECKING, ClassVar, Optional
 
 from pygame.rect import Rect
 
 from tuxemon import prepare
+from tuxemon.graphics import load_and_scale
 from tuxemon.item.controller import ItemController
 from tuxemon.item.filter import ItemFilter
 from tuxemon.item.item import Item
@@ -31,42 +32,6 @@ if TYPE_CHECKING:
     from tuxemon.npc import NPC
 
 
-def sort_inventory(
-    inventory: Sequence[Item], sort_order: Optional[list[str]] = None
-) -> Sequence[Item]:
-    """
-    Sorts a given inventory of items by category and name for improved usability.
-
-    The function performs the following steps:
-    - Groups items by their category as defined by the `sort` attribute of each item.
-    - Sorts items within each category alphabetically by name.
-    - Orders categories according to `sort_order` if provided, otherwise defaults to:
-      ["potion", "food", "utility", "quest"].
-    - Items with unrecognized categories are placed after known categories, sorted by name.
-
-    Parameters:
-        inventory: A sequence of inventory items, where each item has
-            a `name` and `sort` attribute.
-        sort_order: A list specifying the desired order of item categories.
-            If not provided, defaults to ["potion", "food", "utility", "quest"].
-
-    Returns:
-        A new sequence of inventory items sorted by category and name.
-    """
-    default_order = ["potion", "food", "utility", "quest"]
-    order_list = sort_order or default_order
-    sort_order_rank = {
-        category: index for index, category in enumerate(order_list)
-    }
-
-    def rank_item(item: Item) -> tuple[int, str]:
-        # Unknown types last
-        rank = sort_order_rank.get(item.sort, len(order_list))
-        return rank, item.name
-
-    return sorted(inventory, key=rank_item)
-
-
 class ItemMenuState(Menu[Item]):
     """The item menu allows you to view and use items in your inventory."""
 
@@ -85,7 +50,9 @@ class ItemMenuState(Menu[Item]):
         self.source = source
         super().__init__()
 
-        self.filter_controller = item_filter or ItemFilter(character)
+        self.filter_controller = item_filter or ItemFilter(
+            self.char.items.get_items()
+        )
         self.sorter = sorter or ItemSorter()
         # this sprite is used to display the item
         # it's also animated to pop out of the backpack
@@ -142,16 +109,20 @@ class ItemMenuState(Menu[Item]):
             self.on_menu_selection_change()
             error_message = self.get_error_message(item)
             open_dialog(self.client, [error_message])
+            return
+
         # Check if the item can be used in the current state
-        elif not any(
+        if not any(
             s.name in self.client.active_state_names for s in item.usable_in
         ):
             error_message = T.format(
                 "item_cannot_use_here", {"name": item.name}
             )
             open_dialog(self.client, [error_message])
-        else:
-            self.open_confirm_use_menu(item)
+            return
+
+        # All checks passed, proceed to confirmation
+        self.open_confirm_use_menu(item)
 
     def open_confirm_use_menu(self, item: Item) -> None:
         """
@@ -213,7 +184,7 @@ class ItemMenuState(Menu[Item]):
         end_index = (self.current_page + 1) * self.page_size
         page_items = self.inventory[start_index:end_index]
 
-        for obj in sort_inventory(page_items):
+        for obj in self.sorter.sort(page_items):
             enable = self.is_valid_entry(obj)
             menu_item = self.create_menu_item(obj, is_enabled=enable)
             yield menu_item
@@ -231,7 +202,9 @@ class ItemMenuState(Menu[Item]):
     def animate_item_selection(self, item: Item) -> None:
         """Animate the selected item being pulled from the bag."""
         image = item.surface
-        assert image
+        if not image:
+            image = load_and_scale(prepare.MISSING_IMAGE)
+
         self.item_sprite.image = image
         self.item_sprite.rect = image.get_rect(center=self.backpack_center)
         self.animate(
@@ -260,7 +233,7 @@ class ItemMenuState(Menu[Item]):
             self.update_page_number_display(0)
             return
 
-        for obj in sort_inventory(page_items):
+        for obj in self.sorter.sort(page_items):
             enable = self.is_valid_entry(obj)
             menu_item = self.create_menu_item(obj, is_enabled=enable)
             self.add(menu_item)

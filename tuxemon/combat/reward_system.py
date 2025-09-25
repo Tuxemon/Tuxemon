@@ -2,19 +2,23 @@
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import logging
+from dataclasses import dataclass
 from enum import Enum
 from typing import TYPE_CHECKING
 
 from tuxemon.combat.utils import alive_party
 from tuxemon.locale import T
+from tuxemon.monster_dir.stats import BasicStats
+from tuxemon.prepare import DEFAULT_TP_GAIN
 
 if TYPE_CHECKING:
     from tuxemon.combat.damage_tracker import DamageTracker
-    from tuxemon.technique.technique import Technique
     from tuxemon.monster import Monster
     from tuxemon.session import Session
+    from tuxemon.technique.technique import Technique
 
-from dataclasses import dataclass
+logger = logging.getLogger(__name__)
 
 
 class ExperienceMethod(Enum):
@@ -117,6 +121,7 @@ class RewardSystem:
 
                 # Grant experience and update moves
                 if winner.owner and winner.owner.is_player:
+                    calculate_tps(winner, monster)
                     levels = winner.give_experience(awarded_exp)
                     new_moves = winner.moves.update_moves(
                         winner.level, levels, winner.stage
@@ -152,6 +157,34 @@ def calculate_money(loser: Monster, winner: Monster) -> int:
     methods = {ExperienceMethod.DEFAULT.value: default_method}
 
     return methods[ExperienceMethod.DEFAULT.value]()
+
+
+def calculate_tps(
+    winner: Monster, loser: Monster, tp_gain: int = DEFAULT_TP_GAIN
+) -> list[tuple[str, int]]:
+    """
+    Compares winner's stats to loser's.
+    Awards training points to the winner for each stat where the opponent's value is higher.
+    Returns a list of (stat_name, tp_gain) tuples.
+    """
+    awarded_stats = []
+
+    logger.debug(
+        f"Calculating TP for winner '{winner.name}' vs loser '{loser.name}'"
+    )
+
+    for stat_name in BasicStats.names():
+        w_val = getattr(winner.base_stats, stat_name)
+        l_val = getattr(loser.base_stats, stat_name)
+
+        if l_val > w_val:
+            logger.debug(
+                f"Awarding {tp_gain} TP for '{stat_name}' (loser: {l_val} > winner: {w_val})"
+            )
+            winner.give_tps(stat_name, tp_gain)
+            awarded_stats.append((stat_name, tp_gain))
+
+    return awarded_stats
 
 
 def calculate_experience(

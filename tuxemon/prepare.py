@@ -248,7 +248,10 @@ MAX_TYPES_BAG: int = 99  # eg 5 capture devices, 1 type and 5 items
 MAX_MENU_ITEMS: int = 11
 
 # Monsters
-MAX_LEVEL: int = 999
+MAX_LEVEL: int = 100
+MAX_TPS: int = 150
+MAX_TOTAL_TPS: int = 300
+DEFAULT_TP_GAIN: int = 1
 MAX_MOVES: int = 4
 MISSING_IMAGE: str = "gfx/sprites/battle/missing.png"
 CATCH_RATE_RANGE: tuple[int, int] = (0, 100)

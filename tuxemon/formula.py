@@ -16,12 +16,10 @@ from tuxemon import prepare as pre
 from tuxemon.constants import paths
 
 if TYPE_CHECKING:
-    from tuxemon.db import AttributesModel
     from tuxemon.element import Element
     from tuxemon.item.item import Item
     from tuxemon.monster import Monster
     from tuxemon.npc import NPC
-    from tuxemon.taste import Taste
     from tuxemon.technique.technique import Technique
 
 logger = logging.getLogger(__name__)
@@ -456,60 +454,6 @@ def simple_lifeleech(user: Monster, target: Monster, divisor: int) -> int:
     """
     heal = min(target.hp // divisor, target.current_hp, user.missing_hp)
     return heal
-
-
-def calculate_base_stats(
-    monster: Monster, attribute: AttributesModel, multiplier: int
-) -> None:
-    """
-    Calculate the base stats of the monster dynamically.
-    """
-    stat_names = ["armour", "dodge", "hp", "melee", "ranged", "speed"]
-
-    for stat in stat_names:
-        base_value = getattr(attribute, stat) * multiplier
-        modifier = getattr(monster.modifiers, stat, None)
-
-        if modifier is None:
-            modifier = 0
-
-        final_value = base_value + modifier
-        setattr(monster.base_stats, stat, final_value)
-
-
-def apply_stat_updates(
-    monster: Monster, taste_cold: Optional[Taste], taste_warm: Optional[Taste]
-) -> None:
-    """Apply updates to the monster's stats."""
-    attributes = ["armour", "dodge", "melee", "ranged", "speed"]
-
-    for attr in attributes:
-        setattr(
-            monster.base_stats,
-            attr,
-            update_stat(attr, getattr(monster, attr), taste_cold, taste_warm),
-        )
-
-
-def update_stat(
-    stat_name: str,
-    stat_value: int,
-    taste_cold: Optional[Taste],
-    taste_warm: Optional[Taste],
-) -> int:
-    """Applies modifiers from tastes to adjust the stat."""
-    modified_stat = float(stat_value)
-
-    for taste in (taste_cold, taste_warm):
-        if taste:
-            for modifier in taste.modifiers:
-                if stat_name in modifier.values:
-                    logger.debug(
-                        f"Applying modifier: {modifier.multiplier} for {stat_name}"
-                    )
-                    modified_stat *= modifier.multiplier
-
-    return int(modified_stat)
 
 
 def set_health(

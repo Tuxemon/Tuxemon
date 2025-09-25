@@ -142,7 +142,7 @@ python3 run_tuxemon.py
 
 ### Arch Linux
 
-An [AUR package](https://aur.archlinux.org/packages/tuxemon-git/) is availible however manual installation is reccomended.
+An [AUR package](https://aur.archlinux.org/packages/tuxemon-git/) is available however manual installation is recommended.
 
 ```shell
 sudo pacman -S python python-pip python-pillow python-pygame python-pydantic git
@@ -160,7 +160,7 @@ using the script located in the buildconfig folder.
 After this you will need to manually install the mods folder via the following instructions.
 Connect your device to your computer and make a folder called
 "Tuxemon" in "Internal Storage", then copy the mods folder.  Tuxemon
-will also need file system permissions, which you can set in your phones
+will also need file system permissions, which you can set in your phone's
 settings.
 
 Caveat Emptor
@@ -226,7 +226,7 @@ CLI Interface
 
 The CLI interface is a very convenient way to debug and develop your
 maps. After you enable the CLI interface, you can use the terminal to
-enter commands.  You could, for example, give your self potions to
+enter commands.  You could, for example, give yourself potions to
 battle, or add a monster directly to your party.  It's also possible to
 change game variables directly.  In fact, any action or condition that
 is usable in the map can be used with the CLI interface.
@@ -245,11 +245,11 @@ cli_enabled = True
 
 - `help [command_name]` — Lists all commands, or specific information on a command.
 - `action <action_name> [params]` — Execute EventAction.  Uses same syntax as the map script.
-- `test <condition_name> [params]` — Test EventCondition.  Uses same systax as the map script.
+- `test <condition_name> [params]` — Test EventCondition.  Uses same syntax as the map script.
 - `random_encounter` — Sets you in a wild tuxemon battle, similar to walking in tall grass.
 - `trainer_battle <npc_slug>` — Sets you in a trainer battle with specified npc.
 - `quit` — Quits the game.
-- `whereami` — Prints out the map filename
+- `whereami` — Prints out the map filename.
 - `shell` — Starts the Python shell, that you can use to modify the game directly. For advanced users.
 
 ### CLI Examples

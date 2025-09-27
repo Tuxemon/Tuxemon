@@ -42,8 +42,26 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "memnomnom",
-      "evo_stage": "basic"
+      "slug": "pyraminx",
+      "stage": "stage1",
+      "evolves_from": [
+        "memnomnom",
+        "memnomnom"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "memnomnom",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "miaownolith",
+        "miaownolith",
+        "pyraminx",
+        "pyraminx",
+        "mauai",
+        "mauai"
+      ]
     }
   ],
   "terrains": [],

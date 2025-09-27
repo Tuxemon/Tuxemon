@@ -50,12 +50,30 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "nut",
-      "evo_stage": "basic"
+      "slug": "arthrobolt",
+      "stage": "stage2",
+      "evolves_from": [
+        "bolt"
+      ],
+      "evolves_into": []
     },
     {
-      "mon_slug": "bolt",
-      "evo_stage": "stage1"
+      "slug": "nut",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "bolt"
+      ]
+    },
+    {
+      "slug": "bolt",
+      "stage": "stage1",
+      "evolves_from": [
+        "nut"
+      ],
+      "evolves_into": [
+        "arthrobolt"
+      ]
     }
   ],
   "terrains": [],

@@ -46,8 +46,20 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "tadcool",
-      "evo_stage": "basic"
+      "slug": "fribbit",
+      "stage": "stage1",
+      "evolves_from": [
+        "tadcool"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "tadcool",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "fribbit"
+      ]
     }
   ],
   "terrains": [],

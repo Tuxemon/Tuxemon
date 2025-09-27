@@ -10,6 +10,7 @@ from tuxemon.combat.reward_system import (
     calculate_experience_base,
     calculate_money,
 )
+from tuxemon.db import Acquisition
 from tuxemon.monster import Monster
 from tuxemon.monster_dir.stats import BasicStats
 from tuxemon.monster_dir.status import MonsterStatusHandler
@@ -37,6 +38,7 @@ class TestRewardSystem(unittest.TestCase):
         self.winner.moves = MagicMock()
         self.winner.current_hp = 50
         self.winner.stage = "basic"
+        self.winner.acquisition = Acquisition.UNKNOWN
         self.winner.owner = MagicMock(spec=NPC)
         self.winner.owner.is_player = True
         self.winner.owner.monsters = [self.winner]
@@ -220,6 +222,7 @@ class TestRewardSystem(unittest.TestCase):
         second_winner.level = 5
         second_winner.moves = MagicMock()
         second_winner.moves.update_moves.return_value = ["Ram"]
+        second_winner.acquisition = Acquisition.UNKNOWN
         second_winner.owner = self.winner.owner
         second_winner.status = MagicMock(spec=MonsterStatusHandler)
         second_winner.current_hp = 50

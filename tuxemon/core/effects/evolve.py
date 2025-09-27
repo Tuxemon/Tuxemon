@@ -7,6 +7,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 from tuxemon.core.core_effect import CoreEffect, ItemEffectResult
+from tuxemon.db import MonsterEvolutionItemModel
 from tuxemon.monster import Monster
 
 if TYPE_CHECKING:
@@ -25,13 +26,28 @@ class EvolveEffect(CoreEffect):
     ) -> ItemEffectResult:
         if not target.evolutions:
             return ItemEffectResult(name=item.name)
-        choices = [d for d in target.evolutions if d.item == item.slug]
-        if len(choices) == 1:
-            evolution = choices[0].monster_slug
-        else:
-            evolution = random.choice(choices).monster_slug
 
-        new_monster = Monster.create(evolution)
+        possible_evolutions: list[tuple[MonsterEvolutionItemModel, float]] = []
+        for evolution_model in target.evolutions:
+            item_weights = evolution_model.item
+            if isinstance(item_weights, dict) and item.slug in item_weights:
+                weight = item_weights[item.slug]
+                if weight > 0.0:
+                    possible_evolutions.append((evolution_model, weight))
+
+        if not possible_evolutions:
+            return ItemEffectResult(name=item.name)
+
+        if len(possible_evolutions) == 1:
+            selected_evolution_model = possible_evolutions[0][0]
+        else:
+            evolution_choices, weights = zip(*possible_evolutions)
+            selected_evolution_model = random.choices(
+                evolution_choices, weights=weights, k=1
+            )[0]
+
+        evolution_slug = selected_evolution_model.monster_slug
+        new_monster = Monster.create(evolution_slug)
         target.evolution_handler.evolve_monster(new_monster)
 
         session.client.push_state(
@@ -39,4 +55,5 @@ class EvolveEffect(CoreEffect):
             original=target.slug,
             evolved=new_monster.slug,
         )
+
         return ItemEffectResult(name=item.name, success=True)

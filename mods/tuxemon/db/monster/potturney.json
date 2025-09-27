@@ -50,8 +50,20 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "potturmeist",
-      "evo_stage": "basic"
+      "slug": "potturney",
+      "stage": "stage1",
+      "evolves_from": [
+        "potturmeist"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "potturmeist",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "potturney"
+      ]
     }
   ],
   "terrains": [],

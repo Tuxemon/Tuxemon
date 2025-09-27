@@ -38,8 +38,20 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "trapsnap",
-      "evo_stage": "basic"
+      "slug": "sapsnap",
+      "stage": "stage1",
+      "evolves_from": [
+        "trapsnap"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "trapsnap",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "sapsnap"
+      ]
     }
   ],
   "terrains": [],

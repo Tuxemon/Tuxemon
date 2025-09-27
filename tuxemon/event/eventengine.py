@@ -3,109 +3,23 @@
 from __future__ import annotations
 
 import logging
-from collections.abc import Generator, Iterable, Sequence
+from collections.abc import Generator, Sequence
 from contextlib import contextmanager
-from enum import Enum, auto
 from textwrap import dedent
 from typing import TYPE_CHECKING, Any, Optional, Union
 
 from tuxemon import prepare
+from tuxemon.event.running import EventState, RunningCondition, RunningEvent
 
 if TYPE_CHECKING:
     from tuxemon.event import EventObject, MapAction, MapCondition
-    from tuxemon.event.eventaction import ActionManager, EventAction
-    from tuxemon.event.eventcondition import ConditionManager
+    from tuxemon.event.eventaction import ActionManager
+    from tuxemon.event.running import ConditionEvaluator
     from tuxemon.map.map import TuxemonMap
     from tuxemon.session import Session
 
 
 logger = logging.getLogger(__name__)
-
-
-class EventState(Enum):
-    WAITING = auto()
-    RUNNING = auto()
-    COMPLETED = auto()
-    CANCELLED = auto()
-
-
-class RunningEvent:
-    """
-    Manage MapEvents that are used during gameplay.
-
-    Running events are considered to have all conditions satisfied.
-    Once started, they will eventually execute all actions of the MapEvent.
-    RunningEvents do not preserve state between calls or maps.
-
-    RunningEvents have an action_index.
-    The action_index is the index of the action list of the action currently
-    running.
-    The current_action attribute is the instance of the running action.
-
-    Actions being managed by the RunningEvent class can share information
-    using the context dictionary.
-
-    Parameters:
-        map_event: Event defined in the map containing the information
-            about the actions.
-    """
-
-    __slots__ = (
-        "map_event",
-        "context",
-        "action_index",
-        "current_action",
-        "current_map_action",
-        "state",
-    )
-
-    def __init__(self, map_event: EventObject) -> None:
-        self.map_event = map_event
-        self.context: dict[str, Any] = dict()
-        self.action_index = 0
-        self.current_action: Optional[EventAction] = None
-        self.current_map_action = None
-        self.state = EventState.WAITING
-
-    def get_next_action(self) -> Optional[MapAction]:
-        """
-        Get the next action to execute, if any.
-
-        Returns MapActions, which are just data from the map, not live objects.
-
-        ``None`` will be returned if the MapEvent is finished.
-
-        Returns:
-            Next action to execute. ``None`` if there isn't one.
-        """
-        # if None, then make a new one
-        try:
-            action = self.map_event.acts[self.action_index]
-
-        except IndexError:
-            # reached end of list, remove event and move on
-            logger.debug("map event actions finished")
-            return None
-
-        return action
-
-    def advance(self) -> None:
-        self.action_index += 1
-
-    def cancel(self) -> None:
-        self.state = EventState.CANCELLED
-
-    def complete(self) -> None:
-        self.state = EventState.COMPLETED
-
-    def running(self) -> None:
-        self.state = EventState.RUNNING
-
-    def is_cancelled(self) -> bool:
-        return self.state == EventState.CANCELLED
-
-    def is_running(self) -> bool:
-        return self.state == EventState.RUNNING
 
 
 class EventEngine:
@@ -128,11 +42,11 @@ class EventEngine:
         self,
         session: Session,
         action: ActionManager,
-        condition: ConditionManager,
+        evaluator: ConditionEvaluator,
     ) -> None:
         self.session = session
         self.action_manager = action
-        self.condition_manager = condition
+        self.evaluator = evaluator
 
         self.running_events: dict[int, RunningEvent] = dict()
         self.name = "Event"
@@ -140,6 +54,9 @@ class EventEngine:
         self.timer = 0.0
         self.wait = 0.0
         self.button = None
+
+        self.global_events: list[EventObject] = []
+        self.triggered_global_events: set[int] = set()
 
         # debug
         self.partial_events: list[Sequence[tuple[bool, MapCondition]]] = list()
@@ -156,34 +73,6 @@ class EventEngine:
         self.timer = 0.0
         self.wait = 0.0
         self.button = None
-
-    def check_condition(
-        self,
-        cond_data: MapCondition,
-    ) -> bool:
-        """
-        Check if condition is true of false.
-
-        Returns ``False`` if the condition is not loaded properly.
-
-        Parameters:
-            cond_data: The condition to check.
-
-        Returns:
-            The value of the condition.
-        """
-        map_condition = self.condition_manager.get_condition(cond_data.type)
-        if map_condition is None:
-            logger.debug(f'map condition "{cond_data.type}" is not loaded')
-            return False
-
-        result = map_condition.test(self.session, cond_data) == (
-            cond_data.operator == "is"
-        )
-        logger.debug(
-            f'map condition "{map_condition.name}": {result} ({cond_data})'
-        )
-        return result
 
     def execute_action(
         self,
@@ -247,38 +136,33 @@ class EventEngine:
 
     def process_map_event(self, map_event: EventObject) -> None:
         """
-        Check the conditions of an event, and execute actions they are met.
+        Evaluates the conditions of a single map event and starts it if all
+        conditions are met.
 
-        Actions will be started, but may finish much later.
+        This method wraps each condition in a RunningCondition, checks them
+        using the evaluator, and determines whether the event should be
+        triggered. If debug mode is enabled via `prepare.CONFIG.collision_map`,
+        the condition results are stored in `self.partial_events` for inspection
+        or debugging.
 
         Parameters:
-            map_event: Event to process.
+            map_event: The event to evaluate and potentially start.
         """
+        running_conditions = [
+            RunningCondition(cond, self.evaluator) for cond in map_event.conds
+        ]
+        all_met = all(rc.check() for rc in running_conditions)
+
         if prepare.CONFIG.collision_map:
-            # TODO: wrap with add_error_context
-            # Debug mode: check all conditions and store results (slower)
-            conds = [
-                (self.check_condition(cond), cond) for cond in map_event.conds
-            ]
-            self.partial_events.append(conds)
-            if all(result for result, _ in conds):
-                self.start_event(map_event)
-        else:
-            # Optimal mode: start event if all conditions are met
-            if all(self.check_condition(cond) for cond in map_event.conds):
-                self.start_event(map_event)
+            self.partial_events.append(
+                [
+                    (rc.result or False, rc.map_condition)
+                    for rc in running_conditions
+                ]
+            )
 
-    def process_map_events(self, events: Iterable[EventObject]) -> None:
-        """
-        Process all events in an iterable.
-
-        Simple now, may become more complex.
-
-        Parameters:
-            events: Iterable of events to process.
-        """
-        for event in events:
-            self.process_map_event(event)
+        if all_met:
+            self.start_event(map_event)
 
     def update(self, dt: float) -> None:
         """
@@ -288,7 +172,8 @@ class EventEngine:
             dt: Amount of time passed in seconds since last frame.
         """
         # debug
-        self.partial_events = list()
+        self.partial_events = []
+        self.check_global_conditions()
         self.check_conditions()
         self.update_running_events(dt)
 
@@ -298,14 +183,41 @@ class EventEngine:
 
         Actions may be started during this function.
         """
-        # do the "init" events.  this will be done just once
-        # TODO: make event engine generic, so can be used in global scope,
-        # not just maps
-        if self.session.client.map_manager.inits:
-            self.process_map_events(self.session.client.map_manager.inits)
+        for event in list(self.session.client.map_manager.inits):
+            self.process_map_event(event)
 
-        # process any other events
-        self.process_map_events(self.session.client.map_manager.events)
+        # Then process regular map events
+        for event in list(self.session.client.map_manager.events):
+            self.process_map_event(event)
+
+    def register_global_event(self, event: EventObject) -> None:
+        if event.id is None:
+            raise ValueError("Global event must have an ID")
+        self.global_events.append(event)
+
+    def check_global_conditions(self) -> None:
+        for event in self.global_events:
+            if event.id in self.triggered_global_events:
+                continue
+
+            running_conditions = [
+                RunningCondition(cond, self.evaluator) for cond in event.conds
+            ]
+            all_met = all(rc.check() for rc in running_conditions)
+
+            if prepare.CONFIG.collision_map:
+                self.partial_events.append(
+                    [
+                        (rc.result or False, rc.map_condition)
+                        for rc in running_conditions
+                    ]
+                )
+
+            if all_met:
+                self.start_event(event)
+                if event.id is None:
+                    raise ValueError("Global event must have an ID")
+                self.triggered_global_events.add(event.id)
 
     def cancel_event(self, event_id: int) -> None:
         """Cancels the event with the given ID."""

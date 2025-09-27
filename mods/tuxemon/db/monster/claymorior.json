@@ -59,13 +59,27 @@
     {
       "at_level": 32,
       "monster_slug": "regalance",
-      "taste_warm": "hearty"
+      "tastes": {
+        "warm": "hearty"
+      }
     }
   ],
   "history": [
     {
-      "mon_slug": "regalance",
-      "evo_stage": "stage1"
+      "slug": "claymorior",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "regalance"
+      ]
+    },
+    {
+      "slug": "regalance",
+      "stage": "stage1",
+      "evolves_from": [
+        "claymorior"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [

@@ -59,8 +59,20 @@
   ],
   "history": [
     {
-      "mon_slug": "ampystoma",
-      "evo_stage": "stage1"
+      "slug": "axolightl",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "ampystoma"
+      ]
+    },
+    {
+      "slug": "ampystoma",
+      "stage": "stage1",
+      "evolves_from": [
+        "axolightl"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [

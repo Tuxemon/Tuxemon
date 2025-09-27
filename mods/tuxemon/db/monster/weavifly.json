@@ -50,12 +50,30 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "cataspike",
-      "evo_stage": "basic"
+      "slug": "weavifly",
+      "stage": "stage2",
+      "evolves_from": [
+        "puparmor"
+      ],
+      "evolves_into": []
     },
     {
-      "mon_slug": "puparmor",
-      "evo_stage": "stage1"
+      "slug": "cataspike",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "puparmor"
+      ]
+    },
+    {
+      "slug": "puparmor",
+      "stage": "stage1",
+      "evolves_from": [
+        "cataspike"
+      ],
+      "evolves_into": [
+        "weavifly"
+      ]
     }
   ],
   "terrains": [],

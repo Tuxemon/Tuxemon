@@ -55,12 +55,30 @@
   ],
   "history": [
     {
-      "mon_slug": "fluoresfin",
-      "evo_stage": "basic"
+      "slug": "incandesfin",
+      "stage": "stage1",
+      "evolves_from": [
+        "fluoresfin"
+      ],
+      "evolves_into": [
+        "lightmare"
+      ]
     },
     {
-      "mon_slug": "lightmare",
-      "evo_stage": "stage2"
+      "slug": "fluoresfin",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "incandesfin"
+      ]
+    },
+    {
+      "slug": "lightmare",
+      "stage": "stage2",
+      "evolves_from": [
+        "incandesfin"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [

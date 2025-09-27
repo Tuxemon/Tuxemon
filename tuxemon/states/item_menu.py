@@ -99,7 +99,7 @@ class ItemMenuState(Menu[Item]):
         self.inventory = self.filter_controller.get_filtered_inventory()
 
         # this is the area where the item description is displayed
-        rect = self.client.screen.get_rect()
+        rect = prepare.SCREEN_RECT.copy()
         rect.top = scale(106)
         rect.left = scale(3)
         rect.width = scale(250)

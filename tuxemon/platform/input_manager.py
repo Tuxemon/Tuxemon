@@ -6,7 +6,10 @@ import logging
 from collections.abc import Generator
 from typing import TYPE_CHECKING, Optional
 
+from pygame.surface import Surface
+
 from tuxemon.platform.input_history import InputHistory
+from tuxemon.platform.input_visualizer import InputVisualizer
 from tuxemon.platform.platform_pygame.events import (
     PygameEventQueueHandler,
     PygameGamepadInput,
@@ -14,6 +17,7 @@ from tuxemon.platform.platform_pygame.events import (
     PygameMouseInput,
     PygameTouchOverlayInput,
 )
+from tuxemon.prepare import SCREEN_SIZE
 
 if TYPE_CHECKING:
     from tuxemon.config import TuxemonConfig
@@ -37,6 +41,8 @@ class InputManager:
         self.input = config.input
         self.controller_overlay: Optional[PygameTouchOverlayInput] = None
         self.setup_inputs()
+        self.input_visualizer = InputVisualizer(SCREEN_SIZE)
+        self.show_visualizer = config.controller.show_input_visualizer
 
     def setup_inputs(self) -> None:
         """
@@ -96,9 +102,15 @@ class InputManager:
             logger.info("Mouse set up successfully")
 
     def process_events(self) -> Generator[PlayerInput, None, None]:
-        """
-        Processes the input events.
-        """
+        """Processes the input events."""
         for event in self.event_queue.process_events():
             self.input_history.add(event)
             yield event
+
+    def draw_visualizer(self, screen: Surface) -> None:
+        all_inputs = {}
+        for player_handlers in self.event_queue._inputs.values():
+            for handler in player_handlers:
+                for button_id, player_input in handler.buttons.items():
+                    all_inputs[button_id] = player_input
+        self.input_visualizer.draw(screen, all_inputs)

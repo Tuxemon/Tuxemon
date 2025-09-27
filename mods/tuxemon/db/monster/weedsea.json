@@ -50,21 +50,39 @@
   "evolutions": [
     {
       "monster_slug": "weedlantis",
-      "party": [
-        "shrab"
-      ]
+      "party_conditions": {
+        "monster_slugs": {
+          "shrab": 1
+        }
+      }
     },
     {
       "monster_slug": "weedlantis",
-      "party": [
-        "lesmagu"
-      ]
+      "party_conditions": {
+        "monster_slugs": {
+          "lesmagu": 1
+        }
+      }
     }
   ],
   "history": [
     {
-      "mon_slug": "weedlantis",
-      "evo_stage": "stage1"
+      "slug": "weedsea",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "weedlantis",
+        "weedlantis"
+      ]
+    },
+    {
+      "slug": "weedlantis",
+      "stage": "stage1",
+      "evolves_from": [
+        "weedsea",
+        "weedsea"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [

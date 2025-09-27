@@ -54,8 +54,20 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "fuzzlet",
-      "evo_stage": "basic"
+      "slug": "fuzzina",
+      "stage": "stage1",
+      "evolves_from": [
+        "fuzzlet"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "fuzzlet",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "fuzzina"
+      ]
     }
   ],
   "terrains": [],

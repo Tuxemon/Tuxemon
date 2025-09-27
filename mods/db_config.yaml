@@ -14,6 +14,7 @@ model_map:
   environment: tuxemon.db.EnvironmentModel
   item: tuxemon.db.ItemModel
   monster: tuxemon.db.MonsterModel
+  flair: tuxemon.db.FlairModel
   music: tuxemon.db.MusicModel
   animation: tuxemon.db.AnimationModel
   npc: tuxemon.db.NpcModel
@@ -81,6 +82,7 @@ mod_tables:
     - faction
     - terrain
     - weather
+    - flair
 
 # A dictionary to specify tables that should be excluded for certain mods.
 # For example, a mod might explicitly opt out of providing 'item' data.

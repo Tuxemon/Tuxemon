@@ -54,8 +54,20 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "cairfrey",
-      "evo_stage": "basic"
+      "slug": "possessun",
+      "stage": "stage1",
+      "evolves_from": [
+        "cairfrey"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "cairfrey",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "possessun"
+      ]
     }
   ],
   "terrains": [],

@@ -6,6 +6,7 @@ import random
 from typing import TYPE_CHECKING, Optional
 
 from tuxemon.constants.asset_loader import fetch_asset
+from tuxemon.player import Player
 from tuxemon.time_handler import today_ordinal
 
 if TYPE_CHECKING:
@@ -39,13 +40,20 @@ class GameLauncher:
         Starts the game session from a mod's metadata.
 
         Parameters:
-            mod_name: The name (folder) of the mod to launch.
             session: The active game session object.
+            mod_name: The name (folder) of the mod to launch.
             remove_states: Optional list of state names to remove after launch.
         """
         destination = self.db.require_mod_attribute(mod_name, "starting_map")
         tile_pos = self.db.require_mod_attribute(mod_name, "starting_position")
         map_path = fetch_asset("maps", destination)
+
+        player_slugs: list[str] = self.db.require_mod_attribute(
+            mod_name, "starting_players"
+        )
+        player_slug = random.choice(player_slugs)
+
+        Player.create(session, slug=player_slug)
 
         self.client.push_state(
             "WorldState", session=session, map_name=map_path

@@ -59,12 +59,30 @@
   ],
   "history": [
     {
-      "mon_slug": "wrougon",
-      "evo_stage": "basic"
+      "slug": "allagon",
+      "stage": "stage1",
+      "evolves_from": [
+        "wrougon"
+      ],
+      "evolves_into": [
+        "ferricran"
+      ]
     },
     {
-      "mon_slug": "ferricran",
-      "evo_stage": "stage2"
+      "slug": "wrougon",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "allagon"
+      ]
+    },
+    {
+      "slug": "ferricran",
+      "stage": "stage2",
+      "evolves_from": [
+        "allagon"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [

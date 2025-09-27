@@ -47,8 +47,20 @@
   ],
   "history": [
     {
-      "mon_slug": "marvantis",
-      "evo_stage": "stage1"
+      "slug": "marvillar",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "marvantis"
+      ]
+    },
+    {
+      "slug": "marvantis",
+      "stage": "stage1",
+      "evolves_from": [
+        "marvillar"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [],

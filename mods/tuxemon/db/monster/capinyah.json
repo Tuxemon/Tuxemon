@@ -66,8 +66,20 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "capiti",
-      "evo_stage": "basic"
+      "slug": "capinyah",
+      "stage": "stage1",
+      "evolves_from": [
+        "capiti"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "capiti",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "capinyah"
+      ]
     }
   ],
   "terrains": [],

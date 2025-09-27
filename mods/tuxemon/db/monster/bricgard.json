@@ -55,12 +55,30 @@
   ],
   "history": [
     {
-      "mon_slug": "imbrickcile",
-      "evo_stage": "basic"
+      "slug": "bricgard",
+      "stage": "stage1",
+      "evolves_from": [
+        "imbrickcile"
+      ],
+      "evolves_into": [
+        "brickhemoth"
+      ]
     },
     {
-      "mon_slug": "brickhemoth",
-      "evo_stage": "stage2"
+      "slug": "imbrickcile",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "bricgard"
+      ]
+    },
+    {
+      "slug": "brickhemoth",
+      "stage": "stage2",
+      "evolves_from": [
+        "bricgard"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [

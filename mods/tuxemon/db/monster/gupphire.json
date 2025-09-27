@@ -59,12 +59,30 @@
   ],
   "history": [
     {
-      "mon_slug": "gupphish",
-      "evo_stage": "basic"
+      "slug": "gupphire",
+      "stage": "stage1",
+      "evolves_from": [
+        "gupphish"
+      ],
+      "evolves_into": [
+        "golnagi"
+      ]
     },
     {
-      "mon_slug": "golnagi",
-      "evo_stage": "stage2"
+      "slug": "gupphish",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "gupphire"
+      ]
+    },
+    {
+      "slug": "golnagi",
+      "stage": "stage2",
+      "evolves_from": [
+        "gupphire"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [

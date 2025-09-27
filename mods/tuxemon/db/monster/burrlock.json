@@ -39,8 +39,20 @@
   ],
   "history": [
     {
-      "mon_slug": "cacaburr",
-      "evo_stage": "stage1"
+      "slug": "burrlock",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "cacaburr"
+      ]
+    },
+    {
+      "slug": "cacaburr",
+      "stage": "stage1",
+      "evolves_from": [
+        "burrlock"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [],

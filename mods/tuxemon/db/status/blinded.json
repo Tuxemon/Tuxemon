@@ -14,13 +14,15 @@
   "sfx": "sfx_pulse",
   "slug": "blinded",
   "sort": "meta",
-  "statdodge": {
-    "value": 0.5,
-    "operation": "*"
-  },
-  "statspeed": {
-    "value": 0.5,
-    "operation": "*"
+  "stat_modifiers": {
+    "speed": {
+      "value": 0.5,
+      "operation": "*"
+    },
+    "dodge": {
+      "value": 0.5,
+      "operation": "*"
+    }
   },
   "cond_id": 17,
   "use_failure": null,

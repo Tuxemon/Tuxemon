@@ -47,8 +47,20 @@
   ],
   "history": [
     {
-      "mon_slug": "flambear",
-      "evo_stage": "stage1"
+      "slug": "bursa",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "flambear"
+      ]
+    },
+    {
+      "slug": "flambear",
+      "stage": "stage1",
+      "evolves_from": [
+        "bursa"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [

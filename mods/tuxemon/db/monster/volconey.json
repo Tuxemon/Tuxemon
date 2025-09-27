@@ -30,8 +30,20 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "thumpurn",
-      "evo_stage": "basic"
+      "slug": "volconey",
+      "stage": "stage1",
+      "evolves_from": [
+        "thumpurn"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "thumpurn",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "volconey"
+      ]
     }
   ],
   "terrains": [

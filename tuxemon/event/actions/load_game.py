@@ -9,9 +9,10 @@ from typing import Optional, final
 from tuxemon import save
 from tuxemon.constants.asset_loader import fetch_asset
 from tuxemon.event.eventaction import EventAction
-from tuxemon.npc import NPCState
+from tuxemon.player import Player
+from tuxemon.prepare import PLAYER_NPC
 from tuxemon.session import Session
-from tuxemon.states.world_state import WorldSave, WorldState
+from tuxemon.states.world_state import WorldState
 
 logger = logging.getLogger(__name__)
 
@@ -64,19 +65,16 @@ class LoadGameAction(EventAction):
                 if self.index is not None:
                     client.remove_state_by_name("StartState")
 
+            slug = save_data["npc_state"].get("player_slug", PLAYER_NPC)
+            save_data["npc_state"]["player_slug"] = slug
+            Player.create(session, slug=slug)
+
             map_path = fetch_asset(
                 "maps", save_data["npc_state"]["current_map"]
             )
             client.push_state("WorldState", session=session, map_name=map_path)
 
-            # TODO: Get player from whatever place and use self.client in
-            # order to build a Session
-            session.player.set_state(
-                session, save_data.get("npc_state", NPCState())
-            )
-            session.world.set_state(
-                session, save_data.get("world_state", WorldSave())
-            )
+            session.load_state(save_data)
 
             # teleport the player to the correct position using an event
             # engine action

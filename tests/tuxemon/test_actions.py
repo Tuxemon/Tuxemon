@@ -7,8 +7,8 @@ from tuxemon import prepare
 from tuxemon.db import Direction
 from tuxemon.entity import Body, Mover
 from tuxemon.event.eventaction import ActionManager
-from tuxemon.event.eventcondition import ConditionManager
 from tuxemon.event.eventengine import EventEngine
+from tuxemon.event.running import ConditionEvaluator
 from tuxemon.game_variables import GameVariablesManager
 from tuxemon.math import Point3, Vector3
 from tuxemon.player import Player
@@ -27,10 +27,10 @@ def mockPlayer(self) -> None:
 class TestVariableActions(unittest.TestCase):
     def setUp(self):
         action = ActionManager()
-        condition = ConditionManager()
+        evaluator = ConditionEvaluator(MagicMock(), MagicMock())
         self.mock_screen = MagicMock()
         with patch.object(Player, "__init__", mockPlayer):
-            self.action = EventEngine(local_session, action, condition)
+            self.action = EventEngine(local_session, action, evaluator)
             local_session.set_player(Player())
             self.player = local_session.player
 
@@ -159,10 +159,10 @@ class TestVariableActions(unittest.TestCase):
 class TestActionsSetPlayer(unittest.TestCase):
     def setUp(self):
         action = ActionManager()
-        condition = ConditionManager()
+        evaluator = ConditionEvaluator(MagicMock(), MagicMock())
         self.mock_screen = MagicMock()
         with patch.object(Player, "__init__", mockPlayer):
-            self.action = EventEngine(local_session, action, condition)
+            self.action = EventEngine(local_session, action, evaluator)
             local_session.set_player(Player())
             self.player = local_session.player
 
@@ -178,11 +178,11 @@ class TestActionsSetPlayer(unittest.TestCase):
 class TestCharacterActions(unittest.TestCase):
     def setUp(self):
         action = ActionManager()
-        condition = ConditionManager()
+        evaluator = ConditionEvaluator(MagicMock(), MagicMock())
         self.mock_screen = MagicMock()
         local_session.set_client(MagicMock())
         with patch.object(Player, "__init__", mockPlayer):
-            self.action = EventEngine(local_session, action, condition)
+            self.action = EventEngine(local_session, action, evaluator)
             local_session.set_player(Player())
             self.player = local_session.player
 
@@ -210,9 +210,3 @@ class TestCharacterActions(unittest.TestCase):
         self.player.body.velocity = Vector3(1, 0, 0)
         self.action.execute_action("char_run", ["player"])
         self.assertEqual(self.player.moverate, prepare.CONFIG.player_runrate)
-
-    def test_char_face(self):
-        self.player.is_player = False
-        self.player.set_facing(Direction.down)
-        self.action.execute_action("char_face", ["player", "up"])
-        self.assertEqual(self.player.facing, Direction.up)

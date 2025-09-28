@@ -213,6 +213,13 @@ class BaseLookupModel(ABC):
         pass
 
 
+class ColorModel(BaseModel):
+    red: int = Field(..., ge=0, le=255)
+    green: int = Field(..., ge=0, le=255)
+    blue: int = Field(..., ge=0, le=255)
+    alpha: int = Field(255, ge=0, le=255)
+
+
 class CommonCondition(BaseModel):
     type: str = Field(..., description="The name of the condition")
     parameters: Sequence[str] = Field(
@@ -232,6 +239,96 @@ class CommonEffect(BaseModel):
     parameters: Sequence[str] = Field(
         [], description="The parameters that must be met"
     )
+
+
+class BaseComparison(BaseModel):
+    comparison: Comparison = Field(
+        ...,
+        description="The type of comparison to perform (e.g., greater_than, equal_to).",
+    )
+    target_value: Optional[int] = Field(
+        None,
+        description="An optional fixed numeric value to compare against (e.g., stat must be greater than 50).",
+    )
+
+
+class StatsComparison(BaseComparison):
+    stat_type: StatType = Field(
+        ...,
+        description="The primary stat being evaluated for the evolution condition (e.g., speed, defense).",
+    )
+    target_stat: Optional[StatType] = Field(
+        None,
+        description="An optional secondary stat to compare against the primary stat (e.g., compare speed to defense).",
+    )
+
+
+class BondComparison(BaseComparison):
+    value: int = Field(
+        ...,
+        description="The bond value to compare against.",
+        ge=config_monster.bond_range[0],
+        le=config_monster.bond_range[1],
+    )
+
+
+class PartyConditionsModel(BaseModel):
+    monster_slugs: Optional[dict[str, int]] = Field(
+        None,
+        description="A dictionary specifying required monsters and their minimum counts by slug.",
+    )
+    monster_types: Optional[dict[str, int]] = Field(
+        None,
+        description="A dictionary specifying required monster types and their minimum counts.",
+    )
+    genders: Optional[dict[GenderType, int]] = Field(
+        None,
+        description="A dictionary specifying required genders and their minimum counts.",
+    )
+    alignment: Optional[str] = Field(
+        None,
+        description="The elemental alignment the party must lean toward for evolution to occur.",
+    )
+
+    @field_validator("monster_slugs")
+    def validate_monster_slugs(
+        cls, v: Optional[dict[str, int]]
+    ) -> Optional[dict[str, int]]:
+        if v:
+            for slug, count in v.items():
+                if not has.db_entry("monster", slug):
+                    raise ValueError(
+                        f"Monster slug '{slug}' does not exist in the database."
+                    )
+                if not (0 <= count < prepare.PARTY_LIMIT):
+                    raise ValueError(
+                        f"Count for monster slug '{slug}' must be between 0 and {prepare.PARTY_LIMIT - 1}."
+                    )
+        return v
+
+    @field_validator("monster_types")
+    def validate_monster_types(
+        cls, v: Optional[dict[str, int]]
+    ) -> Optional[dict[str, int]]:
+        if v:
+            for type_, count in v.items():
+                if not (0 <= count < prepare.PARTY_LIMIT):
+                    raise ValueError(
+                        f"Count for monster type '{type_}' must be between 0 and {prepare.PARTY_LIMIT - 1}."
+                    )
+        return v
+
+    @field_validator("genders")
+    def validate_genders(
+        cls, v: Optional[dict[GenderType, int]]
+    ) -> Optional[dict[GenderType, int]]:
+        if v:
+            for gender, count in v.items():
+                if not (0 <= count < prepare.PARTY_LIMIT):
+                    raise ValueError(
+                        f"Count for gender '{gender}' must be between 0 and {prepare.PARTY_LIMIT - 1}."
+                    )
+        return v
 
 
 class ItemBehaviors(BaseModel):
@@ -467,16 +564,36 @@ class MonsterMovesetItemModel(BaseModel):
 
 
 class MonsterHistoryItemModel(BaseModel):
-    mon_slug: str = Field(..., description="The monster in the evolution path")
-    evo_stage: EvolutionStage = Field(
-        ..., description="The evolution stage of the monster"
+    slug: str = Field(
+        ..., description="The monster slug in the evolution path."
+    )
+    stage: EvolutionStage = Field(
+        ..., description="The evolution stage of the monster."
+    )
+    evolves_from: list[str] = Field(
+        default_factory=list, description="Monsters this monster evolves from."
+    )
+    evolves_into: list[str] = Field(
+        default_factory=list,
+        description="Monsters this monster can evolve into.",
     )
 
-    @field_validator("mon_slug")
-    def monster_exists(cls: MonsterHistoryItemModel, v: str) -> str:
-        if has.db_entry("monster", v):
+    @field_validator("slug", "evolves_from", "evolves_into")
+    def validate_monsters_exist(
+        cls, v: Union[str, list[str]]
+    ) -> Union[str, list[str]]:
+        if isinstance(v, str):
+            if has.db_entry("monster", v):
+                return v
+            raise ValueError(f"Monster slug '{v}' not found in database.")
+        elif isinstance(v, list):
+            for slug in v:
+                if not has.db_entry("monster", slug):
+                    raise ValueError(
+                        f"Monster slug '{slug}' not found in database."
+                    )
             return v
-        raise ValueError(f"the monster {v} doesn't exist in the db")
+        return v
 
 
 class MonsterEvolutionItemModel(BaseModel):
@@ -497,9 +614,13 @@ class MonsterEvolutionItemModel(BaseModel):
         None,
         description="The required gender of the monster for evolution.",
     )
-    item: Optional[str] = Field(
+    item: Optional[dict[str, float]] = Field(
         None,
-        description="The item that the monster must have to evolve.",
+        description=(
+            "A dictionary of item slugs and their associated evolution weights. "
+            "Weights are relative and will be normalized to sum to 1.0. "
+            "Each item must exist in the database and have a non-negative weight."
+        ),
     )
     inside: Optional[bool] = Field(
         None,
@@ -514,9 +635,14 @@ class MonsterEvolutionItemModel(BaseModel):
         description="The game variables that must exist and match a specific value for the monster to evolve.",
         min_length=1,
     )
-    stats: Optional[str] = Field(
+    stats: Optional[StatsComparison] = Field(
         None,
-        description="The statistic comparison required for the monster to evolve (e.g., greater_than, less_than, etc.).",
+        description=(
+            "Defines a condition where one monster stat must compare to another stat or value "
+            "for evolution to occur. For example, 'speed must be greater than defense'. "
+            "Includes the stat being evaluated, the type of comparison (e.g., greater_than, equal_to), "
+            "and the target stat or value."
+        ),
     )
     steps: Optional[int] = Field(
         None,
@@ -532,23 +658,28 @@ class MonsterEvolutionItemModel(BaseModel):
         min_length=1,
         max_length=prepare.MAX_MOVES,
     )
-    bond: Optional[str] = Field(
+    bond: Optional[BondComparison] = Field(
         None,
-        description="The bond value comparison required for the monster to evolve (e.g., greater_than, less_than, etc.).",
+        description=(
+            "Defines a condition where the monster's bond must meet a specific comparison to evolve. "
+            "Includes the comparison type (e.g., greater_than, equals) and the target bond value. "
+            "For example, 'bond must be greater than 50'."
+        ),
     )
-    party: Sequence[str] = Field(
-        [],
-        description="The slug of the monsters that must be in the party for the evolution to occur.",
-        min_length=1,
-        max_length=prepare.PARTY_LIMIT - 1,
-    )
-    taste_cold: Optional[str] = Field(
+    tastes: Optional[dict[str, str]] = Field(
         None,
-        description="The required taste cold value for the monster to evolve.",
+        description="A dictionary of taste values required for the monster to evolve (e.g., {'cold': 'value', 'warm': 'value'}).",
     )
-    taste_warm: Optional[str] = Field(
+    probability: Optional[float] = Field(
         None,
-        description="The required taste warm value for the monster to evolve.",
+        description="Chance (0.0 to 1.0) that this evolution occurs when conditions are met.",
+    )
+    held_item: Optional[str] = Field(
+        None, description="Item slug the monster must be holding to evolve."
+    )
+    party_conditions: Optional[PartyConditionsModel] = Field(
+        None,
+        description="Complex conditions based on the player's party required for evolution.",
     )
 
     @field_validator("moves")
@@ -571,13 +702,17 @@ class MonsterEvolutionItemModel(BaseModel):
             return v
         raise ValueError(f"the technique {v} doesn't exist in the db")
 
-    @field_validator("taste_cold", "taste_warm")
-    def taste_exists(
-        cls: MonsterEvolutionItemModel, v: Optional[str]
-    ) -> Optional[str]:
-        if not v or has.db_entry("taste", v):
-            return v
-        raise ValueError(f"the taste {v} doesn't exist in the db")
+    @field_validator("tastes")
+    def validate_tastes(
+        cls, v: Optional[dict[str, str]]
+    ) -> Optional[dict[str, str]]:
+        if v:  # Only proceed if the tastes dictionary is not None
+            for taste_value in v.values():
+                if not has.db_entry("taste", taste_value):
+                    raise ValueError(
+                        f"The taste '{taste_value}' does not exist in the database."
+                    )
+        return v
 
     @field_validator("element")
     def element_exists(
@@ -593,74 +728,104 @@ class MonsterEvolutionItemModel(BaseModel):
             return v
         raise ValueError(f"the monster {v} doesn't exist in the db")
 
-    @field_validator("party")
-    def party_exists(
-        cls: MonsterEvolutionItemModel, v: Sequence[str]
-    ) -> Sequence[str]:
-        if v:
-            for element in v:
-                if not has.db_entry("monster", element):
-                    raise ValueError(
-                        f"A monster {element} doesn't exist in the db"
-                    )
-        return v
-
     @field_validator("item")
-    def item_exists(
+    def validate_item_and_weights(
+        cls: MonsterEvolutionItemModel, v: Optional[dict[str, float]]
+    ) -> Optional[dict[str, float]]:
+        if v is None:
+            return v
+
+        total_weight = 0.0
+        for item_slug, weight in v.items():
+            if not has.db_entry("item", item_slug):
+                raise ValueError(
+                    f"The item '{item_slug}' doesn't exist in the database."
+                )
+            if weight < 0.0:
+                raise ValueError(
+                    f"Weight for item '{item_slug}' must be non-negative."
+                )
+            total_weight += weight
+
+        if total_weight == 0.0:
+            raise ValueError(
+                "Total weight must be greater than 0.0 to normalize."
+            )
+
+        normalized = {
+            slug: weight / total_weight for slug, weight in v.items()
+        }
+        return normalized
+
+    @field_validator("held_item")
+    def held_item_exists(
         cls: MonsterEvolutionItemModel, v: Optional[str]
     ) -> Optional[str]:
         if not v or has.db_entry("item", v):
             return v
-        raise ValueError(f"the item {v} doesn't exist in the db")
-
-    @field_validator("stats")
-    def stats_exists(
-        cls: MonsterEvolutionItemModel, v: Optional[str]
-    ) -> Optional[str]:
-        stats = list(StatType)
-        comparison = list(Comparison)
-        param = v.split(":") if v else []
-        if not v or len(param) == 3:
-            if param[1] not in comparison:
-                raise ValueError(
-                    f"the comparison {param[1]} doesn't exist among {comparison}"
-                )
-            if param[0] not in stats:
-                raise ValueError(
-                    f"the stat {param[0]} doesn't exist among {stats}"
-                )
-            if param[2] not in stats:
-                raise ValueError(
-                    f"the stat {param[2]} doesn't exist among {stats}"
-                )
-            return v
-        raise ValueError(f"the stats {v} isn't formatted correctly")
-
-    @field_validator("bond")
-    def bond_exists(
-        cls: MonsterEvolutionItemModel, v: Optional[str]
-    ) -> Optional[str]:
-        comparison = list(Comparison)
-        param = v.split(":") if v else []
-        if not v or len(param) == 2:
-            if param[0] not in comparison:
-                raise ValueError(
-                    f"the comparison {param[0]} doesn't exist among {comparison}"
-                )
-            if not param[1].isdigit():
-                raise ValueError(f"{param[1]} isn't a number (int)")
-            lower, upper = config_monster.bond_range
-            if int(param[1]) < lower or int(param[1]) > upper:
-                raise ValueError(
-                    f"the bond is between {lower} and {upper} ({v})"
-                )
-            return v
-        raise ValueError(f"the stats {v} isn't formatted correctly")
+        raise ValueError(f"the held item {v} doesn't exist in the db")
 
 
-class MonsterFlairItemModel(BaseModel):
-    category: str = Field(..., description="The category of this flair item")
-    names: Sequence[str] = Field(..., description="The names")
+class FlairModel(BaseModel, BaseLookupModel):
+    table_name: ClassVar[str] = "flair"
+
+    slug: str = Field(..., description="The unique name of the flair.")
+    category: str = Field(..., description="The category of this flair item.")
+    weight: float = Field(
+        1.0,
+        description="A value representing the flair's rarity or probability.",
+        ge=0,
+    )
+    layer: int = Field(
+        0,
+        description="The drawing layer for the flair. Higher numbers are drawn on top.",
+    )
+    layer_order: int = Field(
+        0,
+        description="The drawing order for flairs within the same layer. Lower numbers are drawn first.",
+    )
+    x_offset: Optional[int] = Field(
+        None,
+        description="The horizontal offset of the flair from the sprite's origin.",
+    )
+    y_offset: Optional[int] = Field(
+        None,
+        description="The vertical offset of the flair from the sprite's origin.",
+    )
+    sprite_type: Optional[set[str]] = Field(
+        None,
+        description="Specifies which sprite type this flair applies to (e.g., 'front', 'back', 'menu01'). If None, applies to all.",
+    )
+    sprite_type_override: Optional[str] = Field(
+        None,
+        description="Overrides the default sprite type used in the file path (e.g., 'universal').",
+    )
+    color: Optional[ColorModel] = Field(
+        None, description="The color tint to apply to the flair sprite."
+    )
+
+    @classmethod
+    def lookup(cls, slug: str, db: ModData) -> FlairModel:
+        """Retrieve an instance from the database using a slug."""
+        try:
+            return cast(FlairModel, db.lookup(slug, table=cls.table_name))
+        except EntryNotFoundError:
+            raise RuntimeError(f"Flair {slug} not found")
+
+    @model_validator(mode="after")
+    def validate_flair_path(self) -> FlairModel:
+        if not self.slug.strip():
+            raise ValueError("Flair name cannot be empty or whitespace.")
+
+        folder = self.sprite_type_override or self.category
+        path = f"gfx/sprites/flairs/{folder}/{self.slug}.png"
+
+        if not has.file(path):
+            raise ValueError(
+                f"No resource exists for flair name '{self.slug}' at path: {path}"
+            )
+
+        return self
 
 
 class MonsterSpritesModel(BaseModel):
@@ -762,8 +927,8 @@ class MonsterModel(BaseModel, BaseLookupModel, validate_assignment=True):
     evolutions: Sequence[MonsterEvolutionItemModel] = Field(
         [], description="The evolutions this monster has"
     )
-    flairs: Sequence[MonsterFlairItemModel] = Field(
-        [], description="The flairs this monster has"
+    flairs: set[str] = Field(
+        default_factory=set, description="The flairs this monster has"
     )
     sounds: Optional[MonsterSoundsModel] = Field(
         None,
@@ -831,6 +996,16 @@ class MonsterModel(BaseModel, BaseLookupModel, validate_assignment=True):
                 if not has.db_entry("terrain", terrain):
                     raise ValueError(
                         f"the terrain '{terrain}' doesn't exist in the db"
+                    )
+        return v
+
+    @field_validator("flairs")
+    def flair_exists(cls: MonsterModel, v: Sequence[str]) -> Sequence[str]:
+        if v:
+            for flair in v:
+                if not has.db_entry("flair", flair):
+                    raise ValueError(
+                        f"the flair '{flair}' doesn't exist in the db"
                     )
         return v
 
@@ -1200,12 +1375,10 @@ class StatusModel(BaseModel, BaseLookupModel):
         description="Slug of what string to display when status fails",
     )
     cond_id: int = Field(..., description="The id of this status")
-    statspeed: Optional[StatModel] = Field(None)
-    stathp: Optional[StatModel] = Field(None)
-    statarmour: Optional[StatModel] = Field(None)
-    statdodge: Optional[StatModel] = Field(None)
-    statmelee: Optional[StatModel] = Field(None)
-    statranged: Optional[StatModel] = Field(None)
+    stat_modifiers: dict[str, StatModel] = Field(
+        default_factory=dict,
+        description="Dictionary of stat modifiers keyed by stat name (e.g., 'speed', 'hp')",
+    )
 
     @classmethod
     def lookup(cls, slug: str, db: ModData) -> StatusModel:
@@ -2254,6 +2427,7 @@ DataModel = Union[
     EnvironmentModel,
     ItemModel,
     MonsterModel,
+    FlairModel,
     MusicModel,
     AnimationModel,
     NpcModel,

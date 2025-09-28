@@ -47,8 +47,20 @@
   ],
   "history": [
     {
-      "mon_slug": "hectapod",
-      "evo_stage": "stage1"
+      "slug": "squink",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "hectapod"
+      ]
+    },
+    {
+      "slug": "hectapod",
+      "stage": "stage1",
+      "evolves_from": [
+        "squink"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [],

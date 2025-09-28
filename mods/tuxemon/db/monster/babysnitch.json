@@ -39,8 +39,20 @@
   ],
   "history": [
     {
-      "mon_slug": "baddrscratch",
-      "evo_stage": "stage1"
+      "slug": "babysnitch",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "baddrscratch"
+      ]
+    },
+    {
+      "slug": "baddrscratch",
+      "stage": "stage1",
+      "evolves_from": [
+        "babysnitch"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [

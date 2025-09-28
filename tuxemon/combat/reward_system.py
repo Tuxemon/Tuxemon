@@ -2,19 +2,23 @@
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import logging
+from dataclasses import dataclass
 from enum import Enum
 from typing import TYPE_CHECKING
 
 from tuxemon.combat.utils import alive_party
+from tuxemon.formula import config_monster
 from tuxemon.locale import T
 
 if TYPE_CHECKING:
     from tuxemon.combat.damage_tracker import DamageTracker
-    from tuxemon.technique.technique import Technique
     from tuxemon.monster import Monster
     from tuxemon.session import Session
+    from tuxemon.technique.technique import Technique
 
-from dataclasses import dataclass
+
+logger = logging.getLogger(__name__)
 
 
 class ExperienceMethod(Enum):
@@ -165,12 +169,20 @@ def calculate_experience(
     """
     total_hits, monster_hits = damages.count_hits(loser, winner)
 
+    exp_multiplier = 1.0
+    experience_multipliers = config_monster.experience_multipliers
+    if experience_multipliers:
+        method = winner.acquisition.value
+        exp_multiplier = experience_multipliers.get(method, 1.0)
+        logger.debug(f"Experience multiplier for {method}: {exp_multiplier}")
+
     def default_method() -> tuple[int, int]:
-        total_exp = calculate_experience_base(
+        base_exp = calculate_experience_base(
             loser.total_experience,
             loser.level,
             loser.experience_modifier,
         )
+        total_exp = round(base_exp * exp_multiplier)
 
         participants = damages.get_attackers(loser)
         num_participants = len(participants) if participants else 1
@@ -179,20 +191,22 @@ def calculate_experience(
         return divided_exp, 0
 
     def equal_method() -> tuple[int, int]:
-        total_exp = calculate_experience_base(
+        base_exp = calculate_experience_base(
             loser.total_experience,
             loser.level,
             loser.experience_modifier,
         )
+        total_exp = round(base_exp * exp_multiplier)
         proportional_exp = int(total_exp * (monster_hits / total_hits))
         return proportional_exp, 0
 
     def feeder_method() -> tuple[int, int]:
-        total_exp = calculate_experience_base(
+        base_exp = calculate_experience_base(
             loser.total_experience,
             loser.level,
             loser.experience_modifier,
         )
+        total_exp = round(base_exp * exp_multiplier)
 
         participants = damages.get_attackers(loser)
         item_holder_exp = total_exp // 2
@@ -209,11 +223,12 @@ def calculate_experience(
         return participant_exp, 0
 
     def transmitter_method() -> tuple[int, int]:
-        total_exp = calculate_experience_base(
+        base_exp = calculate_experience_base(
             loser.total_experience,
             loser.level,
             loser.experience_modifier,
         )
+        total_exp = round(base_exp * exp_multiplier)
 
         participants = damages.get_attackers(loser)
 

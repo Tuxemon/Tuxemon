@@ -38,8 +38,20 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "selket",
-      "evo_stage": "basic"
+      "slug": "selmatek",
+      "stage": "stage1",
+      "evolves_from": [
+        "selket"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "selket",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "selmatek"
+      ]
     }
   ],
   "terrains": [],

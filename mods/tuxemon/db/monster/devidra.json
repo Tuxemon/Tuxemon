@@ -51,12 +51,30 @@
   ],
   "history": [
     {
-      "mon_slug": "devidin",
-      "evo_stage": "basic"
+      "slug": "devidra",
+      "stage": "stage1",
+      "evolves_from": [
+        "devidin"
+      ],
+      "evolves_into": [
+        "deviraptor"
+      ]
     },
     {
-      "mon_slug": "deviraptor",
-      "evo_stage": "stage2"
+      "slug": "devidin",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "devidra"
+      ]
+    },
+    {
+      "slug": "deviraptor",
+      "stage": "stage2",
+      "evolves_from": [
+        "devidra"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [

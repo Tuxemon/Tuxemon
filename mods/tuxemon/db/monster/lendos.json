@@ -54,8 +54,20 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "uneye",
-      "evo_stage": "basic"
+      "slug": "lendos",
+      "stage": "stage1",
+      "evolves_from": [
+        "uneye"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "uneye",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "lendos"
+      ]
     }
   ],
   "terrains": [],

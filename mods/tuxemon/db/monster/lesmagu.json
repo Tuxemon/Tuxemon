@@ -59,12 +59,30 @@
   ],
   "history": [
     {
-      "mon_slug": "shelagu",
-      "evo_stage": "stage1"
+      "slug": "lesmagu",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "shelagu"
+      ]
     },
     {
-      "mon_slug": "crustagu",
-      "evo_stage": "stage2"
+      "slug": "shelagu",
+      "stage": "stage1",
+      "evolves_from": [
+        "lesmagu"
+      ],
+      "evolves_into": [
+        "crustagu"
+      ]
+    },
+    {
+      "slug": "crustagu",
+      "stage": "stage2",
+      "evolves_from": [
+        "shelagu"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [

@@ -38,8 +38,24 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "botbot",
-      "evo_stage": "basic"
+      "slug": "k9",
+      "stage": "stage1",
+      "evolves_from": [
+        "botbot"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "botbot",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "av8r",
+        "picc",
+        "mrmoswitch",
+        "k9",
+        "b_ver_1"
+      ]
     }
   ],
   "terrains": [

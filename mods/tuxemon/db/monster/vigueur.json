@@ -42,8 +42,20 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "tarpeur",
-      "evo_stage": "basic"
+      "slug": "vigueur",
+      "stage": "stage1",
+      "evolves_from": [
+        "tarpeur"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "tarpeur",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "vigueur"
+      ]
     }
   ],
   "terrains": [],

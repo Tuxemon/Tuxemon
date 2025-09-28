@@ -46,8 +46,20 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "squabbit",
-      "evo_stage": "basic"
+      "slug": "rabbitosaur",
+      "stage": "stage1",
+      "evolves_from": [
+        "squabbit"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "squabbit",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "rabbitosaur"
+      ]
     }
   ],
   "terrains": [],

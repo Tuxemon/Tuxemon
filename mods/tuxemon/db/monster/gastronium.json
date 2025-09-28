@@ -46,8 +46,20 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "stomic",
-      "evo_stage": "basic"
+      "slug": "gastronium",
+      "stage": "stage1",
+      "evolves_from": [
+        "stomic"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "stomic",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "gastronium"
+      ]
     }
   ],
   "terrains": [],

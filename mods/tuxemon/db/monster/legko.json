@@ -55,12 +55,30 @@
   ],
   "history": [
     {
-      "mon_slug": "lambert",
-      "evo_stage": "basic"
+      "slug": "legko",
+      "stage": "stage1",
+      "evolves_from": [
+        "lambert"
+      ],
+      "evolves_into": [
+        "moloch"
+      ]
     },
     {
-      "mon_slug": "moloch",
-      "evo_stage": "stage2"
+      "slug": "lambert",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "legko"
+      ]
+    },
+    {
+      "slug": "moloch",
+      "stage": "stage2",
+      "evolves_from": [
+        "legko"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [],

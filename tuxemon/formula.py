@@ -6,7 +6,7 @@ import logging
 import math
 import random
 from collections.abc import Sequence
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 from typing import TYPE_CHECKING, Any, Optional, Union
 
@@ -90,6 +90,7 @@ class MonsterConfig:
     bond_range: tuple[int, int] = (0, 100)
     weight_range: tuple[float, float] = (-0.1, 0.1)
     height_range: tuple[float, float] = (-0.1, 0.1)
+    experience_multipliers: dict[str, float] = field(default_factory=dict)
 
 
 @dataclass

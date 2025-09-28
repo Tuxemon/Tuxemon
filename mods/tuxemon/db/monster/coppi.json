@@ -55,12 +55,30 @@
   ],
   "history": [
     {
-      "mon_slug": "helipi",
-      "evo_stage": "basic"
+      "slug": "coppi",
+      "stage": "stage1",
+      "evolves_from": [
+        "helipi"
+      ],
+      "evolves_into": [
+        "parappi"
+      ]
     },
     {
-      "mon_slug": "parappi",
-      "evo_stage": "stage2"
+      "slug": "helipi",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "coppi"
+      ]
+    },
+    {
+      "slug": "parappi",
+      "stage": "stage2",
+      "evolves_from": [
+        "coppi"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [

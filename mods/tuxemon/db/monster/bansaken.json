@@ -63,12 +63,30 @@
   ],
   "history": [
     {
-      "mon_slug": "banling",
-      "evo_stage": "basic"
+      "slug": "bansaken",
+      "stage": "stage1",
+      "evolves_from": [
+        "banling"
+      ],
+      "evolves_into": [
+        "banvengeance"
+      ]
     },
     {
-      "mon_slug": "banvengeance",
-      "evo_stage": "stage2"
+      "slug": "banling",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "bansaken"
+      ]
+    },
+    {
+      "slug": "banvengeance",
+      "stage": "stage2",
+      "evolves_from": [
+        "bansaken"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [

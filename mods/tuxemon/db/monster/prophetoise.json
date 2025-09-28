@@ -42,8 +42,20 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "forturtle",
-      "evo_stage": "basic"
+      "slug": "prophetoise",
+      "stage": "stage1",
+      "evolves_from": [
+        "forturtle"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "forturtle",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "prophetoise"
+      ]
     }
   ],
   "terrains": [

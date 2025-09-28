@@ -43,8 +43,20 @@
   ],
   "history": [
     {
-      "mon_slug": "exapode",
-      "evo_stage": "stage1"
+      "slug": "chenipode",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "exapode"
+      ]
+    },
+    {
+      "slug": "exapode",
+      "stage": "stage1",
+      "evolves_from": [
+        "chenipode"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [],

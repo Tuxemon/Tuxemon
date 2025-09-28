@@ -55,12 +55,30 @@
   ],
   "history": [
     {
-      "mon_slug": "vamporm",
-      "evo_stage": "basic"
+      "slug": "dracune",
+      "stage": "stage1",
+      "evolves_from": [
+        "vamporm"
+      ],
+      "evolves_into": [
+        "fluttaflap"
+      ]
     },
     {
-      "mon_slug": "fluttaflap",
-      "evo_stage": "stage2"
+      "slug": "vamporm",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "dracune"
+      ]
+    },
+    {
+      "slug": "fluttaflap",
+      "stage": "stage2",
+      "evolves_from": [
+        "dracune"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [],

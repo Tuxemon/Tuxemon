@@ -54,8 +54,20 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "foxfire",
-      "evo_stage": "basic"
+      "slug": "vulpyre",
+      "stage": "stage1",
+      "evolves_from": [
+        "foxfire"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "foxfire",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "vulpyre"
+      ]
     }
   ],
   "terrains": [

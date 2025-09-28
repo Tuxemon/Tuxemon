@@ -50,8 +50,20 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "chickadee",
-      "evo_stage": "basic"
+      "slug": "birdee",
+      "stage": "stage1",
+      "evolves_from": [
+        "chickadee"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "chickadee",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "birdee"
+      ]
     }
   ],
   "terrains": [

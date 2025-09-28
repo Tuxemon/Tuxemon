@@ -46,8 +46,22 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "pawsand",
-      "evo_stage": "basic"
+      "slug": "rooksand",
+      "stage": "stage1",
+      "evolves_from": [
+        "pawsand"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "pawsand",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "knightsand",
+        "bishosand",
+        "rooksand"
+      ]
     }
   ],
   "terrains": [

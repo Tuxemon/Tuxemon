@@ -394,8 +394,11 @@ class Monster:
         levels = 0
         self.total_experience += amount
 
-        # Level up worthy monsters
-        while self.total_experience >= self.experience_required(1):
+        # Level up worthy monsters, but stop at max_level
+        while (
+            self.level < prepare.MAX_LEVEL
+            and self.total_experience >= self.experience_required(1)
+        ):
             self.level_up()
             levels += 1
         return levels

@@ -11,7 +11,7 @@ from tuxemon.combat.utils import alive_party
 from tuxemon.formula import config_monster
 from tuxemon.locale import T
 from tuxemon.monster_dir.stats import BasicStats
-from tuxemon.prepare import DEFAULT_TP_GAIN
+from tuxemon.prepare import DEFAULT_TP_GAIN, MAX_LEVEL
 
 if TYPE_CHECKING:
     from tuxemon.combat.damage_tracker import DamageTracker
@@ -197,6 +197,10 @@ def calculate_experience(
     Returns:
         tuple[int, int]: (participant_exp, non_participant_exp)
     """
+
+    if winner.level >= MAX_LEVEL:
+        return 0, 0
+
     total_hits, monster_hits = damages.count_hits(loser, winner)
 
     exp_multiplier = 1.0

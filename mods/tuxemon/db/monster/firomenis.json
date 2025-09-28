@@ -50,8 +50,20 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "merlicun",
-      "evo_stage": "basic"
+      "slug": "firomenis",
+      "stage": "stage1",
+      "evolves_from": [
+        "merlicun"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "merlicun",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "firomenis"
+      ]
     }
   ],
   "terrains": [],

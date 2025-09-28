@@ -58,12 +58,30 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "fruitera",
-      "evo_stage": "basic"
+      "slug": "spectera",
+      "stage": "stage2",
+      "evolves_from": [
+        "megafruitera"
+      ],
+      "evolves_into": []
     },
     {
-      "mon_slug": "megafruitera",
-      "evo_stage": "stage1"
+      "slug": "fruitera",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "megafruitera"
+      ]
+    },
+    {
+      "slug": "megafruitera",
+      "stage": "stage1",
+      "evolves_from": [
+        "fruitera"
+      ],
+      "evolves_into": [
+        "spectera"
+      ]
     }
   ],
   "terrains": [

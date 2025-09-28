@@ -38,8 +38,20 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "nudiflot_male",
-      "evo_stage": "basic"
+      "slug": "nudikill",
+      "stage": "stage1",
+      "evolves_from": [
+        "nudiflot_male"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "nudiflot_male",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "nudikill"
+      ]
     }
   ],
   "terrains": [

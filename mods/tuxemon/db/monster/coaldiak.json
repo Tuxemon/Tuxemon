@@ -38,12 +38,30 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "furnursus",
-      "evo_stage": "basic"
+      "slug": "coaldiak",
+      "stage": "stage2",
+      "evolves_from": [
+        "statursus"
+      ],
+      "evolves_into": []
     },
     {
-      "mon_slug": "statursus",
-      "evo_stage": "stage1"
+      "slug": "furnursus",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "statursus"
+      ]
+    },
+    {
+      "slug": "statursus",
+      "stage": "stage1",
+      "evolves_from": [
+        "furnursus"
+      ],
+      "evolves_into": [
+        "coaldiak"
+      ]
     }
   ],
   "terrains": [

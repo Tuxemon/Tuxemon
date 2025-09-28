@@ -51,8 +51,20 @@
   ],
   "history": [
     {
-      "mon_slug": "firomenis",
-      "evo_stage": "stage1"
+      "slug": "merlicun",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "firomenis"
+      ]
+    },
+    {
+      "slug": "firomenis",
+      "stage": "stage1",
+      "evolves_from": [
+        "merlicun"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [],

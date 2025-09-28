@@ -59,8 +59,20 @@
   ],
   "history": [
     {
-      "mon_slug": "nimbulex",
-      "evo_stage": "stage1"
+      "slug": "bumbulus",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "nimbulex"
+      ]
+    },
+    {
+      "slug": "nimbulex",
+      "stage": "stage1",
+      "evolves_from": [
+        "bumbulus"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [],

@@ -54,8 +54,20 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "tumblequill",
-      "evo_stage": "basic"
+      "slug": "tumbledillo",
+      "stage": "stage1",
+      "evolves_from": [
+        "tumblequill"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "tumblequill",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "tumbledillo"
+      ]
     }
   ],
   "terrains": [],

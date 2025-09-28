@@ -47,8 +47,20 @@
   ],
   "history": [
     {
-      "mon_slug": "snokari",
-      "evo_stage": "stage1"
+      "slug": "snaki",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "snokari"
+      ]
+    },
+    {
+      "slug": "snokari",
+      "stage": "stage1",
+      "evolves_from": [
+        "snaki"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [],

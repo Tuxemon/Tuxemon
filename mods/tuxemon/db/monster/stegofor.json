@@ -55,12 +55,30 @@
   ],
   "history": [
     {
-      "mon_slug": "fordin",
-      "evo_stage": "basic"
+      "slug": "stegofor",
+      "stage": "stage1",
+      "evolves_from": [
+        "fordin"
+      ],
+      "evolves_into": [
+        "brachifor"
+      ]
     },
     {
-      "mon_slug": "brachifor",
-      "evo_stage": "stage2"
+      "slug": "fordin",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "stegofor"
+      ]
+    },
+    {
+      "slug": "brachifor",
+      "stage": "stage2",
+      "evolves_from": [
+        "stegofor"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [

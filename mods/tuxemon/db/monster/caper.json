@@ -51,8 +51,20 @@
   ],
   "history": [
     {
-      "mon_slug": "crankus",
-      "evo_stage": "stage1"
+      "slug": "caper",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "crankus"
+      ]
+    },
+    {
+      "slug": "crankus",
+      "stage": "stage1",
+      "evolves_from": [
+        "caper"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [

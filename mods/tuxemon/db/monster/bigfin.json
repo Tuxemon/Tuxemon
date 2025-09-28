@@ -46,8 +46,25 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "dollfin",
-      "evo_stage": "basic"
+      "slug": "bigfin",
+      "stage": "stage1",
+      "evolves_from": [
+        "dollfin",
+        "dollfin"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "dollfin",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "bigfin",
+        "bigfin",
+        "sharpfin",
+        "sharpfin",
+        "delfeco"
+      ]
     }
   ],
   "terrains": [

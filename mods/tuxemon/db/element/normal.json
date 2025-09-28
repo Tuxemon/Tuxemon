@@ -32,11 +32,11 @@
     },
     {
       "against": "metal",
-      "multiplier": 1
+      "multiplier": 0.5
     },
     {
       "against": "normal",
-      "multiplier": 0.5
+      "multiplier": 1
     },
     {
       "against": "shadow",

@@ -8,6 +8,7 @@ from functools import partial
 from typing import TYPE_CHECKING, final
 from uuid import UUID
 
+from tuxemon.db import EvolutionStage
 from tuxemon.event import get_monster_by_iid
 from tuxemon.event.eventaction import EventAction
 from tuxemon.locale import T
@@ -92,19 +93,26 @@ class DojoMethodAction(EventAction):
             devolvable_monsters = [
                 mon
                 for mon in monster.history
-                if (monster.stage == "stage1" and mon.evo_stage == "basic")
-                or (
-                    monster.stage == "stage2"
-                    and mon.evo_stage in ["stage1", "basic"]
+                if monster.slug in mon.evolves_into
+                and (
+                    (
+                        monster.stage == EvolutionStage.stage1
+                        and mon.stage == EvolutionStage.basic
+                    )
+                    or (
+                        monster.stage == EvolutionStage.stage2
+                        and mon.stage
+                        in [EvolutionStage.stage1, EvolutionStage.basic]
+                    )
                 )
             ]
 
             for mon in devolvable_monsters:
                 menu_options.append(
                     ChoiceOption(
-                        key=mon.mon_slug,
-                        display_text=T.translate(mon.mon_slug),
-                        action=partial(self.devolve, monster, mon.mon_slug),
+                        key=mon.slug,
+                        display_text=T.translate(mon.slug),
+                        action=partial(self.devolve, monster, mon.slug),
                     )
                 )
 

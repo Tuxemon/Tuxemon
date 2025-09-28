@@ -1437,6 +1437,12 @@ msgstr "ID.{id} ({types}) - Recharge {rec} turns"
 msgid "technique_power"
 msgstr "Power"
 
+msgid "technique_recharge"
+msgstr "Recharge"
+
+msgid "technique_turns"
+msgstr "turns"
+
 msgid "technique_accuracy"
 msgstr "Accuracy"
 

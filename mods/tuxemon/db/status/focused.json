@@ -14,9 +14,11 @@
   "sfx": "sfx_pulse",
   "slug": "focused",
   "sort": "meta",
-  "statdodge": {
-    "value": 1.5,
-    "operation": "*"
+  "stat_modifiers": {
+    "dodge": {
+      "value": 1.5,
+      "operation": "*"
+    }
   },
   "cond_id": 14,
   "use_failure": null,

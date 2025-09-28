@@ -17,25 +17,27 @@
   "sfx": "sfx_pulse",
   "slug": "chargedup",
   "sort": "meta",
-  "statarmour": {
-    "value": 2,
-    "operation": "*"
-  },
-  "statdodge": {
-    "value": 2,
-    "operation": "*"
-  },
-  "statmelee": {
-    "value": 2,
-    "operation": "*"
-  },
-  "statranged": {
-    "value": 2,
-    "operation": "*"
-  },
-  "statspeed": {
-    "value": 2,
-    "operation": "*"
+  "stat_modifiers": {
+    "armour": {
+      "value": 2,
+      "operation": "*"
+    },
+    "dodge": {
+      "value": 2,
+      "operation": "*"
+    },
+    "melee": {
+      "value": 2,
+      "operation": "*"
+    },
+    "ranged": {
+      "value": 2,
+      "operation": "*"
+    },
+    "speed": {
+      "value": 2,
+      "operation": "*"
+    }
   },
   "cond_id": 9,
   "use_failure": null,

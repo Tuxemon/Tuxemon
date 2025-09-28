@@ -56,7 +56,6 @@ SIMPLE_PERSISTANCE_ATTRIBUTES = (
     "name",
     "slug",
     "total_experience",
-    "flairs",
     "capture",
     "capture_device",
     "height",
@@ -131,6 +130,7 @@ class Monster:
         self.evolution_handler = Evolution(self)
         self.history: list[MonsterHistoryItemModel] = []
         self.stage: EvolutionStage = EvolutionStage.standalone
+        self.flair_slugs: set[str] = set()
         self.flairs: dict[str, Flair] = {}
         self.owner: Optional[NPC] = None
         self.possible_genders: list[GenderType] = []
@@ -290,7 +290,8 @@ class Monster:
             menu1=f"gfx/sprites/battle/{slug}-menu01",
             menu2=f"gfx/sprites/battle/{slug}-menu02",
         )
-        self.flairs = FlairApplier.create(results.flairs)
+        self.flair_slugs = results.flairs
+        self.flairs = FlairApplier.create(self.flair_slugs)
         loader = SpriteLoader()
         self.sprite_handler = MonsterSpriteHandler(
             slug=slug,
@@ -538,6 +539,11 @@ class Monster:
         save_data["moves"] = self.moves.encode_moves()
         save_data["held_item"] = self.held_item.encode_item()
         save_data["modifiers"] = self.modifiers.to_dict()
+        save_data["flair_slugs"] = list(self.flair_slugs)
+        save_data["flairs"] = {
+            category: flair.get_state()
+            for category, flair in self.flairs.items()
+        }
 
         return save_data
 
@@ -579,6 +585,15 @@ class Monster:
                     self.held_item.set_item(item)
             elif key == "modifiers" and value:
                 self.modifiers.from_dict(value)
+            elif key == "flairs" and value:
+                self.flairs = {
+                    category: Flair.from_state(flair_data)
+                    for category, flair_data in value.items()
+                }
+            elif key == "flair_slugs" and value:
+                self.flair_slugs = set(value)
+                if "flairs" not in save_data:
+                    self.flairs = FlairApplier.create(self.flair_slugs)
 
         self.load_sprites()
 

@@ -42,8 +42,20 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "boltnu",
-      "evo_stage": "basic"
+      "slug": "exclawvate",
+      "stage": "stage1",
+      "evolves_from": [
+        "boltnu"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "boltnu",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "exclawvate"
+      ]
     }
   ],
   "terrains": [],

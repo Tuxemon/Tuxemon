@@ -55,8 +55,20 @@
   ],
   "history": [
     {
-      "mon_slug": "qetzlrokilus",
-      "evo_stage": "stage1"
+      "slug": "metesaur",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "qetzlrokilus"
+      ]
+    },
+    {
+      "slug": "qetzlrokilus",
+      "stage": "stage1",
+      "evolves_from": [
+        "metesaur"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [

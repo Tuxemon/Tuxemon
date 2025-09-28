@@ -39,12 +39,30 @@
   ],
   "history": [
     {
-      "mon_slug": "hoarse",
-      "evo_stage": "basic"
+      "slug": "equill",
+      "stage": "stage1",
+      "evolves_from": [
+        "hoarse"
+      ],
+      "evolves_into": [
+        "hoarseshoo"
+      ]
     },
     {
-      "mon_slug": "hoarseshoo",
-      "evo_stage": "stage2"
+      "slug": "hoarse",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "equill"
+      ]
+    },
+    {
+      "slug": "hoarseshoo",
+      "stage": "stage2",
+      "evolves_from": [
+        "equill"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [],

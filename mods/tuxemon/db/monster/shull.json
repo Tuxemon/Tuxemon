@@ -40,12 +40,30 @@
   ],
   "history": [
     {
-      "mon_slug": "scarlant",
-      "evo_stage": "basic"
+      "slug": "shull",
+      "stage": "stage1",
+      "evolves_from": [
+        "scarlant"
+      ],
+      "evolves_into": [
+        "myrmison"
+      ]
     },
     {
-      "mon_slug": "myrmison",
-      "evo_stage": "stage2"
+      "slug": "scarlant",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "shull"
+      ]
+    },
+    {
+      "slug": "myrmison",
+      "stage": "stage2",
+      "evolves_from": [
+        "shull"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [

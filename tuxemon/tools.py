@@ -14,6 +14,7 @@ import typing
 from collections.abc import Callable, Iterable, Mapping, Sequence
 from dataclasses import fields
 from enum import Enum
+from functools import lru_cache
 from operator import add, eq, floordiv, ge, gt, le, lt, mul, ne, sub
 from pathlib import Path
 from typing import (
@@ -231,7 +232,7 @@ def open_dialog(
         dialog_rect = custom_rect
     else:
         dialog_rect = calc_dialog_rect(
-            client.screen.get_rect(), position, target_coords=target_coords
+            prepare.SCREEN_RECT, position, target_coords=target_coords
         )
 
     return client.push_state(
@@ -379,21 +380,29 @@ def get_types_tuple(
         return (param_type,)
 
 
+@lru_cache(maxsize=None)
+def get_cached_type_info(cls: type) -> dict[str, tuple[type, ...]]:
+    type_hints = typing.get_type_hints(cls)
+    return {
+        field.name: tuple(
+            t
+            for t in get_types_tuple(type_hints[field.name])
+            if isinstance(t, type)
+        )
+        for field in fields(cls)
+        if field.init
+    }
+
+
 def cast_dataclass_parameters(self: Any) -> None:
     """
     Takes a dataclass object and casts its __init__ values to the correct type
     """
-    type_hints = typing.get_type_hints(self.__class__)
-    for field in fields(self):
-        if field.init:
-            field_name = field.name  # e.g "map_name"
-            type_hint = type_hints[field_name]  # e.g. Optional[str]
-            constructors = get_types_tuple(
-                type_hint
-            )  # e.g. (<class 'str'>, <class 'NoneType'>)
-            old_value = getattr(self, field_name)
-            new_value = cast_value(((constructors, field_name), old_value))
-            setattr(self, field_name, new_value)
+    field_info = get_cached_type_info(self.__class__)
+    for field_name, constructors in field_info.items():
+        old_value = getattr(self, field_name)
+        new_value = cast_value(((constructors, field_name), old_value))
+        setattr(self, field_name, new_value)
 
 
 def show_result_as_dialog(

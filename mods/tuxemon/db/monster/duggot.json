@@ -22,15 +22,29 @@
   "evolutions": [
     {
       "monster_slug": "breem",
-      "party": [
-        "tumbleworm"
-      ]
+      "party_conditions": {
+        "monster_slugs": {
+          "tumbleworm": 1
+        }
+      }
     }
   ],
   "history": [
     {
-      "mon_slug": "breem",
-      "evo_stage": "stage1"
+      "slug": "duggot",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "breem"
+      ]
+    },
+    {
+      "slug": "breem",
+      "stage": "stage1",
+      "evolves_from": [
+        "duggot"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [],

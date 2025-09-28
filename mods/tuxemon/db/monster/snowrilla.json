@@ -38,8 +38,20 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "chillimp",
-      "evo_stage": "basic"
+      "slug": "snowrilla",
+      "stage": "stage1",
+      "evolves_from": [
+        "chillimp"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "chillimp",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "snowrilla"
+      ]
     }
   ],
   "terrains": [

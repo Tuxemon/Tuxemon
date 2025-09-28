@@ -58,8 +58,20 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "virware",
-      "evo_stage": "basic"
+      "slug": "trojerror",
+      "stage": "stage1",
+      "evolves_from": [
+        "virware"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "virware",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "trojerror"
+      ]
     }
   ],
   "terrains": [

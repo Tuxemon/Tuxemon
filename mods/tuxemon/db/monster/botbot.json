@@ -26,45 +26,77 @@
   "evolutions": [
     {
       "monster_slug": "av8r",
-      "item": "booster_tech"
+      "item": { "booster_tech": 0.2 }
     },
     {
       "monster_slug": "picc",
-      "item": "booster_tech"
+      "item": { "booster_tech": 0.2 }
     },
     {
       "monster_slug": "mrmoswitch",
-      "item": "booster_tech"
+      "item": { "booster_tech": 0.2 }
     },
     {
       "monster_slug": "k9",
-      "item": "booster_tech"
+      "item": { "booster_tech": 0.2 }
     },
     {
       "monster_slug": "b_ver_1",
-      "item": "booster_tech"
+      "item": { "booster_tech": 0.2 }
     }
   ],
   "history": [
     {
-      "mon_slug": "b_ver_1",
-      "evo_stage": "stage1"
+      "slug": "botbot",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "av8r",
+        "picc",
+        "mrmoswitch",
+        "k9",
+        "b_ver_1"
+      ]
     },
     {
-      "mon_slug": "k9",
-      "evo_stage": "stage1"
+      "slug": "b_ver_1",
+      "stage": "stage1",
+      "evolves_from": [
+        "botbot"
+      ],
+      "evolves_into": []
     },
     {
-      "mon_slug": "mrmoswitch",
-      "evo_stage": "stage1"
+      "slug": "k9",
+      "stage": "stage1",
+      "evolves_from": [
+        "botbot"
+      ],
+      "evolves_into": []
     },
     {
-      "mon_slug": "picc",
-      "evo_stage": "stage1"
+      "slug": "mrmoswitch",
+      "stage": "stage1",
+      "evolves_from": [
+        "botbot"
+      ],
+      "evolves_into": []
     },
     {
-      "mon_slug": "av8r",
-      "evo_stage": "stage1"
+      "slug": "picc",
+      "stage": "stage1",
+      "evolves_from": [
+        "botbot"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "av8r",
+      "stage": "stage1",
+      "evolves_from": [
+        "botbot"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [

@@ -38,8 +38,28 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "vivipere",
-      "evo_stage": "basic"
+      "slug": "vivitrans",
+      "stage": "stage1",
+      "evolves_from": [
+        "vivipere"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "vivipere",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "vivicinder",
+        "viviphyta",
+        "viviteel",
+        "vivitrans",
+        "vivitron",
+        "vividactil",
+        "vividactil",
+        "vividactil",
+        "vivisource"
+      ]
     }
   ],
   "terrains": [

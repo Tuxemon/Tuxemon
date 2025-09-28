@@ -42,8 +42,20 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "noctula",
-      "evo_stage": "basic"
+      "slug": "noctalo",
+      "stage": "stage1",
+      "evolves_from": [
+        "noctula"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "noctula",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "noctalo"
+      ]
     }
   ],
   "terrains": [],

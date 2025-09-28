@@ -54,12 +54,30 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "cardiling",
-      "evo_stage": "basic"
+      "slug": "cardinale",
+      "stage": "stage2",
+      "evolves_from": [
+        "cardiwing"
+      ],
+      "evolves_into": []
     },
     {
-      "mon_slug": "cardiwing",
-      "evo_stage": "stage1"
+      "slug": "cardiling",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "cardiwing"
+      ]
+    },
+    {
+      "slug": "cardiwing",
+      "stage": "stage1",
+      "evolves_from": [
+        "cardiling"
+      ],
+      "evolves_into": [
+        "cardinale"
+      ]
     }
   ],
   "terrains": [

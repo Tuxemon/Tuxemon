@@ -44,12 +44,30 @@
   ],
   "history": [
     {
-      "mon_slug": "brumi",
-      "evo_stage": "stage1"
+      "slug": "cackleen",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "brumi"
+      ]
     },
     {
-      "mon_slug": "bewhich",
-      "evo_stage": "stage2"
+      "slug": "brumi",
+      "stage": "stage1",
+      "evolves_from": [
+        "cackleen"
+      ],
+      "evolves_into": [
+        "bewhich"
+      ]
+    },
+    {
+      "slug": "bewhich",
+      "stage": "stage2",
+      "evolves_from": [
+        "brumi"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [

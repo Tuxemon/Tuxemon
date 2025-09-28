@@ -46,8 +46,20 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "pairagrin",
-      "evo_stage": "basic"
+      "slug": "pairagrim",
+      "stage": "stage1",
+      "evolves_from": [
+        "pairagrin"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "pairagrin",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "pairagrim"
+      ]
     }
   ],
   "terrains": [],

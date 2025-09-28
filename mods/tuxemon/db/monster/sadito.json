@@ -38,8 +38,23 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "chromeye",
-      "evo_stage": "basic"
+      "slug": "sadito",
+      "stage": "stage1",
+      "evolves_from": [
+        "chromeye"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "chromeye",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "angrito",
+        "happito",
+        "neutrito",
+        "sadito"
+      ]
     }
   ],
   "terrains": [

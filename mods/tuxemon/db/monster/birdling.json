@@ -42,8 +42,20 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "hatchling",
-      "evo_stage": "basic"
+      "slug": "birdling",
+      "stage": "stage1",
+      "evolves_from": [
+        "hatchling"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "hatchling",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "birdling"
+      ]
     }
   ],
   "terrains": [

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+from collections import deque
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Optional
 
@@ -10,8 +11,13 @@ from tuxemon.constants.asset_loader import fetch_asset
 from tuxemon.db import Direction
 
 if TYPE_CHECKING:
-    from tuxemon.client import LocalPygameClient
+    from tuxemon.boundary import BoundaryChecker
+    from tuxemon.map.map_manager import MapManager
+    from tuxemon.map.map_transition import MapTransition
+    from tuxemon.movement import MovementManager
     from tuxemon.npc import NPC
+    from tuxemon.npc_manager import NPCManager
+    from tuxemon.state.manager import StateManager
 
 logger = logging.getLogger(__name__)
 
@@ -40,13 +46,35 @@ class TeleportFaint:
 
 
 @dataclass
-class DelayedTeleport:
-    char: Optional[NPC] = None
-    mapname: str = ""
-    x: int = 0
-    y: int = 0
+class TeleportRequest:
+    char: Optional[NPC]
+    mapname: str
+    x: int
+    y: int
     facing: Optional[Direction] = None
-    is_active: bool = False
+    source_map: Optional[str] = None
+    source_x: Optional[int] = None
+    source_y: Optional[int] = None
+
+
+class TeleportQueue:
+    def __init__(self) -> None:
+        self.queue: deque[TeleportRequest] = deque()
+
+    def enqueue(self, request: TeleportRequest) -> None:
+        self.queue.append(request)
+
+    def dequeue(self) -> Optional[TeleportRequest]:
+        return self.queue.popleft() if self.queue else None
+
+    def peek(self) -> Optional[TeleportRequest]:
+        return self.queue[0] if self.queue else None
+
+    def clear(self) -> None:
+        self.queue.clear()
+
+    def is_empty(self) -> bool:
+        return not self.queue
 
 
 class Teleporter:
@@ -57,64 +85,43 @@ class Teleporter:
     characters to specific locations. It ensures the smooth transition
     of characters between maps, handles screen state changes, and maintains
     game world consistency during teleportation.
-
-    Attributes:
-        client: The client responsible for rendering and managing the game's
-            graphical interface and user interactions.
-        world: The current game world state that contains maps, characters,
-            and game logic.
-
-        delayed_teleport (DelayedTeleport): An object encapsulating all the
-            parameters related to delayed teleportation, including:
-            - char: The character to teleport, or None for the player.
-            - mapname: The target map's name. Must exist in the game's world
-                state.
-            - x: The X coordinate within the target map. Must be valid within
-                boundaries.
-            - y: The Y coordinate within the target map. Must be valid within
-                boundaries.
-            - facing: The direction the character faces post-teleportation.
-            - is_active: Indicates whether delayed teleportation is pending.
     """
 
     def __init__(
         self,
-        client: LocalPygameClient,
-        delayed_teleport: Optional[DelayedTeleport] = None,
+        boundary: BoundaryChecker,
+        map_manager: MapManager,
+        map_transition: MapTransition,
+        movement_manager: MovementManager,
+        npc_manager: NPCManager,
+        state_manager: StateManager,
     ) -> None:
-        self.client = client
-        self.boundary = client.boundary
-        self.map_manager = client.map_manager
-        self.map_transition = client.map_transition
-        self.movement_manager = client.movement_manager
-        self.npc_manager = client.npc_manager
-        self.state_manager = client.state_manager
-        self.delayed_teleport = delayed_teleport or DelayedTeleport()
+        self.boundary = boundary
+        self.map_manager = map_manager
+        self.map_transition = map_transition
+        self.movement_manager = movement_manager
+        self.npc_manager = npc_manager
+        self.state_manager = state_manager
+        self.teleport_queue = TeleportQueue()
+        self.last_teleport_request: Optional[TeleportRequest] = None
 
-    def handle_delayed_teleport(self, character: NPC) -> None:
-        if self.delayed_teleport:
-            self.execute_delayed_teleport(character)
+    def handle_next_teleport(self, character: NPC) -> None:
+        request = self.teleport_queue.dequeue()
+        if request:
+            self.last_teleport_request = request
+            self.execute_teleport(character, request)
 
-    def execute_delayed_teleport(self, character: NPC) -> None:
-        """
-        Executes the delayed teleportation.
-
-        Parameters:
-            char: The character to teleport, or None if the player.
-        """
-        if self.delayed_teleport.is_active:
-            self.teleport_character(
-                self.delayed_teleport.char or character,
-                self.delayed_teleport.mapname,
-                self.delayed_teleport.x,
-                self.delayed_teleport.y,
-            )
-            if self.delayed_teleport.facing:
-                (self.delayed_teleport.char or character).set_facing(
-                    self.delayed_teleport.facing
-                )
-                self.delayed_teleport.facing = None
-            self.delayed_teleport.is_active = False
+    def execute_teleport(
+        self, character: NPC, request: TeleportRequest
+    ) -> None:
+        self.teleport_character(
+            request.char or character,
+            request.mapname,
+            request.x,
+            request.y,
+        )
+        if request.facing:
+            (request.char or character).set_facing(request.facing)
 
     def teleport_character(
         self,
@@ -153,7 +160,7 @@ class Teleporter:
         self.movement_manager.stop_char(character)
 
         if len(self.state_manager.active_states) == 2:
-            self.client.push_state_with_timeout("TeleporterState", 15)
+            self.state_manager.push_state_with_timeout("TeleporterState", 15)
 
         self.movement_manager.lock_controls(character)
         logger.info(f"{character.slug} is prepared for teleportation.")

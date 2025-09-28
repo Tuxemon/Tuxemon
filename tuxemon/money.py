@@ -8,7 +8,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING, Any, Optional
 
 if TYPE_CHECKING:
-    from tuxemon.npc import NPC, NPCState
+    from tuxemon.npc import NPC
 
 logger = logging.getLogger(__name__)
 
@@ -72,7 +72,7 @@ class MoneyController:
         """Prepares a dictionary of the money manager to be saved to a file."""
         return encode_money(self.money_manager)
 
-    def load(self, save_data: NPCState) -> None:
+    def load(self, save_data: Mapping[str, Any]) -> None:
         """Recreates money manager from saved data."""
         self.money_manager = decode_money(save_data["money"])
 

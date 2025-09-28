@@ -96,7 +96,7 @@ class CombatAnimations(Menu[None], ABC):
     def show_combat_dialog(self) -> None:
         """Create and show the area where battle messages are displayed."""
         # make the border and area at the bottom of the screen for messages
-        rect_screen = self.client.screen.get_rect()
+        rect_screen = prepare.SCREEN_RECT.copy()
         rect = Rect(0, 0, rect_screen.w, rect_screen.h // 4)
         rect.bottomright = rect_screen.w, rect_screen.h
         border = graphics.load_and_scale(self.borders_filename)
@@ -206,7 +206,7 @@ class CombatAnimations(Menu[None], ABC):
         self.sprite_map.add_sprite(monster, monster_sprite)
 
         # Position monster sprite off screen and animate it to final spot
-        monster_sprite.rect.top = self.client.screen.get_height()
+        monster_sprite.rect.top = prepare.SCREEN.get_height()
         self.animate(
             monster_sprite.rect,
             bottom=feet[1],
@@ -590,6 +590,43 @@ class CombatAnimations(Menu[None], ABC):
             if prev != dev.update_state():
                 animate = partial(self.animate, duration=0.1, delay=0.1)
                 dev.animate_capture(animate)
+
+    def update_background(self, bg_path: str) -> None:
+        import pygame
+
+        # Clear old
+        if hasattr(self, "background_sprite") and self.background_sprite:
+            if self.background_sprite in self.sprites:
+                self.sprites.remove(self.background_sprite)
+            self.background_sprite = None
+
+        # Load and scale to SCALE only (no stretching to full screen)
+        surf = graphics.load_and_scale(bg_path, prepare.SCALE)
+
+        # Create a full-screen surface (black by default)
+        full_height = prepare.SCREEN_RECT.height
+        full_width = prepare.SCREEN_RECT.width
+        full_surf = pygame.Surface((full_width, full_height))
+        full_surf.fill((0, 0, 0))  # fill rest with black
+
+        # Blit background onto the top of the full surface
+        full_surf.blit(surf, (0, 0))
+
+        # Extend last row of background downward to fill gap
+        last_row = surf.subsurface(
+            pygame.Rect(0, surf.get_height() - 1, surf.get_width(), 1)
+        )
+        for y in range(surf.get_height(), full_height):
+            full_surf.blit(last_row, (0, y))
+
+        # Wrap in sprite
+        spr = pygame.sprite.Sprite()
+        spr.image = full_surf
+        spr.rect = full_surf.get_rect()
+        spr.rect.topleft = (0, 0)
+
+        self.sprites.add(spr, layer=0)
+        self.background_sprite = spr
 
     def animate_parties_in(self) -> None:
         """Animate the parties entering the battle scene."""

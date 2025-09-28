@@ -47,8 +47,20 @@
   ],
   "history": [
     {
-      "mon_slug": "tigrock",
-      "evo_stage": "stage1"
+      "slug": "grimachin",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "tigrock"
+      ]
+    },
+    {
+      "slug": "tigrock",
+      "stage": "stage1",
+      "evolves_from": [
+        "grimachin"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [],

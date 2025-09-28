@@ -51,12 +51,30 @@
   ],
   "history": [
     {
-      "mon_slug": "lettice",
-      "evo_stage": "stage1"
+      "slug": "cohldrabi",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "lettice"
+      ]
     },
     {
-      "mon_slug": "frostuce",
-      "evo_stage": "stage2"
+      "slug": "lettice",
+      "stage": "stage1",
+      "evolves_from": [
+        "cohldrabi"
+      ],
+      "evolves_into": [
+        "frostuce"
+      ]
+    },
+    {
+      "slug": "frostuce",
+      "stage": "stage2",
+      "evolves_from": [
+        "lettice"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [

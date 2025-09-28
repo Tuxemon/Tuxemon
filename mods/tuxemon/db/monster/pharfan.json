@@ -63,8 +63,20 @@
   ],
   "history": [
     {
-      "mon_slug": "pharavion",
-      "evo_stage": "stage1"
+      "slug": "pharfan",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "pharavion"
+      ]
+    },
+    {
+      "slug": "pharavion",
+      "stage": "stage1",
+      "evolves_from": [
+        "pharfan"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [],

@@ -3,18 +3,21 @@
 from __future__ import annotations
 
 import logging
+import random
 from typing import TYPE_CHECKING
 
 from tuxemon.db import (
+    GenderType,
     LearningMethod,
     MonsterEvolutionItemModel,
+    PartyConditionsModel,
     SeenStatus,
-    StatType,
 )
 from tuxemon.locale import T
 from tuxemon.tools import compare
 
 if TYPE_CHECKING:
+    from tuxemon.entity_dir.party import PartyHandler
     from tuxemon.monster import Monster
 
 logger = logging.getLogger(__name__)
@@ -32,7 +35,10 @@ class Evolution:
 
     def has_history_to(self, slug: str) -> bool:
         return any(
-            history.mon_slug == slug for history in self.monster.history
+            history.slug == slug
+            or slug in history.evolves_from
+            or slug in history.evolves_into
+            for history in self.monster.history
         )
 
     def evolve_monster(self, new_monster: Monster) -> None:
@@ -70,7 +76,10 @@ class Evolution:
         new_monster.moves = self.monster.moves
         new_monster.status = self.monster.status
         new_monster.instance_id = self.monster.instance_id
-        new_monster.gender = self.monster.gender
+        if self.monster.gender in new_monster.possible_genders:
+            new_monster.gender = self.monster.gender
+        else:
+            new_monster.gender = random.choice(new_monster.possible_genders)
         new_monster.capture = self.monster.capture
         new_monster.capture_device = self.monster.capture_device
         new_monster.taste_cold = self.monster.taste_cold
@@ -144,27 +153,31 @@ class Evolution:
             conditions.extend(
                 monster in moves_slugs for monster in evolution_item.moves
             )
-        if evolution_item.party:
-            monster_slugs = {mon.slug for mon in owner.monsters}
-            conditions.extend(
-                monster in monster_slugs for monster in evolution_item.party
-            )
-        if evolution_item.taste_cold is not None:
-            conditions.append(
-                self.monster.taste_cold == evolution_item.taste_cold
-            )
-        if evolution_item.taste_warm is not None:
-            conditions.append(
-                self.monster.taste_warm == evolution_item.taste_warm
-            )
+
+        if evolution_item.tastes:
+            for taste_type, required_value in evolution_item.tastes.items():
+                monster_taste = getattr(
+                    self.monster, f"taste_{taste_type}", None
+                )
+                conditions.append(monster_taste == required_value)
 
         # Check if the monster's stats meet the evolution conditions
         if evolution_item.stats is not None:
-            params = evolution_item.stats.split(":")
-            operator = params[1]
-            stat1 = self.monster.return_stat(StatType(params[0]))
-            stat2 = self.monster.return_stat(StatType(params[2]))
-            conditions.append(compare(operator, stat1, stat2))
+            stat1 = self.monster.return_stat(evolution_item.stats.stat_type)
+            operator = evolution_item.stats.comparison
+
+            if evolution_item.stats.target_stat is not None:
+                stat2 = self.monster.return_stat(
+                    evolution_item.stats.target_stat
+                )
+            elif evolution_item.stats.target_value is not None:
+                stat2 = evolution_item.stats.target_value
+            else:
+                raise ValueError(
+                    "StatsComparison must have either target_stat or target_value."
+                )
+
+            conditions.append(compare(operator.value, stat1, stat2))
 
         # Check if the monster's game variables meet the evolution conditions
         if evolution_item.variables:
@@ -183,15 +196,93 @@ class Evolution:
             self.monster.levelling_up = True
             self.monster.got_experience = True
 
+        # Check if the party conditions
+        if evolution_item.party_conditions is not None:
+            conditions.append(
+                check_party_conditions(
+                    owner.party, evolution_item.party_conditions
+                )
+            )
+
         # Check if the monster's bond meets the evolution conditions
         if evolution_item.bond is not None:
-            parts = evolution_item.bond.split(":")
-            operator, value = parts[:2]
+            _operator = evolution_item.bond.comparison
+            _value = evolution_item.bond.value
             _bond = self.monster.bond
-            conditions.append(compare(operator, _bond, int(value)))
+            conditions.append(compare(_operator.value, _bond, _value))
 
-        # If the evolution requires an item, do not evolve
-        if evolution_item.item is not None:
-            return context.get("use_item", False)
+        # Check if the monster is holding the required item for evolution
+        if evolution_item.held_item is not None:
+            held_item = self.monster.held_item.get_item()
+            conditions.append(
+                held_item is not None
+                and held_item.slug == evolution_item.held_item
+            )
 
-        return all(conditions)
+        # If the evolution requires an item, do not evolve unless it's being used
+        if evolution_item.item is not None and not context.get(
+            "use_item", False
+        ):
+            return False
+
+        # No conditions, only probability
+        if not conditions and evolution_item.probability is not None:
+            return random.random() <= evolution_item.probability
+
+        # Conditions must all be met
+        if all(conditions):
+            # If probability is set, roll for it
+            if evolution_item.probability is not None:
+                return random.random() <= evolution_item.probability
+            # Otherwise, guaranteed evolution
+            return True
+
+        # Conditions not met
+        return False
+
+
+def check_party_conditions(
+    party_handler: PartyHandler, conditions_model: PartyConditionsModel
+) -> bool:
+    """
+    Evaluates whether the player's party meets the specified evolution conditions.
+    """
+    conditions = []
+
+    # Check party alignment
+    if conditions_model.alignment is not None:
+        alignment = party_handler.get_alignment()
+        conditions.append(alignment == conditions_model.alignment)
+
+    # Check required monster slugs
+    if conditions_model.monster_slugs is not None:
+        slug_counts: dict[str, int] = {}
+        for mon in party_handler.monsters:
+            slug_counts[mon.slug] = slug_counts.get(mon.slug, 0) + 1
+
+        for slug, required_count in conditions_model.monster_slugs.items():
+            conditions.append(slug_counts.get(slug, 0) >= required_count)
+
+    # Check required monster types
+    if conditions_model.monster_types is not None:
+        type_counts: dict[str, int] = {}
+        for mon in party_handler.monsters:
+            types = mon.types.current
+            for t in types:
+                slug = t.slug
+                type_counts[slug] = type_counts.get(slug, 0) + 1
+
+        for type_, required_count in conditions_model.monster_types.items():
+            conditions.append(type_counts.get(type_, 0) >= required_count)
+
+    # Check required genders
+    if conditions_model.genders is not None:
+        gender_counts: dict[GenderType, int] = {}
+        for mon in party_handler.monsters:
+            gender = mon.gender
+            gender_counts[gender] = gender_counts.get(gender, 0) + 1
+
+        for gender, required_count in conditions_model.genders.items():
+            conditions.append(gender_counts.get(gender, 0) >= required_count)
+
+    return all(conditions)

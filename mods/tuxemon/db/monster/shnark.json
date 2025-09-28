@@ -46,8 +46,20 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "nostray",
-      "evo_stage": "basic"
+      "slug": "shnark",
+      "stage": "stage1",
+      "evolves_from": [
+        "nostray"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "nostray",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "shnark"
+      ]
     }
   ],
   "terrains": [],

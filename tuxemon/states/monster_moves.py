@@ -126,6 +126,7 @@ class MonsterMovesState(PygameMenuState):
                 align=locals.ALIGN_LEFT,
                 float=True,
             )
+            assert not isinstance(self.description_label, list)
             self.description_label.translate(
                 fix_measure(width, 3.8 / 256), fix_measure(height, 113 / 144)
             )
@@ -165,6 +166,7 @@ class MonsterMovesState(PygameMenuState):
                 float=True,
             )
             # place it just above the description block
+            assert not isinstance(self.info_label, list)
             self.info_label.translate(
                 fix_measure(width, 206 / 256), fix_measure(height, 102 / 144)
             )
@@ -336,6 +338,7 @@ class MonsterMovesState(PygameMenuState):
             align=locals.ALIGN_LEFT,
             float=True,
         )
+        assert not isinstance(self.power_label, list)
         self.power_label.translate(
             fix_measure(width, 42 / 256), fix_measure(height, 87.8 / 144)
         )

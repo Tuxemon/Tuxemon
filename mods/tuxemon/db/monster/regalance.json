@@ -58,8 +58,20 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "claymorior",
-      "evo_stage": "basic"
+      "slug": "regalance",
+      "stage": "stage1",
+      "evolves_from": [
+        "claymorior"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "claymorior",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "regalance"
+      ]
     }
   ],
   "terrains": [

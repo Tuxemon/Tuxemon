@@ -10,8 +10,8 @@ from tuxemon.db import (
     db,
 )
 from tuxemon.event.eventaction import ActionManager
-from tuxemon.event.eventcondition import ConditionManager
 from tuxemon.event.eventengine import EventEngine
+from tuxemon.event.running import ConditionEvaluator
 from tuxemon.game_variables import GameVariablesManager
 from tuxemon.npc import PartyHandler
 from tuxemon.player import Player
@@ -118,11 +118,11 @@ class TestMonsterActions(unittest.TestCase):
 
     def setUp(self):
         action = ActionManager()
-        condition = ConditionManager()
+        evaluator = ConditionEvaluator(MagicMock(), MagicMock())
         self.mock_screen = MagicMock()
         local_session.set_client(MagicMock())
         local_session.client.event_engine = EventEngine(
-            local_session, action, condition
+            local_session, action, evaluator
         )
         with patch.object(Player, "__init__", mockPlayer):
             self.action = local_session.client.event_engine

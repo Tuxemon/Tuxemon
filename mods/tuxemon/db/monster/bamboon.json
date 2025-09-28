@@ -46,8 +46,24 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "budaye",
-      "evo_stage": "basic"
+      "slug": "bamboon",
+      "stage": "stage1",
+      "evolves_from": [
+        "budaye",
+        "budaye"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "budaye",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "bamboon",
+        "bamboon",
+        "frondly",
+        "frondly"
+      ]
     }
   ],
   "terrains": [

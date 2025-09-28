@@ -55,8 +55,20 @@
   ],
   "history": [
     {
-      "mon_slug": "wolololl",
-      "evo_stage": "stage1"
+      "slug": "hoodoll",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "wolololl"
+      ]
+    },
+    {
+      "slug": "wolololl",
+      "stage": "stage1",
+      "evolves_from": [
+        "hoodoll"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [

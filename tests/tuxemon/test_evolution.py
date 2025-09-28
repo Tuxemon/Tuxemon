@@ -3,8 +3,16 @@
 import unittest
 from unittest.mock import MagicMock, patch
 
-from tuxemon.db import Acquisition, MonsterEvolutionItemModel
-from tuxemon.element import Element
+from tuxemon.db import (
+    Acquisition,
+    BondComparison,
+    Comparison,
+    GenderType,
+    MonsterEvolutionItemModel,
+    PartyConditionsModel,
+    StatsComparison,
+    StatType,
+)
 from tuxemon.game_variables import GameVariablesManager
 from tuxemon.monster import Monster
 from tuxemon.npc import PartyHandler
@@ -109,61 +117,81 @@ class TestCanEvolve(unittest.TestCase):
         self.assertFalse(self.mon.evolution_handler.can_evolve(evo, context))
 
     def test_party_match(self):
-        evo = MonsterEvolutionItemModel(monster_slug="rockat", party=["nut"])
+        evo = MonsterEvolutionItemModel(
+            monster_slug="rockat",
+            party_conditions=PartyConditionsModel(monster_slugs={"nut": 1}),
+        )
         context = {"map_inside": True}
         self.assertTrue(self.mon.evolution_handler.can_evolve(evo, context))
 
     def test_party_match_double(self):
         evo = MonsterEvolutionItemModel(
-            monster_slug="rockat", party=["nut", "rockitten"]
+            monster_slug="rockat",
+            party_conditions=PartyConditionsModel(
+                monster_slugs={"nut": 1, "rockitten": 1}
+            ),
         )
         context = {"map_inside": True}
         self.assertTrue(self.mon.evolution_handler.can_evolve(evo, context))
 
     def test_party_mismatch(self):
         evo = MonsterEvolutionItemModel(
-            monster_slug="rockat", party=["agnidon"]
+            monster_slug="rockat",
+            party_conditions=PartyConditionsModel(
+                monster_slugs={"agnidon": 1}
+            ),
         )
         context = {"map_inside": True}
         self.assertFalse(self.mon.evolution_handler.can_evolve(evo, context))
 
-    def test_taste_cold_match(self):
+    def test_taste_match(self):
         self.mon.taste_cold = "flakey"
-        evo = MonsterEvolutionItemModel(
-            monster_slug="rockat", taste_cold="flakey"
+        evo_cold = MonsterEvolutionItemModel(
+            monster_slug="rockat", tastes={"cold": "flakey"}
         )
         context = {"map_inside": True}
-        self.assertTrue(self.mon.evolution_handler.can_evolve(evo, context))
+        self.assertTrue(
+            self.mon.evolution_handler.can_evolve(evo_cold, context)
+        )
 
-    def test_taste_cold_mismatch(self):
+        self.mon.taste_warm = "peppy"
+        evo_warm = MonsterEvolutionItemModel(
+            monster_slug="rockat", tastes={"warm": "peppy"}
+        )
+        context = {"map_inside": True}
+        self.assertTrue(
+            self.mon.evolution_handler.can_evolve(evo_warm, context)
+        )
+
+    def test_taste_mismatch(self):
         self.mon.taste_cold = "mild"
-        evo = MonsterEvolutionItemModel(
-            monster_slug="rockat", taste_cold="flakey"
+        evo_cold = MonsterEvolutionItemModel(
+            monster_slug="rockat", tastes={"cold": "flakey"}
         )
         context = {"map_inside": True}
-        self.assertFalse(self.mon.evolution_handler.can_evolve(evo, context))
+        self.assertFalse(
+            self.mon.evolution_handler.can_evolve(evo_cold, context)
+        )
 
-    def test_taste_warm_match(self):
         self.mon.taste_warm = "peppy"
-        evo = MonsterEvolutionItemModel(
-            monster_slug="rockat", taste_warm="peppy"
+        evo_warm = MonsterEvolutionItemModel(
+            monster_slug="rockat", tastes={"warm": "salty"}
         )
         context = {"map_inside": True}
-        self.assertTrue(self.mon.evolution_handler.can_evolve(evo, context))
-
-    def test_taste_warm_mismatch(self):
-        self.mon.taste_warm = "peppy"
-        evo = MonsterEvolutionItemModel(
-            monster_slug="rockat", taste_warm="salty"
+        self.assertFalse(
+            self.mon.evolution_handler.can_evolve(evo_warm, context)
         )
-        context = {"map_inside": True}
-        self.assertFalse(self.mon.evolution_handler.can_evolve(evo, context))
 
     def test_stats_match(self):
         self.mon.base_stats.hp = 30
         self.mon.base_stats.melee = 20
         evo = MonsterEvolutionItemModel(
-            monster_slug="rockat", stats="hp:greater_or_equal:melee"
+            monster_slug="rockat",
+            stats=StatsComparison(
+                stat_type=StatType.hp,
+                comparison=Comparison.greater_or_equal,
+                target_stat=StatType.melee,
+            ),
         )
         context = {"map_inside": True}
         self.assertTrue(self.mon.evolution_handler.can_evolve(evo, context))
@@ -172,7 +200,12 @@ class TestCanEvolve(unittest.TestCase):
         self.mon.base_stats.speed = 5
         self.mon.base_stats.armour = 10
         evo = MonsterEvolutionItemModel(
-            monster_slug="rockat", stats="speed:greater_or_equal:armour"
+            monster_slug="rockat",
+            stats=StatsComparison(
+                stat_type=StatType.speed,
+                comparison=Comparison.greater_or_equal,
+                target_stat=StatType.armour,
+            ),
         )
         context = {"map_inside": True}
         self.assertFalse(self.mon.evolution_handler.can_evolve(evo, context))
@@ -227,7 +260,10 @@ class TestCanEvolve(unittest.TestCase):
     def test_bond_match(self):
         self.mon.bond = 10
         evo = MonsterEvolutionItemModel(
-            monster_slug="rockat", bond="greater_or_equal:10"
+            monster_slug="rockat",
+            bond=BondComparison(
+                comparison=Comparison.greater_or_equal, value=10
+            ),
         )
         context = {"map_inside": True}
         self.assertTrue(self.mon.evolution_handler.can_evolve(evo, context))
@@ -235,33 +271,38 @@ class TestCanEvolve(unittest.TestCase):
     def test_bond_mismatch(self):
         self.mon.bond = 5
         evo = MonsterEvolutionItemModel(
-            monster_slug="rockat", bond="greater_or_equal:10"
+            monster_slug="rockat",
+            bond=BondComparison(
+                comparison=Comparison.greater_or_equal, value=10
+            ),
         )
         context = {"map_inside": True}
         self.assertFalse(self.mon.evolution_handler.can_evolve(evo, context))
 
     def test_item_match(self):
         evo = MonsterEvolutionItemModel(
-            monster_slug="botbot", item="booster_tech"
+            monster_slug="botbot", item={"booster_tech": 1.0}
         )
         context = {"map_inside": True, "use_item": True}
         self.assertTrue(self.mon.evolution_handler.can_evolve(evo, context))
 
     def test_item_mismatch(self):
         evo = MonsterEvolutionItemModel(
-            monster_slug="botbot", item="booster_tech"
+            monster_slug="botbot", item={"booster_tech": 1.0}
         )
         context = {"map_inside": True, "use_item": False}
         self.assertFalse(self.mon.evolution_handler.can_evolve(evo, context))
 
     def test_element_match(self):
-        self.mon.types.set_types([Element("metal")])
+        element = MagicMock(slug="metal")
+        self.mon.types.set_types([element])
         evo = MonsterEvolutionItemModel(monster_slug="botbot", element="metal")
         context = {"map_inside": True}
         self.assertTrue(self.mon.evolution_handler.can_evolve(evo, context))
 
     def test_element_mismatch(self):
-        self.mon.types.set_types([Element("metal")])
+        element = MagicMock(slug="metal")
+        self.mon.types.set_types([element])
         evo = MonsterEvolutionItemModel(monster_slug="botbot", element="water")
         context = {"map_inside": True}
         self.assertFalse(self.mon.evolution_handler.can_evolve(evo, context))
@@ -278,6 +319,150 @@ class TestCanEvolve(unittest.TestCase):
         self.mon.moves.moves = [tech]
         evo = MonsterEvolutionItemModel(
             monster_slug="rockat", moves=["strike"]
+        )
+        context = {"map_inside": True}
+        self.assertFalse(self.mon.evolution_handler.can_evolve(evo, context))
+
+    @patch("random.random", return_value=0.05)
+    def test_probability_success(self, mock_random):
+        self.mon.level = 20
+        evo = MonsterEvolutionItemModel(
+            monster_slug="rockat", at_level=20, probability=0.1  # 10% chance
+        )
+        context = {"map_inside": True}
+        self.assertTrue(self.mon.evolution_handler.can_evolve(evo, context))
+
+    @patch("random.random", return_value=0.15)
+    def test_probability_failure(self, mock_random):
+        self.mon.level = 20
+        evo = MonsterEvolutionItemModel(
+            monster_slug="rockat", at_level=20, probability=0.1  # 10% chance
+        )
+        context = {"map_inside": True}
+        self.assertFalse(self.mon.evolution_handler.can_evolve(evo, context))
+
+    @patch("random.random", return_value=0.05)
+    def test_evolution_probability_only_success(self, mock_random):
+        evo = MonsterEvolutionItemModel(
+            monster_slug="rockat", probability=0.1  # 10% chance
+        )
+        context = {"map_inside": True}
+        self.assertTrue(self.mon.evolution_handler.can_evolve(evo, context))
+
+    @patch("random.random", return_value=0.15)
+    def test_evolution_probability_only_failure(self, mock_random):
+        evo = MonsterEvolutionItemModel(
+            monster_slug="rockat", probability=0.1  # 10% chance
+        )
+        context = {"map_inside": True}
+        self.assertFalse(self.mon.evolution_handler.can_evolve(evo, context))
+
+    def test_evolution_with_correct_held_item(self):
+        item = MagicMock(slug="potion")
+        self.mon.held_item = MagicMock()
+        self.mon.held_item.get_item = MagicMock(return_value=item)
+
+        evo = MonsterEvolutionItemModel(
+            monster_slug="rockat", held_item="potion"
+        )
+        context = {"map_inside": True}
+        self.assertTrue(self.mon.evolution_handler.can_evolve(evo, context))
+
+    def test_evolution_with_wrong_held_item(self):
+        item = MagicMock(slug="tea")
+        self.mon.held_item = MagicMock()
+        self.mon.held_item.get_item = MagicMock(return_value=item)
+
+        evo = MonsterEvolutionItemModel(
+            monster_slug="rockat", held_item="potion"
+        )
+        context = {"map_inside": True}
+        self.assertFalse(self.mon.evolution_handler.can_evolve(evo, context))
+
+    def test_evolution_with_no_item_held(self):
+        self.mon.held_item = MagicMock()
+        self.mon.held_item.get_item = MagicMock(return_value=None)
+
+        evo = MonsterEvolutionItemModel(
+            monster_slug="rockat", held_item="potion"
+        )
+        context = {"map_inside": True}
+        self.assertFalse(self.mon.evolution_handler.can_evolve(evo, context))
+
+    def test_can_evolve_party_alignment_matches(self):
+        with patch.object(
+            self.player.party, "get_alignment", return_value="fire"
+        ):
+            evolution_item = MonsterEvolutionItemModel(
+                monster_slug="nut",
+                party_conditions=PartyConditionsModel(alignment="fire"),
+            )
+            context = {"map_inside": True}
+            result = self.mon.evolution_handler.can_evolve(
+                evolution_item, context
+            )
+            self.assertTrue(result)
+
+    def test_can_evolve_party_alignment_mismatch(self):
+        with patch.object(
+            self.player.party, "get_alignment", return_value="water"
+        ):
+            evolution_item = MonsterEvolutionItemModel(
+                monster_slug="nut",
+                party_conditions=PartyConditionsModel(alignment="fire"),
+            )
+            context = {"map_inside": True}
+            result = self.mon.evolution_handler.can_evolve(
+                evolution_item, context
+            )
+            self.assertFalse(result)
+
+    def test_can_evolve_gender_match(self):
+        for mon in self.player.party._monsters:
+            mon.gender = GenderType.male
+
+        evo = MonsterEvolutionItemModel(
+            monster_slug="rockat",
+            party_conditions=PartyConditionsModel(
+                genders={GenderType.male: 1}
+            ),
+        )
+        context = {"map_inside": True}
+        self.assertTrue(self.mon.evolution_handler.can_evolve(evo, context))
+
+    def test_can_evolve_gender_mismatch(self):
+        for mon in self.player.party._monsters:
+            mon.gender = GenderType.female
+
+        evo = MonsterEvolutionItemModel(
+            monster_slug="rockat",
+            party_conditions=PartyConditionsModel(
+                genders={GenderType.male: 1}
+            ),
+        )
+        context = {"map_inside": True}
+        self.assertFalse(self.mon.evolution_handler.can_evolve(evo, context))
+
+    def test_can_evolve_type_match(self):
+        element = MagicMock(slug="earth")
+        for mon in self.player.party._monsters:
+            mon.types.set_types([element])
+
+        evo = MonsterEvolutionItemModel(
+            monster_slug="rockat",
+            party_conditions=PartyConditionsModel(monster_types={"earth": 1}),
+        )
+        context = {"map_inside": True}
+        self.assertTrue(self.mon.evolution_handler.can_evolve(evo, context))
+
+    def test_can_evolve_type_mismatch(self):
+        element = MagicMock(slug="water")
+        for mon in self.player.party._monsters:
+            mon.types.set_types([element])
+
+        evo = MonsterEvolutionItemModel(
+            monster_slug="rockat",
+            party_conditions=PartyConditionsModel(monster_types={"fire": 1}),
         )
         context = {"map_inside": True}
         self.assertFalse(self.mon.evolution_handler.can_evolve(evo, context))

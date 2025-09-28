@@ -47,12 +47,30 @@
   ],
   "history": [
     {
-      "mon_slug": "beenstalker",
-      "evo_stage": "stage1"
+      "slug": "turnipper",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "beenstalker"
+      ]
     },
     {
-      "mon_slug": "wendigger",
-      "evo_stage": "stage2"
+      "slug": "beenstalker",
+      "stage": "stage1",
+      "evolves_from": [
+        "turnipper"
+      ],
+      "evolves_into": [
+        "wendigger"
+      ]
+    },
+    {
+      "slug": "wendigger",
+      "stage": "stage2",
+      "evolves_from": [
+        "beenstalker"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [

@@ -43,8 +43,20 @@
   ],
   "history": [
     {
-      "mon_slug": "strella",
-      "evo_stage": "stage1"
+      "slug": "pipis",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "strella"
+      ]
+    },
+    {
+      "slug": "strella",
+      "stage": "stage1",
+      "evolves_from": [
+        "pipis"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [],

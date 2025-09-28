@@ -31,12 +31,30 @@
   ],
   "history": [
     {
-      "mon_slug": "nebufin",
-      "evo_stage": "basic"
+      "slug": "galasces",
+      "stage": "stage1",
+      "evolves_from": [
+        "nebufin"
+      ],
+      "evolves_into": [
+        "novaquarius"
+      ]
     },
     {
-      "mon_slug": "novaquarius",
-      "evo_stage": "stage2"
+      "slug": "nebufin",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "galasces"
+      ]
+    },
+    {
+      "slug": "novaquarius",
+      "stage": "stage2",
+      "evolves_from": [
+        "galasces"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [

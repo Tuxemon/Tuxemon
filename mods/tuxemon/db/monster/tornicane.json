@@ -42,12 +42,31 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "seirein",
-      "evo_stage": "basic"
+      "slug": "tornicane",
+      "stage": "stage2",
+      "evolves_from": [
+        "spirain"
+      ],
+      "evolves_into": []
     },
     {
-      "mon_slug": "spirain",
-      "evo_stage": "stage1"
+      "slug": "seirein",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "loliferno",
+        "spirain"
+      ]
+    },
+    {
+      "slug": "spirain",
+      "stage": "stage1",
+      "evolves_from": [
+        "seirein"
+      ],
+      "evolves_into": [
+        "tornicane"
+      ]
     }
   ],
   "terrains": [

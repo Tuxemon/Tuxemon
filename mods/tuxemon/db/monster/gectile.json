@@ -55,12 +55,30 @@
   ],
   "history": [
     {
-      "mon_slug": "anoleaf",
-      "evo_stage": "basic"
+      "slug": "gectile",
+      "stage": "stage1",
+      "evolves_from": [
+        "anoleaf"
+      ],
+      "evolves_into": [
+        "velocitile"
+      ]
     },
     {
-      "mon_slug": "velocitile",
-      "evo_stage": "stage2"
+      "slug": "anoleaf",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "gectile"
+      ]
+    },
+    {
+      "slug": "velocitile",
+      "stage": "stage2",
+      "evolves_from": [
+        "gectile"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [

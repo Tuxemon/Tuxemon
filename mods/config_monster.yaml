@@ -5,3 +5,13 @@ bond_range: [0, 100]
 weight_range: [-0.1, 0.1]
 # Defines a random interval for height fluctuation (±10% variation)
 height_range: [-0.1, 0.1]
+# Experience gain multipliers based on acquisition method
+experience_multipliers:
+  unknown: 1.0        # Neutral baseline
+  captured: 1.0       # Standard experience gain
+  traded: 1.5         # Boost for socially acquired creatures
+  bred: 1.2           # Slight bonus for homegrown companions
+  gifted: 1.2         # Emotional value translates to faster growth
+  purchased: 0.9      # Slight malus—less personal connection
+  rescued: 1.3        # Strong emotional arc boosts experience
+  created: 1.0        # Neutral—can be adjusted based on lore

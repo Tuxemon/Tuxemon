@@ -26,8 +26,20 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "eskipup",
-      "evo_stage": "basic"
+      "slug": "houndice",
+      "stage": "stage1",
+      "evolves_from": [
+        "eskipup"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "eskipup",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "houndice"
+      ]
     }
   ],
   "terrains": [

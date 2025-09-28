@@ -38,8 +38,20 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "tumbleworm",
-      "evo_stage": "basic"
+      "slug": "tumblebee",
+      "stage": "stage1",
+      "evolves_from": [
+        "tumbleworm"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "tumbleworm",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "tumblebee"
+      ]
     }
   ],
   "terrains": [],

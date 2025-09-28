@@ -54,8 +54,20 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "embra",
-      "evo_stage": "basic"
+      "slug": "ruption",
+      "stage": "stage1",
+      "evolves_from": [
+        "embra"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "embra",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "ruption"
+      ]
     }
   ],
   "terrains": [],

@@ -26,12 +26,30 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "nebufin",
-      "evo_stage": "basic"
+      "slug": "novaquarius",
+      "stage": "stage2",
+      "evolves_from": [
+        "galasces"
+      ],
+      "evolves_into": []
     },
     {
-      "mon_slug": "galasces",
-      "evo_stage": "stage1"
+      "slug": "nebufin",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "galasces"
+      ]
+    },
+    {
+      "slug": "galasces",
+      "stage": "stage1",
+      "evolves_from": [
+        "nebufin"
+      ],
+      "evolves_into": [
+        "novaquarius"
+      ]
     }
   ],
   "terrains": [],

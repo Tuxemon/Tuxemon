@@ -35,12 +35,30 @@
   ],
   "history": [
     {
-      "mon_slug": "cobarett",
-      "evo_stage": "stage1"
+      "slug": "hissiorite",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "cobarett"
+      ]
     },
     {
-      "mon_slug": "pythonova",
-      "evo_stage": "stage2"
+      "slug": "cobarett",
+      "stage": "stage1",
+      "evolves_from": [
+        "hissiorite"
+      ],
+      "evolves_into": [
+        "pythonova"
+      ]
+    },
+    {
+      "slug": "pythonova",
+      "stage": "stage2",
+      "evolves_from": [
+        "cobarett"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [

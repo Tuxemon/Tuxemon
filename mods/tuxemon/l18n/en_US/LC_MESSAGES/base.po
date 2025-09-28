@@ -341,6 +341,14 @@ msgstr "Raise Speed"
 msgid "raise_speed_description"
 msgstr "Learn the reflexes of the spinel. Increase Speed by 5%."
 
+msgid "alpha_seep"
+msgstr "Alpha Seep"
+
+msgid "alpha_seep_description"
+msgstr ""
+"Thick, mucosal secretion harvested from the scent glands of apex predators "
+"at the peak of their territorial cycle."
+
 msgid "fishing_rod"
 msgstr "Fishing Rod"
 

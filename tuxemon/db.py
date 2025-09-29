@@ -1096,6 +1096,13 @@ class SpeedLabel(str, Enum):
             SpeedLabel.EXTREMELY_FAST: 3,
         }[self]
 
+    @classmethod
+    def from_numeric(cls, value: int) -> SpeedLabel:
+        for label in cls:
+            if label.numeric_value == value:
+                return label
+        return cls.NORMAL
+
 
 class TechSort(str, Enum):
     damage = "damage"

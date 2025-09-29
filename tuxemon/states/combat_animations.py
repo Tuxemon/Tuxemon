@@ -82,6 +82,7 @@ class CombatAnimations(Menu[None], ABC):
         self.hud_manager = CombatLayoutManager(_layout)
         self.status_icons = StatusIconManager(self, _layout, self.hud_manager)
         self.combat_zone = CombatZone(prepare.SCREEN_RECT)
+        self.background_sprite: Optional[Sprite] = None
 
     def draw(self, surface: Surface) -> None:
         """
@@ -592,8 +593,6 @@ class CombatAnimations(Menu[None], ABC):
                 dev.animate_capture(animate)
 
     def update_background(self, bg_path: str) -> None:
-        import pygame
-
         # Clear old
         if hasattr(self, "background_sprite") and self.background_sprite:
             if self.background_sprite in self.sprites:
@@ -606,7 +605,7 @@ class CombatAnimations(Menu[None], ABC):
         # Create a full-screen surface (black by default)
         full_height = prepare.SCREEN_RECT.height
         full_width = prepare.SCREEN_RECT.width
-        full_surf = pygame.Surface((full_width, full_height))
+        full_surf = Surface((full_width, full_height))
         full_surf.fill((0, 0, 0))  # fill rest with black
 
         # Blit background onto the top of the full surface
@@ -614,13 +613,13 @@ class CombatAnimations(Menu[None], ABC):
 
         # Extend last row of background downward to fill gap
         last_row = surf.subsurface(
-            pygame.Rect(0, surf.get_height() - 1, surf.get_width(), 1)
+            Rect(0, surf.get_height() - 1, surf.get_width(), 1)
         )
         for y in range(surf.get_height(), full_height):
             full_surf.blit(last_row, (0, y))
 
         # Wrap in sprite
-        spr = pygame.sprite.Sprite()
+        spr = Sprite()
         spr.image = full_surf
         spr.rect = full_surf.get_rect()
         spr.rect.topleft = (0, 0)

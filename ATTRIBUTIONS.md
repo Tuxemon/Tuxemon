@@ -2114,17 +2114,21 @@ Sounds
 
 * "Japanese Temple Bell Small" by [Mike Koenig](https://soundbible.com/1496-Japanese-Temple-Bell-Small.html) is licensed under [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/)
 
-* "25819_freqman_splash-1.wav" by [FreqMan](https://www.freesound.org/people/FreqMan/sounds/25819/) is licensed under CC BY 4.0.
+* "splash-1.wav" by [FreqMan](https://www.freesound.org/people/FreqMan/sounds/25819/) is licensed under CC BY 4.0.
 
-* "262310 steffcaffrey cat-purr-twit5.wav" and "262314 steffcaffrey cat-meow3.wav" by [Steffcaffrey](https://wiki.tuxemon.org/File:262310_steffcaffrey_cat-purr-twit5.wav) are licensed under CC0.
+* "cat-purr-twit5.wav" and "cat-meow3.wav" by [Steffcaffrey](https://wiki.tuxemon.org/File:262310_steffcaffrey_cat-purr-twit5.wav) are licensed under CC0.
 
-* "353067 josepharaoh99 bite-cartoon-style.mp3", "354182 josepharaoh99 creature-roar.mp3", "354183 josepharaoh99 robotic-pig.mp3", "361470 josepharaoh99 crow-caw.mp3" and "353624 josepharaoh99 game-shot-light-gun.wav" by [josepharaoh99](https://freesound.org/people/Jofae/) are licensed under CC0.
+* "bite-cartoon-style.mp3", "creature-roar.mp3", "robotic-pig.mp3", "crow-caw.mp3" and "game-shot-light-gun.wav" by [josepharaoh99](https://freesound.org/people/Jofae/) are licensed under CC0.
 
-* "Bark.wav" by [Superpowers Asset Packs](https://github.com/sparklinlabs/superpowers-asset-packs) are licensed under CC0.
+* "Bark.wav", "Steel Clang.wav", "Swords Clash.wav", "Woosh-1.wav" and "Woosh-2.wav" by [Superpowers Asset Packs](https://github.com/sparklinlabs/superpowers-asset-packs) are licensed under CC0.
 
-* "bug_03.ogg", "bug_05.ogg", "bug_09.ogg", "bug_12.ogg", "burble_02.ogg", "burp_02.ogg", "cute_01.ogg" through "cute_04.ogg", "die_04.ogg", "eat_01.ogg", "eat_03.ogg", "grunt_02.ogg" through "grunt_04.ogg", "human_06.ogg", "monster_05.ogg", "monster_06.ogg", "monster_16.ogg", "monster_17.ogg", "monster_19.ogg", "misc_06.ogg", "misc_07.ogg", "misc_10.ogg", "misc_12.ogg" by rubberduck ((pack 1)[https://opengameart.org/content/80-cc0-creature-sfx] and (pack 2)[https://opengameart.org/content/80-cc0-creture-sfx-2]) are licensed under CC0.
+* "bug_03.ogg", "bug_05.ogg", "bug_09.ogg", "bug_12.ogg", "burble_02.ogg", "burp_02.ogg", "cute_01.ogg" through "cute_04.ogg", "die_04.ogg", "eat_01.ogg", "eat_03.ogg", "grunt_02.ogg" through "grunt_04.ogg", "human_06.ogg", "monster_05.ogg", "monster_06.ogg", "monster_16.ogg", "monster_17.ogg", "monster_19.ogg", "misc_06.ogg", "misc_07.ogg", "misc_10.ogg", "misc_12.ogg", "roar_03.ogg", "roar_05.ogg", "spit_01.ogg", "spit_02.ogg", "troll_01.ogg", "troll_02.ogg" and "weird_09.ogg" by rubberduck ((pack 1)[https://opengameart.org/content/80-cc0-creature-sfx] and (pack 2)[https://opengameart.org/content/80-cc0-creture-sfx-2]) are licensed under CC0.
 
-* "Misc 06 wood and metal.ogg" and "Misc_07_metal.ogg" by [rubberduck](https://opengameart.org/users/rubberduck) is licensed under CC0.
+* "Misc 06 wood and metal.ogg", "Misc_07_metal.ogg" and "Stones_04.ogg" by [rubberduck](https://opengameart.org/users/rubberduck) are licensed under CC0.
+
+* "retro_beep05.ogg", "retro_beep06.ogg", "shoot_02.ogg", "teleport_02.ogg" and "terminal_03.ogg" by [rubberduck](https://opengameart.org/content/50-cc0-sci-fi-sfx) are licensed under CC0.
+
+* "spell_fire_06.ogg" and "spell_fire_07.ogg" by [rubberduck](https://opengameart.org/content/80-cc0-rpg-sfx) is licensed under CC0.
 
 * "Echo-gurgle-whoosh 1.wav" by [Arthur](https://opengameart.org/content/warp-sound-3) is licensed under CC BY-SA 3.0.
 

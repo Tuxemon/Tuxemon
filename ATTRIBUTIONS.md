@@ -2114,6 +2114,28 @@ Sounds
 
 * "Japanese Temple Bell Small" by [Mike Koenig](https://soundbible.com/1496-Japanese-Temple-Bell-Small.html) is licensed under [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/)
 
+* "25819_freqman_splash-1.wav" by [FreqMan](https://www.freesound.org/people/FreqMan/sounds/25819/) is licensed under CC BY 4.0.
+
+* "262310 steffcaffrey cat-purr-twit5.wav" and "262314 steffcaffrey cat-meow3.wav" by [Steffcaffrey](https://wiki.tuxemon.org/File:262310_steffcaffrey_cat-purr-twit5.wav) are licensed under CC0.
+
+* "353067 josepharaoh99 bite-cartoon-style.mp3", "354182 josepharaoh99 creature-roar.mp3", "354183 josepharaoh99 robotic-pig.mp3", "361470 josepharaoh99 crow-caw.mp3" and "353624 josepharaoh99 game-shot-light-gun.wav" by [josepharaoh99](https://freesound.org/people/Jofae/) are licensed under CC0.
+
+* "Bark.wav" by [Superpowers Asset Packs](https://github.com/sparklinlabs/superpowers-asset-packs) are licensed under CC0.
+
+* "bug_03.ogg", "bug_05.ogg", "bug_09.ogg", "bug_12.ogg", "burble_02.ogg", "burp_02.ogg", "cute_01.ogg" through "cute_04.ogg", "die_04.ogg", "eat_01.ogg", "eat_03.ogg", "grunt_02.ogg" through "grunt_04.ogg", "human_06.ogg", "monster_05.ogg", "monster_06.ogg", "monster_16.ogg", "monster_17.ogg", "monster_19.ogg", "misc_06.ogg", "misc_07.ogg", "misc_10.ogg", "misc_12.ogg" by rubberduck ((pack 1)[https://opengameart.org/content/80-cc0-creature-sfx] and (pack 2)[https://opengameart.org/content/80-cc0-creture-sfx-2]) are licensed under CC0.
+
+* "Misc 06 wood and metal.ogg" and "Misc_07_metal.ogg" by [rubberduck](https://opengameart.org/users/rubberduck) is licensed under CC0.
+
+* "Echo-gurgle-whoosh 1.wav" by [Arthur](https://opengameart.org/content/warp-sound-3) is licensed under CC BY-SA 3.0.
+
+* ["Foom_0.wav"](https://opengameart.org/content/spell-4-fire) and [Growl1.wav](https://opengameart.org/content/6-monstrous-growls) by Bart K is licensed under CC BY 3.0.
+
+* "Ice.wav" by [bart](https://opengameart.org/content/ice-spells) is licensed under CC0.
+
+* "ghost_1.ogg" by [The Berklee College of Music](https://opengameart.org/content/scary-ghost-1) is licensed under CC BY 3.0.
+
+* "Insekt.ogg" by [Tim Mortimer](https://opengameart.org/content/chirp-loop) is licensed under CC BY 3.0.
+
 Translations
 --------------
 

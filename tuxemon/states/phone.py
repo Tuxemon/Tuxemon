@@ -21,8 +21,6 @@ from tuxemon.tools import fix_measure, open_dialog
 if TYPE_CHECKING:
     from tuxemon.npc import NPC
 
-MenuGameObj = Callable[[], Any]
-
 
 class NuPhone(PygameMenuState):
     """Menu for Nu Phone."""

@@ -98,6 +98,10 @@
   "txmn_id": 59,
   "height": 150,
   "weight": 125,
+  "sounds": {
+    "combat_call": "sound_grunt_03",
+    "faint_call": "sound_grunt_03_faint"
+  },
   "catch_rate": 35.0,
   "lower_catch_resistance": 0.9,
   "upper_catch_resistance": 1.15

@@ -104,6 +104,10 @@
   "txmn_id": 3,
   "height": 160,
   "weight": 150,
+  "sounds": {
+    "combat_call": "sound_creature_roar",
+    "faint_call": "sound_creature_roar_faint"
+  },
   "catch_rate": 35.0,
   "lower_catch_resistance": 0.85,
   "upper_catch_resistance": 1.1

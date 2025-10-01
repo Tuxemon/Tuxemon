@@ -203,6 +203,7 @@ def open_dialog(
     position: DialogPosition = DialogPosition.BOTTOM,
     target_coords: Optional[Union[tuple[int, int], Rect]] = None,
     custom_rect: Optional[Rect] = None,
+    on_complete: Optional[Callable[[], None]] = None,
 ) -> State:
     """
     Open a dialog with the standard window size or a custom size/position.
@@ -241,6 +242,7 @@ def open_dialog(
         avatar=avatar,
         rect=dialog_rect,
         box_style=box_style,
+        on_complete=on_complete,
     )
 
 

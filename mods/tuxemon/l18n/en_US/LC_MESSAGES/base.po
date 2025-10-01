@@ -426,6 +426,12 @@ msgid "spyder_pass_description"
 msgstr ""
 "This should let you in to places only Spyder conspirators are meant to go."
 
+msgid "app_radio"
+msgstr "Radio App"
+
+msgid "app_radio_description"
+msgstr "Tune in to local broadcasts, quest updates, and ambient chatter from across the region."
+
 msgid "app_banking"
 msgstr "Bank App"
 
@@ -1464,6 +1470,52 @@ msgstr ""
 "Room 31, Block 2, Omnichannel Tower, Cotton Town\n"
 "\n"
 "There's a kiss mark next to the address"
+
+# Radio
+msgid "radio_no_signal"
+msgstr "No signal. Try tuning in from another location."
+
+msgid "radio_station_list_header"
+msgstr "List of Available Stations"
+
+msgid "station_scrambled_frequency"
+msgstr "Scrambled Frequency"
+
+msgid "station_route_rhythms"
+msgstr "Route 101 Rhythms"
+
+msgid "radio_static_msgid"
+msgstr "The signal fades into static..."
+
+msgid "radio_tuner"
+msgstr "Tuner"
+
+msgid "app_radio_tuner"
+msgstr "Radio Tuner"
+
+msgid "radio_tuning_static"
+msgstr "The signal is full of static..."
+
+msgid "signal_strong"
+msgstr "Strong"
+
+msgid "signal_moderate"
+msgstr "Moderate"
+
+msgid "signal_weak"
+msgstr "Weak"
+
+msgid "signal_none"
+msgstr "No Signal"
+
+msgid "radio_play_button"
+msgstr "Play Radio"
+
+msgid "radio_tuner_hint"
+msgstr "Slide to tune into stations"
+
+msgid "radio_signal_strength"
+msgstr "Signal Strength"
 
 # Money notification
 msgid "player_wallet"

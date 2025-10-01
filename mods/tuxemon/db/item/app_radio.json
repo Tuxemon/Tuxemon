@@ -1,0 +1,24 @@
+{
+  "effects": [],
+  "slug": "app_radio",
+  "sort": "utility",
+  "sprite": "gfx/items/app_contacts.png",
+  "category": "phone",
+  "usable_in": [
+    "WorldState"
+  ],
+  "modifiers": [],
+  "behaviors": {
+    "consumable": false,
+    "visible": false
+  },
+  "dynamic_menu": {
+    "position": 4,
+    "label_key": "app_radio",
+    "menu_type": "phone",
+    "state": "NuPhoneRadioMenu"
+  },
+  "use_failure": "generic_failure",
+  "use_item": "combat_used_x",
+  "use_success": "generic_success"
+}

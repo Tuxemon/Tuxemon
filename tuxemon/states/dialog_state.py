@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import logging
-from collections.abc import Sequence
+from collections.abc import Callable, Sequence
 from typing import TYPE_CHECKING, Any, ClassVar, Optional
 
 from tuxemon.graphics import load_and_scale
@@ -39,11 +39,13 @@ class DialogState(PopUpMenu[None]):
         text: Sequence[str] = (),
         avatar: Optional[Sprite] = None,
         box_style: Optional[dict[str, Any]] = None,
+        on_complete: Optional[Callable[[], None]] = None,
         **kwargs: Any,
     ) -> None:
         super().__init__(**kwargs)
         self.text_queue = list(text)
         self.avatar = avatar
+        self.on_complete = on_complete
 
         default_box_style: dict[str, Any] = {
             "bg_color": self.background_color,
@@ -103,4 +105,6 @@ class DialogState(PopUpMenu[None]):
             return text
         except IndexError:
             self.client.pop_state(self)
+            if self.on_complete:
+                self.on_complete()
             return None

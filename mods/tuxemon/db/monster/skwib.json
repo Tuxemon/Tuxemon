@@ -47,8 +47,20 @@
   ],
   "history": [
     {
-      "mon_slug": "octabode",
-      "evo_stage": "stage1"
+      "slug": "skwib",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "octabode"
+      ]
+    },
+    {
+      "slug": "octabode",
+      "stage": "stage1",
+      "evolves_from": [
+        "skwib"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [],

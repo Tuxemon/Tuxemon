@@ -42,8 +42,20 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "pickoon",
-      "evo_stage": "basic"
+      "slug": "raccscal",
+      "stage": "stage1",
+      "evolves_from": [
+        "pickoon"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "pickoon",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "raccscal"
+      ]
     }
   ],
   "terrains": [

@@ -30,8 +30,20 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "sprorm",
-      "evo_stage": "basic"
+      "slug": "sphake",
+      "stage": "stage1",
+      "evolves_from": [
+        "sprorm"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "sprorm",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "sphake"
+      ]
     }
   ],
   "terrains": [],

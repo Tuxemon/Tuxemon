@@ -51,8 +51,20 @@
   ],
   "history": [
     {
-      "mon_slug": "knindling",
-      "evo_stage": "stage1"
+      "slug": "flounce",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "knindling"
+      ]
+    },
+    {
+      "slug": "knindling",
+      "stage": "stage1",
+      "evolves_from": [
+        "flounce"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [],

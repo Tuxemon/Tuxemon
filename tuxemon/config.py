@@ -129,7 +129,6 @@ class TuxemonConfig:
         # [player]
         player = self.config["player"]
         self.player_animation_speed: float = player["animation_speed"]
-        self.player_npc: str = player["player_npc"]
         self.player_walkrate: float = player["player_walkrate"]
         self.player_runrate: float = player["player_runrate"]
 
@@ -192,6 +191,7 @@ class ControllerConfig:
         self.overlay: bool = display["controller_overlay"]
         self.transparency: int = display["controller_transparency"]
         self.hide_mouse: bool = display["hide_mouse"]
+        self.show_input_visualizer: bool = display["show_input_visualizer"]
 
 
 class LocaleConfig:
@@ -303,6 +303,7 @@ def generate_default_config() -> dict[str, Any]:
             "controller_overlay": False,
             "controller_transparency": 45,
             "hide_mouse": True,
+            "show_input_visualizer": False,
         },
         "game": {
             "data": "tuxemon",
@@ -335,7 +336,6 @@ def generate_default_config() -> dict[str, Any]:
         },
         "player": {
             "animation_speed": 0.15,
-            "player_npc": "npc_red",
             "player_walkrate": 3.75,
             "player_runrate": 7.35,
         },

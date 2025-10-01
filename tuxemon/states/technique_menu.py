@@ -54,7 +54,7 @@ class TechniqueMenuState(Menu[Technique]):
         self.menu_items.line_spacing = scale(7)
 
         # this is the area where the technique description is displayed
-        rect = self.client.screen.get_rect()
+        rect = prepare.SCREEN_RECT.copy()
         rect.top = scale(106)
         rect.left = scale(3)
         rect.width = scale(250)

@@ -47,8 +47,20 @@
   ],
   "history": [
     {
-      "mon_slug": "apeoro",
-      "evo_stage": "stage1"
+      "slug": "tetrchimp",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "apeoro"
+      ]
+    },
+    {
+      "slug": "apeoro",
+      "stage": "stage1",
+      "evolves_from": [
+        "tetrchimp"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [],

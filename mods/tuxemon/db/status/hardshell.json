@@ -14,9 +14,11 @@
   "sfx": "sfx_bite",
   "slug": "hardshell",
   "sort": "meta",
-  "statarmour": {
-    "value": 1.5,
-    "operation": "*"
+  "stat_modifiers": {
+    "armour": {
+      "value": 1.5,
+      "operation": "*"
+    }
   },
   "cond_id": 1,
   "use_failure": null,

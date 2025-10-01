@@ -59,8 +59,20 @@
   ],
   "history": [
     {
-      "mon_slug": "ruption",
-      "evo_stage": "stage1"
+      "slug": "embra",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "ruption"
+      ]
+    },
+    {
+      "slug": "ruption",
+      "stage": "stage1",
+      "evolves_from": [
+        "embra"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [],

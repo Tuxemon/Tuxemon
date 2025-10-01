@@ -46,8 +46,20 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "baoby",
-      "evo_stage": "basic"
+      "slug": "baobaraffe",
+      "stage": "stage1",
+      "evolves_from": [
+        "baoby"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "baoby",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "baobaraffe"
+      ]
     }
   ],
   "terrains": [],

@@ -50,12 +50,32 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "katapill",
-      "evo_stage": "basic"
+      "slug": "gladiatorbug",
+      "stage": "stage2",
+      "evolves_from": [
+        "katacoon"
+      ],
+      "evolves_into": []
     },
     {
-      "mon_slug": "katacoon",
-      "evo_stage": "stage1"
+      "slug": "katapill",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "katacoon"
+      ]
+    },
+    {
+      "slug": "katacoon",
+      "stage": "stage1",
+      "evolves_from": [
+        "katapill"
+      ],
+      "evolves_into": [
+        "bugnin",
+        "sumchon",
+        "gladiatorbug"
+      ]
     }
   ],
   "terrains": [

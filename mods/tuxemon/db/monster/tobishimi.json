@@ -50,12 +50,30 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "drashimi",
-      "evo_stage": "basic"
+      "slug": "tobishimi",
+      "stage": "stage2",
+      "evolves_from": [
+        "tsushimi"
+      ],
+      "evolves_into": []
     },
     {
-      "mon_slug": "tsushimi",
-      "evo_stage": "stage1"
+      "slug": "drashimi",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "tsushimi"
+      ]
+    },
+    {
+      "slug": "tsushimi",
+      "stage": "stage1",
+      "evolves_from": [
+        "drashimi"
+      ],
+      "evolves_into": [
+        "tobishimi"
+      ]
     }
   ],
   "terrains": [

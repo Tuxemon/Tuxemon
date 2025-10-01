@@ -42,8 +42,20 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "tikoal",
-      "evo_stage": "basic"
+      "slug": "tikorch",
+      "stage": "stage1",
+      "evolves_from": [
+        "tikoal"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "tikoal",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "tikorch"
+      ]
     }
   ],
   "terrains": [],

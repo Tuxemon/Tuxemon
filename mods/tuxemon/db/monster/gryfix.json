@@ -50,12 +50,30 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "flacono",
-      "evo_stage": "basic"
+      "slug": "gryfix",
+      "stage": "stage2",
+      "evolves_from": [
+        "corvix"
+      ],
+      "evolves_into": []
     },
     {
-      "mon_slug": "corvix",
-      "evo_stage": "stage1"
+      "slug": "flacono",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "corvix"
+      ]
+    },
+    {
+      "slug": "corvix",
+      "stage": "stage1",
+      "evolves_from": [
+        "flacono"
+      ],
+      "evolves_into": [
+        "gryfix"
+      ]
     }
   ],
   "terrains": [

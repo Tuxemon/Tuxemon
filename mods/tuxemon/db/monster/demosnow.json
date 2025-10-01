@@ -51,12 +51,31 @@
   ],
   "history": [
     {
-      "mon_slug": "waysprite",
-      "evo_stage": "basic"
+      "slug": "demosnow",
+      "stage": "stage1",
+      "evolves_from": [
+        "waysprite"
+      ],
+      "evolves_into": [
+        "lucifice"
+      ]
     },
     {
-      "mon_slug": "lucifice",
-      "evo_stage": "stage2"
+      "slug": "waysprite",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "angesnow",
+        "demosnow"
+      ]
+    },
+    {
+      "slug": "lucifice",
+      "stage": "stage2",
+      "evolves_from": [
+        "demosnow"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [

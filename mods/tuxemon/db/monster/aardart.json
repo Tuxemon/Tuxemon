@@ -46,8 +46,20 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "aardorn",
-      "evo_stage": "basic"
+      "slug": "aardart",
+      "stage": "stage1",
+      "evolves_from": [
+        "aardorn"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "aardorn",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "aardart"
+      ]
     }
   ],
   "terrains": [

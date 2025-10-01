@@ -50,12 +50,30 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "elofly",
-      "evo_stage": "basic"
+      "slug": "elostorm",
+      "stage": "stage2",
+      "evolves_from": [
+        "elowind"
+      ],
+      "evolves_into": []
     },
     {
-      "mon_slug": "elowind",
-      "evo_stage": "stage1"
+      "slug": "elofly",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "elowind"
+      ]
+    },
+    {
+      "slug": "elowind",
+      "stage": "stage1",
+      "evolves_from": [
+        "elofly"
+      ],
+      "evolves_into": [
+        "elostorm"
+      ]
     }
   ],
   "terrains": [

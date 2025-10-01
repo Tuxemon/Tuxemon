@@ -3,6 +3,7 @@
 import logging
 import sys
 from pathlib import Path
+from typing import Optional
 
 from tuxemon.platform import get_system_storage_dirs, get_user_storage_dir
 
@@ -91,3 +92,27 @@ def get_active_mod_paths() -> list[Path]:
         if mod_dir.is_dir() and not mod_dir.name.startswith((".", "__")):
             active_mod_paths.append(mod_dir)
     return active_mod_paths
+
+
+def get_mod_name_from_path(file_path: Path) -> Optional[str]:
+    """
+    Extracts the mod name from a given file path.
+
+    The mod name is assumed to be the directory immediately following
+    the "mods" directory.
+    """
+    try:
+        mod_index = file_path.parts.index("mods")
+        if mod_index + 1 < len(file_path.parts):
+            return file_path.parts[mod_index + 1]
+        else:
+            logger.warning(f"Path ends after 'mods' folder: {file_path}")
+            return None
+    except ValueError:
+        logger.error(f"The path does not contain a 'mods' folder: {file_path}")
+        return None
+    except IndexError:
+        logger.error(
+            f"Path is too short to contain a mod name after 'mods': {file_path}"
+        )
+        return None

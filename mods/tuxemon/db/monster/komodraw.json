@@ -63,8 +63,20 @@
   ],
   "history": [
     {
-      "mon_slug": "komoduel",
-      "evo_stage": "stage1"
+      "slug": "komodraw",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "komoduel"
+      ]
+    },
+    {
+      "slug": "komoduel",
+      "stage": "stage1",
+      "evolves_from": [
+        "komodraw"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [

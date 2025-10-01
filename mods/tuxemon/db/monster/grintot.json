@@ -26,29 +26,48 @@
   "evolutions": [
     {
       "monster_slug": "grinflare",
-      "item": "earth_booster"
-    },
-    {
-      "monster_slug": "grinflare",
-      "item": "flintstone"
-    },
-    {
-      "monster_slug": "grintrock",
-      "item": "metal_booster"
+      "item": {
+        "earth_booster": 0.5,
+        "flintstone": 0.5
+      }
     },
     {
       "monster_slug": "grintrock",
-      "item": "thunderstone"
+      "item": {
+        "metal_booster": 0.5,
+        "thunderstone": 0.5
+      }
     }
   ],
   "history": [
     {
-      "mon_slug": "grinflare",
-      "evo_stage": "stage1"
+      "slug": "grintot",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "grinflare",
+        "grinflare",
+        "grintrock",
+        "grintrock"
+      ]
     },
     {
-      "mon_slug": "grintrock",
-      "evo_stage": "stage1"
+      "slug": "grinflare",
+      "stage": "stage1",
+      "evolves_from": [
+        "grintot",
+        "grintot"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "grintrock",
+      "stage": "stage1",
+      "evolves_from": [
+        "grintot",
+        "grintot"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [],

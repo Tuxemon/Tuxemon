@@ -50,8 +50,20 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "poinchin",
-      "evo_stage": "basic"
+      "slug": "saurchin",
+      "stage": "stage1",
+      "evolves_from": [
+        "poinchin"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "poinchin",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "saurchin"
+      ]
     }
   ],
   "terrains": [

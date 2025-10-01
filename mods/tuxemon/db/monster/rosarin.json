@@ -59,12 +59,30 @@
   ],
   "history": [
     {
-      "mon_slug": "toxiris",
-      "evo_stage": "stage1"
+      "slug": "rosarin",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "toxiris"
+      ]
     },
     {
-      "mon_slug": "ninjasmine",
-      "evo_stage": "stage2"
+      "slug": "toxiris",
+      "stage": "stage1",
+      "evolves_from": [
+        "rosarin"
+      ],
+      "evolves_into": [
+        "ninjasmine"
+      ]
+    },
+    {
+      "slug": "ninjasmine",
+      "stage": "stage2",
+      "evolves_from": [
+        "toxiris"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [

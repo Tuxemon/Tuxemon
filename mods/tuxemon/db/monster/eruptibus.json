@@ -38,8 +38,24 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "ignibus",
-      "evo_stage": "basic"
+      "slug": "eruptibus",
+      "stage": "stage1",
+      "evolves_from": [
+        "ignibus",
+        "ignibus"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "ignibus",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "eruptibus",
+        "eruptibus",
+        "embazook",
+        "embazook"
+      ]
     }
   ],
   "terrains": [

@@ -59,8 +59,20 @@
   ],
   "history": [
     {
-      "mon_slug": "raptoucan",
-      "evo_stage": "stage1"
+      "slug": "toucanary",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "raptoucan"
+      ]
+    },
+    {
+      "slug": "raptoucan",
+      "stage": "stage1",
+      "evolves_from": [
+        "toucanary"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [

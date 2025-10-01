@@ -53,15 +53,29 @@
   ],
   "evolutions": [
     {
-      "at_level": 32,
       "monster_slug": "flummack",
-      "item": "lima_pie"
+      "at_level": 32,
+      "item": {
+        "lima_pie": 1.0
+      }
     }
   ],
   "history": [
     {
-      "mon_slug": "flummack",
-      "evo_stage": "stage1"
+      "slug": "flummby",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "flummack"
+      ]
+    },
+    {
+      "slug": "flummack",
+      "stage": "stage1",
+      "evolves_from": [
+        "flummby"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [

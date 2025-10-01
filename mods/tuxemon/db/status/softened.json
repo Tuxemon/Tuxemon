@@ -14,13 +14,15 @@
   "sfx": "sfx_pulse",
   "slug": "softened",
   "sort": "meta",
-  "statarmour": {
-    "value": 0.5,
-    "operation": "*"
-  },
-  "statspeed": {
-    "value": 0.5,
-    "operation": "*"
+  "stat_modifiers": {
+    "armour": {
+      "value": 0.5,
+      "operation": "*"
+    },
+    "speed": {
+      "value": 0.5,
+      "operation": "*"
+    }
   },
   "cond_id": 16,
   "use_failure": null,

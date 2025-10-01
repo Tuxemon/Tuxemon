@@ -55,8 +55,20 @@
   ],
   "history": [
     {
-      "mon_slug": "blasdoor",
-      "evo_stage": "stage1"
+      "slug": "woodoor",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "blasdoor"
+      ]
+    },
+    {
+      "slug": "blasdoor",
+      "stage": "stage1",
+      "evolves_from": [
+        "woodoor"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [

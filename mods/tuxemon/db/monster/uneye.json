@@ -59,8 +59,20 @@
   ],
   "history": [
     {
-      "mon_slug": "lendos",
-      "evo_stage": "stage1"
+      "slug": "uneye",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "lendos"
+      ]
+    },
+    {
+      "slug": "lendos",
+      "stage": "stage1",
+      "evolves_from": [
+        "uneye"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [],

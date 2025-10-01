@@ -51,12 +51,30 @@
   ],
   "history": [
     {
-      "mon_slug": "agnidon",
-      "evo_stage": "stage1"
+      "slug": "agnite",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "agnidon"
+      ]
     },
     {
-      "mon_slug": "agnigon",
-      "evo_stage": "stage2"
+      "slug": "agnidon",
+      "stage": "stage1",
+      "evolves_from": [
+        "agnite"
+      ],
+      "evolves_into": [
+        "agnigon"
+      ]
+    },
+    {
+      "slug": "agnigon",
+      "stage": "stage2",
+      "evolves_from": [
+        "agnidon"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [

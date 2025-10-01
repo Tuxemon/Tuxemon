@@ -55,12 +55,30 @@
   ],
   "history": [
     {
-      "mon_slug": "rockitten",
-      "evo_stage": "basic"
+      "slug": "rockat",
+      "stage": "stage1",
+      "evolves_from": [
+        "rockitten"
+      ],
+      "evolves_into": [
+        "jemuar"
+      ]
     },
     {
-      "mon_slug": "jemuar",
-      "evo_stage": "stage2"
+      "slug": "rockitten",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "rockat"
+      ]
+    },
+    {
+      "slug": "jemuar",
+      "stage": "stage2",
+      "evolves_from": [
+        "rockat"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [

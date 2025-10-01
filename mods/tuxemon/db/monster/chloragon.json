@@ -63,12 +63,30 @@
   ],
   "history": [
     {
-      "mon_slug": "sapragon",
-      "evo_stage": "stage1"
+      "slug": "chloragon",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "sapragon"
+      ]
     },
     {
-      "mon_slug": "dragarbor",
-      "evo_stage": "stage2"
+      "slug": "sapragon",
+      "stage": "stage1",
+      "evolves_from": [
+        "chloragon"
+      ],
+      "evolves_into": [
+        "dragarbor"
+      ]
+    },
+    {
+      "slug": "dragarbor",
+      "stage": "stage2",
+      "evolves_from": [
+        "sapragon"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [

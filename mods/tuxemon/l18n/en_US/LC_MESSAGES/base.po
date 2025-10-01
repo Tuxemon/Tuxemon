@@ -17143,7 +17143,7 @@ msgstr ""
 msgid "spyder_leathershaft1_rutherford1"
 msgstr ""
 "Shaft leader is a thinker and doer. She is not a talker. She has met twice with the miners. It shows quality.\n"
-"It shows his plans for Fondent. Our leader has been consistent when it comes to climate change."
+"It shows her plans for Fondent. Our leader has been consistent when it comes to climate change."
 
 msgid "spyder_leathershaft1_surat1"
 msgstr ""

@@ -7,6 +7,7 @@ from dataclasses import dataclass
 from typing import final
 from uuid import UUID
 
+from tuxemon import prepare
 from tuxemon.event import get_monster_by_iid
 from tuxemon.event.eventaction import EventAction
 from tuxemon.locale import T
@@ -57,6 +58,7 @@ class RenameMonsterAction(EventAction):
             callback=self.set_monster_name,
             escape_key_exits=False,
             initial=T.translate(self.monster.slug),
+            char_limit=prepare.PLAYER_NAME_LIMIT,
         )
 
     def update(self, session: Session) -> None:

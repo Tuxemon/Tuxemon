@@ -444,6 +444,12 @@ msgstr "Map App"
 msgid "app_map_description"
 msgstr "Use this on your phone to see where you are."
 
+msgid "app_renaming"
+msgstr "Renaming App"
+
+msgid "app_renaming_description"
+msgstr "Give your Tuxemon a fresh identity with a new name—make it truly yours!"
+
 msgid "app_tuxepedia"
 msgstr "Tuxepedia App"
 
@@ -1496,6 +1502,9 @@ msgstr "Call"
 
 msgid "phone_no_answer"
 msgstr "Phone keeps ringing but no answer!"
+
+msgid "renaming"
+msgstr "Rename"
 
 # NOTIFICATION TRANSLATIONS ##
 # Combat notifications

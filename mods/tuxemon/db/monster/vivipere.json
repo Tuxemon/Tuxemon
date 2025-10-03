@@ -26,7 +26,7 @@
   "evolutions": [
     {
       "monster_slug": "vivicinder",
-      "tech": "flamethrower"
+      "tech": "salamander"
     },
     {
       "monster_slug": "viviphyta",
@@ -145,6 +145,7 @@
   ],
   "tags": [
     "shapeshifter",
+	"toxic",
     "bite"
   ],
   "shape": "serpent",

@@ -548,11 +548,11 @@
     "slug": "sfx_zap"
   },
   {
-    "file": "monster/reverse_Bark.wav",
+    "file": "monster/reverse_Bark.ogg",
     "slug": "sound_bark_faint"
   },
   {
-    "file": "monster/reverse_bite-cartoon-style.mp3",
+    "file": "monster/reverse_bite-cartoon-style.ogg",
     "slug": "sound_bite_cartoon_style_faint"
   },
   {
@@ -580,15 +580,15 @@
     "slug": "sound_burp_02_faint"
   },
   {
-    "file": "monster/reverse_cat-meow3.wav",
+    "file": "monster/reverse_cat-meow3.ogg",
     "slug": "sound_cat_meow3_faint"
   },
   {
-    "file": "monster/reverse_cat-purr-twit5.wav",
+    "file": "monster/reverse_cat-purr-twit5.ogg",
     "slug": "sound_cat_purr_twit5_faint"
   },
   {
-    "file": "monster/reverse_creature-roar.mp3",
+    "file": "monster/reverse_creature-roar.ogg",
     "slug": "sound_creature_roar_faint"
   },
   {
@@ -624,23 +624,23 @@
     "slug": "sound_eat_03_faint"
   },
   {
-    "file": "monster/reverse_Echo-gurgle-whoosh_1.wav",
+    "file": "monster/reverse_Echo-gurgle-whoosh_1.ogg",
     "slug": "sound_echo_gurgle_whoosh_1_faint"
   },
   {
-    "file": "monster/reverse_Foom_0.wav",
+    "file": "monster/reverse_Foom_0.ogg",
     "slug": "sound_foom_0_faint"
   },
   {
-    "file": "monster/reverse_game-shot-light-gun.wav",
+    "file": "monster/reverse_game-shot-light-gun.ogg",
     "slug": "sound_game_shot_light_gun_faint"
   },
   {
-    "file": "monster/reverse_reverse_Tux.ogg",
+    "file": "monster/reverse_Tux.ogg",
     "slug": "sound_ghost_1_faint"
   },
   {
-    "file": "monster/reverse_Growl1.wav",
+    "file": "monster/reverse_Growl1.ogg",
     "slug": "sound_growl1_faint"
   },
   {
@@ -660,7 +660,7 @@
     "slug": "sound_human_06_faint"
   },
   {
-    "file": "monster/reverse_Ice.wav",
+    "file": "monster/reverse_Ice.ogg",
     "slug": "sound_ice_faint"
   },
   {
@@ -724,11 +724,11 @@
     "slug": "sound_roar_05_faint"
   },
   {
-    "file": "monster/reverse_robotic-pig.mp3",
+    "file": "monster/reverse_robotic-pig.ogg",
     "slug": "sound_robotic_pig_faint"
   },
   {
-    "file": "monster/reverse_game-shot-light-gun.wav",
+    "file": "monster/reverse_game-shot-light-gun.ogg",
     "slug": "sound_shoot_02_faint"
   },
   {
@@ -748,11 +748,11 @@
     "slug": "sound_spit_02_faint"
   },
   {
-    "file": "monster/reverse_splash-1.wav",
+    "file": "monster/reverse_splash-1.ogg",
     "slug": "sound_splash_1_faint"
   },
   {
-    "file": "monster/reverse_Steel_Clang.wav",
+    "file": "monster/reverse_Steel_Clang.ogg",
     "slug": "sound_steel_clang_faint"
   },
   {
@@ -760,7 +760,7 @@
     "slug": "sound_stones_04_faint"
   },
   {
-    "file": "monster/reverse_Swords_Clash.wav",
+    "file": "monster/reverse_Swords_Clash.ogg",
     "slug": "sound_swords_clash_faint"
   },
   {
@@ -784,11 +784,11 @@
     "slug": "sound_weird_09_faint"
   },
   {
-    "file": "monster/reverse_Woosh-1.wav",
+    "file": "monster/reverse_Woosh-1.ogg",
     "slug": "sound_woosh_1_faint"
   },
   {
-    "file": "monster/reverse_Woosh-2.wav",
+    "file": "monster/reverse_Woosh-2.ogg",
     "slug": "sound_woosh_2_faint"
   }
 ]

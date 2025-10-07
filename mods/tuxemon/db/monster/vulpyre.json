@@ -91,6 +91,9 @@
   "txmn_id": 150,
   "height": 100,
   "weight": 50,
+  "sounds": {
+    "combat_call": "sound_spell_fire_07"
+  },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

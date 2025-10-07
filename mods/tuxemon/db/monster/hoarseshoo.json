@@ -79,6 +79,9 @@
   "txmn_id": 311,
   "height": 300,
   "weight": 1300,
+  "sounds": {
+    "combat_call": "sound_ghost_1"
+  },
   "catch_rate": 35.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

@@ -71,6 +71,9 @@
   "txmn_id": 321,
   "height": 100,
   "weight": 100,
+  "sounds": {
+    "combat_call": "sound_weird_09"
+  },
   "catch_rate": 35.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

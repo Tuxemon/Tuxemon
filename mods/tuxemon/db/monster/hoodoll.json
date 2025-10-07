@@ -92,6 +92,9 @@
   "txmn_id": 389,
   "height": 80,
   "weight": 6,
+  "sounds": {
+    "combat_call": "sound_spit_01"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

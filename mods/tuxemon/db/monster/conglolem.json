@@ -103,6 +103,9 @@
   "txmn_id": 274,
   "height": 245,
   "weight": 197,
+  "sounds": {
+    "combat_call": "sound_robot2"
+  },
   "catch_rate": 35.0,
   "lower_catch_resistance": 0.85,
   "upper_catch_resistance": 1.1

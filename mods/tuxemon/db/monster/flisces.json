@@ -81,6 +81,9 @@
   "txmn_id": 238,
   "height": 28,
   "weight": 1.5,
+  "sounds": {
+    "combat_call": "sound_echo_gurgle_whoosh_1"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.9,
   "upper_catch_resistance": 1.15

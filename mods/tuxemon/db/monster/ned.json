@@ -56,6 +56,9 @@
   "txmn_id": 313,
   "height": 87,
   "weight": 32,
+  "sounds": {
+    "combat_call": "sound_bark"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

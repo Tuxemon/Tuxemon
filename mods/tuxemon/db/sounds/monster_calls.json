@@ -28,12 +28,24 @@
     "slug": "sound_water_call"
   },
   {
+    "file": "monster/frog.ogg",
+    "slug": "sound_frog"
+  },
+  {
     "file": "monster/bugThing.ogg",
     "slug": "sound_earth_call"
   },
   {
+    "file": "monster/bugThing.ogg",
+    "slug": "sound_bugthing"
+  },
+  {
     "file": "monster/robot.ogg",
     "slug": "sound_metal_call"
+  },
+  {
+    "file": "monster/robot.ogg",
+    "slug": "sound_robot1"
   },
   {
     "file": "monster/glitch.ogg",
@@ -41,7 +53,7 @@
   },
   {
     "file": "monster/robot2.ogg",
-    "slug": "sound_av8r"
+    "slug": "sound_robot2"
   },
   {
     "file": "monster/reverse_cry1.ogg",
@@ -85,7 +97,7 @@
   },
   {
     "file": "monster/reverse_robot2.ogg",
-    "slug": "sound_av8r_faint"
+    "slug": "sound_robot2_faint"
   },
   {
     "file": "monster/oddGrowl.ogg",

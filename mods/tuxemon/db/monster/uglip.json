@@ -80,6 +80,9 @@
   "txmn_id": 301,
   "height": 30,
   "weight": 2,
+  "sounds": {
+    "combat_call": "sound_frog"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

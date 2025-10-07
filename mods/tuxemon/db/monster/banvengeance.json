@@ -105,6 +105,9 @@
   "txmn_id": 357,
   "height": 800,
   "weight": 354,
+  "sounds": {
+    "combat_call": "sound_monster_16"
+  },
   "catch_rate": 35.0,
   "lower_catch_resistance": 0.9,
   "upper_catch_resistance": 1.15

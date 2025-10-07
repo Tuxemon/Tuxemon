@@ -103,6 +103,9 @@
   "txmn_id": 170,
   "height": 60,
   "weight": 5,
+  "sounds": {
+    "combat_call": "sound_woosh_1"
+  },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.25

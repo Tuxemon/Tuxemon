@@ -81,6 +81,9 @@
   "txmn_id": 287,
   "height": 30,
   "weight": 2,
+  "sounds": {
+    "combat_call": "sound_bug_05"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

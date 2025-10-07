@@ -4140,6 +4140,9 @@ msgstr "The adventure began today."
 msgid "player_start_adventure"
 msgstr "The adventure began {date} days ago."
 
+msgid "player_total_playtime"
+msgstr "Total Playtime"
+
 msgid "player_walked"
 msgstr "Walked {distance} {unit}"
 

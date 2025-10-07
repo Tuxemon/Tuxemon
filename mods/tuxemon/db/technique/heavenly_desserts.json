@@ -20,7 +20,7 @@
   "power": 3.0,
   "range": "melee",
   "recharge": 3,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_bounce",
   "slug": "heavenly_desserts",
   "sort": "damage",
   "modifiers": [],

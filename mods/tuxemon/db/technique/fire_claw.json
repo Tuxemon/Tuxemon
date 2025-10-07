@@ -20,7 +20,7 @@
   "power": 1.75,
   "range": "reach",
   "recharge": 2,
-  "sfx": "sfx_flames1",
+  "sfx": "sfx_kick",
   "slug": "fire_claw",
   "sort": "damage",
   "modifiers": [],

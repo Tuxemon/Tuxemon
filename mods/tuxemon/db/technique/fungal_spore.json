@@ -20,7 +20,7 @@
   "power": 1.4,
   "range": "touch",
   "recharge": 1,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_bubbles",
   "slug": "fungal_spore",
   "sort": "damage",
   "modifiers": [],

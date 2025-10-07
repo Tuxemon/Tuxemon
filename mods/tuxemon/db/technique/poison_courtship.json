@@ -17,7 +17,7 @@
   "power": 0,
   "range": "special",
   "recharge": 1,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_bubbles",
   "slug": "poison_courtship",
   "sort": "damage",
   "modifiers": [],

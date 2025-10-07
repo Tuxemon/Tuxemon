@@ -13,7 +13,7 @@
   "power": 2.3,
   "range": "ranged",
   "recharge": 1,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_bubbles",
   "slug": "water_blast",
   "sort": "damage",
   "modifiers": [],

@@ -13,7 +13,7 @@
   "power": 2,
   "range": "reliable",
   "recharge": 2,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_kick",
   "slug": "perfect_cut",
   "sort": "damage",
   "modifiers": [],

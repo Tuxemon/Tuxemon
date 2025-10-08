@@ -36,7 +36,14 @@
     }
   ],
   "evolutions": [],
-  "history": [],
+  "history": [
+    {
+      "slug": "gliffary",
+      "stage": "standalone",
+      "evolves_from": [],
+      "evolves_into": []
+    }
+  ],
   "terrains": [],
   "tags": [
     "mental",
@@ -55,6 +62,9 @@
   "txmn_id": 315,
   "height": 50,
   "weight": 1.5,
+  "sounds": {
+    "combat_call": "sound_robot2"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

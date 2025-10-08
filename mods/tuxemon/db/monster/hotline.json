@@ -52,7 +52,14 @@
     }
   ],
   "evolutions": [],
-  "history": [],
+  "history": [
+    {
+      "slug": "hotline",
+      "stage": "standalone",
+      "evolves_from": [],
+      "evolves_into": []
+    }
+  ],
   "terrains": [
     "urban"
   ],
@@ -75,6 +82,9 @@
   "height": 150,
   "weight": 50,
   "randomly": false,
+  "sounds": {
+    "combat_call": "sound_robotic_pig"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

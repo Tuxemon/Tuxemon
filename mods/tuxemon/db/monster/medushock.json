@@ -52,7 +52,14 @@
     }
   ],
   "evolutions": [],
-  "history": [],
+  "history": [
+    {
+      "slug": "medushock",
+      "stage": "standalone",
+      "evolves_from": [],
+      "evolves_into": []
+    }
+  ],
   "terrains": [
     "freshwater"
   ],
@@ -74,6 +81,9 @@
   "txmn_id": 345,
   "height": 133,
   "weight": 3,
+  "sounds": {
+    "combat_call": "sound_retro_beep_06"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.9,
   "upper_catch_resistance": 1.15

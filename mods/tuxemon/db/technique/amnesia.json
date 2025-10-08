@@ -20,7 +20,7 @@
   "power": 2.25,
   "range": "reach",
   "recharge": 2,
-  "sfx": "sfx_shine",
+  "sfx": "sfx_pulse",
   "slug": "amnesia",
   "sort": "damage",
   "modifiers": [],

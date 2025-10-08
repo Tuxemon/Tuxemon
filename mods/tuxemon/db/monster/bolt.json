@@ -47,12 +47,30 @@
   ],
   "history": [
     {
-      "mon_slug": "nut",
-      "evo_stage": "basic"
+      "slug": "bolt",
+      "stage": "stage1",
+      "evolves_from": [
+        "nut"
+      ],
+      "evolves_into": [
+        "arthrobolt"
+      ]
     },
     {
-      "mon_slug": "arthrobolt",
-      "evo_stage": "stage2"
+      "slug": "nut",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "bolt"
+      ]
+    },
+    {
+      "slug": "arthrobolt",
+      "stage": "stage2",
+      "evolves_from": [
+        "bolt"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [],
@@ -73,6 +91,10 @@
   "txmn_id": 5,
   "height": 90,
   "weight": 15.6,
+  "sounds": {
+    "combat_call": "sound_steel_clang",
+    "faint_call": "sound_steel_clang_faint"
+  },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.9,
   "upper_catch_resistance": 1.15

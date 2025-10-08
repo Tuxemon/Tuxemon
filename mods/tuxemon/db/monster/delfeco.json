@@ -54,8 +54,24 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "dollfin",
-      "evo_stage": "basic"
+      "slug": "delfeco",
+      "stage": "stage1",
+      "evolves_from": [
+        "dollfin"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "dollfin",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "bigfin",
+        "bigfin",
+        "sharpfin",
+        "sharpfin",
+        "delfeco"
+      ]
     }
   ],
   "terrains": [
@@ -81,6 +97,9 @@
   "txmn_id": 24,
   "height": 200,
   "weight": 150,
+  "sounds": {
+    "combat_call": "sfx_bubbles"
+  },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.85,
   "upper_catch_resistance": 1.1

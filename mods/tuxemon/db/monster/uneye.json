@@ -59,8 +59,20 @@
   ],
   "history": [
     {
-      "mon_slug": "lendos",
-      "evo_stage": "stage1"
+      "slug": "uneye",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "lendos"
+      ]
+    },
+    {
+      "slug": "lendos",
+      "stage": "stage1",
+      "evolves_from": [
+        "uneye"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [],
@@ -81,6 +93,9 @@
   "txmn_id": 240,
   "height": 45,
   "weight": 3.5,
+  "sounds": {
+    "combat_call": "sound_weird_09"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.9,
   "upper_catch_resistance": 1.15

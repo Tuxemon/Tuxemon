@@ -42,12 +42,30 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "turnipper",
-      "evo_stage": "basic"
+      "slug": "wendigger",
+      "stage": "stage2",
+      "evolves_from": [
+        "beenstalker"
+      ],
+      "evolves_into": []
     },
     {
-      "mon_slug": "beenstalker",
-      "evo_stage": "stage1"
+      "slug": "turnipper",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "beenstalker"
+      ]
+    },
+    {
+      "slug": "beenstalker",
+      "stage": "stage1",
+      "evolves_from": [
+        "turnipper"
+      ],
+      "evolves_into": [
+        "wendigger"
+      ]
     }
   ],
   "terrains": [
@@ -76,6 +94,9 @@
   "txmn_id": 200,
   "height": 210,
   "weight": 75,
+  "sounds": {
+    "combat_call": "sound_monster_19"
+  },
   "catch_rate": 35.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

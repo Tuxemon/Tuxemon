@@ -52,7 +52,14 @@
     }
   ],
   "evolutions": [],
-  "history": [],
+  "history": [
+    {
+      "slug": "glomon",
+      "stage": "standalone",
+      "evolves_from": [],
+      "evolves_into": []
+    }
+  ],
   "terrains": [
     "ruins",
     "urban"
@@ -75,6 +82,9 @@
   "txmn_id": 381,
   "height": 150,
   "weight": 20,
+  "sounds": {
+    "combat_call": "sound_burble_02"
+  },
   "catch_rate": 50.0,
   "lower_catch_resistance": 0.9,
   "upper_catch_resistance": 1.15

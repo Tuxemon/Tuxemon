@@ -43,8 +43,20 @@
   ],
   "history": [
     {
-      "mon_slug": "nudikill",
-      "evo_stage": "stage1"
+      "slug": "nudiflot_male",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "nudikill"
+      ]
+    },
+    {
+      "slug": "nudikill",
+      "stage": "stage1",
+      "evolves_from": [
+        "nudiflot_male"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [],
@@ -64,6 +76,10 @@
   "txmn_id": 52,
   "height": 36,
   "weight": 3,
+  "sounds": {
+    "combat_call": "sound_splash_1",
+    "faint_call": "sound_splash_1_faint"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.25

@@ -22,15 +22,29 @@
   "evolutions": [
     {
       "monster_slug": "breem",
-      "party": [
-        "tumbleworm"
-      ]
+      "party_conditions": {
+        "monster_slugs": {
+          "tumbleworm": 1
+        }
+      }
     }
   ],
   "history": [
     {
-      "mon_slug": "breem",
-      "evo_stage": "stage1"
+      "slug": "duggot",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "breem"
+      ]
+    },
+    {
+      "slug": "breem",
+      "stage": "stage1",
+      "evolves_from": [
+        "duggot"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [],
@@ -52,6 +66,9 @@
   "txmn_id": 343,
   "height": 12,
   "weight": 0.5,
+  "sounds": {
+    "combat_call": "sound_spit_01"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

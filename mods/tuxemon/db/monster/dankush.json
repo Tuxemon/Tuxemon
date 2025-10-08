@@ -52,7 +52,14 @@
     }
   ],
   "evolutions": [],
-  "history": [],
+  "history": [
+    {
+      "slug": "dankush",
+      "stage": "standalone",
+      "evolves_from": [],
+      "evolves_into": []
+    }
+  ],
   "terrains": [
     "grassland"
   ],
@@ -76,6 +83,9 @@
   "height": 40,
   "weight": 0.5,
   "randomly": false,
+  "sounds": {
+    "combat_call": "sound_glitch_call"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

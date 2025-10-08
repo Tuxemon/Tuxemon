@@ -10,7 +10,7 @@ from tuxemon import db
 from tuxemon.locale import T
 
 if TYPE_CHECKING:
-    from tuxemon.save import SaveData
+    from tuxemon.save_state import SaveData
 logger = logging.getLogger(__name__)
 
 """

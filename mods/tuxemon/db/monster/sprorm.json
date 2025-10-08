@@ -35,8 +35,20 @@
   ],
   "history": [
     {
-      "mon_slug": "sphake",
-      "evo_stage": "stage1"
+      "slug": "sprorm",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "sphake"
+      ]
+    },
+    {
+      "slug": "sphake",
+      "stage": "stage1",
+      "evolves_from": [
+        "sprorm"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [],
@@ -55,6 +67,9 @@
   "txmn_id": 303,
   "height": 30,
   "weight": 10,
+  "sounds": {
+    "combat_call": "sound_robot1"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

@@ -31,35 +31,75 @@
     {
       "at_level": 12,
       "monster_slug": "bugnin",
-      "stats": "dodge:greater_than:speed"
+      "stats": {
+        "stat_type": "dodge",
+        "comparison": "greater_than",
+        "target_stat": "speed"
+      }
     },
     {
       "at_level": 12,
       "monster_slug": "sumchon",
-      "stats": "speed:greater_than:dodge"
+      "stats": {
+        "stat_type": "speed",
+        "comparison": "greater_than",
+        "target_stat": "dodge"
+      }
     },
     {
       "at_level": 12,
       "monster_slug": "gladiatorbug",
-      "stats": "speed:equals:dodge"
+      "stats": {
+        "stat_type": "speed",
+        "comparison": "equals",
+        "target_stat": "dodge"
+      }
     }
   ],
   "history": [
     {
-      "mon_slug": "katapill",
-      "evo_stage": "basic"
+      "slug": "katacoon",
+      "stage": "stage1",
+      "evolves_from": [
+        "katapill"
+      ],
+      "evolves_into": [
+        "bugnin",
+        "sumchon",
+        "gladiatorbug"
+      ]
     },
     {
-      "mon_slug": "bugnin",
-      "evo_stage": "stage2"
+      "slug": "katapill",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "katacoon"
+      ]
     },
     {
-      "mon_slug": "sumchon",
-      "evo_stage": "stage2"
+      "slug": "bugnin",
+      "stage": "stage2",
+      "evolves_from": [
+        "katacoon"
+      ],
+      "evolves_into": []
     },
     {
-      "mon_slug": "gladiatorbug",
-      "evo_stage": "stage2"
+      "slug": "sumchon",
+      "stage": "stage2",
+      "evolves_from": [
+        "katacoon"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "gladiatorbug",
+      "stage": "stage2",
+      "evolves_from": [
+        "katacoon"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [
@@ -82,6 +122,10 @@
   "txmn_id": 57,
   "height": 58,
   "weight": 12,
+  "sounds": {
+    "combat_call": "sound_insekt001",
+    "faint_call": "sound_insekt001_faint"
+  },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.9,
   "upper_catch_resistance": 1.15

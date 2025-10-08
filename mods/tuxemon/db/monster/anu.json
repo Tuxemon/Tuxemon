@@ -56,7 +56,14 @@
     }
   ],
   "evolutions": [],
-  "history": [],
+  "history": [
+    {
+      "slug": "anu",
+      "stage": "standalone",
+      "evolves_from": [],
+      "evolves_into": []
+    }
+  ],
   "terrains": [
     "desert",
     "extraplanar"
@@ -78,6 +85,10 @@
   "txmn_id": 61,
   "height": 100,
   "weight": 10,
+  "sounds": {
+    "combat_call": "sound_bark",
+    "faint_call": "sound_bark_faint"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

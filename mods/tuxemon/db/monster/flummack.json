@@ -54,8 +54,20 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "flummby",
-      "evo_stage": "basic"
+      "slug": "flummack",
+      "stage": "stage1",
+      "evolves_from": [
+        "flummby"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "flummby",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "flummack"
+      ]
     }
   ],
   "terrains": [
@@ -77,6 +89,9 @@
   "txmn_id": 308,
   "height": 90,
   "weight": 50,
+  "sounds": {
+    "combat_call": "sound_robot2"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

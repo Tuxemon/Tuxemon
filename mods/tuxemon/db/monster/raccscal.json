@@ -42,8 +42,20 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "pickoon",
-      "evo_stage": "basic"
+      "slug": "raccscal",
+      "stage": "stage1",
+      "evolves_from": [
+        "pickoon"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "pickoon",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "raccscal"
+      ]
     }
   ],
   "terrains": [
@@ -67,6 +79,9 @@
   "txmn_id": 368,
   "height": 80,
   "weight": 20,
+  "sounds": {
+    "combat_call": "sound_grunt_04"
+  },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.9,
   "upper_catch_resistance": 1.15

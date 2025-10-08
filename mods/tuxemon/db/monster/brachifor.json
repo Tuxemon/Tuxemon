@@ -50,12 +50,30 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "fordin",
-      "evo_stage": "basic"
+      "slug": "brachifor",
+      "stage": "stage2",
+      "evolves_from": [
+        "stegofor"
+      ],
+      "evolves_into": []
     },
     {
-      "mon_slug": "stegofor",
-      "evo_stage": "stage1"
+      "slug": "fordin",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "stegofor"
+      ]
+    },
+    {
+      "slug": "stegofor",
+      "stage": "stage1",
+      "evolves_from": [
+        "fordin"
+      ],
+      "evolves_into": [
+        "brachifor"
+      ]
     }
   ],
   "terrains": [
@@ -80,6 +98,9 @@
   "txmn_id": 213,
   "height": 2000,
   "weight": 40000,
+  "sounds": {
+    "combat_call": "sound_burble_02"
+  },
   "catch_rate": 35.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

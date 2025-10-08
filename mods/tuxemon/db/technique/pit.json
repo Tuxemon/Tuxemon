@@ -20,7 +20,7 @@
   "power": 2.1,
   "range": "touch",
   "recharge": 3,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_crumble1",
   "slug": "pit",
   "sort": "damage",
   "modifiers": [],

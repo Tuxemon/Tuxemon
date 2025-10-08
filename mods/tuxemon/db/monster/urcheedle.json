@@ -52,7 +52,14 @@
     }
   ],
   "evolutions": [],
-  "history": [],
+  "history": [
+    {
+      "slug": "urcheedle",
+      "stage": "standalone",
+      "evolves_from": [],
+      "evolves_into": []
+    }
+  ],
   "terrains": [
     "sea"
   ],
@@ -74,6 +81,9 @@
   "txmn_id": 243,
   "height": 30,
   "weight": 0.5,
+  "sounds": {
+    "combat_call": "sound_spit_02"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

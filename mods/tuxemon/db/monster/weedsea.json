@@ -50,21 +50,39 @@
   "evolutions": [
     {
       "monster_slug": "weedlantis",
-      "party": [
-        "shrab"
-      ]
+      "party_conditions": {
+        "monster_slugs": {
+          "shrab": 1
+        }
+      }
     },
     {
       "monster_slug": "weedlantis",
-      "party": [
-        "lesmagu"
-      ]
+      "party_conditions": {
+        "monster_slugs": {
+          "lesmagu": 1
+        }
+      }
     }
   ],
   "history": [
     {
-      "mon_slug": "weedlantis",
-      "evo_stage": "stage1"
+      "slug": "weedsea",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "weedlantis",
+        "weedlantis"
+      ]
+    },
+    {
+      "slug": "weedlantis",
+      "stage": "stage1",
+      "evolves_from": [
+        "weedsea",
+        "weedsea"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [
@@ -87,6 +105,9 @@
   "txmn_id": 352,
   "height": 100,
   "weight": 10,
+  "sounds": {
+    "combat_call": "sound_splash_1"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

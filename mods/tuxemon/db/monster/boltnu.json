@@ -43,8 +43,20 @@
   ],
   "history": [
     {
-      "mon_slug": "exclawvate",
-      "evo_stage": "stage1"
+      "slug": "boltnu",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "exclawvate"
+      ]
+    },
+    {
+      "slug": "exclawvate",
+      "stage": "stage1",
+      "evolves_from": [
+        "boltnu"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [
@@ -68,6 +80,9 @@
   "txmn_id": 194,
   "height": 47,
   "weight": 8,
+  "sounds": {
+    "combat_call": "sound_steel_clang"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.9,
   "upper_catch_resistance": 1.15

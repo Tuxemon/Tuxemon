@@ -51,12 +51,30 @@
   ],
   "history": [
     {
-      "mon_slug": "devidin",
-      "evo_stage": "basic"
+      "slug": "devidra",
+      "stage": "stage1",
+      "evolves_from": [
+        "devidin"
+      ],
+      "evolves_into": [
+        "deviraptor"
+      ]
     },
     {
-      "mon_slug": "deviraptor",
-      "evo_stage": "stage2"
+      "slug": "devidin",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "devidra"
+      ]
+    },
+    {
+      "slug": "deviraptor",
+      "stage": "stage2",
+      "evolves_from": [
+        "devidra"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [
@@ -85,6 +103,9 @@
   "txmn_id": 293,
   "height": 152,
   "weight": 113,
+  "sounds": {
+    "combat_call": "sound_weird_09"
+  },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

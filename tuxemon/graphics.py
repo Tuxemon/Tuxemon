@@ -12,7 +12,7 @@ import logging
 import re
 from collections.abc import Iterable, Sequence
 from pathlib import Path
-from typing import TYPE_CHECKING, Any, Optional, Protocol, Union
+from typing import Any, Optional, Protocol, Union
 
 from pygame.color import Color
 from pygame.image import load
@@ -28,9 +28,6 @@ from tuxemon.session import Session
 from tuxemon.sprite import Sprite
 from tuxemon.surfanim import SurfaceAnimation
 from tuxemon.tools import scale_sequence, transform_resource_filename
-
-if TYPE_CHECKING:
-    from tuxemon.client import LocalPygameClient
 
 logger = logging.getLogger(__name__)
 
@@ -382,24 +379,6 @@ def scaled_image_loader(
         return tile
 
     return load_image
-
-
-def capture_screenshot(game: LocalPygameClient) -> Surface:
-    """
-    Capture a screenshot of the current map.
-
-    Parameters:
-        game: The game object.
-
-    Returns:
-        The captured screenshot.
-    """
-    from tuxemon.states.world_state import WorldState
-
-    screenshot = Surface(game.screen.get_size())
-    world = game.get_state_by_name(WorldState)
-    world.draw(screenshot)
-    return screenshot
 
 
 def get_avatar(session: Session, avatar: str) -> Optional[Sprite]:

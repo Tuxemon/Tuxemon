@@ -42,8 +42,20 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "eyenemy",
-      "evo_stage": "basic"
+      "slug": "eyesore",
+      "stage": "stage1",
+      "evolves_from": [
+        "eyenemy"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "eyenemy",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "eyesore"
+      ]
     }
   ],
   "terrains": [],
@@ -63,6 +75,10 @@
   "txmn_id": 47,
   "height": 135,
   "weight": 4,
+  "sounds": {
+    "combat_call": "sound_retro_beep_05",
+    "faint_call": "sound_retro_beep_05_faint"
+  },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.9,
   "upper_catch_resistance": 1.15

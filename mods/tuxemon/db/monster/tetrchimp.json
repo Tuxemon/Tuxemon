@@ -47,8 +47,20 @@
   ],
   "history": [
     {
-      "mon_slug": "apeoro",
-      "evo_stage": "stage1"
+      "slug": "tetrchimp",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "apeoro"
+      ]
+    },
+    {
+      "slug": "apeoro",
+      "stage": "stage1",
+      "evolves_from": [
+        "tetrchimp"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [],
@@ -70,6 +82,9 @@
   "txmn_id": 196,
   "height": 45,
   "weight": 4,
+  "sounds": {
+    "combat_call": "sound_whistle"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.9,
   "upper_catch_resistance": 1.15

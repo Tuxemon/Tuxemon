@@ -42,8 +42,20 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "skwib",
-      "evo_stage": "basic"
+      "slug": "octabode",
+      "stage": "stage1",
+      "evolves_from": [
+        "skwib"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "skwib",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "octabode"
+      ]
     }
   ],
   "terrains": [],
@@ -64,6 +76,9 @@
   "txmn_id": 184,
   "height": 44,
   "weight": 19,
+  "sounds": {
+    "combat_call": "sound_grunt_03"
+  },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.9,
   "upper_catch_resistance": 1.15

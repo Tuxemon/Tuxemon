@@ -51,12 +51,31 @@
   ],
   "history": [
     {
-      "mon_slug": "waysprite",
-      "evo_stage": "basic"
+      "slug": "angesnow",
+      "stage": "stage1",
+      "evolves_from": [
+        "waysprite"
+      ],
+      "evolves_into": [
+        "seraphice"
+      ]
     },
     {
-      "mon_slug": "seraphice",
-      "evo_stage": "stage2"
+      "slug": "waysprite",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "angesnow",
+        "demosnow"
+      ]
+    },
+    {
+      "slug": "seraphice",
+      "stage": "stage2",
+      "evolves_from": [
+        "angesnow"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [
@@ -81,6 +100,9 @@
   "txmn_id": 263,
   "height": 120,
   "weight": 30,
+  "sounds": {
+    "combat_call": "sound_glitch_call"
+  },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.9,
   "upper_catch_resistance": 1.15

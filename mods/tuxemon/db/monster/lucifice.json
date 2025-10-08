@@ -46,12 +46,31 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "waysprite",
-      "evo_stage": "basic"
+      "slug": "lucifice",
+      "stage": "stage2",
+      "evolves_from": [
+        "demosnow"
+      ],
+      "evolves_into": []
     },
     {
-      "mon_slug": "demosnow",
-      "evo_stage": "stage1"
+      "slug": "waysprite",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "angesnow",
+        "demosnow"
+      ]
+    },
+    {
+      "slug": "demosnow",
+      "stage": "stage1",
+      "evolves_from": [
+        "waysprite"
+      ],
+      "evolves_into": [
+        "lucifice"
+      ]
     }
   ],
   "terrains": [
@@ -77,6 +96,9 @@
   "txmn_id": 265,
   "height": 180,
   "weight": 90,
+  "sounds": {
+    "combat_call": "sound_weird_09"
+  },
   "catch_rate": 35.0,
   "lower_catch_resistance": 0.85,
   "upper_catch_resistance": 1.1

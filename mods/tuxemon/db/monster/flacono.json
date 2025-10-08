@@ -55,12 +55,30 @@
   ],
   "history": [
     {
-      "mon_slug": "corvix",
-      "evo_stage": "stage1"
+      "slug": "flacono",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "corvix"
+      ]
     },
     {
-      "mon_slug": "gryfix",
-      "evo_stage": "stage2"
+      "slug": "corvix",
+      "stage": "stage1",
+      "evolves_from": [
+        "flacono"
+      ],
+      "evolves_into": [
+        "gryfix"
+      ]
+    },
+    {
+      "slug": "gryfix",
+      "stage": "stage2",
+      "evolves_from": [
+        "corvix"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [
@@ -85,6 +103,10 @@
   "txmn_id": 156,
   "height": 70,
   "weight": 6,
+  "sounds": {
+    "combat_call": "sound_swords_clash",
+    "faint_call": "sound_swords_clash_faint"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.9,
   "upper_catch_resistance": 1.15

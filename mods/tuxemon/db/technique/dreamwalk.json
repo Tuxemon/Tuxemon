@@ -22,7 +22,7 @@
   "power": 2.8,
   "range": "reliable",
   "recharge": 4,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_pulse",
   "slug": "dreamwalk",
   "sort": "damage",
   "modifiers": [],

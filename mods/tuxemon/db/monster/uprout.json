@@ -46,8 +46,20 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "sprightly",
-      "evo_stage": "basic"
+      "slug": "uprout",
+      "stage": "stage1",
+      "evolves_from": [
+        "sprightly"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "sprightly",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "uprout"
+      ]
     }
   ],
   "terrains": [
@@ -72,6 +84,9 @@
   "txmn_id": 337,
   "height": 100,
   "weight": 10,
+  "sounds": {
+    "combat_call": "sound_woosh_2"
+  },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

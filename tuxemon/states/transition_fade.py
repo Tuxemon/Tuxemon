@@ -53,8 +53,7 @@ class FadeTransitionBase(State):
             self.fade_duration = fade_duration
 
         self.caller = caller
-        size = self.client.screen.get_size()
-        self.transition_surface = Surface(size, SRCALPHA)
+        self.transition_surface = Surface(prepare.SCREEN_SIZE, SRCALPHA)
         self.transition_surface.fill(color)
         self.task(self.client.pop_state, interval=self.state_duration)
         self.create_fade_animation()

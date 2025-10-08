@@ -12,17 +12,17 @@ from datetime import datetime
 from enum import Enum
 from operator import itemgetter
 from pathlib import Path
-from typing import Any, Optional, TypedDict, TypeVar
+from typing import TYPE_CHECKING, Any, Optional, TypeVar
 
 from pygame.image import tobytes
 from pygame.surface import Surface
 
 from tuxemon import prepare
-from tuxemon.client import LocalPygameClient
-from tuxemon.npc import NPCState
+from tuxemon.save_state import TIME_FORMAT, SaveData
 from tuxemon.save_upgrader import SAVE_VERSION, upgrade_save
-from tuxemon.session import Session
-from tuxemon.states.world_state import WorldSave, WorldState
+
+if TYPE_CHECKING:
+    from tuxemon.session import Session
 
 try:
     import cbor
@@ -36,7 +36,6 @@ T = TypeVar("T")
 logger = logging.getLogger(__name__)
 
 slot_number: Optional[int] = None
-TIME_FORMAT = "%Y-%m-%d %H:%M"
 config = prepare.CONFIG
 
 
@@ -53,29 +52,10 @@ class SaveMethod(Enum):
             return cls.JSON
 
 
-class SaveData(TypedDict, total=False):
-    screenshot: str
-    screenshot_width: int
-    screenshot_height: int
-    time: str
-    version: int
-    npc_state: NPCState
-    world_state: WorldSave
-
-
-def capture_screenshot(client: LocalPygameClient) -> Surface:
-    """
-    Capture a screenshot.
-
-    Parameters:
-        client: Tuxemon client.
-
-    Returns:
-        Captured image.
-    """
-    screenshot = Surface(client.screen.get_size())
-    world = client.get_state_by_name(WorldState)
-    world.draw(screenshot)
+def capture_screenshot(session: Session) -> Surface:
+    """Capture a screenshot."""
+    screenshot = Surface(prepare.SCREEN_SIZE)
+    session.world.draw(screenshot)
     return screenshot
 
 
@@ -89,9 +69,10 @@ def get_save_data(session: Session) -> SaveData:
     Returns:
         Game data to save, must be JSON encodable.
     """
-    screenshot = capture_screenshot(session.client)
+    screenshot = capture_screenshot(session)
     npc_state = session.player.get_state(session)
     world_state = session.world.get_state(session)
+    session_state = session.get_state()
 
     return {
         "screenshot": b64encode(tobytes(screenshot, "RGB")).decode(),
@@ -101,6 +82,7 @@ def get_save_data(session: Session) -> SaveData:
         "version": SAVE_VERSION,
         "npc_state": npc_state,
         "world_state": world_state,
+        "session_state": session_state,
     }
 
 

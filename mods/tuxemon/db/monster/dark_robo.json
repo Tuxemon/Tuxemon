@@ -52,7 +52,14 @@
     }
   ],
   "evolutions": [],
-  "history": [],
+  "history": [
+    {
+      "slug": "dark_robo",
+      "stage": "standalone",
+      "evolves_from": [],
+      "evolves_into": []
+    }
+  ],
   "terrains": [],
   "tags": [],
   "shape": "humanoid",
@@ -66,6 +73,9 @@
   "txmn_id": 0,
   "height": 0.1,
   "weight": 100,
+  "sounds": {
+    "combat_call": "sound_robot1"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

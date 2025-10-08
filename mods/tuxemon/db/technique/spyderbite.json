@@ -15,7 +15,7 @@
   "power": 0.0,
   "range": "special",
   "speed": "normal",
-  "sfx": "sfx_pulse",
+  "sfx": "sfx_bite",
   "slug": "spyderbite",
   "sort": "meta",
   "modifiers": [],

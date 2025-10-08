@@ -50,8 +50,20 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "woodoor",
-      "evo_stage": "basic"
+      "slug": "blasdoor",
+      "stage": "stage1",
+      "evolves_from": [
+        "woodoor"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "woodoor",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "blasdoor"
+      ]
     }
   ],
   "terrains": [
@@ -74,6 +86,9 @@
   "txmn_id": 251,
   "height": 2040,
   "weight": 204,
+  "sounds": {
+    "combat_call": "sound_ghost_1"
+  },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

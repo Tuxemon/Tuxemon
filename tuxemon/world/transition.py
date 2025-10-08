@@ -8,6 +8,7 @@ from typing import TYPE_CHECKING, Optional
 from pygame import SRCALPHA
 from pygame.surface import Surface
 
+from tuxemon import prepare
 from tuxemon.graphics import ColorLike
 
 if TYPE_CHECKING:
@@ -31,7 +32,7 @@ class WorldTransition:
         ):
             return
 
-        new_surface = Surface(self.world.client.screen.get_size(), SRCALPHA)
+        new_surface = Surface(prepare.SCREEN_SIZE, SRCALPHA)
         new_surface.fill(color)
         self.transition_surface = new_surface
 

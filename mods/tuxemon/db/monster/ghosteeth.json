@@ -56,7 +56,14 @@
     }
   ],
   "evolutions": [],
-  "history": [],
+  "history": [
+    {
+      "slug": "ghosteeth",
+      "stage": "standalone",
+      "evolves_from": [],
+      "evolves_into": []
+    }
+  ],
   "terrains": [],
   "tags": [
     "ghost",
@@ -75,6 +82,10 @@
   "txmn_id": 111,
   "height": 70,
   "weight": 0.1,
+  "sounds": {
+    "combat_call": "sound_ghost_1",
+    "faint_call": "sound_ghost_1_faint"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

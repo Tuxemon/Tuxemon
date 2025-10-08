@@ -30,7 +30,7 @@ class StatChangeEffect(CoreEffect):
     adjustments relative to a stat's base value, with clamping via `max_step_limit`
     to ensure balance.
 
-    Stats are pulled from the status's stat components (e.g. `status.statmelee`, etc.),
+    Stats are pulled from the status's stat components (e.g. `melee`, etc.),
     and can impact either permanent base stats or runtime health values.
 
     This class supports:
@@ -74,29 +74,13 @@ class StatChangeEffect(CoreEffect):
     def apply_status_target(
         self, session: Session, status: Status, target: Monster
     ) -> StatusEffectResult:
-        statsmaster = [
-            status.statspeed,
-            status.stathp,
-            status.statarmour,
-            status.statmelee,
-            status.statranged,
-            status.statdodge,
-        ]
-        slugs = [
-            "speed",
-            "current_hp",  # special case for current HP
-            "armour",
-            "melee",
-            "ranged",
-            "dodge",
-        ]
-
         if (
             status.has_phase(EffectPhase.PERFORM_STATUS)
             and self.name not in status._effect_applied
         ):
             status._effect_applied.add("statchange")
-            for stat_model, slug in zip(statsmaster, slugs):
+
+            for stat_slug, stat_model in status.stat_modifiers.items():
                 if not stat_model:
                     continue
 
@@ -107,7 +91,7 @@ class StatChangeEffect(CoreEffect):
                 operation = stat_model.operation
 
                 # Handle HP override
-                if slug == "current_hp" and override:
+                if stat_slug == "current_hp" and override:
                     target.current_hp = target.hp
                     logger.info(
                         f"[{status.name}] Overriding current HP > {target.name}: {target.hp}"
@@ -133,12 +117,12 @@ class StatChangeEffect(CoreEffect):
                         max(-max_step, min(max_step, actual_step))
                     )
 
-                    if slug == "current_hp":
+                    if stat_slug == "current_hp":
                         base = target.hp
                     else:
-                        base = getattr(target.base_stats, slug)
+                        base = getattr(target.base_stats, stat_slug)
 
-                    current = target.return_stat(StatType(slug))
+                    current = target.return_stat(StatType(stat_slug))
                     old_step = (current - base) / base
                     total_step = max(
                         -max_step,
@@ -159,7 +143,7 @@ class StatChangeEffect(CoreEffect):
                             )
 
                     logger.debug(
-                        f"[{status.name}] {slug} changed via {scaling_mode} step on {target.name}: "
+                        f"[{status.name}] {stat_slug} changed via {scaling_mode} step on {target.name}: "
                         f"step {old_step:.3f} > {total_step:.3f}, value {current:.2f} > {new_value:.2f}"
                     )
 
@@ -174,30 +158,36 @@ class StatChangeEffect(CoreEffect):
                     )
 
                     stat_base = (
-                        getattr(target, slug)
-                        if slug == "current_hp"
-                        else getattr(target.base_stats, slug, None)
+                        getattr(target, stat_slug)
+                        if stat_slug == "current_hp"
+                        else getattr(target.base_stats, stat_slug, None)
                     )
                     if stat_base is None:
                         continue
 
+                    if operation not in ops_dict:
+                        logger.warning(
+                            f"Unknown operation '{operation}' in status '{status.name}'"
+                        )
+                        continue
+
                     op_func = ops_dict.get(operation, lambda a, b: a)
-                    new_value = int(op_func(stat_base, applied_value))
+                    new_value = round(op_func(stat_base, applied_value))
 
                     logger.debug(
-                        f"[{status.name}] {slug} changed via value on {target.name}: "
+                        f"[{status.name}] {stat_slug} changed via value on {target.name}: "
                         f"{stat_base} > {new_value}"
                     )
 
                 # Safety: Clamp stat values
-                if new_value <= 0 and slug != "current_hp":
+                if new_value <= 0 and stat_slug != "current_hp":
                     new_value = 1
 
                 # Assignment
-                if slug == "current_hp":
+                if stat_slug == "current_hp":
                     target.current_hp = min(new_value, target.hp)
-                elif slug in StatType.__members__:
-                    setattr(target.base_stats, slug, int(new_value))
+                elif stat_slug in StatType.__members__:
+                    setattr(target.base_stats, stat_slug, int(new_value))
 
         elif status.has_phase(EffectPhase.ON_END):
             target.set_stats()

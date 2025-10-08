@@ -47,8 +47,20 @@
   ],
   "history": [
     {
-      "mon_slug": "pairagrim",
-      "evo_stage": "stage1"
+      "slug": "pairagrin",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "pairagrim"
+      ]
+    },
+    {
+      "slug": "pairagrim",
+      "stage": "stage1",
+      "evolves_from": [
+        "pairagrin"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [
@@ -69,6 +81,9 @@
   "txmn_id": 181,
   "height": 70,
   "weight": 4,
+  "sounds": {
+    "combat_call": "sound_woosh_1"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

@@ -43,12 +43,30 @@
   ],
   "history": [
     {
-      "mon_slug": "cocrune",
-      "evo_stage": "stage1"
+      "slug": "stonifly",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "cocrune"
+      ]
     },
     {
-      "mon_slug": "runesquito",
-      "evo_stage": "stage2"
+      "slug": "cocrune",
+      "stage": "stage1",
+      "evolves_from": [
+        "stonifly"
+      ],
+      "evolves_into": [
+        "runesquito"
+      ]
+    },
+    {
+      "slug": "runesquito",
+      "stage": "stage2",
+      "evolves_from": [
+        "cocrune"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [],
@@ -68,6 +86,9 @@
   "txmn_id": 332,
   "height": 30,
   "weight": 16,
+  "sounds": {
+    "combat_call": "sound_bug_03"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

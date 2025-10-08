@@ -59,12 +59,30 @@
   ],
   "history": [
     {
-      "mon_slug": "rosarin",
-      "evo_stage": "basic"
+      "slug": "toxiris",
+      "stage": "stage1",
+      "evolves_from": [
+        "rosarin"
+      ],
+      "evolves_into": [
+        "ninjasmine"
+      ]
     },
     {
-      "mon_slug": "ninjasmine",
-      "evo_stage": "stage2"
+      "slug": "rosarin",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "toxiris"
+      ]
+    },
+    {
+      "slug": "ninjasmine",
+      "stage": "stage2",
+      "evolves_from": [
+        "toxiris"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [
@@ -90,6 +108,9 @@
   "txmn_id": 205,
   "height": 100,
   "weight": 25,
+  "sounds": {
+    "combat_call": "sound_monster_19"
+  },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

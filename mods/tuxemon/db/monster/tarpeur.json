@@ -47,8 +47,20 @@
   ],
   "history": [
     {
-      "mon_slug": "vigueur",
-      "evo_stage": "stage1"
+      "slug": "tarpeur",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "vigueur"
+      ]
+    },
+    {
+      "slug": "vigueur",
+      "stage": "stage1",
+      "evolves_from": [
+        "tarpeur"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [],
@@ -69,6 +81,9 @@
   "txmn_id": 217,
   "height": 19,
   "weight": 1,
+  "sounds": {
+    "combat_call": "sound_cute_02"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.9,
   "upper_catch_resistance": 1.15

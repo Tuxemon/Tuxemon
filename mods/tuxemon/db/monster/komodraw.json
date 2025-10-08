@@ -63,8 +63,20 @@
   ],
   "history": [
     {
-      "mon_slug": "komoduel",
-      "evo_stage": "stage1"
+      "slug": "komodraw",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "komoduel"
+      ]
+    },
+    {
+      "slug": "komoduel",
+      "stage": "stage1",
+      "evolves_from": [
+        "komodraw"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [
@@ -89,6 +101,10 @@
   "txmn_id": 92,
   "height": 155,
   "weight": 55,
+  "sounds": {
+    "combat_call": "sound_misc_12",
+    "faint_call": "sound_misc_12_faint"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

@@ -20,7 +20,7 @@
   "power": 2.25,
   "range": "touch",
   "recharge": 2,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_sand",
   "slug": "quicksand",
   "sort": "damage",
   "modifiers": [],

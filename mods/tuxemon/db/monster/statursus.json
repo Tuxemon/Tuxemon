@@ -43,12 +43,30 @@
   ],
   "history": [
     {
-      "mon_slug": "furnursus",
-      "evo_stage": "basic"
+      "slug": "statursus",
+      "stage": "stage1",
+      "evolves_from": [
+        "furnursus"
+      ],
+      "evolves_into": [
+        "coaldiak"
+      ]
     },
     {
-      "mon_slug": "coaldiak",
-      "evo_stage": "stage2"
+      "slug": "furnursus",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "statursus"
+      ]
+    },
+    {
+      "slug": "coaldiak",
+      "stage": "stage2",
+      "evolves_from": [
+        "statursus"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [],
@@ -69,6 +87,9 @@
   "txmn_id": 191,
   "height": 190,
   "weight": 160,
+  "sounds": {
+    "combat_call": "sound_spell_fire_06"
+  },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.9,
   "upper_catch_resistance": 1.15

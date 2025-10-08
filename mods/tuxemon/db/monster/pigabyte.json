@@ -52,7 +52,14 @@
     }
   ],
   "evolutions": [],
-  "history": [],
+  "history": [
+    {
+      "slug": "pigabyte",
+      "stage": "standalone",
+      "evolves_from": [],
+      "evolves_into": []
+    }
+  ],
   "terrains": [],
   "tags": [
     "megafauna",
@@ -71,6 +78,10 @@
   "txmn_id": 116,
   "height": 155,
   "weight": 180,
+  "sounds": {
+    "combat_call": "sound_robotic_pig",
+    "faint_call": "sound_robotic_pig_faint"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

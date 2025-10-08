@@ -55,12 +55,30 @@
   ],
   "history": [
     {
-      "mon_slug": "krokivip",
-      "evo_stage": "stage1"
+      "slug": "kroki",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "krokivip"
+      ]
     },
     {
-      "mon_slug": "leviadile",
-      "evo_stage": "stage2"
+      "slug": "krokivip",
+      "stage": "stage1",
+      "evolves_from": [
+        "kroki"
+      ],
+      "evolves_into": [
+        "leviadile"
+      ]
+    },
+    {
+      "slug": "leviadile",
+      "stage": "stage2",
+      "evolves_from": [
+        "krokivip"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [
@@ -83,6 +101,9 @@
   "txmn_id": 369,
   "height": 30,
   "weight": 10,
+  "sounds": {
+    "combat_call": "sound_splash_1"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.9,
   "upper_catch_resistance": 1.15

@@ -47,8 +47,20 @@
   ],
   "history": [
     {
-      "mon_slug": "birdling",
-      "evo_stage": "stage1"
+      "slug": "hatchling",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "birdling"
+      ]
+    },
+    {
+      "slug": "birdling",
+      "stage": "stage1",
+      "evolves_from": [
+        "hatchling"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [
@@ -71,6 +83,10 @@
   "txmn_id": 81,
   "height": 20,
   "weight": 1,
+  "sounds": {
+    "combat_call": "sound_cute_01",
+    "faint_call": "sound_cute_01_faint"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.25

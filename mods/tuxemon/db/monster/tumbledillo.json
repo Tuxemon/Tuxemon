@@ -54,8 +54,20 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "tumblequill",
-      "evo_stage": "basic"
+      "slug": "tumbledillo",
+      "stage": "stage1",
+      "evolves_from": [
+        "tumblequill"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "tumblequill",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "tumbledillo"
+      ]
     }
   ],
   "terrains": [],
@@ -77,6 +89,9 @@
   "txmn_id": 221,
   "height": 64,
   "weight": 14,
+  "sounds": {
+    "combat_call": "sound_stones_04"
+  },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.9,
   "upper_catch_resistance": 1.15

@@ -13,7 +13,7 @@
   "power": 2.5,
   "range": "ranged",
   "recharge": 1,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_squeak",
   "slug": "needle",
   "sort": "damage",
   "modifiers": [],

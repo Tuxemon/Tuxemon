@@ -52,7 +52,14 @@
     }
   ],
   "evolutions": [],
-  "history": [],
+  "history": [
+    {
+      "slug": "cowpignon",
+      "stage": "standalone",
+      "evolves_from": [],
+      "evolves_into": []
+    }
+  ],
   "terrains": [
     "grassland",
     "woodland"
@@ -76,6 +83,10 @@
   "txmn_id": 107,
   "height": 30.48,
   "weight": 2,
+  "sounds": {
+    "combat_call": "sound_die_04",
+    "faint_call": "sound_die_04_faint"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

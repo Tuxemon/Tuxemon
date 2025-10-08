@@ -19,7 +19,7 @@
   ],
   "slug": "fire_berry",
   "sort": "utility",
-  "sprite": "gfx/items/berry.png",
+  "sprite": "gfx/items/fire_berry.png",
   "category": "elements",
   "cost": 450,
   "usable_in": [

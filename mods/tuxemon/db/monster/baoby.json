@@ -47,8 +47,20 @@
   ],
   "history": [
     {
-      "mon_slug": "baobaraffe",
-      "evo_stage": "stage1"
+      "slug": "baoby",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "baobaraffe"
+      ]
+    },
+    {
+      "slug": "baobaraffe",
+      "stage": "stage1",
+      "evolves_from": [
+        "baoby"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [],
@@ -69,6 +81,9 @@
   "txmn_id": 192,
   "height": 54,
   "weight": 23,
+  "sounds": {
+    "combat_call": "sound_cute_03"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.9,
   "upper_catch_resistance": 1.15

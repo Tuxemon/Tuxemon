@@ -44,7 +44,14 @@
     }
   ],
   "evolutions": [],
-  "history": [],
+  "history": [
+    {
+      "slug": "pearamanca",
+      "stage": "standalone",
+      "evolves_from": [],
+      "evolves_into": []
+    }
+  ],
   "terrains": [],
   "tags": [
     "bite",
@@ -62,6 +69,9 @@
   "txmn_id": 284,
   "height": 90,
   "weight": 50,
+  "sounds": {
+    "combat_call": "sound_whistle"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

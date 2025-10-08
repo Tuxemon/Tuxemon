@@ -35,8 +35,20 @@
   ],
   "history": [
     {
-      "mon_slug": "volconey",
-      "evo_stage": "stage1"
+      "slug": "thumpurn",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "volconey"
+      ]
+    },
+    {
+      "slug": "volconey",
+      "stage": "stage1",
+      "evolves_from": [
+        "thumpurn"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [
@@ -61,6 +73,9 @@
   "txmn_id": 298,
   "height": 65,
   "weight": 23,
+  "sounds": {
+    "combat_call": "sound_spell_fire_06"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

@@ -50,12 +50,30 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "flacono",
-      "evo_stage": "basic"
+      "slug": "gryfix",
+      "stage": "stage2",
+      "evolves_from": [
+        "corvix"
+      ],
+      "evolves_into": []
     },
     {
-      "mon_slug": "corvix",
-      "evo_stage": "stage1"
+      "slug": "flacono",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "corvix"
+      ]
+    },
+    {
+      "slug": "corvix",
+      "stage": "stage1",
+      "evolves_from": [
+        "flacono"
+      ],
+      "evolves_into": [
+        "gryfix"
+      ]
     }
   ],
   "terrains": [
@@ -82,6 +100,9 @@
   "txmn_id": 158,
   "height": 180,
   "weight": 31,
+  "sounds": {
+    "combat_call": "sound_creature_roar"
+  },
   "catch_rate": 35.0,
   "lower_catch_resistance": 0.9,
   "upper_catch_resistance": 1.15

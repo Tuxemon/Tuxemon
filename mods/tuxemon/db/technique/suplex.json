@@ -28,7 +28,7 @@
   "randomly": false,
   "range": "melee",
   "recharge": 3,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_forcefield",
   "slug": "suplex",
   "sort": "damage",
   "modifiers": [],

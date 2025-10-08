@@ -63,12 +63,30 @@
   ],
   "history": [
     {
-      "mon_slug": "glombroc",
-      "evo_stage": "stage1"
+      "slug": "slichen",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "glombroc"
+      ]
     },
     {
-      "mon_slug": "conglolem",
-      "evo_stage": "stage2"
+      "slug": "glombroc",
+      "stage": "stage1",
+      "evolves_from": [
+        "slichen"
+      ],
+      "evolves_into": [
+        "conglolem"
+      ]
+    },
+    {
+      "slug": "conglolem",
+      "stage": "stage2",
+      "evolves_from": [
+        "glombroc"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [
@@ -92,6 +110,9 @@
   "txmn_id": 272,
   "height": 37,
   "weight": 1,
+  "sounds": {
+    "combat_call": "sound_spit_02"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.25

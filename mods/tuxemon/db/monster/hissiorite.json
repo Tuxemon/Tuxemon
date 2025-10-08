@@ -35,12 +35,30 @@
   ],
   "history": [
     {
-      "mon_slug": "cobarett",
-      "evo_stage": "stage1"
+      "slug": "hissiorite",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "cobarett"
+      ]
     },
     {
-      "mon_slug": "pythonova",
-      "evo_stage": "stage2"
+      "slug": "cobarett",
+      "stage": "stage1",
+      "evolves_from": [
+        "hissiorite"
+      ],
+      "evolves_into": [
+        "pythonova"
+      ]
+    },
+    {
+      "slug": "pythonova",
+      "stage": "stage2",
+      "evolves_from": [
+        "cobarett"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [
@@ -63,6 +81,9 @@
   "txmn_id": 322,
   "height": 100,
   "weight": 2,
+  "sounds": {
+    "combat_call": "sound_creature_roar"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

@@ -50,12 +50,30 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "cataspike",
-      "evo_stage": "basic"
+      "slug": "weavifly",
+      "stage": "stage2",
+      "evolves_from": [
+        "puparmor"
+      ],
+      "evolves_into": []
     },
     {
-      "mon_slug": "puparmor",
-      "evo_stage": "stage1"
+      "slug": "cataspike",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "puparmor"
+      ]
+    },
+    {
+      "slug": "puparmor",
+      "stage": "stage1",
+      "evolves_from": [
+        "cataspike"
+      ],
+      "evolves_into": [
+        "weavifly"
+      ]
     }
   ],
   "terrains": [],
@@ -77,6 +95,10 @@
   "txmn_id": 35,
   "height": 52,
   "weight": 17,
+  "sounds": {
+    "combat_call": "sound_insekt001",
+    "faint_call": "sound_insekt001_faint"
+  },
   "catch_rate": 35.0,
   "lower_catch_resistance": 0.9,
   "upper_catch_resistance": 1.15

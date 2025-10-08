@@ -59,12 +59,30 @@
   ],
   "history": [
     {
-      "mon_slug": "cardiling",
-      "evo_stage": "basic"
+      "slug": "cardiwing",
+      "stage": "stage1",
+      "evolves_from": [
+        "cardiling"
+      ],
+      "evolves_into": [
+        "cardinale"
+      ]
     },
     {
-      "mon_slug": "cardinale",
-      "evo_stage": "stage2"
+      "slug": "cardiling",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "cardiwing"
+      ]
+    },
+    {
+      "slug": "cardinale",
+      "stage": "stage2",
+      "evolves_from": [
+        "cardiwing"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [
@@ -90,6 +108,10 @@
   "txmn_id": 63,
   "height": 45,
   "weight": 5,
+  "sounds": {
+    "combat_call": "sound_woosh_1",
+    "faint_call": "sound_woosh_1_faint"
+  },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.9,
   "upper_catch_resistance": 1.15

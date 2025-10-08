@@ -59,13 +59,27 @@
     {
       "at_level": 32,
       "monster_slug": "regalance",
-      "taste_warm": "hearty"
+      "tastes": {
+        "warm": "hearty"
+      }
     }
   ],
   "history": [
     {
-      "mon_slug": "regalance",
-      "evo_stage": "stage1"
+      "slug": "claymorior",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "regalance"
+      ]
+    },
+    {
+      "slug": "regalance",
+      "stage": "stage1",
+      "evolves_from": [
+        "claymorior"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [
@@ -91,6 +105,9 @@
   "txmn_id": 317,
   "height": 150,
   "weight": 112,
+  "sounds": {
+    "combat_call": "sound_swords_clash"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

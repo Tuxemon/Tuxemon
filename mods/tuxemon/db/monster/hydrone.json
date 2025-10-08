@@ -52,7 +52,14 @@
     }
   ],
   "evolutions": [],
-  "history": [],
+  "history": [
+    {
+      "slug": "hydrone",
+      "stage": "standalone",
+      "evolves_from": [],
+      "evolves_into": []
+    }
+  ],
   "terrains": [],
   "tags": [
     "machine",
@@ -73,6 +80,10 @@
   "txmn_id": 112,
   "height": 155,
   "weight": 200,
+  "sounds": {
+    "combat_call": "sound_steel_clang",
+    "faint_call": "sound_steel_clang_faint"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

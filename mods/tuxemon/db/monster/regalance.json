@@ -58,8 +58,20 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "claymorior",
-      "evo_stage": "basic"
+      "slug": "regalance",
+      "stage": "stage1",
+      "evolves_from": [
+        "claymorior"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "claymorior",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "regalance"
+      ]
     }
   ],
   "terrains": [
@@ -86,6 +98,9 @@
   "txmn_id": 318,
   "height": 182,
   "weight": 137,
+  "sounds": {
+    "combat_call": "sound_grunt_03"
+  },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

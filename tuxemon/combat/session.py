@@ -514,7 +514,7 @@ class CombatSession:
         status = monster.status.get_current_status()
         if status:
             result_status = status.use(
-                session, target, EffectPhase.PRE_CHECKING
+                session, monster, EffectPhase.PRE_CHECKING
             )
             if result_status.techniques:
                 technique = random.choice(result_status.techniques)
@@ -525,10 +525,13 @@ class CombatSession:
         ):
             infected_slugs = monster.plague.get_infected_slugs()
             slug = random.choice(infected_slugs)
-            method = Technique.create(slug)
-            result_tech = method.use(session, monster, target)
-            if result_tech.success:
-                technique = method
+            alt_technique = Technique.create(slug)
+            result = alt_technique.use(session, monster, target)
+            if result.success:
+                logger.debug(
+                    f"[Plague Override] {monster.name} switches to {alt_technique.slug}"
+                )
+                technique = alt_technique
         logger.debug(f"[PreCheck End] {monster.name} using {technique.slug}")
         return technique
 
@@ -577,7 +580,6 @@ class CombatSession:
         phase: EffectPhase,
     ) -> StatusEffectResult:
         result = status.use(session, target, phase)
-        status.advance_round()
         logger.debug(
             f"{status.slug} applied to {target.name} during {phase.name}"
         )

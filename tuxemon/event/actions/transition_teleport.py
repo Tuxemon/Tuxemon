@@ -5,12 +5,12 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Optional, final
 
+from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.graphics import ColorLike, string_to_colorlike
 from tuxemon.prepare import BLACK_COLOR, TRANS_TIME
 from tuxemon.session import Session
-from tuxemon.states.world_state import WorldState
-from tuxemon.teleporter import DelayedTeleport
+from tuxemon.teleporter import TeleportRequest
 
 
 @final
@@ -31,8 +31,9 @@ class TransitionTeleportAction(EventAction):
         map_name: Name of the map to teleport to.
         x: X coordinate of the map to teleport to.
         y: Y coordinate of the map to teleport to.
-        trans_time: Transition time in seconds - default 0.3
-        rgb: color (eg red > 255,0,0 > 255:0:0) - default rgb(0,0,0)
+        trans_time: (Optional) Transition time in seconds. Default is 0.3.
+        rgb: (Optional) Transition color in RGB format (e.g. "255:0:0" for red).
+             Default is black (0,0,0).
     """
 
     name = "transition_teleport"
@@ -43,37 +44,39 @@ class TransitionTeleportAction(EventAction):
     rgb: Optional[str] = None
 
     def start(self, session: Session) -> None:
-        self.world = session.client.get_state_by_name(WorldState)
-        delayed_teleport = self.world.teleporter.delayed_teleport
 
-        if delayed_teleport.is_active:
+        char = get_npc(session, "player")
+        if char is None:
+            return
+
+        teleport_queue = session.client.teleporter.teleport_queue
+
+        if not teleport_queue.is_empty():
             self.stop()
             return
 
-        # Start the screen transition
         _time = TRANS_TIME if self.trans_time is None else self.trans_time
         rgb: ColorLike = BLACK_COLOR
         if self.rgb:
             rgb = string_to_colorlike(self.rgb)
-        self.setup_delayed_teleport(delayed_teleport)
-        self.world.transition_manager.fade_and_teleport(
+
+        request = TeleportRequest(
+            char=None,
+            mapname=self.map_name,
+            x=self.x,
+            y=self.y,
+            facing=None,
+            source_map=session.client.get_map_name(),
+            source_x=char.tile_pos[0],
+            source_y=char.tile_pos[1],
+        )
+        teleport_queue.enqueue(request)
+
+        session.world.transition_manager.fade_and_teleport(
             _time,
             rgb,
-            self.world.player,
-            lambda: self.world.teleporter.handle_delayed_teleport(
-                self.world.player
-            ),
+            char,
+            lambda: session.client.teleporter.handle_next_teleport(char),
         )
 
-    def update(self, session: Session) -> None:
-        if self.done:
-            return
-
-    def setup_delayed_teleport(self, delayed: DelayedTeleport) -> None:
-        """Configure delayed teleport after the screen transition."""
-        delayed.char = None
-        delayed.is_active = True
-        delayed.mapname = self.map_name
-        delayed.x = self.x
-        delayed.y = self.y
         self.stop()

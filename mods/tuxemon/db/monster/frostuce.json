@@ -46,12 +46,30 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "cohldrabi",
-      "evo_stage": "basic"
+      "slug": "frostuce",
+      "stage": "stage2",
+      "evolves_from": [
+        "lettice"
+      ],
+      "evolves_into": []
     },
     {
-      "mon_slug": "lettice",
-      "evo_stage": "stage1"
+      "slug": "cohldrabi",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "lettice"
+      ]
+    },
+    {
+      "slug": "lettice",
+      "stage": "stage1",
+      "evolves_from": [
+        "cohldrabi"
+      ],
+      "evolves_into": [
+        "frostuce"
+      ]
     }
   ],
   "terrains": [
@@ -74,6 +92,9 @@
   "txmn_id": 384,
   "height": 100,
   "weight": 18,
+  "sounds": {
+    "combat_call": "sound_ice"
+  },
   "catch_rate": 35.0,
   "lower_catch_resistance": 0.9,
   "upper_catch_resistance": 1.15

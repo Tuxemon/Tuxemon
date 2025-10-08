@@ -55,8 +55,20 @@
   ],
   "history": [
     {
-      "mon_slug": "potturney",
-      "evo_stage": "stage1"
+      "slug": "potturmeist",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "potturney"
+      ]
+    },
+    {
+      "slug": "potturney",
+      "stage": "stage1",
+      "evolves_from": [
+        "potturmeist"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [],
@@ -77,6 +89,9 @@
   "txmn_id": 257,
   "height": 48,
   "weight": 2.5,
+  "sounds": {
+    "combat_call": "sound_weird_09"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

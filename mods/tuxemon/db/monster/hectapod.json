@@ -42,8 +42,20 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "squink",
-      "evo_stage": "basic"
+      "slug": "hectapod",
+      "stage": "stage1",
+      "evolves_from": [
+        "squink"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "squink",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "hectapod"
+      ]
     }
   ],
   "terrains": [],
@@ -63,6 +75,9 @@
   "txmn_id": 271,
   "height": 120,
   "weight": 45,
+  "sounds": {
+    "combat_call": "sound_frog"
+  },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

@@ -35,20 +35,48 @@
   ],
   "history": [
     {
-      "mon_slug": "katacoon",
-      "evo_stage": "stage1"
+      "slug": "katapill",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "katacoon"
+      ]
     },
     {
-      "mon_slug": "bugnin",
-      "evo_stage": "stage2"
+      "slug": "katacoon",
+      "stage": "stage1",
+      "evolves_from": [
+        "katapill"
+      ],
+      "evolves_into": [
+        "bugnin",
+        "sumchon",
+        "gladiatorbug"
+      ]
     },
     {
-      "mon_slug": "sumchon",
-      "evo_stage": "stage2"
+      "slug": "bugnin",
+      "stage": "stage2",
+      "evolves_from": [
+        "katacoon"
+      ],
+      "evolves_into": []
     },
     {
-      "mon_slug": "gladiatorbug",
-      "evo_stage": "stage2"
+      "slug": "sumchon",
+      "stage": "stage2",
+      "evolves_from": [
+        "katacoon"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "gladiatorbug",
+      "stage": "stage2",
+      "evolves_from": [
+        "katacoon"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [
@@ -71,6 +99,10 @@
   "txmn_id": 56,
   "height": 32,
   "weight": 3,
+  "sounds": {
+    "combat_call": "sound_insekt001",
+    "faint_call": "sound_insekt001_faint"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.25

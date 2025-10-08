@@ -56,7 +56,14 @@
     }
   ],
   "evolutions": [],
-  "history": [],
+  "history": [
+    {
+      "slug": "joulraton",
+      "stage": "standalone",
+      "evolves_from": [],
+      "evolves_into": []
+    }
+  ],
   "terrains": [],
   "tags": [
     "electricity",
@@ -74,6 +81,9 @@
   "txmn_id": 244,
   "height": 30,
   "weight": 2.5,
+  "sounds": {
+    "combat_call": "sound_terminal_03"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

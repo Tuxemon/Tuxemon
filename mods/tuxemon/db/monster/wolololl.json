@@ -50,8 +50,20 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "hoodoll",
-      "evo_stage": "basic"
+      "slug": "wolololl",
+      "stage": "stage1",
+      "evolves_from": [
+        "hoodoll"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "hoodoll",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "wolololl"
+      ]
     }
   ],
   "terrains": [
@@ -74,6 +86,9 @@
   "txmn_id": 390,
   "height": 130,
   "weight": 40,
+  "sounds": {
+    "combat_call": "sound_spit_02"
+  },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.9,
   "upper_catch_resistance": 1.15

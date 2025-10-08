@@ -55,12 +55,30 @@
   ],
   "history": [
     {
-      "mon_slug": "bricgard",
-      "evo_stage": "stage1"
+      "slug": "imbrickcile",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "bricgard"
+      ]
     },
     {
-      "mon_slug": "brickhemoth",
-      "evo_stage": "stage2"
+      "slug": "bricgard",
+      "stage": "stage1",
+      "evolves_from": [
+        "imbrickcile"
+      ],
+      "evolves_into": [
+        "brickhemoth"
+      ]
+    },
+    {
+      "slug": "brickhemoth",
+      "stage": "stage2",
+      "evolves_from": [
+        "bricgard"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [
@@ -86,6 +104,9 @@
   "txmn_id": 259,
   "height": 35,
   "weight": 2,
+  "sounds": {
+    "combat_call": "sound_stones_04"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.25

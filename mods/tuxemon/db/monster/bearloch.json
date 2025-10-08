@@ -52,7 +52,14 @@
     }
   ],
   "evolutions": [],
-  "history": [],
+  "history": [
+    {
+      "slug": "bearloch",
+      "stage": "standalone",
+      "evolves_from": [],
+      "evolves_into": []
+    }
+  ],
   "terrains": [],
   "tags": [],
   "shape": "brute",
@@ -67,6 +74,9 @@
   "txmn_id": 0,
   "height": 131,
   "weight": 46,
+  "sounds": {
+    "combat_call": "sound_retro_beep_05"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

@@ -31,12 +31,30 @@
   ],
   "history": [
     {
-      "mon_slug": "equill",
-      "evo_stage": "stage1"
+      "slug": "hoarse",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "equill"
+      ]
     },
     {
-      "mon_slug": "hoarseshoo",
-      "evo_stage": "stage2"
+      "slug": "equill",
+      "stage": "stage1",
+      "evolves_from": [
+        "hoarse"
+      ],
+      "evolves_into": [
+        "hoarseshoo"
+      ]
+    },
+    {
+      "slug": "hoarseshoo",
+      "stage": "stage2",
+      "evolves_from": [
+        "equill"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [],
@@ -56,6 +74,9 @@
   "txmn_id": 309,
   "height": 130,
   "weight": 130,
+  "sounds": {
+    "combat_call": "sound_troll_01"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

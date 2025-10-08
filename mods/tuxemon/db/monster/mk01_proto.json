@@ -31,24 +31,60 @@
   ],
   "history": [
     {
-      "mon_slug": "mk01_alpha",
-      "evo_stage": "stage1"
+      "slug": "mk01_proto",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "mk01_alpha",
+        "mk01_beta"
+      ]
     },
     {
-      "mon_slug": "mk01_beta",
-      "evo_stage": "stage1"
+      "slug": "mk01_alpha",
+      "stage": "stage1",
+      "evolves_from": [
+        "mk01_proto"
+      ],
+      "evolves_into": [
+        "mk01_delta",
+        "mk01_gamma"
+      ]
     },
     {
-      "mon_slug": "mk01_gamma",
-      "evo_stage": "stage2"
+      "slug": "mk01_beta",
+      "stage": "stage1",
+      "evolves_from": [
+        "mk01_proto"
+      ],
+      "evolves_into": [
+        "mk01_delta",
+        "mk01_omega"
+      ]
     },
     {
-      "mon_slug": "mk01_omega",
-      "evo_stage": "stage2"
+      "slug": "mk01_gamma",
+      "stage": "stage2",
+      "evolves_from": [
+        "mk01_alpha"
+      ],
+      "evolves_into": []
     },
     {
-      "mon_slug": "mk01_delta",
-      "evo_stage": "stage2"
+      "slug": "mk01_omega",
+      "stage": "stage2",
+      "evolves_from": [
+        "mk01_beta"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "mk01_delta",
+      "stage": "stage2",
+      "evolves_from": [
+        "mk01_alpha",
+        "mk01_beta"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [],
@@ -64,6 +100,9 @@
   "txmn_id": 0,
   "height": 0.1,
   "weight": 100,
+  "sounds": {
+    "combat_call": "sound_steel_clang"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

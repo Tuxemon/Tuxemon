@@ -58,8 +58,20 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "jelillow",
-      "evo_stage": "basic"
+      "slug": "bedoo",
+      "stage": "stage1",
+      "evolves_from": [
+        "jelillow"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "jelillow",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "bedoo"
+      ]
     }
   ],
   "terrains": [
@@ -82,6 +94,9 @@
   "txmn_id": 208,
   "height": 200,
   "weight": 15,
+  "sounds": {
+    "combat_call": "sound_robot2"
+  },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

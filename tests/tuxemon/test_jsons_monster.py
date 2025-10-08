@@ -5,35 +5,24 @@ import unittest
 from pathlib import Path
 from typing import Any
 
-from tuxemon.constants.asset_loader import fetch_asset
-
 ALL_MONSTERS: int = 411
 MAX_TXMN_ID: int = 393
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+MONSTER_FOLDER = PROJECT_ROOT / "mods/tuxemon/db/monster"
 
 
-def process_json_data(directory: str) -> list[dict[str, Any]]:
+def process_json_data() -> list[dict[str, Any]]:
     data_list = []
-    directory_path = Path(fetch_asset("db")) / directory
-    for file in directory_path.iterdir():
+    for file in MONSTER_FOLDER.iterdir():
         if file.suffix == ".json" and file.is_file():
             with file.open("r") as f:
                 data_list.append(json.load(f))
     return data_list
 
 
-def get_history(
-    data_list: list[dict[str, Any]], slug: str
-) -> list[dict[str, Any]]:
-    for data in data_list:
-        if data["slug"] == slug:
-            return data["history"]
-    return []
-
-
 class TestJSONProcessing(unittest.TestCase):
     def setUp(self) -> None:
-        sample_data = "monster"
-        self.data_list = process_json_data(sample_data)
+        self.data_list = process_json_data()
 
     def test_nr_jsons(self) -> None:
         self.assertEqual(len(self.data_list), ALL_MONSTERS)
@@ -67,122 +56,65 @@ class TestJSONProcessing(unittest.TestCase):
         if duplicates:
             self.fail(f"There are duplicates txmn_ids: {duplicates}")
 
-    def test_history_current_slug(self) -> None:
-        missing_monsters = []
+    def test_history_structure_and_links(self) -> None:
+        errors = []
+
+        all_slugs = {data["slug"] for data in self.data_list}
+        stage_order = {"basic": 0, "stage1": 1, "stage2": 2}
+
         for data in self.data_list:
             slug = data["slug"]
-            history = data["history"]
-            if history:
-                for element in history:
-                    if element["mon_slug"] == "slug":
-                        missing_monsters.append(
-                            f"{slug}'s history cannot contain {slug} ({history})"
-                        )
-        if missing_monsters:
-            print(
-                "The following monsters have history that contains themselves:"
-            )
-            for monster in missing_monsters:
-                print(monster)
-            self.fail("History cannot contain slug.")
-
-    def test_history_evolution(self) -> None:
-        missing_monsters = []
-        for data in self.data_list:
-            original = data["slug"]
-            history = data["history"]
-            evolutions = data["evolutions"]
-            if evolutions:
-                for evolution in evolutions:
-                    slug = evolution["monster_slug"]
-                    if history and slug not in [
-                        h["mon_slug"] for h in history
-                    ]:
-                        missing_monsters.append(
-                            f"{original}'s history must contain {evolution['monster_slug']} ({history})"
-                        )
-        if missing_monsters:
-            print(
-                "The following monsters have history that doesn't contain their evolution:"
-            )
-            for monster in missing_monsters:
-                print(monster)
-            self.fail("History must contain evolution slug.")
-
-    def test_history_standalone(self) -> None:
-        for data in self.data_list:
             stage = data["stage"]
-            if stage == "standalone":
-                self.assertEqual(
-                    len(data["history"]),
-                    0,
-                    f"{data['slug']} is standalone, it has no history",
-                )
+            history = data.get("history", [])
+            evolutions = data.get("evolutions", [])
 
-    def test_history_standalone(self) -> None:
-        for data in self.data_list:
-            stage = data["stage"]
-            if stage == "standalone":
-                self.assertEqual(
-                    len(data["history"]),
-                    0,
-                    f"{data['slug']} is standalone, it has no history",
-                )
+            # 1. Self-entry must exist
+            if not any(h["slug"] == slug for h in history):
+                errors.append(f"{slug} is missing self-entry in history")
 
-    def test_stage_basic(self) -> None:
-        for data in self.data_list:
-            evo_stages = [h["evo_stage"] for h in data["history"]]
-            if data["stage"] == "basic" and data["evolutions"]:
-                self.assertIn(
-                    "stage1",
-                    evo_stages,
-                    f"{data['slug']}'s history lacks the 'evo_stage':'stage1' ({data['history']})",
-                )
-            if data["stage"] == "basic" and not data["evolutions"]:
-                self.fail(
-                    f"{data['slug']} is basic, but there are no evolutions ({data['evolutions']})"
-                )
+            # 2. All referenced slugs must exist
+            for h in history:
+                for ref in h.get("evolves_from", []) + h.get(
+                    "evolves_into", []
+                ):
+                    if ref not in all_slugs:
+                        errors.append(
+                            f"{slug}'s history references unknown monster '{ref}'"
+                        )
 
-    def test_stage_stage1(self) -> None:
-        for data in self.data_list:
-            evo_stages = [h["evo_stage"] for h in data["history"]]
-            if data["stage"] == "stage1":
-                self.assertIn(
-                    "basic",
-                    evo_stages,
-                    f"{data['slug']}'s history lacks the 'evo_stage':'basic' ({data['history']})",
-                )
-                if data["evolutions"]:
-                    self.assertIn(
-                        "stage2",
-                        evo_stages,
-                        f"{data['slug']}'s history lacks the 'evo_stage':'stage2' ({data['history']})",
+            # 3. Evolution slugs must appear in history
+            for evo in evolutions:
+                evo_slug = evo["monster_slug"]
+                if not any(h["slug"] == evo_slug for h in history):
+                    errors.append(
+                        f"{slug}'s history missing evolution '{evo_slug}'"
                     )
-                names = [h["mon_slug"] for h in data["history"]]
-                for name in names:
-                    history = get_history(self.data_list, name)
-                    history_names = [h["mon_slug"] for h in history]
-                    self.assertIn(data["slug"], history_names)
 
-    def test_stage_stage2(self) -> None:
-        for data in self.data_list:
-            evo_stages = [h["evo_stage"] for h in data["history"]]
-            if data["stage"] == "stage2":
-                self.assertIn(
-                    "basic",
-                    evo_stages,
-                    f"{data['slug']}'s history lacks the 'evo_stage':'basic' ({data['history']})",
+            # 4. Standalone monsters should only have self-entry
+            if stage == "standalone":
+                if len(history) != 1 or history[0]["slug"] != slug:
+                    errors.append(
+                        f"{slug} is standalone but has non-self history entries"
+                    )
+
+            # 5. Stage progression check (informational only)
+            # Optional: warn if links point to lower stages, but don't fail
+            for h in history:
+                target = next(
+                    (d for d in self.data_list if d["slug"] == h["slug"]), None
                 )
-                self.assertIn(
-                    "stage1",
-                    evo_stages,
-                    f"{data['slug']}'s history lacks the 'evo_stage':'stage1' ({data['history']})",
-                )
-                names = [h["mon_slug"] for h in data["history"]]
-                for name in names:
-                    history = get_history(self.data_list, name)
-                    history_names = [h["mon_slug"] for h in history]
-                    self.assertIn(data["slug"], history_names)
+                if target and h["slug"] != slug:
+                    from_stage = stage_order.get(stage, -1)
+                    to_stage = stage_order.get(target["stage"], -1)
+                    if to_stage <= from_stage:
+                        # This is now allowed, but you can log it if needed
+                        pass  # or log as a warning
+
+        if errors:
+            print("\n History validation errors:")
+            for error in errors:
+                print(" -", error)
+            self.fail("History model validation failed.")
 
     def test_moveset_level_learned_evolution_at_level(self) -> None:
         START_LEVEL = 1

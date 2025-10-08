@@ -30,8 +30,20 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "sheye",
-      "evo_stage": "basic"
+      "slug": "shrab",
+      "stage": "stage1",
+      "evolves_from": [
+        "sheye"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "sheye",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "shrab"
+      ]
     }
   ],
   "terrains": [
@@ -56,6 +68,9 @@
   "txmn_id": 286,
   "height": 100,
   "weight": 100,
+  "sounds": {
+    "combat_call": "sound_glitch_call"
+  },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

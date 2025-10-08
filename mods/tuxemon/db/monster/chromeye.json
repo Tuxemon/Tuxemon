@@ -63,20 +63,47 @@
   ],
   "history": [
     {
-      "mon_slug": "sadito",
-      "evo_stage": "stage1"
+      "slug": "chromeye",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "angrito",
+        "happito",
+        "neutrito",
+        "sadito"
+      ]
     },
     {
-      "mon_slug": "neutrito",
-      "evo_stage": "stage1"
+      "slug": "sadito",
+      "stage": "stage1",
+      "evolves_from": [
+        "chromeye"
+      ],
+      "evolves_into": []
     },
     {
-      "mon_slug": "happito",
-      "evo_stage": "stage1"
+      "slug": "neutrito",
+      "stage": "stage1",
+      "evolves_from": [
+        "chromeye"
+      ],
+      "evolves_into": []
     },
     {
-      "mon_slug": "angrito",
-      "evo_stage": "stage1"
+      "slug": "happito",
+      "stage": "stage1",
+      "evolves_from": [
+        "chromeye"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "angrito",
+      "stage": "stage1",
+      "evolves_from": [
+        "chromeye"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [
@@ -99,6 +126,9 @@
   "txmn_id": 174,
   "height": 38,
   "weight": 3.5,
+  "sounds": {
+    "combat_call": "sound_retro_beep_05"
+  },
   "catch_rate": 100,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

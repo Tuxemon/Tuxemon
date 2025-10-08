@@ -55,8 +55,20 @@
   ],
   "history": [
     {
-      "mon_slug": "qetzlrokilus",
-      "evo_stage": "stage1"
+      "slug": "metesaur",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "qetzlrokilus"
+      ]
+    },
+    {
+      "slug": "qetzlrokilus",
+      "stage": "stage1",
+      "evolves_from": [
+        "metesaur"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [
@@ -81,6 +93,9 @@
   "txmn_id": 202,
   "height": 95,
   "weight": 10,
+  "sounds": {
+    "combat_call": "sound_roar_05"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.9,
   "upper_catch_resistance": 1.15

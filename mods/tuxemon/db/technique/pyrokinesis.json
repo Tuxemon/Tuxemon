@@ -13,7 +13,7 @@
   "power": 2.5,
   "range": "melee",
   "recharge": 4,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_flames1",
   "slug": "pyrokinesis",
   "sort": "damage",
   "modifiers": [],

@@ -14,13 +14,15 @@
   "sfx": "sfx_pulse",
   "slug": "enraged",
   "sort": "meta",
-  "statmelee": {
-    "value": 2,
-    "operation": "*"
-  },
-  "statranged": {
-    "value": 0.5,
-    "operation": "*"
+  "stat_modifiers": {
+    "melee": {
+      "value": 2,
+      "operation": "*"
+    },
+    "ranged": {
+      "value": 0.5,
+      "operation": "*"
+    }
   },
   "cond_id": 12,
   "use_failure": null,

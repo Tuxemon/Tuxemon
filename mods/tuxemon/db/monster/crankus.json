@@ -46,8 +46,20 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "caper",
-      "evo_stage": "basic"
+      "slug": "crankus",
+      "stage": "stage1",
+      "evolves_from": [
+        "caper"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "caper",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "crankus"
+      ]
     }
   ],
   "terrains": [
@@ -73,6 +85,9 @@
   "txmn_id": 276,
   "height": 180,
   "weight": 102,
+  "sounds": {
+    "combat_call": "sound_whistle"
+  },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

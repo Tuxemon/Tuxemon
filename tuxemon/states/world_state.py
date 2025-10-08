@@ -25,7 +25,6 @@ from tuxemon.platform.tools import translate_input_event
 from tuxemon.save_state import WorldSave
 from tuxemon.session import Session
 from tuxemon.state.state import State
-from tuxemon.tools import extract_mod_name
 from tuxemon.world.manager import WorldMenuManager
 from tuxemon.world.transition import WorldTransition
 
@@ -49,7 +48,6 @@ class WorldState(State):
 
     def __init__(self, session: Session, map_name: str) -> None:
         super().__init__()
-        self.mod_name = extract_mod_name(map_name)
         self.session = session
         self.session.set_world(self)
         self.tile_size = prepare.TILE_SIZE

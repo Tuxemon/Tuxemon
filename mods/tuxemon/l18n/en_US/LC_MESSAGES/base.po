@@ -9340,9 +9340,6 @@ msgstr "Sorry, but I should leave now."
 msgid "omnichannelarrives"
 msgstr "STOP!"
 
-msgid "omnichannelarrives2"
-msgstr ""
-
 msgid "yesmaam"
 msgstr "Yes Ma'am."
 

@@ -75,10 +75,10 @@ def configure_game_states(
 
     if config.skip_titlescreen and config.mods:
         if len(config.mods) == 1:
-            launcher = GameLauncher(client, db)
+            launcher = GameLauncher(client)
             launcher.launch(
-                mod_name=config.mods[0],
                 session=local_session,
+                meta=db.mod_metadata.get_mod_metadata(config.mods[0]),
             )
         else:
             client.push_state("ModsChoice", mods=config.mods)

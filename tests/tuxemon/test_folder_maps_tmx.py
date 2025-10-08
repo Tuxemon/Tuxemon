@@ -23,7 +23,7 @@ EXPECTED_SCENARIOS = ["spyder", "xero", "tobedefined"]
 
 def expand_expected_scenarios() -> None:
     for mod in prepare.CONFIG.mods:
-        map: str = db.require_mod_attribute(mod, "starting_map")
+        map: str = db.mod_metadata.require_mod_attribute(mod, "starting_map")
         EXPECTED_SCENARIOS.append(map.removesuffix(".tmx"))
 
 

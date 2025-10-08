@@ -16,7 +16,6 @@ from dataclasses import fields
 from enum import Enum
 from functools import lru_cache
 from operator import add, eq, floordiv, ge, gt, le, lt, mul, ne, sub
-from pathlib import Path
 from typing import (
     TYPE_CHECKING,
     Any,
@@ -82,21 +81,6 @@ class NamedTupleProtocol(Protocol):
 
 
 NamedTupleTypeVar = TypeVar("NamedTupleTypeVar", bound=NamedTupleProtocol)
-
-
-def extract_mod_name(map_path: str) -> str:
-    """
-    Extracts the mod name from a map path. Assumes the map is located in a
-    'mods/<mod_name>/...' structure and returns the folder name immediately
-    following 'mods'. If the structure is invalid, a ValueError is raised
-    instead of returning a fallback.
-    """
-    path = Path(map_path)
-    try:
-        mods_index = path.parts.index("mods")
-        return path.parts[mods_index + 1]
-    except (ValueError, IndexError) as e:
-        raise ValueError(f"Invalid mod path structure: {path}") from e
 
 
 def get_cell_coordinates(

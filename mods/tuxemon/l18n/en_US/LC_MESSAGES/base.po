@@ -4217,12 +4217,6 @@ msgstr "Seen {param} out of {all}"
 msgid "tuxepedia_data_caught"
 msgstr "Caught {param} out of {all}"
 
-msgid "player_start_adventure_today"
-msgstr "The adventure began today."
-
-msgid "player_start_adventure"
-msgstr "The adventure began {date} days ago."
-
 msgid "player_total_playtime"
 msgstr "Total Playtime"
 

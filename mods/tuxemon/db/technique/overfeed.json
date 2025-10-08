@@ -17,7 +17,7 @@
   "power": 0,
   "range": "special",
   "recharge": 5,
-  "sfx": "sfx_pulse",
+  "sfx": "sfx_bounce",
   "slug": "overfeed",
   "sort": "meta",
   "modifiers": [],

@@ -71,6 +71,10 @@
   "txmn_id": 347,
   "height": 44,
   "weight": 5,
+  "sounds": {
+    "combat_call": "sound_insekt001",
+    "faint_call": "sound_insekt001_faint"
+  },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.9,
   "upper_catch_resistance": 1.15

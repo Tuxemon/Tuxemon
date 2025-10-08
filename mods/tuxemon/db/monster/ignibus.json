@@ -92,6 +92,10 @@
   "txmn_id": 30,
   "height": 68,
   "weight": 27,
+  "sounds": {
+    "combat_call": "sound_spell_fire_07",
+    "faint_call": "sound_spell_fire_07_faint"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.25

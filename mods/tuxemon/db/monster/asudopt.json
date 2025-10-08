@@ -110,6 +110,10 @@
   "txmn_id": 300,
   "height": 150,
   "weight": 30,
+  "sounds": {
+    "combat_call": "sound_crow_caw",
+    "faint_call": "sound_crow_caw_faint"
+  },
   "catch_rate": 5.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

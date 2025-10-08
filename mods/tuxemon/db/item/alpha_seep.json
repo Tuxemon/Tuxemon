@@ -1,0 +1,23 @@
+{
+  "conditions": [],
+  "effects": [
+    {
+      "type": "repellent",
+      "parameters": ["100"]
+    }
+  ],
+  "slug": "alpha_seep",
+  "sort": "utility",
+  "sprite": "gfx/items/box.png",
+  "category": "none",
+  "usable_in": [
+    "WorldState"
+  ],
+  "modifiers": [],
+  "behaviors": {
+    "requires_monster_menu": false
+  },
+  "use_failure": "generic_failure",
+  "use_item": "combat_used_x",
+  "use_success": "generic_success"
+}

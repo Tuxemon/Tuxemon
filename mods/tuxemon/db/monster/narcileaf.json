@@ -79,6 +79,10 @@
   "txmn_id": 78,
   "height": 42,
   "weight": 4,
+  "sounds": {
+    "combat_call": "sound_cute_04",
+    "faint_call": "sound_cute_04_faint"
+  },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.9,
   "upper_catch_resistance": 1.15

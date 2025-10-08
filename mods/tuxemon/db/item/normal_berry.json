@@ -4,7 +4,7 @@
       "type": "base",
       "parameters": [
         "types",
-        "metal"
+        "normal"
       ],
       "operator": "not"
     }
@@ -13,13 +13,13 @@
     {
       "type": "switch_type",
       "parameters": [
-        "metal"
+        "normal"
       ]
     }
   ],
-  "slug": "metal_cherry",
+  "slug": "normal_berry",
   "sort": "utility",
-  "sprite": "gfx/items/cherry.png",
+  "sprite": "gfx/items/normal_berry.png",
   "category": "elements",
   "cost": 450,
   "usable_in": [

@@ -11,7 +11,7 @@
   "potency": 0,
   "power": 0,
   "range": "special",
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_pulse",
   "slug": "menu_forfeit",
   "sort": "meta",
   "modifiers": [],

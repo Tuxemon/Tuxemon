@@ -95,6 +95,9 @@
   "txmn_id": 387,
   "height": 12,
   "weight": 1,
+  "sounds": {
+    "combat_call": "sound_wood_call"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.9,
   "upper_catch_resistance": 1.15

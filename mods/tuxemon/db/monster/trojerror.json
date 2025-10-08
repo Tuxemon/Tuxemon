@@ -93,6 +93,9 @@
   "txmn_id": 380,
   "height": 30,
   "weight": 0.1,
+  "sounds": {
+    "combat_call": "sound_terminal_03"
+  },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.9,
   "upper_catch_resistance": 1.15

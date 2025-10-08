@@ -114,6 +114,9 @@
   "txmn_id": 360,
   "height": 200,
   "weight": 80,
+  "sounds": {
+    "combat_call": "sound_glitch_call"
+  },
   "catch_rate": 35.0,
   "lower_catch_resistance": 0.9,
   "upper_catch_resistance": 1.15

@@ -92,6 +92,9 @@
   "txmn_id": 384,
   "height": 100,
   "weight": 18,
+  "sounds": {
+    "combat_call": "sound_ice"
+  },
   "catch_rate": 35.0,
   "lower_catch_resistance": 0.9,
   "upper_catch_resistance": 1.15

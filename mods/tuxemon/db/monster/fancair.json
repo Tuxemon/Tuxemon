@@ -76,6 +76,10 @@
   "txmn_id": 179,
   "height": 45,
   "weight": 18,
+  "sounds": {
+    "combat_call": "sound_game_shot_light_gun",
+    "faint_call": "sound_game_shot_light_gun_faint"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

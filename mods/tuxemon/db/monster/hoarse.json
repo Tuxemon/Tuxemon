@@ -74,6 +74,9 @@
   "txmn_id": 309,
   "height": 130,
   "weight": 130,
+  "sounds": {
+    "combat_call": "sound_troll_01"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

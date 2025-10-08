@@ -540,3 +540,10 @@ def check_condition(value: str, dataset: set[str]) -> bool:
     result = value in dataset
     logging.debug(f"Checking '{value}' in {dataset}: {result}")
     return result
+
+
+def format_playtime(seconds: float) -> str:
+    """Convert seconds into a human-readable hours and minutes format."""
+    minutes, sec = divmod(int(seconds), 60)
+    hours, min = divmod(minutes, 60)
+    return f"{hours}h {min}m"

@@ -13,7 +13,7 @@
   "power": 2.7,
   "range": "reach",
   "recharge": 3,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_bubbles",
   "slug": "tsunami",
   "sort": "damage",
   "modifiers": [],

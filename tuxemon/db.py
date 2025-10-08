@@ -851,22 +851,22 @@ class MonsterSpritesModel(BaseModel):
 
 
 class MonsterSoundsModel(BaseModel):
-    combat_call: str = Field(
-        ..., description="The sound used when entering combat"
+    combat_call: Optional[str] = Field(
+        None, description="The sound used when entering combat"
     )
-    faint_call: str = Field(
-        ..., description="The sound used when the monster faints"
+    faint_call: Optional[str] = Field(
+        None, description="The sound used when the monster faints"
     )
 
     @field_validator("combat_call")
     def combat_call_exists(cls: MonsterSoundsModel, v: str) -> str:
-        if has.db_entry("sounds", v):
+        if v and has.db_entry("sounds", v):
             return v
         raise ValueError(f"the sound {v} doesn't exist in the db")
 
     @field_validator("faint_call")
     def faint_call_exists(cls: MonsterSoundsModel, v: str) -> str:
-        if has.db_entry("sounds", v):
+        if v and has.db_entry("sounds", v):
             return v
         raise ValueError(f"the sound {v} doesn't exist in the db")
 
@@ -930,9 +930,8 @@ class MonsterModel(BaseModel, BaseLookupModel, validate_assignment=True):
     flairs: set[str] = Field(
         default_factory=set, description="The flairs this monster has"
     )
-    sounds: Optional[MonsterSoundsModel] = Field(
-        None,
-        description="The sounds this monster has",
+    sounds: MonsterSoundsModel = Field(
+        description="The sounds this monster has"
     )
 
     @classmethod

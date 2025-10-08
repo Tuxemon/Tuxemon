@@ -55,6 +55,7 @@ class TestMonsterActions(unittest.TestCase):
         height=80,
         weight=24,
         catch_rate=100.0,
+        sounds={},
         lower_catch_resistance=0.95,
         upper_catch_resistance=1.25,
     )
@@ -74,6 +75,7 @@ class TestMonsterActions(unittest.TestCase):
         height=45,
         weight=4,
         catch_rate=100.0,
+        sounds={},
         lower_catch_resistance=0.95,
         upper_catch_resistance=1.25,
     )

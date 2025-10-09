@@ -26,6 +26,7 @@ class Renderer:
         screen: Surface,
         state_drawer: StateDrawer,
         config: TuxemonConfig,
+        debug_drawer: EventDebugDrawer,
     ) -> None:
         """
         Initializes the Renderer class.
@@ -39,52 +40,33 @@ class Renderer:
             state_drawer: Handles rendering the current game state.
             config: Configuration settings that may affect rendering
                 behavior.
+            debug_drawer: Component used to render debug overlays, such as
+                event conditions and collision maps.
         """
         self.screen = screen
         self.state_drawer = state_drawer
+        self.debug_drawer = debug_drawer
         self.caption = config.window_caption
         self.vsync = config.vsync
         self.frames = 0
         self.fps_timer = 0.0
 
-    def draw(
-        self,
-        frame_number: int,
-        save_to_disk: bool,
-        collision_map: bool,
-        debug_drawer: EventDebugDrawer,
-        partial_events: list[Sequence[tuple[bool, MapCondition]]],
-    ) -> None:
-        """
-        Renders the current frame and handles optional debug overlays and
-        frame saving.
-        This function manages the main rendering process, including drawing
-        game states, debug information, and saving frames to disk.
-
-        Parameters:
-            frame_number: The current frame number used for naming saved
-                snapshots.
-            save_to_disk: If True, saves the current frame to disk as an
-                image.
-            collision_map: If True, renders debug information for
-                collisions/events.
-            debug_drawer: Handles rendering debug overlays.
-            partial_events: A collection of partial events used for debugging
-                purposes.
-        """
-        # Draw the current game state
+    def draw(self) -> None:
+        """Draws the current game state."""
         self.state_drawer.draw()
 
-        # Optional: Draw debug information if enabled
-        if collision_map:
-            debug_drawer.draw_event_debug(partial_events)
+    def draw_debug(
+        self, partial_events: list[Sequence[tuple[bool, MapCondition]]]
+    ) -> None:
+        """Draws debug overlays if enabled."""
+        self.debug_drawer.draw_event_debug(partial_events)
 
-        # Optional: Save to disk if enabled
-        if save_to_disk:
-            filename = f"snapshot{frame_number:05d}.tga"
-            pygame.image.save(self.screen, filename)
+    def save_frame(self, frame_number: int) -> None:
+        """Saves the current frame to disk."""
+        filename = f"snapshot{frame_number:05d}.tga"
+        pygame.image.save(self.screen, filename)
 
-    def update_fps(self, clock_tick: float) -> None:
+    def update(self, clock_tick: float) -> None:
         """
         Updates and displays the frames per second (FPS) on the window caption.
 

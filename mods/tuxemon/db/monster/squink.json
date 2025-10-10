@@ -80,7 +80,8 @@
   "height": 70,
   "weight": 24,
   "sounds": {
-    "combat_call": "sound_burble_02"
+    "combat_call": "sound_burble_02",
+    "faint_call": "sound_burble_02_faint"
   },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,

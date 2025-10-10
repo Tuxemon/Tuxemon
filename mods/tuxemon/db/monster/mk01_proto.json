@@ -101,7 +101,8 @@
   "height": 0.1,
   "weight": 100,
   "sounds": {
-    "combat_call": "sound_steel_clang"
+    "combat_call": "sound_steel_clang",
+    "faint_call": "sound_steel_clang_faint"
   },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,

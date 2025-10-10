@@ -74,7 +74,8 @@
   "height": 0.1,
   "weight": 25,
   "sounds": {
-    "combat_call": "sound_echo_gurgle_whoosh_1"
+    "combat_call": "sound_echo_gurgle_whoosh_1",
+    "faint_call": "sound_echo_gurgle_whoosh_1_faint"
   },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,

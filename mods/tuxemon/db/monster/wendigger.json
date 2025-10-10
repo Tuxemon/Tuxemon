@@ -95,7 +95,8 @@
   "height": 210,
   "weight": 75,
   "sounds": {
-    "combat_call": "sound_monster_19"
+    "combat_call": "sound_monster_19",
+    "faint_call": "sound_monster_19_faint"
   },
   "catch_rate": 35.0,
   "lower_catch_resistance": 0.95,

@@ -9,7 +9,6 @@ from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.graphics import load_and_scale
 from tuxemon.session import Session
-from tuxemon.states.world_state import WorldState
 
 
 @final
@@ -46,16 +45,15 @@ class SetBubbleAction(EventAction):
         if npc is None:
             raise ValueError(f"NPC '{self.npc_slug}' not found.")
 
-        world = client.get_state_by_name(WorldState)
         filename = f"gfx/bubbles/{self.bubble}.png"
 
         if self.bubble is None:
-            if world.map_renderer.bubble_manager.has_bubble(npc):
-                world.map_renderer.bubble_manager.remove_bubble(npc)
+            if client.map_renderer.bubble_manager.has_bubble(npc):
+                client.map_renderer.bubble_manager.remove_bubble(npc)
         else:
             try:
                 surface = load_and_scale(filename)
             except FileNotFoundError:
                 raise ValueError(f"Bubble image '{filename}' not found.")
             else:
-                world.map_renderer.bubble_manager.add_bubble(npc, surface)
+                client.map_renderer.bubble_manager.add_bubble(npc, surface)

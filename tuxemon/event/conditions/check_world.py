@@ -9,7 +9,6 @@ from tuxemon.event import MapCondition, get_npc
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.graphics import string_to_colorlike
 from tuxemon.session import Session
-from tuxemon.states.world_state import WorldState
 
 logger = logging.getLogger(__name__)
 
@@ -42,12 +41,11 @@ class CheckWorldCondition(EventCondition):
     name = "check_world"
 
     def test(self, session: Session, condition: MapCondition) -> bool:
-        world = session.client.get_state_by_name(WorldState)
         params = condition.parameters
         if params[0] == "layer":
             if len(params) > 1:
                 rgb = string_to_colorlike(params[1])
-                return world.map_renderer.layer_color == rgb
+                return session.client.map_renderer.layer_color == rgb
             return True
         if params[0] == "bubble":
             if len(params) < 2:
@@ -56,5 +54,5 @@ class CheckWorldCondition(EventCondition):
             if char is None:
                 logger.error(f"{params[1]} not found")
                 return False
-            return world.map_renderer.bubble_manager.has_bubble(char)
+            return session.client.map_renderer.bubble_manager.has_bubble(char)
         return False

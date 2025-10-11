@@ -75,10 +75,10 @@
     "earth",
     "sky"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 143,
   "height": 92,
   "weight": 17,

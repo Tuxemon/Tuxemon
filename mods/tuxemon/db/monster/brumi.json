@@ -86,9 +86,9 @@
     "shadow",
     "cosmic"
   ],
-  "possible_genders": [
-    "neuter"
-  ],
+  "gender_weights": {
+    "neuter": 1.0
+  },
   "txmn_id": 341,
   "height": 123,
   "weight": 0.1,

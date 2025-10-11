@@ -73,10 +73,10 @@
   "types": [
     "water"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 153,
   "height": 205,
   "weight": 120,

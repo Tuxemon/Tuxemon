@@ -54,10 +54,10 @@
   "types": [
     "frost"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 328,
   "height": 63,
   "weight": 16,

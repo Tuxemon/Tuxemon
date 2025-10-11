@@ -104,6 +104,7 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.rename_player.RenamePlayerAction
 .. autoscriptinfoclass:: tuxemon.event.actions.rumble.RumbleAction
 .. autoscriptinfoclass:: tuxemon.event.actions.save_game.SaveGameAction
+.. autoscriptinfoclass:: tuxemon.event.actions.save_timestamp.SaveTimestampAction
 .. autoscriptinfoclass:: tuxemon.event.actions.screen_transition.ScreenTransitionAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_battle.SetBattleAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_bill.SetBillAction

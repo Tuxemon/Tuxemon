@@ -79,9 +79,9 @@
     "fire",
     "shadow"
   ],
-  "possible_genders": [
-    "neuter"
-  ],
+  "gender_weights": {
+    "neuter": 1.0
+  },
   "txmn_id": 108,
   "height": 160,
   "weight": 0.1,

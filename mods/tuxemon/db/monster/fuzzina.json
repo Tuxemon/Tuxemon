@@ -83,9 +83,9 @@
     "cosmic",
     "normal"
   ],
-  "possible_genders": [
-    "neuter"
-  ],
+  "gender_weights": {
+    "neuter": 1.0
+  },
   "txmn_id": 237,
   "height": 50,
   "weight": 1,

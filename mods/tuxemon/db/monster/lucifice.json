@@ -90,9 +90,9 @@
     "frost",
     "shadow"
   ],
-  "possible_genders": [
-    "neuter"
-  ],
+  "gender_weights": {
+    "neuter": 1.0
+  },
   "txmn_id": 265,
   "height": 180,
   "weight": 90,

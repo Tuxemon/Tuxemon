@@ -95,10 +95,10 @@
     "fire",
     "shadow"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 15,
   "height": 600,
   "weight": 2000,

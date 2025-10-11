@@ -71,9 +71,9 @@
     "wood",
     "frost"
   ],
-  "possible_genders": [
-    "neuter"
-  ],
+  "gender_weights": {
+    "neuter": 1.0
+  },
   "txmn_id": 106,
   "height": 250,
   "weight": 371,

@@ -94,10 +94,10 @@
     "lightning",
     "water"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 68,
   "height": 80,
   "weight": 11,

@@ -1524,9 +1524,6 @@ msgstr "弃权"
 msgid "menu_storage_take_monster"
 msgstr "你把{name}加入到了你的队伍!"
 
-msgid "menu_storage_monsters_full"
-msgstr "你的队伍已经满了,你不能再从仓库里拿任何东西了."
-
 msgid "menu_storage_empty_kennel"
 msgstr "这个仓库是空的,没有精灵可拿."
 

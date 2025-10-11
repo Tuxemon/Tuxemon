@@ -72,10 +72,10 @@
     "venom",
     "shadow"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 311,
   "height": 300,
   "weight": 1300,

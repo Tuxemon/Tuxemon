@@ -697,10 +697,6 @@ msgstr "Starte das Spiel neu, damit die Änderungen wirksam werden!"
 msgid "menu_storage_take_monster"
 msgstr "Du hast {name} deinem Team hinzugefügt!"
 
-msgid "menu_storage_monsters_full"
-msgstr ""
-"Dein Team ist vollzählig, du kannst nicht noch weitere aus dem Lager nehmen."
-
 msgid "menu_storage_empty_kennel"
 msgstr "Dieser Zwinger ist leer, es gibt dort keine Monster zu holen."
 

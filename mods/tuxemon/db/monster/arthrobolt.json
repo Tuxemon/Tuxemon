@@ -90,9 +90,9 @@
     "lightning",
     "metal"
   ],
-  "possible_genders": [
-    "neuter"
-  ],
+  "gender_weights": {
+    "neuter": 1.0
+  },
   "txmn_id": 6,
   "height": 110,
   "weight": 125,

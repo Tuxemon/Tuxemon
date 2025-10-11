@@ -10,6 +10,7 @@ from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
 from enum import Enum
 from importlib import import_module
+from math import isclose
 from pathlib import Path
 from typing import (
     Annotated,
@@ -903,8 +904,8 @@ class MonsterModel(BaseModel, BaseLookupModel, validate_assignment=True):
         ge=prepare.CATCH_RATE_RANGE[0],
         le=prepare.CATCH_RATE_RANGE[1],
     )
-    possible_genders: Sequence[GenderType] = Field(
-        [], description="Valid genders for the monster"
+    gender_weights: dict[GenderType, float] = Field(
+        ..., description="Weighted gender probabilities for this monster"
     )
     lower_catch_resistance: float = Field(
         ...,
@@ -981,6 +982,21 @@ class MonsterModel(BaseModel, BaseLookupModel, validate_assignment=True):
             )
 
         return elements
+
+    @field_validator("gender_weights")
+    def check_gender_weights(
+        cls, v: dict[GenderType, float]
+    ) -> dict[GenderType, float]:
+        if not v:
+            raise ValueError("gender_weights must contain at least one entry.")
+
+        total = sum(v.values())
+        if not isclose(total, 1.0, rel_tol=1e-9):
+            raise ValueError(
+                f"gender_weights must sum to 1.0, but got {total}"
+            )
+
+        return v
 
     @field_validator("shape")
     def shape_exists(cls: MonsterModel, v: str) -> str:

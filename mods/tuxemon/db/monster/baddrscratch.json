@@ -68,10 +68,10 @@
     "earth",
     "shadow"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 351,
   "height": 140,
   "weight": 65,

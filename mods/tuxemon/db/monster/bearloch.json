@@ -68,9 +68,9 @@
     "metal",
     "wood"
   ],
-  "possible_genders": [
-    "neuter"
-  ],
+  "gender_weights": {
+    "neuter": 1.0
+  },
   "txmn_id": 0,
   "height": 131,
   "weight": 46,

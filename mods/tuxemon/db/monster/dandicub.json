@@ -69,10 +69,10 @@
   "types": [
     "wood"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 73,
   "height": 46,
   "weight": 2,

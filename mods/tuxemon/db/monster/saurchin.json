@@ -80,10 +80,10 @@
   "types": [
     "venom"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 349,
   "height": 800,
   "weight": 3000,

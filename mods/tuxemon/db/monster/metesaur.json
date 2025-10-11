@@ -86,10 +86,10 @@
     "earth",
     "fire"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 202,
   "height": 95,
   "weight": 10,

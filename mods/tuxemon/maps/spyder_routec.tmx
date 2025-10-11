@@ -465,14 +465,14 @@
    <properties>
     <property name="act1" value="char_talk spyder_searoutec_maurice,post_battle_lose"/>
     <property name="behav1" value="talk spyder_searoutec_maurice"/>
-    <property name="cond1" value="is variable_set searoutecmaurice:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_searoutec_maurice"/>
    </properties>
   </object>
   <object id="283" name="Post Talk Nigel" type="event" x="176" y="384" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_searoutec_nigel,post_battle_lose"/>
     <property name="behav1" value="talk spyder_searoutec_nigel"/>
-    <property name="cond1" value="is variable_set searoutecnigel:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_searoutec_nigel"/>
     <property name="cond2" value="is variable_set hospitalcure:yes"/>
    </properties>
   </object>
@@ -480,70 +480,70 @@
    <properties>
     <property name="act1" value="char_talk spyder_searoutec_sandy,post_battle_lose"/>
     <property name="behav1" value="talk spyder_searoutec_sandy"/>
-    <property name="cond1" value="is variable_set searoutecsandy:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_searoutec_sandy"/>
    </properties>
   </object>
   <object id="285" name="Post Talk Beech" type="event" x="128" y="272" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_searoutec_beech,post_battle_lose"/>
     <property name="behav1" value="talk spyder_searoutec_beech"/>
-    <property name="cond1" value="is variable_set searoutecbeech:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_searoutec_beech"/>
    </properties>
   </object>
   <object id="286" name="Post Talk River" type="event" x="144" y="272" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_searoutec_river,post_battle_lose"/>
     <property name="behav1" value="talk spyder_searoutec_river"/>
-    <property name="cond1" value="is variable_set searoutecriver:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_searoutec_river"/>
    </properties>
   </object>
   <object id="287" name="Post Talk Wade" type="event" x="160" y="272" width="16" height="16">
    <properties>
     <property name="act01" value="char_talk spyder_searoutec_wade,post_battle_lose"/>
     <property name="behav1" value="talk spyder_searoutec_wade"/>
-    <property name="cond1" value="is variable_set searoutecwade:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_searoutec_wade"/>
    </properties>
   </object>
   <object id="288" name="Post Talk Stafford" type="event" x="416" y="544" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_searoutec_stafford,post_battle_lose"/>
     <property name="behav1" value="talk spyder_searoutec_stafford"/>
-    <property name="cond1" value="is variable_set searoutecstafford:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_searoutec_stafford"/>
    </properties>
   </object>
   <object id="289" name="Post Talk Gil" type="event" x="128" y="288" width="16" height="16">
    <properties>
     <property name="act2" value="char_talk spyder_searoutec_gil,post_battle_lose"/>
     <property name="behav1" value="talk spyder_searoutec_gil"/>
-    <property name="cond1" value="is variable_set searoutecgil:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_searoutec_gil"/>
    </properties>
   </object>
   <object id="290" name="Post Talk Carstair" type="event" x="144" y="288" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_searoutec_carstair,post_battle_lose"/>
     <property name="behav1" value="talk spyder_searoutec_carstair"/>
-    <property name="cond1" value="is variable_set searouteccarstair:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_searoutec_carstair"/>
    </properties>
   </object>
   <object id="291" name="Post Talk Rutherford" type="event" x="432" y="304" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_searoutec_rutherford,post_battle_lose"/>
     <property name="behav1" value="talk spyder_searoutec_rutherford"/>
-    <property name="cond1" value="is variable_set searoutecrutherford:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_searoutec_rutherford"/>
    </properties>
   </object>
   <object id="292" name="Post Talk Leek" type="event" x="416" y="304" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_searoutec_leek,post_battle_lose"/>
     <property name="behav1" value="talk spyder_searoutec_leek"/>
-    <property name="cond1" value="is variable_set searoutecleek:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_searoutec_leek"/>
    </properties>
   </object>
   <object id="293" name="Post Talk More" type="event" x="512" y="480" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_searoutec_more,post_battle_lose"/>
     <property name="behav1" value="talk spyder_searoutec_more"/>
-    <property name="cond1" value="is variable_set searoutecmore:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_searoutec_more"/>
    </properties>
   </object>
  </objectgroup>

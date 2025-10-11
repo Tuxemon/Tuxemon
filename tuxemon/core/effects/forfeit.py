@@ -7,7 +7,6 @@ from typing import TYPE_CHECKING
 
 from tuxemon.combat.utils import set_var
 from tuxemon.core.core_effect import CoreEffect, TechEffectResult
-from tuxemon.db import OutputBattle
 from tuxemon.locale import T
 
 if TYPE_CHECKING:
@@ -32,7 +31,6 @@ class ForfeitEffect(CoreEffect):
         player = user.get_owner()
 
         set_var(session, "battle_last_result", self.name)
-        set_var(session, "teleport_clinic", OutputBattle.lost.value)
         self.client.combat_session.set_variable("run", True)
 
         params = {"npc": self.client.combat_session.right_player.name.upper()}

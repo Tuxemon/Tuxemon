@@ -24,7 +24,7 @@
   "power": 0,
   "range": "special",
   "recharge": 4,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_shpring",
   "slug": "chameleon",
   "sort": "damage",
   "modifiers": [],

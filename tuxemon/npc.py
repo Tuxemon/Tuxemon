@@ -3,9 +3,9 @@
 from __future__ import annotations
 
 import logging
-from collections.abc import Iterable, Mapping, Sequence
+from collections.abc import Iterable, Sequence
 from math import hypot
-from typing import TYPE_CHECKING, Any, Optional, TypedDict
+from typing import TYPE_CHECKING, Optional
 
 from tuxemon.boxes import ItemBoxes, MonsterBoxes
 from tuxemon.db import DialogueProfile, Direction, NpcModel, db
@@ -20,7 +20,7 @@ from tuxemon.map.map_view import SpriteController
 from tuxemon.math import Vector2
 from tuxemon.mission.controller import MissionController
 from tuxemon.mission.manager import MissionManager
-from tuxemon.money import MoneyController
+from tuxemon.money.controller import MoneyController
 from tuxemon.monster import Monster
 from tuxemon.monster_dir.evolution_registry import EvolutionRegistry
 from tuxemon.relationship import (
@@ -28,6 +28,7 @@ from tuxemon.relationship import (
     decode_relationships,
     encode_relationships,
 )
+from tuxemon.save_state import NPCState
 from tuxemon.step_tracker import StepTrackerManager, decode_steps, encode_steps
 from tuxemon.teleporter import TeleportFaint
 from tuxemon.tools import vector2_to_tile_pos
@@ -42,30 +43,6 @@ if TYPE_CHECKING:
 
 
 logger = logging.getLogger(__name__)
-
-
-class NPCState(TypedDict, total=False):
-    current_map: str
-    facing: Direction
-    game_variables: dict[str, Any]
-    battles: Sequence[Mapping[str, Any]]
-    tuxepedia: Mapping[str, Any]
-    relationships: Mapping[str, Any]
-    money: Mapping[str, Any]
-    template: dict[str, Any]
-    missions: Sequence[Mapping[str, Any]]
-    items: Sequence[Mapping[str, Any]]
-    monsters: Sequence[Mapping[str, Any]]
-    player_name: str
-    player_steps: float
-    monster_boxes: dict[str, Sequence[Mapping[str, Any]]]
-    item_boxes: dict[str, Sequence[Mapping[str, Any]]]
-    tile_pos: tuple[int, int]
-    teleport_faint: tuple[str, int, int]
-    tracker: Mapping[str, Any]
-    step_tracker: Mapping[str, Any]
-    unlocked_letters: Mapping[str, Any]
-    evolution_registry: Mapping[str, Any]
 
 
 def tile_distance(tile0: Iterable[float], tile1: Iterable[float]) -> float:
@@ -167,7 +144,7 @@ class NPC(Entity[NPCState]):
 
         state: NPCState = {
             "current_map": session.client.get_map_name(),
-            "facing": self.facing,
+            "facing": self.facing.value,
             "game_variables": self._variables.get_player_state(),
             "battles": self.battle_handler.encode_battle(),
             "tuxepedia": encode_tuxepedia(self.tuxepedia),
@@ -177,12 +154,13 @@ class NPC(Entity[NPCState]):
             "template": self.template.model_dump(),
             "missions": self.mission_controller.encode_missions(),
             "monsters": self.party.encode_party(),
+            "player_slug": self.slug,
             "player_name": self.name,
             "player_steps": self.steps,
             "monster_boxes": self.monster_boxes.get_state(),
             "item_boxes": self.item_boxes.get_state(),
             "tile_pos": self.tile_pos,
-            "teleport_faint": self.teleport_faint.to_tuple(),
+            "teleport_faint": self.teleport_faint.to_dict(),
             "tracker": encode_tracking(self.tracker),
             "step_tracker": encode_steps(self.step_tracker),
             "unlocked_letters": encode_cipher(self.unlocked_letters),
@@ -206,6 +184,7 @@ class NPC(Entity[NPCState]):
         self.items.decode_items(save_data)
         self.party.decode_party(save_data)
         self.mission_controller.decode_missions(save_data.get("missions"))
+        self.slug = save_data["player_slug"]
         self.name = save_data["player_name"]
         self.steps = save_data["player_steps"]
         self.money_controller.load(save_data)
@@ -216,9 +195,7 @@ class NPC(Entity[NPCState]):
         self.monster_boxes.load(self, save_data)
         self.item_boxes.load(save_data)
 
-        self.teleport_faint = TeleportFaint.from_tuple(
-            save_data["teleport_faint"]
-        )
+        self.teleport_faint = TeleportFaint.from_dict(save_data)
 
         self.tracker = decode_tracking(save_data.get("tracker", {}))
         self.step_tracker = decode_steps(save_data.get("step_tracker", {}))
@@ -245,7 +222,9 @@ class NPC(Entity[NPCState]):
             destination: Desired final position.
         """
         self.pathfinding = destination
-        path = self.world.pathfind(self.tile_pos, destination, self.facing)
+        path = self.client.pathfinder.pathfind(
+            self.tile_pos, destination, self.facing
+        )
         if path:
             self.path = list(path)
             self.next_waypoint()

@@ -17,19 +17,19 @@ from tuxemon.menu.menu import PygameMenuState
 from tuxemon.npc import NPC
 from tuxemon.platform.const import buttons
 from tuxemon.platform.events import PlayerInput
-from tuxemon.time_handler import today_ordinal
-from tuxemon.tools import fix_measure
+from tuxemon.tools import fix_measure, format_playtime
 
 MenuGameObj = Callable[[], object]
 lookup_cache: dict[str, MonsterModel] = {}
 
 
 def _lookup_monsters() -> None:
-    monsters = list(db.database["monster"])
-    for mon in monsters:
-        results = MonsterModel.lookup(mon, db)
-        if results.txmn_id > 0:
-            lookup_cache[mon] = results
+    global lookup_cache
+    lookup_cache = {
+        mon_name: result
+        for mon_name in db.database["monster"]
+        if (result := MonsterModel.lookup(mon_name, db)).txmn_id > 0
+    }
 
 
 class CharacterState(PygameMenuState):
@@ -78,14 +78,8 @@ class CharacterState(PygameMenuState):
         msg_seen = T.format("tuxepedia_data_seen", _msg_seen)
         msg_caught = T.format("tuxepedia_data_caught", _msg_caught)
 
-        today = today_ordinal()
-        date = self.char.game_variables.get("date_start_game", today)
-        date_begin = today - int(date)
-        msg_begin = (
-            T.format("player_start_adventure", {"date": date_begin})
-            if date_begin >= 1
-            else T.translate("player_start_adventure_today")
-        )
+        play_time = format_playtime(self.char.session._total_playtime)
+        msg_begin = f"{T.translate('player_total_playtime')}: {play_time}"
 
         if self.char.battle_handler.get_battles():
             summary = self.char.battle_handler.get_battle_outcome_summary()
@@ -156,7 +150,7 @@ class CharacterState(PygameMenuState):
             float=True,
         )
         lab4.translate(fxw(0.45), fxh(0.35))
-        # begin adventure
+        # total playtime
         lab5: Any = menu.add.label(
             title=msg_begin,
             label_id="begin",

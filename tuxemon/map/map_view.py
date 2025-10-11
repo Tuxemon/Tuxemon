@@ -25,10 +25,12 @@ from tuxemon.surfanim import SurfaceAnimation, SurfaceAnimationCollection
 logger = logging.getLogger(__name__)
 
 if TYPE_CHECKING:
-    from tuxemon.client import LocalPygameClient
+    from tuxemon.camera.camera import CameraManager
     from tuxemon.db import NpcTemplateModel
     from tuxemon.map.map import TuxemonMap
+    from tuxemon.map.map_manager import MapManager
     from tuxemon.npc import NPC
+    from tuxemon.npc_manager import NPCManager
 
 
 class EntityFacing(str, Enum):
@@ -286,17 +288,21 @@ class SpriteRenderer:
 class MapRenderer:
     """Renders the game map, NPCs, and animations."""
 
-    def __init__(self, client: LocalPygameClient):
+    def __init__(
+        self,
+        camera_manager: CameraManager,
+        npc_manager: NPCManager,
+        debug_renderer: DebugRenderer,
+    ):
         """Initializes the MapRenderer."""
-        self.client = client
-        self.screen = client.screen
-        self.camera_manager = client.camera_manager
-        self.layer = Surface(self.screen.get_size(), pygame.SRCALPHA)
+        self.camera_manager = camera_manager
+        self.npc_manager = npc_manager
+        self.debug_renderer = debug_renderer
+        self.layer = Surface(prepare.SCREEN_SIZE, pygame.SRCALPHA)
         self.layer_color: Optional[ColorLike] = None
         self.cinema_x_ratio: Optional[float] = None
         self.cinema_y_ratio: Optional[float] = None
         self.map_animations: dict[str, AnimationInfo] = {}
-        self.debug_renderer = DebugRenderer(client)
         self.bubble_manager = BubbleManager()
 
     def draw(self, surface: Surface, current_map: TuxemonMap) -> None:
@@ -361,12 +367,12 @@ class MapRenderer:
         if self.cinema_y_ratio is not None:
             apply_bars("vertical", self.cinema_y_ratio, surface)
 
-    def _get_npc_surfaces(self, current_map: int) -> list[WorldSurfaces]:
+    def _get_npc_surfaces(self, sprite_layer: int) -> list[WorldSurfaces]:
         """Retrieves surfaces for NPCs."""
         return [
             surf
-            for npc in self.client.npc_manager.npcs.values()
-            for surf in self._get_sprites(npc, current_map)
+            for npc in self.npc_manager.npcs.values()
+            for surf in self._get_sprites(npc, sprite_layer)
         ]
 
     def _get_map_animations(self) -> list[WorldSurfaces]:
@@ -457,12 +463,14 @@ class BubbleManager:
 class DebugRenderer:
     def __init__(
         self,
-        client: LocalPygameClient,
+        map_manager: MapManager,
+        npc_manager: NPCManager,
         event_color: ColorLike = (0, 255, 0, 128),
         collision_color: ColorLike = (255, 0, 0, 128),
         center_line_color: ColorLike = (255, 50, 50),
     ) -> None:
-        self.client = client
+        self.map_manager = map_manager
+        self.npc_manager = npc_manager
         self.event_color = event_color
         self.collision_color = collision_color
         self.center_line_color = center_line_color
@@ -477,7 +485,7 @@ class DebugRenderer:
 
     def _draw_events(self, current_map: TuxemonMap, surface: Surface) -> None:
         """Draws event-related debug information on the surface."""
-        for event in self.client.map_manager.events:
+        for event in self.map_manager.events:
             vector = Vector2(event.x, event.y)
             topleft = get_pos_from_tilepos(current_map, vector)
             size = project((event.w, event.h))
@@ -490,13 +498,13 @@ class DebugRenderer:
         # We need to iterate over all collidable objects. Start with walls/collision boxes.
         box_iter = map(
             lambda box: collision_box_to_pgrect(current_map, box),
-            self.client.map_manager.collision_map,
+            self.map_manager.collision_map,
         )
 
         # Next, deal with solid NPCs.
         npc_iter = map(
             lambda npc: npc_to_pgrect(current_map, npc),
-            self.client.npc_manager.npcs.values(),
+            self.npc_manager.npcs.values(),
         )
         for item in chain(box_iter, npc_iter):
             box(surface, item, self.collision_color)

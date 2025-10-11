@@ -55,12 +55,30 @@
   ],
   "history": [
     {
-      "mon_slug": "legko",
-      "evo_stage": "stage1"
+      "slug": "lambert",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "legko"
+      ]
     },
     {
-      "mon_slug": "moloch",
-      "evo_stage": "stage2"
+      "slug": "legko",
+      "stage": "stage1",
+      "evolves_from": [
+        "lambert"
+      ],
+      "evolves_into": [
+        "moloch"
+      ]
+    },
+    {
+      "slug": "moloch",
+      "stage": "stage2",
+      "evolves_from": [
+        "legko"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [],
@@ -73,13 +91,17 @@
   "types": [
     "wood"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 10,
   "height": 69,
   "weight": 37,
+  "sounds": {
+    "combat_call": "sound_bug_03",
+    "faint_call": "sound_bug_03_faint"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.25

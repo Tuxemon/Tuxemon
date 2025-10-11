@@ -21,7 +21,7 @@
   "randomly": false,
   "range": "melee",
   "recharge": 3,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_forcefield",
   "slug": "vorpal",
   "sort": "damage",
   "modifiers": [],

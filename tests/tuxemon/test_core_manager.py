@@ -22,7 +22,7 @@ class TestCoreManager(unittest.TestCase):
         self.category = "category"
         self.plugin_interface = MagicMock(spec=PluginObject)
         self.manager = CoreManager(
-            self.plugin_interface, self.path, LIBDIR.parent, self.category
+            self.plugin_interface, self.path, self.category, LIBDIR.parent
         )
 
     def tearDown(self):
@@ -86,7 +86,7 @@ class TestEffectManager(unittest.TestCase):
         self.path = self.temp_dir / "tuxemon"
         self.category = "effects"
         self.manager = EffectManager(
-            self.effect_class, self.path, self.temp_dir.parent, self.category
+            self.effect_class, self.path, self.category, self.temp_dir.parent
         )
 
     def tearDown(self):
@@ -114,8 +114,8 @@ class TestConditionManager(unittest.TestCase):
         self.manager = ConditionManager(
             self.condition_class,
             self.path,
-            self.temp_dir.parent,
             self.category,
+            self.temp_dir.parent,
         )
 
     def tearDown(self):

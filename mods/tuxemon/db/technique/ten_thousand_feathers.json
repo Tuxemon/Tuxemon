@@ -20,7 +20,7 @@
   "power": 3,
   "range": "ranged",
   "recharge": 3,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_tornado",
   "slug": "ten_thousand_feathers",
   "sort": "damage",
   "modifiers": [],

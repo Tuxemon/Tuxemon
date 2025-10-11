@@ -15,17 +15,83 @@ msgstr ""
 "X-Generator: Weblate 4.3.2\n"
 
 # ITEM TRANSLATIONS ##
+msgid "cosmic_berry"
+msgstr "Cosmic Berry"
+
+msgid "cosmic_berry_description"
+msgstr "It changes monster type to Cosmic."
+
+msgid "earth_berry"
+msgstr "Earth Berry"
+
+msgid "earth_berry_description"
+msgstr "It changes monster type to Earth."
+
 msgid "fire_berry"
 msgstr "Fire Berry"
 
 msgid "fire_berry_description"
-msgstr "It changes monster type into fire."
+msgstr "It changes monster type to Fire."
 
-msgid "metal_cherry"
-msgstr "Metal Cherry"
+msgid "frost_berry"
+msgstr "Frost Berry"
 
-msgid "metal_cherry_description"
-msgstr "It changes monster type into metal."
+msgid "frost_berry_description"
+msgstr "It changes monster type to Frost."
+
+msgid "heroic_berry"
+msgstr "Heroic Berry"
+
+msgid "heroic_berry_description"
+msgstr "It changes monster type to Heroic."
+
+msgid "metal_berry"
+msgstr "Metal Berry"
+
+msgid "metal_berry_description"
+msgstr "It changes monster type to Metal."
+
+msgid "lightning_berry"
+msgstr "Lightning Berry"
+
+msgid "lightning_berry_description"
+msgstr "It changes monster type to Lightning."
+
+msgid "normal_berry"
+msgstr "Normal Berry"
+
+msgid "normal_berry_description"
+msgstr "It changes monster type to Normal."
+
+msgid "shadow_berry"
+msgstr "Shadow Berry"
+
+msgid "shadow_berry_description"
+msgstr "It changes monster type to Shadow."
+
+msgid "sky_berry"
+msgstr "Sky Berry"
+
+msgid "sky_berry_description"
+msgstr "It changes monster type to Sky."
+
+msgid "venom_berry"
+msgstr "Venom Berry"
+
+msgid "venom_berry_description"
+msgstr "It changes monster type to Venom."
+
+msgid "water_berry"
+msgstr "Water Berry"
+
+msgid "water_berry_description"
+msgstr "It changes monster type to Water."
+
+msgid "wood_berry"
+msgstr "Wood Berry"
+
+msgid "wood_berry_description"
+msgstr "It changes monster type to Wood."
 
 msgid "potion"
 msgstr "Potion"
@@ -276,10 +342,10 @@ msgstr ""
 "extremely low to exceptionally high."
 
 msgid "boost_armour"
-msgstr "Boost Armour"
+msgstr "Boost Armor"
 
 msgid "boost_armour_description"
-msgstr "For the rest of the combat, increase Armour by 20%."
+msgstr "For the rest of the combat, increase Armor by 20%."
 
 msgid "boost_dodge"
 msgstr "Boost Dodge"
@@ -306,10 +372,10 @@ msgid "boost_speed_description"
 msgstr "For the rest of the combat, increase Speed by 20%."
 
 msgid "raise_armour"
-msgstr "Raise Armour"
+msgstr "Raise Armor"
 
 msgid "raise_armour_description"
-msgstr "Learn the hardness of the diamond. Increase Armour by 5%."
+msgstr "Learn the hardness of the diamond. Increase Armor by 5%."
 
 msgid "raise_dodge"
 msgstr "Raise Dodge"
@@ -340,6 +406,14 @@ msgstr "Raise Speed"
 
 msgid "raise_speed_description"
 msgstr "Learn the reflexes of the spinel. Increase Speed by 5%."
+
+msgid "alpha_seep"
+msgstr "Alpha Seep"
+
+msgid "alpha_seep_description"
+msgstr ""
+"Thick, mucosal secretion harvested from the scent glands of apex predators "
+"at the peak of their territorial cycle."
 
 msgid "fishing_rod"
 msgstr "Fishing Rod"
@@ -399,7 +473,7 @@ msgid "sledgehammer"
 msgstr "Sledgehammer"
 
 msgid "sledgehammer_description"
-msgstr "Smash apart grey boulders."
+msgstr "Smash apart gray boulders."
 
 msgid "shammer_fossil"
 msgstr "Shammer Fossil"
@@ -419,12 +493,30 @@ msgstr "Nu Phone"
 msgid "nu_phone_description"
 msgstr "You can do a lot with this, e.g. phone home."
 
+msgid "bivouac"
+msgstr "Bivouac"
+
+msgid "bivouac_description"
+msgstr "Rest as if you were at a proper healing centre. Consumed on use."
+
+msgid "drone"
+msgstr "Drone"
+
+msgid "drone_description"
+msgstr "Switch out one tuxemon on your team for one in storage."
+
 msgid "spyder_pass"
 msgstr "Spyder Pass"
 
 msgid "spyder_pass_description"
 msgstr ""
 "This should let you in to places only Spyder conspirators are meant to go."
+
+msgid "app_radio"
+msgstr "Radio App"
+
+msgid "app_radio_description"
+msgstr "Tune in to local broadcasts, quest updates, and ambient chatter from across the region."
 
 msgid "app_banking"
 msgstr "Bank App"
@@ -443,6 +535,12 @@ msgstr "Map App"
 
 msgid "app_map_description"
 msgstr "Use this on your phone to see where you are."
+
+msgid "app_renaming"
+msgstr "Renaming App"
+
+msgid "app_renaming_description"
+msgstr "Give your Tuxemon a fresh identity with a new name—make it truly yours!"
 
 msgid "app_tuxepedia"
 msgstr "Tuxepedia App"
@@ -491,6 +589,12 @@ msgstr "Cureall"
 
 msgid "cureall_description"
 msgstr "Heals your tuxemon to full health and removes any conditions."
+
+msgid "escape_key"
+msgstr "Escape Key"
+
+msgid "escape_key_description"
+msgstr "Slip out the back door."
 
 # Craft
 msgid "unknown_object"
@@ -1437,6 +1541,12 @@ msgstr "ID.{id} ({types}) - Recharge {rec} turns"
 msgid "technique_power"
 msgstr "Power"
 
+msgid "technique_recharge"
+msgstr "Recharge"
+
+msgid "technique_turns"
+msgstr "turns"
+
 msgid "technique_accuracy"
 msgstr "Accuracy"
 
@@ -1458,6 +1568,52 @@ msgstr ""
 "Room 31, Block 2, Omnichannel Tower, Cotton Town\n"
 "\n"
 "There's a kiss mark next to the address"
+
+# Radio
+msgid "radio_no_signal"
+msgstr "No signal. Try tuning in from another location."
+
+msgid "radio_station_list_header"
+msgstr "List of Available Stations"
+
+msgid "station_scrambled_frequency"
+msgstr "Scrambled Frequency"
+
+msgid "station_route_rhythms"
+msgstr "Route 101 Rhythms"
+
+msgid "radio_static_msgid"
+msgstr "The signal fades into static..."
+
+msgid "radio_tuner"
+msgstr "Tuner"
+
+msgid "app_radio_tuner"
+msgstr "Radio Tuner"
+
+msgid "radio_tuning_static"
+msgstr "The signal is full of static..."
+
+msgid "signal_strong"
+msgstr "Strong"
+
+msgid "signal_moderate"
+msgstr "Moderate"
+
+msgid "signal_weak"
+msgstr "Weak"
+
+msgid "signal_none"
+msgstr "No Signal"
+
+msgid "radio_play_button"
+msgstr "Play Radio"
+
+msgid "radio_tuner_hint"
+msgstr "Slide to tune into stations"
+
+msgid "radio_signal_strength"
+msgstr "Signal Strength"
 
 # Money notification
 msgid "player_wallet"
@@ -1490,6 +1646,9 @@ msgstr "Call"
 
 msgid "phone_no_answer"
 msgstr "Phone keeps ringing but no answer!"
+
+msgid "renaming"
+msgstr "Rename"
 
 # NOTIFICATION TRANSLATIONS ##
 # Combat notifications
@@ -1611,6 +1770,9 @@ msgstr "A wild {name} appeared!"
 
 msgid "combat_horde_appeared"
 msgstr "A horde of wild creatures surrounds you!"
+
+msgid "combat_horde_swap"
+msgstr "{target} emerges from the horde!"
 
 msgid "combat_monster_choice"
 msgstr "What will {name} do?"
@@ -1752,16 +1914,10 @@ msgid "combat_state_sniping_get"
 msgstr "{target} takes aim."
 
 msgid "combat_state_softened_get"
-msgstr "{target}'s armour softens."
+msgstr "{target}'s armor softens."
 
 msgid "combat_state_stuck_get"
 msgstr "{target} is stuck in place."
-
-msgid "combat_state_tired_get"
-msgstr "{target} is worn out."
-
-msgid "combat_state_tired_end"
-msgstr "{target} shakes off its tiredness."
 
 msgid "combat_state_plague0"
 msgstr "{target} begins to sniffle."
@@ -2041,9 +2197,6 @@ msgstr "Spyder Bite"
 msgid "stuck"
 msgstr "Stuck"
 
-msgid "tired"
-msgstr "Tired"
-
 msgid "wasting"
 msgstr "Wasting"
 
@@ -2271,6 +2424,13 @@ msgstr "The user emits a high-pitched cry that distracts the opponent."
 
 msgid "cat_calling"
 msgstr "Cat Calling"
+
+msgid "caustic_spray_description"
+msgstr ""
+"The user secretes a corrosive acid that burns the opponent upon contact."
+
+msgid "caustic_spray"
+msgstr "Caustic Spray"
 
 msgid "cavity_description"
 msgstr ""
@@ -3680,13 +3840,6 @@ msgstr ""
 msgid "undertaker"
 msgstr "Undertaker"
 
-msgid "venom_description"
-msgstr ""
-"The user secretes a corrosive acid that burns the opponent upon contact."
-
-msgid "venom"
-msgstr "Venom"
-
 msgid "venomous_tentacle_description"
 msgstr ""
 "A poisonous tentacle strikes the opponent, inflicting damage and poisoning "
@@ -4034,6 +4187,9 @@ msgstr "Techniques"
 msgid "monster_menu_item"
 msgstr "Held Item"
 
+msgid "monster_menu_pick"
+msgstr "Pick"
+
 msgid "monster_menu_desc"
 msgstr "Description"
 
@@ -4102,6 +4258,12 @@ msgstr ""
 msgid "uninstall_app"
 msgstr "Unable to uninstall the app."
 
+msgid "menu_storage_swap_monster"
+msgstr "The drone completed the transfer: {from} is now in storage, and {to} has joined your party."
+
+msgid "menu_storage_swap_monster_fail"
+msgstr "The drone could not complete the transfer: no monsters are available in the kennel."
+
 # Missions
 msgid "mission_deletion"
 msgstr "Do you want to delete this mission?"
@@ -4128,11 +4290,8 @@ msgstr "Seen {param} out of {all}"
 msgid "tuxepedia_data_caught"
 msgstr "Caught {param} out of {all}"
 
-msgid "player_start_adventure_today"
-msgstr "The adventure began today."
-
-msgid "player_start_adventure"
-msgstr "The adventure began {date} days ago."
+msgid "player_total_playtime"
+msgstr "Total Playtime"
 
 msgid "player_walked"
 msgstr "Walked {distance} {unit}"
@@ -4228,6 +4387,18 @@ msgstr "Party"
 
 msgid "menu_bond"
 msgstr "Bond"
+
+msgid "menu_bond_despise"
+msgstr "{monster_name} despises {player_name}"
+
+msgid "menu_bond_wary"
+msgstr "{monster_name} is wary of {player_name}"
+
+msgid "menu_bond_along"
+msgstr "{monster_name} gets along with {player_name}"
+
+msgid "menu_bond_adore"
+msgstr "{monster_name} adores {player_name}"
 
 msgid "menu_to_the_top"
 msgstr "To The Top"
@@ -4438,9 +4609,6 @@ msgstr "You added {name} into your party!"
 msgid "menu_storage_take_item"
 msgstr "You added {nr} {name} into your bag!"
 
-msgid "menu_storage_monsters_full"
-msgstr "Your party is full, you cannot take any more from storage."
-
 msgid "menu_storage_items_full"
 msgstr "Your bag is full, you cannot take any more from storage."
 
@@ -4599,7 +4767,7 @@ msgstr "Allagon"
 msgid "altie_description"
 msgstr ""
 "ALTIE floated down to earth in a bubble. Now its bubble has popped, it "
-"cannot float more than a few metres in the air."
+"cannot float more than a few meters in the air."
 
 msgid "altie"
 msgstr "Altie"
@@ -5044,7 +5212,7 @@ msgid "cataspike"
 msgstr "Cataspike"
 
 msgid "cateye_description"
-msgstr "They say it blinks once a year, in honour of summer's end."
+msgstr "They say it blinks once a year, in honor of summer's end."
 
 msgid "cateye"
 msgstr "Cateye"
@@ -5081,7 +5249,7 @@ msgstr "Chickadee"
 
 msgid "chillimp_description"
 msgstr ""
-"It is rumoured to live atop snowy mountains, but no clear photo of it has "
+"It is rumored to live atop snowy mountains, but no clear photo of it has "
 "ever been taken."
 
 msgid "chillimp"
@@ -5882,7 +6050,7 @@ msgid "howl"
 msgstr "Howl"
 
 msgid "hydrone_description"
-msgstr "It utilises an experimental technology that creates power from water."
+msgstr "It utilizes an experimental technology that creates power from water."
 
 msgid "hydrone"
 msgstr "Hydrone"
@@ -6134,19 +6302,19 @@ msgstr "Manosting"
 
 msgid "marvantis_description"
 msgstr ""
-"When it evolves, the only trace of its original mimickry is its red "
+"When it evolves, the only trace of its original mimicry is its red "
 "ornaments."
 
 msgid "marvantis"
-msgstr "marvantis"
+msgstr "Marvantis"
 
 msgid "marvillar_description"
 msgstr ""
-"MARVILLAR mimes an ant larvae using scent. It convinces SCARLANT and "
+"MARVILLAR mimes an ant larva using scent. It convinces SCARLANT and "
 "MYRMISON to feed it, eating skeptics."
 
 msgid "marvillar"
-msgstr "marvillar"
+msgstr "Marvillar"
 
 msgid "masknake_description"
 msgstr ""
@@ -6207,7 +6375,7 @@ msgid "metesaur_description"
 msgstr ""
 "This Tuxemon would enjoy diving into the ground and leaving marks. "
 "Sometimes, the Tuxemon would misjudge the hit and land in trees, starting "
-"huge and dangerous forest fires"
+"huge and dangerous forest fires."
 
 msgid "metesaur"
 msgstr "Metesaur"
@@ -6758,7 +6926,7 @@ msgstr "Sclairus"
 
 msgid "seirein_description"
 msgstr ""
-"It grows lonely in the swamps, so it burns brightly to draw travellers near "
+"It grows lonely in the swamps, so it burns brightly to draw travelers near "
 "- but it is painfully shy and flits away when they approach."
 
 msgid "seirein"
@@ -6938,7 +7106,7 @@ msgstr "Solight"
 
 msgid "spectera_description"
 msgstr ""
-"This leaf winged bat is omnivorous, but prefers fruit. Both the male and "
+"This leaf-winged bat is omnivorous, but prefers fruit. Both the male and "
 "female look after young."
 
 msgid "spectera"
@@ -6971,7 +7139,7 @@ msgstr "Spirain"
 msgid "spoilurm_description"
 msgstr ""
 "SPOILURM disguise themselves as apples, and wait in trees to eat the "
-"unexpecting."
+"unsuspecting."
 
 msgid "spoilurm"
 msgstr "Spoilurm"
@@ -7172,7 +7340,7 @@ msgstr "Tourbidi"
 
 msgid "toxiris_description"
 msgstr ""
-"TOXIRIS is extremely powerful, it violently poisons everything in his way."
+"TOXIRIS is extremely powerful, it violently poisons everything in its way."
 
 msgid "toxiris"
 msgstr "Toxiris"
@@ -7187,7 +7355,7 @@ msgid "trojerror_description"
 msgstr ""
 "TROJERROR is a tuxemon that disguises itself as legitimate code or software."
 " Once inside the network, TROJERRORS are able to carry out any action that a"
-" legitimate user could perform (deposit, withdrawn and delete)."
+" legitimate user could perform (deposit, withdraw and delete)."
 
 msgid "trojerror"
 msgstr "Trojerror"
@@ -7371,7 +7539,7 @@ msgstr "Vivisource"
 
 msgid "viviteel_description"
 msgstr ""
-"It takes the armour of a fallen warrior and repurposes it for a shell."
+"It takes the armor of a fallen warrior and repurposes it for a shell."
 
 msgid "viviteel"
 msgstr "Viviteel"
@@ -7502,7 +7670,7 @@ msgstr "Yiinaang"
 
 msgid "ziggurat_description"
 msgstr ""
-"No labyrinth that can contain ZIGGURAT. It decorates its nests with carvings"
+"No labyrinth can contain ZIGGURAT. It decorates its nests with carvings"
 " of all the mazes it has traversed over the years."
 
 msgid "ziggurat"
@@ -7850,7 +8018,7 @@ msgid "cat_elf_ring"
 msgstr "Elf Ring"
 
 msgid "cat_energised"
-msgstr "Energised"
+msgstr "Energized"
 
 msgid "cat_enhancement"
 msgstr "Enhancement"
@@ -7949,7 +8117,7 @@ msgid "cat_fuminous"
 msgstr "Fuminous"
 
 msgid "cat_galvanised"
-msgstr "Galvanised"
+msgstr "Galvanized"
 
 msgid "cat_gamut"
 msgstr "Gamut"
@@ -8021,7 +8189,7 @@ msgid "cat_hexer"
 msgstr "Hexer"
 
 msgid "cat_honour"
-msgstr "Honour"
+msgstr "Honor"
 
 msgid "cat_horned_raptor"
 msgstr "Horned Raptor"
@@ -8639,6 +8807,9 @@ msgstr "Shadow"
 msgid "sky"
 msgstr "Sky"
 
+msgid "venom"
+msgstr "Venom"
+
 # Monster tastes
 msgid "taste"
 msgstr "Taste"
@@ -8855,7 +9026,7 @@ msgstr "Strength"
 
 # STAT TYPES
 msgid "armour"
-msgstr "Armour"
+msgstr "Armor"
 
 msgid "dodge"
 msgstr "Dodge"
@@ -9020,6 +9191,9 @@ msgstr "Acolyte Corren"
 # general dialogs
 msgid "fishing_rod_failure"
 msgstr "The water ripples, but nothing bites."
+
+msgid "bivouac_success"
+msgstr "The bivouac restored your team's strength!"
 
 msgid "itsswimmingtime"
 msgstr "Do you want to swim?"
@@ -9333,9 +9507,6 @@ msgstr "Sorry, but I should leave now."
 
 msgid "omnichannelarrives"
 msgstr "STOP!"
-
-msgid "omnichannelarrives2"
-msgstr ""
 
 msgid "yesmaam"
 msgstr "Yes Ma'am."
@@ -11778,7 +11949,7 @@ msgstr ""
 
 msgid "spyder_cottonart_florist"
 msgstr ""
-"What do you think of the blue painting of a ship in the harbour? \n"
+"What do you think of the blue painting of a ship in the harbor? \n"
 " It's in the impressionist style - that means it tries to capture how light looks and behaves. \n"
 " See the small red sun reflected along the waves of the water?"
 
@@ -11786,7 +11957,7 @@ msgid "spyder_cottonart_shopkeeper"
 msgstr ""
 "Welcome to the Cotton Town Art Gallery. Ah - I mean Art Shop! \n"
 " Ever since they cut our funding, we've had to sell the artworks instead of just displaying them. \n"
-" Entry is ${{currency}}50. It goes towards the company's annual dividend."
+" Entry is ${{currency}}50. It goes toward the company's annual dividend."
 
 msgid "spyder_cottonscoop_shopassistant"
 msgstr ""
@@ -12014,18 +12185,18 @@ msgstr ""
 msgid "spyder_route3_drag1"
 msgstr ""
 "AGENT: What happened to the excavation? \n"
-" SHAFT BOSS: We got ... interrupted. By ... a kid. \n"
+" SHAFT BOSS ZOOLANDER: We got ... interrupted. By ... a kid. \n"
 " AGENT: A kid?! \n"
-" SHAFT BOSS: But we did manage to recover one ... \n"
+" ZOOLANDER: But we did manage to recover one ... \n"
 " AGENT: Hush! You know that's top secret. Alright, hand it over and scram! \n"
-" SHAFT BOSS: Okay, here ... uh!"
+" ZOOLANDER: Okay, here ... uh!"
 
 msgid "spyder_route3_drag2"
 msgstr "AGENT: What the?! Come with me, you can explain this to HQ!"
 
 msgid "spyder_route3_zoolander1"
 msgstr ""
-"A boulder is causing problems for travellers? \n"
+"A boulder is causing problems for travelers? \n"
 " It's \"our fault\"? \n"
 " Who cares? We've got urgent work to do!"
 
@@ -12081,7 +12252,7 @@ msgstr ""
 
 msgid "spyder_route3_surat1"
 msgstr ""
-" They call it the \"dark artery\" - the fossilised blood and bone of ancient tuxemon beneath the soil. \n"
+" They call it the \"dark artery\" - the fossilized blood and bone of ancient tuxemon beneath the soil. \n"
 " And we get to dig it up!"
 
 msgid "spyder_route3_surat2"
@@ -12626,7 +12797,7 @@ msgstr ""
 " Would you like me to harvest some crops for you?"
 
 msgid "spyder_candy_eliane2"
-msgstr "How did you enjoy the fruits of my labours?"
+msgstr "How did you enjoy the fruits of my labors?"
 
 msgid "spyder_candy_eliane3"
 msgstr "Here, you have it."
@@ -14391,7 +14562,7 @@ msgstr ""
 
 msgid "spyder_hospital_warning2"
 msgstr ""
-"\"Aardant\" is not a recognised lifeform. \n"
+"\"Aardant\" is not a recognized lifeform. \n"
 " Shutting down."
 
 msgid "spyder_hospital_cure1"
@@ -14610,7 +14781,7 @@ msgstr "Ricardo"
 msgid "spyder_wayfarerinn_tv1"
 msgstr ""
 "The news is playing. \n"
-" The presenters are saying that there are unfounded rumours of an infection."
+" The presenters are saying that there are unfounded rumors of an infection."
 
 msgid "spyder_dryadsgrove_volcoli1"
 msgstr "Bree! Bree!"
@@ -14628,13 +14799,13 @@ msgid "spyder_dryadsgrove_ignatia2"
 msgstr "You are more than you appear."
 
 msgid "spyder_dryadsgrove_petra1"
-msgstr "Crack nature's moulds!"
+msgstr "Crack nature's molds!"
 
 msgid "spyder_dryadsgrove_petra2"
 msgstr "Ungrateful man."
 
 msgid "spyder_dryadsgrove_ferris1"
-msgstr "Do you realise you disturb the slumber of centuries?"
+msgstr "Do you realize you disturb the slumber of centuries?"
 
 msgid "spyder_dryadsgrove_ferris2"
 msgstr "Maybe it is time for us to go into the world."
@@ -14664,7 +14835,7 @@ msgstr ""
 
 msgid "spyder_dryadsgrove_dad1"
 msgstr ""
-"I feel bad. When we got him that WOLFFSKY for his birthday, we never realised how much the vet fees would be.\n"
+"I feel bad. When we got him that WOLFFSKY for his birthday, we never realized how much the vet fees would be.\n"
 " We just can't afford them. And then RUFF got in that fight ..."
 
 msgid "spyder_dryadsgrove_boy_after"
@@ -15058,7 +15229,7 @@ msgid "spyder_nimrod_mace"
 msgstr "Mace"
 
 msgid "spyder_nimrod_honour"
-msgstr "Honour"
+msgstr "Honor"
 
 msgid "spyder_nimrod_argon"
 msgstr "Argon"
@@ -15940,12 +16111,12 @@ msgstr ""
 msgid "spyder_ruby_plaque"
 msgstr ""
 "Ruby is just the term for any corundum that is red! \n"
-" When corundum comes in other colours like blue, pink and clear, it is called a sapphire. \n"
+" When corundum comes in other colors like blue, pink and clear, it is called a sapphire. \n"
 " When tuxemon eat rubies, they become passionate and vigorous, making them better at physical attacks like slaps, claws and bites."
 
 msgid "spyder_opal_plaque"
 msgstr ""
-"Opals show flashes of coloured light. \n"
+"Opals show flashes of colored light. \n"
 " They form in fissues and dips in rock when water evaporates leaving behind silica. \n"
 " Tuxemon that eat opals benefit from its magical warding are better able to escape magical distant attacks like blasts, sprays and rays."
 
@@ -15958,7 +16129,7 @@ msgstr ""
 msgid "spyder_agate_plaque"
 msgstr ""
 "Agate is a rock, often formed by volcanoes and often banded with parallel lines. \n"
-" It features a great variety of colours: browns, greys, creams, reds, oranges and even blues. \n"
+" It features a great variety of colors: browns, grays, creams, reds, oranges and even blues. \n"
 " Feeding agate to a tuxemon can increase its speed and agility, making it faster to react in battle."
 
 msgid "spyder_diamond_plaque"
@@ -15983,7 +16154,7 @@ msgstr "Sponsored by Nimrod. \"If we didn't sell them, someone else would!\""
 msgid "spyder_nimrod2_plaque"
 msgstr ""
 "Tuxemon are powerful weapons that have fought alongside humans for as long as there has been war. \n"
-" Rock paintings found in caves show prehistoric humans training sabretoothed Rockats to fight wild Wolffsky."
+" Rock paintings found in caves show prehistoric humans training saber-toothed Rockats to fight wild Wolffsky."
 
 msgid "spyder_nimrod3_plaque"
 msgstr ""
@@ -16318,7 +16489,7 @@ msgstr ""
 
 msgid "spyder_dojo_wan3"
 msgstr ""
-"Each monk in this room specialises in monsters of a particular type, \n"
+"Each monk in this room specializes in monsters of a particular type, \n"
 " but each has found a way to develop their strengths and to mitigate their weaknesses. \n"
 " Talk to me once you have defeated them all."
 
@@ -16330,11 +16501,11 @@ msgstr ""
 msgid "spyder_dojo_toph1"
 msgstr ""
 "I may have a team of Earth tuxemon, but they all have high Melee or Ranged stats. \n"
-" I use that to overwhelm your defences, even if you are strong against Earth."
+" I use that to overwhelm your defenses, even if you are strong against Earth."
 
 msgid "spyder_dojo_toph2"
 msgstr ""
-"Of course, this strategy depends on your opponents having low Armour and Dodge stats. \n"
+"Of course, this strategy depends on your opponents having low Armor and Dodge stats. \n"
 " Good job. Let me heal you."
 
 msgid "spyder_dojo_sokka1"
@@ -16362,7 +16533,7 @@ msgstr ""
 msgid "spyder_dojo_kataro1"
 msgstr ""
 "My Water tuxemon know techniques that work around their weakness, \n"
-" whether that's using Sinkhole to mitigate their weakness towards Earth techniques, \n"
+" whether that's using Sinkhole to mitigate their weakness toward Earth techniques, \n"
 " or using the fixed damage move Perfect Cut so it's not halved against Wood types."
 
 msgid "spyder_dojo_kataro2"
@@ -16405,11 +16576,11 @@ msgstr "Riddler Thri"
 msgid "spyder_dojo_tu1"
 msgstr ""
 "On this level you must prove your mastery of the six vital statistics of tuxemon:\n"
-" HP, Melee, Ranged, Armour, Dodge and Speed."
+" HP, Melee, Ranged, Armor, Dodge and Speed."
 
 msgid "spyder_dojo_tu3"
 msgstr ""
-"Each monk in this room specialises in monsters with one very high stat.\n"
+"Each monk in this room specializes in monsters with one very high stat.\n"
 " To overcome this, you will have to make clever use of your own creatures' stats. \n"
 " Talk to me once you have defeated them all."
 
@@ -16427,7 +16598,7 @@ msgid "spyder_dojo_ares2"
 msgstr ""
 "Here is a TM that you may find useful: Scope.\n"
 " It tells you what a tuxemon's statistics are,\n"
-" meaning you can target melee and ranged attacks based on which are weak towards them.\n"
+" meaning you can target melee and ranged attacks based on which are weak toward them.\n"
 " I'll also heal you."
 
 msgid "spyder_dojo_orion1"
@@ -16439,12 +16610,12 @@ msgid "spyder_dojo_orion2"
 msgstr ""
 "Here is a TM that you may find useful: Shadow Boxing.\n"
 " It uses your Melee and their Dodge,\n"
-" allowing your strong melee attackers to get around an enemy with high Armour.\n"
+" allowing your strong melee attackers to get around an enemy with high Armor.\n"
 " I'll also heal you."
 
 msgid "spyder_dojo_hephastus1"
 msgstr ""
-"My team all have excellent Armour, so melee attacks just bounce off of their"
+"My team all have excellent Armor, so melee attacks just bounce off of their"
 " thick hides."
 
 msgid "spyder_dojo_hephastus2"
@@ -16482,7 +16653,7 @@ msgstr ""
 msgid "spyder_dojo_thri2"
 msgstr ""
 "You are a true master of battle and have earned a reward. \n"
-" Tell me, do you favour strength or strategy?"
+" Tell me, do you favor strength or strategy?"
 
 msgid "spyder_dojo_strength"
 msgstr "In that case, take this SAMPSACK. Its power is unrivalled."
@@ -17098,7 +17269,7 @@ msgstr ""
 
 msgid "spyder_leathershaft2_achievement"
 msgstr ""
-"Shaft is proud to join the top businesses in this race towards a net-zero economy\n"
+"Shaft is proud to join the top businesses in this race toward a net-zero economy\n"
 "because we believe that climate change is not only one of the greatest risks facing Fondent,\n"
 "but also one of the greatest opportunities for sustainable innovation."
 
@@ -17137,7 +17308,7 @@ msgstr ""
 msgid "spyder_leathershaft1_rutherford1"
 msgstr ""
 "Shaft leader is a thinker and doer. She is not a talker. She has met twice with the miners. It shows quality.\n"
-"It shows his plans for Fondent. Our leader has been consistent when it comes to climate change."
+"It shows her plans for Fondent. Our leader has been consistent when it comes to climate change."
 
 msgid "spyder_leathershaft1_surat1"
 msgstr ""
@@ -17607,7 +17778,7 @@ msgstr "It's revolting!"
 
 msgid "eclipse_park_guardian5"
 msgstr ""
-"Do you think we got sewer systems and centralised treatment plants inside a "
+"Do you think we got sewer systems and centralized treatment plants inside a "
 "park?!"
 
 msgid "eclipse_park_nomoney"

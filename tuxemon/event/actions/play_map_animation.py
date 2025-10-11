@@ -10,7 +10,6 @@ from tuxemon.animation_entity import setup_and_play_animation
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.session import Session
-from tuxemon.states.world_state import WorldState
 
 logger = logging.getLogger(__name__)
 
@@ -50,9 +49,8 @@ class PlayMapAnimationAction(EventAction):
             logger.error(f"Character '{self.character}' not found")
             return
 
-        world_state = session.client.get_state_by_name(WorldState)
         position = character.tile_pos
-        animations = world_state.map_renderer.map_animations
+        animations = session.client.map_renderer.map_animations
 
         setup_and_play_animation(
             animation_name=self.animation_name,

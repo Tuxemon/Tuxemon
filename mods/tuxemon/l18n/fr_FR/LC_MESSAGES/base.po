@@ -6145,9 +6145,6 @@ msgstr "Quitter"
 msgid "menu_storage_take_monster"
 msgstr "Vous avez ajouté {name} dans votre groupe !"
 
-msgid "menu_storage_monsters_full"
-msgstr "Votre groupe est plein, vous ne pouvez plus en prendre du stockage."
-
 msgid "menu_storage_empty_kennel"
 msgstr "Ce stockage est vide, il n'y a pas de monstres à prendre."
 

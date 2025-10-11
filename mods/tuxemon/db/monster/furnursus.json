@@ -43,12 +43,30 @@
   ],
   "history": [
     {
-      "mon_slug": "statursus",
-      "evo_stage": "stage1"
+      "slug": "furnursus",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "statursus"
+      ]
     },
     {
-      "mon_slug": "coaldiak",
-      "evo_stage": "stage2"
+      "slug": "statursus",
+      "stage": "stage1",
+      "evolves_from": [
+        "furnursus"
+      ],
+      "evolves_into": [
+        "coaldiak"
+      ]
+    },
+    {
+      "slug": "coaldiak",
+      "stage": "stage2",
+      "evolves_from": [
+        "statursus"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [],
@@ -60,13 +78,17 @@
   "types": [
     "fire"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 190,
   "height": 110,
   "weight": 47,
+  "sounds": {
+    "combat_call": "sound_growl1",
+    "faint_call": "sound_growl1_faint"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.9,
   "upper_catch_resistance": 1.15

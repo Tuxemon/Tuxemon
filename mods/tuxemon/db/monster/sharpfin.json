@@ -50,8 +50,25 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "dollfin",
-      "evo_stage": "basic"
+      "slug": "sharpfin",
+      "stage": "stage1",
+      "evolves_from": [
+        "dollfin",
+        "dollfin"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "dollfin",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "bigfin",
+        "bigfin",
+        "sharpfin",
+        "sharpfin",
+        "delfeco"
+      ]
     }
   ],
   "terrains": [
@@ -71,13 +88,17 @@
     "water",
     "heroic"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 26,
   "height": 300,
   "weight": 200,
+  "sounds": {
+    "combat_call": "sound_bite_cartoon_style",
+    "faint_call": "sound_bite_cartoon_style_faint"
+  },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.85,
   "upper_catch_resistance": 1.1

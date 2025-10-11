@@ -267,35 +267,35 @@
    <properties>
     <property name="act1" value="char_talk spyder_dojo_saturn,post_battle_lose"/>
     <property name="behav1" value="talk spyder_dojo_saturn"/>
-    <property name="cond1" value="is variable_set dojosaturn:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_dojo_saturn"/>
    </properties>
   </object>
   <object id="33" name="Post Talk Hephastus" type="event" x="144" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_dojo_hephastus,post_battle_lose"/>
     <property name="behav1" value="talk spyder_dojo_hephastus"/>
-    <property name="cond1" value="is variable_set dojohephastus:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_dojo_hephastus"/>
    </properties>
   </object>
   <object id="34" name="Post Talk Hermes" type="event" x="160" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_dojo_hermes,post_battle_lose"/>
     <property name="behav1" value="talk spyder_dojo_hermes"/>
-    <property name="cond1" value="is variable_set dojohermes:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_dojo_hermes"/>
    </properties>
   </object>
   <object id="35" name="Post Talk Orion" type="event" x="176" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_dojo_orion,post_battle_lose"/>
     <property name="behav1" value="talk spyder_dojo_orion"/>
-    <property name="cond1" value="is variable_set dojoorion:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_dojo_orion"/>
    </properties>
   </object>
   <object id="36" name="Post Talk Ares" type="event" x="192" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_dojo_ares,post_battle_lose"/>
     <property name="behav1" value="talk spyder_dojo_ares"/>
-    <property name="cond1" value="is variable_set dojoares:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_dojo_ares"/>
    </properties>
   </object>
   <object id="37" name="Remove Tu" type="event" x="336" y="144" width="16" height="16">

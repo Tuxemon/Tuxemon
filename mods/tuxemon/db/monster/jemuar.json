@@ -54,12 +54,30 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "rockitten",
-      "evo_stage": "basic"
+      "slug": "jemuar",
+      "stage": "stage2",
+      "evolves_from": [
+        "rockat"
+      ],
+      "evolves_into": []
     },
     {
-      "mon_slug": "rockat",
-      "evo_stage": "stage1"
+      "slug": "rockitten",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "rockat"
+      ]
+    },
+    {
+      "slug": "rockat",
+      "stage": "stage1",
+      "evolves_from": [
+        "rockitten"
+      ],
+      "evolves_into": [
+        "jemuar"
+      ]
     }
   ],
   "terrains": [
@@ -79,13 +97,17 @@
     "earth",
     "cosmic"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 3,
   "height": 160,
   "weight": 150,
+  "sounds": {
+    "combat_call": "sound_creature_roar",
+    "faint_call": "sound_creature_roar_faint"
+  },
   "catch_rate": 35.0,
   "lower_catch_resistance": 0.85,
   "upper_catch_resistance": 1.1

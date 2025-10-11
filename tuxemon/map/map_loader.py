@@ -8,7 +8,6 @@ from collections.abc import Generator, MutableMapping
 from math import cos, pi, sin
 from pathlib import Path
 from typing import Any, Optional
-from uuid import uuid4
 
 import pytmx
 import yaml
@@ -18,7 +17,8 @@ from tuxemon import prepare
 from tuxemon.compat import Rect
 from tuxemon.constants.asset_loader import fetch_asset
 from tuxemon.db import Direction, Orientation
-from tuxemon.event import EventObject, MapAction, MapCondition
+from tuxemon.event import EventObject
+from tuxemon.event.eventparser import EventParser
 from tuxemon.graphics import scaled_image_loader
 from tuxemon.lib.bresenham import bresenham
 from tuxemon.map.map import (
@@ -30,11 +30,6 @@ from tuxemon.map.map import (
     point_to_grid,
     snap_rect,
     tiles_inside_rect,
-)
-from tuxemon.script.parser import (
-    parse_action_string,
-    parse_behav_string,
-    parse_condition_string,
 )
 from tuxemon.tools import copy_dict_with_keys
 
@@ -280,57 +275,19 @@ class YAMLEventLoader:
             A dictionary with "events" and "inits" as keys, each containing a list
             of EventObject instances.
         """
+        event_parser = EventParser()
         yaml_data: dict[str, dict[str, dict[str, Any]]] = parse_yaml(path)
-
         events_dict: dict[str, list[EventObject]] = {"event": [], "init": []}
 
         for name, event_data in yaml_data["events"].items():
-            _id = uuid4().int
-            conds = []
-            acts = []
-            x = event_data.get("x", 0)
-            y = event_data.get("y", 0)
-            w = event_data.get("width", 1)
-            h = event_data.get("height", 1)
             event_type = str(event_data.get("type"))
-
-            for key, value in enumerate(
-                event_data.get("actions", []), start=1
-            ):
-                act_type, args = parse_action_string(value)
-                action = MapAction(act_type, args, f"act{str(key*10)}")
-                acts.append(action)
-            for key, value in enumerate(
-                event_data.get("conditions", []), start=1
-            ):
-                operator, cond_type, args = parse_condition_string(value)
-                condition = MapCondition(
-                    type=cond_type,
-                    parameters=args,
-                    x=x,
-                    y=y,
-                    width=w,
-                    height=h,
-                    operator=operator,
-                    name=f"cond{str(key*10)}",
-                )
-                conds.append(condition)
-            for key, value in enumerate(event_data.get("behav", []), start=1):
-                behav_type, args = parse_behav_string(value)
-                _args = list(args)
-                _args.insert(0, behav_type)
-                _conds = MapCondition(
-                    "behav", _args, x, y, w, h, "is", f"behav{str(key*10)}"
-                )
-                conds.insert(0, _conds)
-                _squeeze = [":".join(_args)]
-                _acts = MapAction("behav", _squeeze, f"behav{str(key*10)}")
-                acts.insert(0, _acts)
-
             if event_type == source:
-                event = EventObject(_id, name, x, y, w, h, conds, acts)
+                x, y = event_data.get("x", 0), event_data.get("y", 0)
+                w, h = event_data.get("width", 1), event_data.get("height", 1)
+                event = event_parser.create_event_object(
+                    event_data, event_type, name, x, y, w, h
+                )
                 events_dict[event_type].append(event)
-
         return events_dict
 
 
@@ -612,9 +569,7 @@ class TMXMapLoader:
         Returns:
             Loaded event.
         """
-        event_id = uuid4().int
-        conditions = []
-        actions = []
+        event_parser = EventParser()
         x, y, w, h = (
             int(obj.x / tile_size[0]),
             int(obj.y / tile_size[1]),
@@ -622,28 +577,23 @@ class TMXMapLoader:
             int(obj.height / tile_size[1]),
         )
 
-        properties = obj.properties
-        for key, value in natsorted(properties.items()):
+        raw_props = obj.properties or {}
+        event_data: dict[str, Any] = {
+            "conditions": [],
+            "actions": [],
+            "behav": [],
+        }
+
+        for key, value in natsorted(raw_props.items()):
             if not isinstance(key, str):
                 continue
             if key.startswith("cond"):
-                operator, cond_type, args = parse_condition_string(value)
-                conditions.append(
-                    MapCondition(cond_type, args, x, y, w, h, operator, key)
-                )
+                event_data["conditions"].append(value)
             elif key.startswith("act"):
-                act_type, args = parse_action_string(value)
-                actions.append(MapAction(act_type, args, key))
+                event_data["actions"].append(value)
             elif key.startswith("behav"):
-                behav_type, args = parse_behav_string(value)
-                conditions.insert(
-                    0,
-                    MapCondition(
-                        "behav", [behav_type, *args], x, y, w, h, "is", key
-                    ),
-                )
-                actions.insert(
-                    0, MapAction("behav", [":".join([behav_type, *args])], key)
-                )
+                event_data["behav"].append(value)
 
-        return EventObject(event_id, obj.name, x, y, w, h, conditions, actions)
+        return event_parser.create_event_object(
+            event_data, obj.type or "event", obj.name, x, y, w, h
+        )

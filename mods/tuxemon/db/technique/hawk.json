@@ -16,7 +16,7 @@
   "power": 1.5,
   "range": "touch",
   "recharge": 1,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_tornado",
   "slug": "hawk",
   "sort": "damage",
   "modifiers": [],

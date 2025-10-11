@@ -26,12 +26,30 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "nebufin",
-      "evo_stage": "basic"
+      "slug": "novaquarius",
+      "stage": "stage2",
+      "evolves_from": [
+        "galasces"
+      ],
+      "evolves_into": []
     },
     {
-      "mon_slug": "galasces",
-      "evo_stage": "stage1"
+      "slug": "nebufin",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "galasces"
+      ]
+    },
+    {
+      "slug": "galasces",
+      "stage": "stage1",
+      "evolves_from": [
+        "nebufin"
+      ],
+      "evolves_into": [
+        "novaquarius"
+      ]
     }
   ],
   "terrains": [],
@@ -47,12 +65,16 @@
     "water",
     "venom"
   ],
-  "possible_genders": [
-    "neuter"
-  ],
+  "gender_weights": {
+    "neuter": 1.0
+  },
   "txmn_id": 321,
   "height": 100,
   "weight": 100,
+  "sounds": {
+    "combat_call": "sound_weird_09",
+    "faint_call": "sound_weird_09_faint"
+  },
   "catch_rate": 35.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

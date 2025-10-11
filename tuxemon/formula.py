@@ -6,7 +6,7 @@ import logging
 import math
 import random
 from collections.abc import Sequence
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 from typing import TYPE_CHECKING, Any, Optional, Union
 
@@ -90,6 +90,11 @@ class MonsterConfig:
     bond_range: tuple[int, int] = (0, 100)
     weight_range: tuple[float, float] = (-0.1, 0.1)
     height_range: tuple[float, float] = (-0.1, 0.1)
+    bond_sentiments: dict[str, tuple[int, int]] = field(default_factory=dict)
+    bond_strings: dict[str, str] = field(default_factory=dict)
+    opposite_tastes: dict[str, list[str]] = field(default_factory=dict)
+    bond_preferences: dict[str, int] = field(default_factory=dict)
+    experience_multipliers: dict[str, float] = field(default_factory=dict)
 
 
 @dataclass
@@ -530,16 +535,6 @@ def set_health(
     if monster.is_fainted:
         monster.current_hp = 0
         monster.status.apply_faint(monster)
-
-
-def change_bond(monster: Monster, value: Union[int, float]) -> None:
-    """Adjusts the monster's bond value while enforcing limits."""
-    _minor, _major = config_monster.bond_range
-    bond_change = (
-        int(value * monster.bond) if isinstance(value, float) else value
-    )
-    monster.bond += bond_change
-    monster.bond = max(_minor, min(monster.bond, _major))
 
 
 def set_weight(monster: Monster, value: float) -> float:

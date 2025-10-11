@@ -14,7 +14,7 @@
   "randomly": false,
   "range": "melee",
   "recharge": 1,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_forcefield",
   "slug": "tux_attack",
   "sort": "damage",
   "modifiers": [],

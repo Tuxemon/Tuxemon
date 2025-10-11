@@ -40,7 +40,14 @@
     }
   ],
   "evolutions": [],
-  "history": [],
+  "history": [
+    {
+      "slug": "jeluna",
+      "stage": "standalone",
+      "evolves_from": [],
+      "evolves_into": []
+    }
+  ],
   "terrains": [
     "boreal_snow",
     "extraterrestrial",
@@ -58,12 +65,16 @@
     "water",
     "cosmic"
   ],
-  "possible_genders": [
-    "neuter"
-  ],
+  "gender_weights": {
+    "neuter": 1.0
+  },
   "txmn_id": 305,
   "height": 30,
   "weight": 2,
+  "sounds": {
+    "combat_call": "sound_splash_1",
+    "faint_call": "sound_splash_1_faint"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

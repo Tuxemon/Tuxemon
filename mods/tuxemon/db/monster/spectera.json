@@ -58,12 +58,30 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "fruitera",
-      "evo_stage": "basic"
+      "slug": "spectera",
+      "stage": "stage2",
+      "evolves_from": [
+        "megafruitera"
+      ],
+      "evolves_into": []
     },
     {
-      "mon_slug": "megafruitera",
-      "evo_stage": "stage1"
+      "slug": "fruitera",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "megafruitera"
+      ]
+    },
+    {
+      "slug": "megafruitera",
+      "stage": "stage1",
+      "evolves_from": [
+        "fruitera"
+      ],
+      "evolves_into": [
+        "spectera"
+      ]
     }
   ],
   "terrains": [
@@ -79,13 +97,17 @@
     "wood",
     "sky"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 171,
   "height": 140,
   "weight": 20,
+  "sounds": {
+    "combat_call": "sound_weird_09",
+    "faint_call": "sound_weird_09_faint"
+  },
   "catch_rate": 35.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.25

@@ -58,13 +58,27 @@
   "evolutions": [
     {
       "monster_slug": "trojerror",
-      "item": "metal_booster"
+      "item": {
+        "metal_booster": 1.0
+      }
     }
   ],
   "history": [
     {
-      "mon_slug": "trojerror",
-      "evo_stage": "stage1"
+      "slug": "virware",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "trojerror"
+      ]
+    },
+    {
+      "slug": "trojerror",
+      "stage": "stage1",
+      "evolves_from": [
+        "virware"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [
@@ -80,12 +94,16 @@
     "metal",
     "cosmic"
   ],
-  "possible_genders": [
-    "neuter"
-  ],
+  "gender_weights": {
+    "neuter": 1.0
+  },
   "txmn_id": 379,
   "height": 30,
   "weight": 0.1,
+  "sounds": {
+    "combat_call": "sound_misc_07_metal",
+    "faint_call": "sound_misc_07_metal_faint"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.9,
   "upper_catch_resistance": 1.15

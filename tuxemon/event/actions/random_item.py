@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import random
 from dataclasses import dataclass
-from typing import Optional, final
+from typing import Optional, Union, final
 
 from tuxemon.event.eventaction import EventAction
 from tuxemon.session import Session
@@ -14,20 +14,19 @@ from tuxemon.session import Session
 @dataclass
 class RandomItemAction(EventAction):
     """
-    Pick a random item from a list and add it to the trainer's inventory.
+    Picks a random item from a list and adds it to the trainer's inventory.
 
     Script usage:
         .. code-block::
 
-            random_item <item_slug>[,quantity][,trainer_slug]
+            random_item <item_slugs>[,quantity][,trainer_slug]
 
     Script parameters:
-        item_slug: Item name to look up in the item database (multiple items
-        separate by ":").
-        quantity: Quantity of the item to add or to reduce. By default it is 1.
-        trainer_slug: Slug of the trainer that will receive the item. It
-            defaults to the current player.
-
+        item_slugs: A colon-separated string of item names to choose from.
+            Example: 'potion:super-potion:hyper-potion'.
+        quantity: The number of the item to add. Defaults to 1.
+        trainer_slug: The slug of the trainer to receive the item.
+            Defaults to the current player.
     """
 
     name = "random_item"
@@ -36,15 +35,15 @@ class RandomItemAction(EventAction):
     trainer_slug: Optional[str] = None
 
     def start(self, session: Session) -> None:
-        # check if multiple items
-        item: str = ""
-        items: list[str] = []
-        if self.item_slug.find(":"):
-            items = self.item_slug.split(":")
-            item = random.choice(items)
-        else:
-            item = self.item_slug
+        items = self.item_slug.split(":")
+        chosen_item = random.choice(items)
 
-        session.client.event_engine.execute_action(
-            "add_item", [item, self.quantity, self.trainer_slug], True
-        )
+        params: list[Union[str, int]] = [chosen_item]
+
+        if self.trainer_slug is not None:
+            params.append(self.quantity if self.quantity is not None else 1)
+            params.append(self.trainer_slug)
+        elif self.quantity is not None:
+            params.append(self.quantity)
+
+        session.client.event_engine.execute_action("add_item", params, True)

@@ -59,8 +59,20 @@
   ],
   "history": [
     {
-      "mon_slug": "raptoucan",
-      "evo_stage": "stage1"
+      "slug": "toucanary",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "raptoucan"
+      ]
+    },
+    {
+      "slug": "raptoucan",
+      "stage": "stage1",
+      "evolves_from": [
+        "toucanary"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [
@@ -76,13 +88,17 @@
   "types": [
     "sky"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 387,
   "height": 12,
   "weight": 1,
+  "sounds": {
+    "combat_call": "sound_wood_call",
+    "faint_call": "sound_wood_call"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.9,
   "upper_catch_resistance": 1.15

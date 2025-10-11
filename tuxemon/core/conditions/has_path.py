@@ -15,14 +15,14 @@ if TYPE_CHECKING:
 @dataclass
 class HasPathCondition(CoreCondition):
     """
-    Checks against the creature's evolution paths.
-
-    Accepts a single parameter and returns whether it is applied.
-
+    Checks whether the creature has an evolution path that includes the specified
+    item slug.
     """
 
     name = "has_path"
     expected: str
 
     def test_with_monster(self, session: Session, target: Monster) -> bool:
-        return any(t.item == self.expected for t in target.evolutions)
+        return any(
+            self.expected in (evo.item or {}) for evo in target.evolutions
+        )

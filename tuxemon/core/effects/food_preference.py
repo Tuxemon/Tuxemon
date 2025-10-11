@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 from tuxemon.core.core_effect import CoreEffect, ItemEffectResult
-from tuxemon.formula import change_bond
+from tuxemon.formula import config_monster
 
 if TYPE_CHECKING:
     from tuxemon.item.item import Item
@@ -15,21 +15,6 @@ if TYPE_CHECKING:
     from tuxemon.session import Session
 
 logger = logging.getLogger(__name__)
-
-OPPOSITE_TASTES = {
-    "taste_peppy": "taste_mild",
-    "taste_mild": "taste_peppy",
-    "taste_salty": "taste_sweet",
-    "taste_sweet": "taste_salty",
-    "taste_hearty": "taste_soft",
-    "taste_soft": "taste_hearty",
-    "taste_zesty": "taste_flakey",
-    "taste_flakey": "taste_zesty",
-    "taste_refined": "taste_dry",
-    "taste_dry": "taste_refined",
-    "taste_savory": "taste_bland",
-    "taste_bland": "taste_savory",
-}
 
 
 @dataclass
@@ -44,23 +29,26 @@ class FoodPreferenceEffect(CoreEffect):
         self, session: Session, item: Item, target: Monster
     ) -> ItemEffectResult:
         self.session = session
-        preference = get_food_preference(
+        bond_delta = get_bond_from_food(
             target, self.warm.lower(), self.cold.lower()
         )
-        bond_delta = bond_from_food_preference(preference)
-        change_bond(target, bond_delta)
+        target.bond_handler.change_bond(bond_delta)
         return ItemEffectResult(name=item.name, success=True)
 
 
 def is_opposite_taste(taste_a: str, taste_b: str) -> bool:
-    return OPPOSITE_TASTES.get(taste_a) == taste_b
+    """Checks if two tastes are opposites, regardless of direction."""
+    opposites = config_monster.opposite_tastes
+    return taste_b in opposites.get(taste_a, []) or taste_a in opposites.get(
+        taste_b, []
+    )
 
 
-def get_food_preference(
+def get_bond_from_food(
     monster: Monster, warm_taste: str, cold_taste: str
-) -> str:
+) -> int:
     """
-    Returns preference level based on taste alignment.
+    Calculates the bond adjustment based on taste alignment.
     """
     warm_match = warm_taste == monster.taste_warm
     cold_match = cold_taste == monster.taste_cold
@@ -68,24 +56,15 @@ def get_food_preference(
     warm_opposite = is_opposite_taste(warm_taste, monster.taste_warm)
     cold_opposite = is_opposite_taste(cold_taste, monster.taste_cold)
 
+    bond_preferences = config_monster.bond_preferences
+
     if warm_match and cold_match:
-        return "Great"
+        return bond_preferences.get("great", 0)
     elif warm_match or cold_match:
-        return "Good"
+        return bond_preferences.get("good", 0)
     elif warm_opposite and cold_opposite:
-        return "Terrible"
+        return bond_preferences.get("terrible", 0)
     elif warm_opposite or cold_opposite:
-        return "Bad"
+        return bond_preferences.get("bad", 0)
     else:
-        return "Average"
-
-
-def bond_from_food_preference(preference: str) -> int:
-    """Maps preference level to bond (happiness) adjustment."""
-    return {
-        "Great": +10,
-        "Good": +5,
-        "Average": 0,
-        "Bad": -5,
-        "Terrible": -10,
-    }.get(preference, 0)
+        return bond_preferences.get("average", 0)

@@ -58,10 +58,10 @@ class StartState(PygameMenuState):
         config = prepare.CONFIG
 
         def new_game() -> None:
-            launcher = GameLauncher(self.client, db)
+            launcher = GameLauncher(self.client)
             launcher.launch(
                 session=local_session,
-                mod_name=config.mods[0],
+                meta=db.mod_metadata.get_mod_metadata(config.mods[0]),
                 remove_states=["StartState"],
             )
 
@@ -151,10 +151,10 @@ class ModsChoice(PygameMenuState):
     ) -> None:
 
         def new_game(mod_name: str) -> None:
-            launcher = GameLauncher(self.client, db)
+            launcher = GameLauncher(self.client)
             launcher.launch(
                 session=local_session,
-                mod_name=mod_name,
+                meta=db.mod_metadata.get_mod_metadata(mod_name),
                 remove_states=["StartState", "ModsChoice"],
             )
 

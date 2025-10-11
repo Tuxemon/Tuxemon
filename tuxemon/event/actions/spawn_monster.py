@@ -81,14 +81,13 @@ class SpawnMonsterAction(EventAction):
         # Get the basic form of the seed monster
         seed_slug = seed.slug
         if seed.history:
-            seed_slug = next(
-                (
-                    element.mon_slug
-                    for element in seed.history
-                    if element.evo_stage.basic
-                ),
-                seed_slug,
-            )
+            basic_forms = [
+                element.slug
+                for element in seed.history
+                if element.stage == EvolutionStage.basic
+            ]
+            if basic_forms:
+                seed_slug = random.choice(basic_forms)
 
         level = (father.level + mother.level) // 2
 

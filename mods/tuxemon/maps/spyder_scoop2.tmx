@@ -58,6 +58,7 @@
    <properties>
     <property name="act1" value="transition_teleport spyder_scoop3.tmx,1,11,0.3"/>
     <property name="act2" value="char_face player,up"/>
+    <property name="act3" value="set_teleport_faint player,spyder_scoop2.tmx,4,4"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_facing player,up"/>
    </properties>

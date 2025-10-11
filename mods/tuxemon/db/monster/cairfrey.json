@@ -59,8 +59,20 @@
   ],
   "history": [
     {
-      "mon_slug": "possessun",
-      "evo_stage": "stage1"
+      "slug": "cairfrey",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "possessun"
+      ]
+    },
+    {
+      "slug": "possessun",
+      "stage": "stage1",
+      "evolves_from": [
+        "cairfrey"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [],
@@ -73,12 +85,16 @@
   "types": [
     "normal"
   ],
-  "possible_genders": [
-    "neuter"
-  ],
+  "gender_weights": {
+    "neuter": 1.0
+  },
   "txmn_id": 71,
   "height": 54,
   "weight": 10,
+  "sounds": {
+    "combat_call": "sound_ghost_1",
+    "faint_call": "sound_ghost_1_faint"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.25

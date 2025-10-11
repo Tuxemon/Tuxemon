@@ -66,8 +66,20 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "capiti",
-      "evo_stage": "basic"
+      "slug": "capinyah",
+      "stage": "stage1",
+      "evolves_from": [
+        "capiti"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "capiti",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "capinyah"
+      ]
     }
   ],
   "terrains": [],
@@ -80,13 +92,17 @@
   "types": [
     "heroic"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 103,
   "height": 160,
   "weight": 55,
+  "sounds": {
+    "combat_call": "sound_cat_purr_twit5",
+    "faint_call": "sound_cat_purr_twit5_faint"
+  },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.9,
   "upper_catch_resistance": 1.15

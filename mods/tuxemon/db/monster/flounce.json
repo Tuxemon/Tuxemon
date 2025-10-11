@@ -51,8 +51,20 @@
   ],
   "history": [
     {
-      "mon_slug": "knindling",
-      "evo_stage": "stage1"
+      "slug": "flounce",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "knindling"
+      ]
+    },
+    {
+      "slug": "knindling",
+      "stage": "stage1",
+      "evolves_from": [
+        "flounce"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [],
@@ -66,13 +78,17 @@
   "types": [
     "fire"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 329,
   "height": 49,
   "weight": 22,
+  "sounds": {
+    "combat_call": "sound_spell_fire_06",
+    "faint_call": "sound_spell_fire_06_faint"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

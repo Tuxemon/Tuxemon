@@ -59,12 +59,30 @@
   ],
   "history": [
     {
-      "mon_slug": "toxiris",
-      "evo_stage": "stage1"
+      "slug": "rosarin",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "toxiris"
+      ]
     },
     {
-      "mon_slug": "ninjasmine",
-      "evo_stage": "stage2"
+      "slug": "toxiris",
+      "stage": "stage1",
+      "evolves_from": [
+        "rosarin"
+      ],
+      "evolves_into": [
+        "ninjasmine"
+      ]
+    },
+    {
+      "slug": "ninjasmine",
+      "stage": "stage2",
+      "evolves_from": [
+        "toxiris"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [
@@ -82,13 +100,17 @@
   "types": [
     "wood"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 204,
   "height": 48,
   "weight": 14,
+  "sounds": {
+    "combat_call": "sound_cute_03",
+    "faint_call": "sound_cute_03_faint"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.9,
   "upper_catch_resistance": 1.15

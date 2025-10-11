@@ -38,8 +38,24 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "botbot",
-      "evo_stage": "basic"
+      "slug": "mrmoswitch",
+      "stage": "stage1",
+      "evolves_from": [
+        "botbot"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "botbot",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "av8r",
+        "picc",
+        "mrmoswitch",
+        "k9",
+        "b_ver_1"
+      ]
     }
   ],
   "terrains": [
@@ -55,12 +71,16 @@
     "lightning",
     "metal"
   ],
-  "possible_genders": [
-    "neuter"
-  ],
+  "gender_weights": {
+    "neuter": 1.0
+  },
   "txmn_id": 128,
   "height": 56,
   "weight": 4,
+  "sounds": {
+    "combat_call": "sound_game_shot_light_gun",
+    "faint_call": "sound_game_shot_light_gun_faint"
+  },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.25

@@ -504,21 +504,21 @@
    <properties>
     <property name="act1" value="char_talk spyder_routea_koan,post_battle_lose"/>
     <property name="behav1" value="talk spyder_routea_koan"/>
-    <property name="cond1" value="is variable_set routeakoan:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_routea_koan"/>
    </properties>
   </object>
   <object id="120" name="Post Talk Lexi" type="event" x="16" y="480" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_routea_lexi,post_battle_lose"/>
     <property name="behav1" value="talk spyder_routea_lexi"/>
-    <property name="cond1" value="is variable_set routealexi:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_routea_lexi"/>
    </properties>
   </object>
   <object id="121" name="Post Talk Dagger" type="event" x="16" y="352" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_routea_dagger,post_battle_lose"/>
     <property name="behav1" value="talk spyder_routea_dagger"/>
-    <property name="cond1" value="is variable_set routeadagger:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_routea_dagger"/>
    </properties>
   </object>
   <object id="122" name="Talk Vince4" type="event" x="32" y="304" width="16" height="16">
@@ -534,28 +534,28 @@
    <properties>
     <property name="act1" value="char_talk spyder_routea_rosy,post_battle_lose"/>
     <property name="behav1" value="talk spyder_routea_rosy"/>
-    <property name="cond1" value="is variable_set routearosy:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_routea_rosy"/>
    </properties>
   </object>
   <object id="124" name="Post Talk Doris" type="event" x="160" y="320" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_routea_doris,post_battle_lose"/>
     <property name="behav1" value="talk spyder_routea_doris"/>
-    <property name="cond1" value="is variable_set routeadoris:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_routea_doris"/>
    </properties>
   </object>
   <object id="125" name="Post Talk Connie" type="event" x="192" y="400" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_routea_connie,post_battle_lose"/>
     <property name="behav1" value="talk spyder_routea_connie"/>
-    <property name="cond1" value="is variable_set routeaconnie:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_routea_connie"/>
    </properties>
   </object>
   <object id="126" name="Post Talk Joe" type="event" x="192" y="528" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_routea_joe,post_battle_lose"/>
     <property name="behav1" value="talk spyder_routea_joe"/>
-    <property name="cond1" value="is variable_set routeajoe:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_routea_joe"/>
    </properties>
   </object>
   <object id="127" name="Talk Lotu" type="event" x="240" y="480" width="16" height="16">

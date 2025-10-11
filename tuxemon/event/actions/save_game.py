@@ -6,7 +6,6 @@ import logging
 from dataclasses import dataclass
 from typing import Optional, final
 
-from tuxemon import save
 from tuxemon.event.eventaction import EventAction
 from tuxemon.locale import T
 from tuxemon.session import Session
@@ -50,16 +49,10 @@ class SaveGameAction(EventAction):
 
         logger.info("Saving!")
         try:
-            save_data = save.get_save_data(session)
-            save.save(
-                save_data,
-                index,
-            )
-            save.slot_number = slot
+            session.save_state(index=index, slot=slot)
         except Exception as e:
-            raise
             logger.error("Unable to save game!!")
-            logger.error(e)
+            logger.exception(e)
             open_dialog(session.client, [T.translate("save_failure")])
         else:
             if self.index is not None:

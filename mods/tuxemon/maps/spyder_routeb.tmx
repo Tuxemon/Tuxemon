@@ -226,35 +226,35 @@
    <properties>
     <property name="act1" value="char_talk spyder_routeb_electra,post_battle_lose"/>
     <property name="behav1" value="talk spyder_routeb_electra"/>
-    <property name="cond1" value="is variable_set routebelectra:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_routeb_electra"/>
    </properties>
   </object>
   <object id="186" name="Post Talk Cytherea" type="event" x="240" y="416" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_routeb_cytherea,post_battle_lose"/>
     <property name="behav1" value="talk spyder_routeb_cytherea"/>
-    <property name="cond1" value="is variable_set routebcytherea:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_routeb_cytherea"/>
    </properties>
   </object>
   <object id="187" name="Post Talk Nephthys" type="event" x="96" y="368" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_routeb_nephthys,post_battle_lose"/>
     <property name="behav1" value="talk spyder_routeb_nephthys"/>
-    <property name="cond1" value="is variable_set routebnephthys:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_routeb_nephthys"/>
    </properties>
   </object>
   <object id="188" name="Post Talk Sedna" type="event" x="240" y="272" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_routeb_sedna,post_battle_lose"/>
     <property name="behav1" value="talk spyder_routeb_sedna"/>
-    <property name="cond1" value="is variable_set routebsedna:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_routeb_sedna"/>
    </properties>
   </object>
   <object id="189" name="Post Talk Calypso" type="event" x="48" y="128" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_routeb_calypso,post_battle_lose"/>
     <property name="behav1" value="talk spyder_routeb_calypso"/>
-    <property name="cond1" value="is variable_set routebcalypso:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_routeb_calypso"/>
    </properties>
   </object>
  </objectgroup>

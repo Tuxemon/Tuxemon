@@ -14,6 +14,7 @@ model_map:
   environment: tuxemon.db.EnvironmentModel
   item: tuxemon.db.ItemModel
   monster: tuxemon.db.MonsterModel
+  flair: tuxemon.db.FlairModel
   music: tuxemon.db.MusicModel
   animation: tuxemon.db.AnimationModel
   npc: tuxemon.db.NpcModel
@@ -46,11 +47,6 @@ default_lookup_table: monster
 active_mods:
   - tuxemon
 
-# A dictionary storing the version numbers for each active mod. This can be used
-# for logging or compatibility checks.
-mod_versions:
-  tuxemon: 1.0.0
-
 # A dictionary indicating whether specific mods are activated. This offers a more
 # granular control over mod loading beyond just being in 'active_mods'.
 mod_activation:
@@ -81,6 +77,7 @@ mod_tables:
     - faction
     - terrain
     - weather
+    - flair
 
 # A dictionary to specify tables that should be excluded for certain mods.
 # For example, a mod might explicitly opt out of providing 'item' data.

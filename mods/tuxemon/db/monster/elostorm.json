@@ -50,12 +50,30 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "elofly",
-      "evo_stage": "basic"
+      "slug": "elostorm",
+      "stage": "stage2",
+      "evolves_from": [
+        "elowind"
+      ],
+      "evolves_into": []
     },
     {
-      "mon_slug": "elowind",
-      "evo_stage": "stage1"
+      "slug": "elofly",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "elowind"
+      ]
+    },
+    {
+      "slug": "elowind",
+      "stage": "stage1",
+      "evolves_from": [
+        "elofly"
+      ],
+      "evolves_into": [
+        "elostorm"
+      ]
     }
   ],
   "terrains": [
@@ -73,13 +91,17 @@
     "normal",
     "sky"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 41,
   "height": 144,
   "weight": 25,
+  "sounds": {
+    "combat_call": "sound_woosh_2",
+    "faint_call": "sound_woosh_2_faint"
+  },
   "catch_rate": 35.0,
   "lower_catch_resistance": 0.85,
   "upper_catch_resistance": 1.1

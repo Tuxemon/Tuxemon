@@ -38,8 +38,20 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "fancair",
-      "evo_stage": "basic"
+      "slug": "windeye",
+      "stage": "stage1",
+      "evolves_from": [
+        "fancair"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "fancair",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "windeye"
+      ]
     }
   ],
   "terrains": [],
@@ -56,13 +68,17 @@
     "lightning",
     "metal"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 180,
   "height": 300,
   "weight": 600,
+  "sounds": {
+    "combat_call": "sound_robot1",
+    "faint_call": "sound_robot1"
+  },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

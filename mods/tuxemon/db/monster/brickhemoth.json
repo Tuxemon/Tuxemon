@@ -50,12 +50,30 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "imbrickcile",
-      "evo_stage": "basic"
+      "slug": "brickhemoth",
+      "stage": "stage2",
+      "evolves_from": [
+        "bricgard"
+      ],
+      "evolves_into": []
     },
     {
-      "mon_slug": "bricgard",
-      "evo_stage": "stage1"
+      "slug": "imbrickcile",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "bricgard"
+      ]
+    },
+    {
+      "slug": "bricgard",
+      "stage": "stage1",
+      "evolves_from": [
+        "imbrickcile"
+      ],
+      "evolves_into": [
+        "brickhemoth"
+      ]
     }
   ],
   "terrains": [
@@ -74,13 +92,17 @@
     "earth",
     "heroic"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 261,
   "height": 180,
   "weight": 120,
+  "sounds": {
+    "combat_call": "sound_woosh_2",
+    "faint_call": "sound_woosh_2_faint"
+  },
   "catch_rate": 35.0,
   "lower_catch_resistance": 0.85,
   "upper_catch_resistance": 1.1

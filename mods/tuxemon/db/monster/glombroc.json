@@ -63,12 +63,30 @@
   ],
   "history": [
     {
-      "mon_slug": "slichen",
-      "evo_stage": "basic"
+      "slug": "glombroc",
+      "stage": "stage1",
+      "evolves_from": [
+        "slichen"
+      ],
+      "evolves_into": [
+        "conglolem"
+      ]
     },
     {
-      "mon_slug": "conglolem",
-      "evo_stage": "stage2"
+      "slug": "slichen",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "glombroc"
+      ]
+    },
+    {
+      "slug": "conglolem",
+      "stage": "stage2",
+      "evolves_from": [
+        "glombroc"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [],
@@ -85,12 +103,16 @@
     "earth",
     "wood"
   ],
-  "possible_genders": [
-    "neuter"
-  ],
+  "gender_weights": {
+    "neuter": 1.0
+  },
   "txmn_id": 273,
   "height": 87,
   "weight": 35,
+  "sounds": {
+    "combat_call": "sound_glitch_call",
+    "faint_call": "sound_glitch_call"
+  },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.9,
   "upper_catch_resistance": 1.15

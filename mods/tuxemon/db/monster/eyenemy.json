@@ -47,8 +47,20 @@
   ],
   "history": [
     {
-      "mon_slug": "eyesore",
-      "evo_stage": "stage1"
+      "slug": "eyenemy",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "eyesore"
+      ]
+    },
+    {
+      "slug": "eyesore",
+      "stage": "stage1",
+      "evolves_from": [
+        "eyenemy"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [],
@@ -61,13 +73,17 @@
   "types": [
     "cosmic"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 46,
   "height": 104,
   "weight": 2,
+  "sounds": {
+    "combat_call": "sound_retro_beep_05",
+    "faint_call": "sound_retro_beep_05_faint"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

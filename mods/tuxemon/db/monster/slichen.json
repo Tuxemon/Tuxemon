@@ -104,14 +104,15 @@
   "types": [
     "wood"
   ],
-  "possible_genders": [
-    "neuter"
-  ],
+  "gender_weights": {
+    "neuter": 1.0
+  },
   "txmn_id": 272,
   "height": 37,
   "weight": 1,
   "sounds": {
-    "combat_call": "sound_spit_02"
+    "combat_call": "sound_spit_02",
+    "faint_call": "sound_spit_02_faint"
   },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,

@@ -72,15 +72,16 @@
     "shadow",
     "normal"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 350,
   "height": 35,
   "weight": 10,
   "sounds": {
-    "combat_call": "sound_ghost_1"
+    "combat_call": "sound_ghost_1",
+    "faint_call": "sound_ghost_1_faint"
   },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,

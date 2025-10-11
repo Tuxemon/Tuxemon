@@ -71,9 +71,9 @@
     "metal",
     "water"
   ],
-  "possible_genders": [
-    "neuter"
-  ],
+  "gender_weights": {
+    "neuter": 1.0
+  },
   "txmn_id": 127,
   "height": 55,
   "weight": 4,

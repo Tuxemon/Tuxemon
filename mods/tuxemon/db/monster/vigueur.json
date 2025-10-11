@@ -71,15 +71,16 @@
     "wood",
     "heroic"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 218,
   "height": 38,
   "weight": 4,
   "sounds": {
-    "combat_call": "sound_woosh_2"
+    "combat_call": "sound_woosh_2",
+    "faint_call": "sound_woosh_2_faint"
   },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.9,

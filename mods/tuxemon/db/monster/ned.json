@@ -49,15 +49,16 @@
   "types": [
     "normal"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 313,
   "height": 87,
   "weight": 32,
   "sounds": {
-    "combat_call": "sound_bark"
+    "combat_call": "sound_bark",
+    "faint_call": "sound_bark_faint"
   },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,

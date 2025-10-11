@@ -85,15 +85,16 @@
     "wood",
     "frost"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 384,
   "height": 100,
   "weight": 18,
   "sounds": {
-    "combat_call": "sound_ice"
+    "combat_call": "sound_ice",
+    "faint_call": "sound_ice_faint"
   },
   "catch_rate": 35.0,
   "lower_catch_resistance": 0.9,

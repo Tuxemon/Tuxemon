@@ -32,7 +32,7 @@
     },
     {
       "level_learned": 28,
-      "technique": "venom"
+      "technique": "caustic_spray"
     }
   ],
   "evolutions": [
@@ -70,9 +70,9 @@
     "water",
     "venom"
   ],
-  "possible_genders": [
-    "male"
-  ],
+  "gender_weights": {
+    "male": 1.0
+  },
   "txmn_id": 52,
   "height": 36,
   "weight": 3,

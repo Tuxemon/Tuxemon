@@ -86,9 +86,9 @@
   "types": [
     "metal"
   ],
-  "possible_genders": [
-    "female"
-  ],
+  "gender_weights": {
+    "female": 1.0
+  },
   "txmn_id": 135,
   "height": 102,
   "weight": 18,

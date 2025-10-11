@@ -72,15 +72,16 @@
   "types": [
     "earth"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 168,
   "height": 40,
   "weight": 6,
   "sounds": {
-    "combat_call": "sound_bugthing"
+    "combat_call": "sound_bugthing",
+    "faint_call": "sound_bugthing"
   },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,

@@ -82,14 +82,15 @@
     "shadow",
     "cosmic"
   ],
-  "possible_genders": [
-    "neuter"
-  ],
+  "gender_weights": {
+    "neuter": 1.0
+  },
   "txmn_id": 241,
   "height": 97,
   "weight": 7,
   "sounds": {
-    "combat_call": "sound_robot2"
+    "combat_call": "sound_robot2",
+    "faint_call": "sound_robot2_faint"
   },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.9,

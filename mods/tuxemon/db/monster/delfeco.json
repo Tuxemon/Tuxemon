@@ -90,15 +90,16 @@
     "water",
     "wood"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 24,
   "height": 200,
   "weight": 150,
   "sounds": {
-    "combat_call": "sfx_bubbles"
+    "combat_call": "sfx_bubbles",
+    "faint_call": "sfx_bubbles"
   },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.85,

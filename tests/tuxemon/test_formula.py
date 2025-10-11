@@ -9,7 +9,6 @@ from tuxemon.db import Modifier
 from tuxemon.element import Element
 from tuxemon.formula import (
     calculate_time_based_multiplier,
-    change_bond,
     config_monster,
     modify_stat,
     set_health,
@@ -415,35 +414,3 @@ class TestSetHealth(unittest.TestCase):
         for value in [50, 200]:
             set_health(self.monster, value, adjust=True)
             self.assertEqual(self.monster.current_hp, self.monster.hp)
-
-
-class TestChangeBond(unittest.TestCase):
-    def setUp(self):
-        self.monster = MagicMock(spec=Monster, bond=50)
-        self.minor, self.major = config_monster.bond_range
-
-    def test_increase_bond_direct(self):
-        change_bond(self.monster, 10)
-        self.assertEqual(self.monster.bond, 60)
-
-    def test_decrease_bond_direct(self):
-        change_bond(self.monster, -20)
-        self.assertEqual(self.monster.bond, 30)
-
-    def test_increase_bond_percentage(self):
-        change_bond(self.monster, 0.2)
-        expected_bond = min(self.major, 50 + int(50 * 0.2))
-        self.assertEqual(self.monster.bond, expected_bond)
-
-    def test_decrease_bond_percentage(self):
-        change_bond(self.monster, -0.5)
-        expected_bond = max(self.minor, 50 + int(50 * -0.5))
-        self.assertEqual(self.monster.bond, expected_bond)
-
-    def test_bond_does_not_exceed_max(self):
-        change_bond(self.monster, 100)
-        self.assertEqual(self.monster.bond, self.major)
-
-    def test_bond_does_not_go_below_min(self):
-        change_bond(self.monster, -100)
-        self.assertEqual(self.monster.bond, self.minor)

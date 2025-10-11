@@ -66,15 +66,16 @@
     "earth",
     "venom"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 189,
   "height": 155,
   "weight": 80,
   "sounds": {
-    "combat_call": "sound_spit_02"
+    "combat_call": "sound_spit_02",
+    "faint_call": "sound_spit_02_faint"
   },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.9,

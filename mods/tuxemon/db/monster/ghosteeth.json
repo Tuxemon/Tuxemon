@@ -76,9 +76,9 @@
   "types": [
     "shadow"
   ],
-  "possible_genders": [
-    "neuter"
-  ],
+  "gender_weights": {
+    "neuter": 1.0
+  },
   "txmn_id": 111,
   "height": 70,
   "weight": 0.1,

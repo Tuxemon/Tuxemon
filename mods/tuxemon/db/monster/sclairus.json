@@ -36,7 +36,7 @@
     },
     {
       "level_learned": 28,
-      "technique": "venom"
+      "technique": "caustic_spray"
     },
     {
       "level_learned": 31,
@@ -71,10 +71,10 @@
   "types": [
     "wood"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 119,
   "height": 85,
   "weight": 3,

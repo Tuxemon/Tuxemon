@@ -97,14 +97,15 @@
   "types": [
     "earth"
   ],
-  "possible_genders": [
-    "neuter"
-  ],
+  "gender_weights": {
+    "neuter": 1.0
+  },
   "txmn_id": 274,
   "height": 245,
   "weight": 197,
   "sounds": {
-    "combat_call": "sound_robot2"
+    "combat_call": "sound_robot2",
+    "faint_call": "sound_robot2_faint"
   },
   "catch_rate": 35.0,
   "lower_catch_resistance": 0.85,

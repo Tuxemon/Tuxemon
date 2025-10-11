@@ -89,14 +89,15 @@
   "types": [
     "metal"
   ],
-  "possible_genders": [
-    "neuter"
-  ],
+  "gender_weights": {
+    "neuter": 1.0
+  },
   "txmn_id": 0,
   "height": 0.1,
   "weight": 100,
   "sounds": {
-    "combat_call": "sound_robotic_pig"
+    "combat_call": "sound_robotic_pig",
+    "faint_call": "sound_robotic_pig_faint"
   },
   "catch_rate": 35.0,
   "lower_catch_resistance": 0.95,

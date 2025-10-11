@@ -84,14 +84,15 @@
     "lightning",
     "sky"
   ],
-  "possible_genders": [
-    "neuter"
-  ],
+  "gender_weights": {
+    "neuter": 1.0
+  },
   "txmn_id": 233,
   "height": 141,
   "weight": 1,
   "sounds": {
-    "combat_call": "sound_terminal_03"
+    "combat_call": "sound_terminal_03",
+    "faint_call": "sound_terminal_03_faint"
   },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.9,

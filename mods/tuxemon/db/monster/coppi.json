@@ -94,15 +94,16 @@
     "wood",
     "sky"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 377,
   "height": 50,
   "weight": 12,
   "sounds": {
-    "combat_call": "sound_wood_call"
+    "combat_call": "sound_wood_call",
+    "faint_call": "sound_wood_call"
   },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.9,

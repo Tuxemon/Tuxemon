@@ -70,9 +70,9 @@
     "water",
     "cosmic"
   ],
-  "possible_genders": [
-    "female"
-  ],
+  "gender_weights": {
+    "female": 1.0
+  },
   "txmn_id": 54,
   "height": 29,
   "weight": 3,

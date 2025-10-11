@@ -74,15 +74,16 @@
     "lightning",
     "cosmic"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 197,
   "height": 197,
   "weight": 145,
   "sounds": {
-    "combat_call": "sound_terminal_03"
+    "combat_call": "sound_terminal_03",
+    "faint_call": "sound_terminal_03_faint"
   },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.9,

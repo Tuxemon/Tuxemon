@@ -76,14 +76,15 @@
     "shadow",
     "cosmic"
   ],
-  "possible_genders": [
-    "neuter"
-  ],
+  "gender_weights": {
+    "neuter": 1.0
+  },
   "txmn_id": 342,
   "height": 152,
   "weight": 0.1,
   "sounds": {
-    "combat_call": "sound_crow_caw"
+    "combat_call": "sound_crow_caw",
+    "faint_call": "sound_crow_caw_faint"
   },
   "catch_rate": 35.0,
   "lower_catch_resistance": 0.95,

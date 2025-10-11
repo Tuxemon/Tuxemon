@@ -90,15 +90,16 @@
   "types": [
     "wood"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 187,
   "height": 180,
   "weight": 169,
   "sounds": {
-    "combat_call": "sound_creature_roar"
+    "combat_call": "sound_creature_roar",
+    "faint_call": "sound_creature_roar_faint"
   },
   "catch_rate": 35.0,
   "lower_catch_resistance": 0.9,

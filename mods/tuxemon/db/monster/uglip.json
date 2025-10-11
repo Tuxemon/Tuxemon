@@ -73,15 +73,16 @@
   "types": [
     "water"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 301,
   "height": 30,
   "weight": 2,
   "sounds": {
-    "combat_call": "sound_frog"
+    "combat_call": "sound_frog",
+    "faint_call": "sound_frog"
   },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,

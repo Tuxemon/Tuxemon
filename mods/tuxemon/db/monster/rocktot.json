@@ -67,14 +67,15 @@
   "types": [
     "earth"
   ],
-  "possible_genders": [
-    "neuter"
-  ],
+  "gender_weights": {
+    "neuter": 1.0
+  },
   "txmn_id": 0,
   "height": 62,
   "weight": 58,
   "sounds": {
-    "combat_call": "sound_stones_04"
+    "combat_call": "sound_stones_04",
+    "faint_call": "sound_stones_04_faint"
   },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,

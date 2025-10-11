@@ -76,14 +76,15 @@
     "shadow",
     "cosmic"
   ],
-  "possible_genders": [
-    "neuter"
-  ],
+  "gender_weights": {
+    "neuter": 1.0
+  },
   "txmn_id": 229,
   "height": 55,
   "weight": 17,
   "sounds": {
-    "combat_call": "sound_ghost_1"
+    "combat_call": "sound_ghost_1",
+    "faint_call": "sound_ghost_1_faint"
   },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.9,

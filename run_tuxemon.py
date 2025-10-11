@@ -80,7 +80,7 @@ def launch_game() -> None:
             pass
         
         # Show error dialog on Windows GUI builds
-        if sys.platform == "win32" and hasattr(sys, 'frozen'):
+        if sys.platform == "win32" and hasattr(sys, "frozen"):
             try:
                 import ctypes
                 msg = f"{error_msg}\n\nSee tuxemon_error.log for details."

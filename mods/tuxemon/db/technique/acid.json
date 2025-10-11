@@ -13,7 +13,7 @@
   "power": 1.4,
   "range": "reliable",
   "recharge": 2,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_bubbles",
   "slug": "acid",
   "sort": "damage",
   "modifiers": [],

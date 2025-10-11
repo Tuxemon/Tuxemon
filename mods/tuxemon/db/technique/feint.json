@@ -11,9 +11,9 @@
       ]
     },
     {
-      "type": "give",
+      "type": "remove",
       "parameters": [
-        "tired",
+        "positive",
         "enemy_monster"
       ]
     },
@@ -27,7 +27,7 @@
   "power": 1,
   "range": "melee",
   "recharge": 1,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_kick",
   "slug": "feint",
   "sort": "damage",
   "modifiers": [],

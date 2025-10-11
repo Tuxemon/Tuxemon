@@ -20,7 +20,7 @@
   "power": 1.1,
   "range": "ranged",
   "recharge": 1,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_shine",
   "slug": "sunburst",
   "sort": "damage",
   "modifiers": [],

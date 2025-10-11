@@ -20,7 +20,7 @@ from tuxemon.map.map_view import SpriteController
 from tuxemon.math import Vector2
 from tuxemon.mission.controller import MissionController
 from tuxemon.mission.manager import MissionManager
-from tuxemon.money import MoneyController
+from tuxemon.money.controller import MoneyController
 from tuxemon.monster import Monster
 from tuxemon.monster_dir.evolution_registry import EvolutionRegistry
 from tuxemon.relationship import (

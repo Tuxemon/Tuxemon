@@ -76,10 +76,12 @@ class Evolution:
         new_monster.moves = self.monster.moves
         new_monster.status = self.monster.status
         new_monster.instance_id = self.monster.instance_id
-        if self.monster.gender in new_monster.possible_genders:
+        if self.monster.gender in new_monster.gender_weights:
             new_monster.gender = self.monster.gender
         else:
-            new_monster.gender = random.choice(new_monster.possible_genders)
+            new_monster.gender = new_monster.assign_gender(
+                new_monster.gender_weights
+            )
         new_monster.capture = self.monster.capture
         new_monster.capture_device = self.monster.capture_device
         new_monster.taste_cold = self.monster.taste_cold
@@ -208,7 +210,7 @@ class Evolution:
         if evolution_item.bond is not None:
             _operator = evolution_item.bond.comparison
             _value = evolution_item.bond.value
-            _bond = self.monster.bond
+            _bond = self.monster.bond_handler.bond
             conditions.append(compare(_operator.value, _bond, _value))
 
         # Check if the monster is holding the required item for evolution

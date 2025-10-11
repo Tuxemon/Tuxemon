@@ -83,12 +83,16 @@
   "types": [
     "water"
   ],
-  "possible_genders": [
-    "male"
-  ],
+  "gender_weights": {
+    "male": 1.0
+  },
   "txmn_id": 139,
   "height": 107,
   "weight": 9,
+  "sounds": {
+    "combat_call": "sound_spit_02",
+    "faint_call": "sound_spit_02_faint"
+  },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.9,
   "upper_catch_resistance": 1.15

@@ -96,13 +96,17 @@
     "earth",
     "fire"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 293,
   "height": 152,
   "weight": 113,
+  "sounds": {
+    "combat_call": "sound_weird_09",
+    "faint_call": "sound_weird_09_faint"
+  },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

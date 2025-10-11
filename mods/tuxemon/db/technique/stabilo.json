@@ -19,7 +19,7 @@
   "power": 1.0,
   "range": "reliable",
   "recharge": 2,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_kick",
   "slug": "stabilo",
   "sort": "damage",
   "modifiers": [],

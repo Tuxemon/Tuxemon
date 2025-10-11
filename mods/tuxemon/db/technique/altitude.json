@@ -32,7 +32,7 @@
   "power": 1,
   "range": "melee",
   "recharge": 4,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_tornado",
   "slug": "altitude",
   "sort": "damage",
   "modifiers": [],

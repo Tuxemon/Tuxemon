@@ -200,6 +200,10 @@ class StateManager:
         """
         Remove a state from the stack by its name.
 
+        If the specified state is currently active (i.e., at the top of the stack),
+        it will be popped using `pop_current_state()` to ensure proper resumption
+        of the previous state. Otherwise, it will be removed directly from the stack.
+
         Parameters:
             state_name: The name of the state to remove.
         """
@@ -210,9 +214,15 @@ class StateManager:
             return
 
         for state in matches:
-            logger.debug(f"Removing state: {state.name}")
-            self.state_stack.remove(state)
-            state.shutdown()
+            if state == self.state_stack.current():
+                logger.info(
+                    f"State '{state_name}' is currently active. Automatically popping instead of removing."
+                )
+                self.pop_current_state()
+            else:
+                logger.debug(f"Removing state: {state.name}")
+                self.state_stack.remove(state)
+                state.shutdown()
 
     @overload
     def push_state(

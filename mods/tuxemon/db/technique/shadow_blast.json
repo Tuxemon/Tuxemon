@@ -21,7 +21,7 @@
   "power": 2.8,
   "range": "ranged",
   "recharge": 4,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_pulse",
   "slug": "shadow_blast",
   "sort": "damage",
   "modifiers": [],

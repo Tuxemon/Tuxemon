@@ -27,7 +27,7 @@
   "power": 0,
   "range": "special",
   "speed": "normal",
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_pulse",
   "slug": "swap",
   "sort": "meta",
   "modifiers": [],

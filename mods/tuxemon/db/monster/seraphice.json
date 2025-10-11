@@ -90,12 +90,16 @@
     "frost",
     "cosmic"
   ],
-  "possible_genders": [
-    "neuter"
-  ],
+  "gender_weights": {
+    "neuter": 1.0
+  },
   "txmn_id": 266,
   "height": 180,
   "weight": 85,
+  "sounds": {
+    "combat_call": "sound_ice",
+    "faint_call": "sound_ice_faint"
+  },
   "catch_rate": 35.0,
   "lower_catch_resistance": 0.85,
   "upper_catch_resistance": 1.1

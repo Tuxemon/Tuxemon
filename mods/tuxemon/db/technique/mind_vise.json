@@ -20,7 +20,7 @@
   "power": 1,
   "range": "melee",
   "recharge": 1,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_pulse",
   "slug": "mind_vise",
   "sort": "damage",
   "modifiers": [],

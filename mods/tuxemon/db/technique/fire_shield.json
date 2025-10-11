@@ -24,7 +24,7 @@
   "power": 1.5,
   "range": "special",
   "recharge": 2,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_flames1",
   "slug": "fire_shield",
   "sort": "damage",
   "modifiers": [],

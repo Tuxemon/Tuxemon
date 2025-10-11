@@ -103,12 +103,16 @@
   "types": [
     "frost"
   ],
-  "possible_genders": [
-    "neuter"
-  ],
+  "gender_weights": {
+    "neuter": 1.0
+  },
   "txmn_id": 262,
   "height": 15,
   "weight": 1,
+  "sounds": {
+    "combat_call": "sound_cute_04",
+    "faint_call": "sound_cute_04_faint"
+  },
   "catch_rate": 100,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.25

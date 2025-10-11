@@ -71,8 +71,20 @@
   ],
   "history": [
     {
-      "mon_slug": "capinyah",
-      "evo_stage": "stage1"
+      "slug": "capiti",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "capinyah"
+      ]
+    },
+    {
+      "slug": "capinyah",
+      "stage": "stage1",
+      "evolves_from": [
+        "capiti"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [],
@@ -92,6 +104,10 @@
   "txmn_id": 102,
   "height": 100,
   "weight": 20,
+  "sounds": {
+    "combat_call": "sound_cat_purr_twit5",
+    "faint_call": "sound_cat_purr_twit5_faint"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.25

@@ -169,8 +169,8 @@ class Entity(Generic[SaveDict]):
         session: Session,
     ) -> None:
         self.slug = slug
+        self.session = session
         self.client = session.client
-        self.world = session.world
         self.instance_id: UUID = uuid4()
         self.body = Body(position=Point3(0, 0, 0))
         self.mover = Mover(self.body)
@@ -250,13 +250,13 @@ class Entity(Generic[SaveDict]):
         """
         Set the entity's wandering position in the collision zone.
         """
-        self.world.add_collision(self, pos)
+        self.client.collision_manager.add_collision(self, pos)
 
     def remove_collision(self) -> None:
         """
         Remove the entity's wandering position from the collision zone.
         """
-        self.world.remove_collision(self.tile_pos)
+        self.client.collision_manager.remove_collision(self.tile_pos)
 
     # === PHYSICS END =========================================================
 

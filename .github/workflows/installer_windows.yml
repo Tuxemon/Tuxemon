@@ -8,8 +8,8 @@ jobs:
     runs-on: windows-latest
     steps:
       # Checkout the repo
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
         with:
             # Version range or exact version of a Python version to use, using SemVer's version range syntax.
             python-version: 3.9 # optional, default is 3.x
@@ -28,16 +28,21 @@ jobs:
           copy buildconfig/build_config.yaml build_config.yaml
           python setup_cx_freeze.py build
 
-      - name: Install nsis
+      - name: Install NSIS
         run: |
-          Invoke-WebRequest -Uri "https://sourceforge.net/projects/nsis/files/NSIS%203/3.11/nsis-3.11-setup.exe" -OutFile "nsis.exe"
+          choco install nsis -y
+          $nsisPath = "${env:ProgramFiles(x86)}\NSIS"
+          echo "$nsisPath" | Out-File -Append $env:GITHUB_PATH
+
+      - name: Check NSIS availability
+        run: where makensis.exe
 
       - name: Build Installer
         run: |
           cd buildconfig
           cmd.exe /c "build_installer.bat"
           mkdir ../dist/
-          mv tuxemon-installer.exe ../dist/.
+          Move-Item tuxemon-installer.exe ../dist/
 
       - name: Upload installer
         uses: actions/upload-artifact@v4

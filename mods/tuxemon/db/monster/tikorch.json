@@ -42,8 +42,20 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "tikoal",
-      "evo_stage": "basic"
+      "slug": "tikorch",
+      "stage": "stage1",
+      "evolves_from": [
+        "tikoal"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "tikoal",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "tikorch"
+      ]
     }
   ],
   "terrains": [],
@@ -65,6 +77,10 @@
   "txmn_id": 80,
   "height": 136,
   "weight": 44,
+  "sounds": {
+    "combat_call": "sound_spell_fire_06",
+    "faint_call": "sound_spell_fire_06_faint"
+  },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.9,
   "upper_catch_resistance": 1.15

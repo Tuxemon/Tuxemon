@@ -13,7 +13,7 @@
   "power": 2.5,
   "range": "touch",
   "recharge": 2,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_crumble2",
   "slug": "greenstone",
   "sort": "damage",
   "modifiers": [],

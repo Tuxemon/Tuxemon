@@ -46,8 +46,28 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "vivipere",
-      "evo_stage": "basic"
+      "slug": "vivitron",
+      "stage": "stage1",
+      "evolves_from": [
+        "vivipere"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "vivipere",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "vivicinder",
+        "viviphyta",
+        "viviteel",
+        "vivitrans",
+        "vivitron",
+        "vividactil",
+        "vividactil",
+        "vividactil",
+        "vivisource"
+      ]
     }
   ],
   "terrains": [
@@ -75,6 +95,10 @@
   "txmn_id": 137,
   "height": 92,
   "weight": 12,
+  "sounds": {
+    "combat_call": "sound_monster_16",
+    "faint_call": "sound_monster_16_faint"
+  },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.85,
   "upper_catch_resistance": 1.1

@@ -9,7 +9,7 @@ from typing import final
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.session import Session
-from tuxemon.states.world_state import WorldState
+from tuxemon.teleporter import TeleportRequest
 
 logger = logging.getLogger(__name__)
 
@@ -18,18 +18,21 @@ logger = logging.getLogger(__name__)
 @dataclass
 class TeleportAction(EventAction):
     """
-    Teleport the player to a particular map and tile coordinates.
+    Teleport a character to a specific map and tile coordinates.
+
+    If a screen transition is in progress, the teleport will be queued
+    and executed at the apex of the transition.
 
     Script usage:
         .. code-block::
 
-            teleport <map_name>,<x>,<y>
+            teleport <character>,<map_name>,<x>,<y>
 
     Script parameters:
+        character: Slug of the character to teleport.
         map_name: Name of the map to teleport to.
         x: X coordinate of the map to teleport to.
         y: Y coordinate of the map to teleport to.
-
     """
 
     name = "teleport"
@@ -39,25 +42,32 @@ class TeleportAction(EventAction):
     y: int
 
     def start(self, session: Session) -> None:
-        world = session.client.get_state_by_name(WorldState)
-        delayed_teleport = world.teleporter.delayed_teleport
+        teleport_queue = session.client.teleporter.teleport_queue
 
         char = get_npc(session, self.character)
         if char is None:
-            logger.error(f"{self.character} not found")
+            logger.error(
+                f"TeleportAction: Character '{self.character}' not found."
+            )
             return
 
-        # Check to see if we're also performing a transition. If we are, wait
-        # to perform the teleport at the apex of the transition
-        if world.transition_manager.in_transition:
-            if not delayed_teleport.is_active:
-                delayed_teleport.char = char
-                delayed_teleport.is_active = True
-                delayed_teleport.mapname = self.map_name
-                delayed_teleport.x = self.x
-                delayed_teleport.y = self.y
+        request = TeleportRequest(
+            char=char,
+            mapname=self.map_name,
+            x=self.x,
+            y=self.y,
+            source_map=session.client.get_map_name(),
+            source_x=char.tile_pos[0],
+            source_y=char.tile_pos[1],
+        )
+
+        if session.world.transition_manager.in_transition:
+            teleport_queue.enqueue(request)
+            logger.info(
+                f"Queued teleport for '{char.slug}' to {self.map_name} ({self.x}, {self.y})"
+            )
         else:
-            # Teleport the character immediately
-            world.teleporter.teleport_character(
-                char, self.map_name, self.x, self.y
+            session.client.teleporter.execute_teleport(char, request)
+            logger.info(
+                f"Teleported '{char.slug}' to {self.map_name} ({self.x}, {self.y})"
             )

@@ -50,12 +50,30 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "anoleaf",
-      "evo_stage": "basic"
+      "slug": "velocitile",
+      "stage": "stage2",
+      "evolves_from": [
+        "gectile"
+      ],
+      "evolves_into": []
     },
     {
-      "mon_slug": "gectile",
-      "evo_stage": "stage1"
+      "slug": "anoleaf",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "gectile"
+      ]
+    },
+    {
+      "slug": "gectile",
+      "stage": "stage1",
+      "evolves_from": [
+        "anoleaf"
+      ],
+      "evolves_into": [
+        "velocitile"
+      ]
     }
   ],
   "terrains": [
@@ -79,6 +97,10 @@
   "txmn_id": 67,
   "height": 150,
   "weight": 75,
+  "sounds": {
+    "combat_call": "sound_misc_07_metal",
+    "faint_call": "sound_misc_07_metal_faint"
+  },
   "catch_rate": 35.0,
   "lower_catch_resistance": 0.85,
   "upper_catch_resistance": 1.1

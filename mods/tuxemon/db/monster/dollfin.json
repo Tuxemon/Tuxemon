@@ -26,37 +26,64 @@
   "evolutions": [
     {
       "monster_slug": "bigfin",
-      "item": "water_booster"
-    },
-    {
-      "monster_slug": "bigfin",
-      "item": "sweet_sand"
-    },
-    {
-      "monster_slug": "sharpfin",
-      "item": "metal_booster"
+      "item": {
+        "water_booster": 0.5,
+        "sweet_sand": 0.5
+      }
     },
     {
       "monster_slug": "sharpfin",
-      "item": "sea_girdle"
+      "item": {
+        "metal_booster": 0.5,
+        "sea_girdle": 0.5
+      }
     },
     {
       "monster_slug": "delfeco",
-      "bond": "equals:100"
+      "bond": {
+        "comparison": "equals",
+        "value": 100
+      }
     }
   ],
   "history": [
     {
-      "mon_slug": "bigfin",
-      "evo_stage": "stage1"
+      "slug": "dollfin",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "bigfin",
+        "bigfin",
+        "sharpfin",
+        "sharpfin",
+        "delfeco"
+      ]
     },
     {
-      "mon_slug": "sharpfin",
-      "evo_stage": "stage1"
+      "slug": "bigfin",
+      "stage": "stage1",
+      "evolves_from": [
+        "dollfin",
+        "dollfin"
+      ],
+      "evolves_into": []
     },
     {
-      "mon_slug": "delfeco",
-      "evo_stage": "stage1"
+      "slug": "sharpfin",
+      "stage": "stage1",
+      "evolves_from": [
+        "dollfin",
+        "dollfin"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "delfeco",
+      "stage": "stage1",
+      "evolves_from": [
+        "dollfin"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [
@@ -79,6 +106,10 @@
   "txmn_id": 23,
   "height": 250,
   "weight": 190,
+  "sounds": {
+    "combat_call": "sound_spit_01",
+    "faint_call": "sound_spit_01_faint"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.25

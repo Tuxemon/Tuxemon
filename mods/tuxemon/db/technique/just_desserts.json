@@ -27,7 +27,7 @@
   "power": 2.0,
   "range": "ranged",
   "recharge": 2,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_bounce",
   "slug": "just_desserts",
   "sort": "damage",
   "modifiers": [],

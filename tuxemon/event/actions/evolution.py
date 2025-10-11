@@ -57,7 +57,7 @@ class EvolutionAction(EventAction):
 
         self.char = character
 
-        if len(self.client.state_manager.active_states) > MAX_ACTIVE_STATES:
+        if len(self.client.active_states) > MAX_ACTIVE_STATES:
             return
 
         self._pending_map: dict[UUID, str] = {}

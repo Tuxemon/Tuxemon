@@ -20,7 +20,7 @@
   "power": 3,
   "range": "ranged",
   "recharge": 3,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_shpring",
   "slug": "thorn_burst",
   "sort": "damage",
   "modifiers": [],

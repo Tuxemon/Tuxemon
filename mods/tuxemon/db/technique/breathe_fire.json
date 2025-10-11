@@ -13,7 +13,7 @@
   "power": 2.25,
   "range": "ranged",
   "recharge": 2,
-  "sfx": "sfx_flames2",
+  "sfx": "sfx_flames1",
   "slug": "breathe_fire",
   "sort": "damage",
   "modifiers": [],

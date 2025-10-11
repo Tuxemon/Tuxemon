@@ -26,15 +26,15 @@
   "evolutions": [
     {
       "monster_slug": "vivicinder",
-      "tech": "flamethrower"
+      "tech": "salamander"
     },
     {
       "monster_slug": "viviphyta",
       "element": "wood"
     },
     {
-      "at_level": 24,
       "monster_slug": "viviteel",
+      "at_level": 24,
       "gender": "female"
     },
     {
@@ -42,55 +42,97 @@
       "inside": true
     },
     {
-      "at_level": 26,
-      "monster_slug": "vivitron"
+      "monster_slug": "vivitron",
+      "at_level": 26
     },
     {
       "monster_slug": "vividactil",
-      "item": "petrified_dung"
+      "item": {
+        "petrified_dung": 0.333,
+        "shammer_fossil": 0.333,
+        "rhincus_fossil": 0.334
+      }
     },
     {
-      "monster_slug": "vividactil",
-      "item": "shammer_fossil"
-    },
-    {
-      "monster_slug": "vividactil",
-      "item": "rhincus_fossil"
-    },
-    {
-      "at_level": 24,
       "monster_slug": "vivisource",
+      "at_level": 24,
       "gender": "male"
     }
   ],
   "history": [
     {
-      "mon_slug": "vivisource",
-      "evo_stage": "stage1"
+      "slug": "vivipere",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "vivicinder",
+        "viviphyta",
+        "viviteel",
+        "vivitrans",
+        "vivitron",
+        "vividactil",
+        "vividactil",
+        "vividactil",
+        "vivisource"
+      ]
     },
     {
-      "mon_slug": "vividactil",
-      "evo_stage": "stage1"
+      "slug": "vivisource",
+      "stage": "stage1",
+      "evolves_from": [
+        "vivipere"
+      ],
+      "evolves_into": []
     },
     {
-      "mon_slug": "vivitron",
-      "evo_stage": "stage1"
+      "slug": "vividactil",
+      "stage": "stage1",
+      "evolves_from": [
+        "vivipere",
+        "vivipere",
+        "vivipere"
+      ],
+      "evolves_into": []
     },
     {
-      "mon_slug": "vivitrans",
-      "evo_stage": "stage1"
+      "slug": "vivitron",
+      "stage": "stage1",
+      "evolves_from": [
+        "vivipere"
+      ],
+      "evolves_into": []
     },
     {
-      "mon_slug": "viviteel",
-      "evo_stage": "stage1"
+      "slug": "vivitrans",
+      "stage": "stage1",
+      "evolves_from": [
+        "vivipere"
+      ],
+      "evolves_into": []
     },
     {
-      "mon_slug": "viviphyta",
-      "evo_stage": "stage1"
+      "slug": "viviteel",
+      "stage": "stage1",
+      "evolves_from": [
+        "vivipere"
+      ],
+      "evolves_into": []
     },
     {
-      "mon_slug": "vivicinder",
-      "evo_stage": "stage1"
+      "slug": "viviphyta",
+      "stage": "stage1",
+      "evolves_from": [
+        "vivipere"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "vivicinder",
+      "stage": "stage1",
+      "evolves_from": [
+        "vivipere"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [
@@ -103,6 +145,7 @@
   ],
   "tags": [
     "shapeshifter",
+	"toxic",
     "bite"
   ],
   "shape": "serpent",
@@ -117,6 +160,10 @@
   "txmn_id": 132,
   "height": 85,
   "weight": 8,
+  "sounds": {
+    "combat_call": "sound_stones_04",
+    "faint_call": "sound_stones_04_faint"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.25

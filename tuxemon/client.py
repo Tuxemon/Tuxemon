@@ -4,11 +4,13 @@ from __future__ import annotations
 
 import logging
 import time
+from threading import Thread
 
 import pygame
 from pygame.surface import Surface
 
 from tuxemon.base_client import BaseClient, ClientState
+from tuxemon.cli.processor import CommandProcessor
 from tuxemon.config import TuxemonConfig
 from tuxemon.session import local_session
 from tuxemon.state.draw import EventDebugDrawer, Renderer, StateDrawer
@@ -65,6 +67,10 @@ class LocalPygameClient(BaseClient):
 
         if self.config.cli:
             local_session.set_client(self)
+            self.cli = CommandProcessor(local_session)
+            thread = Thread(target=self.cli.run)
+            thread.daemon = True
+            thread.start()
 
     def main(self) -> None:
         """
@@ -95,6 +101,8 @@ class LocalPygameClient(BaseClient):
                     draw()
                     if self.input_manager.controller_overlay:
                         self.input_manager.controller_overlay.draw(screen)
+                    if self.input_manager.show_visualizer:
+                        self.input_manager.draw_visualizer(screen)
                     flip()
                 if self.config.show_fps:
                     self.renderer.update_fps(clock_tick)

@@ -23,7 +23,7 @@
   "power": 2.25,
   "range": "ranged",
   "recharge": 2,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_tornado",
   "slug": "rust_bomb",
   "sort": "damage",
   "modifiers": [],

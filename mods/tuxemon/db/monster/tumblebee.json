@@ -38,8 +38,20 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "tumbleworm",
-      "evo_stage": "basic"
+      "slug": "tumblebee",
+      "stage": "stage1",
+      "evolves_from": [
+        "tumbleworm"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "tumbleworm",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "tumblebee"
+      ]
     }
   ],
   "terrains": [],
@@ -58,6 +70,10 @@
   "txmn_id": 96,
   "height": 66,
   "weight": 23,
+  "sounds": {
+    "combat_call": "sound_shoot_02",
+    "faint_call": "sound_shoot_02_faint"
+  },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.9,
   "upper_catch_resistance": 1.15

@@ -10,7 +10,7 @@ from tuxemon import db
 from tuxemon.locale import T
 
 if TYPE_CHECKING:
-    from tuxemon.save import SaveData
+    from tuxemon.save_state import SaveData
 logger = logging.getLogger(__name__)
 
 """
@@ -60,7 +60,7 @@ SAVE_VERSION = 2
 
 
 MONSTER_RENAMES: dict[str, str] = {"axylightl": "axolightl"}  # old: new
-TECHNIQUE_RENAMES: dict[str, str] = {}  # old: new
+TECHNIQUE_RENAMES: dict[str, str] = {"venom": "caustic_spray"}  # old: new
 
 
 def upgrade_from_v0_to_v1(save_data: dict[str, Any]) -> None:

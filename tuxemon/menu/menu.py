@@ -932,7 +932,7 @@ class PopUpMenu(Menu[T]):
     def animate_open(self) -> Animation:
         # anchor the center of the popup
         final_rect = self.calc_final_rect()
-        self.anchor("center", self.client.screen.get_rect().center)
+        self.anchor("center", prepare.SCREEN_RECT.center)
 
         # set rect to a small size for the initial values of the animation
         self.rect = self._calculate_initial_rect(final_rect)

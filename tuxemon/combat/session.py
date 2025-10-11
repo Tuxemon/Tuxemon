@@ -523,10 +523,13 @@ class CombatSession:
         ):
             infected_slugs = monster.plague.get_infected_slugs()
             slug = random.choice(infected_slugs)
-            method = Technique.create(slug)
-            result_tech = method.use(session, monster, target)
-            if result_tech.success:
-                technique = method
+            alt_technique = Technique.create(slug)
+            result = alt_technique.use(session, monster, target)
+            if result.success:
+                logger.debug(
+                    f"[Plague Override] {monster.name} switches to {alt_technique.slug}"
+                )
+                technique = alt_technique
         logger.debug(f"[PreCheck End] {monster.name} using {technique.slug}")
         return technique
 

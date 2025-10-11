@@ -43,8 +43,20 @@
   ],
   "history": [
     {
-      "mon_slug": "dandylion",
-      "evo_stage": "stage1"
+      "slug": "dandicub",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "dandylion"
+      ]
+    },
+    {
+      "slug": "dandylion",
+      "stage": "stage1",
+      "evolves_from": [
+        "dandicub"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [],
@@ -64,6 +76,10 @@
   "txmn_id": 73,
   "height": 46,
   "weight": 2,
+  "sounds": {
+    "combat_call": "sound_cat_meow3",
+    "faint_call": "sound_cat_meow3_faint"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

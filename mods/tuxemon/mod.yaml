@@ -7,6 +7,9 @@ authors:
   - beta
   - gamma
 
+# The player's initial slugs
+starting_players: ["npc_red"]
+
 # The map file (.tmx) where the player begins when starting this mod
 starting_map: "start_tuxemon.tmx"
 

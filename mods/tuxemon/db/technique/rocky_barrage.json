@@ -19,7 +19,7 @@
   "power": 1,
   "range": "ranged",
   "recharge": 3,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_crumble2",
   "slug": "rocky_barrage",
   "sort": "damage",
   "modifiers": [],

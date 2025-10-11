@@ -289,9 +289,8 @@ class MapRenderer:
     def __init__(self, client: LocalPygameClient):
         """Initializes the MapRenderer."""
         self.client = client
-        self.screen = client.screen
         self.camera_manager = client.camera_manager
-        self.layer = Surface(self.screen.get_size(), pygame.SRCALPHA)
+        self.layer = Surface(prepare.SCREEN_SIZE, pygame.SRCALPHA)
         self.layer_color: Optional[ColorLike] = None
         self.cinema_x_ratio: Optional[float] = None
         self.cinema_y_ratio: Optional[float] = None

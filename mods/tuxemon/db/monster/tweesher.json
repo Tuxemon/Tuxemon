@@ -55,12 +55,30 @@
   ],
   "history": [
     {
-      "mon_slug": "heronquak",
-      "evo_stage": "stage1"
+      "slug": "tweesher",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "heronquak"
+      ]
     },
     {
-      "mon_slug": "eaglace",
-      "evo_stage": "stage2"
+      "slug": "heronquak",
+      "stage": "stage1",
+      "evolves_from": [
+        "tweesher"
+      ],
+      "evolves_into": [
+        "eaglace"
+      ]
+    },
+    {
+      "slug": "eaglace",
+      "stage": "stage2",
+      "evolves_from": [
+        "heronquak"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [
@@ -85,6 +103,10 @@
   "txmn_id": 7,
   "height": 45,
   "weight": 1,
+  "sounds": {
+    "combat_call": "sound_woosh_1",
+    "faint_call": "sound_woosh_1_faint"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.25

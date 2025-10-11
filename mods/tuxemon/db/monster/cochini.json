@@ -52,7 +52,14 @@
     }
   ],
   "evolutions": [],
-  "history": [],
+  "history": [
+    {
+      "slug": "cochini",
+      "stage": "standalone",
+      "evolves_from": [],
+      "evolves_into": []
+    }
+  ],
   "terrains": [],
   "tags": [
     "food",
@@ -70,6 +77,10 @@
   "txmn_id": 104,
   "height": 80,
   "weight": 15,
+  "sounds": {
+    "combat_call": "sound_cat_purr_twit5",
+    "faint_call": "sound_cat_purr_twit5_faint"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

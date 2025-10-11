@@ -50,12 +50,30 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "vamporm",
-      "evo_stage": "basic"
+      "slug": "fluttaflap",
+      "stage": "stage2",
+      "evolves_from": [
+        "dracune"
+      ],
+      "evolves_into": []
     },
     {
-      "mon_slug": "dracune",
-      "evo_stage": "stage1"
+      "slug": "vamporm",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "dracune"
+      ]
+    },
+    {
+      "slug": "dracune",
+      "stage": "stage1",
+      "evolves_from": [
+        "vamporm"
+      ],
+      "evolves_into": [
+        "fluttaflap"
+      ]
     }
   ],
   "terrains": [],
@@ -78,6 +96,10 @@
   "txmn_id": 38,
   "height": 47,
   "weight": 7,
+  "sounds": {
+    "combat_call": "sound_eat_03",
+    "faint_call": "sound_eat_03_faint"
+  },
   "catch_rate": 35.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

@@ -20,7 +20,7 @@
   "power": 1.25,
   "range": "melee",
   "recharge": 3,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_growl",
   "slug": "stampede",
   "sort": "damage",
   "modifiers": [],

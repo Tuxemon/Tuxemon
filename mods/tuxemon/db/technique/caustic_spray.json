@@ -13,8 +13,8 @@
   "power": 2.2,
   "range": "ranged",
   "recharge": 2,
-  "sfx": "sfx_blaster",
-  "slug": "venom",
+  "sfx": "sfx_bubbles",
+  "slug": "caustic_spray",
   "sort": "damage",
   "modifiers": [],
   "target": {

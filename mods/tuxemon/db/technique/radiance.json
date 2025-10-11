@@ -13,7 +13,7 @@
   "power": 2.5,
   "range": "ranged",
   "recharge": 2,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_shine",
   "slug": "radiance",
   "sort": "damage",
   "modifiers": [],

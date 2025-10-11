@@ -43,8 +43,20 @@
   ],
   "history": [
     {
-      "mon_slug": "sapsnap",
-      "evo_stage": "stage1"
+      "slug": "trapsnap",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "sapsnap"
+      ]
+    },
+    {
+      "slug": "sapsnap",
+      "stage": "stage1",
+      "evolves_from": [
+        "trapsnap"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [
@@ -69,6 +81,10 @@
   "txmn_id": 85,
   "height": 120,
   "weight": 60,
+  "sounds": {
+    "combat_call": "sound_bite_cartoon_style",
+    "faint_call": "sound_bite_cartoon_style_faint"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.25

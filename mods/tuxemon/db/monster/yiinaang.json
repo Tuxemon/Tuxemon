@@ -56,7 +56,14 @@
     }
   ],
   "evolutions": [],
-  "history": [],
+  "history": [
+    {
+      "slug": "yiinaang",
+      "stage": "standalone",
+      "evolves_from": [],
+      "evolves_into": []
+    }
+  ],
   "terrains": [],
   "tags": [
     "celestial",
@@ -76,6 +83,10 @@
   "txmn_id": 146,
   "height": 200,
   "weight": 0.1,
+  "sounds": {
+    "combat_call": "sound_echo_gurgle_whoosh_1",
+    "faint_call": "sound_echo_gurgle_whoosh_1_faint"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

@@ -57,8 +57,8 @@ class JournalInfoState(PygameMenuState):
         # weight and height
         unit = self.client.config.unit_measure
         if unit == "metric":
-            mon_weight = round(monster.weight)
-            mon_height = round(monster.height)
+            mon_weight = round(monster.weight, 1)
+            mon_height = round(monster.height, 1)
             unit_weight = prepare.U_KG
             unit_height = prepare.U_CM
         else:

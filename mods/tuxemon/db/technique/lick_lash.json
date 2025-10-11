@@ -20,7 +20,7 @@
   "power": 1.5,
   "range": "melee",
   "recharge": 3,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_squeak",
   "slug": "lick_lash",
   "sort": "damage",
   "modifiers": [],

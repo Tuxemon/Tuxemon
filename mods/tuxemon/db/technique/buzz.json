@@ -20,7 +20,7 @@
   "power": 1.2,
   "range": "melee",
   "recharge": 1,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_lightning2",
   "slug": "buzz",
   "sort": "damage",
   "modifiers": [],

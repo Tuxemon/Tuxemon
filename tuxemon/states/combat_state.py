@@ -748,11 +748,16 @@ class CombatState(CombatAnimations):
         if target_sprite and animation:
             animation.rect.center = target_sprite.rect.center
             assert animation.animation
-            self.task(animation.animation.play, interval=0.6)
+            start_delay = 0.6
+            self.task(animation.animation.play, interval=start_delay)
             self.task(
-                partial(self.sprites.add, animation, layer=50), interval=0.6
+                partial(self.sprites.add, animation, layer=50),
+                interval=start_delay,
             )
-            self.task(animation.kill, interval=action_time)
+            safe_action_time = max(
+                action_time, animation.animation.duration + start_delay
+            )
+            self.task(animation.kill, interval=safe_action_time)
 
     def faint_monster(self, monster: Monster) -> None:
         """

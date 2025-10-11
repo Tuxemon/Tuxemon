@@ -189,6 +189,7 @@ BG_PHONE: str = GRAD_BLUE
 BG_PHONE_BANKING: str = GRAD_BLUE
 BG_PHONE_CONTACTS: str = GRAD_BLUE
 BG_PHONE_MAP: str = GRAD_BLUE
+BG_PHONE_RENAMING: str = GRAD_BLUE
 BG_START_SCREEN: str = GRAD_BLUE
 PYGAME_LOGO: str = "gfx/ui/intro/pygame_logo.png"
 CREATIVE_COMMONS: str = "gfx/ui/intro/creative_commons.png"
@@ -218,7 +219,7 @@ COEFF_FEET: float = 0.032808399
 COEFF_POUNDS: float = 2.2046
 
 # Players
-PLAYER_NPC = CONFIG.player_npc
+PLAYER_NPC = "npc_red"
 PLAYER_NAME_LIMIT: int = 15  # The character limit for a player name.
 PARTY_LIMIT: int = 6  # The maximum number of tuxemon this npc can hold
 #  Moverate limits to avoid losing sprites

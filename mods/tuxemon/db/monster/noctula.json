@@ -43,8 +43,20 @@
   ],
   "history": [
     {
-      "mon_slug": "noctalo",
-      "evo_stage": "stage1"
+      "slug": "noctula",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "noctalo"
+      ]
+    },
+    {
+      "slug": "noctalo",
+      "stage": "stage1",
+      "evolves_from": [
+        "noctula"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [],
@@ -64,6 +76,10 @@
   "txmn_id": 50,
   "height": 50,
   "weight": 3,
+  "sounds": {
+    "combat_call": "sound_monster_17",
+    "faint_call": "sound_monster_17_faint"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.25

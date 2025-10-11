@@ -51,8 +51,20 @@
   ],
   "history": [
     {
-      "mon_slug": "aardart",
-      "evo_stage": "stage1"
+      "slug": "aardorn",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "aardart"
+      ]
+    },
+    {
+      "slug": "aardart",
+      "stage": "stage1",
+      "evolves_from": [
+        "aardorn"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [
@@ -77,6 +89,10 @@
   "txmn_id": 42,
   "height": 40,
   "weight": 18,
+  "sounds": {
+    "combat_call": "sound_cat_purr_twit5",
+    "faint_call": "sound_cat_purr_twit5_faint"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.25

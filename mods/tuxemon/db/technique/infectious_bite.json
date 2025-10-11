@@ -20,7 +20,7 @@
   "power": 1.0,
   "range": "touch",
   "recharge": 2,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_bite",
   "slug": "infectious_bite",
   "sort": "damage",
   "modifiers": [],

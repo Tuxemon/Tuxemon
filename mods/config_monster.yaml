@@ -1,10 +1,51 @@
-
 # Defines the bond value range (0 = no bond, 100 = max bond)
 bond_range: [0, 100]
+
 # Defines a random interval for weight fluctuation (±10% variation)
 weight_range: [-0.1, 0.1]
+
 # Defines a random interval for height fluctuation (±10% variation)
 height_range: [-0.1, 0.1]
+
+# Maps bond value ranges to qualitative sentiment labels.
+bond_sentiments:
+  despises: [0, 20]
+  wary: [21, 50]
+  gets_along: [51, 75]
+  adores: [76, 100]
+
+# Maps sentiment labels to localized string templates for player-facing messages.
+bond_strings:
+  despises: menu_bond_despise
+  wary: menu_bond_wary
+  gets_along: menu_bond_along
+  adores: menu_bond_adore
+
+# Defines opposite taste relationships as a dictionary of lists.
+# Each taste maps to a list of its opposite(s), allowing for future extensibility.
+opposite_tastes:
+  taste_peppy: [taste_mild]
+  taste_mild: [taste_peppy]
+  taste_salty: [taste_sweet]
+  taste_sweet: [taste_salty]
+  taste_hearty: [taste_soft]
+  taste_soft: [taste_hearty]
+  taste_zesty: [taste_flakey]
+  taste_flakey: [taste_zesty]
+  taste_refined: [taste_dry]
+  taste_dry: [taste_refined]
+  taste_savory: [taste_bland]
+  taste_bland: [taste_savory]
+
+# Defines bond adjustment values based on taste preference match level.
+# These values influence bond growth or decay depending on how well a monster's taste aligns with a given item.
+bond_preferences:
+  great: 10
+  good: 5
+  average: 0
+  bad: -5
+  terrible: -10
+
 # Experience gain multipliers based on acquisition method
 experience_multipliers:
   unknown: 1.0        # Neutral baseline

@@ -24,7 +24,7 @@
   "power": 0,
   "range": "special",
   "recharge": 3,
-  "sfx": "sfx_forcefield",
+  "sfx": "sfx_pulse",
   "slug": "energy_field",
   "sort": "damage",
   "modifiers": [],

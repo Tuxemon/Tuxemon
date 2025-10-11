@@ -20,7 +20,7 @@
   "power": 2.0,
   "range": "melee",
   "recharge": 1,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_bubbles",
   "slug": "suck_poison",
   "sort": "damage",
   "modifiers": [],

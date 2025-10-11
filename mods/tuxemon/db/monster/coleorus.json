@@ -24,7 +24,7 @@
     },
     {
       "level_learned": 16,
-      "technique": "venom"
+      "technique": "caustic_spray"
     },
     {
       "level_learned": 19,
@@ -76,13 +76,17 @@
     "lightning",
     "wood"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 105,
   "height": 39,
   "weight": 6,
+  "sounds": {
+    "combat_call": "sound_insekt001",
+    "faint_call": "sound_insekt001_faint"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

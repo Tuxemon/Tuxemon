@@ -20,7 +20,7 @@
   "power": 3,
   "range": "touch",
   "recharge": 3,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_shine",
   "slug": "all_in",
   "sort": "damage",
   "modifiers": [],

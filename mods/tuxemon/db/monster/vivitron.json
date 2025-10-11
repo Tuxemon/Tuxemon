@@ -88,13 +88,17 @@
   "types": [
     "lightning"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 137,
   "height": 92,
   "weight": 12,
+  "sounds": {
+    "combat_call": "sound_monster_16",
+    "faint_call": "sound_monster_16_faint"
+  },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.85,
   "upper_catch_resistance": 1.1

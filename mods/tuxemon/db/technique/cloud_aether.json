@@ -17,7 +17,7 @@
   "power": 0,
   "range": "special",
   "recharge": 4,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_tornado",
   "slug": "cloud_aether",
   "sort": "damage",
   "modifiers": [],

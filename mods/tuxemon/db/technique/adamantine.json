@@ -14,7 +14,7 @@
   "randomly": false,
   "range": "touch",
   "recharge": 2,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_forcefield",
   "slug": "adamantine",
   "sort": "damage",
   "modifiers": [],

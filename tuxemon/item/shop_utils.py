@@ -13,7 +13,7 @@ from tuxemon.monster import Monster
 
 if TYPE_CHECKING:
     from tuxemon.economy.economy import Economy
-    from tuxemon.money import MoneyManager
+    from tuxemon.money.manager import MoneyManager
     from tuxemon.npc import NPC
 
 

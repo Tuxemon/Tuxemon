@@ -318,14 +318,14 @@
     <property name="act2" value="set_random_variable elianeoutput,cureall:restoration:potion:tea"/>
     <property name="act3" value="random_integer luckgiveegg,1,10"/>
     <property name="behav1" value="talk spyder_candy_eliane"/>
-    <property name="cond1" value="is once 1,elianeflower"/>
+    <property name="cond1" value="is cooldown_days 1,elianeflower"/>
    </properties>
   </object>
   <object id="195" name="Talk Eliane 2" type="event" x="96" y="32" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_candy_eliane2"/>
     <property name="behav1" value="talk spyder_candy_eliane"/>
-    <property name="cond1" value="not once 1,elianeflower"/>
+    <property name="cond1" value="not cooldown_days 1,elianeflower"/>
    </properties>
   </object>
   <object id="194" name="Get cureall" type="event" x="144" y="48" width="16" height="16">

@@ -23,7 +23,7 @@
   "power": 0,
   "range": "special",
   "recharge": 1,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_shine",
   "slug": "neutralize",
   "sort": "damage",
   "modifiers": [],

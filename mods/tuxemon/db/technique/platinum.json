@@ -27,7 +27,7 @@
   "power": 1.7,
   "range": "melee",
   "recharge": 2,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_shine",
   "slug": "platinum",
   "sort": "damage",
   "modifiers": [],

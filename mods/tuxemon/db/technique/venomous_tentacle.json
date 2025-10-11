@@ -20,7 +20,7 @@
   "power": 2.25,
   "range": "reach",
   "recharge": 2,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_bubbles",
   "slug": "venomous_tentacle",
   "sort": "damage",
   "modifiers": [],

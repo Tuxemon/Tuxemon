@@ -20,7 +20,7 @@
   "power": 1.5,
   "range": "ranged",
   "recharge": 2,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_shpring",
   "slug": "pollen_blast",
   "sort": "damage",
   "modifiers": [],

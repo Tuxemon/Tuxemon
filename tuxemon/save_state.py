@@ -5,6 +5,8 @@ from __future__ import annotations
 from collections.abc import Mapping, Sequence
 from typing import Any, TypedDict
 
+TIME_FORMAT = "%Y-%m-%d %H:%M"
+
 
 class SaveData(TypedDict, total=False):
     screenshot: str
@@ -14,11 +16,19 @@ class SaveData(TypedDict, total=False):
     version: int
     npc_state: NPCState
     world_state: WorldSave
+    session_state: SessionSave
 
 
 class WorldSave(TypedDict, total=False):
     factions_manager: dict[str, Any]
     menu_flags: dict[str, bool]
+
+
+class SessionSave(TypedDict, total=False):
+    uuid: str
+    start_time: str
+    duration: float
+    total_playtime: float
 
 
 class NPCState(TypedDict, total=False):

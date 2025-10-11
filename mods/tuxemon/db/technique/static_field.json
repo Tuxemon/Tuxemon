@@ -24,7 +24,7 @@
   "power": 0,
   "range": "special",
   "recharge": 3,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_forcefield",
   "slug": "static_field",
   "sort": "damage",
   "modifiers": [],

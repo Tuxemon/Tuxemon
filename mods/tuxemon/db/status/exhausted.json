@@ -13,7 +13,6 @@
   "flip_axes": "",
   "icon": "gfx/ui/icons/status/icon_exhausted.png",
   "on_negative_status": "replaced",
-  "on_tech_use": "tired",
   "sfx": "sfx_pulse",
   "slug": "exhausted",
   "sort": "meta",

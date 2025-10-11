@@ -17,7 +17,7 @@
   "power": 0,
   "range": "special",
   "recharge": 4,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_flames1",
   "slug": "fiery",
   "sort": "damage",
   "modifiers": [],

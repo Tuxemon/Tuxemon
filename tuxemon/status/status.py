@@ -187,6 +187,25 @@ class Status:
     def advance_round(self) -> None:
         """Advance the counter for this status if used."""
         self.counter += 1
+        logger.debug(
+            f"[Status Counter] {self.slug} used {self.counter} times."
+        )
+
+    def check_counter_expiry(
+        self, session: Session, max_uses: int = 1
+    ) -> None:
+        """
+        Checks if the status has reached its use-based expiration threshold.
+        If so, clears the status from the host.
+        """
+        logger.debug(
+            f"[Status Expired] {self.slug} used {self.counter}/{max_uses} times."
+        )
+        if self.counter >= max_uses:
+            logger.debug(
+                f"[Status Expired] {self.slug} removed from {self.host.name} after {self.counter} uses."
+            )
+            self.host.status.clear_status(session)
 
     def validate_monster(self, session: Session, target: Monster) -> bool:
         """

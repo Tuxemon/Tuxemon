@@ -120,12 +120,16 @@
     "metal",
     "cosmic"
   ],
-  "possible_genders": [
-    "neuter"
-  ],
+  "gender_weights": {
+    "neuter": 1.0
+  },
   "txmn_id": 174,
   "height": 38,
   "weight": 3.5,
+  "sounds": {
+    "combat_call": "sound_retro_beep_05",
+    "faint_call": "sound_retro_beep_05_faint"
+  },
   "catch_rate": 100,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

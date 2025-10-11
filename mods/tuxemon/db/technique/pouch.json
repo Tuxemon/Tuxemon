@@ -19,7 +19,7 @@
   "power": 0,
   "range": "special",
   "recharge": 2,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_bounce",
   "slug": "pouch",
   "sort": "damage",
   "modifiers": [],

@@ -21,7 +21,7 @@
   "power": 0.0,
   "range": "special",
   "recharge": 2,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_bounce",
   "slug": "piece_of_cake",
   "sort": "damage",
   "modifiers": [],

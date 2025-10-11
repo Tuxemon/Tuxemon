@@ -13,7 +13,7 @@
   "power": 2.9,
   "range": "reliable",
   "recharge": 3,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_bubbles",
   "slug": "viper",
   "sort": "damage",
   "modifiers": [],

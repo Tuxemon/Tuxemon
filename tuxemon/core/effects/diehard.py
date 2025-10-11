@@ -38,12 +38,11 @@ class DieHardEffect(CoreEffect):
         host = status.get_host()
         if status.has_phase(EffectPhase.CHECK_PARTY_HP):
             params = {"target": host.name.upper()}
+            if host.current_hp == self.hp:
+                host.status.clear_status(session)
+                extra = [T.format("combat_state_diehard_end", params)]
             if host.is_fainted:
                 host.current_hp = self.hp
                 host.status.clear_status(session)
                 extra = [T.format("combat_state_diehard_tech", params)]
-            if host.current_hp == self.hp:
-                host.status.clear_status(session)
-                extra = [T.format("combat_state_diehard_end", params)]
-
         return StatusEffectResult(name=status.name, success=True, extras=extra)

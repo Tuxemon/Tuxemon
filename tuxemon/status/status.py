@@ -92,11 +92,11 @@ class Status:
 
         if Status.effect_manager is None:
             Status.effect_manager = EffectManager(
-                CoreEffect, paths.CORE_EFFECT_PATH, paths.LIBDIR.parent
+                CoreEffect, paths.CORE_EFFECT_PATH
             )
         if Status.condition_manager is None:
             Status.condition_manager = ConditionManager(
-                CoreCondition, paths.CORE_CONDITION_PATH, paths.LIBDIR.parent
+                CoreCondition, paths.CORE_CONDITION_PATH
             )
 
         self.effects: Sequence[PluginObject] = []

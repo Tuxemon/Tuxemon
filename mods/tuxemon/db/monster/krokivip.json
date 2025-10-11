@@ -97,10 +97,10 @@
     "water",
     "venom"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 370,
   "height": 120,
   "weight": 45,

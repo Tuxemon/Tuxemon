@@ -11,9 +11,9 @@
       ]
     },
     {
-      "type": "give",
+      "type": "remove",
       "parameters": [
-        "tired",
+        "positive",
         "enemy_monster"
       ]
     },

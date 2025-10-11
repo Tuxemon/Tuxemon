@@ -31,53 +31,12 @@ events:
     type: event
     x: 0
     y: 3
-  Radio Afternoon:
+  Radio:
     actions:
-    - translated_dialog spyder_rivalbedroom_radio_afternoon
+    - tune_radio player,94.7
     conditions:
     - is char_facing_tile player
     - is button_pressed K_RETURN
-    - is variable_set stage_of_day:afternoon
-    type: event
-    x: 0
-    y: 5
-  Radio Dawn:
-    actions:
-    - translated_dialog spyder_rivalbedroom_radio_dawn
-    conditions:
-    - is char_facing_tile player
-    - is button_pressed K_RETURN
-    - is variable_set stage_of_day:dawn
-    type: event
-    x: 0
-    y: 5
-  Radio Dusk:
-    actions:
-    - translated_dialog spyder_rivalbedroom_radio_dusk
-    conditions:
-    - is char_facing_tile player
-    - is button_pressed K_RETURN
-    - is variable_set stage_of_day:dusk
-    type: event
-    x: 0
-    y: 5
-  Radio Morning:
-    actions:
-    - translated_dialog spyder_rivalbedroom_radio_morning
-    conditions:
-    - is char_facing_tile player
-    - is button_pressed K_RETURN
-    - is variable_set stage_of_day:morning
-    type: event
-    x: 0
-    y: 5
-  Radio Night:
-    actions:
-    - translated_dialog spyder_rivalbedroom_radio_night
-    conditions:
-    - is char_facing_tile player
-    - is button_pressed K_RETURN
-    - is variable_set stage_of_day:night
     type: event
     x: 0
     y: 5

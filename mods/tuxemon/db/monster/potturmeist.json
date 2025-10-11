@@ -83,9 +83,9 @@
     "earth",
     "shadow"
   ],
-  "possible_genders": [
-    "neuter"
-  ],
+  "gender_weights": {
+    "neuter": 1.0
+  },
   "txmn_id": 257,
   "height": 48,
   "weight": 2.5,

@@ -69,10 +69,10 @@
     "lightning",
     "sky"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 179,
   "height": 45,
   "weight": 18,

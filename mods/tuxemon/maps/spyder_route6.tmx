@@ -597,49 +597,49 @@
    <properties>
     <property name="act1" value="char_talk spyder_route6_maxwell,post_battle_lose"/>
     <property name="behav1" value="talk spyder_route6_maxwell"/>
-    <property name="cond1" value="is variable_set route6maxwell:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_route6_maxwell"/>
    </properties>
   </object>
   <object id="237" name="Post Talk Ping" type="event" x="384" y="144" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_route6_ping,post_battle_lose"/>
     <property name="behav1" value="talk spyder_route6_ping"/>
-    <property name="cond1" value="is variable_set route6ping:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_route6_ping"/>
    </properties>
   </object>
   <object id="238" name="Post Talk Orion" type="event" x="368" y="144" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_route6_orion,post_battle_lose"/>
     <property name="behav1" value="talk spyder_route6_orion"/>
-    <property name="cond1" value="is variable_set route6orion:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_route6_orion"/>
    </properties>
   </object>
   <object id="239" name="Post Talk Frances" type="event" x="368" y="160" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_route6_frances,post_battle_lose"/>
     <property name="behav1" value="talk spyder_route6_frances"/>
-    <property name="cond1" value="is variable_set route6frances:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_route6_frances"/>
    </properties>
   </object>
   <object id="240" name="Post Talk Mungo" type="event" x="384" y="160" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_route6_mungo,post_battle_lose"/>
     <property name="behav1" value="talk spyder_route6_mungo"/>
-    <property name="cond1" value="is variable_set route6mungo:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_route6_mungo"/>
    </properties>
   </object>
   <object id="241" name="Post Talk Richard" type="event" x="352" y="160" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_route6_richard,post_battle_lose"/>
     <property name="behav1" value="talk spyder_route6_richard"/>
-    <property name="cond1" value="is variable_set route6richard:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_route6_richard"/>
    </properties>
   </object>
   <object id="242" name="Post Talk Blair" type="event" x="352" y="144" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_route6_blair,post_battle_lose"/>
     <property name="behav1" value="talk spyder_route6_blair"/>
-    <property name="cond1" value="is variable_set route6blair:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_route6_blair"/>
    </properties>
   </object>
  </objectgroup>

@@ -93,10 +93,10 @@
     "metal",
     "heroic"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 60,
   "height": 178,
   "weight": 78,

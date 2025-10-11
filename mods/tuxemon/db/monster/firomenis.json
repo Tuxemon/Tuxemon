@@ -78,10 +78,10 @@
     "metal",
     "cosmic"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 210,
   "height": 183,
   "weight": 30,

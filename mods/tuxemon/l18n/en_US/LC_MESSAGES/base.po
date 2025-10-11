@@ -493,12 +493,30 @@ msgstr "Nu Phone"
 msgid "nu_phone_description"
 msgstr "You can do a lot with this, e.g. phone home."
 
+msgid "bivouac"
+msgstr "Bivouac"
+
+msgid "bivouac_description"
+msgstr "Rest as if you were at a proper healing centre. Consumed on use."
+
+msgid "drone"
+msgstr "Drone"
+
+msgid "drone_description"
+msgstr "Switch out one tuxemon on your team for one in storage."
+
 msgid "spyder_pass"
 msgstr "Spyder Pass"
 
 msgid "spyder_pass_description"
 msgstr ""
 "This should let you in to places only Spyder conspirators are meant to go."
+
+msgid "app_radio"
+msgstr "Radio App"
+
+msgid "app_radio_description"
+msgstr "Tune in to local broadcasts, quest updates, and ambient chatter from across the region."
 
 msgid "app_banking"
 msgstr "Bank App"
@@ -571,6 +589,12 @@ msgstr "Cureall"
 
 msgid "cureall_description"
 msgstr "Heals your tuxemon to full health and removes any conditions."
+
+msgid "escape_key"
+msgstr "Escape Key"
+
+msgid "escape_key_description"
+msgstr "Slip out the back door."
 
 # Craft
 msgid "unknown_object"
@@ -1545,6 +1569,52 @@ msgstr ""
 "\n"
 "There's a kiss mark next to the address"
 
+# Radio
+msgid "radio_no_signal"
+msgstr "No signal. Try tuning in from another location."
+
+msgid "radio_station_list_header"
+msgstr "List of Available Stations"
+
+msgid "station_scrambled_frequency"
+msgstr "Scrambled Frequency"
+
+msgid "station_route_rhythms"
+msgstr "Route 101 Rhythms"
+
+msgid "radio_static_msgid"
+msgstr "The signal fades into static..."
+
+msgid "radio_tuner"
+msgstr "Tuner"
+
+msgid "app_radio_tuner"
+msgstr "Radio Tuner"
+
+msgid "radio_tuning_static"
+msgstr "The signal is full of static..."
+
+msgid "signal_strong"
+msgstr "Strong"
+
+msgid "signal_moderate"
+msgstr "Moderate"
+
+msgid "signal_weak"
+msgstr "Weak"
+
+msgid "signal_none"
+msgstr "No Signal"
+
+msgid "radio_play_button"
+msgstr "Play Radio"
+
+msgid "radio_tuner_hint"
+msgstr "Slide to tune into stations"
+
+msgid "radio_signal_strength"
+msgstr "Signal Strength"
+
 # Money notification
 msgid "player_wallet"
 msgstr "${{name}}'s wallet: ${{money_formatted}}"
@@ -1701,6 +1771,9 @@ msgstr "A wild {name} appeared!"
 msgid "combat_horde_appeared"
 msgstr "A horde of wild creatures surrounds you!"
 
+msgid "combat_horde_swap"
+msgstr "{target} emerges from the horde!"
+
 msgid "combat_monster_choice"
 msgstr "What will {name} do?"
 
@@ -1845,12 +1918,6 @@ msgstr "{target}'s armor softens."
 
 msgid "combat_state_stuck_get"
 msgstr "{target} is stuck in place."
-
-msgid "combat_state_tired_get"
-msgstr "{target} is worn out."
-
-msgid "combat_state_tired_end"
-msgstr "{target} shakes off its tiredness."
 
 msgid "combat_state_plague0"
 msgstr "{target} begins to sniffle."
@@ -2129,9 +2196,6 @@ msgstr "Spyder Bite"
 
 msgid "stuck"
 msgstr "Stuck"
-
-msgid "tired"
-msgstr "Tired"
 
 msgid "wasting"
 msgstr "Wasting"
@@ -4123,6 +4187,9 @@ msgstr "Techniques"
 msgid "monster_menu_item"
 msgstr "Held Item"
 
+msgid "monster_menu_pick"
+msgstr "Pick"
+
 msgid "monster_menu_desc"
 msgstr "Description"
 
@@ -4191,6 +4258,12 @@ msgstr ""
 msgid "uninstall_app"
 msgstr "Unable to uninstall the app."
 
+msgid "menu_storage_swap_monster"
+msgstr "The drone completed the transfer: {from} is now in storage, and {to} has joined your party."
+
+msgid "menu_storage_swap_monster_fail"
+msgstr "The drone could not complete the transfer: no monsters are available in the kennel."
+
 # Missions
 msgid "mission_deletion"
 msgstr "Do you want to delete this mission?"
@@ -4216,12 +4289,6 @@ msgstr "Seen {param} out of {all}"
 
 msgid "tuxepedia_data_caught"
 msgstr "Caught {param} out of {all}"
-
-msgid "player_start_adventure_today"
-msgstr "The adventure began today."
-
-msgid "player_start_adventure"
-msgstr "The adventure began {date} days ago."
 
 msgid "player_total_playtime"
 msgstr "Total Playtime"
@@ -4320,6 +4387,18 @@ msgstr "Party"
 
 msgid "menu_bond"
 msgstr "Bond"
+
+msgid "menu_bond_despise"
+msgstr "{monster_name} despises {player_name}"
+
+msgid "menu_bond_wary"
+msgstr "{monster_name} is wary of {player_name}"
+
+msgid "menu_bond_along"
+msgstr "{monster_name} gets along with {player_name}"
+
+msgid "menu_bond_adore"
+msgstr "{monster_name} adores {player_name}"
 
 msgid "menu_to_the_top"
 msgstr "To The Top"
@@ -4529,9 +4608,6 @@ msgstr "You added {name} into your party!"
 
 msgid "menu_storage_take_item"
 msgstr "You added {nr} {name} into your bag!"
-
-msgid "menu_storage_monsters_full"
-msgstr "Your party is full, you cannot take any more from storage."
 
 msgid "menu_storage_items_full"
 msgstr "Your bag is full, you cannot take any more from storage."
@@ -9116,6 +9192,9 @@ msgstr "Acolyte Corren"
 msgid "fishing_rod_failure"
 msgstr "The water ripples, but nothing bites."
 
+msgid "bivouac_success"
+msgstr "The bivouac restored your team's strength!"
+
 msgid "itsswimmingtime"
 msgstr "Do you want to swim?"
 
@@ -9428,9 +9507,6 @@ msgstr "Sorry, but I should leave now."
 
 msgid "omnichannelarrives"
 msgstr "STOP!"
-
-msgid "omnichannelarrives2"
-msgstr ""
 
 msgid "yesmaam"
 msgstr "Yes Ma'am."

@@ -49,7 +49,7 @@ class NPCState(TypedDict, total=False):
     monster_boxes: dict[str, Sequence[Mapping[str, Any]]]
     item_boxes: dict[str, Sequence[Mapping[str, Any]]]
     tile_pos: tuple[int, int]
-    teleport_faint: tuple[str, int, int]
+    teleport_faint: Mapping[str, Any]
     tracker: Mapping[str, Any]
     step_tracker: Mapping[str, Any]
     unlocked_letters: Mapping[str, Any]

@@ -103,9 +103,9 @@
   "types": [
     "frost"
   ],
-  "possible_genders": [
-    "neuter"
-  ],
+  "gender_weights": {
+    "neuter": 1.0
+  },
   "txmn_id": 262,
   "height": 15,
   "weight": 1,

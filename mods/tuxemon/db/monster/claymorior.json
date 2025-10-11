@@ -99,9 +99,9 @@
     "earth",
     "heroic"
   ],
-  "possible_genders": [
-    "neuter"
-  ],
+  "gender_weights": {
+    "neuter": 1.0
+  },
   "txmn_id": 317,
   "height": 150,
   "weight": 112,

@@ -3,13 +3,13 @@
 from unittest import TestCase
 from unittest.mock import MagicMock
 
-from tuxemon.money import (
-    BillEntry,
+from tuxemon.money.bill import BillEntry
+from tuxemon.money.controller import (
     MoneyController,
-    MoneyManager,
     decode_money,
     encode_money,
 )
+from tuxemon.money.manager import MoneyManager
 
 
 class TestMoneyManager(TestCase):

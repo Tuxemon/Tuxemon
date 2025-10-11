@@ -13,6 +13,7 @@ from pygame_menu.widgets.selection.highlight import HighlightSelection
 from tuxemon import prepare
 from tuxemon.animation import Animation, ScheduleType
 from tuxemon.db import MonsterModel, db
+from tuxemon.locale import T
 from tuxemon.menu.menu import PygameMenuState
 from tuxemon.menu.theme import get_theme
 from tuxemon.session import local_session
@@ -26,10 +27,10 @@ class MenuMonsterConfig:
     animation_duration: float = 0.2
     animation_start_size: float = 0.0
     animation_end_size: float = 1.0
-    number_widgets: int = 3
+    number_widgets: int = 4
     number_columns: int = 5
     scale_sprite: float = 0.4
-    vertical_fill: int = 15
+    vertical_fill: int = 20
 
 
 class ChoiceMonster(PygameMenuState):
@@ -71,42 +72,48 @@ class ChoiceMonster(PygameMenuState):
         self,
         name: str,
         slug: str,
-        callback: Callable[[], None],
+        pick_callback: Callable[[], None],
     ) -> None:
         monster = MonsterModel.lookup(slug, db)
         path = f"gfx/sprites/battle/{monster.slug}-front.png"
-        new_image = self._create_image(path)
-        new_image.scale(
+        image = self._create_image(path)
+        image.scale(
             prepare.SCALE * self.config.scale_sprite,
             prepare.SCALE * self.config.scale_sprite,
         )
 
-        def open_journal() -> None:
-            action = self.client.event_engine
-            _set_tuxepedia = ["player", monster.slug, "caught"]
-            action.execute_action("set_tuxepedia", _set_tuxepedia, True)
-            self.client.push_state(
-                "JournalInfoState",
-                character=local_session.player,
-                monster=monster,
-                source=self.name,
-            )
-            action.execute_action("clear_tuxepedia", [monster.slug], True)
+        self.menu.add.image(image, align=ALIGN_CENTER)
 
-        self.menu.add.banner(
-            new_image,
-            open_journal,
-            align=ALIGN_CENTER,
-            selection_effect=HighlightSelection(),
-        )
         self.menu.add.button(
-            name,
-            callback,
+            T.translate(name),
+            lambda: self.open_journal(monster),
             font_size=self.font_type.small,
             align=ALIGN_CENTER,
             selection_effect=HighlightSelection(),
         )
+
+        self.menu.add.button(
+            T.translate("monster_menu_pick"),
+            pick_callback,
+            font_size=self.font_type.small,
+            align=ALIGN_CENTER,
+            selection_effect=HighlightSelection(),
+        )
+
         self.menu.add.vertical_fill(self.config.vertical_fill)
+
+    def open_journal(self, monster: MonsterModel) -> None:
+        action = self.client.event_engine
+        action.execute_action(
+            "set_tuxepedia", ["player", monster.slug, "caught"], True
+        )
+        self.client.push_state(
+            "JournalInfoState",
+            character=local_session.player,
+            monster=monster,
+            source=self.name,
+        )
+        action.execute_action("clear_tuxepedia", [monster.slug], True)
 
     def update_animation_size(self) -> None:
         width, height = prepare.SCREEN_SIZE
@@ -126,12 +133,7 @@ class ChoiceMonster(PygameMenuState):
         )
 
     def animate_open(self) -> Animation:
-        """
-        Animate the menu popping in.
-
-        Returns:
-            Popping in animation.
-        """
+        """Animate the menu popping in."""
         ani = self.animate(
             self,
             animation_size=self.config.animation_end_size,

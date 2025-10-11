@@ -94,6 +94,20 @@ def get_active_mod_paths() -> list[Path]:
     return active_mod_paths
 
 
+def get_plugin_paths(
+    base_path: Path, category: str, subfolder: Optional[str] = None
+) -> list[Path]:
+    """
+    Return a list of plugin directories from core and active mods for the given category and optional subfolder.
+    """
+    plugin_paths = [base_path]
+    for mod_path in get_active_mod_paths():
+        mod_plugin_path = mod_path / (subfolder or "") / category
+        if mod_plugin_path.is_dir():
+            plugin_paths.append(mod_plugin_path)
+    return plugin_paths
+
+
 def get_mod_name_from_path(file_path: Path) -> Optional[str]:
     """
     Extracts the mod name from a given file path.

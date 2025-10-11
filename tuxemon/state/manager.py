@@ -10,7 +10,7 @@ from typing import TYPE_CHECKING, Any, Optional, TypeVar, Union, overload
 from tuxemon.constants import paths
 from tuxemon.state.factory import StateFactory
 from tuxemon.state.loader import StateLoader
-from tuxemon.state.queue import StateQueue
+from tuxemon.state.queue import QueuedState, StateQueue
 from tuxemon.state.stack import StateStack
 from tuxemon.state.state import State
 
@@ -126,11 +126,28 @@ class StateManager:
         """Return a dictionary of all loaded states."""
         return self.state_repository.all_states()
 
-    def queue_state(self, state_name: str, **kwargs: Any) -> None:
+    def queue_state(
+        self,
+        state_name: str,
+        priority: int = 10,
+        activation_time: Optional[float] = None,
+        expires_at: Optional[float] = None,
+        source: Optional[str] = None,
+        condition: Optional[Callable[[], bool]] = None,
+        **kwargs: Any,
+    ) -> None:
         """
         Queue a state to be pushed after the top state is popped or replaced.
         """
-        self.state_queue.queue_state(state_name, **kwargs)
+        self.state_queue.queue_state(
+            state_name,
+            priority=priority,
+            activation_time=activation_time,
+            expires_at=expires_at,
+            source=source,
+            condition=condition,
+            **kwargs,
+        )
 
     def pop_current_state(self) -> None:
         """Pop the current state from the stack."""
@@ -351,7 +368,7 @@ class StateManager:
         return self.state_stack.all()
 
     @property
-    def queued_states(self) -> Sequence[tuple[str, Mapping[str, Any]]]:
+    def queued_states(self) -> Sequence[QueuedState]:
         """Sequence of states that are queued."""
         return self.state_queue.queued_states
 
@@ -387,10 +404,7 @@ class StateManager:
                 return state
         raise ValueError(f"Missing state {state_name}")
 
-    def get_queued_state_by_name(
-        self,
-        state_name: str,
-    ) -> tuple[str, Mapping[str, Any]]:
+    def get_queued_state_by_name(self, state_name: str) -> QueuedState:
         """
         Query the queued state stack for a state by the name supplied.
         """
@@ -408,12 +422,16 @@ class StateManager:
         """Removes a queued state by name."""
         self.state_queue.remove_state_by_name(state_name)
 
+    def remove_expired_queued_states(self) -> None:
+        """Removes expired states from the queue based on their expiration time."""
+        self.state_queue.remove_expired_states()
+
     def replace_queued_state(self, state_name: str, **new_kwargs: Any) -> None:
         """Replaces the arguments of a queued state."""
         self.state_queue.replace_queued_state(state_name, **new_kwargs)
 
     def peek_next_queued_state(
         self,
-    ) -> Optional[tuple[str, Mapping[str, Any]]]:
+    ) -> Optional[QueuedState]:
         """Returns the next queued state without removing it."""
         return self.state_queue.peek_next()

@@ -296,35 +296,35 @@
    <properties>
     <property name="act1" value="char_talk spyder_nimrod_archer,post_battle_lose"/>
     <property name="behav1" value="talk spyder_nimrod_archer"/>
-    <property name="cond1" value="is variable_set nimrodarcher:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_nimrod_archer"/>
    </properties>
   </object>
   <object id="46" name="Post Talk Antimony" type="event" x="80" y="256" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_nimrod_antimony,post_battle_lose"/>
     <property name="behav1" value="talk spyder_nimrod_antimony"/>
-    <property name="cond1" value="is variable_set nimrodantimony:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_nimrod_antimony"/>
    </properties>
   </object>
   <object id="47" name="Post Talk Argon" type="event" x="96" y="256" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_nimrod_argon,post_battle_lose"/>
     <property name="behav1" value="talk spyder_nimrod_argon"/>
-    <property name="cond1" value="is variable_set nimrodargon:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_nimrod_argon"/>
    </properties>
   </object>
   <object id="48" name="Post Talk Thatcher" type="event" x="112" y="256" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_nimrod_thatcher,post_battle_lose"/>
     <property name="behav1" value="talk spyder_nimrod_thatcher"/>
-    <property name="cond1" value="is variable_set nimrodthatcher:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_nimrod_thatcher"/>
    </properties>
   </object>
   <object id="49" name="Post Talk Honour" type="event" x="128" y="256" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_nimrod_honour,post_battle_lose"/>
     <property name="behav1" value="talk spyder_nimrod_honour"/>
-    <property name="cond1" value="is variable_set nimrodhonour:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_nimrod_honour"/>
    </properties>
   </object>
   <object id="50" name="Play Music" type="event" x="0" y="0" width="16" height="16">

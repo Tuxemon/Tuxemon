@@ -1721,9 +1721,6 @@ msgstr "Lo siento, pero he de irme ya."
 msgid "omnichannelarrives"
 msgstr "¡DETENTE!"
 
-msgid "omnichannelarrives2"
-msgstr "<<MISSING>>"
-
 msgid "yesmaam"
 msgstr "Sí, señora."
 

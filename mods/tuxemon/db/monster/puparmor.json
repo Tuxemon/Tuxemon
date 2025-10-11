@@ -90,10 +90,10 @@
     "metal",
     "venom"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 34,
   "height": 35,
   "weight": 8.5,

@@ -13,16 +13,16 @@ logger = logging.getLogger(__name__)
 
 
 @dataclass
-class TeleportFaintCondition(EventCondition):
+class CheckTeleportFaintCondition(EventCondition):
     """
-    Check to see if teleport_faint exists and has a particular value.
+    Check to see if check_teleport_faint exists and has a particular value.
 
     If the teleport_faint does not exist it will return ``False``.
 
     Script usage:
         .. code-block::
 
-            is teleport_faint character,[map_name],[x],[y]
+            is check_teleport_faint character,[map_name],[x],[y]
 
     Script parameters:
         character: Either "player" or npc slug name (e.g. "npc_maple").
@@ -31,7 +31,7 @@ class TeleportFaintCondition(EventCondition):
         y: The y-coordinate to validate against.
     """
 
-    name = "teleport_faint"
+    name = "check_teleport_faint"
 
     def test(self, session: Session, condition: MapCondition) -> bool:
         _character = condition.parameters[0]

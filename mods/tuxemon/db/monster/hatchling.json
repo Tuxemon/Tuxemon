@@ -76,10 +76,10 @@
   "types": [
     "sky"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 81,
   "height": 20,
   "weight": 1,

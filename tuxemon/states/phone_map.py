@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import logging
-from collections.abc import Callable
 from dataclasses import dataclass
 from pathlib import Path
 from typing import TYPE_CHECKING, Any, ClassVar, Optional
@@ -21,7 +20,6 @@ from tuxemon.tools import fix_measure
 if TYPE_CHECKING:
     from tuxemon.npc import NPC
 
-MenuGameObj = Callable[[], Any]
 
 logger = logging.getLogger(__name__)
 

@@ -547,21 +547,21 @@
    <properties>
     <property name="act1" value="char_talk spyder_route2_roddick,post_battle_lose"/>
     <property name="behav1" value="talk spyder_route2_roddick"/>
-    <property name="cond1" value="is variable_set route2roddick:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_route2_roddick"/>
    </properties>
   </object>
   <object id="212" name="Post Talk marion" type="event" x="208" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_route2_marion,post_battle_lose"/>
     <property name="behav1" value="talk spyder_route2_marion"/>
-    <property name="cond1" value="is variable_set route2marion:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_route2_marion"/>
    </properties>
   </object>
   <object id="213" name="Post Talk graf" type="event" x="224" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_route2_graf,post_battle_lose"/>
     <property name="behav1" value="talk spyder_route2_graf"/>
-    <property name="cond1" value="is variable_set route2graf:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_route2_graf"/>
    </properties>
   </object>
  </objectgroup>

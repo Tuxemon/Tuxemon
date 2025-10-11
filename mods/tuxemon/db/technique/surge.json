@@ -4,9 +4,9 @@
   "animation": "lightning_bolt_138",
   "effects": [
     {
-      "type": "give",
+      "type": "remove",
       "parameters": [
-        "tired",
+        "positive",
         "own_monster"
       ]
     },

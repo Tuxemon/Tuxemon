@@ -71,9 +71,9 @@
     "metal",
     "sky"
   ],
-  "possible_genders": [
-    "neuter"
-  ],
+  "gender_weights": {
+    "neuter": 1.0
+  },
   "txmn_id": 126,
   "height": 45,
   "weight": 6,

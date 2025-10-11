@@ -127,7 +127,7 @@ class PartyState(PygameMenuState):
                     _label = monster.name.upper()
                     bar: Any = menu.add.progress_bar(
                         f"{_label:<10}",
-                        default=monster.bond,
+                        default=monster.bond_handler.bond,
                         font_size=self.font_type.smaller,
                         align=locals.ALIGN_LEFT,
                         progress_text_enabled=False,

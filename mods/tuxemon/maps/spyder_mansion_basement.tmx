@@ -256,28 +256,28 @@
    <properties>
     <property name="act1" value="char_talk spyder_basement_bobby,post_battle_lose"/>
     <property name="behav1" value="talk spyder_basement_bobby"/>
-    <property name="cond1" value="is variable_set basementbobby:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_basement_bobby"/>
    </properties>
   </object>
   <object id="67" name="Post Talk Coralli" type="event" x="320" y="112" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_basement_coralli,post_battle_lose"/>
     <property name="behav1" value="talk spyder_basement_coralli"/>
-    <property name="cond1" value="is variable_set basementcoralli:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_basement_coralli"/>
    </properties>
   </object>
   <object id="68" name="Post Talk Catholi" type="event" x="176" y="240" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_basement_catholi,post_battle_lose"/>
     <property name="behav1" value="talk spyder_basement_catholi"/>
-    <property name="cond1" value="is variable_set basementcatholi:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_basement_catholi"/>
    </properties>
   </object>
   <object id="69" name="Post Talk Roger" type="event" x="240" y="240" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_basement_roger,post_battle_lose"/>
     <property name="behav1" value="talk spyder_basement_roger"/>
-    <property name="cond1" value="is variable_set basementroger:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_basement_roger"/>
    </properties>
   </object>
  </objectgroup>

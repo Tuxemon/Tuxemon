@@ -297,6 +297,17 @@ class CombatSession:
         else:
             raise ValueError(f"Unexpected combat_type: {self.combat_type}")
 
+    def get_message_swap(self, character: NPC, monster: Monster) -> str:
+        """Determines and returns the appropriate alert message for combat start."""
+        params = {"target": monster.name.upper()}
+        if self.combat_type is CombatType.TRAINER:
+            params["user"] = character.name.upper()
+            return T.format("combat_swap", params)
+        elif self.combat_type is CombatType.HORDE:
+            return T.format("combat_horde_swap", params)
+        else:
+            raise ValueError(f"Unexpected combat_type: {self.combat_type}")
+
     # Prize management
     @property
     def prize(self) -> int:

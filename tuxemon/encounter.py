@@ -151,12 +151,16 @@ class Encounter:
         return None
 
     def get_horde_encounter(
-        self,
-        character: NPC,
+        self, character: NPC, total_prob: Optional[float] = None
     ) -> Optional[list[tuple[EncounterItemModel, int, Optional[str]]]]:
         """
         Public method to get a horde encounter.
         """
+        if total_prob is not None:
+            roll = random.uniform(0, 100)
+            if roll > total_prob:
+                return None
+
         if self.zone.encounter_type != EncounterType.HORDE:
             return None
 

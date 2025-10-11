@@ -183,14 +183,14 @@
    <properties>
     <property name="act1" value="char_talk spyder_wayfarer1_james,post_battle_lose"/>
     <property name="behav1" value="talk spyder_wayfarer1_james"/>
-    <property name="cond1" value="is variable_set wayfarer1james:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_wayfarer1_james"/>
    </properties>
   </object>
   <object id="52" name="Post Talk Bravo" type="event" x="192" y="16" width="16" height="16">
    <properties>
     <property name="act10" value="char_talk spyder_wayfarer1_bravo,post_battle_lose"/>
     <property name="behav1" value="talk spyder_wayfarer1_bravo"/>
-    <property name="cond1" value="is variable_set wayfarer1bravo:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_wayfarer1_bravo"/>
    </properties>
   </object>
  </objectgroup>

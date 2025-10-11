@@ -3,86 +3,11 @@
 from __future__ import annotations
 
 import logging
-from collections.abc import Mapping
-from dataclasses import dataclass
-from typing import TYPE_CHECKING, Any, Optional
+from typing import Optional
 
-if TYPE_CHECKING:
-    from tuxemon.npc import NPC
+from tuxemon.money.bill import BillEntry
 
 logger = logging.getLogger(__name__)
-
-
-@dataclass
-class BillEntry:
-    amount: int = 0
-    interest_rate: Optional[float] = None
-    late_fee: Optional[int] = None
-    share_rate: Optional[float] = None
-
-    def get_state(self) -> dict[str, Any]:
-        state: dict[str, Any] = {"amount": self.amount}
-        if self.interest_rate is not None:
-            state["interest_rate"] = self.interest_rate
-        if self.late_fee is not None:
-            state["late_fee"] = self.late_fee
-        return state
-
-    def apply_interest(self) -> None:
-        """Apply interest based on current amount."""
-        if (
-            self.amount > 0
-            and self.interest_rate is not None
-            and self.interest_rate > 0
-        ):
-            interest = int(self.amount * self.interest_rate)
-            self.amount += interest
-
-    def apply_late_fee(self) -> None:
-        """Apply a flat late fee."""
-        if self.amount > 0 and self.late_fee is not None and self.late_fee > 0:
-            self.amount += self.late_fee
-
-    def apply_share(self, earnings: int) -> int:
-        """
-        Deduct a share of earnings and apply it to the bill.
-        Returns the remaining earnings after deduction.
-        """
-        if (
-            self.amount > 0
-            and self.share_rate is not None
-            and self.share_rate > 0
-        ):
-            deduction = int(earnings * self.share_rate)
-            self.amount -= deduction
-            if self.amount < 0:
-                self.amount = 0
-            return earnings - deduction
-        return earnings
-
-
-class MoneyController:
-    """Manages the money for an NPC."""
-
-    def __init__(self, npc: NPC) -> None:
-        self.npc = npc
-        self.money_manager = MoneyManager()
-
-    def save(self) -> Mapping[str, Any]:
-        """Prepares a dictionary of the money manager to be saved to a file."""
-        return encode_money(self.money_manager)
-
-    def load(self, save_data: Mapping[str, Any]) -> None:
-        """Recreates money manager from saved data."""
-        self.money_manager = decode_money(save_data["money"])
-
-    def transfer_money_to(self, amount: int, recipient: NPC) -> None:
-        self.money_manager.remove_money(amount)
-        recipient.money_controller.money_manager.add_money(amount)
-
-    def transfer_bank_to(self, amount: int, recipient: NPC) -> None:
-        self.money_manager.withdraw_from_bank(amount)
-        recipient.money_controller.money_manager.deposit_to_bank(amount)
 
 
 class MoneyManager:
@@ -241,26 +166,3 @@ class MoneyManager:
             if bill.amount <= 0:
                 del self.bills[bill_name]
         return earnings
-
-
-def decode_money(json_data: Mapping[str, Any]) -> MoneyManager:
-    money_manager = MoneyManager()
-    if json_data:
-        money_manager.money = json_data.get("money", 0)
-        money_manager.bank_account = json_data.get("bank_account", 0)
-        bills = json_data.get("bills", {})
-        for bill_name, bill_data in bills.items():
-            entry = BillEntry(**bill_data)
-            money_manager.bills[bill_name] = entry
-    return money_manager
-
-
-def encode_money(money_manager: MoneyManager) -> Mapping[str, Any]:
-    return {
-        "money": money_manager.money,
-        "bank_account": money_manager.bank_account,
-        "bills": {
-            bill_name: bill_entry.get_state()
-            for bill_name, bill_entry in money_manager.bills.items()
-        },
-    }

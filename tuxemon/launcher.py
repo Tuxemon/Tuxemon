@@ -2,17 +2,19 @@
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import logging
 import random
 from typing import TYPE_CHECKING, Optional
 
 from tuxemon.constants.asset_loader import fetch_asset
 from tuxemon.player import Player
-from tuxemon.time_handler import today_ordinal
 
 if TYPE_CHECKING:
     from tuxemon.client import LocalPygameClient
-    from tuxemon.db import ModData
+    from tuxemon.database.config import ModMetadata
     from tuxemon.session import Session
+
+logger = logging.getLogger(__name__)
 
 
 class GameLauncher:
@@ -21,19 +23,17 @@ class GameLauncher:
     Handles map loading, spawn position, state transitions, and initial game variables.
     """
 
-    def __init__(self, client: LocalPygameClient, db: ModData) -> None:
+    def __init__(self, client: LocalPygameClient) -> None:
         """
         Parameters:
             client: The game client responsible for managing states and events.
-            db: ModData instance providing access to mod metadata.
         """
         self.client = client
-        self.db = db
 
     def launch(
         self,
         session: Session,
-        mod_name: str,
+        meta: ModMetadata,
         remove_states: Optional[list[str]] = None,
     ) -> None:
         """
@@ -41,17 +41,14 @@ class GameLauncher:
 
         Parameters:
             session: The active game session object.
-            mod_name: The name (folder) of the mod to launch.
+            meta: The name (folder) of the mod to launch.
             remove_states: Optional list of state names to remove after launch.
         """
-        destination = self.db.require_mod_attribute(mod_name, "starting_map")
-        tile_pos = self.db.require_mod_attribute(mod_name, "starting_position")
-        map_path = fetch_asset("maps", destination)
+        logger.info(f"Launching mod '{meta.name}' version {meta.version}")
 
-        player_slugs: list[str] = self.db.require_mod_attribute(
-            mod_name, "starting_players"
-        )
-        player_slug = random.choice(player_slugs)
+        tile_pos = meta.starting_position
+        map_path = fetch_asset("maps", meta.starting_map)
+        player_slug = random.choice(meta.starting_players)
 
         Player.create(session, slug=player_slug)
 
@@ -62,32 +59,24 @@ class GameLauncher:
         execute = self.client.event_engine
 
         # Teleport the player to the initial position
-        params = ["player", map_path, tile_pos[0], tile_pos[1]]
-        execute.execute_action("teleport", params)
+        teleport = ["player", map_path, tile_pos[0], tile_pos[1]]
+        execute.execute_action("teleport", teleport)
 
         # Set money
-        money_range: list[int] = self.db.require_mod_attribute(
-            mod_name, "starting_money"
-        )
-        starting_money = random.randint(money_range[0], money_range[1])
+        starting_money = random.randint(*meta.starting_money)
         execute.execute_action("set_money", ["player", starting_money])
 
         # Set name
-        names: list[str] = self.db.require_mod_attribute(
-            mod_name, "starting_names"
+        name = (
+            meta.starting_names[0]
+            if len(meta.starting_names) == 1
+            else random.choice(meta.starting_names)
         )
-        if not names:
-            raise ValueError(f"'starting_names' is empty")
-        name = names[0] if len(names) == 1 else random.choice(names)
         execute.execute_action("set_player_name", [name])
 
         # Set template
-        sprite = self.db.require_mod_attribute(mod_name, "sprite")
-        combat = self.db.require_mod_attribute(mod_name, "combat_front")
-        execute.execute_action("set_template", ["player", sprite, combat])
-
-        # Record session metadata
-        session.player.game_variables.set("date_start_game", today_ordinal())
+        template = ["player", meta.sprite, meta.combat_front]
+        execute.execute_action("set_template", template)
 
         # Optionally clean up states
         if remove_states:

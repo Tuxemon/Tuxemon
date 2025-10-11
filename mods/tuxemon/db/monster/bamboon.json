@@ -84,10 +84,10 @@
     "wood",
     "heroic"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 28,
   "height": 120,
   "weight": 40,

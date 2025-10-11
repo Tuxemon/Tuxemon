@@ -75,10 +75,10 @@
   "types": [
     "fire"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 145,
   "height": 1200,
   "weight": 10000,

@@ -856,6 +856,8 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 
 * ["Boost Speed"](https://wiki.tuxemon.org/File:Boost_5.png) Adapted by Sanglorian from a sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
 
+* ["Drone"](https://wiki.tuxemon.org/File:Pixel_icons_by_oceansdream16.png) [http://opengameart.org/content/various-inventory-24-pixel-icon-set CC BY 3.0 on OGA, from OceansDream]
+
 * ["Raise Armour"](https://wiki.tuxemon.org/File:Diamond_-_Clint_Bellanger.png) [http://opengameart.org/content/gem-icons CC BY-SA 3.0, on OpenGameArt]
 
 * ["Raise Dodge"](https://wiki.tuxemon.org/File:Opal_-_Clint_Bellanger.png) [http://opengameart.org/content/gem-icons CC BY-SA 3.0, on OpenGameArt]
@@ -883,6 +885,8 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 * ["Mystery Tea"](https://wiki.tuxemon.org/File:Tea_2.png) [https://opengameart.org/content/infusions-icons CC0]
 
 * ["Tea"](https://wiki.tuxemon.org/File:Tea_1.png) [https://opengameart.org/content/infusions-icons CC0]
+
+* ["Escape Key"](https://wiki.tuxemon.org/File:Item4.png) adapted by Sanglorian from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
 * ["Tuxeball Ancient"](https://wiki.tuxemon.org/File:Tuxeball_ancient.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
@@ -937,6 +941,8 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 * ["Map App"](https://wiki.tuxemon.org/File:Iridescent_item_5.png) modified by Sanglorian from original sprites by Ocean. [http://opengameart.org/content/oceans-icons CC BY 3.0]
 
 * ["Spyder Pass"](https://wiki.tuxemon.org/File:Item5.png) adapted by Sanglorian from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Bivouac"](https://wiki.tuxemon.org/File:Pixel_icons_by_oceansdream4.png) [http://opengameart.org/content/various-inventory-24-pixel-icon-set CC BY 3.0 on OGA, from OceansDream]
 
 * ["Tuxepedia App"](https://wiki.tuxemon.org/File:Tuxepedia.png) [https://github.com/Tuxemon/Tuxemon/issues/452 Original source]
 
@@ -1840,9 +1846,6 @@ Adapted by Jaskrendix from a sprite by Henrique Lazarini from the CC0 "496 pixel
 
 * ["icon_stuck.png"](https://wiki.tuxemon.org/File:Slow.png)
 [https://opengameart.org/content/rpg-ui-icons CC0 on OGA]
-
-* ["icon_tired.png"](https://wiki.tuxemon.org/File:Tired.png)
-[https://opengameart.org/content/smoke-fire-animated-particle-16x16 CC BY in OGA]
 
 * ["icon_wasting.png"](https://wiki.tuxemon.org/File:Poison-icon.png)
 Unknown artist. Found in Tuxemon code. 

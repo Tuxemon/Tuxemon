@@ -86,9 +86,9 @@
   "types": [
     "sky"
   ],
-  "possible_genders": [
-    "neuter"
-  ],
+  "gender_weights": {
+    "neuter": 1.0
+  },
   "txmn_id": 232,
   "height": 78,
   "weight": 1,

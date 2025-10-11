@@ -4,9 +4,9 @@
   "animation": "explosion_dusty_96",
   "effects": [
     {
-      "type": "give",
+      "type": "remove",
       "parameters": [
-        "tired",
+        "positive",
         "own_monster"
       ]
     },

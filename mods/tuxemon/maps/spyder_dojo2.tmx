@@ -265,35 +265,35 @@
    <properties>
     <property name="act1" value="char_talk spyder_dojo_iroh,post_battle_lose"/>
     <property name="behav1" value="talk spyder_dojo_iroh"/>
-    <property name="cond1" value="is variable_set dojoiroh:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_dojo_iroh"/>
    </properties>
   </object>
   <object id="34" name="Post Talk Yangchen" type="event" x="144" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_dojo_yangchen,post_battle_lose"/>
     <property name="behav1" value="talk spyder_dojo_yangchen"/>
-    <property name="cond1" value="is variable_set dojoyangchen:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_dojo_yangchen"/>
    </properties>
   </object>
   <object id="35" name="Post Talk Kataro" type="event" x="160" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_dojo_kataro,post_battle_lose"/>
     <property name="behav1" value="talk spyder_dojo_kataro"/>
-    <property name="cond1" value="is variable_set dojokataro:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_dojo_kataro"/>
    </properties>
   </object>
   <object id="36" name="Post Talk Sokka" type="event" x="176" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_dojo_sokka,post_battle_lose"/>
     <property name="behav1" value="talk spyder_dojo_sokka"/>
-    <property name="cond1" value="is variable_set dojosokka:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_dojo_sokka"/>
    </properties>
   </object>
   <object id="37" name="Post Talk Toph" type="event" x="192" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_dojo_toph,post_battle_lose"/>
     <property name="behav1" value="talk spyder_dojo_toph"/>
-    <property name="cond1" value="is variable_set dojotoph:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_dojo_toph"/>
    </properties>
   </object>
   <object id="39" name="Remove Wan" type="event" x="336" y="144" width="16" height="16">

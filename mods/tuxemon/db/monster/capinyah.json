@@ -92,10 +92,10 @@
   "types": [
     "heroic"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 103,
   "height": 160,
   "weight": 55,

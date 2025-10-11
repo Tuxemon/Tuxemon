@@ -66,10 +66,10 @@
     "earth",
     "venom"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 189,
   "height": 155,
   "weight": 80,

@@ -94,6 +94,7 @@
     <property name="act23" value="set_variable goodbyeoldknight:yes"/>
     <property name="act24" value="remove_npc knight3"/>
     <property name="act25" value="unlock_controls"/>
+    <property name="act30" value="set_teleport_faint player,healing_center.tmx,6,7"/>
     <property name="cond10" value="is variable_set thewifedidspeak:yes"/>
     <property name="cond20" value="not variable_set goodbyeoldknight:yes"/>
     <property name="cond30" value="not variable_set goodbyeoldknight:finallydone"/>

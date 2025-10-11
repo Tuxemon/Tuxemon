@@ -100,10 +100,10 @@
   "types": [
     "metal"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 160,
   "height": 162,
   "weight": 145,

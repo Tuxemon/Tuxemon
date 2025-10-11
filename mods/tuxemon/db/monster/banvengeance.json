@@ -99,9 +99,9 @@
     "wood",
     "shadow"
   ],
-  "possible_genders": [
-    "neuter"
-  ],
+  "gender_weights": {
+    "neuter": 1.0
+  },
   "txmn_id": 357,
   "height": 800,
   "weight": 354,

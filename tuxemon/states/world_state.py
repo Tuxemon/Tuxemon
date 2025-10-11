@@ -18,7 +18,6 @@ from tuxemon import networking, prepare
 from tuxemon.camera.camera import Camera
 from tuxemon.db import Direction
 from tuxemon.faction.manager import FactionManager
-from tuxemon.map.map_view import MapRenderer
 from tuxemon.platform.const import intentions
 from tuxemon.platform.events import PlayerInput
 from tuxemon.platform.tools import translate_input_event
@@ -60,7 +59,6 @@ class WorldState(State):
         self.player = self.session.player
         self.camera = Camera(self.player, self.client.boundary)
         self.client.camera_manager.add_camera(self.camera)
-        self.map_renderer = MapRenderer(self.client)
         self.faction_manager = FactionManager()
 
         if map_name:
@@ -128,7 +126,7 @@ class WorldState(State):
         super().update(time_delta)
         self.client.npc_manager.update_npcs(time_delta, self.client)
         self.client.npc_manager.update_npcs_off_map(time_delta, self.client)
-        self.map_renderer.update(time_delta)
+        self.client.map_renderer.update(time_delta)
 
         logger.debug("*** Game Loop Started ***")
 
@@ -141,7 +139,9 @@ class WorldState(State):
         """
         if self.client.map_manager.current_map is None:
             raise ValueError("Unable to draw the game world.")
-        self.map_renderer.draw(surface, self.client.map_manager.current_map)
+        self.client.map_renderer.draw(
+            surface, self.client.map_manager.current_map
+        )
         self.transition_manager.draw(surface)
 
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:

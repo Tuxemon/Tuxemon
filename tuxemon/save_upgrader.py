@@ -58,7 +58,8 @@ Notes:
 
 SAVE_VERSION = 2
 
-
+# "evolution_registry": ("npc_state", "world_state"),
+FIELD_MIGRATION_MAP: dict[str, tuple[str, str]] = {}
 MONSTER_RENAMES: dict[str, str] = {"axylightl": "axolightl"}  # old: new
 TECHNIQUE_RENAMES: dict[str, str] = {"venom": "caustic_spray"}  # old: new
 
@@ -83,6 +84,23 @@ def apply_universal_fixes(npc_state: dict[str, Any]) -> None:
     _handle_change_tech_slug(npc_state)
 
 
+def apply_field_migrations(save_data: dict[str, Any]) -> None:
+    """
+    Migrates fields between sections of the save data based on FIELD_MIGRATION_MAP.
+
+    This function moves specific fields from one nested section (e.g., "npc_state")
+    to another (e.g., "world_state" or "session_state") as defined in the
+    FIELD_MIGRATION_MAP dictionary. It ensures that fields are relocated to their
+    appropriate structural location in the updated save format.
+    """
+    for field, (source, target) in FIELD_MIGRATION_MAP.items():
+        source_dict = save_data.get(source, {})
+        target_dict = save_data.setdefault(target, {})
+
+        if field in source_dict:
+            target_dict[field] = source_dict.pop(field)
+
+
 VERSION_UPGRADES: dict[int, Callable[[dict[str, Any]], None]] = {
     0: upgrade_from_v0_to_v1,
     1: upgrade_from_v1_to_v2,
@@ -104,6 +122,7 @@ def upgrade_save(save_data: dict[str, Any]) -> SaveData:
             upgrade_func(save_data)
 
     save_data["version"] = SAVE_VERSION
+    apply_field_migrations(save_data)
     apply_universal_fixes(save_data["npc_state"])
     return save_data  # type: ignore[return-value]
 

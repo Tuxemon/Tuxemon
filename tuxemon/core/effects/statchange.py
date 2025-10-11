@@ -124,7 +124,7 @@ class StatChangeEffect(CoreEffect):
                     else:
                         base = getattr(host.base_stats, stat_slug)
 
-                    current = target.return_stat(StatType(stat_slug))
+                    current = host.return_stat(StatType(stat_slug))
                     old_step = (current - base) / base
                     total_step = max(
                         -max_step,

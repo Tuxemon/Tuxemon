@@ -106,7 +106,8 @@
   "height": 150,
   "weight": 112,
   "sounds": {
-    "combat_call": "sound_swords_clash"
+    "combat_call": "sound_swords_clash",
+    "faint_call": "sound_swords_clash_faint"
   },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,

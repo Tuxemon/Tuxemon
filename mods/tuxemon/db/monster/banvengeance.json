@@ -106,7 +106,8 @@
   "height": 800,
   "weight": 354,
   "sounds": {
-    "combat_call": "sound_monster_16"
+    "combat_call": "sound_monster_16",
+    "faint_call": "sound_monster_16_faint"
   },
   "catch_rate": 35.0,
   "lower_catch_resistance": 0.9,

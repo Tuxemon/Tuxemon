@@ -99,7 +99,8 @@
   "height": 183,
   "weight": 295,
   "sounds": {
-    "combat_call": "sound_weird_09"
+    "combat_call": "sound_weird_09",
+    "faint_call": "sound_weird_09_faint"
   },
   "catch_rate": 35.0,
   "lower_catch_resistance": 0.95,

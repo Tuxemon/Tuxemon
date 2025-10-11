@@ -76,7 +76,8 @@
   "height": 145,
   "weight": 45,
   "sounds": {
-    "combat_call": "sound_spit_01"
+    "combat_call": "sound_spit_01",
+    "faint_call": "sound_spit_01_faint"
   },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.9,

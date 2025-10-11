@@ -88,7 +88,8 @@
   "height": 26,
   "weight": 2,
   "sounds": {
-    "combat_call": "sound_crow_caw"
+    "combat_call": "sound_crow_caw",
+    "faint_call": "sound_crow_caw_faint"
   },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.9,

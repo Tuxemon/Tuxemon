@@ -305,12 +305,12 @@ class Monster:
         # get sound slugs for this monster, defaulting to a generic type-based sound
         self.combat_call = (
             results.sounds.combat_call
-            if results.sounds
+            if results.sounds.combat_call
             else f"sound_{self.types.primary.slug}_call"
         )
         self.faint_call = (
             results.sounds.faint_call
-            if results.sounds
+            if results.sounds.faint_call
             else f"sound_{self.types.primary.slug}_faint"
         )
 

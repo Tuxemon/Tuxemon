@@ -97,7 +97,8 @@
   "height": 180,
   "weight": 85,
   "sounds": {
-    "combat_call": "sound_ice"
+    "combat_call": "sound_ice",
+    "faint_call": "sound_ice_faint"
   },
   "catch_rate": 35.0,
   "lower_catch_resistance": 0.85,

@@ -2361,6 +2361,13 @@ msgstr "The user emits a high-pitched cry that distracts the opponent."
 msgid "cat_calling"
 msgstr "Cat Calling"
 
+msgid "caustic_spray_description"
+msgstr ""
+"The user secretes a corrosive acid that burns the opponent upon contact."
+
+msgid "caustic_spray"
+msgstr "Caustic Spray"
+
 msgid "cavity_description"
 msgstr ""
 "The user strikes with pinpoint accuracy, targeting the opponent's weak "
@@ -3768,13 +3775,6 @@ msgstr ""
 
 msgid "undertaker"
 msgstr "Undertaker"
-
-msgid "venom_description"
-msgstr ""
-"The user secretes a corrosive acid that burns the opponent upon contact."
-
-msgid "venom"
-msgstr "Venom"
 
 msgid "venomous_tentacle_description"
 msgstr ""
@@ -8730,6 +8730,9 @@ msgstr "Shadow"
 
 msgid "sky"
 msgstr "Sky"
+
+msgid "venom"
+msgstr "Venom"
 
 # Monster tastes
 msgid "taste"

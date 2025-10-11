@@ -11,7 +11,6 @@ from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.map.map import get_direction
 from tuxemon.session import Session
-from tuxemon.states.world_state import WorldState
 
 logger = logging.getLogger(__name__)
 
@@ -55,11 +54,11 @@ class CharFaceAction(EventAction):
 
         # If we're doing a transition, only change the player's facing when
         # we've reached the apex of the transition.
-        if character.is_player:
-            world_state = session.client.get_state_by_name(WorldState)
-            if world_state.transition_manager.in_transition:
-                world_state.teleporter.delayed_teleport.facing = direction
-            else:
-                character.set_facing(direction)
+        teleport_queue = session.client.teleporter.teleport_queue
+        in_transition = session.world.transition_manager.in_transition
+        if character.is_player and in_transition:
+            next_request = teleport_queue.peek()
+            if next_request:
+                next_request.facing = direction
         else:
             character.set_facing(direction)

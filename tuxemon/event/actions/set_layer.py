@@ -8,7 +8,6 @@ from typing import Optional, final
 from tuxemon.event.eventaction import EventAction
 from tuxemon.graphics import string_to_colorlike
 from tuxemon.session import Session
-from tuxemon.states.world_state import WorldState
 
 
 @final
@@ -37,5 +36,4 @@ class SetLayerAction(EventAction):
 
     def start(self, session: Session) -> None:
         rgb = string_to_colorlike(self.rgb) if self.rgb else None
-        world = session.client.get_state_by_name(WorldState)
-        world.map_renderer.layer_color = rgb
+        session.client.map_renderer.layer_color = rgb

@@ -51,12 +51,30 @@
   ],
   "history": [
     {
-      "mon_slug": "agnite",
-      "evo_stage": "basic"
+      "slug": "agnidon",
+      "stage": "stage1",
+      "evolves_from": [
+        "agnite"
+      ],
+      "evolves_into": [
+        "agnigon"
+      ]
     },
     {
-      "mon_slug": "agnigon",
-      "evo_stage": "stage2"
+      "slug": "agnite",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "agnidon"
+      ]
+    },
+    {
+      "slug": "agnigon",
+      "stage": "stage2",
+      "evolves_from": [
+        "agnidon"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [
@@ -76,13 +94,17 @@
   "types": [
     "fire"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 14,
   "height": 320,
   "weight": 230,
+  "sounds": {
+    "combat_call": "sound_bite_cartoon_style",
+    "faint_call": "sound_bite_cartoon_style_faint"
+  },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.9,
   "upper_catch_resistance": 1.15

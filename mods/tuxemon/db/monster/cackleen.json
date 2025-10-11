@@ -44,12 +44,30 @@
   ],
   "history": [
     {
-      "mon_slug": "brumi",
-      "evo_stage": "stage1"
+      "slug": "cackleen",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "brumi"
+      ]
     },
     {
-      "mon_slug": "bewhich",
-      "evo_stage": "stage2"
+      "slug": "brumi",
+      "stage": "stage1",
+      "evolves_from": [
+        "cackleen"
+      ],
+      "evolves_into": [
+        "bewhich"
+      ]
+    },
+    {
+      "slug": "bewhich",
+      "stage": "stage2",
+      "evolves_from": [
+        "brumi"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [
@@ -68,12 +86,16 @@
     "shadow",
     "cosmic"
   ],
-  "possible_genders": [
-    "neuter"
-  ],
+  "gender_weights": {
+    "neuter": 1.0
+  },
   "txmn_id": 340,
   "height": 91,
   "weight": 40,
+  "sounds": {
+    "combat_call": "sound_cute_04",
+    "faint_call": "sound_cute_04_faint"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

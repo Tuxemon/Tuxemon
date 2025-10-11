@@ -31,8 +31,8 @@ lookup_cache_npc: dict[str, NpcModel] = {}
 @dataclass
 class RandomBattleAction(EventAction):
     """
-    Start random battle with a random npc with a determined
-    number of monster in a certain range of levels.
+    Starts a random battle with a randomly chosen NPC and a party of randomly
+    generated monsters within a specified level range.
 
     Script usage:
         .. code-block::
@@ -40,9 +40,9 @@ class RandomBattleAction(EventAction):
             random_battle nr_txmns,min_level,max_level
 
     Script parameters:
-        nr_txmns: Number of tuxemon (1 to 6).
-        min_level: Minimum level of the party.
-        max_level: Maximum level of the party.
+        nr_txmns: The number of Tuxemon in the opponent's party (1 to 6).
+        min_level: The minimum level for the opponent's monsters.
+        max_level: The maximum level for the opponent's monsters.
     """
 
     name = "random_battle"
@@ -51,37 +51,51 @@ class RandomBattleAction(EventAction):
     max_level: int
 
     def start(self, session: Session) -> None:
+        self._validate_parameters()
+        self._prepare_opponent(session)
+        self._start_battle(session)
+
+    def _validate_parameters(self) -> None:
+        if not (1 <= self.nr_txmns <= prepare.PARTY_LIMIT):
+            raise ValueError(
+                f"Party size {self.nr_txmns} must be between 1 and {prepare.PARTY_LIMIT}"
+            )
+        if not (1 <= self.max_level <= prepare.MAX_LEVEL):
+            raise ValueError(
+                f"Max level {self.max_level} must be between 1 and {prepare.MAX_LEVEL}"
+            )
+
+    def _prepare_opponent(self, session: Session) -> None:
         if not lookup_cache_npc or not lookup_cache_mon:
             _lookup()
 
-        # Validate party size and max level
-        if not (1 <= self.nr_txmns <= prepare.PARTY_LIMIT):
-            logger.error(
-                f"Party size {self.nr_txmns} must be between 1 and {prepare.PARTY_LIMIT}"
+        if not lookup_cache_npc:
+            raise ValueError("No valid NPCs found to start a random battle.")
+        if not lookup_cache_mon:
+            raise ValueError(
+                "No valid monsters found to start a random battle."
             )
-            return
-        if not (1 <= self.max_level <= prepare.MAX_LEVEL):
-            logger.error(
-                f"Max level {self.max_level} must be between 1 and {prepare.MAX_LEVEL}"
-            )
-            return
 
-        npc_filters = list(lookup_cache_npc.values())
-        self.opponent = random.choice(npc_filters)
-
-        event_engine = session.client.event_engine
-        event_engine.execute_action(
+        self.opponent = random.choice(list(lookup_cache_npc.values()))
+        session.client.event_engine.execute_action(
             "create_npc", [self.opponent.slug, 0, 0], True
         )
 
+    def _start_battle(self, session: Session) -> None:
         npc = get_npc(session, self.opponent.slug)
         if npc is None:
-            logger.error(f"{self.opponent.slug} not found")
+            logger.error(f"{self.opponent.slug} not found after creation.")
             return
 
         monster_filters = list(lookup_cache_mon.values())
-        monsters = random.sample(monster_filters, self.nr_txmns)
-        for monster in monsters:
+
+        if self.nr_txmns > len(monster_filters):
+            logger.error(
+                "Not enough monsters available to form the requested party."
+            )
+
+        monsters_to_add = random.sample(monster_filters, self.nr_txmns)
+        for monster in monsters_to_add:
             level = random.randint(self.min_level, self.max_level)
             current_monster = Monster.spawn_base(monster.slug, level)
             current_monster.set_capture(today_ordinal())
@@ -90,11 +104,12 @@ class RandomBattleAction(EventAction):
             npc.party.add_monster(current_monster, len(npc.monsters))
 
         player = session.player
+        if not (check_battle_legal(player) and check_battle_legal(npc)):
+            logger.warning("Battle is not legal, won't start.")
+            return
+
         env_slug = player.game_variables.get("environment", "grass")
         env = EnvironmentModel.lookup(env_slug, db)
-        if not (check_battle_legal(player) and check_battle_legal(npc)):
-            logger.warning("Battle is not legal, won't start")
-            return
 
         logger.info(f"Starting battle with '{npc.name}'!")
         context = CombatContext(
@@ -105,7 +120,6 @@ class RandomBattleAction(EventAction):
             battle_mode=BattleMode.SINGLE,
         )
         session.client.push_state("CombatState", context=context)
-
         session.client.event_engine.execute_action(
             "play_music", [env.battle_music], True
         )
@@ -117,20 +131,22 @@ class RandomBattleAction(EventAction):
             self.stop()
 
     def cleanup(self, session: Session) -> None:
-        npc = None
-        session.client.npc_manager.remove_npc(self.opponent.slug)
+        if self.opponent:
+            session.client.npc_manager.remove_npc(self.opponent.slug)
 
 
 def _lookup() -> None:
-    monsters = list(db.database["monster"])
-    npcs = list(db.database["npc"])
+    global lookup_cache_mon, lookup_cache_npc
 
-    for mon in monsters:
-        _mon = MonsterModel.lookup(mon, db)
-        if _mon.txmn_id > 0 and _mon.randomly:
-            lookup_cache_mon[mon] = _mon
+    lookup_cache_mon = {
+        mon_slug: mon_model
+        for mon_slug in db.database["monster"]
+        if (mon_model := MonsterModel.lookup(mon_slug, db)).txmn_id > 0
+        and mon_model.randomly
+    }
 
-    for npc in npcs:
-        _npc = NpcModel.lookup(npc, db)
-        if not _npc.monsters:
-            lookup_cache_npc[npc] = _npc
+    lookup_cache_npc = {
+        npc_slug: npc_model
+        for npc_slug in db.database["npc"]
+        if not (npc_model := NpcModel.lookup(npc_slug, db)).monsters
+    }

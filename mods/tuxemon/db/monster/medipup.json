@@ -63,16 +63,39 @@
   ],
   "history": [
     {
-      "mon_slug": "doctsky",
-      "evo_stage": "stage1"
+      "slug": "medipup",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "doctsky"
+      ]
     },
     {
-      "mon_slug": "askylpaws",
-      "evo_stage": "stage2"
+      "slug": "doctsky",
+      "stage": "stage1",
+      "evolves_from": [
+        "medipup"
+      ],
+      "evolves_into": [
+        "askylpaws",
+        "erythroskyte"
+      ]
     },
     {
-      "mon_slug": "erythroskyte",
-      "evo_stage": "stage2"
+      "slug": "askylpaws",
+      "stage": "stage2",
+      "evolves_from": [
+        "doctsky"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "erythroskyte",
+      "stage": "stage2",
+      "evolves_from": [
+        "doctsky"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [
@@ -86,13 +109,17 @@
   "types": [
     "normal"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 281,
   "height": 30,
   "weight": 3,
+  "sounds": {
+    "combat_call": "sound_cute_01",
+    "faint_call": "sound_cute_01_faint"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

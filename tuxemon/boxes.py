@@ -16,7 +16,7 @@ from tuxemon.states.pc_locker import HIDDEN_LIST_LOCKER
 if TYPE_CHECKING:
     from tuxemon.item.item import Item
     from tuxemon.monster import Monster
-    from tuxemon.npc import NPC, NPCState
+    from tuxemon.npc import NPC
 
 logger = logging.getLogger(__name__)
 
@@ -349,7 +349,7 @@ class ItemBoxes(BoxCollection):
             for box_id, items in self.item_boxes.items()
         }
 
-    def load(self, save_data: NPCState) -> None:
+    def load(self, save_data: Mapping[str, Any]) -> None:
         """
         Loads the item boxes from a saved state.
         """
@@ -524,7 +524,7 @@ class MonsterBoxes(BoxCollection):
             for box_id, monsters in self.monster_boxes.items()
         }
 
-    def load(self, char: NPC, save_data: NPCState) -> None:
+    def load(self, char: NPC, save_data: Mapping[str, Any]) -> None:
         """
         Loads the monster boxes from a saved state.
         """

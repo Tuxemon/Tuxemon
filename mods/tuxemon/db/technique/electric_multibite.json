@@ -26,7 +26,7 @@
   "power": 1.2,
   "range": "touch",
   "recharge": 3,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_bite",
   "slug": "electric_multibite",
   "sort": "damage",
   "modifiers": [],

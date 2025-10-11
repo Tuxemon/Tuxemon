@@ -14,8 +14,8 @@ import typing
 from collections.abc import Callable, Iterable, Mapping, Sequence
 from dataclasses import fields
 from enum import Enum
+from functools import lru_cache
 from operator import add, eq, floordiv, ge, gt, le, lt, mul, ne, sub
-from pathlib import Path
 from typing import (
     TYPE_CHECKING,
     Any,
@@ -81,21 +81,6 @@ class NamedTupleProtocol(Protocol):
 
 
 NamedTupleTypeVar = TypeVar("NamedTupleTypeVar", bound=NamedTupleProtocol)
-
-
-def extract_mod_name(map_path: str) -> str:
-    """
-    Extracts the mod name from a map path. Assumes the map is located in a
-    'mods/<mod_name>/...' structure and returns the folder name immediately
-    following 'mods'. If the structure is invalid, a ValueError is raised
-    instead of returning a fallback.
-    """
-    path = Path(map_path)
-    try:
-        mods_index = path.parts.index("mods")
-        return path.parts[mods_index + 1]
-    except (ValueError, IndexError) as e:
-        raise ValueError(f"Invalid mod path structure: {path}") from e
 
 
 def get_cell_coordinates(
@@ -202,6 +187,7 @@ def open_dialog(
     position: DialogPosition = DialogPosition.BOTTOM,
     target_coords: Optional[Union[tuple[int, int], Rect]] = None,
     custom_rect: Optional[Rect] = None,
+    on_complete: Optional[Callable[[], None]] = None,
 ) -> State:
     """
     Open a dialog with the standard window size or a custom size/position.
@@ -231,7 +217,7 @@ def open_dialog(
         dialog_rect = custom_rect
     else:
         dialog_rect = calc_dialog_rect(
-            client.screen.get_rect(), position, target_coords=target_coords
+            prepare.SCREEN_RECT, position, target_coords=target_coords
         )
 
     return client.push_state(
@@ -240,6 +226,7 @@ def open_dialog(
         avatar=avatar,
         rect=dialog_rect,
         box_style=box_style,
+        on_complete=on_complete,
     )
 
 
@@ -379,21 +366,29 @@ def get_types_tuple(
         return (param_type,)
 
 
+@lru_cache(maxsize=None)
+def get_cached_type_info(cls: type) -> dict[str, tuple[type, ...]]:
+    type_hints = typing.get_type_hints(cls)
+    return {
+        field.name: tuple(
+            t
+            for t in get_types_tuple(type_hints[field.name])
+            if isinstance(t, type)
+        )
+        for field in fields(cls)
+        if field.init
+    }
+
+
 def cast_dataclass_parameters(self: Any) -> None:
     """
     Takes a dataclass object and casts its __init__ values to the correct type
     """
-    type_hints = typing.get_type_hints(self.__class__)
-    for field in fields(self):
-        if field.init:
-            field_name = field.name  # e.g "map_name"
-            type_hint = type_hints[field_name]  # e.g. Optional[str]
-            constructors = get_types_tuple(
-                type_hint
-            )  # e.g. (<class 'str'>, <class 'NoneType'>)
-            old_value = getattr(self, field_name)
-            new_value = cast_value(((constructors, field_name), old_value))
-            setattr(self, field_name, new_value)
+    field_info = get_cached_type_info(self.__class__)
+    for field_name, constructors in field_info.items():
+        old_value = getattr(self, field_name)
+        new_value = cast_value(((constructors, field_name), old_value))
+        setattr(self, field_name, new_value)
 
 
 def show_result_as_dialog(
@@ -531,3 +526,10 @@ def check_condition(value: str, dataset: set[str]) -> bool:
     result = value in dataset
     logging.debug(f"Checking '{value}' in {dataset}: {result}")
     return result
+
+
+def format_playtime(seconds: float) -> str:
+    """Convert seconds into a human-readable hours and minutes format."""
+    minutes, sec = divmod(int(seconds), 60)
+    hours, min = divmod(minutes, 60)
+    return f"{hours}h {min}m"

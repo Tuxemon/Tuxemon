@@ -9,7 +9,6 @@ from typing import final
 from tuxemon.animation_entity import setup_and_play_animation
 from tuxemon.event.eventaction import EventAction
 from tuxemon.session import Session
-from tuxemon.states.world_state import WorldState
 
 logger = logging.getLogger(__name__)
 
@@ -44,9 +43,8 @@ class PlayTileAnimationAction(EventAction):
     loop: str
 
     def start(self, session: Session) -> None:
-        world_state = session.client.get_state_by_name(WorldState)
         position = (self.tile_pos_x, self.tile_pos_y)
-        animations = world_state.map_renderer.map_animations
+        animations = session.client.map_renderer.map_animations
 
         setup_and_play_animation(
             animation_name=self.animation_name,

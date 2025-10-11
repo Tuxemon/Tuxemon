@@ -17,6 +17,7 @@ from tuxemon.db import (
     EffectPhase,
     Range,
     ResponseStatus,
+    StatModel,
     StatusModel,
     db,
 )
@@ -86,14 +87,15 @@ class Status:
         self.use_success: str = ""
         self.use_failure: str = ""
         self.modifiers: ModifiersHandler = ModifiersHandler()
+        self.stat_modifiers: dict[str, StatModel] = {}
 
         if Status.effect_manager is None:
             Status.effect_manager = EffectManager(
-                CoreEffect, paths.CORE_EFFECT_PATH, paths.LIBDIR.parent
+                CoreEffect, paths.CORE_EFFECT_PATH
             )
         if Status.condition_manager is None:
             Status.condition_manager = ConditionManager(
-                CoreCondition, paths.CORE_CONDITION_PATH, paths.LIBDIR.parent
+                CoreCondition, paths.CORE_CONDITION_PATH
             )
 
         self.effects: Sequence[PluginObject] = []
@@ -137,12 +139,8 @@ class Status:
 
         self.modifiers = ModifiersHandler(results.modifiers)
         # monster stats
-        self.statspeed = results.statspeed
-        self.stathp = results.stathp
-        self.statarmour = results.statarmour
-        self.statmelee = results.statmelee
-        self.statranged = results.statranged
-        self.statdodge = results.statdodge
+        self.stat_modifiers = results.stat_modifiers
+
         # status fields
         self.duration = results.duration
         self.bond = results.bond
@@ -189,6 +187,25 @@ class Status:
     def advance_round(self) -> None:
         """Advance the counter for this status if used."""
         self.counter += 1
+        logger.debug(
+            f"[Status Counter] {self.slug} used {self.counter} times."
+        )
+
+    def check_counter_expiry(
+        self, session: Session, max_uses: int = 1
+    ) -> None:
+        """
+        Checks if the status has reached its use-based expiration threshold.
+        If so, clears the status from the host.
+        """
+        logger.debug(
+            f"[Status Expired] {self.slug} used {self.counter}/{max_uses} times."
+        )
+        if self.counter >= max_uses:
+            logger.debug(
+                f"[Status Expired] {self.slug} removed from {self.host.name} after {self.counter} uses."
+            )
+            self.host.status.clear_status(session)
 
     def validate_monster(self, session: Session, target: Monster) -> bool:
         """

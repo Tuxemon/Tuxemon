@@ -63,12 +63,30 @@
   ],
   "history": [
     {
-      "mon_slug": "sapragon",
-      "evo_stage": "stage1"
+      "slug": "chloragon",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "sapragon"
+      ]
     },
     {
-      "mon_slug": "dragarbor",
-      "evo_stage": "stage2"
+      "slug": "sapragon",
+      "stage": "stage1",
+      "evolves_from": [
+        "chloragon"
+      ],
+      "evolves_into": [
+        "dragarbor"
+      ]
+    },
+    {
+      "slug": "dragarbor",
+      "stage": "stage2",
+      "evolves_from": [
+        "sapragon"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [
@@ -83,13 +101,17 @@
   "types": [
     "wood"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 140,
   "height": 102,
   "weight": 85,
+  "sounds": {
+    "combat_call": "sound_bite_cartoon_style",
+    "faint_call": "sound_bite_cartoon_style_faint"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.25

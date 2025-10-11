@@ -35,8 +35,20 @@
   ],
   "history": [
     {
-      "mon_slug": "uprout",
-      "evo_stage": "stage1"
+      "slug": "sprightly",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "uprout"
+      ]
+    },
+    {
+      "slug": "uprout",
+      "stage": "stage1",
+      "evolves_from": [
+        "sprightly"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [
@@ -52,13 +64,17 @@
   "types": [
     "wood"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 336,
   "height": 30,
   "weight": 9,
+  "sounds": {
+    "combat_call": "sound_wood_call",
+    "faint_call": "sound_wood_call"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

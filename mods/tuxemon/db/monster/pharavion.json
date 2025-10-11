@@ -58,8 +58,20 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "pharfan",
-      "evo_stage": "basic"
+      "slug": "pharavion",
+      "stage": "stage1",
+      "evolves_from": [
+        "pharfan"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "pharfan",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "pharavion"
+      ]
     }
   ],
   "terrains": [
@@ -78,13 +90,17 @@
     "water",
     "heroic"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 362,
   "height": 300,
   "weight": 2000,
+  "sounds": {
+    "combat_call": "sound_weird_09",
+    "faint_call": "sound_weird_09_faint"
+  },
   "catch_rate": 35.0,
   "lower_catch_resistance": 0.9,
   "upper_catch_resistance": 1.15

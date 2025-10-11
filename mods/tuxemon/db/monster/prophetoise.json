@@ -42,8 +42,20 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "forturtle",
-      "evo_stage": "basic"
+      "slug": "prophetoise",
+      "stage": "stage1",
+      "evolves_from": [
+        "forturtle"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "forturtle",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "prophetoise"
+      ]
     }
   ],
   "terrains": [
@@ -63,13 +75,17 @@
     "fire",
     "cosmic"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 88,
   "height": 108,
   "weight": 88,
+  "sounds": {
+    "combat_call": "sound_spell_fire_07",
+    "faint_call": "sound_spell_fire_07_faint"
+  },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.9,
   "upper_catch_resistance": 1.15

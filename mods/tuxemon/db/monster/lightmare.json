@@ -50,12 +50,30 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "fluoresfin",
-      "evo_stage": "basic"
+      "slug": "lightmare",
+      "stage": "stage2",
+      "evolves_from": [
+        "incandesfin"
+      ],
+      "evolves_into": []
     },
     {
-      "mon_slug": "incandesfin",
-      "evo_stage": "stage1"
+      "slug": "fluoresfin",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "incandesfin"
+      ]
+    },
+    {
+      "slug": "incandesfin",
+      "stage": "stage1",
+      "evolves_from": [
+        "fluoresfin"
+      ],
+      "evolves_into": [
+        "lightmare"
+      ]
     }
   ],
   "terrains": [
@@ -72,13 +90,17 @@
     "lightning",
     "water"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 70,
   "height": 300,
   "weight": 200,
+  "sounds": {
+    "combat_call": "sound_burble_02",
+    "faint_call": "sound_burble_02_faint"
+  },
   "catch_rate": 35.0,
   "lower_catch_resistance": 0.85,
   "upper_catch_resistance": 1.1

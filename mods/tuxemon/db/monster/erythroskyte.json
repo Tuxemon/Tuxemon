@@ -58,12 +58,31 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "medipup",
-      "evo_stage": "basic"
+      "slug": "erythroskyte",
+      "stage": "stage2",
+      "evolves_from": [
+        "doctsky"
+      ],
+      "evolves_into": []
     },
     {
-      "mon_slug": "doctsky",
-      "evo_stage": "stage1"
+      "slug": "medipup",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "doctsky"
+      ]
+    },
+    {
+      "slug": "doctsky",
+      "stage": "stage1",
+      "evolves_from": [
+        "medipup"
+      ],
+      "evolves_into": [
+        "askylpaws",
+        "erythroskyte"
+      ]
     }
   ],
   "terrains": [
@@ -83,13 +102,17 @@
     "metal",
     "normal"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 361,
   "height": 200,
   "weight": 70,
+  "sounds": {
+    "combat_call": "sound_terminal_03",
+    "faint_call": "sound_terminal_03_faint"
+  },
   "catch_rate": 35.0,
   "lower_catch_resistance": 0.9,
   "upper_catch_resistance": 1.15

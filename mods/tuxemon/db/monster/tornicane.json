@@ -42,12 +42,31 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "seirein",
-      "evo_stage": "basic"
+      "slug": "tornicane",
+      "stage": "stage2",
+      "evolves_from": [
+        "spirain"
+      ],
+      "evolves_into": []
     },
     {
-      "mon_slug": "spirain",
-      "evo_stage": "stage1"
+      "slug": "seirein",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "loliferno",
+        "spirain"
+      ]
+    },
+    {
+      "slug": "spirain",
+      "stage": "stage1",
+      "evolves_from": [
+        "seirein"
+      ],
+      "evolves_into": [
+        "tornicane"
+      ]
     }
   ],
   "terrains": [
@@ -66,12 +85,16 @@
     "water",
     "sky"
   ],
-  "possible_genders": [
-    "neuter"
-  ],
+  "gender_weights": {
+    "neuter": 1.0
+  },
   "txmn_id": 165,
   "height": 300,
   "weight": 0.1,
+  "sounds": {
+    "combat_call": "sfx_tornado",
+    "faint_call": "sfx_tornado"
+  },
   "catch_rate": 35.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

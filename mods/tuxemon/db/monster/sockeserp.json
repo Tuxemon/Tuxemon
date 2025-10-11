@@ -38,8 +38,21 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "pythwire",
-      "evo_stage": "basic"
+      "slug": "sockeserp",
+      "stage": "stage1",
+      "evolves_from": [
+        "pythwire"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "pythwire",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "ouroboutlet",
+        "sockeserp"
+      ]
     }
   ],
   "terrains": [
@@ -54,12 +67,16 @@
     "lightning",
     "metal"
   ],
-  "possible_genders": [
-    "neuter"
-  ],
+  "gender_weights": {
+    "neuter": 1.0
+  },
   "txmn_id": 91,
   "height": 100,
   "weight": 1,
+  "sounds": {
+    "combat_call": "sound_misc_07",
+    "faint_call": "sound_misc_07_faint"
+  },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.85,
   "upper_catch_resistance": 1.1

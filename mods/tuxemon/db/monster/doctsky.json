@@ -54,25 +54,52 @@
   "evolutions": [
     {
       "monster_slug": "askylpaws",
-      "item": "ox_stick"
+      "item": {
+        "ox_stick": 1.0
+      }
     },
     {
       "monster_slug": "erythroskyte",
-      "item": "peace_lily"
+      "item": {
+        "peace_lily": 1.0
+      }
     }
   ],
   "history": [
     {
-      "mon_slug": "medipup",
-      "evo_stage": "basic"
+      "slug": "doctsky",
+      "stage": "stage1",
+      "evolves_from": [
+        "medipup"
+      ],
+      "evolves_into": [
+        "askylpaws",
+        "erythroskyte"
+      ]
     },
     {
-      "mon_slug": "askylpaws",
-      "evo_stage": "stage2"
+      "slug": "medipup",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "doctsky"
+      ]
     },
     {
-      "mon_slug": "erythroskyte",
-      "evo_stage": "stage2"
+      "slug": "askylpaws",
+      "stage": "stage2",
+      "evolves_from": [
+        "doctsky"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "erythroskyte",
+      "stage": "stage2",
+      "evolves_from": [
+        "doctsky"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [
@@ -89,13 +116,17 @@
   "types": [
     "normal"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 282,
   "height": 94,
   "weight": 30,
+  "sounds": {
+    "combat_call": "sound_weird_09",
+    "faint_call": "sound_weird_09_faint"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

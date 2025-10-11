@@ -13,7 +13,7 @@
   "power": 2.2,
   "range": "melee",
   "recharge": 2,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_crumble1",
   "slug": "grinding",
   "sort": "damage",
   "modifiers": [],

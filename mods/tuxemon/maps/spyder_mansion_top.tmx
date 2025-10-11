@@ -242,28 +242,28 @@
    <properties>
     <property name="act1" value="char_talk spyder_top_jackson,post_battle_lose"/>
     <property name="behav1" value="talk spyder_top_jackson"/>
-    <property name="cond1" value="is variable_set mansiontop_jackson:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_top_jackson"/>
    </properties>
   </object>
   <object id="61" name="Post Talk Russell" type="event" x="112" y="240" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_top_russell,post_battle_lose"/>
     <property name="behav1" value="talk spyder_top_russell"/>
-    <property name="cond1" value="is variable_set mansiontop_russell:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_top_russell"/>
    </properties>
   </object>
   <object id="62" name="Post Talk Mickey" type="event" x="128" y="240" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_top_mickey,post_battle_lose"/>
     <property name="behav1" value="talk spyder_top_mickey"/>
-    <property name="cond1" value="is variable_set mansiontop_mickey:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_top_mickey"/>
    </properties>
   </object>
   <object id="63" name="Post Talk Ricardo" type="event" x="144" y="240" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_top_ricardo,post_battle_lose"/>
     <property name="behav1" value="talk spyder_top_ricardo"/>
-    <property name="cond1" value="is variable_set mansiontop_ricardo:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_top_ricardo"/>
    </properties>
   </object>
  </objectgroup>

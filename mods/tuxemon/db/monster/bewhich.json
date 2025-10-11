@@ -34,12 +34,30 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "cackleen",
-      "evo_stage": "basic"
+      "slug": "bewhich",
+      "stage": "stage2",
+      "evolves_from": [
+        "brumi"
+      ],
+      "evolves_into": []
     },
     {
-      "mon_slug": "brumi",
-      "evo_stage": "stage1"
+      "slug": "cackleen",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "brumi"
+      ]
+    },
+    {
+      "slug": "brumi",
+      "stage": "stage1",
+      "evolves_from": [
+        "cackleen"
+      ],
+      "evolves_into": [
+        "bewhich"
+      ]
     }
   ],
   "terrains": [
@@ -58,12 +76,16 @@
     "shadow",
     "cosmic"
   ],
-  "possible_genders": [
-    "neuter"
-  ],
+  "gender_weights": {
+    "neuter": 1.0
+  },
   "txmn_id": 342,
   "height": 152,
   "weight": 0.1,
+  "sounds": {
+    "combat_call": "sound_crow_caw",
+    "faint_call": "sound_crow_caw_faint"
+  },
   "catch_rate": 35.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

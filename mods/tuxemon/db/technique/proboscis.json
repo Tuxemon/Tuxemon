@@ -23,7 +23,7 @@
   "power": 1,
   "range": "reach",
   "recharge": 1,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_squeak",
   "slug": "proboscis",
   "sort": "damage",
   "modifiers": [],

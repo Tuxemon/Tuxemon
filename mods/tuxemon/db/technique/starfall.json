@@ -11,9 +11,9 @@
       ]
     },
     {
-      "type": "give",
+      "type": "remove",
       "parameters": [
-        "tired",
+        "positive",
         "enemy_monster"
       ]
     },
@@ -27,7 +27,7 @@
   "power": 1.25,
   "range": "ranged",
   "recharge": 2,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_shine",
   "slug": "starfall",
   "sort": "damage",
   "modifiers": [],

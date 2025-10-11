@@ -14,13 +14,15 @@
   "sfx": "sfx_pulse",
   "slug": "sniping",
   "sort": "meta",
-  "statmelee": {
-    "value": 0.5,
-    "operation": "*"
-  },
-  "statranged": {
-    "value": 2,
-    "operation": "*"
+  "stat_modifiers": {
+    "melee": {
+      "value": 0.5,
+      "operation": "*"
+    },
+    "ranged": {
+      "value": 2,
+      "operation": "*"
+    }
   },
   "cond_id": 13,
   "use_failure": null,

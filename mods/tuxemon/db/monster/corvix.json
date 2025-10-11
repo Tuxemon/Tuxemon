@@ -55,12 +55,30 @@
   ],
   "history": [
     {
-      "mon_slug": "flacono",
-      "evo_stage": "basic"
+      "slug": "corvix",
+      "stage": "stage1",
+      "evolves_from": [
+        "flacono"
+      ],
+      "evolves_into": [
+        "gryfix"
+      ]
     },
     {
-      "mon_slug": "gryfix",
-      "evo_stage": "stage2"
+      "slug": "flacono",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "corvix"
+      ]
+    },
+    {
+      "slug": "gryfix",
+      "stage": "stage2",
+      "evolves_from": [
+        "corvix"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [
@@ -79,13 +97,17 @@
   "types": [
     "sky"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 157,
   "height": 55,
   "weight": 4,
+  "sounds": {
+    "combat_call": "sound_swords_clash",
+    "faint_call": "sound_swords_clash_faint"
+  },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.85,
   "upper_catch_resistance": 1.1

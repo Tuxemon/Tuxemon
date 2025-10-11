@@ -99,15 +99,13 @@ class Encounter:
         return valid_encs
 
     def _choose_single_encounter(
-        self, encounters: list[EncounterItemModel], total_prob: Optional[float]
+        self, encounters: list[EncounterItemModel], total_prob: float
     ) -> Optional[EncounterItemModel]:
         """
         Internal helper to choose one single monster based on rates.
         """
         if not encounters:
             return None
-
-        total_prob = total_prob or 1.0
 
         sum_rates = sum(enc.encounter_rate for enc in encounters)
         if sum_rates == 0:
@@ -132,7 +130,7 @@ class Encounter:
         return None
 
     def get_single_encounter(
-        self, character: NPC, total_prob: Optional[float]
+        self, character: NPC, total_prob: float
     ) -> Optional[tuple[EncounterItemModel, int, Optional[str]]]:
         """
         Public method to get a single monster encounter.
@@ -153,12 +151,16 @@ class Encounter:
         return None
 
     def get_horde_encounter(
-        self,
-        character: NPC,
+        self, character: NPC, total_prob: Optional[float] = None
     ) -> Optional[list[tuple[EncounterItemModel, int, Optional[str]]]]:
         """
         Public method to get a horde encounter.
         """
+        if total_prob is not None:
+            roll = random.uniform(0, 100)
+            if roll > total_prob:
+                return None
+
         if self.zone.encounter_type != EncounterType.HORDE:
             return None
 

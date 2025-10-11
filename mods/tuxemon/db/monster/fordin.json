@@ -55,12 +55,30 @@
   ],
   "history": [
     {
-      "mon_slug": "stegofor",
-      "evo_stage": "stage1"
+      "slug": "fordin",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "stegofor"
+      ]
     },
     {
-      "mon_slug": "brachifor",
-      "evo_stage": "stage2"
+      "slug": "stegofor",
+      "stage": "stage1",
+      "evolves_from": [
+        "fordin"
+      ],
+      "evolves_into": [
+        "brachifor"
+      ]
+    },
+    {
+      "slug": "brachifor",
+      "stage": "stage2",
+      "evolves_from": [
+        "stegofor"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [
@@ -77,13 +95,17 @@
   "types": [
     "wood"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 211,
   "height": 56,
   "weight": 19,
+  "sounds": {
+    "combat_call": "sound_whistle",
+    "faint_call": "sound_whistle"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.9,
   "upper_catch_resistance": 1.15

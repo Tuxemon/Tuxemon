@@ -3,27 +3,117 @@
 from __future__ import annotations
 
 import logging
-from typing import TYPE_CHECKING, Optional
+import time
+from abc import ABC, abstractmethod
+from datetime import datetime
+from typing import TYPE_CHECKING, Generic, Optional, TypeVar
+from uuid import UUID, uuid4
+
+from tuxemon import save
+from tuxemon.save_state import TIME_FORMAT, NPCState, SessionSave, WorldSave
 
 if TYPE_CHECKING:
+    from tuxemon.base_client import BaseClient
     from tuxemon.client import LocalPygameClient
     from tuxemon.player import Player
+    from tuxemon.save_state import SaveData
     from tuxemon.states.world_state import WorldState
 
 logger = logging.getLogger(__name__)
 
 
-class Session:
-    """
-    Contains Client, World, and Player.
+ClientType = TypeVar("ClientType", bound="BaseClient")
 
-    Eventually this will be extended to support network sessions.
+
+class AbstractSession(ABC, Generic[ClientType]):
+    """
+    Defines the abstract interface for all game sessions (local, network, etc.).
+    This class cannot be instantiated directly.
     """
 
     def __init__(self) -> None:
-        self._client: Optional[LocalPygameClient] = None
+        self._uuid: UUID = uuid4()
+        self._start_time: datetime = datetime.now()
+        self._start_timestamp: float = time.time()
+        self._total_playtime: float = 0.0
+
+        self._client: Optional[ClientType] = None
         self._world: Optional[WorldState] = None
         self._player: Optional[Player] = None
+        self._session_state: SessionSave = {}
+
+    @property
+    @abstractmethod
+    def client(self) -> ClientType:
+        """Returns the client instance."""
+
+    @property
+    @abstractmethod
+    def world(self) -> WorldState:
+        """Returns the world instance."""
+
+    @property
+    @abstractmethod
+    def player(self) -> Player:
+        """Returns the player instance."""
+
+    def set_client(self, client: ClientType) -> None:
+        """Sets the client. Can be overridden, but is provided for local convenience."""
+        self._client = client
+        logger.debug("Client initialized successfully.")
+
+    def set_world(self, world: WorldState) -> None:
+        """Sets the world. Can be overridden, but is provided for local convenience."""
+        self._world = world
+        logger.debug("World initialized successfully.")
+
+    def set_player(self, player: Player) -> None:
+        """Sets the player. Can be overridden, but is provided for local convenience."""
+        self._player = player
+        logger.debug("Player initialized successfully.")
+
+    def has_player(self) -> bool:
+        """Checks if a player is attached to the session."""
+        return self._player is not None
+
+    def reset(
+        self,
+        reset_client: bool = True,
+        reset_world: bool = True,
+        reset_player: bool = True,
+    ) -> None:
+        """Resets the main session components."""
+        if reset_client:
+            self._client = None
+        if reset_world:
+            self._world = None
+        if reset_player:
+            self._player = None
+
+    def get_state(self) -> SessionSave:
+        """Returns session-level state to be saved and updates internal playtime."""
+        current_duration = time.time() - self._start_timestamp
+        self._total_playtime += current_duration
+        self._start_timestamp = time.time()
+
+        return {
+            "uuid": self._uuid.hex,
+            "start_time": self._start_time.strftime(TIME_FORMAT),
+            "duration": current_duration,
+            "total_playtime": self._total_playtime,
+        }
+
+    def set_state(self, save_data: SessionSave) -> None:
+        """Restores session-level state from saved data."""
+        self._session_state = save_data
+        self._total_playtime = save_data.get("total_playtime", 0.0)
+
+
+class Session(AbstractSession["LocalPygameClient"]):
+    """
+    Contains Client, World, and Player.
+    This is the concrete local session implementation.
+    """
 
     @property
     def client(self) -> LocalPygameClient:
@@ -43,33 +133,23 @@ class Session:
             raise ValueError("Player is not initialized")
         return self._player
 
-    def set_client(self, client: LocalPygameClient) -> None:
-        self._client = client
-        logger.info("Client initialized successfully.")
+    def load_state(self, save_data: SaveData) -> None:
+        """
+        Loads the player, world, and other session-level states from a saved game dictionary.
+        """
+        self.player.set_state(self, save_data.get("npc_state", NPCState()))
+        self.world.set_state(self, save_data.get("world_state", WorldSave()))
+        self.set_state(save_data.get("session_state", SessionSave()))
 
-    def set_world(self, world: WorldState) -> None:
-        self._world = world
-        logger.info("World initialized successfully.")
+    def save_state(self, index: int, slot: int) -> SaveData:
+        """
+        Saves the player, world, and other session-level states to a dictionary.
+        """
+        save_data = save.get_save_data(self)
+        save.save(save_data, index)
+        save.slot_number = slot
 
-    def set_player(self, player: Player) -> None:
-        self._player = player
-        logger.info("Player initialized successfully.")
-
-    def has_player(self) -> bool:
-        return self._player is not None
-
-    def reset(
-        self,
-        reset_client: bool = True,
-        reset_world: bool = True,
-        reset_player: bool = True,
-    ) -> None:
-        if reset_client:
-            self._client = None
-        if reset_world:
-            self._world = None
-        if reset_player:
-            self._player = None
+        return save_data
 
 
 local_session = Session()

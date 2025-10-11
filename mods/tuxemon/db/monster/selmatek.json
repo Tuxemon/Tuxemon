@@ -38,8 +38,20 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "selket",
-      "evo_stage": "basic"
+      "slug": "selmatek",
+      "stage": "stage1",
+      "evolves_from": [
+        "selket"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "selket",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "selmatek"
+      ]
     }
   ],
   "terrains": [],
@@ -54,13 +66,17 @@
     "earth",
     "venom"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 189,
   "height": 155,
   "weight": 80,
+  "sounds": {
+    "combat_call": "sound_spit_02",
+    "faint_call": "sound_spit_02_faint"
+  },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.9,
   "upper_catch_resistance": 1.15

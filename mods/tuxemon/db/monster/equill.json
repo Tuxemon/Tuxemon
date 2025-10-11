@@ -39,12 +39,30 @@
   ],
   "history": [
     {
-      "mon_slug": "hoarse",
-      "evo_stage": "basic"
+      "slug": "equill",
+      "stage": "stage1",
+      "evolves_from": [
+        "hoarse"
+      ],
+      "evolves_into": [
+        "hoarseshoo"
+      ]
     },
     {
-      "mon_slug": "hoarseshoo",
-      "evo_stage": "stage2"
+      "slug": "hoarse",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "equill"
+      ]
+    },
+    {
+      "slug": "hoarseshoo",
+      "stage": "stage2",
+      "evolves_from": [
+        "equill"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [],
@@ -59,13 +77,17 @@
     "shadow",
     "normal"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 310,
   "height": 160,
   "weight": 500,
+  "sounds": {
+    "combat_call": "sound_creature_roar",
+    "faint_call": "sound_creature_roar_faint"
+  },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

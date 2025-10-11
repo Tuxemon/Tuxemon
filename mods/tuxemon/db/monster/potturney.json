@@ -50,8 +50,20 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "potturmeist",
-      "evo_stage": "basic"
+      "slug": "potturney",
+      "stage": "stage1",
+      "evolves_from": [
+        "potturmeist"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "potturmeist",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "potturney"
+      ]
     }
   ],
   "terrains": [],
@@ -66,12 +78,16 @@
     "earth",
     "shadow"
   ],
-  "possible_genders": [
-    "neuter"
-  ],
+  "gender_weights": {
+    "neuter": 1.0
+  },
   "txmn_id": 258,
   "height": 45,
   "weight": 6,
+  "sounds": {
+    "combat_call": "sound_misc_07",
+    "faint_call": "sound_misc_07_faint"
+  },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

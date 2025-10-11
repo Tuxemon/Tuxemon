@@ -50,12 +50,30 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "kroki",
-      "evo_stage": "basic"
+      "slug": "leviadile",
+      "stage": "stage2",
+      "evolves_from": [
+        "krokivip"
+      ],
+      "evolves_into": []
     },
     {
-      "mon_slug": "krokivip",
-      "evo_stage": "stage1"
+      "slug": "kroki",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "krokivip"
+      ]
+    },
+    {
+      "slug": "krokivip",
+      "stage": "stage1",
+      "evolves_from": [
+        "kroki"
+      ],
+      "evolves_into": [
+        "leviadile"
+      ]
     }
   ],
   "terrains": [
@@ -74,13 +92,17 @@
     "water",
     "venom"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 371,
   "height": 680,
   "weight": 2500,
+  "sounds": {
+    "combat_call": "sound_woosh_2",
+    "faint_call": "sound_woosh_2_faint"
+  },
   "catch_rate": 35.0,
   "lower_catch_resistance": 0.9,
   "upper_catch_resistance": 1.15

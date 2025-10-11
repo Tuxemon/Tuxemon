@@ -16,7 +16,7 @@
   "power": 3.0,
   "range": "ranged",
   "recharge": 3,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_shpring",
   "slug": "flower_bloom",
   "sort": "damage",
   "modifiers": [],

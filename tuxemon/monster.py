@@ -25,6 +25,7 @@ from tuxemon.db import (
 from tuxemon.element import ElementTypesHandler
 from tuxemon.fusion import Body
 from tuxemon.locale import T
+from tuxemon.monster_dir.bond import BondHandler
 from tuxemon.monster_dir.evolution import Evolution
 from tuxemon.monster_dir.held_item import MonsterItemHandler
 from tuxemon.monster_dir.moves import MonsterMovesHandler
@@ -56,7 +57,6 @@ SIMPLE_PERSISTANCE_ATTRIBUTES = (
     "name",
     "slug",
     "total_experience",
-    "flairs",
     "capture",
     "capture_device",
     "height",
@@ -64,7 +64,6 @@ SIMPLE_PERSISTANCE_ATTRIBUTES = (
     "taste_cold",
     "taste_warm",
     "steps",
-    "bond",
 )
 
 
@@ -122,7 +121,7 @@ class Monster:
 
         self.level: int = 0
         self.steps: float = 0.0
-        self.bond: int = prepare.BOND
+        self.bond_handler: BondHandler = BondHandler(save_data)
 
         self.modifiers = TemporaryStatBoosts()
 
@@ -131,9 +130,10 @@ class Monster:
         self.evolution_handler = Evolution(self)
         self.history: list[MonsterHistoryItemModel] = []
         self.stage: EvolutionStage = EvolutionStage.standalone
+        self.flair_slugs: set[str] = set()
         self.flairs: dict[str, Flair] = {}
         self.owner: Optional[NPC] = None
-        self.possible_genders: list[GenderType] = []
+        self.gender_weights: dict[GenderType, float] = {}
         self.held_item = MonsterItemHandler()
 
         self.money_modifier: float = 0.0
@@ -274,7 +274,8 @@ class Monster:
         self.set_capture(self.capture)
         self.height = formula.set_height(self, results.height)
         self.weight = formula.set_weight(self, results.weight)
-        self.gender = random.choice(list(results.possible_genders))
+        self.gender_weights = results.gender_weights
+        self.gender = self.assign_gender(results.gender_weights)
         self.catch_rate = results.catch_rate
         self.upper_catch_resistance = results.upper_catch_resistance
         self.lower_catch_resistance = results.lower_catch_resistance
@@ -290,7 +291,8 @@ class Monster:
             menu1=f"gfx/sprites/battle/{slug}-menu01",
             menu2=f"gfx/sprites/battle/{slug}-menu02",
         )
-        self.flairs = FlairApplier.create(results.flairs)
+        self.flair_slugs = results.flairs
+        self.flairs = FlairApplier.create(self.flair_slugs)
         loader = SpriteLoader()
         self.sprite_handler = MonsterSpriteHandler(
             slug=slug,
@@ -304,12 +306,12 @@ class Monster:
         # get sound slugs for this monster, defaulting to a generic type-based sound
         self.combat_call = (
             results.sounds.combat_call
-            if results.sounds
+            if results.sounds.combat_call
             else f"sound_{self.types.primary.slug}_call"
         )
         self.faint_call = (
             results.sounds.faint_call
-            if results.sounds
+            if results.sounds.faint_call
             else f"sound_{self.types.primary.slug}_faint"
         )
 
@@ -505,6 +507,14 @@ class Monster:
         required = (self.level + level_ofs) ** prepare.COEFF_EXP
         return int(required)
 
+    def assign_gender(self, weights: dict[GenderType, float]) -> GenderType:
+        """Randomly selects a gender based on weighted probabilities."""
+        return random.choices(
+            population=list(weights.keys()),
+            weights=list(weights.values()),
+            k=1,
+        )[0]
+
     def get_state(self) -> Mapping[str, Any]:
         """
         Prepares a dictionary of the monster to be saved to a file.
@@ -538,6 +548,12 @@ class Monster:
         save_data["moves"] = self.moves.encode_moves()
         save_data["held_item"] = self.held_item.encode_item()
         save_data["modifiers"] = self.modifiers.to_dict()
+        save_data["bond_dict"] = self.bond_handler.get_state()
+        save_data["flair_slugs"] = list(self.flair_slugs)
+        save_data["flairs"] = {
+            category: flair.get_state()
+            for category, flair in self.flairs.items()
+        }
 
         return save_data
 
@@ -557,6 +573,7 @@ class Monster:
         self.moves.decode_moves(save_data)
         self.status.decode_status(save_data, self)
         self.plague.decode_plagues(save_data)
+        self.bond_handler.set_state(save_data)
 
         for key, value in save_data.items():
             if key == "body" and value:
@@ -579,6 +596,15 @@ class Monster:
                     self.held_item.set_item(item)
             elif key == "modifiers" and value:
                 self.modifiers.from_dict(value)
+            elif key == "flairs" and value:
+                self.flairs = {
+                    category: Flair.from_state(flair_data)
+                    for category, flair_data in value.items()
+                }
+            elif key == "flair_slugs" and value:
+                self.flair_slugs = set(value)
+                if "flairs" not in save_data:
+                    self.flairs = FlairApplier.create(self.flair_slugs)
 
         self.load_sprites()
 

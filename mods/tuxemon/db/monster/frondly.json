@@ -46,8 +46,24 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "budaye",
-      "evo_stage": "basic"
+      "slug": "frondly",
+      "stage": "stage1",
+      "evolves_from": [
+        "budaye",
+        "budaye"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "budaye",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "bamboon",
+        "bamboon",
+        "frondly",
+        "frondly"
+      ]
     }
   ],
   "terrains": [
@@ -67,13 +83,17 @@
     "wood",
     "cosmic"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 29,
   "height": 160,
   "weight": 60,
+  "sounds": {
+    "combat_call": "sound_cat_purr_twit5",
+    "faint_call": "sound_cat_purr_twit5_faint"
+  },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.8,
   "upper_catch_resistance": 1.05

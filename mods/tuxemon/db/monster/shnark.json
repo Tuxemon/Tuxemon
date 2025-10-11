@@ -46,8 +46,20 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "nostray",
-      "evo_stage": "basic"
+      "slug": "shnark",
+      "stage": "stage1",
+      "evolves_from": [
+        "nostray"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "nostray",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "shnark"
+      ]
     }
   ],
   "terrains": [],
@@ -61,13 +73,17 @@
   "types": [
     "water"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 153,
   "height": 205,
   "weight": 120,
+  "sounds": {
+    "combat_call": "sound_burble_02",
+    "faint_call": "sound_burble_02_faint"
+  },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.9,
   "upper_catch_resistance": 1.15

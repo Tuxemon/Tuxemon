@@ -7,7 +7,6 @@ from typing import TYPE_CHECKING
 
 from tuxemon.map.map import proj
 from tuxemon.npc import NPC
-from tuxemon.prepare import PLAYER_NPC
 
 if TYPE_CHECKING:
     from tuxemon.session import Session
@@ -28,7 +27,7 @@ class Player(NPC):
         self.is_player = True
 
     @classmethod
-    def create(cls, session: Session, slug: str = PLAYER_NPC) -> Player:
+    def create(cls, session: Session, slug: str) -> Player:
         """Creates a player instance only if one doesn't already exist."""
         if not session.has_player():
             session.set_player(cls(slug, session))

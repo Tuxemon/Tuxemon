@@ -4,9 +4,9 @@
   "animation": "lightning_bolt_138",
   "effects": [
     {
-      "type": "give",
+      "type": "remove",
       "parameters": [
-        "tired",
+        "positive",
         "own_monster"
       ]
     },
@@ -20,7 +20,7 @@
   "power": 1.25,
   "range": "ranged",
   "recharge": 2,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_lightning2",
   "slug": "surge",
   "sort": "damage",
   "modifiers": [],

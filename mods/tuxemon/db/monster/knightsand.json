@@ -46,8 +46,22 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "pawsand",
-      "evo_stage": "basic"
+      "slug": "knightsand",
+      "stage": "stage1",
+      "evolves_from": [
+        "pawsand"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "pawsand",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "knightsand",
+        "bishosand",
+        "rooksand"
+      ]
     }
   ],
   "terrains": [
@@ -65,12 +79,16 @@
     "earth",
     "heroic"
   ],
-  "possible_genders": [
-    "neuter"
-  ],
+  "gender_weights": {
+    "neuter": 1.0
+  },
   "txmn_id": 374,
   "height": 180,
   "weight": 140,
+  "sounds": {
+    "combat_call": "sound_roar_05",
+    "faint_call": "sound_roar_05_faint"
+  },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.9,
   "upper_catch_resistance": 1.15

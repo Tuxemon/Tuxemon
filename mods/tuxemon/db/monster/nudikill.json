@@ -32,14 +32,26 @@
     },
     {
       "level_learned": 28,
-      "technique": "venom"
+      "technique": "caustic_spray"
     }
   ],
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "nudiflot_male",
-      "evo_stage": "basic"
+      "slug": "nudikill",
+      "stage": "stage1",
+      "evolves_from": [
+        "nudiflot_male"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "nudiflot_male",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "nudikill"
+      ]
     }
   ],
   "terrains": [
@@ -58,12 +70,16 @@
     "water",
     "venom"
   ],
-  "possible_genders": [
-    "male"
-  ],
+  "gender_weights": {
+    "male": 1.0
+  },
   "txmn_id": 53,
   "height": 122,
   "weight": 35,
+  "sounds": {
+    "combat_call": "sound_splash_1",
+    "faint_call": "sound_splash_1_faint"
+  },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.9,
   "upper_catch_resistance": 1.15

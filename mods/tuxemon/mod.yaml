@@ -1,11 +1,23 @@
+# Unique identifier for the mod, used internally and in file paths
+slug: tuxemon
+
+# Short human-readable explanation of what the mod does
+description: A brief summary of the mod's purpose.
+
 # The human-readable name of your mod. This is often displayed to users in a mod list.
 name: Tuxemon
+
+# The version of your mod, used for compatibility checks and display purposes.
+version: 1.0.0
 
 # A list of authors or contributors to this mod.
 authors:
   - alpha
   - beta
   - gamma
+
+# The player's initial slugs
+starting_players: ["npc_red"]
 
 # The map file (.tmx) where the player begins when starting this mod
 starting_map: "start_tuxemon.tmx"

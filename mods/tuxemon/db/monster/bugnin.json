@@ -50,12 +50,32 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "katapill",
-      "evo_stage": "basic"
+      "slug": "bugnin",
+      "stage": "stage2",
+      "evolves_from": [
+        "katacoon"
+      ],
+      "evolves_into": []
     },
     {
-      "mon_slug": "katacoon",
-      "evo_stage": "stage1"
+      "slug": "katapill",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "katacoon"
+      ]
+    },
+    {
+      "slug": "katacoon",
+      "stage": "stage1",
+      "evolves_from": [
+        "katapill"
+      ],
+      "evolves_into": [
+        "bugnin",
+        "sumchon",
+        "gladiatorbug"
+      ]
     }
   ],
   "terrains": [
@@ -72,13 +92,17 @@
     "metal",
     "venom"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 58,
   "height": 150,
   "weight": 52,
+  "sounds": {
+    "combat_call": "sound_swords_clash",
+    "faint_call": "sound_swords_clash_faint"
+  },
   "catch_rate": 35.0,
   "lower_catch_resistance": 0.8,
   "upper_catch_resistance": 1.05

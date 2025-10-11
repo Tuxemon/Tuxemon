@@ -54,12 +54,32 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "mk01_beta",
-      "evo_stage": "stage1"
+      "slug": "mk01_omega",
+      "stage": "stage2",
+      "evolves_from": [
+        "mk01_beta"
+      ],
+      "evolves_into": []
     },
     {
-      "mon_slug": "mk01_proto",
-      "evo_stage": "basic"
+      "slug": "mk01_beta",
+      "stage": "stage1",
+      "evolves_from": [
+        "mk01_proto"
+      ],
+      "evolves_into": [
+        "mk01_delta",
+        "mk01_omega"
+      ]
+    },
+    {
+      "slug": "mk01_proto",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "mk01_alpha",
+        "mk01_beta"
+      ]
     }
   ],
   "terrains": [],
@@ -69,12 +89,16 @@
   "types": [
     "metal"
   ],
-  "possible_genders": [
-    "neuter"
-  ],
+  "gender_weights": {
+    "neuter": 1.0
+  },
   "txmn_id": 0,
   "height": 0.1,
   "weight": 100,
+  "sounds": {
+    "combat_call": "sound_robotic_pig",
+    "faint_call": "sound_robotic_pig_faint"
+  },
   "catch_rate": 35.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

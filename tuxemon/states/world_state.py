@@ -3,13 +3,12 @@
 from __future__ import annotations
 
 import logging
-from collections.abc import Mapping, Sequence
+from collections.abc import Mapping
 from typing import (
     TYPE_CHECKING,
     Any,
     ClassVar,
     Optional,
-    TypedDict,
     no_type_check,
 )
 
@@ -19,20 +18,16 @@ from tuxemon import networking, prepare
 from tuxemon.camera.camera import Camera
 from tuxemon.db import Direction
 from tuxemon.faction.manager import FactionManager
-from tuxemon.map.map_view import MapRenderer
 from tuxemon.platform.const import intentions
 from tuxemon.platform.events import PlayerInput
 from tuxemon.platform.tools import translate_input_event
-from tuxemon.player import Player
+from tuxemon.save_state import WorldSave
 from tuxemon.session import Session
 from tuxemon.state.state import State
-from tuxemon.teleporter import Teleporter
-from tuxemon.tools import extract_mod_name
 from tuxemon.world.manager import WorldMenuManager
 from tuxemon.world.transition import WorldTransition
 
 if TYPE_CHECKING:
-    from tuxemon.entity import Entity
     from tuxemon.networking import EventData
 
 logger = logging.getLogger(__name__)
@@ -45,11 +40,6 @@ direction_map: Mapping[int, Direction] = {
 }
 
 
-class WorldSave(TypedDict, total=False):
-    factions_manager: dict[str, Any]
-    menu_flags: dict[str, bool]
-
-
 class WorldState(State):
     """The state responsible for the world game play"""
 
@@ -57,20 +47,16 @@ class WorldState(State):
 
     def __init__(self, session: Session, map_name: str) -> None:
         super().__init__()
-        self.mod_name = extract_mod_name(map_name)
         self.session = session
         self.session.set_world(self)
-        self.screen = self.client.screen
         self.tile_size = prepare.TILE_SIZE
         self.menu_manager = WorldMenuManager(self.client)
-        self.teleporter = Teleporter(self.client)
         self.transition_manager = WorldTransition(
             self, self.client.movement_manager
         )
-        self.player = Player.create(self.session)
+        self.player = self.session.player
         self.camera = Camera(self.player, self.client.boundary)
         self.client.camera_manager.add_camera(self.camera)
-        self.map_renderer = MapRenderer(self.client)
         self.faction_manager = FactionManager()
 
         if map_name:
@@ -138,7 +124,7 @@ class WorldState(State):
         super().update(time_delta)
         self.client.npc_manager.update_npcs(time_delta, self.client)
         self.client.npc_manager.update_npcs_off_map(time_delta, self.client)
-        self.map_renderer.update(time_delta)
+        self.client.map_renderer.update(time_delta)
 
         logger.debug("*** Game Loop Started ***")
 
@@ -149,10 +135,11 @@ class WorldState(State):
         Parameters:
             surface: Surface to draw into.
         """
-        self.screen = surface
         if self.client.map_manager.current_map is None:
             raise ValueError("Unable to draw the game world.")
-        self.map_renderer.draw(surface, self.client.map_manager.current_map)
+        self.client.map_renderer.draw(
+            surface, self.client.map_manager.current_map
+        )
         self.transition_manager.draw(surface)
 
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
@@ -243,23 +230,6 @@ class WorldState(State):
 
         # Return event for others to process
         return event
-
-    def add_collision(self, entity: Entity[Any], pos: Sequence[float]) -> None:
-        """
-        Registers the given entity's position within the collision zone.
-        """
-        self.client.collision_manager.add_collision(entity, pos)
-
-    def remove_collision(self, tile_pos: tuple[int, int]) -> None:
-        """
-        Removes the specified tile position from the collision zone.
-        """
-        self.client.collision_manager.remove_collision(tile_pos)
-
-    def pathfind(
-        self, start: tuple[int, int], dest: tuple[int, int], facing: Direction
-    ) -> Optional[Sequence[tuple[int, int]]]:
-        return self.client.pathfinder.pathfind(start, dest, facing)
 
     @no_type_check  # only used by multiplayer which is disabled
     def check_interactable_space(self) -> bool:

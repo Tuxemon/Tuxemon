@@ -3,14 +3,27 @@
 from __future__ import annotations
 
 import logging
-from collections import deque
-from collections.abc import Mapping, Sequence
+import time
+from collections.abc import Callable, Mapping, Sequence
+from dataclasses import dataclass
+from heapq import heapify, heappush
 from typing import TYPE_CHECKING, Any, Optional
 
 if TYPE_CHECKING:
     from tuxemon.state.manager import StateManager
 
 logger = logging.getLogger(__name__)
+
+
+@dataclass(order=True)
+class QueuedState:
+    priority: int
+    name: str
+    kwargs: Mapping[str, Any]
+    activation_time: Optional[float] = None
+    expires_at: Optional[float] = None
+    source: Optional[str] = None
+    condition: Optional[Callable[[], bool]] = None
 
 
 class StateQueue:
@@ -27,42 +40,84 @@ class StateQueue:
                                that will activate the queued states.
         """
         self._state_manager_ref = state_manager_ref
-        self._state_queue: deque[tuple[str, Mapping[str, Any]]] = deque()
+        self._state_queue: list[QueuedState] = []
 
-    def queue_state(self, state_name: str, **kwargs: Any) -> None:
+    def queue_state(
+        self,
+        state_name: str,
+        priority: int = 10,
+        activation_time: Optional[float] = None,
+        expires_at: Optional[float] = None,
+        source: Optional[str] = None,
+        condition: Optional[Callable[[], bool]] = None,
+        **kwargs: Any,
+    ) -> None:
         """
         Queue a state to be pushed after the current state is popped or replaced.
 
-        Use this to chain execution of states, without causing a
-        state to get instanced before it is on top of the stack.
-
         Parameters:
-            state_name: Name of state to start.
+            state_name: Name of the state to start.
+            priority: Determines the order in which states are handled.
+            activation_time: Optional Unix timestamp when the state becomes eligible.
+            expires_at: Optional Unix timestamp after which the state is skipped.
+            source: Optional metadata tag for tracking origin.
+            condition: Optional callable that returns True if the state should be activated.
             kwargs: Arguments to pass to the __init__ method of the new state.
         """
-        logger.debug(f"Queueing state: {state_name}")
-        self._state_queue.append((state_name, kwargs))
+        item = QueuedState(
+            priority=priority,
+            name=state_name,
+            kwargs=kwargs,
+            activation_time=activation_time,
+            expires_at=expires_at,
+            source=source,
+            condition=condition,
+        )
+        heappush(self._state_queue, item)
+        logger.debug(
+            f"Queued state '{state_name}' with priority {priority}, "
+            f"activation_time={activation_time}, expires_at={expires_at}, "
+            f"source={source}, condition={condition}"
+        )
 
     def handle_next_queued_state(self) -> bool:
         """
-        Processes and activates the next state in the queue, if one exists.
+        Processes and activates the next eligible state in the queue.
 
         Returns:
             True if a state was processed and activated, False otherwise.
         """
-        if self._state_queue:
-            state_name, kwargs = self._state_queue.popleft()
-            logger.debug(
-                f"Handling queued state: {state_name} (replacing current)"
+        now = time.time()
+
+        for i, state in enumerate(self._state_queue):
+            # Skip states not yet ready
+            if state.activation_time and now < state.activation_time:
+                continue
+
+            # Skip expired states
+            if state.expires_at and now > state.expires_at:
+                logger.info(f"Skipping expired state: {state.name}")
+                continue
+
+            # Skip states with unmet condition
+            if state.condition and not state.condition():
+                logger.info(
+                    f"Skipping state '{state.name}' due to unmet condition"
+                )
+                continue
+
+            # Activate and remove from queue
+            state_to_activate = self._state_queue.pop(i)
+            heapify(self._state_queue)
+            logger.debug(f"Activating state: {state_to_activate.name}")
+            self._state_manager_ref.replace_state(
+                state_to_activate.name, **state_to_activate.kwargs
             )
-            self._state_manager_ref.replace_state(state_name, **kwargs)
             return True
+
         return False
 
-    def get_queued_state_by_name(
-        self,
-        state_name: str,
-    ) -> tuple[str, Mapping[str, Any]]:
+    def get_queued_state_by_name(self, state_name: str) -> QueuedState:
         """
         Query the queued state stack for a state by the name supplied.
 
@@ -75,9 +130,9 @@ class StateQueue:
         Raises:
             ValueError: If the state with the given name is not found in the queue.
         """
-        for queued_state in self._state_queue:
-            if queued_state[0] == state_name:
-                return queued_state
+        for item in self._state_queue:
+            if item.name == state_name:
+                return item
         raise ValueError(f"Missing queued state {state_name}")
 
     def clear(self) -> None:
@@ -95,38 +150,102 @@ class StateQueue:
         Raises:
             ValueError: If the state is not found in the queue.
         """
-        for i, (name, _) in enumerate(self._state_queue):
-            if name == state_name:
-                logger.debug(f"Removing queued state: {state_name}")
-                del self._state_queue[i]
-                return
-        raise ValueError(f"State '{state_name}' not found in queue")
+        new_queue = [
+            item for item in self._state_queue if item.name != state_name
+        ]
+        if len(new_queue) == len(self._state_queue):
+            raise ValueError(f"State '{state_name}' not found in queue")
+        self._state_queue[:] = new_queue
+        heapify(self._state_queue)
+        logger.debug(f"Removed queued state: {state_name}")
 
-    def replace_queued_state(self, state_name: str, **new_kwargs: Any) -> None:
+    def remove_expired_states(self) -> None:
+        """Removes states from the queue that have passed their expiration time."""
+        now = time.time()
+        self._state_queue = [
+            state
+            for state in self._state_queue
+            if not state.expires_at or now <= state.expires_at
+        ]
+        heapify(self._state_queue)
+        logger.debug("Removed expired states from queue")
+
+    def replace_queued_state(
+        self,
+        state_name: str,
+        *,
+        new_kwargs: Optional[Mapping[str, Any]] = None,
+        new_priority: Optional[int] = None,
+        new_activation_time: Optional[float] = None,
+        new_expires_at: Optional[float] = None,
+        new_source: Optional[str] = None,
+        new_condition: Optional[Callable[[], bool]] = None,
+    ) -> None:
         """
-        Removes a queued state by name.
+        Replaces the attributes of a queued state by name.
 
         Parameters:
-            state_name: Name of the state to remove.
+            state_name: Name of the state to update.
+            new_kwargs: New arguments to pass to the state.
+            new_priority: Optional new priority.
+            new_activation_time: Optional new activation time.
+            new_expires_at: Optional new expiration time.
+            new_source: Optional new source tag.
+            new_condition: Optional new condition callable for activation.
 
         Raises:
             ValueError: If the state is not found in the queue.
         """
-        for i, (name, _) in enumerate(self._state_queue):
-            if name == state_name:
-                logger.debug(f"Replacing queued state: {state_name}")
-                self._state_queue[i] = (state_name, new_kwargs)
-                return
-        raise ValueError(f"State '{state_name}' not found in queue")
+        found = False
+        for i, item in enumerate(self._state_queue):
+            if item.name == state_name:
+                updated_state = QueuedState(
+                    priority=(
+                        new_priority
+                        if new_priority is not None
+                        else item.priority
+                    ),
+                    name=item.name,
+                    kwargs=(
+                        new_kwargs if new_kwargs is not None else item.kwargs
+                    ),
+                    activation_time=(
+                        new_activation_time
+                        if new_activation_time is not None
+                        else item.activation_time
+                    ),
+                    expires_at=(
+                        new_expires_at
+                        if new_expires_at is not None
+                        else item.expires_at
+                    ),
+                    source=(
+                        new_source if new_source is not None else item.source
+                    ),
+                    condition=(
+                        new_condition
+                        if new_condition is not None
+                        else item.condition
+                    ),
+                )
+                self._state_queue[i] = updated_state
+                found = True
+                break
+        if not found:
+            raise ValueError(f"State '{state_name}' not found in queue")
+        heapify(self._state_queue)
+        logger.debug(f"Replaced queued state attributes for: {state_name}")
 
-    def peek_next(self) -> Optional[tuple[str, Mapping[str, Any]]]:
+    def peek_next(self) -> Optional[QueuedState]:
         """
         Returns the next queued state without removing it.
 
         Returns:
             The next queued state, or None if the queue is empty.
         """
-        return self._state_queue[0] if self._state_queue else None
+        if not self._state_queue:
+            return None
+        return self._state_queue[0]
 
     @property
     def has_queued_states(self) -> bool:
@@ -134,11 +253,11 @@ class StateQueue:
         return bool(self._state_queue)
 
     @property
-    def queued_states(self) -> Sequence[tuple[str, Mapping[str, Any]]]:
+    def queued_states(self) -> Sequence[QueuedState]:
         """
-        Sequence of states that are queued (read-only view).
+        Sequence of states that are queued (read-only view), including priority.
 
         Returns:
-            List of queued states.
+            List of queued states with priority.
         """
-        return list(self._state_queue)
+        return sorted(self._state_queue)

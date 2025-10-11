@@ -11,7 +11,7 @@ from pygame_menu.widgets.widget.label import Label
 from pygame_menu.widgets.widget.progressbar import ProgressBar
 
 from tuxemon import prepare
-from tuxemon.db import MonsterModel, db
+from tuxemon.db import MonsterModel, SpeedLabel, db
 from tuxemon.locale import T
 from tuxemon.menu.menu import PygameMenuState
 from tuxemon.platform.const import buttons
@@ -26,11 +26,12 @@ lookup_cache: dict[str, MonsterModel] = {}
 
 
 def _lookup_monsters() -> None:
-    monsters = list(db.database["monster"])
-    for mon in monsters:
-        results = MonsterModel.lookup(mon, db)
-        if results.txmn_id > 0:
-            lookup_cache[mon] = results
+    global lookup_cache
+    lookup_cache = {
+        mon_name: result
+        for mon_name in db.database["monster"]
+        if (result := MonsterModel.lookup(mon_name, db)).txmn_id > 0
+    }
 
 
 class MonsterMovesState(PygameMenuState):
@@ -39,6 +40,14 @@ class MonsterMovesState(PygameMenuState):
     """
 
     name: ClassVar[str] = "MonsterMovesState"
+    description_label: Optional[Any] = None
+    info_label: Optional[Any] = None
+    bar_accuracy: Optional[ProgressBar] = None
+    bar_potency: Optional[ProgressBar] = None
+    power_label: Optional[Any] = None
+    range_icon_widget: Optional[Any] = None
+    speed_icon_widget: Optional[Any] = None
+    type_icon_widgets: list[Any] = []
 
     # -------------------------
     # Top section (static per monster)
@@ -126,6 +135,7 @@ class MonsterMovesState(PygameMenuState):
                 align=locals.ALIGN_LEFT,
                 float=True,
             )
+            assert not isinstance(self.description_label, list)
             self.description_label.translate(
                 fix_measure(width, 3.8 / 256), fix_measure(height, 113 / 144)
             )
@@ -165,6 +175,7 @@ class MonsterMovesState(PygameMenuState):
                 float=True,
             )
             # place it just above the description block
+            assert not isinstance(self.info_label, list)
             self.info_label.translate(
                 fix_measure(width, 206 / 256), fix_measure(height, 102 / 144)
             )
@@ -289,30 +300,14 @@ class MonsterMovesState(PygameMenuState):
             self.range_icon_widget.translate(fxw(4 / 256), fxh(86.8 / 144))
 
         # Speed icon
-        if getattr(technique, "speed", None) is not None:
-            # Normalize speed into filename
-            speed = technique.speed
-            if hasattr(speed, "value"):  # enum-like
-                speed_key = speed.value
-            elif isinstance(speed, int):  # numeric
-                mapping = {
-                    -3: "extremely_slow",
-                    -2: "very_slow",
-                    -1: "slow",
-                    0: "normal",
-                    1: "fast",
-                    2: "very_fast",
-                    3: "extremely_fast",
-                }
-                speed_key = mapping.get(speed, "normal")
-            else:
-                speed_key = str(speed).lower()
+        speed_label = SpeedLabel.from_numeric(technique.speed)
+        speed_key = speed_label.value
 
-            spath = f"gfx/ui/icons/speed/{speed_key}.png"
-            simg = self._create_image(spath)
-            simg.scale(prepare.SCALE, prepare.SCALE)
-            self.speed_icon_widget = menu.add.image(simg.copy(), float=True)
-            self.speed_icon_widget.translate(fxw(222 / 256), fxh(51.8 / 144))
+        spath = f"gfx/ui/icons/speed/{speed_key}.png"
+        simg = self._create_image(spath)
+        simg.scale(prepare.SCALE, prepare.SCALE)
+        self.speed_icon_widget = menu.add.image(simg.copy(), float=True)
+        self.speed_icon_widget.translate(fxw(222 / 256), fxh(51.8 / 144))
 
     # -------- power label ----------
     def _add_power_label(
@@ -336,6 +331,7 @@ class MonsterMovesState(PygameMenuState):
             align=locals.ALIGN_LEFT,
             float=True,
         )
+        assert not isinstance(self.power_label, list)
         self.power_label.translate(
             fix_measure(width, 42 / 256), fix_measure(height, 87.8 / 144)
         )
@@ -346,17 +342,6 @@ class MonsterMovesState(PygameMenuState):
     def __init__(self, **kwargs: Any) -> None:
         if not lookup_cache:
             _lookup_monsters()
-
-        # Instance attributes used by helpers
-        self.description_label: Optional[Label] = None
-        self.info_label: Optional[Label] = None
-        self.bar_accuracy: Optional[ProgressBar] = None
-        self.bar_potency: Optional[ProgressBar] = None
-        self.power_label: Optional[Label] = None
-
-        self.range_icon_widget: Optional[Any] = None
-        self.speed_icon_widget: Optional[Any] = None
-        self.type_icon_widgets: list[Any] = []
 
         monster: Optional[Monster] = None
         source = ""

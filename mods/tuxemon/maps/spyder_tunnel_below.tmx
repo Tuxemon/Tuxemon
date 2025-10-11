@@ -226,21 +226,21 @@
    <properties>
     <property name="act1" value="char_talk spyder_tunnelb_beryll,post_battle_lose"/>
     <property name="behav1" value="talk spyder_tunnelb_beryll"/>
-    <property name="cond1" value="is variable_set tunnelbberyll:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_tunnelb_beryll"/>
    </properties>
   </object>
   <object id="76" name="Talk Lute" type="event" x="48" y="576" width="16" height="16">
    <properties>
     <property name="act01" value="char_talk spyder_tunnelb_lute,post_battle_lose"/>
     <property name="behav1" value="talk spyder_tunnelb_lute"/>
-    <property name="cond1" value="is variable_set tunnelblute:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_tunnelb_lute"/>
    </properties>
   </object>
   <object id="77" name="Talk Meitner" type="event" x="256" y="304" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_tunnelb_meitner,post_battle_lose"/>
     <property name="behav1" value="talk spyder_tunnelb_meitner"/>
-    <property name="cond1" value="is variable_set tunnelbmeitner:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_tunnelb_meitner"/>
    </properties>
   </object>
  </objectgroup>

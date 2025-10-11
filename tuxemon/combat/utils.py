@@ -57,6 +57,16 @@ def check_battle_legal(character: NPC) -> bool:
     return True
 
 
+def check_repellent(character: NPC) -> bool:
+    """
+    Checks if the repellent is still active.
+    """
+    repellent_tracker = character.step_tracker.get_tracker("repellent")
+    if repellent_tracker is None:
+        return False
+    return repellent_tracker.countdown > 0
+
+
 def has_effect(technique: Technique, effect_name: str) -> bool:
     """
     Checks to see if the technique has a specific effect (eg ram -> damage).
@@ -234,7 +244,6 @@ def _handle_loss(
 ) -> str:
     """Handles the case where the human player lost the battle."""
     info = {"name": loser.name.upper()}
-    set_var(session, "teleport_clinic", OutputBattle.lost.value)
 
     if trainer_battle:
         if loser.is_player:
@@ -267,7 +276,6 @@ def _handle_draw(
     """Handles the case where the battle was a draw."""
     defeat = list(players)
     defeat.remove(player)
-    set_var(session, "teleport_clinic", OutputBattle.draw.value)
 
     if trainer_battle:
         set_var(session, "battle_last_result", OutputBattle.draw.value)

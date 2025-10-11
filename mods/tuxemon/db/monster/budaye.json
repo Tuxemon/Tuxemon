@@ -42,29 +42,48 @@
   "evolutions": [
     {
       "monster_slug": "bamboon",
-      "item": "wood_booster"
-    },
-    {
-      "monster_slug": "bamboon",
-      "item": "lucky_bamboo"
-    },
-    {
-      "monster_slug": "frondly",
-      "item": "water_booster"
+      "item": {
+        "wood_booster": 0.5,
+        "lucky_bamboo": 0.5
+      }
     },
     {
       "monster_slug": "frondly",
-      "item": "peace_lily"
+      "item": {
+        "water_booster": 0.5,
+        "peace_lily": 0.5
+      }
     }
   ],
   "history": [
     {
-      "mon_slug": "bamboon",
-      "evo_stage": "stage1"
+      "slug": "budaye",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "bamboon",
+        "bamboon",
+        "frondly",
+        "frondly"
+      ]
     },
     {
-      "mon_slug": "frondly",
-      "evo_stage": "stage1"
+      "slug": "bamboon",
+      "stage": "stage1",
+      "evolves_from": [
+        "budaye",
+        "budaye"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "frondly",
+      "stage": "stage1",
+      "evolves_from": [
+        "budaye",
+        "budaye"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [
@@ -81,13 +100,17 @@
   "types": [
     "wood"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 27,
   "height": 80,
   "weight": 20,
+  "sounds": {
+    "combat_call": "sound_cat_purr_twit5",
+    "faint_call": "sound_cat_purr_twit5_faint"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

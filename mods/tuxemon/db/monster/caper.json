@@ -51,8 +51,20 @@
   ],
   "history": [
     {
-      "mon_slug": "crankus",
-      "evo_stage": "stage1"
+      "slug": "caper",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "crankus"
+      ]
+    },
+    {
+      "slug": "crankus",
+      "stage": "stage1",
+      "evolves_from": [
+        "caper"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [
@@ -69,13 +81,17 @@
     "frost",
     "normal"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 275,
   "height": 65,
   "weight": 36,
+  "sounds": {
+    "combat_call": "sound_ice",
+    "faint_call": "sound_ice_faint"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

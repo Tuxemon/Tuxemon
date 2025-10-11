@@ -42,25 +42,50 @@
   "evolutions": [
     {
       "monster_slug": "loliferno",
-      "item": "flintstone"
+      "item": {
+        "flintstone": 1.0
+      }
     },
     {
-      "at_level": 20,
-      "monster_slug": "spirain"
+      "monster_slug": "spirain",
+      "at_level": 20
     }
   ],
   "history": [
     {
-      "mon_slug": "loliferno",
-      "evo_stage": "stage1"
+      "slug": "seirein",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "loliferno",
+        "spirain"
+      ]
     },
     {
-      "mon_slug": "spirain",
-      "evo_stage": "stage1"
+      "slug": "loliferno",
+      "stage": "stage1",
+      "evolves_from": [
+        "seirein"
+      ],
+      "evolves_into": []
     },
     {
-      "mon_slug": "tornicane",
-      "evo_stage": "stage2"
+      "slug": "spirain",
+      "stage": "stage1",
+      "evolves_from": [
+        "seirein"
+      ],
+      "evolves_into": [
+        "tornicane"
+      ]
+    },
+    {
+      "slug": "tornicane",
+      "stage": "stage2",
+      "evolves_from": [
+        "spirain"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [
@@ -76,12 +101,16 @@
     "fire",
     "shadow"
   ],
-  "possible_genders": [
-    "neuter"
-  ],
+  "gender_weights": {
+    "neuter": 1.0
+  },
   "txmn_id": 162,
   "height": 30,
   "weight": 0.1,
+  "sounds": {
+    "combat_call": "sound_teleport_02",
+    "faint_call": "sound_teleport_02_faint"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.85,
   "upper_catch_resistance": 1.1

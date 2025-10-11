@@ -47,8 +47,20 @@
   ],
   "history": [
     {
-      "mon_slug": "octabode",
-      "evo_stage": "stage1"
+      "slug": "skwib",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "octabode"
+      ]
+    },
+    {
+      "slug": "octabode",
+      "stage": "stage1",
+      "evolves_from": [
+        "skwib"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [],
@@ -60,13 +72,17 @@
   "types": [
     "normal"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 183,
   "height": 30,
   "weight": 9,
+  "sounds": {
+    "combat_call": "sound_cute_01",
+    "faint_call": "sound_cute_01_faint"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

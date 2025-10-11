@@ -59,12 +59,30 @@
   ],
   "history": [
     {
-      "mon_slug": "lesmagu",
-      "evo_stage": "basic"
+      "slug": "shelagu",
+      "stage": "stage1",
+      "evolves_from": [
+        "lesmagu"
+      ],
+      "evolves_into": [
+        "crustagu"
+      ]
     },
     {
-      "mon_slug": "crustagu",
-      "evo_stage": "stage2"
+      "slug": "lesmagu",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "shelagu"
+      ]
+    },
+    {
+      "slug": "crustagu",
+      "stage": "stage2",
+      "evolves_from": [
+        "shelagu"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [
@@ -83,13 +101,17 @@
     "earth",
     "venom"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 278,
   "height": 60,
   "weight": 4,
+  "sounds": {
+    "combat_call": "sound_spit_01",
+    "faint_call": "sound_spit_01_faint"
+  },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.9,
   "upper_catch_resistance": 1.15

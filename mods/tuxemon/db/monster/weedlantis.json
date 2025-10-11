@@ -50,8 +50,22 @@
   "evolutions": [],
   "history": [
     {
-      "mon_slug": "weedsea",
-      "evo_stage": "basic"
+      "slug": "weedlantis",
+      "stage": "stage1",
+      "evolves_from": [
+        "weedsea",
+        "weedsea"
+      ],
+      "evolves_into": []
+    },
+    {
+      "slug": "weedsea",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "weedlantis",
+        "weedlantis"
+      ]
     }
   ],
   "terrains": [
@@ -71,12 +85,16 @@
     "water",
     "wood"
   ],
-  "possible_genders": [
-    "neuter"
-  ],
+  "gender_weights": {
+    "neuter": 1.0
+  },
   "txmn_id": 353,
   "height": 185,
   "weight": 120,
+  "sounds": {
+    "combat_call": "sound_frog",
+    "faint_call": "sound_frog"
+  },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

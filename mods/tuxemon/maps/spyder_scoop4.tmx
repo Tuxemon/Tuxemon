@@ -64,6 +64,7 @@
    <properties>
     <property name="act1" value="transition_teleport spyder_scoop3.tmx,5,3,0.3"/>
     <property name="act2" value="char_face player,down"/>
+    <property name="act3" value="set_teleport_faint player,spyder_scoop2.tmx,4,4"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_facing player,down"/>
    </properties>
@@ -127,7 +128,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_scoop_arachne2"/>
     <property name="behav1" value="talk spyder_scoop_arachne"/>
-    <property name="cond1" value="is variable_set scooparachne:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_scoop_arachne"/>
     <property name="cond2" value="not variable_set scooplandrace:yes"/>
    </properties>
   </object>
@@ -312,14 +313,14 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_scoop_orba2"/>
     <property name="behav1" value="talk spyder_scoop_orba"/>
-    <property name="cond1" value="is variable_set scooporba:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_scoop_orba"/>
    </properties>
   </object>
   <object id="60" name="Post Talk Weaver" type="event" x="96" y="96" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_scoop_weaver2"/>
     <property name="behav1" value="talk spyder_scoop_weaver"/>
-    <property name="cond1" value="is variable_set scoopweaver:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_scoop_weaver"/>
     <property name="cond2" value="not variable_set scooplandrace:yes"/>
    </properties>
   </object>

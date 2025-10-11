@@ -40,12 +40,30 @@
   ],
   "history": [
     {
-      "mon_slug": "scarlant",
-      "evo_stage": "basic"
+      "slug": "shull",
+      "stage": "stage1",
+      "evolves_from": [
+        "scarlant"
+      ],
+      "evolves_into": [
+        "myrmison"
+      ]
     },
     {
-      "mon_slug": "myrmison",
-      "evo_stage": "stage2"
+      "slug": "scarlant",
+      "stage": "basic",
+      "evolves_from": [],
+      "evolves_into": [
+        "shull"
+      ]
+    },
+    {
+      "slug": "myrmison",
+      "stage": "stage2",
+      "evolves_from": [
+        "shull"
+      ],
+      "evolves_into": []
     }
   ],
   "terrains": [
@@ -67,13 +85,17 @@
     "earth",
     "heroic"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 290,
   "height": 40,
   "weight": 55,
+  "sounds": {
+    "combat_call": "sound_roar_05",
+    "faint_call": "sound_roar_05_faint"
+  },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

@@ -84,7 +84,8 @@
   "weight": 0.5,
   "randomly": false,
   "sounds": {
-    "combat_call": "sound_glitch_call"
+    "combat_call": "sound_glitch_call",
+    "faint_call": "sound_glitch_call_faint"
   },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,

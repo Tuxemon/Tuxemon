@@ -61,7 +61,7 @@ SAVE_VERSION = 2
 # "evolution_registry": ("npc_state", "world_state"),
 FIELD_MIGRATION_MAP: dict[str, tuple[str, str]] = {}
 MONSTER_RENAMES: dict[str, str] = {"axylightl": "axolightl"}  # old: new
-TECHNIQUE_RENAMES: dict[str, str] = {}  # old: new
+TECHNIQUE_RENAMES: dict[str, str] = {"venom": "caustic_spray"}  # old: new
 
 
 def upgrade_from_v0_to_v1(save_data: dict[str, Any]) -> None:

@@ -120,7 +120,8 @@
   "height": 90,
   "weight": 20,
   "sounds": {
-    "combat_call": "sound_stones_04"
+    "combat_call": "sound_stones_04",
+    "faint_call": "sound_stones_04_faint"
   },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.9,

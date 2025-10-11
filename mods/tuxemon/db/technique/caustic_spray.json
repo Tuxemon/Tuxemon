@@ -14,7 +14,7 @@
   "range": "ranged",
   "recharge": 2,
   "sfx": "sfx_bubbles",
-  "slug": "venom",
+  "slug": "caustic_spray",
   "sort": "damage",
   "modifiers": [],
   "target": {

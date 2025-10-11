@@ -79,7 +79,8 @@
   "height": 90,
   "weight": 55,
   "sounds": {
-    "combat_call": "sound_retro_beep_05"
+    "combat_call": "sound_retro_beep_05",
+    "faint_call": "sound_retro_beep_05_faint"
   },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.95,

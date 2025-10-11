@@ -82,7 +82,8 @@
   "height": 30,
   "weight": 2.5,
   "sounds": {
-    "combat_call": "sound_terminal_03"
+    "combat_call": "sound_terminal_03",
+    "faint_call": "sound_terminal_03_faint"
   },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,

@@ -100,7 +100,8 @@
   "height": 30,
   "weight": 2,
   "sounds": {
-    "combat_call": "sound_ice"
+    "combat_call": "sound_ice",
+    "faint_call": "sound_ice_faint"
   },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.9,

@@ -75,7 +75,8 @@
   "height": 71,
   "weight": 10,
   "sounds": {
-    "combat_call": "sound_creature_roar"
+    "combat_call": "sound_creature_roar",
+    "faint_call": "sound_creature_roar_faint"
   },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,

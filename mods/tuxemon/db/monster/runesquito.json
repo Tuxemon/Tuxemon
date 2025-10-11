@@ -91,7 +91,8 @@
   "height": 66,
   "weight": 6,
   "sounds": {
-    "combat_call": "sound_bug_09"
+    "combat_call": "sound_bug_09",
+    "faint_call": "sound_bug_09_faint"
   },
   "catch_rate": 35.0,
   "lower_catch_resistance": 0.95,

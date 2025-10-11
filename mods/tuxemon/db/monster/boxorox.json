@@ -53,7 +53,8 @@
   "height": 187,
   "weight": 154,
   "sounds": {
-    "combat_call": "sound_bugthing"
+    "combat_call": "sound_bugthing",
+    "faint_call": "sound_bugthing_faint"
   },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,

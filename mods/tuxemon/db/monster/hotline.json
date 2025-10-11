@@ -83,7 +83,8 @@
   "weight": 50,
   "randomly": false,
   "sounds": {
-    "combat_call": "sound_robotic_pig"
+    "combat_call": "sound_robotic_pig",
+    "faint_call": "sound_robotic_pig_faint"
   },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,

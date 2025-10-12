@@ -26,6 +26,7 @@ from tuxemon.map.collision_manager import CollisionManager
 from tuxemon.map.map_loader import MapLoader
 from tuxemon.map.map_manager import MapManager
 from tuxemon.map.map_transition import MapTransition
+from tuxemon.map.map_view import AbstractRenderer, NullRenderer
 from tuxemon.movement import MovementManager, Pathfinder
 from tuxemon.networking import NetworkManager
 from tuxemon.npc_manager import NPCManager
@@ -147,6 +148,7 @@ class BaseClient(ABC):
             self.npc_manager,
             self.state_manager,
         )
+        self.map_renderer: AbstractRenderer = NullRenderer()
 
         # Various Sessions
         self.park_session = ParkSession()

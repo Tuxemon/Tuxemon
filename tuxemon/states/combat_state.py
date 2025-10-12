@@ -407,12 +407,12 @@ class CombatState(CombatAnimations):
                 player=player,
                 players=opponents if opponents else players,
                 turns=self.client.combat_session.turn,
+                combat_type=self.client.combat_session.combat_type,
                 prize=(
                     self.client.combat_session.prize
                     if result_type == "won"
                     else 0
                 ),
-                trainer_battle=self.client.combat_session.is_trainer_battle,
             )
         return message
 

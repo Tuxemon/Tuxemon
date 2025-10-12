@@ -179,6 +179,7 @@ TUX_GENERIC: str = "gfx/ui/background/tux_generic.png"
 TUX_INFO: str = "gfx/ui/background/tux_info.png"
 TECH_INFO: str = "gfx/ui/background/tech_info.png"
 ITEM_MENU: str = "gfx/ui/item/item_menu_bg.png"
+INDIV_INFO: str = "gfx/ui/background/passportbackground.png"
 
 # background per state
 BG_MINIGAME: str = GRAD_BLUE

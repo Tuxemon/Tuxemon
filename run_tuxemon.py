@@ -63,7 +63,31 @@ def launch_game() -> None:
             main.main(config=config, load_slot=args.slot)
 
     except Exception as e:
-        print(f"An error occurred: {e}")
+        import traceback
+        error_msg = f"Tuxemon Error: {e}"
+        full_error = f"{error_msg}\n\nTraceback:\n{traceback.format_exc()}"
+        print(full_error)
+        
+        # Log error to file for debugging
+        try:
+            import os
+            from pathlib import Path
+            error_log = Path.cwd() / "tuxemon_error.log"
+            with open(error_log, "w") as f:
+                f.write(full_error)
+            print(f"Error details saved to: {error_log}")
+        except:
+            pass
+        
+        # Show error dialog on Windows GUI builds
+        if sys.platform == "win32" and hasattr(sys, "frozen"):
+            try:
+                import ctypes
+                msg = f"{error_msg}\n\nSee tuxemon_error.log for details."
+                ctypes.windll.user32.MessageBoxW(0, msg, "Tuxemon Error", 1)
+            except:
+                pass  # Fall back to console output only
+        
         sys.exit(1)
 
 if __name__ == "__main__":

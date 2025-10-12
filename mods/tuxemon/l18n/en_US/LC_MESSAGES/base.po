@@ -9024,6 +9024,16 @@ msgstr "Relationship Type"
 msgid "relation_strength"
 msgstr "Strength"
 
+# Monster info labels
+msgid "height"
+msgstr "Height"
+
+msgid "weight"
+msgstr "Weight"
+
+msgid "exp_to_next_level"
+msgstr "Exp. to Next Level"
+
 # STAT TYPES
 msgid "armour"
 msgstr "Armor"

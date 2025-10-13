@@ -27,8 +27,8 @@ logger = logging.getLogger(__name__)
 if TYPE_CHECKING:
     from tuxemon.camera.camera import CameraManager
     from tuxemon.db import NpcTemplateModel
-    from tuxemon.map.map import TuxemonMap
     from tuxemon.map.map_manager import MapManager
+    from tuxemon.map.map_tuxemon import AbstractMap
     from tuxemon.npc import NPC
     from tuxemon.npc_manager import NPCManager
 
@@ -305,7 +305,7 @@ class MapRenderer:
         self.map_animations: dict[str, AnimationInfo] = {}
         self.bubble_manager = BubbleManager()
 
-    def draw(self, surface: Surface, current_map: TuxemonMap) -> None:
+    def draw(self, surface: Surface, current_map: AbstractMap) -> None:
         """Draws the map, sprites, and animations onto the given surface."""
         self._prepare_map_rendering(current_map)
         screen_surfaces = self._get_and_position_surfaces(current_map)
@@ -322,7 +322,7 @@ class MapRenderer:
         for anim_data in self.map_animations.values():
             anim_data.animation.update(time_delta)
 
-    def _prepare_map_rendering(self, current_map: TuxemonMap) -> None:
+    def _prepare_map_rendering(self, current_map: AbstractMap) -> None:
         """Prepares the map renderer for drawing."""
         if current_map.renderer is None:
             current_map.initialize_renderer()
@@ -332,7 +332,7 @@ class MapRenderer:
         current_map.renderer.center(center)
 
     def _get_and_position_surfaces(
-        self, current_map: TuxemonMap
+        self, current_map: AbstractMap
     ) -> list[tuple[Surface, Rect, int]]:
         """Retrieves and positions surfaces for rendering."""
         npc_surfaces = self._get_npc_surfaces(current_map.sprite_layer)
@@ -348,7 +348,7 @@ class MapRenderer:
         self,
         surface: Surface,
         screen_surfaces: list[tuple[Surface, Rect, int]],
-        current_map: TuxemonMap,
+        current_map: AbstractMap,
     ) -> None:
         """Draws the map and sprites onto the surface."""
         assert current_map.renderer
@@ -387,7 +387,7 @@ class MapRenderer:
         ]
 
     def _position_surfaces(
-        self, current_map: TuxemonMap, surfaces: list[WorldSurfaces]
+        self, current_map: AbstractMap, surfaces: list[WorldSurfaces]
     ) -> list[tuple[Surface, Rect, int]]:
         """Positions surfaces on the screen."""
         screen_surfaces = []
@@ -433,7 +433,7 @@ class BubbleManager:
         self._bubbles.clear()
 
     def get_rendered_bubbles(
-        self, current_map: TuxemonMap
+        self, current_map: AbstractMap
     ) -> list[tuple[Surface, Rect, int]]:
         """
         Calculates and returns a list of surfaces, their screen positions,
@@ -475,7 +475,7 @@ class DebugRenderer:
         self.collision_color = collision_color
         self.center_line_color = center_line_color
 
-    def draw_debug(self, current_map: TuxemonMap, surface: Surface) -> None:
+    def draw_debug(self, current_map: AbstractMap, surface: Surface) -> None:
         """Draws debug information on the surface."""
         surface.lock()
         self._draw_events(current_map, surface)
@@ -483,7 +483,7 @@ class DebugRenderer:
         self._draw_center_lines(surface)
         surface.unlock()
 
-    def _draw_events(self, current_map: TuxemonMap, surface: Surface) -> None:
+    def _draw_events(self, current_map: AbstractMap, surface: Surface) -> None:
         """Draws event-related debug information on the surface."""
         for event in self.map_manager.events:
             vector = Vector2(event.x, event.y)
@@ -493,7 +493,7 @@ class DebugRenderer:
             box(surface, rect, self.event_color)
 
     def _draw_collision_tiles(
-        self, current_map: TuxemonMap, surface: Surface
+        self, current_map: AbstractMap, surface: Surface
     ) -> None:
         # We need to iterate over all collidable objects. Start with walls/collision boxes.
         box_iter = map(
@@ -527,7 +527,7 @@ def apply_bars(orientation: str, aspect_ratio: float, screen: Surface) -> None:
 
 
 def collision_box_to_pgrect(
-    current_map: TuxemonMap, box: tuple[int, int]
+    current_map: AbstractMap, box: tuple[int, int]
 ) -> Rect:
     """
     Returns a Rect (in screen-coords) version of a collision box (in world-coords).
@@ -537,7 +537,7 @@ def collision_box_to_pgrect(
     return Rect(x, y, tw, th)
 
 
-def npc_to_pgrect(current_map: TuxemonMap, npc: NPC) -> Rect:
+def npc_to_pgrect(current_map: AbstractMap, npc: NPC) -> Rect:
     """Returns a Rect (in screen-coords) version of an NPC's bounding box."""
     pos = get_pos_from_tilepos(current_map, proj(npc.position))
     return Rect(pos, prepare.TILE_SIZE)

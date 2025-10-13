@@ -6,7 +6,7 @@ from dataclasses import dataclass
 
 from tuxemon.event import MapCondition
 from tuxemon.event.eventcondition import EventCondition
-from tuxemon.map.map_manager import map_types_list
+from tuxemon.map.map_manager import MAP_TYPES
 from tuxemon.session import Session
 
 
@@ -42,7 +42,7 @@ class LocationTypeCondition(EventCondition):
         locs = (
             location.split(":")
             if ":" in location
-            else (map_types_list if location == "all" else [location])
+            else (list(MAP_TYPES.keys()) if location == "all" else [location])
         )
 
         return client.map_manager.map_type.name in locs

@@ -17,6 +17,7 @@
   "slug": "gold_digger",
   "sort": "damage",
   "modifiers": [],
+  "behaviors": {},
   "target": {
     "enemy_monster": true,
     "enemy_team": false,

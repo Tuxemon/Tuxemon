@@ -24,6 +24,7 @@
   "slug": "wall_of_steel",
   "sort": "damage",
   "modifiers": [],
+  "behaviors": {},
   "target": {
     "enemy_monster": true,
     "enemy_team": false,

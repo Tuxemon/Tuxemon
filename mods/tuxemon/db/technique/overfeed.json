@@ -21,6 +21,7 @@
   "slug": "overfeed",
   "sort": "meta",
   "modifiers": [],
+  "behaviors": {},
   "target": {
     "enemy_monster": true,
     "enemy_team": false,

@@ -7,10 +7,8 @@ from collections.abc import Mapping, Sequence
 from typing import TYPE_CHECKING, Any, Optional
 from uuid import UUID, uuid4
 
-from tuxemon.constants import paths
-from tuxemon.core.core_condition import CoreCondition
-from tuxemon.core.core_effect import CoreEffect, StatusEffectResult
-from tuxemon.core.core_manager import ConditionManager, EffectManager
+from tuxemon.core.asset import CoreAssetManager
+from tuxemon.core.core_effect import StatusEffectResult
 from tuxemon.core.core_processor import ConditionProcessor, EffectProcessor
 from tuxemon.db import (
     CategoryStatus,
@@ -45,9 +43,6 @@ class Status:
     """
 
     MAX_STACKS: int = 5
-
-    effect_manager: Optional[EffectManager] = None
-    condition_manager: Optional[ConditionManager] = None
 
     def __init__(
         self,
@@ -89,15 +84,7 @@ class Status:
         self.modifiers: ModifiersHandler = ModifiersHandler()
         self.stat_modifiers: dict[str, StatModel] = {}
 
-        if Status.effect_manager is None:
-            Status.effect_manager = EffectManager(
-                CoreEffect, paths.CORE_EFFECT_PATH
-            )
-        if Status.condition_manager is None:
-            Status.condition_manager = ConditionManager(
-                CoreCondition, paths.CORE_CONDITION_PATH
-            )
-
+        self.core_assets = CoreAssetManager()
         self.effects: Sequence[PluginObject] = []
         self.conditions: Sequence[PluginObject] = []
 
@@ -152,12 +139,8 @@ class Status:
 
         self.cond_id = results.cond_id
 
-        if self.effect_manager and results.effects:
-            self.effects = self.effect_manager.parse_effects(results.effects)
-        if self.condition_manager and results.conditions:
-            self.conditions = self.condition_manager.parse_conditions(
-                results.conditions
-            )
+        self.effects = self.core_assets.parse_effects(results.effects)
+        self.conditions = self.core_assets.parse_conditions(results.conditions)
         self.condition_handler = ConditionProcessor(self.conditions)
         self.effect_handler = EffectProcessor(self.effects)
 

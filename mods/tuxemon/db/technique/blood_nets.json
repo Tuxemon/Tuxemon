@@ -21,6 +21,7 @@
   "slug": "blood_nets",
   "sort": "damage",
   "modifiers": [],
+  "behaviors": {},
   "target": {
     "enemy_monster": true,
     "enemy_team": false,

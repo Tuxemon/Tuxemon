@@ -36,6 +36,7 @@
   "slug": "oven",
   "sort": "damage",
   "modifiers": [],
+  "behaviors": {},
   "target": {
     "enemy_monster": true,
     "enemy_team": false,

@@ -8,9 +8,11 @@ from typing import TYPE_CHECKING, Any
 
 from tuxemon.money.bill import BillEntry
 from tuxemon.money.manager import MoneyManager
+from tuxemon.money.portfolio import PortfolioManager
 
 if TYPE_CHECKING:
-    from tuxemon.npc import NPC, NPCState
+    from tuxemon.npc import NPC
+    from tuxemon.save_state import NPCState
 
 logger = logging.getLogger(__name__)
 
@@ -45,9 +47,13 @@ def decode_money(json_data: Mapping[str, Any]) -> MoneyManager:
         money_manager.money = json_data.get("money", 0)
         money_manager.bank_account = json_data.get("bank_account", 0)
         bills = json_data.get("bills", {})
+        portfolio_data = json_data.get("portfolio", {})
         for bill_name, bill_data in bills.items():
             entry = BillEntry(**bill_data)
             money_manager.bills[bill_name] = entry
+            money_manager.portfolio_manager = PortfolioManager.from_state(
+                portfolio_data
+            )
     return money_manager
 
 
@@ -59,4 +65,5 @@ def encode_money(money_manager: MoneyManager) -> Mapping[str, Any]:
             bill_name: bill_entry.get_state()
             for bill_name, bill_entry in money_manager.bills.items()
         },
+        "portfolio": money_manager.portfolio_manager.get_state(),
     }

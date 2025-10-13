@@ -151,7 +151,6 @@ class GetMonsterTechAction(EventAction):
                 TechniqueMenuState(
                     character=session.player,
                     techniques=mon.moves.get_moves(),
-                    monster=mon,
                 )
             )
             menu.is_valid_entry = self.validate  # type: ignore[method-assign]

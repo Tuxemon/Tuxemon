@@ -21,6 +21,7 @@
   "slug": "flower_armor",
   "sort": "damage",
   "modifiers": [],
+  "behaviors": {},
   "target": {
     "enemy_monster": false,
     "enemy_team": false,

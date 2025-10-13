@@ -37,6 +37,7 @@ class QuantityMenu(Menu[None]):
         cost: int = 0,
         currency_formatter: Optional[CurrencyFormatter] = None,
         quantity_formatter: Optional[QuantityFormatter] = None,
+        label: Optional[Callable[[int], str]] = None,
     ) -> None:
         """
         Initialize the quantity menu.
@@ -61,6 +62,7 @@ class QuantityMenu(Menu[None]):
         self.shrink_to_items = shrink_to_items
         self.currency_formatter = currency_formatter or CurrencyFormatter()
         self.quantity_formatter = quantity_formatter or QuantityFormatter()
+        self.label = label or self.quantity_formatter.format
 
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
         if event.pressed:
@@ -103,7 +105,7 @@ class QuantityMenu(Menu[None]):
         )
 
     def initialize_items(self) -> Generator[MenuItem[None], None, None]:
-        label = self.quantity_formatter.format(self.quantity)
+        label = self.label(self.quantity)
         image = self.shadow_text(label)
         yield MenuItem(image, label, None, None)
 

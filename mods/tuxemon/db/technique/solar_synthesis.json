@@ -23,6 +23,7 @@
   "slug": "solar_synthesis",
   "sort": "damage",
   "modifiers": [],
+  "behaviors": {},
   "target": {
     "enemy_monster": false,
     "enemy_team": false,

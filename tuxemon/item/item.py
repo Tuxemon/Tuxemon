@@ -13,7 +13,7 @@ from tuxemon import graphics, prepare
 from tuxemon.core.asset import CoreAssetManager
 from tuxemon.core.core_effect import ItemEffectResult
 from tuxemon.core.core_processor import ConditionProcessor, EffectProcessor
-from tuxemon.db import ItemCategory, ItemModel, State, db
+from tuxemon.db import ItemBehaviors, ItemCategory, ItemModel, State, db
 from tuxemon.locale import T
 from tuxemon.modifiers import ModifiersHandler
 from tuxemon.surfanim import FlipAxes
@@ -59,6 +59,7 @@ class Item:
         self.use_failure: str = ""
         self.usable_in: Sequence[State] = []
         self.immunity_to_status: Sequence[str] = []
+        self.behaviors: ItemBehaviors
         self.cost: int = 0
         self.wear: int = 0
         self.max_wear: int = 0

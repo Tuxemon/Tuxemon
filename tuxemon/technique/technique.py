@@ -10,7 +10,7 @@ from uuid import UUID, uuid4
 from tuxemon.core.asset import CoreAssetManager
 from tuxemon.core.core_effect import TechEffectResult
 from tuxemon.core.core_processor import ConditionProcessor, EffectProcessor
-from tuxemon.db import Range, TechniqueModel, db
+from tuxemon.db import Range, TechBehaviors, TechniqueModel, db
 from tuxemon.element import ElementTypesHandler
 from tuxemon.locale import T
 from tuxemon.modifiers import ModifiersHandler
@@ -46,7 +46,6 @@ class Technique:
         self.flip_axes: FlipAxes = FlipAxes.NONE
         self.hit: bool = False
         self.speed: int = 0
-        self.randomly: bool = True
         self.name: str = ""
         self.next_use: int = 0
         self.potency: float = 0.0
@@ -61,7 +60,7 @@ class Technique:
         self.slug: str = ""
         self.types: ElementTypesHandler = ElementTypesHandler()
         self.modifiers: ModifiersHandler = ModifiersHandler()
-        self.usable_on: bool = False
+        self.behaviors: TechBehaviors
         self.use_success: str = ""
         self.use_failure: str = ""
         self.use_tech: str = ""
@@ -121,7 +120,7 @@ class Technique:
         self.default_power = results.power
 
         self.speed = results.speed.numeric_value
-        self.randomly = results.randomly
+        self.behaviors = results.behaviors
         self.healing_power = results.healing_power
         self.recharge_length = results.recharge
         self.range = results.range
@@ -135,7 +134,6 @@ class Technique:
         self.condition_handler = ConditionProcessor(self.conditions)
         self.effect_handler = EffectProcessor(self.effects)
         self.target = results.target.model_dump()
-        self.usable_on = results.usable_on
         self.modifiers = ModifiersHandler(results.modifiers)
 
         # Load the animation sprites that will be used for this technique

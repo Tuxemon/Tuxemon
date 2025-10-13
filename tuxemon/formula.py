@@ -88,10 +88,12 @@ class CaptureConfig:
 @dataclass
 class MonsterConfig:
     bond_range: tuple[int, int] = (0, 100)
+    bond_modifiers: dict[str, int] = field(default_factory=dict)
     weight_range: tuple[float, float] = (-0.1, 0.1)
     height_range: tuple[float, float] = (-0.1, 0.1)
     bond_sentiments: dict[str, tuple[int, int]] = field(default_factory=dict)
     bond_strings: dict[str, str] = field(default_factory=dict)
+    bond_icons: dict[str, str] = field(default_factory=dict)
     opposite_tastes: dict[str, list[str]] = field(default_factory=dict)
     bond_preferences: dict[str, int] = field(default_factory=dict)
     experience_multipliers: dict[str, float] = field(default_factory=dict)
@@ -565,14 +567,14 @@ def set_height(monster: Monster, value: float) -> float:
     return round(random.uniform(min_height, max_height), 2)
 
 
-def convert_lbs(kg: float) -> float:
+def convert_lbs(kg: float) -> int:
     """It converts kilograms into pounds."""
-    return round(kg * pre.COEFF_POUNDS, 2)
+    return round(kg * pre.COEFF_POUNDS)
 
 
-def convert_ft(cm: float) -> float:
+def convert_ft(cm: float) -> int:
     """It converts centimeters into feet."""
-    return round(cm * pre.COEFF_FEET, 2)
+    return round(cm * pre.COEFF_FEET)
 
 
 def convert_km(steps: float) -> float:
@@ -584,22 +586,6 @@ def convert_mi(steps: float) -> float:
     """It converts steps into miles."""
     km = convert_km(steps)
     return round(km * pre.COEFF_MILES, 2)
-
-
-def diff_percentage(part: float, total: float, decimal: int = 1) -> float:
-    """
-    It returns the difference between two numbers in percentage format.
-
-    Parameters:
-        part: The part, number.
-        total: The total, number.
-        decimal: How many decimals, default 1.
-
-    Returns:
-        The difference in percentage.
-
-    """
-    return round(((part - total) / total) * 100, decimal)
 
 
 def shake_check(

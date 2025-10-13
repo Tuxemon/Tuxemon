@@ -404,7 +404,9 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                             self.sprites.add(spr, layer=200)
                             self.type_icon_sprites.append(spr)
                         except Exception as e:
-                            print(f"Could not load type icon {path}: {e}")
+                            logger.error(
+                                f"Could not load type icon {path}: {e}"
+                            )
 
                 # --- Draw range icon ---
                 if technique.range:
@@ -421,7 +423,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                         self.sprites.add(spr, layer=200)
                         self.range_icon_sprite = spr
                     except Exception as e:
-                        print(f"Could not load range icon {path}: {e}")
+                        logger.error(f"Could not load range icon {path}: {e}")
 
                 # --- Draw speed icon ---
                 if technique.speed is not None:
@@ -454,7 +456,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                         self.sprites.add(spr, layer=200)
                         self.speed_icon_sprite = spr
                     except Exception as e:
-                        print(f"Could not load speed icon {path}: {e}")
+                        logger.error(f"Could not load speed icon {path}: {e}")
 
                 # --- Draw text labels ---
                 font = self.font

@@ -53,6 +53,13 @@ class RewardSystem:
         self.session = session
         self.damage_map = damage_map
 
+    def apply_penalties(self, monster: Monster) -> None:
+        """Applies defeat-related penalties to the specified monster."""
+        monster.current_hp = 0
+        owner = monster.get_owner()
+        if owner.items.find_item("friendship_scroll"):
+            monster.bond_handler.apply_bond_modifier("fainted")
+
     def award_rewards(self, monster: Monster) -> RewardData:
         """
         Calculate and distribute rewards (experience, money, and moves)

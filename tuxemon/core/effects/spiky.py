@@ -27,9 +27,7 @@ class SpikyEffect(CoreEffect):
     divisor: int
 
     def apply_status(
-        self,
-        session: Session,
-        status: Status,
+        self, session: Session, status: Status
     ) -> StatusEffectResult:
         host = status.get_host()
         if status.has_phase(EffectPhase.SWAP_MONSTER):

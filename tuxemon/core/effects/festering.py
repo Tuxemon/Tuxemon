@@ -21,8 +21,6 @@ class FesteringEffect(CoreEffect):
     name = "festering"
 
     def apply_status(
-        self,
-        session: Session,
-        status: Status,
+        self, session: Session, status: Status
     ) -> StatusEffectResult:
         return StatusEffectResult(name=status.name, success=True)

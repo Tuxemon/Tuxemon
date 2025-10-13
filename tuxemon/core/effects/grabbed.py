@@ -30,9 +30,7 @@ class GrabbedEffect(CoreEffect):
     ranges: str
 
     def apply_status(
-        self,
-        session: Session,
-        status: Status,
+        self, session: Session, status: Status
     ) -> StatusEffectResult:
         if self.divisor == 0:
             raise ValueError("StuckEffect divisor must be non-zero.")

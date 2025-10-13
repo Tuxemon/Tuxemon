@@ -33,9 +33,7 @@ class ConfusedEffect(CoreEffect):
     chance: float
 
     def apply_status(
-        self,
-        session: Session,
-        status: Status,
+        self, session: Session, status: Status
     ) -> StatusEffectResult:
         CONFUSED_KEY = self.name
         host = status.get_host()

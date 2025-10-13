@@ -23,9 +23,7 @@ class ExhaustedEffect(CoreEffect):
     name = "exhausted"
 
     def apply_status(
-        self,
-        session: Session,
-        status: Status,
+        self, session: Session, status: Status
     ) -> StatusEffectResult:
         host = status.get_host()
         _statuses: list[Status] = []

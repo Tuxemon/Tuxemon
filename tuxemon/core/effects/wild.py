@@ -31,9 +31,7 @@ class WildEffect(CoreEffect):
     divisor: int
 
     def apply_status(
-        self,
-        session: Session,
-        status: Status,
+        self, session: Session, status: Status
     ) -> StatusEffectResult:
         tech: list[Technique] = []
         if (

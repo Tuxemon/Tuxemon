@@ -33,9 +33,7 @@ class NoddingOffEffect(CoreEffect):
     chance: float
 
     def apply_status(
-        self,
-        session: Session,
-        status: Status,
+        self, session: Session, status: Status
     ) -> StatusEffectResult:
         extra: list[str] = []
         tech: list[Technique] = []

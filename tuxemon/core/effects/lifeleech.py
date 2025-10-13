@@ -32,9 +32,7 @@ class LifeLeechEffect(CoreEffect):
     divisor: int
 
     def apply_status(
-        self,
-        session: Session,
-        status: Status,
+        self, session: Session, status: Status
     ) -> StatusEffectResult:
         lifeleech: bool = False
         host = status.get_host()

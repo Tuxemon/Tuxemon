@@ -33,9 +33,7 @@ class LifeGiftEffect(CoreEffect):
     divisor: int
 
     def apply_status(
-        self,
-        session: Session,
-        status: Status,
+        self, session: Session, status: Status
     ) -> StatusEffectResult:
         lifegift: bool = False
         host = status.get_host()

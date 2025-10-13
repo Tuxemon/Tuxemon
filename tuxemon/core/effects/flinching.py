@@ -29,9 +29,7 @@ class FlinchingEffect(CoreEffect):
     chance: float
 
     def apply_status(
-        self,
-        session: Session,
-        status: Status,
+        self, session: Session, status: Status
     ) -> StatusEffectResult:
         tech: list[Technique] = []
         host = status.get_host()

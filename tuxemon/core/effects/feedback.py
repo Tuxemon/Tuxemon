@@ -31,9 +31,7 @@ class FeedBackEffect(CoreEffect):
     ranges: str
 
     def apply_status(
-        self,
-        session: Session,
-        status: Status,
+        self, session: Session, status: Status
     ) -> StatusEffectResult:
 
         host = status.get_host()

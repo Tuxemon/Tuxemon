@@ -27,9 +27,7 @@ class WastingEffect(CoreEffect):
     divisor: int
 
     def apply_status(
-        self,
-        session: Session,
-        status: Status,
+        self, session: Session, status: Status
     ) -> StatusEffectResult:
         done: bool = False
         host = status.get_host()

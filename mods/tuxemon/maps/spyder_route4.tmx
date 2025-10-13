@@ -501,42 +501,42 @@
    <properties>
     <property name="act1" value="char_talk spyder_route4_rincewind,post_battle_lose"/>
     <property name="behav1" value="talk spyder_route4_rincewind"/>
-    <property name="cond1" value="is variable_set route4rincewind:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_route4_rincewind"/>
    </properties>
   </object>
   <object id="94" name="Post Talk Roger" type="event" x="144" y="320" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_route4_roger,post_battle_lose"/>
     <property name="behav1" value="talk spyder_route4_roger"/>
-    <property name="cond1" value="is variable_set route4roger:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_route4_roger"/>
    </properties>
   </object>
   <object id="95" name="Post Talk Rosamund" type="event" x="192" y="464" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_route4_rosamund,post_battle_lose"/>
     <property name="behav1" value="talk spyder_route4_rosamund"/>
-    <property name="cond1" value="is variable_set route4rosamund:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_route4_rosamund"/>
    </properties>
   </object>
   <object id="96" name="Post Talk Marshall" type="event" x="16" y="464" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_route4_marshall,post_battle_lose"/>
     <property name="behav1" value="talk spyder_route4_marshall"/>
-    <property name="cond1" value="is variable_set route4marshall:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_route4_marshall"/>
    </properties>
   </object>
   <object id="97" name="Post Talk Beck" type="event" x="16" y="320" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_route4_beck,post_battle_lose"/>
     <property name="behav1" value="talk spyder_route4_beck"/>
-    <property name="cond1" value="is variable_set route4beck:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_route4_beck"/>
    </properties>
   </object>
   <object id="98" name="Post Talk Wulf" type="event" x="16" y="176" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_route4_wulf,post_battle_lose"/>
     <property name="behav1" value="talk spyder_route4_wulf"/>
-    <property name="cond1" value="is variable_set route4wulf:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_route4_wulf"/>
    </properties>
   </object>
   <object id="99" name="Create Nurse" type="event" x="224" y="32" width="16" height="16">

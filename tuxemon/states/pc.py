@@ -64,16 +64,9 @@ class PCMenuBuilder:
         menu: list[tuple[str, MenuGameObj]] = []
 
         # Monster box logic
-        if len(char.monsters) == prepare.PARTY_LIMIT:
-            monster_storage_callback = partial(
-                open_dialog,
-                self.client,
-                [T.translate("menu_storage_monsters_full")],
-            )
-        else:
-            monster_storage_callback = self._change_state(
-                "MonsterStorageState", character=char
-            )
+        monster_storage_callback = self._change_state(
+            "MonsterStorageState", character=char
+        )
 
         if char.monster_boxes.get_all_monsters_visible():
             menu.append(("menu_storage", monster_storage_callback))

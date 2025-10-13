@@ -80,7 +80,6 @@ class GetPendingMovesAction(EventAction):
                 TechniqueMenuState(
                     character=player,
                     techniques=mon.moves.get_moves(),
-                    monster=mon,
                 )
             )
             menu.escape_key_exits = False

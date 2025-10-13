@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 from tuxemon.core.core_effect import CoreEffect, ItemEffectResult
-from tuxemon.db import TechniqueModel, db
+from tuxemon.db import TechCategory, TechniqueModel, db
 from tuxemon.technique.technique import Technique
 
 if TYPE_CHECKING:
@@ -55,8 +55,11 @@ class LearnMmEffect(CoreEffect):
 
 
 def _lookup_techniques(element: str) -> None:
-    monsters = list(db.database["technique"])
-    for mon in monsters:
-        results = TechniqueModel.lookup(mon, db)
-        if results.randomly and element in results.types:
-            lookup_cache[mon] = results
+    global lookup_cache
+    lookup_cache = {
+        tech_name: result
+        for tech_name in db.database["technique"]
+        if (result := TechniqueModel.lookup(tech_name, db)).category
+        != TechCategory.reserved
+        and element in result.types
+    }

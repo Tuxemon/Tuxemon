@@ -17,7 +17,10 @@ class TestRenderer(unittest.TestCase):
         self.state_drawer = MagicMock()
         self.config = MagicMock()
         self.config.window_caption = "Test Caption"
-        self.renderer = Renderer(self.screen, self.state_drawer, self.config)
+        self.config.vsync = False
+        self.renderer = Renderer(
+            self.screen, self.state_drawer, self.config, self.debug_drawer
+        )
 
     def test_init(self):
         self.assertEqual(self.renderer.screen, self.screen)
@@ -26,71 +29,75 @@ class TestRenderer(unittest.TestCase):
         self.assertEqual(self.renderer.frames, 0)
         self.assertEqual(self.renderer.fps_timer, 0.0)
 
-    @patch("pygame.image.save")
-    def test_draw_save_to_disk(self, mock_save):
-        frame_number = 1
-        save_to_disk = True
-        collision_map = False
-        partial_events = []
-        self.renderer.draw(
-            frame_number,
-            save_to_disk,
-            collision_map,
-            self.debug_drawer,
-            partial_events,
-        )
+    def test_draw(self):
+        self.renderer.draw()
         self.state_drawer.draw.assert_called_once()
-        mock_save.assert_called_once_with(self.screen, "snapshot00001.tga")
 
-    @patch("pygame.image.save")
-    def test_draw_dont_save_to_disk(self, mock_save):
-        frame_number = 1
-        save_to_disk = False
-        collision_map = False
-        partial_events = []
-        self.renderer.draw(
-            frame_number,
-            save_to_disk,
-            collision_map,
-            self.debug_drawer,
-            partial_events,
-        )
-        self.state_drawer.draw.assert_called_once()
-        mock_save.assert_not_called()
-
-    @patch("pygame.image.save")
-    def test_draw_collision_map(self, mock_save):
-        frame_number = 1
-        save_to_disk = False
-        collision_map = True
-        partial_events = []
-        self.renderer.draw(
-            frame_number,
-            save_to_disk,
-            collision_map,
-            self.debug_drawer,
-            partial_events,
-        )
-        self.state_drawer.draw.assert_called_once()
+    def test_draw_debug(self):
+        partial_events = [MagicMock()]
+        self.renderer.draw_debug(partial_events)
         self.debug_drawer.draw_event_debug.assert_called_once_with(
             partial_events
         )
 
     @patch("pygame.image.save")
-    def test_draw_no_collision_map(self, mock_save):
-        frame_number = 1
-        save_to_disk = False
-        collision_map = False
-        partial_events = []
-        self.renderer.draw(
-            frame_number,
-            save_to_disk,
-            collision_map,
-            self.debug_drawer,
-            partial_events,
-        )
-        self.state_drawer.draw.assert_called_once()
-        self.debug_drawer.draw_event_debug.assert_not_called()
+    def test_save_frame(self, mock_save):
+        frame_number = 42
+        self.renderer.save_frame(frame_number)
+        mock_save.assert_called_once_with(self.screen, "snapshot00042.tga")
+
+    def test_update(self):
+        self.renderer.frames = 59
+        self.renderer.fps_timer = 1.0
+        self.renderer.update(0.0)
+        self.assertEqual(self.renderer.frames, 0)
+        self.assertEqual(self.renderer.fps_timer, 0.0)
+
+    def test_update_accumulates_and_resets(self):
+        # Simulate 61 frames at ~0.0165s each = ~1.0065s
+        for _ in range(61):
+            self.renderer.update(0.0165)
+
+        self.assertEqual(self.renderer.frames, 0)
+        self.assertEqual(self.renderer.fps_timer, 0.0)
+
+    def test_update_accumulates_without_reset(self):
+        for _ in range(60):
+            self.renderer.update(0.016)
+
+        self.assertEqual(self.renderer.frames, 60)
+        self.assertAlmostEqual(self.renderer.fps_timer, 0.96, places=2)
+
+    @patch("pygame.display.set_caption")
+    def test_update_sets_caption_with_vsync(self, mock_set_caption):
+        self.config.vsync = True
+        self.renderer.vsync = True
+        self.renderer.frames = 60
+        self.renderer.fps_timer = 1.0
+        self.renderer.update(0.0)
+        mock_set_caption.assert_called_once()
+        args = mock_set_caption.call_args[0][0]
+        self.assertIn("VSync ON", args)
+
+    @patch("pygame.display.set_caption")
+    def test_update_sets_caption_without_vsync(self, mock_set_caption):
+        self.config.vsync = False
+        self.renderer.vsync = False
+        self.renderer.frames = 60
+        self.renderer.fps_timer = 1.0
+        self.renderer.update(0.0)
+        mock_set_caption.assert_called_once()
+        args = mock_set_caption.call_args[0][0]
+        self.assertIn("VSync OFF", args)
+
+    @patch("pygame.image.save")
+    def test_save_frame_filename_format(self, mock_save):
+        self.renderer.save_frame(7)
+        mock_save.assert_called_once_with(self.screen, "snapshot00007.tga")
+
+    def test_draw_debug_with_empty_events(self):
+        self.renderer.draw_debug([])
+        self.debug_drawer.draw_event_debug.assert_called_once_with([])
 
 
 class TestStateDrawer(unittest.TestCase):

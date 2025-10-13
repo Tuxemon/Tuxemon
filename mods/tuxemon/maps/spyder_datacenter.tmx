@@ -504,35 +504,35 @@
    <properties>
     <property name="act1" value="char_talk spyder_datacenter_lagrange,post_battle_lose"/>
     <property name="behav1" value="talk spyder_datacenter_lagrange"/>
-    <property name="cond1" value="is variable_set datacenterlagrange:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_datacenter_lagrange"/>
    </properties>
   </object>
   <object id="119" name="Talk Chomsky" type="event" x="144" y="80" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_datacenter_chomsky,post_battle_lose"/>
     <property name="behav1" value="talk spyder_datacenter_chomsky"/>
-    <property name="cond1" value="is variable_set datacenterchomsky:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_datacenter_chomsky"/>
    </properties>
   </object>
   <object id="120" name="Talk Bayliss" type="event" x="208" y="80" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_datacenter_bayliss,post_battle_lose"/>
     <property name="behav1" value="talk spyder_datacenter_bayliss"/>
-    <property name="cond1" value="is variable_set datacenterbayliss:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_datacenter_bayliss"/>
    </properties>
   </object>
   <object id="121" name="Talk Fermi" type="event" x="144" y="240" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_datacenter_fermi,post_battle_lose"/>
     <property name="behav1" value="talk spyder_datacenter_fermi"/>
-    <property name="cond1" value="is variable_set datacenterfermi:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_datacenter_fermi"/>
    </properties>
   </object>
   <object id="122" name="Talk Onnes" type="event" x="208" y="240" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_datacenter_onnes,post_battle_lose"/>
     <property name="behav1" value="talk spyder_datacenter_onnes"/>
-    <property name="cond1" value="is variable_set datacenteronnes:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_datacenter_onnes"/>
    </properties>
   </object>
  </objectgroup>

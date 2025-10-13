@@ -27,7 +27,14 @@ BASEDIR = Path(sys.path[0]).resolve()
 logger.debug(f"basedir: {BASEDIR}")
 
 # mods
-mods_folder = (LIBDIR.parent / "mods").resolve()
+# For cx_freeze builds, LIBDIR is in lib/tuxemon, so we need to go up two levels
+# For normal installs, LIBDIR is in tuxemon, so we go up one level
+if hasattr(sys, "frozen") and sys.frozen:
+    # cx_freeze build: exe.win-amd64-3.12\lib\tuxemon -> exe.win-amd64-3.12\mods
+    mods_folder = (LIBDIR.parent.parent / "mods").resolve()
+else:
+    # normal install: tuxemon -> mods
+    mods_folder = (LIBDIR.parent / "mods").resolve()
 logger.debug(f"mods: {mods_folder}")
 
 # mods subfolders
@@ -92,6 +99,20 @@ def get_active_mod_paths() -> list[Path]:
         if mod_dir.is_dir() and not mod_dir.name.startswith((".", "__")):
             active_mod_paths.append(mod_dir)
     return active_mod_paths
+
+
+def get_plugin_paths(
+    base_path: Path, category: str, subfolder: Optional[str] = None
+) -> list[Path]:
+    """
+    Return a list of plugin directories from core and active mods for the given category and optional subfolder.
+    """
+    plugin_paths = [base_path]
+    for mod_path in get_active_mod_paths():
+        mod_plugin_path = mod_path / (subfolder or "") / category
+        if mod_plugin_path.is_dir():
+            plugin_paths.append(mod_plugin_path)
+    return plugin_paths
 
 
 def get_mod_name_from_path(file_path: Path) -> Optional[str]:

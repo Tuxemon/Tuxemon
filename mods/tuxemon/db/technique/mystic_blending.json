@@ -28,10 +28,11 @@
   "power": 0,
   "range": "special",
   "recharge": 4,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_shine",
   "slug": "mystic_blending",
   "sort": "damage",
   "modifiers": [],
+  "behaviors": {},
   "target": {
     "enemy_monster": false,
     "enemy_team": false,

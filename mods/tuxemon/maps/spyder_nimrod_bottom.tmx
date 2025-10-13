@@ -230,21 +230,21 @@
    <properties>
     <property name="act1" value="char_talk spyder_nimrod_rebel,post_battle_lose"/>
     <property name="behav1" value="talk spyder_nimrod_rebel"/>
-    <property name="cond1" value="is variable_set nimrodrebel:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_nimrod_rebel"/>
    </properties>
   </object>
   <object id="59" name="Post Talk Bowie" type="event" x="32" y="224" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_nimrod_bowie,post_battle_lose"/>
     <property name="behav1" value="talk spyder_nimrod_bowie"/>
-    <property name="cond1" value="is variable_set nimrodbowie:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_nimrod_bowie"/>
    </properties>
   </object>
   <object id="60" name="Post Talk Tru" type="event" x="96" y="224" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_nimrod_tru3"/>
     <property name="behav1" value="talk spyder_nimrod_tru"/>
-    <property name="cond1" value="is variable_set nimrodtru:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_nimrod_tru"/>
    </properties>
   </object>
   <object id="62" name="Play Music" type="event" x="0" y="0" width="16" height="16">

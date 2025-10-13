@@ -26,23 +26,33 @@
   "evolutions": [
     {
       "monster_slug": "av8r",
-      "item": { "booster_tech": 0.2 }
+      "item": {
+        "booster_tech": 0.2
+      }
     },
     {
       "monster_slug": "picc",
-      "item": { "booster_tech": 0.2 }
+      "item": {
+        "booster_tech": 0.2
+      }
     },
     {
       "monster_slug": "mrmoswitch",
-      "item": { "booster_tech": 0.2 }
+      "item": {
+        "booster_tech": 0.2
+      }
     },
     {
       "monster_slug": "k9",
-      "item": { "booster_tech": 0.2 }
+      "item": {
+        "booster_tech": 0.2
+      }
     },
     {
       "monster_slug": "b_ver_1",
-      "item": { "booster_tech": 0.2 }
+      "item": {
+        "booster_tech": 0.2
+      }
     }
   ],
   "history": [
@@ -110,12 +120,16 @@
   "types": [
     "metal"
   ],
-  "possible_genders": [
-    "neuter"
-  ],
+  "gender_weights": {
+    "neuter": 1.0
+  },
   "txmn_id": 125,
   "height": 40,
   "weight": 4,
+  "sounds": {
+    "combat_call": "sound_game_shot_light_gun",
+    "faint_call": "sound_game_shot_light_gun_faint"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

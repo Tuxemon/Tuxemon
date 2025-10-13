@@ -17,10 +17,11 @@
   "power": 2.8,
   "range": "special",
   "recharge": 3,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_bounce",
   "slug": "lust",
   "sort": "damage",
   "modifiers": [],
+  "behaviors": {},
   "target": {
     "enemy_monster": true,
     "enemy_team": false,

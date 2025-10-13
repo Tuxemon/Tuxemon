@@ -22,7 +22,9 @@
 .. autoscriptinfoclass:: tuxemon.event.conditions.check_max_tech.CheckMaxTechCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.check_mission.CheckMissionCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.check_party_parameter.CheckPartyParameterCondition
+.. autoscriptinfoclass:: tuxemon.event.conditions.check_teleport_faint.CheckTeleportFaintCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.check_world.CheckWorldCondition
+.. autoscriptinfoclass:: tuxemon.event.conditions.cooldown_days.CooldownDaysCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.current_state.CurrentStateCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.faction_reputation.FactionReputationCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.has_bag.HasBagCondition
@@ -39,13 +41,12 @@
 .. autoscriptinfoclass:: tuxemon.event.conditions.money_is.MoneyIsCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.monster_flair.MonsterFlairCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.music_playing.MusicPlayingCondition
-.. autoscriptinfoclass:: tuxemon.event.conditions.once.OnceCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.one_of.OneOfCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.party_infected.PartyInfectedCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.party_size.PartySizeCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.step_tracker.StepTrackerCondition
-.. autoscriptinfoclass:: tuxemon.event.conditions.teleport_faint.TeleportFaintCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.tile_property_updated.TilePropertyUpdatedCondition
+.. autoscriptinfoclass:: tuxemon.event.conditions.timestamp_cooldown.TimestampCooldownCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.to_use_tile.ToUseTileCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.tracker.TrackerCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.true.TrueCondition

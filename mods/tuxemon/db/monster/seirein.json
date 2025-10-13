@@ -101,12 +101,16 @@
     "fire",
     "shadow"
   ],
-  "possible_genders": [
-    "neuter"
-  ],
+  "gender_weights": {
+    "neuter": 1.0
+  },
   "txmn_id": 162,
   "height": 30,
   "weight": 0.1,
+  "sounds": {
+    "combat_call": "sound_teleport_02",
+    "faint_call": "sound_teleport_02_faint"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.85,
   "upper_catch_resistance": 1.1

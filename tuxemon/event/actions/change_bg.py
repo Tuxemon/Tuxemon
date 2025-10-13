@@ -67,7 +67,7 @@ class ChangeBgAction(EventAction):
             raise RuntimeError
 
         # this function cleans up the previous state without crashing
-        if len(client.state_manager.active_states) > 2:
+        if len(client.active_states) > 2:
             client.pop_state()
 
         if self.image and self.category:
@@ -90,7 +90,7 @@ class ChangeBgAction(EventAction):
 
         if client.current_state.name != "ImageState":
             if self.background is None:
-                if len(client.state_manager.active_states) > 2:
+                if len(client.active_states) > 2:
                     client.pop_state()
                     return
             else:

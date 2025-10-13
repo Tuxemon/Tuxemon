@@ -266,28 +266,28 @@
    <properties>
     <property name="act1" value="char_talk spyder_hospital1_zekar,post_battle_lose"/>
     <property name="behav1" value="talk spyder_hospital1_zekar"/>
-    <property name="cond1" value="is variable_set hospital1zekar:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_hospital1_zekar"/>
    </properties>
   </object>
   <object id="112" name="Post Talk Rakez" type="event" x="32" y="96" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_hospital1_rakez,post_battle_lose"/>
     <property name="behav1" value="talk spyder_hospital1_rakez"/>
-    <property name="cond1" value="is variable_set hospital1rakez:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_hospital1_rakez"/>
    </properties>
   </object>
   <object id="113" name="Post Talk Luzia" type="event" x="176" y="96" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_hospital1_luzia,post_battle_lose"/>
     <property name="behav1" value="talk spyder_hospital1_luzia"/>
-    <property name="cond1" value="is variable_set hospital1luzia:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_hospital1_luzia"/>
    </properties>
   </object>
   <object id="114" name="Post Talk Rhizome" type="event" x="256" y="96" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_hospital1_rhizome,post_battle_lose"/>
     <property name="behav1" value="talk spyder_hospital1_rhizome"/>
-    <property name="cond1" value="is variable_set hospital1rhizome:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_hospital1_rhizome"/>
    </properties>
   </object>
   <object id="115" name="PC Dr Lee 1" type="event" x="32" y="48" width="16" height="16">

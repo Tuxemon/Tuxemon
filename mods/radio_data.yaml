@@ -1,0 +1,129 @@
+# ------------------------------------------------------------------------------------
+# RADIO_DATA
+# ------------------------------------------------------------------------------------
+# This section defines the content and behavior of each radio station in the game.
+#
+# Keys:
+#   - Each key represents a unique station slug (e.g., "station_news_88_3").
+#   - These slugs must match those listed in RADIO_MAP_LISTS to be accessible.
+#
+# Values:
+#   - Each station can define:
+#       - `default`: A fallback broadcast used when no conditions are met.
+#       - `conditional_broadcasts`: A prioritized list of broadcasts triggered by
+#         specific game conditions (e.g., quest progress, time of day, location).
+#       - `frequency`: (Optional) A float value representing the station's FM frequency
+#         in MHz. Used by the tuner interface to match stations based on dial position.
+#
+# Conditional Broadcasts:
+#   - Each broadcast includes:
+#       - `conditions`: A dictionary of game variables (and optionally map_slugs)
+#         that must match for the broadcast to trigger.
+#       - `dialogue`: A list of message IDs to display.
+#       - `set_variables`: Optional variables to update after the broadcast.
+#
+# Notes:
+#   - Broadcasts are evaluated in order; the first matching one is used.
+#   - If no conditions match, the `default` dialogue is used.
+#   - This structure allows dynamic storytelling and reactive radio content.
+#   - Stations without a `frequency` will not be accessible via the tuner interface.
+#
+# Example station definition:
+#
+# station_example:
+#   frequency: 88.3
+#   conditional_broadcasts:
+#     - conditions:
+#         variables: 
+#           quest_maple_delivered: True
+#           broadcast_q1_news_heard: False
+#       dialogue: 
+#         - "radio_news_breaking_report_q1"
+#         - "radio_news_report_q1_details"
+#       set_variables:
+#         broadcast_q1_news_heard: True
+#
+#     - conditions:
+#         variables: 
+#           is_night: True
+#       dialogue:
+#         - "radio_news_late_night_report"
+#
+#   default:
+#     dialogue: ["radio_news_standard_report_msgid"]
+# ------------------------------------------------------------------------------------
+
+station_scrambled_frequency:
+  default:
+    dialogue: ["radio_static_msgid"]
+
+station_route_rhythms:
+  frequency: 94.7
+  conditional_broadcasts:
+    # Bedroom broadcasts
+    - conditions:
+        map_slugs: ["spyder_paper_rival_bedroom"]
+        variables:
+          stage_of_day: "morning"
+      dialogue:
+        - "spyder_rivalbedroom_radio_morning"
+
+    - conditions:
+        map_slugs: ["spyder_paper_rival_bedroom"]
+        variables:
+          stage_of_day: "afternoon"
+      dialogue:
+        - "spyder_rivalbedroom_radio_afternoon"
+
+    - conditions:
+        map_slugs: ["spyder_paper_rival_bedroom"]
+        variables:
+          stage_of_day: "dusk"
+      dialogue:
+        - "spyder_rivalbedroom_radio_dusk"
+
+    - conditions:
+        map_slugs: ["spyder_paper_rival_bedroom"]
+        variables:
+          stage_of_day: "dawn"
+      dialogue:
+        - "spyder_rivalbedroom_radio_dawn"
+
+    - conditions:
+        map_slugs: ["spyder_paper_rival_bedroom"]
+        variables:
+          stage_of_day: "night"
+      dialogue:
+        - "spyder_rivalbedroom_radio_night"
+
+    # Leather house broadcasts
+    - conditions:
+        map_slugs: ["spyder_leather_house1"]
+        variables:
+          stage_of_day: "morning"
+      dialogue:
+        - "spyder_leatherhouse1_radio_morning"
+
+    - conditions:
+        map_slugs: ["spyder_leather_house1"]
+        variables:
+          stage_of_day: "dusk"
+      dialogue:
+        - "spyder_leatherhouse1_radio_dusk"
+
+    - conditions:
+        map_slugs: ["spyder_leather_house1"]
+        variables:
+          stage_of_day: "dawn"
+      dialogue:
+        - "spyder_leatherhouse1_radio_dawn"
+
+    - conditions:
+        map_slugs: ["spyder_leather_house1"]
+        variables:
+          stage_of_day: "night"
+      dialogue:
+        - "spyder_leatherhouse1_radio_night"
+
+  default:
+    dialogue: ["radio_static_msgid"]

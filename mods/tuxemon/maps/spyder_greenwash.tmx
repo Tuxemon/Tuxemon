@@ -236,42 +236,42 @@
    <properties>
     <property name="act1" value="char_talk spyder_greenwash_broer,post_battle_lose"/>
     <property name="behav1" value="talk spyder_greenwash_broer"/>
-    <property name="cond1" value="is variable_set greenwashbroer:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_greenwash_broer"/>
    </properties>
   </object>
   <object id="90" name="Post Talk Clarence" type="event" x="176" y="112" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_greenwash_clarence,post_battle_lose"/>
     <property name="behav1" value="talk spyder_greenwash_clarence"/>
-    <property name="cond1" value="is variable_set greenwashclarence:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_greenwash_clarence"/>
    </properties>
   </object>
   <object id="91" name="Post Talk Lewie" type="event" x="144" y="176" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_greenwash_lewie,post_battle_lose"/>
     <property name="behav1" value="talk spyder_greenwash_lewie"/>
-    <property name="cond1" value="is variable_set greenwashlewie:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_greenwash_lewie"/>
    </properties>
   </object>
   <object id="92" name="Post Talk Chip" type="event" x="96" y="272" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_greenwash_chip,post_battle_lose"/>
     <property name="behav1" value="talk spyder_greenwash_chip"/>
-    <property name="cond1" value="is variable_set greenwashchip:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_greenwash_chip"/>
    </properties>
   </object>
   <object id="93" name="Post Talk Morehouse" type="event" x="144" y="304" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_greenwash_morehouse,post_battle_lose"/>
     <property name="behav1" value="talk spyder_greenwash_morehouse"/>
-    <property name="cond1" value="is variable_set greenwashmorehouse:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_greenwash_morehouse"/>
    </properties>
   </object>
   <object id="94" name="Post Talk Looten" type="event" x="144" y="480" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_greenwash_looten4"/>
     <property name="behav1" value="talk spyder_greenwash_looten"/>
-    <property name="cond1" value="is variable_set gotaardant:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_greenwash_looten"/>
    </properties>
   </object>
   <object id="96" name="Teleport to Level 2" type="event" x="32" y="32" width="16" height="32">

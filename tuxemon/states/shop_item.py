@@ -2,195 +2,100 @@
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-from collections.abc import Generator
 from functools import partial
-from typing import TYPE_CHECKING, ClassVar, Optional
+from typing import Any, ClassVar, Optional
 
-from pygame.rect import Rect
+from pygame.surface import Surface
 
-from tuxemon import prepare, tools
 from tuxemon.item.item import INFINITE_ITEMS, Item
 from tuxemon.item.shop_utils import (
-    TransactionManager,
-    calc_internal_rect,
     filter_inventory,
     generate_label,
 )
 from tuxemon.menu.interface import MenuItem
-from tuxemon.menu.menu import Menu
 from tuxemon.menu.quantity import QuantityAndCostMenu, QuantityAndPriceMenu
-from tuxemon.platform.const import buttons
-from tuxemon.platform.events import PlayerInput
-from tuxemon.sprite import Sprite
-from tuxemon.ui.paginator import Paginator
-from tuxemon.ui.text import TextArea
-
-if TYPE_CHECKING:
-    from tuxemon.economy.economy import Economy
-    from tuxemon.npc import NPC
+from tuxemon.states.shop_base import ShopMenuState
 
 
-class ShopItemMenuState(Menu[Item]):
+class ShopItemMenuState(ShopMenuState[Item]):
+    """State for buying and selling items, implementing the abstract methods of the generic ShopMenuState."""
 
     name: ClassVar[str] = "ShopItemMenuState"
-    draw_borders = False
 
-    def __init__(
-        self,
-        buyer: NPC,
-        seller: NPC,
-        economy: Economy,
-        buyer_purge: bool = False,
-    ) -> None:
-        super().__init__()
+    def _get_asset_image(self, asset: MenuItem[Item]) -> Optional[Surface]:
+        image = asset.game_object.surface
+        return image if image else None
 
-        # this sprite is used to display the item
-        self.item_center = self.rect.width * 0.164, self.rect.height * 0.13
-        self.item_sprite = Sprite()
-        self.sprites.add(self.item_sprite)
+    def _display_asset_description(self, asset: MenuItem[Item]) -> None:
+        if asset.description:
+            self.dialog.alert(asset.description, dialog_speed="max")
 
-        self.menu_items.line_spacing = tools.scale(7)
-        self.current_page = 0
-        self.total_pages = 0
-        self.inventory: list[Item] = []
+    def _filter_inventory(self) -> list[Item]:
+        return filter_inventory(self.buyer, self.seller, self.economy)
 
-        # this is the area where the item description is displayed
-        rect = self.client.screen.get_rect()
-        rect.top = tools.scale(106)
-        rect.left = tools.scale(3)
-        rect.width = tools.scale(250)
-        rect.height = tools.scale(32)
-        self.text_area = TextArea(self.font, self.font_color)
-        self.text_area.rect = rect
-        self.sprites.add(self.text_area, layer=100)
-
-        self.image_center = self.rect.width * 0.16, self.rect.height * 0.45
-        self.buyer = buyer
-        self.seller = seller
-        self.buyer_purge = buyer_purge
-        self.economy = economy
-        self.update_background(self.economy.model.background)
-        self.buyer_manager = self.buyer.money_controller.money_manager
-        self.seller_manager = self.seller.money_controller.money_manager
-        self.transaction_manager = TransactionManager(
-            self.buyer_manager, self.seller_manager
-        )
-        self.paginator = Paginator(self.inventory, prepare.MAX_MENU_ITEMS)
-
-    def calc_internal_rect(self) -> Rect:
-        return calc_internal_rect(self.rect)
-
-    def is_valid_entry(self, item: Optional[Item]) -> bool:
-        """Check if the selected item is valid for purchase or sale."""
-        if not item:
-            return False
-        if self.buyer.is_player:
-            _, _, price = generate_label(item, self.economy, 1)
-            wallet = self.buyer_manager.get_money()
-            key = f"{self.economy.model.slug}:{item.slug}"
-            qty = self.buyer.game_variables.get(key, 0)
-            if price > wallet or qty == 0:
-                return False
-        return True
-
-    def on_menu_selection_change(self) -> None:
-        """Called when menu selection changes."""
-        item = self.get_selected_item()
-        if item:
-            image = item.game_object.surface
-            assert image
-            self.item_sprite.image = image
-            self.item_sprite.rect = image.get_rect(center=self.image_center)
-            if item.description:
-                self.dialog.alert(item.description, dialog_speed="max")
-
-    def generate_label(
-        self,
-        item: Item,
-        qty: Optional[int] = None,
-        seller_mode: bool = False,
-    ) -> tuple[str, str, int]:
-        """Generate the label for shop items, handling both buyer and seller modes."""
-        return generate_label(item, self.economy, qty, seller_mode)
-
-    def _populate_menu_items(
-        self, inventory: list[Item]
-    ) -> Generator[MenuItem[Item], None, None]:
+    def _populate_menu(self, inventory: list[Item]) -> None:
         for item in inventory:
             if self.buyer.is_player:
                 key = f"{self.economy.model.slug}:{item.slug}"
                 qty = self.buyer.game_variables.get(key, 0)
-                label, discount, price = self.generate_label(item, qty)
-                fg = (
-                    self.unavailable_color_shop
-                    if price > self.buyer_manager.get_money()
-                    else None
-                )
-                image = self.shadow_text(label, fg=fg)
-                menu_item = MenuItem(image, item.name, item.description, item)
-                yield menu_item
-                menu_item.metadata["price"] = price
-                self.add(menu_item)
+                label, _, price = generate_label(item, self.economy, qty)
+                unavailable = price > self.buyer_manager.get_money()
+                self._add_menu_item(item, label, {"price": price}, unavailable)
             elif self.seller.is_player:
-                label, discount, cost = self.generate_label(
-                    item, qty=None, seller_mode=True
+                label, _, cost = generate_label(
+                    item, self.economy, qty=None, seller_mode=True
                 )
-                image = self.shadow_text(label)
-                menu_item = MenuItem(image, item.name, item.description, item)
-                yield menu_item
-                menu_item.metadata["cost"] = cost
-                self.add(menu_item)
+                self._add_menu_item(item, label, {"cost": cost})
 
-    def initialize_items(self) -> Generator[MenuItem[Item], None, None]:
-        self.inventory = filter_inventory(
-            self.buyer, self.seller, self.economy
-        )
-        if not self.inventory:
-            return
+    def _get_selection_menu_params(
+        self, menu_item: MenuItem[Item]
+    ) -> dict[str, Any]:
+        item = menu_item.game_object
+        if self.buyer.is_player:
+            price: int = menu_item.metadata.get("price", 1)
+            label = f"{self.economy.model.slug}:{item.slug}"
 
-        self.paginator.update_items(self.inventory)
-        self.total_pages = self.paginator.total_pages()
-        self.current_page = max(
-            0, min(self.current_page, self.total_pages - 1)
-        )
-
-        paged_inventory = self.paginator.paginate(self.current_page)
-        yield from self._populate_menu_items(paged_inventory)
-
-    def reload_shop(self) -> None:
-        self.clear()
-        self.inventory = filter_inventory(
-            self.buyer, self.seller, self.economy
-        )
-
-        paged_inventory = self.paginator.paginate(self.current_page)
-        # Force generator execution
-        list(self._populate_menu_items(paged_inventory))
-
-        self.selected_index = (
-            min(self.selected_index, len(self.menu_items) - 1)
-            if self.menu_items
-            else -1
-        )
-        self.on_menu_selection_change()
-
-    def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
-        total_pages = self.paginator.total_pages()
-
-        if event.button == buttons.RIGHT and event.pressed:
-            # Move to the next page if possible
-            if self.current_page < total_pages - 1:
-                self.current_page += 1
+            def buy_item(quantity: int) -> None:
+                self.transaction_manager.buy_item(
+                    self.buyer, item, quantity, label, price
+                )
                 self.reload_shop()
-        elif event.button == buttons.LEFT and event.pressed:
-            # Move to the previous page if possible
-            if self.current_page > 0:
-                self.current_page -= 1
-                self.reload_shop()
-        else:
-            return super().process_event(event)
 
-        return None
+            money = self.buyer_manager.get_money()
+            qty_can_afford = int(money / price)
+            inventory = self.buyer.game_variables.get(label, INFINITE_ITEMS)
+            max_quantity = (
+                qty_can_afford
+                if inventory == INFINITE_ITEMS
+                else min(qty_can_afford, inventory)
+            )
+            return {
+                "callback": partial(buy_item),
+                "max_quantity": max_quantity,
+                "cost": price,
+            }
+        elif self.seller.is_player:
+            metadata_cost = menu_item.metadata.get("cost")
+            basic_cost = self.economy.lookup_item_field(item.slug, "cost")
+            if metadata_cost is not None:
+                cost = metadata_cost
+            elif basic_cost:
+                cost = basic_cost
+            else:
+                cost = round(item.cost * self.economy.model.resale_multiplier)
+
+            def sell_item(quantity: int) -> None:
+                self.transaction_manager.sell_item(
+                    self.seller, item, quantity, cost
+                )
+                self.reload_shop()
+
+            return {
+                "callback": partial(sell_item),
+                "max_quantity": item.quantity,
+                "cost": cost,
+            }
+        return {}
 
 
 class ShopItemBuyMenuState(ShopItemMenuState):
@@ -223,7 +128,7 @@ class ShopItemBuyMenuState(ShopItemMenuState):
             else min(qty_can_afford, inventory)
         )
 
-        self.client.push_state(
+        self.client.state_manager.push_state(
             QuantityAndPriceMenu(
                 callback=partial(buy_item),
                 max_quantity=max_quantity,
@@ -259,7 +164,7 @@ class ShopItemSellMenuState(ShopItemMenuState):
             if not self.seller.items.has_item(item.slug):
                 self.on_menu_selection_change()
 
-        self.client.push_state(
+        self.client.state_manager.push_state(
             QuantityAndCostMenu(
                 callback=partial(sell_item),
                 max_quantity=item.quantity,

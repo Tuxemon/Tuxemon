@@ -79,13 +79,17 @@
     "metal",
     "shadow"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 22,
   "height": 203,
   "weight": 139,
+  "sounds": {
+    "combat_call": "sound_misc_06_wood_and_metal",
+    "faint_call": "sound_misc_06_wood_and_metal_faint"
+  },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.9,
   "upper_catch_resistance": 1.15

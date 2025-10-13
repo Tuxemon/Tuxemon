@@ -4,16 +4,15 @@ from __future__ import annotations
 
 import logging
 from abc import ABC, abstractmethod
-from collections.abc import Mapping, Sequence
+from collections.abc import Sequence
 from enum import Enum
 from pathlib import Path
-from typing import Any, Optional, TypeVar, Union, overload
+from typing import TYPE_CHECKING, Any, Optional, TypeVar, Union, overload
 
 from tuxemon.audio import MusicPlayerState, SoundManager
 from tuxemon.boundary import BoundaryChecker
 from tuxemon.camera.camera import CameraManager
 from tuxemon.combat.session import CombatSession
-from tuxemon.config import TuxemonConfig
 from tuxemon.constants import paths
 from tuxemon.event import get_event_bus
 from tuxemon.event.eventaction import ActionManager
@@ -30,7 +29,6 @@ from tuxemon.movement import MovementManager, Pathfinder
 from tuxemon.networking import NetworkManager
 from tuxemon.npc_manager import NPCManager
 from tuxemon.park_tracker import ParkSession
-from tuxemon.platform.events import PlayerInput
 from tuxemon.platform.input_manager import InputManager
 from tuxemon.rumble import RumbleManager
 from tuxemon.session import local_session
@@ -39,7 +37,12 @@ from tuxemon.state.manager import StateManager
 from tuxemon.state.repository import StateRepository
 from tuxemon.state.state import State
 from tuxemon.teleporter import Teleporter
-from tuxemon.ui.cipher_processor import CipherProcessor
+
+if TYPE_CHECKING:
+    from tuxemon.config import TuxemonConfig
+    from tuxemon.platform.events import PlayerInput
+    from tuxemon.state.queue import QueuedState
+    from tuxemon.ui.cipher_processor import CipherProcessor
 
 StateType = TypeVar("StateType", bound=State)
 
@@ -236,10 +239,7 @@ class BaseClient(ABC):
         """
         return self.state_manager.get_state_by_name(state_name)
 
-    def get_queued_state_by_name(
-        self,
-        state_name: str,
-    ) -> tuple[str, Mapping[str, Any]]:
+    def get_queued_state_by_name(self, state_name: str) -> QueuedState:
         """
         Query the state stack for a state by the name supplied.
         """

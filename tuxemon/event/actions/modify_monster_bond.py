@@ -10,7 +10,6 @@ from uuid import UUID
 
 from tuxemon.event import get_monster_by_iid
 from tuxemon.event.eventaction import EventAction
-from tuxemon.formula import change_bond
 from tuxemon.session import Session
 
 logger = logging.getLogger(__name__)
@@ -62,7 +61,7 @@ class ModifyMonsterBondAction(EventAction):
 
         if self.variable is None:
             for mon in player.monsters:
-                change_bond(mon, amount_bond)
+                mon.bond_handler.change_bond(amount_bond)
         else:
             if not player.game_variables.has(self.variable):
                 logger.error(f"Game variable {self.variable} not found")
@@ -73,4 +72,4 @@ class ModifyMonsterBondAction(EventAction):
                 logger.error("Monster not found")
                 return
             else:
-                change_bond(monster, amount_bond)
+                monster.bond_handler.change_bond(amount_bond)

@@ -50,11 +50,12 @@ class TestMonsterActions(unittest.TestCase):
         shape="dragon",
         stage="basic",
         types=["fire"],
-        possible_genders=["male", "female"],
+        gender_weights={"male": 0.5, "female": 0.5},
         txmn_id=13,
         height=80,
         weight=24,
         catch_rate=100.0,
+        sounds={},
         lower_catch_resistance=0.95,
         upper_catch_resistance=1.25,
     )
@@ -69,11 +70,12 @@ class TestMonsterActions(unittest.TestCase):
         shape="blob",
         stage="basic",
         types=["metal"],
-        possible_genders=["neuter"],
+        gender_weights={"neuter": 1.0},
         txmn_id=4,
         height=45,
         weight=4,
         catch_rate=100.0,
+        sounds={},
         lower_catch_resistance=0.95,
         upper_catch_resistance=1.25,
     )
@@ -100,6 +102,7 @@ class TestMonsterActions(unittest.TestCase):
         sfx="sfx_blaster",
         slug="ram",
         sort="damage",
+        behaviors={},
         target={
             "enemy_monster": False,
             "enemy_team": False,
@@ -170,21 +173,11 @@ class TestMonsterActions(unittest.TestCase):
         self.action.execute_action("random_monster", _params)
         self.assertEqual(self.player.monsters[0].slug, "nut")
 
-    def test_random_monster_shape_wrong(self):
-        _params = [5, None, None, None, "chad"]
-        with self.assertRaises(ValueError):
-            self.action.execute_action("random_monster", _params)
-
     def test_random_monster_evolution(self):
         _params = [5, None, None, None, None, "basic"]
         _basic = EvolutionStage.basic
         self.action.execute_action("random_monster", _params)
         self.assertEqual(self.player.monsters[0].stage, _basic)
-
-    def test_random_monster_evolution_wrong(self):
-        _params = [5, None, None, None, None, "stage69"]
-        with self.assertRaises(ValueError):
-            self.action.execute_action("random_monster", _params)
 
     def test_give_experience(self):
         _params = [5]

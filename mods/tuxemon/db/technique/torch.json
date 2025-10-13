@@ -20,10 +20,11 @@
   "power": 1.4,
   "range": "reach",
   "recharge": 1,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_flames1",
   "slug": "torch",
   "sort": "damage",
   "modifiers": [],
+  "behaviors": {},
   "target": {
     "enemy_monster": true,
     "enemy_team": false,

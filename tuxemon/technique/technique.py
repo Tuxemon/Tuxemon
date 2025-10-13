@@ -7,12 +7,10 @@ from collections.abc import Mapping, Sequence
 from typing import TYPE_CHECKING, Any, Optional
 from uuid import UUID, uuid4
 
-from tuxemon.constants import paths
-from tuxemon.core.core_condition import CoreCondition
-from tuxemon.core.core_effect import CoreEffect, TechEffectResult
-from tuxemon.core.core_manager import ConditionManager, EffectManager
+from tuxemon.core.asset import CoreAssetManager
+from tuxemon.core.core_effect import TechEffectResult
 from tuxemon.core.core_processor import ConditionProcessor, EffectProcessor
-from tuxemon.db import Range, TechniqueModel, db
+from tuxemon.db import Range, TechBehaviors, TechniqueModel, db
 from tuxemon.element import ElementTypesHandler
 from tuxemon.locale import T
 from tuxemon.modifiers import ModifiersHandler
@@ -36,9 +34,6 @@ class Technique:
     Particular skill that tuxemon monsters can use in battle.
     """
 
-    effect_manager: Optional[EffectManager] = None
-    condition_manager: Optional[ConditionManager] = None
-
     def __init__(self, save_data: Optional[Mapping[str, Any]] = None) -> None:
         save_data = save_data or {}
 
@@ -51,7 +46,6 @@ class Technique:
         self.flip_axes: FlipAxes = FlipAxes.NONE
         self.hit: bool = False
         self.speed: int = 0
-        self.randomly: bool = True
         self.name: str = ""
         self.next_use: int = 0
         self.potency: float = 0.0
@@ -66,7 +60,7 @@ class Technique:
         self.slug: str = ""
         self.types: ElementTypesHandler = ElementTypesHandler()
         self.modifiers: ModifiersHandler = ModifiersHandler()
-        self.usable_on: bool = False
+        self.behaviors: TechBehaviors
         self.use_success: str = ""
         self.use_failure: str = ""
         self.use_tech: str = ""
@@ -74,15 +68,7 @@ class Technique:
         self.cancel_text: str = ""
         self.menu_actions_data: Sequence[Mapping[str, str]] = []
 
-        if Technique.effect_manager is None:
-            Technique.effect_manager = EffectManager(
-                CoreEffect, paths.CORE_EFFECT_PATH, paths.LIBDIR.parent
-            )
-        if Technique.condition_manager is None:
-            Technique.condition_manager = ConditionManager(
-                CoreCondition, paths.CORE_CONDITION_PATH, paths.LIBDIR.parent
-            )
-
+        self.core_assets = CoreAssetManager()
         self.effects: Sequence[PluginObject] = []
         self.conditions: Sequence[PluginObject] = []
 
@@ -134,7 +120,7 @@ class Technique:
         self.default_power = results.power
 
         self.speed = results.speed.numeric_value
-        self.randomly = results.randomly
+        self.behaviors = results.behaviors
         self.healing_power = results.healing_power
         self.recharge_length = results.recharge
         self.range = results.range
@@ -142,16 +128,12 @@ class Technique:
         self.menu_actions_data = results.menu_actions
         self.tags = results.tags
 
-        if self.effect_manager and results.effects:
-            self.effects = self.effect_manager.parse_effects(results.effects)
-        if self.condition_manager and results.conditions:
-            self.conditions = self.condition_manager.parse_conditions(
-                results.conditions
-            )
+        self.effects = self.core_assets.parse_effects(results.effects)
+        self.conditions = self.core_assets.parse_conditions(results.conditions)
+
         self.condition_handler = ConditionProcessor(self.conditions)
         self.effect_handler = EffectProcessor(self.effects)
         self.target = results.target.model_dump()
-        self.usable_on = results.usable_on
         self.modifiers = ModifiersHandler(results.modifiers)
 
         # Load the animation sprites that will be used for this technique

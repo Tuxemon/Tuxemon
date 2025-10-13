@@ -14,10 +14,11 @@
   "power": 0,
   "range": "special",
   "recharge": 1,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_shine",
   "slug": "mending",
   "sort": "meta",
   "modifiers": [],
+  "behaviors": {},
   "target": {
     "enemy_monster": false,
     "enemy_team": false,

@@ -8,8 +8,8 @@ jobs:
     runs-on: windows-latest
     steps:
       # Checkout the repo
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
         with:
             # Version range or exact version of a Python version to use, using SemVer's version range syntax.
             python-version: 3.9 # optional, default is 3.x

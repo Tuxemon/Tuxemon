@@ -804,8 +804,8 @@ is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/
 [Sanglorian](https://wiki.tuxemon.org/index.php?title=Sanglorian)
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
-* ["Cherry & Berry Item"](https://forum.tuxemon.org/thread.php?pid=882#p882) by
-[josepharaoh99](https://wiki.tuxemon.org/Josepharaoh99)
+* ["Element Berries"](https://forum.tuxemon.org/thread.php?pid=882#p882) by
+[josepharaoh99](https://wiki.tuxemon.org/Josepharaoh99), colors tweaked by Sanglorian, 
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
 * ["Gems"](https://forum.tuxemon.org/thread.php?pid=887#p887) by
@@ -856,6 +856,8 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 
 * ["Boost Speed"](https://wiki.tuxemon.org/File:Boost_5.png) Adapted by Sanglorian from a sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
 
+* ["Drone"](https://wiki.tuxemon.org/File:Pixel_icons_by_oceansdream16.png) [http://opengameart.org/content/various-inventory-24-pixel-icon-set CC BY 3.0 on OGA, from OceansDream]
+
 * ["Raise Armour"](https://wiki.tuxemon.org/File:Diamond_-_Clint_Bellanger.png) [http://opengameart.org/content/gem-icons CC BY-SA 3.0, on OpenGameArt]
 
 * ["Raise Dodge"](https://wiki.tuxemon.org/File:Opal_-_Clint_Bellanger.png) [http://opengameart.org/content/gem-icons CC BY-SA 3.0, on OpenGameArt]
@@ -883,6 +885,8 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 * ["Mystery Tea"](https://wiki.tuxemon.org/File:Tea_2.png) [https://opengameart.org/content/infusions-icons CC0]
 
 * ["Tea"](https://wiki.tuxemon.org/File:Tea_1.png) [https://opengameart.org/content/infusions-icons CC0]
+
+* ["Escape Key"](https://wiki.tuxemon.org/File:Item4.png) adapted by Sanglorian from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
 * ["Tuxeball Ancient"](https://wiki.tuxemon.org/File:Tuxeball_ancient.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
@@ -937,6 +941,8 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 * ["Map App"](https://wiki.tuxemon.org/File:Iridescent_item_5.png) modified by Sanglorian from original sprites by Ocean. [http://opengameart.org/content/oceans-icons CC BY 3.0]
 
 * ["Spyder Pass"](https://wiki.tuxemon.org/File:Item5.png) adapted by Sanglorian from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Bivouac"](https://wiki.tuxemon.org/File:Pixel_icons_by_oceansdream4.png) [http://opengameart.org/content/various-inventory-24-pixel-icon-set CC BY 3.0 on OGA, from OceansDream]
 
 * ["Tuxepedia App"](https://wiki.tuxemon.org/File:Tuxepedia.png) [https://github.com/Tuxemon/Tuxemon/issues/452 Original source]
 
@@ -1841,9 +1847,6 @@ Adapted by Jaskrendix from a sprite by Henrique Lazarini from the CC0 "496 pixel
 * ["icon_stuck.png"](https://wiki.tuxemon.org/File:Slow.png)
 [https://opengameart.org/content/rpg-ui-icons CC0 on OGA]
 
-* ["icon_tired.png"](https://wiki.tuxemon.org/File:Tired.png)
-[https://opengameart.org/content/smoke-fire-animated-particle-16x16 CC BY in OGA]
-
 * ["icon_wasting.png"](https://wiki.tuxemon.org/File:Poison-icon.png)
 Unknown artist. Found in Tuxemon code. 
 
@@ -2042,10 +2045,17 @@ licensed under [SIL Open Font License, 1.1](http://scripts.sil.org/OFL)
 * ["Noto Sans Japanese"](https://fonts.google.com/noto/specimen/Noto+Sans+JP)
 licensed under [SIL Open Font License, 1.1](http://scripts.sil.org/OFL)
 
-* ["Big Bottom Catroon Normal"](http://openfontlibrary.org/en/font/big-bottom-cartoon-normal) by
+* ["Big Bottom Cartoon Normal"](http://openfontlibrary.org/en/font/big-bottom-cartoon-normal) by
 [KarenBJones](http://openfontlibrary.org/en/member/KarenBJones) is licensed under
 [Bitstream Vera License](http://dejavu-fonts.org/wiki/License)
 
+* ["Pizel"](https://copheemoth.itch.io/pizel) by
+[CopheeMoth](https://copheemoth.itch.io/) is licensed under
+[CC-0 1.0](https://creativecommons.org/publicdomain/zero/1.0/)
+
+* ["Minimal3x5"](https://fontstruct.com/fontstructions/show/1194671/minimal3x5) by
+[kheftel](https://copheemoth.itch.io/) is licensed under
+[CC BY 3.0](https://creativecommons.org/licenses/by/3.0/)
 
 Music
 ------
@@ -2113,6 +2123,32 @@ Sounds
 * "Temple Bell" by [Mike Koenig](https://soundbible.com/1531-Temple-Bell.html) is licensed under [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/)
 
 * "Japanese Temple Bell Small" by [Mike Koenig](https://soundbible.com/1496-Japanese-Temple-Bell-Small.html) is licensed under [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/)
+
+* "splash-1.wav" by [FreqMan](https://www.freesound.org/people/FreqMan/sounds/25819/) is licensed under CC BY 4.0.
+
+* "cat-purr-twit5.wav" and "cat-meow3.wav" by [Steffcaffrey](https://wiki.tuxemon.org/File:262310_steffcaffrey_cat-purr-twit5.wav) are licensed under CC0.
+
+* "bite-cartoon-style.mp3", "creature-roar.mp3", "robotic-pig.mp3", "crow-caw.mp3" and "game-shot-light-gun.wav" by [josepharaoh99](https://freesound.org/people/Jofae/) are licensed under CC0.
+
+* "Bark.wav", "Steel Clang.wav", "Swords Clash.wav", "Woosh-1.wav" and "Woosh-2.wav" by [Superpowers Asset Packs](https://github.com/sparklinlabs/superpowers-asset-packs) are licensed under CC0.
+
+* "bug_03.ogg", "bug_05.ogg", "bug_09.ogg", "bug_12.ogg", "burble_02.ogg", "burp_02.ogg", "cute_01.ogg" through "cute_04.ogg", "die_04.ogg", "eat_01.ogg", "eat_03.ogg", "grunt_02.ogg" through "grunt_04.ogg", "human_06.ogg", "monster_05.ogg", "monster_06.ogg", "monster_16.ogg", "monster_17.ogg", "monster_19.ogg", "misc_06.ogg", "misc_07.ogg", "misc_10.ogg", "misc_12.ogg", "roar_03.ogg", "roar_05.ogg", "spit_01.ogg", "spit_02.ogg", "troll_01.ogg", "troll_02.ogg" and "weird_09.ogg" by rubberduck ((pack 1)[https://opengameart.org/content/80-cc0-creature-sfx] and (pack 2)[https://opengameart.org/content/80-cc0-creture-sfx-2]) are licensed under CC0.
+
+* "Misc 06 wood and metal.ogg", "Misc_07_metal.ogg" and "Stones_04.ogg" by [rubberduck](https://opengameart.org/users/rubberduck) are licensed under CC0.
+
+* "retro_beep05.ogg", "retro_beep06.ogg", "shoot_02.ogg", "teleport_02.ogg" and "terminal_03.ogg" by [rubberduck](https://opengameart.org/content/50-cc0-sci-fi-sfx) are licensed under CC0.
+
+* "spell_fire_06.ogg" and "spell_fire_07.ogg" by [rubberduck](https://opengameart.org/content/80-cc0-rpg-sfx) is licensed under CC0.
+
+* "Echo-gurgle-whoosh 1.wav" by [Arthur](https://opengameart.org/content/warp-sound-3) is licensed under CC BY-SA 3.0.
+
+* ["Foom_0.wav"](https://opengameart.org/content/spell-4-fire) and [Growl1.wav](https://opengameart.org/content/6-monstrous-growls) by Bart K is licensed under CC BY 3.0.
+
+* "Ice.wav" by [bart](https://opengameart.org/content/ice-spells) is licensed under CC0.
+
+* "ghost_1.ogg" by [The Berklee College of Music](https://opengameart.org/content/scary-ghost-1) is licensed under CC BY 3.0.
+
+* "Insekt.ogg" by [Tim Mortimer](https://opengameart.org/content/chirp-loop) is licensed under CC BY 3.0.
 
 Translations
 --------------

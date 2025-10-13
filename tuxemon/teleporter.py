@@ -4,8 +4,9 @@ from __future__ import annotations
 
 import logging
 from collections import deque
+from collections.abc import Mapping
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING, Any, Optional
 
 from tuxemon.constants.asset_loader import fetch_asset
 from tuxemon.db import Direction
@@ -29,20 +30,39 @@ class TeleportFaint:
     y: int = 0
 
     @classmethod
-    def from_tuple(cls, data: tuple[str, int, int]) -> TeleportFaint:
-        return cls(data[0], data[1], data[2])
+    def from_dict(cls, data: Mapping[str, Any]) -> TeleportFaint:
+        raw = data.get("teleport_faint")
+
+        if raw is None:
+            return cls()
+
+        if isinstance(raw, tuple):
+            keys = ["map_name", "x", "y"]
+            mapped = dict(zip(keys, raw))
+        elif isinstance(raw, Mapping):
+            mapped = dict(raw)
+        else:
+            # Unexpected format—fallback to empty
+            mapped = {}
+
+        return cls(
+            map_name=mapped.get("map_name", "default.tmx"),
+            x=int(mapped.get("x", 0)),
+            y=int(mapped.get("y", 0)),
+        )
+
+    def to_dict(self) -> Mapping[str, Any]:
+        return {
+            "map_name": self.map_name,
+            "x": self.x,
+            "y": self.y,
+        }
 
     def is_valid(self, map_name: str, x: int, y: int) -> bool:
         return self.map_name == map_name and self.x == x and self.y == y
 
     def is_default(self) -> bool:
         return self.map_name == "default.tmx" and self.x == 0 and self.y == 0
-
-    def to_tuple(self) -> tuple[str, int, int]:
-        return (self.map_name, self.x, self.y)
-
-    def to_list(self) -> list[str]:
-        return [self.map_name, str(self.x), str(self.y)]
 
 
 @dataclass

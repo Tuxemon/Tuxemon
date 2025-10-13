@@ -47,11 +47,6 @@ default_lookup_table: monster
 active_mods:
   - tuxemon
 
-# A dictionary storing the version numbers for each active mod. This can be used
-# for logging or compatibility checks.
-mod_versions:
-  tuxemon: 1.0.0
-
 # A dictionary indicating whether specific mods are activated. This offers a more
 # granular control over mod loading beyond just being in 'active_mods'.
 mod_activation:

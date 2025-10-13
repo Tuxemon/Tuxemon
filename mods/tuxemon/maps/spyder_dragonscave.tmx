@@ -461,35 +461,35 @@
    <properties>
     <property name="act1" value="char_talk spyder_dragonscave_cailin,post_battle_lose"/>
     <property name="behav1" value="talk spyder_dragonscave_cailin"/>
-    <property name="cond1" value="is variable_set dragonscavecailin:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_dragonscave_cailin"/>
    </properties>
   </object>
   <object id="107" name="Post Talk Daenny" type="event" x="192" y="528" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_dragonscave_daenny,post_battle_lose"/>
     <property name="behav1" value="talk spyder_dragonscave_daenny"/>
-    <property name="cond1" value="is variable_set dragonscavedaenny:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_dragonscave_daenny"/>
    </properties>
   </object>
   <object id="108" name="Post Talk Tomas" type="event" x="176" y="544" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_dragonscave_tomas,post_battle_lose"/>
     <property name="behav1" value="talk spyder_dragonscave_tomas"/>
-    <property name="cond1" value="is variable_set dragonscavetomas:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_dragonscave_tomas"/>
    </properties>
   </object>
   <object id="109" name="Post Talk Griffin" type="event" x="192" y="544" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_dragonscave_griffin,post_battle_lose"/>
     <property name="behav1" value="talk spyder_dragonscave_griffin"/>
-    <property name="cond1" value="is variable_set dragonscavegriffin:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_dragonscave_griffin"/>
    </properties>
   </object>
   <object id="110" name="Post Talk Lessa" type="event" x="208" y="528" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_dragonscave_lessa,post_battle_lose"/>
     <property name="behav1" value="talk spyder_dragonscave_lessa"/>
-    <property name="cond1" value="is variable_set dragonscavelessa:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_dragonscave_lessa"/>
    </properties>
   </object>
   <object id="111" name="Create Nurse" type="event" x="288" y="208" width="16" height="16">

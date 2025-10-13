@@ -4,9 +4,14 @@ from __future__ import annotations
 
 import logging
 from dataclasses import dataclass, field
+from pathlib import Path
 from typing import ClassVar, Optional
 
-from tuxemon.constants.paths import CONDITIONS_PATH, LIBDIR
+from tuxemon.constants.paths import (
+    CONDITIONS_PATH,
+    LIBDIR,
+    get_plugin_paths,
+)
 from tuxemon.event import MapCondition
 from tuxemon.plugin import load_plugins
 from tuxemon.session import Session
@@ -41,10 +46,17 @@ class EventCondition:
 
 
 class ConditionManager:
-    def __init__(self) -> None:
+    def __init__(self, root_path: Optional[Path] = None) -> None:
+        if root_path is None:
+            root_path = LIBDIR.parent
+
+        plugin_folders = get_plugin_paths(
+            CONDITIONS_PATH, "conditions", subfolder="event"
+        )
+
         self.conditions = load_plugins(
-            paths=[CONDITIONS_PATH],
-            root_path=LIBDIR.parent,
+            paths=plugin_folders,
+            root_path=root_path,
             category="conditions",
             interface=EventCondition,
         )

@@ -266,35 +266,35 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_scoop_turner2"/>
     <property name="behav1" value="talk spyder_scoop_turner"/>
-    <property name="cond1" value="is variable_set scoopturner:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_scoop_turner"/>
    </properties>
   </object>
   <object id="72" name="Post Talk Lanth" type="event" x="32" y="64" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_scoop_lanth2"/>
     <property name="behav1" value="talk spyder_scoop_lanth"/>
-    <property name="cond1" value="is variable_set scooplanth:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_scoop_lanth"/>
    </properties>
   </object>
   <object id="73" name="Post Talk Paine" type="event" x="96" y="32" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_scoop_paine2"/>
     <property name="behav1" value="talk spyder_scoop_paine"/>
-    <property name="cond1" value="is variable_set scooppaine:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_scoop_paine"/>
    </properties>
   </object>
   <object id="74" name="Post Talk Rubid" type="event" x="224" y="176" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_scoop_rubid2"/>
     <property name="behav1" value="talk spyder_scoop_rubid"/>
-    <property name="cond1" value="is variable_set scooprubid:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_scoop_rubid"/>
    </properties>
   </object>
   <object id="75" name="Post Talk Berys" type="event" x="320" y="96" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_scoop_berys2"/>
     <property name="behav1" value="talk spyder_scoop_berys"/>
-    <property name="cond1" value="is variable_set scoopberys:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_scoop_berys"/>
    </properties>
   </object>
  </objectgroup>

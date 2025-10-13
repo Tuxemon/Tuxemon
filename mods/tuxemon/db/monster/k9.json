@@ -71,12 +71,16 @@
     "metal",
     "heroic"
   ],
-  "possible_genders": [
-    "neuter"
-  ],
+  "gender_weights": {
+    "neuter": 1.0
+  },
   "txmn_id": 129,
   "height": 60,
   "weight": 5,
+  "sounds": {
+    "combat_call": "sound_game_shot_light_gun",
+    "faint_call": "sound_game_shot_light_gun_faint"
+  },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.9,
   "upper_catch_resistance": 1.15

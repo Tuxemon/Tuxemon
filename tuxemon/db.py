@@ -2,15 +2,12 @@
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-import difflib
-import json
 import logging
 from abc import ABC, abstractmethod
-from collections.abc import Mapping, Sequence
-from dataclasses import dataclass
+from collections.abc import Sequence
 from enum import Enum
 from importlib import import_module
-from pathlib import Path
+from math import isclose
 from typing import (
     Annotated,
     Any,
@@ -22,13 +19,10 @@ from typing import (
     cast,
 )
 
-import yaml
-from PIL import Image
 from pydantic import (
     BaseModel,
     ConfigDict,
     Field,
-    ValidationError,
     ValidationInfo,
     field_validator,
     model_validator,
@@ -40,6 +34,11 @@ from tuxemon.constants.asset_loader import (
     fetch_mod_asset_roots,
 )
 from tuxemon.constants.paths import mods_folder
+from tuxemon.database.config import EntryNotFoundError
+from tuxemon.database.data import ModData
+from tuxemon.database.loader import ModelLoader
+from tuxemon.database.utils import load_config
+from tuxemon.database.validator import Validator
 from tuxemon.formula import config_monster
 from tuxemon.locale import T
 from tuxemon.surfanim import FlipAxes
@@ -331,38 +330,48 @@ class PartyConditionsModel(BaseModel):
         return v
 
 
-class ItemBehaviors(BaseModel):
-    consumable: bool = Field(
-        True, description="Whether or not this item is consumable."
-    )
-    visible: bool = Field(
-        True, description="Whether or not this item is visible."
-    )
+class Behaviors(BaseModel):
+    """Base class for shared behaviors."""
+
     requires_monster_menu: bool = Field(
-        True, description="Whether the monster menu is required to be open."
-    )
-    show_dialog_on_failure: bool = Field(
-        True, description="Whether to show a dialogue after a failed use."
+        True, description="Whether a monster menu is required for this action."
     )
     show_dialog_on_success: bool = Field(
         True, description="Whether to show a dialogue after a successful use."
     )
+    show_dialog_on_failure: bool = Field(
+        True, description="Whether to show a dialogue after a failed use."
+    )
+
+
+class ItemBehaviors(Behaviors):
+    """Behaviors specific to items."""
+
+    consumable: bool = Field(
+        True, description="Whether or not this item is consumable."
+    )
+    visible: bool = Field(
+        True, description="Whether this is visible in the UI."
+    )
+    resellable: bool = Field(False, description="Whether this can be resold.")
     throwable: bool = Field(
         False, description="Whether or not this item is throwable."
     )
     holdable: bool = Field(
         False, description="Whether or not this item is holdable."
     )
-    resellable: bool = Field(
-        False, description="Whether or not this item is resellable."
-    )
     repairable: bool = Field(
-        False,
-        description="Whether or not this item can be repaired once damaged or broken.",
+        False, description="Whether this can be repaired."
     )
-    craftable: bool = Field(
+    craftable: bool = Field(False, description="Whether this can be crafted.")
+
+
+class TechBehaviors(Behaviors):
+    """Behaviors specific to techniques."""
+
+    is_field_tech: bool = Field(
         False,
-        description="Whether or not this item can be crafted.",
+        description="Whether this technique can be used in the overworld.",
     )
 
 
@@ -851,22 +860,22 @@ class MonsterSpritesModel(BaseModel):
 
 
 class MonsterSoundsModel(BaseModel):
-    combat_call: str = Field(
-        ..., description="The sound used when entering combat"
+    combat_call: Optional[str] = Field(
+        None, description="The sound used when entering combat"
     )
-    faint_call: str = Field(
-        ..., description="The sound used when the monster faints"
+    faint_call: Optional[str] = Field(
+        None, description="The sound used when the monster faints"
     )
 
     @field_validator("combat_call")
     def combat_call_exists(cls: MonsterSoundsModel, v: str) -> str:
-        if has.db_entry("sounds", v):
+        if v and has.db_entry("sounds", v):
             return v
         raise ValueError(f"the sound {v} doesn't exist in the db")
 
     @field_validator("faint_call")
     def faint_call_exists(cls: MonsterSoundsModel, v: str) -> str:
-        if has.db_entry("sounds", v):
+        if v and has.db_entry("sounds", v):
             return v
         raise ValueError(f"the sound {v} doesn't exist in the db")
 
@@ -903,8 +912,8 @@ class MonsterModel(BaseModel, BaseLookupModel, validate_assignment=True):
         ge=prepare.CATCH_RATE_RANGE[0],
         le=prepare.CATCH_RATE_RANGE[1],
     )
-    possible_genders: Sequence[GenderType] = Field(
-        [], description="Valid genders for the monster"
+    gender_weights: dict[GenderType, float] = Field(
+        ..., description="Weighted gender probabilities for this monster"
     )
     lower_catch_resistance: float = Field(
         ...,
@@ -930,9 +939,8 @@ class MonsterModel(BaseModel, BaseLookupModel, validate_assignment=True):
     flairs: set[str] = Field(
         default_factory=set, description="The flairs this monster has"
     )
-    sounds: Optional[MonsterSoundsModel] = Field(
-        None,
-        description="The sounds this monster has",
+    sounds: MonsterSoundsModel = Field(
+        description="The sounds this monster has"
     )
 
     @classmethod
@@ -982,6 +990,21 @@ class MonsterModel(BaseModel, BaseLookupModel, validate_assignment=True):
             )
 
         return elements
+
+    @field_validator("gender_weights")
+    def check_gender_weights(
+        cls, v: dict[GenderType, float]
+    ) -> dict[GenderType, float]:
+        if not v:
+            raise ValueError("gender_weights must contain at least one entry.")
+
+        total = sum(v.values())
+        if not isclose(total, 1.0, rel_tol=1e-9):
+            raise ValueError(
+                f"gender_weights must sum to 1.0, but got {total}"
+            )
+
+        return v
 
     @field_validator("shape")
     def shape_exists(cls: MonsterModel, v: str) -> str:
@@ -1096,6 +1119,13 @@ class SpeedLabel(str, Enum):
             SpeedLabel.EXTREMELY_FAST: 3,
         }[self]
 
+    @classmethod
+    def from_numeric(cls, value: int) -> SpeedLabel:
+        for label in cls:
+            if label.numeric_value == value:
+                return label
+        return cls.NORMAL
+
 
 class TechSort(str, Enum):
     damage = "damage"
@@ -1151,6 +1181,7 @@ class TechniqueModel(BaseModel, BaseLookupModel):
     table_name: ClassVar[str] = "technique"
     slug: str = Field(..., description="The slug of the technique")
     sort: TechSort = Field(..., description="The sort of technique this is")
+    behaviors: TechBehaviors
     category: TechCategory = Field(
         ...,
         description="The tags of the technique",
@@ -1203,10 +1234,6 @@ class TechniqueModel(BaseModel, BaseLookupModel):
         description="Custom list of menu actions (key, display_text) for this technique.",
     )
     types: Sequence[str] = Field([], description="Type(s) of the technique")
-    usable_on: bool = Field(
-        False,
-        description="Whether or not the technique can be used outside of combat",
-    )
     power: float = Field(
         ...,
         description="Power of the technique",
@@ -1219,10 +1246,6 @@ class TechniqueModel(BaseModel, BaseLookupModel):
             "Indicates the relative speed of this technique. "
             "Possible values range from 'extremely_slow' to 'extremely_fast'."
         ),
-    )
-    randomly: bool = Field(
-        True,
-        description="Whether or not this technique will be picked by random",
     )
     healing_power: float = Field(
         0.0,
@@ -1873,6 +1896,21 @@ class EncounterModel(BaseModel, BaseLookupModel):
         except EntryNotFoundError:
             raise RuntimeError(f"Encounter {slug} not found")
 
+    @model_validator(mode="after")
+    def check_monster_horde_exclusivity(self) -> EncounterModel:
+        has_monsters = bool(self.monsters)
+        has_horde = self.horde is not None and bool(self.horde.monsters)
+
+        if has_monsters and has_horde:
+            raise ValueError(
+                "Encounter cannot have both 'monsters' and 'horde' defined."
+            )
+        if not has_monsters and not has_horde:
+            raise ValueError(
+                "Encounter must define either 'monsters' or 'horde'."
+            )
+        return self
+
 
 class DialogueModel(BaseModel, BaseLookupModel):
     table_name: ClassVar[str] = "dialogue"
@@ -2449,596 +2487,12 @@ def load_model_map(
     return model_map
 
 
-@dataclass
-class DatabaseConfig:
-    model_map: dict[str, str]
-    mod_base_path: str
-    mod_db_subfolder: str
-    file_extensions: list[str]
-    default_lookup_table: str
-    active_mods: list[str]
-    mod_versions: dict[str, str]
-    mod_table_exclusions: dict[str, list[str]]
-    mod_activation: dict[str, bool]
-    mod_tables: dict[str, list[str]]
-    mod_dependencies: dict[str, list[str]]
-
-
-class EntryNotFoundError(Exception):
-    pass
-
-
-class DependencyResolver:
-    def __init__(self, mod_dependencies: dict[str, list[str]]) -> None:
-        self.mod_dependencies = mod_dependencies
-
-    def resolve(
-        self, mod: str, visited: Optional[set[str]] = None
-    ) -> list[str]:
-        if visited is None:
-            visited = set()
-        if mod in visited:
-            return []
-        visited.add(mod)
-        dependencies = []
-        if mod in self.mod_dependencies:
-            for dep in self.mod_dependencies[mod]:
-                dependencies.extend(self.resolve(dep, visited))
-                dependencies.append(dep)
-        return list(dict.fromkeys(dependencies))
-
-
-class ModMetadataLoader:
-    def __init__(
-        self, active_mods: list[str], base_path: str = "mods"
-    ) -> None:
-        self.active_mods = active_mods
-        self.base_path = Path(base_path)
-
-    def load_metadata(self) -> dict[str, dict[str, Any]]:
-        metadata = {}
-        for mod_directory in self.active_mods:
-            mod_path = self.base_path / mod_directory / "mod.yaml"
-            if mod_path.exists():
-                try:
-                    with mod_path.open() as f:
-                        metadata[mod_directory] = yaml.safe_load(f)
-                except yaml.YAMLError as e:
-                    logger.error(
-                        f"Error loading metadata for '{mod_directory}': {e}"
-                    )
-            else:
-                logger.error(f"Metadata file missing: '{mod_path}'")
-        return metadata
-
-
-class ModelLoader:
-    def __init__(self, model_map: dict[str, type[DataModel]]):
-        self.model_map = model_map
-
-    def validate(self, item: Mapping[str, Any], table: str) -> DataModel:
-        try:
-            model_class = self.model_map.get(table)
-            if model_class:
-                return model_class(**item)
-            else:
-                raise ValueError(f"Unexpected table: {table}")
-        except ValidationError as e:
-            logger.error(
-                f"Validation failed for '{item['slug']}' in table '{table}': {e}"
-            )
-            raise e
-
-    def load(
-        self, item: Mapping[str, Any], table: str, validate: bool = False
-    ) -> DataModel:
-        try:
-            if validate:
-                return self.validate(item, table)
-            else:
-                model_class = self.model_map.get(table)
-                if model_class:
-                    return model_class(**item)
-                else:
-                    raise ValueError(f"Unexpected table: {table}")
-        except ValidationError as e:
-            logger.error(
-                f"Validation failed for '{item.get('slug', 'unknown')}' in table '{table}': {e}"
-            )
-            if validate:
-                raise e
-        raise RuntimeError(f"Failed to load item for table '{table}'.")
-
-
-class ModData:
-
-    def __init__(
-        self,
-        config: DatabaseConfig,
-        loader: ModelLoader,
-        resolver: DependencyResolver,
-        mod_loader: ModMetadataLoader,
-    ) -> None:
-        self.config = config
-        self.resolver = resolver
-        self.loader = loader
-        self.preloaded: dict[str, dict[str, Any]] = {}
-        self.database: dict[str, dict[str, DataModel]] = {}
-        self.mod_metadata = mod_loader.load_metadata()
-        if self.config.mod_tables:
-            for mod, tables in self.config.mod_tables.items():
-                if mod in self.config.active_mods:
-                    for table in tables:
-                        if table not in self.preloaded:
-                            self.preloaded[table] = {}
-                            self.database[table] = {}
-
-    def preload(self, directory: str = "all") -> None:
-        """
-        Loads all data from JSON files located under our data path as an
-        untyped preloaded dictionary.
-
-        Parameters:
-            directory: The directory under mods/tuxemon/db/ to load. Defaults
-                to "all".
-        """
-        if directory == "all":
-            if self.config.mod_tables:
-                ordered_mods_for_loading = []
-                resolved_set = set()
-
-                for mod in self.config.active_mods:
-                    if mod in self.config.mod_tables:
-                        dependencies = self.resolver.resolve(mod)
-
-                        for dep in dependencies:
-                            if dep not in resolved_set:
-                                logger.info(
-                                    f"Adding dependency to load queue: {dep}"
-                                )
-                                ordered_mods_for_loading.append(dep)
-                                resolved_set.add(dep)
-
-                        if mod not in resolved_set:
-                            logger.info(
-                                f"Adding main mod to load queue: {mod}"
-                            )
-                            ordered_mods_for_loading.append(mod)
-                            resolved_set.add(mod)
-
-                logger.info(
-                    f"Final ordered mods for loading: {ordered_mods_for_loading}"
-                )
-
-                for mod_to_load in ordered_mods_for_loading:
-                    if mod_to_load in self.config.mod_tables:
-                        logger.info(f"Loading mod: {mod_to_load}")
-                        for table in self.config.mod_tables[mod_to_load]:
-                            self._preload_table(table, mod_to_load)
-            else:
-                logger.warning("No mod tables specified in config.")
-        else:
-            self._preload_table(directory, None)
-
-    def _preload_table(
-        self, table: str, mod_directory: Optional[str] = None
-    ) -> None:
-        """Preloads table data from mod directories."""
-        active_mods = [
-            mod
-            for mod in self.config.active_mods
-            if not self.config.mod_activation
-            or self.config.mod_activation.get(mod, True)
-        ]
-        mod_directories = [mod_directory] if mod_directory else active_mods
-
-        for mod_dir in mod_directories:
-            path = (
-                Path(self.config.mod_base_path)
-                / mod_dir
-                / self.config.mod_db_subfolder
-            )
-
-            if (
-                self.config.mod_versions
-                and mod_dir in self.config.mod_versions
-            ):
-                logger.info(
-                    f"Loading mod '{mod_dir}' version {self.config.mod_versions[mod_dir]}"
-                )
-
-            if not path.exists():
-                logger.warning(f"Mod directory '{path}' not found.")
-                continue
-
-            db_path = path / str(table)
-            if (
-                self.config.mod_table_exclusions
-                and mod_dir in self.config.mod_table_exclusions
-                and table in self.config.mod_table_exclusions[mod_dir]
-            ):
-                logger.info(f"Table '{table}' excluded by mod '{mod_dir}'.")
-                continue
-
-            if db_path.exists():
-                data_loader = load_files(table, path, self.config)
-                self.preloaded.setdefault(table, {}).update(data_loader)
-            else:
-                logger.warning(f"Database directory '{db_path}' not found.")
-
-    def load(
-        self,
-        directory: str = "all",
-        validate: bool = True,
-    ) -> None:
-        """
-        Loads all data from JSON files located under our data path.
-        Parameters:
-            directory: The directory under mods/tuxemon/db/ to load. Defaults
-                to "all".
-            validate: Whether or not we should raise an exception if validation
-                fails
-        """
-        if directory == "all":
-            if self.config.mod_tables:
-                for mod, tables in self.config.mod_tables.items():
-                    if mod in self.config.active_mods:
-                        for table in tables:
-                            self._load_models_from_preloaded(table, validate)
-            else:
-                logger.debug("No mod tables specified in config.")
-        else:
-            self._load_models_from_preloaded(directory, validate)
-
-    def _load_models_from_preloaded(self, table: str, validate: bool) -> None:
-        """Loads models from preloaded data into the main database."""
-        for item in self.preloaded[table].values():
-            if "paths" in item:
-                del item["paths"]
-
-            model = self._validate_and_load(item, table, validate)
-            if model:
-                self.database[table][model.slug] = model
-
-    def _validate_and_load(
-        self, item: Mapping[str, Any], table: str, validate: bool
-    ) -> Optional[DataModel]:
-        """Validates and loads a model entry."""
-        try:
-            model_class = self.loader.model_map.get(table)
-            if not model_class:
-                raise ValueError(f"Unexpected table: {table}")
-
-            return model_class(**item)
-        except ValidationError as e:
-            logger.error(
-                f"Validation failed for '{item.get('slug', 'unknown')}' in table '{table}': {e}"
-            )
-            if validate:
-                raise e
-            return None
-
-    def load_model(
-        self, item: Mapping[str, Any], table: str, validate: bool = False
-    ) -> None:
-        """
-        Loads a single json object, casts it to the appropriate data model,
-        and adds it to the appropriate db table.
-
-        Parameters:
-            item: The json object to load in.
-            table: The db table to load the object into.
-            validate: Whether or not we should raise an exception if validation
-                fails
-        """
-        model = self._validate_and_load(item, table, validate)
-        if model:
-            self.database[table][model.slug] = model
-
-    def lookup(self, slug: str, table: Optional[str] = None) -> DataModel:
-        """
-        Looks up a monster, technique, item, npc, etc based on slug.
-
-        Parameters:
-            slug: The slug of the monster, technique, item, or npc.  A short
-                English identifier.
-            table: Which index to do the search in.
-
-        Returns:
-            A pydantic.BaseModel from the resulting lookup.
-        """
-        if table is None:
-            table = self.config.default_lookup_table
-        table_entry = self.database.get(table)
-        if not table_entry:
-            raise ValueError(f"{table} table wasn't loaded")
-        if slug not in table_entry:
-            self.log_missing_entry_and_raise(table, slug)
-        return table_entry[slug]
-
-    def log_missing_entry_and_raise(self, table: str, slug: str) -> None:
-        """Logs a missing entry and raises EntryNotFoundError."""
-        options = difflib.get_close_matches(slug, self.database[table].keys())
-        options_str = ", ".join(repr(s) for s in options)
-        hint = (
-            f"Did you mean {options_str}?"
-            if options
-            else "No similar slugs found."
-        )
-        raise EntryNotFoundError(
-            f"Lookup failed for unknown {table} '{slug}'. {hint}"
-        )
-
-    def get_entry(self, table: str, slug: str) -> str:
-        """Checks existence of an entry and returns its file path if available."""
-        table_data = self.database.get(table)
-
-        if not table_data:
-            raise ValueError(
-                f"Table '{table}' does not exist in the database."
-            )
-
-        entry = table_data.get(slug)
-
-        if entry is None:
-            raise EntryNotFoundError(
-                f"Entry '{slug}' not found in table '{table}'."
-            )
-
-        return getattr(entry, "file", slug)
-
-    def reload(self, table: str, validate: bool = True) -> None:
-        """Reloads the data for a specific table."""
-        if table not in self.database:
-            logger.error(f"Table '{table}' not loaded.")
-            return
-
-        if table in self.preloaded:
-            logger.info(f"Clearing preloaded data for table '{table}'.")
-            self.preloaded[table] = {}
-        if table in self.database:
-            logger.info(f"Resetting database entries for table '{table}'.")
-            self.database[table] = {}
-
-        try:
-            if table in self.config.mod_tables:
-                mods_associated = [
-                    mod
-                    for mod, tables in self.config.mod_tables.items()
-                    if table in tables and mod in self.config.active_mods
-                ]
-                for mod in mods_associated:
-                    mod_path = (
-                        Path(self.config.mod_base_path)
-                        / mod
-                        / self.config.mod_db_subfolder
-                    )
-                    logger.info(
-                        f"Preloading table '{table}' from mod path '{mod_path}'."
-                    )
-                    self._preload_table(table, mod)
-
-            self._load_models_from_preloaded(table, validate)
-        except Exception as e:
-            logger.error(f"Error reloading table '{table}': {e}")
-
-    def add_entry(
-        self, table: str, data: dict[str, Any], validate: bool = True
-    ) -> None:
-        try:
-            model = self.loader.load(data, table, validate)
-
-            if table not in self.database:
-                self.database[table] = {}
-
-            if model.slug in self.database[table]:
-                logger.error(
-                    f"Entry with slug '{model.slug}' already exists in table '{table}'. Skipping addition."
-                )
-                return
-
-            self.database[table][model.slug] = model
-            logger.info(
-                f"Entry '{model.slug}' added to table '{table}' successfully!"
-            )
-
-        except ValidationError as e:
-            logger.error(
-                f"Validation failed for entry '{data.get('slug', 'unknown')}' in table '{table}': {e}"
-            )
-            if validate:
-                raise e
-        except Exception as ex:
-            logger.error(
-                f"Unexpected error while adding entry to table '{table}': {ex}"
-            )
-
-    def get_mod_attribute(
-        self, mod_name: str, attribute_name: str
-    ) -> Optional[Any]:
-        """
-        Retrieves a specific attribute (field) from a mod's metadata.
-
-        Parameters:
-            mod_name: The directory name of the mod (e.g., "tuxemon").
-            attribute_name: The name of the attribute/field to retrieve
-                (e.g., "starting_map", "name", "authors").
-
-        Returns:
-            The value of the attribute if found, otherwise None.
-        """
-        mod_meta = self.mod_metadata.get(mod_name)
-        if mod_meta:
-            value = mod_meta.get(attribute_name)
-            if value is None:
-                logger.debug(
-                    f"Attribute '{attribute_name}' not found in mod '{mod_name}'"
-                )
-            return value
-        return None
-
-    def require_mod_attribute(self, mod_name: str, attribute_name: str) -> Any:
-        value = self.get_mod_attribute(mod_name, attribute_name)
-        if value is None:
-            raise ValueError(
-                f"mod.yaml in '{mod_name}' lacks required attribute '{attribute_name}'"
-            )
-        return value
-
-
-def load_files(
-    directory: str, path: Path, config: DatabaseConfig
-) -> dict[str, Any]:
-    preloaded_data: dict[str, Any] = {}
-    extensions = config.file_extensions
-    directory_path = path / directory
-    for entry in directory_path.iterdir():
-        if entry.is_file() and any(entry.suffix == ext for ext in extensions):
-            try:
-                with entry.open() as fp:
-                    item = (
-                        json.load(fp)
-                        if entry.suffix == ".json"
-                        else yaml.safe_load(fp)
-                    )
-
-                if isinstance(item, list):
-                    for sub_item in item:
-                        load_dict(sub_item, entry, preloaded_data)
-                else:
-                    load_dict(item, entry, preloaded_data)
-            except (
-                json.JSONDecodeError,
-                yaml.YAMLError,
-                FileNotFoundError,
-            ) as e:
-                logger.error(f"Error loading file '{entry}': {e}")
-    return preloaded_data
-
-
-def load_dict(
-    item: Mapping[str, Any],
-    path: Path,
-    preloaded_data: dict[str, Any],
-) -> None:
-    if item["slug"] in preloaded_data:
-        if path in preloaded_data[item["slug"]].get("paths", []):
-            logger.error(
-                f"Error: Item with slug {item['slug']} was already loaded from this path ({path})."
-            )
-            return
-        else:
-            preloaded_data[item["slug"]]["paths"].append(path)
-    else:
-        preloaded_data[item["slug"]] = item
-        preloaded_data[item["slug"]]["paths"] = [path]
-
-
-def load_config(config_path: str) -> DatabaseConfig:
-    """Loads configuration from a YAML file."""
-    try:
-        with open(config_path) as f:
-            data = yaml.safe_load(f)
-        return DatabaseConfig(**data)
-    except FileNotFoundError:
-        raise FileNotFoundError(
-            f"Configuration file '{config_path}' not found."
-        )
-    except yaml.YAMLError as e:
-        raise ValueError(f"Invalid YAML in '{config_path}': {e}")
-
-
-class Validator:
-    """
-    Helper class for validating resources exist.
-    """
-
-    def __init__(self, database: ModData) -> None:
-        self.db = database
-        self.db.preload()
-
-    def translation(self, msgid: str) -> bool:
-        """
-        Check to see if a translation exists for the given slug
-
-        Parameters:
-            msgid: The slug of the text to translate. A short English
-                identifier.
-
-        Returns:
-            True if translation exists
-        """
-        return T.translate(msgid) != msgid
-
-    def file(self, file: str) -> bool:
-        """
-        Check to see if a given file exists
-
-        Parameters:
-            file: The file path relative to a mod directory
-
-        Returns:
-            True if file exists
-        """
-        try:
-            path = Path(fetch_asset(file))
-            return path.exists()
-        except OSError:
-            return False
-
-    def size(self, file: str, size: tuple[int, int]) -> bool:
-        """
-        Check to see if a given file respects the predefined size.
-
-        Parameters:
-            file: The file path relative to a mod directory
-            size: The predefined size
-
-        Returns:
-            True if file respects
-        """
-        path = fetch_asset(file)
-        with Image.open(path) as sprite:
-            native = prepare.NATIVE_RESOLUTION
-            if size == native:
-                if not (
-                    sprite.size[0] <= size[0] and sprite.size[1] <= size[1]
-                ):
-                    raise ValueError(
-                        f"{file} has size {sprite.size}, but must be less than or equal to {native}"
-                    )
-            else:
-                if sprite.size != size:
-                    raise ValueError(
-                        f"{file} has size {sprite.size}, but must be {size}"
-                    )
-        return True
-
-    def db_entry(self, table: str, slug: str) -> bool:
-        """
-        Check to see if the given slug exists in the database for the given
-        table.
-
-        Parameters:
-            slug: The slug of the monster, technique, item, or npc.  A short
-                English identifier.
-            table: Which index to do the search in. Can be: "monster",
-                "item", "npc", or "technique".
-
-        Returns:
-            True if entry exists
-        """
-        return slug in self.db.preloaded[table]
-
-
 fetch_mod_asset_roots(prepare.CONFIG)
 path = fetch_asset(mods_folder.as_posix(), "db_config.yaml")
 config = load_config(path)
 model_map = load_model_map(config.model_map)
 loader = ModelLoader(model_map)
-resolver = DependencyResolver(config.mod_dependencies)
-mod_loader = ModMetadataLoader(config.active_mods, config.mod_base_path)
 # Global database container
-db = ModData(config, loader, resolver, mod_loader)
+db = ModData(config, loader)
 # Validator container
 has = Validator(db)

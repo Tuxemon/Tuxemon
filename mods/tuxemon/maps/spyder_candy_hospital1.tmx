@@ -320,35 +320,35 @@
    <properties>
     <property name="act1" value="char_talk spyder_hospital1_fring,post_battle_lose"/>
     <property name="behav1" value="talk spyder_hospital1_fring"/>
-    <property name="cond1" value="is variable_set hospital1fring:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_hospital1_fring"/>
    </properties>
   </object>
   <object id="101" name="Post Talk Aurora" type="event" x="48" y="160" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_hospital1_aurora,post_battle_lose"/>
     <property name="behav1" value="talk spyder_hospital1_aurora"/>
-    <property name="cond1" value="is variable_set hospital1aurora:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_hospital1_aurora"/>
    </properties>
   </object>
   <object id="102" name="Post Talk Eleni" type="event" x="256" y="160" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_hospital1_eleni,post_battle_lose"/>
     <property name="behav1" value="talk spyder_hospital1_eleni"/>
-    <property name="cond1" value="is variable_set hospital1eleni:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_hospital1_eleni"/>
    </properties>
   </object>
   <object id="103" name="Post Talk Liane" type="event" x="256" y="224" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_hospital1_liane,post_battle_lose"/>
     <property name="behav1" value="talk spyder_hospital1_liane"/>
-    <property name="cond1" value="is variable_set hospital1liane:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_hospital1_liane"/>
    </properties>
   </object>
   <object id="104" name="Post Talk Walt" type="event" x="272" y="96" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_hospital1_walt,post_battle_lose"/>
     <property name="behav1" value="talk spyder_hospital1_walt"/>
-    <property name="cond1" value="is variable_set hospital1walt:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_hospital1_walt"/>
    </properties>
   </object>
   <object id="105" name="PC Researcher 1" type="event" x="64" y="16" width="16" height="16">

@@ -79,12 +79,16 @@
     "metal",
     "venom"
   ],
-  "possible_genders": [
-    "neuter"
-  ],
+  "gender_weights": {
+    "neuter": 1.0
+  },
   "txmn_id": 338,
   "height": 30,
   "weight": 1,
+  "sounds": {
+    "combat_call": "sound_misc_07_metal",
+    "faint_call": "sound_misc_07_metal_faint"
+  },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

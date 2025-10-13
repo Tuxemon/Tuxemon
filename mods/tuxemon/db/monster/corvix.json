@@ -97,13 +97,17 @@
   "types": [
     "sky"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 157,
   "height": 55,
   "weight": 4,
+  "sounds": {
+    "combat_call": "sound_swords_clash",
+    "faint_call": "sound_swords_clash_faint"
+  },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.85,
   "upper_catch_resistance": 1.1

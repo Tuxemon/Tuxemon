@@ -21,10 +21,11 @@
   "power": 0.4,
   "range": "ranged",
   "recharge": 1,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_bounce",
   "slug": "food_fight",
   "sort": "damage",
   "modifiers": [],
+  "behaviors": {},
   "target": {
     "enemy_monster": true,
     "enemy_team": false,

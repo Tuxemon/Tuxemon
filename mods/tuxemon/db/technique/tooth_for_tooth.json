@@ -4,8 +4,16 @@
   "animation": "lance_ice",
   "effects": [
     {
-      "type": "sacrifice",
+      "type": "prop_damage",
       "parameters": [
+        "own_monster",
+        "0.5"
+      ]
+    },
+    {
+      "type": "prop_damage",
+      "parameters": [
+        "enemy_monster",
         "0.5"
       ]
     }
@@ -16,10 +24,11 @@
   "power": 0.0,
   "range": "melee",
   "recharge": 3,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_bite",
   "slug": "tooth_for_tooth",
   "sort": "damage",
   "modifiers": [],
+  "behaviors": {},
   "target": {
     "enemy_monster": true,
     "enemy_team": false,

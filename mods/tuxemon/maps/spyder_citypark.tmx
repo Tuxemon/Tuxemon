@@ -167,7 +167,7 @@
   </object>
   <object id="43" name="Sign: Leather Town" type="event" x="16" y="192" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog here_to_east"/>
+    <property name="act1" value="translated_dialog here_to_west"/>
     <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
@@ -594,21 +594,21 @@
    <properties>
     <property name="act1" value="char_talk spyder_citypark_bobette,post_battle_lose"/>
     <property name="behav1" value="talk spyder_citypark_bobette"/>
-    <property name="cond1" value="is variable_set citypark_bobette:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_citypark_bobette"/>
    </properties>
   </object>
   <object id="294" name="Post Talk Frances" type="event" x="448" y="352" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_citypark_frances,post_battle_lose"/>
     <property name="behav1" value="talk spyder_citypark_frances"/>
-    <property name="cond1" value="is variable_set citypark_frances:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_citypark_frances"/>
    </properties>
   </object>
   <object id="295" name="Post Talk Edith" type="event" x="624" y="272" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_citypark_edith,post_battle_lose"/>
     <property name="behav1" value="talk spyder_citypark_edith"/>
-    <property name="cond1" value="is variable_set citypark_edith:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_citypark_edith"/>
    </properties>
   </object>
  </objectgroup>

@@ -6,11 +6,12 @@
   "potency": 0.0,
   "power": 0,
   "range": "special",
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_pulse",
   "slug": "skip",
   "speed": "normal",
   "sort": "meta",
   "modifiers": [],
+  "behaviors": {},
   "target": {
     "enemy_monster": false,
     "enemy_team": false,

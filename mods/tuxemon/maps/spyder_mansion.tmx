@@ -321,14 +321,14 @@
    <properties>
     <property name="act1" value="char_talk spyder_mansion_gillette,post_battle_lose"/>
     <property name="behav1" value="talk spyder_mansion_gillette"/>
-    <property name="cond1" value="is variable_set mansiongillette:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_mansion_gillette"/>
    </properties>
   </object>
   <object id="72" name="Post Talk Lucy" type="event" x="224" y="96" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_mansion_lucy,post_battle_lose"/>
     <property name="behav1" value="talk spyder_mansion_lucy"/>
-    <property name="cond1" value="is variable_set mansionlucy:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_mansion_lucy"/>
     <property name="cond2" value="is variable_set tealucy:yes"/>
    </properties>
   </object>
@@ -336,7 +336,7 @@
    <properties>
     <property name="act1" value="char_talk spyder_mansion_lyle,post_battle_lose"/>
     <property name="behav1" value="talk spyder_mansion_lyle"/>
-    <property name="cond1" value="is variable_set mansionlyle:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_mansion_lyle"/>
    </properties>
   </object>
   <object id="74" name="Create Nurse" type="event" x="144" y="192" width="16" height="16">

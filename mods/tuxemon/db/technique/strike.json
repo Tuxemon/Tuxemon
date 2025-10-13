@@ -16,10 +16,11 @@
   "power": 1.25,
   "range": "reliable",
   "recharge": 1,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_kick",
   "slug": "strike",
   "sort": "damage",
   "modifiers": [],
+  "behaviors": {},
   "target": {
     "enemy_monster": true,
     "enemy_team": false,

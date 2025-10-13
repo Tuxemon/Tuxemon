@@ -16,10 +16,11 @@
   "power": 2.6,
   "range": "reach",
   "recharge": 2,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_crumble2",
   "slug": "stonehenge",
   "sort": "damage",
   "modifiers": [],
+  "behaviors": {},
   "target": {
     "enemy_monster": true,
     "enemy_team": false,

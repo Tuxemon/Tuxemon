@@ -11,6 +11,7 @@ import logging
 from collections.abc import Sequence
 from typing import TYPE_CHECKING
 
+from tuxemon.combat.combat_context import CombatType
 from tuxemon.db import (
     GenderType,
     OutputBattle,
@@ -55,6 +56,16 @@ def check_battle_legal(character: NPC) -> bool:
         return False
 
     return True
+
+
+def check_repellent(character: NPC) -> bool:
+    """
+    Checks if the repellent is still active.
+    """
+    repellent_tracker = character.step_tracker.get_tracker("repellent")
+    if repellent_tracker is None:
+        return False
+    return repellent_tracker.countdown > 0
 
 
 def has_effect(technique: Technique, effect_name: str) -> bool:
@@ -135,8 +146,8 @@ def track_battles(
     player: NPC,
     players: Sequence[NPC],
     turns: int,
+    combat_type: CombatType,
     prize: int = 0,
-    trainer_battle: bool = False,
 ) -> str:
     """
     Tracks battles, fills variables and returns the message.
@@ -146,9 +157,9 @@ def track_battles(
         output: Output of the battle: won, lost, draw
         player: The human player.
         players: All the players (eg if player is winner, players are losers)
-        prize: Amount of money (prize) after fighting.
-        trainer_battle: Whether a trainer or wild encounter.
         turns: Number of turns the battle lasted.
+        combat_type: Combat type (eg trainer, wild, horde).
+        prize: Amount of money (prize) after fighting.
 
     Returns:
         Message to display.
@@ -166,15 +177,15 @@ def track_battles(
 
     if output == "won":
         return _handle_win(
-            session, player, players, turns, location, prize, trainer_battle
+            session, player, players, turns, location, prize, combat_type
         )
     elif output == "lost":
         return _handle_loss(
-            session, player, players, turns, location, trainer_battle
+            session, player, players, turns, location, combat_type
         )
     else:
         return _handle_draw(
-            session, player, players, turns, location, trainer_battle
+            session, player, players, turns, location, combat_type
         )
 
 
@@ -185,12 +196,12 @@ def _handle_win(
     turns: int,
     location: str,
     prize: int,
-    trainer_battle: bool,
+    combat_type: CombatType,
 ) -> str:
     """Handles the case where the human player won the battle."""
     info = {"name": winner.name.upper()}
 
-    if trainer_battle:
+    if combat_type == CombatType.TRAINER:
         for loser in losers:
             winner.battle_handler.record_battle(
                 opponent=loser.slug,
@@ -230,13 +241,12 @@ def _handle_loss(
     winners: Sequence[NPC],
     turns: int,
     location: str,
-    trainer_battle: bool,
+    combat_type: CombatType,
 ) -> str:
     """Handles the case where the human player lost the battle."""
     info = {"name": loser.name.upper()}
-    set_var(session, "teleport_clinic", OutputBattle.lost.value)
 
-    if trainer_battle:
+    if combat_type == CombatType.TRAINER:
         if loser.is_player:
             set_var(session, "battle_last_result", OutputBattle.lost.value)
             set_var(session, "battle_last_loser", "player")
@@ -262,14 +272,13 @@ def _handle_draw(
     players: Sequence[NPC],
     turns: int,
     location: str,
-    trainer_battle: bool,
+    combat_type: CombatType,
 ) -> str:
     """Handles the case where the battle was a draw."""
     defeat = list(players)
     defeat.remove(player)
-    set_var(session, "teleport_clinic", OutputBattle.draw.value)
 
-    if trainer_battle:
+    if combat_type == CombatType.TRAINER:
         set_var(session, "battle_last_result", OutputBattle.draw.value)
         for player_defeated in defeat:
             set_var(session, "battle_last_trainer", player_defeated.slug)

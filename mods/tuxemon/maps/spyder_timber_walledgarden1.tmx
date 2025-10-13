@@ -281,42 +281,42 @@
    <properties>
     <property name="act1" value="char_talk spyder_walled_astor,post_battle_lose"/>
     <property name="behav1" value="talk spyder_walled_astor"/>
-    <property name="cond1" value="is variable_set walledastor:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_walled_astor"/>
    </properties>
   </object>
   <object id="73" name="Post Talk girard" type="event" x="64" y="128" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_walled_girard,post_battle_lose"/>
     <property name="behav1" value="talk spyder_walled_girard"/>
-    <property name="cond1" value="is variable_set walledgirard:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_walled_girard"/>
    </properties>
   </object>
   <object id="74" name="Post Talk ford" type="event" x="64" y="96" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_walled_ford,post_battle_lose"/>
     <property name="behav1" value="talk spyder_walled_ford"/>
-    <property name="cond1" value="is variable_set walledford:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_walled_ford"/>
    </properties>
   </object>
   <object id="75" name="Post Talk vanderbilt" type="event" x="176" y="96" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_walled_vanderbilt,post_battle_lose"/>
     <property name="behav1" value="talk spyder_walled_vanderbilt"/>
-    <property name="cond1" value="is variable_set walledvanderbilt:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_walled_vanderbilt"/>
    </properties>
   </object>
   <object id="76" name="Post Talk fugger" type="event" x="176" y="32" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_walled_fugger,post_battle_lose"/>
     <property name="behav1" value="talk spyder_walled_fugger"/>
-    <property name="cond1" value="is variable_set walledfugger:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_walled_fugger"/>
    </properties>
   </object>
   <object id="77" name="Post Talk carnegie" type="event" x="48" y="32" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_walled_carnegie,post_battle_lose"/>
     <property name="behav1" value="talk spyder_walled_carnegie"/>
-    <property name="cond1" value="is variable_set walledcarnegie:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_walled_carnegie"/>
    </properties>
   </object>
  </objectgroup>

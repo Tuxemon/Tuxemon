@@ -13,10 +13,11 @@
   "power": 1.4,
   "range": "reach",
   "recharge": 1,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_shpring",
   "slug": "stick",
   "sort": "damage",
   "modifiers": [],
+  "behaviors": {},
   "target": {
     "enemy_monster": true,
     "enemy_team": false,

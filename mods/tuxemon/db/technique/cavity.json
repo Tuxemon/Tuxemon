@@ -13,10 +13,11 @@
   "power": 2.9,
   "range": "reliable",
   "recharge": 3,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_forcefield",
   "slug": "cavity",
   "sort": "damage",
   "modifiers": [],
+  "behaviors": {},
   "target": {
     "enemy_monster": true,
     "enemy_team": false,

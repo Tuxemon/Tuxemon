@@ -356,11 +356,9 @@ class CombatState(CombatAnimations):
 
         # Show combat swap message if not first turn
         if self.client.combat_session.turn > 1:
-            format_params = {
-                "target": monster.name.upper(),
-                "user": player.name.upper(),
-            }
-            message = T.format("combat_swap", format_params)
+            message = self.client.combat_session.get_message_swap(
+                player, monster
+            )
             self.text_anim.add_text_animation(
                 partial(self.dialog.alert, message), 0
             )
@@ -409,12 +407,12 @@ class CombatState(CombatAnimations):
                 player=player,
                 players=opponents if opponents else players,
                 turns=self.client.combat_session.turn,
+                combat_type=self.client.combat_session.combat_type,
                 prize=(
                     self.client.combat_session.prize
                     if result_type == "won"
                     else 0
                 ),
-                trainer_battle=self.client.combat_session.is_trainer_battle,
             )
         return message
 

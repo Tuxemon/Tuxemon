@@ -3,13 +3,13 @@
 from unittest import TestCase
 from unittest.mock import MagicMock
 
-from tuxemon.money import (
-    BillEntry,
+from tuxemon.money.bill import BillEntry
+from tuxemon.money.controller import (
     MoneyController,
-    MoneyManager,
     decode_money,
     encode_money,
 )
+from tuxemon.money.manager import MoneyManager
 
 
 class TestMoneyManager(TestCase):
@@ -142,7 +142,7 @@ class TestMoneyManager(TestCase):
     def test_get_total_wealth(self):
         self.money_manager.add_money(100)
         self.money_manager.deposit_to_bank(50)
-        self.assertEqual(self.money_manager.get_total_wealth(), 150)
+        self.assertEqual(self.money_manager.get_total_wealth({}), 150)
 
     def test_transfer_all_money_to_bank(self):
         self.money_manager.add_money(100)
@@ -195,6 +195,7 @@ class TestMoneyManager(TestCase):
                         "amount": 30,
                     },
                 },
+                "portfolio": {"investments": []},
             },
         )
 

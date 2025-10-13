@@ -9,6 +9,7 @@ from typing import Optional, final
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.session import Session
+from tuxemon.tools import parse_flag
 
 logger = logging.getLogger(__name__)
 
@@ -25,19 +26,21 @@ class TeleportFaintAction(EventAction):
     Script usage:
         .. code-block::
 
-            teleport_faint <character>[,trans_time][,rgb]
+            teleport_faint <character>,<healing>[,trans_time][,rgb]
 
     Script parameters:
         character: Either "player" or npc slug name (e.g. "npc_maple").
+        healing: Trigger healing string flag ("true", "1", "yes" for True),
         trans_time: Transition time in seconds - default 0.3
         rgb: color (eg red > 255,0,0 > 255:0:0) - default rgb(0,0,0)
 
-    eg: "teleport_faint player,3"
-    eg: "teleport_faint player,3,255:0:0:50" (red)
+    eg: "teleport_faint player,true,3"
+    eg: "teleport_faint player,true,3,255:0:0:50" (red)
     """
 
     name = "teleport_faint"
     character: str
+    healing: str
     trans_time: Optional[float] = None
     rgb: Optional[str] = None
 
@@ -46,6 +49,8 @@ class TeleportFaintAction(EventAction):
         if character is None:
             logger.error(f"{self.character} not found")
             return
+
+        healing = parse_flag(self.healing)
 
         client = session.client
         current_state = client.current_state
@@ -61,6 +66,11 @@ class TeleportFaintAction(EventAction):
             teleport = character.teleport_faint
 
         action = client.event_engine
+
+        if healing:
+            action.execute_action("set_monster_health")
+            action.execute_action("set_monster_status")
+
         action.execute_action(
             "transition_teleport",
             [

@@ -5,10 +5,8 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Optional
 
-from tuxemon.monster import Monster
-
 if TYPE_CHECKING:
-    pass
+    from tuxemon.monster import Monster
 
 
 @dataclass

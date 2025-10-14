@@ -92,6 +92,7 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.random_item.RandomItemAction
 .. autoscriptinfoclass:: tuxemon.event.actions.random_monster.RandomMonsterAction
 .. autoscriptinfoclass:: tuxemon.event.actions.remove_collision.RemoveCollisionAction
+.. autoscriptinfoclass:: tuxemon.event.actions.replace_party_from_yaml.ReplacePartyFromYamlAction
 .. autoscriptinfoclass:: tuxemon.event.actions.remove_contacts.RemoveContactsAction
 .. autoscriptinfoclass:: tuxemon.event.actions.remove_flair.RemoveFlairAction
 .. autoscriptinfoclass:: tuxemon.event.actions.remove_held_item.RemoveHeldItemction
@@ -103,6 +104,7 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.remove_tracker.RemoveTrackerAction
 .. autoscriptinfoclass:: tuxemon.event.actions.rename_monster.RenameMonsterAction
 .. autoscriptinfoclass:: tuxemon.event.actions.rename_player.RenamePlayerAction
+.. autoscriptinfoclass:: tuxemon.event.actions.replace_techs_from_yaml.ReplaceTechsFromYamlAction
 .. autoscriptinfoclass:: tuxemon.event.actions.rumble.RumbleAction
 .. autoscriptinfoclass:: tuxemon.event.actions.save_game.SaveGameAction
 .. autoscriptinfoclass:: tuxemon.event.actions.save_timestamp.SaveTimestampAction
@@ -139,6 +141,7 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.start_double_battle.StartDoubleBattleAction
 .. autoscriptinfoclass:: tuxemon.event.actions.stop_cinema_mode.StopCinemaModeAction
 .. autoscriptinfoclass:: tuxemon.event.actions.store_monster.StoreMonsterAction
+.. autoscriptinfoclass:: tuxemon.event.actions.store_party.StorePartyAction
 .. autoscriptinfoclass:: tuxemon.event.actions.teleport_faint.TeleportFaintAction
 .. autoscriptinfoclass:: tuxemon.event.actions.teleport.TeleportAction
 .. autoscriptinfoclass:: tuxemon.event.actions.toggle_evolution_block.ToggleEvolutionBlockAction

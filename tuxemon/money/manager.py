@@ -3,9 +3,11 @@
 from __future__ import annotations
 
 import logging
+from collections.abc import Mapping
 from typing import Optional
 
 from tuxemon.money.bill import BillEntry
+from tuxemon.money.portfolio import PortfolioManager
 
 logger = logging.getLogger(__name__)
 
@@ -15,6 +17,7 @@ class MoneyManager:
         self.money: int = 0
         self.bank_account: int = 0
         self.bills: dict[str, BillEntry] = {}
+        self.portfolio_manager: PortfolioManager = PortfolioManager()
 
     def add_money(self, amount: int) -> None:
         self.money += amount
@@ -107,8 +110,11 @@ class MoneyManager:
     def get_total_bills(self) -> int:
         return sum(bill.amount for bill in self.bills.values())
 
-    def get_total_wealth(self) -> int:
-        return self.money + self.bank_account
+    def get_total_wealth(self, market_prices: Mapping[str, float]) -> int:
+        portfolio_value = self.portfolio_manager.get_portfolio_value(
+            market_prices
+        )
+        return int(self.money + self.bank_account + portfolio_value)
 
     def transfer_all_money_to_bank(self) -> None:
         self.deposit_to_bank(self.money)
@@ -166,3 +172,15 @@ class MoneyManager:
             if bill.amount <= 0:
                 del self.bills[bill_name]
         return earnings
+
+    def buy_investment(self, symbol: str, shares: int, price: float) -> None:
+        """Buys investment shares using money from the bank account."""
+        total_cost = self.portfolio_manager.buy_shares(symbol, shares, price)
+        self.withdraw_from_bank(int(total_cost))
+
+    def sell_investment(self, symbol: str, shares: int, price: float) -> None:
+        """Sells investment shares and deposits the revenue into the bank account."""
+        total_revenue = self.portfolio_manager.sell_shares(
+            symbol, shares, price
+        )
+        self.deposit_to_bank(int(total_revenue))

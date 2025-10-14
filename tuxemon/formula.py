@@ -16,12 +16,10 @@ from tuxemon import prepare as pre
 from tuxemon.constants import paths
 
 if TYPE_CHECKING:
-    from tuxemon.db import AttributesModel
     from tuxemon.element import Element
     from tuxemon.item.item import Item
     from tuxemon.monster import Monster
     from tuxemon.npc import NPC
-    from tuxemon.taste import Taste
     from tuxemon.technique.technique import Technique
 
 logger = logging.getLogger(__name__)
@@ -88,10 +86,12 @@ class CaptureConfig:
 @dataclass
 class MonsterConfig:
     bond_range: tuple[int, int] = (0, 100)
+    bond_modifiers: dict[str, int] = field(default_factory=dict)
     weight_range: tuple[float, float] = (-0.1, 0.1)
     height_range: tuple[float, float] = (-0.1, 0.1)
     bond_sentiments: dict[str, tuple[int, int]] = field(default_factory=dict)
     bond_strings: dict[str, str] = field(default_factory=dict)
+    bond_icons: dict[str, str] = field(default_factory=dict)
     opposite_tastes: dict[str, list[str]] = field(default_factory=dict)
     bond_preferences: dict[str, int] = field(default_factory=dict)
     experience_multipliers: dict[str, float] = field(default_factory=dict)
@@ -440,81 +440,26 @@ def simple_recover(target: Monster, divisor: int) -> int:
 
     Returns:
         Recovered health.
-
     """
     heal = min(target.hp // divisor, target.missing_hp)
     return heal
 
 
-def simple_lifeleech(user: Monster, target: Monster, divisor: int) -> int:
+def calculate_hp_transfer(user: Monster, target: Monster, divisor: int) -> int:
     """
-    Simple lifeleech based on a few factors.
+    Calculates the amount of HP transferred from one monster to another.
 
     Parameters:
-        user: The monster getting HPs.
-        target: The monster losing HPs.
-        divisor: The number by which target HP is to be divided.
+        user: The monster receiving HP.
+        target: The monster donating HP.
+        divisor: Scaling factor based on target's max HP.
 
     Returns:
-        Damage/Gain of HPs.
-
+        The amount of HP to be transferred, capped by target's current HP
+        and user's missing HP.
     """
     heal = min(target.hp // divisor, target.current_hp, user.missing_hp)
     return heal
-
-
-def calculate_base_stats(
-    monster: Monster, attribute: AttributesModel, multiplier: int
-) -> None:
-    """
-    Calculate the base stats of the monster dynamically.
-    """
-    stat_names = ["armour", "dodge", "hp", "melee", "ranged", "speed"]
-
-    for stat in stat_names:
-        base_value = getattr(attribute, stat) * multiplier
-        modifier = getattr(monster.modifiers, stat, None)
-
-        if modifier is None:
-            modifier = 0
-
-        final_value = base_value + modifier
-        setattr(monster.base_stats, stat, final_value)
-
-
-def apply_stat_updates(
-    monster: Monster, taste_cold: Optional[Taste], taste_warm: Optional[Taste]
-) -> None:
-    """Apply updates to the monster's stats."""
-    attributes = ["armour", "dodge", "melee", "ranged", "speed"]
-
-    for attr in attributes:
-        setattr(
-            monster.base_stats,
-            attr,
-            update_stat(attr, getattr(monster, attr), taste_cold, taste_warm),
-        )
-
-
-def update_stat(
-    stat_name: str,
-    stat_value: int,
-    taste_cold: Optional[Taste],
-    taste_warm: Optional[Taste],
-) -> int:
-    """Applies modifiers from tastes to adjust the stat."""
-    modified_stat = float(stat_value)
-
-    for taste in (taste_cold, taste_warm):
-        if taste:
-            for modifier in taste.modifiers:
-                if stat_name in modifier.values:
-                    logger.debug(
-                        f"Applying modifier: {modifier.multiplier} for {stat_name}"
-                    )
-                    modified_stat *= modifier.multiplier
-
-    return int(modified_stat)
 
 
 def set_health(
@@ -565,14 +510,14 @@ def set_height(monster: Monster, value: float) -> float:
     return round(random.uniform(min_height, max_height), 2)
 
 
-def convert_lbs(kg: float) -> float:
+def convert_lbs(kg: float) -> int:
     """It converts kilograms into pounds."""
-    return round(kg * pre.COEFF_POUNDS, 2)
+    return round(kg * pre.COEFF_POUNDS)
 
 
-def convert_ft(cm: float) -> float:
+def convert_ft(cm: float) -> int:
     """It converts centimeters into feet."""
-    return round(cm * pre.COEFF_FEET, 2)
+    return round(cm * pre.COEFF_FEET)
 
 
 def convert_km(steps: float) -> float:
@@ -584,22 +529,6 @@ def convert_mi(steps: float) -> float:
     """It converts steps into miles."""
     km = convert_km(steps)
     return round(km * pre.COEFF_MILES, 2)
-
-
-def diff_percentage(part: float, total: float, decimal: int = 1) -> float:
-    """
-    It returns the difference between two numbers in percentage format.
-
-    Parameters:
-        part: The part, number.
-        total: The total, number.
-        decimal: How many decimals, default 1.
-
-    Returns:
-        The difference in percentage.
-
-    """
-    return round(((part - total) / total) * 100, decimal)
 
 
 def shake_check(

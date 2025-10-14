@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 from tuxemon.core.core_condition import CoreCondition
-from tuxemon.map.map_manager import map_types_list
+from tuxemon.map.map_manager import MAP_TYPES
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
@@ -25,7 +25,7 @@ class LocationTypeCondition(CoreCondition):
 
     def test_with_monster(self, session: Session, target: Monster) -> bool:
         return (
-            self.location_type in map_types_list
+            self.location_type in MAP_TYPES
             and session.client.map_manager.is_in_location_type(
                 self.location_type
             )

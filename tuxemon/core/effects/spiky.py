@@ -9,7 +9,6 @@ from tuxemon.core.core_effect import CoreEffect, StatusEffectResult
 from tuxemon.db import EffectPhase
 
 if TYPE_CHECKING:
-    from tuxemon.monster import Monster
     from tuxemon.session import Session
     from tuxemon.status.status import Status
 
@@ -27,12 +26,13 @@ class SpikyEffect(CoreEffect):
     name = "spiky"
     divisor: int
 
-    def apply_status_target(
-        self, session: Session, status: Status, target: Monster
+    def apply_status(
+        self, session: Session, status: Status
     ) -> StatusEffectResult:
+        host = status.get_host()
         if status.has_phase(EffectPhase.SWAP_MONSTER):
-            damage = target.hp // self.divisor
-            target.current_hp = max(0, target.current_hp - damage)
-            if target.is_fainted:
-                target.current_hp = 0
+            damage = host.hp // self.divisor
+            host.current_hp = max(0, host.current_hp - damage)
+            if host.is_fainted:
+                host.current_hp = 0
         return StatusEffectResult(name=status.name, success=True)

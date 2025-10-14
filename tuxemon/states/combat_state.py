@@ -47,7 +47,6 @@ from tuxemon.combat.combat_context import CombatContext
 from tuxemon.combat.machine import CombatMachine, CombatPhase
 from tuxemon.combat.reward_system import RewardSystem
 from tuxemon.combat.utils import (
-    set_var,
     track_battles,
 )
 from tuxemon.db import (
@@ -532,7 +531,7 @@ class CombatState(CombatAnimations):
                 message += "\n" + template
             if status_result.statuses:
                 status = random.choice(status_result.statuses)
-                user.status.apply_status(self.session, status, user)
+                user.status.apply_status(self.session, status)
 
         if result_tech.success and method.use_success:
             template = getattr(method, "use_success")
@@ -757,17 +756,6 @@ class CombatState(CombatAnimations):
             )
             self.task(animation.kill, interval=safe_action_time)
 
-    def faint_monster(self, monster: Monster) -> None:
-        """
-        Instantly make the monster faint (will be removed later).
-
-        Parameters:
-            monster: Monster that will faint.
-        """
-        monster.current_hp = 0
-        label = f"{self.name.lower()}_faint"
-        set_var(self.session, label, monster.instance_id.hex)
-
     def award_experience_and_money(self, monster: Monster) -> None:
         """
         Award experience and money to the winners.
@@ -777,6 +765,7 @@ class CombatState(CombatAnimations):
         """
         damage_map = self.client.combat_session.damage_tracker
         reward_system = RewardSystem(self.session, damage_map)
+        reward_system.apply_penalties(monster)
         rewards = reward_system.award_rewards(monster)
 
         # Update combat state with rewards
@@ -871,7 +860,7 @@ class CombatState(CombatAnimations):
         status = monster.status.get_current_status()
         if status:
             result_status = status.use(
-                self.session, monster, EffectPhase.CHECK_PARTY_HP
+                self.session, EffectPhase.CHECK_PARTY_HP
             )
             if result_status.extras:
                 templates = [
@@ -892,7 +881,6 @@ class CombatState(CombatAnimations):
             monster: Monster that was defeated.
         """
         self.remove_monster_actions_from_queue(monster)
-        self.faint_monster(monster)
         self.award_experience_and_money(monster)
         # Remove monster from damage map
         self.client.combat_session.damage_tracker.remove_monster(monster)

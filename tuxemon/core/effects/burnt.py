@@ -11,7 +11,6 @@ from tuxemon.locale import T
 from tuxemon.modifiers import parse_modifier_mode
 
 if TYPE_CHECKING:
-    from tuxemon.monster import Monster
     from tuxemon.session import Session
     from tuxemon.status.status import Status
 
@@ -38,21 +37,22 @@ class BurntEffect(CoreEffect):
     divisor: int
     mode: str
 
-    def apply_status_target(
-        self, session: Session, status: Status, target: Monster
+    def apply_status(
+        self, session: Session, status: Status
     ) -> StatusEffectResult:
         burnt: bool = False
-        params = {"target": target.name, "method": status.name}
+        host = status.get_host()
+        params = {"target": host.name, "method": status.name}
         if status.has_phase(EffectPhase.PERFORM_STATUS):
-            damage = target.hp / self.divisor
+            damage = host.hp / self.divisor
             mode_enum = parse_modifier_mode(self.mode)
-            mult = status.modifiers.get_multiplier(target, mode=mode_enum)
+            mult = status.modifiers.get_multiplier(host, mode=mode_enum)
             damage *= mult
             if damage > 0:
                 burnt = True
-                target.current_hp = max(0, target.current_hp - int(damage))
+                host.current_hp = max(0, host.current_hp - int(damage))
             else:
                 status.use_failure = T.format("combat_state_immune", params)
-                target.status.clear_status(session)
+                host.status.clear_status(session)
 
         return StatusEffectResult(name=status.name, success=burnt)

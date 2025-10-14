@@ -5,7 +5,7 @@ from __future__ import annotations
 import logging
 import random
 from collections.abc import Mapping, Sequence
-from dataclasses import dataclass, fields
+from dataclasses import fields
 from typing import TYPE_CHECKING, Any, Optional
 from uuid import UUID, uuid4
 
@@ -35,6 +35,12 @@ from tuxemon.monster_dir.sprite import (
     FlairApplier,
     MonsterSpriteHandler,
     SpriteLoader,
+)
+from tuxemon.monster_dir.stats import (
+    BasicStats,
+    StatCalculator,
+    TemporaryStatBoosts,
+    TrainingPoints,
 )
 from tuxemon.monster_dir.status import MonsterStatusHandler
 from tuxemon.shape import ShapeHandler
@@ -67,38 +73,6 @@ SIMPLE_PERSISTANCE_ATTRIBUTES = (
 )
 
 
-@dataclass
-class BasicStats:
-    """The fundamental statistical attributes of a monster."""
-
-    armour: int = 0
-    dodge: int = 0
-    hp: int = 0
-    melee: int = 0
-    ranged: int = 0
-    speed: int = 0
-
-    def sum(self) -> int:
-        total = sum(int(getattr(self, field.name)) for field in fields(self))
-        return total
-
-
-@dataclass
-class TemporaryStatBoosts(BasicStats):
-    """Temporary additive boosts to a monster's base stats."""
-
-    def to_dict(self) -> dict[str, int]:
-        return {
-            field.name: getattr(self, field.name) for field in fields(self)
-        }
-
-    @classmethod
-    def from_dict(cls, data: dict[str, int]) -> TemporaryStatBoosts:
-        valid_fields = {field.name for field in fields(cls)}
-        filtered_data = {k: v for k, v in data.items() if k in valid_fields}
-        return cls(**filtered_data)
-
-
 class Monster:
     """
     Tuxemon monster.
@@ -124,6 +98,7 @@ class Monster:
         self.bond_handler: BondHandler = BondHandler(save_data)
 
         self.modifiers = TemporaryStatBoosts()
+        self.training_points = TrainingPoints()
 
         self.moves = MonsterMovesHandler()
         self.evolutions: list[MonsterEvolutionItemModel] = []
@@ -415,32 +390,54 @@ class Monster:
         Example:
 
         >>> bulbatux.give_experience(20)
-
         """
         self.got_experience = True
         levels = 0
         self.total_experience += amount
 
-        # Level up worthy monsters
-        while self.total_experience >= self.experience_required(1):
+        # Level up worthy monsters, but stop at max_level
+        while (
+            self.level < prepare.MAX_LEVEL
+            and self.total_experience >= self.experience_required(1)
+        ):
             self.level_up()
             levels += 1
         return levels
 
-    def calculate_base_stats(self) -> None:
+    def give_tps(
+        self, stat_name: str, value: int = prepare.DEFAULT_TP_GAIN
+    ) -> None:
         """
-        Calculate the base stats of the monster dynamically.
+        Gives TP points to the monster's TrainingPoints after a battle,
+        respecting the per-stat and total TP limits.
         """
-        multiplier = self.level + prepare.COEFF_STATS
-        self.shape.apply_base_stat_calculation(self, multiplier)
-
-    def apply_stat_updates(self) -> None:
-        """
-        Apply updates to the monster's stats.
-        """
-        taste_cold = Taste.get_taste(self.taste_cold)
-        taste_warm = Taste.get_taste(self.taste_warm)
-        formula.apply_stat_updates(self, taste_cold, taste_warm)
+        max_tps = prepare.MAX_TPS
+        max_total_tps = prepare.MAX_TOTAL_TPS
+        total_tps = sum(
+            getattr(self.training_points, field.name)
+            for field in fields(self.training_points)
+        )
+        stat_tps = getattr(self.training_points, stat_name)
+        logger.debug(
+            f"Attempting to give {value} training_points to '{stat_name}'"
+        )
+        logger.debug(f"Current training_points for '{stat_name}': {stat_tps}")
+        logger.debug(f"Current total training_points: {total_tps}")
+        logger.debug(
+            f"Remaining total training_points: {max_total_tps - total_tps}"
+        )
+        logger.debug(
+            f"Remaining training_points for '{stat_name}': {max_tps - stat_tps}"
+        )
+        remaining_total_tps = max_total_tps - total_tps
+        points_to_add = min(value, remaining_total_tps, max_tps - stat_tps)
+        logger.debug(
+            f"training_points to be added to '{stat_name}': {points_to_add}"
+        )
+        new_stat_tps = stat_tps + points_to_add
+        setattr(self.training_points, stat_name, new_stat_tps)
+        logger.debug(f"New training_points for '{stat_name}': {new_stat_tps}")
+        self.set_stats()
 
     def set_stats(self) -> None:
         """
@@ -448,10 +445,17 @@ class Monster:
 
         Sets the monsters initial stats, or improves stats
         when called during a level up.
-
         """
-        self.calculate_base_stats()
-        self.apply_stat_updates()
+        calculator = StatCalculator(
+            base_stats=self.base_stats,
+            level=self.level,
+            shape=self.shape,
+            taste_cold=self.taste_cold,
+            taste_warm=self.taste_warm,
+            modifiers=self.modifiers,
+            training_points=self.training_points,
+        )
+        self.base_stats = calculator.calculate()
 
     def set_capture(self, amount: int) -> int:
         """
@@ -547,6 +551,7 @@ class Monster:
         save_data["status"] = self.status.encode_status()
         save_data["moves"] = self.moves.encode_moves()
         save_data["held_item"] = self.held_item.encode_item()
+        save_data["training_points"] = self.training_points.to_dict()
         save_data["modifiers"] = self.modifiers.to_dict()
         save_data["bond_dict"] = self.bond_handler.get_state()
         save_data["flair_slugs"] = list(self.flair_slugs)
@@ -594,6 +599,8 @@ class Monster:
                 item = self.held_item.decode_item(value)
                 if item:
                     self.held_item.set_item(item)
+            elif key == "training_points" and value:
+                self.training_points.from_dict(value)
             elif key == "modifiers" and value:
                 self.modifiers.from_dict(value)
             elif key == "flairs" and value:
@@ -623,7 +630,7 @@ class Monster:
             self.status.apply_faint(self)
             current = self.status.get_current_status()
             if current:
-                current.apply_phase_and_use(session, EffectPhase.ON_FAINT)
+                current.use(session, EffectPhase.ON_FAINT)
 
 
 def decode_monsters(

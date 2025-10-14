@@ -25,6 +25,7 @@
   "slug": "life_surge",
   "sort": "damage",
   "modifiers": [],
+  "behaviors": {},
   "target": {
     "enemy_monster": true,
     "enemy_team": false,

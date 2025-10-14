@@ -7,10 +7,8 @@ from collections.abc import Mapping, Sequence
 from typing import TYPE_CHECKING, Any, Optional
 from uuid import UUID, uuid4
 
-from tuxemon.constants import paths
-from tuxemon.core.core_condition import CoreCondition
-from tuxemon.core.core_effect import CoreEffect, StatusEffectResult
-from tuxemon.core.core_manager import ConditionManager, EffectManager
+from tuxemon.core.asset import CoreAssetManager
+from tuxemon.core.core_effect import StatusEffectResult
 from tuxemon.core.core_processor import ConditionProcessor, EffectProcessor
 from tuxemon.db import (
     CategoryStatus,
@@ -46,9 +44,6 @@ class Status:
 
     MAX_STACKS: int = 5
 
-    effect_manager: Optional[EffectManager] = None
-    condition_manager: Optional[ConditionManager] = None
-
     def __init__(
         self,
         host: Monster,
@@ -71,6 +66,7 @@ class Status:
         self.gain_cond: str = ""
         self.icon: str = ""
         self.set_host(host)
+        self.linked_monster: Optional[Monster] = None
         self.name: str = ""
         self.nr_turn: int = 0
         self.duration: int = 0
@@ -89,15 +85,7 @@ class Status:
         self.modifiers: ModifiersHandler = ModifiersHandler()
         self.stat_modifiers: dict[str, StatModel] = {}
 
-        if Status.effect_manager is None:
-            Status.effect_manager = EffectManager(
-                CoreEffect, paths.CORE_EFFECT_PATH
-            )
-        if Status.condition_manager is None:
-            Status.condition_manager = ConditionManager(
-                CoreCondition, paths.CORE_CONDITION_PATH
-            )
-
+        self.core_assets = CoreAssetManager()
         self.effects: Sequence[PluginObject] = []
         self.conditions: Sequence[PluginObject] = []
 
@@ -152,12 +140,8 @@ class Status:
 
         self.cond_id = results.cond_id
 
-        if self.effect_manager and results.effects:
-            self.effects = self.effect_manager.parse_effects(results.effects)
-        if self.condition_manager and results.conditions:
-            self.conditions = self.condition_manager.parse_conditions(
-                results.conditions
-            )
+        self.effects = self.core_assets.parse_effects(results.effects)
+        self.conditions = self.core_assets.parse_conditions(results.conditions)
         self.condition_handler = ConditionProcessor(self.conditions)
         self.effect_handler = EffectProcessor(self.effects)
 
@@ -175,14 +159,6 @@ class Status:
     def set_phase(self, phase: EffectPhase) -> None:
         """Sets the phase to the provided value."""
         self.phase = phase
-
-    def apply_phase_and_use(
-        self, session: Session, phase: EffectPhase
-    ) -> StatusEffectResult:
-        """
-        Sets the phase for a given status and immediately applies its effect.
-        """
-        return self.use(session, self.get_host(), phase)
 
     def advance_round(self) -> None:
         """Advance the counter for this status if used."""
@@ -221,6 +197,14 @@ class Status:
         """Sets the monster associated with this status."""
         self.host = monster
 
+    def get_linked_monster(self) -> Optional[Monster]:
+        """Returns the monster linked to this status effect."""
+        return self.linked_monster
+
+    def set_linked_monster(self, monster: Monster) -> None:
+        """Assigns a linked monster that benefits from this status."""
+        self.linked_monster = monster
+
     def set_steps(self, steps: float) -> None:
         """Sets the steps."""
         self.steps = steps
@@ -233,9 +217,7 @@ class Status:
         """Checks if the status has lasted beyond its intended duration."""
         return self.nr_turn > self.duration
 
-    def use(
-        self, session: Session, target: Monster, phase: EffectPhase
-    ) -> StatusEffectResult:
+    def use(self, session: Session, phase: EffectPhase) -> StatusEffectResult:
         """
         Applies the status's effects using EffectProcessor and returns the results.
         """
@@ -243,7 +225,6 @@ class Status:
         result = self.effect_handler.process_status(
             session=session,
             source=self,
-            target=target,
         )
         return result
 

@@ -11,7 +11,6 @@ from tuxemon.db import EffectPhase
 from tuxemon.technique.technique import Technique
 
 if TYPE_CHECKING:
-    from tuxemon.monster import Monster
     from tuxemon.session import Session
     from tuxemon.status.status import Status
 
@@ -29,10 +28,11 @@ class FlinchingEffect(CoreEffect):
     name = "flinching"
     chance: float
 
-    def apply_status_target(
-        self, session: Session, status: Status, target: Monster
+    def apply_status(
+        self, session: Session, status: Status
     ) -> StatusEffectResult:
         tech: list[Technique] = []
+        host = status.get_host()
         if (
             status.has_phase(EffectPhase.PRE_CHECKING)
             and random.random() > self.chance

@@ -2045,10 +2045,17 @@ licensed under [SIL Open Font License, 1.1](http://scripts.sil.org/OFL)
 * ["Noto Sans Japanese"](https://fonts.google.com/noto/specimen/Noto+Sans+JP)
 licensed under [SIL Open Font License, 1.1](http://scripts.sil.org/OFL)
 
-* ["Big Bottom Catroon Normal"](http://openfontlibrary.org/en/font/big-bottom-cartoon-normal) by
+* ["Big Bottom Cartoon Normal"](http://openfontlibrary.org/en/font/big-bottom-cartoon-normal) by
 [KarenBJones](http://openfontlibrary.org/en/member/KarenBJones) is licensed under
 [Bitstream Vera License](http://dejavu-fonts.org/wiki/License)
 
+* ["Pizel"](https://copheemoth.itch.io/pizel) by
+[CopheeMoth](https://copheemoth.itch.io/) is licensed under
+[CC-0 1.0](https://creativecommons.org/publicdomain/zero/1.0/)
+
+* ["Minimal3x5"](https://fontstruct.com/fontstructions/show/1194671/minimal3x5) by
+[kheftel](https://copheemoth.itch.io/) is licensed under
+[CC BY 3.0](https://creativecommons.org/licenses/by/3.0/)
 
 Music
 ------

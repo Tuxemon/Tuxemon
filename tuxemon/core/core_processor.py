@@ -91,19 +91,13 @@ class EffectProcessor:
         self,
         session: Session,
         source: Status,
-        target: Optional[Monster],
     ) -> StatusEffectResult:
         meta_result = StatusEffectResult(name=source.name)
         if not self.effects:
             return meta_result
         for effect in self.effects:
             if isinstance(effect, CoreEffect):
-                if target:
-                    result = effect.apply_status_target(
-                        session, source, target
-                    )
-                else:
-                    result = effect.apply_status(session, source)
+                result = effect.apply_status(session, source)
                 self._merge_results_status(meta_result, result)
         return meta_result
 

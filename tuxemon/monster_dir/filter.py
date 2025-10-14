@@ -2,6 +2,7 @@
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import logging
 from collections.abc import Callable
 from typing import TYPE_CHECKING
 
@@ -9,6 +10,8 @@ from tuxemon.monster import Monster
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
+
+logger = logging.getLogger(__name__)
 
 
 def or_monster_filter(
@@ -99,7 +102,7 @@ class MonsterFilter:
                 f.__name__ if hasattr(f, "__name__") else repr(f)
                 for f in self._filters
             ]
-            print(
+            logger.debug(
                 f"[MonsterFilter] No monsters passed current filters. "
                 f"Total monsters: {len(monsters)}. Filters applied: {active_filters}"
             )

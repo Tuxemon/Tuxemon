@@ -105,3 +105,25 @@ class BondHandler:
                     )
 
         return None
+
+    def get_bond_icon_path(self) -> Optional[str]:
+        """
+        Returns the file path to the bond icon based on the monster's current bond level.
+        """
+        bond_level = self.bond
+        bond_sentiments = config_monster.bond_sentiments
+        bond_icons = config_monster.bond_icons
+
+        for sentiment_key, (min_bond, max_bond) in bond_sentiments.items():
+            if min_bond <= bond_level <= max_bond:
+                return bond_icons.get(sentiment_key)
+
+        return None
+
+    def apply_bond_modifier(self, event: str) -> None:
+        """
+        Applies a bond change based on a named event using config_monster.bond_modifiers.
+        """
+        modifier = config_monster.bond_modifiers.get(event)
+        if modifier is not None:
+            self.change_bond(modifier)

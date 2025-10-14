@@ -9,7 +9,6 @@ from tuxemon.core.core_effect import CoreEffect, StatusEffectResult
 from tuxemon.db import EffectPhase
 
 if TYPE_CHECKING:
-    from tuxemon.monster import Monster
     from tuxemon.session import Session
     from tuxemon.status.status import Status
 
@@ -24,29 +23,29 @@ class GrabbedEffect(CoreEffect):
     Parameters:
         divisor: The divisor.
         ranges: Technique range separated by ":".
-
     """
 
     name = "grabbed"
     divisor: float
     ranges: str
 
-    def apply_status_target(
-        self, session: Session, status: Status, target: Monster
+    def apply_status(
+        self, session: Session, status: Status
     ) -> StatusEffectResult:
         if self.divisor == 0:
             raise ValueError("StuckEffect divisor must be non-zero.")
 
         done: bool = False
+        host = status.get_host()
         ranges = self.ranges.split(":")
         moves = [
-            tech for tech in target.moves.get_moves() if tech.range in ranges
+            tech for tech in host.moves.get_moves() if tech.range in ranges
         ]
 
         if status.has_phase(EffectPhase.PERFORM_STATUS):
             done = True
         elif status.has_phase(EffectPhase.ON_END):
-            target.moves.set_stats()
+            host.moves.set_stats()
 
         if done and moves:
             for move in moves:

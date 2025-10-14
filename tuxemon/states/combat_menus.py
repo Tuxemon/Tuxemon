@@ -222,7 +222,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
 
         def choose_item() -> None:
             # open menu to choose item
-            items_filtered = ItemFilter(self.character)
+            items_filtered = ItemFilter(self.character.items.get_items())
             items_filtered.set_filter_usable_in_state("MainCombatMenuState")
             menu = self.client.push_state(
                 ItemMenuState(self.character, self.name, items_filtered)
@@ -269,7 +269,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             status = target.status.get_current_status()
             if status:
                 result_status = status.use(
-                    self.session, target, EffectPhase.ENQUEUE_ITEM
+                    self.session, EffectPhase.ENQUEUE_ITEM
                 )
                 if result_status.extras:
                     templates = [
@@ -404,7 +404,9 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                             self.sprites.add(spr, layer=200)
                             self.type_icon_sprites.append(spr)
                         except Exception as e:
-                            print(f"Could not load type icon {path}: {e}")
+                            logger.error(
+                                f"Could not load type icon {path}: {e}"
+                            )
 
                 # --- Draw range icon ---
                 if technique.range:
@@ -421,7 +423,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                         self.sprites.add(spr, layer=200)
                         self.range_icon_sprite = spr
                     except Exception as e:
-                        print(f"Could not load range icon {path}: {e}")
+                        logger.error(f"Could not load range icon {path}: {e}")
 
                 # --- Draw speed icon ---
                 if technique.speed is not None:
@@ -454,7 +456,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                         self.sprites.add(spr, layer=200)
                         self.speed_icon_sprite = spr
                     except Exception as e:
-                        print(f"Could not load speed icon {path}: {e}")
+                        logger.error(f"Could not load speed icon {path}: {e}")
 
                 # --- Draw text labels ---
                 font = self.font

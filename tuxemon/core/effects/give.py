@@ -37,7 +37,6 @@ class GiveEffect(CoreEffect):
     def apply_tech_target(
         self, session: Session, tech: Technique, user: Monster, target: Monster
     ) -> TechEffectResult:
-        player = user.get_owner()
 
         objectives = self.objectives.split(":")
         potency = random.random()
@@ -47,8 +46,6 @@ class GiveEffect(CoreEffect):
         if not success:
             return TechEffectResult(name=tech.name)
 
-        status = Status.create(self.condition, user, player.steps)
-
         immune_info = []
         successful_targets = []
         extras = []
@@ -57,7 +54,10 @@ class GiveEffect(CoreEffect):
         )
 
         for monster in monsters:
-            result = monster.status.apply_status(session, status, monster)
+            status = Status.create(self.condition, monster, monster.steps)
+            if status.bond:
+                status.set_linked_monster(user)
+            result = monster.status.apply_status(session, status)
             if result.applied:
                 successful_targets.append(monster)
             elif result.blocked_reason == BlockedReason.IMMUNE_BY_ITEM:
@@ -73,6 +73,11 @@ class GiveEffect(CoreEffect):
             params = {"target": immune_names, "method": status.name}
             extract_text = T.format(key, params)
             extras = [extract_text]
+
+        if successful_targets:
+            event_bus = session.client.event_bus
+            event_bus.publish("status_applied")
+            event_bus.publish("update_party_hud")
 
         return TechEffectResult(
             name=tech.name, success=bool(monsters), extras=extras

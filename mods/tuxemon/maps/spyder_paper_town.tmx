@@ -292,6 +292,7 @@
    <properties>
     <property name="act10" value="lock_controls"/>
     <property name="act11" value="set_teleport_faint player,spyder_bedroom.tmx,3,4"/>
+    <property name="act12" value="add_item friendship_scroll,1"/>
     <property name="act20" value="create_npc spyder_billie,13,14"/>
     <property name="act30" value="pathfind spyder_billie,25,13"/>
     <property name="act40" value="wait 1.0"/>

@@ -15,7 +15,7 @@ if TYPE_CHECKING:
     from tuxemon.event import EventObject, MapAction, MapCondition
     from tuxemon.event.eventaction import ActionManager
     from tuxemon.event.running import ConditionEvaluator
-    from tuxemon.map.map_tuxemon import TuxemonMap
+    from tuxemon.map.map_tuxemon import AbstractMap
     from tuxemon.session import Session
 
 
@@ -50,7 +50,7 @@ class EventEngine:
 
         self.running_events: dict[int, RunningEvent] = dict()
         self.name = "Event"
-        self.current_map: Optional[TuxemonMap] = None
+        self.current_map: Optional[AbstractMap] = None
         self.timer = 0.0
         self.wait = 0.0
         self.button = None
@@ -61,7 +61,7 @@ class EventEngine:
         # debug
         self.partial_events: list[Sequence[tuple[bool, MapCondition]]] = list()
 
-    def set_current_map(self, new_map: Optional[TuxemonMap]) -> None:
+    def set_current_map(self, new_map: Optional[AbstractMap]) -> None:
         """Updates the current map."""
         if self.current_map != new_map:
             self.current_map = new_map

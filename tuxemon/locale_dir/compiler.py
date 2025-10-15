@@ -5,6 +5,7 @@ from __future__ import annotations
 import logging
 from pathlib import Path
 
+from babel.messages.catalog import Catalog
 from babel.messages.mofile import write_mo
 from babel.messages.pofile import read_po
 
@@ -25,23 +26,30 @@ class GettextCompiler:
         self.cache_dir = cache_dir
         self.locale_dir = locale_dir
 
-    def compile_gettext(self, po_path: Path, mo_path: Path) -> None:
+    def compile_gettext(
+        self, po_paths: list[Path], mo_path: Path, locale_name: str
+    ) -> None:
         """
-        Compiles a gettext translation file.
-
-        Parameters:
-            po_path: The path to the gettext translation file (.po) to compile.
-            mo_path: The path to store the compiled translation file (.mo).
+        Compiles multiple .po files for the same domain and locale into a
+        single .mo file, merging their contents with later files overriding
+        earlier ones.
         """
         mofolder = mo_path.parent
         mofolder.mkdir(parents=True, exist_ok=True)
 
-        with po_path.open(encoding="UTF8") as po_file:
-            catalog = read_po(po_file)
+        merged_catalog = Catalog(locale=locale_name)
+
+        for po_path in po_paths:
+            try:
+                with po_path.open(encoding="UTF8") as po_file:
+                    new_catalog = read_po(po_file)
+                    merged_catalog.update(new_catalog)
+            except Exception as e:
+                logger.error(f"Failed to read or merge PO file {po_path}: {e}")
 
         with mo_path.open("wb") as mo_file:
-            write_mo(mo_file, catalog)
-            logger.debug(f"writing {self.locale_dir} mo: {mo_path}")
+            write_mo(mo_file, merged_catalog)
+            logger.debug(f"Wrote merged MO file: {mo_path}")
 
     def get_mo_path(self, locale: str, category: str, domain: str) -> Path:
         """

@@ -14,7 +14,7 @@ from tuxemon.constants.asset_loader import (
     fetch_mod_asset_roots,
 )
 from tuxemon.locale_dir.compiler import GettextCompiler
-from tuxemon.locale_dir.finder import LocaleFinder, LocaleInfo
+from tuxemon.locale_dir.finder import LocaleFinder
 from tuxemon.locale_dir.translator import TranslatorPo
 
 logger = logging.getLogger(__name__)
@@ -59,55 +59,73 @@ class TranslatorManager:
                 they exist.
         """
         logger.debug("Collecting and compiling translations...")
-        self._expected_mo_paths = set()
+        mo_to_po_paths: dict[tuple[Path, str], list[Path]] = {}
 
         for info in self.locale_finder.search_locales():
             mo_path = self.gettext_compiler.get_mo_path(
                 info.locale, info.category, info.domain
             )
-            self._expected_mo_paths.add(mo_path.resolve())
 
+            mo_path_key = (mo_path, info.locale)
+
+            if mo_path_key not in mo_to_po_paths:
+                mo_to_po_paths[mo_path_key] = []
+
+            mo_to_po_paths[mo_path_key].append(info.path)
+
+        self._expected_mo_paths = {
+            mo_path for mo_path, _ in mo_to_po_paths.keys()
+        }
+
+        for (mo_path, locale_name), po_paths in mo_to_po_paths.items():
             if self._should_compile_translation(
-                info, mo_path, recompile_translations
+                po_paths, mo_path, recompile_translations
             ):
-                self.gettext_compiler.compile_gettext(info.path, mo_path)
-                logger.info(f"Recompiled .mo for: {mo_path}")
+                logger.debug(
+                    f"Merging {len(po_paths)} .po files into {mo_path}"
+                )
+                self.gettext_compiler.compile_gettext(
+                    po_paths, mo_path, locale_name
+                )
+                logger.info(f"Merged and recompiled .mo for: {mo_path}")
 
         logger.info("Translation files compilation complete.")
 
     def _should_compile_translation(
-        self, info: LocaleInfo, mo_path: Path, recompile_translations: bool
+        self, po_paths: list[Path], mo_path: Path, recompile_translations: bool
     ) -> bool:
-        try:
-            po_mtime = info.path.stat().st_mtime
-        except (FileNotFoundError, PermissionError) as e:
-            logger.warning(f"Skipping .po file due to error: {e}")
-            return False
-
-        try:
-            mo_mtime = mo_path.stat().st_mtime if mo_path.exists() else 0
-        except (FileNotFoundError, PermissionError) as e:
-            logger.warning(f".mo stat failed, assuming missing: {e}")
-            mo_mtime = 0
-
-        delta = po_mtime - mo_mtime
-
         if recompile_translations:
-            logger.debug(f"Forced recompilation for: {mo_path}")
+            logger.debug(f"Forced recompilation for group: {mo_path}")
             return True
-        elif not mo_path.exists():
-            logger.debug(f".mo file missing, compiling: {mo_path}")
+
+        if not mo_path.exists():
+            logger.debug(f".mo file missing, compiling group: {mo_path}")
             return True
-        elif po_mtime > mo_mtime and delta > ONE_WEEK:
-            logger.info(
-                f"Recompiled .mo due to freshness gap ({delta:.2f}s): {mo_path}"
-            )
+
+        try:
+            mo_mtime = mo_path.stat().st_mtime
+        except (FileNotFoundError, PermissionError):
+            logger.warning(f".mo stat failed for {mo_path}, assuming missing.")
             return True
-        else:
-            logger.debug(
-                f"No recompilation needed for: {mo_path} (delta: {delta:.2f}s)"
-            )
-            return False
+
+        for po_path in po_paths:
+            try:
+                po_mtime = po_path.stat().st_mtime
+                delta = po_mtime - mo_mtime
+
+                if po_mtime > mo_mtime and delta > ONE_WEEK:
+                    logger.info(
+                        f"Recompiled .mo group due to freshness gap ({delta:.2f}s) from source: {po_path}"
+                    )
+                    return True
+            except (FileNotFoundError, PermissionError) as e:
+                logger.warning(
+                    f"Skipping .po file {po_path} in check due to error: {e}"
+                )
+                continue
+
+        logger.debug(f"No recompilation needed for group: {mo_path}")
+        return False
 
     def clean_stale_translations(self) -> None:
         """

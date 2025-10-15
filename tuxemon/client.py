@@ -12,6 +12,7 @@ from pygame.surface import Surface
 from tuxemon.base_client import BaseClient, ClientState
 from tuxemon.cli.processor import CommandProcessor
 from tuxemon.config import TuxemonConfig
+from tuxemon.map.map_view import DebugRenderer, MapRenderer
 from tuxemon.session import local_session
 from tuxemon.state.draw import EventDebugDrawer, Renderer, StateDrawer
 
@@ -63,7 +64,16 @@ class LocalPygameClient(BaseClient):
             self.screen, self.state_manager, config
         )
         self.event_debug_drawer = EventDebugDrawer(self.screen)
-        self.renderer = Renderer(self.screen, self.state_drawer, self.config)
+        self.renderer = Renderer(
+            self.screen,
+            self.state_drawer,
+            self.config,
+            self.event_debug_drawer,
+        )
+        self.debug_renderer = DebugRenderer(self.map_manager, self.npc_manager)
+        self.map_renderer = MapRenderer(
+            self.camera_manager, self.npc_manager, self.debug_renderer
+        )
 
         if self.config.cli:
             local_session.set_client(self)
@@ -105,7 +115,7 @@ class LocalPygameClient(BaseClient):
                         self.input_manager.draw_visualizer(screen)
                     flip()
                 if self.config.show_fps:
-                    self.renderer.update_fps(clock_tick)
+                    self.renderer.update(clock_tick)
                 time.sleep(0.01)
             elif self.state == ClientState.EXITING:
                 self.perform_cleanup()
@@ -136,11 +146,12 @@ class LocalPygameClient(BaseClient):
 
     def draw(self) -> None:
         """Centralized draw logic."""
-        self.renderer.draw(
-            frame_number=self.frame_number,
-            save_to_disk=self.save_to_disk,
-            collision_map=self.config.collision_map,
-            debug_drawer=self.event_debug_drawer,
-            partial_events=self.event_engine.partial_events,
-        )
+        self.renderer.draw()
+
+        if self.config.collision_map:
+            self.renderer.draw_debug(self.event_engine.partial_events)
+
+        if self.save_to_disk:
+            self.renderer.save_frame(self.frame_number)
+
         self.frame_number += 1

@@ -2,9 +2,8 @@
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-from collections.abc import Callable
 from functools import partial
-from typing import TYPE_CHECKING, Any, ClassVar
+from typing import TYPE_CHECKING, ClassVar
 
 import pygame_menu
 from pygame_menu import locals
@@ -19,8 +18,6 @@ from tuxemon.ui.menu_options import ChoiceOption, MenuOptions
 
 if TYPE_CHECKING:
     from tuxemon.npc import NPC
-
-MenuGameObj = Callable[[], Any]
 
 
 class NuPhoneBanking(PygameMenuState):

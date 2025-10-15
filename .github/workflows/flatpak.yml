@@ -19,7 +19,7 @@ jobs:
         echo IS_RELEASE: ${{ inputs.IS_RELEASE }}
 
     - name: Checkout repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
     # https://stackoverflow.com/questions/60916931/github-action-does-the-if-have-an-else
     - name: Determine flatpak release branch
       uses: haya14busa/action-cond@v1

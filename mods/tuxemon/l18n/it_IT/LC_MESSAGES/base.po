@@ -3393,9 +3393,6 @@ msgstr ""
 msgid "menu_storage_take_monster"
 msgstr "Hai aggiunto {name} alla tua squadra!"
 
-msgid "menu_storage_monsters_full"
-msgstr "La tua squadra è al completo, non puoi prelevare più dal box."
-
 msgid "altie_description"
 msgstr ""
 "ALTIE galleggiava in una bolla. Ora la sua bolla è scoppiata, non può "

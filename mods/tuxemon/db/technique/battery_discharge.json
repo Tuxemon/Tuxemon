@@ -21,10 +21,11 @@
   "power": 1.25,
   "range": "ranged",
   "recharge": 2,
-  "sfx": "sfx_lightning1",
+  "sfx": "sfx_kick",
   "slug": "battery_discharge",
   "sort": "damage",
   "modifiers": [],
+  "behaviors": {},
   "target": {
     "enemy_monster": true,
     "enemy_team": false,

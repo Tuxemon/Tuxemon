@@ -3,13 +3,9 @@
 from __future__ import annotations
 
 import logging
-from typing import TYPE_CHECKING, Optional
+from typing import Optional
 
 from tuxemon.db import AttributesModel, ShapeModel, db
-from tuxemon.formula import calculate_base_stats
-
-if TYPE_CHECKING:
-    from tuxemon.monster import Monster
 
 logger = logging.getLogger(__name__)
 
@@ -100,14 +96,6 @@ class ShapeHandler:
     @property
     def attributes(self) -> AttributesModel:
         return self._shape.attributes
-
-    def apply_base_stat_calculation(
-        self, monster: Monster, multiplier: int
-    ) -> None:
-        """
-        Applies base stat calculations to the monster based on its shape.
-        """
-        calculate_base_stats(monster, self.attributes, multiplier)
 
     def update_shape_attributes(self, new_attributes: AttributesModel) -> None:
         """Updates the shape attributes."""

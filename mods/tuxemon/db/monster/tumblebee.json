@@ -63,13 +63,17 @@
   "types": [
     "venom"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 96,
   "height": 66,
   "weight": 23,
+  "sounds": {
+    "combat_call": "sound_shoot_02",
+    "faint_call": "sound_shoot_02_faint"
+  },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.9,
   "upper_catch_resistance": 1.15

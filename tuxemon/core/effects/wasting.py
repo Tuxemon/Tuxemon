@@ -9,7 +9,6 @@ from tuxemon.core.core_effect import CoreEffect, StatusEffectResult
 from tuxemon.db import EffectPhase
 
 if TYPE_CHECKING:
-    from tuxemon.monster import Monster
     from tuxemon.session import Session
     from tuxemon.status.status import Status
 
@@ -22,21 +21,21 @@ class WastingEffect(CoreEffect):
 
     Parameters:
         divisor: The divisor.
-
     """
 
     name = "wasting"
     divisor: int
 
-    def apply_status_target(
-        self, session: Session, status: Status, target: Monster
+    def apply_status(
+        self, session: Session, status: Status
     ) -> StatusEffectResult:
         done: bool = False
+        host = status.get_host()
         if (
             status.has_phase(EffectPhase.PERFORM_STATUS)
-            and not target.is_fainted
+            and not host.is_fainted
         ):
-            damage = (target.hp // self.divisor) * status.nr_turn
-            target.current_hp = max(0, target.current_hp - damage)
+            damage = (host.hp // self.divisor) * status.nr_turn
+            host.current_hp = max(0, host.current_hp - damage)
             done = True
         return StatusEffectResult(name=status.name, success=done)

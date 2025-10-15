@@ -32,10 +32,11 @@
   "power": 1,
   "range": "melee",
   "recharge": 4,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_crumble1",
   "slug": "burrow_blast",
   "sort": "damage",
   "modifiers": [],
+  "behaviors": {},
   "target": {
     "enemy_monster": true,
     "enemy_team": false,

@@ -11,7 +11,6 @@ from tuxemon.formula import simple_recover
 from tuxemon.locale import T
 
 if TYPE_CHECKING:
-    from tuxemon.monster import Monster
     from tuxemon.session import Session
     from tuxemon.status.status import Status
 
@@ -23,32 +22,31 @@ class RecoverEffect(CoreEffect):
 
     Parameters:
         divisor: The number by which user HP is to be divided.
-
     """
 
     name = "recover"
     divisor: int
 
-    def apply_status_target(
-        self, session: Session, status: Status, target: Monster
+    def apply_status(
+        self, session: Session, status: Status
     ) -> StatusEffectResult:
         extra: list[str] = []
         healing: bool = False
+        host = status.get_host()
         if status.has_phase(EffectPhase.PERFORM_STATUS):
-            user = status.get_host()
-            heal = simple_recover(user, self.divisor)
-            user.current_hp = min(user.hp, user.current_hp + heal)
+            heal = simple_recover(host, self.divisor)
+            host.current_hp = min(host.hp, host.current_hp + heal)
             healing = bool(heal)
         # check for recover (completely healed)
         if (
             status.has_phase(EffectPhase.CHECK_PARTY_HP)
-            and target.current_hp >= target.hp
+            and host.current_hp >= host.hp
         ):
-            target.status.clear_status(session)
+            host.status.clear_status(session)
             # avoid "overcome" hp bar
-            if target.current_hp > target.hp:
-                target.current_hp = target.hp
-            params = {"target": target.name.upper()}
+            if host.current_hp > host.hp:
+                host.current_hp = host.hp
+            params = {"target": host.name.upper()}
             extra = [T.format("combat_state_recover_failure", params)]
 
         return StatusEffectResult(

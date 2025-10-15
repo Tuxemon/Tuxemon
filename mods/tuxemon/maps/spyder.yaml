@@ -7,27 +7,6 @@ events:
     - is variable_set swimming:yes
     - is current_state WorldState
     type: event
-  Auto healing teleported:
-    actions:
-    - set_monster_health
-    - set_monster_status
-    - set_variable teleport_clinic:none
-    - format_variable cathedral_fee,int
-    - modify_bill player,bill_cathedral,,cathedral_fee
-    conditions:
-    - is char_defeated player
-    - is location_type clinic
-    - is variable_set teleport_clinic:lost
-    - is current_state WorldState
-    type: event
-  Bond Down -10 Fainted:
-    actions:
-    - modify_monster_bond combatstate_faint,-10
-    - clear_variable combatstate_faint
-    conditions:
-    - is variable_set combatstate_faint
-    - is has_item player,friendship_scroll
-    type: event
   Bond Up 1000 Steps:
     actions:
     - modify_monster_bond
@@ -222,96 +201,13 @@ events:
     - is variable_set stage_of_day:night
     - not variable_set environment:night_ocean
     type: event
-  Teleport Exception 1:
-    actions:
-    - transition_teleport spyder_wayfarer_inn1.tmx,9,6,0.3
-    - set_monster_health
-    - set_monster_status
-    - set_variable teleport_clinic:none
-    conditions:
-    - is char_defeated player
-    - is location_name wayfarer_inn1:wayfarer_inn2
-    - is current_state WorldState
-    type: event
-  Teleport Exception 2:
-    actions:
-    - transition_teleport spyder_scoop2.tmx,4,4,0.3
-    - set_monster_health
-    - set_monster_status
-    - set_variable teleport_clinic:none
-    conditions:
-    - is char_defeated player
-    - is location_name scoop3:scoop4
-    - is current_state WorldState
-    type: event
-  Teleport Exception 3:
-    actions:
-    - transition_teleport spyder_bedroom.tmx,4,3,0.3
-    - set_monster_health
-    - set_monster_status
-    - set_variable teleport_clinic:none
-    conditions:
-    - is char_defeated player
-    - is location_name paper_town
-    - is current_state WorldState
-    - is variable_set firstfightend:no
-    type: event
-  Teleport Exception 4:
-    actions:
-    - teleport_faint player
-    - set_monster_health
-    - set_monster_status
-    - set_variable teleport_clinic:none
-    conditions:
-    - is char_defeated player
-    - is current_state WorldState
-    - is teleport_faint player,spyder_leather_town.tmx,4,14
-    type: event
-  Teleport Exception 5:
-    actions:
-    - teleport_faint player
-    - set_monster_health
-    - set_monster_status
-    - set_variable teleport_clinic:none
-    conditions:
-    - is char_defeated player
-    - is current_state WorldState
-    - is teleport_faint player,spyder_timber_cafe.tmx,1,10
-    type: event
-  Teleport Exception 6:
-    actions:
-    - teleport_faint player
-    - set_monster_health
-    - set_monster_status
-    - set_variable teleport_clinic:none
-    conditions:
-    - is char_defeated player
-    - is current_state WorldState
-    - is teleport_faint player,spyder_candy_cafe.tmx,1,10
-    type: event
-  Teleport Exception 7:
-    actions:
-    - teleport_faint player
-    - set_monster_health
-    - set_monster_status
-    - set_variable teleport_clinic:none
-    conditions:
-    - is char_defeated player
-    - is current_state WorldState
-    - is teleport_faint player,spyder_cotton_cafe.tmx,1,10
-    type: event
   Teleport Faint:
     actions:
-    - teleport_faint player
+    - teleport_faint player,true
     conditions:
     - is char_defeated player
     - not location_type clinic
-    - not location_name wayfarer_inn1:wayfarer_inn2:scoop3:scoop4:paper_town:bedroom
     - is current_state WorldState
-    - not teleport_faint player,spyder_leather_town.tmx,4,14
-    - not teleport_faint player,spyder_timber_cafe.tmx,1,10
-    - not teleport_faint player,spyder_candy_cafe.tmx,1,10
-    - not teleport_faint player,spyder_cotton_cafe.tmx,1,10
     type: event
   Update Time Variables:
     actions:

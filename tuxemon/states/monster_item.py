@@ -35,7 +35,7 @@ class MonsterItemState(PygameMenuState):
         owner = monster.get_owner()
 
         def add_item() -> None:
-            items_filtered = ItemFilter(owner)
+            items_filtered = ItemFilter(owner.items.get_items())
             items_filtered.add_filter(lambda item: item.behaviors.holdable)
             menu = self.client.push_state(
                 ItemMenuState(owner, self.name, items_filtered)

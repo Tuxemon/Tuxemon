@@ -92,13 +92,17 @@
     "metal",
     "venom"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 58,
   "height": 150,
   "weight": 52,
+  "sounds": {
+    "combat_call": "sound_swords_clash",
+    "faint_call": "sound_swords_clash_faint"
+  },
   "catch_rate": 35.0,
   "lower_catch_resistance": 0.8,
   "upper_catch_resistance": 1.05

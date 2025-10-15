@@ -62,44 +62,11 @@
     <property name="behav1" value="talk spyder_leatherhouse1_gail"/>
    </properties>
   </object>
-  <object id="15" name="Radio Dawn" type="event" x="112" y="80" width="16" height="32">
+  <object id="17" name="Radio" type="event" x="112" y="80" width="16" height="32">
    <properties>
-    <property name="act1" value="translated_dialog spyder_leatherhouse1_radio_dawn"/>
+    <property name="act1" value="tune_radio player,94.7"/>
     <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
-    <property name="cond3" value="is variable_set stage_of_day:dawn"/>
-   </properties>
-  </object>
-  <object id="16" name="Radio Dusk" type="event" x="112" y="80" width="16" height="32">
-   <properties>
-    <property name="act1" value="translated_dialog spyder_leatherhouse1_radio_dusk"/>
-    <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
-    <property name="cond3" value="is variable_set stage_of_day:dusk"/>
-   </properties>
-  </object>
-  <object id="17" name="Radio Afternoon" type="event" x="112" y="80" width="16" height="32">
-   <properties>
-    <property name="act1" value="translated_dialog spyder_leatherhouse1_radio"/>
-    <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
-    <property name="cond3" value="is variable_set stage_of_day:afternoon"/>
-   </properties>
-  </object>
-  <object id="18" name="Radio Night" type="event" x="112" y="80" width="16" height="32">
-   <properties>
-    <property name="act1" value="translated_dialog spyder_leatherhouse1_radio_night"/>
-    <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
-    <property name="cond3" value="is variable_set stage_of_day:night"/>
-   </properties>
-  </object>
-  <object id="27" name="Radio Morning" type="event" x="112" y="80" width="16" height="32">
-   <properties>
-    <property name="act1" value="translated_dialog spyder_leatherhouse1_radio_morning"/>
-    <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
-    <property name="cond3" value="is variable_set stage_of_day:morning"/>
    </properties>
   </object>
   <object id="28" name="Create Tennis Player" type="event" x="144" y="48" width="16" height="16">

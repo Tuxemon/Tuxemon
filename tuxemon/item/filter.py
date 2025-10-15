@@ -4,13 +4,11 @@ from __future__ import annotations
 
 import logging
 from collections.abc import Callable
-from typing import TYPE_CHECKING
+from typing import Optional
 
 from tuxemon.db import State
 from tuxemon.item.item import Item
 
-if TYPE_CHECKING:
-    from tuxemon.npc import NPC
 logger = logging.getLogger(__name__)
 
 
@@ -27,8 +25,8 @@ def not_filter(filter_func: Callable[[Item], bool]) -> Callable[[Item], bool]:
 
 
 class ItemFilter:
-    def __init__(self, character: NPC):
-        self.character = character
+    def __init__(self, items: list[Item]):
+        self.items = items
         self._filters: list[Callable[[Item], bool]] = []
 
     def clear_filters(self) -> None:
@@ -39,8 +37,10 @@ class ItemFilter:
         """Add a single filter to the filter stack."""
         self._filters.append(filter_func)
 
-    def get_filtered_inventory(self) -> list[Item]:
-        all_items = self.character.items.get_items()
+    def get_filtered_inventory(
+        self, items: Optional[list[Item]] = None
+    ) -> list[Item]:
+        all_items = items if items is not None else self.items
         if not self._filters:
             return all_items
 
@@ -54,8 +54,7 @@ class ItemFilter:
                 for f in self._filters
             ]
             logger.debug(
-                f"[ItemFilter] No items passed current filters for {self.character.name}. "
-                f"Total items: {len(all_items)}. Filters applied: {active_filters}"
+                f"[ItemFilter] Total items: {len(all_items)}. Filters applied: {active_filters}"
             )
 
         return filtered

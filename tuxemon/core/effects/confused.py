@@ -27,16 +27,16 @@ class ConfusedEffect(CoreEffect):
 
     Parameters:
         chance: The chance of the confused effect occurring (float between 0 and 1).
-
     """
 
     name = "confused"
     chance: float
 
-    def apply_status_target(
-        self, session: Session, status: Status, target: Monster
+    def apply_status(
+        self, session: Session, status: Status
     ) -> StatusEffectResult:
         CONFUSED_KEY = self.name
+        host = status.get_host()
         var = session.client.combat_session.get_variable(CONFUSED_KEY)
 
         if not 0 <= self.chance <= 1:
@@ -51,9 +51,8 @@ class ConfusedEffect(CoreEffect):
         ):
             if var:
                 session.client.combat_session.set_variable(CONFUSED_KEY, "off")
-            user = status.get_host()
             session.client.combat_session.set_variable(CONFUSED_KEY, "on")
-            available_techniques = _get_available_techniques(user)
+            available_techniques = _get_available_techniques(host)
             if available_techniques:
                 chosen_technique = random.choice(available_techniques)
                 tech = [chosen_technique]
@@ -69,7 +68,7 @@ class ConfusedEffect(CoreEffect):
                     "action_tech"
                 )
                 replacement = Technique.create(str(action) or "skip")
-                extra = _get_extra_message(target, replacement)
+                extra = _get_extra_message(host, replacement)
 
         return StatusEffectResult(
             name=status.name,

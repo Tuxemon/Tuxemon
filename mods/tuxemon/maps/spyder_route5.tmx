@@ -413,35 +413,35 @@
    <properties>
     <property name="act1" value="char_talk spyder_route5_sara,post_battle_lose"/>
     <property name="behav1" value="talk spyder_route5_sara"/>
-    <property name="cond1" value="is variable_set route5sara:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_route5_sara"/>
    </properties>
   </object>
   <object id="69" name="Post Talk Edith" type="event" x="272" y="192" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_route5_edith,post_battle_lose"/>
     <property name="behav1" value="talk spyder_route5_edith"/>
-    <property name="cond1" value="is variable_set route5edith:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_route5_edith"/>
    </properties>
   </object>
   <object id="70" name="Post Talk Tryphaena" type="event" x="256" y="176" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_route5_tryphaena,post_battle_lose"/>
     <property name="behav1" value="talk spyder_route5_tryphaena"/>
-    <property name="cond1" value="is variable_set route5tryphaena:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_route5_tryphaena"/>
    </properties>
   </object>
   <object id="71" name="Post Talk Cleo" type="event" x="256" y="192" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_route5_cleo,post_battle_lose"/>
     <property name="behav1" value="talk spyder_route5_cleo"/>
-    <property name="cond1" value="is variable_set route5cleo:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_route5_cleo"/>
    </properties>
   </object>
   <object id="72" name="Post Talk Hunter" type="event" x="32" y="128" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_route5_hunter,post_battle_lose"/>
     <property name="behav1" value="talk spyder_route5_hunter"/>
-    <property name="cond1" value="is variable_set route5hunter:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_route5_hunter"/>
    </properties>
   </object>
   <object id="73" name="Create Nurse" type="event" x="496" y="32" width="16" height="16">

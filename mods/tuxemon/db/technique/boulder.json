@@ -17,10 +17,11 @@
   "power": 0,
   "range": "special",
   "recharge": 2,
-  "sfx": "sfx_crumble2",
+  "sfx": "sfx_crumble1",
   "slug": "boulder",
   "sort": "damage",
   "modifiers": [],
+  "behaviors": {},
   "target": {
     "enemy_monster": false,
     "enemy_team": false,

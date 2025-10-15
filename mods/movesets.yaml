@@ -1,0 +1,12 @@
+movesets:
+  test_set:
+    # If there are 4 or fewer techniques, you can simply assign weight: 1 to each
+    # unless you want to bias selection. Equal weights give uniform probability.
+    - slug: strike
+      weight: 1
+    - slug: tail_lash
+      weight: 1
+    - slug: shrapnel
+      weight: 1
+    - slug: wall_of_steel
+      weight: 1

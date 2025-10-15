@@ -84,13 +84,17 @@
   "types": [
     "water"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 25,
   "height": 1200,
   "weight": 50000,
+  "sounds": {
+    "combat_call": "sound_burble_02",
+    "faint_call": "sound_burble_02_faint"
+  },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.85,
   "upper_catch_resistance": 1.1

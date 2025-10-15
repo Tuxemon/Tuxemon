@@ -12,7 +12,6 @@ from tuxemon.locale import T
 from tuxemon.technique.technique import Technique
 
 if TYPE_CHECKING:
-    from tuxemon.monster import Monster
     from tuxemon.session import Session
     from tuxemon.status.status import Status
 
@@ -28,26 +27,26 @@ class NoddingOffEffect(CoreEffect):
 
     Parameters:
         chance: The chance.
-
     """
 
     name = "noddingoff"
     chance: float
 
-    def apply_status_target(
-        self, session: Session, status: Status, target: Monster
+    def apply_status(
+        self, session: Session, status: Status
     ) -> StatusEffectResult:
         extra: list[str] = []
         tech: list[Technique] = []
+        host = status.get_host()
 
         if status.has_phase(EffectPhase.PRE_CHECKING) and status.on_tech_use:
             skip = Technique.create(status.on_tech_use)
             tech = [skip]
 
         if status.has_phase(EffectPhase.PERFORM_TECH) and self.wake_up(status):
-            params = {"target": target.name.upper()}
+            params = {"target": host.name.upper()}
             extra = [T.format("combat_state_dozing_end", params)]
-            target.status.clear_status(session)
+            host.status.clear_status(session)
         return StatusEffectResult(
             name=status.name,
             success=True,

@@ -10,7 +10,6 @@ from tuxemon.db import EffectPhase
 from tuxemon.locale import T
 
 if TYPE_CHECKING:
-    from tuxemon.monster import Monster
     from tuxemon.session import Session
     from tuxemon.status.status import Status
 
@@ -30,18 +29,18 @@ class DieHardEffect(CoreEffect):
     name = "diehard"
     hp: int
 
-    def apply_status_target(
-        self, session: Session, status: Status, target: Monster
+    def apply_status(
+        self, session: Session, status: Status
     ) -> StatusEffectResult:
         extra: list[str] = []
+        host = status.get_host()
         if status.has_phase(EffectPhase.CHECK_PARTY_HP):
-            params = {"target": target.name.upper()}
-            if target.is_fainted:
-                target.current_hp = self.hp
-                target.status.clear_status(session)
-                extra = [T.format("combat_state_diehard_tech", params)]
-            if target.current_hp == self.hp:
-                target.status.clear_status(session)
+            params = {"target": host.name.upper()}
+            if host.current_hp == self.hp:
+                host.status.clear_status(session)
                 extra = [T.format("combat_state_diehard_end", params)]
-
+            if host.is_fainted:
+                host.current_hp = self.hp
+                host.status.clear_status(session)
+                extra = [T.format("combat_state_diehard_tech", params)]
         return StatusEffectResult(name=status.name, success=True, extras=extra)

@@ -71,24 +71,25 @@ class SwapOutLockEffect(CoreEffect):
 
         return TechEffectResult(name=tech.name, success=True)
 
-    def apply_status_target(
-        self, session: Session, status: Status, target: Monster
+    def apply_status(
+        self, session: Session, status: Status
     ) -> StatusEffectResult:
+        host = status.get_host()
         combat_session = session.client.combat_session
         persistent = self.method == "persistent"
 
         if status.has_phase(EffectPhase.PERFORM_STATUS):
             if self.action == "block":
                 combat_session.swap_tracker.block_swap(
-                    monster=target, reason=status.slug, persistent=persistent
+                    monster=host, reason=status.slug, persistent=persistent
                 )
                 logger.debug(
-                    f"Blocked swap ({target.name}) via status {status.name}"
+                    f"Blocked swap ({host.name}) via status {status.name}"
                 )
             elif self.action == "unblock":
-                combat_session.swap_tracker.unblock_swap(monster=target)
+                combat_session.swap_tracker.unblock_swap(monster=host)
                 logger.debug(
-                    f"Unblocked swap for {target.name} via status {status.name}"
+                    f"Unblocked swap for {host.name} via status {status.name}"
                 )
 
         elif status.has_phase(EffectPhase.ON_END):
@@ -96,9 +97,9 @@ class SwapOutLockEffect(CoreEffect):
                 self.action == "block"
                 and self.until_status_gone.lower() == "true"
             ):
-                combat_session.swap_tracker.unblock_swap(monster=target)
+                combat_session.swap_tracker.unblock_swap(monster=host)
                 logger.debug(
-                    f"Effect {status.name} ended—unblocking {target.name} from swap-in due to until_status_gone",
+                    f"Effect {status.name} ended—unblocking {host.name} from swap-in due to until_status_gone",
                 )
 
         return StatusEffectResult(name=status.name, success=True)

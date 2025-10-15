@@ -86,12 +86,16 @@
   "types": [
     "metal"
   ],
-  "possible_genders": [
-    "female"
-  ],
+  "gender_weights": {
+    "female": 1.0
+  },
   "txmn_id": 135,
   "height": 102,
   "weight": 18,
+  "sounds": {
+    "combat_call": "sound_steel_clang",
+    "faint_call": "sound_steel_clang_faint"
+  },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.25

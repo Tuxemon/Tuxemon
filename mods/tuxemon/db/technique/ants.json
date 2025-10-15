@@ -17,10 +17,11 @@
   "power": 0,
   "range": "special",
   "recharge": 4,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_squeak",
   "slug": "ants",
   "sort": "damage",
   "modifiers": [],
+  "behaviors": {},
   "target": {
     "enemy_monster": true,
     "enemy_team": false,

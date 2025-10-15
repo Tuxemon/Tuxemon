@@ -5,11 +5,9 @@ import unittest
 from unittest.mock import MagicMock
 
 from tuxemon import prepare
-from tuxemon.db import Modifier
 from tuxemon.element import Element
 from tuxemon.formula import (
     calculate_time_based_multiplier,
-    change_bond,
     config_monster,
     modify_stat,
     set_health,
@@ -18,58 +16,9 @@ from tuxemon.formula import (
     simple_damage_calculate,
     simple_damage_multiplier,
     simple_heal,
-    update_stat,
 )
 from tuxemon.monster import Monster
-from tuxemon.taste import Taste
 from tuxemon.technique.technique import Technique
-
-
-class TestUpdateStat(unittest.TestCase):
-    def setUp(self):
-        self.monster = MagicMock(spec=Monster)
-        self.monster.melee = 10.0
-        self.monster.ranged = 10.0
-        self.monster.dodge = 10.0
-
-        self.salty_modifier = MagicMock(spec=Modifier)
-        self.salty_modifier.attribute = "stat"
-        self.salty_modifier.values = ["melee"]
-        self.salty_modifier.multiplier = 1.1
-
-        self.flakey_modifier = MagicMock(spec=Modifier)
-        self.flakey_modifier.attribute = "stat"
-        self.flakey_modifier.values = ["ranged"]
-        self.flakey_modifier.multiplier = 0.9
-
-        self.salty = MagicMock(spec=Taste)
-        self.salty.slug = "salty"
-        self.salty.modifiers = [self.salty_modifier]
-
-        self.flakey = MagicMock(spec=Taste)
-        self.flakey.slug = "flakey"
-        self.flakey.modifiers = [self.flakey_modifier]
-
-        self.monster.taste_warm = self.salty
-        self.monster.taste_cold = self.flakey
-
-    def test_update_stat_matching_taste_bonus(self):
-        expected_bonus = int(
-            self.monster.melee * self.salty_modifier.multiplier
-        )
-        bonus = update_stat("melee", self.monster.melee, self.salty, None)
-        self.assertEqual(bonus, expected_bonus)
-
-    def test_update_stat_matching_taste_malus(self):
-        expected_malus = int(
-            self.monster.ranged * self.flakey_modifier.multiplier
-        )
-        malus = update_stat("ranged", self.monster.ranged, None, self.flakey)
-        self.assertEqual(malus, expected_malus)
-
-    def test_update_stat_matching_taste_neuter(self):
-        neuter = update_stat("dodge", self.monster.dodge, None, None)
-        self.assertEqual(neuter, self.monster.dodge)
 
 
 class TestSimpleHeal(unittest.TestCase):
@@ -415,35 +364,3 @@ class TestSetHealth(unittest.TestCase):
         for value in [50, 200]:
             set_health(self.monster, value, adjust=True)
             self.assertEqual(self.monster.current_hp, self.monster.hp)
-
-
-class TestChangeBond(unittest.TestCase):
-    def setUp(self):
-        self.monster = MagicMock(spec=Monster, bond=50)
-        self.minor, self.major = config_monster.bond_range
-
-    def test_increase_bond_direct(self):
-        change_bond(self.monster, 10)
-        self.assertEqual(self.monster.bond, 60)
-
-    def test_decrease_bond_direct(self):
-        change_bond(self.monster, -20)
-        self.assertEqual(self.monster.bond, 30)
-
-    def test_increase_bond_percentage(self):
-        change_bond(self.monster, 0.2)
-        expected_bond = min(self.major, 50 + int(50 * 0.2))
-        self.assertEqual(self.monster.bond, expected_bond)
-
-    def test_decrease_bond_percentage(self):
-        change_bond(self.monster, -0.5)
-        expected_bond = max(self.minor, 50 + int(50 * -0.5))
-        self.assertEqual(self.monster.bond, expected_bond)
-
-    def test_bond_does_not_exceed_max(self):
-        change_bond(self.monster, 100)
-        self.assertEqual(self.monster.bond, self.major)
-
-    def test_bond_does_not_go_below_min(self):
-        change_bond(self.monster, -100)
-        self.assertEqual(self.monster.bond, self.minor)

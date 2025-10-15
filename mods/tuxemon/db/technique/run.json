@@ -27,10 +27,11 @@
   "potency": 0.0,
   "power": 0.0,
   "range": "special",
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_pulse",
   "slug": "menu_run",
   "sort": "meta",
   "modifiers": [],
+  "behaviors": {},
   "target": {
     "enemy_monster": false,
     "enemy_team": false,

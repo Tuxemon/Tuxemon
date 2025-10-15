@@ -89,13 +89,17 @@
     "sky",
     "shadow"
   ],
-  "possible_genders": [
-    "male",
-    "female"
-  ],
+  "gender_weights": {
+    "male": 0.5,
+    "female": 0.5
+  },
   "txmn_id": 38,
   "height": 47,
   "weight": 7,
+  "sounds": {
+    "combat_call": "sound_eat_03",
+    "faint_call": "sound_eat_03_faint"
+  },
   "catch_rate": 35.0,
   "lower_catch_resistance": 0.95,
   "upper_catch_resistance": 1.05

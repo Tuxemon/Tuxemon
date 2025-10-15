@@ -3476,9 +3476,6 @@ msgstr "Prova de que beleza e mineração podem coexistir!"
 msgid "route5_description"
 msgstr "A passagem memorial para Timber Town!"
 
-msgid "menu_storage_monsters_full"
-msgstr "Sua festa está cheia, você não pode tirar mais do armazenamento."
-
 msgid "timber_town_description"
 msgstr "Cesta de pão do Fondant!"
 

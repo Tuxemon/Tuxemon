@@ -20,7 +20,7 @@ from tuxemon.map.map_view import SpriteController
 from tuxemon.math import Vector2
 from tuxemon.mission.controller import MissionController
 from tuxemon.mission.manager import MissionManager
-from tuxemon.money import MoneyController
+from tuxemon.money.controller import MoneyController
 from tuxemon.monster import Monster
 from tuxemon.monster_dir.evolution_registry import EvolutionRegistry
 from tuxemon.relationship import (
@@ -160,7 +160,7 @@ class NPC(Entity[NPCState]):
             "monster_boxes": self.monster_boxes.get_state(),
             "item_boxes": self.item_boxes.get_state(),
             "tile_pos": self.tile_pos,
-            "teleport_faint": self.teleport_faint.to_tuple(),
+            "teleport_faint": self.teleport_faint.to_dict(),
             "tracker": encode_tracking(self.tracker),
             "step_tracker": encode_steps(self.step_tracker),
             "unlocked_letters": encode_cipher(self.unlocked_letters),
@@ -195,9 +195,7 @@ class NPC(Entity[NPCState]):
         self.monster_boxes.load(self, save_data)
         self.item_boxes.load(save_data)
 
-        self.teleport_faint = TeleportFaint.from_tuple(
-            save_data["teleport_faint"]
-        )
+        self.teleport_faint = TeleportFaint.from_dict(save_data)
 
         self.tracker = decode_tracking(save_data.get("tracker", {}))
         self.step_tracker = decode_steps(save_data.get("step_tracker", {}))

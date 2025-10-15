@@ -31,9 +31,10 @@ class TuxemonArrowSelection(Selection):
         #  --------------------------
         #
 
+        scale_factor = max(int(getattr(prepare, "SCALE", 1)), 1)
         arrow = pygame_menu.BaseImage(
             image_path=transform_resource_filename(prepare.CONFIG.menu_cursor),
-        ).scale(5, 5, smooth=False)
+        ).scale(scale_factor, scale_factor, smooth=False)
 
         super().__init__(
             margin_left=arrow.get_width(),
@@ -70,9 +71,10 @@ def get_theme() -> pygame_menu.Theme:
     if _theme is not None:
         return _theme
 
+    scale_factor = max(int(getattr(prepare, "SCALE", 1)), 1)
     tuxemon_border = pygame_menu.BaseImage(
         image_path=transform_resource_filename(prepare.CONFIG.menu_border),
-    ).scale(5, 5, smooth=False)
+    ).scale(scale_factor, scale_factor, smooth=False)
 
     tuxemon_background_center_rect = tuxemon_border.get_rect()
     tuxemon_background_center_rect = tuxemon_background_center_rect.inflate(

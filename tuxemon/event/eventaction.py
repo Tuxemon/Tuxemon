@@ -6,10 +6,11 @@ import logging
 from abc import ABC, abstractmethod
 from collections.abc import Sequence
 from dataclasses import dataclass, field
+from pathlib import Path
 from types import TracebackType
 from typing import Any, ClassVar, Optional
 
-from tuxemon.constants.paths import ACTIONS_PATH, LIBDIR
+from tuxemon.constants.paths import ACTIONS_PATH, LIBDIR, get_plugin_paths
 from tuxemon.plugin import load_plugins
 from tuxemon.session import Session
 from tuxemon.tools import cast_dataclass_parameters
@@ -262,10 +263,18 @@ class EventAction(ABC):
 
 
 class ActionManager:
-    def __init__(self) -> None:
+
+    def __init__(self, root_path: Optional[Path] = None) -> None:
+        if root_path is None:
+            root_path = LIBDIR.parent
+
+        plugin_folders = get_plugin_paths(
+            ACTIONS_PATH, "actions", subfolder="event"
+        )
+
         self.actions = load_plugins(
-            paths=[ACTIONS_PATH],
-            root_path=LIBDIR.parent,
+            paths=plugin_folders,
+            root_path=root_path,
             category="actions",
             interface=EventAction,  # type: ignore[type-abstract]
         )

@@ -10,12 +10,10 @@ from uuid import UUID, uuid4
 from pygame.surface import Surface
 
 from tuxemon import graphics, prepare
-from tuxemon.constants import paths
-from tuxemon.core.core_condition import CoreCondition
-from tuxemon.core.core_effect import CoreEffect, ItemEffectResult
-from tuxemon.core.core_manager import ConditionManager, EffectManager
+from tuxemon.core.asset import CoreAssetManager
+from tuxemon.core.core_effect import ItemEffectResult
 from tuxemon.core.core_processor import ConditionProcessor, EffectProcessor
-from tuxemon.db import ItemCategory, ItemModel, State, db
+from tuxemon.db import ItemBehaviors, ItemCategory, ItemModel, State, db
 from tuxemon.locale import T
 from tuxemon.modifiers import ModifiersHandler
 from tuxemon.surfanim import FlipAxes
@@ -35,9 +33,6 @@ INFINITE_ITEMS: int = -1
 
 class Item:
     """An item object is an item that can be used either in or out of combat."""
-
-    effect_manager: Optional[EffectManager] = None
-    condition_manager: Optional[ConditionManager] = None
 
     def __init__(self, save_data: Optional[Mapping[str, Any]] = None) -> None:
         save_data = save_data or {}
@@ -64,21 +59,14 @@ class Item:
         self.use_failure: str = ""
         self.usable_in: Sequence[State] = []
         self.immunity_to_status: Sequence[str] = []
+        self.behaviors: ItemBehaviors
         self.cost: int = 0
         self.wear: int = 0
         self.max_wear: int = 0
         self.break_chance: float = 0.0
         self.menu_actions_data: Sequence[Mapping[str, str]] = []
 
-        if Item.effect_manager is None:
-            Item.effect_manager = EffectManager(
-                CoreEffect, paths.CORE_EFFECT_PATH, paths.LIBDIR.parent
-            )
-        if Item.condition_manager is None:
-            Item.condition_manager = ConditionManager(
-                CoreCondition, paths.CORE_CONDITION_PATH, paths.LIBDIR.parent
-            )
-
+        self.core_assets = CoreAssetManager()
         self.effects: Sequence[PluginObject] = []
         self.conditions: Sequence[PluginObject] = []
 
@@ -141,12 +129,8 @@ class Item:
         self.category = results.category
         self.sprite = results.sprite
         self.usable_in = results.usable_in
-        if self.effect_manager and results.effects:
-            self.effects = self.effect_manager.parse_effects(results.effects)
-        if self.condition_manager and results.conditions:
-            self.conditions = self.condition_manager.parse_conditions(
-                results.conditions
-            )
+        self.effects = self.core_assets.parse_effects(results.effects)
+        self.conditions = self.core_assets.parse_conditions(results.conditions)
         self.condition_handler = ConditionProcessor(self.conditions)
         self.effect_handler = EffectProcessor(self.effects)
         self.surface = graphics.load_and_scale(self.sprite)

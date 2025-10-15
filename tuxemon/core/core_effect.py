@@ -68,11 +68,6 @@ class CoreEffect:
     def apply_item(self, session: Session, item: Item) -> ItemEffectResult:
         return ItemEffectResult(name=item.name)
 
-    def apply_status_target(
-        self, session: Session, status: Status, target: Monster
-    ) -> StatusEffectResult:
-        return StatusEffectResult(name=status.name)
-
     def apply_status(
         self, session: Session, status: Status
     ) -> StatusEffectResult:

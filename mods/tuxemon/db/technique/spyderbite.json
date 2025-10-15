@@ -15,10 +15,11 @@
   "power": 0.0,
   "range": "special",
   "speed": "normal",
-  "sfx": "sfx_pulse",
+  "sfx": "sfx_bite",
   "slug": "spyderbite",
   "sort": "meta",
   "modifiers": [],
+  "behaviors": {},
   "target": {
     "enemy_monster": false,
     "enemy_team": false,

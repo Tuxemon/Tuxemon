@@ -113,9 +113,7 @@ class MonsterMovesHandler:
         return True
 
     def can_forget(self, technique: Technique) -> bool:
-        entry = next(
-            (m for m in self.moveset if m.technique == technique.slug), None
-        )
+        entry = self._get_moveset_entry(technique)
 
         if entry is None:
             logger.debug(
@@ -258,6 +256,21 @@ class MonsterMovesHandler:
         return next(
             (m for m in self.moves if m.instance_id == instance_id), None
         )
+
+    def _get_moveset_entry(
+        self, technique: Technique
+    ) -> Optional[MonsterMovesetItemModel]:
+        """Finds the moveset entry for a given technique."""
+        return next(
+            (m for m in self.moveset if m.technique == technique.slug), None
+        )
+
+    def replace_all_moves(self, new_moves: list[Technique]) -> None:
+        """
+        Replaces the monster's current moveset with a new list of techniques.
+        """
+        self.moves = new_moves
+        logger.info("Monster's moveset has been completely replaced.")
 
     def has_moves(self) -> bool:
         return bool(self.moves)

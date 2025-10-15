@@ -11,10 +11,11 @@
   "power": 0,
   "speed": "normal",
   "range": "special",
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_pulse",
   "slug": "empty",
   "sort": "meta",
   "modifiers": [],
+  "behaviors": {},
   "target": {
     "enemy_monster": false,
     "enemy_team": false,

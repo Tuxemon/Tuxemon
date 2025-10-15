@@ -129,6 +129,25 @@ class PartyHandler:
             (m for m in self._monsters if m.instance_id == instance_id), None
         )
 
+    def find_monster_by_tech_id(self, instance_id: UUID) -> Optional[Monster]:
+        """
+        Finds a monster in the party by its technique instance ID.
+
+        Parameters:
+            instance_id: The instance_id of the technique.
+
+        Returns:
+            Monster found, or None.
+        """
+        return next(
+            (
+                monster
+                for monster in self._monsters
+                if monster.moves.find_tech_by_id(instance_id)
+            ),
+            None,
+        )
+
     def release_monster(self, monster: Monster) -> bool:
         """
         Releases a monster from this party. Used to release into the wild.

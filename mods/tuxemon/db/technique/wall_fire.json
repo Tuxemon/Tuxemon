@@ -27,10 +27,11 @@
   "power": 1.9,
   "range": "reach",
   "recharge": 3,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_flames1",
   "slug": "wall_fire",
   "sort": "damage",
   "modifiers": [],
+  "behaviors": {},
   "target": {
     "enemy_monster": true,
     "enemy_team": false,

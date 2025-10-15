@@ -10,7 +10,6 @@ from tuxemon.db import EffectPhase
 from tuxemon.locale import T
 
 if TYPE_CHECKING:
-    from tuxemon.monster import Monster
     from tuxemon.session import Session
     from tuxemon.status.status import Status
 
@@ -23,11 +22,12 @@ class LockdownEffect(CoreEffect):
 
     name = "lockdown"
 
-    def apply_status_target(
-        self, session: Session, status: Status, target: Monster
+    def apply_status(
+        self, session: Session, status: Status
     ) -> StatusEffectResult:
         extra: list[str] = []
+        host = status.get_host()
         if status.has_phase(EffectPhase.ENQUEUE_ITEM):
-            params = {"target": target.name.upper()}
+            params = {"target": host.name.upper()}
             extra = [T.format("combat_state_lockdown_item", params)]
         return StatusEffectResult(name=status.name, success=True, extras=extra)

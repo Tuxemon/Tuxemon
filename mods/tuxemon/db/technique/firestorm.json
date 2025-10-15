@@ -13,10 +13,11 @@
   "power": 3,
   "range": "reach",
   "recharge": 3,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_tornado",
   "slug": "firestorm",
   "sort": "damage",
   "modifiers": [],
+  "behaviors": {},
   "target": {
     "enemy_monster": true,
     "enemy_team": true,

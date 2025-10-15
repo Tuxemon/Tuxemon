@@ -13,10 +13,11 @@
   "power": 1.2,
   "range": "ranged",
   "recharge": 1,
-  "sfx": "sfx_flames2",
+  "sfx": "sfx_flames1",
   "slug": "fire_ball",
   "sort": "damage",
   "modifiers": [],
+  "behaviors": {},
   "target": {
     "enemy_monster": true,
     "enemy_team": false,

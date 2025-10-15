@@ -17,10 +17,11 @@
   "power": 0,
   "range": "reliable",
   "recharge": 2,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_machine_beep",
   "slug": "panjandrum",
   "sort": "damage",
   "modifiers": [],
+  "behaviors": {},
   "target": {
     "enemy_monster": true,
     "enemy_team": false,

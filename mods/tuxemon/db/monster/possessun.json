@@ -81,12 +81,16 @@
   "types": [
     "shadow"
   ],
-  "possible_genders": [
-    "neuter"
-  ],
+  "gender_weights": {
+    "neuter": 1.0
+  },
   "txmn_id": 72,
   "height": 69,
   "weight": 0.1,
+  "sounds": {
+    "combat_call": "sound_ghost_1",
+    "faint_call": "sound_ghost_1_faint"
+  },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.9,
   "upper_catch_resistance": 1.15

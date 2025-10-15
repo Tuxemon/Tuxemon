@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="714">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="714">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="map_type" value="route"/>
@@ -16,12 +16,12 @@
  <tileset firstgid="16358" source="../gfx/tilesets/core_set pieces.tsx"/>
  <layer id="1" name="Layer 1" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtmNENwyAQQxmg6kcX6goZolt0+YoPqxY6CBZnKZH4iHyBu2eH8tXjUcqxn30GN7gD32cp9cF9xbuimM1WJcOoNzsXeCPP7D14RprttcrjjKssxzzyOdgZzJovg+Ni7Hxrv89V7x9yQV33Z5V7h3yr3+icv+L5IROr8wxUNudCrTKc/cjE6vRT2ZwLtcpw9iMTq9NPZXMu1CrD2Y9MrE4/lc25UKsMZz8ysTr9VDbnQq0ynP3IxOr0U9mcC7XKcPYjE2vrx3tR3fY73tm35fNer25nst/hG3Gxd6bRbOZa9Y94Z7mwH81mrs3ky/RTWTtffH9mzzE6P9wt6CzL0fd+/f8PRZ5IVe+I0VsbsXszGeufyW8fef0AmjcNFA==
+   eAHtmMsNwyAQRCkgyiENpQUXkS7cfOTDSCO0gXHAA5Y4WLP2fuZB9pTtkdK2nnUHN9iB/ZlS63PVrrdyoX92PnCWtHSGUt+IHLOO8K95gq9WNyp/8I3yVnwXX9vvM+v+gQuq7MKImjvwjbgX1XPG+wMTq3oeRx1zIXb4qh5gYlV7HXXMhdjhq3qAiVXtddQxF2KHr+oBJla111HHXIgdvqoHmFjVXkcdcyF2+KoeYGJVex11zIXY4at6gIk17+VcFOf1V7yzbz6fc7/ivKf3O3yjucjVNOrt+e3wj+bVuJCPent+U/h6+p2dtfji/VHvMbo/7BZUnXVF3ful/X9/1htnU7Q0W+n/t+Yjnr00/wtwrw1u
   </data>
  </layer>
  <layer id="2" name="Layer 2" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHVWEtuFDEQrWWSAZKwQEJA6GFP4AgsWPENIrkFewgfiRPABQCJHd9DAPuw5LcaIdhzg7ynTGleSnZ7unt6mJT0UmW7XPW67Pa4s7RutgwsLai+CF6bAPX50/Z0AzgHnAXOADrufvPUJnILfG4CN4DrwDVAhnszc2sXEz4Bn8fAI+AhsAvQ5+MV/u1PcmvEjM6d9gfweQ+8A94CbwD2U/4MzLaPH+AvbG17f0lzXkqcQ9T0de60f4HPT+AH8B34BrCfchncXDZha9v7S5rzUuIcoqavc07N0z7l05bf3XH9tc6XEn1aZ+dMLnVrtjN+9mXowTGzFWAw7tPn6GI/q8yeA/ocGk9rpP1qs3Zb4EZM469zS/ZeZfYViOJ18xrFcW2TXxN/nVtn367yo03qwNpP8xz5bAcjd2r4xLlN+Olc7sWVMbruxdHQbD3DucRPeTgfar4nXfdiLrbnYT34Lno7pZWH81HN/dh2zfV905i6TrR1LGX7O6Fnl9tNuN2zyZnPvHqWeDzV9KnL7b5NODDmLCXuv/snzR4Au8D/EN2TzM/991t+u1+A10vglfB7jfdrHkJu3O9RtIafwOsz8EX4Rf++2nxfUqL8UuN99a1VhyMvGr/D7PCtsWD164vfaliXmKdt+yjXr+6Ow3rEs79tjermHYX68S4TZZ7ny7/VmH3S7lK/4YVJnFlYV8NdgTG78OvKaVSVI5DfsLC++vucvA9mztBy9rIH71v6fekzdP/lauy+fXxbemzqyDHef0v8GKNvjspBa8fcOsZ2TuK8nF+bfr9Xcy7z6LdTF36n1syIWYrXwe+gkV/q/s//m8zrzu/8/JkjvzjufnV6q6obbTYW87fh57Vvlnk67/j9G+//kX8paun81DO16f8dUneYyF/jp+z4fHXPU4od58bvAR8/Ubk1vR7N4Pd6H956j0s=
+   eAHVWEluFEEQrKPtAWxzQEJsPdwxPIEDJ1Yj4BfcwSwSL4APABI31kcAdziynUYI7vyACCA14VQtXd3TzTilcGVVZlVGZVfXZHtlM4RVYGVJ21PgtQWwPXE4PDgOHAOOAkcAtZvfmG0QuQw+l4CLwAXgPCDmwdTUs/MB74PPPeAucAfYAejz5iz/DiepZ8SIxp36a/B5BbwEXgDPAY5TfkxCuL5/jp/o+zG1x3TOiYlx8C19jTv1b+DzFfgCfAY+ARynnAE3lS30/ZjaYzrnxMQ4+Ja+xjk2T8c8ly78rkn+Lb+nI2OaZ+NMLrnndePf3lfRrgGTffX50/3G9IdNCI8A3Yf6+RypzXTmbRvciDb+Nq9N+6EJ4SPgxfJmOfJ27ZNfjb/OzelXmrS1Jg/MfZt9pKP9tVzN8PFza/jpXDuLf84jePeR2TSEzSa+Qomf8iAXA9+RvmcxtbbFIOM1xLF+rFUexkdbnseuz1zfN13TZ1JtMd3eCbu3tK3hdjPM73xy0LtE1zSdPrnY5lfDgWsuUvz5u3UwhNvADvA/RM8k4/P8fZff7sfg9QR4Kvye4f0aQ8iN592L5vAteL0D3gs/7z9Un+9LTJRfzD7U2Eaze+Vl47ebHb41lix/Q/Fbd8/Fx+na38v5y9U4zIe/+7vmKDdvL+SPtYyXMe+XX+s++rzfJ3/Tk/N1FqGdc7UC1+zDry+nWVNegfymheerv8/RejBxh5ajlz1Yb+n3pc3Q85fKsfmynpiMyNHXvyV+5Dk0R+WguWNstbGfEj8v5ddl3OpqzmUc/Xbqw+/QRgjEIsXyYDWo5xer//l/k7FqfuNne/b8vN38cu12k7PW2Xz8Lvws93WR23n7719f/3v+pVVL96feqbX3VKyG8fx1/Zju95fbT2ltP9d/D5j9QGNa+3a2gN/r391Gj3E=
   </data>
  </layer>
  <layer id="3" name="Layer 3" width="40" height="40">
@@ -127,6 +127,7 @@
    <properties>
     <property name="act1" value="transition_teleport spyder_wayfarer_inn1.tmx,11,10,0.3"/>
     <property name="act2" value="char_face player,up"/>
+    <property name="act3" value="set_teleport_faint player,spyder_wayfarer_inn1.tmx,11,9"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_facing player,up"/>
    </properties>
@@ -135,6 +136,7 @@
    <properties>
     <property name="act1" value="transition_teleport spyder_wayfarer_inn1.tmx,12,2,0.3"/>
     <property name="act2" value="char_face player,right"/>
+    <property name="act3" value="set_teleport_faint player,spyder_wayfarer_inn1.tmx,11,9"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_facing player,right"/>
    </properties>
@@ -143,6 +145,7 @@
    <properties>
     <property name="act1" value="transition_teleport spyder_wayfarer_inn1.tmx,11,2,0.3"/>
     <property name="act2" value="char_face player,right"/>
+    <property name="act3" value="set_teleport_faint player,spyder_wayfarer_inn1.tmx,11,9"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_facing player,right"/>
    </properties>
@@ -175,18 +178,21 @@
    <properties>
     <property name="act11" value="lock_controls"/>
     <property name="act14" value="remove_npc spyder_route3_zoolander"/>
-    <property name="act15" value="create_npc spyder_route3_zoolander,6,11"/>
-    <property name="act20" value="create_npc spyder_route3_ryland,16,10"/>
-    <property name="act30" value="pathfind spyder_route3_ryland,9,8"/>
-    <property name="act40" value="pathfind spyder_route3_zoolander,7,8"/>
+    <property name="act15" value="create_npc spyder_route3_zoolander,11,11"/>
+    <property name="act30" value="pathfind spyder_route3_zoolander,13,5"/>
+    <property name="act31" value="char_face spyder_route3_zoolander,left"/>
+    <property name="act35" value="create_npc spyder_route3_ryland,11,11"/>
+    <property name="act40" value="pathfind spyder_route3_ryland,11,5"/>
+    <property name="act45" value="char_face spyder_route3_ryland,right"/>
+    <property name="act47" value="char_face player,right"/>
     <property name="act50" value="translated_dialog spyder_route3_drag1"/>
-    <property name="act60" value="play_tile_animation 6,8,dragonbirth,0.1,noloop"/>
-    <property name="act61" value="wait 5.0"/>
+    <property name="act60" value="play_tile_animation 10,4,dragonbirth,0.1,noloop"/>
+    <property name="act61" value="wait 6.0"/>
     <property name="act73" value="translated_dialog spyder_route3_drag2"/>
-    <property name="act74" value="pathfind spyder_route3_ryland,17,10"/>
-    <property name="act75" value="pathfind spyder_route3_zoolander,16,10"/>
-    <property name="act81" value="remove_npc spyder_route3_ryland"/>
-    <property name="act82" value="remove_npc spyder_route3_zoolander"/>
+    <property name="act74" value="pathfind spyder_route3_ryland,11,11"/>
+    <property name="act75" value="remove_npc spyder_route3_ryland"/>
+    <property name="act76" value="pathfind spyder_route3_zoolander,11,11"/>
+    <property name="act81" value="remove_npc spyder_route3_zoolander"/>
     <property name="act83" value="set_variable shaftscheme:yes"/>
     <property name="act84" value="unlock_controls"/>
     <property name="cond1" value="is char_at player"/>
@@ -676,35 +682,35 @@
    <properties>
     <property name="act1" value="char_talk spyder_route3_curie,post_battle_lose"/>
     <property name="behav1" value="talk spyder_route3_curie"/>
-    <property name="cond1" value="is variable_set route3curie:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_route3_curie"/>
    </properties>
   </object>
   <object id="709" name="Post Novak Talk" type="event" x="144" y="480" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_route3_novak,post_battle_lose"/>
     <property name="behav1" value="talk spyder_route3_novak"/>
-    <property name="cond1" value="is variable_set route3novak:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_route3_novak"/>
    </properties>
   </object>
   <object id="710" name="Post Talk Wanda" type="event" x="480" y="272" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_route3_wanda,post_battle_lose"/>
     <property name="behav1" value="talk spyder_route3_wanda"/>
-    <property name="cond1" value="is variable_set route3wanda:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_route3_wanda"/>
    </properties>
   </object>
   <object id="711" name="Post Connor Talk" type="event" x="320" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_route3_connor,post_battle_lose"/>
     <property name="behav1" value="talk spyder_route3_connor"/>
-    <property name="cond1" value="is variable_set route3connor:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_route3_connor"/>
    </properties>
   </object>
   <object id="712" name="Post Enforcer Talk" type="event" x="240" y="144" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_route3_weaver,post_battle_lose"/>
     <property name="behav1" value="talk spyder_route3_weaver"/>
-    <property name="cond1" value="is variable_set route3weaver:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_route3_weaver"/>
    </properties>
   </object>
  </objectgroup>

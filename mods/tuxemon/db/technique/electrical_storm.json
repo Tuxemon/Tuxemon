@@ -16,10 +16,11 @@
   "power": 3,
   "range": "ranged",
   "recharge": 2,
-  "sfx": "sfx_lightning2",
+  "sfx": "sfx_tornado",
   "slug": "electrical_storm",
   "sort": "damage",
   "modifiers": [],
+  "behaviors": {},
   "target": {
     "enemy_monster": true,
     "enemy_team": false,

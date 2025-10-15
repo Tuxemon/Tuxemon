@@ -130,14 +130,6 @@
     <property name="cond20" value="is char_facing player,down"/>
    </properties>
   </object>
-  <object id="34" name="Auto Healing Teleported" type="event" x="16" y="0" width="16" height="16">
-   <properties>
-    <property name="act1" value="set_monster_health"/>
-    <property name="act2" value="set_monster_status"/>
-    <property name="act3" value="set_variable teleport_clinic:none"/>
-    <property name="cond1" value="is variable_set teleport_clinic:lost"/>
-   </properties>
-  </object>
   <object id="37" name="Use Computer" type="event" x="160" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="access_pc player"/>

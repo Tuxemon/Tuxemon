@@ -13,10 +13,11 @@
   "power": 1.0,
   "range": "touch",
   "recharge": 1,
-  "sfx": "sfx_blaster",
+  "sfx": "sfx_bite",
   "slug": "gnaw",
   "sort": "damage",
   "modifiers": [],
+  "behaviors": {},
   "target": {
     "enemy_monster": true,
     "enemy_team": false,

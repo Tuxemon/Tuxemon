@@ -17,11 +17,11 @@ logger = logging.getLogger(__name__)
 @dataclass
 class RandomIntegerAction(EventAction):
     """
-    Randomly choose an integer between 2 numbers (inclusive), and set the key in the
-    player.game_variables dictionary to be this value.
+    Randomly chooses an integer between two numbers (inclusive) and sets a key in
+    the player's game_variables dictionary to this value.
 
     For example, 'random_integer xyz,1,6' will set the value of the game variable
-    'xyz' to be either 1, 2, 3, 4, 5, or 6.
+    'xyz' to be a random integer from 1, 2, 3, 4, 5, or 6.
 
     Script usage:
         .. code-block::
@@ -29,10 +29,9 @@ class RandomIntegerAction(EventAction):
             random_integer <variable>,<lower_bound>,<upper_bound>
 
     Script parameters:
-        variable: Name of the variable.
-        lower_bound: Lower bound of range to return an integer between (inclusive)
-        upper_bound: Upper bound of range to return an integer between (inclusive)
-
+        variable: Name of the variable to set.
+        lower_bound: The inclusive lower bound of the integer range.
+        upper_bound: The inclusive upper bound of the integer range.
     """
 
     name = "random_integer"
@@ -41,10 +40,15 @@ class RandomIntegerAction(EventAction):
     upper_bound: int
 
     def start(self, session: Session) -> None:
-        player = session.player
 
-        # Append the game_variables dictionary with a random number between
-        # upper and lower bound, inclusive:
-        number = randint(self.lower_bound, self.upper_bound)
-        player.game_variables.set(self.var, str(number))
-        logger.info(f"Game variable: {self.var}:{number}")
+        if self.lower_bound > self.upper_bound:
+            logger.error(
+                f"Invalid range for 'random_integer'. Lower bound ({self.lower_bound}) "
+                f"cannot be greater than the upper bound ({self.upper_bound})."
+            )
+            return
+
+        player = session.player
+        random_value = randint(self.lower_bound, self.upper_bound)
+        player.game_variables.set(self.var, str(random_value))
+        logger.info(f"Game variable: '{self.var}' set to {random_value}")

@@ -14,14 +14,12 @@ from pygame_menu.widgets.selection.highlight import HighlightSelection
 from tuxemon import prepare
 from tuxemon.item.item import Item
 from tuxemon.locale import T
-from tuxemon.map.map_manager import MAP_TYPES
+from tuxemon.map.map_manager import MAP_TYPES, MapType
 from tuxemon.menu.menu import PygameMenuState
 from tuxemon.tools import fix_measure, open_dialog
 
 if TYPE_CHECKING:
     from tuxemon.npc import NPC
-
-MenuGameObj = Callable[[], Any]
 
 
 class NuPhone(PygameMenuState):
@@ -72,9 +70,7 @@ class NuPhone(PygameMenuState):
 
         if state_name == "NuPhoneBanking":
             # Banking app requires a network signal
-            network = [
-                mt for mt in MAP_TYPES if mt.name in {"town", "clinic", "shop"}
-            ]
+            network = self._get_network_map_types()
             if self.client.map_manager.map_type not in network:
                 return _no_signal
 
@@ -97,10 +93,8 @@ class NuPhone(PygameMenuState):
 
         column_width = fix_measure(menu._width, 0.25)
         menu._column_max_width = [column_width] * 4
+        network = self._get_network_map_types()
 
-        network = [
-            mt for mt in MAP_TYPES if mt.name in {"town", "clinic", "shop"}
-        ]
         if self.client.map_manager.map_type in network:
             desc = T.translate("omnichannel_mobile")
         else:
@@ -138,3 +132,10 @@ class NuPhone(PygameMenuState):
                     font_size=self.font_type.smaller,
                     wordwrap=True,
                 )
+
+    def _get_network_map_types(self) -> set[MapType]:
+        return {
+            MAP_TYPES[name]
+            for name in {"town", "clinic", "shop"}
+            if name in MAP_TYPES
+        }

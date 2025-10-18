@@ -215,5 +215,5 @@ class Teleporter:
             raise ValueError(
                 f"Coordinates ({x}, {y}) are out of map boundaries."
             )
-        character.cancel_path()
+        character.path_controller.cancel_path()
         character.set_position((x, y))

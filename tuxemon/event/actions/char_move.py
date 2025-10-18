@@ -73,8 +73,7 @@ class CharMoveAction(EventAction):
 
         if path:
             path.reverse()
-            self.character.path = path
-            self.character.next_waypoint()
+            self.character.set_path_and_start(path)
         else:
             logger.error("No valid path was generated")
 

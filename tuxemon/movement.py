@@ -105,7 +105,7 @@ class MovementManager:
         if self.has_pending_movement(character):
             del self.wants_to_move_char[character.slug]
         self.event_manager.release_controls(self.input_manager)
-        character.cancel_movement()
+        character.path_controller.cancel_movement()
 
     def unlock_controls(self, character: NPC) -> None:
         """Allows the specified character to move if movement is requested."""
@@ -122,7 +122,7 @@ class MovementManager:
         if self.has_pending_movement(character):
             del self.wants_to_move_char[character.slug]
         self.event_manager.release_controls(self.input_manager)
-        character.abort_movement()
+        character.path_controller.abort_movement()
 
     def is_movement_allowed(self, character: NPC) -> bool:
         """

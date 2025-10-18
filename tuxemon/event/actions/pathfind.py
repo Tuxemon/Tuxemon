@@ -40,5 +40,8 @@ class PathfindAction(EventAction):
 
     def update(self, session: Session) -> None:
         assert self.moving_entity
-        if not (self.moving_entity.moving or self.moving_entity.path):
+        if not (
+            self.moving_entity.moving
+            or self.moving_entity.path_controller.path
+        ):
             self.stop()

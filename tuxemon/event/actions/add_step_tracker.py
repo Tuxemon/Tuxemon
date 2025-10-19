@@ -23,13 +23,17 @@ class AddStepTrackerAction(EventAction):
     Script usage:
         .. code-block::
 
-            add_step_tracker <character>,<tracker_id>,<countdown>,[,milestones]
+            add_step_tracker <character>,<tracker_id>,<countdown>[,<milestones>
+                            [,<auto_reset>[,<initial_countdown>]]]
 
     Script parameters:
         character: Either "player" or an NPC slug name (e.g., "npc_maple").
         tracker_id: Unique name for identifying the step tracker.
         countdown: Number of steps before the tracker reaches zero.
         milestones (optional): Step milestones, separated by : (e.g., "500:250:100").
+        auto_reset (optional): "true" or "false" to enable or disable automatic reset.
+            Defaults to false.
+        initial_countdown (optional): Full cycle length. Defaults to countdown value.
     """
 
     name = "add_step_tracker"
@@ -37,6 +41,8 @@ class AddStepTrackerAction(EventAction):
     tracker_id: str
     countdown: float
     milestones: Optional[str] = None
+    auto_reset: Optional[bool] = None
+    initial_countdown: Optional[float] = None
 
     def start(self, session: Session) -> None:
         character = get_npc(session, self.character)
@@ -45,21 +51,36 @@ class AddStepTrackerAction(EventAction):
             return
 
         steps = round(character.steps)
-        milestones: list[float] = (
+
+        milestone_list: list[float] = (
             list(map(float, self.milestones.split(":")))
             if self.milestones
             else []
         )
 
+        resolved_auto_reset = (
+            self.auto_reset if self.auto_reset is not None else False
+        )
+        resolved_initial_countdown = (
+            self.initial_countdown
+            if self.initial_countdown is not None
+            else self.countdown
+        )
+
         step_track = StepTracker(
-            steps=steps, countdown=self.countdown, milestones=milestones
+            steps=steps,
+            countdown=self.countdown,
+            initial_countdown=resolved_initial_countdown,
+            auto_reset=resolved_auto_reset,
+            milestones=milestone_list,
         )
         character.step_tracker.add_tracker(self.tracker_id, step_track)
 
         logger.info(
-            f"StepTracker:",
-            f"Tracker ID: {self.tracker_id}, "
-            f"Character:{character.slug}, "
+            f"StepTracker added: Tracker ID: {self.tracker_id}, "
+            f"Character: {character.slug}, "
             f"Countdown: {self.countdown}, "
-            f"Milestones: {milestones}",
+            f"Initial Countdown: {resolved_initial_countdown}, "
+            f"Auto Reset: {resolved_auto_reset}, "
+            f"Milestones: {milestone_list}"
         )

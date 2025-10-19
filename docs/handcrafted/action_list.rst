@@ -130,6 +130,7 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.set_player_name.SetPlayerNameAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_price_policy.SetPricePolicyAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_random_variable.SetRandomVariableAction
+.. autoscriptinfoclass:: tuxemon.event.actions.set_step_tracker_milestone_shown.SetStepTrackerMilestoneShownAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_teleport_faint.SetTeleportFaintAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_template.SetTemplateAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_tuxepedia.SetTuxepediaAction

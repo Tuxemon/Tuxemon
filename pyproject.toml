@@ -25,7 +25,22 @@ classifiers = [
         "Topic :: Games/Entertainment :: Role-Playing"
 ]
 requires-python = ">=3.9"
-dynamic = ["version", "dependencies"]
+dependencies = [
+    "babel",
+    "cbor",
+    "neteria",
+    "pillow",
+    "pygame-ce==2.5.3",
+    "pyscroll>=2.31",
+    "pytmx==3.32",
+    "requests>=2.32.3",
+    "natsort",
+    "PyYAML>=6.0.2",
+    "prompt_toolkit",
+    "pygame-menu-ce==4.5.2",
+    "pydantic>=2.10.6",
+]
+dynamic = ["version"]
 
 [project.urls]
 homepage = "https://www.tuxemon.org"
@@ -40,9 +55,6 @@ include-package-data = true
 [tool.setuptools.packages.find]
 where = ["."]
 include = ["tuxemon*"]
-
-[tool.setuptools.dynamic]
-dependencies = {file = "requirements.txt"}
 
 [tool.black]
 line-length = 79

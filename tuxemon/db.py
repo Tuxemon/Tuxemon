@@ -375,6 +375,15 @@ class TechBehaviors(Behaviors):
     )
 
 
+class StatusBehaviors(Behaviors):
+    """Behaviors specific to statuses."""
+
+    persists_after_combat: bool = Field(
+        False,
+        description="Whether this status effect remains active after combat ends.",
+    )
+
+
 class DynamicMenuEntry(BaseModel):
     position: int
     label_key: str
@@ -1339,6 +1348,7 @@ class StatusModel(BaseModel, BaseLookupModel):
     table_name: ClassVar[str] = "status"
     slug: str = Field(..., description="The slug of the status")
     sort: TechSort = Field(..., description="The sort of status this is")
+    behaviors: StatusBehaviors
     icon: str = Field(..., description="The icon to use for the condition")
     conditions: Sequence[CommonCondition] = Field(
         [], description="Conditions that must be met"

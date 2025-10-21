@@ -3813,9 +3813,6 @@ msgstr "Mieke"
 msgid "spyder_flower_sandy"
 msgstr "Sandy"
 
-msgid "spyder_dragonscave_tru"
-msgstr "Tru"
-
 msgid "spyder_flower_cady"
 msgstr "Cady"
 

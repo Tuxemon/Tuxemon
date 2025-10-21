@@ -235,9 +235,8 @@
     <property name="act3" value="add_monster shybulb,8,spyder_citypark_frances,5,10"/>
     <property name="act4" value="start_battle player,spyder_citypark_frances"/>
     <property name="act5" value="char_talk spyder_citypark_frances,post_battle_lose"/>
-    <property name="act6" value="set_variable citypark_frances:yes"/>
     <property name="behav1" value="talk spyder_citypark_frances"/>
-    <property name="cond1" value="not variable_set citypark_frances:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_citypark_frances"/>
    </properties>
   </object>
   <object id="54" name="Create Bobette" type="event" x="256" y="272" width="16" height="16">
@@ -253,9 +252,8 @@
     <property name="act2" value="add_monster aardorn,10,spyder_citypark_bobette,5,10"/>
     <property name="act3" value="start_battle player,spyder_citypark_bobette"/>
     <property name="act4" value="char_talk spyder_citypark_bobette,post_battle_lose"/>
-    <property name="act5" value="set_variable citypark_bobette:yes"/>
     <property name="behav1" value="talk spyder_citypark_bobette"/>
-    <property name="cond1" value="not variable_set citypark_bobette:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_citypark_bobette"/>
    </properties>
   </object>
   <object id="56" name="Create Edith" type="event" x="560" y="272" width="16" height="16">
@@ -272,9 +270,8 @@
     <property name="act3" value="add_monster squabbit,8,spyder_citypark_edith,5,10"/>
     <property name="act4" value="start_battle player,spyder_citypark_edith"/>
     <property name="act5" value="char_talk spyder_citypark_edith,post_battle_lose"/>
-    <property name="act6" value="set_variable citypark_edith:yes"/>
     <property name="behav1" value="talk spyder_citypark_edith"/>
-    <property name="cond1" value="not variable_set citypark_edith:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_citypark_edith"/>
    </properties>
   </object>
   <object id="58" name="encounter" type="event" x="304" y="304" width="128" height="128">
@@ -482,9 +479,9 @@
     <property name="act5" value="add_monster aardorn,10,spyder_citypark_bobette,5,10"/>
     <property name="act6" value="start_battle player,spyder_citypark_bobette"/>
     <property name="act7" value="char_talk spyder_citypark_bobette,post_battle_lose"/>
-    <property name="act8" value="set_variable citypark_bobette:yes"/>
-    <property name="cond1" value="not variable_set citypark_bobette:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_citypark_bobette"/>
     <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
    </properties>
   </object>
   <object id="85" name="Create Box1" type="event" x="256" y="48" width="16" height="16">

@@ -49,13 +49,13 @@ class TestCanEvolve(unittest.TestCase):
         self.assertFalse(self.mon.evolution_handler.can_evolve(evo, context))
 
     def test_level_too_low(self):
-        self.mon.level = 10
+        self.mon.set_level(10)
         evo = MonsterEvolutionItemModel(monster_slug="rockat", at_level=20)
         context = {"map_inside": True}
         self.assertFalse(self.mon.evolution_handler.can_evolve(evo, context))
 
     def test_level_meets_requirement(self):
-        self.mon.level = 20
+        self.mon.set_level(20)
         evo = MonsterEvolutionItemModel(monster_slug="rockat", at_level=20)
         context = {"map_inside": True}
         self.assertTrue(self.mon.evolution_handler.can_evolve(evo, context))
@@ -83,7 +83,7 @@ class TestCanEvolve(unittest.TestCase):
         self.assertTrue(self.mon.evolution_handler.can_evolve(evo, context))
 
     def test_all_conditions_met(self):
-        self.mon.level = 20
+        self.mon.set_level(20)
         self.mon.gender = "male"
         evo = MonsterEvolutionItemModel(
             monster_slug="rockat", at_level=20, gender="male", inside=True
@@ -325,7 +325,7 @@ class TestCanEvolve(unittest.TestCase):
 
     @patch("random.random", return_value=0.05)
     def test_probability_success(self, mock_random):
-        self.mon.level = 20
+        self.mon.set_level(20)
         evo = MonsterEvolutionItemModel(
             monster_slug="rockat", at_level=20, probability=0.1  # 10% chance
         )
@@ -334,7 +334,7 @@ class TestCanEvolve(unittest.TestCase):
 
     @patch("random.random", return_value=0.15)
     def test_probability_failure(self, mock_random):
-        self.mon.level = 20
+        self.mon.set_level(20)
         evo = MonsterEvolutionItemModel(
             monster_slug="rockat", at_level=20, probability=0.1  # 10% chance
         )

@@ -201,25 +201,6 @@
     }
   },
   {
-    "slug": "spyder_dragonscave_tru",
-    "speech": {
-      "profile": {
-        "default": {
-          "pre_battle": "spyder_dragonscave_tru1",
-          "post_battle_win": null,
-          "post_battle_lose": "spyder_dragonscave_tru2",
-          "post_battle_draw": null
-        }
-      }
-    },
-    "combat": {},
-    "template": {
-      "sprite_name": "knight",
-      "combat_front": "knightlord",
-      "slug": "knightlord"
-    }
-  },
-  {
     "slug": "spyder_drokoro",
     "speech": {"profile": {"default": {}}},
     "combat": {},

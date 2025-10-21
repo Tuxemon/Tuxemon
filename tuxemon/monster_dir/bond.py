@@ -5,7 +5,6 @@ from __future__ import annotations
 from collections.abc import Mapping
 from typing import Any, Optional, Union
 
-from tuxemon import prepare
 from tuxemon.formula import config_monster
 
 
@@ -22,7 +21,7 @@ class BondHandler:
 
     def __init__(self, save_data: Mapping[str, Any] | None = None) -> None:
         save_data = save_data or {}
-        self._bond: int = prepare.BOND
+        self._bond: int = config_monster.starting_bond
         self.set_state(save_data)
 
     @property
@@ -60,7 +59,7 @@ class BondHandler:
 
     def reset_bond(self) -> None:
         """Resets bond to default value."""
-        self.bond = prepare.BOND
+        self.bond = config_monster.starting_bond
 
     def bond_decay(self, decay_rate: float = 0.05) -> None:
         """Applies passive bond decay."""

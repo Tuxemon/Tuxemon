@@ -257,7 +257,7 @@
    <properties>
     <property name="act1" value="create_npc spyder_greenwash_guard,25,24"/>
     <property name="cond1" value="not char_exists spyder_greenwash_guard"/>
-    <property name="cond2" value="not variable_set gotaardant:yes"/>
+    <property name="cond2" value="not battle_outcome player,won,spyder_greenwash_looten"/>
    </properties>
   </object>
   <object id="217" name="Talk Guard" type="event" x="384" y="384" width="16" height="16">

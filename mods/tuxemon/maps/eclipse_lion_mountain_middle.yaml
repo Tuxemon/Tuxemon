@@ -1,43 +1,45 @@
 events:
+  Event 13:
+    actions:
+    - char_stop player
+    - lock_controls
+    - set_layer 0:0:0:255
+    - play_sound japanese_temple_bell_small
+    - translated_dialog eclipse_event13_1,,top
+    - translated_dialog eclipse_event13_2,,top
+    - translated_dialog eclipse_event13_3,,top
+    - play_sound japanese_temple_bell_small
+    - set_layer
+    - set_variable eclipse_event13:yes
+    - unlock_controls
+    conditions:
+    - is variable_set eclipse_event11:yes
+    - is variable_set eclipse_event12:yes
+    - not variable_set eclipse_event13:yes
+    type: event
   Create Adam:
     actions:
     - create_npc eclipse_lionmountain_adam,2,17
     conditions:
     - not char_exists eclipse_lionmountain_adam
-    height: 1
-    width: 1
-    x: 2
-    y: 17
     type: event
   Create Chhurim:
     actions:
     - create_npc eclipse_lionmountain_chhurim,33,16
     conditions:
     - not char_exists eclipse_lionmountain_chhurim
-    height: 1
-    width: 1
-    x: 33
-    y: 16
     type: event
   Create Enforcer:
     actions:
     - create_npc eclipse_lionmountain_enforcer,36,13
     conditions:
     - not char_exists eclipse_lionmountain_enforcer
-    height: 1
-    width: 1
-    x: 36
-    y: 13
     type: event
   Create Jacques:
     actions:
     - create_npc eclipse_lionmountain_jacques,3,27
     conditions:
     - not char_exists eclipse_lionmountain_jacques
-    height: 1
-    width: 1
-    x: 3
-    y: 27
     type: event
   Create Scientist:
     actions:
@@ -45,10 +47,6 @@ events:
     - char_face eclipse_lionmountain_scientist,left
     conditions:
     - not char_exists eclipse_lionmountain_scientist
-    height: 1
-    width: 1
-    x: 12
-    y: 31
     type: event
   Create Tom:
     actions:
@@ -56,10 +54,6 @@ events:
     - char_face eclipse_lionmountain_tom,up
     conditions:
     - not char_exists eclipse_lionmountain_tom
-    height: 1
-    width: 1
-    x: 31
-    y: 33
     type: event
   Encounters:
     actions:
@@ -79,8 +73,6 @@ events:
     conditions:
     - not variable_set stage_of_day:night
     - not variable_set environment:snow
-    height: 1
-    width: 1
     x: 0
     y: 1
     type: event
@@ -90,8 +82,6 @@ events:
     conditions:
     - is variable_set stage_of_day:night
     - not variable_set environment:night_snow
-    height: 1
-    width: 1
     x: 0
     y: 2
     type: event
@@ -100,76 +90,54 @@ events:
     - play_music music_adventure_begins
     conditions:
     - not music_playing music_adventure_begins
-    height: 1
-    width: 1
-    x: 0
-    y: 0
     type: event
   Post Talk Adam:
     actions:
-    - translated_dialog eclipse_lionmountain_adam2
+    - char_talk eclipse_lionmountain_adam,post_battle_lose
     behav:
     - talk eclipse_lionmountain_adam
     conditions:
-    - is variable_set lionmountainadam:yes
-    height: 1
-    width: 1
-    x: 3
-    y: 22
+    - is battle_outcome player,won,eclipse_lionmountain_adam
     type: event
   Post Talk Chhurim:
     actions:
-    - translated_dialog eclipse_lionmountain_chhurim2
+    - char_talk eclipse_lionmountain_chhurim,post_battle_lose
     behav:
     - talk eclipse_lionmountain_chhurim
     conditions:
-    - is variable_set lionmountainchhurim:yes
-    height: 1
-    width: 1
-    x: 32
-    y: 16
+    - is battle_outcome player,won,eclipse_lionmountain_chhurim
     type: event
   Post Talk Jacques:
     actions:
-    - translated_dialog eclipse_lionmountain_jacques2
+    - char_talk eclipse_lionmountain_jacques,post_battle_lose
     behav:
     - talk eclipse_lionmountain_jacques
     conditions:
-    - is variable_set lionmountainjacques:yes
-    height: 1
-    width: 1
-    x: 1
-    y: 27
+    - is battle_outcome player,won,eclipse_lionmountain_jacques
     type: event
   Post Talk Tom:
     actions:
-    - translated_dialog eclipse_lionmountain_tom2
+    - char_talk eclipse_lionmountain_tom,post_battle_lose
     behav:
     - talk eclipse_lionmountain_tom
     conditions:
-    - is variable_set lionmountaintom:yes
-    height: 1
-    width: 1
-    x: 31
-    y: 34
+    - is battle_outcome player,won,eclipse_lionmountain_tom
     type: event
   Talk Adam:
     actions:
     - lock_controls
     - pathfind_to_char player,eclipse_lionmountain_adam
-    - translated_dialog eclipse_lionmountain_adam1
+    - char_talk eclipse_lionmountain_adam,pre_battle
     - unlock_controls
     - add_monster tikoal,50,eclipse_lionmountain_adam,5,10
     - add_monster tikorch,55,eclipse_lionmountain_adam,5,10
     - add_monster loliferno,55,eclipse_lionmountain_adam,5,10
     - start_battle player,eclipse_lionmountain_adam
-    - translated_dialog eclipse_lionmountain_adam2
-    - set_variable lionmountainadam:yes
+    - char_talk eclipse_lionmountain_adam,post_battle_lose
     conditions:
-    - not variable_set lionmountainadam:yes
+    - not battle_outcome player,won,eclipse_lionmountain_adam
     - is char_at player
-    height: 1
-    width: 1
+    - not char_defeated player
     x: 2
     y: 22
     type: event
@@ -177,19 +145,17 @@ events:
     actions:
     - lock_controls
     - pathfind_to_char player,eclipse_lionmountain_chhurim
-    - translated_dialog eclipse_lionmountain_chhurim1
+    - char_talk eclipse_lionmountain_chhurim,pre_battle
     - unlock_controls
     - add_monster fribbit,50,eclipse_lionmountain_chhurim,5,10
     - add_monster propellercat,50,eclipse_lionmountain_chhurim,5,10
     - add_monster agnigon,50,eclipse_lionmountain_chhurim,5,10
     - start_battle player,eclipse_lionmountain_chhurim
-    - translated_dialog eclipse_lionmountain_chhurim2
-    - set_variable lionmountainchhurim:yes
+    - char_talk eclipse_lionmountain_chhurim,post_battle_lose
     conditions:
-    - not variable_set lionmountainchhurim:yes
+    - not battle_outcome player,won,eclipse_lionmountain_chhurim
     - is char_at player
-    height: 1
-    width: 1
+    - not char_defeated player
     x: 33
     y: 13
     type: event
@@ -206,10 +172,6 @@ events:
     - talk eclipse_lionmountain_enforcer
     conditions:
     - not variable_set lionmountainenforcer:yes
-    height: 1
-    width: 1
-    x: 36
-    y: 12
     type: event
   Talk Enforcer 2:
     actions:
@@ -218,27 +180,21 @@ events:
     - talk eclipse_lionmountain_enforcer
     conditions:
     - is variable_set lionmountainenforcer:yes
-    height: 1
-    width: 1
-    x: 37
-    y: 12
     type: event
   Talk Jacques:
     actions:
     - lock_controls
     - pathfind_to_char player,eclipse_lionmountain_jacques
-    - translated_dialog eclipse_lionmountain_jacques1
+    - char_talk eclipse_lionmountain_jacques,pre_battle
     - unlock_controls
     - add_monster jemuar,60,eclipse_lionmountain_jacques,5,10
     - add_monster heronquak,55,eclipse_lionmountain_jacques,5,10
     - start_battle player,eclipse_lionmountain_jacques
-    - translated_dialog eclipse_lionmountain_jacques2
-    - set_variable lionmountainjacques:yes
+    - char_talk eclipse_lionmountain_jacques,post_battle_lose
     conditions:
-    - not variable_set lionmountainjacques:yes
+    - not battle_outcome player,won,eclipse_lionmountain_jacques
     - is char_at player
-    height: 1
-    width: 1
+    - not char_defeated player
     x: 3
     y: 32
     type: event
@@ -247,26 +203,20 @@ events:
     - translated_dialog eclipse_lionmountain_scientist1
     behav:
     - talk eclipse_lionmountain_scientist
-    height: 1
-    width: 1
-    x: 11
-    y: 33
     type: event
   Talk Tom:
     actions:
     - lock_controls
     - pathfind_to_char player,eclipse_lionmountain_tom
-    - translated_dialog eclipse_lionmountain_tom1
+    - char_talk eclipse_lionmountain_tom,pre_battle
     - unlock_controls
     - add_monster vivicinder,50,eclipse_lionmountain_tom,5,10
     - start_battle player,eclipse_lionmountain_tom
-    - translated_dialog eclipse_lionmountain_tom2
-    - set_variable lionmountaintom:yes
+    - char_talk eclipse_lionmountain_tom,post_battle_lose
     conditions:
-    - not variable_set lionmountaintom:yes
+    - not battle_outcome player,won,eclipse_lionmountain_tom
     - is char_at player
-    height: 1
-    width: 1
+    - not char_defeated player
     x: 31
     y: 28
     type: event
@@ -277,8 +227,6 @@ events:
     conditions:
     - is char_at player
     - is char_facing player,up
-    height: 1
-    width: 1
     x: 2
     y: 0
     type: event
@@ -289,8 +237,6 @@ events:
     conditions:
     - is char_at player
     - is char_facing player,up
-    height: 1
-    width: 1
     x: 19
     y: 0
     type: event
@@ -301,8 +247,6 @@ events:
     conditions:
     - is char_at player
     - is char_facing player,up
-    height: 1
-    width: 1
     x: 23
     y: 0
     type: event
@@ -313,8 +257,6 @@ events:
     conditions:
     - is char_at player
     - is char_facing player,up
-    height: 1
-    width: 1
     x: 6
     y: 0
     type: event
@@ -325,8 +267,6 @@ events:
     conditions:
     - is char_at player
     - is char_facing player,up
-    height: 1
-    width: 1
     x: 7
     y: 0
     type: event
@@ -337,8 +277,6 @@ events:
     conditions:
     - is char_at player
     - is char_facing player,down
-    height: 1
-    width: 1
     x: 34
     y: 39
     type: event
@@ -349,8 +287,6 @@ events:
     conditions:
     - is char_at player
     - is char_facing player,down
-    height: 1
-    width: 1
     x: 11
     y: 39
     type: event
@@ -361,8 +297,6 @@ events:
     conditions:
     - is char_at player
     - is char_facing player,down
-    height: 1
-    width: 1
     x: 12
     y: 39
     type: event
@@ -373,8 +307,6 @@ events:
     conditions:
     - is char_at player
     - is char_facing player,down
-    height: 1
-    width: 1
     x: 1
     y: 39
     type: event

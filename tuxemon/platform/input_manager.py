@@ -8,6 +8,7 @@ from typing import TYPE_CHECKING, Optional
 
 from pygame.surface import Surface
 
+from tuxemon.platform.combo_detector import ComboManager
 from tuxemon.platform.input_history import InputHistory
 from tuxemon.platform.input_visualizer import InputVisualizer
 from tuxemon.platform.platform_pygame.events import (
@@ -41,6 +42,7 @@ class InputManager:
         self.input = config.input
         self.controller_overlay: Optional[PygameTouchOverlayInput] = None
         self.setup_inputs()
+        self.combo_manager = ComboManager()
         self.input_visualizer = InputVisualizer(SCREEN_SIZE)
         self.show_visualizer = config.controller.show_input_visualizer
 
@@ -105,6 +107,7 @@ class InputManager:
         """Processes the input events."""
         for event in self.event_queue.process_events():
             self.input_history.add(event)
+            self.combo_manager.process(event)
             yield event
 
     def draw_visualizer(self, screen: Surface) -> None:

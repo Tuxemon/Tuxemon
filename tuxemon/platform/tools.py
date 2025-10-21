@@ -50,3 +50,13 @@ def translate_input_event(event: PlayerInput) -> PlayerInput:
         )
 
     return event
+
+
+class ButtonEdgeFilter:
+    def __init__(self) -> None:
+        self.previous_states: dict[int, bool] = {}
+
+    def is_new_press(self, button: int, is_pressed: bool) -> bool:
+        was_pressed = self.previous_states.get(button, False)
+        self.previous_states[button] = is_pressed
+        return is_pressed and not was_pressed

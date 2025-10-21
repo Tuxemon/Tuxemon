@@ -373,7 +373,7 @@
     <property name="act13" value="remove_npc spyder_papertown_mom"/>
     <property name="act14" value="set_variable timbermom:yes"/>
     <property name="cond1" value="not variable_set timbermom:yes"/>
-    <property name="cond2" value="is variable_set scooparachne:yes"/>
+    <property name="cond2" value="is battle_outcome player,won,spyder_scoop_arachne"/>
    </properties>
   </object>
   <object id="376" name="Teleport to Walled Garden" type="event" x="512" y="112" width="16" height="16">

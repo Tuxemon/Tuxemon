@@ -52,6 +52,7 @@ from tuxemon.combat.utils import (
 from tuxemon.db import (
     EffectPhase,
     ItemCategory,
+    OutputBattle,
 )
 from tuxemon.formula import config_combat
 from tuxemon.item.item import Item
@@ -231,17 +232,21 @@ class CombatState(CombatAnimations):
 
         elif phase == CombatPhase.DRAW_MATCH:
             message = self.track_battle_results(
-                "draw", c_session.defeated_players
+                OutputBattle.draw, c_session.defeated_players
             )
             if message:
                 self.process_combat_message(message)
 
         elif phase == CombatPhase.HAS_WINNER:
             message = self.track_battle_results(
-                "won", c_session.remaining_players, c_session.defeated_players
+                OutputBattle.won,
+                c_session.remaining_players,
+                c_session.defeated_players,
             )
             message += "\n" + self.track_battle_results(
-                "lost", c_session.defeated_players, c_session.remaining_players
+                OutputBattle.lost,
+                c_session.defeated_players,
+                c_session.remaining_players,
             )
             if message:
                 self.process_combat_message(message)
@@ -388,7 +393,7 @@ class CombatState(CombatAnimations):
 
     def track_battle_results(
         self,
-        result_type: str,
+        result_type: OutputBattle,
         players: Sequence[NPC],
         opponents: Optional[Sequence[NPC]] = None,
     ) -> str:
@@ -403,13 +408,13 @@ class CombatState(CombatAnimations):
             message += ("\n" if message else "") + track_battles(
                 session=self.session,
                 output=result_type,
-                player=player,
-                players=opponents if opponents else players,
+                character=player,
+                opponents=opponents if opponents else players,
                 turns=self.client.combat_session.turn,
                 combat_type=self.client.combat_session.combat_type,
                 prize=(
                     self.client.combat_session.prize
-                    if result_type == "won"
+                    if result_type == OutputBattle.won
                     else 0
                 ),
             )
@@ -580,10 +585,13 @@ class CombatState(CombatAnimations):
                 user, target, result_tech.damage
             )
 
-            if user.plague.is_infected():
-                params = {"target": user.name.upper()}
-                m = T.format("combat_state_plague1", params)
-                message += "\n" + m
+            plague = user.plague.get_most_severe_plague_slug()
+            if plague:
+                m = user.plague.get_suppressed_symptom_message(
+                    user.name, plague
+                )
+                if m:
+                    message += "\n" + m
 
             if method.range != "special":
                 element_damage_key = config_combat.multiplier_map.get(
@@ -767,6 +775,10 @@ class CombatState(CombatAnimations):
         reward_system = RewardSystem(self.session, damage_map)
         reward_system.apply_penalties(monster)
         rewards = reward_system.award_rewards(monster)
+
+        for data in rewards.winners:
+            if data.levels_gained > 0:
+                self.monsters_just_leveled_up[data.winner.slug] = True
 
         # Update combat state with rewards
         self.client.combat_session.add_prize(rewards.prize)

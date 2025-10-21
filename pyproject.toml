@@ -17,14 +17,14 @@ classifiers = [
         "Intended Audience :: End Users/Desktop",
         "Development Status :: 3 - Alpha",
         "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
-        "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",
         "Programming Language :: Python :: 3.12",
+        "Programming Language :: Python :: 3.13",
         "Topic :: Games/Entertainment",
         "Topic :: Games/Entertainment :: Role-Playing"
 ]
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 dynamic = ["version", "dependencies"]
 
 [project.urls]
@@ -46,7 +46,7 @@ dependencies = {file = "requirements.txt"}
 
 [tool.black]
 line-length = 79
-target-version = ["py39"]
+target-version = ["py310"]
 
 [tool.isort]
 line_length = 79

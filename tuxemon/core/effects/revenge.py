@@ -29,16 +29,17 @@ class RevengeEffect(CoreEffect):
 
     name = "revenge"
 
-    def apply_status_target(
-        self, session: Session, status: Status, target: Monster
+    def apply_status(
+        self, session: Session, status: Status
     ) -> StatusEffectResult:
+        host = status.get_host()
 
         if not status.has_phase(EffectPhase.PERFORM_STATUS):
             return StatusEffectResult(name=status.name, success=False)
 
         combat = session.client.combat_session
         action = combat.action_queue.get_last_action(
-            combat.turn, target, "target"
+            combat.turn, host, "target"
         )
 
         if (
@@ -47,14 +48,14 @@ class RevengeEffect(CoreEffect):
             and isinstance(action.user, Monster)
             and action.method.range != Range.special
             and action.method.hit
-            and action.target.instance_id == target.instance_id
+            and action.target.instance_id == host.instance_id
             and not action.user.is_fainted
         ):
             damage, _ = simple_damage_calculate(
-                action.method, action.user, target
+                action.method, action.user, host
             )
             action.user.current_hp = max(0, action.user.current_hp - damage)
-            target.current_hp = min(target.hp, target.current_hp + damage)
+            host.current_hp = min(host.hp, host.current_hp + damage)
             return StatusEffectResult(name=status.name, success=True)
 
         return StatusEffectResult(name=status.name, success=False)

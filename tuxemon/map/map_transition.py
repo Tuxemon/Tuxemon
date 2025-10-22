@@ -8,9 +8,9 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from tuxemon.boundary import BoundaryChecker
     from tuxemon.event.eventengine import EventEngine
-    from tuxemon.map.map import TuxemonMap
     from tuxemon.map.map_loader import MapLoader
     from tuxemon.map.map_manager import MapManager
+    from tuxemon.map.map_tuxemon import TuxemonMap
     from tuxemon.npc_manager import NPCManager
 
 logger = logging.getLogger(__name__)

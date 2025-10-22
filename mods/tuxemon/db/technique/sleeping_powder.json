@@ -21,6 +21,7 @@
   "slug": "sleeping_powder",
   "sort": "damage",
   "modifiers": [],
+  "behaviors": {},
   "target": {
     "enemy_monster": false,
     "enemy_team": false,

@@ -10,7 +10,6 @@ from tuxemon.db import EffectPhase
 from tuxemon.status.status import Status
 
 if TYPE_CHECKING:
-    from tuxemon.monster import Monster
     from tuxemon.session import Session
 
 
@@ -18,20 +17,19 @@ if TYPE_CHECKING:
 class ChargedUpEffect(CoreEffect):
     """
     Charged up status
-
     """
 
     name = "chargedup"
 
-    def apply_status_target(
-        self, session: Session, status: Status, target: Monster
+    def apply_status(
+        self, session: Session, status: Status
     ) -> StatusEffectResult:
-        player = target.get_owner()
+        host = status.get_host()
         _statuses: list[Status] = []
         if status.has_phase(EffectPhase.PERFORM_TECH):
-            target.status.clear_status(session)
+            host.status.clear_status(session)
             if status.on_tech_use:
-                cond = Status.create(status.on_tech_use, target, player.steps)
+                cond = Status.create(status.on_tech_use, host, host.steps)
                 _statuses = [cond]
         return StatusEffectResult(
             name=status.name, success=True, statuses=_statuses

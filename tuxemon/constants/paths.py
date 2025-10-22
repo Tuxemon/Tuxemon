@@ -27,7 +27,14 @@ BASEDIR = Path(sys.path[0]).resolve()
 logger.debug(f"basedir: {BASEDIR}")
 
 # mods
-mods_folder = (LIBDIR.parent / "mods").resolve()
+# For cx_freeze builds, LIBDIR is in lib/tuxemon, so we need to go up two levels
+# For normal installs, LIBDIR is in tuxemon, so we go up one level
+if hasattr(sys, "frozen") and sys.frozen:
+    # cx_freeze build: exe.win-amd64-3.12\lib\tuxemon -> exe.win-amd64-3.12\mods
+    mods_folder = (LIBDIR.parent.parent / "mods").resolve()
+else:
+    # normal install: tuxemon -> mods
+    mods_folder = (LIBDIR.parent / "mods").resolve()
 logger.debug(f"mods: {mods_folder}")
 
 # mods subfolders

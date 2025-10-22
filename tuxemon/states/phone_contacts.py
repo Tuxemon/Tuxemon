@@ -84,7 +84,6 @@ class NuPhoneContacts(PygameMenuState):
         slug = self._current_call_slug
         self.client.remove_state_by_name("ChoiceState")
 
-        print(slug)
         npc_calls = PHONE_CALLS_DATA.get(slug, {})
 
         dialogue_msgids: list[str] = ["phone_no_answer"]

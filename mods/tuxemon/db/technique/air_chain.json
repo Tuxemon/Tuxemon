@@ -23,6 +23,7 @@
   "slug": "air_chain",
   "sort": "damage",
   "modifiers": [],
+  "behaviors": {},
   "target": {
     "enemy_monster": true,
     "enemy_team": false,

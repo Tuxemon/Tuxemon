@@ -78,22 +78,18 @@ class TestEffectProcessorStatus(unittest.TestCase):
         self.status.name = "Poison"
 
         self.status_effect = Mock(spec=CoreEffect)
-        self.status_effect.apply_status_target.return_value = (
-            StatusEffectResult(
-                name="Poison",
-                success=True,
-                statuses=["Poisoned"],
-                techniques=["Weaken"],
-                extras=["Extended Duration"],
-            )
+        self.status_effect.apply_status.return_value = StatusEffectResult(
+            name="Poison",
+            success=True,
+            statuses=["Poisoned"],
+            techniques=["Weaken"],
+            extras=["Extended Duration"],
         )
 
         self.processor = EffectProcessor([self.status_effect])
 
     def test_process_status(self):
-        result = self.processor.process_status(
-            self.session, self.status, self.target
-        )
+        result = self.processor.process_status(self.session, self.status)
 
         self.assertTrue(result.success)
         self.assertListEqual(result.statuses, ["Poisoned"])

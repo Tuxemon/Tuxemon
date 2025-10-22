@@ -102,6 +102,7 @@ class TestMonsterActions(unittest.TestCase):
         sfx="sfx_blaster",
         slug="ram",
         sort="damage",
+        behaviors={},
         target={
             "enemy_monster": False,
             "enemy_team": False,

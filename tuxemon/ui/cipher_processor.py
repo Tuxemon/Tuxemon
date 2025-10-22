@@ -4,10 +4,7 @@ from __future__ import annotations
 
 import logging
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, Optional
-
-if TYPE_CHECKING:
-    pass
+from typing import Any, Optional
 
 logger = logging.getLogger(__name__)
 

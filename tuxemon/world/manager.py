@@ -213,7 +213,7 @@ class WorldMenuManager:
             )
 
         if player.items.get_items() and self.menu_flags.is_enabled("menu_bag"):
-            items_filtered = ItemFilter(player)
+            items_filtered = ItemFilter(player.items.get_items())
             items_filtered.set_filter_all_visible()
             current_menu.append(
                 self._menu_item(

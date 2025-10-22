@@ -17,6 +17,8 @@ from pygame.surface import Surface
 
 from tuxemon import prepare
 from tuxemon.camera.camera import project
+from tuxemon.db import Direction
+from tuxemon.entity import EntityState
 from tuxemon.graphics import ColorLike, apply_cinema_bars, load_and_scale
 from tuxemon.map.map import get_pos_from_tilepos, proj
 from tuxemon.math import Vector2
@@ -27,8 +29,8 @@ logger = logging.getLogger(__name__)
 if TYPE_CHECKING:
     from tuxemon.camera.camera import CameraManager
     from tuxemon.db import NpcTemplateModel
-    from tuxemon.map.map import TuxemonMap
     from tuxemon.map.map_manager import MapManager
+    from tuxemon.map.map_tuxemon import AbstractMap
     from tuxemon.npc import NPC
     from tuxemon.npc_manager import NPCManager
 
@@ -38,6 +40,14 @@ class EntityFacing(str, Enum):
     back = "back"
     left = "left"
     right = "right"
+
+
+DIRECTION_TO_FACING: dict[Direction, EntityFacing] = {
+    Direction.up: EntityFacing.back,
+    Direction.down: EntityFacing.front,
+    Direction.left: EntityFacing.left,
+    Direction.right: EntityFacing.right,
+}
 
 
 @dataclass
@@ -111,7 +121,9 @@ class SpriteController:
 
     def update(self, time_delta: float) -> None:
         """Update the sprite renderer."""
-        self.sprite_renderer.set_position(self.npc.tile_pos)
+        self.sprite_renderer.set_position(
+            self.npc.tile_pos, self.npc.body.position.z
+        )
         self.sprite_renderer.update(time_delta)
 
     def update_template(self, template: NpcTemplateModel) -> None:
@@ -124,9 +136,17 @@ class SpriteController:
         )
         self.sprite_renderer.play()
 
-    def get_frame(self, ani: str) -> Surface:
-        """Get the current frame of the sprite animation."""
-        return self.sprite_renderer.get_frame(ani, self.npc)
+    def get_animation_frame(self, ani: str) -> Surface:
+        """Returns the current animation frame for the given animation key."""
+        return self.sprite_renderer.get_animation_frame(
+            ani, self.sprite_renderer.sprite, self.npc
+        )
+
+    def get_facing_frame(self, facing: EntityFacing) -> Surface:
+        """Returns the static sprite frame for the given facing direction."""
+        return self.sprite_renderer.get_facing_frame(
+            facing, self.sprite_renderer.standing
+        )
 
     def get_sprite_renderer(self) -> SpriteRenderer:
         """Returns the sprite renderer."""
@@ -166,6 +186,12 @@ class SpriteRenderer:
             "down": "front",
             "left": "left",
             "right": "right",
+        },
+        "jumping": {
+            "up": "back_walk",
+            "down": "front_walk",
+            "left": "left_walk",
+            "right": "right_walk",
         },
     }
 
@@ -250,31 +276,33 @@ class SpriteRenderer:
         """Calculate the frame duration for walking animations."""
         return (time_scale / rate) / frame_divisor / time_scale * speed_factor
 
-    def set_position(self, position: tuple[int, int]) -> None:
-        """Set the position of the sprite."""
-        self.rect.topleft = position
+    def set_position(
+        self, position: tuple[int, int], z_offset: float = 0.0
+    ) -> None:
+        """Set the position of the sprite, optionally offset by vertical jump."""
+        self.rect.topleft = (position[0], position[1] - int(z_offset))
 
     def update(self, time_delta: float) -> None:
         """Update the sprite animation."""
         self.surface_animations.update(time_delta)
 
-    def get_frame(self, ani: str, npc: NPC) -> Surface:
-        """Get the current frame of the sprite animation."""
-        if npc.moving:
-            frame_dict = self.sprite
-            if ani in frame_dict:
-                frame = frame_dict[ani]
-                if isinstance(frame, SurfaceAnimation):
-                    frame.rate = npc.moverate / prepare.CONFIG.player_walkrate
-                    return frame.get_current_frame()
-                else:
-                    raise ValueError(
-                        f"Expected SurfaceAnimation, got {type(frame)}"
-                    )
+    def get_animation_frame(
+        self, ani: str, animations: dict[str, SurfaceAnimation], npc: NPC
+    ) -> Surface:
+        """Get current frame from animation dictionary."""
+        if ani not in animations:
             raise ValueError(f"Animation '{ani}' not found.")
-        else:
-            facing = EntityFacing(ani)
-            return self.standing[facing]
+        animation = animations[ani]
+        animation.rate = npc.moverate / prepare.CONFIG.player_walkrate
+        return animation.get_current_frame()
+
+    def get_facing_frame(
+        self, facing: EntityFacing, sprites: dict[EntityFacing, Surface]
+    ) -> Surface:
+        """Get static frame based on facing direction."""
+        if facing not in sprites:
+            raise ValueError(f"Facing '{facing}' not found.")
+        return sprites[facing]
 
     def play(self) -> None:
         """Play the sprite animation."""
@@ -305,7 +333,7 @@ class MapRenderer:
         self.map_animations: dict[str, AnimationInfo] = {}
         self.bubble_manager = BubbleManager()
 
-    def draw(self, surface: Surface, current_map: TuxemonMap) -> None:
+    def draw(self, surface: Surface, current_map: AbstractMap) -> None:
         """Draws the map, sprites, and animations onto the given surface."""
         self._prepare_map_rendering(current_map)
         screen_surfaces = self._get_and_position_surfaces(current_map)
@@ -322,7 +350,7 @@ class MapRenderer:
         for anim_data in self.map_animations.values():
             anim_data.animation.update(time_delta)
 
-    def _prepare_map_rendering(self, current_map: TuxemonMap) -> None:
+    def _prepare_map_rendering(self, current_map: AbstractMap) -> None:
         """Prepares the map renderer for drawing."""
         if current_map.renderer is None:
             current_map.initialize_renderer()
@@ -332,7 +360,7 @@ class MapRenderer:
         current_map.renderer.center(center)
 
     def _get_and_position_surfaces(
-        self, current_map: TuxemonMap
+        self, current_map: AbstractMap
     ) -> list[tuple[Surface, Rect, int]]:
         """Retrieves and positions surfaces for rendering."""
         npc_surfaces = self._get_npc_surfaces(current_map.sprite_layer)
@@ -348,7 +376,7 @@ class MapRenderer:
         self,
         surface: Surface,
         screen_surfaces: list[tuple[Surface, Rect, int]],
-        current_map: TuxemonMap,
+        current_map: AbstractMap,
     ) -> None:
         """Draws the map and sprites onto the surface."""
         assert current_map.renderer
@@ -387,7 +415,7 @@ class MapRenderer:
         ]
 
     def _position_surfaces(
-        self, current_map: TuxemonMap, surfaces: list[WorldSurfaces]
+        self, current_map: AbstractMap, surfaces: list[WorldSurfaces]
     ) -> list[tuple[Surface, Rect, int]]:
         """Positions surfaces on the screen."""
         screen_surfaces = []
@@ -405,10 +433,28 @@ class MapRenderer:
     def _get_sprites(self, npc: NPC, layer: int) -> list[WorldSurfaces]:
         """Retrieves sprite surfaces for an NPC."""
         sprite_renderer = npc.sprite_controller.get_sprite_renderer()
-        moving = npc.mover.state.value
-        state = sprite_renderer.ANIMATION_MAPPING[moving][npc.facing.value]
-        frame = sprite_renderer.get_frame(state, npc)
-        return [WorldSurfaces(frame, proj(npc.position), layer)]
+
+        if npc.mover.state in (
+            EntityState.WALKING,
+            EntityState.RUNNING,
+            EntityState.JUMPING,
+        ):
+            ani_key = sprite_renderer.ANIMATION_MAPPING[npc.mover.state.value][
+                npc.facing.value
+            ]
+            frame = sprite_renderer.get_animation_frame(
+                ani_key, sprite_renderer.sprite, npc
+            )
+        else:
+            frame = sprite_renderer.get_facing_frame(
+                DIRECTION_TO_FACING[npc.facing],
+                sprite_renderer.standing,
+            )
+
+        pixel_x, pixel_y = proj(npc.position)
+        z_offset = npc.body.position.z if npc.is_airborne else 0.0
+        adjusted_y = pixel_y - z_offset
+        return [WorldSurfaces(frame, Vector2(pixel_x, adjusted_y), layer)]
 
 
 class BubbleManager:
@@ -433,7 +479,7 @@ class BubbleManager:
         self._bubbles.clear()
 
     def get_rendered_bubbles(
-        self, current_map: TuxemonMap
+        self, current_map: AbstractMap
     ) -> list[tuple[Surface, Rect, int]]:
         """
         Calculates and returns a list of surfaces, their screen positions,
@@ -475,7 +521,7 @@ class DebugRenderer:
         self.collision_color = collision_color
         self.center_line_color = center_line_color
 
-    def draw_debug(self, current_map: TuxemonMap, surface: Surface) -> None:
+    def draw_debug(self, current_map: AbstractMap, surface: Surface) -> None:
         """Draws debug information on the surface."""
         surface.lock()
         self._draw_events(current_map, surface)
@@ -483,7 +529,7 @@ class DebugRenderer:
         self._draw_center_lines(surface)
         surface.unlock()
 
-    def _draw_events(self, current_map: TuxemonMap, surface: Surface) -> None:
+    def _draw_events(self, current_map: AbstractMap, surface: Surface) -> None:
         """Draws event-related debug information on the surface."""
         for event in self.map_manager.events:
             vector = Vector2(event.x, event.y)
@@ -493,7 +539,7 @@ class DebugRenderer:
             box(surface, rect, self.event_color)
 
     def _draw_collision_tiles(
-        self, current_map: TuxemonMap, surface: Surface
+        self, current_map: AbstractMap, surface: Surface
     ) -> None:
         # We need to iterate over all collidable objects. Start with walls/collision boxes.
         box_iter = map(
@@ -527,7 +573,7 @@ def apply_bars(orientation: str, aspect_ratio: float, screen: Surface) -> None:
 
 
 def collision_box_to_pgrect(
-    current_map: TuxemonMap, box: tuple[int, int]
+    current_map: AbstractMap, box: tuple[int, int]
 ) -> Rect:
     """
     Returns a Rect (in screen-coords) version of a collision box (in world-coords).
@@ -537,7 +583,7 @@ def collision_box_to_pgrect(
     return Rect(x, y, tw, th)
 
 
-def npc_to_pgrect(current_map: TuxemonMap, npc: NPC) -> Rect:
+def npc_to_pgrect(current_map: AbstractMap, npc: NPC) -> Rect:
     """Returns a Rect (in screen-coords) version of an NPC's bounding box."""
     pos = get_pos_from_tilepos(current_map, proj(npc.position))
     return Rect(pos, prepare.TILE_SIZE)

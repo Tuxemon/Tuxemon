@@ -5,11 +5,8 @@ from __future__ import annotations
 import logging
 from collections.abc import Mapping
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, Any, Optional
+from typing import Any, Optional
 from uuid import UUID
-
-if TYPE_CHECKING:
-    pass
 
 logger = logging.getLogger(__name__)
 

@@ -3,27 +3,21 @@
 from __future__ import annotations
 
 import logging
-from collections.abc import Generator, Mapping, MutableMapping, Sequence
+from collections.abc import Generator, Mapping, Sequence
 from itertools import product
 from math import atan2, pi
 from typing import TYPE_CHECKING, Any, NamedTuple, Optional, TypeVar, Union
-
-import pyscroll
-from pytmx import pytmx
-from pytmx.pytmx import TiledMap
 
 from tuxemon import prepare
 from tuxemon.camera.camera import project
 from tuxemon.compat.rect import ReadOnlyRect
 from tuxemon.db import Direction, Orientation
-from tuxemon.event import EventObject
-from tuxemon.graphics import scaled_image_loader
-from tuxemon.locale import T
 from tuxemon.math import Vector2, Vector3
 from tuxemon.tools import round_to_divisible
 
 if TYPE_CHECKING:
     from tuxemon.entity import Entity
+    from tuxemon.map.map_tuxemon import AbstractMap
     from tuxemon.npc import NPC
 
 logger = logging.getLogger(__name__)
@@ -689,7 +683,7 @@ def get_explicit_tile_exits(
 
 
 def get_pos_from_tilepos(
-    current_map: TuxemonMap, tile_position: Vector2
+    current_map: AbstractMap, tile_position: Vector2
 ) -> tuple[int, int]:
     """
     Returns the map pixel coordinates based on the tile position.
@@ -699,7 +693,7 @@ def get_pos_from_tilepos(
     Use this method for drawing elements on the screen.
 
     Parameters:
-        current_map: The map object (`TuxemonMap`) containing the renderer
+        current_map: The map object (`AbstractMap`) containing the renderer
             and relevant positional data.
         tile_position: A [x, y] tile position represented as a `Vector2`.
 
@@ -713,118 +707,3 @@ def get_pos_from_tilepos(
     x = px + cx
     y = py + cy
     return x, y
-
-
-class TuxemonMap:
-    """
-    Contains collisions geometry and events loaded from a file.
-
-    Supports entity movement and pathfinding.
-    """
-
-    def __init__(
-        self,
-        events: Sequence[EventObject],
-        inits: Sequence[EventObject],
-        surface_map: MutableMapping[tuple[int, int], dict[str, float]],
-        collision_map: MutableMapping[
-            tuple[int, int], Optional[RegionProperties]
-        ],
-        collisions_lines_map: set[tuple[tuple[int, int], Direction]],
-        tiled_map: TiledMap,
-        maps: dict[str, Any],
-        filename: str,
-    ) -> None:
-        """Constructor
-
-        Collision lines
-        Player can walk in tiles, but cannot cross
-        from one to another. Items in this list should be in the
-        form of pairs, signifying that it is NOT possible to travel
-        from the first tile to the second (but reverse may be
-        possible, i.e. jumping). All pairs of tiles must be adjacent
-        (not diagonal).
-
-        Collision Lines Map
-        Create a list of all pairs of adjacent tiles that are impassable (aka walls).
-        example: ((5,4),(5,3), both)
-
-        Parameters:
-            events: List of map events.
-            inits: List of events to be loaded once, when map is entered.
-            surface_map: Surface map.
-            collision_map: Collision map.
-            collisions_lines_map: Collision map of lines.
-            tiled_map: Original tiled map.
-            maps: Dictionary of map properties.
-            filename: Path of the map.
-        """
-        self.collision_map = collision_map
-        self.surface_map = surface_map
-        self.collision_lines_map = collisions_lines_map
-        self.size = tiled_map.width, tiled_map.height
-        self.area = tiled_map.width * tiled_map.height
-        self.inits = inits
-        self.events = events
-        self.renderer: Optional[pyscroll.BufferedRenderer] = None
-        self.edges = maps.get("edges")
-        self.data = tiled_map
-        self.sprite_layer = 2
-        self.filename = filename
-        self.maps = maps
-
-        # optional fields
-        self.slug = maps.get("slug", "")
-        self.name = T.translate(self.slug)
-        self.description = T.translate(f"{self.slug}_description")
-        # translated cardinal directions (signs)
-        self.north_trans = self.set_cardinals("north", maps)
-        self.south_trans = self.set_cardinals("south", maps)
-        self.east_trans = self.set_cardinals("east", maps)
-        self.west_trans = self.set_cardinals("west", maps)
-        # inside (true), outside (none)
-        self.inside = bool(maps.get("inside"))
-        # scenario: spyder, xero or none
-        _value = maps.get("scenario")
-        self.scenario = None if _value is None else str(_value)
-        # check type of location
-        self.map_type = maps.get("map_type")
-
-    def set_cardinals(self, cardinal: str, maps: dict[str, str]) -> str:
-        cardinals = maps.get(cardinal, "-").split(",")
-        if len(cardinals) == 1:
-            return T.translate(cardinals[0])
-        else:
-            return " - ".join(T.translate(c) for c in cardinals)
-
-    def initialize_renderer(self) -> None:
-        """
-        Initialize the renderer for the map and sprites.
-
-        Returns:
-            Renderer for the map.
-        """
-        visual_data = pyscroll.data.TiledMapData(self.data)
-        # Behaviour at the edges.
-        clamp = self.edges == "clamped"
-        self.renderer = pyscroll.BufferedRenderer(
-            visual_data,
-            prepare.SCREEN_SIZE,
-            clamp_camera=clamp,
-            tall_sprites=2,
-        )
-
-    def reload_tiles(self) -> None:
-        """Reload the map tiles."""
-        if self.renderer is None:
-            raise RuntimeError(
-                "Renderer must be initialized before reloading tiles"
-            )
-
-        data = pytmx.TiledMap(
-            self.data.filename,
-            image_loader=scaled_image_loader,
-            pixelalpha=True,
-        )
-        self.renderer.data.tmx.images = data.images
-        self.renderer.redraw_tiles(self.renderer._buffer)

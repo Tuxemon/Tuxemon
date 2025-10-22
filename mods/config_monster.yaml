@@ -1,6 +1,10 @@
 # Defines the bond value range (0 = no bond, 100 = max bond)
 bond_range: [0, 100]
 
+# Bond modifiers triggered by specific monster events
+bond_modifiers:
+  fainted: -10
+
 # Defines a random interval for weight fluctuation (±10% variation)
 weight_range: [-0.1, 0.1]
 
@@ -13,6 +17,15 @@ bond_sentiments:
   wary: [21, 50]
   gets_along: [51, 75]
   adores: [76, 100]
+
+# Maps each bond sentiment label to its corresponding icon file path.
+# These icons are used in the UI to visually represent the monster's bond level.
+# The labels must match those defined in 'bond_sentiments' to ensure correct mapping.
+bond_icons:
+  despises: gfx/ui/icons/bond/bond1.png
+  wary: gfx/ui/icons/bond/bond2.png
+  gets_along: gfx/ui/icons/bond/bond3.png
+  adores: gfx/ui/icons/bond/bond4.png
 
 # Maps sentiment labels to localized string templates for player-facing messages.
 bond_strings:

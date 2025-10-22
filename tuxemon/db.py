@@ -330,38 +330,48 @@ class PartyConditionsModel(BaseModel):
         return v
 
 
-class ItemBehaviors(BaseModel):
-    consumable: bool = Field(
-        True, description="Whether or not this item is consumable."
-    )
-    visible: bool = Field(
-        True, description="Whether or not this item is visible."
-    )
+class Behaviors(BaseModel):
+    """Base class for shared behaviors."""
+
     requires_monster_menu: bool = Field(
-        True, description="Whether the monster menu is required to be open."
-    )
-    show_dialog_on_failure: bool = Field(
-        True, description="Whether to show a dialogue after a failed use."
+        True, description="Whether a monster menu is required for this action."
     )
     show_dialog_on_success: bool = Field(
         True, description="Whether to show a dialogue after a successful use."
     )
+    show_dialog_on_failure: bool = Field(
+        True, description="Whether to show a dialogue after a failed use."
+    )
+
+
+class ItemBehaviors(Behaviors):
+    """Behaviors specific to items."""
+
+    consumable: bool = Field(
+        True, description="Whether or not this item is consumable."
+    )
+    visible: bool = Field(
+        True, description="Whether this is visible in the UI."
+    )
+    resellable: bool = Field(False, description="Whether this can be resold.")
     throwable: bool = Field(
         False, description="Whether or not this item is throwable."
     )
     holdable: bool = Field(
         False, description="Whether or not this item is holdable."
     )
-    resellable: bool = Field(
-        False, description="Whether or not this item is resellable."
-    )
     repairable: bool = Field(
-        False,
-        description="Whether or not this item can be repaired once damaged or broken.",
+        False, description="Whether this can be repaired."
     )
-    craftable: bool = Field(
+    craftable: bool = Field(False, description="Whether this can be crafted.")
+
+
+class TechBehaviors(Behaviors):
+    """Behaviors specific to techniques."""
+
+    is_field_tech: bool = Field(
         False,
-        description="Whether or not this item can be crafted.",
+        description="Whether this technique can be used in the overworld.",
     )
 
 
@@ -1171,6 +1181,7 @@ class TechniqueModel(BaseModel, BaseLookupModel):
     table_name: ClassVar[str] = "technique"
     slug: str = Field(..., description="The slug of the technique")
     sort: TechSort = Field(..., description="The sort of technique this is")
+    behaviors: TechBehaviors
     category: TechCategory = Field(
         ...,
         description="The tags of the technique",
@@ -1223,10 +1234,6 @@ class TechniqueModel(BaseModel, BaseLookupModel):
         description="Custom list of menu actions (key, display_text) for this technique.",
     )
     types: Sequence[str] = Field([], description="Type(s) of the technique")
-    usable_on: bool = Field(
-        False,
-        description="Whether or not the technique can be used outside of combat",
-    )
     power: float = Field(
         ...,
         description="Power of the technique",
@@ -1239,10 +1246,6 @@ class TechniqueModel(BaseModel, BaseLookupModel):
             "Indicates the relative speed of this technique. "
             "Possible values range from 'extremely_slow' to 'extremely_fast'."
         ),
-    )
-    randomly: bool = Field(
-        True,
-        description="Whether or not this technique will be picked by random",
     )
     healing_power: float = Field(
         0.0,

@@ -23,7 +23,6 @@ from tuxemon.graphics import scaled_image_loader
 from tuxemon.lib.bresenham import bresenham
 from tuxemon.map.map import (
     RegionProperties,
-    TuxemonMap,
     angle_of_points,
     extract_region_properties,
     orientation_by_angle,
@@ -31,6 +30,7 @@ from tuxemon.map.map import (
     snap_rect,
     tiles_inside_rect,
 )
+from tuxemon.map.map_tuxemon import TuxemonMap
 from tuxemon.tools import copy_dict_with_keys
 
 logger = logging.getLogger(__name__)
@@ -194,8 +194,8 @@ class MapLoader:
         logger.debug(f"TMX inits before merging: {len(txmn_map.inits)}")
 
         txmn_map.collision_map.update(yaml_collision)
-        txmn_map.events = list(txmn_map.events) + events["event"]
-        txmn_map.inits = list(txmn_map.inits) + events["init"]
+        txmn_map.add_events(events["event"])
+        txmn_map.add_inits(events["init"])
 
         # Debugging after merging
         logger.debug(f"Total TMX events after merge: {len(txmn_map.events)}")

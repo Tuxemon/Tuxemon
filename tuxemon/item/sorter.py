@@ -18,7 +18,13 @@ class ItemSorter:
 
     def rank_item(self, item: Item) -> tuple[int, str]:
         rank = self.sort_order_rank.get(item.sort, len(self.sort_order))
-        return rank, item.name
+        return rank, item.name.lower()
 
     def sort(self, items: Sequence[Item]) -> Sequence[Item]:
         return sorted(items, key=self.rank_item)
+
+    def set_sort_order(self, new_order: list[str]) -> None:
+        self.sort_order = new_order
+        self.sort_order_rank = {
+            category: i for i, category in enumerate(new_order)
+        }

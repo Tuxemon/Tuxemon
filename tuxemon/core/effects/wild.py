@@ -11,7 +11,6 @@ from tuxemon.db import EffectPhase
 from tuxemon.technique.technique import Technique
 
 if TYPE_CHECKING:
-    from tuxemon.monster import Monster
     from tuxemon.session import Session
     from tuxemon.status.status import Status
 
@@ -25,15 +24,14 @@ class WildEffect(CoreEffect):
     Parameters:
         chance: The chance.
         divisor: The divisor.
-
     """
 
     name = "wild"
     chance: float
     divisor: int
 
-    def apply_status_target(
-        self, session: Session, status: Status, target: Monster
+    def apply_status(
+        self, session: Session, status: Status
     ) -> StatusEffectResult:
         tech: list[Technique] = []
         if (

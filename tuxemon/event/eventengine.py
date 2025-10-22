@@ -15,7 +15,7 @@ if TYPE_CHECKING:
     from tuxemon.event import EventObject, MapAction, MapCondition
     from tuxemon.event.eventaction import ActionManager
     from tuxemon.event.running import ConditionEvaluator
-    from tuxemon.map.map import TuxemonMap
+    from tuxemon.map.map_tuxemon import TuxemonMap
     from tuxemon.session import Session
 
 

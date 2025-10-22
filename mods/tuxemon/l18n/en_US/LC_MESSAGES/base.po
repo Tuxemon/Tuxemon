@@ -4205,11 +4205,17 @@ msgstr "Body Type"
 msgid "monster_menu_release"
 msgstr "Release"
 
+msgid "shop_heal_to"
+msgstr "Heal to {hp} HP"
+
 msgid "shop_buy_free"
 msgstr "FREE!"
 
 msgid "shop_buy_soldout"
 msgstr "Sold Out!"
+
+msgid "shop_train_to"
+msgstr "Train to Lv. {level}"
 
 msgid "buy"
 msgstr "Buy"
@@ -9023,6 +9029,16 @@ msgstr "Relationship Type"
 
 msgid "relation_strength"
 msgstr "Strength"
+
+# Monster info labels
+msgid "height"
+msgstr "Height"
+
+msgid "weight"
+msgstr "Weight"
+
+msgid "exp_to_next_level"
+msgstr "Exp. to Next Level"
 
 # STAT TYPES
 msgid "armour"

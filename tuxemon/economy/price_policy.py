@@ -4,15 +4,12 @@ from __future__ import annotations
 
 import logging
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, Optional, Union
+from typing import Optional, Union
 
 import yaml
 from pydantic import BaseModel, Field
 
 from tuxemon.constants import paths
-
-if TYPE_CHECKING:
-    pass
 
 logger = logging.getLogger(__name__)
 

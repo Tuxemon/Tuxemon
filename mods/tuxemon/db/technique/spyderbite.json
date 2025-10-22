@@ -19,6 +19,7 @@
   "slug": "spyderbite",
   "sort": "meta",
   "modifiers": [],
+  "behaviors": {},
   "target": {
     "enemy_monster": false,
     "enemy_team": false,

@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 from tuxemon.core.core_effect import CoreEffect, ItemEffectResult
-from tuxemon.db import TechniqueModel, db
+from tuxemon.db import TechCategory, TechniqueModel, db
 from tuxemon.technique.technique import Technique
 
 if TYPE_CHECKING:
@@ -59,6 +59,7 @@ def _lookup_techniques(element: str) -> None:
     lookup_cache = {
         tech_name: result
         for tech_name in db.database["technique"]
-        if (result := TechniqueModel.lookup(tech_name, db)).randomly
+        if (result := TechniqueModel.lookup(tech_name, db)).category
+        != TechCategory.reserved
         and element in result.types
     }

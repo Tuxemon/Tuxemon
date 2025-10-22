@@ -28,6 +28,7 @@
   "slug": "tooth_for_tooth",
   "sort": "damage",
   "modifiers": [],
+  "behaviors": {},
   "target": {
     "enemy_monster": true,
     "enemy_team": false,

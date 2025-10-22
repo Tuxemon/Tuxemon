@@ -118,7 +118,7 @@ class BattlesHandler:
             "won": battle_outcomes[OutputBattle.won],
             "lost": battle_outcomes[OutputBattle.lost],
             "draw": battle_outcomes[OutputBattle.draw],
-            "average_turns": average_turns,
+            "average_turns": round(average_turns),
         }
 
     def get_battles_by_location(self) -> dict[str, list[Battle]]:

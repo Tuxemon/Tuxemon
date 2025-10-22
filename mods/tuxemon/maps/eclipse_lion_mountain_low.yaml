@@ -1,23 +1,47 @@
 events:
+  Event 11:
+    actions:
+    - char_stop player
+    - lock_controls
+    - set_layer 0:0:0:255
+    - play_sound japanese_temple_bell_small
+    - translated_dialog eclipse_event11_1,,top
+    - play_sound japanese_temple_bell_small
+    - set_layer
+    - set_variable eclipse_event11:yes
+    - unlock_controls
+    conditions:
+    - is variable_set eclipse_event10:yes
+    - not variable_set eclipse_event11:yes
+    type: event
+  Event 12:
+    actions:
+    - char_stop player
+    - lock_controls
+    - set_layer 0:0:0:255
+    - play_sound japanese_temple_bell_small
+    - translated_dialog eclipse_event12_1,,top
+    - translated_dialog eclipse_event12_2,,top
+    - translated_dialog eclipse_event12_3,,top
+    - play_sound japanese_temple_bell_small
+    - set_layer
+    - set_variable eclipse_event12:yes
+    - unlock_controls
+    conditions:
+    - is variable_set eclipse_event11:yes
+    - not variable_set eclipse_event12:yes
+    type: event
   Create Emilio:
     actions:
     - create_npc eclipse_lionmountain_emilio,27,12
     conditions:
     - not char_exists eclipse_lionmountain_emilio
-    height: 1
-    width: 1
-    x: 27
-    y: 12
     type: event
   Create Nurse:
     actions:
     - create_npc eclipse_lionmountain_nurse,10,9
     conditions:
     - not char_exists eclipse_lionmountain_nurse
-    height: 1
-    width: 1
-    x: 10
-    y: 9
     type: event
   Encounters:
     actions:
@@ -37,8 +61,6 @@ events:
     conditions:
     - not variable_set stage_of_day:night
     - not variable_set environment:snow
-    height: 1
-    width: 1
     x: 0
     y: 1
     type: event
@@ -48,8 +70,6 @@ events:
     conditions:
     - is variable_set stage_of_day:night
     - not variable_set environment:night_snow
-    height: 1
-    width: 1
     x: 0
     y: 2
     type: event
@@ -58,40 +78,30 @@ events:
     - play_music music_adventure_begins
     conditions:
     - not music_playing music_adventure_begins
-    height: 1
-    width: 1
-    x: 0
-    y: 0
     type: event
   Post Talk Emilio:
     actions:
-    - translated_dialog eclipse_lionmountain_emilio2
+    - char_talk eclipse_lionmountain_emilio,post_battle_lose
     behav:
     - talk eclipse_lionmountain_emilio
     conditions:
-    - is variable_set lionmountainemilio:yes
-    height: 1
-    width: 1
-    x: 26
-    y: 16
+    - is battle_outcome player,won,eclipse_lionmountain_emilio
     type: event
   Talk Emilio:
     actions:
     - lock_controls
     - pathfind_to_char player,eclipse_lionmountain_emilio
-    - translated_dialog eclipse_lionmountain_emilio1
+    - char_talk eclipse_lionmountain_emilio,pre_battle
     - unlock_controls
     - add_monster bumbulus,50,eclipse_lionmountain_emilio,5,10
     - add_monster glombroc,50,eclipse_lionmountain_emilio,5,10
     - add_monster tikorch,30,eclipse_lionmountain_emilio,5,10
     - start_battle player,eclipse_lionmountain_emilio
-    - translated_dialog eclipse_lionmountain_emilio2
-    - set_variable lionmountainemilio:yes
+    - char_talk eclipse_lionmountain_emilio,post_battle_lose
     conditions:
-    - not variable_set lionmountainemilio:yes
+    - not battle_outcome player,won,eclipse_lionmountain_emilio
     - is char_at player
-    height: 1
-    width: 1
+    - not char_defeated player
     x: 27
     y: 17
     type: event
@@ -104,10 +114,6 @@ events:
     - translated_dialog spyder_output_nurse7
     behav:
     - talk eclipse_lionmountain_nurse
-    height: 1
-    width: 1
-    x: 10
-    y: 8
     type: event
   Teleport Mountain Middle 1:
     actions:
@@ -116,8 +122,6 @@ events:
     conditions:
     - is char_at player
     - is char_facing player,up
-    height: 1
-    width: 1
     x: 34
     y: 0
     type: event
@@ -128,8 +132,6 @@ events:
     conditions:
     - is char_at player
     - is char_facing player,up
-    height: 1
-    width: 1
     x: 11
     y: 0
     type: event
@@ -140,8 +142,6 @@ events:
     conditions:
     - is char_at player
     - is char_facing player,up
-    height: 1
-    width: 1
     x: 12
     y: 0
     type: event
@@ -152,8 +152,6 @@ events:
     conditions:
     - is char_at player
     - is char_facing player,up
-    height: 1
-    width: 1
     x: 1
     y: 0
     type: event
@@ -176,8 +174,6 @@ events:
     conditions:
     - is char_at player
     - is char_facing player,left
-    height: 1
-    width: 1
     x: 0
     y: 10
     type: event
@@ -187,8 +183,6 @@ events:
     conditions:
     - is char_facing_tile player
     - is button_pressed K_RETURN
-    height: 1
-    width: 1
     x: 12
     y: 8
     type: event

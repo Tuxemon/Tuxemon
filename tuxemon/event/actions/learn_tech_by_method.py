@@ -62,7 +62,7 @@ class LearnTechByMethodAction(EventAction):
             return
 
         technique_obj = monster.moves.learn_by_method(
-            monster.instance_id, self.technique, method_enum
+            monster, self.technique, method_enum
         )
 
         if technique_obj:

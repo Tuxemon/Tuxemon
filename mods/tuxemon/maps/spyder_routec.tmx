@@ -63,9 +63,8 @@
     <property name="act2" value="add_monster manosting,24,spyder_searoutec_river,5,10"/>
     <property name="act3" value="start_battle player,spyder_searoutec_river"/>
     <property name="act4" value="char_talk spyder_searoutec_river,post_battle_lose"/>
-    <property name="act6" value="set_variable searoutecriver:yes"/>
     <property name="behav1" value="talk spyder_searoutec_river"/>
-    <property name="cond1" value="not variable_set searoutecriver:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_searoutec_river"/>
    </properties>
   </object>
   <object id="203" name="Create Wade" type="event" x="224" y="176" width="16" height="16">
@@ -85,9 +84,8 @@
     <property name="act07" value="add_monster picc,20,spyder_searoutec_wade,5,10"/>
     <property name="act08" value="start_battle player,spyder_searoutec_wade"/>
     <property name="act09" value="char_talk spyder_searoutec_wade,post_battle_lose"/>
-    <property name="act10" value="set_variable searoutecwade:yes"/>
     <property name="behav1" value="talk spyder_searoutec_wade"/>
-    <property name="cond1" value="not variable_set searoutecwade:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_searoutec_wade"/>
    </properties>
   </object>
   <object id="205" name="Create Gil" type="event" x="384" y="240" width="16" height="16">
@@ -104,9 +102,8 @@
     <property name="act5" value="add_monster nudimind,24,spyder_searoutec_gil,5,10"/>
     <property name="act6" value="start_battle player,spyder_searoutec_gil"/>
     <property name="act7" value="char_talk spyder_searoutec_gil,post_battle_lose"/>
-    <property name="act8" value="set_variable searoutecgil:yes"/>
     <property name="behav1" value="talk spyder_searoutec_gil"/>
-    <property name="cond1" value="not variable_set searoutecgil:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_searoutec_gil"/>
    </properties>
   </object>
   <object id="207" name="Create Leek" type="event" x="480" y="160" width="16" height="16">
@@ -122,9 +119,8 @@
     <property name="act2" value="add_monster nudikill,27,spyder_searoutec_leek,5,10"/>
     <property name="act3" value="start_battle player,spyder_searoutec_leek"/>
     <property name="act4" value="char_talk spyder_searoutec_leek,post_battle_lose"/>
-    <property name="act6" value="set_variable searoutecleek:yes"/>
     <property name="behav1" value="talk spyder_searoutec_leek"/>
-    <property name="cond1" value="not variable_set searoutecleek:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_searoutec_leek"/>
    </properties>
   </object>
   <object id="209" name="Create Beech" type="event" x="128" y="192" width="16" height="16">
@@ -140,9 +136,8 @@
     <property name="act2" value="add_monster nostray,26,spyder_searoutec_beech,5,10"/>
     <property name="act3" value="start_battle player,spyder_searoutec_beech"/>
     <property name="act4" value="char_talk spyder_searoutec_beech,post_battle_lose"/>
-    <property name="act6" value="set_variable searoutecbeech:yes"/>
     <property name="behav1" value="talk spyder_searoutec_beech"/>
-    <property name="cond1" value="not variable_set searoutecbeech:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_searoutec_beech"/>
    </properties>
   </object>
   <object id="211" name="Create Rutherford" type="event" x="544" y="192" width="16" height="16">
@@ -158,9 +153,8 @@
     <property name="act2" value="add_monster incandesfin,26,spyder_searoutec_rutherford,5,10"/>
     <property name="act3" value="start_battle player,spyder_searoutec_rutherford"/>
     <property name="act4" value="char_talk spyder_searoutec_rutherford,post_battle_lose"/>
-    <property name="act6" value="set_variable searoutecrutherford:yes"/>
     <property name="behav1" value="talk spyder_searoutec_rutherford"/>
-    <property name="cond1" value="not variable_set searoutecrutherford:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_searoutec_rutherford"/>
    </properties>
   </object>
   <object id="213" name="Create Carstair" type="event" x="400" y="96" width="16" height="16">
@@ -176,9 +170,8 @@
     <property name="act2" value="add_monster axolightl,24,spyder_searoutec_carstair,5,10"/>
     <property name="act3" value="start_battle player,spyder_searoutec_carstair"/>
     <property name="act4" value="char_talk spyder_searoutec_carstair,post_battle_lose"/>
-    <property name="act6" value="set_variable searouteccarstair:yes"/>
     <property name="behav1" value="talk spyder_searoutec_carstair"/>
-    <property name="cond1" value="not variable_set searouteccarstair:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_searoutec_carstair"/>
    </properties>
   </object>
   <object id="215" name="Create Sandy" type="event" x="80" y="224" width="16" height="16">
@@ -195,9 +188,8 @@
     <property name="act4" value="add_monster bigfin,22,spyder_searoutec_sandy,5,10"/>
     <property name="act5" value="start_battle player,spyder_searoutec_sandy"/>
     <property name="act6" value="char_talk spyder_searoutec_sandy,post_battle_lose"/>
-    <property name="act7" value="set_variable searoutecsandy:yes"/>
     <property name="behav1" value="talk spyder_searoutec_sandy"/>
-    <property name="cond1" value="not variable_set searoutecsandy:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_searoutec_sandy"/>
    </properties>
   </object>
   <object id="221" name="Environment Day" type="event" x="16" y="0" width="16" height="16">
@@ -223,9 +215,9 @@
     <property name="act5" value="add_monster incandesfin,26,spyder_searoutec_rutherford,5,10"/>
     <property name="act6" value="start_battle player,spyder_searoutec_rutherford"/>
     <property name="act7" value="char_talk spyder_searoutec_rutherford,post_battle_lose"/>
-    <property name="act8" value="set_variable searoutecrutherford:yes"/>
-    <property name="cond1" value="not variable_set searoutecrutherford:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_searoutec_rutherford"/>
     <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
    </properties>
   </object>
   <object id="223" name="Talk Gil" type="event" x="384" y="256" width="16" height="32">
@@ -239,9 +231,9 @@
     <property name="act07" value="add_monster nudimind,24,spyder_searoutec_gil,5,10"/>
     <property name="act08" value="start_battle player,spyder_searoutec_gil"/>
     <property name="act09" value="char_talk spyder_searoutec_gil,post_battle_lose"/>
-    <property name="act10" value="set_variable searoutecgil:yes"/>
-    <property name="cond1" value="not variable_set searoutecgil:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_searoutec_gil"/>
     <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
    </properties>
   </object>
   <object id="226" name="Talk Sandy" type="event" x="80" y="240" width="16" height="48">
@@ -255,9 +247,9 @@
     <property name="act07" value="add_monster bigfin,22,spyder_searoutec_sandy,5,10"/>
     <property name="act08" value="start_battle player,spyder_searoutec_sandy"/>
     <property name="act09" value="char_talk spyder_searoutec_sandy,post_battle_lose"/>
-    <property name="act10" value="set_variable searoutecsandy:yes"/>
-    <property name="cond1" value="not variable_set searoutecsandy:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_searoutec_sandy"/>
     <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
    </properties>
   </object>
   <object id="229" name="Talk More" type="event" x="528" y="464" width="16" height="16">
@@ -270,9 +262,8 @@
     <property name="act6" value="add_monster bigfin,19,spyder_searoutec_more,5,10"/>
     <property name="act7" value="start_battle player,spyder_searoutec_more"/>
     <property name="act8" value="char_talk spyder_searoutec_more,post_battle_lose"/>
-    <property name="act9" value="set_variable searoutecmore:yes"/>
     <property name="behav1" value="talk spyder_searoutec_more"/>
-    <property name="cond1" value="not variable_set searoutecmore:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_searoutec_more"/>
    </properties>
   </object>
   <object id="230" name="Talk More" type="event" x="544" y="480" width="64" height="16">
@@ -288,9 +279,9 @@
     <property name="act09" value="add_monster bigfin,19,spyder_searoutec_more,5,10"/>
     <property name="act10" value="start_battle player,spyder_searoutec_more"/>
     <property name="act11" value="char_talk spyder_searoutec_more,post_battle_lose"/>
-    <property name="act12" value="set_variable searoutecmore:yes"/>
-    <property name="cond1" value="not variable_set searoutecmore:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_searoutec_more"/>
     <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
    </properties>
   </object>
   <object id="231" name="Create More" type="event" x="528" y="480" width="16" height="16">
@@ -321,9 +312,8 @@
     <property name="act2" value="add_monster agnigon,36,spyder_searoutec_nigel,5,10"/>
     <property name="act3" value="start_battle player,spyder_searoutec_nigel"/>
     <property name="act4" value="char_talk spyder_searoutec_nigel,post_battle_lose"/>
-    <property name="act6" value="set_variable searoutecnigel:yes"/>
     <property name="behav1" value="talk spyder_searoutec_nigel"/>
-    <property name="cond1" value="not variable_set searoutecnigel:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_searoutec_nigel"/>
     <property name="cond2" value="is variable_set hospitalcure:yes"/>
    </properties>
   </object>
@@ -338,7 +328,7 @@
    <properties>
     <property name="act2" value="translated_dialog spyder_searoutec_nigel3"/>
     <property name="behav1" value="talk spyder_searoutec_nigel"/>
-    <property name="cond1" value="not variable_set searoutecnigel:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_searoutec_nigel"/>
     <property name="cond2" value="not variable_set hospitalcure:yes"/>
    </properties>
   </object>
@@ -381,9 +371,8 @@
     <property name="act2" value="add_monster medushock,22,spyder_searoutec_stafford,5,10"/>
     <property name="act3" value="start_battle player,spyder_searoutec_stafford"/>
     <property name="act4" value="char_talk spyder_searoutec_stafford,post_battle_lose"/>
-    <property name="act6" value="set_variable searoutecstafford:yes"/>
     <property name="behav1" value="talk spyder_searoutec_stafford"/>
-    <property name="cond1" value="not variable_set searoutecstafford:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_searoutec_stafford"/>
    </properties>
   </object>
   <object id="264" name="Create Maurice" type="event" x="96" y="480" width="16" height="16">
@@ -400,9 +389,8 @@
     <property name="act3" value="add_monster fancair,22,spyder_searoutec_maurice,5,10"/>
     <property name="act4" value="start_battle player,spyder_searoutec_maurice"/>
     <property name="act5" value="char_talk spyder_searoutec_maurice,post_battle_lose"/>
-    <property name="act6" value="set_variable searoutecmaurice:yes"/>
     <property name="behav1" value="talk spyder_searoutec_maurice"/>
-    <property name="cond1" value="not variable_set searoutecmaurice:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_searoutec_maurice"/>
    </properties>
   </object>
   <object id="275" name="Teleport to Candy Port" type="event" x="0" y="480" width="16" height="128">

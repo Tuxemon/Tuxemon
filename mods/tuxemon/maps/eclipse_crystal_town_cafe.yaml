@@ -1,4 +1,19 @@
 events:
+  Event 7:
+    actions:
+    - char_stop player
+    - lock_controls
+    - set_layer 0:0:0:255
+    - play_sound japanese_temple_bell_small
+    - translated_dialog eclipse_event7_1,,top
+    - translated_dialog eclipse_event7_2,,top
+    - play_sound japanese_temple_bell_small
+    - set_layer
+    - set_variable eclipse_event7:yes
+    - unlock_controls
+    conditions:
+    - not variable_set eclipse_event7:yes
+    type: event
   Create Beck:
     actions:
     - create_npc eclipse_crystal_monk_orange,7,7
@@ -79,6 +94,6 @@ events:
     - is char_at player
     - is char_facing player,up
     - is button_pressed K_RETURN
-    type: event
     x: 2
     y: 6
+    type: event

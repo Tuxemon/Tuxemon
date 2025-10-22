@@ -1,14 +1,14 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="326">
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.8" tiledversion="1.8.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="326">
  <properties>
-  <property name="edges" value="clamped" />
-  <property name="scenario" value="tobedefined" />
-  <property name="slug" value="routeh" />
-  <property name="map_type" value="route" />
+  <property name="edges" value="clamped"/>
+  <property name="map_type" value="route"/>
+  <property name="scenario" value="eclipse"/>
+  <property name="slug" value="routeh"/>
  </properties>
- <tileset firstgid="1" source="../gfx/tilesets/core_outdoor.tsx" />
- <tileset firstgid="2776" source="../gfx/tilesets/core_outdoor_nature.tsx" />
- <tileset firstgid="10968" source="../gfx/tilesets/core_outdoor_water.tsx" />
+ <tileset firstgid="1" source="../gfx/tilesets/core_outdoor.tsx"/>
+ <tileset firstgid="2776" source="../gfx/tilesets/core_outdoor_nature.tsx"/>
+ <tileset firstgid="10968" source="../gfx/tilesets/core_outdoor_water.tsx"/>
  <layer id="1" name="Tile Layer 1" width="40" height="40">
   <data encoding="base64" compression="zlib">
    eAHtVssNwzAIdT/DdIlKnaA7VF0gI/TW7tA9e659I5RHcGwiq+KAhB/weMIyyZRSmhzstk/pc5zbPWMevdZwhr62u4j5xfws7+6c37yHXQ7z3VJ2zZr9wneU5zn0/d5Zzbz/cX7P/D687JG/69ReA31/y+6g2opv2Sdb5oys75Tn9c73Se26G2eGVBf1t7w/rRfVRH2txjNGNWi+pwbErenhMcTRC+f9as+9dHCeWh0on/P2OqN+El56SnjBeumhPKgXxy01NKfG570sZ40f1Ws1WgzxIXwtl1anxZAOCW/h0Wq1mKRDwhCHlCthqN4Dl/ovYR46JM4lHSgucVkwxNcbt2iRcnrooLyIj+bU+IjPivNeqI7nWc+IbwlH/KgO5W+Nh762f42YX8zP8ma/+LQ/9w==
@@ -31,18 +31,18 @@
  </layer>
  <objectgroup color="#ff0000" id="6" name="Collisions">
   <properties>
-   <property name="Collision" value="" />
+   <property name="Collision" value=""/>
   </properties>
-  <object id="280" type="collision" x="448" y="0" width="32" height="640" />
-  <object id="281" type="collision" x="0" y="0" width="352" height="112" />
-  <object id="282" type="collision" x="0" y="208" width="352" height="16" />
-  <object id="283" type="collision" x="352" y="192" width="96" height="64" />
-  <object id="284" type="collision" x="512" y="0" width="64" height="160" />
-  <object id="285" type="collision" x="608" y="0" width="32" height="640" />
-  <object id="286" type="collision" x="512" y="192" width="96" height="96" />
-  <object id="287" type="collision" x="480" y="320" width="96" height="96" />
-  <object id="288" type="collision" x="512" y="448" width="96" height="96" />
-  <object id="289" type="collision" x="480" y="576" width="96" height="64" />
-  <object id="290" type="collision" x="480" y="0" width="32" height="32" />
+  <object id="280" type="collision" x="448" y="0" width="32" height="640"/>
+  <object id="281" type="collision" x="0" y="0" width="352" height="112"/>
+  <object id="282" type="collision" x="0" y="208" width="352" height="16"/>
+  <object id="283" type="collision" x="352" y="192" width="96" height="64"/>
+  <object id="284" type="collision" x="512" y="0" width="64" height="160"/>
+  <object id="285" type="collision" x="608" y="0" width="32" height="640"/>
+  <object id="286" type="collision" x="512" y="192" width="96" height="96"/>
+  <object id="287" type="collision" x="480" y="320" width="96" height="96"/>
+  <object id="288" type="collision" x="512" y="448" width="96" height="96"/>
+  <object id="289" type="collision" x="480" y="576" width="96" height="64"/>
+  <object id="290" type="collision" x="480" y="0" width="32" height="32"/>
  </objectgroup>
 </map>

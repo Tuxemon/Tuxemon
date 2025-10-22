@@ -54,3 +54,4 @@ class NPCState(TypedDict, total=False):
     step_tracker: Mapping[str, Any]
     unlocked_letters: Mapping[str, Any]
     evolution_registry: Mapping[str, Any]
+    routing_policy: str

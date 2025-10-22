@@ -71,5 +71,5 @@ class GiveExperienceAction(EventAction):
                 level = mon.give_experience(exp)
                 logger.info(f"{mon.name} +{exp} exp")
                 if level > 0:
-                    mon.moves.update_moves(mon.level, level, mon.stage)
+                    mon.moves.update_moves(mon, level)
                     logger.info(f"{mon.name} +{level} levels")

@@ -141,9 +141,7 @@ class ShopTrainingMenuState(ShopMenuState[Monster]):
             if quantity > 0 and cost <= available_money:
                 self.seller_manager.remove_money(cost)
                 monster.set_level(monster.level + quantity)
-                monster.moves.update_moves(
-                    monster.level, quantity, monster.stage
-                )
+                monster.moves.update_moves(monster, quantity)
                 self.reload_shop()
 
         base_cost = self._calculate_training_cost(monster)

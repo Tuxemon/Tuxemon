@@ -41,11 +41,12 @@ class MapTransition:
             map_name: The name of the new map.
         """
         logger.debug(f"Loading map '{map_name}' using Client's MapLoader.")
+        self._clear_npcs()
+
         map_data = self.map_loader.load_map_data(map_name)
 
         self._reset_events(map_data)
         self._update_map_state(map_data)
-        self._clear_npcs()
         self._update_boundaries()
 
     def _reset_events(self, map_data: TuxemonMap) -> None:

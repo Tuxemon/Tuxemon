@@ -80,7 +80,7 @@
    <properties>
     <property name="act1" value="create_npc spyder_statue_blue,4,9"/>
     <property name="cond1" value="not char_exists spyder_statue_blue"/>
-    <property name="cond2" value="not variable_set dragonscavebenden:yes"/>
+    <property name="cond2" value="not battle_outcome player,won,spyder_dragonscave_benden"/>
    </properties>
   </object>
   <object id="601" name="Create Cleo" type="event" x="272" y="48" width="16" height="16">

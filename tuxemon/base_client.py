@@ -124,7 +124,7 @@ class BaseClient(ABC):
         # self.combat_router = CombatRouter(self, self.combat_engine)
 
         self.movement_manager = MovementManager(
-            self.event_manager, self.input_manager
+            self.event_manager, self.input_manager, self.camera_manager
         )
         self.collision_manager = CollisionManager(
             self.map_manager, self.npc_manager
@@ -169,6 +169,7 @@ class BaseClient(ABC):
 
     def perform_cleanup(self) -> None:
         """Handles necessary cleanup before shutting down."""
+        self.map_loader.clear_cache()
         self.current_music.stop()
         local_session.reset()
         logger.info("Performing cleanup before exiting...")

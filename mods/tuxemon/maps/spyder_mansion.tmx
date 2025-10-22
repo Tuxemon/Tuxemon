@@ -233,9 +233,9 @@
     <property name="act6" value="add_monster ghosteeth,22,spyder_mansion_gillette,5,10"/>
     <property name="act7" value="start_battle player,spyder_mansion_gillette"/>
     <property name="act8" value="char_talk spyder_mansion_gillette,post_battle_lose"/>
-    <property name="act9" value="set_variable mansiongillette:yes"/>
-    <property name="cond1" value="not variable_set mansiongillette:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_mansion_gillette"/>
     <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
    </properties>
   </object>
   <object id="57" name="Talk Lucy" type="event" x="240" y="112" width="32" height="16">
@@ -248,9 +248,9 @@
     <property name="act6" value="add_monster budaye,15,spyder_mansion_lucy,5,10"/>
     <property name="act7" value="start_battle player,spyder_mansion_lucy"/>
     <property name="act8" value="char_talk spyder_mansion_lucy,post_battle_lose"/>
-    <property name="act9" value="set_variable mansionlucy:yes"/>
-    <property name="cond1" value="not variable_set mansionlucy:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_mansion_lucy"/>
     <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
    </properties>
   </object>
   <object id="58" name="Talk Lyle" type="event" x="16" y="112" width="32" height="16">
@@ -263,9 +263,9 @@
     <property name="act6" value="add_monster shybulb,20,spyder_mansion_lyle,5,10"/>
     <property name="act7" value="start_battle player,spyder_mansion_lyle"/>
     <property name="act8" value="char_talk spyder_mansion_lyle,post_battle_lose"/>
-    <property name="act9" value="set_variable mansionlyle:yes"/>
-    <property name="cond1" value="not variable_set mansionlyle:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_mansion_lyle"/>
     <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
    </properties>
   </object>
   <object id="63" name="Create Magician1" type="event" x="144" y="240" width="16" height="16">
@@ -313,7 +313,7 @@
     <property name="act3" value="translated_dialog mystery_tea,,center,center,center"/>
     <property name="act4" value="set_variable tealucy:yes"/>
     <property name="behav1" value="talk spyder_mansion_lucy"/>
-    <property name="cond1" value="is variable_set mansionlucy:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_mansion_lucy"/>
     <property name="cond2" value="not variable_set tealucy:yes"/>
    </properties>
   </object>

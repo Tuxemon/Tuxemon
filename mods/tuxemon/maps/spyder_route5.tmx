@@ -237,9 +237,8 @@
     <property name="act2" value="add_monster capiti,20,spyder_route5_sara,5,10"/>
     <property name="act3" value="start_battle player,spyder_route5_sara"/>
     <property name="act4" value="char_talk spyder_route5_sara,post_battle_lose"/>
-    <property name="act6" value="set_variable route5sara:yes"/>
     <property name="behav1" value="talk spyder_route5_sara"/>
-    <property name="cond1" value="not variable_set route5sara:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_route5_sara"/>
    </properties>
   </object>
   <object id="49" name="Stop! - Goliath" type="event" x="608" y="144" width="16" height="16">
@@ -252,16 +251,16 @@
     <property name="act46" value="char_talk spyder_route5_goliath,post_battle_lose"/>
     <property name="act50" value="pathfind spyder_route5_goliath,35,4"/>
     <property name="act80" value="remove_npc spyder_route5_goliath"/>
-    <property name="act90" value="set_variable route5goliath:yes"/>
-    <property name="cond1" value="is char_at player"/>
-    <property name="cond2" value="not variable_set route5goliath:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_route5_goliath"/>
+    <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
    </properties>
   </object>
   <object id="50" name="Create Goliath" type="event" x="560" y="80" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_route5_goliath,35,5"/>
     <property name="cond1" value="not char_exists spyder_route5_goliath"/>
-    <property name="cond2" value="not variable_set route5goliath:yes"/>
+    <property name="cond2" value="not battle_outcome player,won,spyder_route5_goliath"/>
    </properties>
   </object>
   <object id="53" name="Create Edith" type="event" x="304" y="224" width="16" height="16">
@@ -276,9 +275,8 @@
     <property name="act2" value="add_monster aardart,20,spyder_route5_edith,5,10"/>
     <property name="act3" value="start_battle player,spyder_route5_edith"/>
     <property name="act4" value="char_talk spyder_route5_edith,post_battle_lose"/>
-    <property name="act6" value="set_variable route5edith:yes"/>
     <property name="behav1" value="talk spyder_route5_edith"/>
-    <property name="cond1" value="not variable_set route5edith:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_route5_edith"/>
    </properties>
   </object>
   <object id="55" name="Create Hunter" type="event" x="96" y="128" width="16" height="16">
@@ -296,9 +294,8 @@
     <property name="act4" value="add_monster elofly,16,spyder_route5_hunter,5,10"/>
     <property name="act5" value="start_battle player,spyder_route5_hunter"/>
     <property name="act6" value="char_talk spyder_route5_hunter,post_battle_lose"/>
-    <property name="act7" value="set_variable route5hunter:yes"/>
     <property name="behav1" value="talk spyder_route5_hunter"/>
-    <property name="cond1" value="not variable_set route5hunter:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_route5_hunter"/>
    </properties>
   </object>
   <object id="57" name="Create Cleo" type="event" x="320" y="80" width="16" height="16">
@@ -314,9 +311,8 @@
     <property name="act3" value="add_monster memnomnom,20,spyder_route5_cleo,5,10"/>
     <property name="act4" value="start_battle player,spyder_route5_cleo"/>
     <property name="act5" value="char_talk spyder_route5_cleo,post_battle_lose"/>
-    <property name="act6" value="set_variable route5cleo:yes"/>
     <property name="behav1" value="talk spyder_route5_cleo"/>
-    <property name="cond1" value="not variable_set route5cleo:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_route5_cleo"/>
    </properties>
   </object>
   <object id="59" name="Create Tryphaena" type="event" x="288" y="80" width="16" height="16">
@@ -332,9 +328,8 @@
     <property name="act3" value="add_monster criniotherme,22,spyder_route5_tryphaena,5,10"/>
     <property name="act4" value="start_battle player,spyder_route5_tryphaena"/>
     <property name="act5" value="char_talk spyder_route5_tryphaena,post_battle_lose"/>
-    <property name="act6" value="set_variable route5tryphaena:yes"/>
     <property name="behav1" value="talk spyder_route5_tryphaena"/>
-    <property name="cond1" value="not variable_set route5tryphaena:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_route5_tryphaena"/>
    </properties>
   </object>
   <object id="61" name="Environment Day" type="event" x="16" y="0" width="16" height="16">
@@ -360,9 +355,9 @@
     <property name="act5" value="add_monster capiti,20,spyder_route5_sara,5,10"/>
     <property name="act6" value="start_battle player,spyder_route5_sara"/>
     <property name="act7" value="char_talk spyder_route5_sara,post_battle_lose"/>
-    <property name="act8" value="set_variable route5sara:yes"/>
-    <property name="cond1" value="not variable_set route5sara:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_route5_sara"/>
     <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
    </properties>
   </object>
   <object id="63" name="Talk Cleo" type="event" x="320" y="96" width="16" height="16">
@@ -375,9 +370,9 @@
     <property name="act6" value="add_monster memnomnom,20,spyder_route5_cleo,5,10"/>
     <property name="act7" value="start_battle player,spyder_route5_cleo"/>
     <property name="act8" value="char_talk spyder_route5_cleo,post_battle_lose"/>
-    <property name="act9" value="set_variable route5cleo:yes"/>
-    <property name="cond1" value="not variable_set route5cleo:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_route5_cleo"/>
     <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
    </properties>
   </object>
   <object id="64" name="Talk Tryphaena" type="event" x="288" y="96" width="16" height="16">
@@ -390,9 +385,9 @@
     <property name="act6" value="add_monster criniotherme,22,spyder_route5_tryphaena,5,10"/>
     <property name="act7" value="start_battle player,spyder_route5_tryphaena"/>
     <property name="act8" value="char_talk spyder_route5_tryphaena,post_battle_lose"/>
-    <property name="act9" value="set_variable route5tryphaena:yes"/>
-    <property name="cond1" value="not variable_set route5tryphaena:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_route5_tryphaena"/>
     <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
    </properties>
   </object>
   <object id="65" name="Talk Edith" type="event" x="304" y="240" width="16" height="16">
@@ -404,9 +399,9 @@
     <property name="act5" value="add_monster aardart,20,spyder_route5_edith,5,10"/>
     <property name="act6" value="start_battle player,spyder_route5_edith"/>
     <property name="act7" value="char_talk spyder_route5_edith,post_battle_lose"/>
-    <property name="act8" value="set_variable route5edith:yes"/>
-    <property name="cond1" value="not variable_set route5edith:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_route5_edith"/>
     <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
    </properties>
   </object>
   <object id="68" name="Post Talk Sara" type="event" x="272" y="176" width="16" height="16">

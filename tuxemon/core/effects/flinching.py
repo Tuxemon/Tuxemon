@@ -42,7 +42,7 @@ class FlinchingEffect(CoreEffect):
             skip = Technique.create(empty)
             tech = [skip]
             status.advance_round()
-            status.check_counter_expiry(session)
+            host.status.check_and_clear_use_expiry(session)
         return StatusEffectResult(
             name=status.name, success=True, techniques=tech
         )

@@ -4,12 +4,15 @@ from __future__ import annotations
 
 import logging
 from dataclasses import dataclass
-from typing import Optional, final
+from typing import TYPE_CHECKING, Optional, final
 from uuid import UUID
 
 from tuxemon.event import get_monster_by_iid
 from tuxemon.event.eventaction import EventAction
-from tuxemon.session import Session
+from tuxemon.tools import parse_flag
+
+if TYPE_CHECKING:
+    from tuxemon.session import Session
 
 logger = logging.getLogger(__name__)
 
@@ -30,12 +33,16 @@ class SetMonsterPlagueAction(EventAction):
         plague_slug: The slug of the plague to target.
         condition: Infected, inoculated, or None (removes the plague from the
             character, indicating a healthy state).
+        enforced_check: Optional string flag to enforce eligibility rules.
+            Accepts "true", "1", or "yes" (case-insensitive).
+            Default is False (eligibility is bypassed).
     """
 
     name = "set_monster_plague"
     variable: str
     plague_slug: str
     condition: Optional[str] = None
+    enforced_check: Optional[str] = None
 
     def start(self, session: Session) -> None:
         player = session.player
@@ -49,13 +56,22 @@ class SetMonsterPlagueAction(EventAction):
             logger.error("Monster not found")
             return
 
-        if self.condition is None:
+        enforce = parse_flag(self.enforced_check)
+
+        condition = self.condition.strip().lower() if self.condition else None
+        if condition is None:
             monster.plague.clear_plagues()
-        elif self.condition == "infected":
-            monster.plague.infect(self.plague_slug)
-        elif self.condition == "inoculated":
-            monster.plague.inoculate(self.plague_slug)
+        elif condition == "infected":
+            if enforce:
+                monster.plague.try_infect(monster, self.plague_slug)
+            else:
+                monster.plague.infect(self.plague_slug)
+        elif condition == "inoculated":
+            if enforce:
+                monster.plague.try_inoculate(monster, self.plague_slug)
+            else:
+                monster.plague.inoculate(self.plague_slug)
         else:
             raise ValueError(
-                f"{self.condition} must be 'infected' or 'inoculated'."
+                f"Invalid plague condition '{self.condition}'. Must be 'infected' or 'inoculated'."
             )

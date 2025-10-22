@@ -6,8 +6,6 @@ events:
     conditions:
     - is char_at player
     - is char_facing player,left
-    height: 1
-    width: 1
     x: 0
     y: 27
     type: event
@@ -18,8 +16,6 @@ events:
     conditions:
     - is char_at player
     - is char_facing player,up
-    height: 1
-    width: 1
     x: 22
     y: 10
     type: event
@@ -30,8 +26,6 @@ events:
     conditions:
     - is char_at player
     - is char_facing player,down
-    height: 1
-    width: 1
     x: 37
     y: 39
     type: event

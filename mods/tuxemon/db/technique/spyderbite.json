@@ -5,8 +5,7 @@
     {
       "type": "plague",
       "parameters": [
-        "spyderbite",
-        "0.125"
+        "spyderbite"
       ]
     }
   ],
@@ -35,5 +34,5 @@
   "tech_id": 0,
   "use_failure": "combat_miss",
   "use_success": null,
-  "use_tech": "combat_state_plague2"
+  "use_tech": "combat_used_x"
 }

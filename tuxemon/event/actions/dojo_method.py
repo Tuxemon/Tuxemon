@@ -133,7 +133,7 @@ class DojoMethodAction(EventAction):
 
     def learn(self, monster: Monster, technique: str) -> None:
         tech = Technique.create(technique)
-        monster.moves.learn(monster.instance_id, tech)
+        monster.moves.learn(monster, tech, ignore_eligibility=True)
         logger.info(f"{tech.name} learned!")
         self.client.sound_manager.play_sound("sound_confirm")
         self.client.pop_state()

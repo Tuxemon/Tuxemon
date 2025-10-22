@@ -83,7 +83,7 @@ class RandomHordeAction(EventAction):
             eligible, level, held_item = result
 
             current_monster = Monster.spawn_base(eligible.monster, level)
-            current_monster.experience_modifier = eligible.exp_req_mod
+            current_monster.set_experience_modifier(eligible.exp_req_mod)
 
             if held_item is not None:
                 item = Item.create(held_item)
@@ -110,7 +110,11 @@ class RandomHordeAction(EventAction):
             logger.error("'wild_encounter' not found")
             return
 
-        npc.party.replace_party(horde, False)
+        npc.party.replace_party(
+            horde,
+            add_overflow_to_box=False,
+            override_policy_name="unlimited_party",
+        )
         # NOTE: random battles are implemented as trainer battles.
         #       this is a hack. remove this once trainer/random battlers are fixed
 

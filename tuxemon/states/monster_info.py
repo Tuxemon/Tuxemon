@@ -101,7 +101,6 @@ class MonsterInfoState(PygameMenuState):
         )
         lab1.translate(fxw(37 / 256), fxh(9.8 / 144))
         # level + exp
-        exp = monster.total_experience
         lab2: Any = menu.add.label(
             title=f"Lv. {monster.level}",
             label_id="level",
@@ -111,18 +110,12 @@ class MonsterInfoState(PygameMenuState):
             font_color=dark_color,
         )
         lab2.translate(fxw(169 / 256), fxh(12.8 / 144))
-        # XP progress to next level
-        exp_current_level = monster.experience_required(
-            0
-        )  # total EXP at current level
-        exp_next_level = monster.experience_required(
-            1
-        )  # total EXP needed at next level
 
         # how much XP earned since last level-up
-        x = monster.total_experience - exp_current_level
+        x = monster.experience_handler.experience_current_level
+
         # how much XP is needed in total to level up
-        y = exp_next_level - exp_current_level
+        y = monster.experience_handler.experience_for_next_level
 
         lab3: Any = menu.add.label(
             title=f"{x:,}/",  # add commas for readability

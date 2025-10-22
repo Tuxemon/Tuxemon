@@ -75,11 +75,10 @@
     <property name="act12" value="add_monster sampsage,35,spyder_dojo_thri,5,10"/>
     <property name="act13" value="add_monster sampsack,35,spyder_dojo_thri,5,10"/>
     <property name="act14" value="start_battle player,spyder_dojo_thri"/>
-    <property name="act15" value="set_variable dojothri:yes"/>
     <property name="act20" value="set_monster_health"/>
     <property name="act30" value="set_monster_status"/>
     <property name="behav1" value="talk spyder_dojo_thri"/>
-    <property name="cond7" value="not variable_set dojothri:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_dojo_thri"/>
    </properties>
   </object>
   <object id="25" name="Talk Thri Choice" type="event" x="176" y="32" width="16" height="16">
@@ -89,7 +88,7 @@
     <property name="act15" value="set_variable dojothrichoice:yes"/>
     <property name="act20" value="set_monster_health"/>
     <property name="act30" value="set_monster_status"/>
-    <property name="cond1" value="is variable_set dojothri:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_dojo_thri"/>
     <property name="cond2" value="not variable_set dojothrichoice:yes"/>
    </properties>
   </object>
@@ -123,13 +122,13 @@
     <property name="act04" value="pathfind_to_char player,spyder_billie,down"/>
     <property name="act05" value="unlock_controls"/>
     <property name="act08" value="translated_dialog spyder_dojo_billie1"/>
-    <property name="act20" value="add_monster billie_choice,35,spyder_billie,5,10"/>
+    <property name="act20" value="add_monster billie_choice,34,spyder_billie,5,10"/>
     <property name="act21" value="set_monster_attribute add_monster,gender,male"/>
-    <property name="act22" value="add_monster eyesore,35,spyder_billie,5,10"/>
-    <property name="act23" value="set_monster_attribute add_monster,gender,female"/>
-    <property name="act24" value="add_monster cardiwing,35,spyder_billie,5,10"/>
+    <property name="act24" value="add_monster cardiwing,30,spyder_billie,5,10"/>
     <property name="act25" value="set_monster_attribute add_monster,gender,female"/>
-    <property name="act26" value="add_monster viviphyta,35,spyder_billie,5,10"/>
+    <property name="act22" value="add_monster eyesore,30,spyder_billie,5,10"/>
+    <property name="act23" value="set_monster_attribute add_monster,gender,female"/>
+    <property name="act26" value="add_monster viviphyta,30,spyder_billie,5,10"/>
     <property name="act27" value="set_monster_attribute add_monster,gender,male"/>
     <property name="act30" value="start_battle player,spyder_billie"/>
     <property name="act40" value="translated_dialog spyder_dojo_billie2"/>

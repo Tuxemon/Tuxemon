@@ -3,10 +3,11 @@
 from __future__ import annotations
 
 import logging
-from collections.abc import Sequence
+from collections.abc import Mapping, Sequence
 from heapq import heappop, heappush
 from typing import TYPE_CHECKING, Optional
 
+from tuxemon.db import Direction
 from tuxemon.map.map import (
     dirs2,
     get_adjacent_position,
@@ -14,19 +15,26 @@ from tuxemon.map.map import (
     get_explicit_tile_exits,
     pairs,
 )
+from tuxemon.platform.const import intentions
 from tuxemon.prepare import CONFIG
 
 if TYPE_CHECKING:
     from tuxemon.boundary import BoundaryChecker
+    from tuxemon.camera.camera import CameraManager
     from tuxemon.db import Direction
     from tuxemon.event.eventmanager import EventManager
     from tuxemon.map.collision_manager import CollisionManager, CollisionMap
     from tuxemon.map.map_manager import MapManager
     from tuxemon.npc import NPC
     from tuxemon.npc_manager import NPCManager
+    from tuxemon.platform.events import PlayerInput
     from tuxemon.platform.input_manager import InputManager
 
 logger = logging.getLogger(__name__)
+
+
+def manhattan_distance(pos: tuple[int, int], target: tuple[int, int]) -> float:
+    return abs(pos[0] - target[0]) + abs(pos[1] - target[1])
 
 
 class PathfindNode:
@@ -85,12 +93,23 @@ class PathfindNode:
 
 class MovementManager:
     def __init__(
-        self, event_manager: EventManager, input_manager: InputManager
+        self,
+        event_manager: EventManager,
+        input_manager: InputManager,
+        camera_manager: CameraManager,
     ) -> None:
         self.event_manager = event_manager
         self.input_manager = input_manager
+        self.camera_manager = camera_manager
         self.wants_to_move_char: dict[str, Direction] = {}
         self.allow_char_movement: set[str] = set()
+
+        self.direction_map: Mapping[int, Direction] = {
+            intentions.UP: Direction.up,
+            intentions.DOWN: Direction.down,
+            intentions.LEFT: Direction.left,
+            intentions.RIGHT: Direction.right,
+        }
 
     def queue_movement(self, char_slug: str, direction: Direction) -> None:
         """Queues the movement request for a character."""
@@ -136,6 +155,32 @@ class MovementManager:
         """
         return character.slug in self.wants_to_move_char
 
+    def handle_directional_input(
+        self,
+        character: NPC,
+        event: PlayerInput,
+    ) -> Optional[PlayerInput]:
+        """Processes directional input and moves the character if allowed."""
+        direction = self.direction_map.get(event.button)
+        if direction is None:
+            return event
+
+        camera = self.camera_manager.get_active_camera()
+        if camera and not camera.is_following():
+            return self.camera_manager.handle_input(event)
+
+        if event.held:
+            self.queue_movement(character.slug, direction)
+            if self.is_movement_allowed(character):
+                self.move_char(character, direction)
+            return None
+
+        if not event.pressed and self.has_pending_movement(character):
+            self.stop_char(character)
+            return None
+
+        return event
+
 
 class Pathfinder:
     def __init__(
@@ -167,16 +212,12 @@ class Pathfinder:
                 exists.
         """
         logger.info(f"Pathfinding from {start} to {dest}.")
-
-        def heuristic(pos: tuple[int, int], target: tuple[int, int]) -> float:
-            return abs(pos[0] - target[0]) + abs(pos[1] - target[1])
-
         open_set: list[PathfindNode] = []
         g_costs: dict[tuple[int, int], float] = {start: 0.0}
         known_nodes: set[tuple[int, int]] = set()
 
         start_node = PathfindNode(
-            start, g_cost=0.0, h_cost=heuristic(start, dest)
+            start, g_cost=0.0, h_cost=manhattan_distance(start, dest)
         )
         heappush(open_set, start_node)
 
@@ -197,7 +238,7 @@ class Pathfinder:
 
                 if new_g_cost < g_costs.get(neighbor_pos, float("inf")):
                     g_costs[neighbor_pos] = new_g_cost
-                    neighbor_h_cost = heuristic(neighbor_pos, dest)
+                    neighbor_h_cost = manhattan_distance(neighbor_pos, dest)
                     neighbor_node = PathfindNode(
                         value=neighbor_pos,
                         parent=current_node,
@@ -320,15 +361,15 @@ class Pathfinder:
         try:
             tile_data = collision_map[neighbor]
         except KeyError:
-            return True  # Missing tile data is treated as traversable
+            # Missing tile data implies traversable space by default.
+            return True
 
+        # Check if data exists AND if the entry rule allows it
         if tile_data is None:
             return False
 
-        try:
-            return pairs(direction) in tile_data.enter_from
-        except KeyError:
-            return False
+        # Check if the reversed direction is in the tile's allowed entry directions.
+        return pairs(direction) in tile_data.enter_from
 
     def is_tile_traversable_from(
         self,

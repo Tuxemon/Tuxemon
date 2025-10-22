@@ -12,7 +12,7 @@ from tuxemon.constants.asset_loader import fetch_asset
 from tuxemon.db import db
 from tuxemon.script.parser import parse_action_string
 
-EXPECTED_SCENARIOS = ["spyder", "xero", "tobedefined"]
+EXPECTED_SCENARIOS = ["spyder", "xero", "tobedefined", "eclipse"]
 FOLDER = "maps"
 EVENTS_KEY = "events"
 COLLISION_KEY = "collisions"

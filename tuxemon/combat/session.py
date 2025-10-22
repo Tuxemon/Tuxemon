@@ -15,6 +15,7 @@ from tuxemon.combat.utils import alive_party, battlefield, defeated
 from tuxemon.db import EffectPhase, TargetType
 from tuxemon.event import get_event_bus
 from tuxemon.locale import T
+from tuxemon.technique.technique import Technique
 from tuxemon.ui.combat_swap import SwapTracker
 
 if TYPE_CHECKING:
@@ -28,7 +29,7 @@ if TYPE_CHECKING:
     from tuxemon.npc import NPC
     from tuxemon.session import Session
     from tuxemon.status.status import Status
-    from tuxemon.technique.technique import Technique
+
 logger = logging.getLogger(__name__)
 
 
@@ -293,14 +294,15 @@ class CombatSession:
             params = {"name": self.right_player.monsters[0].name.upper()}
             return T.format("combat_wild_appeared", params)
         elif self.combat_type is CombatType.HORDE:
-            return T.translate("combat_horde_appeared")
+            horde = self.right_player.party.party_size
+            return f"{T.translate('combat_horde_appeared')} ({horde})"
         else:
             raise ValueError(f"Unexpected combat_type: {self.combat_type}")
 
     def get_message_swap(self, character: NPC, monster: Monster) -> str:
         """Determines and returns the appropriate alert message for combat start."""
         params = {"target": monster.name.upper()}
-        if self.combat_type is CombatType.TRAINER:
+        if self.combat_type in (CombatType.TRAINER, CombatType.MONSTER):
             params["user"] = character.name.upper()
             return T.format("combat_swap", params)
         elif self.combat_type is CombatType.HORDE:
@@ -532,15 +534,15 @@ class CombatSession:
             technique.target.get(target_type, False)
             for target_type in ["enemy_monster", "enemy_team", "enemy_trainer"]
         ):
-            infected_slugs = monster.plague.get_infected_slugs()
-            slug = random.choice(infected_slugs)
-            alt_technique = Technique.create(slug)
-            result = alt_technique.use(session, monster, target)
-            if result.success:
-                logger.debug(
-                    f"[Plague Override] {monster.name} switches to {alt_technique.slug}"
-                )
-                technique = alt_technique
+            slug = monster.plague.get_most_severe_plague_slug()
+            if slug:
+                alt_technique = Technique.create(slug)
+                result = alt_technique.use(session, monster, target)
+                if result.success:
+                    logger.debug(
+                        f"[Plague Override] {monster.name} switches to {alt_technique.slug}"
+                    )
+                    technique = alt_technique
         logger.debug(f"[PreCheck End] {monster.name} using {technique.slug}")
         return technique
 

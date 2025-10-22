@@ -114,8 +114,8 @@ class TradeManager:
         player_a.party.remove_monster(monster_a)
         player_b.party.remove_monster(monster_b)
 
-        player_a.party.add_monster(monster_b, slot_a)
-        player_b.party.add_monster(monster_a, slot_b)
+        player_a.party.insert_monster_to_party(monster_b, slot_a)
+        player_b.party.insert_monster_to_party(monster_a, slot_b)
 
         monster_a.set_owner(player_b)
         monster_b.set_owner(player_a)
@@ -175,14 +175,9 @@ class TradeManager:
         new_monster.set_capture(today_ordinal())
         new_monster.set_acquisition(Acquisition.TRADED)
 
-        try:
-            slot = player.party.monsters.index(player_monster)
-        except ValueError:
+        if not player.party.replace_monster(player_monster, new_monster):
             logger.error("Player's monster not found in party.")
             return TradeResult.NOT_FOUND
-
-        player.party.remove_monster(player_monster)
-        player.party.add_monster(new_monster, slot)
 
         player.tuxepedia.add_entry(new_monster.slug, SeenStatus.caught)
 

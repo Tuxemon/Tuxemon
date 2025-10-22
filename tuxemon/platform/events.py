@@ -2,6 +2,7 @@
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import time
 from abc import ABC, abstractmethod
 from collections import defaultdict
 from collections.abc import Generator, Mapping
@@ -163,7 +164,14 @@ class PlayerInput:
         hold_time: The number of frames this input has been hold.
     """
 
-    __slots__ = ("button", "value", "hold_time", "triggered", "previous_value")
+    __slots__ = (
+        "button",
+        "value",
+        "hold_time",
+        "triggered",
+        "previous_value",
+        "timestamp",
+    )
 
     def __init__(
         self, button: int, value: Any = 0, hold_time: int = 0
@@ -173,6 +181,7 @@ class PlayerInput:
         self.hold_time = hold_time
         self.triggered = False
         self.previous_value = value
+        self.timestamp = time.time()
 
     def __str__(self) -> str:
         return (

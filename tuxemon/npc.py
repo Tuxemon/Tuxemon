@@ -13,6 +13,7 @@ from tuxemon.entity import Entity
 from tuxemon.entity_dir.bag import BagHandler
 from tuxemon.entity_dir.battle import BattlesHandler
 from tuxemon.entity_dir.party import PartyHandler
+from tuxemon.entity_dir.routing import RoutingPolicy
 from tuxemon.game_variables import GameVariablesManager, PlayerVariablesManager
 from tuxemon.locale import T
 from tuxemon.map.map import dirs2, get_direction, proj
@@ -165,6 +166,7 @@ class NPC(Entity[NPCState]):
             "step_tracker": encode_steps(self.step_tracker),
             "unlocked_letters": encode_cipher(self.unlocked_letters),
             "evolution_registry": self.evolution_registry.encode_registry(),
+            "routing_policy": self.party.routing_policy.to_dict(),
         }
         return state
 
@@ -199,6 +201,7 @@ class NPC(Entity[NPCState]):
 
         self.tracker = decode_tracking(save_data.get("tracker", {}))
         self.step_tracker = decode_steps(save_data.get("step_tracker", {}))
+        self.party.routing_policy_name = RoutingPolicy.from_dict(save_data)
 
         _template = save_data["template"]
         self.template.slug = _template["slug"]

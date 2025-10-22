@@ -30,6 +30,6 @@ class ButtonHeldCondition(EventCondition):
             button = constants[button_id.upper()]
         except KeyError:
             raise ValueError("Constant not found")
-        return session.client.input_manager.input_history.is_button_held_down(
+        return session.client.input_manager.input_history.is_button_held(
             button, int(time_ms)
         )

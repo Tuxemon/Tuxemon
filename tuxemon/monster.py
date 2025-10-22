@@ -27,6 +27,7 @@ from tuxemon.fusion import Body
 from tuxemon.locale import T
 from tuxemon.monster_dir.bond import BondHandler
 from tuxemon.monster_dir.evolution import Evolution
+from tuxemon.monster_dir.experience import MonsterExperience
 from tuxemon.monster_dir.held_item import MonsterItemHandler
 from tuxemon.monster_dir.moves import MonsterMovesHandler
 from tuxemon.monster_dir.plague import MonsterPlagueHandler
@@ -49,8 +50,6 @@ from tuxemon.taste import Taste
 from tuxemon.time_handler import today_ordinal
 
 if TYPE_CHECKING:
-    pass
-
     from tuxemon.npc import NPC
     from tuxemon.session import Session
 
@@ -59,10 +58,8 @@ logger = logging.getLogger(__name__)
 
 SIMPLE_PERSISTANCE_ATTRIBUTES = (
     "current_hp",
-    "level",
     "name",
     "slug",
-    "total_experience",
     "capture",
     "capture_device",
     "height",
@@ -93,7 +90,6 @@ class Monster:
         self.base_stats: BasicStats = BasicStats()
         self.current_hp: int = 0
 
-        self.level: int = 0
         self.steps: float = 0.0
         self.bond_handler: BondHandler = BondHandler(save_data)
 
@@ -110,17 +106,14 @@ class Monster:
         self.owner: Optional[NPC] = None
         self.gender_weights: dict[GenderType, float] = {}
         self.held_item = MonsterItemHandler()
+        self.experience_handler: MonsterExperience = MonsterExperience()
 
         self.money_modifier: float = 0.0
-        self.experience_modifier: float = 1.0
-        self.total_experience: int = 0
 
         self.types = ElementTypesHandler()
         self.shape: ShapeHandler = ShapeHandler()
         self.randomly: bool = True
         self.out_of_range: bool = False
-        self.got_experience: bool = False
-        self.levelling_up: bool = False
         self.acquisition: Acquisition = Acquisition.UNKNOWN
         self.wild: bool = False
 
@@ -177,9 +170,29 @@ class Monster:
     def spawn_base(cls, slug: str, level: int) -> Monster:
         monster = cls.create(slug)
         monster.set_level(level)
-        monster.moves.set_moves(monster.instance_id, level, monster.stage)
+        monster.moves.set_moves(monster)
         monster.current_hp = monster.hp
         return monster
+
+    @property
+    def level(self) -> int:
+        return self.experience_handler.level
+
+    @property
+    def total_experience(self) -> int:
+        return self.experience_handler.total_experience
+
+    @property
+    def experience_modifier(self) -> float:
+        return self.experience_handler.experience_modifier
+
+    @property
+    def levelling_up(self) -> bool:
+        return self.experience_handler.levelling_up
+
+    @property
+    def got_experience(self) -> bool:
+        return self.experience_handler.got_experience
 
     @property
     def armour(self) -> int:
@@ -227,7 +240,7 @@ class Monster:
             slug: Slug to lookup.
         """
         results = MonsterModel.lookup(slug, db)
-        self.level = random.randint(2, 5)
+        self.experience_handler.set_level(random.randint(2, 5))
         self.slug = results.slug
         self.name = T.translate(results.slug)
         self.description = T.translate(f"{results.slug}_description")
@@ -375,34 +388,16 @@ class Monster:
         return self.types.has_type(type_slug)
 
     def give_experience(self, amount: int = 1) -> int:
-        """
-        Increase experience.
+        """Increase experience."""
+        levels_earned = self.experience_handler.give_experience(amount)
 
-        Gives the Monster a specified amount of experience, and levels
-        up the monster if necessary.
+        if levels_earned > 0:
+            self.set_stats()
+            logger.info(
+                f"Leveling {self.name} from {self.level -1} to {self.level}!"
+            )
 
-        Parameters:
-            amount: The amount of experience to add to the monster.
-
-        Returns:
-            int: the amount of levels earned.
-
-        Example:
-
-        >>> bulbatux.give_experience(20)
-        """
-        self.got_experience = True
-        levels = 0
-        self.total_experience += amount
-
-        # Level up worthy monsters, but stop at max_level
-        while (
-            self.level < prepare.MAX_LEVEL
-            and self.total_experience >= self.experience_required(1)
-        ):
-            self.level_up()
-            levels += 1
-        return levels
+        return levels_earned
 
     def give_tps(
         self, stat_name: str, value: int = prepare.DEFAULT_TP_GAIN
@@ -464,52 +459,26 @@ class Monster:
         self.capture = today_ordinal() if amount == 0 else amount
         return self.capture
 
-    def level_up(self) -> None:
-        """
-        Increases a Monster's level by one and increases stats accordingly.
-
-        """
-        logger.info(
-            f"Leveling {self.name} from {self.level} to {self.level + 1}!"
-        )
-        # Increase Level and stats
-        self.levelling_up = True
-        self.level = min(self.level + 1, prepare.MAX_LEVEL)
-        self.set_stats()
-
     def set_level(self, level: int) -> None:
-        """
-        Set monster level.
-
-        Sets the Monster's level to the specified arbitrary level,
-        and modifies experience accordingly.
-        Does not let level go above MAX_LEVEL or below 1.
-
-        Parameters:
-            level: The level to set the monster to.
-
-        Example:
-
-        >>> bulbatux.set_level(20)
-
-        """
-        self.level = min(max(level, 1), prepare.MAX_LEVEL)
-        self.total_experience = self.experience_required()
+        """Set monster level."""
+        self.experience_handler.set_level(level)
         self.set_stats()
 
-    def experience_required(self, level_ofs: int = 0) -> int:
-        """
-        Gets the experience requirement for the given level.
+    def set_experience_modifier(self, modifier: float) -> None:
+        """Sets the experience modifier for this monster."""
+        self.experience_handler.set_experience_modifier(modifier)
 
-        Parameters:
-            level_ofs: Difference in levels with the current level.
+    def set_experience_group_slug(self, slug: str) -> None:
+        """Sets the experience group slug for this monster."""
+        self.experience_handler.set_exp_group(slug)
 
-        Returns:
-            Required experience.
+    def set_total_experience(self, experience: int) -> None:
+        """Sets the total experience for this monster."""
+        self.experience_handler.set_total_experience(experience)
 
-        """
-        required = (self.level + level_ofs) ** prepare.COEFF_EXP
-        return int(required)
+    def experience_required(self, level_delta: int = 0) -> int:
+        """Gets the experience requirement for the given level."""
+        return self.experience_handler.experience_required(level_delta)
 
     def assign_gender(self, weights: dict[GenderType, float]) -> GenderType:
         """Randomly selects a gender based on weighted probabilities."""
@@ -560,6 +529,7 @@ class Monster:
             for category, flair in self.flairs.items()
         }
 
+        save_data.update(self.experience_handler.get_state())
         return save_data
 
     def set_state(self, save_data: Mapping[str, Any]) -> None:
@@ -613,6 +583,7 @@ class Monster:
                 if "flairs" not in save_data:
                     self.flairs = FlairApplier.create(self.flair_slugs)
 
+        self.experience_handler = MonsterExperience.from_state(save_data)
         self.load_sprites()
 
     def end_combat(self, session: Session) -> None:
@@ -623,7 +594,12 @@ class Monster:
         self.moves.full_recharge_moves()
 
         if not self.status.is_fainted:
-            self.status.remove_status()
+            current_status = self.status.get_current_status()
+            if (
+                current_status
+                and not current_status.behaviors.persists_after_combat
+            ):
+                self.status.remove_status()
 
         if self.is_fainted:
             self.current_hp = 0

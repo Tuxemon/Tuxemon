@@ -192,7 +192,7 @@ class TestBoxes(unittest.TestCase):
         for _ in range(10):
             self.monster_boxes.add_monster(self.box_id1, self.monster1)
         self.assertTrue(self.monster_boxes.is_box_full(self.box_id1, 10))
-        self.monster_boxes.create_and_merge_box(self.box_id1)
+        self.monster_boxes.create_and_merge_box(self.box_id1, {})
         self.assertIn(f"{self.box_id1}1", self.monster_boxes.get_box_ids())
         self.assertEqual(
             len(self.monster_boxes.get_monsters(f"{self.box_id1}1")), 10

@@ -115,7 +115,7 @@
     <property name="act1" value="create_npc spyder_dojo_tu,13,9"/>
     <property name="act2" value="char_face spyder_dojo_tu,left"/>
     <property name="cond1" value="not char_exists spyder_dojo_tu"/>
-    <property name="cond2" value="not variable_set dojotu:yes"/>
+    <property name="cond2" value="not battle_outcome player,won,spyder_dojo_tu"/>
    </properties>
   </object>
   <object id="27" name="Talk Tu1" type="event" x="112" y="0" width="16" height="16">
@@ -123,12 +123,12 @@
     <property name="act1" value="translated_dialog spyder_dojo_tu3"/>
     <property name="behav1" value="talk spyder_dojo_tu"/>
     <property name="cond1" value="is variable_set tuintro:yes"/>
-    <property name="cond2" value="not variable_set dojosaturn:yes"/>
-    <property name="cond3" value="not variable_set dojohephastus:yes"/>
-    <property name="cond4" value="not variable_set dojohermes:yes"/>
-    <property name="cond5" value="not variable_set dojoorion:yes"/>
-    <property name="cond6" value="not variable_set dojoares:yes"/>
-    <property name="cond7" value="not variable_set dojotu:yes"/>
+    <property name="cond2" value="not battle_outcome player,won,spyder_dojo_saturn"/>
+    <property name="cond3" value="not battle_outcome player,won,spyder_dojo_hephastus"/>
+    <property name="cond4" value="not battle_outcome player,won,spyder_dojo_hermes"/>
+    <property name="cond5" value="not battle_outcome player,won,spyder_dojo_orion"/>
+    <property name="cond6" value="not battle_outcome player,won,spyder_dojo_ares"/>
+    <property name="cond7" value="not battle_outcome player,won,spyder_dojo_tu"/>
    </properties>
   </object>
   <object id="28" name="Talk Saturn" type="event" x="128" y="0" width="16" height="16">
@@ -140,13 +140,12 @@
     <property name="act15" value="add_monster sludgehog,30,spyder_dojo_saturn,5,10"/>
     <property name="act16" value="start_battle player,spyder_dojo_saturn"/>
     <property name="act17" value="char_talk spyder_dojo_saturn,post_battle_lose"/>
-    <property name="act18" value="set_variable dojosaturn:yes"/>
     <property name="act20" value="set_monster_health"/>
     <property name="act30" value="set_monster_status"/>
     <property name="act40" value="add_item tm_all_in"/>
     <property name="act41" value="translated_dialog tm_all_in,,center,center,center"/>
     <property name="behav1" value="talk spyder_dojo_saturn"/>
-    <property name="cond1" value="not variable_set dojosaturn:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_dojo_saturn"/>
    </properties>
   </object>
   <object id="29" name="Talk Hephastus" type="event" x="144" y="0" width="16" height="16">
@@ -158,13 +157,12 @@
     <property name="act15" value="add_monster embra,30,spyder_dojo_hephastus,5,10"/>
     <property name="act16" value="start_battle player,spyder_dojo_hephastus"/>
     <property name="act17" value="char_talk spyder_dojo_hephastus,post_battle_lose"/>
-    <property name="act18" value="set_variable dojohephastus:yes"/>
     <property name="act20" value="set_monster_health"/>
     <property name="act30" value="set_monster_status"/>
     <property name="act40" value="add_item tm_blade"/>
     <property name="act41" value="translated_dialog tm_blade,,center,center,center"/>
     <property name="behav1" value="talk spyder_dojo_hephastus"/>
-    <property name="cond1" value="not variable_set dojohephastus:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_dojo_hephastus"/>
    </properties>
   </object>
   <object id="19" name="Talk Hermes" type="event" x="160" y="0" width="16" height="16">
@@ -176,13 +174,12 @@
     <property name="act15" value="add_monster eaglace,30,spyder_dojo_hermes,5,10"/>
     <property name="act16" value="start_battle player,spyder_dojo_hermes"/>
     <property name="act17" value="char_talk spyder_dojo_hermes,post_battle_lose"/>
-    <property name="act18" value="set_variable dojohermes:yes"/>
     <property name="act20" value="set_monster_health"/>
     <property name="act30" value="set_monster_status"/>
     <property name="act40" value="add_item tm_panjandrum"/>
     <property name="act41" value="translated_dialog tm_panjandrum,,center,center,center"/>
     <property name="behav1" value="talk spyder_dojo_hermes"/>
-    <property name="cond1" value="not variable_set dojohermes:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_dojo_hermes"/>
    </properties>
   </object>
   <object id="13" name="Talk Orion" type="event" x="176" y="0" width="16" height="16">
@@ -194,13 +191,12 @@
     <property name="act15" value="add_monster drashimi,30,spyder_dojo_orion,5,10"/>
     <property name="act16" value="start_battle player,spyder_dojo_orion"/>
     <property name="act17" value="char_talk spyder_dojo_orion,post_battle_lose"/>
-    <property name="act18" value="set_variable dojoorion:yes"/>
     <property name="act20" value="set_monster_health"/>
     <property name="act30" value="set_monster_status"/>
     <property name="act40" value="add_item tm_shadow_boxing"/>
     <property name="act41" value="translated_dialog tm_shadow_boxing,,center,center,center"/>
     <property name="behav1" value="talk spyder_dojo_orion"/>
-    <property name="cond1" value="not variable_set dojoorion:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_dojo_orion"/>
    </properties>
   </object>
   <object id="39" name="Talk Ares" type="event" x="192" y="0" width="16" height="16">
@@ -212,13 +208,12 @@
     <property name="act05" value="add_monster tourbidi,30,spyder_dojo_ares,5,10"/>
     <property name="act08" value="start_battle player,spyder_dojo_ares"/>
     <property name="act09" value="char_talk spyder_dojo_ares,post_battle_lose"/>
-    <property name="act10" value="set_variable dojoares:yes"/>
     <property name="act20" value="set_monster_health"/>
     <property name="act30" value="set_monster_status"/>
     <property name="act40" value="add_item tm_scope"/>
     <property name="act41" value="translated_dialog tm_scope,,center,center,center"/>
     <property name="behav1" value="talk spyder_dojo_ares"/>
-    <property name="cond1" value="not variable_set dojoares:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_dojo_ares"/>
    </properties>
   </object>
   <object id="30" name="Encounter" type="event" x="160" y="144" width="16" height="16">
@@ -252,15 +247,14 @@
     <property name="act31" value="lock_controls"/>
     <property name="act32" value="pathfind spyder_dojo_tu,9,9"/>
     <property name="act34" value="unlock_controls"/>
-    <property name="act35" value="set_variable dojotu:yes"/>
     <property name="behav1" value="talk spyder_dojo_tu"/>
     <property name="cond1" value="is variable_set tuintro:yes"/>
-    <property name="cond2" value="is variable_set dojosaturn:yes"/>
-    <property name="cond3" value="is variable_set dojohephastus:yes"/>
-    <property name="cond4" value="is variable_set dojohermes:yes"/>
-    <property name="cond5" value="is variable_set dojoorion:yes"/>
-    <property name="cond6" value="is variable_set dojoares:yes"/>
-    <property name="cond7" value="not variable_set dojotu:yes"/>
+    <property name="cond2" value="is battle_outcome player,won,spyder_dojo_saturn"/>
+    <property name="cond3" value="is battle_outcome player,won,spyder_dojo_hephastus"/>
+    <property name="cond4" value="is battle_outcome player,won,spyder_dojo_hermes"/>
+    <property name="cond5" value="is battle_outcome player,won,spyder_dojo_orion"/>
+    <property name="cond6" value="is battle_outcome player,won,spyder_dojo_ares"/>
+    <property name="cond7" value="not battle_outcome player,won,spyder_dojo_tu"/>
    </properties>
   </object>
   <object id="32" name="Post Talk Saturn" type="event" x="128" y="16" width="16" height="16">
@@ -301,7 +295,7 @@
   <object id="37" name="Remove Tu" type="event" x="336" y="144" width="16" height="16">
    <properties>
     <property name="act1" value="remove_npc spyder_dojo_tu"/>
-    <property name="cond1" value="is variable_set dojotu:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_dojo_tu"/>
    </properties>
   </object>
   <object id="38" name="Play Music" type="event" x="0" y="0" width="16" height="16">

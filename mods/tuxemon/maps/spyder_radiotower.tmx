@@ -70,7 +70,7 @@
    <properties>
     <property name="act1" value="create_npc spyder_route3_zoolander,7,14"/>
     <property name="cond1" value="not char_exists spyder_route3_zoolander"/>
-    <property name="cond2" value="not variable_set omnichannelbeaverbrook:yes"/>
+    <property name="cond2" value="not battle_outcome_count player,won,spyder_omnichannel_beaverbrook,1"/>
    </properties>
   </object>
   <object id="20" name="Talk Zoolander" type="event" x="112" y="208" width="16" height="16">
@@ -83,7 +83,7 @@
    <properties>
     <property name="act1" value="create_npc spyder_scoop_donald,11,14"/>
     <property name="cond1" value="not char_exists spyder_scoop_donald"/>
-    <property name="cond2" value="not variable_set omnichannelbeaverbrook:yes"/>
+    <property name="cond2" value="not battle_outcome_count player,won,spyder_omnichannel_beaverbrook,1"/>
    </properties>
   </object>
   <object id="22" name="Talk Donald" type="event" x="176" y="208" width="16" height="16">
@@ -96,7 +96,7 @@
    <properties>
     <property name="act1" value="create_npc spyder_omnichannel_beaverbrook,9,12"/>
     <property name="cond1" value="not char_exists spyder_omnichannel_beaverbrook"/>
-    <property name="cond2" value="not variable_set omnichannelbeaverbrook:yes"/>
+    <property name="cond2" value="not battle_outcome_count player,won,spyder_omnichannel_beaverbrook,1"/>
    </properties>
   </object>
   <object id="27" name="Stop!" type="event" x="16" y="256" width="192" height="16">
@@ -132,11 +132,12 @@
     <property name="act85" value="char_face player,up"/>
     <property name="act86" value="translated_dialog spyder_omnichannel_beaverbrook2"/>
     <property name="act87" value="pathfind spyder_omnichannel_beaverbrook,9,4"/>
-    <property name="act90" value="set_variable omnichannelbeaverbrook:yes"/>
     <property name="act91" value="set_variable kernelquest:yes"/>
     <property name="act92" value="unlock_controls"/>
-    <property name="cond1" value="is char_at player"/>
-    <property name="cond2" value="not variable_set omnichannelbeaverbrook:yes"/>
+    <property name="cond1" value="is battle_outcome_count player,won,spyder_omnichannel_beaverbrook,0"/>
+    <property name="cond2" value="not battle_outcome_count player,won,spyder_omnichannel_beaverbrook,1"/>
+    <property name="cond3" value="is char_at player"/>
+    <property name="cond4" value="not char_defeated player"/>
    </properties>
   </object>
   <object id="28" name="Create Worm" type="event" x="80" y="32" width="16" height="16">

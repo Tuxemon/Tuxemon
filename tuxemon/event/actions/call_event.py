@@ -22,7 +22,6 @@ class CallEventAction(EventAction):
 
     Script parameters:
         event_name: The name of the event whose actions will be executed.
-
     """
 
     name = "call_event"

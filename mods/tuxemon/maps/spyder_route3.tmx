@@ -217,16 +217,15 @@
     <property name="act07" value="char_talk spyder_route3_zoolander,post_battle_lose"/>
     <property name="act08" value="add_item sledgehammer"/>
     <property name="act09" value="translated_dialog sledgehammer,,center,center,center"/>
-    <property name="act10" value="set_variable zoolanderdefeat:yes"/>
     <property name="behav1" value="talk spyder_route3_zoolander"/>
-    <property name="cond1" value="not variable_set zoolanderdefeat:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_route3_zoolander"/>
    </properties>
   </object>
   <object id="594" name="Make Rookie" type="event" x="16" y="32" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_route3_qqq,1,2"/>
     <property name="cond1" value="not char_exists spyder_route3_qqq"/>
-    <property name="cond2" value="not variable_set ambushedbyqqq:yes"/>
+    <property name="cond2" value="not battle_outcome player,won,spyder_route3_qqq"/>
    </properties>
   </object>
   <object id="595" name="Rookie Talk" type="event" x="80" y="0" width="16" height="16">
@@ -235,11 +234,10 @@
     <property name="act2" value="add_monster cardiling,16,spyder_route3_qqq,5,10"/>
     <property name="act3" value="start_battle player,spyder_route3_qqq"/>
     <property name="act4" value="char_talk spyder_route3_qqq,post_battle_lose"/>
-    <property name="act6" value="set_variable ambushedbyqqq:yes"/>
     <property name="act7" value="pathfind spyder_route3_qqq,0,2"/>
     <property name="act8" value="remove_npc spyder_route3_qqq"/>
     <property name="behav1" value="talk spyder_route3_qqq"/>
-    <property name="cond1" value="not variable_set ambushedbyqqq:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_route3_qqq"/>
    </properties>
   </object>
   <object id="596" name="Make Enforcer" type="event" x="256" y="144" width="16" height="16">
@@ -256,9 +254,8 @@
     <property name="act3" value="add_monster squabbit,12,spyder_route3_weaver,5,10"/>
     <property name="act4" value="start_battle player,spyder_route3_weaver"/>
     <property name="act5" value="char_talk spyder_route3_weaver,post_battle_lose"/>
-    <property name="act6" value="set_variable route3weaver:yes"/>
     <property name="behav1" value="talk spyder_route3_weaver"/>
-    <property name="cond1" value="not variable_set route3weaver:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_route3_weaver"/>
    </properties>
   </object>
   <object id="598" name="encounter 3" type="event" x="80" y="496" width="16" height="48">
@@ -377,9 +374,8 @@
     <property name="act2" value="add_monster elofly,13,spyder_route3_novak,5,10"/>
     <property name="act3" value="start_battle player,spyder_route3_novak"/>
     <property name="act4" value="char_talk spyder_route3_novak,post_battle_lose"/>
-    <property name="act6" value="set_variable route3novak:yes"/>
     <property name="behav1" value="talk spyder_route3_novak"/>
-    <property name="cond1" value="not variable_set route3novak:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_route3_novak"/>
    </properties>
   </object>
   <object id="613" name="Create Curie" type="event" x="480" y="496" width="16" height="16">
@@ -394,9 +390,8 @@
     <property name="act2" value="add_monster propellercat,13,spyder_route3_curie,5,10"/>
     <property name="act3" value="start_battle player,spyder_route3_curie"/>
     <property name="act4" value="char_talk spyder_route3_curie,post_battle_lose"/>
-    <property name="act6" value="set_variable route3curie:yes"/>
     <property name="behav1" value="talk spyder_route3_curie"/>
-    <property name="cond1" value="not variable_set route3curie:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_route3_curie"/>
    </properties>
   </object>
   <object id="615" name="Create Connor" type="event" x="304" y="32" width="16" height="16">
@@ -416,9 +411,8 @@
     <property name="act06" value="add_monster cataspike,8,spyder_route3_connor,5,10"/>
     <property name="act07" value="start_battle player,spyder_route3_connor"/>
     <property name="act08" value="char_talk spyder_route3_connor,post_battle_lose"/>
-    <property name="act09" value="set_variable route3connor:yes"/>
     <property name="behav1" value="talk spyder_route3_connor"/>
-    <property name="cond1" value="not variable_set route3connor:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_route3_connor"/>
    </properties>
   </object>
   <object id="617" name="Create Wanda" type="event" x="512" y="272" width="16" height="16">
@@ -440,9 +434,8 @@
     <property name="act09" value="char_talk spyder_route3_wanda,post_battle_lose"/>
     <property name="act10" value="add_item fishing_rod"/>
     <property name="act11" value="translated_dialog fishing_rod,,center,center,center"/>
-    <property name="act12" value="set_variable route3wanda:yes"/>
     <property name="behav1" value="talk spyder_route3_wanda"/>
-    <property name="cond1" value="not variable_set route3wanda:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_route3_wanda"/>
    </properties>
   </object>
   <object id="619" name="Create Twig" type="event" x="416" y="240" width="16" height="16">
@@ -456,7 +449,7 @@
    <properties>
     <property name="act2" value="translated_dialog spyder_route3_twig3"/>
     <property name="behav1" value="talk spyder_route3_twig"/>
-    <property name="cond1" value="is variable_set route3twig:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_route3_twig"/>
    </properties>
   </object>
   <object id="621" name="Talk Twig" type="event" x="416" y="224" width="16" height="16">
@@ -466,9 +459,8 @@
     <property name="act3" value="add_monster foofle,11,spyder_route3_twig,5,10"/>
     <property name="act4" value="start_battle player,spyder_route3_twig"/>
     <property name="act5" value="char_talk spyder_route3_twig,post_battle_lose"/>
-    <property name="act6" value="set_variable route3twig:yes"/>
     <property name="behav1" value="talk spyder_route3_twig"/>
-    <property name="cond1" value="not variable_set route3twig:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_route3_twig"/>
    </properties>
   </object>
   <object id="622" name="Create Surat" type="event" x="128" y="272" width="16" height="16">
@@ -482,7 +474,7 @@
    <properties>
     <property name="act2" value="translated_dialog spyder_route3_surat3"/>
     <property name="behav1" value="talk spyder_route3_surat"/>
-    <property name="cond1" value="is variable_set route3surat:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_route3_surat"/>
    </properties>
   </object>
   <object id="624" name="Talk Surat" type="event" x="128" y="256" width="16" height="16">
@@ -492,9 +484,8 @@
     <property name="act3" value="add_monster foofle,12,spyder_route3_surat,5,10"/>
     <property name="act4" value="start_battle player,spyder_route3_surat"/>
     <property name="act5" value="char_talk spyder_route3_surat,post_battle_lose"/>
-    <property name="act6" value="set_variable route3surat:yes"/>
     <property name="behav1" value="talk spyder_route3_surat"/>
-    <property name="cond1" value="not variable_set route3surat:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_route3_surat"/>
    </properties>
   </object>
   <object id="625" name="Create Roxby" type="event" x="240" y="288" width="16" height="16">
@@ -507,7 +498,7 @@
    <properties>
     <property name="act2" value="translated_dialog spyder_route3_roxby3"/>
     <property name="behav1" value="talk spyder_route3_roxby"/>
-    <property name="cond1" value="is variable_set route3roxby:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_route3_roxby"/>
    </properties>
   </object>
   <object id="627" name="Talk Roxby" type="event" x="224" y="288" width="16" height="16">
@@ -517,9 +508,8 @@
     <property name="act3" value="add_monster ignibus,13,spyder_route3_roxby,5,10"/>
     <property name="act4" value="start_battle player,spyder_route3_roxby"/>
     <property name="act5" value="char_talk spyder_route3_roxby,post_battle_lose"/>
-    <property name="act6" value="set_variable route3roxby:yes"/>
     <property name="behav1" value="talk spyder_route3_roxby"/>
-    <property name="cond1" value="not variable_set route3roxby:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_route3_roxby"/>
    </properties>
   </object>
   <object id="628" name="Route Music" type="event" x="0" y="0" width="16" height="16">
@@ -566,9 +556,9 @@
     <property name="act6" value="add_monster squabbit,12,spyder_route3_weaver,5,10"/>
     <property name="act7" value="start_battle player,spyder_route3_weaver"/>
     <property name="act8" value="char_talk spyder_route3_weaver,post_battle_lose"/>
-    <property name="act9" value="set_variable route3weaver:yes"/>
-    <property name="cond1" value="not variable_set route3weaver:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_route3_weaver"/>
     <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
    </properties>
   </object>
   <object id="680" name="Talk Twig" type="event" x="384" y="240" width="32" height="16">
@@ -581,9 +571,9 @@
     <property name="act6" value="add_monster foofle,11,spyder_route3_twig,5,10"/>
     <property name="act7" value="start_battle player,spyder_route3_twig"/>
     <property name="act8" value="char_talk spyder_route3_twig,post_battle_lose"/>
-    <property name="act9" value="set_variable route3twig:yes"/>
-    <property name="cond1" value="not variable_set route3twig:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_route3_twig"/>
     <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
    </properties>
   </object>
   <object id="681" name="Talk Wanda" type="event" x="512" y="288" width="16" height="16">
@@ -602,9 +592,9 @@
     <property name="act12" value="char_talk spyder_route3_wanda,post_battle_lose"/>
     <property name="act13" value="add_item fishing_rod"/>
     <property name="act14" value="translated_dialog fishing_rod,,center,center,center"/>
-    <property name="act15" value="set_variable route3wanda:yes"/>
-    <property name="cond1" value="not variable_set route3wanda:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_route3_wanda"/>
     <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
    </properties>
   </object>
   <object id="682" name="Novak Talk" type="event" x="192" y="480" width="16" height="32">
@@ -616,9 +606,9 @@
     <property name="act5" value="add_monster elofly,13,spyder_route3_novak,5,10"/>
     <property name="act6" value="start_battle player,spyder_route3_novak"/>
     <property name="act7" value="char_talk spyder_route3_novak,post_battle_lose"/>
-    <property name="act8" value="set_variable route3novak:yes"/>
-    <property name="cond1" value="not variable_set route3novak:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_route3_novak"/>
     <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
    </properties>
   </object>
   <object id="684" name="Rookie Talk" type="event" x="16" y="48" width="16" height="16">
@@ -626,11 +616,11 @@
     <property name="act2" value="char_talk spyder_route3_qqq,pre_battle"/>
     <property name="act3" value="add_monster cardiling,16,spyder_route3_qqq,5,10"/>
     <property name="act4" value="char_talk spyder_route3_qqq,post_battle_lose"/>
-    <property name="act6" value="set_variable ambushedbyqqq:yes"/>
     <property name="act7" value="pathfind spyder_route3_qqq,0,2"/>
     <property name="act8" value="remove_npc spyder_route3_qqq"/>
-    <property name="cond1" value="not variable_set ambushedbyqqq:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_route3_qqq"/>
     <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
    </properties>
   </object>
   <object id="701" name="Create Miner 2" type="event" x="592" y="240" width="16" height="16">

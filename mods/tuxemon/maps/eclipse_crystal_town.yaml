@@ -1,4 +1,19 @@
 events:
+  Event 5:
+    actions:
+    - char_stop player
+    - lock_controls
+    - set_layer 0:0:0:255
+    - play_sound japanese_temple_bell_small
+    - translated_dialog eclipse_event5_1
+    - translated_dialog eclipse_event5_2,,top
+    - play_sound japanese_temple_bell_small
+    - set_layer
+    - set_variable eclipse_event5:yes
+    - unlock_controls
+    conditions:
+    - not variable_set eclipse_event5:yes
+    type: event
   Create Barmaid:
     actions:
     - create_npc eclipse_crystal_barmaid,26,13
@@ -58,7 +73,7 @@ events:
     type: event
     x: 37
     y: 7
-  Music:
+  Play Music:
     actions:
     - play_music music_town_theme
     conditions:
@@ -144,3 +159,16 @@ events:
     type: event
     x: 34
     y: 4
+  Create Hiker:
+    actions:
+    - create_npc eclipse_route7_pia,35,8
+    conditions:
+    - not char_exists eclipse_route7_pia
+    type: event
+  Talk Hiker:
+    actions:
+    - translated_dialog eclipse_crystal_hiker1
+    - translated_dialog eclipse_crystal_hiker2
+    behav:
+    - talk eclipse_route7_pia
+    type: event

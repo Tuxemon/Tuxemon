@@ -41,6 +41,7 @@ class WithdrawMonsterAction(EventAction):
 
     def start(self, session: Session) -> None:
         player = session.player
+
         if not player.game_variables.has(self.variable):
             logger.error(f"Game variable {self.variable} not found")
             return
@@ -50,6 +51,7 @@ class WithdrawMonsterAction(EventAction):
         if monster is None:
             logger.error("Monster not found")
             return
+
         player.monster_boxes.remove_monster(monster)
 
         character = get_npc(session, self.character)
@@ -57,5 +59,12 @@ class WithdrawMonsterAction(EventAction):
             logger.error(f"{self.character} not found")
             return
 
-        character.party.add_monster(monster, len(character.monsters))
-        logger.info(f"{character.name} withdrawn {monster.name}!")
+        if character.party.transfer_monster_to_party(monster):
+            logger.info(
+                f"{character.name} withdrew {monster.name} into party!"
+            )
+        else:
+            character.party.send_monster_to_box(monster)
+            logger.info(
+                f"{character.name}'s party was full. {monster.name} sent to box instead."
+            )

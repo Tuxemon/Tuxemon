@@ -111,9 +111,9 @@
     <property name="act05" value="add_monster exclawvate,40,spyder_hospital1_aurora,5,10"/>
     <property name="act06" value="start_battle player,spyder_hospital1_aurora"/>
     <property name="act07" value="char_talk spyder_hospital1_aurora,post_battle_lose"/>
-    <property name="act08" value="set_variable hospital1aurora:yes"/>
-    <property name="cond1" value="not variable_set hospital1aurora:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_hospital1_aurora"/>
     <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
    </properties>
   </object>
   <object id="71" name="Create Aurora" type="event" x="64" y="128" width="16" height="16">
@@ -134,9 +134,9 @@
     <property name="act08" value="add_monster galnec,30,spyder_hospital1_eleni,5,10"/>
     <property name="act09" value="start_battle player,spyder_hospital1_eleni"/>
     <property name="act10" value="char_talk spyder_hospital1_eleni,post_battle_lose"/>
-    <property name="act11" value="set_variable hospital1eleni:yes"/>
-    <property name="cond1" value="not variable_set hospital1eleni:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_hospital1_eleni"/>
     <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
    </properties>
   </object>
   <object id="73" name="Create Felu" type="event" x="0" y="304" width="16" height="16">
@@ -156,9 +156,9 @@
     <property name="act06" value="add_monster galnec,30,spyder_hospital1_felu,5,10"/>
     <property name="act07" value="start_battle player,spyder_hospital1_felu"/>
     <property name="act08" value="char_talk spyder_hospital1_felu,post_battle_lose"/>
-    <property name="act09" value="set_variable hospital1felu:yes"/>
-    <property name="cond1" value="not variable_set hospital1felu:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_hospital1_felu"/>
     <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
    </properties>
   </object>
   <object id="75" name="Create Fring" type="event" x="96" y="32" width="16" height="16">
@@ -177,9 +177,9 @@
     <property name="act06" value="add_monster selket,30,spyder_hospital1_fring,5,10"/>
     <property name="act07" value="start_battle player,spyder_hospital1_fring"/>
     <property name="act08" value="char_talk spyder_hospital1_fring,post_battle_lose"/>
-    <property name="act09" value="set_variable hospital1fring:yes"/>
-    <property name="cond1" value="not variable_set hospital1fring:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_hospital1_fring"/>
     <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
    </properties>
   </object>
   <object id="79" name="Create Walt" type="event" x="224" y="32" width="16" height="16">
@@ -198,9 +198,9 @@
     <property name="act06" value="add_monster taupypus,27,spyder_hospital1_walt,5,10"/>
     <property name="act07" value="start_battle player,spyder_hospital1_walt"/>
     <property name="act08" value="char_talk spyder_hospital1_walt,post_battle_lose"/>
-    <property name="act09" value="set_variable hospital1walt:yes"/>
-    <property name="cond1" value="not variable_set hospital1walt:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_hospital1_walt"/>
     <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
    </properties>
   </object>
   <object id="83" name="Create Liane" type="event" x="272" y="128" width="16" height="16">
@@ -219,9 +219,9 @@
     <property name="act06" value="add_monster snaki,36,spyder_hospital1_liane,5,10"/>
     <property name="act07" value="start_battle player,spyder_hospital1_liane"/>
     <property name="act08" value="char_talk spyder_hospital1_liane,post_battle_lose"/>
-    <property name="act09" value="set_variable hospital1liane:yes"/>
-    <property name="cond1" value="not variable_set hospital1liane:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_hospital1_liane"/>
     <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
    </properties>
   </object>
   <object id="85" name="Route Music" type="event" x="0" y="0" width="16" height="16">
@@ -272,9 +272,9 @@
     <property name="act06" value="add_monster selket,30,spyder_hospital1_fring,5,10"/>
     <property name="act07" value="start_battle player,spyder_hospital1_fring"/>
     <property name="act08" value="char_talk spyder_hospital1_fring,post_battle_lose"/>
-    <property name="act09" value="set_variable hospital1fring:yes"/>
-    <property name="cond1" value="not variable_set hospital1fring:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_hospital1_fring"/>
     <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
    </properties>
   </object>
   <object id="96" name="Talk Walt" type="event" x="288" y="80" width="16" height="16">
@@ -287,9 +287,9 @@
     <property name="act06" value="add_monster taupypus,27,spyder_hospital1_walt,5,10"/>
     <property name="act07" value="start_battle player,spyder_hospital1_walt"/>
     <property name="act08" value="char_talk spyder_hospital1_walt,post_battle_lose"/>
-    <property name="act09" value="set_variable hospital1walt:yes"/>
-    <property name="cond1" value="not variable_set hospital1walt:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_hospital1_walt"/>
     <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
    </properties>
   </object>
   <object id="97" name="Create Garvan" type="event" x="16" y="176" width="16" height="16">
@@ -313,7 +313,7 @@
    <properties>
     <property name="act1" value="char_talk spyder_hospital1_felu,post_battle_lose"/>
     <property name="behav1" value="talk spyder_hospital1_felu"/>
-    <property name="cond1" value="is variable_set hospital1felu:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_hospital1_felu"/>
    </properties>
   </object>
   <object id="100" name="Post Talk Fring" type="event" x="32" y="96" width="16" height="16">

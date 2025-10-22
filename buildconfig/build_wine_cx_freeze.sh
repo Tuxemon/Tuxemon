@@ -1,6 +1,6 @@
 #!/bin/bash
 # debian 10 & ubuntu focal
-PYTHON_VERSION="3.9"
+PYTHON_VERSION="3.10"
 WINE_PYTHON="wine python${PYTHON_VERSION}"
 BUILD_DIR="build/exe.win*"
 DIST_DIR="dist/windows_cx_freeze"

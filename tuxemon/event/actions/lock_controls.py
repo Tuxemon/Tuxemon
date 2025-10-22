@@ -11,9 +11,7 @@ from tuxemon.session import Session
 
 @final
 @dataclass
-class LockControlsAction(
-    EventAction,
-):
+class LockControlsAction(EventAction):
     """
     Lock player controls
 
@@ -21,7 +19,6 @@ class LockControlsAction(
         .. code-block::
 
             lock_controls
-
     """
 
     name = "lock_controls"

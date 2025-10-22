@@ -6227,9 +6227,6 @@ msgstr "雷"
 msgid "spyder_dragonscave_lucille"
 msgstr "卢 克"
 
-msgid "spyder_dragonscave_tru"
-msgstr "特鲁"
-
 msgid "spyder_flower_cady"
 msgstr "卡迪"
 

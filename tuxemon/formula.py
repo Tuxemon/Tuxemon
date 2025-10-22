@@ -85,6 +85,7 @@ class CaptureConfig:
 
 @dataclass
 class MonsterConfig:
+    starting_bond: int = 25
     bond_range: tuple[int, int] = (0, 100)
     bond_modifiers: dict[str, int] = field(default_factory=dict)
     weight_range: tuple[float, float] = (-0.1, 0.1)
@@ -95,6 +96,7 @@ class MonsterConfig:
     opposite_tastes: dict[str, list[str]] = field(default_factory=dict)
     bond_preferences: dict[str, int] = field(default_factory=dict)
     experience_multipliers: dict[str, float] = field(default_factory=dict)
+    experience_groups: dict[str, dict[str, Any]] = field(default_factory=dict)
 
 
 @dataclass

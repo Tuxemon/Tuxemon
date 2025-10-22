@@ -67,10 +67,6 @@ class TeleportFaintAction(EventAction):
 
         action = client.event_engine
 
-        if healing:
-            action.execute_action("set_monster_health")
-            action.execute_action("set_monster_status")
-
         action.execute_action(
             "transition_teleport",
             [
@@ -81,3 +77,7 @@ class TeleportFaintAction(EventAction):
                 self.rgb,
             ],
         )
+
+        if healing and session.client.get_map_name() == teleport.map_name:
+            action.execute_action("set_monster_health")
+            action.execute_action("set_monster_status")

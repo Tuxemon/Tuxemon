@@ -3,8 +3,8 @@
 ###############  NOTICE  ################
 # Tested with a debian bookworm container
 # Depends on coreutils, curl and tar
-PYPY_VERSION="pypy3.9"
-PYPY_BUILD="pypy3.9-v7.3.13-linux64"
+PYPY_VERSION="pypy3.10"
+PYPY_BUILD="pypy3.10-v7.3.14-linux64"
 PYGAME_VERSION="2.2.0"
 ROOT_FOLDER="$(dirname "$(readlink -f "$0")")/../"
 BUILD_DIR="build/pypy-linux-64bit"

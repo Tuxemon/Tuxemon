@@ -60,6 +60,7 @@ class Sprite(DirtySprite):
         self._needs_rescale: bool = False
         self._needs_update: bool = False
         self.player: bool = False
+        self.base_image: Optional[Surface] = None
 
     def update(self, time_delta: float = 0, *args: Any, **kwargs: Any) -> None:
         """
@@ -228,6 +229,16 @@ class Sprite(DirtySprite):
 
         self._width, self._height = self.rect.size
         self._image = image
+
+    def reset_to_base_image(self) -> None:
+        """
+        Resets the sprite's image to its base image.
+        """
+        if self.base_image:
+            self.image = self.base_image.copy()
+            self._needs_update = True
+        else:
+            logger.warning("base_image is not set. Cannot reset.")
 
     @property
     def width(self) -> int:

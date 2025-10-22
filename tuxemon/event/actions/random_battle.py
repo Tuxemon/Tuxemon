@@ -97,11 +97,11 @@ class RandomBattleAction(EventAction):
         monsters_to_add = random.sample(monster_filters, self.nr_txmns)
         for monster in monsters_to_add:
             level = random.randint(self.min_level, self.max_level)
-            current_monster = Monster.spawn_base(monster.slug, level)
-            current_monster.set_capture(today_ordinal())
-            current_monster.money_modifier = level
-            current_monster.experience_modifier = level
-            npc.party.add_monster(current_monster, len(npc.monsters))
+            spawn_monster = Monster.spawn_base(monster.slug, level)
+            spawn_monster.set_capture(today_ordinal())
+            spawn_monster.money_modifier = level
+            spawn_monster.set_experience_modifier(level)
+            npc.party.insert_monster_to_party(spawn_monster, len(npc.monsters))
 
         player = session.player
         if not (check_battle_legal(player) and check_battle_legal(npc)):

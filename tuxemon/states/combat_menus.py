@@ -127,6 +127,9 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
 
         visibility_map.update(self.combat_session.menu_visibility_map)
 
+        if self.enemy.combat.forfeit:
+            visibility_map["menu_forfeit"] = True
+
         for key, method_name in menu_map.items():
             callback = getattr(self, method_name)
             visible = visibility_map.get(key, False)

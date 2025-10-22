@@ -117,9 +117,8 @@
     <property name="act2" value="add_monster allagon,35,spyder_dragonscave_tomas,5,10"/>
     <property name="act3" value="start_battle player,spyder_dragonscave_tomas"/>
     <property name="act4" value="char_talk spyder_dragonscave_tomas,post_battle_lose"/>
-    <property name="act6" value="set_variable dragonscavetomas:yes"/>
     <property name="behav1" value="talk spyder_dragonscave_tomas"/>
-    <property name="cond1" value="not variable_set dragonscavetomas:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_dragonscave_tomas"/>
    </properties>
   </object>
   <object id="63" name="Create Lessa" type="event" x="256" y="320" width="16" height="16">
@@ -134,9 +133,8 @@
     <property name="act2" value="add_monster allagon,37,spyder_dragonscave_lessa,5,10"/>
     <property name="act3" value="start_battle player,spyder_dragonscave_lessa"/>
     <property name="act4" value="char_talk spyder_dragonscave_lessa,post_battle_lose"/>
-    <property name="act6" value="set_variable dragonscavelessa:yes"/>
     <property name="behav1" value="talk spyder_dragonscave_lessa"/>
-    <property name="cond1" value="not variable_set dragonscavelessa:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_dragonscave_lessa"/>
    </properties>
   </object>
   <object id="65" name="Create Cailin" type="event" x="112" y="416" width="16" height="16">
@@ -152,9 +150,8 @@
     <property name="act2" value="add_monster dragarbor,36,spyder_dragonscave_cailin,5,10"/>
     <property name="act3" value="start_battle player,spyder_dragonscave_cailin"/>
     <property name="act4" value="char_talk spyder_dragonscave_cailin,post_battle_lose"/>
-    <property name="act6" value="set_variable dragonscavecailin:yes"/>
     <property name="behav1" value="talk spyder_dragonscave_cailin"/>
-    <property name="cond1" value="not variable_set dragonscavecailin:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_dragonscave_cailin"/>
    </properties>
   </object>
   <object id="67" name="Create Griffin" type="event" x="112" y="608" width="16" height="16">
@@ -170,9 +167,8 @@
     <property name="act2" value="add_monster bigfin,35,spyder_dragonscave_griffin,5,10"/>
     <property name="act3" value="start_battle player,spyder_dragonscave_griffin"/>
     <property name="act4" value="char_talk spyder_dragonscave_griffin,post_battle_lose"/>
-    <property name="act6" value="set_variable dragonscavegriffin:yes"/>
     <property name="behav1" value="talk spyder_dragonscave_griffin"/>
-    <property name="cond1" value="not variable_set dragonscavegriffin:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_dragonscave_griffin"/>
    </properties>
   </object>
   <object id="69" name="Create Daenny" type="event" x="192" y="496" width="16" height="16">
@@ -188,9 +184,8 @@
     <property name="act2" value="add_monster eaglace,37,spyder_dragonscave_daenny,5,10"/>
     <property name="act3" value="start_battle player,spyder_dragonscave_daenny"/>
     <property name="act4" value="char_talk spyder_dragonscave_daenny,post_battle_lose"/>
-    <property name="act6" value="set_variable dragonscavedaenny:yes"/>
     <property name="behav1" value="talk spyder_dragonscave_daenny"/>
-    <property name="cond1" value="not variable_set dragonscavedaenny:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_dragonscave_daenny"/>
    </properties>
   </object>
   <object id="71" name="Create Benden" type="event" x="64" y="240" width="16" height="16">
@@ -208,9 +203,8 @@
     <property name="act5" value="char_talk spyder_dragonscave_benden,post_battle_lose"/>
     <property name="act6" value="set_monster_health"/>
     <property name="act7" value="set_monster_status"/>
-    <property name="act8" value="set_variable dragonscavebenden:yes"/>
     <property name="behav1" value="talk spyder_dragonscave_benden"/>
-    <property name="cond1" value="not variable_set dragonscavebenden:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_dragonscave_benden"/>
    </properties>
   </object>
   <object id="74" name="Get Drokoro" type="event" x="208" y="48" width="64" height="32">
@@ -247,22 +241,22 @@
    <properties>
     <property name="act1" value="create_npc spyder_dragonscave_ray,18,9"/>
     <property name="cond1" value="not char_exists spyder_dragonscave_ray"/>
-    <property name="cond2" value="not variable_set dragonscaveray:yes"/>
+    <property name="cond2" value="not battle_outcome player,won,spyder_dragonscave_ray"/>
    </properties>
   </object>
   <object id="80" name="Create Lucille" type="event" x="64" y="64" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_dragonscave_lucille,4,4"/>
     <property name="cond1" value="not char_exists spyder_dragonscave_lucille"/>
-    <property name="cond2" value="not variable_set dragonscaveray:lucille"/>
+    <property name="cond2" value="not battle_outcome player,won,spyder_dragonscave_lucille"/>
    </properties>
   </object>
   <object id="82" name="Create Tru" type="event" x="160" y="96" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_dragonscave_tru,10,6"/>
-    <property name="act2" value="char_face spyder_dragonscave_tru,up"/>
-    <property name="cond1" value="not char_exists spyder_dragonscave_tru"/>
-    <property name="cond2" value="not variable_set dragonscavetru:yes"/>
+    <property name="act1" value="create_npc spyder_nimrod_tru,10,6"/>
+    <property name="act2" value="char_face spyder_nimrod_tru,up"/>
+    <property name="cond1" value="not char_exists spyder_nimrod_tru"/>
+    <property name="cond2" value="not battle_outcome_count player,won,spyder_nimrod_tru,2"/>
    </properties>
   </object>
   <object id="88" name="Benden Defeated" type="event" x="112" y="224" width="16" height="16">
@@ -273,7 +267,7 @@
     <property name="act4" value="char_face spyder_dragonscave_benden,right"/>
     <property name="act5" value="translated_dialog spyder_dragonscave_benden4"/>
     <property name="act6" value="set_variable dragonscavebenden2:yes"/>
-    <property name="cond1" value="is variable_set dragonscavebenden:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_dragonscave_benden"/>
     <property name="cond2" value="not variable_set dragonscavebenden2:yes"/>
    </properties>
   </object>
@@ -301,9 +295,9 @@
     <property name="act5" value="add_monster allagon,35,spyder_dragonscave_tomas,5,10"/>
     <property name="act6" value="start_battle player,spyder_dragonscave_tomas"/>
     <property name="act7" value="char_talk spyder_dragonscave_tomas,post_battle_lose"/>
-    <property name="act8" value="set_variable dragonscavetomas:yes"/>
-    <property name="cond1" value="not variable_set dragonscavetomas:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_dragonscave_tomas"/>
     <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
    </properties>
   </object>
   <object id="93" name="Talk Daenny" type="event" x="192" y="432" width="16" height="64">
@@ -315,9 +309,9 @@
     <property name="act5" value="add_monster eaglace,37,spyder_dragonscave_daenny,5,10"/>
     <property name="act6" value="start_battle player,spyder_dragonscave_daenny"/>
     <property name="act7" value="char_talk spyder_dragonscave_daenny,post_battle_lose"/>
-    <property name="act8" value="set_variable dragonscavedaenny:yes"/>
-    <property name="cond1" value="not variable_set dragonscavedaenny:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_dragonscave_daenny"/>
     <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
    </properties>
   </object>
   <object id="94" name="Talk Cailin" type="event" x="128" y="416" width="32" height="16">
@@ -329,9 +323,9 @@
     <property name="act5" value="add_monster dragarbor,36,spyder_dragonscave_cailin,5,10"/>
     <property name="act6" value="start_battle player,spyder_dragonscave_cailin"/>
     <property name="act7" value="char_talk spyder_dragonscave_cailin,post_battle_lose"/>
-    <property name="act8" value="set_variable dragonscavecailin:yes"/>
-    <property name="cond1" value="not variable_set dragonscavecailin:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_dragonscave_cailin"/>
     <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
    </properties>
   </object>
   <object id="95" name="Talk Lessa" type="event" x="256" y="336" width="16" height="48">
@@ -343,9 +337,9 @@
     <property name="act5" value="add_monster allagon,37,spyder_dragonscave_lessa,5,10"/>
     <property name="act6" value="start_battle player,spyder_dragonscave_lessa"/>
     <property name="act7" value="char_talk spyder_dragonscave_lessa,post_battle_lose"/>
-    <property name="act8" value="set_variable dragonscavelessa:yes"/>
-    <property name="cond1" value="not variable_set dragonscavelessa:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_dragonscave_lessa"/>
     <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
    </properties>
   </object>
   <object id="96" name="Talk Griffin" type="event" x="112" y="528" width="16" height="80">
@@ -357,9 +351,9 @@
     <property name="act5" value="add_monster bigfin,35,spyder_dragonscave_griffin,5,10"/>
     <property name="act6" value="start_battle player,spyder_dragonscave_griffin"/>
     <property name="act7" value="char_talk spyder_dragonscave_griffin,post_battle_lose"/>
-    <property name="act8" value="set_variable dragonscavegriffin:yes"/>
-    <property name="cond1" value="not variable_set dragonscavegriffin:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_dragonscave_griffin"/>
     <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
    </properties>
   </object>
   <object id="97" name="Talk Benden" type="event" x="80" y="240" width="16" height="16">
@@ -374,9 +368,9 @@
     <property name="act08" value="char_talk spyder_dragonscave_benden,post_battle_lose"/>
     <property name="act09" value="set_monster_health"/>
     <property name="act10" value="set_monster_status"/>
-    <property name="act11" value="set_variable dragonscavebenden:yes"/>
-    <property name="cond1" value="not variable_set dragonscavebenden:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_dragonscave_benden"/>
     <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
    </properties>
   </object>
   <object id="98" name="Talk Ray" type="event" x="272" y="176" width="32" height="16">
@@ -388,25 +382,26 @@
     <property name="act5" value="add_monster ghosteeth,40,spyder_dragonscave_ray,5,10"/>
     <property name="act6" value="start_battle player,spyder_dragonscave_ray"/>
     <property name="act7" value="char_talk spyder_dragonscave_ray,post_battle_lose"/>
-    <property name="act8" value="set_variable dragonscaveray:yes"/>
-    <property name="cond1" value="not variable_set dragonscaveray:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_dragonscave_ray"/>
     <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
    </properties>
   </object>
   <object id="99" name="Talk Tru" type="event" x="160" y="64" width="16" height="16">
    <properties>
     <property name="act01" value="lock_controls"/>
-    <property name="act02" value="pathfind_to_char player,spyder_dragonscave_tru"/>
-    <property name="act03" value="char_talk spyder_dragonscave_tru,pre_battle"/>
+    <property name="act02" value="pathfind_to_char player,spyder_nimrod_tru"/>
+    <property name="act03" value="translated_dialog spyder_dragonscave_tru1"/>
     <property name="act04" value="unlock_controls"/>
-    <property name="act05" value="add_monster embazook,40,spyder_dragonscave_tru,5,10"/>
-    <property name="act06" value="add_monster arthrobolt,40,spyder_dragonscave_tru,5,10"/>
-    <property name="act07" value="add_monster hydrone,40,spyder_dragonscave_tru,5,10"/>
-    <property name="act08" value="start_battle player,spyder_dragonscave_tru"/>
-    <property name="act09" value="char_talk spyder_dragonscave_tru,post_battle_lose"/>
-    <property name="act10" value="set_variable dragonscavetru:yes"/>
-    <property name="cond1" value="not variable_set dragonscavetru:yes"/>
-    <property name="cond2" value="is char_at player"/>
+    <property name="act05" value="add_monster embazook,40,spyder_nimrod_tru,5,10"/>
+    <property name="act06" value="add_monster arthrobolt,40,spyder_nimrod_tru,5,10"/>
+    <property name="act07" value="add_monster hydrone,40,spyder_nimrod_tru,5,10"/>
+    <property name="act08" value="start_battle player,spyder_nimrod_tru"/>
+    <property name="act09" value="translated_dialog spyder_dragonscave_tru2"/>
+    <property name="cond1" value="is battle_outcome_count player,won,spyder_nimrod_tru,1"/>
+    <property name="cond2" value="not battle_outcome_count player,won,spyder_nimrod_tru,2"/>
+    <property name="cond3" value="is char_at player"/>
+    <property name="cond4" value="not char_defeated player"/>
    </properties>
   </object>
   <object id="100" name="Talk Lucille" type="event" x="64" y="112" width="32" height="16">
@@ -418,9 +413,9 @@
     <property name="act5" value="add_monster coleorus,40,spyder_dragonscave_lucille,5,10"/>
     <property name="act6" value="start_battle player,spyder_dragonscave_lucille"/>
     <property name="act7" value="char_talk spyder_dragonscave_lucille,post_battle_lose"/>
-    <property name="act8" value="set_variable dragonscavelucille:yes"/>
-    <property name="cond1" value="not variable_set dragonscavelucille:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_dragonscave_lucille"/>
     <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
    </properties>
   </object>
   <object id="101" name="Talk Mal" type="event" x="176" y="144" width="16" height="32">
@@ -453,7 +448,7 @@
   <object id="89" name="Encounters" type="event" x="16" y="208" width="16" height="16">
    <properties>
     <property name="act1" value="random_encounter spyder_dragonscave,0.6"/>
-    <property name="cond1" value="not variable_set dragonscavebenden:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_dragonscave_benden"/>
     <property name="cond2" value="is check_char_parameter player,moving,1"/>
    </properties>
   </object>

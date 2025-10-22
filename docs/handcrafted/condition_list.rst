@@ -1,3 +1,4 @@
+.. autoscriptinfoclass:: tuxemon.event.conditions.battle_outcome.BattleOutcomeCountCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.battle_outcome.BattleOutcomeCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.bill_exists.BillExistsCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.bill_is.BillIsCondition

@@ -68,7 +68,7 @@ class WildEncounterAction(EventAction):
             self.monster_slug, self.monster_level
         )
         if self.exp is not None:
-            current_monster.experience_modifier = self.exp
+            current_monster.set_experience_modifier(self.exp)
         if self.money is not None:
             current_monster.money_modifier = self.money
         if self.held_item is not None:
@@ -87,7 +87,7 @@ class WildEncounterAction(EventAction):
             logger.error(f"{self.name} not found")
             return
 
-        npc.party.add_monster(current_monster, len(npc.monsters))
+        npc.party.insert_monster_to_party(current_monster, len(npc.monsters))
         # NOTE: random battles are implemented as trainer battles.
         #       this is a hack. remove this once trainer/random battlers are fixed
 

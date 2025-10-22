@@ -180,7 +180,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_cotton_cafegoth"/>
     <property name="behav1" value="talk spyder_cottoncafe_cayden"/>
-    <property name="cond1" value="is variable_set foughtincafe:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_cottoncafe_cayden"/>
    </properties>
   </object>
   <object id="30" name="Hillary Talk" type="event" x="176" y="112" width="16" height="16">
@@ -234,9 +234,8 @@
     <property name="act11" value="add_monster capiti,4,spyder_cottoncafe_cayden,17,10"/>
     <property name="act12" value="add_monster tweesher,4,spyder_cottoncafe_cayden,17,10"/>
     <property name="act20" value="start_battle player,spyder_cottoncafe_cayden"/>
-    <property name="act22" value="set_variable foughtincafe:yes"/>
     <property name="act23" value="translated_dialog spyder_lostfight"/>
-    <property name="cond1" value="not variable_set foughtincafe:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_cottoncafe_cayden"/>
     <property name="cond2" value="is variable_set cafebattle:yes"/>
    </properties>
   </object>
@@ -257,7 +256,7 @@
     <property name="act1" value="translated_dialog spyder_request_fight"/>
     <property name="act2" value="translated_dialog_choice yes:no,cafebattle"/>
     <property name="behav1" value="talk spyder_cottoncafe_cayden"/>
-    <property name="cond1" value="not variable_set foughtincafe:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_cottoncafe_cayden"/>
    </properties>
   </object>
   <object id="44" name="Create Barmaid - accessible" type="event" x="16" y="64" width="16" height="16">

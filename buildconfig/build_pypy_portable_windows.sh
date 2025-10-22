@@ -3,8 +3,8 @@
 ###############  NOTICE  ################
 # Tested with a debian bookworm container
 # Depends on coreutils, curl, p7zip-full and wine
-PYPY_VERSION="pypy3.9"
-PYPY_BUILD="pypy3.9-v7.3.13-win64"
+PYPY_VERSION="pypy3.10"
+PYPY_BUILD="pypy3.10-v7.3.14-win64"
 PYGAME_VERSION="2.2.0"
 ROOT_FOLDER="$(dirname "$(readlink -f "$0")")/../"
 BUILD_DIR="build/pypy-win-64bit"

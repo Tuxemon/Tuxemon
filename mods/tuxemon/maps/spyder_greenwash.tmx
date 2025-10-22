@@ -75,11 +75,10 @@
     <property name="act21" value="char_talk spyder_greenwash_looten,post_battle_lose"/>
     <property name="act22" value="translated_dialog spyder_greenwash_looten3"/>
     <property name="act23" value="translated_dialog spyder_greenwash_looten4"/>
-    <property name="act40" value="set_variable gotaardant:yes"/>
     <property name="act50" value="add_item aardant"/>
     <property name="act51" value="translated_dialog aardant,,center,center,center"/>
     <property name="behav1" value="talk spyder_greenwash_looten"/>
-    <property name="cond1" value="not variable_set gotaardant:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_greenwash_looten"/>
    </properties>
   </object>
   <object id="46" name="Teleport to Greenhouse" type="event" x="240" y="304" width="16" height="16">
@@ -104,7 +103,7 @@
     <property name="act2" value="char_face player,down"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_facing player,down"/>
-    <property name="cond3" value="is variable_set gotaardant:yes"/>
+    <property name="cond3" value="not battle_outcome player,won,spyder_greenwash_looten"/>
    </properties>
   </object>
   <object id="68" name="Teleport to Level 2" type="event" x="16" y="32" width="16" height="32">
@@ -140,9 +139,9 @@
     <property name="act07" value="add_monster tikorch,22,spyder_greenwash_chip,5,10"/>
     <property name="act08" value="start_battle player,spyder_greenwash_chip"/>
     <property name="act09" value="char_talk spyder_greenwash_chip,post_battle_lose"/>
-    <property name="act10" value="set_variable greenwashchip:yes"/>
-    <property name="cond1" value="not variable_set greenwashchip:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_greenwash_chip"/>
     <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
    </properties>
   </object>
   <object id="77" name="Talk Clarence" type="event" x="192" y="112" width="48" height="16">
@@ -155,9 +154,9 @@
     <property name="act6" value="add_monster cochini,23,spyder_greenwash_clarence,5,10"/>
     <property name="act7" value="start_battle player,spyder_greenwash_clarence"/>
     <property name="act8" value="char_talk spyder_greenwash_clarence,post_battle_lose"/>
-    <property name="act9" value="set_variable greenwashclarence:yes"/>
-    <property name="cond1" value="not variable_set greenwashclarence:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_greenwash_clarence"/>
     <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
    </properties>
   </object>
   <object id="78" name="Move Right" type="event" x="144" y="464" width="16" height="16">
@@ -184,9 +183,9 @@
     <property name="act07" value="char_talk spyder_greenwash_broer,post_battle_lose"/>
     <property name="act08" value="add_item potion"/>
     <property name="act09" value="translated_dialog potion,,center,center,center"/>
-    <property name="act10" value="set_variable greenwashbroer:yes"/>
-    <property name="cond1" value="not variable_set greenwashbroer:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_greenwash_broer"/>
     <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
    </properties>
   </object>
   <object id="82" name="Create Lewie" type="event" x="160" y="176" width="16" height="16">
@@ -205,9 +204,9 @@
     <property name="act5" value="add_monster agnite,26,spyder_greenwash_lewie,5,10"/>
     <property name="act6" value="start_battle player,spyder_greenwash_lewie"/>
     <property name="act7" value="char_talk spyder_greenwash_lewie,post_battle_lose"/>
-    <property name="act8" value="set_variable greenwashlewie:yes"/>
-    <property name="cond1" value="not variable_set greenwashlewie:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_greenwash_lewie"/>
     <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
    </properties>
   </object>
   <object id="84" name="Create Morehouse" type="event" x="112" y="320" width="16" height="16">
@@ -227,9 +226,9 @@
     <property name="act6" value="add_monster eyesore,20,spyder_greenwash_morehouse,5,10"/>
     <property name="act7" value="start_battle player,spyder_greenwash_morehouse"/>
     <property name="act8" value="char_talk spyder_greenwash_morehouse,post_battle_lose"/>
-    <property name="act9" value="set_variable greenwashmorehouse:yes"/>
-    <property name="cond1" value="not variable_set greenwashmorehouse:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_greenwash_morehouse"/>
     <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
    </properties>
   </object>
   <object id="89" name="Post Talk Broer" type="event" x="160" y="96" width="16" height="16">

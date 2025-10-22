@@ -120,7 +120,7 @@ class SpawnMonsterAction(EventAction):
         if character is None:
             logger.error(f"{self.character} not found")
             return
-        character.party.add_monster(child, len(character.monsters))
+        character.party.insert_monster_to_party(child, len(character.monsters))
 
         # Display a message to the player
         msg = T.format("got_new_tuxemon", {"monster_name": child.name})

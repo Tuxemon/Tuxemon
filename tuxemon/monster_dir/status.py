@@ -136,7 +136,7 @@ class MonsterStatusHandler:
             )
             if new_status.on_negative_status == ResponseStatus.replaced:
                 self.add_status(new_status)
-            elif new_status.on_positive_status == ResponseStatus.removed:
+            elif new_status.on_negative_status == ResponseStatus.removed:
                 self.remove_status()
         else:
             logger.debug(
@@ -179,6 +179,18 @@ class MonsterStatusHandler:
 
     def remove_bonded_statuses(self) -> None:
         self.status = [sta for sta in self.get_statuses() if not sta.bond]
+
+    def check_and_clear_use_expiry(
+        self, session: Session, max_uses: int = 1
+    ) -> bool:
+        """
+        Checks if a status is expired by its use counter. If so, clears it.
+        """
+        current_status = self.get_current_status()
+        if current_status and current_status.is_use_expired(max_uses=max_uses):
+            self.clear_status(session)
+            return True
+        return False
 
     def encode_status(self) -> Sequence[Mapping[str, Any]]:
         return encode_status(self.status)

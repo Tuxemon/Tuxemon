@@ -4,7 +4,7 @@ This folder contains optional utilities for manipulating game files and configur
 
 ### General Guidelines
 - **Documentation:** All scripts should include a description and usage instructions at the top of the file.
-- **Language:** New scripts must be written in Python **3.9+**.
+- **Language:** New scripts must be written in Python **3.10+**.
 - **Dependencies:** Do **not** add script-specific dependencies to `requirements.txt`.
 - **Testing:** Unit tests are **not required** for scripts in this folder.
 - **External Runtimes:** Scripts should not depend on other languages or runtimes. If they do, they must remain isolated and not alter the project itself.

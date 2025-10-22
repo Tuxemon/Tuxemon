@@ -1,23 +1,185 @@
 events:
+  Difficult:
+    actions:
+    - set_layer 0:0:0:255
+    - translated_dialog choose_difficulty,,,center
+    - translated_dialog_choice level_beginner:level_easy:level_normal:level_hard:level_expert,eclipse_difficulty
+    conditions:
+    - not variable_set eclipse_difficulty
+    - not variable_set eclipse_event1:yes
+    type: event
+  Event 1:
+    actions:
+    - char_stop player
+    - lock_controls
+    - set_layer 0:0:0:255
+    - play_sound japanese_temple_bell_small
+    - translated_dialog eclipse_beginning1
+    - translated_dialog eclipse_beginning2,,top
+    - translated_dialog eclipse_beginning3
+    - translated_dialog eclipse_beginning4,,top
+    - translated_dialog eclipse_beginning5
+    - translated_dialog eclipse_beginning6,,top
+    - translated_dialog eclipse_beginning7,,top
+    - translated_dialog eclipse_beginning8
+    - translated_dialog eclipse_beginning9,,top
+    - translated_dialog eclipse_beginning10
+    - play_sound japanese_temple_bell_small
+    - set_layer
+    - set_variable eclipse_event1:yes
+    - unlock_controls
+    conditions:
+    - not variable_set eclipse_event1:yes
+    - is variable_set eclipse_difficulty
+    type: event
+  Event 2:
+    actions:
+    - char_stop player
+    - lock_controls
+    - set_layer 0:0:0:255
+    - play_sound japanese_temple_bell_small
+    - translated_dialog eclipse_event2_1,,top
+    - translated_dialog eclipse_event2_2,,top
+    - translated_dialog eclipse_event2_3,,top
+    - play_sound japanese_temple_bell_small
+    - set_layer
+    - set_variable eclipse_event2:yes
+    - unlock_controls
+    conditions:
+    - not variable_set eclipse_event2:yes
+    - is char_at player
+    x: 34
+    y: 32
+    type: event
+  Event 3:
+    actions:
+    - char_stop player
+    - lock_controls
+    - set_layer 0:0:0:255
+    - play_sound japanese_temple_bell_small
+    - translated_dialog eclipse_event3_1,,top
+    - translated_dialog_choice yes:no,eclipse_event3_question
+    conditions:
+    - not variable_set eclipse_event3_question
+    - is char_at player
+    x: 5
+    y: 23
+    type: event
+  Event 3 YES:
+    actions:
+    - translated_dialog eclipse_event3_2,,top
+    - play_sound japanese_temple_bell_small
+    - set_layer
+    - set_variable eclipse_event3:yes
+    - unlock_controls
+    conditions:
+    - not variable_set eclipse_event3:yes
+    - is variable_set eclipse_event3_question:yes
+    type: event
+  Event 3 NO:
+    actions:
+    - translated_dialog eclipse_event3_3,,top
+    - play_sound japanese_temple_bell_small
+    - set_layer
+    - set_variable eclipse_event3:yes
+    - unlock_controls
+    conditions:
+    - not variable_set eclipse_event3:yes
+    - is variable_set eclipse_event3_question:no
+    type: event
+  Event 4:
+    actions:
+    - char_stop player
+    - lock_controls
+    - set_layer 0:0:0:255
+    - play_sound japanese_temple_bell_small
+    - translated_dialog eclipse_event4_1,,top
+    - translated_dialog_choice yes:no,eclipse_event4_question
+    conditions:
+    - not variable_set eclipse_event4:yes
+    - not variable_set eclipse_event4_question
+    - is char_at player
+    x: 14
+    y: 28
+    type: event
+  Event 4 YES:
+    actions:
+    - translated_dialog eclipse_event4_2,,top
+    - play_sound japanese_temple_bell_small
+    - set_layer
+    - set_variable eclipse_event4:yes
+    - unlock_controls
+    conditions:
+    - not variable_set eclipse_event4:yes
+    - is variable_set eclipse_event4_question:yes
+    type: event
+  Event 4 NO:
+    actions:
+    - translated_dialog eclipse_event4_3,,top
+    - play_sound japanese_temple_bell_small
+    - set_layer
+    - set_variable eclipse_event4:yes
+    - unlock_controls
+    conditions:
+    - not variable_set eclipse_event4:yes
+    - is variable_set eclipse_event4_question:no
+    type: event
+  Level Beginner:
+    actions:
+    - add_monster apeoro,20
+    - add_item tuxeball_noble,2
+    - set_variable eclipse_first:first_mon
+    conditions:
+    - is variable_set eclipse_difficulty:level_beginner
+    - not variable_set eclipse_first:first_mon
+    type: event
+  Level Easy:
+    actions:
+    - add_monster apeoro,18
+    - add_item tuxeball_noble,4
+    - set_variable eclipse_first:first_mon
+    conditions:
+    - is variable_set eclipse_difficulty:level_easy
+    - not variable_set eclipse_first:first_mon
+    type: event
+  Level Normal:
+    actions:
+    - add_monster tetrchimp,15
+    - add_item tuxeball_noble,6
+    - set_variable eclipse_first:first_mon
+    conditions:
+    - is variable_set eclipse_difficulty:level_normal
+    - not variable_set eclipse_first:first_mon
+    type: event
+  Level Hard:
+    actions:
+    - add_monster tetrchimp,12
+    - add_item tuxeball_noble,8
+    - set_variable eclipse_first:first_mon
+    conditions:
+    - is variable_set eclipse_difficulty:level_hard
+    - not variable_set eclipse_first:first_mon
+    type: event
+  Level Expert:
+    actions:
+    - add_monster tetrchimp,10
+    - add_item tuxeball_noble,10
+    - set_variable eclipse_first:first_mon
+    conditions:
+    - is variable_set eclipse_difficulty:level_expert
+    - not variable_set eclipse_first:first_mon
+    type: event
   Create Arnaut right:
     actions:
     - create_npc eclipse_route7_arnaut,2,19
     conditions:
     - not char_exists eclipse_route7_arnaut
-    height: 1
-    width: 1
-    x: 2
-    y: 19
     type: event
   Create Beachgoer:
     actions:
     - create_npc eclipse_route7_sylvester,34,13
     conditions:
     - not char_exists eclipse_route7_sylvester
-    height: 1
-    width: 1
-    x: 34
-    y: 13
     type: event
   Create Conrad right:
     actions:
@@ -25,20 +187,12 @@ events:
     - char_face eclipse_route7_conrad,right
     conditions:
     - not char_exists eclipse_route7_conrad
-    height: 1
-    width: 1
-    x: 26
-    y: 4
     type: event
   Create Hugh:
     actions:
     - create_npc eclipse_route7_hugh,2,2
     conditions:
     - not char_exists eclipse_route7_hugh
-    height: 1
-    width: 1
-    x: 2
-    y: 2
     type: event
   Create Jacopo left:
     actions:
@@ -46,30 +200,18 @@ events:
     - char_face eclipse_route7_jacopo,left
     conditions:
     - not char_exists eclipse_route7_jacopo
-    height: 1
-    width: 1
-    x: 28
-    y: 13
     type: event
   Create Manfred:
     actions:
     - create_npc eclipse_route7_manfred,34,1
     conditions:
     - not char_exists eclipse_route7_manfred
-    height: 1
-    width: 1
-    x: 34
-    y: 1
     type: event
   Create Maniac:
     actions:
     - create_npc eclipse_route7_fritz,31,4
     conditions:
     - not char_exists eclipse_route7_fritz
-    height: 1
-    width: 1
-    x: 31
-    y: 4
     type: event
   Create Nino left:
     actions:
@@ -77,30 +219,18 @@ events:
     - char_face eclipse_route7_nino,left
     conditions:
     - not char_exists eclipse_route7_nino
-    height: 1
-    width: 1
-    x: 16
-    y: 25
     type: event
   Create Nurse:
     actions:
     - create_npc eclipse_route7_nurse,3,36
     conditions:
     - not char_exists eclipse_route7_nurse
-    height: 1
-    width: 1
-    x: 3
-    y: 36
     type: event
   Create Penitent:
     actions:
     - create_npc eclipse_route7_penitent,11,6
     conditions:
     - not char_exists eclipse_route7_penitent
-    height: 1
-    width: 1
-    x: 11
-    y: 6
     type: event
   Create Pia left:
     actions:
@@ -108,20 +238,12 @@ events:
     - char_face eclipse_route7_pia,left
     conditions:
     - not char_exists eclipse_route7_pia
-    height: 1
-    width: 1
-    x: 20
-    y: 14
     type: event
   Create Scientist:
     actions:
     - create_npc eclipse_route7_arnold,1,36
     conditions:
     - not char_exists eclipse_route7_arnold
-    height: 1
-    width: 1
-    x: 1
-    y: 36
     type: event
   Create Sordello right:
     actions:
@@ -129,10 +251,6 @@ events:
     - char_face eclipse_route7_sordello,right
     conditions:
     - not char_exists eclipse_route7_sordello
-    height: 1
-    width: 1
-    x: 23
-    y: 28
     type: event
   Create Statius left:
     actions:
@@ -140,10 +258,6 @@ events:
     - char_face eclipse_route7_statius,left
     conditions:
     - not char_exists eclipse_route7_statius
-    height: 1
-    width: 1
-    x: 37
-    y: 30
     type: event
   Encounters:
     actions:
@@ -163,8 +277,6 @@ events:
     conditions:
     - not variable_set stage_of_day:night
     - not variable_set environment:cliff
-    height: 1
-    width: 1
     x: 1
     y: 0
     type: event
@@ -174,140 +286,94 @@ events:
     conditions:
     - is variable_set stage_of_day:night
     - not variable_set environment:night_cliff
-    height: 1
-    width: 1
     x: 2
     y: 0
     type: event
   Play Music:
     actions:
-    - play_music music_chibi_ninja
+    - play_music music_omnichannel
     conditions:
-    - not music_playing music_chibi_ninja
-    height: 1
-    width: 1
-    x: 0
-    y: 0
+    - not music_playing music_omnichannel
     type: event
   Post Talk Arnaut:
     actions:
-    - translated_dialog eclipse_route7_arnaut2
+    - char_talk spyder_hospital1_fring,post_battle_lose
     behav:
     - talk eclipse_route7_arnaut
     conditions:
-    - is variable_set route7arnaut:yes
-    height: 1
-    width: 1
-    x: 2
-    y: 20
+    - is battle_outcome player,won,eclipse_route7_arnaut
     type: event
   Post Talk Conrad:
     actions:
-    - translated_dialog eclipse_route7_conrad2
+    - char_talk eclipse_route7_conrad,post_battle_lose
     behav:
     - talk eclipse_route7_conrad
     conditions:
-    - is variable_set route7conrad:yes
-    height: 1
-    width: 1
-    x: 26
-    y: 3
+    - is battle_outcome player,won,eclipse_route7_conrad
     type: event
   Post Talk Hugh:
     actions:
-    - translated_dialog eclipse_route7_hugh2
+    - char_talk eclipse_route7_hugh,post_battle_lose
     behav:
     - talk eclipse_route7_hugh
     conditions:
-    - is variable_set route7hugh:yes
-    height: 1
-    width: 1
-    x: 6
-    y: 5
+    - is battle_outcome player,won,eclipse_route7_hugh
     type: event
   Post Talk Jacopo:
     actions:
-    - translated_dialog eclipse_route7_jacopo2
+    - char_talk eclipse_route7_jacopo,post_battle_lose
     behav:
     - talk eclipse_route7_jacopo
     conditions:
-    - is variable_set route7jacopo:yes
-    height: 1
-    width: 1
-    x: 27
-    y: 13
+    - is battle_outcome player,won,eclipse_route7_jacopo
     type: event
   Post Talk Manfred:
     actions:
-    - translated_dialog eclipse_route7_manfred2
+    - char_talk eclipse_route7_manfred,post_battle_lose
     behav:
     - talk eclipse_route7_manfred
     conditions:
-    - is variable_set route7manfred:yes
-    height: 1
-    width: 1
-    x: 36
-    y: 5
+    - is battle_outcome player,won,eclipse_route7_manfred
     type: event
   Post Talk Nino:
     actions:
-    - translated_dialog eclipse_route7_nino2
+    - char_talk eclipse_route7_nino,post_battle_lose
     behav:
     - talk eclipse_route7_nino
     conditions:
-    - is variable_set route7nino:yes
-    height: 1
-    width: 1
-    x: 16
-    y: 26
+    - is battle_outcome player,won,eclipse_route7_nino
     type: event
   Post Talk Penitent:
     actions:
-    - translated_dialog eclipse_route7_penitent2
+    - char_talk eclipse_route7_penitent,post_battle_lose
     behav:
     - talk eclipse_route7_penitent
     conditions:
-    - is variable_set route7penitent:yes
-    height: 1
-    width: 1
-    x: 7
-    y: 5
+    - is battle_outcome player,won,eclipse_route7_penitent
     type: event
   Post Talk Pia:
     actions:
-    - translated_dialog eclipse_route7_pia2
+    - char_talk eclipse_route7_pia,post_battle_lose
     behav:
     - talk eclipse_route7_pia
     conditions:
-    - is variable_set route7pia:yes
-    height: 1
-    width: 1
-    x: 18
-    y: 14
+    - is battle_outcome player,won,eclipse_route7_pia
     type: event
   Post Talk Sordello:
     actions:
-    - translated_dialog eclipse_route7_sordello2
+    - char_talk eclipse_route7_sordello,post_battle_lose
     behav:
     - talk eclipse_route7_sordello
     conditions:
-    - is variable_set route7sordello:yes
-    height: 1
-    width: 1
-    x: 24
-    y: 29
+    - is battle_outcome player,won,eclipse_route7_sordello
     type: event
   Post Talk Statius:
     actions:
-    - translated_dialog eclipse_route7_statius2
+    - char_talk eclipse_route7_sordello,post_battle_lose
     behav:
     - talk eclipse_route7_statius
     conditions:
-    - is variable_set route7statius:yes
-    height: 1
-    width: 1
-    x: 35
-    y: 31
+    - is battle_outcome player,won,eclipse_route7_statius
     type: event
   Sign:
     actions:
@@ -315,8 +381,6 @@ events:
     conditions:
     - is char_facing_tile player
     - is button_pressed K_RETURN
-    height: 1
-    width: 1
     x: 33
     y: 1
     type: event
@@ -324,19 +388,17 @@ events:
     actions:
     - lock_controls
     - pathfind_to_char player,eclipse_route7_arnaut
-    - translated_dialog eclipse_route7_arnaut1
+    - char_talk eclipse_route7_arnaut,pre_battle
     - unlock_controls
     - add_monster fluttaflap,20,eclipse_route7_arnaut,5,10
     - add_monster metesaur,10,eclipse_route7_arnaut,5,10
     - add_monster heronquak,10,eclipse_route7_arnaut,5,10
     - start_battle player,eclipse_route7_arnaut
-    - translated_dialog eclipse_route7_arnaut2
-    - set_variable route7arnaut:yes
+    - char_talk eclipse_route7_arnaut,post_battle_lose
     conditions:
-    - not variable_set route7arnaut:yes
+    - not battle_outcome player,won,eclipse_route7_arnaut
     - is char_at player
-    height: 1
-    width: 1
+    - not char_defeated player
     x: 5
     y: 19
     type: event
@@ -345,26 +407,22 @@ events:
     - translated_dialog eclipse_route7_sylvester1
     behav:
     - talk eclipse_route7_sylvester
-    height: 1
-    width: 1
-    x: 34
-    y: 12
     type: event
   Talk Conrad:
     actions:
     - lock_controls
     - pathfind_to_char player,eclipse_route7_conrad
-    - translated_dialog eclipse_route7_conrad1
+    - char_talk eclipse_route7_conrad,pre_battle
     - unlock_controls
     - add_monster tux,20,eclipse_route7_conrad,5,10
     - add_monster snowrilla,20,eclipse_route7_conrad,5,10
     - add_monster chillimp,10,eclipse_route7_conrad,5,10
     - start_battle player,eclipse_route7_conrad
-    - translated_dialog eclipse_route7_conrad2
-    - set_variable route7conrad:yes
+    - char_talk eclipse_route7_conrad,post_battle_lose
     conditions:
-    - not variable_set route7conrad:yes
+    - not battle_outcome player,won,eclipse_route7_conrad
     - is char_at player
+    - not char_defeated player
     height: 2
     width: 1
     x: 23
@@ -374,18 +432,16 @@ events:
     actions:
     - lock_controls
     - pathfind_to_char player,eclipse_route7_hugh
-    - translated_dialog eclipse_route7_hugh1
+    - char_talk eclipse_route7_hugh,pre_battle
     - unlock_controls
     - add_monster qetzlrokilus,20,eclipse_route7_hugh,5,10
     - add_monster velocitile,20,eclipse_route7_hugh,5,10
     - start_battle player,eclipse_route7_hugh
-    - translated_dialog eclipse_route7_hugh2
-    - set_variable route7hugh:yes
+    - char_talk eclipse_route7_hugh,post_battle_lose
     conditions:
-    - not variable_set route7hugh:yes
+    - not battle_outcome player,won,eclipse_route7_hugh
     - is char_at player
-    height: 1
-    width: 1
+    - not char_defeated player
     x: 2
     y: 4
     type: event
@@ -393,20 +449,18 @@ events:
     actions:
     - lock_controls
     - pathfind_to_char player,eclipse_route7_jacopo
-    - translated_dialog eclipse_route7_jacopo1
+    - char_talk eclipse_route7_jacopo,pre_battle
     - unlock_controls
     - add_monster shelagu,10,eclipse_route7_jacopo,5,10
     - add_monster vivisource,10,eclipse_route7_jacopo,5,10
     - add_monster statursus,10,eclipse_route7_jacopo,5,10
     - add_monster statursus,15,eclipse_route7_jacopo,5,10
     - start_battle player,eclipse_route7_jacopo
-    - translated_dialog eclipse_route7_jacopo2
-    - set_variable route7jacopo:yes
+    - char_talk eclipse_route7_jacopo,post_battle_lose
     conditions:
-    - not variable_set route7jacopo:yes
+    - not battle_outcome player,won,eclipse_route7_jacopo
     - is char_at player
-    height: 1
-    width: 1
+    - not char_defeated player
     x: 30
     y: 13
     type: event
@@ -414,19 +468,17 @@ events:
     actions:
     - lock_controls
     - pathfind_to_char player,eclipse_route7_manfred
-    - translated_dialog eclipse_route7_manfred1
+    - char_talk eclipse_route7_manfred,pre_battle
     - unlock_controls
     - add_monster chenipode,10,eclipse_route7_manfred,5,10
     - add_monster chenipode,10,eclipse_route7_manfred,5,10
     - add_monster exapode,20,eclipse_route7_manfred,5,10
     - start_battle player,eclipse_route7_manfred
-    - translated_dialog eclipse_route7_manfred2
-    - set_variable route7manfred:yes
+    - char_talk eclipse_route7_manfred,post_battle_lose
     conditions:
-    - not variable_set route7manfred:yes
+    - not battle_outcome player,won,eclipse_route7_manfred
     - is char_at player
-    height: 1
-    width: 1
+    - not char_defeated player
     x: 34
     y: 4
     type: event
@@ -435,28 +487,22 @@ events:
     - translated_dialog eclipse_route7_fritz1
     behav:
     - talk eclipse_route7_fritz
-    height: 1
-    width: 1
-    x: 30
-    y: 4
     type: event
   Talk Nino:
     actions:
     - lock_controls
     - pathfind_to_char player,eclipse_route7_nino
-    - translated_dialog eclipse_route7_nino1
+    - char_talk eclipse_route7_nino,pre_battle
     - unlock_controls
     - add_monster vividactil,20,eclipse_route7_nino,5,10
     - add_monster fluttaflap,20,eclipse_route7_nino,5,10
     - add_monster statursus,20,eclipse_route7_nino,5,10
     - start_battle player,eclipse_route7_nino
-    - translated_dialog eclipse_route7_nino2
-    - set_variable route7nino:yes
+    - char_talk eclipse_route7_nino,post_battle_lose
     conditions:
-    - not variable_set route7nino:yes
+    - not battle_outcome player,won,eclipse_route7_nino
     - is char_at player
-    height: 1
-    width: 1
+    - not char_defeated player
     x: 14
     y: 25
     type: event
@@ -468,28 +514,22 @@ events:
     - translated_dialog spyder_output_nurse6
     behav:
     - talk eclipse_route7_nurse
-    height: 1
-    width: 1
-    x: 3
-    y: 35
     type: event
   Talk Penitent:
     actions:
     - lock_controls
     - pathfind_to_char player,eclipse_route7_penitent
-    - translated_dialog eclipse_route7_penitent1
+    - char_talk eclipse_route7_penitent,pre_battle
     - unlock_controls
     - add_monster rhinocarpe,20,eclipse_route7_penitent,5,10
     - add_monster bursa,10,eclipse_route7_penitent,5,10
     - add_monster dandicub,10,eclipse_route7_penitent,5,10
     - start_battle player,eclipse_route7_penitent
-    - translated_dialog eclipse_route7_penitent2
-    - set_variable route7penitent:yes
+    - char_talk eclipse_route7_penitent,post_battle_lose
     conditions:
-    - not variable_set route7penitent:yes
+    - not battle_outcome player,won,eclipse_route7_penitent
     - is char_at player
-    height: 1
-    width: 1
+    - not char_defeated player
     x: 11
     y: 8
     type: event
@@ -497,19 +537,17 @@ events:
     actions:
     - lock_controls
     - pathfind_to_char player,eclipse_route7_pia
-    - translated_dialog eclipse_route7_pia1
+    - char_talk eclipse_route7_pia,pre_battle
     - unlock_controls
     - add_monster anoleaf,15,eclipse_route7_pia,5,10
     - add_monster gectile,20,eclipse_route7_pia,5,10
     - add_monster velocitile,25,eclipse_route7_pia,5,10
     - start_battle player,eclipse_route7_pia
-    - translated_dialog eclipse_route7_pia2
-    - set_variable route7pia:yes
+    - char_talk eclipse_route7_pia,post_battle_lose
     conditions:
-    - not variable_set route7pia:yes
+    - not battle_outcome player,won,eclipse_route7_pia
     - is char_at player
-    height: 1
-    width: 1
+    - not char_defeated player
     x: 19
     y: 14
     type: event
@@ -518,16 +556,12 @@ events:
     - translated_dialog eclipse_route7_arnold1
     behav:
     - talk eclipse_route7_arnold
-    height: 1
-    width: 1
-    x: 1
-    y: 35
     type: event
   Talk Sordello:
     actions:
     - lock_controls
     - pathfind_to_char player,eclipse_route7_sordello
-    - translated_dialog eclipse_route7_sordello1
+    - char_talk eclipse_route7_sordello,pre_battle
     - unlock_controls
     - add_monster fuzzlet,10,eclipse_route7_sordello,5,10
     - add_monster ziggurat,10,eclipse_route7_sordello,5,10
@@ -535,13 +569,11 @@ events:
     - add_monster potturmeist,10,eclipse_route7_sordello,5,10
     - add_monster squink,10,eclipse_route7_sordello,5,10
     - start_battle player,eclipse_route7_sordello
-    - translated_dialog eclipse_route7_sordello2
-    - set_variable route7sordello:yes
+    - char_talk eclipse_route7_sordello,post_battle_lose
     conditions:
-    - not variable_set route7sordello:yes
+    - not battle_outcome player,won,eclipse_route7_sordello
     - is char_at player
-    height: 1
-    width: 1
+    - not char_defeated player
     x: 25
     y: 28
     type: event
@@ -549,20 +581,18 @@ events:
     actions:
     - lock_controls
     - pathfind_to_char player,eclipse_route7_statius
-    - translated_dialog eclipse_route7_statius1
+    - char_talk eclipse_route7_statius,pre_battle
     - unlock_controls
     - add_monster aardart,10,eclipse_route7_statius,5,10
     - add_monster pairagrim,10,eclipse_route7_statius,5,10
     - add_monster bolt,10,eclipse_route7_statius,5,10
     - add_monster fribbit,10,eclipse_route7_statius,5,10
     - start_battle player,eclipse_route7_statius
-    - translated_dialog eclipse_route7_statius2
-    - set_variable route7statius:yes
+    - char_talk eclipse_route7_statius,post_battle_lose
     conditions:
-    - not variable_set route7statius:yes
+    - not battle_outcome player,won,eclipse_route7_statius
     - is char_at player
-    height: 1
-    width: 1
+    - not char_defeated player
     x: 34
     y: 30
     type: event
@@ -573,8 +603,6 @@ events:
     conditions:
     - is char_at player
     - is char_facing player,up
-    height: 1
-    width: 1
     x: 35
     y: 0
     type: event
@@ -585,8 +613,6 @@ events:
     conditions:
     - is char_at player
     - is char_facing player,up
-    height: 1
-    width: 1
     x: 36
     y: 0
     type: event

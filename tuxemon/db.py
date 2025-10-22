@@ -71,6 +71,8 @@ class ItemSort(str, Enum):
 class PlagueType(str, Enum):
     inoculated = "inoculated"
     infected = "infected"
+    carrier = "carrier"
+    recovered = "recovered"
 
 
 class GenderType(str, Enum):

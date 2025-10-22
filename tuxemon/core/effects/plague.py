@@ -7,6 +7,7 @@ from typing import TYPE_CHECKING
 
 from tuxemon.core.core_effect import CoreEffect, TechEffectResult
 from tuxemon.locale import T
+from tuxemon.monster_dir.plague import InfectionResult
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
@@ -32,17 +33,39 @@ class PlagueEffect(CoreEffect):
     def apply_tech_target(
         self, session: Session, tech: Technique, user: Monster, target: Monster
     ) -> TechEffectResult:
-
-        success = target.plague.try_infect(target, self.plague_slug)
-        message_key = target.plague.get_combat_message_key(self.plague_slug)
-        params = {"target": target.name.upper(), "user": user.name.upper()}
-        extra = [T.format(message_key, params)]
+        result_code = target.plague.try_infect(target, self.plague_slug)
+        success = result_code in (
+            InfectionResult.INFECTED,
+            InfectionResult.CARRIER,
+        )
+        extra = []
         plague_config = target.plague.get_plague_config(self.plague_slug)
-        if success and plague_config:
-            msgid = (
-                plague_config.message_spread_success or "combat_state_plague2"
+        params = {"target": target.name.upper(), "user": user.name.upper()}
+
+        if success:
+            message_key = target.plague.get_combat_message_key(
+                self.plague_slug
             )
-            tech.use_tech = T.translate(msgid)
+            extra.append(T.format(message_key, params))
+
+            if plague_config:
+                msgid = (
+                    plague_config.message_spread_success
+                    or "combat_state_plague2"
+                )
+                tech.use_tech = T.translate(msgid)
+
+        elif result_code == InfectionResult.MINOR_EFFECT:
+            if plague_config and plague_config.message_minor_effect:
+                extra.append(
+                    T.format(plague_config.message_minor_effect, params)
+                )
+
+        else:  # 'resisted', 'immune', 'already_has', or a failed minor_effect
+            message_key = target.plague.get_combat_message_key(
+                self.plague_slug
+            )
+            extra.append(T.format(message_key, params))
 
         cured, message = target.plague.try_cure(target, self.plague_slug)
         if cured and message:

@@ -4,12 +4,15 @@ from __future__ import annotations
 
 import logging
 from dataclasses import dataclass
-from typing import Optional, final
+from typing import TYPE_CHECKING, Optional, final
 
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
-from tuxemon.session import Session
+from tuxemon.monster_dir.plague import InfectionResult, InoculationResult
 from tuxemon.tools import parse_flag
+
+if TYPE_CHECKING:
+    from tuxemon.session import Session
 
 logger = logging.getLogger(__name__)
 
@@ -57,12 +60,26 @@ class CharPlagueAction(EventAction):
                 monster.plague.clear_plagues()
             elif condition == "infected":
                 if enforce:
-                    monster.plague.try_infect(monster, self.plague_slug)
+                    result_infection = monster.plague.try_infect(
+                        monster, self.plague_slug
+                    )
+                    if result_infection not in (
+                        InfectionResult.INFECTED,
+                        InfectionResult.CARRIER,
+                    ):
+                        logger.error(f"Failed to infect {monster.name}")
                 else:
                     monster.plague.infect(self.plague_slug)
             elif condition == "inoculated":
                 if enforce:
-                    monster.plague.try_inoculate(monster, self.plague_slug)
+                    result_inoculation = monster.plague.try_inoculate(
+                        monster, self.plague_slug
+                    )
+                    if result_inoculation not in (
+                        InoculationResult.INOCULATED,
+                        InoculationResult.ALREADY_INOCULATED,
+                    ):
+                        logger.error(f"Failed to inoculate {monster.name}")
                 else:
                     monster.plague.inoculate(self.plague_slug)
             else:

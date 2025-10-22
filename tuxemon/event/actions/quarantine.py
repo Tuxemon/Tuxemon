@@ -45,54 +45,53 @@ class QuarantineAction(EventAction):
             logger.error(f"{self.npc_slug} not found")
             return
 
-        if not character.monster_boxes.has_box(self.name, "monster"):
-            character.monster_boxes.create_box(self.name, "monster")
+        party = character.party
+        boxes = character.monster_boxes
+
+        if not boxes.has_box(self.name, "monster"):
+            boxes.create_box(self.name, "monster")
+
         if self.value == "in":
             plague = [
                 mon
-                for mon in character.monsters
+                for mon in party.monsters
                 if mon.plague.has_plague(self.plague_slug)
                 and mon.plague.is_infected_with(self.plague_slug)
             ]
-            for _monster in plague:
-                _monster.plague.inoculate(self.plague_slug)
-                character.monster_boxes.add_monster(self.name, _monster)
-                character.party.remove_monster(_monster)
-                logger.info(f"{_monster} has been quarantined")
+            for monster in plague:
+                monster.plague.inoculate(self.plague_slug)
+                if party.transfer_monster_to_box(monster, self.name):
+                    logger.info(f"{monster} has been quarantined")
+                else:
+                    logger.warning(f"Failed to quarantine {monster}")
+
         elif self.value == "out":
-            if not character.monster_boxes.has_box(self.name, "monster"):
+            if not boxes.has_box(self.name, "monster"):
                 logger.info(f"Box {self.name} does not exist")
                 return
-            box = [
+
+            box_monsters = [
                 mon
-                for mon in character.monster_boxes.get_monsters(self.name)
+                for mon in boxes.get_monsters(self.name)
                 if mon.plague.has_plague(self.plague_slug)
             ]
-            if not box:
+            if not box_monsters:
                 logger.info(f"Box {self.name} is empty")
                 return
-            if self.amount is None or self.amount >= len(box):
-                for _monster in box:
-                    _monster.plague.inoculate(self.plague_slug)
-                    character.party.add_monster(
-                        _monster, len(character.monsters)
-                    )
-                    character.monster_boxes.remove_monster_from(
-                        self.name, _monster
-                    )
-                    logger.info(f"{_monster} has been inoculated")
-            elif self.amount > 0 and self.amount <= len(box):
-                sample = random.sample(box, self.amount)
-                for _monster in sample:
-                    _monster.plague.inoculate(self.plague_slug)
-                    character.party.add_monster(
-                        _monster, len(character.monsters)
-                    )
-                    character.monster_boxes.remove_monster_from(
-                        self.name, _monster
-                    )
-                    logger.info(f"{_monster} has been inoculated")
-            else:
-                logger.info(f"Invalid sample size")
+
+            to_release = (
+                box_monsters
+                if self.amount is None or self.amount >= len(box_monsters)
+                else random.sample(box_monsters, self.amount)
+            )
+
+            for monster in to_release:
+                monster.plague.inoculate(self.plague_slug)
+                if party.transfer_monster_to_party(monster):
+                    boxes.remove_monster_from(self.name, monster)
+                    logger.info(f"{monster} has been inoculated and released")
+                else:
+                    logger.warning(f"Failed to release {monster} to party")
+
         else:
-            raise ValueError(f"{self.value} must be in or out")
+            raise ValueError(f"{self.value} must be 'in' or 'out'")

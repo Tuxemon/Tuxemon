@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.1-99-gec89c545" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="66">
+<map version="1.8" tiledversion="1.8.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="66">
  <properties>
   <property name="east" value="lion_mountain"/>
   <property name="edges" value="clamped"/>
   <property name="map_type" value="town"/>
-  <property name="scenario" value="tobedefined"/>
+  <property name="scenario" value="eclipse"/>
   <property name="slug" value="crystal_town"/>
   <property name="south" value="route7"/>
  </properties>

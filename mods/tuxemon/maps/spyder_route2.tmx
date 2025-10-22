@@ -389,9 +389,8 @@
     <property name="act2" value="add_monster spighter,8,spyder_route2_roddick,5,10"/>
     <property name="act3" value="start_battle player,spyder_route2_roddick"/>
     <property name="act4" value="char_talk spyder_route2_roddick,post_battle_lose"/>
-    <property name="act5" value="set_variable route2roddick:yes"/>
     <property name="behav1" value="talk spyder_route2_roddick"/>
-    <property name="cond1" value="not variable_set route2roddick:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_route2_roddick"/>
    </properties>
   </object>
   <object id="162" name="Talk marion" type="event" x="208" y="48" width="16" height="16">
@@ -401,9 +400,8 @@
     <property name="act3" value="add_monster aardorn,7,spyder_route2_marion,5,10"/>
     <property name="act4" value="start_battle player,spyder_route2_marion"/>
     <property name="act5" value="char_talk spyder_route2_marion,post_battle_lose"/>
-    <property name="act6" value="set_variable route2marion:yes"/>
     <property name="behav1" value="talk spyder_route2_marion"/>
-    <property name="cond1" value="not variable_set route2marion:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_route2_marion"/>
    </properties>
   </object>
   <object id="163" name="Talk graf" type="event" x="224" y="48" width="16" height="16">
@@ -414,9 +412,8 @@
     <property name="act4" value="add_monster cataspike,5,spyder_route2_graf,5,10"/>
     <property name="act5" value="start_battle player,spyder_route2_graf"/>
     <property name="act6" value="char_talk spyder_route2_graf,post_battle_lose"/>
-    <property name="act7" value="set_variable route2graf:yes"/>
     <property name="behav1" value="talk spyder_route2_graf"/>
-    <property name="cond1" value="not variable_set route2graf:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_route2_graf"/>
    </properties>
   </object>
   <object id="164" name="Route Music" type="event" x="0" y="0" width="16" height="16">
@@ -457,9 +454,9 @@
     <property name="act6" value="add_monster spighter,8,spyder_route2_roddick,5,10"/>
     <property name="act7" value="start_battle player,spyder_route2_roddick"/>
     <property name="act8" value="char_talk spyder_route2_roddick,post_battle_lose"/>
-    <property name="act9" value="set_variable route2roddick:yes"/>
-    <property name="cond1" value="not variable_set route2roddick:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_route2_roddick"/>
     <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
    </properties>
   </object>
   <object id="189" name="Talk marion" type="event" x="352" y="160" width="16" height="64">
@@ -473,9 +470,9 @@
     <property name="act7" value="add_monster aardorn,7,spyder_route2_marion,5,10"/>
     <property name="act8" value="start_battle player,spyder_route2_marion"/>
     <property name="act9" value="char_talk spyder_route2_marion,post_battle_lose"/>
-    <property name="act10" value="set_variable route2marion:yes"/>
-    <property name="cond1" value="not variable_set route2marion:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_route2_marion"/>
     <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
    </properties>
   </object>
   <object id="190" name="Talk graf" type="event" x="464" y="64" width="16" height="80">
@@ -490,9 +487,9 @@
     <property name="act08" value="add_monster cataspike,5,spyder_route2_graf,5,10"/>
     <property name="act09" value="start_battle player,spyder_route2_graf"/>
     <property name="act10" value="char_talk spyder_route2_graf,post_battle_lose"/>
-    <property name="act11" value="set_variable route2graf:yes"/>
-    <property name="cond1" value="not variable_set route2graf:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_route2_graf"/>
     <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
    </properties>
   </object>
   <object id="195" name="random battle35" type="event" x="512" y="128" width="112" height="32">

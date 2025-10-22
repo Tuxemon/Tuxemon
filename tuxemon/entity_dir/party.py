@@ -10,6 +10,7 @@ from uuid import UUID
 
 from tuxemon import prepare
 from tuxemon.boxes import MonsterBoxes
+from tuxemon.entity_dir.routing import RoutingPolicy, RoutingPolicyRegistry
 from tuxemon.monster import Monster, decode_monsters, encode_monsters
 
 if TYPE_CHECKING:
@@ -30,11 +31,27 @@ class PartyHandler:
         owner: NPC,
         monsters: Optional[list[Monster]] = None,
         party_limit: int = prepare.PARTY_LIMIT,
+        routing_policy_name: str = "default",
     ) -> None:
         self._monsters = monsters if monsters is not None else []
         self._party_limit = party_limit
         self._monster_boxes = monster_boxes
         self._owner = owner
+        self._routing_policy_name = routing_policy_name
+
+    @property
+    def routing_policy(self) -> RoutingPolicy:
+        return RoutingPolicyRegistry.get(self._routing_policy_name)
+
+    @property
+    def routing_policy_name(self) -> str:
+        return self._routing_policy_name
+
+    @routing_policy_name.setter
+    def routing_policy_name(self, name: str) -> None:
+        if not RoutingPolicyRegistry.has(name):
+            raise ValueError(f"Unknown routing policy: {name}")
+        self._routing_policy_name = name
 
     @property
     def monsters(self) -> list[Monster]:
@@ -73,11 +90,106 @@ class PartyHandler:
         total = sum(mon.level for mon in self._monsters)
         return round(total / len(self._monsters))
 
+    def apply_nickname_rules(self, monster: Monster) -> None:
+        policy = self.routing_policy
+        base_name = monster.name
+        rules = policy.nickname_rules
+        nick = f"{rules.get('prefix', '')}{base_name}{rules.get('suffix', '')}"
+        monster.name = nick
+
+    def should_send_to_box(
+        self, policy: Optional[RoutingPolicy] = None
+    ) -> bool:
+        policy = policy or self.routing_policy
+
+        is_unlimited = (
+            policy.max_party_size is not None and policy.max_party_size == -1
+        )
+        party_limit = (
+            policy.max_party_size
+            if policy.max_party_size is not None
+            else self._party_limit
+        )
+
+        return (
+            policy.should_force_to_box()
+            or not policy.allow_party_addition
+            or (not is_unlimited and self.party_size >= party_limit)
+        )
+
+    def send_monster_to_box(
+        self, monster: Monster, kennel: Optional[str] = None
+    ) -> None:
+        policy = self.routing_policy
+        kennel = kennel if kennel is not None else policy.get_kennel()
+        max_box_capacity = policy.max_box_capacity or prepare.MAX_KENNEL
+
+        if self._monster_boxes.is_box_full(kennel, max_box_capacity):
+            logger.warning(
+                f"Primary box '{kennel}' is full under policy '{policy.name}'."
+            )
+
+            overflow_kennel = policy.overflow_kennel
+            if overflow_kennel:
+                logger.info(
+                    f"Attempting to use overflow kennel '{overflow_kennel}'."
+                )
+                if not self._monster_boxes.is_box_full(overflow_kennel):
+                    self._monster_boxes.add_monster(overflow_kennel, monster)
+                    logger.info(
+                        f"Monster '{monster}' added to overflow kennel '{overflow_kennel}'."
+                    )
+                    return
+                else:
+                    logger.warning(
+                        f"Overflow kennel '{overflow_kennel}' is also full."
+                    )
+
+            if policy.kennel_name_rules:
+                logger.info(
+                    f"Creating overflow box using kennel_name_rules for base '{kennel}'."
+                )
+                self._monster_boxes.create_and_merge_box(
+                    kennel, policy.kennel_name_rules
+                )
+                self._monster_boxes.add_monster(kennel, monster)
+                return
+
+            # Final fallback: release if allowed
+            if policy.auto_release_if_box_full:
+                logger.info(
+                    f"Monster '{monster}' discarded due to full boxes and no overflow options."
+                )
+                return
+
+            # Otherwise, monster is lost or error
+            logger.error(
+                f"Monster '{monster}' could not be stored. All boxes full and no overflow strategy."
+            )
+            return
+
+        # Normal case
+        self._monster_boxes.add_monster(kennel, monster)
+        logger.info(f"Monster '{monster}' added to box '{kennel}'.")
+
+    def insert_monster_to_party(
+        self, monster: Monster, slot: Optional[int] = None
+    ) -> None:
+        if slot is None:
+            self._monsters.append(monster)
+        elif 0 <= slot <= self.party_size:
+            self._monsters.insert(slot, monster)
+        else:
+            raise IndexError(
+                f"Invalid slot {slot} for party size {self.party_size}"
+            )
+
     def add_monster(
         self,
         monster: Monster,
         slot: Optional[int] = None,
-        kennel: str = prepare.KENNEL,
+        kennel: Optional[str] = None,
+        override_policy_name: Optional[str] = None,
     ) -> None:
         """
         Adds a monster to the party. If the party is full, it sends the monster
@@ -86,19 +198,26 @@ class PartyHandler:
         Parameters:
             monster: The monster to add.
             slot: Optional. The index to insert the monster at. If None or
-                  party is full, it's added to the end or sent to boxes.
+                party is full, it's added to the end or sent to boxes.
+            override_policy_name: Optional. A temporary policy name to use for
+                this call.
         """
+        policy_to_use = (
+            RoutingPolicyRegistry.get(override_policy_name)
+            if override_policy_name
+            else self.routing_policy
+        )
+        logger.debug(
+            f"Adding monster '{monster}' using policy '{policy_to_use.name}'"
+        )
+
+        self.apply_nickname_rules(monster)
         monster.set_owner(self._owner)
 
-        if self.party_size >= self._party_limit:
-            self._monster_boxes.add_monster(kennel, monster)
-            if self._monster_boxes.is_box_full(kennel):
-                self._monster_boxes.create_and_merge_box(kennel)
+        if self.should_send_to_box(policy_to_use):
+            self.send_monster_to_box(monster, kennel)
         else:
-            if slot is not None and 0 <= slot <= self.party_size:
-                self._monsters.insert(slot, monster)
-            else:
-                self._monsters.append(monster)
+            self.insert_monster_to_party(monster, slot)
 
     def find_monster(self, monster_slug: str) -> Optional[Monster]:
         """
@@ -278,30 +397,70 @@ class PartyHandler:
         return dominant_type
 
     def replace_party(
-        self, new_monsters: list[Monster], add_overflow_to_box: bool = True
+        self,
+        new_monsters: list[Monster],
+        add_overflow_to_box: bool = True,
+        override_policy_name: Optional[str] = None,
     ) -> None:
         """
-        Replaces the entire party with a new list of monsters.
-
-        Parameters:
-            new_monsters: The new monsters to set as the party.
-            add_overflow_to_box:
-                If True, overflow monsters are added to the box.
-                If False, overflow monsters are discarded.
+        Replaces the entire party with a new list of monsters, handling overflow
+        based on the current or an overridden routing policy.
         """
         self.clear_party()
 
-        for monster in new_monsters[: self._party_limit]:
+        if override_policy_name:
+            policy = RoutingPolicyRegistry.get(override_policy_name)
+        else:
+            policy = self.routing_policy
+
+        party_limit = (
+            policy.max_party_size
+            if policy.max_party_size is not None
+            else self._party_limit
+        )
+
+        if policy.max_party_size == -1:
+            party_monsters = new_monsters
+            overflow = []
+        else:
+            party_limit = policy.max_party_size or self._party_limit
+            party_monsters = new_monsters[:party_limit]
+            overflow = new_monsters[party_limit:]
+
+        for monster in party_monsters:
             monster.set_owner(self._owner)
             self._monsters.append(monster)
 
-        if add_overflow_to_box:
-            overflow = new_monsters[self._party_limit :]
+        if add_overflow_to_box and overflow:
+            kennel_for_overflow = policy.get_kennel()
             for monster in overflow:
                 monster.set_owner(self._owner)
-                self._monster_boxes.add_monster(prepare.KENNEL, monster)
-                if self._monster_boxes.is_box_full(prepare.KENNEL):
-                    self._monster_boxes.create_and_merge_box(prepare.KENNEL)
+                self.send_monster_to_box(monster, kennel_for_overflow)
+
+    def transfer_monster_to_box(
+        self, monster: Monster, kennel: Optional[str] = None
+    ) -> bool:
+        if not self.has_monster(monster):
+            logger.error(f"Monster '{monster}' not found in party.")
+            return False
+
+        self.remove_monster(monster)
+        self.send_monster_to_box(monster, kennel)
+        logger.info(f"Monster '{monster}' transferred from party to box.")
+        return True
+
+    def transfer_monster_to_party(
+        self, monster: Monster, slot: Optional[int] = None
+    ) -> bool:
+        if self.should_send_to_box():
+            logger.warning(
+                f"Cannot transfer monster '{monster}' to party: policy or limit prevents it."
+            )
+            return False
+
+        self.insert_monster_to_party(monster, slot)
+        logger.info(f"Monster '{monster}' transferred from box to party.")
+        return True
 
     def encode_party(self) -> Sequence[Mapping[str, Any]]:
         return encode_monsters(self._monsters)

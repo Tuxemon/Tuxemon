@@ -123,17 +123,12 @@ class TestCastValue(unittest.TestCase):
             cast_value(((Literal[1, 2, 3], "param"), 4))
 
     def test_union_types(self):
-        if sys.version_info >= (3, 10):
-            self.assertEqual(
-                cast_value(((Union[int, str], "param"), 123)), 123
-            )
-            self.assertEqual(
-                cast_value(((Union[int, str], "param"), "abc")), "abc"
-            )
-            with self.assertRaises(ValueError):
-                cast_value(((Union[int, bool], "param"), "abc"))
-        else:
-            self.skipTest("This test requires Python 3.10 or later")
+        self.assertEqual(cast_value(((Union[int, str], "param"), 123)), 123)
+        self.assertEqual(
+            cast_value(((Union[int, str], "param"), "abc")), "abc"
+        )
+        with self.assertRaises(ValueError):
+            cast_value(((Union[int, bool], "param"), "abc"))
 
     def test_int_float_priority(self):
         with self.assertRaises(ValueError):
@@ -151,12 +146,9 @@ class TestCastValue(unittest.TestCase):
             cast_value(((int, str, bool), True))
 
     def test_optional_types_and_sequences(self):
-        if sys.version_info >= (3, 10):
-            self.assertEqual(cast_value(((Optional[int], str), None)), None)
-            with self.assertRaises(ValueError):
-                cast_value(((Optional[int], None, str), True))
-        else:
-            self.skipTest("This test requires Python 3.10 or later")
+        self.assertEqual(cast_value(((Optional[int], str), None)), None)
+        with self.assertRaises(ValueError):
+            cast_value(((Optional[int], None, str), True))
 
     def test_edge_cases_with_sequences(self):
         with self.assertRaises(ValueError):

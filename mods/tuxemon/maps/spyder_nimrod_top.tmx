@@ -95,9 +95,8 @@
     <property name="act2" value="add_monster av8r,25,spyder_nimrod_maverick,5,10"/>
     <property name="act3" value="start_battle player,spyder_nimrod_maverick"/>
     <property name="act4" value="char_talk spyder_nimrod_maverick,post_battle_lose"/>
-    <property name="act6" value="set_variable nimrodmaverick:yes"/>
     <property name="behav1" value="talk spyder_nimrod_maverick"/>
-    <property name="cond1" value="not variable_set nimrodmaverick:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_nimrod_maverick"/>
    </properties>
   </object>
   <object id="32" name="Create Justice" type="event" x="224" y="256" width="16" height="16">
@@ -114,9 +113,8 @@
     <property name="act3" value="add_monster ghosteeth,16,spyder_nimrod_justice,5,10"/>
     <property name="act4" value="start_battle player,spyder_nimrod_justice"/>
     <property name="act5" value="char_talk spyder_nimrod_justice,post_battle_lose"/>
-    <property name="act6" value="set_variable nimrodjustice:yes"/>
     <property name="behav1" value="talk spyder_nimrod_justice"/>
-    <property name="cond1" value="not variable_set nimrodjustice:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_nimrod_justice"/>
    </properties>
   </object>
   <object id="34" name="Create Zircon" type="event" x="176" y="160" width="16" height="16">
@@ -131,9 +129,8 @@
     <property name="act2" value="add_monster dark_robo,25,spyder_nimrod_zircon,5,10"/>
     <property name="act3" value="start_battle player,spyder_nimrod_zircon"/>
     <property name="act4" value="char_talk spyder_nimrod_zircon,post_battle_lose"/>
-    <property name="act6" value="set_variable nimrodzircon:yes"/>
     <property name="behav1" value="talk spyder_nimrod_zircon"/>
-    <property name="cond1" value="not variable_set nimrodzircon:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_nimrod_zircon"/>
    </properties>
   </object>
   <object id="38" name="Environment" type="event" x="16" y="0" width="16" height="16">
@@ -152,9 +149,9 @@
     <property name="act6" value="add_monster ghosteeth,16,spyder_nimrod_justice,5,10"/>
     <property name="act7" value="start_battle player,spyder_nimrod_justice"/>
     <property name="act8" value="char_talk spyder_nimrod_justice,post_battle_lose"/>
-    <property name="act9" value="set_variable nimrodjustice:yes"/>
-    <property name="cond1" value="not variable_set nimrodjustice:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_nimrod_justice"/>
     <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
    </properties>
   </object>
   <object id="41" name="Talk Zircon" type="event" x="176" y="176" width="16" height="32">
@@ -166,9 +163,9 @@
     <property name="act5" value="add_monster dark_robo,25,spyder_nimrod_zircon,5,10"/>
     <property name="act6" value="start_battle player,spyder_nimrod_zircon"/>
     <property name="act7" value="char_talk spyder_nimrod_zircon,post_battle_lose"/>
-    <property name="act8" value="set_variable nimrodzircon:yes"/>
-    <property name="cond1" value="not variable_set nimrodzircon:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_nimrod_zircon"/>
     <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
    </properties>
   </object>
   <object id="42" name="Talk Maverick" type="event" x="144" y="128" width="32" height="16">
@@ -180,9 +177,9 @@
     <property name="act5" value="add_monster av8r,25,spyder_nimrod_maverick,5,10"/>
     <property name="act6" value="start_battle player,spyder_nimrod_maverick"/>
     <property name="act7" value="char_talk spyder_nimrod_maverick,post_battle_lose"/>
-    <property name="act8" value="set_variable nimrodmaverick:yes"/>
-    <property name="cond1" value="not variable_set nimrodmaverick:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_nimrod_maverick"/>
     <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
    </properties>
   </object>
   <object id="44" name="Create Mace" type="event" x="240" y="176" width="16" height="16">
@@ -203,9 +200,9 @@
     <property name="act07" value="add_monster komodraw,25,spyder_nimrod_mace,5,10"/>
     <property name="act08" value="start_battle player,spyder_nimrod_mace"/>
     <property name="act09" value="char_talk spyder_nimrod_mace,post_battle_lose"/>
-    <property name="act10" value="set_variable nimrodmace:yes"/>
-    <property name="cond1" value="not variable_set nimrodmace:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_nimrod_mace"/>
     <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
    </properties>
   </object>
   <object id="46" name="Talk Mace" type="event" x="240" y="192" width="16" height="16">
@@ -216,9 +213,8 @@
     <property name="act4" value="add_monster komodraw,25,spyder_nimrod_mace,5,10"/>
     <property name="act5" value="start_battle player,spyder_nimrod_mace"/>
     <property name="act6" value="char_talk spyder_nimrod_mace,post_battle_lose"/>
-    <property name="act7" value="set_variable nimrodmace:yes"/>
     <property name="behav1" value="talk spyder_nimrod_mace"/>
-    <property name="cond1" value="not variable_set nimrodmace:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_nimrod_mace"/>
    </properties>
   </object>
   <object id="47" name="Post Talk Justice" type="event" x="208" y="256" width="16" height="16">

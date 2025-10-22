@@ -202,7 +202,7 @@
     <property name="act1" value="create_npc spyder_cottontown_monk,5,7"/>
     <property name="act2" value="char_wander spyder_cottontown_monk"/>
     <property name="cond1" value="not char_exists spyder_cottontown_monk"/>
-    <property name="cond2" value="not variable_set dragonscavebenden:yes"/>
+    <property name="cond2" value="not battle_outcome player,won,spyder_dragonscave_benden"/>
    </properties>
   </object>
   <object id="543" name="Talk monk" type="event" x="96" y="128" width="16" height="16">
@@ -346,7 +346,7 @@
    <properties>
     <property name="act1" value="create_npc spyder_statue_orange,3,7"/>
     <property name="cond1" value="not char_exists spyder_statue_orange"/>
-    <property name="cond2" value="not variable_set dragonscavebenden:yes"/>
+    <property name="cond2" value="not battle_outcome player,won,spyder_dragonscave_benden"/>
    </properties>
   </object>
   <object id="578" name="Teleport to Omnichannel HQ" type="event" x="272" y="144" width="16" height="16">
@@ -403,28 +403,28 @@
    <properties>
     <property name="act1" value="create_npc spyder_statue_blue,4,9"/>
     <property name="cond1" value="not char_exists spyder_statue_blue"/>
-    <property name="cond2" value="not variable_set dragonscavebenden:yes"/>
+    <property name="cond2" value="not battle_outcome player,won,spyder_dragonscave_benden"/>
    </properties>
   </object>
   <object id="584" name="Create Statue Red" type="event" x="96" y="144" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_statue_red,6,9"/>
     <property name="cond1" value="not char_exists spyder_statue_red"/>
-    <property name="cond2" value="not variable_set dragonscavebenden:yes"/>
+    <property name="cond2" value="not battle_outcome player,won,spyder_dragonscave_benden"/>
    </properties>
   </object>
   <object id="585" name="Create Statue Grey" type="event" x="112" y="112" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_statue_grey,7,7"/>
     <property name="cond1" value="not char_exists spyder_statue_grey"/>
-    <property name="cond2" value="not variable_set dragonscavebenden:yes"/>
+    <property name="cond2" value="not battle_outcome player,won,spyder_dragonscave_benden"/>
    </properties>
   </object>
   <object id="586" name="Create Statue Green" type="event" x="80" y="80" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_statue_green,5,5"/>
     <property name="cond1" value="not char_exists spyder_statue_green"/>
-    <property name="cond2" value="not variable_set dragonscavebenden:yes"/>
+    <property name="cond2" value="not battle_outcome player,won,spyder_dragonscave_benden"/>
    </properties>
   </object>
   <object id="588" name="Create Brute" type="event" x="48" y="576" width="16" height="16">
@@ -503,7 +503,7 @@
     <property name="act0" value="translated_dialog spyder_confused1"/>
     <property name="act3" value="translated_dialog_choice yes:no,confusedchoice"/>
     <property name="behav1" value="talk spyder_confusedperson"/>
-    <property name="cond1" value="not variable_set confusedbattle"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_confusedperson"/>
    </properties>
   </object>
   <object id="597" name="Create confused" type="event" x="96" y="528" width="16" height="16">
@@ -518,7 +518,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_confused2"/>
     <property name="behav1" value="talk spyder_confusedperson"/>
-    <property name="cond1" value="is variable_set confusedbattle:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_confusedperson"/>
    </properties>
   </object>
   <object id="599" name="Battle confused" type="event" x="128" y="576" width="16" height="16">
@@ -527,8 +527,7 @@
     <property name="act3" value="add_monster capiti,2,spyder_confusedperson,5,10"/>
     <property name="act4" value="start_battle player,spyder_confusedperson"/>
     <property name="act5" value="translated_dialog spyder_confused2"/>
-    <property name="act6" value="set_variable confusedbattle:yes"/>
-    <property name="cond1" value="not variable_set confusedbattle:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_confusedperson"/>
     <property name="cond2" value="is variable_set confusedchoice:yes"/>
    </properties>
   </object>

@@ -16,6 +16,7 @@ from tuxemon.db import (
     Range,
     ResponseStatus,
     StatModel,
+    StatusBehaviors,
     StatusModel,
     db,
 )
@@ -51,11 +52,12 @@ class Status:
         save_data: Optional[Mapping[str, Any]] = None,
     ) -> None:
         save_data = save_data or {}
+        self._host: Monster = host
+        self._steps: float = steps
 
         self._effect_applied: set[str] = set()
 
         self.instance_id: UUID = uuid4()
-        self.set_steps(steps)
         self.bond: bool = False
         self.counter: int = 0
         self.cond_id: int = 0
@@ -65,7 +67,6 @@ class Status:
         self.flip_axes: FlipAxes = FlipAxes.NONE
         self.gain_cond: str = ""
         self.icon: str = ""
-        self.set_host(host)
         self.linked_monster: Optional[Monster] = None
         self.name: str = ""
         self.nr_turn: int = 0
@@ -83,6 +84,7 @@ class Status:
         self.use_success: str = ""
         self.use_failure: str = ""
         self.modifiers: ModifiersHandler = ModifiersHandler()
+        self.behaviors: StatusBehaviors
         self.stat_modifiers: dict[str, StatModel] = {}
 
         self.core_assets = CoreAssetManager()
@@ -126,6 +128,7 @@ class Status:
         self.icon = results.icon
 
         self.modifiers = ModifiersHandler(results.modifiers)
+        self.behaviors = results.behaviors
         # monster stats
         self.stat_modifiers = results.stat_modifiers
 
@@ -167,21 +170,11 @@ class Status:
             f"[Status Counter] {self.slug} used {self.counter} times."
         )
 
-    def check_counter_expiry(
-        self, session: Session, max_uses: int = 1
-    ) -> None:
+    def is_use_expired(self, max_uses: int = 1) -> bool:
         """
         Checks if the status has reached its use-based expiration threshold.
-        If so, clears the status from the host.
         """
-        logger.debug(
-            f"[Status Expired] {self.slug} used {self.counter}/{max_uses} times."
-        )
-        if self.counter >= max_uses:
-            logger.debug(
-                f"[Status Expired] {self.slug} removed from {self.host.name} after {self.counter} uses."
-            )
-            self.host.status.clear_status(session)
+        return self.counter >= max_uses
 
     def validate_monster(self, session: Session, target: Monster) -> bool:
         """
@@ -191,11 +184,7 @@ class Status:
 
     def get_host(self) -> Monster:
         """Returns the monster associated with this status."""
-        return self.host
-
-    def set_host(self, monster: Monster) -> None:
-        """Sets the monster associated with this status."""
-        self.host = monster
+        return self._host
 
     def get_linked_monster(self) -> Optional[Monster]:
         """Returns the monster linked to this status effect."""
@@ -204,10 +193,6 @@ class Status:
     def set_linked_monster(self, monster: Monster) -> None:
         """Assigns a linked monster that benefits from this status."""
         self.linked_monster = monster
-
-    def set_steps(self, steps: float) -> None:
-        """Sets the steps."""
-        self.steps = steps
 
     def has_reached_duration(self) -> bool:
         """Checks if the status has reached or exceeded its duration."""

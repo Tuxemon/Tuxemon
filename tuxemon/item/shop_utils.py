@@ -43,7 +43,7 @@ class TransactionManager:
             npc.items.add_item(new_item, quantity)
 
     def _adjust_monster_party(self, npc: NPC, monster: Monster) -> None:
-        npc.party.add_monster(monster)
+        npc.party.insert_monster_to_party(monster)
 
     def buy_item(
         self, buyer: NPC, item: Item, quantity: int, label: str, cost: int

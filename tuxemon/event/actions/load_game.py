@@ -49,6 +49,8 @@ class LoadGameAction(EventAction):
         client = session.client
         index = 4 if self.index is None else self.index + 1
 
+        client.map_loader.clear_cache()
+
         logger.info("Loading!")
         save_data = save.load(index)
         if save_data:

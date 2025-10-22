@@ -12,9 +12,7 @@ from tuxemon.states.sink import SinkState
 
 @final
 @dataclass
-class UnlockControlsAction(
-    EventAction,
-):
+class UnlockControlsAction(EventAction):
     """
     Unlock player controls
 
@@ -22,7 +20,6 @@ class UnlockControlsAction(
         .. code-block::
 
             unlock_controls
-
     """
 
     name = "unlock_controls"

@@ -64,7 +64,7 @@ class SetStats(MonsterTestBase):
     def setUp(self):
         self.mon = Monster()
         self.mon.name = "agnite"
-        self.mon.level = 5
+        self.mon.set_level(5)
         self.value = self.mon.level + prepare.COEFF_STATS
         self._shape_model = {"dragon": self._shape}
         db.database["shape"] = self._shape_model

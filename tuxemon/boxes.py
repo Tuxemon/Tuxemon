@@ -485,26 +485,29 @@ class MonsterBoxes(BoxCollection):
             )
             del self.monster_boxes[source_box_id]
 
-    def create_and_merge_box(self, box_id: str) -> None:
+    def create_and_merge_box(
+        self, box_id: str, kennel_name_rules: dict[str, Any]
+    ) -> None:
         """
-        Creates a new monster box and merges it with an existing box.
+        Creates a new monster box with a unique ID based on the given box_id
+        and kennel_name_rules, then merges it with the original box.
 
         Parameters:
-            box_id: The ID of the box to create and merge.
+            box_id: The base ID of the box to merge into.
+            kennel_name_rules: Dict with 'prefix' and 'suffix' to format the
+                numeric suffix.
+                Example: {'prefix': '_', 'suffix': '-X'} → 'KENNEL_1-X'
         """
-        i = (
-            len(
-                [
-                    box_id
-                    for box_id in self.get_box_ids()
-                    if box_id.startswith(box_id)
-                    and box_id != box_id
-                    and self.is_box_full(box_id)
-                ]
-            )
-            + 1
-        )
-        new_box_id = f"{box_id}{i}"
+        prefix = str(kennel_name_rules.get("prefix", ""))
+        suffix = str(kennel_name_rules.get("suffix", ""))
+        i = 1
+        while True:
+            formatted_suffix = f"{prefix}{i}{suffix}"
+            new_box_id = f"{box_id}{formatted_suffix}"
+            if new_box_id not in self.get_box_ids():
+                break
+            i += 1
+
         self.create_box(new_box_id, "monster")
         self.merge_boxes(box_id, new_box_id)
 

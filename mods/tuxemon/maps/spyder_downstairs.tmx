@@ -89,7 +89,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_papertown_mom4"/>
     <property name="behav1" value="talk spyder_papertown_mom"/>
-    <property name="cond1" value="is variable_set zoolanderdefeat:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_route3_zoolander"/>
     <property name="cond2" value="is variable_set spokenmom:yes"/>
     <property name="cond3" value="not variable_set captainreturns:yes"/>
    </properties>
@@ -118,7 +118,7 @@
     <property name="behav1" value="talk spyder_papertown_mom"/>
     <property name="cond1" value="is party_size player,greater_than,0"/>
     <property name="cond2" value="is variable_set spokenmom:yes"/>
-    <property name="cond3" value="not variable_set zoolanderdefeat:yes"/>
+    <property name="cond3" value="not battle_outcome player,won,spyder_route3_zoolander"/>
    </properties>
   </object>
   <object id="56" name="Go Outside" type="event" x="64" y="96" width="16" height="16">

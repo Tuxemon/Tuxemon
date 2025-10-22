@@ -88,7 +88,12 @@ class NPCManager:
                 entity.update_location = False
 
     def clear_npcs(self) -> None:
+        for npc in self.npcs.values():
+            npc.remove_collision()
         self.npcs.clear()
+
+        for npc in self.npcs_off_map.values():
+            npc.remove_collision()
         self.npcs_off_map.clear()
 
     def get_all_entities(self) -> Sequence[NPC]:

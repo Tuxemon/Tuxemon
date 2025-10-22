@@ -234,9 +234,8 @@
     <property name="act4" value="add_monster shybulb,30,spyder_route6_frances,5,10"/>
     <property name="act5" value="start_battle player,spyder_route6_frances"/>
     <property name="act6" value="char_talk spyder_route6_frances,post_battle_lose"/>
-    <property name="act7" value="set_variable route6frances:yes"/>
     <property name="behav1" value="talk spyder_route6_frances"/>
-    <property name="cond1" value="not variable_set route6frances:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_route6_frances"/>
    </properties>
   </object>
   <object id="193" name="Create Ping" type="event" x="400" y="96" width="16" height="16">
@@ -253,9 +252,8 @@
     <property name="act3" value="add_monster foofle,30,spyder_route6_ping,5,10"/>
     <property name="act4" value="start_battle player,spyder_route6_ping"/>
     <property name="act5" value="char_talk spyder_route6_ping,post_battle_lose"/>
-    <property name="act6" value="set_variable route6ping:yes"/>
     <property name="behav1" value="talk spyder_route6_ping"/>
-    <property name="cond1" value="not variable_set route6ping:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_route6_ping"/>
    </properties>
   </object>
   <object id="195" name="Create Richard" type="event" x="416" y="176" width="16" height="16">
@@ -272,9 +270,8 @@
     <property name="act3" value="add_monster pigabyte,30,spyder_route6_richard,5,10"/>
     <property name="act4" value="start_battle player,spyder_route6_richard"/>
     <property name="act5" value="char_talk spyder_route6_richard,post_battle_lose"/>
-    <property name="act6" value="set_variable route6richard:yes"/>
     <property name="behav1" value="talk spyder_route6_richard"/>
-    <property name="cond1" value="not variable_set route6richard:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_route6_richard"/>
    </properties>
   </object>
   <object id="197" name="Create Blair" type="event" x="560" y="144" width="16" height="16">
@@ -291,9 +288,8 @@
     <property name="act3" value="add_monster grinflare,30,spyder_route6_blair,5,10"/>
     <property name="act4" value="start_battle player,spyder_route6_blair"/>
     <property name="act5" value="char_talk spyder_route6_blair,post_battle_lose"/>
-    <property name="act6" value="set_variable route6blair:yes"/>
     <property name="behav1" value="talk spyder_route6_blair"/>
-    <property name="cond1" value="not variable_set route6blair:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_route6_blair"/>
    </properties>
   </object>
   <object id="199" name="Create Maxwell" type="event" x="160" y="80" width="16" height="16">
@@ -310,9 +306,8 @@
     <property name="act3" value="add_monster birdling,30,spyder_route6_maxwell,5,10"/>
     <property name="act4" value="start_battle player,spyder_route6_maxwell"/>
     <property name="act5" value="char_talk spyder_route6_maxwell,post_battle_lose"/>
-    <property name="act6" value="set_variable route6maxwell:yes"/>
     <property name="behav1" value="talk spyder_route6_maxwell"/>
-    <property name="cond1" value="not variable_set route6maxwell:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_route6_maxwell"/>
    </properties>
   </object>
   <object id="201" name="Create Orion" type="event" x="336" y="96" width="16" height="16">
@@ -329,9 +324,8 @@
     <property name="act3" value="add_monster zunna,30,spyder_route6_orion,5,10"/>
     <property name="act4" value="start_battle player,spyder_route6_orion"/>
     <property name="act5" value="char_talk spyder_route6_orion,post_battle_lose"/>
-    <property name="act6" value="set_variable route6orion:yes"/>
     <property name="behav1" value="talk spyder_route6_orion"/>
-    <property name="cond1" value="not variable_set route6orion:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_route6_orion"/>
    </properties>
   </object>
   <object id="203" name="Create Mungo" type="event" x="512" y="48" width="16" height="16">
@@ -347,9 +341,8 @@
     <property name="act2" value="add_monster noctula,20,spyder_route6_mungo,5,10"/>
     <property name="act3" value="start_battle player,spyder_route6_mungo"/>
     <property name="act4" value="char_talk spyder_route6_mungo,post_battle_lose"/>
-    <property name="act6" value="set_variable route6mungo:yes"/>
     <property name="behav1" value="talk spyder_route6_mungo"/>
-    <property name="cond1" value="not variable_set route6mungo:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_route6_mungo"/>
    </properties>
   </object>
   <object id="205" name="Create Rigel" type="event" x="448" y="256" width="16" height="16">
@@ -365,9 +358,8 @@
     <property name="act2" value="add_monster ignibus,30,spyder_route6_rigel,5,10"/>
     <property name="act3" value="start_battle player,spyder_route6_rigel"/>
     <property name="act4" value="char_talk spyder_route6_rigel,post_battle_lose"/>
-    <property name="act6" value="set_variable route6rigel:yes"/>
     <property name="behav1" value="talk spyder_route6_rigel"/>
-    <property name="cond1" value="not variable_set route6rigel:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_route6_rigel"/>
    </properties>
   </object>
   <object id="207" name="Create Gunner" type="event" x="480" y="272" width="16" height="16">
@@ -375,7 +367,7 @@
     <property name="act1" value="create_npc spyder_route6_gunner,30,17"/>
     <property name="act2" value="char_face spyder_route6_gunner,up"/>
     <property name="cond1" value="not char_exists spyder_route6_gunner"/>
-    <property name="cond2" value="not variable_set route6gunner:yes"/>
+    <property name="cond2" value="not battle_outcome player,won,spyder_route6_gunner"/>
    </properties>
   </object>
   <object id="208" name="Talk Gunner" type="event" x="464" y="272" width="16" height="16">
@@ -385,10 +377,9 @@
     <property name="act3" value="add_monster viviteel,20,spyder_route6_gunner,5,10"/>
     <property name="act4" value="start_battle player,spyder_route6_gunner"/>
     <property name="act5" value="char_talk spyder_route6_gunner,post_battle_lose"/>
-    <property name="act6" value="set_variable route6gunner:yes"/>
-    <property name="act90" value="pathfind spyder_route6_gunner,28,17"/>
+    <property name="act9" value="pathfind spyder_route6_gunner,28,17"/>
     <property name="behav1" value="talk spyder_route6_gunner"/>
-    <property name="cond1" value="not variable_set route6gunner:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_route6_gunner"/>
    </properties>
   </object>
   <object id="210" name="Teleport to Candy Town" type="event" x="528" y="304" width="16" height="16">
@@ -431,9 +422,9 @@
     <property name="act6" value="add_monster birdling,30,spyder_route6_maxwell,5,10"/>
     <property name="act7" value="start_battle player,spyder_route6_maxwell"/>
     <property name="act8" value="char_talk spyder_route6_maxwell,post_battle_lose"/>
-    <property name="act9" value="set_variable route6maxwell:yes"/>
-    <property name="cond1" value="not variable_set route6maxwell:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_route6_maxwell"/>
     <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
    </properties>
   </object>
   <object id="214" name="Talk Orion" type="event" x="336" y="32" width="16" height="64">
@@ -446,9 +437,9 @@
     <property name="act6" value="add_monster zunna,30,spyder_route6_orion,5,10"/>
     <property name="act7" value="start_battle player,spyder_route6_orion"/>
     <property name="act8" value="char_talk spyder_route6_orion,post_battle_lose"/>
-    <property name="act9" value="set_variable route6orion:yes"/>
-    <property name="cond1" value="not variable_set route6orion:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_route6_orion"/>
     <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
    </properties>
   </object>
   <object id="215" name="Talk Richard" type="event" x="432" y="176" width="96" height="16">
@@ -461,9 +452,9 @@
     <property name="act6" value="add_monster pigabyte,30,spyder_route6_richard,5,10"/>
     <property name="act7" value="start_battle player,spyder_route6_richard"/>
     <property name="act8" value="char_talk spyder_route6_richard,post_battle_lose"/>
-    <property name="act9" value="set_variable route6richard:yes"/>
-    <property name="cond1" value="not variable_set route6richard:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_route6_richard"/>
     <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
    </properties>
   </object>
   <object id="216" name="Talk Blair" type="event" x="432" y="144" width="128" height="16">
@@ -476,9 +467,9 @@
     <property name="act6" value="add_monster grinflare,30,spyder_route6_blair,5,10"/>
     <property name="act7" value="start_battle player,spyder_route6_blair"/>
     <property name="act8" value="char_talk spyder_route6_blair,post_battle_lose"/>
-    <property name="act9" value="set_variable route6blair:yes"/>
-    <property name="cond1" value="not variable_set route6blair:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_route6_blair"/>
     <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
    </properties>
   </object>
   <object id="217" name="Talk Mungo" type="event" x="464" y="48" width="48" height="16">
@@ -490,9 +481,9 @@
     <property name="act5" value="add_monster noctula,20,spyder_route6_mungo,5,10"/>
     <property name="act6" value="start_battle player,spyder_route6_mungo"/>
     <property name="act7" value="char_talk spyder_route6_mungo,post_battle_lose"/>
-    <property name="act8" value="set_variable route6mungo:yes"/>
-    <property name="cond1" value="not variable_set route6mungo:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_route6_mungo"/>
     <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
    </properties>
   </object>
   <object id="223" name="Billie1" type="event" x="48" y="176" width="16" height="80">
@@ -503,13 +494,13 @@
     <property name="act04" value="pathfind_to_char player,spyder_billie"/>
     <property name="act05" value="unlock_controls"/>
     <property name="act08" value="translated_dialog spyder_route6_billie1"/>
-    <property name="act20" value="add_monster billie_choice,34,spyder_billie,5,10"/>
+    <property name="act20" value="add_monster billie_choice,35,spyder_billie,5,10"/>
     <property name="act21" value="set_monster_attribute add_monster,gender,male"/>
-    <property name="act22" value="add_monster cardiwing,30,spyder_billie,5,10"/>
-    <property name="act23" value="set_monster_attribute add_monster,gender,female"/>
-    <property name="act24" value="add_monster eyesore,30,spyder_billie,5,10"/>
+    <property name="act24" value="add_monster cardiwing,35,spyder_billie,5,10"/>
     <property name="act25" value="set_monster_attribute add_monster,gender,female"/>
-    <property name="act26" value="add_monster viviphyta,30,spyder_billie,5,10"/>
+    <property name="act22" value="add_monster eyesore,35,spyder_billie,5,10"/>
+    <property name="act23" value="set_monster_attribute add_monster,gender,female"/>
+    <property name="act26" value="add_monster viviphyta,35,spyder_billie,5,10"/>
     <property name="act27" value="set_monster_attribute add_monster,gender,male"/>
     <property name="act30" value="start_battle player,spyder_billie"/>
     <property name="act71" value="translated_dialog spyder_route6_billie2"/>
@@ -546,13 +537,13 @@
     <property name="act06" value="char_face spyder_billie,down"/>
     <property name="act07" value="char_face player,up"/>
     <property name="act10" value="translated_dialog spyder_route6_billie1"/>
-    <property name="act20" value="add_monster billie_choice,34,spyder_billie,5,10"/>
+    <property name="act20" value="add_monster billie_choice,35,spyder_billie,5,10"/>
     <property name="act21" value="set_monster_attribute add_monster,gender,male"/>
-    <property name="act22" value="add_monster cardiwing,30,spyder_billie,5,10"/>
-    <property name="act23" value="set_monster_attribute add_monster,gender,female"/>
-    <property name="act24" value="add_monster eyesore,30,spyder_billie,5,10"/>
+    <property name="act24" value="add_monster cardiwing,35,spyder_billie,5,10"/>
     <property name="act25" value="set_monster_attribute add_monster,gender,female"/>
-    <property name="act26" value="add_monster viviphyta,30,spyder_billie,5,10"/>
+    <property name="act22" value="add_monster eyesore,35,spyder_billie,5,10"/>
+    <property name="act23" value="set_monster_attribute add_monster,gender,female"/>
+    <property name="act26" value="add_monster viviphyta,35,spyder_billie,5,10"/>
     <property name="act27" value="set_monster_attribute add_monster,gender,male"/>
     <property name="act30" value="start_battle player,spyder_billie"/>
     <property name="act71" value="translated_dialog spyder_route6_billie2"/>
@@ -561,36 +552,6 @@
     <property name="act90" value="set_variable route6billie:yes"/>
     <property name="cond1" value="not variable_set route6billie:yes"/>
     <property name="cond2" value="is char_at player"/>
-   </properties>
-  </object>
-  <object id="227" name="Billie Budaye" type="event" x="0" y="64" width="16" height="16">
-   <properties>
-    <property name="act1" value="set_variable billie_choice:bamboon"/>
-    <property name="cond1" value="is variable_set billie_choice:budaye"/>
-   </properties>
-  </object>
-  <object id="228" name="Billie Dollfin" type="event" x="16" y="64" width="16" height="16">
-   <properties>
-    <property name="act1" value="set_variable billie_choice:bigfin"/>
-    <property name="cond1" value="is variable_set billie_choice:dollfin"/>
-   </properties>
-  </object>
-  <object id="229" name="Billie Grintot" type="event" x="32" y="64" width="16" height="16">
-   <properties>
-    <property name="act1" value="set_variable billie_choice:grintrock"/>
-    <property name="cond1" value="is variable_set billie_choice:grintot"/>
-   </properties>
-  </object>
-  <object id="230" name="Billie Ignibus" type="event" x="48" y="64" width="16" height="16">
-   <properties>
-    <property name="act1" value="set_variable billie_choice:eruptibus"/>
-    <property name="cond1" value="is variable_set billie_choice:ignibus"/>
-   </properties>
-  </object>
-  <object id="231" name="Billie Memnomnom" type="event" x="0" y="80" width="16" height="16">
-   <properties>
-    <property name="act1" value="set_variable billie_choice:miaownolith"/>
-    <property name="cond1" value="is variable_set billie_choice:memnomnom"/>
    </properties>
   </object>
   <object id="236" name="Post Talk Maxwell" type="event" x="176" y="80" width="16" height="16">

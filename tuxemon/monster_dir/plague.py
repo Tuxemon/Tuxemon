@@ -310,10 +310,7 @@ class MonsterPlagueHandler:
         return plague_slug in self._plagues
 
     def get_plague_type(self, plague_slug: str) -> Optional[PlagueType]:
-        type_str = self._plagues.get(plague_slug)
-        if type_str:
-            return PlagueType(type_str)
-        return None
+        return self._plagues.get(plague_slug)
 
     def get_infected_slugs(self) -> list[str]:
         return [
@@ -374,9 +371,22 @@ class MonsterPlagueHandler:
                 plague_config.message_target_resists or "combat_state_plague3"
             )
 
-    def encode_plagues(self) -> dict[str, PlagueType]:
-        return self._plagues.copy()
+    def encode_plagues(self) -> dict[str, str]:
+        return {
+            k: (v.value if isinstance(v, PlagueType) else str(v))
+            for k, v in self._plagues.items()
+        }
 
     def decode_plagues(self, json_data: Optional[Mapping[str, Any]]) -> None:
-        if json_data and "plague" in json_data:
-            self._plagues.update(json_data["plague"])
+        if not json_data or "plague" not in json_data:
+            return
+        for k, v in json_data["plague"].items():
+            if isinstance(v, str):
+                try:
+                    self._plagues[k] = PlagueType(v)
+                except ValueError:
+                    logger.warning(
+                        f"Unknown plague state '{v}' for '{k}' in save — skipping",
+                    )
+            else:
+                self._plagues[k] = v

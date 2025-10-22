@@ -1,6 +1,7 @@
 {
   "animation": null,
   "modifiers": [],
+  "behaviors": {},
   "category": "negative",
   "conditions": [
     {

@@ -62,7 +62,7 @@ class AddMonsterAction(EventAction):
         monster.set_capture(today_ordinal())
 
         if self.exp is not None:
-            monster.experience_modifier = self.exp
+            monster.set_experience_modifier(self.exp)
         if self.money is not None:
             monster.money_modifier = self.money
 

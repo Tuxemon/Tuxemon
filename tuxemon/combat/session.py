@@ -294,7 +294,8 @@ class CombatSession:
             params = {"name": self.right_player.monsters[0].name.upper()}
             return T.format("combat_wild_appeared", params)
         elif self.combat_type is CombatType.HORDE:
-            return T.translate("combat_horde_appeared")
+            horde = self.right_player.party.party_size
+            return f"{T.translate('combat_horde_appeared')} ({horde})"
         else:
             raise ValueError(f"Unexpected combat_type: {self.combat_type}")
 
@@ -533,15 +534,15 @@ class CombatSession:
             technique.target.get(target_type, False)
             for target_type in ["enemy_monster", "enemy_team", "enemy_trainer"]
         ):
-            infected_slugs = monster.plague.get_infected_slugs()
-            slug = random.choice(infected_slugs)
-            alt_technique = Technique.create(slug)
-            result = alt_technique.use(session, monster, target)
-            if result.success:
-                logger.debug(
-                    f"[Plague Override] {monster.name} switches to {alt_technique.slug}"
-                )
-                technique = alt_technique
+            slug = monster.plague.get_most_severe_plague_slug()
+            if slug:
+                alt_technique = Technique.create(slug)
+                result = alt_technique.use(session, monster, target)
+                if result.success:
+                    logger.debug(
+                        f"[Plague Override] {monster.name} switches to {alt_technique.slug}"
+                    )
+                    technique = alt_technique
         logger.debug(f"[PreCheck End] {monster.name} using {technique.slug}")
         return technique
 

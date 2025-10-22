@@ -57,7 +57,9 @@ class MonsterActionHandler:
     def pick(self, monster: Monster) -> None:
         self._clear_states("ChoiceState", "MonsterTakeState")
         self.monster_boxes.remove_monster(monster)
-        self.char.party.add_monster(monster, len(self.char.monsters))
+        self.char.party.insert_monster_to_party(
+            monster, len(self.char.monsters)
+        )
         open_dialog(
             self.client,
             [T.format("menu_storage_take_monster", {"name": monster.name})],
@@ -159,8 +161,12 @@ class MonsterActionHandler:
             box_monster.instance_id, party_monster
         )
 
-        self.char.party.remove_monster(party_monster)
-        self.char.party.add_monster(swapped_out, len(self.char.monsters))
+        if self.char.party.replace_monster(party_monster, swapped_out):
+            logger.info(
+                f"{party_monster.name} swapped with {swapped_out.name}"
+            )
+        else:
+            logger.warning(f"Failed to swap {swapped_out.name}")
 
         open_dialog(
             self.client,

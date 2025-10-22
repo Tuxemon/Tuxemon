@@ -78,5 +78,35 @@
       "combat_front": "shopassistant",
       "slug": "shopassistant"
     }
+  },
+  {
+    "slug": "eclipse_cathedral_jada",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
+    "template": {
+      "sprite_name": "nurse",
+      "combat_front": "nurse",
+      "slug": "nurse"
+    }
+  },
+  {
+    "slug": "eclipse_cathedral_nurse",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
+    "template": {
+      "sprite_name": "nurse",
+      "combat_front": "nurse",
+      "slug": "nurse"
+    }
+  },
+  {
+    "slug": "eclipse_cathedral_enforcer",
+    "speech": {"profile": {"default": {}}},
+    "combat": {},
+    "template": {
+      "sprite_name": "knight",
+      "combat_front": "enforcer_rookie",
+      "slug": "enforcer_rookie"
+    }
   }
 ]

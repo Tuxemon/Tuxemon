@@ -38,7 +38,8 @@ class InputHistory:
 
     def is_button_combo(self, buttons: list[int]) -> bool:
         """
-        Checks if a specific button combination is present in the history.
+        Checks if a specific button combination is present at the end of
+        the history. This method does not modify the history.
 
         Parameters:
             buttons: The button combination to check for.
@@ -47,30 +48,22 @@ class InputHistory:
             True if the button combination is found, False otherwise.
         """
         if len(buttons) > len(self.history):
-            raise ValueError(
-                "Button combination is longer than max history size."
-            )
+            return False
 
-        history_iter = iter(self.history)
-        matched_buttons = 0
+        # Check if the last len(buttons) items in history match the combo
+        return all(
+            self.history[-(i + 1)].button == buttons[-(i + 1)]
+            for i in range(len(buttons))
+        )
 
-        for event in history_iter:
-            if event.button == buttons[matched_buttons]:
-                matched_buttons += 1
-                if matched_buttons == len(buttons):
-                    for _ in range(len(buttons)):
-                        self.history.popleft()
-                    return True
-        return False
-
-    def is_button_held_down(self, button: int, min_hold_time: int) -> bool:
+    def is_button_held(self, button: int, min_hold_time: int = 1) -> bool:
         """
         Checks if a specific button is being held down for a minimum amount
         of time.
-
         Parameters:
             button: The button to check for.
             min_hold_time: The minimum time the button must be held down for.
+            return False
 
         Returns:
             True if the button is being held down for the minimum time,

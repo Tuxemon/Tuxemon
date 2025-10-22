@@ -275,7 +275,7 @@ events:
     behav:
     - talk spyder_dante
     conditions:
-    - is variable_set zoolanderdefeat:yes
+    - is battle_outcome player,won,spyder_route3_zoolander
     - not variable_set omnichannelradioannounce:yes
     - is variable_set spokendante:yes
     type: event
@@ -295,7 +295,7 @@ events:
     behav:
     - talk spyder_dante
     conditions:
-    - is variable_set zoolanderdefeat:yes
+    - is battle_outcome player,won,spyder_route3_zoolander
     - is variable_set omnichannelradioannounce:yes
     - is variable_set spokendante:yes
     type: event
@@ -315,6 +315,6 @@ events:
     behav:
     - talk spyder_dante
     conditions:
-    - is variable_set zoolanderdefeat:yes
+    - is battle_outcome player,won,spyder_route3_zoolander
     - not variable_set spokendante:yes
     type: event

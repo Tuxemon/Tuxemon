@@ -159,7 +159,7 @@ events:
     behav:
     - talk spyder_cottontunnel_carlos
     conditions:
-    - is variable_set cottontunnelcarlos:yes
+    - is battle_outcome player,won,spyder_cottontunnel_carlos
     - is variable_set dragonscavedrokoro:yes
     type: event
   Raise Melee:
@@ -226,10 +226,10 @@ events:
     - add_monster legko,35,spyder_cottontunnel_carlos,5,10
     - start_battle player,spyder_cottontunnel_carlos
     - char_talk spyder_cottontunnel_carlos,post_battle_lose
-    - set_variable cottontunnelcarlos:yes
     conditions:
-    - not variable_set cottontunnelcarlos:yes
+    - not battle_outcome player,won,spyder_cottontunnel_carlos
     - is char_at player
+    - not char_defeated player
     - is variable_set dragonscavedrokoro:yes
     type: event
     x: 37

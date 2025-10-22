@@ -193,8 +193,7 @@ class EvolutionAction(EventAction):
 
     def deny_evolution(self, monster: Monster) -> None:
         """Deny the evolution"""
-        monster.got_experience = False
-        monster.levelling_up = False
+        monster.experience_handler.reset_status_flags()
         logger.info(f"{monster.name}'s evolution refused!")
 
         slug = self._pending_map.get(monster.instance_id)

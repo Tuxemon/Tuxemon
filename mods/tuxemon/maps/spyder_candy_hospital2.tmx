@@ -151,9 +151,9 @@
     <property name="act06" value="add_monster exclawvate,36,spyder_hospital1_luzia,5,10"/>
     <property name="act07" value="start_battle player,spyder_hospital1_luzia"/>
     <property name="act08" value="char_talk spyder_hospital1_luzia,post_battle_lose"/>
-    <property name="act09" value="set_variable hospital1luzia:yes"/>
-    <property name="cond1" value="not variable_set hospital1luzia:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_hospital1_luzia"/>
     <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
    </properties>
   </object>
   <object id="99" name="Create Zekar" type="event" x="32" y="128" width="16" height="16">
@@ -172,9 +172,9 @@
     <property name="act06" value="add_monster taupypus,32,spyder_hospital1_zekar,5,10"/>
     <property name="act07" value="start_battle player,spyder_hospital1_zekar"/>
     <property name="act08" value="char_talk spyder_hospital1_zekar,post_battle_lose"/>
-    <property name="act09" value="set_variable hospital1zekar:yes"/>
-    <property name="cond1" value="not variable_set hospital1zekar:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_hospital1_zekar"/>
     <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
    </properties>
   </object>
   <object id="101" name="Create Rea" type="event" x="288" y="128" width="16" height="16">
@@ -207,9 +207,9 @@
     <property name="act06" value="add_monster strella,30,spyder_hospital1_rakez,5,10"/>
     <property name="act07" value="start_battle player,spyder_hospital1_rakez"/>
     <property name="act08" value="char_talk spyder_hospital1_rakez,post_battle_lose"/>
-    <property name="act09" value="set_variable hospital1rakez:yes"/>
-    <property name="cond1" value="not variable_set hospital1rakez:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_hospital1_rakez"/>
     <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
    </properties>
   </object>
   <object id="105" name="Create Rhizome" type="event" x="304" y="32" width="16" height="16">
@@ -229,9 +229,9 @@
     <property name="act06" value="add_monster fancair,33,spyder_hospital1_rhizome,5,10"/>
     <property name="act07" value="start_battle player,spyder_hospital1_rhizome"/>
     <property name="act08" value="char_talk spyder_hospital1_rhizome,post_battle_lose"/>
-    <property name="act09" value="set_variable hospital1rhizome:yes"/>
-    <property name="cond1" value="not variable_set hospital1rhizome:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_hospital1_rhizome"/>
     <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
    </properties>
   </object>
   <object id="107" name="Create Scientist" type="event" x="64" y="208" width="16" height="16">

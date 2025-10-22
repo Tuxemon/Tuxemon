@@ -1,6 +1,6 @@
 #!/bin/bash
 # debian 10
-PYTHON_VERSION="3.9"
+PYTHON_VERSION="3.10"
 WINE_PYTHON="wine python${PYTHON_VERSION}"
 BUILD_DIR="build/tuxemon"
 

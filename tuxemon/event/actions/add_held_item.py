@@ -47,7 +47,7 @@ class AddHeldItemction(EventAction):
             logger.error("Monster not found")
             return
 
-        held = monster.held_item.get_item()
+        held = monster.held_item
         if held is not None:
             logger.error(f"{monster.name} held already {held.name}")
             return
@@ -58,4 +58,4 @@ class AddHeldItemction(EventAction):
             return
         else:
             logger.info(f"{item.name} has been added to {monster.name}!")
-            monster.held_item.set_item(item)
+            monster.item_handler.set_item(item)

@@ -84,7 +84,7 @@ class RandomEncounterAction(EventAction):
         if held_item is not None:
             item = Item.create(held_item)
             if item.behaviors.holdable:
-                current_monster.held_item.set_item(item)
+                current_monster.item_handler.set_item(item)
             else:
                 logger.error(f"{item.name} isn't 'holdable'")
                 return

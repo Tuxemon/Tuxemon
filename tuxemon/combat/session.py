@@ -426,7 +426,7 @@ class CombatSession:
         for player in list(self.active_players):
             monsters = self.field_monsters.get_monsters(player)
             for monster in monsters:
-                held_item = monster.held_item.get_item()
+                held_item = monster.held_item
                 if held_item:
                     held_item.use(session, player, monster)
                 status = monster.status.get_current_status()

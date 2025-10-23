@@ -50,7 +50,7 @@ class MonsterStatusHandler:
 
     def is_blocked(self, monster: Monster, status_slug: str) -> Optional[str]:
         """Check if the monster's held item grants immunity to the given status."""
-        item = monster.held_item.get_item()
+        item = monster.held_item
         if item and item.is_immune(status_slug):
             logger.debug(
                 f"Item '{item.name}' blocks status '{status_slug}' for monster '{monster.name}'."

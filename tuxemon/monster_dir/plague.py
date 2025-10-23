@@ -228,7 +228,7 @@ class MonsterPlagueHandler:
             return False
 
         # Check required held_item
-        held_item = monster.held_item.get_item()
+        held_item = monster.held_item
         if inoculation.required_held_item is not None:
             if (
                 not held_item

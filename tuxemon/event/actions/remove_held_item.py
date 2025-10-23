@@ -44,12 +44,12 @@ class RemoveHeldItemction(EventAction):
             logger.error("Monster not found")
             return
 
-        held = monster.held_item.get_item()
+        held = monster.held_item
         if held is None:
             logger.error(f"{monster.name} doesn't held an item.")
             return
 
-        item = monster.held_item.get_item()
+        item = monster.held_item
         assert item
         logger.info(f"{item.name} has been removed from {monster.name}!")
-        monster.held_item.clear_item()
+        monster.item_handler.clear_item()

@@ -73,7 +73,7 @@ class StatChangeEffect(CoreEffect):
     def apply_status(
         self, session: Session, status: Status
     ) -> StatusEffectResult:
-        host = status.get_host()
+        host = status.host
         if (
             status.has_phase(EffectPhase.PERFORM_STATUS)
             and self.name not in status._effect_applied

@@ -36,8 +36,8 @@ class LifeGiftEffect(CoreEffect):
         self, session: Session, status: Status
     ) -> StatusEffectResult:
         lifegift: bool = False
-        host = status.get_host()
-        linked = status.get_linked_monster()
+        host = status.host
+        linked = status.linked_monster
         if (
             status.has_phase(EffectPhase.PERFORM_STATUS)
             and linked

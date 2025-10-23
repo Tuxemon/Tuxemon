@@ -71,7 +71,7 @@ class MonsterStatusHandler:
         ensuring proper transitions between statuses based on their category and
         interaction rules.
         """
-        host = new_status.get_host()
+        host = new_status.host
         logger.debug(
             f"Trying to apply status '{new_status.slug}' to monster '{host.name}'."
         )

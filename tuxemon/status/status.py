@@ -54,6 +54,7 @@ class Status:
         save_data = save_data or {}
         self._host: Monster = host
         self._steps: float = steps
+        self._linked_monster: Optional[Monster] = None
 
         self._effect_applied: set[str] = set()
 
@@ -67,7 +68,6 @@ class Status:
         self.flip_axes: FlipAxes = FlipAxes.NONE
         self.gain_cond: str = ""
         self.icon: str = ""
-        self.linked_monster: Optional[Monster] = None
         self.name: str = ""
         self.nr_turn: int = 0
         self.duration: int = 0
@@ -104,6 +104,20 @@ class Status:
         method = cls(host, steps, save_data)
         method.load(slug)
         return method
+
+    @property
+    def host(self) -> Monster:
+        """Returns the monster associated with this status."""
+        return self._host
+
+    @property
+    def steps(self) -> float:
+        return self._steps
+
+    @property
+    def linked_monster(self) -> Optional[Monster]:
+        """Returns the monster linked to this status effect."""
+        return self._linked_monster
 
     def load(self, slug: str) -> None:
         """
@@ -182,17 +196,9 @@ class Status:
         """
         return self.condition_handler.validate(session=session, target=target)
 
-    def get_host(self) -> Monster:
-        """Returns the monster associated with this status."""
-        return self._host
-
-    def get_linked_monster(self) -> Optional[Monster]:
-        """Returns the monster linked to this status effect."""
-        return self.linked_monster
-
     def set_linked_monster(self, monster: Monster) -> None:
         """Assigns a linked monster that benefits from this status."""
-        self.linked_monster = monster
+        self._linked_monster = monster
 
     def has_reached_duration(self) -> bool:
         """Checks if the status has reached or exceeded its duration."""

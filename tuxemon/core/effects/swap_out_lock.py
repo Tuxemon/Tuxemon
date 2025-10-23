@@ -74,7 +74,7 @@ class SwapOutLockEffect(CoreEffect):
     def apply_status(
         self, session: Session, status: Status
     ) -> StatusEffectResult:
-        host = status.get_host()
+        host = status.host
         combat_session = session.client.combat_session
         persistent = self.method == "persistent"
 

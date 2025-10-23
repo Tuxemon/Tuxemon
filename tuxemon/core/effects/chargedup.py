@@ -24,7 +24,7 @@ class ChargedUpEffect(CoreEffect):
     def apply_status(
         self, session: Session, status: Status
     ) -> StatusEffectResult:
-        host = status.get_host()
+        host = status.host
         _statuses: list[Status] = []
         if status.has_phase(EffectPhase.PERFORM_TECH):
             host.status.clear_status(session)

@@ -16,7 +16,7 @@ class TestMonsterStatusHandler(unittest.TestCase):
         self.monster = MagicMock(spec=Monster)
         self.monster.name = "Rockitten"
         self.status = MagicMock(slug="test")
-        self.status.get_host.return_value = self.monster
+        self.status.host = self.monster
         self.basic = MonsterStatusHandler()
         self.handler = MonsterStatusHandler([self.status])
         self.mock_item = MagicMock()
@@ -39,9 +39,9 @@ class TestMonsterStatusHandler(unittest.TestCase):
             category=CategoryStatus.positive,
             on_positive_status=ResponseStatus.replaced,
         )
-        status1.get_host.return_value = self.monster
+        status1.host = self.monster
         status2 = MagicMock(on_positive_status=ResponseStatus.replaced)
-        status2.get_host.return_value = self.monster
+        status2.host = self.monster
         self.monster.held_item = MagicMock(spec=MonsterItemHandler)
         self.monster.held_item.get_item.return_value = self.mock_item
         handler = MonsterStatusHandler([status1])
@@ -51,9 +51,9 @@ class TestMonsterStatusHandler(unittest.TestCase):
 
     def test_apply_status_remove(self):
         status1 = MagicMock(category=CategoryStatus.positive)
-        status1.get_host.return_value = self.monster
+        status1.host = self.monster
         status2 = MagicMock(on_positive_status=ResponseStatus.removed)
-        status2.get_host.return_value = self.monster
+        status2.host = self.monster
         self.monster.held_item = MagicMock(spec=MonsterItemHandler)
         self.monster.held_item.get_item.return_value = self.mock_item
         handler = MonsterStatusHandler([status1])

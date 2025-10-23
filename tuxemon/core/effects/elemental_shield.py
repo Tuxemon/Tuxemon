@@ -35,7 +35,7 @@ class ElementalShieldBackEffect(CoreEffect):
         self, session: Session, status: Status
     ) -> StatusEffectResult:
 
-        host = status.get_host()
+        host = status.host
 
         if not status.has_phase(EffectPhase.PERFORM_STATUS):
             return StatusEffectResult(name=status.name, success=False)

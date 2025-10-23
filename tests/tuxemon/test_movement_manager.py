@@ -27,7 +27,6 @@ class TestMovementManager(unittest.TestCase):
         )
         self.mock_npc = MagicMock(spec=NPC)
         self.mock_npc.slug = "npc_1"
-        self.mock_npc.path_controller = MagicMock()
         self.mock_npc.mover = MagicMock()
 
     def test_move_char(self):
@@ -39,7 +38,7 @@ class TestMovementManager(unittest.TestCase):
         self.movement_manager.stop_char(self.mock_npc)
         self.assertNotIn("npc_1", self.movement_manager.wants_to_move_char)
         self.mock_client.event_manager.release_controls.assert_called_once()
-        self.mock_npc.path_controller.cancel_movement.assert_called_once()
+        self.mock_npc.cancel_movement.assert_called_once()
 
     def test_unlock_controls(self):
         self.movement_manager.wants_to_move_char["npc_1"] = Direction.down
@@ -57,7 +56,7 @@ class TestMovementManager(unittest.TestCase):
         self.movement_manager.stop_and_reset_char(self.mock_npc)
         self.assertNotIn("npc_1", self.movement_manager.wants_to_move_char)
         self.mock_client.event_manager.release_controls.assert_called_once()
-        self.mock_npc.path_controller.abort_movement.assert_called_once()
+        self.mock_npc.abort_movement.assert_called_once()
 
     def test_is_movement_allowed(self):
         self.movement_manager.allow_char_movement.add("npc_1")

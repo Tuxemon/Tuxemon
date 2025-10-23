@@ -13,7 +13,10 @@ from tuxemon.math import Vector2
 from tuxemon.tools import vector2_to_tile_pos
 
 if TYPE_CHECKING:
+    from tuxemon.map.map_manager import MapManager
+    from tuxemon.movement import Pathfinder
     from tuxemon.npc import NPC
+    from tuxemon.npc_manager import NPCManager
 
 
 logger = logging.getLogger(__name__)
@@ -26,8 +29,18 @@ def tile_distance(tile0: Iterable[float], tile1: Iterable[float]) -> float:
 
 
 class PathController:
-    def __init__(self, owner: NPC) -> None:
+    def __init__(
+        self,
+        owner: NPC,
+        pathfinder: Pathfinder,
+        map_manager: MapManager,
+        npc_manager: NPCManager,
+    ) -> None:
         self.owner = owner
+        self._pathfinder = pathfinder
+        self._map_manager = map_manager
+        self._npc_manager = npc_manager
+        self._repath_cooldown: float = 0.0
         self.path: list[tuple[int, int]] = []
         self.pathfinding: Optional[tuple[int, int]] = None
         self.path_origin: Optional[tuple[int, int]] = None
@@ -53,7 +66,7 @@ class PathController:
             destination: Desired final position.
         """
         self.pathfinding = destination
-        path = self.owner.client.pathfinder.pathfind(
+        path = self._pathfinder.pathfind(
             self.owner.tile_pos, destination, self.owner.facing
         )
         if path:
@@ -68,6 +81,8 @@ class PathController:
             )
 
     def update(self, time_delta: float) -> None:
+        self._repath_cooldown = max(0.0, self._repath_cooldown - time_delta)
+
         if self.path or self.owner.move_direction:
             self.process_movement()
 
@@ -86,7 +101,8 @@ class PathController:
         are triggered.
         """
         if self.pathfinding and not self.path:
-            self.start_path(self.pathfinding)
+            if self._repath_cooldown <= 0.0:
+                self.start_path(self.pathfinding)
             return
 
         if self.path:
@@ -132,7 +148,7 @@ class PathController:
         self.owner.set_facing(direction)
 
         try:
-            if self.owner.client.pathfinder.is_tile_traversable(
+            if self._pathfinder.is_tile_traversable(
                 self.owner.tile_pos,
                 self.owner.facing,
                 target,
@@ -189,9 +205,7 @@ class PathController:
 
     def check_continue(self) -> None:
         try:
-            tile = self.owner.client.map_manager.collision_map[
-                self.owner.tile_pos
-            ]
+            tile = self._map_manager.collision_map[self.owner.tile_pos]
             if tile and tile.endure:
                 # Use self.owner.facing if the tile allows multiple directions (> 1).
                 if len(tile.endure) > 1:
@@ -208,9 +222,7 @@ class PathController:
 
     def _apply_tile_effects(self) -> None:
         try:
-            tile = self.owner.client.map_manager.collision_map.get(
-                self.owner.tile_pos
-            )
+            tile = self._map_manager.collision_map.get(self.owner.tile_pos)
             if tile is None:
                 return
 
@@ -225,9 +237,16 @@ class PathController:
         except (KeyError, TypeError):
             pass
 
+    def _get_next_tile_pos(
+        self, origin: tuple[int, int], direction: Direction
+    ) -> tuple[int, int]:
+        """Calculates the target tile position one step away from the origin."""
+        target_vec = Vector2(origin) + dirs2[direction]
+        return vector2_to_tile_pos(target_vec)
+
     def move_one_tile(self, direction: Direction) -> None:
-        target = Vector2(self.owner.tile_pos) + dirs2[direction]
-        self.path.append(vector2_to_tile_pos(target))
+        target = self._get_next_tile_pos(self.owner.tile_pos, direction)
+        self.path.append(target)
 
     def move_multiple_tiles(self, direction: Direction, strength: int) -> None:
         """
@@ -251,12 +270,13 @@ class PathController:
         steps = []
 
         for _ in range(strength):
-            candidate = vector2_to_tile_pos(Vector2(origin) + dirs2[direction])
+            candidate = self._get_next_tile_pos(origin, direction)
 
             if candidate == origin:
+                logger.debug(f"Skipping duplicate tile: {candidate}")
                 continue
 
-            exits = self.owner.client.pathfinder.get_exits(origin, direction)
+            exits = self._pathfinder.get_exits(origin, direction)
             logger.debug(
                 f"Valid exits from {origin} facing {direction}: {exits}"
             )
@@ -322,19 +342,20 @@ class PathController:
 
     def handle_obstruction(self, target: tuple[int, int]) -> None:
         if self.pathfinding:
-            npc = self.owner.client.npc_manager.get_entity_pos(
-                self.pathfinding
-            )
+            npc = self._npc_manager.get_entity_pos(self.pathfinding)
             if npc:
                 logger.info(
                     f"{npc.slug} obstructing {self.owner.slug}, recalculating path."
                 )
+                self._repath_cooldown = 0.5
                 self.start_path(self.pathfinding)
             else:
                 logger.warning(
                     f"{self.owner.slug} could not proceed to {self.pathfinding} due to obstruction. "
                     "Consider splitting pathfinding or postponing movement."
                 )
+                self._repath_cooldown = 1.0
+                self.owner.stop_moving()
         else:
             logger.debug(
                 f"{self.owner.slug} faced obstruction at {target}. Movement stopped."

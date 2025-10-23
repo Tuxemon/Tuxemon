@@ -103,8 +103,13 @@ class NPC(Entity[NPCState]):
         self.dialogue: Optional[DialogueProfile] = None
         self.sprite_controller = SpriteController(self)
 
-        # PathController composed to manage all path/pathfinding state & logic.
-        self.path_controller = PathController(self)
+        # PathController manages all path/pathfinding state & logic.
+        self.path_controller = PathController(
+            self,
+            self.client.pathfinder,
+            self.client.map_manager,
+            self.client.npc_manager,
+        )
         self.final_move_dest = [0, 0]
 
     @property
@@ -204,10 +209,19 @@ class NPC(Entity[NPCState]):
         self.sprite_controller.load_sprites(self.template)
 
     def pathfind(self, destination: tuple[int, int]) -> None:
-        return self.path_controller.start_path(destination)
+        self.path_controller.start_path(destination)
 
     def set_path_and_start(self, path: list[tuple[int, int]]) -> None:
-        return self.path_controller.set_path_and_start(path)
+        self.path_controller.set_path_and_start(path)
+
+    def cancel_path(self) -> None:
+        self.path_controller.cancel_path()
+
+    def cancel_movement(self) -> None:
+        self.path_controller.cancel_movement()
+
+    def abort_movement(self, preserve_position: bool = False) -> None:
+        self.path_controller.abort_movement(preserve_position)
 
     def update(self, time_delta: float) -> None:
         """

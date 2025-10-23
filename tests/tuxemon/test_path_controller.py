@@ -49,9 +49,8 @@ class SimpleNPC:
 
 
 class PathControllerMagicMockTests(unittest.TestCase):
-    def mk_npc_with_mocks(
-        self, *, pathfinder=None, npc_manager=None, map_manager=None
-    ):
+
+    def mk_npc_with_mocks(self):
         npc = SimpleNPC()
         mover = MagicMock()
         mover.current_direction = Direction.down
@@ -61,12 +60,12 @@ class PathControllerMagicMockTests(unittest.TestCase):
         sprite.play_animation = MagicMock()
         sprite.stop_animation = MagicMock()
         npc.sprite_controller = sprite
-        client = MagicMock()
-        client.pathfinder = pathfinder or MagicMock()
-        client.npc_manager = npc_manager or MagicMock()
-        client.map_manager = map_manager or MagicMock()
-        npc.client = client
         return npc
+
+    def setUp(self):
+        self.map_manager = MagicMock()
+        self.pathfinder = MagicMock()
+        self.npc_manager = MagicMock()
 
     def test_tile_distance(self):
         test_cases = [
@@ -83,9 +82,14 @@ class PathControllerMagicMockTests(unittest.TestCase):
         pf = MagicMock()
         pf.pathfind.return_value = [(0, 1), (0, 2)]
         pf.is_tile_traversable.return_value = True
-        npc = self.mk_npc_with_mocks(pathfinder=pf)
+        npc = self.mk_npc_with_mocks()
         npc.tile_pos = (0, 0)
-        pc = PathController(npc)
+        pc = PathController(
+            npc,
+            pathfinder=pf,
+            map_manager=self.map_manager,
+            npc_manager=self.npc_manager,
+        )
         pc.start_path((0, 2))
         self.assertEqual(pc.path, [(0, 1), (0, 2)])
         npc.sprite_controller.play_animation.assert_called_once()
@@ -94,9 +98,14 @@ class PathControllerMagicMockTests(unittest.TestCase):
     def test_start_path_no_path_returns_no_changes(self):
         pf = MagicMock()
         pf.pathfind.return_value = []
-        npc = self.mk_npc_with_mocks(pathfinder=pf)
+        npc = self.mk_npc_with_mocks()
         npc.tile_pos = (1, 1)
-        pc = PathController(npc)
+        pc = PathController(
+            npc,
+            pathfinder=pf,
+            map_manager=self.map_manager,
+            npc_manager=self.npc_manager,
+        )
         pc.pathfinding = (5, 5)
         pc.start_path((5, 5))
         self.assertEqual(pc.path, [])
@@ -106,9 +115,14 @@ class PathControllerMagicMockTests(unittest.TestCase):
     def test_process_movement_starts_pathfinding_when_flag_set(self):
         pf = MagicMock()
         pf.pathfind.return_value = [(2, 2)]
-        npc = self.mk_npc_with_mocks(pathfinder=pf)
+        npc = self.mk_npc_with_mocks()
         npc.tile_pos = (0, 0)
-        pc = PathController(npc)
+        pc = PathController(
+            npc,
+            pathfinder=pf,
+            map_manager=self.map_manager,
+            npc_manager=self.npc_manager,
+        )
         pc.pathfinding = (2, 2)
         pc.process_movement()
         pf.pathfind.assert_called_once_with(npc.tile_pos, (2, 2), npc.facing)
@@ -117,9 +131,14 @@ class PathControllerMagicMockTests(unittest.TestCase):
     def test_next_waypoint_when_tile_blocked_calls_handle_obstruction(self):
         pf = MagicMock()
         pf.is_tile_traversable.return_value = False
-        npc = self.mk_npc_with_mocks(pathfinder=pf)
+        npc = self.mk_npc_with_mocks()
         npc.tile_pos = (0, 0)
-        pc = PathController(npc)
+        pc = PathController(
+            npc,
+            pathfinder=pf,
+            map_manager=self.map_manager,
+            npc_manager=self.npc_manager,
+        )
         pc.path = [(0, 1)]
         pc.handle_obstruction = MagicMock()
         pc.next_waypoint()
@@ -131,9 +150,14 @@ class PathControllerMagicMockTests(unittest.TestCase):
     ):
         pf = MagicMock()
         pf.is_tile_traversable.return_value = True
-        npc = self.mk_npc_with_mocks(pathfinder=pf)
+        npc = self.mk_npc_with_mocks()
         npc.tile_pos = (3, 3)
-        pc = PathController(npc)
+        pc = PathController(
+            npc,
+            pathfinder=pf,
+            map_manager=self.map_manager,
+            npc_manager=self.npc_manager,
+        )
         pc.path = [(3, 4)]
         pc.next_waypoint()
         npc.sprite_controller.play_animation.assert_called_once()
@@ -143,9 +167,14 @@ class PathControllerMagicMockTests(unittest.TestCase):
     def test_next_waypoint_pathfinder_exception_cancels_path(self):
         pf = MagicMock()
         pf.is_tile_traversable.side_effect = RuntimeError("boom")
-        npc = self.mk_npc_with_mocks(pathfinder=pf)
+        npc = self.mk_npc_with_mocks()
         npc.tile_pos = (0, 0)
-        pc = PathController(npc)
+        pc = PathController(
+            npc,
+            pathfinder=pf,
+            map_manager=self.map_manager,
+            npc_manager=self.npc_manager,
+        )
         pc.path = [(0, 1)]
         pc.next_waypoint()
         self.assertEqual(pc.path, [])
@@ -154,10 +183,14 @@ class PathControllerMagicMockTests(unittest.TestCase):
     def test_check_waypoint_pops_and_applies_tile_effects_and_continuation(
         self,
     ):
-        pf = MagicMock()
-        npc = self.mk_npc_with_mocks(pathfinder=pf)
+        npc = self.mk_npc_with_mocks()
         npc.tile_pos = (0, 0)
-        pc = PathController(npc)
+        pc = PathController(
+            npc,
+            pathfinder=self.pathfinder,
+            map_manager=self.map_manager,
+            npc_manager=self.npc_manager,
+        )
         pc.path = [(0, 1)]
         pc.path_origin = (0, 0)
         npc.position = Vector2(0.0, 1.0)
@@ -174,13 +207,14 @@ class PathControllerMagicMockTests(unittest.TestCase):
         tile.endure = [Direction.up]
         map_manager = Mock()
         map_manager.collision_map = {(1, 1): tile}
-        pf = MagicMock()
-        npc_manager = MagicMock()
-        npc = self.mk_npc_with_mocks(
-            pathfinder=pf, map_manager=map_manager, npc_manager=npc_manager
-        )
+        npc = self.mk_npc_with_mocks()
         npc.tile_pos = (1, 1)
-        pc = PathController(npc)
+        pc = PathController(
+            npc,
+            pathfinder=self.pathfinder,
+            map_manager=map_manager,
+            npc_manager=self.npc_manager,
+        )
         pc.check_continue()
         self.assertTrue(pc.path)
 
@@ -195,9 +229,14 @@ class PathControllerMagicMockTests(unittest.TestCase):
         map_manager.collision_map = {(2, 2): tile}
         pf = MagicMock()
         pf.get_exits.return_value = [(1, 2)]
-        npc = self.mk_npc_with_mocks(pathfinder=pf, map_manager=map_manager)
+        npc = self.mk_npc_with_mocks()
         npc.tile_pos = (2, 2)
-        pc = PathController(npc)
+        pc = PathController(
+            npc,
+            pathfinder=pf,
+            map_manager=map_manager,
+            npc_manager=self.npc_manager,
+        )
         pc._apply_tile_effects()
         self.assertEqual(npc._moverate_modifier, 0.5)
         self.assertTrue(pc.path)
@@ -213,7 +252,12 @@ class PathControllerMagicMockTests(unittest.TestCase):
             with self.subTest(direction=direction):
                 npc = self.mk_npc_with_mocks()
                 npc.tile_pos = (4, 4)
-                pc = PathController(npc)
+                pc = PathController(
+                    npc,
+                    pathfinder=self.pathfinder,
+                    map_manager=self.map_manager,
+                    npc_manager=self.npc_manager,
+                )
                 pc.move_one_tile(direction)
                 expected = vector2_to_tile_pos(
                     Vector2(npc.tile_pos) + dirs2[direction]
@@ -224,16 +268,26 @@ class PathControllerMagicMockTests(unittest.TestCase):
         origin = (5, 5)
         pf = MagicMock()
         pf.get_exits.return_value = [(6, 5)]
-        npc = self.mk_npc_with_mocks(pathfinder=pf)
+        npc = self.mk_npc_with_mocks()
         npc.tile_pos = origin
-        pc = PathController(npc)
+        pc = PathController(
+            npc,
+            pathfinder=pf,
+            map_manager=self.map_manager,
+            npc_manager=self.npc_manager,
+        )
         pc.move_multiple_tiles(Direction.right, strength=3)
         self.assertTrue(pc.path)
         self.assertEqual(pc.path_origin, origin)
 
     def test_cancel_path_clears_pathfinding_state(self):
         npc = self.mk_npc_with_mocks()
-        pc = PathController(npc)
+        pc = PathController(
+            npc,
+            pathfinder=self.pathfinder,
+            map_manager=self.map_manager,
+            npc_manager=self.npc_manager,
+        )
         pc.path = [(1, 1)]
         pc.pathfinding = (9, 9)
         pc.path_origin = (0, 0)
@@ -244,7 +298,12 @@ class PathControllerMagicMockTests(unittest.TestCase):
 
     def test_cancel_movement_preserve_and_abort_behavior(self):
         npc = self.mk_npc_with_mocks()
-        pc = PathController(npc)
+        pc = PathController(
+            npc,
+            pathfinder=self.pathfinder,
+            map_manager=self.map_manager,
+            npc_manager=self.npc_manager,
+        )
         pc.path_origin = (2, 2)
         pc.path = []
         npc.position = Vector2(2.0, 2.0)
@@ -253,7 +312,12 @@ class PathControllerMagicMockTests(unittest.TestCase):
 
     def test_abort_movement_reverts_tile_pos_when_not_preserve(self):
         npc = self.mk_npc_with_mocks()
-        pc = PathController(npc)
+        pc = PathController(
+            npc,
+            pathfinder=self.pathfinder,
+            map_manager=self.map_manager,
+            npc_manager=self.npc_manager,
+        )
         npc.tile_pos = (7, 7)
         pc.path_origin = (3, 3)
         pc.abort_movement(preserve_position=False)
@@ -262,18 +326,17 @@ class PathControllerMagicMockTests(unittest.TestCase):
         self.assertEqual(pc.path, [])
 
     def test_handle_obstruction_recalculates_when_npc_blocking(self):
-        pf = MagicMock()
         blocking_npc = SimpleNPC()
         npc_manager = MagicMock()
         npc_manager.get_entity_pos.return_value = blocking_npc
 
-        client = MagicMock()
-        client.pathfinder = pf
-        client.npc_manager = npc_manager
-
         npc = SimpleNPC()
-        npc.client = client
-        pc = PathController(npc)
+        pc = PathController(
+            npc,
+            pathfinder=self.pathfinder,
+            map_manager=self.map_manager,
+            npc_manager=self.npc_manager,
+        )
         pc.pathfinding = (9, 9)
 
         pc.start_path = MagicMock()
@@ -281,33 +344,51 @@ class PathControllerMagicMockTests(unittest.TestCase):
         pc.start_path.assert_called_once_with((9, 9))
 
     def test_handle_obstruction_no_pathfinding_logs_and_no_error(self):
-        pf = MagicMock()
-        npc = self.mk_npc_with_mocks(pathfinder=pf)
-        pc = PathController(npc)
+        npc = self.mk_npc_with_mocks()
+        pc = PathController(
+            npc,
+            pathfinder=self.pathfinder,
+            map_manager=self.map_manager,
+            npc_manager=self.npc_manager,
+        )
         pc.handle_obstruction((0, 1))
 
     def test_process_movement_direct_move_when_no_path(self):
         pf = MagicMock()
         pf.is_tile_traversable.return_value = True
-        npc = self.mk_npc_with_mocks(pathfinder=pf)
+        npc = self.mk_npc_with_mocks()
         npc.tile_pos = (0, 0)
         npc.move_direction = Direction.down
-        pc = PathController(npc)
+        pc = PathController(
+            npc,
+            pathfinder=pf,
+            map_manager=self.map_manager,
+            npc_manager=self.npc_manager,
+        )
         pc.path = []
         pc.process_movement()
         self.assertTrue(pc.path)
 
     def test_update_triggers_process_when_path_or_move_dir_present(self):
-        pf = MagicMock()
-        npc = self.mk_npc_with_mocks(pathfinder=pf)
-        pc = PathController(npc)
+        npc = self.mk_npc_with_mocks()
+        pc = PathController(
+            npc,
+            pathfinder=self.pathfinder,
+            map_manager=self.map_manager,
+            npc_manager=self.npc_manager,
+        )
         pc.update(0.016)
         pc.path = [(1, 1)]
         pc.update(0.016)
 
     def test_cancel_movement_before_leaving_tile_aborts(self):
         npc = self.mk_npc_with_mocks()
-        pc = PathController(npc)
+        pc = PathController(
+            npc,
+            pathfinder=self.pathfinder,
+            map_manager=self.map_manager,
+            npc_manager=self.npc_manager,
+        )
         pc.path_origin = (2, 2)
         npc.tile_pos = (2, 2)
         npc.position = Vector2(2.0, 2.0)
@@ -322,11 +403,218 @@ class PathControllerMagicMockTests(unittest.TestCase):
         tile.endure = [Direction.up, Direction.down]
         map_manager = Mock()
         map_manager.collision_map = {(1, 1): tile}
-        pf = MagicMock()
-        npc = self.mk_npc_with_mocks(pathfinder=pf, map_manager=map_manager)
+        npc = self.mk_npc_with_mocks()
         npc.tile_pos = (1, 1)
         npc.set_facing(Direction.right)
-        pc = PathController(npc)
+        pc = PathController(
+            npc,
+            pathfinder=self.pathfinder,
+            map_manager=map_manager,
+            npc_manager=self.npc_manager,
+        )
         pc.move_one_tile = MagicMock()
         pc.check_continue()
         pc.move_one_tile.assert_called_once_with(Direction.right)
+
+    def test_handle_obstruction_with_npc_sets_cooldown_and_retries_path(self):
+        pf = MagicMock()
+        pf.pathfind.return_value = [(0, 1), (0, 2)]
+        pf.is_tile_traversable.return_value = True
+
+        npc_manager = MagicMock()
+        blocking_npc = MagicMock()
+        blocking_npc.slug = "blocker"
+        npc_manager.get_entity_pos.return_value = blocking_npc
+
+        npc = self.mk_npc_with_mocks()
+        pc = PathController(
+            npc,
+            pathfinder=pf,
+            map_manager=self.map_manager,
+            npc_manager=npc_manager,
+        )
+        pc.pathfinding = (0, 2)
+
+        pc.handle_obstruction((0, 1))
+
+        self.assertEqual(pc._repath_cooldown, 0.5)
+        pf.pathfind.assert_called_once_with(npc.tile_pos, (0, 2), npc.facing)
+
+    def test_handle_obstruction_without_npc_sets_cooldown_and_stops(self):
+        npc_manager = MagicMock()
+        npc_manager.get_entity_pos.return_value = None
+
+        npc = self.mk_npc_with_mocks()
+        pc = PathController(
+            npc,
+            pathfinder=self.pathfinder,
+            map_manager=self.map_manager,
+            npc_manager=npc_manager,
+        )
+        pc.pathfinding = (5, 5)
+        pc.path = [(5, 5)]
+
+        pc.handle_obstruction((4, 4))
+
+        self.assertEqual(pc._repath_cooldown, 1.0)
+        self.assertEqual(pc.path, [(5, 5)])
+        self.assertFalse(npc.moving)
+
+    def test_process_movement_does_not_retry_path_when_cooldown_active(self):
+        pf = MagicMock()
+        npc = self.mk_npc_with_mocks()
+        pc = PathController(
+            npc,
+            pathfinder=pf,
+            map_manager=self.map_manager,
+            npc_manager=self.npc_manager,
+        )
+        pc.pathfinding = (3, 3)
+        pc._repath_cooldown = 0.5
+
+        pc.process_movement()
+
+        pf.pathfind.assert_not_called()
+
+    def test_process_movement_retries_path_when_cooldown_expires(self):
+        pf = MagicMock()
+        pf.pathfind.return_value = [(0, 1), (0, 2)]
+        pf.is_tile_traversable.return_value = True
+
+        npc = self.mk_npc_with_mocks()
+        pc = PathController(
+            npc,
+            pathfinder=pf,
+            map_manager=self.map_manager,
+            npc_manager=self.npc_manager,
+        )
+        pc.pathfinding = (0, 2)
+        pc._repath_cooldown = 0.0
+
+        pc.process_movement()
+
+        pf.pathfind.assert_called_once_with(npc.tile_pos, (0, 2), npc.facing)
+
+    def test_update_reduces_repath_cooldown(self):
+        npc = self.mk_npc_with_mocks()
+        pc = PathController(
+            npc,
+            pathfinder=self.pathfinder,
+            map_manager=self.map_manager,
+            npc_manager=self.npc_manager,
+        )
+        pc._repath_cooldown = 1.0
+
+        pc.update(0.3)
+        self.assertAlmostEqual(pc._repath_cooldown, 0.7)
+
+    def test_retry_path_after_cooldown_expires(self):
+        pf = MagicMock()
+        pf.pathfind.return_value = [(1, 1), (2, 2)]
+        pf.is_tile_traversable.return_value = True
+
+        npc = self.mk_npc_with_mocks()
+        npc.tile_pos = (0, 0)
+
+        pc = PathController(
+            npc,
+            pathfinder=pf,
+            map_manager=self.map_manager,
+            npc_manager=self.npc_manager,
+        )
+        pc.pathfinding = (2, 2)
+        pc._repath_cooldown = 0.0
+
+        pc.process_movement()
+
+        pf.pathfind.assert_called_once_with((0, 0), (2, 2), npc.facing)
+        self.assertEqual(pc.path, [(1, 1), (2, 2)])
+
+    def test_stress_obstruction_loop_without_cooldown(self):
+        pf = MagicMock()
+        pf.pathfind.return_value = [(0, 1)]
+        pf.is_tile_traversable.return_value = False
+
+        npc_manager = MagicMock()
+        npc_manager.get_entity_pos.return_value = None
+
+        npc = self.mk_npc_with_mocks()
+        pc = PathController(
+            npc,
+            pathfinder=pf,
+            map_manager=self.map_manager,
+            npc_manager=npc_manager,
+        )
+        pc.pathfinding = (0, 1)
+        pc.path = [(0, 1)]
+
+        for _ in range(100):
+            pc.next_waypoint()
+
+        self.assertTrue(True)
+
+    def test_stress_cooldown_throttling(self):
+        pf = MagicMock()
+        pf.pathfind.return_value = [(1, 1)]
+        pf.is_tile_traversable.return_value = True
+
+        npc = self.mk_npc_with_mocks()
+        pc = PathController(
+            npc,
+            pathfinder=pf,
+            map_manager=self.map_manager,
+            npc_manager=self.npc_manager,
+        )
+        pc.pathfinding = (1, 1)
+        pc._repath_cooldown = 1.0
+
+        for _ in range(60):
+            pc.update(1.0 / 60.0)
+            pc.process_movement()
+
+        pf.pathfind.assert_called_once()
+
+    def test_stress_multiple_npcs_blocking_each_other(self):
+        pf = MagicMock()
+        pf.pathfind.return_value = [(1, 1)]
+        pf.is_tile_traversable.return_value = False
+
+        npc_manager = MagicMock()
+        blocking_npc = MagicMock()
+        blocking_npc.slug = "blocker"
+        npc_manager.get_entity_pos.return_value = blocking_npc
+
+        npc = self.mk_npc_with_mocks()
+        pc = PathController(
+            npc,
+            pathfinder=pf,
+            map_manager=self.map_manager,
+            npc_manager=npc_manager,
+        )
+        pc.pathfinding = (1, 1)
+        pc.path = [(1, 1)]
+
+        for _ in range(10):
+            pc.next_waypoint()
+
+        self.assertEqual(pc._repath_cooldown, 0.5)
+
+    def test_stress_long_path_with_retries(self):
+        pf = MagicMock()
+        pf.pathfind.side_effect = lambda *_: [(x, x) for x in range(10)]
+        pf.is_tile_traversable.return_value = True
+
+        npc = self.mk_npc_with_mocks()
+        pc = PathController(
+            npc,
+            pathfinder=pf,
+            map_manager=self.map_manager,
+            npc_manager=self.npc_manager,
+        )
+        pc.pathfinding = (9, 9)
+        pc._repath_cooldown = 0.0
+
+        for _ in range(20):
+            pc.process_movement()
+
+        self.assertLessEqual(len(pc.path), 10)

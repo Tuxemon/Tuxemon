@@ -60,7 +60,7 @@ class ItemActionHandler:
         self._clear_states("ChoiceState", self.source_state)
 
         diff = item.quantity - quantity
-        retrieve = self.char.items.find_item(item.slug)
+        retrieve = self.char.bag.find_item(item.slug)
 
         if diff <= 0:
             self.item_boxes.remove_item(item)
@@ -71,7 +71,7 @@ class ItemActionHandler:
             retrieve.increase_quantity(quantity)
         else:
             new_item = Item.create(item.slug)
-            self.char.items.add_item(new_item, quantity)
+            self.char.bag.add_item(new_item, quantity)
 
         open_dialog(
             self.client,
@@ -396,7 +396,7 @@ class ItemDropOff(ItemMenuState):
     name: ClassVar[str] = "ItemDropOff"
 
     def __init__(self, box_name: str, character: NPC) -> None:
-        items_filtered = ItemFilter(character.items.get_items())
+        items_filtered = ItemFilter(character.items)
         items_filtered.set_filter_all_visible()
         super().__init__(
             character=character, source=self.name, item_filter=items_filtered
@@ -440,7 +440,7 @@ class ItemDropOff(ItemMenuState):
             else:
                 item_boxes.add_item(self.box_name, new_item)
 
-            self.char.items.remove_item(itm, quantity)
+            self.char.bag.remove_item(itm, quantity)
 
         self.client.push_state(
             QuantityMenu(

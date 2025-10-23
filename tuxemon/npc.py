@@ -40,6 +40,7 @@ from tuxemon.ui.cipher_processor import decode_cipher, encode_cipher
 if TYPE_CHECKING:
     from tuxemon.economy.applier import ShopInventory
     from tuxemon.economy.economy import Economy
+    from tuxemon.item.item import Item
     from tuxemon.session import Session
 
 
@@ -104,7 +105,7 @@ class NPC(Entity[NPCState]):
         self.monster_boxes = MonsterBoxes()
         self.party = PartyHandler(monster_boxes=self.monster_boxes, owner=self)
         self.item_boxes = ItemBoxes()
-        self.items = BagHandler(item_boxes=self.item_boxes)
+        self.bag = BagHandler(item_boxes=self.item_boxes, owner=self)
         self.evolution_registry = EvolutionRegistry()
         self.steps: float = 0.0
         self.dialogue: Optional[DialogueProfile] = None
@@ -132,6 +133,11 @@ class NPC(Entity[NPCState]):
         """Returns the list of monsters in the party."""
         return self.party.monsters
 
+    @property
+    def items(self) -> list[Item]:
+        """Returns the list of items in the party."""
+        return self.bag.items
+
     def get_state(self, session: Session) -> NPCState:
         """
         Prepares a dictionary of the npc to be saved to a file.
@@ -151,7 +157,7 @@ class NPC(Entity[NPCState]):
             "tuxepedia": encode_tuxepedia(self.tuxepedia),
             "relationships": encode_relationships(self.relationships),
             "money": self.money_controller.save(),
-            "items": self.items.encode_items(),
+            "items": self.bag.encode_items(),
             "template": self.template.model_dump(),
             "missions": self.mission_controller.encode_missions(),
             "monsters": self.party.encode_party(),
@@ -183,7 +189,7 @@ class NPC(Entity[NPCState]):
         self.tuxepedia = decode_tuxepedia(save_data["tuxepedia"])
         self.relationships = decode_relationships(save_data["relationships"])
         self.battle_handler.decode_battle(save_data)
-        self.items.decode_items(save_data)
+        self.bag.decode_items(save_data)
         self.party.decode_party(save_data)
         self.mission_controller.decode_missions(save_data.get("missions"))
         self.slug = save_data["player_slug"]

@@ -308,7 +308,7 @@ class TrainerAIDecisionStrategy(AIDecisionStrategy):
         character_slug = ai.character.slug
         config = self.ai_trainers.trainers.get(character_slug)
 
-        items = ai.character.items.get_items()
+        items = ai.character.items
         if items:
             for item in items:
                 if self.need_healing(ai, item):

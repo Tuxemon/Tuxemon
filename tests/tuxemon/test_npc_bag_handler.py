@@ -11,7 +11,7 @@ from tuxemon.item.item import Item
 class TestNPCBagHandler(unittest.TestCase):
 
     def setUp(self):
-        self.handler = BagHandler(item_boxes=MagicMock())
+        self.handler = BagHandler(item_boxes=MagicMock(), owner=MagicMock())
         self.item = Item.test()
         self.item.slug = "test_item"
 
@@ -49,7 +49,7 @@ class TestNPCBagHandler(unittest.TestCase):
         item2.slug = "test_item2"
         self.handler.add_item(item1)
         self.handler.add_item(item2)
-        items = self.handler.get_items()
+        items = self.handler.items
         self.assertIn(item1, items)
         self.assertIn(item2, items)
 

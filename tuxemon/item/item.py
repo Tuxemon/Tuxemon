@@ -240,7 +240,7 @@ class Item:
             logger.debug(
                 f"Consuming item '{self.slug}' from NPC '{user.slug}'."
             )
-            user.items.remove_item(self)
+            user.bag.remove_item(self)
         else:
             logger.debug(
                 f"Item '{self.slug}' not consumed (consumable={self.behaviors.consumable}, success={result.success})."

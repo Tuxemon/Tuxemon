@@ -225,7 +225,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
 
         def choose_item() -> None:
             # open menu to choose item
-            items_filtered = ItemFilter(self.character.items.get_items())
+            items_filtered = ItemFilter(self.character.items)
             items_filtered.set_filter_usable_in_state("MainCombatMenuState")
             menu = self.client.push_state(
                 ItemMenuState(self.character, self.name, items_filtered)

@@ -37,7 +37,7 @@ class NuPhone(PygameMenuState):
         theme.title = True
 
         self.menu_apps: list[Item] = []
-        for itm in self.char.items.get_items():
+        for itm in self.char.items:
             if itm.dynamic_menu and itm.dynamic_menu.menu_type == "phone":
                 self.menu_apps.append(itm)
 

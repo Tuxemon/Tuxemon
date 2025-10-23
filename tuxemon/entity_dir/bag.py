@@ -13,6 +13,7 @@ from tuxemon.item.item import decode_items, encode_items
 
 if TYPE_CHECKING:
     from tuxemon.item.item import Item
+    from tuxemon.npc import NPC
 
 
 logger = logging.getLogger(__name__)
@@ -23,12 +24,22 @@ class BagHandler:
     def __init__(
         self,
         item_boxes: ItemBoxes,
+        owner: NPC,
         items: Optional[list[Item]] = None,
         bag_limit: int = prepare.MAX_TYPES_BAG,
     ) -> None:
+        self._owner = owner
         self._items = items if items is not None else []
         self._bag_limit = bag_limit
         self._item_boxes = item_boxes
+
+    @property
+    def owner(self) -> NPC:
+        return self._owner
+
+    @property
+    def items(self) -> list[Item]:
+        return self._items
 
     def add_item(
         self, item: Item, quantity: int = 1, locker: str = prepare.LOCKER
@@ -109,9 +120,6 @@ class BagHandler:
             if itm.slug == item_slug:
                 return itm
         return None
-
-    def get_items(self) -> list[Item]:
-        return self._items
 
     def has_item(self, item_slug: str) -> bool:
         """

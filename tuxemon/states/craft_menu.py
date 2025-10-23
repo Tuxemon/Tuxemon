@@ -60,9 +60,7 @@ class CraftMenuState(PygameMenuState):
         craftable_recipes = []
 
         for slug, recipe in self.crafting_system.recipes.items():
-            if self.crafting_system.check_can_craft(
-                slug, self.character.items
-            ):
+            if self.crafting_system.check_can_craft(slug, self.character.bag):
                 craftable_recipes.append((slug, recipe))
 
         if not craftable_recipes:
@@ -83,7 +81,7 @@ class CraftMenuState(PygameMenuState):
         def craft(recipe_slug: str) -> None:
             self.client.remove_state_by_name("CraftMenuState")
             result = self.crafting_system.craft_item_for_bag(
-                recipe_slug, self.character.items
+                recipe_slug, self.character.bag
             )
             if result.revealed_content_slug:
                 open_dialog(

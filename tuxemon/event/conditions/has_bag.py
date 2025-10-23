@@ -42,9 +42,7 @@ class HasBagCondition(EventCondition):
             return False
 
         visible_items = [
-            item
-            for item in character.items.get_items()
-            if item.behaviors.visible
+            item for item in character.items if item.behaviors.visible
         ]
         bag_size = sum(item.quantity for item in visible_items)
         return compare(check, bag_size, int(number))

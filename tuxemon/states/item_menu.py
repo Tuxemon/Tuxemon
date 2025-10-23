@@ -50,9 +50,7 @@ class ItemMenuState(Menu[Item]):
         self.source = source
         super().__init__()
 
-        self.filter_controller = item_filter or ItemFilter(
-            self.char.items.get_items()
-        )
+        self.filter_controller = item_filter or ItemFilter(self.char.items)
         self.sorter = sorter or ItemSorter()
         # this sprite is used to display the item
         # it's also animated to pop out of the backpack

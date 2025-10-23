@@ -594,7 +594,7 @@ class Monster:
         self.moves.full_recharge_moves()
 
         if not self.status.is_fainted:
-            current_status = self.status.get_current_status()
+            current_status = self.status.current_status
             if (
                 current_status
                 and not current_status.behaviors.persists_after_combat
@@ -604,7 +604,7 @@ class Monster:
         if self.is_fainted:
             self.current_hp = 0
             self.status.apply_faint(self)
-            current = self.status.get_current_status()
+            current = self.status.current_status
             if current:
                 current.use(session, EffectPhase.ON_FAINT)
 

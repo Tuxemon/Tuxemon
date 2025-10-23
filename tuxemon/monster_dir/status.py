@@ -43,7 +43,8 @@ class MonsterStatusHandler:
     def is_fainted(self) -> bool:
         return self.has_status("faint")
 
-    def get_current_status(self) -> Optional[Status]:
+    @property
+    def current_status(self) -> Optional[Status]:
         if not self.status:
             return None
         return self.status[0]
@@ -87,7 +88,7 @@ class MonsterStatusHandler:
                 blocked_reason=BlockedReason.IMMUNE_BY_ITEM,
             )
 
-        current_status = self.get_current_status()
+        current_status = self.current_status
         if current_status is None:
             logger.debug("No current status, applying new status directly.")
             self.add_status(new_status)
@@ -160,7 +161,7 @@ class MonsterStatusHandler:
 
     def clear_status(self, session: Session) -> None:
         """Clears the current status effect for monsters in combat."""
-        current_status = self.get_current_status()
+        current_status = self.current_status
         if current_status:
             current_status.use(session, EffectPhase.ON_END)
             self.status.clear()
@@ -186,7 +187,7 @@ class MonsterStatusHandler:
         """
         Checks if a status is expired by its use counter. If so, clears it.
         """
-        current_status = self.get_current_status()
+        current_status = self.current_status
         if current_status and current_status.is_use_expired(max_uses=max_uses):
             self.clear_status(session)
             return True

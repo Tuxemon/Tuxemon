@@ -869,7 +869,7 @@ class CombatState(CombatAnimations):
         Parameters:
             monster: Monster that was defeated.
         """
-        status = monster.status.get_current_status()
+        status = monster.status.current_status
         if status:
             result_status = status.use(
                 self.session, EffectPhase.CHECK_PARTY_HP

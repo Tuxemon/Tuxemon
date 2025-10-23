@@ -137,7 +137,7 @@ class MonsterPlagueHandler:
         )
 
         # Status-based resistance
-        current_status = monster.status.get_current_status()
+        current_status = monster.status.current_status
         if current_status:
             resistance *= plague_config.resistance_modifiers.get(
                 "statuses", {}

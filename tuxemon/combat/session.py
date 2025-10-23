@@ -429,7 +429,7 @@ class CombatSession:
                 held_item = monster.held_item.get_item()
                 if held_item:
                     held_item.use(session, player, monster)
-                status = monster.status.get_current_status()
+                status = monster.status.current_status
                 if status:
                     status.use(session, EffectPhase.ON_DECISION)
 
@@ -499,12 +499,12 @@ class CombatSession:
 
         phase = EffectPhase.SWAP_MONSTER
 
-        entry_status = monster.status.get_current_status()
+        entry_status = monster.status.current_status
         if entry_status:
             entry_status.use(session, phase)
 
         if removed:
-            exit_status = removed.status.get_current_status()
+            exit_status = removed.status.current_status
             if exit_status:
                 exit_status.use(session, phase)
 
@@ -524,7 +524,7 @@ class CombatSession:
         or other conditions that change the chosen technique.
         """
         logger.debug(f"[PreCheck Start] {monster.name} using {technique.slug}")
-        status = monster.status.get_current_status()
+        status = monster.status.current_status
         if status:
             result_status = status.use(session, EffectPhase.PRE_CHECKING)
             if result_status.techniques:
@@ -556,7 +556,7 @@ class CombatSession:
         )
 
         status_result = None
-        status = user.status.get_current_status()
+        status = user.status.current_status
         if status:
             status_result = status.use(session, EffectPhase.PERFORM_TECH)
             if status_result.statuses:
@@ -578,7 +578,7 @@ class CombatSession:
         )
 
         if target:
-            status = target.status.get_current_status()
+            status = target.status.current_status
             if result.success and status:
                 status.use(session, EffectPhase.PERFORM_ITEM)
         return result

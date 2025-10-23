@@ -104,7 +104,7 @@ class DummyMonster:
         self.weight = weight
         self.height = height
         self.status = MagicMock()
-        self.status.get_current_status = MagicMock(
+        self.status.current_status = MagicMock(
             return_value=MagicMock(slug=status_slug) if status_slug else None
         )
         self.held_item = held_item or MagicMock()

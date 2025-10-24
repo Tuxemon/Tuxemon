@@ -91,7 +91,7 @@ class MonsterStatusHandler:
         if current_status is None:
             logger.debug("No current status, applying new status directly.")
             self.add_status(new_status)
-            new_status.nr_turn = 1
+            new_status.tick_turn()
             new_status.use(session, EffectPhase.ON_START)
             return StatusApplyResult(applied=True)
 
@@ -99,12 +99,7 @@ class MonsterStatusHandler:
             logger.debug(
                 f"Monster already has status '{new_status.slug}', skipping."
             )
-            current_status.stack_level = min(
-                current_status.stack_level + 1, Status.MAX_STACKS
-            )
-            logger.debug(
-                f"Stacking status '{new_status.slug}': now at {current_status.stack_level}/{Status.MAX_STACKS}."
-            )
+            current_status.stack()
             return StatusApplyResult(
                 applied=False,
                 blocked_by=current_status.name,
@@ -116,7 +111,7 @@ class MonsterStatusHandler:
         )
         current_status.use(session, EffectPhase.ON_END)
 
-        new_status.nr_turn = 1
+        new_status.tick_turn()
         logger.debug(
             f"Starting new status '{new_status.slug}' with ON_START phase."
         )

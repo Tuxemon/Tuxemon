@@ -441,7 +441,7 @@ class CombatSession:
             for status in monster.status.get_statuses():
                 if len(self.remaining_players) > 1:
                     if status.validate_monster(session, monster):
-                        status.nr_turn += 1
+                        status.tick_turn()
                         self.enqueue_action(None, status, monster)
 
     def track_enemy_monsters(self, session: Session) -> None:

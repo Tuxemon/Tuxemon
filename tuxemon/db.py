@@ -1373,6 +1373,10 @@ class StatusModel(BaseModel, BaseLookupModel):
     duration: int = Field(
         0, description="How many turns the status is supposed to last"
     )
+    step_interval: int = Field(
+        0,
+        description="The number of steps between out-of-battle effect triggers.",
+    )
     modifiers: list[Modifier] = Field(..., description="Various modifiers")
 
     # Optional fields

@@ -381,9 +381,14 @@ class MonsterInfoState(PygameMenuState):
         # Helper: find which stat a taste affects
         def get_stat_for_taste(slug: str) -> str | None:
             taste = lookup_tastes.get(slug.lower())
-            if not taste or not taste.modifiers:
+            if not taste:
                 return None
-            return taste.modifiers[0].attribute
+
+            for modifier in taste.modifiers:
+                if modifier.attribute == "stat" and modifier.values:
+                    return modifier.values[0]
+
+            return None
 
         # Warm taste gives +10%
         warm_stat = get_stat_for_taste(monster.taste_warm)

@@ -40,6 +40,10 @@ class PartyHandler:
         self._routing_policy_name = routing_policy_name
 
     @property
+    def owner(self) -> NPC:
+        return self._owner
+
+    @property
     def routing_policy(self) -> RoutingPolicy:
         return RoutingPolicyRegistry.get(self._routing_policy_name)
 
@@ -175,6 +179,7 @@ class PartyHandler:
     def insert_monster_to_party(
         self, monster: Monster, slot: Optional[int] = None
     ) -> None:
+        monster.set_owner(self._owner)
         if slot is None:
             self._monsters.append(monster)
         elif 0 <= slot <= self.party_size:

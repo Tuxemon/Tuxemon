@@ -105,6 +105,14 @@ class Status:
         method.load(slug)
         return method
 
+    @property
+    def host(self) -> Monster:
+        return self._host
+
+    @property
+    def steps(self) -> float:
+        return self._steps
+
     def load(self, slug: str) -> None:
         """
         Loads and sets this status's attributes from the status

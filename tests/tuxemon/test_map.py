@@ -9,7 +9,6 @@ from tuxemon.compat import Rect
 from tuxemon.db import Direction, Orientation
 from tuxemon.map.map import (
     angle_of_points,
-    direction_to_list,
     get_adjacent_position,
     get_coord_direction,
     get_coords,
@@ -720,57 +719,6 @@ class TestPairsFunction(unittest.TestCase):
     def test_none_direction(self):
         with self.assertRaises(ValueError):
             pairs(None)
-
-
-class TestDirectionToList(unittest.TestCase):
-    def test_empty_string_with_whitespace(self):
-        with self.assertRaises(ValueError):
-            direction_to_list("    ")
-
-    def test_empty_string(self):
-        with self.assertRaises(ValueError):
-            direction_to_list("")
-
-    def test_single_direction(self):
-        result = direction_to_list("up")
-        self.assertEqual(result, [Direction.up])
-
-    def test_multiple_direction(self):
-        result = direction_to_list("up,down,right")
-        self.assertEqual(len(result), 3)
-
-    def test_single_direction_with_whitespace(self):
-        result = direction_to_list("   up    ")
-        self.assertEqual(len(result), 1)
-
-    def test_mutiple_direction_with_whitespace(self):
-        result = direction_to_list("up   ,down  ,   right")
-        self.assertEqual(len(result), 3)
-
-    def test_repeated_directions(self):
-        result = direction_to_list("up,up,down,down")
-        self.assertEqual(len(result), 2)
-
-    def test_insensitive_duplicates(self):
-        result = direction_to_list("uP,dOWn")
-        self.assertEqual(len(result), 2)
-
-    def test_none_input(self):
-        result = direction_to_list(None)
-        self.assertEqual(result, [])
-
-    def test_very_long_string(self):
-        long_string = ",".join(["up"] * 100)
-        result = direction_to_list(long_string)
-        self.assertEqual(result, [Direction.up])
-
-    def test_unicode_characters(self):
-        with self.assertRaises(ValueError):
-            direction_to_list("ä, ü, up")
-
-    def test_invalid_direction(self):
-        with self.assertRaises(ValueError):
-            direction_to_list("invalid direction")
 
 
 class TestGetExplicitTileExits(unittest.TestCase):

@@ -19,7 +19,7 @@ from tuxemon.locale import T
 if TYPE_CHECKING:
     from tuxemon.db import Direction
     from tuxemon.event import EventObject
-    from tuxemon.map.map import RegionProperties
+    from tuxemon.map.map_region import RegionProperties
 
 logger = logging.getLogger(__name__)
 

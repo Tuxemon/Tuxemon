@@ -40,3 +40,7 @@ class TestMonsterItemHandler(unittest.TestCase):
     def test_clear_item(self):
         self.handler.clear_item()
         self.assertIsNone(self.handler.held_item)
+
+    def test_take_item(self):
+        self.handler.take_item()
+        self.assertIsNone(self.handler.held_item)

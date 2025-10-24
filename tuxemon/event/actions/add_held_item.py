@@ -53,9 +53,6 @@ class AddHeldItemction(EventAction):
             return
 
         item = Item.create(self.item)
-        if item.behaviors.holdable == False:
-            logger.error(f"{item.name} isn't holdable")
+        output = monster.item_handler.set_item(item)
+        if not output:
             return
-        else:
-            logger.info(f"{item.name} has been added to {monster.name}!")
-            monster.item_handler.set_item(item)

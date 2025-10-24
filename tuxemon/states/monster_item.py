@@ -51,10 +51,9 @@ class MonsterItemState(PygameMenuState):
             self.client.remove_state_by_name("MonsterMenuState")
 
         def remove_item() -> None:
-            item = monster.held_item
-            if item is not None:
+            item = monster.item_handler.take_item()
+            if item:
                 owner.items.add_item(item)
-            monster.item_handler.clear_item()
             self.client.remove_state_by_name("MonsterItemState")
             self.client.remove_state_by_name("MonsterMenuState")
 

@@ -19,11 +19,18 @@ class MonsterItemHandler:
     def held_item(self) -> Optional[Item]:
         return self._item
 
-    def set_item(self, item: Item) -> None:
+    def set_item(self, item: Item) -> bool:
         if item.behaviors.holdable:
             self._item = item
+            return True
         else:
             logger.error(f"{item.name} can't be held")
+            return False
+
+    def take_item(self) -> Optional[Item]:
+        item = self._item
+        self._item = None
+        return item
 
     def has_item(self) -> bool:
         return self._item is not None

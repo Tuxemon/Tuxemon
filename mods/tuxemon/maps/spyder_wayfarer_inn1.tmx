@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="15" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="92">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="15" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="92">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -117,6 +117,7 @@
     <property name="act21" value="lock_controls"/>
     <property name="act30" value="char_face spyder_wayfarer1_norm,up"/>
     <property name="act40" value="wait 1"/>
+    <property name="act45" value="play_sound coinecho"/>
     <property name="act50" value="char_face spyder_wayfarer1_norm,down"/>
     <property name="act51" value="unlock_controls"/>
     <property name="act60" value="translated_dialog okaythen2"/>

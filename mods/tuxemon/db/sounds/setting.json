@@ -10,5 +10,9 @@
   {
     "file": "setting/temple_bell.mp3",
     "slug": "temple_bell"
+  },
+  {
+    "file": "setting/coinecho.wav",
+    "slug": "coinecho"
   }
 ]

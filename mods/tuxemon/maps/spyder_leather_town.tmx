@@ -229,6 +229,7 @@
     <property name="act21" value="lock_controls"/>
     <property name="act30" value="char_face spyder_leather_eula,up"/>
     <property name="act40" value="wait 1"/>
+    <property name="act45" value="play_sound coinecho"/>
     <property name="act50" value="char_face spyder_leather_eula,down"/>
     <property name="act51" value="unlock_controls"/>
     <property name="act60" value="translated_dialog okaythen2"/>

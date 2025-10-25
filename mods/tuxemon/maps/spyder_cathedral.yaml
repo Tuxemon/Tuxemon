@@ -36,6 +36,7 @@ events:
     - set_monster_status
     - char_face spyder_cathedral_nurse,up
     - wait 1
+    - play_sound coinecho
     - char_face spyder_cathedral_nurse,down
     - translated_dialog spyder_billing_cathedral6
     conditions:
@@ -62,6 +63,7 @@ events:
     - set_monster_status
     - char_face spyder_cathedral_nurse,up
     - wait 1
+    - play_sound coinecho
     - char_face spyder_cathedral_nurse,down
     - translated_dialog spyder_billing_cathedral6
     - unlock_controls

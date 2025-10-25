@@ -69,6 +69,7 @@ events:
     - lock_controls
     - char_face spyder_cottontown_barmaid,up
     - wait 1
+    - play_sound coinecho
     - char_face spyder_cottontown_barmaid,down
     - unlock_controls
     - translated_dialog okaythen2

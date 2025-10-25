@@ -2150,6 +2150,8 @@ Sounds
 
 * "Insekt.ogg" by [Tim Mortimer](https://opengameart.org/content/chirp-loop) is licensed under CC BY 3.0.
 
+* "coinecho.wav" by [NenadSimic](https://opengameart.org/content/picked-coin-echo-2) is licensed under CC BY 3.0.
+
 Translations
 --------------
 

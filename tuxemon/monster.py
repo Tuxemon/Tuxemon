@@ -199,7 +199,6 @@ class Monster:
         """Progress toward the next level as a percentage (0.0 to 1.0)."""
         return self.experience_handler.experience_progress_percent
 
-
     @property
     def armour(self) -> int:
         return self.base_stats.armour

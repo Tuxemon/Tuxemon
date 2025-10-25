@@ -383,7 +383,7 @@ class MonsterInfoState(PygameMenuState):
         # Helper: find which stat a taste affects
         def get_stat_for_taste(slug: str) -> str | None:
             taste = lookup_tastes.get(slug.lower())
-            if not taste:
+            if not taste or not taste.modifiers:
                 return None
 
             for modifier in taste.modifiers:

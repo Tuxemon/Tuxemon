@@ -308,7 +308,6 @@ class CombatAnimations(Menu[None], ABC):
             transition="out_quint",
         )
 
-
     def animate_exp(self, monster: Monster) -> None:
         exp_bar = self.bars.get_exp_bar(monster)
 

@@ -315,6 +315,12 @@ class CombatAnimations(Menu[None], ABC):
         Calculates normalized bar progress as a float between 0.0 and 1.0.
         Prevents overflow/underflow visually.
         """
+        if xp_end <= xp_start:
+            # Guard against invalid or max-level ranges where the denominator
+            # would be zero or negative.
+            if total_experience >= max(xp_start, xp_end):
+                return 1.0
+            return 0.0
         return max(
             0.0, min(1.0, (total_experience - xp_start) / (xp_end - xp_start))
         )

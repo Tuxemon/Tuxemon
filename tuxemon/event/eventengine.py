@@ -132,7 +132,7 @@ class EventEngine:
             self.running_events[map_event.id] = token
 
             if map_event in self.session.client.map_manager.inits:
-                self.session.client.map_manager.inits.remove(map_event)
+                self.session.client.map_manager.remove_init(map_event)
 
     def process_map_event(self, map_event: EventObject) -> None:
         """

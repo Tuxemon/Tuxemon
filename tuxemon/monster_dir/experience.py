@@ -102,12 +102,18 @@ class MonsterExperience:
     def experience_progress_percent(self) -> float:
         """The monster's progress toward the next level (0.0 to 1.0)."""
         if self.is_maxed_out:
-            return 1.0
+            return 1.0  # Maxed out, so progress is full.
+
         earned = self.experience_current_level
         required = self.experience_for_next_level
+
         if required <= 0:
-            return 0.0  # Should only happen if level formula is non-monotonic
-        return earned / required
+            return 0.0  # Avoid dividing by zero or negative XP requirements.
+
+        progress = earned / required
+
+        # Clamp between 0.0 and 1.0 to keep visuals sane.
+        return max(0.0, min(1.0, progress))
 
     def set_level(self, level: int) -> None:
         """

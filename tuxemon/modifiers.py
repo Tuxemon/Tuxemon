@@ -2,13 +2,45 @@
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-from collections.abc import Iterator, Sequence
+import logging
+from collections import defaultdict
+from collections.abc import Callable, Iterator, Sequence
 from enum import Enum
 from typing import TYPE_CHECKING, Optional
+
+from tuxemon.db import StackingMode
 
 if TYPE_CHECKING:
     from tuxemon.db import Modifier
     from tuxemon.monster import Monster
+
+logger = logging.getLogger(__name__)
+
+
+def handle_type(modifier: Modifier, monster: Monster) -> Optional[float]:
+    if any(t.name in modifier.values for t in monster.types.current):
+        return modifier.multiplier
+    return None
+
+
+def handle_tag(modifier: Modifier, monster: Monster) -> Optional[float]:
+    if any(t in modifier.values for t in monster.tags):
+        return modifier.multiplier
+    return None
+
+
+ATTRIBUTE_HANDLER_REGISTRY: dict[
+    str, Callable[[Modifier, Monster], Optional[float]]
+] = {
+    "type": handle_type,
+    "tag": handle_tag,
+}
+
+CONDITION_REGISTRY: dict[str, Callable[[Monster], bool]] = {
+    "hp_below_50": lambda m: m.hp_ratio < 0.5,
+    "hp_above_50": lambda m: m.hp_ratio > 0.5,
+    "full_hp": lambda m: m.hp_ratio == 1.0,
+}
 
 
 class ModifierMode(str, Enum):
@@ -20,17 +52,32 @@ class ModifierMode(str, Enum):
 
 
 def parse_modifier_mode(value: str) -> ModifierMode:
-    """
-    Parses a string into a ModifierMode enum.
-    """
+    """Parses a string into a ModifierMode enum."""
     return ModifierMode(value)
 
 
 class ModifiersHandler:
-    def __init__(self, modifiers: Optional[list[Modifier]] = None) -> None:
+    def __init__(
+        self,
+        modifiers: Optional[list[Modifier]] = None,
+        attribute_handlers: Optional[
+            dict[str, Callable[[Modifier, Monster], Optional[float]]]
+        ] = None,
+    ) -> None:
         self._modifiers: dict[str, list[Modifier]] = {}
+        self._attribute_handlers = (
+            attribute_handlers or ATTRIBUTE_HANDLER_REGISTRY.copy()
+        )
+
         for m in modifiers or []:
             self._modifiers.setdefault(m.attribute, []).append(m)
+
+    def register_handler(
+        self,
+        attribute: str,
+        handler: Callable[[Modifier, Monster], Optional[float]],
+    ) -> None:
+        self._attribute_handlers[attribute] = handler
 
     def get_modifiers(self, attribute: str) -> list[Modifier]:
         return self._modifiers.get(attribute, [])
@@ -61,42 +108,73 @@ class ModifiersHandler:
     def _get_applicable_multiplier(
         self, modifier: Modifier, monster: Monster
     ) -> Optional[float]:
-        if modifier.attribute == "type":
-            if any(t.name in modifier.values for t in monster.types.current):
-                return modifier.multiplier
-        elif modifier.attribute == "tag":
-            if any(t in modifier.values for t in monster.tags):
-                return modifier.multiplier
-        else:
-            raise ValueError(f"{modifier.attribute} isn't implemented.")
+        if modifier.condition_name:
+            condition = CONDITION_REGISTRY.get(modifier.condition_name)
+            if condition is None:
+                logger.warning(
+                    f"Unknown condition '{modifier.condition_name}'"
+                )
+                return None
+            elif not condition(monster):
+                return None
+
+        if (
+            modifier.turns_remaining is not None
+            and modifier.turns_remaining <= 0
+        ):
+            return None
+
+        handler = self._attribute_handlers.get(modifier.attribute)
+        if handler:
+            return handler(modifier, monster)
+
+        logger.critical(
+            f"Missing attribute handler for '{modifier.attribute}'. "
+            "Modifier will be ignored."
+        )
         return None
 
     def get_multiplier(
         self, monster: Monster, mode: ModifierMode = ModifierMode.WEAKEST
     ) -> float:
-        values = []
+        applicable_modifiers: list[Modifier] = []
+
         for modifier_list in self._modifiers.values():
             for modifier in modifier_list:
                 result = self._get_applicable_multiplier(modifier, monster)
                 if result is not None:
-                    values.append(result)
+                    applicable_modifiers.append(modifier)
 
-        if not values:
+        if not applicable_modifiers:
             return 1.0
 
+        # Sort by priority descending
+        applicable_modifiers.sort(key=lambda m: m.priority, reverse=True)
+
+        # Enforce max_stacks constraint
+        applicable_modifiers = enforce_max_stacks(applicable_modifiers)
+
         if mode == ModifierMode.FIRST:
-            return values[0]
+            return applicable_modifiers[0].multiplier
         elif mode == ModifierMode.WEAKEST:
-            return min(values)
+            return min(m.multiplier for m in applicable_modifiers)
         elif mode == ModifierMode.STRONGEST:
-            return max(values)
+            return max(m.multiplier for m in applicable_modifiers)
         elif mode == ModifierMode.AVERAGE:
-            return sum(values) / len(values)
+            return sum(m.multiplier for m in applicable_modifiers) / len(
+                applicable_modifiers
+            )
         elif mode == ModifierMode.CUMULATIVE:
-            product = 1.0
-            for v in values:
-                product *= v
-            return product
+            result = 1.0
+            for m in applicable_modifiers:
+                if m.stacking == StackingMode.ADDITIVE:
+                    result += m.multiplier - 1.0
+                elif m.stacking == StackingMode.MULTIPLICATIVE:
+                    result *= m.multiplier
+                elif m.stacking == StackingMode.OVERRIDE:
+                    result = m.multiplier
+                    break
+            return result
         else:
             raise ValueError(f"Unknown modifier mode: {mode}")
 
@@ -114,3 +192,35 @@ class ModifiersHandler:
 
     def first_applicable_damage(self, monster: Monster) -> float:
         return self.get_multiplier(monster, ModifierMode.FIRST)
+
+    def tick_turns(self) -> None:
+        for modifier in self.list_modifiers():
+            if modifier.turns_remaining is not None:
+                modifier.turns_remaining -= 1
+
+    def remove_expired_modifiers(self) -> None:
+        for attr in list(self._modifiers):
+            self._modifiers[attr] = [
+                m
+                for m in self._modifiers[attr]
+                if m.turns_remaining is None or m.turns_remaining > 0
+            ]
+            if not self._modifiers[attr]:
+                del self._modifiers[attr]
+
+
+def enforce_max_stacks(modifiers: list[Modifier]) -> list[Modifier]:
+    grouped = defaultdict(list)
+    for m in modifiers:
+        key = (m.attribute, tuple(sorted(m.values)))
+        grouped[key].append(m)
+
+    result = []
+    for group in grouped.values():
+        group.sort(key=lambda m: m.priority, reverse=True)
+        max_stack = group[0].max_stacks
+        if max_stack is not None:
+            result.extend(group[:max_stack])
+        else:
+            result.extend(group)
+    return result

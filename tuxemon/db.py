@@ -1096,15 +1096,41 @@ class TechCategory(str, Enum):
     notype = "notype"
 
 
+class StackingMode(str, Enum):
+    ADDITIVE = "additive"
+    MULTIPLICATIVE = "multiplicative"
+    OVERRIDE = "override"
+
+
 class Modifier(BaseModel):
     attribute: str = Field(
         ..., description="Attribute being modified (type, etc.)"
     )
     values: Sequence[str] = Field(
         [],
-        description="Values associated with the modification (eg. fire, etc.)",
+        description="Values associated with the modification (e.g. fire, etc.)",
     )
     multiplier: float = Field(1.0, description="Multiplier", ge=0.0, le=2.0)
+    priority: int = Field(
+        0, description="Priority of the modifier. Higher wins."
+    )
+    stacking: StackingMode = Field(
+        StackingMode.MULTIPLICATIVE,
+        description="How this modifier stacks with others.",
+    )
+    max_stacks: Optional[int] = Field(
+        None, description="Maximum number of stackable modifiers of this type"
+    )
+    condition_name: Optional[str] = Field(
+        None,
+        description="Name of a predefined condition function to determine applicability",
+    )
+    source: Optional[str] = Field(
+        None, description="Origin of the modifier (e.g. move, item, ability)"
+    )
+    turns_remaining: Optional[int] = Field(
+        None, description="Number of turns before modifier expires"
+    )
 
 
 class SpeedLabel(str, Enum):

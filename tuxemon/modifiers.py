@@ -62,7 +62,10 @@ class ModifiersHandler:
         self, modifier: Modifier, monster: Monster
     ) -> Optional[float]:
         if modifier.attribute == "type":
-            if any(t.name in modifier.values for t in monster.types.current):
+            if any(
+                getattr(t, "slug", t.name) in modifier.values
+                for t in monster.types.current
+            ):
                 return modifier.multiplier
         elif modifier.attribute == "tag":
             if any(t in modifier.values for t in monster.tags):

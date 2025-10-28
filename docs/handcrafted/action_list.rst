@@ -62,6 +62,7 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.input_variable.InputVariableAction
 .. autoscriptinfoclass:: tuxemon.event.actions.learn_tech_by_method.LearnTechByMethodAction
 .. autoscriptinfoclass:: tuxemon.event.actions.load_game.LoadGameAction
+.. autoscriptinfoclass:: tuxemon.event.actions.load_weather.LoadWeatherAction
 .. autoscriptinfoclass:: tuxemon.event.actions.load_yaml.LoadYamlAction
 .. autoscriptinfoclass:: tuxemon.event.actions.lock_controls.LockControlsAction
 .. autoscriptinfoclass:: tuxemon.event.actions.manage_map_cache.ManageMapCacheAction
@@ -139,6 +140,7 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.set_template.SetTemplateAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_tuxepedia.SetTuxepediaAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_variable.SetVariableAction
+.. autoscriptinfoclass:: tuxemon.event.actions.set_weather.SetWeatherAction
 .. autoscriptinfoclass:: tuxemon.event.actions.show_monster.ShowMonsterAction
 .. autoscriptinfoclass:: tuxemon.event.actions.spawn_monster.SpawnMonsterAction
 .. autoscriptinfoclass:: tuxemon.event.actions.start_battle.StartBattleAction

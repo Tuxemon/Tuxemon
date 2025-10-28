@@ -1,0 +1,107 @@
+# Weather Transition Configuration
+# Each top-level key represents a current weather state (e.g., sunny, cloudy).
+# Under each key is a list of possible transitions to other weather states.
+#
+# Attributes:
+# - next_slug: The target weather state to transition into.
+# - trigger_chance: Probability (0.0–1.0) that this transition will occur during a turn.
+# - min_duration_seconds: (Optional) Minimum time in seconds before this transition becomes eligible.
+# - temperature: (Optional) General temperature category during this transition.
+#     Options: freezing, cold, mild, warm, hot, scorching
+# - wind: (Optional) Wind intensity level during this transition.
+#     Options: calm, breezy, windy, gusty, stormy
+#
+# Example:
+#   - next_slug: rain
+#     trigger_chance: 0.1
+#     min_duration_seconds: 300
+#     temperature: mild
+#     wind: breezy
+
+sunny:
+  - next_slug: cloudy
+    trigger_chance: 0.2
+  - next_slug: hot
+    trigger_chance: 0.1
+  - next_slug: windy
+    trigger_chance: 0.1
+  - next_slug: rain
+    trigger_chance: 0.05
+  - next_slug: misty
+    trigger_chance: 0.05
+
+cloudy:
+  - next_slug: sunny
+    trigger_chance: 0.4
+  - next_slug: rain
+    trigger_chance: 0.3
+  - next_slug: foggy
+    trigger_chance: 0.1
+  - next_slug: windy
+    trigger_chance: 0.1
+
+rain:
+  - next_slug: thunderstorm
+    trigger_chance: 0.05
+  - next_slug: misty
+    trigger_chance: 0.1
+  - next_slug: cloudy
+    trigger_chance: 0.3
+  - next_slug: snow
+    trigger_chance: 0.05
+
+thunderstorm:
+  - next_slug: rain
+    trigger_chance: 0.3
+  - next_slug: cloudy
+    trigger_chance: 0.2
+  - next_slug: foggy
+    trigger_chance: 0.1
+
+foggy:
+  - next_slug: misty
+    trigger_chance: 0.2
+  - next_slug: cloudy
+    trigger_chance: 0.3
+  - next_slug: sunny
+    trigger_chance: 0.1
+
+misty:
+  - next_slug: foggy
+    trigger_chance: 0.2
+  - next_slug: rain
+    trigger_chance: 0.2
+  - next_slug: cloudy
+    trigger_chance: 0.2
+
+windy:
+  - next_slug: cloudy
+    trigger_chance: 0.3
+  - next_slug: sunny
+    trigger_chance: 0.2
+  - next_slug: freezing
+    trigger_chance: 0.05
+
+hot:
+  - next_slug: sunny
+    trigger_chance: 0.3
+  - next_slug: cloudy
+    trigger_chance: 0.2
+  - next_slug: rain
+    trigger_chance: 0.05
+
+freezing:
+  - next_slug: snow
+    trigger_chance: 0.2
+  - next_slug: cloudy
+    trigger_chance: 0.2
+  - next_slug: sunny
+    trigger_chance: 0.1
+
+snow:
+  - next_slug: freezing
+    trigger_chance: 0.2
+  - next_slug: cloudy
+    trigger_chance: 0.2
+  - next_slug: sunny
+    trigger_chance: 0.1

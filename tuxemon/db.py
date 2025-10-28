@@ -2418,9 +2418,7 @@ class TerrainModel(BaseModel, BaseLookupModel):
     table_name: ClassVar[str] = "terrain"
     slug: str = Field(..., description="Slug of the terrain")
     name: str = Field(..., description="Name of the terrain condition")
-    element_modifier: dict[str, float] = Field(
-        ..., description="Modifiers for elemental techniques in this terrain"
-    )
+    modifiers: list[Modifier] = Field(..., description="Various modifiers")
 
     @classmethod
     def lookup(cls, slug: str, db: ModData) -> TerrainModel:
@@ -2441,10 +2439,7 @@ class WeatherModel(BaseModel, BaseLookupModel):
     table_name: ClassVar[str] = "weather"
     slug: str = Field(..., description="Slug of the weather")
     name: str = Field(..., description="Name of the weather condition")
-    element_modifier: dict[str, float] = Field(
-        ...,
-        description="Modifiers for elemental techniques during this weather",
-    )
+    modifiers: list[Modifier] = Field(..., description="Various modifiers")
 
     @classmethod
     def lookup(cls, slug: str, db: ModData) -> WeatherModel:

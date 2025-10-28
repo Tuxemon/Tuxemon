@@ -5,7 +5,7 @@ from __future__ import annotations
 import logging
 from typing import Optional
 
-from tuxemon.db import WeatherModel, db
+from tuxemon.db import Modifier, WeatherModel, db
 
 logger = logging.getLogger(__name__)
 
@@ -17,7 +17,7 @@ class Weather:
 
     def __init__(self, slug: Optional[str] = None) -> None:
         self.slug = slug
-        self.element_modifier: dict[str, float] = {}
+        self.modifiers: list[Modifier] = []
 
         if self.slug:
             self.load(self.slug)
@@ -28,11 +28,11 @@ class Weather:
         if slug in Weather._weathers:
             cached_weather = Weather._weathers[slug]
             self.slug = slug
-            self.element_modifier = cached_weather.element_modifier
+            self.modifiers = cached_weather.modifiers
             return
 
         results = WeatherModel.lookup(slug, db)
-        self.element_modifier = results.element_modifier
+        self.modifiers = results.modifiers
 
         Weather._weathers[slug] = self
 
@@ -77,4 +77,4 @@ class Weather:
         cls._weathers.clear()
 
     def __repr__(self) -> str:
-        return f"Weather(slug={self.slug}, element_modifier={self.element_modifier})"
+        return f"Weather(slug={self.slug}, modifiers={self.modifiers})"

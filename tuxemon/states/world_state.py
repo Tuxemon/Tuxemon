@@ -29,6 +29,7 @@ from tuxemon.world.manager import WorldMenuManager
 from tuxemon.world.transition import WorldTransition
 
 if TYPE_CHECKING:
+    from tuxemon.map.map_view import AbstractRenderer
     from tuxemon.networking import EventData
 
 logger = logging.getLogger(__name__)
@@ -40,7 +41,10 @@ class WorldState(State):
     name: ClassVar[str] = "WorldState"
 
     def __init__(
-        self, session: Session, map_name: Optional[str] = None
+        self,
+        session: Session,
+        map_name: Optional[str] = None,
+        renderer: Optional[AbstractRenderer] = None,
     ) -> None:
         super().__init__()
         self.session = session
@@ -60,7 +64,7 @@ class WorldState(State):
             self.client.map_transition.change_map(map_name)
         else:
             logger.warning("No map name provided — using fallback renderer.")
-            self.client.map_renderer = NullRenderer()
+            self.client.set_renderer(renderer or NullRenderer())
 
     def get_state(self, session: Session) -> WorldSave:
         """Returns a dictionary of the World to be saved."""

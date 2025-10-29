@@ -15,7 +15,7 @@ from tuxemon.db import Direction
 
 if TYPE_CHECKING:
     from tuxemon.event import EventObject
-    from tuxemon.map.map import RegionProperties
+    from tuxemon.map.map_region import RegionProperties
     from tuxemon.map.map_tuxemon import AbstractMap
 
 logger = logging.getLogger(__name__)
@@ -62,26 +62,9 @@ class MapManager:
 
     def __init__(self) -> None:
         """Initializes the manager state with no map loaded."""
-        self.events: Sequence[EventObject] = []
-        self.inits: list[EventObject] = []
         self.current_map: Optional[AbstractMap] = None
         self.maps: dict[str, Any] = {}
         self._map_type_slug: Optional[str] = None
-
-    def load_map(self, map_data: AbstractMap) -> None:
-        """Loads a new map, sets properties, and resets relevant events."""
-        self.current_map = map_data
-
-        self.events = map_data.events
-        self.inits = list(map_data.inits)
-        self.maps = map_data.maps
-
-        self._map_type_slug = map_data.map_type
-
-        if map_data.map_type not in MAP_TYPES:
-            logger.warning(
-                f"Invalid map type '{map_data.map_type}', defaulting to 'notype'."
-            )
 
     @property
     def map_slug(self) -> str:
@@ -154,6 +137,48 @@ class MapManager:
             f"Invalid or missing map type slug '{self._map_type_slug}', defaulting to 'notype'."
         )
         return MapType(name="notype")
+
+    @property
+    def events(self) -> Sequence[EventObject]:
+        return self.current_map.events if self.current_map else []
+
+    @property
+    def inits(self) -> Sequence[EventObject]:
+        return self.current_map.inits if self.current_map else []
+
+    def load_map(self, map_data: AbstractMap) -> None:
+        """Loads a new map, sets properties, and resets relevant events."""
+        self.current_map = map_data
+        self.maps = map_data.maps
+        self._map_type_slug = map_data.map_type
+
+        map_data.add_events([])
+        map_data.add_inits([])
+
+        if map_data.map_type not in MAP_TYPES:
+            logger.warning(
+                f"Invalid map type '{map_data.map_type}', defaulting to 'notype'."
+            )
+
+    def set_events(self, new_events: Sequence[EventObject]) -> None:
+        if self.current_map:
+            self.current_map.add_events(new_events)
+
+    def set_inits(self, new_inits: Sequence[EventObject]) -> None:
+        if self.current_map:
+            self.current_map.add_inits(new_inits)
+
+    def remove_event(self, event: EventObject) -> None:
+        if self.current_map:
+            updated = list(self.current_map.events)
+            updated.remove(event)
+            self.current_map.add_events(updated)
+
+    def remove_init(self, event: EventObject) -> None:
+        if self.current_map:
+            updated = list(self.current_map.inits)
+            updated.remove(event)
+            self.current_map.add_inits(updated)
 
     def get_map_filepath(self) -> Optional[str]:
         """Returns the filepath of the current map."""

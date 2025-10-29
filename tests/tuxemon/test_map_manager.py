@@ -4,7 +4,7 @@ import unittest
 from unittest.mock import MagicMock
 
 from tuxemon.map.map_manager import MapManager, MapType
-from tuxemon.map.map_tuxemon import TuxemonMap
+from tuxemon.map.map_tuxemon import AbstractMap
 
 
 class TestMapManager(unittest.TestCase):
@@ -12,7 +12,7 @@ class TestMapManager(unittest.TestCase):
         self.map_manager = MapManager()
 
     def create_mock_map(self, map_type="town") -> MagicMock:
-        map_data = MagicMock(spec=TuxemonMap)
+        map_data = MagicMock(spec=AbstractMap)
         map_data.events = ["event1", "event2"]
         map_data.inits = ["init1", "init2"]
         map_data.maps = {"map1": "data1", "map2": "data2"}

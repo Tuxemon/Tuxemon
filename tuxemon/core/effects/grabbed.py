@@ -36,7 +36,7 @@ class GrabbedEffect(CoreEffect):
             raise ValueError("StuckEffect divisor must be non-zero.")
 
         done: bool = False
-        host = status.get_host()
+        host = status.host
         ranges = self.ranges.split(":")
         moves = [
             tech for tech in host.moves.get_moves() if tech.range in ranges

@@ -20,6 +20,9 @@ class MilestoneStatus:
 class StepTracker:
     steps: float = 0.0
     countdown: float = 100.0
+    initial_countdown: float = 100.0
+    auto_reset: bool = False
+    cycle_count: int = 0
     milestones: list[float] = field(
         default_factory=lambda: [500, 250, 100, 50]
     )
@@ -32,6 +35,9 @@ class StepTracker:
         return {
             "steps": self.steps,
             "countdown": self.countdown,
+            "initial_countdown": self.initial_countdown,
+            "auto_reset": self.auto_reset,
+            "cycle_count": self.cycle_count,
             "milestones": self.milestones,
             "milestone_status": self.milestone_status,
         }
@@ -39,8 +45,39 @@ class StepTracker:
     def update_steps(self, diff_x: float, diff_y: float) -> None:
         movement = diff_x + diff_y
         self.steps += movement
-        self.countdown = max(0, self.countdown - movement)
+
+        if movement <= 0:
+            self.countdown += abs(movement)
+            return
+
+        while movement > 0:
+            if movement >= self.countdown:
+                prev_countdown = self.countdown
+                movement -= self.countdown
+                self.countdown = 0
+                self.check_milestone_events_range(
+                    prev_countdown, self.countdown
+                )
+
+                if self.auto_reset:
+                    self.reset_cycle()
+                else:
+                    break
+            else:
+                prev_countdown = self.countdown
+                self.countdown -= movement
+                self.check_milestone_events_range(
+                    prev_countdown, self.countdown
+                )
+                movement = 0
         self.check_milestone_events()
+
+    def reset_cycle(self) -> None:
+        """Resets the countdown and clears milestone status for a new cycle."""
+        self.countdown = self.initial_countdown
+        self.milestone_status = {}
+        self.cycle_count += 1
+        logger.info(f"StepTracker cycle reset to {self.initial_countdown}.")
 
     def check_milestone_events(self) -> Optional[float]:
         triggered_milestone: Optional[float] = None
@@ -54,9 +91,18 @@ class StepTracker:
                     triggered_milestone = milestone
         return triggered_milestone
 
+    def check_milestone_events_range(self, start: float, end: float) -> None:
+        for milestone in self.milestones:
+            if (
+                end <= milestone <= start
+                and milestone not in self.milestone_status
+            ):
+                self.trigger_milestone_event(milestone)
+
     def trigger_milestone_event(self, milestone: float) -> None:
         if milestone not in self.milestone_status:
             self.milestone_status[milestone] = MilestoneStatus(triggered=True)
+            logger.info(f"Milestone {milestone} triggered.")
 
     def show_milestone_dialogue(self, milestone: float) -> None:
         if milestone in self.milestone_status:
@@ -114,6 +160,11 @@ def decode_steps(json_data: Mapping[str, Any]) -> StepTrackerManager:
             key: StepTracker(
                 steps=value["steps"],
                 countdown=value["countdown"],
+                initial_countdown=value.get(
+                    "initial_countdown", value["countdown"]
+                ),
+                auto_reset=value.get("auto_reset", False),
+                cycle_count=value.get("cycle_count", 0),
                 milestones=value["milestones"],
                 milestone_status={
                     float(m): MilestoneStatus(**status)

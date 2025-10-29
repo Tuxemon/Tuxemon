@@ -10,7 +10,7 @@ if TYPE_CHECKING:
     from tuxemon.event.eventengine import EventEngine
     from tuxemon.map.map_loader import MapLoader
     from tuxemon.map.map_manager import MapManager
-    from tuxemon.map.map_tuxemon import TuxemonMap
+    from tuxemon.map.map_tuxemon import AbstractMap
     from tuxemon.npc_manager import NPCManager
 
 logger = logging.getLogger(__name__)
@@ -49,12 +49,12 @@ class MapTransition:
         self._update_map_state(map_data)
         self._update_boundaries()
 
-    def _reset_events(self, map_data: TuxemonMap) -> None:
+    def _reset_events(self, map_data: AbstractMap) -> None:
         """Resets and updates event engine for the new map."""
         self.event_engine.reset()
         self.event_engine.set_current_map(map_data)
 
-    def _update_map_state(self, map_data: TuxemonMap) -> None:
+    def _update_map_state(self, map_data: AbstractMap) -> None:
         """Updates the map manager with new map data."""
         self.map_manager.load_map(map_data)
 

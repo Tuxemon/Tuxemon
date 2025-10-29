@@ -71,9 +71,10 @@ class LocalPygameClient(BaseClient):
             self.event_debug_drawer,
         )
         self.debug_renderer = DebugRenderer(self.map_manager, self.npc_manager)
-        self.map_renderer = MapRenderer(
+        map_renderer = MapRenderer(
             self.camera_manager, self.npc_manager, self.debug_renderer
         )
+        self.set_renderer(map_renderer)
 
         if self.config.cli:
             local_session.set_client(self)

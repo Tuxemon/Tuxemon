@@ -359,8 +359,7 @@ class TestCanEvolve(unittest.TestCase):
 
     def test_evolution_with_correct_held_item(self):
         item = MagicMock(slug="potion")
-        self.mon.held_item = MagicMock()
-        self.mon.held_item.get_item = MagicMock(return_value=item)
+        self.mon.item_handler.set_item(item)
 
         evo = MonsterEvolutionItemModel(
             monster_slug="rockat", held_item="potion"
@@ -370,8 +369,7 @@ class TestCanEvolve(unittest.TestCase):
 
     def test_evolution_with_wrong_held_item(self):
         item = MagicMock(slug="tea")
-        self.mon.held_item = MagicMock()
-        self.mon.held_item.get_item = MagicMock(return_value=item)
+        self.mon.item_handler.set_item(item)
 
         evo = MonsterEvolutionItemModel(
             monster_slug="rockat", held_item="potion"
@@ -380,9 +378,6 @@ class TestCanEvolve(unittest.TestCase):
         self.assertFalse(self.mon.evolution_handler.can_evolve(evo, context))
 
     def test_evolution_with_no_item_held(self):
-        self.mon.held_item = MagicMock()
-        self.mon.held_item.get_item = MagicMock(return_value=None)
-
         evo = MonsterEvolutionItemModel(
             monster_slug="rockat", held_item="potion"
         )

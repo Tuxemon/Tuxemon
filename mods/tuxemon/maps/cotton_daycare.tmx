@@ -154,8 +154,9 @@
   </object>
   <object id="31" name="breeder state 6b" type="event" x="144" y="112" width="16" height="16">
    <properties>
-    <property name="act10" value="translated_dialog cotton_breeder6b"/>
-    <property name="act20" value="set_variable breeder_state:5"/>
+    <property name="act10" value="set_step_tracker_milestone_shown player,steps_breeder,5000"/>
+    <property name="act20" value="translated_dialog cotton_breeder6b"/>
+    <property name="act30" value="set_variable breeder_state:5"/>
     <property name="cond10" value="is variable_set breeder_state:6"/>
     <property name="cond20" value="is step_tracker player,steps_breeder,5000"/>
    </properties>

@@ -32,6 +32,10 @@
     "slug": "sound_frog"
   },
   {
+    "file": "monster/reverse_frog.ogg",
+    "slug": "sound_frog_faint"
+  },
+  {
     "file": "monster/bugThing.ogg",
     "slug": "sound_earth_call"
   },
@@ -40,12 +44,20 @@
     "slug": "sound_bugthing"
   },
   {
+    "file": "monster/reverse_bugThing.ogg",
+    "slug": "sound_bugthing_faint"
+  },
+  {
     "file": "monster/robot.ogg",
     "slug": "sound_metal_call"
   },
   {
     "file": "monster/robot.ogg",
     "slug": "sound_robot1"
+  },
+  {
+    "file": "monster/reverse_robot.ogg",
+    "slug": "sound_robot1_faint"
   },
   {
     "file": "monster/glitch.ogg",
@@ -428,12 +440,20 @@
     "slug": "sound_tux"
   },
   {
+    "file": "monster/reverse_Tux.ogg",
+    "slug": "sound_tux_faint"
+  },
+  {
     "file": "monster/weird_09.ogg",
     "slug": "sound_weird_09"
   },
   {
     "file": "monster/whistle.ogg",
     "slug": "sound_whistle"
+  },
+  {
+    "file": "monster/reverse_whistle.ogg",
+    "slug": "sound_whistle_faint"
   },
   {
     "file": "monster/Woosh-1.wav",
@@ -462,6 +482,10 @@
   {
     "file": "technique/bubble.ogg",
     "slug": "sfx_bubbles"
+  },
+  {
+    "file": "monster/reverse_bubble.ogg",
+    "slug": "sfx_bubbles_faint"
   },
   {
     "file": "technique/crumble.ogg",
@@ -556,6 +580,10 @@
     "slug": "sfx_tornado"
   },
   {
+    "file": "monster/reverse_tornado1.ogg",
+    "slug": "sfx_tornado_faint"
+  },
+  {
     "file": "technique/zap1.ogg",
     "slug": "sfx_zap"
   },
@@ -648,7 +676,7 @@
     "slug": "sound_game_shot_light_gun_faint"
   },
   {
-    "file": "monster/reverse_Tux.ogg",
+    "file": "monster/Tux.ogg",
     "slug": "sound_ghost_1_faint"
   },
   {

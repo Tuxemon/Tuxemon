@@ -94,8 +94,7 @@ class CharWanderAction(EventAction):
             if exits:
                 path = random.choice(exits)
                 if not output or path in output:
-                    character.path = [path]
-                    character.next_waypoint()
+                    character.set_path_and_start([path])
 
         # Schedule the first move
         frequency = self.frequency or DEFAULT_FREQUENCY

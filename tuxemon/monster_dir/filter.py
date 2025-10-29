@@ -77,7 +77,7 @@ class MonsterFilter:
         self.clear_filters()
         self.add_filter(
             lambda monster: (
-                (status := monster.status.get_current_status()) is not None
+                (status := monster.status.current_status) is not None
                 and status.slug == status_slug
             )
         )

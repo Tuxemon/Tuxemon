@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+import time
 from collections.abc import Mapping, Sequence
 from typing import Any, Optional
 from uuid import UUID, uuid4
@@ -15,7 +16,7 @@ SIMPLE_PERSISTANCE_ATTRIBUTES = (
     "fighter",
     "opponent",
     "outcome",
-    "steps",
+    "timestamp",
     "location",
     "turns",
 )
@@ -29,7 +30,7 @@ class Battle:
         self.fighter: str = ""
         self.opponent: str = ""
         self.outcome: OutputBattle = OutputBattle.draw
-        self.steps: int = 1
+        self.timestamp: float = time.time()
         self.location: str = ""
         self.turns: int = 1
 

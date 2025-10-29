@@ -73,7 +73,7 @@
   "weight": 9,
   "sounds": {
     "combat_call": "sound_wood_call",
-    "faint_call": "sound_wood_call"
+    "faint_call": "sound_wood_faint"
   },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,

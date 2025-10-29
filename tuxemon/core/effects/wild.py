@@ -38,7 +38,7 @@ class WildEffect(CoreEffect):
             status.has_phase(EffectPhase.PRE_CHECKING)
             and random.random() > self.chance
         ):
-            user = status.get_host()
+            user = status.host
             empty = status.on_tech_use
             assert empty
             skip = Technique.create(empty)

@@ -49,5 +49,5 @@ class LoadYamlAction(EventAction):
         else:
             raise ValueError(f"{yaml_path} doesn't exist")
 
-        client.map_manager.events = _events
-        client.map_manager.inits = _inits
+        client.map_manager.set_events(_events)
+        client.map_manager.set_inits(_inits)

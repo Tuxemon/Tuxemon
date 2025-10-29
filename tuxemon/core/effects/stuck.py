@@ -32,7 +32,7 @@ class StuckEffect(CoreEffect):
     def apply_status(
         self, session: Session, status: Status
     ) -> StatusEffectResult:
-        host = status.get_host()
+        host = status.host
         if self.divisor == 0:
             raise ValueError("StuckEffect divisor must be non-zero.")
 

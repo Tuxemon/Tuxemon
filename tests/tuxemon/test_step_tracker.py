@@ -50,6 +50,106 @@ class TestStepTracker(unittest.TestCase):
         self.tracker.trigger_milestone_event(100)
         self.assertTrue(self.tracker.has_triggered_milestone(100))
 
+    def test_auto_reset_with_overflow(self):
+        self.tracker.auto_reset = True
+        self.tracker.countdown = 10
+        self.tracker.update_steps(15, 0)
+        self.assertEqual(self.tracker.countdown, 95.0)
+        self.assertEqual(self.tracker.cycle_count, 1)
+
+    def test_no_auto_reset(self):
+        self.tracker.auto_reset = False
+        self.tracker.countdown = 10
+        self.tracker.update_steps(15, 0)
+        self.assertEqual(self.tracker.countdown, 0)
+        self.assertEqual(self.tracker.cycle_count, 0)
+
+    def test_milestone_status_reset_on_cycle(self):
+        self.tracker.countdown = 49
+        self.tracker.check_milestone_events()
+        self.assertTrue(self.tracker.has_triggered_milestone(50))
+        self.tracker.reset_cycle()
+        self.assertFalse(self.tracker.has_triggered_milestone(50))
+
+    def test_update_when_countdown_zero(self):
+        self.tracker.auto_reset = True
+        self.tracker.countdown = 0
+        self.tracker.update_steps(5, 5)
+        self.assertEqual(self.tracker.steps, 10.0)
+        self.assertEqual(self.tracker.countdown, 90.0)
+        self.assertEqual(self.tracker.cycle_count, 1)
+
+    def test_multiple_milestones_triggered(self):
+        self.tracker.auto_reset = False
+        self.tracker.countdown = 260
+        self.tracker.update_steps(150, 100)
+        for m in [250, 100, 50]:
+            self.assertTrue(self.tracker.has_triggered_milestone(m))
+
+    def test_serialization_cycle_count(self):
+        self.tracker.cycle_count = 3
+        self.tracker.auto_reset = False
+        self.tracker.initial_countdown = 150
+        manager = StepTrackerManager()
+        manager.add_tracker("test", self.tracker)
+        encoded = encode_steps(manager)
+        decoded = decode_steps(encoded)
+        decoded_tracker = decoded.get_tracker("test")
+        self.assertEqual(decoded_tracker.cycle_count, 3)
+        self.assertFalse(decoded_tracker.auto_reset)
+        self.assertEqual(decoded_tracker.initial_countdown, 150)
+
+    def test_decode_legacy_savegame_defaults(self):
+        legacy_data = {
+            "test": {
+                "steps": 10.0,
+                "countdown": 80.0,
+                "milestones": [100, 50],
+                "milestone_status": {
+                    "50": {"triggered": True, "shown": False}
+                },
+            }
+        }
+        decoded = decode_steps(legacy_data)
+        tracker = decoded.get_tracker("test")
+        self.assertEqual(tracker.initial_countdown, 80.0)
+        self.assertFalse(tracker.auto_reset)
+        self.assertEqual(tracker.cycle_count, 0)
+
+    def test_invalid_milestone_access(self):
+        self.assertFalse(self.tracker.has_triggered_milestone(999))
+        self.assertFalse(self.tracker.has_shown_milestone(999))
+
+    def test_movement_equals_countdown(self):
+        self.tracker.auto_reset = True
+        self.tracker.countdown = 20
+        self.tracker.update_steps(10, 10)
+        self.assertEqual(self.tracker.countdown, 100.0)
+        self.assertEqual(self.tracker.cycle_count, 1)
+
+    def test_multiple_resets_in_one_update(self):
+        self.tracker.auto_reset = True
+        self.tracker.countdown = 10
+        self.tracker.update_steps(300, 0)
+        self.assertGreaterEqual(self.tracker.cycle_count, 2)
+
+    def test_negative_movement(self):
+        self.tracker.update_steps(-10, -5)
+        self.assertEqual(self.tracker.countdown, 115.0)
+        print(f"Countdown after negative movement: {self.tracker.countdown}")
+
+    def test_empty_milestones(self):
+        self.tracker.milestones = []
+        self.tracker.countdown = 10
+        self.tracker.update_steps(5, 5)
+        self.assertEqual(self.tracker.milestone_status, {})
+
+    def test_triggered_not_shown(self):
+        self.tracker.countdown = 49
+        self.tracker.check_milestone_events()
+        self.assertTrue(self.tracker.has_triggered_milestone(50))
+        self.assertFalse(self.tracker.has_shown_milestone(50))
+
 
 class TestStepTrackerManager(unittest.TestCase):
 
@@ -106,3 +206,17 @@ class TestStepTrackerManager(unittest.TestCase):
                 milestone
             )
         )
+
+    def test_add_duplicate_tracker(self):
+        with self.assertLogs(level="ERROR") as log:
+            self.manager.add_tracker("user1", StepTracker())
+            self.assertIn("already exists", log.output[0])
+
+    def test_remove_nonexistent_tracker(self):
+        with self.assertLogs(level="ERROR") as log:
+            self.manager.remove_tracker("ghost")
+            self.assertIn("does not exist", log.output[0])
+
+    def test_get_nonexistent_tracker(self):
+        tracker = self.manager.get_tracker("ghost")
+        self.assertIsNone(tracker)

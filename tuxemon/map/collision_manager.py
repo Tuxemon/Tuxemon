@@ -9,7 +9,7 @@ from typing import TYPE_CHECKING, Any, DefaultDict, Optional, Union
 
 from tuxemon import prepare
 from tuxemon.db import Direction
-from tuxemon.map.map import RegionProperties
+from tuxemon.map.map_region import RegionProperties
 
 if TYPE_CHECKING:
 

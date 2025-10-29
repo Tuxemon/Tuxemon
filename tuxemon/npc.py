@@ -123,6 +123,11 @@ class NPC(Entity[NPCState]):
         return self.party.monsters
 
     @property
+    def items(self) -> list[Item]:
+        """Returns the list of items in the bag."""
+        return self.bag.items
+
+    @property
     def path(self) -> list[tuple[int, int]]:
         """Returns the current movement path assigned to the NPC."""
         return self.path_controller.path

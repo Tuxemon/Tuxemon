@@ -127,6 +127,9 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
 
         visibility_map.update(self.combat_session.menu_visibility_map)
 
+        if self.enemy.combat.forfeit:
+            visibility_map["menu_forfeit"] = True
+
         for key, method_name in menu_map.items():
             callback = getattr(self, method_name)
             visible = visibility_map.get(key, False)
@@ -155,7 +158,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
         Cause player to run from the wild encounters.
         """
         run = Technique.create("menu_run")
-        status = self.monster.status.get_current_status()
+        status = self.monster.status.current_status
         message = status.name.lower() if status else ""
         if not run.validate_monster(self.session, self.monster):
             params = {
@@ -176,7 +179,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
         def swap_it(menuitem: MenuItem[Monster]) -> None:
             added = menuitem.game_object
             swap = Technique.create("swap")
-            status = self.monster.status.get_current_status()
+            status = self.monster.status.current_status
             message = status.name.lower() if status else ""
             if not swap.validate_monster(self.session, self.monster):
                 params = {
@@ -266,7 +269,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             target = menu_item.game_object
 
             # check target status
-            status = target.status.get_current_status()
+            status = target.status.current_status
             if status:
                 result_status = status.use(
                     self.session, EffectPhase.ENQUEUE_ITEM

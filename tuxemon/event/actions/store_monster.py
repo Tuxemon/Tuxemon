@@ -40,6 +40,7 @@ class StoreMonsterAction(EventAction):
 
     def start(self, session: Session) -> None:
         player = session.player
+
         if not player.game_variables.has(self.variable):
             logger.error(f"Game variable {self.variable} not found")
             return
@@ -49,21 +50,18 @@ class StoreMonsterAction(EventAction):
         if monster is None:
             logger.error("Monster not found")
             return
-        character = monster.get_owner()
 
-        box = self.box
-        if box is None:
-            store = KENNEL
-        else:
-            if not player.monster_boxes.has_box(self.name, "monster"):
-                logger.error(f"No box found with name {box}")
-                return
-            else:
-                store = box
-        logger.info(f"{monster.name} stored in {store} box!")
-        if not character.monster_boxes.is_box_full(store):
-            logger.error(f"Box {store} is full.")
+        character = monster.get_owner()
+        box = self.box or KENNEL
+
+        if not player.monster_boxes.has_box(box, "monster"):
+            logger.error(f"No box found with name {box}")
             return
+
+        success = character.party.transfer_monster_to_box(monster, box)
+        if success:
+            logger.info(f"{monster.name} stored in '{box}' box!")
         else:
-            character.monster_boxes.add_monster(store, monster)
-            character.party.remove_monster(monster)
+            logger.error(
+                f"Failed to store monster '{monster.name}' in box '{box}'"
+            )

@@ -294,7 +294,8 @@ class CombatSession:
             params = {"name": self.right_player.monsters[0].name.upper()}
             return T.format("combat_wild_appeared", params)
         elif self.combat_type is CombatType.HORDE:
-            return T.translate("combat_horde_appeared")
+            horde = self.right_player.party.party_size
+            return f"{T.translate('combat_horde_appeared')} ({horde})"
         else:
             raise ValueError(f"Unexpected combat_type: {self.combat_type}")
 
@@ -425,10 +426,10 @@ class CombatSession:
         for player in list(self.active_players):
             monsters = self.field_monsters.get_monsters(player)
             for monster in monsters:
-                held_item = monster.held_item.get_item()
+                held_item = monster.held_item
                 if held_item:
                     held_item.use(session, player, monster)
-                status = monster.status.get_current_status()
+                status = monster.status.current_status
                 if status:
                     status.use(session, EffectPhase.ON_DECISION)
 
@@ -440,7 +441,7 @@ class CombatSession:
             for status in monster.status.get_statuses():
                 if len(self.remaining_players) > 1:
                     if status.validate_monster(session, monster):
-                        status.nr_turn += 1
+                        status.tick_turn()
                         self.enqueue_action(None, status, monster)
 
     def track_enemy_monsters(self, session: Session) -> None:
@@ -498,12 +499,12 @@ class CombatSession:
 
         phase = EffectPhase.SWAP_MONSTER
 
-        entry_status = monster.status.get_current_status()
+        entry_status = monster.status.current_status
         if entry_status:
             entry_status.use(session, phase)
 
         if removed:
-            exit_status = removed.status.get_current_status()
+            exit_status = removed.status.current_status
             if exit_status:
                 exit_status.use(session, phase)
 
@@ -523,7 +524,7 @@ class CombatSession:
         or other conditions that change the chosen technique.
         """
         logger.debug(f"[PreCheck Start] {monster.name} using {technique.slug}")
-        status = monster.status.get_current_status()
+        status = monster.status.current_status
         if status:
             result_status = status.use(session, EffectPhase.PRE_CHECKING)
             if result_status.techniques:
@@ -533,15 +534,15 @@ class CombatSession:
             technique.target.get(target_type, False)
             for target_type in ["enemy_monster", "enemy_team", "enemy_trainer"]
         ):
-            infected_slugs = monster.plague.get_infected_slugs()
-            slug = random.choice(infected_slugs)
-            alt_technique = Technique.create(slug)
-            result = alt_technique.use(session, monster, target)
-            if result.success:
-                logger.debug(
-                    f"[Plague Override] {monster.name} switches to {alt_technique.slug}"
-                )
-                technique = alt_technique
+            slug = monster.plague.get_most_severe_plague_slug()
+            if slug:
+                alt_technique = Technique.create(slug)
+                result = alt_technique.use(session, monster, target)
+                if result.success:
+                    logger.debug(
+                        f"[Plague Override] {monster.name} switches to {alt_technique.slug}"
+                    )
+                    technique = alt_technique
         logger.debug(f"[PreCheck End] {monster.name} using {technique.slug}")
         return technique
 
@@ -555,7 +556,7 @@ class CombatSession:
         )
 
         status_result = None
-        status = user.status.get_current_status()
+        status = user.status.current_status
         if status:
             status_result = status.use(session, EffectPhase.PERFORM_TECH)
             if status_result.statuses:
@@ -577,7 +578,7 @@ class CombatSession:
         )
 
         if target:
-            status = target.status.get_current_status()
+            status = target.status.current_status
             if result.success and status:
                 status.use(session, EffectPhase.PERFORM_ITEM)
         return result

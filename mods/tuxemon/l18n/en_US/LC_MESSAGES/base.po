@@ -1848,7 +1848,7 @@ msgid "combat_state_dozing_get"
 msgstr "{target} is asleep."
 
 msgid "combat_state_dozing_end"
-msgstr "{target} dozes off!"
+msgstr "{target} wakes up!"
 
 msgid "combat_state_enraged_get"
 msgstr "{target} is enraged."
@@ -4030,6 +4030,9 @@ msgstr "Route E"
 msgid "crystal_town"
 msgstr "Crystal"
 
+msgid "crystal_town"
+msgstr "Obsidian"
+
 msgid "taba_town"
 msgstr "Taba"
 
@@ -4126,6 +4129,9 @@ msgstr "The Ascension Trail on the slopes of Lion Mountain!"
 
 msgid "crystal_town_description"
 msgstr "The highest settlement in the Fondent Region!"
+
+msgid "obsidian_town_description"
+msgstr "Founded by Shaft. Mining operations ahead."
 
 msgid "taba_town_description"
 msgstr "A peaceful refuge!"
@@ -13943,6 +13949,11 @@ msgstr ""
 msgid "spyder_route6_gunner2"
 msgstr "You're not a Greenwash employee? I've heard that one before!"
 
+msgid "spyder_flower_guard"
+msgstr ""
+"Access restricted. Only those who've completed the combat evaluation at "
+"the Dojo are cleared for entry. Orders from above — no exceptions."
+
 msgid "spyder_flower_artist1"
 msgstr ""
 "Simplistic and clumsy brushstrokes and a pedestrian theme. Bah! Another "
@@ -15462,9 +15473,6 @@ msgstr "Ray"
 
 msgid "spyder_dragonscave_lucille"
 msgstr "Lucille"
-
-msgid "spyder_dragonscave_tru"
-msgstr "Tru"
 
 msgid "spyder_flower_cady"
 msgstr "Cady"
@@ -17491,6 +17499,108 @@ msgstr ""
 "Now get to school! We don't want you in trouble on your first day."
 
 # Spin Off Spyder - Eclipse ##
+msgid "eclipse_beginning1"
+msgstr "I... I still can't believe what happened. Is this really the right path?"
+
+msgid "eclipse_beginning2"
+msgstr "Calm Voice: Argon, you've always been one to question everything. But sometimes, there's no right or wrong—only action."
+
+msgid "eclipse_beginning3"
+msgstr "Action without purpose is meaningless. Chrome Robo... just a machine, yet... why do I still see its eyes?"
+
+msgid "eclipse_beginning4"
+msgstr "Familiar Voice: Argon, you did what you had to. Chrome Robo was a threat. No more, no less. Let it go."
+
+msgid "eclipse_beginning5"
+msgstr "Let it go? You make it sound so simple. But it wasn't just bolts and circuits... there was something there, something deeper.\n Am I losing myself? Or have I already?"
+
+msgid "eclipse_beginning6"
+msgstr "Reflective Voice: You need to decide what matters to you now. What lies beyond the horizon, Argon? Is it redemption, or ruin?"
+
+msgid "eclipse_beginning7"
+msgstr "Cold Voice: Hesitation leads to weakness, weakness leads to failure. Destroying Chrome Robo was only the beginning, Argon.\n You've stepped into a storm—there's no turning back now."
+
+msgid "eclipse_beginning8"
+msgstr "No turning back... I'm starting to feel that. But what if the road ahead only brings destruction?"
+
+msgid "eclipse_beginning9"
+msgstr "Compassionate Voice: Argon, the road is yours to walk, no matter how jagged it seems.\n You still carry the light of compassion—it will guide you, even if you can't see the way."
+
+msgid "eclipse_beginning10"
+msgstr "Can I still hold onto compassion... without losing myself?"
+
+msgid "eclipse_event2_1"
+msgstr "Voice of Compassion: You've chosen this path for a reason. Keep moving forward, Argon.\n Don't lose sight of what's right."
+
+msgid "eclipse_event2_2"
+msgstr "Voice of Doubt: Every step you take, you leave something behind. Your ideals won't save you—or anyone else."
+
+msgid "eclipse_event2_3"
+msgstr "Unknown Voice: You think this road is yours to walk? Your choices aren't as free as you believe, Argon."
+
+msgid "eclipse_event3_1"
+msgstr "Voice of Memory: Argon? By the processors, it's really you! It's been a long time.\n Tell me… do you still believe in what we once talked about?"
+
+msgid "eclipse_event3_2"
+msgstr "I knew it. You always saw the bigger picture, Argon. Stay on that path… the world needs people like you."
+
+msgid "eclipse_event3_3"
+msgstr "Oh, Argon. I guess even you couldn't hold on forever. But don't let this destroy who you are."
+
+msgid "eclipse_event4_1"
+msgstr "Voice of Challenge: Well, look who it is. Argon, still fighting the good fight, I assume?\n Tell me, have you grown tired of clinging to your ideals yet?"
+
+msgid "eclipse_event4_2"
+msgstr "Hmph. Idealism is a fool's comfort, Argon. But maybe you'll prove me wrong. Doubt it, though."
+
+msgid "eclipse_event4_3"
+msgstr "Ha! Finally, some clarity. Just remember, Argon, the world doesn't wait for dreamers."
+
+msgid "eclipse_event5_1"
+msgstr "TuxeVault... the institution that funded my dreams—and my nightmares. Am I here for redemption or reckoning?"
+
+msgid "eclipse_event5_2"
+msgstr "Voice of Judgment: Redemption and reckoning are illusions, Argon. What you seek is truth—and truth rarely comforts."
+
+msgid "eclipse_event6_1"
+msgstr "Whispered Voice: This is where power lies, disguised as virtue. Do you feel safe here, Argon? You shouldn't."
+
+msgid "eclipse_event6_2"
+msgstr "Echo of the Past: You stood in labs just like these once. Healing, creating, destroying… Was it worth it?"
+
+msgid "eclipse_event7_1"
+msgstr "Voice of Temptation: Drown your regrets here, Argon. It's easier than facing them, isn't it?"
+
+msgid "eclipse_event7_2"
+msgstr "Fragment of Memory: We laughed once, in a place like this. Before it all fell apart. Do you remember, Argon?"
+
+msgid "eclipse_event8_1"
+msgstr "Voice of Wisdom: You carry heavy burdens, child. But storms pass, and even the tallest trees find the light again."
+
+msgid "eclipse_event8_2"
+msgstr "Voice of Warning: The Cathedral casts long shadows. Be wary of what you find here, Argon—it may consume you."
+
+msgid "eclipse_event9_1"
+msgstr "Voice of the Vault: You return to the place that built you, Argon. But foundations crack, and dreams rot.\n Will you rebuild—or burn it down?"
+
+msgid "eclipse_event9_2"
+msgstr "I said I came for redemption… but maybe I came to see what's left of me here."
+
+msgid "eclipse_event9_3"
+msgstr "Voice of Judgment: Redemption and reckoning are illusions, Argon. What you seek is truth—and truth rarely comforts."
+
+msgid "eclipse_event9_4"
+msgstr "Voice of Compassion: You carry pain, but also purpose. This place may have broken you—but it can still shape you."
+
+msgid "eclipse_event9_5"
+msgstr "Voice of Doubt: You think you've come back stronger. But strength fades. And this place remembers everything."
+
+msgid "eclipse_event9_6"
+msgstr "Voice of Temptation: Forget redemption. Forget reckoning. Just walk away, Argon. Let the past bury itself."
+
+msgid "eclipse_event9_7"
+msgstr "If truth is all that's left, then I'll face it—no matter how dark it gets. I won't walk away. Not this time.\n If this place remembers everything… then it remembers who I used to be."
+
 msgid "eclipse_route7_arnold"
 msgstr "Arnold"
 
@@ -17612,9 +17722,6 @@ msgstr "Two weeks ago a tremendous blizzard struck ${{map_name}}."
 
 msgid "eclipse_crystal_barmaid"
 msgstr "I don't skate very well."
-
-msgid "eclipse_mountain_road_interrupted"
-msgstr "Road blocked due to landslide."
 
 msgid "eclipse_crystal_grannypiper"
 msgstr ""
@@ -17769,6 +17876,204 @@ msgstr "So when the breakdown occurred, I retreated here."
 msgid "eclipse_lionmountain_enforcer4"
 msgstr ""
 "It looks like you can handle this. Maybe you are the only one who can."
+
+msgid "eclipse_bank_may"
+msgstr "May"
+
+msgid "eclipse_bank_brock"
+msgstr "Brock"
+
+msgid "eclipse_bank_daisy"
+msgstr "Daisy"
+
+msgid "eclipse_bank_raj"
+msgstr "Raj"
+
+msgid "eclipse_bank_lile"
+msgstr "Lile"
+
+msgid "eclipse_bank_kai"
+msgstr "Kai"
+
+msgid "eclipse_bank_ethan"
+msgstr "Ethan"
+
+msgid "eclipse_bank_ava"
+msgstr "Ava"
+
+msgid "eclipse_bank_lucas"
+msgstr "Lucas"
+
+msgid "eclipse_bank_bob1"
+msgstr "I used to think this bank stood for something—independence, a beacon against the Cathedral's shadow."
+
+msgid "eclipse_bank_bob2"
+msgstr "But then I saw cracks: strange transfers, unaccounted funds, whispers of deals with Cathedral subsidiaries."
+
+msgid "eclipse_bank_bob3"
+msgstr "They let me go when I started asking questions. Something's not right here, Argon. Not at all."
+
+msgid "eclipse_bank_may1"
+msgstr "Think you can handle high finance? Prove it."
+
+msgid "eclipse_bank_may2"
+msgstr "You've got the chops. But I won't sit quietly if things fall apart."
+
+msgid "eclipse_bank_brock1"
+msgstr "You ask too many questions. Let's see if you can back it up."
+
+msgid "eclipse_bank_brock2"
+msgstr "You're tougher than I expected. But I'll be tightening security from now on."
+
+msgid "eclipse_bank_daisy1"
+msgstr "Troublemakers don't last long here. Let's see what you've got."
+
+msgid "eclipse_bank_daisy2"
+msgstr "You're formidable, I'll give you that. But trust? That's earned, not won."
+
+msgid "eclipse_bank_jeff1"
+msgstr "This place looks clean—but I've seen the dirt beneath. You ready to dig?"
+
+msgid "eclipse_bank_bin1"
+msgstr "You find a crumpled receipt: 'Archipelago Freight - Lumber shipment to Fondent Region (Confidential).'"
+
+msgid "eclipse_bank_bin2"
+msgstr "Below it, a document stamped 'TerraForm Developers - Prototype facility construction (Project Eclipse).'"
+
+msgid "eclipse_bank_bin3"
+msgstr "A torn note scribbled hastily reads: 'Meet J at powerplant. Discuss energy output. Eyes everywhere. Don't get caught.'"
+
+msgid "eclipse_bank_raj1"
+msgstr "I'm just here to deposit my check—but this place feels ready to explode."
+
+msgid "eclipse_bank_raj2"
+msgstr "You're braver than I thought. Just be careful—this bank's secrets run deep."
+
+msgid "eclipse_bank_lile1"
+msgstr "I've spotted patterns pointing to Cathedral. Help me test a theory—if you're up for it."
+
+msgid "eclipse_bank_lile2"
+msgstr "You've proven yourself. Now let's expose the strings Cathedral's pulling behind the scenes."
+
+msgid "eclipse_bank_kai1"
+msgstr "The records don't lie—unless someone makes them. Let's see if you can handle the truth."
+
+msgid "eclipse_bank_kai2"
+msgstr "You've got grit. I'll share what I've found—but tread carefully. Cathedral doesn't like leaks."
+
+msgid "eclipse_bank_ethan1"
+msgstr "TuxeVault's books are spotless—too spotless. Let's see if you can crack the polish."
+
+msgid "eclipse_bank_ethan2"
+msgstr "You've got guts. Maybe you're the one who'll finally expose the lies beneath the numbers."
+
+msgid "eclipse_bank_ava1"
+msgstr "I've flagged suspicious flows. If you care about truth, prove you're not just another pawn."
+
+msgid "eclipse_bank_ava2"
+msgstr "You've got more to you than meets the eye. Just remember—Cathedral doesn't play fair."
+
+msgid "eclipse_bank_lucas1"
+msgstr "You've got guts coming here. I can make you rich—if you're not afraid to get dirty."
+
+msgid "eclipse_bank_lucas2"
+msgstr "So you're not interested in deals? Fine. But don't expect to walk away untouched."
+
+msgid "eclipse_zircon"
+msgstr "Zircon"
+
+msgid "eclipse_zircon1"
+msgstr "So, you finally show your face, Argon. I've been waiting for this moment. Let's see if your ideals can stand against true power."
+
+msgid "eclipse_zircon2_lose"
+msgstr "Pathetic, Argon. Is this the strength your so-called principles bring you? You can't protect anyone—least of all yourself.\n Remember this defeat. It's the only thing you've truly earned."
+
+msgid "eclipse_zircon_voice_lose"
+msgstr "Voice of Revelation: You've tasted defeat, Argon, and now the pieces begin to fall. Aurora's disappearance is no accident...\n Nor is your survival. The path ahead is darker than you know, but you must walk it.\n Watch the Cathedral. Watch the mountains. The truth waits for you... if you dare to see it."
+
+msgid "eclipse_zircon2_win"
+msgstr "Impossible… You cling to ideals, and yet you stand. Perhaps I underestimated what conviction can become."
+
+msgid "eclipse_zircon3_win"
+msgstr "Don't mistake technical victory for narrative control, Argon. The endgame has already begun."
+
+msgid "eclipse_zircon_voice_win"
+msgstr "Voice of Revelation: You've defied power, Argon—and now the veil begins to lift. Aurora's trail is not cold.\n The Cathedral watches, but so do others. The truth is moving. Follow it before it disappears."
+
+msgid "eclipse_cathedral_jada1"
+msgstr "Ah, you're finally awake. Took quite a hit from that... Scientist Zircon? He was a guest here—an intimidating fellow, but an honored one.\n Don't worry, the Cathedral is thorough; we got you stabilized."
+
+msgid "eclipse_cathedral_jada2"
+msgstr "As for the bank... a terrible commotion. They say CEO Aurora disappeared right after the fight. Vanished without a trace.\n The authorities are calling it a 'crisis of confidence'. That's all I know."
+
+msgid "eclipse_cathedral_jada3"
+msgstr "You sound agitated. Just be careful what you say, Argon. These walls have ears, and the Cathedral doesn't like loose ends.\n Focus on recovering."
+
+msgid "eclipse_event10_1"
+msgstr "Zircon... Cathedral... Aurora. He spoke of results, and now Aurora is a casualty. They used me to create a distraction.\n I need to find her, and expose them."
+
+msgid "eclipse_event10_2"
+msgstr "Voice of Doubt: It's too big, Argon. They'll crush you and your ideals like they crushed Chrome Robo. Walk away before they bury you too."
+
+msgid "eclipse_event10_3"
+msgstr "Voice of Compassion: Aurora fought for TuxeVault's independence, against the five pillars of the Cathedral.\n She was fighting for something real. You can't let them erase her."
+
+msgid "eclipse_event10_4"
+msgstr "Voice of Revelation: The path ahead is darker than you know. Aurora's disappearance is no accident... nor is your survival.\n Watch the Cathedral. Watch the mountains. The truth waits for you... if you dare to see it."
+
+msgid "eclipse_event10_5"
+msgstr "The Cathedral and the mountains. The hidden facility must be there, tied to Project Eclipse.\n I'll follow the trail to Lion Mountain. I won't run this time."
+
+msgid "eclipse_cathedral_enforcer1"
+msgstr "Leaving so soon, sir? The Cathedral appreciates your business.\n Just remember, in times of 'crisis', it's always safer to let the authorities handle things.\n Especially anything involving the TuxeVault CEO. Good day."
+
+msgid "eclipse_crystal_hiker1"
+msgstr "Oh, TerraForm Developers? Yeah, I know those guys. They're always hauling heavy equipment up the old path.\n That path leads to Lion Mountain Below."
+
+msgid "eclipse_crystal_hiker2"
+msgstr "They put up a huge security barrier recently, near where the old Hydro-Plant used to be, halfway up.\n They say they're building something 'prototype' up there for the Cathedral's Nimrod division.\n I wouldn't go near it."
+
+msgid "eclipse_event11_1"
+msgstr "Voice of Challenge: You chose the mountain path, Argon. It's steep, and the air is thin.\n You'll find no one up there but yourself, your Tuxemon, and the answers you truly dread. Let's see if you can still stand when the truth hits the peak."
+
+msgid "eclipse_event12_1"
+msgstr "Voice of Memory: The air here is clean, but your hands aren't, Argon.\n Every upward step is one step further from what you destroyed."
+
+msgid "eclipse_event12_2"
+msgstr "Voice of Doubt: This is a fool's errand. You're climbing a mountain built on secrets.\n You won't find Aurora; you'll only find a tomb."
+
+msgid "eclipse_event12_3"
+msgstr "Voice of Wisdom: The summit is not reached by looking at the peak, but by focusing on the next step.\n Keep moving, child."
+
+msgid "eclipse_event13_1"
+msgstr "Voice of Challenge: The path narrows here. You were overwhelmed by Zircon.\n Let's see if this climb breaks your resolve before the truth does."
+
+msgid "eclipse_event13_2"
+msgstr "Voice of Temptation: The old Hydro-Plant offered comfort and power. Turn back. Find a compromise.\n Fighting the Cathedral only leads to exhaustion."
+
+msgid "eclipse_event13_3"
+msgstr "Cold Voice: You trespass, Argon. Nimrod watches its assets closely.\n This mountain belongs to the ones with the power to take it."
+
+msgid "eclipse_event14_1"
+msgstr "Reflective Voice: Look how small the town is now. You are utterly alone here.\n If you fall, no one will know, and no one will care."
+
+msgid "eclipse_event14_2"
+msgstr "Voice of Judgment: You sought justice, but brought chaos.\n Did you truly believe your ideals would survive at this altitude? They are frozen solid."
+
+msgid "eclipse_event14_3"
+msgstr "Voice of Compassion: The air is thin, but your purpose is clear. You are close, Argon.\n Don't let the cold silence extinguish the light you carry."
+
+msgid "eclipse_event15_1"
+msgstr "Echo of the Past: We built things once, Zircon and you. Now look at what they build: mines, walls, and silence.\n Is this the result you wanted?"
+
+msgid "eclipse_event15_2"
+msgstr "Whispered Voice: Don't speak about the tunnels. Don't speak about Shaft's quotas.\n The dirt here has ears, and the guards are Nimrod's best."
+
+msgid "eclipse_event15_3"
+msgstr "Voice of Temptation: The mountain is just rock. The people are just labor.\n Everything has a price, Argon. What's yours? Shaft is hiring."
+
+msgid "eclipse_event15_4"
+msgstr "Unknown Voice: The mine is deep, but the purpose is deeper. They're not extracting minerals; they're covering tracks.\n Follow the dark earth."
 
 msgid "eclipse_park_welcome"
 msgstr ""

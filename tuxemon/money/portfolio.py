@@ -13,6 +13,11 @@ class Investment:
     shares: int
     purchase_price: float
 
+    @property
+    def total_cost_basis(self) -> float:
+        """Calculates the total money spent to acquire these shares."""
+        return round(self.shares * self.purchase_price, 4)
+
 
 class PortfolioManager:
     """Manages an NPC's investment portfolio."""
@@ -22,6 +27,8 @@ class PortfolioManager:
 
     def buy_shares(self, symbol: str, shares: int, price: float) -> float:
         """Buys shares of an investment and returns the total cost."""
+        symbol = symbol.upper()
+
         if not symbol.isalnum():
             raise ValueError("Invalid symbol format.")
 
@@ -29,27 +36,34 @@ class PortfolioManager:
             raise ValueError("Shares and price must be positive.")
 
         total_cost = shares * price
+
         if symbol in self.investments:
             current = self.investments[symbol]
             new_shares = current.shares + shares
+
             new_purchase_price = (
                 (current.shares * current.purchase_price) + total_cost
             ) / new_shares
+
             current.shares = new_shares
             current.purchase_price = new_purchase_price
         else:
             self.investments[symbol] = Investment(
                 symbol=symbol, shares=shares, purchase_price=price
             )
+
         return total_cost
 
     def sell_shares(self, symbol: str, shares: int, price: float) -> float:
         """Sells shares of an investment and returns the total revenue."""
+        symbol = symbol.upper()
+
         if not symbol.isalnum():
             raise ValueError("Invalid symbol format.")
 
         if symbol not in self.investments:
             raise KeyError(f"No such investment: {symbol}")
+
         if shares <= 0:
             raise ValueError("Shares must be positive.")
 
@@ -59,8 +73,10 @@ class PortfolioManager:
 
         total_revenue = shares * price
         investment.shares -= shares
+
         if investment.shares == 0:
             del self.investments[symbol]
+
         return total_revenue
 
     def get_portfolio_value(self, market_prices: Mapping[str, float]) -> float:
@@ -70,6 +86,19 @@ class PortfolioManager:
             if symbol in market_prices:
                 total_value += investment.shares * market_prices[symbol]
         return total_value
+
+    def calculate_profit_loss(
+        self, market_prices: Mapping[str, float]
+    ) -> float:
+        """Calculates the unrealized profit or loss (P&L) of the entire portfolio."""
+        total_market_value = self.get_portfolio_value(market_prices)
+
+        total_cost_basis = sum(
+            inv.total_cost_basis for inv in self.investments.values()
+        )
+
+        # P&L = Market Value - Cost Basis
+        return total_market_value - total_cost_basis
 
     def get_state(self) -> dict[str, Any]:
         """Returns a savable state of the portfolio."""
@@ -90,8 +119,9 @@ class PortfolioManager:
         manager = cls()
         if "investments" in state:
             for inv_data in state["investments"]:
-                manager.investments[inv_data["symbol"]] = Investment(
-                    symbol=inv_data["symbol"],
+                symbol = inv_data["symbol"].upper()
+                manager.investments[symbol] = Investment(
+                    symbol=symbol,
                     shares=inv_data["shares"],
                     purchase_price=inv_data["purchase_price"],
                 )
@@ -112,9 +142,8 @@ class MarketDataManager:
             self.set_price(symbol, price)
 
     def set_price(self, symbol: str, price: float) -> None:
-        """Sets the market price for the given symbol if the price is positive and the symbol is valid."""
-        if not symbol.isalnum():
-            raise ValueError("Invalid symbol format.")
+        """Sets the market price for the given symbol."""
+        symbol = self._validate_and_normalize_symbol(symbol)
 
         if price > 0:
             self.prices[symbol] = price
@@ -123,10 +152,24 @@ class MarketDataManager:
 
     def apply_fluctuation(self, symbol: str, percentage_change: float) -> None:
         """Changes the price of a symbol by a percentage."""
-        if not symbol.isalnum():
-            raise ValueError("Invalid symbol format.")
+        symbol = self._validate_and_normalize_symbol(symbol)  # Use helper
 
         current_price = self.get_price(symbol)
         if current_price > 0:
             new_price = current_price * (1 + percentage_change)
+
+            if new_price <= 0:
+                raise ValueError(
+                    "Price fluctuation would result in a non-positive price."
+                )
+
             self.set_price(symbol, new_price)
+
+    def _validate_and_normalize_symbol(self, symbol: str) -> str:
+        """Checks symbol format and converts to uppercase."""
+        symbol = symbol.upper()
+        if not symbol.isalnum():
+            raise ValueError(
+                "Invalid symbol format. Symbols must be alphanumeric."
+            )
+        return symbol

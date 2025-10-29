@@ -44,9 +44,19 @@ class ParkEffect(CoreEffect):
             )
 
     def _doll(self, item: Item, target: Monster) -> ItemEffectResult:
+        encounter = self.session.client.park_session.encounters.get(
+            target.slug
+        )
+        if encounter:
+            encounter.apply_item_modifiers(item)
         return ItemEffectResult(name=item.name, success=True)
 
     def _food(self, item: Item, target: Monster) -> ItemEffectResult:
+        encounter = self.session.client.park_session.encounters.get(
+            target.slug
+        )
+        if encounter:
+            encounter.apply_item_modifiers(item)
         return ItemEffectResult(name=item.name, success=True)
 
     def _capture(self, item: Item, target: Monster) -> ItemEffectResult:

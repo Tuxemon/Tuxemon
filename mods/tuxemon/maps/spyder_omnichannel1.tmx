@@ -93,7 +93,7 @@
    <properties>
     <property name="act1" value="create_npc spyder_omnichannel_william,9,4"/>
     <property name="cond1" value="not char_exists spyder_omnichannel_william"/>
-    <property name="cond2" value="not variable_set omnichannelwilliam:yes"/>
+    <property name="cond2" value="not battle_outcome player,won,spyder_omnichannel_william"/>
    </properties>
   </object>
   <object id="25" name="Talk William" type="event" x="144" y="48" width="16" height="16">
@@ -103,9 +103,8 @@
     <property name="act3" value="add_monster cardiwing,36,spyder_omnichannel_william,5,10"/>
     <property name="act4" value="start_battle player,spyder_omnichannel_william"/>
     <property name="act5" value="char_talk spyder_omnichannel_william,post_battle_lose"/>
-    <property name="act6" value="set_variable omnichannelwilliam:yes"/>
     <property name="behav1" value="talk spyder_omnichannel_william"/>
-    <property name="cond1" value="not variable_set omnichannelwilliam:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_omnichannel_william"/>
    </properties>
   </object>
   <object id="29" name="Environment" type="event" x="16" y="0" width="16" height="16">
@@ -144,9 +143,9 @@
     <property name="act50" value="translated_dialog spyder_cottontown_enforcer2"/>
     <property name="act55" value="pathfind spyder_omnichannel_enforcer,2,12"/>
     <property name="act60" value="remove_npc spyder_omnichannel_enforcer"/>
-    <property name="act70" value="set_variable enforceromni:yes"/>
-    <property name="cond1" value="not variable_set enforceromni:yes"/>
-    <property name="cond3" value="is char_at player"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_omnichannel_enforcer"/>
+    <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
    </properties>
   </object>
   <object id="39" name="Create Maniac" type="event" x="32" y="32" width="16" height="16">

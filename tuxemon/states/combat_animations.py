@@ -20,7 +20,7 @@ from tuxemon import graphics, prepare
 from tuxemon.combat.utils import alive_party, build_hud_text
 from tuxemon.formula import config_combat
 from tuxemon.menu.menu import Menu
-from tuxemon.sprite import CaptureDeviceSprite, Sprite
+from tuxemon.sprite import CaptureDeviceSprite, HordeSprite, Sprite
 from tuxemon.tools import scale
 from tuxemon.ui.combat_bars import CombatBars
 from tuxemon.ui.combat_hud import CombatLayoutManager
@@ -76,6 +76,7 @@ class CombatAnimations(Menu[None], ABC):
         self.graphics = context.graphics
         self.sprite_map = MonsterSpriteMap()
         self.capdevs: list[CaptureDeviceSprite] = []
+        self.horde_sprite: Optional[HordeSprite] = None
         self.bars = CombatBars(self.graphics)
         layout_manager = LayoutManager(scaled_layouts, layout_groups)
         _layout = prepare_layout(context.teams, layout_manager)
@@ -83,6 +84,7 @@ class CombatAnimations(Menu[None], ABC):
         self.status_icons = StatusIconManager(self, _layout, self.hud_manager)
         self.combat_zone = CombatZone(prepare.SCREEN_RECT)
         self.background_sprite: Optional[Sprite] = None
+        self.monsters_just_leveled_up: dict[str, bool] = {}
 
     def draw(self, surface: Surface) -> None:
         """
@@ -280,6 +282,7 @@ class CombatAnimations(Menu[None], ABC):
             if monster in monsters:
                 monsters.remove(monster)
 
+        self.animate_update_horde_hud()
         # Update the party HUD to reflect the fainted tuxemon
         self.animate_update_party_hud()
 
@@ -321,7 +324,15 @@ class CombatAnimations(Menu[None], ABC):
     def animate_exp(self, monster: Monster) -> None:
         exp_bar = self.bars.get_exp_bar(monster)
 
-        if monster.levelling_up:
+        # Calculate the correct XP bar value for the current level
+        value_for_new_level = self.calculate_bar_value(
+            total_experience=monster.total_experience,
+            xp_start=monster.experience_required(),
+            xp_end=monster.experience_required(1),
+        )
+
+        # Check if this monster should animate level-up transition
+        if self.monsters_just_leveled_up.get(monster.slug, False):
 
             def fill_to_max() -> Animation:
                 return self.animate(
@@ -341,11 +352,6 @@ class CombatAnimations(Menu[None], ABC):
                 )
 
             def animate_new_level_progress() -> Animation:
-                value_for_new_level = self.calculate_bar_value(
-                    total_experience=monster.total_experience,
-                    xp_start=monster.experience_required(),
-                    xp_end=monster.experience_required(1),
-                )
                 return self.animate(
                     exp_bar,
                     value=value_for_new_level,
@@ -359,16 +365,11 @@ class CombatAnimations(Menu[None], ABC):
                 reset_bar,
                 animate_new_level_progress,
             )
-
+            self.monsters_just_leveled_up[monster.slug] = False
         else:
-            value = self.calculate_bar_value(
-                total_experience=monster.total_experience,
-                xp_start=monster.experience_required(),
-                xp_end=monster.experience_required(1),
-            )
             self.animate(
                 exp_bar,
-                value=value,
+                value=value_for_new_level,
                 duration=0.7,
                 transition="out_quint",
             )
@@ -406,21 +407,6 @@ class CombatAnimations(Menu[None], ABC):
 
         return sprite
 
-    def split_label(self, owner: NPC, hud: Sprite, label: str) -> None:
-        """
-        Automatically draws label lines on the HUD using layout based
-        on NPC ownership.
-        """
-        hud_line1 = self.hud_manager.get_rect(owner, "hud_line1")
-        hud_line2 = self.hud_manager.get_rect(owner, "hud_line2")
-
-        labels = label.splitlines()
-        if len(labels) > 1:
-            hud.image.blit(self.shadow_text(labels[0]), hud_line1)
-            hud.image.blit(self.shadow_text(labels[1]), hud_line2)
-        else:
-            hud.image.blit(self.shadow_text(labels[0]), hud_line1)
-
     def build_hud(
         self, monster: Monster, hud_position: str, animate: bool = True
     ) -> None:
@@ -440,11 +426,11 @@ class CombatAnimations(Menu[None], ABC):
 
         def build_hud_sprite(hud: Sprite, is_player: bool) -> Sprite:
             """
-            Builds a HUD sprite for a monster.
+            Builds a HUD sprite for a monster, drawing dictionary-based text.
 
             Parameters:
                 hud: The HUD sprite to build.
-                is_player: Whether the HUD is for the player or not.
+                is_player: Whether the HUD is for the player or not (right side).
 
             Returns:
                 The built HUD sprite.
@@ -453,10 +439,22 @@ class CombatAnimations(Menu[None], ABC):
             symbol = False
             if not is_player and left_player.tuxepedia.is_caught(monster.slug):
                 symbol = True
-            label = build_hud_text(
+
+            label_data = build_hud_text(
                 menu, monster, is_player, trainer_battle, symbol
             )
-            self.split_label(owner, hud, label)
+
+            hud_line1_rect = self.hud_manager.get_rect(owner, "hud_line1")
+            hud_line2_rect = self.hud_manager.get_rect(owner, "hud_line2")
+
+            hud.image.blit(
+                self.shadow_text(label_data["line1"]), hud_line1_rect
+            )
+            if label_data["line2"]:
+                hud.image.blit(
+                    self.shadow_text(label_data["line2"]), hud_line2_rect
+                )
+
             if is_player:
                 hud.rect.bottomleft = hud_rect.right, hud_rect.bottom
                 hud.player = True
@@ -471,6 +469,7 @@ class CombatAnimations(Menu[None], ABC):
                     animate_func(hud.rect, right=hud_rect.right)
                 else:
                     hud.rect.right = hud_rect.right
+
             return hud
 
         if animate:
@@ -480,13 +479,14 @@ class CombatAnimations(Menu[None], ABC):
 
         if h_align is HorizontalAlignment.RIGHT:
             hud_graphics = self.graphics.hud.hud_player
-            flipped = True
+            is_player = True
         else:
             hud_graphics = self.graphics.hud.hud_opponent
-            flipped = False
+            is_player = False
 
-        hud = build_hud_sprite(self.check_hud(monster, hud_graphics), flipped)
-
+        hud = self.check_hud(monster, hud_graphics)
+        hud.base_image = hud.image.copy()
+        hud = build_hud_sprite(hud, is_player)
         self.hud_manager.assign_hud(monster, hud)
 
         if animate:
@@ -536,6 +536,26 @@ class CombatAnimations(Menu[None], ABC):
             home: Location and size of the HUD.
         """
         _, h_align = self.combat_zone.get_zone(home)
+
+        is_opponent_horde = (
+            player is self.client.combat_session.right_player
+            and self.client.combat_session.is_horde_battle
+        )
+
+        if is_opponent_horde:
+            tray, _, _ = self.animate_party_hud_left(home)
+
+            self.horde_sprite = HordeSprite(
+                opponent_party=player.monsters,
+                tray_rect=home,
+                shadow_text_func=self.shadow_text,
+                scale_func=scale,
+            )
+            self.sprites.add(self.horde_sprite, layer=hud_layer)
+
+            animate_func = partial(self.animate, duration=2.0, delay=1.5)
+            self.horde_sprite.animate_in(animate_func)
+            return
 
         if h_align is HorizontalAlignment.LEFT:
             tray, centerx, offset = self.animate_party_hud_left(home)
@@ -591,6 +611,18 @@ class CombatAnimations(Menu[None], ABC):
             if prev != dev.update_state():
                 animate = partial(self.animate, duration=0.1, delay=0.1)
                 dev.animate_capture(animate)
+
+    def animate_update_horde_hud(self) -> None:
+        """
+        Update the horde HUD to reflect the horde.
+        """
+        if self.client.combat_session.is_horde_battle and self.horde_sprite:
+            if self.horde_sprite.update_count_display():
+                animate_func = partial(self.animate, duration=2.0, delay=1.5)
+                self.horde_sprite.animate_in(animate_func)
+            if self.horde_sprite.is_defeated():
+                self.task(self.horde_sprite.kill, interval=2)
+                self.horde_sprite = None
 
     def update_background(self, bg_path: str) -> None:
         # Clear old

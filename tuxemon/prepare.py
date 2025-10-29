@@ -84,6 +84,8 @@ REGION_KEYS: list[str] = [
 # Surface Keys (tilesets)
 SURFACE_KEYS: list[str] = ["surfable", "walkable", "climbable"]
 
+MAP_CACHE_SIZE: int = 10
+
 # Set the native tile size so we know how much to scale our maps
 # 1 tile = 16 pixels
 TILE_SIZE: tuple[int, int] = (16, 16)
@@ -231,6 +233,8 @@ TRANS_TIME: float = 0.3  # transition time
 U_KM: str = "km"
 U_MI: str = "mi"
 U_KG: str = "kg"
+U_T: str = "t"
+U_M: str = "m"
 U_LB: str = "lb"
 U_CM: str = "cm"
 U_FT: str = "ft"
@@ -258,13 +262,9 @@ MAX_MOVES: int = 4
 MISSING_IMAGE: str = "gfx/sprites/battle/missing.png"
 CATCH_RATE_RANGE: tuple[int, int] = (0, 100)
 CATCH_RESISTANCE_RANGE: tuple[float, float] = (0.0, 2.0)
-# set bond and define range
-BOND: int = 25
+
 # set multiplier stats (multiplier: level + coefficient)
 COEFF_STATS: int = 7
-# set experience required for levelling up
-# (level + level_ofs) ** coefficient) - level_ofs default 0
-COEFF_EXP: int = 3
 
 # Camera
 CAMERA_SHAKE_RANGE: tuple[float, float] = (0.0, 3.0)

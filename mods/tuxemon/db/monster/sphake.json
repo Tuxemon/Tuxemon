@@ -65,7 +65,7 @@
   "weight": 2000,
   "sounds": {
     "combat_call": "sound_robot1",
-    "faint_call": "sound_robot1"
+    "faint_call": "sound_robot1_faint"
   },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.95,

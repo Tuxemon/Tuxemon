@@ -12,6 +12,7 @@ from tuxemon.combat.reward_system import (
 )
 from tuxemon.db import Acquisition
 from tuxemon.monster import Monster
+from tuxemon.monster_dir.experience import MonsterExperience
 from tuxemon.monster_dir.stats import BasicStats
 from tuxemon.monster_dir.status import MonsterStatusHandler
 from tuxemon.npc import NPC
@@ -19,22 +20,20 @@ from tuxemon.npc import NPC
 
 class TestRewardSystem(unittest.TestCase):
     def setUp(self):
-        self.loser = MagicMock(spec=Monster)
+        self.loser = Monster()
         self.loser.name = "pairagrin"
-        self.loser.level = 5
+        self.loser.set_level(5)
         self.loser.money_modifier = 2.0
-        self.loser.total_experience = 1000
-        self.loser.experience_modifier = 1.5
         self.loser.status = MagicMock(spec=MonsterStatusHandler)
         self.loser.current_hp = 0
         self.loser.stage = "basic"
         self.loser.moves = MagicMock()
-        self.loser.base_stats = BasicStats()
+        self.loser.set_total_experience(1000)
+        self.loser.set_experience_modifier(1.5)
 
-        self.winner = MagicMock(spec=Monster)
+        self.winner = Monster()
         self.winner.name = "rockitten"
-        self.winner.status = MagicMock(spec=MonsterStatusHandler)
-        self.winner.level = 5
+        self.winner.set_level(5)
         self.winner.moves = MagicMock()
         self.winner.current_hp = 50
         self.winner.stage = "basic"
@@ -42,7 +41,10 @@ class TestRewardSystem(unittest.TestCase):
         self.winner.owner = MagicMock(spec=NPC)
         self.winner.owner.is_player = True
         self.winner.owner.monsters = [self.winner]
-        self.winner.held_item = MagicMock(slug="xp_transmitter")
+        self.winner.item_handler = MagicMock()
+        self.winner.item_handler.held_item.return_value = MagicMock(
+            slug="xp_transmitter"
+        )
         self.winner.base_stats = BasicStats()
 
         self.damage_tracker = DamageTracker()
@@ -127,7 +129,8 @@ class TestRewardSystem(unittest.TestCase):
         ]
         alive_party_mock.return_value = mock_monsters
 
-        self.winner.held_item.get_item.return_value.slug = "xp_transmitter"
+        self.winner.item_handler = MagicMock()
+        self.winner.item_handler.held_item = MagicMock(slug="xp_transmitter")
 
         experience = calculate_experience(
             self.loser, self.winner, self.damage_tracker
@@ -216,18 +219,18 @@ class TestRewardSystem(unittest.TestCase):
 
     def test_award_rewards_multiple_move_updates(self):
         self.winner.moves.update_moves.return_value = ["Fireball"]
-        second_winner = MagicMock(spec=Monster)
+        second_winner = Monster()
         second_winner.name = "rockitten"
         second_winner.stage = "basic"
-        second_winner.level = 5
+        second_winner.set_level(5)
         second_winner.moves = MagicMock()
         second_winner.moves.update_moves.return_value = ["Ram"]
         second_winner.acquisition = Acquisition.UNKNOWN
         second_winner.owner = self.winner.owner
-        second_winner.status = MagicMock(spec=MonsterStatusHandler)
         second_winner.current_hp = 50
-        second_winner.held_item = MagicMock(slug="default")
-        second_winner.base_stats = BasicStats()
+        second_winner.item_handler = MagicMock(
+            held_item=MagicMock(slug="default")
+        )
 
         self.damage_tracker.log_damage(second_winner, self.loser, 5, 1)
 
@@ -241,7 +244,7 @@ class TestRewardSystem(unittest.TestCase):
         self.assertEqual(len(rewards.moves), 2)
 
     def test_award_rewards_with_held_item_modifier(self):
-        self.winner.held_item.get_item.return_value.slug = "xp_booster"
+        self.winner.item_handler.held_item = MagicMock(slug="xp_transmitter")
         reward_system = RewardSystem(
             MagicMock(combat_type="trainer"), self.damage_tracker
         )

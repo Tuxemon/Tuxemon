@@ -9,6 +9,7 @@ from typing import Optional, final
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.session import Session
+from tuxemon.tools import parse_flag
 
 logger = logging.getLogger(__name__)
 
@@ -29,28 +30,42 @@ class CharPlagueAction(EventAction):
         condition: Infected, inoculated, or None (removes the plague from the
             character, indicating a healthy state).
         character: Either "player" or character slug name (e.g. "npc_maple").
+        enforced_check: Optional string flag to enforce eligibility rules.
+            Accepts "true", "1", or "yes" (case-insensitive).
+            Default is False (eligibility is bypassed).
     """
 
     name = "char_plague"
     plague_slug: str
     condition: Optional[str] = None
     character: Optional[str] = None
+    enforced_check: Optional[str] = None
 
     def start(self, session: Session) -> None:
-        self.character = "player" if self.character is None else self.character
-        character = get_npc(session, self.character)
+        target = self.character or "player"
+        character = get_npc(session, target)
+
         if character is None:
             logger.error(f"{self.character} not found")
             return
 
+        enforce = parse_flag(self.enforced_check)
+
+        condition = self.condition.strip().lower() if self.condition else None
         for monster in character.monsters:
-            if self.condition is None:
+            if condition is None:
                 monster.plague.clear_plagues()
-            elif self.condition == "infected":
-                monster.plague.infect(self.plague_slug)
-            elif self.condition == "inoculated":
-                monster.plague.inoculate(self.plague_slug)
+            elif condition == "infected":
+                if enforce:
+                    monster.plague.try_infect(monster, self.plague_slug)
+                else:
+                    monster.plague.infect(self.plague_slug)
+            elif condition == "inoculated":
+                if enforce:
+                    monster.plague.try_inoculate(monster, self.plague_slug)
+                else:
+                    monster.plague.inoculate(self.plague_slug)
             else:
                 raise ValueError(
-                    f"{self.condition} must be 'infected' or 'inoculated'."
+                    f"Invalid plague condition '{self.condition}'. Must be 'infected' or 'inoculated'."
                 )

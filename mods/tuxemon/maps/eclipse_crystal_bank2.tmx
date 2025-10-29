@@ -1,18 +1,18 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="14" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="50">
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.8" tiledversion="1.8.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="14" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="50">
  <properties>
-  <property name="edges" value="clamped" />
-  <property name="inside" type="bool" value="true" />
-  <property name="map_type" value="dungeon" />
-  <property name="scenario" value="tobedefined" />
-  <property name="slug" value="crystal_bank2" />
+  <property name="edges" value="clamped"/>
+  <property name="inside" type="bool" value="true"/>
+  <property name="map_type" value="dungeon"/>
+  <property name="scenario" value="eclipse"/>
+  <property name="slug" value="crystal_bank2"/>
  </properties>
- <tileset firstgid="1" source="../gfx/tilesets/core_indoor_stairs.tsx" />
+ <tileset firstgid="1" source="../gfx/tilesets/core_indoor_stairs.tsx"/>
  <tileset firstgid="2971" name="Office_interiors_shadowless_16x16" tilewidth="16" tileheight="16" tilecount="528" columns="22">
-  <image source="../gfx/tilesets/Office_interiors_shadowless_16x16.png" width="352" height="384" />
+  <image source="../gfx/tilesets/Office_interiors_shadowless_16x16.png" width="352" height="384"/>
  </tileset>
  <tileset firstgid="3499" name="Tilesets_16x16" tilewidth="16" tileheight="16" tilecount="1760" columns="40">
-  <image source="../gfx/tilesets/Tilesets_16x16.png" width="640" height="704" />
+  <image source="../gfx/tilesets/Tilesets_16x16.png" width="640" height="704"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="14" height="21">
   <data encoding="base64" compression="zlib">
@@ -35,20 +35,20 @@
   </data>
  </layer>
  <objectgroup color="#ff0000" id="3" name="Collisions">
-  <object id="1" type="collision" x="0" y="0" width="224" height="32" />
-  <object id="16" type="collision" x="0" y="32" width="16" height="304" />
-  <object id="17" type="collision" x="112" y="48" width="16" height="272" />
-  <object id="18" type="collision" x="48" y="128" width="16" height="32" />
-  <object id="19" type="collision" x="48" y="208" width="64" height="32" />
-  <object id="20" type="collision" x="16" y="96" width="80" height="32" />
-  <object id="21" type="collision" x="48" y="240" width="16" height="32" />
-  <object id="22" type="collision" x="16" y="288" width="48" height="48" />
-  <object id="23" type="collision" x="176" y="32" width="32" height="16" />
-  <object id="38" type="collision" x="16" y="192" width="96" height="16" />
-  <object id="44" type="collision" x="160" y="224" width="48" height="16" />
-  <object id="46" type="collision" x="208" y="32" width="16" height="304" />
-  <object id="47" type="collision" x="144" y="192" width="64" height="32" />
-  <object id="48" type="collision" x="128" y="96" width="64" height="32" />
-  <object id="49" type="collision" x="16" y="48" width="64" height="16" />
+  <object id="1" type="collision" x="0" y="0" width="224" height="32"/>
+  <object id="16" type="collision" x="0" y="32" width="16" height="304"/>
+  <object id="17" type="collision" x="112" y="48" width="16" height="272"/>
+  <object id="18" type="collision" x="48" y="128" width="16" height="32"/>
+  <object id="19" type="collision" x="48" y="208" width="64" height="32"/>
+  <object id="20" type="collision" x="16" y="96" width="80" height="32"/>
+  <object id="21" type="collision" x="48" y="240" width="16" height="32"/>
+  <object id="22" type="collision" x="16" y="288" width="48" height="48"/>
+  <object id="23" type="collision" x="176" y="32" width="32" height="16"/>
+  <object id="38" type="collision" x="16" y="192" width="96" height="16"/>
+  <object id="44" type="collision" x="160" y="224" width="48" height="16"/>
+  <object id="46" type="collision" x="208" y="32" width="16" height="304"/>
+  <object id="47" type="collision" x="144" y="192" width="64" height="32"/>
+  <object id="48" type="collision" x="128" y="96" width="64" height="32"/>
+  <object id="49" type="collision" x="16" y="48" width="64" height="16"/>
  </objectgroup>
 </map>

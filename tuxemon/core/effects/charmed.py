@@ -34,7 +34,7 @@ class CharmedEffect(CoreEffect):
             status.has_phase(EffectPhase.PRE_CHECKING)
             and random.random() > self.chance
         ):
-            user = status.get_host()
+            user = status.host
             action = session.client.combat_session.get_variable("action_tech")
             technique = Technique.create(str(action) or "skip")
             if any(

@@ -235,19 +235,44 @@ class ParkEncounter:
             return True
         return random.random() < self.flee_rate
 
+    def apply_item_modifiers(self, item: Item) -> None:
+        for modifier in item.modifiers.list_modifiers():
+            if modifier.attribute == "flee_rate_reduction":
+                self.flee_rate = max(0.0, self.flee_rate - modifier.multiplier)
+            elif modifier.attribute == "attraction_increase":
+                self.attraction += modifier.multiplier
+            elif modifier.attribute == "aggression_reduction":
+                self.aggression = max(
+                    0.0, self.aggression - modifier.multiplier
+                )
+
     def apply_food_effect(self, item: Item) -> None:
-        """
-        Modify flee rate and attraction when food is used.
-        """
-        self.flee_rate = max(0.0, self.flee_rate - 0.02)  # * item.modifiers
-        self.attraction += 0.05  # * item.modifiers
+        """Modify flee rate and attraction when food is used based on item modifiers."""
+        attraction_modifier = 0.0
+        flee_modifier = 0.0
+
+        for modifier in item.modifiers.list_modifiers():
+            if modifier.attribute == "flee_rate_reduction":
+                flee_modifier = modifier.multiplier
+            if modifier.attribute == "flee_rate_reduction":
+                attraction_modifier = modifier.multiplier
+
+        self.flee_rate = max(0.0, self.flee_rate - flee_modifier)
+        self.attraction += attraction_modifier
 
     def apply_doll_effect(self, item: Item) -> None:
-        """
-        Modify aggression and flee rate when a doll is used.
-        """
-        self.aggression = max(0.0, self.aggression - 0.03)  # * item.modifiers
-        self.flee_rate = max(0.0, self.flee_rate - 0.01)  # * item.modifiers
+        """Modify aggression and flee rate when a doll is used based on item modifiers."""
+        aggression_modifier = 0.0
+        flee_modifier = 0.0
+
+        for modifier in item.modifiers.list_modifiers():
+            if modifier.attribute == "aggression_reduction":
+                aggression_modifier = modifier.multiplier
+            if modifier.attribute == "flee_rate_reduction":
+                flee_modifier = modifier.multiplier
+
+        self.aggression = max(0.0, self.aggression - aggression_modifier)
+        self.flee_rate = max(0.0, self.flee_rate - flee_modifier)
 
     def reset_behavior_modifiers(self) -> None:
         """

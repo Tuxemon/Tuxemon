@@ -16,6 +16,7 @@ from tuxemon.db import (
     Range,
     ResponseStatus,
     StatModel,
+    StatusBehaviors,
     StatusModel,
     db,
 )
@@ -51,11 +52,14 @@ class Status:
         save_data: Optional[Mapping[str, Any]] = None,
     ) -> None:
         save_data = save_data or {}
+        self._host: Monster = host
+        self._steps: float = steps
+        self._linked_monster: Optional[Monster] = None
+        self._nr_turn: int = 0
 
         self._effect_applied: set[str] = set()
 
         self.instance_id: UUID = uuid4()
-        self.set_steps(steps)
         self.bond: bool = False
         self.counter: int = 0
         self.cond_id: int = 0
@@ -65,14 +69,12 @@ class Status:
         self.flip_axes: FlipAxes = FlipAxes.NONE
         self.gain_cond: str = ""
         self.icon: str = ""
-        self.set_host(host)
-        self.linked_monster: Optional[Monster] = None
         self.name: str = ""
-        self.nr_turn: int = 0
         self.duration: int = 0
         self.phase: EffectPhase = EffectPhase.DEFAULT
         self.range: Range = Range.melee
         self.stack_level: int = 1
+        self.step_interval: int = 0
         self.on_positive_status: Optional[ResponseStatus] = None
         self.on_negative_status: Optional[ResponseStatus] = None
         self.on_tech_use: Optional[str] = None
@@ -83,6 +85,7 @@ class Status:
         self.use_success: str = ""
         self.use_failure: str = ""
         self.modifiers: ModifiersHandler = ModifiersHandler()
+        self.behaviors: StatusBehaviors
         self.stat_modifiers: dict[str, StatModel] = {}
 
         self.core_assets = CoreAssetManager()
@@ -102,6 +105,24 @@ class Status:
         method = cls(host, steps, save_data)
         method.load(slug)
         return method
+
+    @property
+    def host(self) -> Monster:
+        """Returns the monster associated with this status."""
+        return self._host
+
+    @property
+    def steps(self) -> float:
+        return self._steps
+
+    @property
+    def linked_monster(self) -> Optional[Monster]:
+        """Returns the monster linked to this status effect."""
+        return self._linked_monster
+
+    @property
+    def nr_turn(self) -> int:
+        return self._nr_turn
 
     def load(self, slug: str) -> None:
         """
@@ -126,6 +147,8 @@ class Status:
         self.icon = results.icon
 
         self.modifiers = ModifiersHandler(results.modifiers)
+        self.behaviors = results.behaviors
+        self.step_interval = results.step_interval
         # monster stats
         self.stat_modifiers = results.stat_modifiers
 
@@ -167,21 +190,11 @@ class Status:
             f"[Status Counter] {self.slug} used {self.counter} times."
         )
 
-    def check_counter_expiry(
-        self, session: Session, max_uses: int = 1
-    ) -> None:
+    def is_use_expired(self, max_uses: int = 1) -> bool:
         """
         Checks if the status has reached its use-based expiration threshold.
-        If so, clears the status from the host.
         """
-        logger.debug(
-            f"[Status Expired] {self.slug} used {self.counter}/{max_uses} times."
-        )
-        if self.counter >= max_uses:
-            logger.debug(
-                f"[Status Expired] {self.slug} removed from {self.host.name} after {self.counter} uses."
-            )
-            self.host.status.clear_status(session)
+        return self.counter >= max_uses
 
     def validate_monster(self, session: Session, target: Monster) -> bool:
         """
@@ -189,33 +202,17 @@ class Status:
         """
         return self.condition_handler.validate(session=session, target=target)
 
-    def get_host(self) -> Monster:
-        """Returns the monster associated with this status."""
-        return self.host
-
-    def set_host(self, monster: Monster) -> None:
-        """Sets the monster associated with this status."""
-        self.host = monster
-
-    def get_linked_monster(self) -> Optional[Monster]:
-        """Returns the monster linked to this status effect."""
-        return self.linked_monster
-
     def set_linked_monster(self, monster: Monster) -> None:
         """Assigns a linked monster that benefits from this status."""
-        self.linked_monster = monster
-
-    def set_steps(self, steps: float) -> None:
-        """Sets the steps."""
-        self.steps = steps
+        self._linked_monster = monster
 
     def has_reached_duration(self) -> bool:
         """Checks if the status has reached or exceeded its duration."""
-        return self.nr_turn >= self.duration > 0
+        return self._nr_turn >= self.duration > 0
 
     def has_exceeded_duration(self) -> bool:
         """Checks if the status has lasted beyond its intended duration."""
-        return self.nr_turn > self.duration
+        return self._nr_turn > self.duration
 
     def use(self, session: Session, phase: EffectPhase) -> StatusEffectResult:
         """
@@ -227,6 +224,33 @@ class Status:
             source=self,
         )
         return result
+
+    def tick_turn(self) -> None:
+        """
+        Advance the turn counter for this status.
+        Only increments nr_turn if the status has a defined duration (> 0).
+        """
+        if self.duration > 0:
+            self._nr_turn += 1
+            logger.debug(
+                f"[Status Duration] {self.slug} turn {self._nr_turn} "
+                f"of {self.duration} at stack {self.stack_level}."
+            )
+
+    def stack(self) -> None:
+        """
+        Increments the status stack level up to MAX_STACKS and
+        resets the turn counter (nr_turn) and the use counter (counter)
+        to refresh the duration and uses.
+        """
+        old_stack = self.stack_level
+        self.stack_level = min(old_stack + 1, self.MAX_STACKS)
+        self._nr_turn = 0
+        self.counter = 0
+        logger.debug(
+            f"Status '{self.slug}' stacked from {old_stack} to {self.stack_level}. "
+            f"Duration/Uses refreshed."
+        )
 
     def get_state(self) -> Mapping[str, Any]:
         """

@@ -6,9 +6,11 @@
       "values": [
         "venom"
       ],
-      "multiplier": 0.0
+      "multiplier": 0.0,
+      "source": "poison immunity"
     }
   ],
+  "behaviors": {},
   "category": "negative",
   "effects": [
     {

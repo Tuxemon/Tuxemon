@@ -33,7 +33,7 @@ class DieHardEffect(CoreEffect):
         self, session: Session, status: Status
     ) -> StatusEffectResult:
         extra: list[str] = []
-        host = status.get_host()
+        host = status.host
         if status.has_phase(EffectPhase.CHECK_PARTY_HP):
             params = {"target": host.name.upper()}
             if host.current_hp == self.hp:

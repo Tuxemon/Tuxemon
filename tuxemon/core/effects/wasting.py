@@ -30,7 +30,7 @@ class WastingEffect(CoreEffect):
         self, session: Session, status: Status
     ) -> StatusEffectResult:
         done: bool = False
-        host = status.get_host()
+        host = status.host
         if (
             status.has_phase(EffectPhase.PERFORM_STATUS)
             and not host.is_fainted

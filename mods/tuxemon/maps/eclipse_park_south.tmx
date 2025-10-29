@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="60" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="308">
+<map version="1.8" tiledversion="1.8.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="60" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="308">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="map_type" value="route"/>
   <property name="north" value="park,route7"/>
-  <property name="scenario" value="tobedefined"/>
+  <property name="scenario" value="eclipse"/>
   <property name="slug" value="park"/>
-  <property name="south" value="route3,route4"/>
   <property name="west" value="route7"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_outdoor_nature.tsx"/>

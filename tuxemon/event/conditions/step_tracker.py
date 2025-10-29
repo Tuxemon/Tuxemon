@@ -16,7 +16,7 @@ logger = logging.getLogger(__name__)
 class StepTrackerCondition(EventCondition):
     """
     Evaluates whether a step tracker exists for a character
-    or if a milestone has been reached.
+    and if a milestone has been triggered and not yet marked as shown.
 
     Script usage:
         .. code-block::
@@ -34,18 +34,20 @@ class StepTrackerCondition(EventCondition):
     def test(self, session: Session, condition: MapCondition) -> bool:
         _character, tracker_id, milestone = condition.parameters
         character = get_npc(session, _character)
+
         if character is None:
-            logger.error(f"{_character} not found")
             return False
 
         tracker = character.step_tracker.get_tracker(tracker_id)
-
         if not tracker:
             return False
 
-        if tracker.has_triggered_milestone(
-            float(milestone)
-        ) and not tracker.has_shown_milestone(float(milestone)):
-            tracker.show_milestone_dialogue(float(milestone))
-            return True
-        return False
+        try:
+            milestone_value = float(milestone)
+        except ValueError:
+            logger.error(f"Invalid milestone value: '{milestone}'")
+            return False
+
+        return tracker.has_triggered_milestone(
+            milestone_value
+        ) and not tracker.has_shown_milestone(milestone_value)

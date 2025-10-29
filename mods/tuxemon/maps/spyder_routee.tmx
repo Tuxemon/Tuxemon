@@ -122,10 +122,10 @@
     <property name="act6" value="add_monster windeye,35,spyder_routee_calliope,5,10"/>
     <property name="act7" value="start_battle player,spyder_routee_calliope"/>
     <property name="act8" value="char_talk spyder_routee_calliope,post_battle_lose"/>
-    <property name="act9" value="set_variable routeecalliope:yes"/>
-    <property name="cond1" value="not variable_set routeecalliope:yes"/>
-    <property name="cond2" value="is variable_set kernelquestbegin:yes"/>
-    <property name="cond3" value="is char_at player"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_routee_calliope"/>
+    <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
+    <property name="cond4" value="is variable_set kernelquestbegin:yes"/>
    </properties>
   </object>
   <object id="82" name="Talk Calliope" type="event" x="96" y="192" width="32" height="16">
@@ -160,9 +160,9 @@
     <property name="act6" value="add_monster dinoflop,40,spyder_routee_aiolos,5,10"/>
     <property name="act7" value="start_battle player,spyder_routee_aiolos"/>
     <property name="act8" value="char_talk spyder_routee_aiolos,post_battle_lose"/>
-    <property name="act9" value="set_variable routeeaiolos:yes"/>
-    <property name="cond1" value="not variable_set routeeaiolos:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_routee_aiolos"/>
     <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
    </properties>
   </object>
   <object id="87" name="Post Talk Calliope" type="event" x="128" y="224" width="16" height="16">

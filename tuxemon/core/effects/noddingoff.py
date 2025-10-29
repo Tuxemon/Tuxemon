@@ -37,7 +37,7 @@ class NoddingOffEffect(CoreEffect):
     ) -> StatusEffectResult:
         extra: list[str] = []
         tech: list[Technique] = []
-        host = status.get_host()
+        host = status.host
 
         if status.has_phase(EffectPhase.PRE_CHECKING) and status.on_tech_use:
             skip = Technique.create(status.on_tech_use)

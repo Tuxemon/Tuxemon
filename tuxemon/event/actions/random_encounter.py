@@ -79,14 +79,12 @@ class RandomEncounterAction(EventAction):
         logger.info("Starting random encounter!")
 
         current_monster = Monster.spawn_base(eligible.monster, level)
-        current_monster.experience_modifier = eligible.exp_req_mod
+        current_monster.set_experience_modifier(eligible.exp_req_mod)
 
         if held_item is not None:
             item = Item.create(held_item)
-            if item.behaviors.holdable:
-                current_monster.held_item.set_item(item)
-            else:
-                logger.error(f"{item.name} isn't 'holdable'")
+            output = current_monster.item_handler.set_item(item)
+            if not output:
                 return
 
         current_monster.wild = True
@@ -101,7 +99,7 @@ class RandomEncounterAction(EventAction):
             logger.error("'wild_encounter' not found")
             return
 
-        npc.party.add_monster(current_monster, len(npc.monsters))
+        npc.party.insert_monster_to_party(current_monster, len(npc.monsters))
         # NOTE: random battles are implemented as trainer battles.
         #       this is a hack. remove this once trainer/random battlers are fixed
 

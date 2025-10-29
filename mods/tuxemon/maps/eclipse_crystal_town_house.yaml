@@ -1,4 +1,19 @@
 events:
+  Event 8:
+    actions:
+    - char_stop player
+    - lock_controls
+    - set_layer 0:0:0:255
+    - play_sound japanese_temple_bell_small
+    - translated_dialog eclipse_event8_1,,top
+    - translated_dialog eclipse_event8_2,,top
+    - play_sound japanese_temple_bell_small
+    - set_layer
+    - set_variable eclipse_event8:yes
+    - unlock_controls
+    conditions:
+    - not variable_set eclipse_event8:yes
+    type: event
   Create NPCs:
     actions:
     - create_npc eclipse_crystal_granny,8,3

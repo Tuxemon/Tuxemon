@@ -125,8 +125,8 @@ class ReplacePartyFromYamlAction(EventAction):
             character.tuxepedia.add_entry(monster.slug, SeenStatus.caught)
 
             if "experience_modifier" in entry:
-                monster.experience_modifier = float(
-                    entry["experience_modifier"]
+                monster.set_experience_modifier(
+                    float(entry["experience_modifier"])
                 )
             if "money_modifier" in entry:
                 monster.money_modifier = float(entry["money_modifier"])

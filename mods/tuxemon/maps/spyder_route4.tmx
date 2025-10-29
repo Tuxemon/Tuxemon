@@ -99,9 +99,8 @@
     <property name="act3" value="add_monster puparmor,16,spyder_route4_marshall,5,10"/>
     <property name="act4" value="start_battle player,spyder_route4_marshall"/>
     <property name="act5" value="char_talk spyder_route4_marshall,post_battle_lose"/>
-    <property name="act6" value="set_variable route4marshall:yes"/>
     <property name="behav1" value="talk spyder_route4_marshall"/>
-    <property name="cond1" value="not variable_set route4marshall:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_route4_marshall"/>
    </properties>
   </object>
   <object id="49" name="encounter 3" type="event" x="128" y="48" width="32" height="176">
@@ -285,9 +284,8 @@
     <property name="act2" value="add_monster rabbitosaur,16,spyder_route4_roger,5,10"/>
     <property name="act3" value="start_battle player,spyder_route4_roger"/>
     <property name="act4" value="char_talk spyder_route4_roger,post_battle_lose"/>
-    <property name="act6" value="set_variable route4roger:yes"/>
     <property name="behav1" value="talk spyder_route4_roger"/>
-    <property name="cond1" value="not variable_set route4roger:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_route4_roger"/>
    </properties>
   </object>
   <object id="72" name="Create Wulf" type="event" x="32" y="192" width="16" height="16">
@@ -304,9 +302,8 @@
     <property name="act4" value="add_monster shybulb,14,spyder_route4_wulf,5,10"/>
     <property name="act5" value="start_battle player,spyder_route4_wulf"/>
     <property name="act6" value="char_talk spyder_route4_wulf,post_battle_lose"/>
-    <property name="act7" value="set_variable route4wulf:yes"/>
     <property name="behav1" value="talk spyder_route4_wulf"/>
-    <property name="cond1" value="not variable_set route4wulf:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_route4_wulf"/>
    </properties>
   </object>
   <object id="74" name="Create Rincewind" type="event" x="224" y="80" width="16" height="16">
@@ -323,9 +320,8 @@
     <property name="act3" value="add_monster k9,16,spyder_route4_rincewind,5,10"/>
     <property name="act4" value="start_battle player,spyder_route4_rincewind"/>
     <property name="act5" value="char_talk spyder_route4_rincewind,post_battle_lose"/>
-    <property name="act6" value="set_variable route4rincewind:yes"/>
     <property name="behav1" value="talk spyder_route4_rincewind"/>
-    <property name="cond1" value="not variable_set route4rincewind:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_route4_rincewind"/>
    </properties>
   </object>
   <object id="76" name="Create Rosamund" type="event" x="192" y="480" width="16" height="16">
@@ -340,9 +336,8 @@
     <property name="act2" value="add_monster foofle,18,spyder_route4_rosamund,5,10"/>
     <property name="act3" value="start_battle player,spyder_route4_rosamund"/>
     <property name="act4" value="char_talk spyder_route4_rosamund,post_battle_lose"/>
-    <property name="act6" value="set_variable route4rosamund:yes"/>
     <property name="behav1" value="talk spyder_route4_rosamund"/>
-    <property name="cond1" value="not variable_set route4rosamund:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_route4_rosamund"/>
    </properties>
   </object>
   <object id="78" name="Create Beck" type="event" x="48" y="320" width="16" height="16">
@@ -360,9 +355,8 @@
     <property name="act4" value="add_monster spighter,12,spyder_route4_beck,5,10"/>
     <property name="act5" value="start_battle player,spyder_route4_beck"/>
     <property name="act6" value="char_talk spyder_route4_beck,post_battle_lose"/>
-    <property name="act7" value="set_variable route4beck:yes"/>
     <property name="behav1" value="talk spyder_route4_beck"/>
-    <property name="cond1" value="not variable_set route4beck:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_route4_beck"/>
    </properties>
   </object>
   <object id="81" name="Environment Day" type="event" x="16" y="0" width="16" height="16">
@@ -389,9 +383,9 @@
     <property name="act6" value="add_monster puparmor,16,spyder_route4_marshall,5,10"/>
     <property name="act7" value="start_battle player,spyder_route4_marshall"/>
     <property name="act8" value="char_talk spyder_route4_marshall,post_battle_lose"/>
-    <property name="act9" value="set_variable route4marshall:yes"/>
-    <property name="cond1" value="not variable_set route4marshall:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_route4_marshall"/>
     <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
    </properties>
   </object>
   <object id="83" name="Talk Beck" type="event" x="64" y="320" width="32" height="16">
@@ -405,9 +399,9 @@
     <property name="act07" value="add_monster spighter,12,spyder_route4_beck,5,10"/>
     <property name="act08" value="start_battle player,spyder_route4_beck"/>
     <property name="act09" value="char_talk spyder_route4_beck,post_battle_lose"/>
-    <property name="act10" value="set_variable route4beck:yes"/>
-    <property name="cond1" value="not variable_set route4beck:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_route4_beck"/>
     <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
    </properties>
   </object>
   <object id="84" name="Talk Wulf" type="event" x="32" y="208" width="16" height="48">
@@ -421,9 +415,9 @@
     <property name="act07" value="add_monster shybulb,14,spyder_route4_wulf,5,10"/>
     <property name="act08" value="start_battle player,spyder_route4_wulf"/>
     <property name="act09" value="char_talk spyder_route4_wulf,post_battle_lose"/>
-    <property name="act10" value="set_variable route4wulf:yes"/>
-    <property name="cond1" value="not variable_set route4wulf:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_route4_wulf"/>
     <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
    </properties>
   </object>
   <object id="85" name="Talk Rosamund" type="event" x="192" y="496" width="16" height="16">
@@ -435,9 +429,9 @@
     <property name="act5" value="add_monster foofle,18,spyder_route4_rosamund,5,10"/>
     <property name="act6" value="start_battle player,spyder_route4_rosamund"/>
     <property name="act7" value="char_talk spyder_route4_rosamund,post_battle_lose"/>
-    <property name="act8" value="set_variable route4rosamund:yes"/>
-    <property name="cond1" value="not variable_set route4rosamund:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_route4_rosamund"/>
     <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
    </properties>
   </object>
   <object id="88" name="Billie" type="event" x="32" y="96" width="64" height="16">
@@ -454,8 +448,7 @@
     <property name="act23" value="set_monster_attribute add_monster,gender,female"/>
     <property name="act24" value="add_monster eyesore,16,spyder_billie,5,10"/>
     <property name="act25" value="set_monster_attribute add_monster,gender,female"/>
-    <property name="act26" value="add_monster viviphyta,16,spyder_billie,5,10"/>
-    <property name="act27" value="set_monster_attribute add_monster,gender,male"/>
+    <property name="act26" value="set_monster_attribute add_monster,gender,male"/>
     <property name="act30" value="start_battle player,spyder_billie"/>
     <property name="act71" value="translated_dialog spyder_route4_billie2"/>
     <property name="act75" value="pathfind spyder_billie,0,4"/>

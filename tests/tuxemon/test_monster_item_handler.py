@@ -14,28 +14,22 @@ class TestMonsterItemHandler(unittest.TestCase):
         self.handler = MonsterItemHandler(self.item)
 
     def test_init(self):
-        self.assertIsNone(self.basic.item)
+        self.assertIsNone(self.basic.held_item)
 
     def test_init_with_item(self):
-        self.assertEqual(self.handler.item, self.item)
+        self.assertEqual(self.handler.held_item, self.item)
 
     def test_set_item(self):
         self.item.behaviors = MagicMock(holdable=True)
         self.basic.set_item(self.item)
-        self.assertEqual(self.basic.item, self.item)
+        self.assertEqual(self.basic.held_item, self.item)
 
     def test_set_item_not_holdable(self):
         self.item.behaviors = MagicMock(holdable=False)
         self.item.name = "Test Item"
         with self.assertLogs(level="ERROR"):
             self.basic.set_item(self.item)
-        self.assertIsNone(self.basic.item)
-
-    def test_get_item(self):
-        self.assertEqual(self.handler.get_item(), self.item)
-
-    def test_get_item_none(self):
-        self.assertIsNone(self.basic.get_item())
+        self.assertIsNone(self.basic.held_item)
 
     def test_has_item(self):
         self.assertTrue(self.handler.has_item())
@@ -45,4 +39,8 @@ class TestMonsterItemHandler(unittest.TestCase):
 
     def test_clear_item(self):
         self.handler.clear_item()
-        self.assertIsNone(self.handler.item)
+        self.assertIsNone(self.handler.held_item)
+
+    def test_take_item(self):
+        self.handler.take_item()
+        self.assertIsNone(self.handler.held_item)

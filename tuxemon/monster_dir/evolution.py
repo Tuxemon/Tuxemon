@@ -46,23 +46,21 @@ class Evolution:
             return
 
         owner = self.monster.get_owner()
-        monster_index = owner.monsters.index(self.monster)
         self.update_new_monster_properties(new_monster)
 
         for move in new_monster.moves.moveset:
-            if (
-                move.learning_method
-                and move.learning_method == LearningMethod.EVOLUTION
-            ):
+            if move.learning_method == LearningMethod.EVOLUTION:
                 new_monster.moves.learn_by_method(
-                    new_monster.instance_id,
+                    new_monster,
                     move.technique,
                     move.learning_method,
                 )
 
-        owner.party.remove_monster(self.monster)
-        owner.party.add_monster(new_monster, monster_index)
-        owner.tuxepedia.add_entry(new_monster.slug, SeenStatus.caught)
+        if owner.party.replace_monster(self.monster, new_monster):
+            owner.tuxepedia.add_entry(new_monster.slug, SeenStatus.caught)
+            logger.info(f"{self.monster} evolved into {new_monster}")
+        else:
+            logger.warning(f"Failed to evolve {self.monster}")
 
     def is_eligible_for_evolution(self) -> bool:
         return (
@@ -195,8 +193,7 @@ class Evolution:
             result = evolution_item.steps - int(self.monster.steps)
             conditions.append(result == 0)
             self.monster.steps += 1
-            self.monster.levelling_up = True
-            self.monster.got_experience = True
+            self.monster.experience_handler.trigger_experience_flags()
 
         # Check if the party conditions
         if evolution_item.party_conditions is not None:
@@ -215,7 +212,7 @@ class Evolution:
 
         # Check if the monster is holding the required item for evolution
         if evolution_item.held_item is not None:
-            held_item = self.monster.held_item.get_item()
+            held_item = self.monster.held_item
             conditions.append(
                 held_item is not None
                 and held_item.slug == evolution_item.held_item

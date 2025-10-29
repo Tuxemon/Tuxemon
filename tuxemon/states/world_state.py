@@ -18,26 +18,21 @@ from tuxemon import networking, prepare
 from tuxemon.camera.camera import Camera
 from tuxemon.db import Direction
 from tuxemon.faction.manager import FactionManager
-from tuxemon.platform.const import intentions
+from tuxemon.map.map_view import NullRenderer
 from tuxemon.platform.events import PlayerInput
 from tuxemon.platform.tools import translate_input_event
 from tuxemon.save_state import WorldSave
 from tuxemon.session import Session
 from tuxemon.state.state import State
+from tuxemon.world.input import InputRouter, WorldInputHandler
 from tuxemon.world.manager import WorldMenuManager
 from tuxemon.world.transition import WorldTransition
 
 if TYPE_CHECKING:
+    from tuxemon.map.map_view import AbstractRenderer
     from tuxemon.networking import EventData
 
 logger = logging.getLogger(__name__)
-
-direction_map: Mapping[int, Direction] = {
-    intentions.UP: Direction.up,
-    intentions.DOWN: Direction.down,
-    intentions.LEFT: Direction.left,
-    intentions.RIGHT: Direction.right,
-}
 
 
 class WorldState(State):
@@ -45,7 +40,12 @@ class WorldState(State):
 
     name: ClassVar[str] = "WorldState"
 
-    def __init__(self, session: Session, map_name: str) -> None:
+    def __init__(
+        self,
+        session: Session,
+        map_name: Optional[str] = None,
+        renderer: Optional[AbstractRenderer] = None,
+    ) -> None:
         super().__init__()
         self.session = session
         self.session.set_world(self)
@@ -58,11 +58,13 @@ class WorldState(State):
         self.camera = Camera(self.player, self.client.boundary)
         self.client.camera_manager.add_camera(self.camera)
         self.faction_manager = FactionManager()
+        self.register_input_handlers()
 
         if map_name:
             self.client.map_transition.change_map(map_name)
         else:
-            raise ValueError("You must pass the map name to load")
+            logger.warning("No map name provided — using fallback renderer.")
+            self.client.set_renderer(renderer or NullRenderer())
 
     def get_state(self, session: Session) -> WorldSave:
         """Returns a dictionary of the World to be saved."""
@@ -80,6 +82,15 @@ class WorldState(State):
         self.menu_manager.menu_flags.import_flags(
             save_data.get("menu_flags", {})
         )
+
+    def register_input_handlers(self) -> None:
+        self.input_handler = WorldInputHandler(
+            self.player, self.client, self.menu_manager
+        )
+        self.input_router = InputRouter()
+
+        for button, config in self.input_handler.get_handlers().items():
+            self.input_router.register(button, config)
 
     def resume(self) -> None:
         """Called after returning focus to this state"""
@@ -129,14 +140,7 @@ class WorldState(State):
         logger.debug("*** Game Loop Started ***")
 
     def draw(self, surface: Surface) -> None:
-        """
-        Draw the game world to the screen.
-
-        Parameters:
-            surface: Surface to draw into.
-        """
-        if self.client.map_manager.current_map is None:
-            raise ValueError("Unable to draw the game world.")
+        """Draw the game world to the screen."""
         self.client.map_renderer.draw(
             surface, self.client.map_manager.current_map
         )
@@ -164,72 +168,16 @@ class WorldState(State):
             otherwise.
         """
         event = translate_input_event(event)
-
-        # Handle menu activation
-        if event.button == intentions.WORLD_MENU and event.pressed:
-            logger.info("Opening main menu!")
-            self.client.event_manager.release_controls(
-                self.client.input_manager
-            )
-            self.client.push_state(
-                "WorldMenuState",
-                menu_manager=self.menu_manager,
-                character=self.player,
-            )
-            return None
-
-        # Return early if no player is registered
         if self.player is None:
             return None
 
-        # Handle interaction event
-        if event.button == intentions.INTERACT and event.pressed:
-            if False:  # Multiplayer logic placeholder
-                self.check_interactable_space()
-                return None
+        routed = self.input_router.route(event)
+        if routed is None:
+            return None
 
-        # Handle running movement toggle
-        if event.button == intentions.RUN:
-            self.player.mover.update_movement_state(event.held)
-
-        # Handle directional movement
-        if (direction := direction_map.get(event.button)) is not None:
-            if not self.camera.is_following():
-                return self.client.camera_manager.handle_input(event)
-            if event.held:
-                self.client.movement_manager.queue_movement(
-                    self.player.slug, direction
-                )
-                if self.client.movement_manager.is_movement_allowed(
-                    self.player
-                ):
-                    self.client.movement_manager.move_char(
-                        self.player, direction
-                    )
-                return None
-            if (
-                not event.pressed
-                and self.client.movement_manager.has_pending_movement(
-                    self.player
-                )
-            ):
-                self.client.movement_manager.stop_char(self.player)
-                return None
-
-        # Debug tools (DEV_TOOLS)
-        if prepare.DEV_TOOLS and event.pressed:
-            if event.button == intentions.NOCLIP:
-                self.player.ignore_collisions = (
-                    not self.player.ignore_collisions
-                )
-                return None
-            elif event.button == intentions.RELOAD_MAP:
-                assert self.client.map_manager.current_map
-                self.client.map_manager.current_map.reload_tiles()
-                return None
-
-        # Return event for others to process
-        return event
+        return self.client.movement_manager.handle_directional_input(
+            self.player, routed
+        )
 
     @no_type_check  # only used by multiplayer which is disabled
     def check_interactable_space(self) -> bool:

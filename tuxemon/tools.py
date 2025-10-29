@@ -16,6 +16,7 @@ from dataclasses import fields
 from enum import Enum
 from functools import lru_cache
 from operator import add, eq, floordiv, ge, gt, le, lt, mul, ne, sub
+from types import UnionType
 from typing import (
     TYPE_CHECKING,
     Any,
@@ -358,10 +359,8 @@ def get_types_tuple(
 ) -> Sequence[ValidParameterSingleType]:
     if typing.get_origin(param_type) is Union:
         return typing.get_args(param_type)
-    # TODO remove # if Python v3.10 (now 3.9)
-    # from types import UnionType
-    # elif typing.get_origin(param_type) is UnionType:
-    #    return typing.get_args(param_type)
+    elif typing.get_origin(param_type) is UnionType:
+        return typing.get_args(param_type)
     else:
         return (param_type,)
 

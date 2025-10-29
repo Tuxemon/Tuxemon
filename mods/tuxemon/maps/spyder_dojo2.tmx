@@ -115,7 +115,7 @@
     <property name="act1" value="create_npc spyder_dojo_wan,13,9"/>
     <property name="act2" value="char_face spyder_dojo_wan,left"/>
     <property name="cond1" value="not char_exists spyder_dojo_wan"/>
-    <property name="cond2" value="not variable_set dojowan:yes"/>
+    <property name="cond2" value="not battle_outcome player,won,spyder_dojo_wan"/>
    </properties>
   </object>
   <object id="27" name="Talk Wan1" type="event" x="112" y="0" width="16" height="16">
@@ -123,12 +123,12 @@
     <property name="act1" value="translated_dialog spyder_dojo_wan3"/>
     <property name="behav1" value="talk spyder_dojo_wan"/>
     <property name="cond1" value="is variable_set wanintro:yes"/>
-    <property name="cond2" value="not variable_set dojoiroh:yes"/>
-    <property name="cond3" value="not variable_set dojoyangchen:yes"/>
-    <property name="cond4" value="not variable_set dojokataro:yes"/>
-    <property name="cond5" value="not variable_set dojosokka:yes"/>
-    <property name="cond6" value="not variable_set dojotoph:yes"/>
-    <property name="cond7" value="not variable_set dojowan:yes"/>
+    <property name="cond2" value="not battle_outcome player,won,spyder_dojo_iroh"/>
+    <property name="cond3" value="not battle_outcome player,won,spyder_dojo_yangchen"/>
+    <property name="cond4" value="not battle_outcome player,won,spyder_dojo_kataro"/>
+    <property name="cond5" value="not battle_outcome player,won,spyder_dojo_sokka"/>
+    <property name="cond6" value="not battle_outcome player,won,spyder_dojo_toph"/>
+    <property name="cond7" value="not battle_outcome player,won,spyder_dojo_wan"/>
    </properties>
   </object>
   <object id="28" name="Talk Iroh" type="event" x="128" y="0" width="16" height="16">
@@ -147,11 +147,10 @@
     <property name="act25" value="add_tech iid_slot_4,demiurge"/>
     <property name="act30" value="start_battle player,spyder_dojo_iroh"/>
     <property name="act31" value="char_talk spyder_dojo_iroh,post_battle_lose"/>
-    <property name="act32" value="set_variable dojoiroh:yes"/>
     <property name="act40" value="set_monster_health"/>
     <property name="act50" value="set_monster_status"/>
     <property name="behav1" value="talk spyder_dojo_iroh"/>
-    <property name="cond1" value="not variable_set dojoiroh:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_dojo_iroh"/>
    </properties>
   </object>
   <object id="29" name="Talk Yangchen" type="event" x="144" y="0" width="16" height="16">
@@ -163,11 +162,10 @@
     <property name="act15" value="add_monster budaye,20,spyder_dojo_yangchen,5,10"/>
     <property name="act16" value="start_battle player,spyder_dojo_yangchen"/>
     <property name="act17" value="char_talk spyder_dojo_yangchen,post_battle_lose"/>
-    <property name="act18" value="set_variable dojoyangchen:yes"/>
     <property name="act20" value="set_monster_health"/>
     <property name="act30" value="set_monster_status"/>
     <property name="behav1" value="talk spyder_dojo_yangchen"/>
-    <property name="cond1" value="not variable_set dojoyangchen:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_dojo_yangchen"/>
    </properties>
   </object>
   <object id="30" name="Talk Kataro" type="event" x="160" y="0" width="16" height="16">
@@ -176,11 +174,10 @@
     <property name="act12" value="add_monster hydrone,20,spyder_dojo_kataro,5,10"/>
     <property name="act13" value="start_battle player,spyder_dojo_kataro"/>
     <property name="act14" value="char_talk spyder_dojo_kataro,post_battle_lose"/>
-    <property name="act15" value="set_variable dojokataro:yes"/>
     <property name="act20" value="set_monster_health"/>
     <property name="act30" value="set_monster_status"/>
     <property name="behav1" value="talk spyder_dojo_kataro"/>
-    <property name="cond1" value="not variable_set dojokataro:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_dojo_kataro"/>
    </properties>
   </object>
   <object id="19" name="Talk Sokka" type="event" x="176" y="0" width="16" height="16">
@@ -192,11 +189,10 @@
     <property name="act15" value="add_monster grintrock,20,spyder_dojo_sokka,5,10"/>
     <property name="act16" value="start_battle player,spyder_dojo_sokka"/>
     <property name="act17" value="char_talk spyder_dojo_sokka,post_battle_lose"/>
-    <property name="act18" value="set_variable dojosokka:yes"/>
     <property name="act20" value="set_monster_health"/>
     <property name="act30" value="set_monster_status"/>
     <property name="behav1" value="talk spyder_dojo_sokka"/>
-    <property name="cond1" value="not variable_set dojosokka:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_dojo_sokka"/>
    </properties>
   </object>
   <object id="32" name="Talk Toph" type="event" x="192" y="0" width="16" height="16">
@@ -210,11 +206,10 @@
     <property name="act07" value="add_monster vivipere,20,spyder_dojo_toph,5,10"/>
     <property name="act08" value="start_battle player,spyder_dojo_toph"/>
     <property name="act09" value="char_talk spyder_dojo_toph,post_battle_lose"/>
-    <property name="act10" value="set_variable dojotoph:yes"/>
     <property name="act20" value="set_monster_health"/>
     <property name="act30" value="set_monster_status"/>
     <property name="behav1" value="talk spyder_dojo_toph"/>
-    <property name="cond1" value="not variable_set dojotoph:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_dojo_toph"/>
    </properties>
   </object>
   <object id="38" name="Encounter" type="event" x="160" y="144" width="16" height="16">
@@ -250,15 +245,14 @@
     <property name="act34" value="lock_controls"/>
     <property name="act35" value="pathfind spyder_dojo_wan,9,9"/>
     <property name="act37" value="unlock_controls"/>
-    <property name="act38" value="set_variable dojowan:yes"/>
     <property name="behav1" value="talk spyder_dojo_wan"/>
     <property name="cond1" value="is variable_set wanintro:yes"/>
-    <property name="cond2" value="is variable_set dojoiroh:yes"/>
-    <property name="cond3" value="is variable_set dojoyangchen:yes"/>
-    <property name="cond4" value="is variable_set dojokataro:yes"/>
-    <property name="cond5" value="is variable_set dojosokka:yes"/>
-    <property name="cond6" value="is variable_set dojotoph:yes"/>
-    <property name="cond7" value="not variable_set dojowan:yes"/>
+    <property name="cond2" value="is battle_outcome player,won,spyder_dojo_iroh"/>
+    <property name="cond3" value="is battle_outcome player,won,spyder_dojo_yangchen"/>
+    <property name="cond4" value="is battle_outcome player,won,spyder_dojo_kataro"/>
+    <property name="cond5" value="is battle_outcome player,won,spyder_dojo_sokka"/>
+    <property name="cond6" value="is battle_outcome player,won,spyder_dojo_toph"/>
+    <property name="cond7" value="not battle_outcome player,won,spyder_dojo_wan"/>
    </properties>
   </object>
   <object id="33" name="Post Talk Iroh" type="event" x="128" y="16" width="16" height="16">
@@ -299,7 +293,7 @@
   <object id="39" name="Remove Wan" type="event" x="336" y="144" width="16" height="16">
    <properties>
     <property name="act1" value="remove_npc spyder_dojo_wan"/>
-    <property name="cond1" value="is variable_set dojowan:yes"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_dojo_wan"/>
    </properties>
   </object>
   <object id="40" name="Play Music" type="event" x="0" y="0" width="16" height="16">

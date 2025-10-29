@@ -120,9 +120,8 @@
     <property name="act4" value="add_monster tourbidi,18,spyder_tunnelb_iris,5,10"/>
     <property name="act5" value="start_battle player,spyder_tunnelb_iris"/>
     <property name="act6" value="char_talk spyder_tunnelb_iris,post_battle_lose"/>
-    <property name="act7" value="set_variable tunnelbiris:yes"/>
     <property name="behav1" value="talk spyder_tunnelb_iris"/>
-    <property name="cond1" value="not variable_set tunnelbiris:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_tunnelb_iris"/>
    </properties>
   </object>
   <object id="335" name="Create Greta" type="event" x="208" y="560" width="16" height="16">
@@ -142,9 +141,8 @@
     <property name="act07" value="add_monster foofle,16,spyder_tunnelb_greta,5,10"/>
     <property name="act08" value="start_battle player,spyder_tunnelb_greta"/>
     <property name="act09" value="char_talk spyder_tunnelb_greta,post_battle_lose"/>
-    <property name="act10" value="set_variable tunnelbgreta:yes"/>
     <property name="behav1" value="talk spyder_tunnelb_greta"/>
-    <property name="cond1" value="not variable_set tunnelbgreta:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_tunnelb_greta"/>
    </properties>
   </object>
   <object id="337" name="Create Tommy" type="event" x="208" y="80" width="16" height="16">
@@ -160,9 +158,8 @@
     <property name="act2" value="add_monster zunna,22,spyder_tunnelb_tommy,5,10"/>
     <property name="act3" value="start_battle player,spyder_tunnelb_tommy"/>
     <property name="act4" value="char_talk spyder_tunnelb_tommy,post_battle_lose"/>
-    <property name="act6" value="set_variable tunnelbtommy:yes"/>
     <property name="behav1" value="talk spyder_tunnelb_tommy"/>
-    <property name="cond1" value="not variable_set tunnelbtommy:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_tunnelb_tommy"/>
    </properties>
   </object>
   <object id="341" name="Talk Greta" type="event" x="208" y="576" width="16" height="32">
@@ -179,9 +176,9 @@
     <property name="act10" value="add_monster foofle,16,spyder_tunnelb_greta,5,10"/>
     <property name="act11" value="start_battle player,spyder_tunnelb_greta"/>
     <property name="act12" value="char_talk spyder_tunnelb_greta,post_battle_lose"/>
-    <property name="act13" value="set_variable tunnelbgreta:yes"/>
-    <property name="cond1" value="not variable_set tunnelbgreta:yes"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_tunnelb_greta"/>
     <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
    </properties>
   </object>
   <object id="346" name="Teleport to Routee 1" type="event" x="304" y="48" width="16" height="16">

@@ -2,6 +2,7 @@ events:
   Alert 100:
     actions:
     - translated_dialog eclipse_park_steps100,,center,center
+    - set_step_tracker_milestone_shown player,steps_park,100
     conditions:
     - is step_tracker player,steps_park,100
     type: event

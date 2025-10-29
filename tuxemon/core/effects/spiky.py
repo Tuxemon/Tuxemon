@@ -29,7 +29,7 @@ class SpikyEffect(CoreEffect):
     def apply_status(
         self, session: Session, status: Status
     ) -> StatusEffectResult:
-        host = status.get_host()
+        host = status.host
         if status.has_phase(EffectPhase.SWAP_MONSTER):
             damage = host.hp // self.divisor
             host.current_hp = max(0, host.current_hp - damage)

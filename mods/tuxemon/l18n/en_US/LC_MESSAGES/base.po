@@ -1848,7 +1848,7 @@ msgid "combat_state_dozing_get"
 msgstr "{target} is asleep."
 
 msgid "combat_state_dozing_end"
-msgstr "{target} dozes off!"
+msgstr "{target} wakes up!"
 
 msgid "combat_state_enraged_get"
 msgstr "{target} is enraged."

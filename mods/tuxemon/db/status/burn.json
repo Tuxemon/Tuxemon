@@ -6,14 +6,16 @@
       "values": [
         "fire"
       ],
-      "multiplier": 0.0
+      "multiplier": 0.0,
+      "source": "fire immunity"
     },
     {
       "attribute": "type",
       "values": [
         "frost"
       ],
-      "multiplier": 2.0
+      "multiplier": 2.0,
+      "source": "fire extra damage"
     }
   ],
   "behaviors": {},

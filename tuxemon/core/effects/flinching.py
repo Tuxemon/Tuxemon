@@ -32,7 +32,7 @@ class FlinchingEffect(CoreEffect):
         self, session: Session, status: Status
     ) -> StatusEffectResult:
         tech: list[Technique] = []
-        host = status.get_host()
+        host = status.host
         if (
             status.has_phase(EffectPhase.PRE_CHECKING)
             and random.random() > self.chance

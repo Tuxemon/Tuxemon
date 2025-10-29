@@ -32,7 +32,7 @@ class RecoverEffect(CoreEffect):
     ) -> StatusEffectResult:
         extra: list[str] = []
         healing: bool = False
-        host = status.get_host()
+        host = status.host
         if status.has_phase(EffectPhase.PERFORM_STATUS):
             heal = simple_recover(host, self.divisor)
             host.current_hp = min(host.hp, host.current_hp + heal)

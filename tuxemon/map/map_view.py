@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+from abc import ABC, abstractmethod
 from dataclasses import dataclass
 from enum import Enum
 from itertools import chain
@@ -313,7 +314,42 @@ class SpriteRenderer:
         self.surface_animations.stop()
 
 
-class MapRenderer:
+class AbstractRenderer(ABC):
+    """Interface for all map rendering implementations."""
+
+    layer_color: Optional[ColorLike]
+    bubble_manager: BubbleManager
+    cinema_x_ratio: Optional[float]
+    cinema_y_ratio: Optional[float]
+    map_animations: dict[str, AnimationInfo]
+
+    @abstractmethod
+    def update(self, time_delta: float) -> None:
+        """Update internal state, animations, etc."""
+
+    @abstractmethod
+    def draw(
+        self, surface: Surface, current_map: Optional[AbstractMap]
+    ) -> None:
+        """Draw the map and related elements to the surface."""
+
+
+class NullRenderer(AbstractRenderer):
+    """A no-op renderer for when no map is loaded."""
+
+    def __init__(self) -> None:
+        pass
+
+    def update(self, time_delta: float) -> None:
+        pass
+
+    def draw(
+        self, surface: Surface, current_map: Optional[AbstractMap]
+    ) -> None:
+        surface.fill(prepare.DARKGRAY_COLOR)
+
+
+class MapRenderer(AbstractRenderer):
     """Renders the game map, NPCs, and animations."""
 
     def __init__(
@@ -333,8 +369,14 @@ class MapRenderer:
         self.map_animations: dict[str, AnimationInfo] = {}
         self.bubble_manager = BubbleManager()
 
-    def draw(self, surface: Surface, current_map: AbstractMap) -> None:
+    def draw(
+        self, surface: Surface, current_map: Optional[AbstractMap]
+    ) -> None:
         """Draws the map, sprites, and animations onto the given surface."""
+        if current_map is None:
+            raise ValueError(
+                "MapRenderer requires a valid AbstractMap to draw."
+            )
         self._prepare_map_rendering(current_map)
         screen_surfaces = self._get_and_position_surfaces(current_map)
         self._draw_map_and_sprites(surface, screen_surfaces, current_map)
@@ -354,6 +396,8 @@ class MapRenderer:
         """Prepares the map renderer for drawing."""
         if current_map.renderer is None:
             current_map.initialize_renderer()
+        if current_map.renderer is None:
+            raise RuntimeError("Map renderer could not be initialized.")
         camera = self.camera_manager.get_active_camera()
         center = camera.get_viewport_center() if camera else Vector2(0, 0)
         assert current_map.renderer

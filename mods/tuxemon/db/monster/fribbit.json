@@ -82,7 +82,7 @@
   "weight": 20,
   "sounds": {
     "combat_call": "sound_frog",
-    "faint_call": "sound_frog"
+    "faint_call": "sound_frog_faint"
   },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.95,

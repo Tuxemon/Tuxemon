@@ -73,10 +73,9 @@ class WildEncounterAction(EventAction):
             current_monster.money_modifier = self.money
         if self.held_item is not None:
             item = Item.create(self.held_item)
-            if item.behaviors.holdable:
-                current_monster.held_item.set_item(item)
-            else:
-                logger.error(f"{item.name} isn't 'holdable'")
+            output = current_monster.item_handler.set_item(item)
+            if not output:
+                return
         current_monster.wild = True
 
         event_engine = session.client.event_engine

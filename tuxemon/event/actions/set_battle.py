@@ -52,9 +52,8 @@ class SetBattleAction(EventAction):
             return
 
         character.battle_handler.record_battle(
-            self.opponent_slug,
-            OutputBattle(self.outcome),
-            int(character.steps),
+            opponent=self.opponent_slug,
+            outcome=OutputBattle(self.outcome),
         )
         logger.info(
             f"{self.fighter_slug} {self.outcome} against {self.opponent_slug}"

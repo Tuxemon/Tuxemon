@@ -81,8 +81,7 @@ class CharPatrolAction(EventAction):
 
         if not self.character.moving and not self.character.path:
             next_pos = self.patrol_points[self.patrol_index]
-            self.character.path = [next_pos]
-            self.character.next_waypoint()
+            self.character.set_path_and_start([next_pos])
             self.patrol_index = (self.patrol_index + 1) % len(
                 self.patrol_points
             )

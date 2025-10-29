@@ -26,7 +26,7 @@ class LockdownEffect(CoreEffect):
         self, session: Session, status: Status
     ) -> StatusEffectResult:
         extra: list[str] = []
-        host = status.get_host()
+        host = status.host
         if status.has_phase(EffectPhase.ENQUEUE_ITEM):
             params = {"target": host.name.upper()}
             extra = [T.format("combat_state_lockdown_item", params)]

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+import time
 from collections.abc import Mapping, Sequence
 from typing import Any, Optional
 
@@ -29,7 +30,6 @@ class BattlesHandler:
         self,
         opponent: str,
         outcome: OutputBattle,
-        steps: int,
         location: str = "",
         turns: int = 1,
     ) -> Battle:
@@ -38,7 +38,7 @@ class BattlesHandler:
             "fighter": self.character,
             "opponent": opponent,
             "outcome": outcome,
-            "steps": steps,
+            "timestamp": time.time(),
             "location": location,
             "turns": turns,
         }
@@ -107,13 +107,18 @@ class BattlesHandler:
         battle_outcomes = self.get_battle_outcome_stats()
         total_battles = sum(battle_outcomes.values())
 
+        average_turns = (
+            sum(b.turns for b in self._battles) / len(self._battles)
+            if self._battles
+            else 0.0
+        )
+
         return {
             "total": total_battles,
             "won": battle_outcomes[OutputBattle.won],
             "lost": battle_outcomes[OutputBattle.lost],
             "draw": battle_outcomes[OutputBattle.draw],
-            "average_turns": sum(b.turns for b in self._battles)
-            // len(self._battles),
+            "average_turns": round(average_turns),
         }
 
     def get_battles_by_location(self) -> dict[str, list[Battle]]:

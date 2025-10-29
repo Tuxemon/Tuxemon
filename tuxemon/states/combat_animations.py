@@ -20,7 +20,7 @@ from tuxemon import graphics, prepare
 from tuxemon.combat.utils import alive_party, build_hud_text
 from tuxemon.formula import config_combat
 from tuxemon.menu.menu import Menu
-from tuxemon.sprite import CaptureDeviceSprite, Sprite
+from tuxemon.sprite import CaptureDeviceSprite, HordeSprite, Sprite
 from tuxemon.tools import scale
 from tuxemon.ui.combat_bars import CombatBars
 from tuxemon.ui.combat_hud import CombatLayoutManager
@@ -76,6 +76,7 @@ class CombatAnimations(Menu[None], ABC):
         self.graphics = context.graphics
         self.sprite_map = MonsterSpriteMap()
         self.capdevs: list[CaptureDeviceSprite] = []
+        self.horde_sprite: Optional[HordeSprite] = None
         self.bars = CombatBars(self.graphics)
         layout_manager = LayoutManager(scaled_layouts, layout_groups)
         _layout = prepare_layout(context.teams, layout_manager)
@@ -281,6 +282,7 @@ class CombatAnimations(Menu[None], ABC):
             if monster in monsters:
                 monsters.remove(monster)
 
+        self.animate_update_horde_hud()
         # Update the party HUD to reflect the fainted tuxemon
         self.animate_update_party_hud()
 
@@ -535,6 +537,26 @@ class CombatAnimations(Menu[None], ABC):
         """
         _, h_align = self.combat_zone.get_zone(home)
 
+        is_opponent_horde = (
+            player is self.client.combat_session.right_player
+            and self.client.combat_session.is_horde_battle
+        )
+
+        if is_opponent_horde:
+            tray, _, _ = self.animate_party_hud_left(home)
+
+            self.horde_sprite = HordeSprite(
+                opponent_party=player.monsters,
+                tray_rect=home,
+                shadow_text_func=self.shadow_text,
+                scale_func=scale,
+            )
+            self.sprites.add(self.horde_sprite, layer=hud_layer)
+
+            animate_func = partial(self.animate, duration=2.0, delay=1.5)
+            self.horde_sprite.animate_in(animate_func)
+            return
+
         if h_align is HorizontalAlignment.LEFT:
             tray, centerx, offset = self.animate_party_hud_left(home)
         else:
@@ -589,6 +611,18 @@ class CombatAnimations(Menu[None], ABC):
             if prev != dev.update_state():
                 animate = partial(self.animate, duration=0.1, delay=0.1)
                 dev.animate_capture(animate)
+
+    def animate_update_horde_hud(self) -> None:
+        """
+        Update the horde HUD to reflect the horde.
+        """
+        if self.client.combat_session.is_horde_battle and self.horde_sprite:
+            if self.horde_sprite.update_count_display():
+                animate_func = partial(self.animate, duration=2.0, delay=1.5)
+                self.horde_sprite.animate_in(animate_func)
+            if self.horde_sprite.is_defeated():
+                self.task(self.horde_sprite.kill, interval=2)
+                self.horde_sprite = None
 
     def update_background(self, bg_path: str) -> None:
         # Clear old

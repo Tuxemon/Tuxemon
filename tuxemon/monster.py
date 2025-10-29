@@ -50,6 +50,7 @@ from tuxemon.taste import Taste
 from tuxemon.time_handler import today_ordinal
 
 if TYPE_CHECKING:
+    from tuxemon.item.item import Item
     from tuxemon.npc import NPC
     from tuxemon.session import Session
 
@@ -105,7 +106,7 @@ class Monster:
         self.flairs: dict[str, Flair] = {}
         self.owner: Optional[NPC] = None
         self.gender_weights: dict[GenderType, float] = {}
-        self.held_item = MonsterItemHandler()
+        self.item_handler = MonsterItemHandler()
         self.experience_handler: MonsterExperience = MonsterExperience()
 
         self.money_modifier: float = 0.0
@@ -173,6 +174,10 @@ class Monster:
         monster.moves.set_moves(monster)
         monster.current_hp = monster.hp
         return monster
+
+    @property
+    def held_item(self) -> Optional[Item]:
+        return self.item_handler.held_item
 
     @property
     def level(self) -> int:
@@ -519,7 +524,7 @@ class Monster:
 
         save_data["status"] = self.status.encode_status()
         save_data["moves"] = self.moves.encode_moves()
-        save_data["held_item"] = self.held_item.encode_item()
+        save_data["held_item"] = self.item_handler.encode_item()
         save_data["training_points"] = self.training_points.to_dict()
         save_data["modifiers"] = self.modifiers.to_dict()
         save_data["bond_dict"] = self.bond_handler.get_state()
@@ -566,9 +571,9 @@ class Monster:
             elif key in SIMPLE_PERSISTANCE_ATTRIBUTES:
                 setattr(self, key, value)
             elif key == "held_item" and value:
-                item = self.held_item.decode_item(value)
+                item = self.item_handler.decode_item(value)
                 if item:
-                    self.held_item.set_item(item)
+                    self.item_handler.set_item(item)
             elif key == "training_points" and value:
                 self.training_points.from_dict(value)
             elif key == "modifiers" and value:
@@ -594,7 +599,7 @@ class Monster:
         self.moves.full_recharge_moves()
 
         if not self.status.is_fainted:
-            current_status = self.status.get_current_status()
+            current_status = self.status.current_status
             if (
                 current_status
                 and not current_status.behaviors.persists_after_combat
@@ -604,7 +609,7 @@ class Monster:
         if self.is_fainted:
             self.current_hp = 0
             self.status.apply_faint(self)
-            current = self.status.get_current_status()
+            current = self.status.current_status
             if current:
                 current.use(session, EffectPhase.ON_FAINT)
 

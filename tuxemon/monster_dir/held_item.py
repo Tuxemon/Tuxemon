@@ -13,25 +13,33 @@ logger = logging.getLogger(__name__)
 
 class MonsterItemHandler:
     def __init__(self, item: Optional[Item] = None):
-        self.item = item
+        self._item = item
 
-    def set_item(self, item: Item) -> None:
+    @property
+    def held_item(self) -> Optional[Item]:
+        return self._item
+
+    def set_item(self, item: Item) -> bool:
         if item.behaviors.holdable:
-            self.item = item
+            self._item = item
+            return True
         else:
             logger.error(f"{item.name} can't be held")
+            return False
 
-    def get_item(self) -> Optional[Item]:
-        return self.item
+    def take_item(self) -> Optional[Item]:
+        item = self._item
+        self._item = None
+        return item
 
     def has_item(self) -> bool:
-        return self.item is not None
+        return self._item is not None
 
     def clear_item(self) -> None:
-        self.item = None
+        self._item = None
 
     def encode_item(self) -> Mapping[str, Any]:
-        return self.item.get_state() if self.item is not None else {}
+        return self._item.get_state() if self._item is not None else {}
 
     def decode_item(
         self, json_data: Optional[Mapping[str, Any]]

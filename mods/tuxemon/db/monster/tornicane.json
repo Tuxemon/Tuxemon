@@ -93,7 +93,7 @@
   "weight": 0.1,
   "sounds": {
     "combat_call": "sfx_tornado",
-    "faint_call": "sfx_tornado"
+    "faint_call": "sfx_tornado_faint"
   },
   "catch_rate": 35.0,
   "lower_catch_resistance": 0.95,

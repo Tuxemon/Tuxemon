@@ -6,9 +6,8 @@ import logging
 from collections.abc import Generator, Mapping, Sequence
 from itertools import product
 from math import atan2, pi
-from typing import TYPE_CHECKING, Any, NamedTuple, Optional, TypeVar, Union
+from typing import TYPE_CHECKING, Optional, TypeVar, Union
 
-from tuxemon import prepare
 from tuxemon.camera.camera import project
 from tuxemon.compat.rect import ReadOnlyRect
 from tuxemon.db import Direction, Orientation
@@ -16,28 +15,12 @@ from tuxemon.math import Vector2, Vector3
 from tuxemon.tools import round_to_divisible
 
 if TYPE_CHECKING:
-    from tuxemon.entity import Entity
+    from tuxemon.map.map_region import RegionProperties
     from tuxemon.map.map_tuxemon import AbstractMap
-    from tuxemon.npc import NPC
 
 logger = logging.getLogger(__name__)
 
 RectTypeVar = TypeVar("RectTypeVar", bound=ReadOnlyRect)
-
-
-class PushEffect(NamedTuple):
-    direction: Direction
-    strength: int
-
-
-class RegionProperties(NamedTuple):
-    enter_from: Sequence[Direction]
-    exit_from: Sequence[Direction]
-    endure: Sequence[Direction]
-    entity: Optional[Union[NPC, Entity[Any]]] = None
-    key: Optional[str] = None
-    push_effect: Optional[PushEffect] = None
-    speed_modifier: Optional[float] = None
 
 
 # direction => vector
@@ -443,115 +426,6 @@ def orientation_by_angle(angle: float) -> Orientation:
         raise ValueError("A collision line must be aligned to an axis")
 
 
-def extract_region_properties(
-    properties: Mapping[str, Optional[str]],
-) -> Optional[RegionProperties]:
-    """
-    Given a dictionary from Tiled properties, return a dictionary
-    suitable for collision detection.
-
-    The function expects the input dictionary to contain keys from the following set:
-    {"enter_from", "exit_from", "endure", "key"}. The values for "enter_from", "exit_from",
-    and "endure" should be strings representing directions, while the value for "key"
-    should be a string representing a label.
-
-    If the input dictionary contains an "exit_from" key but no "enter_from" key, the
-    function will automatically calculate the "enter_from" directions based on the
-    "exit_from" directions.
-
-    If the input dictionary contains a "key" with the value "slide", the function will
-    set all movement directions to all possible directions.
-
-    Parameters:
-        properties: A dictionary from Tiled properties.
-
-    Returns:
-        A dictionary suitable for collision detection.
-
-    Raises:
-        ValueError: If the input dictionary contains an invalid value.
-    """
-    all_dirs = list(Direction)
-
-    if not properties:
-        return None
-
-    if not any(key.lower() in prepare.REGION_KEYS for key in properties):
-        return None
-
-    movements: dict[str, list[Direction]] = {
-        "enter_from": [],
-        "exit_from": [],
-        "endure": [],
-    }
-    label = None
-    push_direction = None
-    push_strength = 0
-    speed_modifier = None
-
-    for key, value in properties.items():
-        key = key.lower()
-        if key in ["enter_from", "exit_from", "endure"]:
-            if value == "":
-                raise ValueError(
-                    f"Invalid value for '{key}': cannot be an empty string"
-                )
-            directions = direction_to_list(value)
-            if directions is None:
-                raise ValueError(f"Invalid directions for '{key}': {value}")
-            movements[key] = directions
-        elif key == "key":
-            if value == "":
-                raise ValueError(
-                    f"Invalid value for 'key': cannot be an empty string"
-                )
-            label = value
-        elif key == "push_direction":
-            push_dir = direction_to_single(value)
-            if push_dir:
-                push_direction = push_dir
-        elif key == "push_strength":
-            if value:
-                push_strength = int(value)
-        elif key == "speed_modifier":
-            if value:
-                speed_modifier = float(value)
-                if not movements["enter_from"] and not movements["exit_from"]:
-                    movements["enter_from"] = all_dirs
-                    movements["exit_from"] = all_dirs
-
-    if movements["exit_from"] and not movements["enter_from"]:
-        movements["enter_from"] = sorted(
-            set(Direction) - set(movements["exit_from"]),
-            key=lambda d: all_dirs.index(d),
-        )
-
-    if label == "slide":
-        for key in movements:
-            movements[key] = all_dirs
-
-    push_effect = None
-    if label == "push_tile":
-        if push_direction is None or push_strength <= 0:
-            raise ValueError(
-                "'push_tile' key requires both 'push_direction' and 'push_strength'."
-            )
-        if not movements["enter_from"] and not movements["exit_from"]:
-            movements["enter_from"] = all_dirs
-            movements["exit_from"] = all_dirs
-        push_effect = PushEffect(
-            direction=push_direction, strength=push_strength
-        )
-
-    return RegionProperties(
-        **movements,
-        entity=None,
-        key=label,
-        push_effect=push_effect,
-        speed_modifier=speed_modifier,
-    )
-
-
 def get_coords_ext(
     tile: tuple[int, int], map_size: tuple[int, int], radius: int = 1
 ) -> list[tuple[int, int]]:
@@ -594,46 +468,6 @@ def get_coords_ext(
         )
 
     return list(coords)
-
-
-def direction_to_list(direction: Optional[str]) -> list[Direction]:
-    """
-    Splits direction string and returns a list with Direction/s
-
-    Parameters:
-        direction: str (eg. enter_from = "direction")
-
-    Returns:
-        List with Direction/s
-    """
-    if direction is None:
-        return []
-    return sorted(
-        [
-            Direction(d)
-            for d in {d.strip().lower() for d in direction.split(",")}
-        ]
-    )
-
-
-def direction_to_single(direction: Optional[str]) -> Optional[Direction]:
-    """
-    Converts a single direction string into a Direction object.
-
-    Parameters:
-        direction: Optional[str]
-
-    Returns:
-        A Direction object or None if input is invalid or empty.
-    """
-    if direction is None:
-        return None
-
-    cleaned = direction.strip().lower()
-    if not cleaned:
-        return None
-
-    return Direction(cleaned)
 
 
 def get_explicit_tile_exits(

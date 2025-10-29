@@ -75,15 +75,17 @@ class MonsterInfoState(PygameMenuState):
 
         unit = self.client.config.unit_measure
         if unit == "metric":
-            mon_weight = round(monster.weight)
-            mon_height = round(monster.height)
-            unit_weight = prepare.U_KG
-            unit_height = prepare.U_CM
+            if monster.weight >= 1000:
+                mon_weight = f"{monster.weight / 1000:.1f}{prepare.U_T}"
+            else:
+                mon_weight = f"{round(monster.weight)}{prepare.U_KG}"
+            if monster.height >= 100:
+                mon_height = f"{monster.height / 100:.1f}{prepare.U_M}"
+            else:
+                mon_height = f"{round(monster.height)}{prepare.U_CM}"
         else:
-            mon_weight = formula.convert_lbs(monster.weight)
-            mon_height = formula.convert_ft(monster.height)
-            unit_weight = prepare.U_LB
-            unit_height = prepare.U_FT
+            mon_weight = f"{formula.convert_lbs(monster.weight)}{prepare.U_LB}"
+            mon_height = f"{formula.convert_ft(monster.height)}{prepare.U_FT}"
         # name
         menu._auto_centering = False
         thin_font_path = transform_resource_filename(
@@ -202,7 +204,7 @@ class MonsterInfoState(PygameMenuState):
 
         # weight
         lab4: Any = menu.add.label(
-            title=f"{mon_weight}{unit_weight}",
+            title=mon_weight,
             label_id="weight",
             font_size=self.font_type.biggest,
             align=locals.ALIGN_LEFT,
@@ -212,7 +214,7 @@ class MonsterInfoState(PygameMenuState):
         lab4.translate(fxw(122 / 256), fxh(34.8 / 144))
         # height
         lab5: Any = menu.add.label(
-            title=f"{mon_height}{unit_height}",
+            title=mon_height,
             label_id="height",
             font_size=self.font_type.biggest,
             align=locals.ALIGN_LEFT,
@@ -383,7 +385,12 @@ class MonsterInfoState(PygameMenuState):
             taste = lookup_tastes.get(slug.lower())
             if not taste or not taste.modifiers:
                 return None
-            return taste.modifiers[0].attribute
+
+            for modifier in taste.modifiers:
+                if modifier.attribute == "stat" and modifier.values:
+                    return modifier.values[0]
+
+            return None
 
         # Warm taste gives +10%
         warm_stat = get_stat_for_taste(monster.taste_warm)

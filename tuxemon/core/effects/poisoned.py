@@ -42,7 +42,7 @@ class PoisonedEffect(CoreEffect):
         self, session: Session, status: Status
     ) -> StatusEffectResult:
         poisoned: bool = False
-        host = status.get_host()
+        host = status.host
         params = {"target": host.name, "method": status.name}
         if status.has_phase(EffectPhase.PERFORM_STATUS):
             damage = host.hp / self.divisor

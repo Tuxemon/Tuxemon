@@ -156,7 +156,7 @@ def calculate_money(loser: Monster, winner: Monster) -> int:
     """
     Calculate money to be awarded using a default method or custom methods.
     """
-    held_item = winner.held_item.get_item()
+    held_item = winner.held_item
 
     def default_method() -> int:
         return int(loser.level * loser.money_modifier)
@@ -256,7 +256,7 @@ def calculate_experience(
             else 0
         )
 
-        held_item = winner.held_item.get_item()
+        held_item = winner.held_item
         if held_item and held_item.slug == ExperienceMethod.XP_FEEDER.value:
             participant_exp = item_holder_exp
 
@@ -294,7 +294,7 @@ def calculate_experience(
         ExperienceMethod.XP_FEEDER.value: feeder_method,
     }
 
-    held_item = winner.held_item.get_item()
+    held_item = winner.held_item
     if held_item:
         if held_item.slug == ExperienceMethod.XP_TRANSMITTER.value:
             return methods[ExperienceMethod.XP_TRANSMITTER.value]()

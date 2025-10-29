@@ -36,7 +36,7 @@ class ConfusedEffect(CoreEffect):
         self, session: Session, status: Status
     ) -> StatusEffectResult:
         CONFUSED_KEY = self.name
-        host = status.get_host()
+        host = status.host
         var = session.client.combat_session.get_variable(CONFUSED_KEY)
 
         if not 0 <= self.chance <= 1:

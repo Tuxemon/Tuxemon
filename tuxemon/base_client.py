@@ -25,6 +25,7 @@ from tuxemon.map.collision_manager import CollisionManager
 from tuxemon.map.map_loader import MapLoader
 from tuxemon.map.map_manager import MapManager
 from tuxemon.map.map_transition import MapTransition
+from tuxemon.map.map_view import AbstractRenderer, NullRenderer
 from tuxemon.movement import MovementManager, Pathfinder
 from tuxemon.networking import NetworkManager
 from tuxemon.npc_manager import NPCManager
@@ -150,6 +151,7 @@ class BaseClient(ABC):
             self.npc_manager,
             self.state_manager,
         )
+        self._map_renderer: AbstractRenderer = NullRenderer()
 
         # Various Sessions
         self.park_session = ParkSession()
@@ -158,6 +160,10 @@ class BaseClient(ABC):
     @property
     def is_running(self) -> bool:
         return self.state == ClientState.RUNNING
+
+    @property
+    def map_renderer(self) -> AbstractRenderer:
+        return self._map_renderer
 
     def on_state_change(self) -> None:
         logger.debug("State change detected. Resetting controls.")
@@ -196,6 +202,10 @@ class BaseClient(ABC):
         if map_path is None:
             raise ValueError("Name of the map requested when no map is active")
         return Path(map_path).name
+
+    def set_renderer(self, renderer: AbstractRenderer) -> None:
+        """Assigns a custom renderer to the client."""
+        self._map_renderer = renderer
 
     @abstractmethod
     def main(self) -> None:

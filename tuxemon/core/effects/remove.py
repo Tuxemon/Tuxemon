@@ -48,7 +48,7 @@ class RemoveEffect(CoreEffect):
                 objectives, user, target
             )
             for monster in monsters:
-                current_status = monster.status.get_current_status()
+                current_status = monster.status.current_status
                 if self.status == "all":
                     monster.status.clear_status(session)
                 elif (

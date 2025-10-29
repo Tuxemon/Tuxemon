@@ -198,7 +198,6 @@ def _handle_win(
             winner.battle_handler.record_battle(
                 opponent=loser.slug,
                 outcome=OutputBattle.won,
-                steps=int(winner.steps),
                 location=location,
                 turns=turns,
             )
@@ -250,7 +249,6 @@ def _handle_loss(
             loser.battle_handler.record_battle(
                 opponent=winner.slug,
                 outcome=OutputBattle.lost,
-                steps=int(winner.steps),
                 location=location,
                 turns=turns,
             )
@@ -277,7 +275,6 @@ def _handle_draw(
             player.battle_handler.record_battle(
                 opponent=player_defeated.slug,
                 outcome=OutputBattle.draw,
-                steps=int(player_defeated.steps),
                 location=location,
                 turns=turns,
             )

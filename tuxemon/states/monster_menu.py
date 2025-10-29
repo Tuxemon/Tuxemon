@@ -312,7 +312,7 @@ class MonsterMenuHandler:
                     )
                 )
 
-            if mon.held_item.item:
+            if mon.held_item:
                 options.append(
                     ChoiceOption(
                         key="item",
@@ -386,7 +386,7 @@ class HeldItemDisplay:
                 (T.translate("ranged"), monster.ranged),
                 (T.translate("speed"), monster.speed),
             ]
-            if monster.held_item.item:
+            if monster.held_item:
                 stats.append((T.translate("menu_item"), T.translate("yes")))
             else:
                 stats.append((T.translate("menu_item"), T.translate("no")))

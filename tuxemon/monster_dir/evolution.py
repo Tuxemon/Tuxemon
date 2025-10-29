@@ -212,7 +212,7 @@ class Evolution:
 
         # Check if the monster is holding the required item for evolution
         if evolution_item.held_item is not None:
-            held_item = self.monster.held_item.get_item()
+            held_item = self.monster.held_item
             conditions.append(
                 held_item is not None
                 and held_item.slug == evolution_item.held_item

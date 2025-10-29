@@ -22,14 +22,13 @@ from tuxemon.event.eventparser import EventParser
 from tuxemon.graphics import scaled_image_loader
 from tuxemon.lib.bresenham import bresenham
 from tuxemon.map.map import (
-    RegionProperties,
     angle_of_points,
-    extract_region_properties,
     orientation_by_angle,
     point_to_grid,
     snap_rect,
     tiles_inside_rect,
 )
+from tuxemon.map.map_region import RegionProperties, extract_region_properties
 from tuxemon.map.map_tuxemon import TuxemonMap
 from tuxemon.tools import copy_dict_with_keys
 

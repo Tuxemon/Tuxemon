@@ -82,7 +82,7 @@
   "weight": 302,
   "sounds": {
     "combat_call": "sound_whistle",
-    "faint_call": "sound_whistle"
+    "faint_call": "sound_whistle_faint"
   },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.9,

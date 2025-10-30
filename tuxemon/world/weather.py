@@ -34,11 +34,14 @@ class Wind(str, Enum):
     stormy = "stormy"
 
 
-def load_weather_previsions(filepath: Path) -> WeatherPrevisionModel:
+def load_weather_transition_rules(
+    filepath: Path,
+) -> WeatherTransitionRulesModel:
+    """Loads and validates the weather transition rules from a YAML file."""
     try:
         with filepath.open() as file:
             data = yaml.safe_load(file)
-            return WeatherPrevisionModel(**data)
+            return WeatherTransitionRulesModel(**data)
     except FileNotFoundError:
         logger.error(f"Config file not found: {filepath}")
         raise
@@ -46,11 +49,16 @@ def load_weather_previsions(filepath: Path) -> WeatherPrevisionModel:
         logger.error(f"Error parsing YAML file: {exc}")
         raise
     except Exception as exc:
-        logger.error(f"Error loading WeatherPrevisionModel: {exc}")
+        logger.error(f"Error loading WeatherTransitionRulesModel: {exc}")
         raise
 
 
-class WeatherPrevision(BaseModel):
+class WeatherTransitionRule(BaseModel):
+    """
+    Defines a rule for transitioning from a current weather state to a next one,
+    including probability and duration constraints.
+    """
+
     next_slug: str = Field(
         ..., description="The weather slug to transition to."
     )
@@ -73,8 +81,13 @@ class WeatherPrevision(BaseModel):
     )
 
 
-class WeatherPrevisionModel(BaseModel):
-    previsions: dict[str, list[WeatherPrevision]]
+class WeatherTransitionRulesModel(BaseModel):
+    """
+    A model holding the complete set of weather transition rules, keyed by
+    the current weather slug.
+    """
+
+    transitions: dict[str, list[WeatherTransitionRule]]
 
     @model_validator(mode="after")
     def check_cumulative_chance(self) -> Any:
@@ -82,8 +95,8 @@ class WeatherPrevisionModel(BaseModel):
         Custom validator to ensure the total transition chance for any given
         starting weather does not exceed 1.0 (100%).
         """
-        for current_slug, transitions in self.previsions.items():
-            total_chance = sum(p.trigger_chance for p in transitions)
+        for current_slug, rules in self.transitions.items():
+            total_chance = sum(p.trigger_chance for p in rules)
             if total_chance > 1.0 + 1e-6:
                 raise ValueError(
                     f"Cumulative trigger chance for weather '{current_slug}' "
@@ -93,8 +106,8 @@ class WeatherPrevisionModel(BaseModel):
 
     @model_validator(mode="after")
     def check_duration_bounds(self) -> Any:
-        for transitions in self.previsions.values():
-            for p in transitions:
+        for rules in self.transitions.values():
+            for p in rules:
                 if (
                     p.min_duration_seconds is not None
                     and p.max_duration_seconds is not None
@@ -108,22 +121,24 @@ class WeatherPrevisionModel(BaseModel):
 
 class WorldWeatherManager:
     """
-    Manages the global weather state, holding the validated Pydantic prevision model.
+    Manages the global weather state, holding the validated Pydantic transition rules model.
     """
 
     def __init__(
         self,
         initial_slug: str = "sunny",
-        previsions_model: Optional[WeatherPrevisionModel] = None,
+        rules_model: Optional[WeatherTransitionRulesModel] = None,
     ) -> None:
         self._current_weather: Optional[Weather] = None
         self.start_timestamp: float = time.time()
-        self._previsions_model: Optional[WeatherPrevisionModel] = None
-        self._last_transition: Optional[WeatherPrevision] = None
+        self._transition_rules_model: Optional[WeatherTransitionRulesModel] = (
+            None
+        )
+        self._last_transition_rule: Optional[WeatherTransitionRule] = None
         self.transition_history: list[tuple[str, str, float]] = []
 
-        if previsions_model:
-            self.load_previsions_model(previsions_model)
+        if rules_model:
+            self.load_rules_model(rules_model)
 
         self.set_weather(initial_slug)
 
@@ -136,27 +151,27 @@ class WorldWeatherManager:
         return self._current_weather.slug if self._current_weather else None
 
     @property
-    def last_transition(self) -> Optional[WeatherPrevision]:
-        return self._last_transition
+    def last_transition(self) -> Optional[WeatherTransitionRule]:
+        return self._last_transition_rule
 
     @property
     def elapsed_time(self) -> float:
         return time.time() - self.start_timestamp
 
-    def load_previsions_model(self, model: WeatherPrevisionModel) -> None:
-        self._previsions_model = model
+    def load_rules_model(self, model: WeatherTransitionRulesModel) -> None:
+        self._transition_rules_model = model
         logger.info(
-            f"Loaded prevision model with {len(model.previsions)} weather states."
+            f"Loaded transition rules model with {len(model.transitions)} weather states."
         )
 
     def set_weather(
-        self, slug: str, transition: Optional[WeatherPrevision] = None
+        self, slug: str, rule: Optional[WeatherTransitionRule] = None
     ) -> bool:
         new_weather = Weather(slug)
         if new_weather.slug:
             self._current_weather = new_weather
             self.start_timestamp = time.time()
-            self._last_transition = transition
+            self._last_transition_rule = rule
             logger.info(f"Weather set to: {self._current_weather.slug}")
             return True
         else:
@@ -164,41 +179,42 @@ class WorldWeatherManager:
             return False
 
     def advance_turn(self) -> None:
-        if not self._current_weather or not self._previsions_model:
+        if not self._current_weather or not self._transition_rules_model:
             return
 
         current_slug = self._current_weather.slug
         elapsed = time.time() - self.start_timestamp
 
-        if current_slug in self._previsions_model.previsions:
+        if current_slug in self._transition_rules_model.transitions:
             eligible = [
-                p
-                for p in self._previsions_model.previsions[current_slug]
-                if p.min_duration_seconds is not None
-                and elapsed >= p.min_duration_seconds
+                r
+                for r in self._transition_rules_model.transitions[current_slug]
+                if r.min_duration_seconds is not None
+                and elapsed >= r.min_duration_seconds
                 and (
-                    p.max_duration_seconds is None
-                    or elapsed <= p.max_duration_seconds
+                    r.max_duration_seconds is None
+                    or elapsed <= r.max_duration_seconds
                 )
             ]
 
             if eligible:
                 total_transition_chance = sum(
-                    p.trigger_chance for p in eligible
+                    r.trigger_chance for r in eligible
                 )
                 no_change_chance = max(0.0, 1.0 - total_transition_chance)
 
-                outcomes = eligible + [
-                    WeatherPrevision(
-                        next_slug=current_slug,
-                        trigger_chance=no_change_chance,
-                        min_duration_seconds=0,
-                        max_duration_seconds=0,
-                        temperature=None,
-                        wind=None,
-                    )
-                ]
-                weights = [p.trigger_chance for p in outcomes]
+                # Create a temporary rule for "no change" to be included in random selection
+                no_change_rule = WeatherTransitionRule(
+                    next_slug=current_slug,
+                    trigger_chance=no_change_chance,
+                    min_duration_seconds=0,
+                    max_duration_seconds=0,
+                    temperature=None,
+                    wind=None,
+                )
+
+                outcomes = eligible + [no_change_rule]
+                weights = [r.trigger_chance for r in outcomes]
 
                 chosen = random.choices(outcomes, weights=weights, k=1)[0]
 
@@ -206,7 +222,7 @@ class WorldWeatherManager:
                     logger.info(
                         f"Transition triggered from '{current_slug}' to '{chosen.next_slug}'"
                     )
-                    self.set_weather(chosen.next_slug, transition=chosen)
+                    self.set_weather(chosen.next_slug, rule=chosen)
                     self.transition_history.append(
                         (current_slug, chosen.next_slug, time.time())
                     )

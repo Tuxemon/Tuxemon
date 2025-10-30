@@ -9,7 +9,10 @@ from typing import Optional, final
 from tuxemon.constants import paths
 from tuxemon.event.eventaction import EventAction
 from tuxemon.session import Session
-from tuxemon.world.weather import WorldWeatherManager, load_weather_previsions
+from tuxemon.world.weather import (
+    WorldWeatherManager,
+    load_weather_transition_rules,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -40,7 +43,7 @@ class LoadWeatherAction(EventAction):
         else:
             yaml_path = paths.mods_folder / self.model_file
 
-        prevision_model = load_weather_previsions(yaml_path)
-        manager = WorldWeatherManager(previsions_model=prevision_model)
+        rules_model = load_weather_transition_rules(yaml_path)
+        manager = WorldWeatherManager(rules_model=rules_model)
         session.client.weather_manager = manager
         logger.info("Weather manager initialized and registered in session.")

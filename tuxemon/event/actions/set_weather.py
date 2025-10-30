@@ -36,22 +36,22 @@ class SetWeatherAction(EventAction):
         manager = session.client.weather_manager
 
         if self.slug:
-            transition = None
+            rule = None
             current_slug = manager.current_slug
-            model = manager._previsions_model
+            model = manager._transition_rules_model
 
-            if model and current_slug in model.previsions:
-                for p in model.previsions[current_slug]:
+            if model and current_slug in model.transitions:
+                for p in model.transitions[current_slug]:
                     if p.next_slug == self.slug:
-                        transition = p
+                        rule = p
                         break
 
-            success = manager.set_weather(self.slug, transition=transition)
+            success = manager.set_weather(self.slug, rule=rule)
             if success:
                 logger.info(f"Weather manually set to '{self.slug}'.")
-                if transition:
+                if rule:
                     logger.info(
-                        f"Metadata: temperature={transition.temperature}, wind={transition.wind}"
+                        f"Metadata: temperature={rule.temperature}, wind={rule.wind}"
                     )
             else:
                 logger.warning(

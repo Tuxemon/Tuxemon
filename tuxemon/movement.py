@@ -368,6 +368,10 @@ class Pathfinder:
         if tile_data is None:
             return False
 
+        # Check if tile is blocked by entity
+        if tile_data.entity is not None:
+            return False
+
         # Check if the reversed direction is in the tile's allowed entry directions.
         return pairs(direction) in tile_data.enter_from
 

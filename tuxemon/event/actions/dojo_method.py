@@ -6,7 +6,6 @@ import logging
 from dataclasses import dataclass
 from functools import partial
 from typing import TYPE_CHECKING, final
-from uuid import UUID
 
 from tuxemon.db import EvolutionStage
 from tuxemon.event import get_monster_by_iid
@@ -14,7 +13,7 @@ from tuxemon.event.eventaction import EventAction
 from tuxemon.locale import T
 from tuxemon.monster import Monster
 from tuxemon.technique.technique import Technique
-from tuxemon.tools import open_choice_dialog
+from tuxemon.tools import get_valid_uuid, open_choice_dialog
 from tuxemon.ui.menu_options import ChoiceOption, MenuOptions
 
 if TYPE_CHECKING:
@@ -49,7 +48,13 @@ class DojoMethodAction(EventAction):
     def start(self, session: Session) -> None:
         self.client = session.client
         player = session.player
-        monster_id = UUID(player.game_variables.get(self.variable_name))
+
+        monster_id = get_valid_uuid(player.game_variables, self.variable_name)
+        if monster_id is None:
+            logger.info(
+                f"No valid monster selected for variable '{self.variable_name}'"
+            )
+            return  # Exit early if no valid UUID
 
         monster = get_monster_by_iid(session, monster_id)
         if monster is None:

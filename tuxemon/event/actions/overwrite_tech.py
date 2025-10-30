@@ -5,10 +5,10 @@ from __future__ import annotations
 import logging
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, final
-from uuid import UUID
 
 from tuxemon.event.eventaction import EventAction
 from tuxemon.technique.technique import Technique
+from tuxemon.tools import get_valid_uuid
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
@@ -67,11 +67,12 @@ class OverwriteTechAction(EventAction):
 
     def start(self, session: Session) -> None:
         player = session.player
-        if not player.game_variables.has(self.removed):
-            logger.error(f"Game variable '{self.removed}' not found")
-            return
-
-        tech_id = UUID(player.game_variables.get(self.removed))
+        tech_id = get_valid_uuid(player.game_variables, self.removed)
+        if tech_id is None:
+            logger.info(
+                f"No valid tech selected for variable '{self.removed}'"
+            )
+            return  # Exit early if no valid UUID
 
         for monster in player.monsters:
             technique = monster.moves.find_tech_by_id(tech_id)

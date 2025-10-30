@@ -5,12 +5,12 @@ from __future__ import annotations
 import logging
 from dataclasses import dataclass
 from typing import final
-from uuid import UUID
 
 from tuxemon.event import get_monster_by_iid
 from tuxemon.event.actions.common import CommonAction
 from tuxemon.event.eventaction import EventAction
 from tuxemon.session import Session
+from tuxemon.tools import get_valid_uuid
 
 logger = logging.getLogger(__name__)
 
@@ -39,11 +39,12 @@ class SetMonsterAttributeAction(EventAction):
 
     def start(self, session: Session) -> None:
         player = session.player
-        if not player.game_variables.has(self.variable):
-            logger.error(f"Game variable {self.variable} not found")
-            return
-
-        monster_id = UUID(player.game_variables.get(self.variable))
+        monster_id = get_valid_uuid(player.game_variables, self.variable)
+        if monster_id is None:
+            logger.info(
+                f"No valid monster selected for variable '{self.variable}'"
+            )
+            return  # Exit early if no valid UUID
         monster = get_monster_by_iid(session, monster_id)
         if monster is None:
             monster = player.monster_boxes.get_monsters_by_iid(monster_id)

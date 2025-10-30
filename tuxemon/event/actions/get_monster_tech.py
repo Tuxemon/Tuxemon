@@ -5,14 +5,13 @@ from __future__ import annotations
 import logging
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Optional, final
-from uuid import UUID
 
 from tuxemon.db import Comparison, Range
 from tuxemon.event import get_monster_by_iid
 from tuxemon.event.eventaction import EventAction
 from tuxemon.menu.interface import MenuItem
 from tuxemon.states.technique_menu import TechniqueMenuState
-from tuxemon.tools import compare, parse_flag
+from tuxemon.tools import compare, get_valid_uuid, parse_flag
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
@@ -133,12 +132,12 @@ class GetMonsterTechAction(EventAction):
         self.choose = False
         player = session.player
 
-        if not player.game_variables.has(self.monster_id):
-            logger.error(f"Game variable {self.monster_id} not found")
-            return
-        monster_id = UUID(
-            player.game_variables.get(self.monster_id),
-        )
+        monster_id = get_valid_uuid(player.game_variables, self.monster_id)
+        if monster_id is None:
+            logger.info(
+                f"No valid monster selected for variable '{self.monster_id}'"
+            )
+            return  # Exit early if no valid UUID
         monster = get_monster_by_iid(self.session, monster_id)
         if monster is None:
             logger.error(f"Monster not found")

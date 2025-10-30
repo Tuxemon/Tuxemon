@@ -26,6 +26,7 @@ from typing import (
     TypeVar,
     Union,
 )
+from uuid import UUID
 
 from tuxemon import prepare
 from tuxemon.compat.rect import ReadOnlyRect
@@ -41,6 +42,7 @@ if TYPE_CHECKING:
     from pygame.rect import Rect
 
     from tuxemon.client import LocalPygameClient
+    from tuxemon.game_variables import ScopeVariablesManager
     from tuxemon.item.item import Item
     from tuxemon.session import Session
     from tuxemon.sprite import Sprite
@@ -173,6 +175,27 @@ def safe_enum_value(
             f"Invalid value for {enum_class.__name__}: {value!r}, using default: {default}"
         )
         return default
+
+
+def get_valid_uuid(
+    game_variables: ScopeVariablesManager, variable_name: str
+) -> Optional[UUID]:
+    """Safely retrieves a valid UUID from game variables."""
+    raw_value: Union[str, None] = game_variables.get(variable_name)
+
+    if raw_value in ("no_choice", "no_options", None):
+        logger.info(
+            f"Monster selection result for '{variable_name}': {raw_value}"
+        )
+        return None
+
+    try:
+        return UUID(str(raw_value))
+    except (ValueError, TypeError) as e:
+        logger.warning(
+            f"Invalid UUID format for '{variable_name}': {raw_value} ({e})"
+        )
+        return None
 
 
 def fix_measure(measure: int, percentage: float) -> int:

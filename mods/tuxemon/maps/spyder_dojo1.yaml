@@ -198,6 +198,7 @@ events:
     - modify_money player,-500
     conditions:
     - is variable_set student1_yn:yes
+    - not variable_set potion_xiang:no_choice
     type: event
   Talk Student2 Money:
     actions:
@@ -233,6 +234,7 @@ events:
     - modify_money player,-500
     conditions:
     - is variable_set student2_yn:yes
+    - not variable_set potion_xiang:no_choice
     type: event
   Talk Xiang No Money:
     actions:

@@ -4,10 +4,10 @@ from __future__ import annotations
 
 import logging
 import math
-import uuid
 from collections.abc import Callable, Sequence
 from functools import partial
 from typing import TYPE_CHECKING, Any, ClassVar, Optional
+from uuid import UUID
 
 import pygame_menu
 from pygame_menu import locals
@@ -135,7 +135,7 @@ class ItemTakeState(PygameMenuState):
         )
 
         def locker_options(instance_id: str) -> None:
-            iid = uuid.UUID(instance_id)
+            iid = UUID(instance_id)
             itm = self.item_boxes.get_items_by_iid(iid)
             if itm is None:
                 logger.error(f"Item {iid} not found")

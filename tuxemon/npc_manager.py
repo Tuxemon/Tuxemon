@@ -2,9 +2,9 @@
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-import uuid
 from collections.abc import Mapping, Sequence
 from typing import TYPE_CHECKING, Any, Optional
+from uuid import UUID
 
 from tuxemon import networking
 
@@ -45,12 +45,12 @@ class NPCManager:
     def get_npc_off_map(self, slug: str) -> Optional[NPC]:
         return self.npcs_off_map.get(slug)
 
-    def get_npc_by_iid(self, iid: uuid.UUID) -> Optional[NPC]:
+    def get_npc_by_iid(self, iid: UUID) -> Optional[NPC]:
         return next(
             (npc for npc in self.npcs.values() if npc.instance_id == iid), None
         )
 
-    def get_npc_off_map_by_iid(self, iid: uuid.UUID) -> Optional[NPC]:
+    def get_npc_off_map_by_iid(self, iid: UUID) -> Optional[NPC]:
         return next(
             (
                 npc
@@ -104,7 +104,7 @@ class NPCManager:
             monster for npc in self.npcs.values() for monster in npc.monsters
         ]
 
-    def get_monster_by_iid(self, iid: uuid.UUID) -> Optional[Monster]:
+    def get_monster_by_iid(self, iid: UUID) -> Optional[Monster]:
         return next(
             (
                 monster

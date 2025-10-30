@@ -7,7 +7,6 @@ import random
 import re
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, final
-from uuid import UUID
 
 from tuxemon import formula
 from tuxemon.db import Acquisition, EvolutionStage, StatType
@@ -17,7 +16,7 @@ from tuxemon.locale import T
 from tuxemon.monster import Monster
 from tuxemon.taste import Taste
 from tuxemon.time_handler import today_ordinal
-from tuxemon.tools import open_dialog
+from tuxemon.tools import get_valid_uuid, open_dialog
 
 if TYPE_CHECKING:
     from tuxemon.session import Session
@@ -54,8 +53,21 @@ class SpawnMonsterAction(EventAction):
 
     def start(self, session: Session) -> None:
         player = session.player
-        mother_id = UUID(player.game_variables.get("breeding_mother"))
-        father_id = UUID(player.game_variables.get("breeding_father"))
+
+        mother_id = get_valid_uuid(player.game_variables, "breeding_mother")
+        father_id = get_valid_uuid(player.game_variables, "breeding_father")
+
+        if not mother_id or not father_id:
+            missing = []
+            if not mother_id:
+                missing.append("breeding_mother")
+            if not father_id:
+                missing.append("breeding_father")
+
+            logger.info(
+                f"No valid monster selected for variable(s): {', '.join(missing)}"
+            )
+            return  # Exit early if either UUID is invalid
 
         mother = get_monster_by_iid(
             session, mother_id

@@ -5,12 +5,12 @@ from __future__ import annotations
 import logging
 from dataclasses import dataclass
 from typing import final
-from uuid import UUID
 
 from tuxemon.db import LearningMethod
 from tuxemon.event import get_monster_by_iid
 from tuxemon.event.eventaction import EventAction
 from tuxemon.session import Session
+from tuxemon.tools import get_valid_uuid
 
 logger = logging.getLogger(__name__)
 
@@ -44,11 +44,13 @@ class LearnTechByMethodAction(EventAction):
     def start(self, session: Session) -> None:
         player = session.player
 
-        if not player.game_variables.has(self.monster_var):
-            logger.error(f"Monster variable '{self.monster_var}' not found")
-            return
+        monster_id = get_valid_uuid(player.game_variables, self.monster_var)
+        if monster_id is None:
+            logger.info(
+                f"No valid monster selected for variable '{self.monster_var}'"
+            )
+            return  # Exit early if no valid UUID
 
-        monster_id = UUID(player.game_variables.get(self.monster_var))
         monster = get_monster_by_iid(session, monster_id)
 
         if monster is None:

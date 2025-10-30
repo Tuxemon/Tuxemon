@@ -176,6 +176,7 @@ class EffectPhase(Enum):
     PERFORM_TECH = "perform_tech"
     PRE_CHECKING = "pre_checking"
     SWAP_MONSTER = "swap_monster"
+    ON_STEP_INTERVAL = "on_step_interval"
 
 
 class Acquisition(str, Enum):
@@ -1402,6 +1403,10 @@ class StatusModel(BaseModel, BaseLookupModel):
     step_interval: int = Field(
         0,
         description="The number of steps between out-of-battle effect triggers.",
+    )
+    step_damage: int = Field(
+        0,
+        description="The amount of HP lost each time the out-of-battle effect triggers.",
     )
     modifiers: list[Modifier] = Field(..., description="Various modifiers")
 

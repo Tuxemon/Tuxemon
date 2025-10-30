@@ -10,7 +10,9 @@
       "source": "poison immunity"
     }
   ],
-  "behaviors": {},
+  "behaviors": {
+    "persists_after_combat": true
+  },
   "category": "negative",
   "effects": [
     {
@@ -25,6 +27,8 @@
   "icon": "gfx/ui/icons/status/icon_poison.png",
   "on_positive_status": "replaced",
   "on_negative_status": "replaced",
+  "step_damage": 1,
+  "step_interval": 10,
   "sfx": "sfx_pulse",
   "slug": "poison",
   "sort": "meta",

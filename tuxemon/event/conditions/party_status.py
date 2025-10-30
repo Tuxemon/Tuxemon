@@ -44,7 +44,7 @@ class PartyStatusCondition(EventCondition):
         count = sum(
             1
             for m in character.monsters
-            if (current_status := m.status.get_current_status()) is not None
+            if (current_status := m.status.current_status) is not None
             and current_status.slug == _status_name
         )
         return compare(_operator, count, int(_value))

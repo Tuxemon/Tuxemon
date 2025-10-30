@@ -7,6 +7,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING, Optional, final
 from uuid import UUID
 
+from tuxemon.db import EffectPhase
 from tuxemon.event import get_monster_by_iid
 from tuxemon.event.eventaction import EventAction
 
@@ -46,43 +47,35 @@ class TriggerStatusAction(EventAction):
     def start(self, session: Session) -> None:
         player = session.player
 
-        if self.variable is None:
-            monsters = player.monsters
-        else:
+        if self.variable is not None:
             variable = self.variable
             if not player.game_variables.has(variable):
                 return
 
             monster_id = UUID(player.game_variables.get(variable))
-            monster = get_monster_by_iid(session, monster_id)
+            monster = get_monster_by_iid(
+                session, monster_id
+            ) or player.monster_boxes.get_monsters_by_iid(monster_id)
             if monster is None:
-                monster = player.monster_boxes.get_monsters_by_iid(monster_id)
-                if monster is None:
-                    logger.error("Monster not found")
-                    return
+                logger.error("Monster not found")
+                return
             monsters = [monster]
+        else:
+            monsters = player.monsters
 
         if not monsters:
             return
 
         monsters_with_status = [
-            m for m in monsters if m.status.get_current_status() is not None
+            m for m in monsters if m.status.current_status is not None
         ]
         if not monsters_with_status:
             return
 
         for monster in monsters_with_status:
-            status = monster.status.get_current_status()
+            status = monster.status.current_status
             if status is None:
                 continue
 
-
-#            if self.status_name is None or status.slug == self.status_name:
-#                output = status.use(session, EffectPhase.PERFORM_STATUS)
-#                if output.success:
-#                    player.step_tracker.add_tracker(
-#                        self.status_name or self.name,
-#                        StepTracker(
-#                            steps=player.steps, countdown=10, milestones=[]
-#                        ),
-#                    )
+            if self.status_name is None or status.slug == self.status_name:
+                status.use(session, EffectPhase.PERFORM_STATUS)

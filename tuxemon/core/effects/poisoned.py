@@ -55,5 +55,8 @@ class PoisonedEffect(CoreEffect):
             else:
                 status.use_failure = T.format("combat_state_immune", params)
                 host.status.clear_status(session)
+        if status.has_phase(EffectPhase.ON_STEP_INTERVAL):
+            host.current_hp = max(0, host.current_hp - status.step_damage)
+            return StatusEffectResult(name=status.name, success=True)
 
         return StatusEffectResult(name=status.name, success=poisoned)

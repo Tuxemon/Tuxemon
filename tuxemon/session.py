@@ -40,7 +40,7 @@ class AbstractSession(ABC, Generic[ClientType]):
         self._client: Optional[ClientType] = None
         self._world: Optional[WorldState] = None
         self._player: Optional[Player] = None
-        self._session_state: SessionSave = {}
+        self._session_state: SessionSave = SessionSave()
 
     @property
     @abstractmethod
@@ -96,17 +96,17 @@ class AbstractSession(ABC, Generic[ClientType]):
         self._total_playtime += current_duration
         self._start_timestamp = time.time()
 
-        return {
-            "uuid": self._uuid.hex,
-            "start_time": self._start_time.strftime(TIME_FORMAT),
-            "duration": current_duration,
-            "total_playtime": self._total_playtime,
-        }
+        return SessionSave(
+            uuid=self._uuid.hex,
+            start_time=self._start_time.strftime(TIME_FORMAT),
+            duration=current_duration,
+            total_playtime=self._total_playtime,
+        )
 
     def set_state(self, save_data: SessionSave) -> None:
         """Restores session-level state from saved data."""
         self._session_state = save_data
-        self._total_playtime = save_data.get("total_playtime", 0.0)
+        self._total_playtime = save_data.total_playtime or 0.0
 
 
 class Session(AbstractSession["LocalPygameClient"]):
@@ -135,18 +135,19 @@ class Session(AbstractSession["LocalPygameClient"]):
 
     def load_state(self, save_data: SaveData) -> None:
         """
-        Loads the player, world, and other session-level states from a saved game dictionary.
+        Loads the player, world, and other session-level states from a saved game model.
         """
-        self.player.set_state(self, save_data.get("npc_state", NPCState()))
-        self.world.set_state(self, save_data.get("world_state", WorldSave()))
-        self.set_state(save_data.get("session_state", SessionSave()))
+        self.player.set_state(self, save_data.npc_state or NPCState())
+        self.world.set_state(self, save_data.world_state or WorldSave())
+        self.set_state(save_data.session_state or SessionSave())
 
     def save_state(self, index: int, slot: int) -> SaveData:
         """
         Saves the player, world, and other session-level states to a dictionary.
         """
         save_data = save.get_save_data(self)
-        save.save(save_data, index)
+        save_path = save.get_save_path(index)
+        save.save(save_data, save_path)
         save.slot_number = slot
 
         return save_data

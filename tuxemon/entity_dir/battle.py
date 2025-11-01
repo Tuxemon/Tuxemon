@@ -5,10 +5,13 @@ from __future__ import annotations
 import logging
 import time
 from collections.abc import Mapping, Sequence
-from typing import Any, Optional
+from typing import TYPE_CHECKING, Any, Optional
 
 from tuxemon.battle import Battle, decode_battle, encode_battle
 from tuxemon.db import OutputBattle
+
+if TYPE_CHECKING:
+    from tuxemon.save_state import NPCState
 
 logger = logging.getLogger(__name__)
 
@@ -133,15 +136,17 @@ class BattlesHandler:
         """Serializes battles into a savable format."""
         return encode_battle(self._battles)
 
-    def decode_battle(self, json_data: Optional[Mapping[str, Any]]) -> None:
+    def decode_battle(self, json_data: Optional[NPCState]) -> None:
         """Deserializes and loads battles from saved data."""
-        if json_data and "battles" in json_data:
-            decoded = decode_battle(json_data["battles"])
+        if json_data is None or json_data.battles is None:
+            return
 
-            for battle in decoded:
-                if battle.fighter == LEGACY_PLACEHOLDER:
-                    battle.fighter = self.character
-                if battle.opponent == LEGACY_PLACEHOLDER:
-                    battle.opponent = self.character
+        decoded = decode_battle(json_data.battles)
 
-            self._battles = decoded
+        for battle in decoded:
+            if battle.fighter == LEGACY_PLACEHOLDER:
+                battle.fighter = self.character
+            if battle.opponent == LEGACY_PLACEHOLDER:
+                battle.opponent = self.character
+
+        self._battles = decoded

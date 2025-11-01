@@ -84,7 +84,8 @@ class SaveMenuState(PopUpMenu[None]):
         slot_image = Surface(rect.size, SRCALPHA)
 
         # Load the save data
-        save_data = save.load(slot_num)
+        save_path = save.get_save_path(slot_num)
+        save_data = save.load(save_path)
         if not save_data:
             logger.critical(f"Save data not found for slot {slot_num}.")
             raise RuntimeError(
@@ -102,21 +103,22 @@ class SaveMenuState(PopUpMenu[None]):
         return slot_image
 
     def _get_thumbnail(self, save_data: SaveData, rect: Rect) -> Surface:
-        if "screenshot" in save_data:
-            screenshot = b64decode(save_data["screenshot"])
-            size = (
-                save_data["screenshot_width"],
-                save_data["screenshot_height"],
-            )
+        if (
+            save_data.screenshot is not None
+            and save_data.screenshot_width is not None
+            and save_data.screenshot_height is not None
+        ):
+            screenshot = b64decode(save_data.screenshot)
+            size = (save_data.screenshot_width, save_data.screenshot_height)
             thumb_image = frombuffer(screenshot, size, "RGB").convert()
             thumb_rect = thumb_image.get_rect().fit(rect)
             return smoothscale(thumb_image, thumb_rect.size)
-        else:
-            thumb_rect = rect.copy()
-            thumb_rect.width //= 5
-            thumb_image = Surface(thumb_rect.size)
-            thumb_image.fill(prepare.WHITE_COLOR)
 
+        # Fallback thumbnail if screenshot data is missing or incomplete
+        thumb_rect = rect.copy()
+        thumb_rect.width //= 5
+        thumb_image = Surface(thumb_rect.size)
+        thumb_image.fill(prepare.WHITE_COLOR)
         return thumb_image
 
     def _draw_slot_text(
@@ -134,18 +136,20 @@ class SaveMenuState(PopUpMenu[None]):
         )
 
         x = int(rect.width * 0.5)
-        draw_text(
-            slot_image,
-            save_data["npc_state"]["player_name"],
-            (x, 0, 500, 500),
-            font=self.font,
-        )
-        draw_text(
-            slot_image,
-            save_data["time"],
-            (x, 50, 500, 500),
-            font=self.font,
-        )
+        if save_data.npc_state and save_data.npc_state.player_name:
+            draw_text(
+                slot_image,
+                save_data.npc_state.player_name,
+                (x, 0, 500, 500),
+                font=self.font,
+            )
+        if save_data.time:
+            draw_text(
+                slot_image,
+                save_data.time,
+                (x, 50, 500, 500),
+                font=self.font,
+            )
 
     def save(self) -> None:
         self.client.event_engine.execute_action(
@@ -194,7 +198,8 @@ class SaveMenuState(PopUpMenu[None]):
             menu = MenuOptions(options)
             open_choice_dialog(self.client, menu, escape_key_exits=True)
 
-        save_data = save.load(self.selected_index + 1)
+        save_path = save.get_save_path(self.selected_index + 1)
+        save_data = save.load(save_path)
         if save_data:
             ask_confirmation()
         else:

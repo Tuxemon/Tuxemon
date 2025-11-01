@@ -17,6 +17,7 @@ if TYPE_CHECKING:
     from tuxemon.item.item import Item
     from tuxemon.monster import Monster
     from tuxemon.npc import NPC
+    from tuxemon.save_state import NPCState
 
 logger = logging.getLogger(__name__)
 
@@ -385,13 +386,13 @@ class ItemBoxes(BoxCollection):
             for box_id, items in self.item_boxes.items()
         }
 
-    def load(self, save_data: Mapping[str, Any]) -> None:
+    def load(self, save_data: NPCState) -> None:
         """
         Loads the item boxes from a saved state.
         """
+        item_boxes = save_data.item_boxes or {}
         self.item_boxes = {
-            box_id: decode_items(items)
-            for box_id, items in save_data.get("item_boxes", {}).items()
+            box_id: decode_items(items) for box_id, items in item_boxes.items()
         }
 
         for box_id, items in self.item_boxes.items():
@@ -563,15 +564,14 @@ class MonsterBoxes(BoxCollection):
             for box_id, monsters in self.monster_boxes.items()
         }
 
-    def load(self, char: NPC, save_data: Mapping[str, Any]) -> None:
+    def load(self, char: NPC, save_data: NPCState) -> None:
         """
         Loads the monster boxes from a saved state.
         """
         self.monster_boxes = {}
 
-        for box_id, encoded_monsters in save_data.get(
-            "monster_boxes", {}
-        ).items():
+        monster_boxes = save_data.monster_boxes or {}
+        for box_id, encoded_monsters in monster_boxes.items():
             monsters = decode_monsters(encoded_monsters)
             monster_count = len(monsters)
             logger.debug(

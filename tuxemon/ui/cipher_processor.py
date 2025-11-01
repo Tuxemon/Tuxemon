@@ -4,7 +4,10 @@ from __future__ import annotations
 
 import logging
 from collections.abc import Mapping
-from typing import Any, Optional
+from typing import TYPE_CHECKING, Any, Optional
+
+if TYPE_CHECKING:
+    from tuxemon.save_state import NPCState
 
 logger = logging.getLogger(__name__)
 
@@ -56,15 +59,19 @@ class CipherProcessor:
 
 
 def encode_cipher(unlocked_letters: set[str]) -> Mapping[str, Any]:
-    return {"unlocked_letters": list(unlocked_letters)}
+    return {
+        "unlocked_letters": {
+            letter.upper(): True for letter in unlocked_letters
+        }
+    }
 
 
-def decode_cipher(save_data: Mapping[str, Any]) -> set[str]:
+def decode_cipher(save_data: NPCState) -> set[str]:
     try:
-        letters = save_data.get("unlocked_letters", [])
+        letter_dict = save_data.unlocked_letters or {}
         return {
             str(letter).upper()
-            for letter in letters
+            for letter in letter_dict
             if isinstance(letter, str)
             and len(letter) == 1
             and letter.isalpha()

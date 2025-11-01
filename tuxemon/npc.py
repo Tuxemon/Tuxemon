@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import logging
 from collections.abc import Sequence
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING, Any, Optional
 
 from tuxemon.boxes import ItemBoxes, MonsterBoxes
 from tuxemon.db import DialogueProfile, Direction, NpcModel, db
@@ -23,6 +23,7 @@ from tuxemon.mission.manager import MissionManager
 from tuxemon.money.controller import MoneyController
 from tuxemon.monster import Monster
 from tuxemon.monster_dir.evolution_registry import EvolutionRegistry
+from tuxemon.prepare import PLAYER_NPC
 from tuxemon.relationship import (
     Relationships,
     decode_relationships,
@@ -148,7 +149,7 @@ class NPC(Entity[NPCState]):
             Dictionary containing all the information about the npc.
         """
 
-        state: NPCState = {
+        state: dict[str, Any] = {
             "current_map": session.client.get_map_name(),
             "facing": self.facing.value,
             "game_variables": self._variables.get_player_state(),
@@ -173,7 +174,7 @@ class NPC(Entity[NPCState]):
             "evolution_registry": self.evolution_registry.encode_registry(),
             "routing_policy": self.party.routing_policy.to_dict(),
         }
-        return state
+        return NPCState(**state)
 
     def set_state(self, session: Session, save_data: NPCState) -> None:
         """
@@ -183,36 +184,38 @@ class NPC(Entity[NPCState]):
             session: Game session.
             save_data: Data used to recreate the NPC.
         """
-        self.set_facing(Direction(save_data.get("facing", "down")))
-        self._variables.set_player_state(save_data["game_variables"])
-        self.tuxepedia = decode_tuxepedia(save_data["tuxepedia"])
-        self.relationships = decode_relationships(save_data["relationships"])
+        self.set_facing(Direction(save_data.facing or "down"))
+        self._variables.set_player_state(save_data.game_variables)
+        self.tuxepedia = decode_tuxepedia(save_data.tuxepedia)
+        self.relationships = decode_relationships(save_data.relationships)
         self.battle_handler.decode_battle(save_data)
         self.bag.decode_items(save_data)
         self.party.decode_party(save_data)
-        self.mission_controller.decode_missions(save_data.get("missions"))
-        self.slug = save_data["player_slug"]
-        self.name = save_data["player_name"]
-        self.steps = save_data["player_steps"]
+        self.mission_controller.decode_missions(save_data.missions)
+        self.slug = save_data.player_slug or PLAYER_NPC
+        self.name = save_data.player_name or "Player"
+        self.steps = save_data.player_steps or 0.0
         self.money_controller.load(save_data)
         self.unlocked_letters = decode_cipher(save_data)
-        self.evolution_registry.decode_registry(
-            save_data.get("evolution_registry", {})
-        )
+        self.evolution_registry.decode_registry(save_data.evolution_registry)
         self.monster_boxes.load(self, save_data)
         self.item_boxes.load(save_data)
 
         self.teleport_faint = TeleportFaint.from_dict(save_data)
 
-        self.tracker = decode_tracking(save_data.get("tracker", {}))
-        self.step_tracker = decode_steps(save_data.get("step_tracker", {}))
+        self.tracker = decode_tracking(save_data.tracker)
+        self.step_tracker = decode_steps(save_data.step_tracker)
         self.party.routing_policy_name = RoutingPolicy.from_dict(save_data)
 
-        _template = save_data["template"]
-        self.template.slug = _template["slug"]
-        self.template.sprite_name = _template["sprite_name"]
-        self.template.combat_front = _template["combat_front"]
-        self.sprite_controller.load_sprites(self.template)
+        if save_data.template:
+            self.template.slug = save_data.template.get("slug", "")
+            self.template.sprite_name = save_data.template.get(
+                "sprite_name", ""
+            )
+            self.template.combat_front = save_data.template.get(
+                "combat_front", ""
+            )
+            self.sprite_controller.load_sprites(self.template)
 
     def pathfind(self, destination: tuple[int, int]) -> None:
         self.path_controller.start_path(destination)

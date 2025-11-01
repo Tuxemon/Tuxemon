@@ -294,10 +294,6 @@ elif CONFIG.scaling:
 else:
     SCALE = 1
 
-# Reference user save dir
-SAVE_PATH = paths.USER_GAME_SAVE_DIR / "slot"
-SAVE_METHOD = "JSON"
-# SAVE_METHOD = "CBOR"
 
 DEV_TOOLS = CONFIG.dev_tools
 

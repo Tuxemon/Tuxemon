@@ -15,6 +15,7 @@ from tuxemon.monster import Monster, decode_monsters, encode_monsters
 
 if TYPE_CHECKING:
     from tuxemon.npc import NPC
+    from tuxemon.save_state import NPCState
 
 logger = logging.getLogger(__name__)
 
@@ -470,8 +471,8 @@ class PartyHandler:
     def encode_party(self) -> Sequence[Mapping[str, Any]]:
         return encode_monsters(self._monsters)
 
-    def decode_party(self, json_data: Optional[Mapping[str, Any]]) -> None:
+    def decode_party(self, json_data: Optional[NPCState]) -> None:
         self.clear_party()
-        if json_data and "monsters" in json_data:
-            for mon in decode_monsters(json_data["monsters"]):
+        if json_data and json_data.monsters is not None:
+            for mon in decode_monsters(json_data.monsters):
                 self.add_monster(mon, self.party_size)

@@ -14,6 +14,7 @@ from tuxemon.item.item import decode_items, encode_items
 if TYPE_CHECKING:
     from tuxemon.item.item import Item
     from tuxemon.npc import NPC
+    from tuxemon.save_state import NPCState
 
 
 logger = logging.getLogger(__name__)
@@ -153,6 +154,6 @@ class BagHandler:
     def encode_items(self) -> Sequence[Mapping[str, Any]]:
         return encode_items(self._items)
 
-    def decode_items(self, json_data: Optional[Mapping[str, Any]]) -> None:
-        if json_data and "items" in json_data:
-            self._items = [itm for itm in decode_items(json_data["items"])]
+    def decode_items(self, json_data: Optional[NPCState]) -> None:
+        if json_data and json_data.items is not None:
+            self._items = [itm for itm in decode_items(json_data.items)]

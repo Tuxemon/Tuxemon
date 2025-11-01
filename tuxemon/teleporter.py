@@ -18,6 +18,7 @@ if TYPE_CHECKING:
     from tuxemon.movement import MovementManager
     from tuxemon.npc import NPC
     from tuxemon.npc_manager import NPCManager
+    from tuxemon.save_state import NPCState
     from tuxemon.state.manager import StateManager
 
 logger = logging.getLogger(__name__)
@@ -30,8 +31,8 @@ class TeleportFaint:
     y: int = 0
 
     @classmethod
-    def from_dict(cls, data: Mapping[str, Any]) -> TeleportFaint:
-        raw = data.get("teleport_faint")
+    def from_dict(cls, data: NPCState) -> TeleportFaint:
+        raw = data.teleport_faint
 
         if raw is None:
             return cls()

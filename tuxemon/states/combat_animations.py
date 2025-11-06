@@ -310,26 +310,11 @@ class CombatAnimations(Menu[None], ABC):
             transition="out_quint",
         )
 
-    def calculate_bar_value(
-        self, total_experience: int, xp_start: int, xp_end: int
-    ) -> float:
-        """
-        Calculates normalized bar progress as a float between 0.0 and 1.0.
-        Prevents overflow/underflow visually.
-        """
-        return max(
-            0.0, min(1.0, (total_experience - xp_start) / (xp_end - xp_start))
-        )
-
     def animate_exp(self, monster: Monster) -> None:
         exp_bar = self.bars.get_exp_bar(monster)
 
         # Calculate the correct XP bar value for the current level
-        value_for_new_level = self.calculate_bar_value(
-            total_experience=monster.total_experience,
-            xp_start=monster.experience_required(),
-            xp_end=monster.experience_required(1),
-        )
+        value_for_new_level = monster.experience_progress_percent
 
         # Check if this monster should animate level-up transition
         if self.monsters_just_leveled_up.get(monster.slug, False):

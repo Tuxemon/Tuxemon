@@ -38,6 +38,7 @@ from tuxemon.state.manager import StateManager
 from tuxemon.state.repository import StateRepository
 from tuxemon.state.state import State
 from tuxemon.teleporter import Teleporter
+from tuxemon.world.weather import WorldWeatherManager
 
 if TYPE_CHECKING:
     from tuxemon.config import TuxemonConfig
@@ -155,6 +156,7 @@ class BaseClient(ABC):
 
         # Various Sessions
         self.park_session = ParkSession()
+        self.weather_manager = WorldWeatherManager()
         self.cipher_processor: Optional[CipherProcessor] = None
 
     @property

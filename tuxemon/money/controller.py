@@ -30,7 +30,7 @@ class MoneyController:
 
     def load(self, save_data: NPCState) -> None:
         """Recreates money manager from saved data."""
-        self.money_manager = decode_money(save_data["money"])
+        self.money_manager = decode_money(save_data.money or {})
 
     def transfer_money_to(self, amount: int, recipient: NPC) -> None:
         self.money_manager.remove_money(amount)

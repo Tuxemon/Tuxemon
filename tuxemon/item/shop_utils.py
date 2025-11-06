@@ -35,12 +35,12 @@ class TransactionManager:
             self.seller_manager.add_money(amount)
 
     def _adjust_inventory(self, npc: NPC, item: Item, quantity: int) -> None:
-        in_bag = npc.items.find_item(item.slug)
+        in_bag = npc.bag.find_item(item.slug)
         if in_bag:
             in_bag.increase_quantity(quantity)
         else:
             new_item = Item.create(item.slug)
-            npc.items.add_item(new_item, quantity)
+            npc.bag.add_item(new_item, quantity)
 
     def _adjust_monster_party(self, npc: NPC, monster: Monster) -> None:
         npc.party.insert_monster_to_party(monster)
@@ -59,7 +59,7 @@ class TransactionManager:
     def sell_item(
         self, seller: NPC, item: Item, quantity: int, amount: int
     ) -> None:
-        seller.items.remove_item(item, quantity)
+        seller.bag.remove_item(item, quantity)
         self._process_payment(amount * quantity, is_buying=False)
 
     def buy_monster(
@@ -106,9 +106,7 @@ def filter_inventory(buyer: NPC, seller: NPC, economy: Economy) -> list[Item]:
     # Player is selling — only show resellable items in player's bag
     else:
         inventory = [
-            item
-            for item in seller.items.get_items()
-            if item.behaviors.resellable
+            item for item in seller.items if item.behaviors.resellable
         ]
 
     return sorted(inventory, key=lambda x: x.name)

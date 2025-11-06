@@ -80,7 +80,7 @@ class PCMenuBuilder:
             )
 
         # Item box logic
-        if len(char.items.get_items()) == prepare.MAX_LOCKER:
+        if len(char.items) == prepare.MAX_LOCKER:
             item_storage_callback = partial(
                 open_dialog,
                 self.client,
@@ -94,7 +94,7 @@ class PCMenuBuilder:
         if char.item_boxes.get_all_items_visible():
             menu.append(("menu_item_storage", item_storage_callback))
 
-        if len(char.items.get_items()) > 1:
+        if len(char.items) > 1:
             menu.append(
                 (
                     "menu_item_dropoff",

@@ -5,11 +5,11 @@ from __future__ import annotations
 import logging
 from dataclasses import dataclass
 from typing import Optional, final
-from uuid import UUID
 
 from tuxemon.event import get_monster_by_iid
 from tuxemon.event.eventaction import EventAction
 from tuxemon.session import Session
+from tuxemon.tools import get_valid_uuid
 
 logger = logging.getLogger(__name__)
 
@@ -53,11 +53,13 @@ class GiveExperienceAction(EventAction):
         if self.variable is None:
             monsters = player.monsters
         else:
-            variable = self.variable
-            if not player.game_variables.has(variable):
-                return
+            monster_id = get_valid_uuid(player.game_variables, self.variable)
+            if monster_id is None:
+                logger.info(
+                    f"No valid monster selected for variable '{self.variable}'"
+                )
+                return  # Exit early if no valid UUID
 
-            monster_id = UUID(player.game_variables.get(variable))
             monster = get_monster_by_iid(session, monster_id)
             if monster is None:
                 monster = player.monster_boxes.get_monsters_by_iid(monster_id)

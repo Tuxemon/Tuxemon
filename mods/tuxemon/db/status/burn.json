@@ -18,7 +18,9 @@
       "source": "fire extra damage"
     }
   ],
-  "behaviors": {},
+  "behaviors": {
+    "persists_after_combat": true
+  },
   "category": "negative",
   "effects": [
     {
@@ -33,6 +35,8 @@
   "icon": "gfx/ui/icons/status/icon_burn.png",
   "on_positive_status": "replaced",
   "on_negative_status": "replaced",
+  "step_damage": 1,
+  "step_interval": 10,
   "sfx": "sfx_pulse",
   "slug": "burn",
   "sort": "meta",

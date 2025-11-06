@@ -161,7 +161,7 @@ class ShopItemSellMenuState(ShopItemMenuState):
                 self.seller, item, quantity, cost
             )
             self.reload_items()
-            if not self.seller.items.has_item(item.slug):
+            if not self.seller.bag.has_item(item.slug):
                 self.on_menu_selection_change()
 
         self.client.state_manager.push_state(

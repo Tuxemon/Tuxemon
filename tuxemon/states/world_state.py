@@ -67,21 +67,18 @@ class WorldState(State):
             self.client.set_renderer(renderer or NullRenderer())
 
     def get_state(self, session: Session) -> WorldSave:
-        """Returns a dictionary of the World to be saved."""
-        state: WorldSave = {
-            "factions_manager": self.faction_manager.set_state(
+        """Returns a WorldSave model representing the current world state."""
+        return WorldSave(
+            factions_manager=self.faction_manager.set_state(
                 self.client.npc_manager
             ),
-            "menu_flags": self.menu_manager.menu_flags.export(),
-        }
-        return state
+            menu_flags=self.menu_manager.menu_flags.export(),
+        )
 
     def set_state(self, session: Session, save_data: WorldSave) -> None:
         """Recreates the World from the provided saved data."""
-        self.faction_manager.get_state(save_data.get("factions_manager", {}))
-        self.menu_manager.menu_flags.import_flags(
-            save_data.get("menu_flags", {})
-        )
+        self.faction_manager.get_state(save_data.factions_manager)
+        self.menu_manager.menu_flags.import_flags(save_data.menu_flags)
 
     def register_input_handlers(self) -> None:
         self.input_handler = WorldInputHandler(

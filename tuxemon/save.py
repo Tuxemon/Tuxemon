@@ -14,10 +14,12 @@ from operator import itemgetter
 from pathlib import Path
 from typing import TYPE_CHECKING, Any, Optional, TypeVar
 
+import yaml
 from pygame.image import tobytes
 from pygame.surface import Surface
 
 from tuxemon import prepare
+from tuxemon.constants import paths
 from tuxemon.save_state import TIME_FORMAT, SaveData
 from tuxemon.save_upgrader import SAVE_VERSION, upgrade_save
 
@@ -27,7 +29,7 @@ if TYPE_CHECKING:
 try:
     import cbor
 except ImportError:
-    prepare.SAVE_METHOD = "JSON"
+    prepare.CONFIG.save_method = "json"
 
 
 T = TypeVar("T")
@@ -40,8 +42,9 @@ config = prepare.CONFIG
 
 
 class SaveMethod(Enum):
-    JSON = "JSON"
-    CBOR = "CBOR"
+    JSON = "json"
+    CBOR = "cbor"
+    YAML = "yaml"
 
     @classmethod
     def from_string(cls, method_str: str) -> SaveMethod:
@@ -74,26 +77,16 @@ def get_save_data(session: Session) -> SaveData:
     world_state = session.world.get_state(session)
     session_state = session.get_state()
 
-    return {
-        "screenshot": b64encode(tobytes(screenshot, "RGB")).decode(),
-        "screenshot_width": screenshot.get_width(),
-        "screenshot_height": screenshot.get_height(),
-        "time": datetime.now().strftime(TIME_FORMAT),
-        "version": SAVE_VERSION,
-        "npc_state": npc_state,
-        "world_state": world_state,
-        "session_state": session_state,
-    }
-
-
-def _get_save_extension() -> str:
-    save_format = config.compress_save
-    return "save" if save_format is None else f"csave.{save_format}"
-
-
-def get_save_path(slot: int) -> Path:
-    extension = _get_save_extension()
-    return prepare.SAVE_PATH.parent / f"slot{slot}.{extension}"
+    return SaveData(
+        screenshot=b64encode(tobytes(screenshot, "RGB")).decode(),
+        screenshot_width=screenshot.get_width(),
+        screenshot_height=screenshot.get_height(),
+        time=datetime.now().strftime(TIME_FORMAT),
+        version=SAVE_VERSION,
+        npc_state=npc_state,
+        world_state=world_state,
+        session_state=session_state,
+    )
 
 
 def save_action(
@@ -134,7 +127,7 @@ def save_action(
 
 
 def dump_data(
-    obj: Any,
+    obj: SaveData,
     path: Path,
     save_method: SaveMethod,
     compress_save: Optional[str] = None,
@@ -145,14 +138,22 @@ def dump_data(
         file: Any,
         serializer_kwargs: Mapping[str, Any],
     ) -> None:
+        serializable_obj = obj.model_dump()
         if save_method == SaveMethod.JSON:
-            json.dump(obj, file, **serializer_kwargs)
+            json.dump(serializable_obj, file, **serializer_kwargs)
         elif save_method == SaveMethod.CBOR:
-            cbor.dump(obj, file, **serializer_kwargs)
+            cbor.dump(serializable_obj, file, **serializer_kwargs)
+        elif save_method == SaveMethod.YAML:
+            yaml.dump(
+                serializable_obj,
+                file,
+                default_flow_style=False,
+                **serializer_kwargs,
+            )
         else:
             raise ValueError(f"Unsupported save method: {save_method}")
 
-    mode = "wt" if save_method == SaveMethod.JSON else "wb"
+    mode = "wt" if save_method in {SaveMethod.JSON, SaveMethod.YAML} else "wb"
 
     return save_action(
         path=path,
@@ -183,25 +184,39 @@ def load_data(
         compression_tool = importlib.import_module(compress_save)
         open_function = compression_tool.open
 
-    mode = "rt" if save_method == SaveMethod.JSON else "rb"
+    mode = "rt" if save_method in {SaveMethod.JSON, SaveMethod.YAML} else "rb"
 
     with open_function(
         path,
         mode=mode,
-        encoding="utf-8" if save_method == SaveMethod.JSON else None,
+        encoding=(
+            "utf-8"
+            if save_method in {SaveMethod.JSON, SaveMethod.YAML}
+            else None
+        ),
         **compression_kwargs,
     ) as file:
         if save_method == SaveMethod.JSON:
             return json.load(file, **serializer_kwargs)
         elif save_method == SaveMethod.CBOR:
             return cbor.load(file, **serializer_kwargs)
+        elif save_method == SaveMethod.YAML:
+            return yaml.safe_load(file)
         else:
             raise ValueError(f"Unsupported save method: {save_method}")
 
 
 def open_save_file(save_path: Path) -> Optional[dict[str, Any]]:
-    current_save_method = SaveMethod.from_string(prepare.SAVE_METHOD)
+    """
+    Opens and decodes the save file from disk.
 
+    Parameters:
+        save_path: Path to the save file.
+
+    Returns:
+        Raw dictionary of save data, or None if the file is missing or corrupted.
+    """
+    current_save_method = SaveMethod.from_string(config.save_method)
     package: dict[str, Any] = {}
 
     try:
@@ -220,22 +235,34 @@ def open_save_file(save_path: Path) -> Optional[dict[str, Any]]:
         return None
 
 
-def save(save_data: SaveData, slot: int) -> None:
+def get_save_path(
+    slot: int, prefix: Optional[str] = None, extension: Optional[str] = None
+) -> Path:
+    extension = config.save_extension if extension is None else extension
+    prefix = config.save_prefix if prefix is None else prefix
+    final_extension = (
+        extension
+        if config.compress_save is None
+        else f"c{extension}.{config.compress_save}"
+    )
+    return paths.USER_GAME_SAVE_DIR / f"{prefix}{slot}.{final_extension}"
+
+
+def save(save_data: SaveData, save_path: Path) -> None:
     """
     Saves the current game state to a file using gzip compressed JSON.
 
     Parameters:
         save_data: The data to save.
-        slot: The save slot to save the data to.
+        save_path: The full path where the save file should be written.
     """
-    save_path = get_save_path(slot)
     save_path_tmp = save_path.with_suffix(save_path.suffix + ".tmp")
     json_kwargs = {
         "indent": 4,
         "separators": (",", ": "),
     }
 
-    current_save_method = SaveMethod.from_string(prepare.SAVE_METHOD)
+    current_save_method = SaveMethod.from_string(config.save_method)
     logger.info(f"Saving data to save file: {save_path}")
 
     dump_data(
@@ -254,23 +281,24 @@ def save(save_data: SaveData, slot: int) -> None:
     os.replace(save_path_tmp.as_posix(), save_path.as_posix())
 
 
-def load(slot: int) -> Optional[SaveData]:
+def load(save_path: Path) -> Optional[SaveData]:
     """
     Loads game state data from a save file.
 
     Parameters:
-        slot: The save slot to load game data from.
+        save_path: The full path to the save file to load.
 
     Returns:
-        Dictionary containing game data to load.
+        A SaveData object containing the loaded game state, or None if
+        the file doesn't exist.
     """
-    save_path = get_save_path(slot)
-    save_data = open_save_file(save_path)
+    raw_data = open_save_file(save_path)
 
-    if save_data is None:
+    if raw_data is None:
         # File not found; it probably wasn't ever created, so don't panic
         return None
-    return upgrade_save(save_data)
+    upgraded_data = upgrade_save(raw_data)
+    return SaveData(**upgraded_data)
 
 
 def get_index_of_latest_save() -> Optional[int]:

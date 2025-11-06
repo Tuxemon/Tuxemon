@@ -410,7 +410,7 @@ class MonsterInfoState(PygameMenuState):
 
         # bond icon
         owner = monster.get_owner()
-        if owner.items.find_item("friendship_scroll"):
+        if owner.bag.find_item("friendship_scroll"):
             bond_file = monster.bond_handler.get_bond_icon_path()
             if bond_file:
                 bond_icon = self._create_image(bond_file)

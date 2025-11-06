@@ -75,6 +75,7 @@ class Status:
         self.range: Range = Range.melee
         self.stack_level: int = 1
         self.step_interval: int = 0
+        self.step_damage: int = 0
         self.on_positive_status: Optional[ResponseStatus] = None
         self.on_negative_status: Optional[ResponseStatus] = None
         self.on_tech_use: Optional[str] = None
@@ -149,6 +150,7 @@ class Status:
         self.modifiers = ModifiersHandler(results.modifiers)
         self.behaviors = results.behaviors
         self.step_interval = results.step_interval
+        self.step_damage = results.step_damage
         # monster stats
         self.stat_modifiers = results.stat_modifiers
 
@@ -251,6 +253,29 @@ class Status:
             f"Status '{self.slug}' stacked from {old_stack} to {self.stack_level}. "
             f"Duration/Uses refreshed."
         )
+
+    def tick_steps(
+        self, session: Session, steps: float
+    ) -> Optional[StatusEffectResult]:
+        """
+        Advance the step counter and trigger the status effect if the interval
+        is reached. Returns the result if the effect was triggered.
+        """
+        if self.step_interval > 0:
+            old_steps = self._steps
+            self._steps += steps
+
+            old_interval_count = old_steps // self.step_interval
+            new_interval_count = self._steps // self.step_interval
+
+            if new_interval_count > old_interval_count:
+                logger.debug(
+                    f"[Status Step Tick] {self.slug} triggered after "
+                    f"{new_interval_count} intervals."
+                )
+                return self.use(session, EffectPhase.ON_STEP_INTERVAL)
+
+        return None
 
     def get_state(self) -> Mapping[str, Any]:
         """

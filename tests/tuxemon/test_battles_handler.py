@@ -6,6 +6,7 @@ import unittest
 from tuxemon.battle import Battle
 from tuxemon.db import OutputBattle
 from tuxemon.entity_dir.battle import BattlesHandler
+from tuxemon.save_state import NPCState
 
 
 class TestBattlesHandler(unittest.TestCase):
@@ -174,15 +175,15 @@ class TestBattlesHandler(unittest.TestCase):
         self.handler.record_battle("npc", OutputBattle.won)
         encoded = self.handler.encode_battle()
         new_handler = BattlesHandler("player")
-        new_handler.decode_battle({"battles": encoded})
+        new_handler.decode_battle(NPCState(battles=encoded))
         self.assertEqual(len(new_handler.get_battles()), 1)
         self.assertEqual(
             new_handler.get_battles()[0].outcome, OutputBattle.won
         )
 
     def test_decode_battle_with_legacy_placeholder(self):
-        legacy_data = {
-            "battles": [
+        legacy_data = NPCState(
+            battles=[
                 {
                     "fighter": "player",
                     "opponent": "player",
@@ -191,7 +192,7 @@ class TestBattlesHandler(unittest.TestCase):
                     "instance_id": "1234567890abcdef1234567890abcdef",
                 }
             ]
-        }
+        )
         handler = BattlesHandler("hero")
         handler.decode_battle(legacy_data)
         battle = handler.get_battles()[0]
@@ -199,7 +200,7 @@ class TestBattlesHandler(unittest.TestCase):
         self.assertEqual(battle.opponent, "hero")
 
     def test_decode_battle_empty(self):
-        self.handler.decode_battle({})
+        self.handler.decode_battle(NPCState(battles=[]))
         self.assertEqual(len(self.handler.get_battles()), 0)
 
     def test_record_battle_with_location_and_turns(self):

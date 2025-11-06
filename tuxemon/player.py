@@ -54,15 +54,18 @@ class Player(NPC):
         diff_x = abs(after.x - before.x)
         diff_y = abs(after.y - before.y)
 
-        # increases steps player
-        self.steps += diff_x + diff_y
+        steps_moved = diff_x + diff_y
 
-        if diff_x != 0 or diff_y != 0:
-            self.steps += diff_x + diff_y
+        self.steps += steps_moved
 
+        if steps_moved != 0:
             if self.step_tracker.trackers:
                 self.step_tracker.update_all(diff_x, diff_y)
 
             if self.monsters:
                 for monster in self.monsters:
-                    monster.steps += diff_x + diff_y
+                    monster.steps += steps_moved
+                    if monster.status.current_status:
+                        monster.status.tick_statuses_on_steps(
+                            self.session, steps_moved
+                        )

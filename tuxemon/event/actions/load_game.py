@@ -50,42 +50,46 @@ class LoadGameAction(EventAction):
         index = 4 if self.index is None else self.index + 1
 
         client.map_loader.clear_cache()
-
         logger.info("Loading!")
-        save_data = save.load(index)
-        if save_data:
-            try:
-                old_world = client.get_state_by_name(WorldState)
-                # when game is loaded from world menu
-                client.remove_state_by_name("LoadMenuState")
-                client.pop_state(old_world)
-                client.remove_state_by_name("WorldMenuState")
-            except ValueError:
-                # when game is loaded from the start menu
-                client.remove_state_by_name("LoadMenuState")
-                # avoid crash save and load same action
-                if self.index is not None:
-                    client.remove_state_by_name("StartState")
 
-            slug = save_data["npc_state"].get("player_slug", PLAYER_NPC)
-            save_data["npc_state"]["player_slug"] = slug
-            Player.create(session, slug=slug)
+        save_path = save.get_save_path(index)
+        save_data = save.load(save_path)
+        if not save_data:
+            return
 
-            map_path = fetch_asset(
-                "maps", save_data["npc_state"]["current_map"]
-            )
-            client.push_state("WorldState", session=session, map_name=map_path)
+        try:
+            old_world = client.get_state_by_name(WorldState)
+            client.remove_state_by_name("LoadMenuState")
+            client.pop_state(old_world)
+            client.remove_state_by_name("WorldMenuState")
+        except ValueError:
+            client.remove_state_by_name("LoadMenuState")
+            if self.index is not None:
+                client.remove_state_by_name("StartState")
 
-            session.load_state(save_data)
+        npc_state = save_data.npc_state
+        if npc_state is None:
+            logger.error("Save data missing NPC state.")
+            return
 
-            # teleport the player to the correct position using an event
-            # engine action
-            client.current_music.stop()
-            tele_x, tele_y = save_data["npc_state"]["tile_pos"]
-            params = [
-                "player",
-                save_data["npc_state"]["current_map"],
-                tele_x,
-                tele_y,
-            ]
-            client.event_engine.execute_action("teleport", params)
+        slug = npc_state.player_slug or PLAYER_NPC
+        npc_state.player_slug = slug
+        Player.create(session, slug=slug)
+
+        if npc_state.current_map is None:
+            logger.error("Save data missing current map.")
+            return
+
+        map_path = fetch_asset("maps", npc_state.current_map)
+        client.push_state("WorldState", session=session, map_name=map_path)
+
+        session.load_state(save_data)
+
+        if npc_state.tile_pos is None:
+            logger.error("Save data missing tile position.")
+            return
+
+        tele_x, tele_y = npc_state.tile_pos
+        params = ["player", npc_state.current_map, tele_x, tele_y]
+        client.current_music.stop()
+        client.event_engine.execute_action("teleport", params)

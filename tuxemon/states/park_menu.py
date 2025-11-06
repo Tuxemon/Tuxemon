@@ -126,14 +126,14 @@ class MainParkMenuState(PopUpMenu[MenuGameObj]):
         category = sum(
             [
                 itm.quantity
-                for itm in self.player.items.get_items()
+                for itm in self.player.items
                 if itm.category == cat_slug
             ]
         )
         return category
 
     def throw_tuxeball(self) -> None:
-        tuxeball = self.player.items.find_item("tuxeball_park")
+        tuxeball = self.player.bag.find_item("tuxeball_park")
         if tuxeball:
             if self.encounter.check_for_flee():
                 logger.info(f"{self.encounter.monster.slug} fled!")
@@ -147,7 +147,7 @@ class MainParkMenuState(PopUpMenu[MenuGameObj]):
             self.itm_description = choice.description
 
         def choose_item() -> None:
-            items_filtered = ItemFilter(self.player.items.get_items())
+            items_filtered = ItemFilter(self.player.items)
             items_filtered.set_filter_usable_in_state("MainCombatMenuState")
             menu = self.client.push_state(
                 ItemMenuState(self.player, self.name, items_filtered)

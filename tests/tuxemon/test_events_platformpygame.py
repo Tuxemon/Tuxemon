@@ -250,43 +250,43 @@ class TestPygameTouchOverlayInput(unittest.TestCase):
         self.assertEqual(surface.get_size(), (50, 50))
 
     def test_touch_dpad_up(self):
-        up_rect = self.touch_input.ui.dpad["rect"]["up"]
+        up_rect = self.touch_input.ui.dpad.rect.up
         event = Event(pg.MOUSEBUTTONDOWN, button=1, pos=up_rect.center)
         self.touch_input.process_event(event)
         self.assertTrue(self.touch_input.buttons[buttons.UP].pressed)
 
     def test_touch_dpad_down(self):
-        down_rect = self.touch_input.ui.dpad["rect"]["down"]
+        down_rect = self.touch_input.ui.dpad.rect.down
         event = Event(pg.MOUSEBUTTONDOWN, button=1, pos=down_rect.center)
         self.touch_input.process_event(event)
         self.assertTrue(self.touch_input.buttons[buttons.DOWN].pressed)
 
     def test_touch_dpad_left(self):
-        left_rect = self.touch_input.ui.dpad["rect"]["left"]
+        left_rect = self.touch_input.ui.dpad.rect.left
         event = Event(pg.MOUSEBUTTONDOWN, button=1, pos=left_rect.center)
         self.touch_input.process_event(event)
         self.assertTrue(self.touch_input.buttons[buttons.LEFT].pressed)
 
     def test_touch_dpad_right(self):
-        right_rect = self.touch_input.ui.dpad["rect"]["right"]
+        right_rect = self.touch_input.ui.dpad.rect.right
         event = Event(pg.MOUSEBUTTONDOWN, button=1, pos=right_rect.center)
         self.touch_input.process_event(event)
         self.assertTrue(self.touch_input.buttons[buttons.RIGHT].pressed)
 
     def test_touch_a_button(self):
-        a_rect = self.touch_input.ui.a_button["rect"]
+        a_rect = self.touch_input.ui.a_button.rect
         event = Event(pg.MOUSEBUTTONDOWN, button=1, pos=a_rect.center)
         self.touch_input.process_event(event)
         self.assertTrue(self.touch_input.buttons[buttons.A].pressed)
 
     def test_touch_b_button(self):
-        b_rect = self.touch_input.ui.b_button["rect"]
+        b_rect = self.touch_input.ui.b_button.rect
         event = Event(pg.MOUSEBUTTONDOWN, button=1, pos=b_rect.center)
         self.touch_input.process_event(event)
         self.assertTrue(self.touch_input.buttons[buttons.B].pressed)
 
     def test_touch_release(self):
-        up_rect = self.touch_input.ui.dpad["rect"]["up"]
+        up_rect = self.touch_input.ui.dpad.rect.up
         event_down = Event(pg.MOUSEBUTTONDOWN, button=1, pos=up_rect.center)
         self.touch_input.process_event(event_down)
         event_up = Event(pg.MOUSEBUTTONUP, button=1, pos=up_rect.center)
@@ -305,12 +305,12 @@ class TestPygameTouchOverlayInput(unittest.TestCase):
             Event(
                 pg.MOUSEBUTTONDOWN,
                 button=1,
-                pos=self.touch_input.ui.dpad["rect"]["up"].center,
+                pos=self.touch_input.ui.dpad.rect.up.center,
             ),
             Event(
                 pg.MOUSEBUTTONDOWN,
                 button=1,
-                pos=self.touch_input.ui.a_button["rect"].center,
+                pos=self.touch_input.ui.a_button.rect.center,
             ),
         ]
         for event in events:
@@ -320,8 +320,8 @@ class TestPygameTouchOverlayInput(unittest.TestCase):
 
     def test_touch_on_border(self):
         border_pos = (
-            self.touch_input.ui.dpad["rect"]["up"].right,
-            self.touch_input.ui.dpad["rect"]["down"].top,
+            self.touch_input.ui.dpad.rect.up.right,
+            self.touch_input.ui.dpad.rect.down.top,
         )
         event = Event(pg.MOUSEBUTTONDOWN, button=1, pos=border_pos)
         self.touch_input.process_event(event)
@@ -336,7 +336,7 @@ class TestPygameTouchOverlayInput(unittest.TestCase):
         )
 
     def test_persistent_press(self):
-        up_rect = self.touch_input.ui.dpad["rect"]["up"]
+        up_rect = self.touch_input.ui.dpad.rect.up
         event = Event(pg.MOUSEBUTTONDOWN, button=1, pos=up_rect.center)
         self.touch_input.process_event(event)
         self.assertTrue(self.touch_input.buttons[buttons.UP].pressed)

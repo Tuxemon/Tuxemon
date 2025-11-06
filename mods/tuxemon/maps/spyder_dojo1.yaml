@@ -198,6 +198,7 @@ events:
     - modify_money player,-500
     conditions:
     - is variable_set student1_yn:yes
+    - not variable_set potion_xiang:no_choice
     type: event
   Talk Student2 Money:
     actions:
@@ -233,6 +234,7 @@ events:
     - modify_money player,-500
     conditions:
     - is variable_set student2_yn:yes
+    - not variable_set potion_xiang:no_choice
     type: event
   Talk Xiang No Money:
     actions:
@@ -247,13 +249,12 @@ events:
   Talk Xiang Potion:
     actions:
     - get_player_monster potion_xiang
-    - get_monster_tech forgot_tech,potion_xiang,true
     - dojo_method potion_xiang,technique
-    - remove_tech forgot_tech,true
     - set_variable xiang_potion_choice:yes
     conditions:
     - is variable_set xiang_yn:yes
     - not variable_set xiang_potion_choice:yes
+    - is current_state WorldState
     type: event
   Talk Xiang Reset:
     actions:
@@ -264,6 +265,7 @@ events:
     conditions:
     - not variable_set dojo_notech
     - is variable_set xiang_potion_choice:yes
+    - is current_state WorldState
     type: event
   Talk Xiang Wait:
     actions:
@@ -274,6 +276,7 @@ events:
     conditions:
     - is variable_set dojo_notech
     - is variable_set xiang_potion_choice:yes
+    - is current_state WorldState
     type: event
   Talk Xiang1:
     actions:

@@ -4,13 +4,11 @@ from __future__ import annotations
 
 import logging
 from collections.abc import Callable
-from typing import TYPE_CHECKING, Any
+from typing import Any
 
 from tuxemon import db
 from tuxemon.locale import T
 
-if TYPE_CHECKING:
-    from tuxemon.save_state import SaveData
 logger = logging.getLogger(__name__)
 
 """
@@ -107,10 +105,15 @@ VERSION_UPGRADES: dict[int, Callable[[dict[str, Any]], None]] = {
 }
 
 
-def upgrade_save(save_data: dict[str, Any]) -> SaveData:
+def upgrade_save(save_data: dict[str, Any]) -> dict[str, Any]:
     """
-    Updates savegame if necessary.
-    This function can modify the passed save data.
+    Updates savegame data if necessary.
+
+    Parameters:
+        save_data: Raw dictionary of save data.
+
+    Returns:
+        Upgraded dictionary ready to be converted into a SaveData model.
     """
     if "npc_state" not in save_data:
         save_data = update_save_data(save_data)
@@ -124,7 +127,7 @@ def upgrade_save(save_data: dict[str, Any]) -> SaveData:
     save_data["version"] = SAVE_VERSION
     apply_field_migrations(save_data)
     apply_universal_fixes(save_data["npc_state"])
-    return save_data  # type: ignore[return-value]
+    return save_data
 
 
 def update_save_data(old_save_data: dict[str, Any]) -> dict[str, Any]:

@@ -5,7 +5,7 @@ from __future__ import annotations
 import logging
 from typing import Optional
 
-from tuxemon.db import TerrainModel, db
+from tuxemon.db import Modifier, TerrainModel, db
 
 logger = logging.getLogger(__name__)
 
@@ -17,7 +17,7 @@ class Terrain:
 
     def __init__(self, slug: Optional[str] = None) -> None:
         self.slug = slug
-        self.element_modifier: dict[str, float] = {}
+        self.modifiers: list[Modifier] = []
 
         if self.slug:
             self.load(self.slug)
@@ -28,11 +28,11 @@ class Terrain:
         if slug in Terrain._terrains:
             cached_terrain = Terrain._terrains[slug]
             self.slug = slug
-            self.element_modifier = cached_terrain.element_modifier
+            self.modifiers = cached_terrain.modifiers
             return
 
         results = TerrainModel.lookup(slug, db)
-        self.element_modifier = results.element_modifier
+        self.modifiers = results.modifiers
 
         Terrain._terrains[slug] = self
 
@@ -77,4 +77,4 @@ class Terrain:
         cls._terrains.clear()
 
     def __repr__(self) -> str:
-        return f"Terrain(slug={self.slug}, element_modifier={self.element_modifier})"
+        return f"Terrain(slug={self.slug}, modifiers={self.modifiers})"

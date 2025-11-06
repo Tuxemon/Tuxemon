@@ -53,7 +53,6 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.fade_out.FadeOutAction
 .. autoscriptinfoclass:: tuxemon.event.actions.fadeout_music.FadeoutMusicAction
 .. autoscriptinfoclass:: tuxemon.event.actions.format_variable.FormatVariableAction
-.. autoscriptinfoclass:: tuxemon.event.actions.get_monster_tech.GetMonsterTechAction
 .. autoscriptinfoclass:: tuxemon.event.actions.get_pending_moves.GetPendingMovesAction
 .. autoscriptinfoclass:: tuxemon.event.actions.get_party_monsters.GetPartyMonsterAction
 .. autoscriptinfoclass:: tuxemon.event.actions.get_player_monster.GetPlayerMonsterAction
@@ -62,6 +61,7 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.input_variable.InputVariableAction
 .. autoscriptinfoclass:: tuxemon.event.actions.learn_tech_by_method.LearnTechByMethodAction
 .. autoscriptinfoclass:: tuxemon.event.actions.load_game.LoadGameAction
+.. autoscriptinfoclass:: tuxemon.event.actions.load_weather.LoadWeatherAction
 .. autoscriptinfoclass:: tuxemon.event.actions.load_yaml.LoadYamlAction
 .. autoscriptinfoclass:: tuxemon.event.actions.lock_controls.LockControlsAction
 .. autoscriptinfoclass:: tuxemon.event.actions.manage_map_cache.ManageMapCacheAction
@@ -140,6 +140,7 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.set_template.SetTemplateAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_tuxepedia.SetTuxepediaAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_variable.SetVariableAction
+.. autoscriptinfoclass:: tuxemon.event.actions.set_weather.SetWeatherAction
 .. autoscriptinfoclass:: tuxemon.event.actions.show_monster.ShowMonsterAction
 .. autoscriptinfoclass:: tuxemon.event.actions.spawn_monster.SpawnMonsterAction
 .. autoscriptinfoclass:: tuxemon.event.actions.start_battle.StartBattleAction
@@ -157,6 +158,7 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.transition_teleport_return.TransitionTeleportReturnAction
 .. autoscriptinfoclass:: tuxemon.event.actions.translated_dialog_choice.TranslatedDialogChoiceAction
 .. autoscriptinfoclass:: tuxemon.event.actions.translated_dialog.TranslatedDialogAction
+.. autoscriptinfoclass:: tuxemon.event.actions.trigger_status.TriggerStatusAction
 .. autoscriptinfoclass:: tuxemon.event.actions.unload_sound.UnloadSoundAction
 .. autoscriptinfoclass:: tuxemon.event.actions.unlock_controls.UnlockControlsAction
 .. autoscriptinfoclass:: tuxemon.event.actions.unpause_music.UnpauseMusicAction

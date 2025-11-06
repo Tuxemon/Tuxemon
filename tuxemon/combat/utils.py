@@ -316,7 +316,7 @@ def build_hud_text(
         # Special case for MainParkMenuState
         ball = T.translate("tuxeball_park").upper()
         owner = monster.get_owner()
-        item = owner.items.find_item("tuxeball_park")
+        item = owner.bag.find_item("tuxeball_park")
         quantity = item.quantity if item else 0
         return {"line1": f"{ball}: {quantity}", "line2": ""}
 

@@ -5,10 +5,10 @@ from __future__ import annotations
 import logging
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, final
-from uuid import UUID
 
 from tuxemon.event import get_monster_by_iid, get_npc
 from tuxemon.event.eventaction import EventAction
+from tuxemon.tools import get_valid_uuid
 
 if TYPE_CHECKING:
     from tuxemon.session import Session
@@ -50,21 +50,14 @@ class ToggleEvolutionBlockAction(EventAction):
 
         registry = character.evolution_registry
 
-        if not character.game_variables.has(self.monster_variable):
-            logger.error(
-                f"Variable '{self.monster_variable}' not found in {self.npc_slug}'s game variables."
+        monster_id = get_valid_uuid(
+            character.game_variables, self.monster_variable
+        )
+        if monster_id is None:
+            logger.info(
+                f"No valid monster selected for variable '{self.monster_variable}'"
             )
-            return
-
-        try:
-            monster_id = UUID(
-                character.game_variables.get(self.monster_variable)
-            )
-        except ValueError:
-            logger.error(
-                f"Invalid UUID in variable '{self.monster_variable}': {character.game_variables.get(self.monster_variable)}"
-            )
-            return
+            return  # Exit early if no valid UUID
 
         monster = get_monster_by_iid(self.session, monster_id)
         if monster is None:

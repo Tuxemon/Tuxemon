@@ -271,7 +271,7 @@ class Mission:
 
 def check_items(character: NPC, step_items: dict[str, Optional[int]]) -> bool:
     for item_slug, required_quantity in step_items.items():
-        item = character.items.find_item(item_slug)
+        item = character.bag.find_item(item_slug)
         if not item:
             return False
         if required_quantity is not None and item.quantity < required_quantity:

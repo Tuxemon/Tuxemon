@@ -5,11 +5,11 @@ from __future__ import annotations
 import logging
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Optional, final
-from uuid import UUID
 
 from tuxemon.event import get_monster_by_iid
 from tuxemon.event.eventaction import EventAction
-from tuxemon.tools import parse_flag
+from tuxemon.monster_dir.plague import InfectionResult, InoculationResult
+from tuxemon.tools import get_valid_uuid, parse_flag
 
 if TYPE_CHECKING:
     from tuxemon.session import Session
@@ -46,11 +46,12 @@ class SetMonsterPlagueAction(EventAction):
 
     def start(self, session: Session) -> None:
         player = session.player
-        if not player.game_variables.has(self.variable):
-            logger.error(f"Game variable {self.variable} not found")
-            return
-
-        monster_id = UUID(player.game_variables.get(self.variable))
+        monster_id = get_valid_uuid(player.game_variables, self.variable)
+        if monster_id is None:
+            logger.info(
+                f"No valid monster selected for variable '{self.variable}'"
+            )
+            return  # Exit early if no valid UUID
         monster = get_monster_by_iid(session, monster_id)
         if monster is None:
             logger.error("Monster not found")
@@ -63,12 +64,26 @@ class SetMonsterPlagueAction(EventAction):
             monster.plague.clear_plagues()
         elif condition == "infected":
             if enforce:
-                monster.plague.try_infect(monster, self.plague_slug)
+                result_infection = monster.plague.try_infect(
+                    monster, self.plague_slug
+                )
+                if result_infection not in (
+                    InfectionResult.INFECTED,
+                    InfectionResult.CARRIER,
+                ):
+                    logger.error(f"Failed to infect {monster.name}")
             else:
                 monster.plague.infect(self.plague_slug)
         elif condition == "inoculated":
             if enforce:
-                monster.plague.try_inoculate(monster, self.plague_slug)
+                result_inoculation = monster.plague.try_inoculate(
+                    monster, self.plague_slug
+                )
+                if result_inoculation not in (
+                    InoculationResult.INOCULATED,
+                    InoculationResult.ALREADY_INOCULATED,
+                ):
+                    logger.error(f"Failed to inoculate {monster.name}")
             else:
                 monster.plague.inoculate(self.plague_slug)
         else:

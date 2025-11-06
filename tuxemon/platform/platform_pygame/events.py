@@ -1,8 +1,12 @@
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import logging
 from collections import defaultdict
 from collections.abc import Generator, Mapping
-from typing import Any, ClassVar, Optional, TypedDict
+from dataclasses import dataclass, field
+from typing import Any, ClassVar, Optional
 
 import pygame as pg
 from pygame.event import Event
@@ -18,6 +22,8 @@ from tuxemon.platform.events import (
 )
 from tuxemon.session import local_session
 from tuxemon.ui.draw import blit_alpha
+
+logger = logging.getLogger(__name__)
 
 HORIZONTAL_AXIS = 0
 VERTICAL_AXIS = 1
@@ -281,111 +287,127 @@ class PygameKeyboardInput(PygameEventHandler):
             pass
 
 
-class DPadRectsInfo(TypedDict):
-    up: Rect
-    down: Rect
-    left: Rect
-    right: Rect
+DPAD_IMAGE = "gfx/d-pad.png"
+A_BUTTON_IMAGE = "gfx/a-button.png"
+B_BUTTON_IMAGE = "gfx/b-button.png"
+A_BUTTON_SCALE = 1.0
+B_BUTTON_SCALE = 2.1
 
 
-class DPadInfo(TypedDict):
-    surface: Surface
-    position: tuple[int, int]
-    rect: DPadRectsInfo
+@dataclass
+class DPadRectsInfo:
+    up: Rect = field(default_factory=lambda: Rect(0, 0, 0, 0))
+    down: Rect = field(default_factory=lambda: Rect(0, 0, 0, 0))
+    left: Rect = field(default_factory=lambda: Rect(0, 0, 0, 0))
+    right: Rect = field(default_factory=lambda: Rect(0, 0, 0, 0))
 
 
-class DPadButtonInfo(TypedDict):
-    surface: Surface
-    position: tuple[int, int]
-    rect: Rect
+@dataclass
+class DPadInfo:
+    surface: Surface = field(default_factory=lambda: Surface((0, 0)))
+    position: tuple[int, int] = (0, 0)
+    rect: DPadRectsInfo = field(default_factory=DPadRectsInfo)
+
+
+@dataclass
+class DPadButtonInfo:
+    surface: Surface = field(default_factory=lambda: Surface((0, 0)))
+    position: tuple[int, int] = (0, 0)
+    rect: Rect = field(default_factory=lambda: Rect(0, 0, 0, 0))
 
 
 class TouchOverlayUI:
     def __init__(self, transparency: int) -> None:
         self.transparency = transparency
-        self.dpad: DPadInfo = self.create_dpad()
-        self.a_button: DPadButtonInfo = self.create_button()
-        self.b_button: DPadButtonInfo = self.create_button()
+        self.dpad: DPadInfo
+        self.a_button: DPadButtonInfo
+        self.b_button: DPadButtonInfo
         self.load()
 
-    def create_dpad(self) -> DPadInfo:
-        return DPadInfo(
-            surface=Surface((0, 0)),
-            position=(0, 0),
-            rect=DPadRectsInfo(
-                up=Rect(0, 0, 0, 0),
-                down=Rect(0, 0, 0, 0),
-                left=Rect(0, 0, 0, 0),
-                right=Rect(0, 0, 0, 0),
-            ),
-        )
-
-    def create_button(self) -> DPadButtonInfo:
-        return DPadButtonInfo(
-            surface=Surface((0, 0)),
-            position=(0, 0),
-            rect=Rect(0, 0, 0, 0),
-        )
+    def set_transparency(self, value: int) -> None:
+        self.transparency = max(0, min(255, value))
 
     def load(self) -> None:
-        """Loads the UI elements."""
-        self.dpad["surface"] = graphics.load_and_scale("gfx/d-pad.png")
-        self.dpad["position"] = (
+        """Loads the UI elements and re-initializes the frozen dataclasses."""
+
+        dpad_surface = graphics.load_and_scale(DPAD_IMAGE)
+        dpad_position = (
             0,
-            prepare.SCREEN_SIZE[1] - self.dpad["surface"].get_height(),
+            prepare.SCREEN_SIZE[1] - dpad_surface.get_height(),
         )
 
-        width, height = (
-            self.dpad["surface"].get_width(),
-            self.dpad["surface"].get_height(),
-        )
-        pos_x, pos_y = self.dpad["position"]
+        width, height = dpad_surface.get_width(), dpad_surface.get_height()
+        pos_x, pos_y = dpad_position
 
-        self.dpad["rect"]["up"] = Rect(
-            pos_x + (width / 3), pos_y, width / 3, height / 2
-        )
-        self.dpad["rect"]["down"] = Rect(
-            pos_x + (width / 3), pos_y + (height / 2), width / 3, height / 2
-        )
-        self.dpad["rect"]["left"] = Rect(
-            pos_x, pos_y + (height / 3), width / 2, height / 3
-        )
-        self.dpad["rect"]["right"] = Rect(
-            pos_x + (width / 2), pos_y + (height / 3), width / 2, height / 3
+        w3, h2, h3 = width // 3, height // 2, height // 3
+
+        dpad_rects = DPadRectsInfo(
+            up=Rect(pos_x + w3, pos_y, w3, h2),
+            down=Rect(pos_x + w3, pos_y + h2, w3, h2),
+            left=Rect(pos_x, pos_y + h3, width // 2, h3),
+            right=Rect(pos_x + width // 2, pos_y + h3, width // 2, h3),
         )
 
-        self.load_button(self.a_button, "gfx/a-button.png", 1.0)
-        self.load_button(self.b_button, "gfx/b-button.png", 2.1)
-
-    def load_button(
-        self, button: DPadButtonInfo, image_path: str, scale: float
-    ) -> None:
-        button["surface"] = graphics.load_and_scale(image_path)
-        button["position"] = (
-            prepare.SCREEN_SIZE[0]
-            - int(button["surface"].get_width() * scale),
-            int(
-                self.dpad["position"][1]
-                + (self.dpad["surface"].get_height() / 2)
-                - (button["surface"].get_height() / 2)
-            ),
+        self.dpad = DPadInfo(
+            surface=dpad_surface,
+            position=dpad_position,
+            rect=dpad_rects,
         )
-        button["rect"] = Rect(
-            button["position"][0],
-            button["position"][1],
-            button["surface"].get_width(),
-            button["surface"].get_height(),
+
+        self.a_button = self._load_button_instance(
+            A_BUTTON_IMAGE, A_BUTTON_SCALE
+        )
+        self.b_button = self._load_button_instance(
+            B_BUTTON_IMAGE, B_BUTTON_SCALE
+        )
+
+    def _load_button_instance(
+        self, image_path: str, scale: float
+    ) -> DPadButtonInfo:
+        """Helper to create and return a new DPadButtonInfo instance."""
+        button_surface = graphics.load_and_scale(image_path)
+
+        pos_y = int(
+            self.dpad.position[1]
+            + (self.dpad.surface.get_height() / 2)
+            - (button_surface.get_height() / 2)
+        )
+
+        button_position = (
+            prepare.SCREEN_SIZE[0] - int(button_surface.get_width() * scale),
+            pos_y,
+        )
+
+        button_rect = Rect(
+            button_position[0],
+            button_position[1],
+            button_surface.get_width(),
+            button_surface.get_height(),
+        )
+
+        return DPadButtonInfo(
+            surface=button_surface,
+            position=button_position,
+            rect=button_rect,
         )
 
     def draw(self, screen: Surface) -> None:
         """Draws the UI overlay."""
-        for element in [self.dpad, self.a_button, self.b_button]:
-            blit_alpha(
-                screen,
-                element["surface"],
-                element["position"],
-                self.transparency,
-            )
+        blit_alpha(
+            screen, self.dpad.surface, self.dpad.position, self.transparency
+        )
+        blit_alpha(
+            screen,
+            self.a_button.surface,
+            self.a_button.position,
+            self.transparency,
+        )
+        blit_alpha(
+            screen,
+            self.b_button.surface,
+            self.b_button.position,
+            self.transparency,
+        )
 
 
 class PygameTouchOverlayInput(PygameEventHandler):
@@ -425,18 +447,17 @@ class PygameTouchOverlayInput(PygameEventHandler):
 
     def get_touched_button(self, mouse_pos: tuple[int, int]) -> Optional[int]:
         """Determine which button was pressed based on position."""
-        if self.ui.dpad["rect"]["up"].collidepoint(mouse_pos):
-            return buttons.UP
-        if self.ui.dpad["rect"]["down"].collidepoint(mouse_pos):
-            return buttons.DOWN
-        if self.ui.dpad["rect"]["left"].collidepoint(mouse_pos):
-            return buttons.LEFT
-        if self.ui.dpad["rect"]["right"].collidepoint(mouse_pos):
-            return buttons.RIGHT
-        if self.ui.a_button["rect"].collidepoint(mouse_pos):
-            return buttons.A
-        if self.ui.b_button["rect"].collidepoint(mouse_pos):
-            return buttons.B
+        for name, rect in [
+            (buttons.UP, self.ui.dpad.rect.up),
+            (buttons.DOWN, self.ui.dpad.rect.down),
+            (buttons.LEFT, self.ui.dpad.rect.left),
+            (buttons.RIGHT, self.ui.dpad.rect.right),
+            (buttons.A, self.ui.a_button.rect),
+            (buttons.B, self.ui.b_button.rect),
+        ]:
+            if rect.collidepoint(mouse_pos):
+                logger.debug(f"Touch detected on: {name}")
+                return name
         return None
 
     def draw(self, screen: Surface) -> None:

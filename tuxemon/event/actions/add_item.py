@@ -54,7 +54,7 @@ class AddItemAction(EventAction):
         else:
             item_id = self.item_slug
 
-        existing = trainer.items.find_item(item_id)
+        existing = trainer.bag.find_item(item_id)
 
         if existing:
             if self.quantity is None or self.quantity == 0:
@@ -62,7 +62,7 @@ class AddItemAction(EventAction):
             elif self.quantity > 0:
                 existing.increase_quantity(self.quantity)
             elif self.quantity < 0:
-                trainer.items.remove_item(existing, abs(self.quantity))
+                trainer.bag.remove_item(existing, abs(self.quantity))
         elif self.quantity is None or self.quantity > 0:
             itm = Item.create(item_id)
-            trainer.items.add_item(itm, self.quantity or 1)
+            trainer.bag.add_item(itm, self.quantity or 1)

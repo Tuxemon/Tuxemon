@@ -13,6 +13,8 @@ from tuxemon.item.item import decode_items, encode_items
 
 if TYPE_CHECKING:
     from tuxemon.item.item import Item
+    from tuxemon.npc import NPC
+    from tuxemon.save_state import NPCState
 
 
 logger = logging.getLogger(__name__)
@@ -23,12 +25,22 @@ class BagHandler:
     def __init__(
         self,
         item_boxes: ItemBoxes,
+        owner: NPC,
         items: Optional[list[Item]] = None,
         bag_limit: int = prepare.MAX_TYPES_BAG,
     ) -> None:
+        self._owner = owner
         self._items = items if items is not None else []
         self._bag_limit = bag_limit
         self._item_boxes = item_boxes
+
+    @property
+    def owner(self) -> NPC:
+        return self._owner
+
+    @property
+    def items(self) -> list[Item]:
+        return self._items
 
     def add_item(
         self, item: Item, quantity: int = 1, locker: str = prepare.LOCKER
@@ -110,9 +122,6 @@ class BagHandler:
                 return itm
         return None
 
-    def get_items(self) -> list[Item]:
-        return self._items
-
     def has_item(self, item_slug: str) -> bool:
         """
         Checks if the NPC's bag contains an item with the given slug.
@@ -145,6 +154,6 @@ class BagHandler:
     def encode_items(self) -> Sequence[Mapping[str, Any]]:
         return encode_items(self._items)
 
-    def decode_items(self, json_data: Optional[Mapping[str, Any]]) -> None:
-        if json_data and "items" in json_data:
-            self._items = [itm for itm in decode_items(json_data["items"])]
+    def decode_items(self, json_data: Optional[NPCState]) -> None:
+        if json_data and json_data.items is not None:
+            self._items = [itm for itm in decode_items(json_data.items)]

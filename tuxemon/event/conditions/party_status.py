@@ -14,35 +14,37 @@ logger = logging.getLogger(__name__)
 
 
 @dataclass
-class HasBagCondition(EventCondition):
+class PartyStatusCondition(EventCondition):
     """
-    Check to see how many items are in the character's bag.
+    Check how many monsters in a character's party have a specific status.
 
     Script usage:
         .. code-block::
 
-            is has_bag <character>,<operator>,<value>
+            is party_status <character>,<operator>,<value>,<status_name>
 
     Script parameters:
         character: Either "player" or npc slug name (e.g. "npc_maple").
         operator: Numeric comparison operator. Accepted values are "less_than",
             "less_or_equal", "greater_than", "greater_or_equal", "equals"
             and "not_equals".
-        value: The value to compare the bag with.
-
+        value: Integer to compare against.
+        status_name: Slug of the status to check (e.g. "poison").
     """
 
-    name = "has_bag"
+    name = "party_status"
 
     def test(self, session: Session, condition: MapCondition) -> bool:
-        character_name, check, number = condition.parameters[:3]
-        character = get_npc(session, character_name)
+        _character, _operator, _value, _status_name = condition.parameters[:4]
+        character = get_npc(session, _character)
         if character is None:
-            logger.error(f"Character '{character_name}' not found")
+            logger.error(f"{_character} not found")
             return False
 
-        visible_items = [
-            item for item in character.items if item.behaviors.visible
-        ]
-        bag_size = sum(item.quantity for item in visible_items)
-        return compare(check, bag_size, int(number))
+        count = sum(
+            1
+            for m in character.monsters
+            if (current_status := m.status.current_status) is not None
+            and current_status.slug == _status_name
+        )
+        return compare(_operator, count, int(_value))

@@ -15,6 +15,7 @@ from tuxemon.platform.const import buttons
 from tuxemon.platform.platform_pygame.events import (
     DPadButtonInfo,
     DPadInfo,
+    DPadRectsInfo,
 )
 from tuxemon.ui.draw import blit_alpha
 
@@ -72,69 +73,61 @@ class InputVisualizer:
             self.button_visualizers[btn] = self.create_visual_button(x, y)
 
     def create_visual_dpad(self) -> DPadInfo:
-        return {
-            "surface": Surface((150, 150)),
-            "position": (20, self.screen_size[1] - 170),
-            "rect": {
-                "up": Rect(70, self.screen_size[1] - 170, 50, 50),
-                "down": Rect(70, self.screen_size[1] - 120, 50, 50),
-                "left": Rect(20, self.screen_size[1] - 120, 50, 50),
-                "right": Rect(120, self.screen_size[1] - 120, 50, 50),
-            },
-        }
+        return DPadInfo(
+            surface=Surface((150, 150)),
+            position=(20, self.screen_size[1] - 170),
+            rect=DPadRectsInfo(
+                up=Rect(70, self.screen_size[1] - 170, 50, 50),
+                down=Rect(70, self.screen_size[1] - 120, 50, 50),
+                left=Rect(20, self.screen_size[1] - 120, 50, 50),
+                right=Rect(120, self.screen_size[1] - 120, 50, 50),
+            ),
+        )
 
     def create_visual_button(self, x: int, y: int) -> DPadButtonInfo:
-        return {
-            "surface": Surface((75, 75)),
-            "position": (x, y),
-            "rect": Rect(x, y, 75, 75),
-        }
+        return DPadButtonInfo(
+            surface=Surface((75, 75)),
+            position=(x, y),
+            rect=Rect(x, y, 75, 75),
+        )
 
     def load(self) -> None:
         pass
 
     def draw(self, screen: Surface, inputs: Mapping[int, PlayerInput]) -> None:
         # Draw D-pad background
-        self.dpad_visualizer["surface"].fill((50, 50, 50))
+        self.dpad_visualizer.surface.fill((50, 50, 50))
         blit_alpha(
             screen,
-            self.dpad_visualizer["surface"],
-            self.dpad_visualizer["position"],
+            self.dpad_visualizer.surface,
+            self.dpad_visualizer.position,
             150,
         )
 
         # Highlight D-pad directions
         if inputs.get(buttons.UP) and inputs[buttons.UP].held:
-            draw.rect(screen, (0, 255, 0), self.dpad_visualizer["rect"]["up"])
+            draw.rect(screen, (0, 255, 0), self.dpad_visualizer.rect.up)
         if inputs.get(buttons.DOWN) and inputs[buttons.DOWN].held:
-            draw.rect(
-                screen, (0, 255, 0), self.dpad_visualizer["rect"]["down"]
-            )
+            draw.rect(screen, (0, 255, 0), self.dpad_visualizer.rect.down)
         if inputs.get(buttons.LEFT) and inputs[buttons.LEFT].held:
-            draw.rect(
-                screen, (0, 255, 0), self.dpad_visualizer["rect"]["left"]
-            )
+            draw.rect(screen, (0, 255, 0), self.dpad_visualizer.rect.left)
         if inputs.get(buttons.RIGHT) and inputs[buttons.RIGHT].held:
-            draw.rect(
-                screen, (0, 255, 0), self.dpad_visualizer["rect"]["right"]
-            )
+            draw.rect(screen, (0, 255, 0), self.dpad_visualizer.rect.right)
 
         # Draw and highlight buttons
         for btn, visualizer in self.button_visualizers.items():
-            visualizer["surface"].fill((50, 50, 50))
-            blit_alpha(
-                screen, visualizer["surface"], visualizer["position"], 150
-            )
+            visualizer.surface.fill((50, 50, 50))
+            blit_alpha(screen, visualizer.surface, visualizer.position, 150)
 
             if inputs.get(btn) and inputs[btn].held:
                 color = BUTTON_LAYOUT[btn]["color"]
                 draw.circle(
                     screen,
                     color,
-                    visualizer["rect"].center,
-                    visualizer["rect"].width // 2,
+                    visualizer.rect.center,
+                    visualizer.rect.width // 2,
                 )
 
             label = BUTTON_LAYOUT[btn]["label"]
             text = self.font.render(label, True, (255, 255, 255))
-            screen.blit(text, text.get_rect(center=visualizer["rect"].center))
+            screen.blit(text, text.get_rect(center=visualizer.rect.center))

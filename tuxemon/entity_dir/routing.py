@@ -3,14 +3,16 @@
 from __future__ import annotations
 
 import logging
-from collections.abc import Mapping
 from dataclasses import dataclass, field
-from typing import Any, Optional
+from typing import TYPE_CHECKING, Any, Optional
 
 import yaml
 
 from tuxemon.constants.paths import mods_folder
 from tuxemon.prepare import KENNEL
+
+if TYPE_CHECKING:
+    from tuxemon.save_state import NPCState
 
 logger = logging.getLogger(__name__)
 
@@ -81,8 +83,8 @@ class RoutingPolicy:
         return self.name
 
     @classmethod
-    def from_dict(cls, data: Mapping[str, Any]) -> str:
-        name = data.get("routing_policy")
+    def from_dict(cls, data: NPCState) -> str:
+        name = data.routing_policy
 
         if not isinstance(name, str) or not name:
             logger.warning(

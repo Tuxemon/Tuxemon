@@ -86,6 +86,9 @@ class TuxemonConfig:
         self.recompile_translations: bool = game["recompile_translations"]
         self.skip_titlescreen: bool = game["skip_titlescreen"]
         self.compress_save: Optional[str] = game["compress_save"] or None
+        self.save_prefix: str = game["save_prefix"]
+        self.save_extension: str = game["save_extension"]
+        self.save_method: str = game["save_method"]
 
         thin_font_file = game.get("thin_font_file")
         if game["locale"] == "zh_CN":
@@ -336,6 +339,9 @@ def generate_default_config() -> dict[str, Any]:
             "recompile_translations": True,
             "skip_titlescreen": False,
             "compress_save": None,
+            "save_prefix": "slot",
+            "save_extension": "save",
+            "save_method": "json",
             "locale": "en_US",
             "translation_mode": "none",
             "font_file": "PressStart2P.ttf",

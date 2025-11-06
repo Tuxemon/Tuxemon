@@ -44,7 +44,7 @@ class HasItemCondition(EventCondition):
         if npc is None:
             logger.error(f"{npc_slug} doesn't exist.")
             return False
-        itm = npc.items.find_item(itm_slug)
+        itm = npc.bag.find_item(itm_slug)
         if itm is None:
             return False
         else:

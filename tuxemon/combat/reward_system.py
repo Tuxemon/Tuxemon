@@ -59,7 +59,7 @@ class RewardSystem:
         """Applies defeat-related penalties to the specified monster."""
         monster.current_hp = 0
         owner = monster.get_owner()
-        if owner.items.find_item("friendship_scroll"):
+        if owner.bag.find_item("friendship_scroll"):
             monster.bond_handler.apply_bond_modifier("fainted")
 
     def award_rewards(self, monster: Monster) -> RewardData:

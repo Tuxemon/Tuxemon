@@ -45,6 +45,7 @@
 .. autoscriptinfoclass:: tuxemon.event.conditions.one_of.OneOfCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.party_infected.PartyInfectedCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.party_size.PartySizeCondition
+.. autoscriptinfoclass:: tuxemon.event.conditions.party_status.PartyStatusCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.step_tracker.StepTrackerCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.tile_property_updated.TilePropertyUpdatedCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.timestamp_cooldown.TimestampCooldownCondition

@@ -5,12 +5,12 @@ from __future__ import annotations
 import logging
 from dataclasses import dataclass
 from typing import Optional, final
-from uuid import UUID
 
 from tuxemon.event import get_monster_by_iid
 from tuxemon.event.eventaction import EventAction
 from tuxemon.monster import Monster
 from tuxemon.session import Session
+from tuxemon.tools import get_valid_uuid
 
 logger = logging.getLogger()
 
@@ -66,15 +66,12 @@ class ShowMonsterAction(EventAction):
     def _retrieve_monster(self, session: Session) -> Optional[Monster]:
         """Retrieve a monster from the game database."""
         player = session.player
-        if not player.game_variables.has(self.monster_variable):
-            logger.error(f"Game variable {self.monster_variable} not found")
-            return None
-        try:
-            monster_id = UUID(player.game_variables.get(self.monster_variable))
-        except ValueError:
-            logger.error(
-                f"Invalid UUID in game variable {self.monster_variable}: "
-                f"{player.game_variables.get(self.monster_variable)}"
+        monster_id = get_valid_uuid(
+            player.game_variables, self.monster_variable
+        )
+        if monster_id is None:
+            logger.info(
+                f"No valid monster selected for variable '{self.monster_variable}'"
             )
             return None
         return get_monster_by_iid(session, monster_id)

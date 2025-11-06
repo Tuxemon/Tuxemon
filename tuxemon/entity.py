@@ -2,9 +2,9 @@
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-from collections.abc import Mapping, Sequence
+from collections.abc import Sequence
 from enum import Enum
-from typing import TYPE_CHECKING, Any, Generic, Optional, TypeVar
+from typing import TYPE_CHECKING, Generic, Optional, TypeVar
 from uuid import UUID, uuid4
 
 from tuxemon.db import Direction
@@ -17,7 +17,7 @@ if TYPE_CHECKING:
     from tuxemon.session import Session
 
 
-SaveDict = TypeVar("SaveDict", bound=Mapping[str, Any])
+SaveDict = TypeVar("SaveDict")
 
 
 class EntityState(Enum):

@@ -5,10 +5,9 @@ from __future__ import annotations
 import logging
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Optional, final
-from uuid import UUID
 
 from tuxemon.event.eventaction import EventAction
-from tuxemon.tools import parse_flag
+from tuxemon.tools import get_valid_uuid, parse_flag
 
 if TYPE_CHECKING:
     from tuxemon.session import Session
@@ -44,11 +43,12 @@ class RemoveTechAction(EventAction):
 
     def start(self, session: Session) -> None:
         player = session.player
-        if not player.game_variables.has(self.tech_id):
-            logger.error(f"Game variable {self.tech_id} not found")
-            return
-        tech_id = UUID(player.game_variables.get(self.tech_id))
-
+        tech_id = get_valid_uuid(player.game_variables, self.tech_id)
+        if tech_id is None:
+            logger.info(
+                f"No valid tech selected for variable '{self.tech_id}'"
+            )
+            return  # Exit early if no valid UUID
         force_remove = parse_flag(self.force_remove)
 
         for monster in player.monsters:

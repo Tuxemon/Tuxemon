@@ -1919,9 +1919,6 @@ msgstr "{target}'s armor softens."
 msgid "combat_state_stuck_get"
 msgstr "{target} is stuck in place."
 
-msgid "combat_state_plague0"
-msgstr "{target} begins to sniffle."
-
 msgid "combat_state_plague1"
 msgstr "Ah ... Ah. {target} held in a sneeze."
 
@@ -1930,6 +1927,21 @@ msgstr "Ah ... Ahchoo! {user} sneezed on {target}."
 
 msgid "combat_state_plague3"
 msgstr "{target} wiped it off."
+
+msgid "combat_state_plague4"
+msgstr "{target} begins to sniffle."
+
+msgid "combat_state_plague5"
+msgstr "{target} looks healthier."
+
+msgid "combat_state_plague6"
+msgstr "{target} was unknowingly cured."
+
+msgid "combat_state_plague7"
+msgstr "{user} stifled a sneeze."
+
+msgid "combat_state_plague8"
+msgstr "{target} suddenly sneezes!"
 
 msgid "combat_state_lockdown_get"
 msgstr "Items will not affect {target}."

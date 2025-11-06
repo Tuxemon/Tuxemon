@@ -1,181 +1,51 @@
 [
   {
-    "element_modifier": {
-      "cosmic": 1,
-      "earth": 1,
-      "fire": 1,
-      "frost": 1,
-      "heroic": 1,
-      "lightning": 1,
-      "normal": 1,
-      "shadow": 1,
-      "sky": 1,
-      "venom": 1,
-      "water": 1,
-      "wood": 1
-    },
+    "modifiers": [],
     "name": "weather_misty",
     "slug": "misty"
   },
   {
-    "element_modifier": {
-      "cosmic": 1,
-      "earth": 1,
-      "fire": 1,
-      "frost": 1,
-      "heroic": 1,
-      "lightning": 1,
-      "normal": 1,
-      "shadow": 1,
-      "sky": 1,
-      "venom": 1,
-      "water": 1,
-      "wood": 1
-    },
+    "modifiers": [],
     "name": "weather_windy",
     "slug": "windy"
   },
   {
-    "element_modifier": {
-      "cosmic": 1,
-      "earth": 1,
-      "fire": 1,
-      "frost": 1,
-      "heroic": 1,
-      "lightning": 1,
-      "normal": 1,
-      "shadow": 1,
-      "sky": 1,
-      "venom": 1,
-      "water": 1,
-      "wood": 1
-    },
+    "modifiers": [],
     "name": "weather_freezing",
     "slug": "freezing"
   },
   {
-    "element_modifier": {
-      "cosmic": 1,
-      "earth": 1,
-      "fire": 1,
-      "frost": 1,
-      "heroic": 1,
-      "lightning": 1,
-      "normal": 1,
-      "shadow": 1,
-      "sky": 1,
-      "venom": 1,
-      "water": 1,
-      "wood": 1
-    },
+    "modifiers": [],
     "name": "weather_hot",
     "slug": "hot"
   },
   {
-    "element_modifier": {
-      "cosmic": 1,
-      "earth": 1,
-      "fire": 1,
-      "frost": 1,
-      "heroic": 1,
-      "lightning": 1,
-      "normal": 1,
-      "shadow": 1,
-      "sky": 1,
-      "venom": 1,
-      "water": 1,
-      "wood": 1
-    },
+    "modifiers": [],
     "name": "weather_cloudy",
     "slug": "cloudy"
   },
   {
-    "element_modifier": {
-      "cosmic": 1,
-      "earth": 1,
-      "fire": 1,
-      "frost": 1,
-      "heroic": 1,
-      "lightning": 1,
-      "normal": 1,
-      "shadow": 1,
-      "sky": 1,
-      "venom": 1,
-      "water": 1,
-      "wood": 1
-    },
+    "modifiers": [],
     "name": "weather_foggy",
     "slug": "foggy"
   },
   {
-    "element_modifier": {
-      "cosmic": 1,
-      "earth": 1,
-      "fire": 1,
-      "frost": 1,
-      "heroic": 1,
-      "lightning": 1,
-      "normal": 1,
-      "shadow": 1,
-      "sky": 1,
-      "venom": 1,
-      "water": 1,
-      "wood": 1
-    },
+    "modifiers": [],
     "name": "weather_thunderstorm",
     "slug": "thunderstorm"
   },
   {
-    "element_modifier": {
-      "cosmic": 1,
-      "earth": 1,
-      "fire": 1,
-      "frost": 1,
-      "heroic": 1,
-      "lightning": 1,
-      "normal": 1,
-      "shadow": 1,
-      "sky": 1,
-      "venom": 1,
-      "water": 1,
-      "wood": 1
-    },
+    "modifiers": [],
     "name": "weather_snow",
     "slug": "snow"
   },
   {
-    "element_modifier": {
-      "cosmic": 1,
-      "earth": 1,
-      "fire": 1,
-      "frost": 1,
-      "heroic": 1,
-      "lightning": 1,
-      "normal": 1,
-      "shadow": 1,
-      "sky": 1,
-      "venom": 1,
-      "water": 1,
-      "wood": 1
-    },
+    "modifiers": [],
     "name": "weather_rain",
     "slug": "rain"
   },
   {
-    "element_modifier": {
-      "cosmic": 1,
-      "earth": 1,
-      "fire": 1,
-      "frost": 1,
-      "heroic": 1,
-      "lightning": 1,
-      "normal": 1,
-      "shadow": 1,
-      "sky": 1,
-      "venom": 1,
-      "water": 1,
-      "wood": 1
-    },
+    "modifiers": [],
     "name": "weather_sunny",
     "slug": "sunny"
   }

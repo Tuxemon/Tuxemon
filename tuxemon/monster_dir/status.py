@@ -16,6 +16,7 @@ from tuxemon.db import (
 from tuxemon.status.status import Status, decode_status, encode_status
 
 if TYPE_CHECKING:
+    from tuxemon.core.core_effect import StatusEffectResult
     from tuxemon.monster import Monster
     from tuxemon.session import Session
 
@@ -187,6 +188,19 @@ class MonsterStatusHandler:
             self.clear_status(session)
             return True
         return False
+
+    def tick_statuses_on_steps(
+        self, session: Session, steps: float
+    ) -> list[StatusEffectResult]:
+        """
+        Calls the step tick on all active statuses and returns any effect results.
+        """
+        results = []
+        for status in self.status:
+            result = status.tick_steps(session, steps)
+            if result:
+                results.append(result)
+        return results
 
     def encode_status(self) -> Sequence[Mapping[str, Any]]:
         return encode_status(self.status)

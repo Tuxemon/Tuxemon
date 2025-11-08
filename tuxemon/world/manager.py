@@ -130,7 +130,7 @@ class WorldMenuManager:
 
     def _get_exit_game_callback(self) -> Callable[[], None]:
         """Helper to create exit game callback."""
-        return lambda: self.client.event_engine.execute_action("quit")
+        return lambda: self.client.event_engine.execute_action("quit_world")
 
     def _menu_item(self, key: str, state: str, **kwargs: Any) -> MenuItem:
         label = T.translate(key).upper()

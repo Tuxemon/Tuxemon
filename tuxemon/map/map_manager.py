@@ -168,6 +168,14 @@ class MapManager:
         if self.current_map:
             self.current_map.add_inits(new_inits)
 
+    def clear_events(self) -> None:
+        if self.current_map:
+            self.current_map.clear_events()
+
+    def clear_inits(self) -> None:
+        if self.current_map:
+            self.current_map.clear_inits()
+
     def remove_event(self, event: EventObject) -> None:
         if self.current_map:
             updated = list(self.current_map.events)

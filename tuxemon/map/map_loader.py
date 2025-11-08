@@ -16,6 +16,7 @@ from natsort import natsorted
 from tuxemon import prepare
 from tuxemon.compat import Rect
 from tuxemon.constants.asset_loader import fetch_asset
+from tuxemon.constants.paths import mods_folder
 from tuxemon.db import Direction, Orientation
 from tuxemon.event import EventObject
 from tuxemon.event.eventparser import EventParser
@@ -29,7 +30,7 @@ from tuxemon.map.map import (
     tiles_inside_rect,
 )
 from tuxemon.map.map_region import RegionProperties, extract_region_properties
-from tuxemon.map.map_tuxemon import TuxemonMap
+from tuxemon.map.map_tuxemon import AbstractMap, NullMap, TuxemonMap
 from tuxemon.tools import copy_dict_with_keys
 
 logger = logging.getLogger(__name__)
@@ -72,57 +73,83 @@ class MapLoader:
         self.yaml_loader = YAMLEventLoader()
         self.cache_size = cache_size or prepare.MAP_CACHE_SIZE
         self.enable_cache = enable_cache
-        self._cache: OrderedDict[str, TuxemonMap] = OrderedDict()
+        self._cache: OrderedDict[str, AbstractMap] = OrderedDict()
 
-    def load_map_data(self, path: str) -> TuxemonMap:
+    def load_map_data(self, path: str) -> AbstractMap:
         """
         Loads map data, checking the cache first for performance.
+        If path is None, returns a NullMap with optional event loading.
 
         Parameters:
-            path: The path to the TMX map file.
-
-        Returns:
-            A TuxemonMap object containing the loaded map data and events.
+            path: Path to the TMX map file.
         """
         normalized_path = str(Path(path).resolve())
 
-        if self.enable_cache and normalized_path in self._cache:
+        if self.enable_cache:
+            cached = self.get_cached_map(normalized_path)
+            if cached:
+                return cached
+
+        txmn_map = self.load_map_from_disk(normalized_path)
+        yaml_files = self.resolve_yaml_files(txmn_map, normalized_path)
+        self.process_and_merge_events(txmn_map, yaml_files)
+
+        if self.enable_cache:
+            self.update_cache(normalized_path, txmn_map)
+
+        return txmn_map
+
+    def load_null_map(self, yaml_path: Optional[str]) -> AbstractMap:
+        logger.debug("Loading NullMap with optional events.")
+        null_map = NullMap()
+        if yaml_path:
+            file = mods_folder / yaml_path
+            self.process_and_merge_events(null_map, [file])
+        return null_map
+
+    def get_cached_map(self, normalized_path: str) -> Optional[AbstractMap]:
+        if normalized_path in self._cache:
             logger.debug(f"Cache hit for map '{normalized_path}'.")
             map_data = self._cache.pop(normalized_path)
             self._cache[normalized_path] = map_data
             return map_data
+        return None
 
+    def load_map_from_disk(self, normalized_path: str) -> AbstractMap:
         logger.info(
             f"Cache miss for map '{normalized_path}'. Loading from disk."
         )
-        txmn_map = self.tmx_loader.load(normalized_path)
-        self._process_and_merge_events(txmn_map, normalized_path)
+        return self.tmx_loader.load(normalized_path)
 
-        if self.enable_cache:
-            self._cache[normalized_path] = txmn_map
-            if len(self._cache) > self.cache_size:
-                evicted_path, _ = self._cache.popitem(last=False)
-                logger.debug(
-                    f"Cache full. Evicted least recently used map: '{evicted_path}'."
-                )
+    def resolve_yaml_files(
+        self, txmn_map: AbstractMap, normalized_path: str
+    ) -> list[Path]:
+        yaml_files = [Path(normalized_path).with_suffix(".yaml")]
+        if txmn_map.scenario:
+            _scenario = fetch_asset("maps", f"{txmn_map.scenario}.yaml")
+            yaml_files.append(Path(_scenario))
+        return yaml_files
 
-        return txmn_map
+    def update_cache(
+        self, normalized_path: str, map_data: AbstractMap
+    ) -> None:
+        self._cache[normalized_path] = map_data
+        if len(self._cache) > self.cache_size:
+            evicted_path, _ = self._cache.popitem(last=False)
+            logger.debug(
+                f"Cache full. Evicted least recently used map: '{evicted_path}'."
+            )
 
-    def _process_and_merge_events(
-        self, txmn_map: TuxemonMap, path: str
+    def process_and_merge_events(
+        self, txmn_map: AbstractMap, yaml_files: list[Path]
     ) -> None:
         """
         Processes and merges events from YAML files into the map.
 
         Parameters:
-            txmn_map: The TuxemonMap object to update.
-            path: The path to the TMX map file for deriving YAML paths.
+            txmn_map: The AbstractMap object to update.
+            yaml_files: List of YAML file paths to load events from.
         """
-        yaml_files = [Path(path).with_suffix(".yaml")]
-        if txmn_map.scenario:
-            _scenario = fetch_asset("maps", f"{txmn_map.scenario}.yaml")
-            yaml_files.append(Path(_scenario))
-
         yaml_collision, events = self._process_events(yaml_files)
         self._merge_events(txmn_map, yaml_collision, events)
 
@@ -169,17 +196,17 @@ class MapLoader:
 
     def _merge_events(
         self,
-        txmn_map: TuxemonMap,
+        txmn_map: AbstractMap,
         yaml_collision: MutableMapping[
             tuple[int, int], Optional[RegionProperties]
         ],
         events: dict[str, list[EventObject]],
     ) -> None:
         """
-        Merges processed events into the TuxemonMap.
+        Merges processed events into the AbstractMap.
 
         Parameters:
-            txmn_map: The TuxemonMap object to update.
+            txmn_map: The AbstractMap object to update.
             yaml_collision: Collision event data.
             events: Dictionary containing events and init sequences.
         """
@@ -191,7 +218,7 @@ class MapLoader:
         txmn_map.add_events(events["event"])
         txmn_map.add_inits(events["init"])
 
-    def add_to_cache(self, path: str, map_data: TuxemonMap) -> None:
+    def add_to_cache(self, path: str, map_data: AbstractMap) -> None:
         if not self.enable_cache:
             logger.debug("Caching disabled. Skipping manual insert.")
             return

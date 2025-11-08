@@ -63,7 +63,7 @@ def configure_game_states(
     # background handles that instead of requiring each state to manage cleanup.
     client.push_state("BackgroundState")
     if not config.skip_titlescreen:
-        client.push_state("StartState")
+        client.push_state("IntroState")
 
     if load_slot:
         client.push_state("LoadMenuState", load_slot=load_slot)

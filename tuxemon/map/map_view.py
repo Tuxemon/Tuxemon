@@ -323,6 +323,12 @@ class AbstractRenderer(ABC):
     cinema_y_ratio: Optional[float]
     map_animations: dict[str, AnimationInfo]
 
+    @property
+    @abstractmethod
+    def label(self) -> str:
+        """A string identifier for the renderer."""
+        ...
+
     @abstractmethod
     def update(self, time_delta: float) -> None:
         """Update internal state, animations, etc."""
@@ -340,13 +346,17 @@ class NullRenderer(AbstractRenderer):
     def __init__(self) -> None:
         pass
 
+    @property
+    def label(self) -> str:
+        return "null_renderer"
+
     def update(self, time_delta: float) -> None:
         pass
 
     def draw(
         self, surface: Surface, current_map: Optional[AbstractMap]
     ) -> None:
-        surface.fill(prepare.DARKGRAY_COLOR)
+        surface.fill(prepare.BLACK_COLOR)
 
 
 class MapRenderer(AbstractRenderer):
@@ -368,6 +378,10 @@ class MapRenderer(AbstractRenderer):
         self.cinema_y_ratio: Optional[float] = None
         self.map_animations: dict[str, AnimationInfo] = {}
         self.bubble_manager = BubbleManager()
+
+    @property
+    def label(self) -> str:
+        return "map_renderer"
 
     def draw(
         self, surface: Surface, current_map: Optional[AbstractMap]

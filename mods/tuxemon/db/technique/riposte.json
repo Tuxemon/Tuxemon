@@ -19,7 +19,7 @@
   "recharge": 1,
   "sfx": "sfx_kick",
   "slug": "riposte",
-  "sort": "meta",
+  "sort": "damage",
   "modifiers": [],
   "behaviors": {},
   "target": {

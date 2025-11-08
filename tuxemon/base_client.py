@@ -180,6 +180,7 @@ class BaseClient(ABC):
         self.map_loader.clear_cache()
         self.current_music.stop()
         local_session.reset()
+        local_session.reset_time()
         logger.info("Performing cleanup before exiting...")
 
     def update_states(self, time_delta: float) -> None:

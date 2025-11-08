@@ -22,7 +22,7 @@
  </layer>
  <layer id="2" name="Tile Layer 2" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHNVjtOA0EMdZUPUFDwKbMFB+DTISSo+FwA0QE1PR0tNRI14hTcAHbhEIEDJIfgWdknTSzPZgZ2EZast/aM7ZeX2UnKoUgFLw1uL4lrt9i3yNZ7IhsNvok1a3Y+4wnmTeEWbb3GWyvz2UfE48P5nEb7zvxw14GzbuczJk+LYb/c55/ws/MZk6fFXE7hfuV372jEPf9BvyYNPX7Uy6LVjfHDMj9tPur5v4RfGR8dzXLXjraca9HyzWfTTsVa5L6wfNuZlt8lxo/65XeMV+xAi90E38Mezo8h9YtPa165Mef0BfET7tPS3JXa5RW5NzjxAvw4P4bkbec0s1q8OnH42Srlx/kxJG9b+9vY0y/sWYF/in6reNfV/1q/ac0vphvz4z5+Q+Gf8LaN5yzWN0U/1n4NZjzb4Jv6XaScP/KzqHw9S707Uu6Xu4T31+PQlDtHT5r+3+I56Qo5KxWfA35aw/e/K3wfifQKkT48NM2rfdSoz4NCZAgPrSvd2FdnHRciJ3DlUsKrmhNR88r3FHvO4KF1pRv7fgN44RC0
+   eAHNVjlOA0EQ7MgHOCDgCL0BDzCQISSIOD6AyDAxORkpMRIx4hX8AHbhEYYH2I+gWt6Sxq2Z8QzsWrRUqu05usvl2bHLvkgFlIZHa+KNO6xbFlsdke0IdjBnw/ZnPkW/GWDZ7td8d7A4+oR8crw4ptmhp7+76sgzb/szp07Lbr3c59/os/2ZU6flXE3uetX34PGIa/6DfzEPffrol2XrG/PHdX7afNbzfw2MDYYn87Ebj7fsa9nqzVfTzI7NwH1h9TbTLb9KSB/9y68Y3rEHL/YTcIA17B9i+hfuFp+5Nef0Ffkz7tPS3JVa5Q1j7wD5CvrYP8TUbfvEVS2fnXr02V2qj/1DTN12719zn39uzQr6U/zbwLuuWLV/s1pfyDeOT7r4DQW+gFVHin/U9N2b62xCb+p3kXL+qM+y6vVF6t2Rcr/cJ7y/Pg2xsUvUZOj/LZ6Ttpi9UvnF0ad7+P63xR9DkU4h0gXc0HGNz5r1uVeI9AE32vKNdbXXaSFyBqiWEqhqTWQdV73nWHMBuNGWb6z7A/FQDxM=
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="40" height="20">
@@ -213,7 +213,7 @@
     <property name="cond2" value="is char_facing player,left"/>
    </properties>
   </object>
-  <object id="218" name="My First Mon" type="event" x="400" y="208" width="112" height="16">
+  <object id="218" name="My First Mon" type="event" x="368" y="208" width="144" height="16">
    <properties>
     <property name="act10" value="char_stop player"/>
     <property name="act11" value="lock_controls"/>
@@ -489,7 +489,7 @@
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="240" name="My First Mon - Not Met" type="event" x="400" y="208" width="112" height="16">
+  <object id="240" name="My First Mon - Not Met" type="event" x="368" y="208" width="144" height="16">
    <properties>
     <property name="act10" value="char_stop player"/>
     <property name="act11" value="lock_controls"/>
@@ -568,13 +568,6 @@
     <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
     <property name="cond3" value="is party_size player,less_than,1"/>
-   </properties>
-  </object>
-  <object id="250" name="Trash" type="event" x="368" y="208" width="32" height="16">
-   <properties>
-    <property name="act25" value="translated_dialog spyder_papertown_trash"/>
-    <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="282" name="Teleport to Brideswood B" type="event" x="624" y="112" width="16" height="16">

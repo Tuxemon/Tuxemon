@@ -37,10 +37,10 @@ class MoneyEffect(CoreEffect):
         hit = session.client.combat_session.get_tech_hit(user)
         tech.hit = tech.accuracy >= hit
 
-        damage, mult = formula.simple_damage_calculate(tech, user, target)
+        damage = formula.simple_damage_calculate(tech, user, target)[0]
 
         if tech.hit:
-            amount = int(damage * mult)
+            amount = damage
             _give_money(session, player, amount)
             formatter = CurrencyFormatter()
             formatted_amount = formatter.format(amount)

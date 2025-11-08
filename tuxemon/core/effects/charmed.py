@@ -45,5 +45,5 @@ class CharmedEffect(CoreEffect):
                     "enemy_trainer",
                 ]
             ):
-                session.client.combat_session.set_tech_hit(user, 1.0)
+                session.client.combat_session.set_tech_hit(user, 1.1)
         return StatusEffectResult(name=status.name, success=True)

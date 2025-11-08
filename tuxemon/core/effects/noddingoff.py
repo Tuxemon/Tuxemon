@@ -55,7 +55,7 @@ class NoddingOffEffect(CoreEffect):
         )
 
     def wake_up(self, status: Status) -> bool:
-        if status.has_reached_duration() and random.random() > self.chance:
+        if random.random() > self.chance:
             return True
         if status.has_exceeded_duration():
             return True

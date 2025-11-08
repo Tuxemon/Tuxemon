@@ -12,14 +12,14 @@
     }
   ],
   "flip_axes": "",
-  "speed": "normal",
+  "speed": "extremely_fast",
   "potency": 1,
   "power": 0,
   "range": "special",
   "recharge": 5,
   "sfx": "sfx_bounce",
   "slug": "overfeed",
-  "sort": "meta",
+  "sort": "damage",
   "modifiers": [],
   "behaviors": {},
   "target": {

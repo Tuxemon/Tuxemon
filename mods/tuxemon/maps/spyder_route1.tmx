@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="212">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="212">
  <properties>
   <property name="east" value="brideswood"/>
   <property name="edges" value="clamped"/>
+  <property name="map_type" value="route"/>
   <property name="north" value="cotton_town"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="route1"/>
   <property name="south" value="paper_town"/>
-  <property name="map_type" value="route"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_set pieces.tsx"/>
  <tileset firstgid="1551" source="../gfx/tilesets/core_outdoor.tsx"/>
@@ -20,7 +20,7 @@
  </layer>
  <layer id="2" name="Tile Layer 2" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAGtlc1NAzEQhc0FiT8lqYErAkWCCzQC9EADIHGgBKoCauAINwqAC2JGm08ybz22N4ml0fP8+M2z17ub0v9xvp/ShZnimcVOOuzUampDeVv+zPjmZuCNzW/NFGs9p+SUt+W39JPv0fC6mxL2ZvN8EIevF1v6yee9avNrO3u30jg+HD8X+CN8Crh0f6V+pVhNn9dP5f2el7qM91muGkdb+vScnu1M1xm6z0e7T36nHF/M/D6VBvq4b4rKC4fG8ckr6j41X/K/VnfPNe4clSri56L98H+C54t+sNxtHOX8xpkhAh/YqvP85SKlK7N8oB/Mc7V5Td9d4f1VrtlyiOR9703bg+hjf6DyRD769N7hwxchvOTdL73D6AdZtynCFyH85PFzvR7DB6nbFOGLEH7y+KoXH6RuU4Qvwt+DoQN5+qneVpz8VKQPGK3XvOplXRQnPxXhA30972zOlec9jt5to36nlT/X5PPF6vtCHXn0bhvhd3zv+P5Rjw509iLr18VWH3ipQ2cvst7xcy+lpf1re+3D6lt94KfuD+eKkCg=
+   eAGtlb1NBDEQhU1CwI/urgYqQIIEGgF6oAGQCCiBFIEoB64GcggoABLEjPY+ybz12N67szR6nh+/efZ6d1P6P072Ujo1U/y02GOHfVhNbShvy58Z39wMvLT5lZlireeUnPK2/JZ+8j0a3nZTwpY2zwdx+HqxpZ983qs2v7CzdyuNo4Pxc4E/wvuAS/dX6leK1fR5/VTe73mpy3if5apxtKVPz+nBznSdofu8s/vkd8rx1czvU2mgj/umqLxwaByfvKLuU/Ml/2t191zjzmGpIn4u2g//J3i+6AfL3cZRzm+cGSLwga06z58tUjo3ywf6wTxXm9f0XRfeX+WaHQ+RvO+NabsVfewPVJ7IR5/eO3z4IoSXvPuldxj9IOs2RfgihJ88fq7XY/ggdZsifBHCTx5f9eKD1G2K8EX4uz90IE8/1duKk5+K9AGj9ZpXvayL4uSnInygr+edzbnyvMfRu23U77Ty55p8vlh9X6gjj95tI/yO7x3fP+rRgc5eZP262OoDL3Xo7EXWOz7bf/Zlgj1ZbasP/NT9AcQFmbo=
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="40" height="20">

@@ -77,6 +77,74 @@ class PygameEventQueueHandler(EventQueueHandler):
                 yield from player_input.get_events()
 
 
+class InputMappingStrategy:
+    def map_button(self, raw_button_id: int) -> Optional[int]:
+        raise NotImplementedError
+
+    def map_axis(
+        self, axis_id: int, value: float
+    ) -> tuple[Optional[int], bool]:
+        raise NotImplementedError
+
+
+class XboxMapping(InputMappingStrategy):
+    def map_button(self, raw_button_id: int) -> Optional[int]:
+        return {
+            0: buttons.A,
+            1: buttons.B,
+            6: buttons.BACK,
+            7: buttons.START,
+            11: buttons.LEFT,
+            12: buttons.RIGHT,
+            13: buttons.UP,
+            14: buttons.DOWN,
+        }.get(raw_button_id)
+
+    def map_axis(
+        self, axis_id: int, value: float
+    ) -> tuple[Optional[int], bool]:
+        if axis_id == HORIZONTAL_AXIS:
+            return (
+                buttons.RIGHT if value > 0 else buttons.LEFT,
+                abs(value) > 0.25,
+            )
+        elif axis_id == VERTICAL_AXIS:
+            return (
+                buttons.DOWN if value > 0 else buttons.UP,
+                abs(value) > 0.25,
+            )
+        return (None, False)
+
+
+class PlayStationMapping(InputMappingStrategy):
+    def map_button(self, raw_button_id: int) -> Optional[int]:
+        return {
+            1: buttons.A,  # Cross
+            2: buttons.B,  # Circle
+            8: buttons.BACK,
+            9: buttons.START,
+            14: buttons.LEFT,
+            15: buttons.RIGHT,
+            12: buttons.UP,
+            13: buttons.DOWN,
+        }.get(raw_button_id)
+
+    def map_axis(
+        self, axis_id: int, value: float
+    ) -> tuple[Optional[int], bool]:
+        if axis_id == HORIZONTAL_AXIS:
+            return (
+                buttons.RIGHT if value > 0 else buttons.LEFT,
+                abs(value) > 0.2,
+            )
+        elif axis_id == VERTICAL_AXIS:
+            return (
+                buttons.DOWN if value > 0 else buttons.UP,
+                abs(value) > 0.2,
+            )
+        return (None, False)
+
+
 class PygameEventHandler(InputHandler[Event]):
     """
     Input handler of Pygame events.
@@ -98,43 +166,11 @@ class PygameGamepadInput(PygameEventHandler):
             almost impossible.
     """
 
-    # Xbox 360 Controller buttons:
-    # A = 0    Start = 7    D-Up = 13
-    # B = 1    Back = 6     D-Down = 14
-    # X = 2                 D-Left = 11
-    # Y = 3                 D-Right = 12
-    #
-    default_input_map = {
-        0: buttons.A,
-        1: buttons.B,
-        6: buttons.BACK,
-        11: buttons.LEFT,
-        12: buttons.RIGHT,
-        13: buttons.UP,
-        14: buttons.DOWN,
-        7: buttons.START,
-    }
-    DEADZONE: float = 0.25
-
-    def __init__(
-        self,
-        event_map: Optional[Mapping[Optional[int], int]] = None,
-        deadzone: float = DEADZONE,
-    ) -> None:
-        super().__init__(event_map)
-        self.deadzone = deadzone
-
-    def is_within_deadzone(self, value: float) -> bool:
-        """
-        Checks if the axis value is within the deadzone.
-
-        Parameters:
-            value: The axis value.
-
-        Returns:
-            True if the value is within the deadzone, False otherwise.
-        """
-        return abs(value) < self.deadzone
+    def __init__(self, mapping_strategy: InputMappingStrategy):
+        super().__init__({})
+        self.mapping = mapping_strategy
+        self.hat_state = (0, 0)
+        self.axis_state = {HORIZONTAL_AXIS: 0, VERTICAL_AXIS: 0}
 
     def handle_button(
         self, button: int, pressed: bool, value: float = 0.0
@@ -147,6 +183,9 @@ class PygameGamepadInput(PygameEventHandler):
             pressed: True if the button is pressed, False if released.
             value: The analog value of the button (optional, defaults to 0.0).
         """
+        logger.debug(
+            f"{'Pressed' if pressed else 'Released'} {button} with value {value}"
+        )
         if pressed:
             self.press(button, value)
         else:
@@ -161,7 +200,7 @@ class PygameGamepadInput(PygameEventHandler):
         """
         self.check_button(input_event)
         self.check_hat(input_event)
-        self.check_axis(input_event)
+        self.handle_axis_event(input_event)
 
     def check_button(self, pg_event: Event) -> None:
         """
@@ -170,11 +209,10 @@ class PygameGamepadInput(PygameEventHandler):
         Parameters:
             pg_event: The pygame event.
         """
-        try:
-            button = self.event_map[pg_event.button]
-            self.handle_button(button, pg_event.type == pg.JOYBUTTONDOWN)
-        except (KeyError, AttributeError):
-            pass
+        if pg_event.type in (pg.JOYBUTTONDOWN, pg.JOYBUTTONUP):
+            button = self.mapping.map_button(pg_event.button)
+            if button is not None:
+                self.handle_button(button, pg_event.type == pg.JOYBUTTONDOWN)
 
     def check_hat(self, pg_event: Event) -> None:
         """
@@ -185,20 +223,26 @@ class PygameGamepadInput(PygameEventHandler):
         """
         if pg_event.type == pg.JOYHATMOTION:
             x, y = pg_event.value
-            self.handle_button(buttons.LEFT, x == -1)
-            self.handle_button(buttons.RIGHT, x == 1)
-            # Note: y axis is inverted
-            self.handle_button(buttons.DOWN, y == 1)
-            # Note: y axis is inverted
-            self.handle_button(buttons.UP, y == -1)
-            if x == 0:
-                self.handle_button(buttons.LEFT, False)
-                self.handle_button(buttons.RIGHT, False)
-            if y == 0:
-                self.handle_button(buttons.UP, False)
-                self.handle_button(buttons.DOWN, False)
+            prev_x, prev_y = self.hat_state
+            self.hat_state = (x, y)
 
-    def check_axis(self, pg_event: Event) -> None:
+            if x != prev_x:
+                self.handle_button(buttons.LEFT, x == -1)
+                self.handle_button(buttons.RIGHT, x == 1)
+                if prev_x == -1 and x != -1:
+                    self.handle_button(buttons.LEFT, False)
+                if prev_x == 1 and x != 1:
+                    self.handle_button(buttons.RIGHT, False)
+
+            if y != prev_y:
+                self.handle_button(buttons.DOWN, y == 1)
+                self.handle_button(buttons.UP, y == -1)
+                if prev_y == 1 and y != 1:
+                    self.handle_button(buttons.DOWN, False)
+                if prev_y == -1 and y != -1:
+                    self.handle_button(buttons.UP, False)
+
+    def handle_axis_event(self, pg_event: Event) -> None:
         """
         Checks for axis motion events.
 
@@ -210,23 +254,36 @@ class PygameGamepadInput(PygameEventHandler):
 
     def _handle_axis(self, axis: int, value: float) -> None:
         """Handles axis motion events."""
-        if self.is_within_deadzone(value):
-            if axis == HORIZONTAL_AXIS:
-                self.handle_button(buttons.LEFT, False)
-                self.handle_button(buttons.RIGHT, False)
-            elif axis == VERTICAL_AXIS:
-                self.handle_button(buttons.UP, False)
-                self.handle_button(buttons.DOWN, False)
+        button, pressed = self.mapping.map_axis(axis, value)
+        if button is None:
             return
 
-        if axis == HORIZONTAL_AXIS:
+        # Determine direction: -1 (negative), 1 (positive), 0 (neutral)
+        direction = 0
+        if pressed:
+            direction = 1 if value > 0 else -1
+
+        # If direction hasn't changed, do nothing
+        if self.axis_state[axis] == direction:
+            return
+
+        # Release previous direction
+        if self.axis_state[axis] == -1:
             self.handle_button(
-                buttons.RIGHT if value > 0 else buttons.LEFT, True, abs(value)
+                buttons.LEFT if axis == HORIZONTAL_AXIS else buttons.UP, False
             )
-        elif axis == VERTICAL_AXIS:
+        elif self.axis_state[axis] == 1:
             self.handle_button(
-                buttons.DOWN if value > 0 else buttons.UP, True, abs(value)
+                buttons.RIGHT if axis == HORIZONTAL_AXIS else buttons.DOWN,
+                False,
             )
+
+        # Press new direction if applicable
+        if direction != 0:
+            self.handle_button(button, True, abs(value))
+
+        # Update state
+        self.axis_state[axis] = direction
 
 
 class PygameKeyboardInput(PygameEventHandler):

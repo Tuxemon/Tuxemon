@@ -208,10 +208,6 @@ class Status:
         """Assigns a linked monster that benefits from this status."""
         self._linked_monster = monster
 
-    def has_reached_duration(self) -> bool:
-        """Checks if the status has reached or exceeded its duration."""
-        return self._nr_turn >= self.duration > 0
-
     def has_exceeded_duration(self) -> bool:
         """Checks if the status has lasted beyond its intended duration."""
         return self._nr_turn > self.duration

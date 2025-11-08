@@ -19,7 +19,7 @@
   "recharge": 2,
   "sfx": "sfx_squeak",
   "slug": "evasion",
-  "sort": "meta",
+  "sort": "damage",
   "modifiers": [],
   "behaviors": {},
   "target": {

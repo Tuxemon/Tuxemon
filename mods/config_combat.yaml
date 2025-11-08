@@ -17,7 +17,7 @@ multiplier_map:
   0.25: attack_weak            # msgid: Minimum effectiveness due to weakness
 
 # Speed_settings: def speed_monster()
-speed_factor: 1.5            # Multiplier applied to technique speed to modify effective speed.
+speed_factor: 0.25           # Multiplier applied to technique speed; keeps even very slow techniques above zero.
 speed_offset: 50.0           # Random variation range for speed calculations; adds unpredictability.
 dodge_modifier: 0.01         # Dodge impact as a percentage of total speed.
 base_speed_bonus: 1.0        # Default speed bonus for techniques not classified as "fast."

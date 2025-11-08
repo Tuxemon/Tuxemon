@@ -1,6 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 import unittest
+from typing import Optional
 from unittest.mock import Mock
 
 import pygame as pg
@@ -13,11 +14,28 @@ from tuxemon.platform.events import PlayerInput
 from tuxemon.platform.platform_pygame.events import (
     HORIZONTAL_AXIS,
     VERTICAL_AXIS,
+    InputMappingStrategy,
     PygameGamepadInput,
     PygameKeyboardInput,
     PygameMouseInput,
     PygameTouchOverlayInput,
 )
+
+
+class MockMapping(InputMappingStrategy):
+    def map_button(self, raw_button_id: int):
+        return TestPygameGamepadInput.event_map.get(raw_button_id)
+
+    def map_axis(self, axis_id: int, value: float):
+        if axis_id == HORIZONTAL_AXIS:
+            button = buttons.RIGHT if value > 0 else buttons.LEFT
+        elif axis_id == VERTICAL_AXIS:
+            button = buttons.DOWN if value > 0 else buttons.UP
+        else:
+            return (None, False)
+
+        pressed = abs(value) > 0.2
+        return (button, pressed)
 
 
 class TestPygameGamepadInput(unittest.TestCase):
@@ -36,9 +54,8 @@ class TestPygameGamepadInput(unittest.TestCase):
             14: buttons.DOWN,
             7: buttons.START,
         }
-        cls.gamepad_input = PygameGamepadInput(
-            event_map=cls.event_map, deadzone=0.2
-        )
+        strategy = MockMapping()
+        cls.gamepad_input = PygameGamepadInput(strategy)
         cls.gamepad_input.press = Mock()
         cls.gamepad_input.release = Mock()
 
@@ -50,10 +67,6 @@ class TestPygameGamepadInput(unittest.TestCase):
         self.__class__.gamepad_input.press.reset_mock()
         self.__class__.gamepad_input.release.reset_mock()
 
-    def test_is_within_deadzone(self):
-        self.assertTrue(self.gamepad_input.is_within_deadzone(0.1))
-        self.assertFalse(self.gamepad_input.is_within_deadzone(0.3))
-
     def test_handle_button_press(self):
         self.gamepad_input.handle_button(buttons.A, True)
         self.gamepad_input.press.assert_called_once_with(buttons.A, 0.0)
@@ -64,44 +77,106 @@ class TestPygameGamepadInput(unittest.TestCase):
 
     def test_check_button_press(self):
         event = Event(pg.JOYBUTTONDOWN, button=0)
-        self.gamepad_input.check_button(event)
+        self.gamepad_input.process_event(event)
         self.gamepad_input.press.assert_called_once_with(buttons.A, 0.0)
 
     def test_check_button_release(self):
         event = Event(pg.JOYBUTTONUP, button=0)
-        self.gamepad_input.check_button(event)
+        self.gamepad_input.process_event(event)
         self.gamepad_input.release.assert_called_once_with(buttons.A)
 
-    def test_check_axis_horizontal_right(self):
+    def test_axis_horizontal_right(self):
         event = Event(pg.JOYAXISMOTION, axis=HORIZONTAL_AXIS, value=0.5)
-        self.gamepad_input.check_axis(event)
+        self.gamepad_input.process_event(event)
         self.gamepad_input.press.assert_called_with(buttons.RIGHT, 0.5)
 
-    def test_check_axis_horizontal_left(self):
+    def test_axis_horizontal_left(self):
         event = Event(pg.JOYAXISMOTION, axis=HORIZONTAL_AXIS, value=-0.5)
-        self.gamepad_input.check_axis(event)
+        self.gamepad_input.process_event(event)
         self.gamepad_input.press.assert_called_with(buttons.LEFT, 0.5)
 
-    def test_check_axis_vertical_down(self):
+    def test_axis_vertical_down(self):
         event = Event(pg.JOYAXISMOTION, axis=VERTICAL_AXIS, value=0.5)
-        self.gamepad_input.check_axis(event)
+        self.gamepad_input.process_event(event)
         self.gamepad_input.press.assert_called_with(buttons.DOWN, 0.5)
 
-    def test_check_axis_vertical_up(self):
+    def test_axis_vertical_up(self):
         event = Event(pg.JOYAXISMOTION, axis=VERTICAL_AXIS, value=-0.5)
-        self.gamepad_input.check_axis(event)
+        self.gamepad_input.process_event(event)
         self.gamepad_input.press.assert_called_with(buttons.UP, 0.5)
 
-    def test_check_axis_deadzone(self):
+    def test_axis_event_within_deadzone(self):
+        self.gamepad_input.axis_state[HORIZONTAL_AXIS] = -1
         event = Event(pg.JOYAXISMOTION, axis=HORIZONTAL_AXIS, value=0.1)
-        self.gamepad_input.check_axis(event)
+        self.gamepad_input.process_event(event)
         self.gamepad_input.release.assert_any_call(buttons.LEFT)
-        self.gamepad_input.release.assert_any_call(buttons.RIGHT)
 
+        self.gamepad_input.axis_state[VERTICAL_AXIS] = -1
         event = Event(pg.JOYAXISMOTION, axis=VERTICAL_AXIS, value=0.1)
-        self.gamepad_input.check_axis(event)
+        self.gamepad_input.process_event(event)
         self.gamepad_input.release.assert_any_call(buttons.UP)
-        self.gamepad_input.release.assert_any_call(buttons.DOWN)
+
+    def test_check_button_ignores_non_button_event(self):
+        event = Event(pg.JOYAXISMOTION, axis=HORIZONTAL_AXIS, value=0.5)
+        self.gamepad_input.process_event(event)
+        self.gamepad_input.press.assert_not_called()
+        self.gamepad_input.release.assert_not_called()
+
+    def test_hat_motion_left_right(self):
+        self.gamepad_input.hat_state = (0, 0)
+
+        event = Event(pg.JOYHATMOTION, value=(-1, 0))
+        self.gamepad_input.process_event(event)
+        self.gamepad_input.press.assert_any_call(buttons.LEFT, 0.0)
+
+        self.gamepad_input.press.reset_mock()
+        self.gamepad_input.release.reset_mock()
+
+        event = Event(pg.JOYHATMOTION, value=(1, 0))
+        self.gamepad_input.process_event(event)
+        self.gamepad_input.release.assert_any_call(buttons.LEFT)
+        self.gamepad_input.press.assert_any_call(buttons.RIGHT, 0.0)
+
+    def test_hat_motion_up_down(self):
+        event = Event(pg.JOYHATMOTION, value=(0, -1))
+        self.gamepad_input.process_event(event)
+        self.gamepad_input.press.assert_any_call(buttons.UP, 0.0)
+
+        event = Event(pg.JOYHATMOTION, value=(0, 1))
+        self.gamepad_input.process_event(event)
+        self.gamepad_input.press.assert_any_call(buttons.DOWN, 0.0)
+
+    def test_hat_release(self):
+        self.gamepad_input.hat_state = (-1, 0)
+        event = Event(pg.JOYHATMOTION, value=(0, 0))
+        self.gamepad_input.process_event(event)
+        self.gamepad_input.release.assert_any_call(buttons.LEFT)
+
+    def test_axis_direction_change(self):
+        self.gamepad_input.axis_state[HORIZONTAL_AXIS] = 1
+        event = Event(pg.JOYAXISMOTION, axis=HORIZONTAL_AXIS, value=-0.6)
+        self.gamepad_input.process_event(event)
+        self.gamepad_input.release.assert_any_call(buttons.RIGHT)
+        self.gamepad_input.press.assert_any_call(buttons.LEFT, 0.6)
+
+    def test_unknown_button(self):
+        event = Event(pg.JOYBUTTONDOWN, button=99)  # not in map
+        self.gamepad_input.process_event(event)
+        self.gamepad_input.press.assert_not_called()
+        self.gamepad_input.release.assert_not_called()
+
+    def test_unknown_axis(self):
+        event = Event(pg.JOYAXISMOTION, axis=99, value=0.5)
+        self.gamepad_input.process_event(event)
+        self.gamepad_input.press.assert_not_called()
+        self.gamepad_input.release.assert_not_called()
+
+    def test_axis_no_change(self):
+        self.gamepad_input.axis_state[HORIZONTAL_AXIS] = 1
+        event = Event(pg.JOYAXISMOTION, axis=HORIZONTAL_AXIS, value=0.6)
+        self.gamepad_input.process_event(event)
+        self.gamepad_input.press.assert_not_called()
+        self.gamepad_input.release.assert_not_called()
 
 
 class TestPygameMouseInput(unittest.TestCase):

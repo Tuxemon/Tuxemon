@@ -455,7 +455,7 @@ msgid "dojo_pass"
 msgstr "Dojo Pass"
 
 msgid "dojo_pass_description"
-msgstr "Admit one to the Dojo of the Five Elements."
+msgstr "Admit one to the Dojo of the Elements."
 
 msgid "book_wishes"
 msgstr "Book of Wishes"
@@ -1133,11 +1133,11 @@ msgstr ""
 "Technique Manual that teaches a Water or Earth Tuxemon the Avalanche "
 "technique."
 
-msgid "tm_cavity"
-msgstr "TM: Cavity"
+msgid "tm_acid"
+msgstr "TM: Acid"
 
 msgid "tm_cavity_description"
-msgstr "Technique Manual that teaches the Cavity technique."
+msgstr "Technique Manual that teaches the Acid technique."
 
 msgid "tm_frostbite"
 msgstr "TM: Frostbite"
@@ -1666,6 +1666,9 @@ msgstr " "
 
 msgid "combat_miss"
 msgstr "It missed..."
+
+msgid "spyderbite_miss"
+msgstr "And the technique was lost."
 
 msgid "combat_full_health"
 msgstr "But it's already at full health."
@@ -4493,6 +4496,9 @@ msgstr "Failed"
 msgid "menu_minigame"
 msgstr "Minigame"
 
+msgid "menu_battle"
+msgstr "Battle"
+
 msgid "menu_player"
 msgstr "Player"
 
@@ -4686,6 +4692,9 @@ msgstr "An ancient story reemerges! Could this change everything?"
 
 msgid "quest_trigger_success"
 msgstr "A new quest begins! Your next challenge is calling."
+
+msgid "menu_intro"
+msgstr "Press Any Key"
 
 # Default mod names on selection menu
 msgid "xero_campaign"
@@ -11751,9 +11760,6 @@ msgstr ""
 msgid "spyder_papertown_thereis"
 msgstr "There is something here..."
 
-msgid "spyder_papertown_trash"
-msgstr "Just trash"
-
 msgid "spyder_papertown_rockitten"
 msgstr "Do you want ROCKITTEN?"
 
@@ -11796,7 +11802,7 @@ msgstr ""
 
 msgid "spyder_cottontown_monk"
 msgstr ""
-"I am assigned by the Dojo of the Five Elements to tend the statues here. \n"
+"I am assigned by the Dojo of the Elements to tend the statues here. \n"
 " But Omnichannel is planning to expand its offices into this space. \n"
 " I don't know what will happen to the statues when they do."
 
@@ -13964,7 +13970,8 @@ msgstr "You're not a Greenwash employee? I've heard that one before!"
 msgid "spyder_flower_guard"
 msgstr ""
 "Access restricted. Only those who've completed the combat evaluation at "
-"the Dojo are cleared for entry. Orders from above — no exceptions."
+"the Dojo are cleared for entry. \n"
+"Orders from above — no exceptions."
 
 msgid "spyder_flower_artist1"
 msgstr ""
@@ -14746,8 +14753,9 @@ msgstr "I got unlucky that time."
 
 msgid "spyder_top_mickey1"
 msgstr ""
-"Do you ever wonder\n"
-" if life is one big illusion, playing on a screen for someone in another universe?"
+"Do you ever wonder "
+" if life is one big illusion, \n"
+"playing on a screen for someone in another universe?"
 
 msgid "spyder_top_mickey2"
 msgstr "Well, I'm going to reload."
@@ -14778,8 +14786,8 @@ msgstr "Well, this should help."
 
 msgid "spyder_top_magician3"
 msgstr ""
-"Why not head to the Dojo in Flower City and see how your battling skills "
-"stack up against the best trainers in the region?"
+"Head to the Dojo in Flower City and see how your battling skills "
+"stack up."
 
 msgid "spyder_mansion_gillette"
 msgstr "Gillette"
@@ -16327,7 +16335,7 @@ msgid "spyder_leatherhouse1_radio_night"
 msgstr "A song is playing. It's called \"Fondent Tango\"."
 
 msgid "spyder_flower_dojo_sign"
-msgstr "Dojo of the Five Elements: Master Tuxemon Battle"
+msgstr "Dojo of the Elements: Master Tuxemon Battle"
 
 msgid "spyder_dojo_board_a"
 msgstr "It's the Mentor's notes on Morphing."
@@ -16374,7 +16382,7 @@ msgstr ""
 " Ranged determines how much Damage their ranged and reach attacks do.\n"
 " Armor reduces Damage from melee and reach attacks.\n"
 " Dodge reduces Damage from ranged and touch attacks.\n"
-" Whichever monster has the higher Speed acts first in battle."
+" A higher Speed makes it more likely that monster will act first in battle."
 
 msgid "spyder_dojo_zhu2"
 msgstr ""
@@ -16416,28 +16424,38 @@ msgstr ""
 
 msgid "spyder_dojo_fu3d"
 msgstr ""
-"Feel free to ask my students, if you're interested in the Button Potion. "
-"Both of them might have use for it, depending on their current research."
+"Feel free to ask my students, if you're interested in the Button Potion. \n"
+"Either of them might be prepared to apply it, depending on their current research."
 
 msgid "spyder_dojo_fu_student1"
 msgstr ""
-"You're interested in using the Button Potion on one of your tuxemon? That'll"
-" be ${{currency}}500?, if you're willing to part with it."
+"You're interested in using the Button Potion on one of your tuxemon? \n"
+"That'll be ${{currency}}500, if you're willing to part with it."
+
+msgid "spyder_dojo_fu_student1_stage"
+msgstr ""
+"Do you have a tuxemon that has evolved twice? \n"
+"Return when you do, and I can guide it back to its intermediate stage."
 
 msgid "spyder_dojo_fu_student1a"
 msgstr ""
-"A small price to pay for the knowledge that will be gained from reversing a "
-"tuxemon that has reached its first evolution."
+"I can return a monster in its first stage to its original form. \n"
+"A small price to pay for the knowledge that will be gained. \n"
+"To reverse the morphing process, it has its uses."
 
 msgid "spyder_dojo_fu_student1b"
 msgstr ""
-"The insights gained from reversing a tuxemon that has reached its second "
-"evolution will be invaluable to my research."
+"I can return a monster in its second stage to its intermediary form. \n"
+"The insights from reversing evolution are invaluable to my research."
 
 msgid "spyder_dojo_fu_student1c"
 msgstr ""
 "I see. Well, if you're not interested or can't afford it, I won't pressure you. The Button Potion is a rare and valuable item, after all.\n"
 " Maybe another time, then?"
+
+msgid "spyder_dojo_fu_student2_stage"
+msgstr "Do you have a tuxemon that has evolved once? \n"
+"Come back when it has, and I can restore it to its original form."
 
 msgid "spyder_dojo_fu_nochoice"
 msgstr ""
@@ -16446,8 +16464,8 @@ msgstr ""
 
 msgid "spyder_dojo_zhu3"
 msgstr ""
-"I have developed a potion that changes a tuxemon's taste. Shall I give the "
-"Taste-Changer Potion to one of your tuxemon for ${{currency}}50?"
+"I have developed a potion that changes a tuxemon's taste. \n"
+"Shall I give the Taste-Changer Potion to one of your tuxemon for ${{currency}}50?"
 
 msgid "spyder_dojo_zhu3a"
 msgstr ""
@@ -16511,21 +16529,19 @@ msgstr "Fu"
 
 msgid "spyder_dojo_wan1"
 msgstr ""
-"My Wood tuxemon all know Fire moves, \n"
-" so if you send a Metal tuxemon against me to take advantage of their weakness to Metal, \n"
-" we'll meet it with Fire."
+"On this level, you must prove your mastery of the elements that make up everything in the universe."
 
 msgid "spyder_dojo_wan2"
 msgstr ""
 "Every monster is composed of one or two elements, \n"
-" and every move that they can perform is composed of one or two elements. \n"
-" A monster's element determines which moves it resists, and which moves it is weak against. \n"
-" It takes half damage from moves of the element it is resistant to, \n"
-" and double from moves of the element it is weak against."
+" and every technique that they can perform is composed of one or two elements. \n"
+" A monster's element determines which elements it resists, and which elements it is weak against. \n"
+" It takes half damage from techniques of the element it is resistant to, \n"
+" and double from techniques of the element it is weak against."
 
 msgid "spyder_dojo_wan3"
 msgstr ""
-"Each monk in this room specializes in monsters of a particular type, \n"
+"Each monk in this room specializes in monsters of a particular element, \n"
 " but each has found a way to develop their strengths and to mitigate their weaknesses. \n"
 " Talk to me once you have defeated them all."
 
@@ -16568,9 +16584,9 @@ msgstr ""
 
 msgid "spyder_dojo_kataro1"
 msgstr ""
-"My Water tuxemon know techniques that work around their weakness, \n"
-" whether that's using Sinkhole to mitigate their weakness toward Earth techniques, \n"
-" or using the fixed damage move Perfect Cut so it's not halved against Wood types."
+"My Water tuxemon know techniques that work around their weaknesses, \n"
+" whether that's using Fiery to make their opponent weak to Water techniques, \n"
+" or using the fixed damage move Panjandrum so it's not halved against Wood types."
 
 msgid "spyder_dojo_kataro2"
 msgstr ""

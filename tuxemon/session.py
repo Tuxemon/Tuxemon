@@ -90,6 +90,12 @@ class AbstractSession(ABC, Generic[ClientType]):
         if reset_player:
             self._player = None
 
+    def reset_time(self) -> None:
+        """Resets session time tracking to start fresh."""
+        self._start_time = datetime.now()
+        self._start_timestamp = time.time()
+        self._total_playtime = 0.0
+
     def get_state(self) -> SessionSave:
         """Returns session-level state to be saved and updates internal playtime."""
         current_duration = time.time() - self._start_timestamp

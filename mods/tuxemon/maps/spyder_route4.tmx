@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="101">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="101">
  <properties>
   <property name="east" value="route3"/>
   <property name="edges" value="clamped"/>
@@ -440,7 +440,9 @@
     <property name="act02" value="lock_controls"/>
     <property name="act03" value="create_npc spyder_billie,0,4"/>
     <property name="act04" value="pathfind_to_char player,spyder_billie"/>
-    <property name="act05" value="unlock_controls"/>
+    <property name="act05" value="char_face player,spyder_spyder_billie"/>
+    <property name="act06" value="char_face spyder_spyder_billie,player"/>
+    <property name="act07" value="unlock_controls"/>
     <property name="act08" value="translated_dialog spyder_route4_billie1"/>
     <property name="act20" value="add_monster billie_choice,18,spyder_billie,5,10"/>
     <property name="act21" value="set_monster_attribute add_monster,gender,male"/>

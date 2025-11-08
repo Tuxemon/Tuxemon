@@ -44,7 +44,7 @@ class TestGameInitialization(unittest.TestCase):
         configure_game_states(self.mock_client, self.mock_config, load_slot)
 
         self.mock_client.push_state.assert_any_call("BackgroundState")
-        self.mock_client.push_state.assert_any_call("StartState")
+        self.mock_client.push_state.assert_any_call("IntroState")
         self.mock_client.push_state.assert_any_call(
             "LoadMenuState", load_slot=load_slot
         )
@@ -59,7 +59,7 @@ class TestGameInitialization(unittest.TestCase):
         configure_game_states(self.mock_client, self.mock_config, load_slot)
 
         self.mock_client.push_state.assert_any_call("BackgroundState")
-        self.mock_client.push_state.assert_any_call("StartState")
+        self.mock_client.push_state.assert_any_call("IntroState")
         self.mock_client.push_state.assert_any_call(
             "SplashState", parent=self.mock_client.state_manager
         )

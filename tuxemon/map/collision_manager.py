@@ -8,7 +8,6 @@ from collections.abc import Mapping, MutableMapping, Sequence
 from typing import TYPE_CHECKING, Any, DefaultDict, Optional, Union
 
 from tuxemon import prepare
-from tuxemon.db import Direction
 from tuxemon.map.map_region import RegionProperties
 
 if TYPE_CHECKING:
@@ -136,26 +135,12 @@ class CollisionManager:
             pos: The X, Y coordinates (as floats) indicating the entity's position.
         """
         coords = (int(pos[0]), int(pos[1]))
-        region = self._map_manager.collision_map.get(coords)
-
-        enter_from = region.enter_from if region else []
-        exit_from = region.exit_from if region else []
-        endure = region.endure if region else []
-        key = region.key if region else None
-        push_effect = region.push_effect if region else None
-        speed_modifier = region.speed_modifier if region else None
-
-        prop = RegionProperties(
-            enter_from=enter_from,
-            exit_from=exit_from,
-            endure=endure,
-            entity=entity,
-            key=key,
-            push_effect=push_effect,
-            speed_modifier=speed_modifier,
+        region = (
+            self._map_manager.collision_map.get(coords) or RegionProperties()
         )
-
-        self._map_manager.collision_map[coords] = prop
+        self._map_manager.collision_map[coords] = region.with_overrides(
+            entity=entity
+        )
 
     def remove_collision(self, tile_pos: tuple[int, int]) -> None:
         """
@@ -169,57 +154,12 @@ class CollisionManager:
             return  # Nothing to remove
 
         if region.enter_from or region.exit_from or region.endure:
-            prop = RegionProperties(
-                enter_from=region.enter_from,
-                exit_from=region.exit_from,
-                endure=region.endure,
-                key=region.key,
-                push_effect=region.push_effect,
-                speed_modifier=region.speed_modifier,
+            self._map_manager.collision_map[tile_pos] = region.with_overrides(
+                entity=None
             )
-            self._map_manager.collision_map[tile_pos] = prop
         else:
             # Remove region
             del self._map_manager.collision_map[tile_pos]
-
-    def add_collision_label(self, label: str) -> None:
-        coords = self.check_collision_zones(
-            self._map_manager.collision_map, label
-        )
-        properties = RegionProperties(
-            enter_from=[],
-            exit_from=[],
-            endure=[],
-            key=label,
-        )
-        if coords:
-            for coord in coords:
-                self._map_manager.collision_map[coord] = properties
-
-    def add_collision_position(
-        self, label: str, position: tuple[int, int]
-    ) -> None:
-        properties = RegionProperties(
-            enter_from=[],
-            exit_from=[],
-            endure=[],
-            key=label,
-        )
-        self._map_manager.collision_map[position] = properties
-
-    def remove_collision_label(self, label: str) -> None:
-        properties = RegionProperties(
-            enter_from=list(Direction),
-            exit_from=list(Direction),
-            endure=[],
-            key=label,
-        )
-        coords = self.check_collision_zones(
-            self._map_manager.collision_map, label
-        )
-        if coords:
-            for coord in coords:
-                self._map_manager.collision_map[coord] = properties
 
     def get_collision_map(self) -> CollisionMap:
         """
@@ -237,7 +177,7 @@ class CollisionManager:
         """
         collision_dict: DefaultDict[
             tuple[int, int], Optional[RegionProperties]
-        ] = defaultdict(lambda: RegionProperties([], [], [], None, None))
+        ] = defaultdict(RegionProperties)
 
         # Get all the NPCs' tile positions
         for npc in self._npc_manager.get_all_entities():
@@ -273,33 +213,10 @@ class CollisionManager:
         Returns:
             A RegionProperties object representing the collision state.
         """
-        region: Optional[RegionProperties] = (
-            self._map_manager.collision_map.get(coords)
+        region = (
+            self._map_manager.collision_map.get(coords) or RegionProperties()
         )
-
-        enter_from = region.enter_from if region else []
-        exit_from = region.exit_from if region else []
-        endure = region.endure if region else []
-        push_effect = region.push_effect if region else None
-        speed_modifier = region.speed_modifier if region else None
-        key = region.key if region else None
-
         if isinstance(entity_or_label, str):
-            return RegionProperties(
-                enter_from=enter_from,
-                exit_from=exit_from,
-                endure=endure,
-                key=entity_or_label,
-                push_effect=push_effect,
-                speed_modifier=speed_modifier,
-            )
+            return region.with_overrides(key=entity_or_label)
         else:
-            return RegionProperties(
-                enter_from=enter_from,
-                exit_from=exit_from,
-                endure=endure,
-                entity=entity_or_label,
-                key=key,
-                push_effect=push_effect,
-                speed_modifier=speed_modifier,
-            )
+            return region.with_overrides(entity=entity_or_label)

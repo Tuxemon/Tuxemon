@@ -615,7 +615,8 @@
    <properties>
     <property name="act2" value="char_talk spyder_route3_qqq,pre_battle"/>
     <property name="act3" value="add_monster cardiling,16,spyder_route3_qqq,5,10"/>
-    <property name="act4" value="char_talk spyder_route3_qqq,post_battle_lose"/>
+    <property name="act4" value="start_battle player,spyder_route3_qqq"/>
+    <property name="act5" value="char_talk spyder_route3_qqq,post_battle_lose"/>
     <property name="act7" value="pathfind spyder_route3_qqq,0,2"/>
     <property name="act8" value="remove_npc spyder_route3_qqq"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_route3_qqq"/>

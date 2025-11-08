@@ -141,11 +141,25 @@
             "y": 2560
         },
         {
+            "fileName": "spyder_candy_house1.tmx",
+            "height": 128,
+            "width": 160,
+            "x": 3520,
+            "y": 352
+        },
+        {
             "fileName": "spyder_greenwash.tmx",
             "height": 0,
             "width": 0,
             "x": -320,
             "y": 2688
+        },
+        {
+            "fileName": "spyder_candy_house3.tmx",
+            "height": 128,
+            "width": 160,
+            "x": 3680,
+            "y": 352
         },
         {
             "fileName": "spyder_greenwash_level2.tmx",
@@ -519,6 +533,27 @@
             "y": 2048
         },
         {
+            "fileName": "spyder_timber_cafe.tmx",
+            "height": 192,
+            "width": 192,
+            "x": 3760,
+            "y": 928
+        },
+        {
+            "fileName": "spyder_timber_house.tmx",
+            "height": 128,
+            "width": 160,
+            "x": 3520,
+            "y": 1120
+        },
+        {
+            "fileName": "spyder_timber_scoop.tmx",
+            "height": 176,
+            "width": 208,
+            "x": 3760,
+            "y": 1120
+        },
+        {
             "fileName": "spyder_flower_house2.tmx",
             "height": 128,
             "width": 160,
@@ -531,6 +566,13 @@
             "width": 160,
             "x": 3040,
             "y": 352
+        },
+        {
+            "fileName": "spyder_flower_scoop.tmx",
+            "height": 176,
+            "width": 208,
+            "x": 3760,
+            "y": 544
         },
         {
             "fileName": "spyder_paper_rival_downstairs.tmx",

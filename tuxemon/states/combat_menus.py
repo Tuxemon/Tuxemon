@@ -395,12 +395,12 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                             # Position independently on grid
                             if i == 0:
                                 spr.rect.topleft = (
-                                    fix_measure(screen_w, 136 / 256),
+                                    fix_measure(screen_w, 132 / 256),
                                     fix_measure(screen_h, 126 / 144),
                                 )
                             else:
                                 spr.rect.topleft = (
-                                    fix_measure(screen_w, 144 / 256),
+                                    fix_measure(screen_w, 142 / 256),
                                     fix_measure(screen_h, 126 / 144),
                                 )
 

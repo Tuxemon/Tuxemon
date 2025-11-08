@@ -12,14 +12,14 @@
     }
   ],
   "flip_axes": "",
-  "speed": "normal",
+  "speed": "extremely_fast",
   "potency": 1,
   "power": 0,
   "range": "special",
   "recharge": 1,
   "sfx": "sfx_kick",
   "slug": "revenge_stance",
-  "sort": "meta",
+  "sort": "damage",
   "modifiers": [],
   "behaviors": {},
   "target": {

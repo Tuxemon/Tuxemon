@@ -4,146 +4,235 @@ from __future__ import annotations
 
 from collections.abc import Mapping
 from pathlib import Path
-from typing import Any, Optional
+from typing import Any, Literal, Optional
 
 import pygame
 import yaml
+from pydantic import BaseModel, Field, ValidationError, field_validator
 
 from tuxemon.animation import Animation
-from tuxemon.constants import paths
-from tuxemon.constants.dialog_speed import DIALOG_SPEED_PROFILES
 from tuxemon.platform.const import buttons, events
 
 Animation.default_transition = "out_quint"
 
 
+class DisplayConfig(BaseModel):
+    """Configuration for the game display."""
+
+    resolution_x: int = 1280
+    resolution_y: int = 720
+    splash: bool = True
+    fullscreen: bool = False
+    fps: float = 60.0
+    vsync: bool = True
+    show_fps: bool = False
+    scaling: bool = True
+    collision_map: bool = False
+    large_gui: bool = False
+    window_caption: str = "Tuxemon"
+
+
+class GameConfig(BaseModel):
+    """General game and system configuration."""
+
+    data: str = "tuxemon"
+    cli_enabled: bool = False
+    net_controller_enabled: bool = False
+    dev_tools: bool = False
+    recompile_translations: bool = True
+    skip_titlescreen: bool = False
+    compress_save: Optional[str] = None
+    save_prefix: str = "slot"
+    save_extension: str = "save"
+    save_method: str = "json"
+    locale: str = "en_US"
+    translation_mode: str = "none"
+    font_file: str = "PressStart2P.ttf"
+    language_font: str = "PressStart2P.ttf"
+    thin_font_file: str = "Pizel.ttf"
+
+
+class GameplayConfig(BaseModel):
+    """Configuration for gameplay mechanics. Includes validation for volume and enums."""
+
+    items_consumed_on_failure: bool = True
+    encounter_rate_modifier: float = 1.0
+    dialog_speed: Literal["slow", "medium", "fast", "max"] = "slow"
+    unit_measure: Literal["metric", "imperial"] = "metric"
+    hemisphere: Literal["northern", "southern"] = "northern"
+    sound_volume: float = 0.2
+    music_volume: float = 0.5
+    combat_click_to_continue: bool = False
+
+    @field_validator("sound_volume", "music_volume")
+    def validate_volume(cls, v: float) -> float:
+        return max(0.0, min(v, 1.0))
+
+
+class GraphicsConfig(BaseModel):
+    dialog_box_style: str = "default"
+    menu_border: str = "gfx/borders/borders.png"
+    menu_cursor: str = "gfx/arrow.png"
+    menu_sound: str = "sound_menu_select"
+
+
+class PlayerConfig(BaseModel):
+    animation_speed: float = 0.15
+    player_walkrate: float = 3.75
+    player_runrate: float = 7.35
+
+
+class ControlsConfig(BaseModel):
+    up: str = "up"
+    down: str = "down"
+    left: str = "left"
+    right: str = "right"
+    a: str = "return"
+    b: str = "rshift, lshift"
+    back: str = "escape"
+    backspace: str = "backspace"
+
+
+class ControllerConfigModel(BaseModel):
+    type: Optional[str] = None
+    overlay: bool = False
+    transparency: int = 45
+    hide_mouse: bool = True
+    show_input_visualizer: bool = False
+
+
+class LoggingConfigModel(BaseModel):
+    loggers: str = "all"
+    debug_logging: bool = True
+    debug_level: Literal["debug", "info", "warning", "error", "critical"] = (
+        "error"
+    )
+    dump_to_file: bool = False
+    file_keep_max: int = 5
+
+
+class TuxemonFullConfig(BaseModel):
+    display: DisplayConfig = Field(default_factory=DisplayConfig)
+    game: GameConfig = Field(default_factory=GameConfig)
+    gameplay: GameplayConfig = Field(default_factory=GameplayConfig)
+    graphics: GraphicsConfig = Field(default_factory=GraphicsConfig)
+    player: PlayerConfig = Field(default_factory=PlayerConfig)
+    controls: ControlsConfig = Field(default_factory=ControlsConfig)
+    controller: ControllerConfigModel = Field(
+        default_factory=ControllerConfigModel
+    )
+    logging: LoggingConfigModel = Field(default_factory=LoggingConfigModel)
+
+
 class TuxemonConfig:
     """
-    Handles loading of the config file for the primary game and map editor.
-
-    Do not forget to edit the default configuration specified below!
+    Handles loading of the config file for the primary game and map editor,
+    leveraging Pydantic for robust data validation.
     """
 
+    config_model: TuxemonFullConfig
+
     def __init__(self, config_path: Optional[Path] = None) -> None:
-        # Default configuration dictionary
-        self.config = generate_default_config()
         self.config_path = config_path
 
-        # Load customized configuration if the YAML file exists
+        config_data: dict[str, Any] = TuxemonFullConfig().model_dump()
+
         if config_path and config_path.exists():
             with config_path.open() as yaml_file:
-                loaded_config = yaml.safe_load(yaml_file)
+                loaded_config = yaml.safe_load(yaml_file) or {}
 
-            # Merge only existing sections while keeping defaults
-            for category, defaults in self.config.items():
-                if category in loaded_config:
+            for category, defaults in config_data.items():
+                if category in loaded_config and isinstance(defaults, dict):
                     defaults.update(loaded_config[category])
+                elif category in loaded_config:
+                    config_data[category] = loaded_config[category]
 
-        self.load_config()
+        try:
+            self.config_model = TuxemonFullConfig.model_validate(config_data)
+        except ValidationError as e:
+            print(
+                f"Configuration validation failed. Falling back to defaults: {e}"
+            )
+            self.config_model = (
+                TuxemonFullConfig()
+            )  # Fallback to clean defaults
 
-        # Initialize other components
-        self.input = InputConfig(self.config)
-        self.controller = ControllerConfig(self.config)
-        self.logging = LoggingConfig(self.config)
-        self.locale = LocaleConfig(self.config)
+        self.load_config_attributes()
 
-        # not configurable from the file yet
+        self.input: InputConfig = InputConfig(self.config_model)
+        self.logging: LoggingConfig = LoggingConfig(self.config_model)
+        self.locale: LocaleConfig = LocaleConfig(self.config_model)
+        self.controller: ControllerConfig = ControllerConfig(self.config_model)
         self.mods = ["tuxemon"]
-        assert all(mod in paths.mods_subfolders for mod in self.mods)
 
     def save_config(self) -> None:
-        """Saves the configuration to a YAML file."""
+        """Saves the configuration from the Pydantic model to a YAML file."""
         if not self.config_path:
             raise RuntimeError("No path specified for saving configuration.")
+
+        config_dict = self.config_model.model_dump()
+
         with self.config_path.open("w") as yaml_file:
             yaml.dump(
-                self.config, yaml_file, default_flow_style=False, indent=4
+                config_dict, yaml_file, default_flow_style=False, indent=4
             )
 
-    def load_config(self) -> None:
+    def load_config_attributes(self) -> None:
+        """Assigns Pydantic model values to easy-access instance attributes."""
         # [display]
-        display = self.config["display"]
-        self.resolution: tuple[int, int] = (
-            display["resolution_x"],
-            display["resolution_y"],
+        display = self.config_model.display
+        self.resolution = (
+            display.resolution_x,
+            display.resolution_y,
         )
-        self.splash: bool = display["splash"]
-        self.fullscreen: bool = display["fullscreen"]
-        self.fps: float = display["fps"]
-        self.vsync: bool = display["vsync"]
-        self.show_fps: bool = display["show_fps"]
-        self.scaling: bool = display["scaling"]
-        self.collision_map: bool = display["collision_map"]
-        self.large_gui: bool = display["large_gui"]
-        self.window_caption: str = display["window_caption"]
+        self.splash = display.splash
+        self.fullscreen = display.fullscreen
+        self.fps = display.fps
+        self.vsync = display.vsync
+        self.show_fps = display.show_fps
+        self.scaling = display.scaling
+        self.collision_map = display.collision_map
+        self.large_gui = display.large_gui
+        self.window_caption = display.window_caption
 
         # [game]
-        game = self.config["game"]
-        self.data: str = game["data"]
-        self.cli: bool = game["cli_enabled"]
-        self.net_controller_enabled: bool = game["net_controller_enabled"]
-        self.dev_tools: bool = game["dev_tools"]
-        self.recompile_translations: bool = game["recompile_translations"]
-        self.skip_titlescreen: bool = game["skip_titlescreen"]
-        self.compress_save: Optional[str] = game["compress_save"] or None
-        self.save_prefix: str = game["save_prefix"]
-        self.save_extension: str = game["save_extension"]
-        self.save_method: str = game["save_method"]
-
-        thin_font_file = game.get("thin_font_file")
-        if game["locale"] == "zh_CN":
-            thin_font_file = "SourceHanSerifCN-Bold.otf"
-        elif game["locale"] == "ja":
-            thin_font_file = "SourceHanSerifJP-Bold.otf"
-        else:
-            thin_font_file = "Pizel.ttf"
-
-        game["thin_font_file"] = thin_font_file
+        game = self.config_model.game
+        self.data = game.data
+        self.cli = game.cli_enabled
+        self.net_controller_enabled = game.net_controller_enabled
+        self.dev_tools = game.dev_tools
+        self.recompile_translations = game.recompile_translations
+        self.skip_titlescreen = game.skip_titlescreen
+        self.compress_save = game.compress_save
+        self.save_prefix = game.save_prefix
+        self.save_extension = game.save_extension
+        self.save_method = game.save_method
 
         # [gameplay]
-        gameplay = self.config["gameplay"]
-        self.items_consumed_on_failure: bool = gameplay[
-            "items_consumed_on_failure"
-        ]
-        self.encounter_rate_modifier: float = gameplay[
-            "encounter_rate_modifier"
-        ]
-        self.dialog_speed: str = gameplay["dialog_speed"]
-        if self.dialog_speed not in DIALOG_SPEED_PROFILES:
-            raise ValueError(
-                f"Invalid value for dialog_speed. Allowed: {', '.join(DIALOG_SPEED_PROFILES.keys())}"
-            )
-        self.unit_measure: str = gameplay["unit_measure"]
-        if self.unit_measure not in ("metric", "imperial"):
-            raise ValueError(
-                "Invalid value for unit_measure. Allowed: 'metric', 'imperial'"
-            )
-        self.hemisphere: str = gameplay["hemisphere"]
-        if self.hemisphere not in ("northern", "southern"):
-            raise ValueError(
-                "Invalid value for hemisphere. Allowed: 'northern', 'southern'"
-            )
+        gameplay = self.config_model.gameplay
+        self.items_consumed_on_failure = gameplay.items_consumed_on_failure
+        self.encounter_rate_modifier = gameplay.encounter_rate_modifier
 
-        sound_volume = float(gameplay["sound_volume"])
-        self.sound_volume: float = max(0.0, min(sound_volume, 1.0))
-        music_volume = float(gameplay["music_volume"])
-        self.music_volume: float = max(0.0, min(music_volume, 1.0))
-        self.combat_click_to_continue: bool = gameplay[
-            "combat_click_to_continue"
-        ]
+        self.dialog_speed = gameplay.dialog_speed
+        self.unit_measure = gameplay.unit_measure
+        self.hemisphere = gameplay.hemisphere
+
+        self.sound_volume = gameplay.sound_volume
+        self.music_volume = gameplay.music_volume
+        self.combat_click_to_continue = gameplay.combat_click_to_continue
 
         # [graphics]
-        graphics = self.config["graphics"]
-        self.dialog_box_style: str = graphics["dialog_box_style"]
-        self.menu_border: str = graphics["menu_border"]
-        self.menu_cursor: str = graphics["menu_cursor"]
-        self.menu_sound: str = graphics["menu_sound"]
+        graphics = self.config_model.graphics
+        self.dialog_box_style = graphics.dialog_box_style
+        self.menu_border = graphics.menu_border
+        self.menu_cursor = graphics.menu_cursor
+        self.menu_sound = graphics.menu_sound
 
         # [player]
-        player = self.config["player"]
-        self.player_animation_speed: float = player["animation_speed"]
-        self.player_walkrate: float = player["player_walkrate"]
-        self.player_runrate: float = player["player_runrate"]
+        player = self.config_model.player
+        self.animation_speed = player.animation_speed
+        self.player_walkrate = player.player_walkrate
+        self.player_runrate = player.player_runrate
 
     def reload_config(self) -> None:
         if not self.config_path or not self.config_path.exists():
@@ -152,30 +241,33 @@ class TuxemonConfig:
             )
 
         with self.config_path.open() as yaml_file:
-            self.config.update(yaml.safe_load(yaml_file))
-        self.load_config()
-        self.input.config = self.config
-        self.input.reload_input_map()
+            loaded_config = yaml.safe_load(yaml_file) or {}
 
-        self.locale.slug = self.config["game"]["locale"]
-        self.locale.translation_mode = self.config["game"]["translation_mode"]
-        self.locale.font_file = self.config["game"]["language_font"]
-        self.locale.thin_font_file = self.config["game"].get(
-            "thin_font_file", "Pizel.ttf"
-        )
+        current_config = self.config_model.model_dump()
+        for category, defaults in current_config.items():
+            if category in loaded_config and isinstance(defaults, dict):
+                defaults.update(loaded_config[category])
+            elif category in loaded_config:
+                current_config[category] = loaded_config[category]
+
+        self.config_model = TuxemonFullConfig.model_validate(current_config)
+
+        self.load_config_attributes()
+
+        self.input.reload_input_map()
+        self.locale.slug = self.config_model.game.locale
+        self.locale.translation_mode = self.config_model.game.translation_mode
+        self.locale.font_file = self.config_model.game.language_font
+        self.locale.thin_font_file = self.config_model.game.thin_font_file
 
     def update_attribute(
-        self, section: str, attribute: str, value: str
+        self, section: str, attribute: str, value: Any
     ) -> None:
         """
-        Updates the attribute's value in the tuxemon.yaml.
-
-        Parameters:
-            section: the section (eg. gameplay)
-            attribute: the attribute (eg. dialog_speed)
-            value: the value (eg slow or max)
+        Updates the attribute's value in the Pydantic model and saves/reloads.
         """
-        self.config[section][attribute] = value
+        sub_model = getattr(self.config_model, section)
+        setattr(sub_model, attribute, value)
         self.save_config()
         self.reload_config()
 
@@ -185,20 +277,27 @@ class TuxemonConfig:
         self.reload_config()
 
     def update_locale(self, value: str) -> None:
-        self.config["game"]["locale"] = value
-        self.locale.slug = value
+        """Handles locale update and derived font file changes."""
+
+        # Set the base locale value on the Pydantic model
+        self.config_model.game.locale = value
+
+        # Apply the derived font logic
         if value == "zh_CN":
-            self.locale.font_file = "SourceHanSerifCN-Bold.otf"
+            font_file = "SourceHanSerifCN-Bold.otf"
             thin_font = "SourceHanSerifCN-Bold.otf"
         elif value == "ja":
-            self.locale.font_file = "SourceHanSerifJP-Bold.otf"
+            font_file = "SourceHanSerifJP-Bold.otf"
             thin_font = "SourceHanSerifJP-Bold.otf"
         else:
-            self.locale.font_file = "PressStart2P.ttf"
+            font_file = "PressStart2P.ttf"
             thin_font = "Pizel.ttf"
-        self.locale.thin_font_file = thin_font
-        self.config["game"]["language_font"] = self.locale.font_file
-        self.config["game"]["thin_font_file"] = thin_font
+
+        # Update the font attributes on the Pydantic model
+        self.config_model.game.language_font = font_file
+        self.config_model.game.font_file = font_file
+        self.config_model.game.thin_font_file = thin_font
+
         self.save_config()
         self.reload_config()
 
@@ -211,32 +310,31 @@ class TuxemonConfig:
 class ControllerConfig:
     """Handles controller-related configurations."""
 
-    def __init__(self, config: dict[str, Any]) -> None:
-        display = config["display"]
-        self.overlay: bool = display["controller_overlay"]
-        self.transparency: int = display["controller_transparency"]
-        self.hide_mouse: bool = display["hide_mouse"]
-        self.show_input_visualizer: bool = display["show_input_visualizer"]
+    def __init__(self, config_model: TuxemonFullConfig) -> None:
+        controller = config_model.controller
+        self.type = controller.type
+        self.overlay = controller.overlay
+        self.transparency = controller.transparency
+        self.hide_mouse = controller.hide_mouse
+        self.show_input_visualizer = controller.show_input_visualizer
 
 
 class LocaleConfig:
     """Handles locale-related configurations."""
 
-    def __init__(self, config: dict[str, Any]) -> None:
-        game = config["game"]
-        self.slug: str = game["locale"]
-        self.translation_mode: str = game["translation_mode"]
-        self.font_file: str = game["font_file"]
-        self.thin_font_file: str = game.get("thin_font_file")
+    def __init__(self, config_model: TuxemonFullConfig) -> None:
+        game = config_model.game
+        self.slug = game.locale
+        self.translation_mode = game.translation_mode
+        self.font_file = game.font_file
+        self.thin_font_file = game.thin_font_file
 
 
 class InputConfig:
     """Handles input-related configurations."""
 
-    def __init__(self, config: dict[str, Any]) -> None:
-        self.config = config
-        self.gamepad_deadzone: float = 0.25
-        self.gamepad_button_map = None
+    def __init__(self, config_model: TuxemonFullConfig) -> None:
+        self.config_model = config_model
         self.keyboard_button_map = self._get_custom_pygame_keyboard_controls()
 
     def _get_custom_pygame_keyboard_controls(
@@ -246,48 +344,46 @@ class InputConfig:
         Returns a dictionary mapping pygame key constants to custom button values.
         """
         custom_controls: dict[Optional[int], int] = {None: events.UNICODE}
-        for key, values in self.config["controls"].items():
+
+        for key, values in self.config_model.controls.model_dump().items():
             key = key.upper()
             button_value: Optional[int] = getattr(buttons, key, None)
             event_value: Optional[int] = getattr(events, key, None)
+
+            internal_value = (
+                button_value if button_value is not None else event_value
+            )
+            if internal_value is None:
+                continue
+
             for each in values.split(", "):
                 each = each.lower() if len(each) == 1 else each.upper()
                 pygame_value: Optional[int] = getattr(
                     pygame, "K_" + each, None
                 )
-                if pygame_value is not None and button_value is not None:
-                    custom_controls[pygame_value] = button_value
-                elif pygame_value is not None and event_value is not None:
-                    custom_controls[pygame_value] = event_value
+                if pygame_value is not None:
+                    custom_controls[pygame_value] = internal_value
+
         return custom_controls
 
     def update_key(self, value: str, key_name: str) -> None:
-        self.config["controls"][value] = key_name
+        """Updates a key binding on the Pydantic controls model."""
+        setattr(self.config_model.controls, value, key_name)
         self.reload_input_map()
 
     def reload_input_map(self) -> None:
         self.keyboard_button_map = self._get_custom_pygame_keyboard_controls()
 
     def reset_to_default(self) -> None:
-        default_controls = {
-            "up": "up",
-            "down": "down",
-            "left": "left",
-            "right": "right",
-            "a": "return",
-            "b": "rshift, lshift",
-            "back": "escape",
-            "backspace": "backspace",
-        }
-        for button, key in default_controls.items():
-            self.config["controls"][button] = key
+        """Resets the controls section to the defaults defined in the ControlsConfig model."""
+        self.config_model.controls = ControlsConfig()
         self.reload_input_map()
 
 
 class LoggingConfig:
     """Handles logging-related configurations."""
 
-    def __init__(self, config: dict[str, Any]) -> None:
+    def __init__(self, config_model: TuxemonFullConfig) -> None:
         # [logging]
         # Log levels can be: debug, info, warning, error, or critical
         # Setting loggers to "all" will enable debug logging for all modules.
@@ -295,95 +391,10 @@ class LoggingConfig:
         #     states.combat, states.world, event,
         #     neteria.server, neteria.client, neteria.core
         # Comma-separated list of which modules to enable logging on
-        log = config["logging"]
-        loggers_str: str = log["loggers"]
+        log = config_model.logging
+        loggers_str: str = log.loggers
         self.loggers = loggers_str.replace(" ", "").split(",")
-        self.debug_logging: bool = log["debug_logging"]
-        self.debug_level: str = log["debug_level"]
-        self.log_to_file: bool = log["dump_to_file"]
-        self.log_keep_max: int = log["file_keep_max"]
-
-
-def generate_default_config() -> dict[str, Any]:
-    """
-    Generate a config from defaults.
-
-    When making game changes, do not forget to edit this config!
-
-    Returns:
-        Mapping of default values.
-    """
-    return {
-        "display": {
-            "resolution_x": 1280,
-            "resolution_y": 720,
-            "splash": True,
-            "fullscreen": False,
-            "fps": 60.0,
-            "vsync": True,
-            "show_fps": False,
-            "scaling": True,
-            "collision_map": False,
-            "large_gui": False,
-            "window_caption": "Tuxemon",
-            "controller_overlay": False,
-            "controller_transparency": 45,
-            "hide_mouse": True,
-            "show_input_visualizer": False,
-        },
-        "game": {
-            "data": "tuxemon",
-            "cli_enabled": False,
-            "net_controller_enabled": False,
-            "dev_tools": False,
-            "recompile_translations": True,
-            "skip_titlescreen": False,
-            "compress_save": None,
-            "save_prefix": "slot",
-            "save_extension": "save",
-            "save_method": "json",
-            "locale": "en_US",
-            "translation_mode": "none",
-            "font_file": "PressStart2P.ttf",
-            "language_font": "PressStart2P.ttf",
-            "thin_font_file": "Pizel.ttf",
-        },
-        "gameplay": {
-            "items_consumed_on_failure": True,
-            "encounter_rate_modifier": 1.0,
-            "dialog_speed": "slow",
-            "unit_measure": "metric",
-            "hemisphere": "northern",
-            "sound_volume": 0.2,
-            "music_volume": 0.5,
-            "combat_click_to_continue": False,
-        },
-        "graphics": {
-            "dialog_box_style": "default",
-            "menu_border": "gfx/borders/borders.png",
-            "menu_cursor": "gfx/arrow.png",
-            "menu_sound": "sound_menu_select",
-        },
-        "player": {
-            "animation_speed": 0.15,
-            "player_walkrate": 3.75,
-            "player_runrate": 7.35,
-        },
-        "controls": {
-            "up": "up",
-            "down": "down",
-            "left": "left",
-            "right": "right",
-            "a": "return",
-            "b": "rshift, lshift",
-            "back": "escape",
-            "backspace": "backspace",
-        },
-        "logging": {
-            "loggers": "all",
-            "debug_logging": True,
-            "debug_level": "error",
-            "dump_to_file": False,
-            "file_keep_max": 5,
-        },
-    }
+        self.debug_logging = log.debug_logging
+        self.debug_level = log.debug_level
+        self.log_to_file = log.dump_to_file
+        self.log_keep_max = log.file_keep_max

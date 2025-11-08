@@ -50,19 +50,22 @@ def _setup_user_environment() -> config.TuxemonConfig:
         logger.critical(f"Failed to create user directories: {e}")
         raise
 
-    config.generate_default_config()
     loaded_config = config.TuxemonConfig(paths.USER_CONFIG_PATH)
 
     try:
         with paths.USER_CONFIG_PATH.open("w") as fp:
             yaml.dump(
-                loaded_config.config, fp, default_flow_style=False, indent=4
+                loaded_config.config_model.model_dump(),
+                fp,
+                default_flow_style=False,
+                indent=4,
             )
         logger.info(
             f"Configuration loaded and saved to {paths.USER_CONFIG_PATH}"
         )
     except Exception as e:
         logger.error(f"Failed to save config: {e}")
+
     return loaded_config
 
 

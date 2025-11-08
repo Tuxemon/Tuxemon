@@ -6,6 +6,7 @@ from dataclasses import dataclass
 from typing import Optional, final
 
 from tuxemon.event.eventaction import EventAction
+from tuxemon.map.map_region import RegionProperties
 from tuxemon.session import Session
 
 
@@ -36,7 +37,13 @@ class AddCollisionAction(EventAction):
 
     def start(self, session: Session) -> None:
         client = session.client.collision_manager
-        if self.x and self.y:
-            client.add_collision_position(self.label, (self.x, self.y))
+        region = RegionProperties().with_overrides(key=self.label)
+
+        if self.x is not None and self.y is not None:
+            client._map_manager.collision_map[(self.x, self.y)] = region
         else:
-            client.add_collision_label(self.label)
+            coords = client.check_collision_zones(
+                client._map_manager.collision_map, self.label
+            )
+            for coord in coords:
+                client._map_manager.collision_map[coord] = region

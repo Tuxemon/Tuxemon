@@ -836,6 +836,8 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 
 * ["Revive"](https://wiki.tuxemon.org/File:Shroom3.png) Sprite by BizmasterStudios.  Licensed under [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 
+* ["Sledgehammer"](https://wiki.tuxemon.org/File:Sledgehammer.png) Sprite by BizmasterStudios.  Licensed under [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+
 * ["Restoration"](https://wiki.tuxemon.org/File:ORANGE_2.png) original sprite by josepharaoh99. Modifications by Sanglorian. Licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
 * ["Trepidation"](https://wiki.tuxemon.org/index.php?title=File:Interior_Tiles_by_ArMM1998.png) cut and resized by Jaskrendix from Interior tileset by ArMM1998. Licensed under CC0.
@@ -950,7 +952,7 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 
 * ["Hatchet"](https://wiki.tuxemon.org/index.php?title=File:Hatchet.png) [https://opengameart.org/content/icons-items-1 CC0 on OGA]
 
-* ["Fishing Rod"](https://wiki.tuxemon.org/index.php?title=Fishing_Rod) by Catch Challenger is licensed under CC-BY 4.0.
+* ["Fishing Rod"](https://wiki.tuxemon.org/index.php?title=Fishing_Rod) and ["Neptune"](https://wiki.tuxemon.org/File:Super-fishing-rod.png) by Catch Challenger are licensed under CC-BY 4.0. "Poseidon" adapted by JaskRendix from "Neptune". 
 
 * ["Surfboard"](https://wiki.tuxemon.org/File:Surfboard.png) from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
 
@@ -2057,6 +2059,8 @@ licensed under [SIL Open Font License, 1.1](http://scripts.sil.org/OFL)
 [kheftel](https://copheemoth.itch.io/) is licensed under
 [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/)
 
+* ["Source Han Serif"](https://github.com/adobe-fonts/source-han-serif) by Adobe is licensed under [SIL Open Font License, 1.1](http://scripts.sil.org/OFL)
+
 Music
 ------
 * [A Night Of Dizzy Spells](http://EricSkiff.com/music) by Eric Skiff is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
@@ -2065,12 +2069,13 @@ Music
 * [Chibi Ninja](http://EricSkiff.com/music) by Eric Skiff is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 * [Come and Find Me](http://EricSkiff.com/music) by Eric Skiff is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 * [Digital Native](http://EricSkiff.com/music) by Eric Skiff is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
-* [Generic 8-bit JRPG Soundtrack](https://opengameart.org/content/generic-8-bit-jrpg-soundtrack) by t4ngr4m is licensed under [CC-BY 3.0](https://creativecommons.org/licenses/by/3.0/)
+* [Searching](http://EricSkiff.com/music) by Eric Skiff is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 * [HHavok-intro](http://EricSkiff.com/music) by Eric Skiff is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 * [HHavok-main](http://EricSkiff.com/music) by Eric Skiff is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 * [Jumpshot](http://EricSkiff.com/music) by Eric Skiff is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 * [Lunar Joyride](https://opengameart.org/content/lunar-joyride-8-bit) by FoxSynergy is licensed under [CC-BY 3.0](https://creativecommons.org/licenses/by/3.0/)
 * [Melody Eternal](https://opengameart.org/content/melody-eternal) by Trevor Lentz is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+* [Taking Poison](https://opengameart.org/content/taking-poison) by Trevor Lentz is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
 * [Peasant Kingdom](https://opengameart.org/content/peasant-kingdom) by Spring is licensed under [CC-BY 3.0](https://creativecommons.org/licenses/by/3.0/)
 * [Stand With Us](https://opengameart.org/content/stand-with-us) by Trevor Lentz is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
 * [Jester Theme](https://hydrogene.itch.io/high-quality-8-bit-musics) by Hydrogene is licensed under [CC0](https://creativecommons.org/publicdomain/zero/1.0/)
@@ -2094,6 +2099,8 @@ Music
 
 * Songs from [Ove's Essential Game Audio Pack Collection](https://opengameart.org/content/oves-essential-game-audio-pack-collection-160-files-updated) by Ove Melaa are licensed under [CC-BY 3.0](https://creativecommons.org/licenses/by/3.0/):
   * All music under `OveMelaaFullScores` and `OveMelaaLoops`
+
+* [Generic 8-bit JRPG Soundtrack](https://opengameart.org/content/generic-8-bit-jrpg-soundtrack) by AVGVSTA is licensed under [CC-BY 3.0](https://creativecommons.org/licenses/by/3.0/), including "Enter the Emperor"
 
 Sounds
 --------

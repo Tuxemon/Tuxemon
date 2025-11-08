@@ -3,7 +3,7 @@
     {
       "type": "has_tech",
       "parameters": [
-        "cavity"
+        "acid"
       ],
       "operator": "not"
     }
@@ -12,11 +12,11 @@
     {
       "type": "learn_tm",
       "parameters": [
-        "cavity"
+        "acid"
       ]
     }
   ],
-  "slug": "tm_cavity",
+  "slug": "tm_acid",
   "sort": "utility",
   "sprite": "gfx/items/tm_generic.png",
   "category": "technique",

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="2" nextobjectid="214">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="2" nextobjectid="214">
  <properties>
   <property name="edges" value="clamped"/>
+  <property name="map_type" value="route"/>
   <property name="north" value="citypark"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="route2"/>
   <property name="south" value="brideswood"/>
-  <property name="map_type" value="route"/>
   <property name="west" value="cotton_town"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_outdoor.tsx"/>
@@ -19,12 +19,12 @@
  </layer>
  <layer id="2" name="Layer 2" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHtVctNQzEQNBJwhiI4kHRACRySdEALkYAOKADKoBYkBJ0g0UB2oowyrMZ+th4XJFayvG+9n/F47VfKv/xlBhYnpXC09nEtfvRfhq1XGN/r3+t3dVoKci9NwCJsvRhXA3sxpaqm28DXyr3prLsOv/NqleOC+pwdzVUN/N1HbuR/MDV68aEA97kNfSSuCi4WwJ8Ka9D2W3WYb2oGRy0ZwZfvhOvhVi2ubS6p/ZxxtllG8GXfnGvuN87WYUT/qOC9cfc447sQHnD3nej9cOtqA7bcf7qedb6LnPU8nwPbi+BD7FOA+eq5pLnQ4Zv8AafjsRJmzR+B7TMGe+lViPoW3QZXjOQPOEd4zOlWiTes3wimO9FzLL9zr8Du+HN+zKEzjg1vQes9eAun9wls7FmtyzfN8ad+ikd1YHuceKfUP+vuv6l1iS/zB7zql/PiW7Gtzbm6GGcDRt6z/fsgTsSX+QNe/OtaMsobe4DzxHHvSxOf4w+Y547W/qb2j1hy4PgD5rmjhW9kDTh26SgyYw==
+   eAHtVctNQzEQNBJwhiI4kHRACRySdEALkQIdUACUQS1ICDpBooHsRBllWI39bL0TEitZ3rfez3i89ivlX/4yA4uzUjha+7gVP/ovw9YrjO/17/W7OS8FuZcmYBG2Xoyrgb2YUlXTfeBr5d501l2H32W1ymlBfS5O5qoG/naRG/kfTY1efCjAfW6P1UZiawDBnwpr0DZSI8cyx8gMjlqSa7Tw5TvherhVi2uba2q/Z5xtlhF82TfnmvuNs3UY2T/Mj/fG3eOM70p4wN13ovfDrasN2HL/6XrW+S5y1vN8CWyvgg+xzwHmu+eS5kLHb/IHnI7HSpg1fwa2rxjspTch6kd0G1wxkj/gHOExp1sl3rB+J5geRM+x/M69Arvjz/kxh844NrwFrffgPZw+JrCxZ7Uu3wzHn/opHtWB7WninVL/rLv/ptYlvswf8KpfzotvxbY25+pinA0Yec8O74M4EV/mD3jxr2vJKG/sAc4Tx30oTXyOP2CeO1r7m9o/YsmB4w+Y544WvpE14NgDUnwysg==
   </data>
  </layer>
  <layer id="3" name="Layer 3" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAG1letNAzEQhB0E/E8XedRCSC8kfUA7QBHQALTCjnKfMqzscw4uKzmz3uf4cc7qrpR1jFUHyyC9uLn9D8FrF6OH8OvFze1/XpbyEuNasl6UskljG3OJfN+350Gc/JzDR3D7nJEfPcDticqv303M5Mcnji778HEObs/6IfKOKTfH/HceV6scgo/G/VBM/Ni/Xn1x/It4X/oLsxzDxhnvBv+l+0etrws5vkbC2zDeSU4IB5nFQ9xUX4ivtn+sgXLMQexjSH3FqIfkMd3tHEN94dOQoz31+0cM6zhVPu878xbyLbgffm6TXuMnOxwcZUfcLn2KkOs5U/iRD+Z98rpan/PTWzAm1PQc4tlX3jvZPZ53hjjQ46kF+v57PfwgffJaqzwjiZ6sn3xHarf2Xn7n57m1voonRjpSi6WnvgF/b9D19lGLWOo5wo/3kRzQY13HD7pP+lhP+T1vLBZefN/Mld8S9gBkLzze7xpn7X74ge5zPfPKc4+lVkadIf9VHj+mqwZ3WXpLOF94EZfn1MjcmE/hSA5IzxZyTjVUDnV6yP9Bq4/bqeW2a+nL9J+W+9TW7TaPX8RZ38SYil6jpu87HGs5NdsPShOwgA==
+   eAG1letRAzEMhB0G+E26yKMWQnoh6QPaAYqABqAVtLn7hkXjO99BohlHb2kt+5zVTSnrWKsGLz214s7tvw9cu1gtDr5W3Ln9T8tSnmNditaLUjZpbUMXyfd1/bOIk59zeA9sH2fERw/4toPy63cTmvz4hNFpHz7Owe1ZPkTeMeXmmP/qcbXKIfBo3fbFhI/5teoL41/Je4Mh1zoGFs54F7Jo6vy66FI+J2K8i3vyEkmvsd5iPVTuDRhUWziETfXF8dXmxx6UJ0KHd9Z5v+qTMYJBlcBHj8d+fpqp3z/87AMU2NGHON9C9qt/pho+xdDLuee6XfIcIjfnTMVHPjzPyetqf45Pb8EYUdNzPP70jtgcPZ53hvnDeR+9DrLPXzbqZZzY815rOJVLT/ZPvnMw1OaOz/F5bq2vcoghH5vrkumpb4C3xrnePmoRm2tIBx/vIznwWo5s+OE5bqyn50seiwUX3ze6+g6Rz0Eys/B4v2uctfvZF9x9LmdcWfdYamWuM+S/yuPHZNXgLkseIs4XXMRlnRoZG/ocjOTA6TnE83m5rhzqtDj/B0N93E4tt11KXlb+d72X77cme+wizvoq1lzuNWryvoGxllOzfQO0ba+B
   </data>
  </layer>
  <layer id="4" name="Layer 4" width="40" height="20">
@@ -448,8 +448,8 @@
    <properties>
     <property name="act1" value="lock_controls"/>
     <property name="act2" value="pathfind_to_char player,spyder_route2_roddick"/>
-	<property name="act3" value="char_face player,spyder_route2_roddick"/>
-	<property name="act4" value="char_talk spyder_route2_roddick,pre_battle"/>
+    <property name="act3" value="char_face player,spyder_route2_roddick"/>
+    <property name="act4" value="char_talk spyder_route2_roddick,pre_battle"/>
     <property name="act5" value="unlock_controls"/>
     <property name="act6" value="add_monster spighter,8,spyder_route2_roddick,5,10"/>
     <property name="act7" value="start_battle player,spyder_route2_roddick"/>
@@ -463,7 +463,7 @@
    <properties>
     <property name="act1" value="lock_controls"/>
     <property name="act2" value="pathfind_to_char player,spyder_route2_marion"/>
-	<property name="act3" value="char_face player,spyder_route2_marion"/>
+    <property name="act3" value="char_face player,spyder_route2_marion"/>
     <property name="act4" value="char_talk spyder_route2_marion,pre_battle"/>
     <property name="act5" value="unlock_controls"/>
     <property name="act6" value="add_monster aardorn,7,spyder_route2_marion,5,10"/>
@@ -479,7 +479,7 @@
    <properties>
     <property name="act01" value="lock_controls"/>
     <property name="act02" value="pathfind_to_char player,spyder_route2_graf"/>
-	<property name="act03" value="char_face player,spyder_route2_graf"/>
+    <property name="act03" value="char_face player,spyder_route2_graf"/>
     <property name="act04" value="char_talk spyder_route2_graf,pre_battle"/>
     <property name="act05" value="unlock_controls"/>
     <property name="act06" value="add_monster cardiling,7,spyder_route2_graf,5,10"/>

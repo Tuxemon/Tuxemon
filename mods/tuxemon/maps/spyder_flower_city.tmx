@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="504">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="504">
  <properties>
   <property name="east" value="route4"/>
   <property name="edges" value="clamped"/>
@@ -22,17 +22,17 @@
  </layer>
  <layer id="2" name="Layer 2" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHNkrtKREEQRFtwEzXQWPGRCD4+QEzMVHzh7/jCjdXP0F9R2fVTNDFQAwMb1gOXyzY9421mHChKq2e6iror8r/O5LZITwF76QY970bsfE2zrSvg2O1x2+gPjtvcfdNQvxn9walbXzdE3hy867zWmd8UWXCwovPoczMrcmvgTnVOVH/8rizGDx5ohqGBl0a+qP74XVlMLjg134F+u8MxOFLtWHGiOFV4x+qtrbMnNd+Zep+PwYVql4orxbXCO1ZvbZ09qfm435Xpqb0HHWZeOh894Q+jw+QsnQ9fcsHoMDlL58OXXDA6TM7S+fAlF4wOk3NqTmTawIzq0Qff9l50uD0v9T/9WH7e3HoXpXv9MK+V0/NlTs6oXlL3eL7ePNXnr/fox3rvza13UbrXD/NaOT1f5uSM6iV1j+fLnJype6Pueb7MyRnlm7rH82VOTmvv95Y16aZ7vszJ2c0t/7Xny5yc+Q7dXli+6DA5u7nlv7Z80WFy5juMXnyJ9D8VH4qcHZYvOkzOnN3Nu8sT0l9SLCqauve35YsOe3u8+b7m2lPsZuaz9tIbbN2rpdMbXCuH5Utv8P2qdbOOTm/wQ+F89JLKpfI97Yy+B72kcol8j7/ZnpVTe+NeiXzNX3Jqb9z7Ae6Xxrc=
+   eAHNkjtOA0EQRBsJJ0AAMYhPgsTnApCQAeInX4efcAwcAy4AdwBkcxRICICQtuBJq5FbPbZ7ZxmpVHb1bFepdkX+15ncFmkpYC9dt+XdiJ2vabZ1BRy7PW4b/cFxm8ff1NN3Rn9w7ta3DZF3Bx86b+rMb4osOFjRefS5nhW5MXCrOieqP74ri/GDu5qhZ+C1ki+qP74ri8kF5+Y70Hd3OABHqh0rThRthXes3lKdPbn5TtX7bADOVbtQXCquFN6xekt19uTm4/64TE/pHnSYeel89IQ/jA6Ts3Q+fMkFo8PkLJ0PX3LB6DA5S+fDl1wwOkzOqTmRaQMzqkcffNO96HA6L/Wffiw/b249F6V7/TBvKqfny5ycUb3k7vF8vXmuz6j36Md63ptbz0XpXj/Mm8rp+TInZ1QvuXs8X+bkzN0bdc/zZU7OKN/cPZ4vc3I+bIk8Juh79bU6Dr7WbubktO7VpXu+zMlZVw5rr+WLDpPT2lOXbvmiw+QcNce3SOdL8akYZofliw6Tc5jd1bvLE9JZUiwqqrr32/JFh7093nxfc+0pdofMZ+2lN9i615ROb3BTOSxfeoPvVq2bzej0Bt8XzkcvuVwq3/PO7/ugl1wuke/pL9uLcm5v3CuRr/ol5/bGvR+FO8sK
   </data>
  </layer>
  <layer id="3" name="Layer 3" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtlstOFEEUhgsBBeIFNzwCiQZ0FE1UQNdGNDwCMUHhFRTigHHjGpQVKiyAwUTdukUxIShyEQXihVfglmAE/DrmZIpKF13d9nSGCSf5cup+/jpdU1NK/bOSK0qVgphel7J4GfO/vr1WpdvgLtyBVjDXlJin0HYazLo3Xvo8H6f1oecpPIFe6AFzfYkt7WZd2nPhP6BnHN7DOxiD69XRIz2ujD7Xb+YGetZhDVZhBdpC6svUZ1eeiFlfdmV7Sc6bfUS2p+JktpxUSc7b7ZB5TUpfmPwlpUmPI/nT2/ZjOVd5vnVWpW9CE9wAMzeucXOV5040dcB9uOejzzWu6z7M/QfVX6JpFDIw4qMvaL70u+5Dxrv6uPSZ+fteo9QP+Am/YBmi2BI5W4QF+BZj/o7WKnUMjsMJqIQolqv81aOnARrhKlwD3Qb5Lx2AF/AcnkE/6GO8clD+5LvJ+RIv60hdvLQH+Rm0TMNnmIJP8BHMeaa+5su7R+hxJ2N83xWdQQvsoGkbtuCPj76KlEqXQxkcgd3qCrfmer4kA4+0d5q0hfGvLin1OoA39Iu5ni8Zv5dfSSm1CmtQZdnHnBbbtta8NsblfM1yJ87BF5iHrxDVdH1vjd+QrKnrk7a9/CHunGIogVI4DFFN12dbI4y+FO/dc+g5D3VwAS6Cn+nf16/fa3PRZ5ubRLunr8VyNpOIHxRjE32/fXjAxDR0QTc8hLjN5fvaYg7RMQwjkIFRKFSz3W2Ftt+hGN8JhZabg/0cZCDfMlBkea/ki87qPNeXL3najzr+AsUP0ZQ=
+   eAHtlstOFEEUhgsFUYJcNjwCCQZ0FEhEbmsDGh/BmCCDj+AlDho3rAVcgcICGNyxY6toYhQvICLE2ysAmmgU/DrkZIpKV7q66ekME07y5dT9/HWq0l1K7VrpBaXKQEyvS1m8jNmvH2hSmTT0w3XoA3NNidmAtlNg1r3x0uf5OO0RekZhBIbhIZjrS2xpN+vSng//Ej0vYAGewzO4WB890lBN9Ll+M3+h5ydswSZsQDqkvmx7buVXMevLrWwvyX2zj8j1VNTmykmV5L5dC5nXpPSFyV9SmvQ4kj+97SCW85Xny2dU5hL0Qg+YuXGNm68830HTbbgFN330ucZ13Ye5/6D6UzTNQhZmfPQFzZd+133IeFcflz4zf18alfoK3+A7/IAotk7O1uAzrMaYv8ompU5CFVRDDUSxfOWvHT0d0Ald0A26TfIvnYAn8BjGYQz0MV45KH9ybnK/xMs6Uhcv7UH+A1rewzt4C4vwBsx5pr4rbXtH6HFfx/i+KzmNFthB0zb8g78++ipSKnMCjkM57FVXvDXX+yUZeKC906QtjE9z7nMB3NDuhuv9ctGwkVJqE7agzrKP5fPBK61oY1zu1xLfxGX4CCvwCaKarm9ey5O+nq5Pb7eVj/DNOQqlUAbHIKrp+mxrhNGX4r17Fj3noBlaoBX8TD9fv36vzUWfbW4S7Z6+q5a7mUT8oBi/0ffHh7tMzMAg3IP7ELe5nK8t5hQd0zADWZiFYjXbt63Y9jsV4zuh2HJzuJ/DDBRaBkos75VC0Vlf4PoKJU8HUcd/ibLRKA==
   </data>
  </layer>
  <layer id="4" name="Above Player" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtlktOAkEQhmuhwccZ0JUxogbFnRfBx9a9+LiHC64A6grwwVqMegH1HOgR/FxUQoaBGWaqJ53QlXypdE+n6p+/O50WmS1etkUGCbzyffFQZAFGs3bSeR1b5iG9fxL45XsFbVswmlWHzuvYMqfVl7bn2U78yqwel6m3lsD6hJ5xSpoT1rr0OE5HmCvWgaznryiV4fwV5XTo48KBDvdqF3rwAI8Qws6B812RBlzAJVzBNWQNvQ81a53oWOdD9s+B4R5vS7AI6/NloclVjTc8e4ePGO9cnv8Wd2IbbuEO7mHWcPFOeNoQeYY++Bif6PqC75T6pu1v0v+VWLAEy7ACq+BTVBHzf2z3oQYH4FPUEXMEx3ACp2AdefbXWotP9RqbPqkZ13Ljub5xxWEmOBAcmEcH9B1ona281HegdbbQZ+1ZtF5ejdaeRevl0fcHc/RufA==
+   eAHtlklOAzEQRWsBYsgZICuEgCCGrOAiENhmnzDcgwVXYFoxJLAOCHIB4BwJR+CxKCnqOOlOp9yyhEt6KtltVf3+tiyLTBadDZHXFN74PrsvMgODWTvpvI4tc4/e/RR++L6OtjUYzKpD53VsmbPqy9qzXnGvzOvxEvWWUyiP6OlScjlirU+PXTriXLEO5D1/RamM568op2MfHw7cc68+wCM8QQti2DnQ2BRpwgmcwhmcQ97Q+1Cz1kmOdT7m8BzobfO2BIuwPl8WmnzVeMezD+g6vPN5/q+4E6/hBm7hDiYNH++E9orIM7xAiPGJri/4zqhv3P6m/d8cC+ZhARahBCHFFmL+ju0O7EIVQooDxBxCDY7gGKwjy/629kTaDqy1hFSvuRqSmmEtF4HrG1YcZ6ID0YH/6IC+A62zlZf6DrTOFvqsPUvWm1ajtWfJetPo+wVvJnQD
   </data>
  </layer>
  <objectgroup color="#ff0000" id="6" name="Collisions">
@@ -145,6 +145,7 @@
   <object id="403" name="Create Mieke" type="event" x="320" y="496" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_flower_mieke,20,31"/>
+    <property name="act2" value="char_face spyder_flower_mieke,left"/>
     <property name="cond1" value="not char_exists spyder_flower_mieke"/>
    </properties>
   </object>
@@ -180,6 +181,7 @@
   <object id="407" name="Create Teach" type="event" x="400" y="496" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_flower_teach,25,31"/>
+    <property name="act2" value="char_face spyder_flower_teach,right"/>
     <property name="cond1" value="not char_exists spyder_flower_teach"/>
    </properties>
   </object>
@@ -237,6 +239,7 @@
   <object id="425" name="Create Florist" type="event" x="240" y="480" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_flower_lissa,15,30"/>
+    <property name="act2" value="char_face spyder_flower_lissa,up"/>
     <property name="cond1" value="not char_exists spyder_flower_lissa"/>
     <property name="cond2" value="not variable_set captainreturns:yes"/>
    </properties>
@@ -250,6 +253,7 @@
   <object id="427" name="Create Fez" type="event" x="352" y="448" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_flower_fez,22,28"/>
+    <property name="act2" value="char_face spyder_flower_fez,down"/>
     <property name="cond1" value="not char_exists spyder_flower_fez"/>
    </properties>
   </object>
@@ -285,6 +289,7 @@
   <object id="431" name="Create Cady" type="event" x="448" y="544" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_flower_cady,28,34"/>
+    <property name="act2" value="char_face spyder_flower_cady,left"/>
     <property name="cond1" value="not char_exists spyder_flower_cady"/>
    </properties>
   </object>
@@ -320,6 +325,7 @@
   <object id="435" name="Create Sandy" type="event" x="432" y="384" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_flower_sandy,27,24"/>
+    <property name="act2" value="char_face spyder_flower_sandy,up"/>
     <property name="cond1" value="not char_exists spyder_flower_sandy"/>
    </properties>
   </object>

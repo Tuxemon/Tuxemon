@@ -5,8 +5,9 @@ from __future__ import annotations
 import logging
 from abc import ABC, abstractmethod
 from collections.abc import Callable, Mapping, Sequence
+from dataclasses import dataclass, field, replace
 from enum import Enum
-from typing import TYPE_CHECKING, Any, NamedTuple, Optional
+from typing import TYPE_CHECKING, Any, Optional
 
 from tuxemon.db import Direction
 from tuxemon.prepare import REGION_KEYS
@@ -25,19 +26,59 @@ class RegionKey(str, Enum):
     PUSH_TILE = "push_tile"
 
 
-class PushEffect(NamedTuple):
+@dataclass(frozen=True)
+class PushEffect:
     direction: Direction
     strength: int
 
 
-class RegionProperties(NamedTuple):
-    enter_from: Sequence[Direction]
-    exit_from: Sequence[Direction]
-    endure: Sequence[Direction]
-    entity: Optional[Entity[Any]] = None
-    key: Optional[str] = None
-    push_effect: Optional[PushEffect] = None
-    speed_modifier: Optional[float] = None
+@dataclass(frozen=True)
+class RegionProperties:
+    enter_from: Sequence[Direction] = field(
+        default_factory=list,
+        metadata={
+            "description": "Directions from which an entity can enter this region."
+        },
+    )
+    exit_from: Sequence[Direction] = field(
+        default_factory=list,
+        metadata={
+            "description": "Directions from which an entity can exit this region."
+        },
+    )
+    endure: Sequence[Direction] = field(
+        default_factory=list,
+        metadata={
+            "description": "Directions from which an entity can remain in this region."
+        },
+    )
+    entity: Optional[Entity[Any]] = field(
+        default=None,
+        metadata={
+            "description": "Optional entity associated with this region."
+        },
+    )
+    key: Optional[str] = field(
+        default=None,
+        metadata={
+            "description": "Region behavior key (e.g., 'slide', 'push_tile')."
+        },
+    )
+    push_effect: Optional[PushEffect] = field(
+        default=None,
+        metadata={
+            "description": "Push effect applied when entering this region."
+        },
+    )
+    speed_modifier: Optional[float] = field(
+        default=None,
+        metadata={
+            "description": "Multiplier for movement speed within this region."
+        },
+    )
+
+    def with_overrides(self, **kwargs: Any) -> RegionProperties:
+        return replace(self, **kwargs)
 
     def __str__(self) -> str:
         return (

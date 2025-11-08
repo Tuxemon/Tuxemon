@@ -79,32 +79,6 @@ class TestCollisionManager(unittest.TestCase):
         self.collision_manager.remove_collision((0, 0))
         self.assertNotIn((0, 0), self.map_manager.collision_map)
 
-    def test_add_collision_label(self):
-        collision_map = {
-            (0, 0): RegionProperties([], [], [], None, "label1"),
-            (1, 1): RegionProperties([], [], [], None, "label2"),
-        }
-        self.map_manager.collision_map = collision_map
-        self.collision_manager.add_collision_label("label1")
-        self.assertEqual(self.map_manager.collision_map[(0, 0)].key, "label1")
-        self.assertEqual(self.map_manager.collision_map[(1, 1)].key, "label2")
-
-    def test_add_collision_position(self):
-        self.map_manager.collision_map = {}
-        self.collision_manager.add_collision_position("label1", (0, 0))
-        self.assertIn((0, 0), self.map_manager.collision_map)
-        self.assertEqual(self.map_manager.collision_map[(0, 0)].key, "label1")
-
-    def test_remove_collision_label(self):
-        collision_map = {
-            (0, 0): RegionProperties([], [], [], None, "label1"),
-            (1, 1): RegionProperties([], [], [], None, "label2"),
-        }
-        self.map_manager.collision_map = collision_map
-        self.collision_manager.remove_collision_label("label1")
-        self.assertEqual(self.map_manager.collision_map[(0, 0)].key, "label1")
-        self.assertEqual(self.map_manager.collision_map[(1, 1)].key, "label2")
-
     def test_get_collision_map(self):
         self.map_manager.collision_map = {
             (0, 0): RegionProperties([], [], [], None, "label1")

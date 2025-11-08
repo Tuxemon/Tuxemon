@@ -8,14 +8,14 @@
     }
   ],
   "flip_axes": "",
-  "speed": "fast",
+  "speed": "extremely_fast",
   "potency": 0.0,
   "power": 0,
   "range": "special",
   "recharge": 1,
   "sfx": "sfx_kick",
   "slug": "wiggle",
-  "sort": "meta",
+  "sort": "damage",
   "modifiers": [],
   "behaviors": {},
   "target": {

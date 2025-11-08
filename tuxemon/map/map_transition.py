@@ -3,7 +3,9 @@
 from __future__ import annotations
 
 import logging
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional
+
+from tuxemon.map.map_tuxemon import AbstractMap
 
 if TYPE_CHECKING:
     from tuxemon.boundary import BoundaryChecker
@@ -33,18 +35,15 @@ class MapTransition:
         self.boundary = boundary
         self.event_engine = event_engine
 
-    def change_map(self, map_name: str) -> None:
-        """
-        Loads the new map and updates relevant game components.
-
-        Parameters:
-            map_name: The name of the new map.
-        """
-        logger.debug(f"Loading map '{map_name}' using Client's MapLoader.")
+    def change_map(
+        self, map_name: Optional[str] = None, yaml_path: Optional[str] = None
+    ) -> None:
+        """Loads the new map or a NullMap and updates relevant game components."""
         self._clear_npcs()
-
-        map_data = self.map_loader.load_map_data(map_name)
-
+        if map_name:
+            map_data = self.map_loader.load_map_data(map_name)
+        else:
+            map_data = self.map_loader.load_null_map(yaml_path)
         self._reset_events(map_data)
         self._update_map_state(map_data)
         self._update_boundaries()

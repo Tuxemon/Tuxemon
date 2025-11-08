@@ -12,7 +12,8 @@ from pygame.surface import Surface
 from tuxemon.base_client import BaseClient, ClientState
 from tuxemon.cli.processor import CommandProcessor
 from tuxemon.config import TuxemonConfig
-from tuxemon.map.map_view import DebugRenderer, MapRenderer
+from tuxemon.map.map_tuxemon import NullMap
+from tuxemon.map.map_view import DebugRenderer, MapRenderer, NullRenderer
 from tuxemon.session import local_session
 from tuxemon.state.draw import EventDebugDrawer, Renderer, StateDrawer
 
@@ -82,6 +83,21 @@ class LocalPygameClient(BaseClient):
             thread = Thread(target=self.cli.run)
             thread.daemon = True
             thread.start()
+
+    def reset_renderer(self) -> None:
+        current_map = self.map_manager.current_map
+        if isinstance(current_map, NullMap):
+            self.set_renderer(NullRenderer())
+            logger.debug("Renderer reset to NullRenderer.")
+        else:
+            self.debug_renderer = DebugRenderer(
+                self.map_manager, self.npc_manager
+            )
+            map_renderer = MapRenderer(
+                self.camera_manager, self.npc_manager, self.debug_renderer
+            )
+            self.set_renderer(map_renderer)
+            logger.debug("Renderer reset to MapRenderer.")
 
     def main(self) -> None:
         """

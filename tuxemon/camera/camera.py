@@ -102,6 +102,26 @@ class CameraManager:
             if self.active_camera is None:
                 self.set_active_camera(camera)
 
+    def remove_camera(self, camera: Camera) -> None:
+        """Removes a camera from the manager. Updates active camera and controller if needed."""
+        if camera in self.cameras:
+            self.cameras.remove(camera)
+
+            if self.active_camera == camera:
+                if self.cameras:
+                    self.set_active_camera(self.cameras[0])
+                else:
+                    self.active_camera = None
+                    self.controller = None
+        else:
+            raise ValueError("Camera not managed by this CameraManager.")
+
+    def reset(self) -> None:
+        """Resets the camera manager to its initial state."""
+        self.cameras.clear()
+        self.active_camera = None
+        self.controller = None
+
     def set_active_camera(self, camera: Camera) -> None:
         """Sets the specified camera as active and assigns its controller."""
         if camera in self.cameras:

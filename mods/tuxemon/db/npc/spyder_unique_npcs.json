@@ -54,9 +54,9 @@
     "speech": {"profile": {"default": {}}},
     "combat": {},
     "template": {
-      "sprite_name": "shopassistant",
+      "sprite_name": "shopkeeper",
       "combat_front": "shopassistant",
-      "slug": "shopassistant"
+      "slug": "shopkeeper"
     }
   },
   {

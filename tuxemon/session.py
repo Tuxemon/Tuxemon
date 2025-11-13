@@ -146,6 +146,9 @@ class Session(AbstractSession["LocalPygameClient"]):
         self.player.set_state(self, save_data.npc_state or NPCState())
         self.world.set_state(self, save_data.world_state or WorldSave())
         self.set_state(save_data.session_state or SessionSave())
+        self.client.npc_manager.load_persistent_npc_states(
+            self, save_data.persistent_state or []
+        )
 
     def save_state(self, index: int, slot: int) -> SaveData:
         """

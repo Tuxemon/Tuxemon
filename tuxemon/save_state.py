@@ -61,3 +61,4 @@ class SaveData(BaseModel):
     npc_state: Optional[NPCState] = Field(default=None)
     world_state: Optional[WorldSave] = Field(default=None)
     session_state: Optional[SessionSave] = Field(default=None)
+    persistent_state: list[NPCState] = Field(default_factory=list)

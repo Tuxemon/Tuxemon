@@ -2,16 +2,21 @@
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import logging
 from collections.abc import Mapping, Sequence
 from typing import TYPE_CHECKING, Any, Optional
 from uuid import UUID
 
 from tuxemon import networking
+from tuxemon.npc import NPC
 
 if TYPE_CHECKING:
     from tuxemon.client import LocalPygameClient
     from tuxemon.monster import Monster
-    from tuxemon.npc import NPC
+    from tuxemon.save_state import NPCState
+    from tuxemon.session import Session
+
+logger = logging.getLogger(__name__)
 
 
 class NPCManager:
@@ -88,13 +93,30 @@ class NPCManager:
                 entity.update_location = False
 
     def clear_npcs(self) -> None:
-        for npc in self.npcs.values():
-            npc.remove_collision()
-        self.npcs.clear()
+        npcs_to_keep: dict[str, NPC] = {}
 
-        for npc in self.npcs_off_map.values():
-            npc.remove_collision()
-        self.npcs_off_map.clear()
+        for slug, npc in self.npcs.items():
+            if npc.persistence:
+                npcs_to_keep[slug] = npc
+            else:
+                npc.remove_collision()
+
+        self.npcs = npcs_to_keep
+
+        npcs_off_map_to_keep: dict[str, NPC] = {}
+
+        for slug, npc in self.npcs_off_map.items():
+            if npc.persistence:
+                npcs_off_map_to_keep[slug] = npc
+            else:
+                npc.remove_collision()
+
+        self.npcs_off_map = npcs_off_map_to_keep
+
+        logger.debug(
+            f"NPCManager cleared non-persistent NPCs. "
+            f"Kept {len(self.npcs)} on-map and {len(self.npcs_off_map)} off-map persistent NPCs."
+        )
 
     def get_all_entities(self) -> Sequence[NPC]:
         return list(self.npcs.values())
@@ -145,3 +167,65 @@ class NPCManager:
         if include_off_map:
             slugs.extend(self.npcs_off_map.keys())
         return slugs
+
+    def get_persistent_npc_states(self, session: Session) -> list[NPCState]:
+        """
+        Returns a list of NPCStates for all persistent NPCs currently managed.
+        This excludes the main player character, whose state is saved separately.
+        """
+        persistent_states = []
+        player_slug = session.player.slug
+
+        for npc in self.npcs.values():
+            if npc.persistence and npc.slug != player_slug:
+                if npc.session:
+                    persistent_states.append(npc.get_state(npc.session))
+                else:
+                    logger.warning(
+                        f"Cannot save persistent NPC {npc.slug}: session is missing."
+                    )
+
+        for npc in self.npcs_off_map.values():
+            if npc.persistence and npc.slug != player_slug:
+                if npc.session:
+                    persistent_states.append(npc.get_state(npc.session))
+                else:
+                    logger.warning(
+                        f"Cannot save persistent NPC off-map {npc.slug}: session is missing."
+                    )
+
+        return persistent_states
+
+    def load_persistent_npc_states(
+        self,
+        session: Session,
+        npc_states: list[NPCState],
+    ) -> None:
+        """
+        Recreates and adds persistent NPCs from a list of saved states.
+        This process bypasses the standard map loading, which normally clears
+        all non-player NPCs.
+        """
+        if not npc_states:
+            return
+
+        current_map_name = session.client.get_map_name()
+
+        for state in npc_states:
+            if not state.player_slug:
+                continue
+
+            new_npc = NPC(npc_slug=state.player_slug, session=session)
+            new_npc.set_state(session, state)
+
+            if state.current_map == current_map_name:
+                self.add_npc(new_npc)
+                self.npcs_off_map.pop(state.player_slug, None)
+            else:
+                self.add_npc_off_map(new_npc)
+                self.npcs.pop(state.player_slug, None)
+
+            logger.debug(
+                f"Loaded persistent NPC: {state.player_name} ({state.player_slug}) "
+                f"on map {state.current_map}. Current Map: {current_map_name}"
+            )

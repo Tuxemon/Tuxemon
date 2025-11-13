@@ -1667,6 +1667,10 @@ class NpcCombatModel(BaseModel):
 class NpcModel(BaseModel, BaseLookupModel):
     table_name: ClassVar[str] = "npc"
     slug: str = Field(..., description="Slug of the name of the NPC")
+    persistence: bool = Field(
+        False,
+        description="Whether this NPC should be retained and saved across sessions.",
+    )
     template: NpcTemplateModel
     combat: NpcCombatModel
     monsters: Sequence[PartyMemberModel] = Field(

@@ -22,9 +22,9 @@ from tuxemon.session import local_session
 from tuxemon.sprite import Sprite
 from tuxemon.tools import (
     open_choice_dialog,
-    open_dialog,
     scale,
 )
+from tuxemon.ui.menu_options import ChoiceOption, MenuOptions
 from tuxemon.ui.paginator import Paginator
 from tuxemon.ui.text import TextArea
 
@@ -51,7 +51,7 @@ class ItemMenuState(Menu[Item]):
         super().__init__()
 
         self.filter_controller = item_filter or ItemFilter(self.char.items)
-        self.sorter = sorter or ItemSorter()
+        self.sorter = sorter or ItemSorter(mode="category")
         # this sprite is used to display the item
         # it's also animated to pop out of the backpack
         self.item_center = self.rect.width * 0.164, self.rect.height * 0.13
@@ -100,68 +100,47 @@ class ItemMenuState(Menu[Item]):
         """
         item = menu_item.game_object
 
-        # Check if the item can be used on any monster
-        if not any(
+        # Condition 1: does the item validate against at least one monster?
+        usable_on_monster = any(
             item.validate_monster(local_session, m) for m in self.char.monsters
-        ):
-            self.on_menu_selection_change()
-            error_message = self.get_error_message(item)
-            open_dialog(self.client, [error_message])
-            return
+        )
 
-        # Check if the item can be used in the current state
-        if not any(
+        # Condition 2: is the item allowed in the current active state?
+        usable_in_state = any(
             s.name in self.client.active_state_names for s in item.usable_in
-        ):
-            error_message = T.format(
-                "item_cannot_use_here", {"name": item.name}
-            )
-            open_dialog(self.client, [error_message])
-            return
+        )
 
-        # All checks passed, proceed to confirmation
-        self.open_confirm_use_menu(item)
+        is_usable = usable_on_monster and usable_in_state
+        self.open_confirm_use_menu(item, is_usable)
 
-    def open_confirm_use_menu(self, item: Item) -> None:
+    def open_confirm_use_menu(self, item: Item, is_usable: bool) -> None:
         """
-        Opens a confirmation menu for the given item, dynamically creating options.
+        Opens a confirmation menu for the given item, dynamically creating options,
+        and injects the menu-level 'Sort' option.
         """
         controller = ItemController(local_session, item, self.char)
         menu_options = controller.get_confirm_menu_options()
+
+        if not is_usable:
+            menu_options.remove("use")
+
+        sort_option = ChoiceOption(
+            key="sort",
+            display_text=T.translate("menu_sort").upper(),
+            action=self.open_sort_submenu,
+        )
+
+        last_index = len(menu_options.options) - 1
+        if last_index >= 0 and menu_options.options[last_index].key in (
+            "cancel",
+            "back",
+            "close",
+        ):
+            menu_options.options.insert(last_index, sort_option)
+        else:
+            menu_options.options.append(sort_option)
+
         open_choice_dialog(self.client, menu_options, escape_key_exits=True)
-
-    def get_error_message(self, item: Item) -> str:
-        """
-        Returns an error message based on the item's conditions.
-
-        Parameters:
-            item: The item to check.
-
-        Returns:
-            An error message.
-        """
-        for condition in item.conditions:
-            if condition.name == "location_inside":
-                loc_inside = getattr(condition, "location_inside")
-                return T.format(
-                    "item_used_wrong_location_inside",
-                    {
-                        "name": item.name.upper(),
-                        "here": T.translate(loc_inside),
-                    },
-                )
-            elif condition.name == "location_type":
-                loc_type = getattr(condition, "location_type")
-                return T.format(
-                    "item_used_wrong_location_type",
-                    {
-                        "name": item.name.upper(),
-                        "here": T.translate(loc_type),
-                    },
-                )
-            elif condition.name in ["facing_tile", "facing_sprite"]:
-                return T.format("item_cannot_use_here", {"name": item.name})
-        return T.format("item_no_available_target", {"name": item.name})
 
     def initialize_items(self) -> Generator[MenuItem[Item], None, None]:
         """Get all player inventory items and add them to menu."""
@@ -298,3 +277,35 @@ class ItemMenuState(Menu[Item]):
             game_object=item,
             enabled=is_enabled,
         )
+
+    def set_sort_mode(self, mode: str) -> None:
+        """Change the sorting mode and reload the inventory."""
+        self.sorter.set_mode(mode)
+        self.reload_items()
+
+    def open_sort_submenu(self) -> None:
+        """Opens a submenu with sorting options for items."""
+        sort_options = [
+            ChoiceOption(
+                key="category",
+                display_text=T.translate("sort_by_category").upper(),
+                action=lambda: self.set_sort_mode("category"),
+            ),
+            ChoiceOption(
+                key="name",
+                display_text=T.translate("sort_by_name").upper(),
+                action=lambda: self.set_sort_mode("name"),
+            ),
+            ChoiceOption(
+                key="quantity",
+                display_text=T.translate("sort_by_quantity").upper(),
+                action=lambda: self.set_sort_mode("quantity"),
+            ),
+            ChoiceOption(
+                key="cost",
+                display_text=T.translate("sort_by_cost").upper(),
+                action=lambda: self.set_sort_mode("cost"),
+            ),
+        ]
+        menu = MenuOptions(sort_options)
+        open_choice_dialog(self.client, menu, escape_key_exits=True)

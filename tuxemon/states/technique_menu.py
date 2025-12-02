@@ -19,9 +19,9 @@ from tuxemon.technique.sorter import TechSorter
 from tuxemon.technique.technique import Technique
 from tuxemon.tools import (
     open_choice_dialog,
-    open_dialog,
     scale,
 )
+from tuxemon.ui.menu_options import ChoiceOption, MenuOptions
 from tuxemon.ui.text import TextArea
 
 if TYPE_CHECKING:
@@ -74,35 +74,50 @@ class TechniqueMenuState(Menu[Technique]):
 
     def on_menu_selection(self, menu_technique: MenuItem[Technique]) -> None:
         """
-        Called when player has selected something.
-
-        Currently, opens a new menu depending on the state context.
-
-        Parameters:
-            menu_technique: Selected menu technique.
+        Called when player has selected something from the moves.
         """
         tech = menu_technique.game_object
 
-        if not any(
+        # Condition 1: is this technique valid for at least one monster?
+        valid_for_monster = any(
             tech.validate_monster(local_session, m) for m in self.char.monsters
-        ):
-            msg = T.format("item_no_available_target", {"name": tech.name})
-            open_dialog(self.client, [msg])
-            return
+        )
 
-        if tech.behaviors.is_field_tech is False:
-            msg = T.format("item_cannot_use_here", {"name": tech.name})
-            open_dialog(self.client, [msg])
-            return
+        # Condition 2: can this technique be used in the current field context?
+        usable_in_field = tech.behaviors.is_field_tech
 
-        self.open_confirm_use_menu(tech)
+        is_usable = valid_for_monster and usable_in_field
+        self.open_confirm_use_menu(tech, is_usable)
 
-    def open_confirm_use_menu(self, technique: Technique) -> None:
+    def open_confirm_use_menu(
+        self, technique: Technique, is_usable: bool
+    ) -> None:
         """
-        Opens a confirmation menu for the given technique, dynamically creating options.
+        Opens a confirmation menu for the given technique, dynamically creating options,
+        and injects the menu-level 'Sort' option.
         """
         controller = TechController(local_session, technique, self.char)
         menu_options = controller.get_confirm_menu_options()
+
+        if not is_usable:
+            menu_options.remove("use")
+
+        sort_option = ChoiceOption(
+            key="sort",
+            display_text=T.translate("menu_sort").upper(),
+            action=self.open_sort_submenu,
+        )
+
+        last_index = len(menu_options.options) - 1
+        if last_index >= 0 and menu_options.options[last_index].key in (
+            "cancel",
+            "back",
+            "close",
+        ):
+            menu_options.options.insert(last_index, sort_option)
+        else:
+            menu_options.options.append(sort_option)
+
         open_choice_dialog(self.client, menu_options, escape_key_exits=True)
 
     def initialize_items(
@@ -165,3 +180,30 @@ class TechniqueMenuState(Menu[Technique]):
         if tech.description and tech.description != f"{tech.slug}_description":
             label = f"{label} - {tech.description}"
         return MenuItem(image, name, label, tech)
+
+    def set_sort_mode(self, mode: str) -> None:
+        """Change the sorting mode and reload the inventory."""
+        self.tech_sorter.set_mode(mode)
+        self.reload_items()
+
+    def open_sort_submenu(self) -> None:
+        """Opens a submenu with sorting options for items."""
+        sort_options = [
+            ChoiceOption(
+                key="id",
+                display_text=T.translate("sort_by_id").upper(),
+                action=lambda: self.set_sort_mode("id"),
+            ),
+            ChoiceOption(
+                key="name",
+                display_text=T.translate("sort_by_name").upper(),
+                action=lambda: self.set_sort_mode("name"),
+            ),
+            ChoiceOption(
+                key="power",
+                display_text=T.translate("sort_by_power").upper(),
+                action=lambda: self.set_sort_mode("power"),
+            ),
+        ]
+        menu = MenuOptions(sort_options)
+        open_choice_dialog(self.client, menu, escape_key_exits=True)

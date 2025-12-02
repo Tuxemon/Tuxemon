@@ -4358,6 +4358,9 @@ msgstr "Body Type"
 msgid "monster_menu_release"
 msgstr "Release"
 
+msgid "menu_sort"
+msgstr "Sort"
+
 msgid "shop_heal_to"
 msgstr "Heal to {hp} HP"
 
@@ -4375,6 +4378,30 @@ msgstr "Buy"
 
 msgid "sell"
 msgstr "Sell"
+
+msgid "sort_by_level"
+msgstr "Sort by Level"
+
+msgid "sort_by_hp"
+msgstr "Sort by HP"
+
+msgid "sort_by_name"
+msgstr "Sort by Name"
+
+msgid "sort_by_id"
+msgstr "Sort by ID"
+
+msgid "sort_by_quantity"
+msgstr "Sort by Quantity"
+
+msgid "sort_by_cost"
+msgstr "Sort by Cost"
+
+msgid "sort_by_category"
+msgstr "Sort by Category"
+
+msgid "sort_by_power"
+msgstr "Sort by Power"
 
 # Release notifications
 msgid "cant_release"

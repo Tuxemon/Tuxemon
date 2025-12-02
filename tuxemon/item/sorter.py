@@ -10,10 +10,13 @@ if TYPE_CHECKING:
 
 
 class ItemSorter:
-    def __init__(self, sort_order: Optional[list[str]] = None) -> None:
+    def __init__(
+        self, mode: str = "category", sort_order: Optional[list[str]] = None
+    ) -> None:
+        self.mode = mode
         self.sort_order = sort_order or ["potion", "food", "utility", "quest"]
         self.sort_order_rank = {
-            category: i for i, category in enumerate(self.sort_order)
+            cat: i for i, cat in enumerate(self.sort_order)
         }
 
     def rank_item(self, item: Item) -> tuple[int, str]:
@@ -21,10 +24,15 @@ class ItemSorter:
         return rank, item.name.lower()
 
     def sort(self, items: Sequence[Item]) -> Sequence[Item]:
-        return sorted(items, key=self.rank_item)
+        if self.mode == "category":
+            return sorted(items, key=self.rank_item)
+        elif self.mode == "name":
+            return sorted(items, key=lambda i: i.name.lower())
+        elif self.mode == "quantity":
+            return sorted(items, key=lambda i: i.quantity, reverse=True)
+        elif self.mode == "cost":
+            return sorted(items, key=lambda i: i.cost, reverse=True)
+        return items
 
-    def set_sort_order(self, new_order: list[str]) -> None:
-        self.sort_order = new_order
-        self.sort_order_rank = {
-            category: i for i, category in enumerate(new_order)
-        }
+    def set_mode(self, mode: str) -> None:
+        self.mode = mode

@@ -3,28 +3,23 @@
 from __future__ import annotations
 
 from collections.abc import Sequence
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from tuxemon.technique.technique import Technique
 
 
 class TechSorter:
-    def __init__(
-        self, attribute: Optional[str] = None, reverse: bool = False
-    ) -> None:
-        self.attribute = attribute or "tech_id"
-        self.reverse = reverse
+    def __init__(self, mode: str = "id") -> None:
+        self.mode = mode
 
     def sort(self, techniques: Sequence[Technique]) -> Sequence[Technique]:
-        return sorted(
-            techniques,
-            key=lambda tech: getattr(tech, self.attribute, 0),
-            reverse=self.reverse,
-        )
+        if self.mode == "name":
+            return sorted(techniques, key=lambda t: t.name.lower())
+        elif self.mode == "power":
+            return sorted(techniques, key=lambda t: t.power, reverse=True)
+        else:  # default: id
+            return sorted(techniques, key=lambda t: t.tech_id)
 
-    def set_sort_attribute(
-        self, attribute: str, reverse: bool = False
-    ) -> None:
-        self.attribute = attribute
-        self.reverse = reverse
+    def set_mode(self, mode: str) -> None:
+        self.mode = mode

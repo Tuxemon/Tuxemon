@@ -18,7 +18,6 @@
       "type": "capture"
     }
   ],
-  "animation": "capture_1",
   "slug": "tuxeball_refined",
   "sort": "utility",
   "sprite": "gfx/items/tuxeball_refined.png",
@@ -34,5 +33,14 @@
   },
   "use_failure": "generic_failure",
   "use_item": "combat_used_x",
-  "use_success": "generic_success"
+  "use_success": "generic_success",
+  "visuals": {
+    "animation": "capture_1",
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": null,
+    "volume": 0.0
+  }
 }

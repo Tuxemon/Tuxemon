@@ -74,7 +74,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_cottonhouse1_tvwatch"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
  </objectgroup>

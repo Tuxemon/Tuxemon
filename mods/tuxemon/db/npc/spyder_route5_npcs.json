@@ -12,6 +12,7 @@
       }
     },
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "catgirl_blonde",
       "combat_front": "catgirl",
@@ -31,6 +32,7 @@
       }
     },
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "picnicker",
       "combat_front": "picnicker",
@@ -50,6 +52,7 @@
       }
     },
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "soldier",
       "combat_front": "soldier",
@@ -69,6 +72,7 @@
       }
     },
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "spyderrookie",
       "combat_front": "spyder_rookie",
@@ -88,6 +92,7 @@
       }
     },
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "picnicker",
       "combat_front": "picnicker",
@@ -107,6 +112,7 @@
       }
     },
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "florist_blue",
       "combat_front": "florist",
@@ -117,6 +123,7 @@
     "slug": "spyder_route5_lexia",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "granny_lapi",
       "combat_front": "adventurer",
@@ -127,6 +134,7 @@
     "slug": "spyder_route5_nurse",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "nurse_blue",
       "combat_front": "nurse",

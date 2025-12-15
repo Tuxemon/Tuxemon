@@ -1,19 +1,16 @@
 {
   "tech_id": 64,
   "accuracy": 0.8,
-  "animation": "firelion_right",
   "effects": [
     {
       "type": "damage"
     }
   ],
-  "flip_axes": "x",
   "speed": "normal",
   "potency": 0.0,
   "power": 2.25,
   "range": "ranged",
   "recharge": 2,
-  "sfx": "sfx_flames1",
   "slug": "breathe_fire",
   "sort": "damage",
   "modifiers": [],
@@ -35,5 +32,14 @@
   ],
   "use_failure": "combat_miss",
   "use_success": null,
-  "use_tech": "combat_used_x"
+  "use_tech": "combat_used_x",
+  "visuals": {
+    "animation": "firelion_right",
+    "flip_axes": "x",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": "sfx_flames1",
+    "volume": 1.5
+  }
 }

@@ -1,9 +1,9 @@
 # SPDX-License-Identifier: GPL-3.0
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 import unittest
-from unittest.mock import MagicMock, patch
+from unittest.mock import MagicMock
 
-from tuxemon.event import MapCondition
+from tuxemon.db import BoundingBox, Operator, SpatialCondition
 from tuxemon.event.eventcondition import ConditionManager
 from tuxemon.event.running import (
     ConditionEvaluator,
@@ -33,14 +33,12 @@ class TestRunningCondition(unittest.TestCase):
             condition_manager=self.mock_condition_manager,
         )
 
-        self.map_condition = MapCondition(
+        box = BoundingBox(x=0, y=0, width=1, height=1)
+        self.map_condition = SpatialCondition(
             type="test_type",
-            parameters={},
-            x=0,
-            y=0,
-            width=1,
-            height=1,
-            operator="is",
+            parameters=[],
+            box=box,
+            operator=Operator.IS,
             name="TestCondition",
         )
 

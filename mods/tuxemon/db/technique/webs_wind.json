@@ -1,7 +1,6 @@
 {
   "tech_id": 157,
   "accuracy": 1,
-  "animation": "tornado_bulk",
   "effects": [
     {
       "type": "give",
@@ -20,13 +19,11 @@
       "type": "damage"
     }
   ],
-  "flip_axes": "",
   "speed": "normal",
   "potency": 0.3,
   "power": 0.5,
   "range": "ranged",
   "recharge": 2,
-  "sfx": "sfx_tornado",
   "slug": "webs_wind",
   "sort": "damage",
   "modifiers": [],
@@ -48,5 +45,14 @@
   ],
   "use_failure": "combat_miss",
   "use_success": null,
-  "use_tech": "combat_used_x"
+  "use_tech": "combat_used_x",
+  "visuals": {
+    "animation": "tornado_bulk",
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": "sfx_tornado",
+    "volume": 1.5
+  }
 }

@@ -100,7 +100,7 @@ def load_walking_animations_with_cache(
     frames: list[tuple[Surface, float]] = [
         (load_and_scale_with_cache(image), frame_duration) for image in images
     ]
-    return SurfaceAnimation(frames, loop=True)
+    return SurfaceAnimation(frames)
 
 
 def clear_standing_cache(cache_key: str) -> None:
@@ -590,9 +590,9 @@ class DebugRenderer:
     def _draw_events(self, current_map: AbstractMap, surface: Surface) -> None:
         """Draws event-related debug information on the surface."""
         for event in self.map_manager.events:
-            vector = Vector2(event.x, event.y)
+            vector = Vector2(event.box.x, event.box.y)
             topleft = get_pos_from_tilepos(current_map, vector)
-            size = project((event.w, event.h))
+            size = project((event.box.width, event.box.height))
             rect = topleft, size
             box(surface, rect, self.event_color)
 

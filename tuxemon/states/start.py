@@ -55,25 +55,27 @@ class StartState(PygameMenuState):
     ) -> None:
         # If there is a save, then move the cursor to "Load game" first
         index = get_index_of_latest_save()
-        config = prepare.CONFIG
 
         def new_game() -> None:
             launcher = GameLauncher(self.client)
             launcher.launch(
                 session=local_session,
-                meta=db.mod_metadata.get_mod_metadata(config.mods[0]),
+                meta=db.mod_metadata.get_mod_metadata(
+                    self.client.config.mods[0]
+                ),
                 remove_states=["StartState"],
             )
 
         def change_state(
-            state: Union[State, str],
-            **change_state_kwargs: Any,
-        ) -> Callable[[], State]:
-            return partial(
-                self.client.push_state,
-                state,
-                **change_state_kwargs,
-            )
+            state: Union[State, str], **kwargs: Any
+        ) -> Callable[[], None]:
+            def _change() -> None:
+                self.unsubscribe(
+                    "afk.threshold_reached", self._on_afk_threshold
+                )
+                self.client.push_state(state, **kwargs)
+
+            return _change
 
         def exit_game() -> None:
             self.client.quit()
@@ -85,7 +87,7 @@ class StartState(PygameMenuState):
                 font_size=self.font_type.big,
                 button_id="menu_load",
             )
-        if len(config.mods) == 1:
+        if len(self.client.config.mods) == 1:
             menu.add.button(
                 title=T.translate("menu_new_game"),
                 action=new_game,
@@ -95,7 +97,9 @@ class StartState(PygameMenuState):
         else:
             menu.add.button(
                 title=T.translate("menu_new_game"),
-                action=change_state("ModsChoice", mods=config.mods),
+                action=change_state(
+                    "ModsChoice", mods=self.client.config.mods
+                ),
                 font_size=self.font_type.big,
                 button_id="menu_mod_choice",
             )
@@ -132,9 +136,20 @@ class StartState(PygameMenuState):
         theme.widget_alignment = locals.ALIGN_CENTER
 
         super().__init__(height=height, width=width)
-
+        self.client.afk_manager.add_threshold("IntroState", 15.0)
+        self.event_bus.subscribe(
+            "afk.threshold_reached", self._on_afk_threshold, priority=10
+        )
         self.add_menu_items(self.menu)
         self.reset_theme()
+
+    def _on_afk_threshold(self, level: str) -> None:
+        if level == "IntroState":
+            self.client.replace_state("IntroState")
+
+    def shutdown(self) -> None:
+        self.unsubscribe("afk.threshold_reached", self._on_afk_threshold)
+        super().shutdown()
 
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
         if (

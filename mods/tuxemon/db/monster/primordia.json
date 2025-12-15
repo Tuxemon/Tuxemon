@@ -12,7 +12,11 @@
     },
     {
       "level_learned": 4,
-      "technique": "fire_claw"
+      "technique": "bubble_trap"
+    },
+    {
+      "level_learned": 7,
+      "technique": "power_theft"
     },
     {
       "level_learned": 10,
@@ -25,6 +29,10 @@
     {
       "level_learned": 19,
       "technique": "water_blast"
+    },
+    {
+      "level_learned": 22,
+      "technique": "external_power"
     },
     {
       "level_learned": 28,
@@ -72,8 +80,14 @@
   "height": 1,
   "weight": 0.1,
   "sounds": {
-    "combat_call": "sound_roar_05",
-    "faint_call": "sound_roar_05_faint"
+    "combat_call": {
+      "sfx": "sound_roar_05",
+      "volume": 1.5
+    },
+    "faint_call": {
+      "sfx": "sound_roar_05_faint",
+      "volume": 1.5
+    }
   },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.9,

@@ -12,7 +12,7 @@ from tuxemon import prepare
 from tuxemon.event.running import EventState, RunningCondition, RunningEvent
 
 if TYPE_CHECKING:
-    from tuxemon.event import EventObject, MapAction, MapCondition
+    from tuxemon.db import EventObject, ParameterizableRule, SpatialCondition
     from tuxemon.event.eventaction import ActionManager
     from tuxemon.event.running import ConditionEvaluator
     from tuxemon.map.map_tuxemon import AbstractMap
@@ -51,15 +51,15 @@ class EventEngine:
         self.running_events: dict[int, RunningEvent] = dict()
         self.name = "Event"
         self.current_map: Optional[AbstractMap] = None
-        self.timer = 0.0
-        self.wait = 0.0
-        self.button = None
+        self._suspended: bool = False
 
         self.global_events: list[EventObject] = []
         self.triggered_global_events: set[int] = set()
 
         # debug
-        self.partial_events: list[Sequence[tuple[bool, MapCondition]]] = list()
+        self.partial_events: list[Sequence[tuple[bool, SpatialCondition]]] = (
+            list()
+        )
 
     def set_current_map(self, new_map: Optional[AbstractMap]) -> None:
         """Updates the current map."""
@@ -70,9 +70,23 @@ class EventEngine:
         """Clear out running events.  Use when changing maps."""
         self.running_events = dict()
         self.set_current_map(None)
-        self.timer = 0.0
-        self.wait = 0.0
-        self.button = None
+        self.triggered_global_events = set()
+
+    def suspend(self) -> None:
+        """
+        Globally stops the EventEngine from checking conditions or processing running events.
+        """
+        if not self._suspended:
+            logger.info("EventEngine suspended.")
+            self._suspended = True
+
+    def resume(self) -> None:
+        """
+        Resumes the EventEngine, allowing condition checking and event processing to continue.
+        """
+        if self._suspended:
+            logger.info("EventEngine resumed.")
+            self._suspended = False
 
     def execute_action(
         self,
@@ -119,9 +133,6 @@ class EventEngine:
         Parameters:
             map_event: Event whose actions will be executed.
         """
-        if map_event.id is None:
-            raise ValueError("Event ID is required")
-
         if map_event.id not in self.running_events:
             logger.debug(f"Starting map event: {map_event.id}")
             logger.debug("Executing action list")
@@ -148,21 +159,7 @@ class EventEngine:
         Parameters:
             map_event: The event to evaluate and potentially start.
         """
-        running_conditions = [
-            RunningCondition(cond, self.evaluator) for cond in map_event.conds
-        ]
-        all_met = all(rc.check() for rc in running_conditions)
-
-        if prepare.CONFIG.collision_map:
-            self.partial_events.append(
-                [
-                    (rc.result or False, rc.map_condition)
-                    for rc in running_conditions
-                ]
-            )
-
-        if all_met:
-            self.start_event(map_event)
+        self._evaluate_and_queue_event(map_event)
 
     def update(self, dt: float) -> None:
         """
@@ -171,7 +168,9 @@ class EventEngine:
         Parameters:
             dt: Amount of time passed in seconds since last frame.
         """
-        # debug
+        if self._suspended:
+            return
+
         self.partial_events = []
         self.check_global_conditions()
         self.check_conditions()
@@ -183,40 +182,69 @@ class EventEngine:
 
         Actions may be started during this function.
         """
-        for event in list(self.session.client.map_manager.inits):
+        all_events = list(self.session.client.map_manager.inits) + list(
+            self.session.client.map_manager.events
+        )
+        all_events.sort(key=lambda event: event.priority, reverse=True)
+        for event in all_events:
             self.process_map_event(event)
 
-        # Then process regular map events
-        for event in list(self.session.client.map_manager.events):
-            self.process_map_event(event)
+    def register_global_event(self, event: EventObject) -> bool:
+        if any(e.id == event.id for e in self.global_events):
+            logger.warning(f"Global event {event.id} is already registered.")
+            return False
 
-    def register_global_event(self, event: EventObject) -> None:
-        if event.id is None:
-            raise ValueError("Global event must have an ID")
         self.global_events.append(event)
+        logger.debug(f"Global event {event.id} registered.")
+        return True
+
+    def unregister_global_event(self, event_id: int) -> bool:
+        before_count = len(self.global_events)
+        self.global_events = [
+            event for event in self.global_events if event.id != event_id
+        ]
+        after_count = len(self.global_events)
+
+        was_removed = before_count != after_count
+        if was_removed:
+            logger.debug(f"Global event {event_id} deregistered.")
+        else:
+            logger.warning(
+                f"Global event {event_id} not found during deregistration."
+            )
+
+        self.triggered_global_events.discard(event_id)
+        return was_removed
 
     def check_global_conditions(self) -> None:
-        for event in self.global_events:
+        sorted_global_events = sorted(
+            self.global_events, key=lambda event: event.priority, reverse=True
+        )
+
+        for event in sorted_global_events:
             if event.id in self.triggered_global_events:
                 continue
+            self._evaluate_and_queue_event(event, is_global=True)
 
-            running_conditions = [
-                RunningCondition(cond, self.evaluator) for cond in event.conds
-            ]
-            all_met = all(rc.check() for rc in running_conditions)
+    def _evaluate_and_queue_event(
+        self, event: EventObject, is_global: bool = False
+    ) -> None:
+        running_conditions = [
+            RunningCondition(cond, self.evaluator) for cond in event.conds
+        ]
+        all_met = all(rc.check() for rc in running_conditions)
 
-            if prepare.CONFIG.collision_map:
-                self.partial_events.append(
-                    [
-                        (rc.result or False, rc.map_condition)
-                        for rc in running_conditions
-                    ]
-                )
+        if prepare.CONFIG.collision_map:
+            self.partial_events.append(
+                [
+                    (rc.result or False, rc.map_condition)
+                    for rc in running_conditions
+                ]
+            )
 
-            if all_met:
-                self.start_event(event)
-                if event.id is None:
-                    raise ValueError("Global event must have an ID")
+        if all_met and event.id not in self.running_events:
+            self.start_event(event)
+            if is_global:
                 self.triggered_global_events.add(event.id)
 
     def cancel_event(self, event_id: int) -> None:
@@ -245,18 +273,21 @@ class EventEngine:
         ]
 
         for event_id, running_event in running_events_to_process:
+            if not running_event.tick(dt):
+                continue  # either waiting for delay or cancelled by timeout
             # If the current map has changed, then `reset` has also been
             # called, which replaced self.running_events with an empty dict.
             # We need to stop processing the running_events, as they may not
             # make sense on the new map. We need to explicitly guard for this
             # because actions within this loop can change the map.
             if current_map != self.current_map:
-                # The map has just changed, so running_events should have been
-                # emptied.
-                assert not self.running_events
+                if self.running_events:
+                    logger.warning(
+                        f"Map changed during event update. Cancelling {len(self.running_events)} running events: {list(self.running_events.keys())}"
+                    )
                 return
 
-            if not self.process_running_event(running_event):
+            if not self.process_running_event(running_event, dt):
                 # Event is complete or failed; mark it as completed
                 running_event.complete()
 
@@ -270,7 +301,9 @@ class EventEngine:
         for event_id in to_remove:
             self.running_events.pop(event_id, None)
 
-    def process_running_event(self, running_event: RunningEvent) -> bool:
+    def process_running_event(
+        self, running_event: RunningEvent, dt: float
+    ) -> bool:
         """
         Processes a single running event by handling its current or next action.
 
@@ -320,9 +353,9 @@ class EventEngine:
                 running_event.current_action = None
                 continue
 
-            # with add_error_context(e.map_event, e.current_map_action,
+            # with add_error_context(e.map_event, e.current_action,
             # self.session):
-            current_action.update(self.session)
+            current_action.update(self.session, dt)
 
             if current_action.done:
                 # action finished, so continue and do the next one,
@@ -356,12 +389,16 @@ class EventEngine:
             next_action_data.type, next_action_data.parameters
         )
         if action is None:
-            logger.debug("Action is not loaded, skipping event.")
+            logger.error(
+                f"Failed to load action '{next_action_data.type}' "
+                f"with parameters {next_action_data.parameters} "
+                f"for event ID {running_event.map_event.id}"
+            )
             return False
 
         # start the action
         # with add_error_context(e.map_event, next_action, self.session):
-        action.start(self.session)
+        action.on_start(self.session)
         running_event.current_action = action
         return True
 
@@ -369,7 +406,7 @@ class EventEngine:
 @contextmanager
 def add_error_context(
     event: EventObject,
-    item: Union[MapCondition, MapAction],
+    item: Union[SpatialCondition, ParameterizableRule],
     session: Session,
 ) -> Generator[None, None, None]:
     """

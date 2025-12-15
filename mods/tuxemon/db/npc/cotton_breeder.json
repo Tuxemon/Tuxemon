@@ -2,6 +2,7 @@
   "slug": "cotton_breeder",
   "speech": {"profile": {"default": {}}},
   "combat": {},
+  "audio": {},
   "template": {
     "sprite_name": "bob",
     "combat_front": "adventurer",

@@ -1,5 +1,4 @@
 {
-  "animation": null,
   "modifiers": [],
   "behaviors": {},
   "category": "negative",
@@ -11,16 +10,23 @@
       ]
     }
   ],
-  "flip_axes": "",
   "icon": "gfx/ui/icons/status/icon_flinching.png",
   "on_positive_status": "replaced",
   "on_negative_status": "replaced",
   "on_tech_use": "empty",
-  "sfx": "sfx_pulse",
   "slug": "flinching",
   "sort": "meta",
   "cond_id": 25,
   "use_failure": null,
   "use_success": "combat_state_flinching_get",
-  "gain_cond": null
+  "gain_cond": null,
+  "visuals": {
+    "animation": null,
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": "sfx_pulse",
+    "volume": 1.5
+  }
 }

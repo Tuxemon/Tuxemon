@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from tuxemon.event import MapCondition
+from tuxemon.db import SpatialCondition
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
 
@@ -31,7 +31,7 @@ class LocationNameCondition(EventCondition):
 
     name = "location_name"
 
-    def test(self, session: Session, condition: MapCondition) -> bool:
+    def test(self, session: Session, condition: SpatialCondition) -> bool:
         client = session.client
         ret: bool = False
         name = condition.parameters[0]

@@ -38,7 +38,7 @@ class PathfindAction(EventAction):
         destination = (self.tile_pos_x, self.tile_pos_y)
         self.moving_entity.pathfind(destination)
 
-    def update(self, session: Session) -> None:
+    def update(self, session: Session, dt: float) -> None:
         assert self.moving_entity
         if not (self.moving_entity.moving or self.moving_entity.path):
             self.stop()

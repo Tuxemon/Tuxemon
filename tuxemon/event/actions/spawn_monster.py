@@ -132,13 +132,13 @@ class SpawnMonsterAction(EventAction):
         if character is None:
             logger.error(f"{self.character} not found")
             return
-        character.party.insert_monster_to_party(child, len(character.monsters))
+        character.party.add_monster(child, len(character.monsters))
 
         # Display a message to the player
         msg = T.format("got_new_tuxemon", {"monster_name": child.name})
         open_dialog(session.client, [msg])
 
-    def update(self, session: Session) -> None:
+    def update(self, session: Session, dt: float) -> None:
         try:
             session.client.get_state_by_name("DialogState")
         except ValueError:

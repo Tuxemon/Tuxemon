@@ -39,11 +39,21 @@ class TestEffectProcessor(unittest.TestCase):
         result = self.processor.process_tech(
             self.session, self.technique, self.user, self.target
         )
-
         self.assertTrue(result.success)
         self.assertEqual(result.damage, 15)
         self.assertEqual(result.element_multiplier, 1.5)
         self.assertListEqual(result.extras, ["Burn"])
+
+    def test_process_tech_failure(self):
+        self.tech_effect.apply_tech_target.return_value.success = False
+        result = self.processor.process_tech(
+            self.session, self.technique, self.user, self.target
+        )
+        self.assertFalse(result.success)
+
+    def test_update_calls_effects(self):
+        self.processor.update(self.session, dt=0.1)
+        self.tech_effect.update.assert_called_once_with(self.session, 0.1)
 
 
 class TestEffectProcessorItem(unittest.TestCase):
@@ -64,10 +74,20 @@ class TestEffectProcessorItem(unittest.TestCase):
         result = self.processor.process_item(
             self.session, self.item, self.target
         )
-
         self.assertTrue(result.success)
         self.assertEqual(result.num_shakes, 3)
         self.assertListEqual(result.extras, ["Healing Boost"])
+
+    def test_process_item_failure(self):
+        self.item_effect.apply_item_target.return_value.success = False
+        result = self.processor.process_item(
+            self.session, self.item, self.target
+        )
+        self.assertFalse(result.success)
+
+    def test_update_calls_effects(self):
+        self.processor.update(self.session, dt=0.2)
+        self.item_effect.update.assert_called_once_with(self.session, 0.2)
 
 
 class TestEffectProcessorStatus(unittest.TestCase):
@@ -90,11 +110,14 @@ class TestEffectProcessorStatus(unittest.TestCase):
 
     def test_process_status(self):
         result = self.processor.process_status(self.session, self.status)
-
         self.assertTrue(result.success)
         self.assertListEqual(result.statuses, ["Poisoned"])
         self.assertListEqual(result.techniques, ["Weaken"])
         self.assertListEqual(result.extras, ["Extended Duration"])
+
+    def test_update_calls_effects(self):
+        self.processor.update(self.session, dt=0.3)
+        self.status_effect.update.assert_called_once_with(self.session, 0.3)
 
 
 class TestConditionProcessor(unittest.TestCase):
@@ -114,28 +137,24 @@ class TestConditionProcessor(unittest.TestCase):
     def test_condition_passes_with_op(self):
         self.core_condition.is_expected = True
         self.core_condition.test_with_monster.return_value = True
-
         processor = ConditionProcessor(conditions=[self.core_condition])
         self.assertTrue(processor.validate(self.session, self.target_monster))
 
     def test_condition_fails_with_op(self):
         self.core_condition.is_expected = True
         self.core_condition.test_with_monster.return_value = False
-
         processor = ConditionProcessor(conditions=[self.core_condition])
         self.assertFalse(processor.validate(self.session, self.target_monster))
 
     def test_condition_passes_without_op(self):
         self.core_condition.is_expected = False
         self.core_condition.test_with_monster.return_value = False
-
         processor = ConditionProcessor(conditions=[self.core_condition])
         self.assertTrue(processor.validate(self.session, self.target_monster))
 
     def test_condition_fails_without_op(self):
         self.core_condition.is_expected = False
         self.core_condition.test_with_monster.return_value = True
-
         processor = ConditionProcessor(conditions=[self.core_condition])
         self.assertFalse(processor.validate(self.session, self.target_monster))
 
@@ -147,33 +166,29 @@ class TestConditionProcessor(unittest.TestCase):
     def test_multiple_conditions_all_pass(self):
         self.core_condition.is_expected = True
         self.core_condition.test_with_monster.return_value = True
-
         another_condition = MagicMock(spec=CoreCondition)
         another_condition.is_expected = True
         another_condition.test_with_monster.return_value = True
-
         processor = ConditionProcessor(
-            conditions=[self.core_condition, another_condition]
+            [self.core_condition, another_condition]
         )
         self.assertTrue(processor.validate(self.session, self.target_monster))
 
     def test_multiple_conditions_one_fails(self):
         self.core_condition.is_expected = True
         self.core_condition.test_with_monster.return_value = True
-
         another_condition = MagicMock(spec=CoreCondition)
         another_condition.is_expected = True
         another_condition.test_with_monster.return_value = False
-
         processor = ConditionProcessor(
-            conditions=[self.core_condition, another_condition]
+            [self.core_condition, another_condition]
         )
         self.assertFalse(processor.validate(self.session, self.target_monster))
 
     def test_method_invocation_count(self):
         self.core_condition.is_expected = True
         self.core_condition.test_with_monster.return_value = True
-        processor = ConditionProcessor(conditions=[self.core_condition])
+        processor = ConditionProcessor([self.core_condition])
         processor.validate(self.session, self.target_monster)
         self.core_condition.test_with_monster.assert_called_once_with(
             self.session, self.target_monster

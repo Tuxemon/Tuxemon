@@ -1,7 +1,6 @@
 {
   "tech_id": 134,
   "accuracy": 0.8,
-  "animation": "shield_lava",
   "effects": [
     {
       "type": "give",
@@ -14,13 +13,11 @@
       "type": "damage"
     }
   ],
-  "flip_axes": "",
   "speed": "very_slow",
   "potency": 1,
   "power": 2.9,
   "range": "ranged",
   "recharge": 2,
-  "sfx": "sfx_flamethrower",
   "slug": "lava",
   "sort": "damage",
   "modifiers": [],
@@ -42,5 +39,14 @@
   ],
   "use_failure": "combat_miss",
   "use_success": null,
-  "use_tech": "combat_used_x"
+  "use_tech": "combat_used_x",
+  "visuals": {
+    "animation": "shield_lava",
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": "sfx_flamethrower",
+    "volume": 1.5
+  }
 }

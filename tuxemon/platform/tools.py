@@ -57,6 +57,19 @@ class ButtonEdgeFilter:
         self.previous_states: dict[int, bool] = {}
 
     def is_new_press(self, button: int, is_pressed: bool) -> bool:
+        """
+        Checks if a press event is the leading edge (i.e., the button just
+        became pressed this frame).
+        """
         was_pressed = self.previous_states.get(button, False)
         self.previous_states[button] = is_pressed
         return is_pressed and not was_pressed
+
+    def is_new_release(self, button: int, is_pressed: bool) -> bool:
+        """
+        Checks if a release event is the trailing edge (i.e., the button just
+        became released this frame).
+        """
+        was_pressed = self.previous_states.get(button, False)
+        self.previous_states[button] = is_pressed
+        return not is_pressed and was_pressed

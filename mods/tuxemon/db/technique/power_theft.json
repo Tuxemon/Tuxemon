@@ -1,0 +1,59 @@
+{
+  "tech_id": 256,
+  "accuracy": 1.0,
+  "effects": [
+    {
+      "type": "move_type",
+      "parameters": [
+        "enemy_monster"
+      ]
+    },
+    {
+      "type": "give",
+      "parameters": [
+        "softened",
+        "enemy_monster"
+      ]
+    },
+    {
+      "type": "damage"
+    }
+  ],
+  "speed": "normal",
+  "potency": 0.5,
+  "power": 2.5,
+  "range": "touch",
+  "recharge": 1,
+  "slug": "power_theft",
+  "sort": "damage",
+  "modifiers": [],
+  "behaviors": {},
+  "target": {
+    "enemy_monster": true,
+    "enemy_team": false,
+    "enemy_trainer": false,
+    "own_monster": false,
+    "own_team": false,
+    "own_trainer": false
+  },
+  "category": "basic",
+  "tags": [
+    "shapeshifter",
+    "pseudopod"
+  ],
+  "types": [
+    "normal"
+  ],
+  "use_failure": "combat_miss",
+  "use_success": null,
+  "use_tech": "combat_used_x",
+  "visuals": {
+    "animation": "appearance",
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": null,
+    "volume": 1.5
+  }
+}

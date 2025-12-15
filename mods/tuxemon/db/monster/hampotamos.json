@@ -24,7 +24,7 @@
     },
     {
       "level_learned": 16,
-      "technique": "icicle_spear"
+      "technique": "canine"
     },
     {
       "level_learned": 19,
@@ -40,11 +40,11 @@
     },
     {
       "level_learned": 31,
-      "technique": "mudslide"
+      "technique": "sands_of_time"
     },
     {
       "level_learned": 37,
-      "technique": "canine"
+      "technique": "entomb"
     },
     {
       "level_learned": 40,
@@ -79,8 +79,14 @@
   "height": 150,
   "weight": 180,
   "sounds": {
-    "combat_call": "sound_cat_purr_twit5",
-    "faint_call": "sound_cat_purr_twit5_faint"
+    "combat_call": {
+      "sfx": "sound_cat_purr_twit5",
+      "volume": 1.5
+    },
+    "faint_call": {
+      "sfx": "sound_cat_purr_twit5_faint",
+      "volume": 1.5
+    }
   },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,

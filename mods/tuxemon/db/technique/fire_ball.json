@@ -1,19 +1,16 @@
 {
   "tech_id": 4,
   "accuracy": 0.9,
-  "animation": "fireball_114",
   "effects": [
     {
       "type": "damage"
     }
   ],
-  "flip_axes": "x",
   "speed": "normal",
   "potency": 0.0,
   "power": 1.2,
   "range": "ranged",
   "recharge": 1,
-  "sfx": "sfx_flames1",
   "slug": "fire_ball",
   "sort": "damage",
   "modifiers": [],
@@ -36,5 +33,14 @@
   ],
   "use_failure": "combat_miss",
   "use_success": null,
-  "use_tech": "combat_used_x"
+  "use_tech": "combat_used_x",
+  "visuals": {
+    "animation": "fireball_114",
+    "flip_axes": "x",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": "sfx_flames1",
+    "volume": 1.5
+  }
 }

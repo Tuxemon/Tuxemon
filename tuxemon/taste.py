@@ -20,9 +20,8 @@ class Taste:
     _tastes: dict[str, Taste] = {}
 
     def __init__(self, slug: Optional[str] = None) -> None:
-        self.name: str = ""
+        self.slug: str = ""
         self.taste_type: str = ""
-        self.description: str = ""
         self.rarity_score: float = 1.0
         self.modifiers: ModifiersHandler = ModifiersHandler()
 
@@ -35,8 +34,6 @@ class Taste:
         if slug in Taste._tastes:
             cached_taste = Taste._tastes[slug]
             self.slug = slug
-            self.name = cached_taste.name
-            self.description = cached_taste.description
             self.modifiers = cached_taste.modifiers
             self.taste_type = cached_taste.taste_type
             self.rarity_score = cached_taste.rarity_score
@@ -44,13 +41,21 @@ class Taste:
 
         results = TasteModel.lookup(slug, db)
         self.slug = slug
-        self.name = T.translate(self.slug)
-        self.description = T.translate(f"{results.slug}_description")
         self.modifiers = ModifiersHandler(list(results.modifiers))
         self.taste_type = results.taste_type
         self.rarity_score = results.rarity_score
 
         Taste._tastes[slug] = self
+
+    @property
+    def name(self) -> str:
+        """Translated display name for this taste."""
+        return T.translate(self.slug) if self.slug else ""
+
+    @property
+    def description(self) -> str:
+        """Translated description for this taste."""
+        return T.translate(f"{self.slug}_description") if self.slug else ""
 
     @classmethod
     def get_taste(cls, slug: str) -> Optional[Taste]:
@@ -163,6 +168,7 @@ class Taste:
         return (
             f"Taste(slug={self.slug}, "
             f"name={self.name}, "
+            f"description={self.description}, "
             f"modifier={self.modifiers}, "
             f"type={self.taste_type})"
         )

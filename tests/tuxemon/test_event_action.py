@@ -15,7 +15,7 @@ class TestActionContextManager(unittest.TestCase):
 
     def test_context_manager_enter(self):
         with ActionContextManager(self.mock_action, self.mock_session):
-            self.mock_action.start.assert_called_once()
+            self.mock_action.on_start.assert_called_once()
 
     def test_context_manager_exit(self):
         with ActionContextManager(self.mock_action, self.mock_session):

@@ -161,7 +161,7 @@ class MonsterMovesState(PygameMenuState):
             {
                 "id": technique.tech_id,
                 "types": types_text,
-                "rec": str(technique.recharge_length),
+                "rec": str(technique.cooldown_duration),
             },
         )
 

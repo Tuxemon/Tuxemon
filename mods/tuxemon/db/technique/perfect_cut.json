@@ -1,19 +1,16 @@
 {
   "tech_id": 61,
   "accuracy": 0.8,
-  "animation": "slash_power",
   "effects": [
     {
       "type": "damage"
     }
   ],
-  "flip_axes": "x",
   "speed": "normal",
   "potency": 0.0,
   "power": 2,
   "range": "reliable",
   "recharge": 2,
-  "sfx": "sfx_kick",
   "slug": "perfect_cut",
   "sort": "damage",
   "modifiers": [],
@@ -35,5 +32,14 @@
   ],
   "use_failure": "combat_miss",
   "use_success": null,
-  "use_tech": "combat_used_x"
+  "use_tech": "combat_used_x",
+  "visuals": {
+    "animation": "slash_power",
+    "flip_axes": "x",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": "sfx_kick",
+    "volume": 1.5
+  }
 }

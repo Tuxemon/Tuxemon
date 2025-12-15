@@ -36,7 +36,7 @@
     },
     {
       "level_learned": 28,
-      "technique": "bubble_trap"
+      "technique": "kiss"
     },
     {
       "level_learned": 31,
@@ -83,8 +83,14 @@
   "weight": 50,
   "randomly": false,
   "sounds": {
-    "combat_call": "sound_robotic_pig",
-    "faint_call": "sound_robotic_pig_faint"
+    "combat_call": {
+      "sfx": "sound_robotic_pig",
+      "volume": 1.5
+    },
+    "faint_call": {
+      "sfx": "sound_robotic_pig_faint",
+      "volume": 1.5
+    }
   },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,

@@ -2,6 +2,7 @@
   "slug": "speck",
   "speech": {"profile": {"default": {}}},
   "combat": {},
+  "audio": {},
   "template": {
     "sprite_name": "beachcomber",
     "combat_front": "beachgoer",

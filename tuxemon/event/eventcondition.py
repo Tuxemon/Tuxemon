@@ -12,7 +12,7 @@ from tuxemon.constants.paths import (
     LIBDIR,
     get_plugin_paths,
 )
-from tuxemon.event import MapCondition
+from tuxemon.db import SpatialCondition
 from tuxemon.plugin import load_plugins
 from tuxemon.session import Session
 
@@ -27,7 +27,7 @@ class EventCondition:
     def __post_init__(self) -> None:
         pass
 
-    def test(self, session: Session, condition: MapCondition) -> bool:
+    def test(self, session: Session, condition: SpatialCondition) -> bool:
         """
         Return ``True`` if the condition is satisfied, or ``False`` if not.
 
@@ -62,7 +62,7 @@ class ConditionManager:
         )
 
     def get_condition(
-        self, cond_data: MapCondition
+        self, cond_data: SpatialCondition
     ) -> Optional[EventCondition]:
         """
         Get a condition that is loaded into the engine.

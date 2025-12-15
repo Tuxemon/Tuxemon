@@ -107,8 +107,14 @@
   "height": 120,
   "weight": 96,
   "sounds": {
-    "combat_call": "sound_bite_cartoon_style",
-    "faint_call": "sound_bite_cartoon_style_faint"
+    "combat_call": {
+      "sfx": "sound_bite_cartoon_style",
+      "volume": 1.5
+    },
+    "faint_call": {
+      "sfx": "sound_bite_cartoon_style_faint",
+      "volume": 1.5
+    }
   },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.85,

@@ -1,7 +1,6 @@
 {
   "tech_id": 206,
   "accuracy": 0.8,
-  "animation": null,
   "conditions": [
     {
       "type": "status",
@@ -26,13 +25,11 @@
       ]
     }
   ],
-  "flip_axes": "",
   "speed": "extremely_fast",
   "potency": 1,
   "power": 1,
   "range": "melee",
   "recharge": 4,
-  "sfx": "sfx_kick",
   "slug": "rift_dash",
   "sort": "damage",
   "modifiers": [],
@@ -57,5 +54,14 @@
   ],
   "use_failure": "rift_dash_fail",
   "use_success": "rift_dash_success",
-  "use_tech": "combat_used_x"
+  "use_tech": "combat_used_x",
+  "visuals": {
+    "animation": null,
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": "sfx_kick",
+    "volume": 1.5
+  }
 }

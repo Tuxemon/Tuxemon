@@ -105,7 +105,7 @@ class TranslatedDialogAction(EventAction):
             custom_rect=None,
         )
 
-    def update(self, session: Session) -> None:
+    def update(self, session: Session, dt: float) -> None:
         try:
             session.client.get_state_by_name("DialogState")
         except ValueError:

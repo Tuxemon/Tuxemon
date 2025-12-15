@@ -3,6 +3,7 @@
     "slug": "spyder_sign",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "sign",
       "combat_front": "noclass",
@@ -13,6 +14,7 @@
     "slug": "spyder_sign_flower1",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "sign",
       "combat_front": "noclass",
@@ -23,6 +25,7 @@
     "slug": "spyder_sign_flower2",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "sign",
       "combat_front": "noclass",

@@ -1,7 +1,6 @@
 {
   "tech_id": 174,
   "accuracy": 0.6,
-  "animation": "waterfall",
   "effects": [
     {
       "type": "splash",
@@ -10,13 +9,11 @@
       ]
     }
   ],
-  "flip_axes": "",
   "speed": "normal",
   "potency": 0.0,
   "power": 2.6,
   "range": "ranged",
   "recharge": 3,
-  "sfx": "sfx_bubbles",
   "slug": "surf",
   "sort": "damage",
   "modifiers": [],
@@ -38,5 +35,14 @@
   ],
   "use_failure": "combat_miss",
   "use_success": null,
-  "use_tech": "combat_used_x"
+  "use_tech": "combat_used_x",
+  "visuals": {
+    "animation": "waterfall",
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": "sfx_bubbles",
+    "volume": 1.5
+  }
 }

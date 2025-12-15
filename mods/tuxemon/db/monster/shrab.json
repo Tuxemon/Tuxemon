@@ -69,8 +69,14 @@
   "height": 100,
   "weight": 100,
   "sounds": {
-    "combat_call": "sound_glitch_call",
-    "faint_call": "sound_glitch_faint"
+    "combat_call": {
+      "sfx": "sound_glitch_call",
+      "volume": 1.5
+    },
+    "faint_call": {
+      "sfx": "sound_glitch_faint",
+      "volume": 1.5
+    }
   },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.95,

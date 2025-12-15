@@ -7,7 +7,8 @@ from dataclasses import dataclass
 from typing import Optional
 
 from tuxemon.boundary import MapConditionBoundary
-from tuxemon.event import MapCondition, get_npc
+from tuxemon.db import SpatialCondition
+from tuxemon.event import get_npc
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.event.eventpersist import EventPersist
 from tuxemon.npc import NPC
@@ -42,7 +43,7 @@ class CharMovedCondition(EventCondition):
 
     name = "char_moved"
 
-    def test(self, session: Session, condition: MapCondition) -> bool:
+    def test(self, session: Session, condition: SpatialCondition) -> bool:
         character = get_npc(session, condition.parameters[0])
         if character is None:
             logger.error(f"{condition.parameters[0]} not found")
@@ -53,7 +54,10 @@ class CharMovedCondition(EventCondition):
 
 
 def generic_test(
-    name: str, persist: EventPersist, condition: MapCondition, character: NPC
+    name: str,
+    persist: EventPersist,
+    condition: SpatialCondition,
+    character: NPC,
 ) -> bool:
     """
     Determine if a character has moved onto an event tile.

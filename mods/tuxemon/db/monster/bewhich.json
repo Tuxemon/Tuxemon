@@ -27,6 +27,26 @@
       "technique": "changeling"
     },
     {
+      "level_learned": 22,
+      "technique": "taunt"
+    },
+    {
+      "level_learned": 25,
+      "technique": "magic_spell"
+    },
+    {
+      "level_learned": 28,
+      "technique": "entomb"
+    },
+    {
+      "level_learned": 34,
+      "technique": "wicked_wind"
+    },
+    {
+      "level_learned": 37,
+      "technique": "arcane_eye"
+    },
+    {
       "level_learned": 40,
       "technique": "shadow_blast"
     }
@@ -83,8 +103,14 @@
   "height": 152,
   "weight": 0.1,
   "sounds": {
-    "combat_call": "sound_crow_caw",
-    "faint_call": "sound_crow_caw_faint"
+    "combat_call": {
+      "sfx": "sound_crow_caw",
+      "volume": 1.5
+    },
+    "faint_call": {
+      "sfx": "sound_crow_caw_faint",
+      "volume": 1.5
+    }
   },
   "catch_rate": 35.0,
   "lower_catch_resistance": 0.95,

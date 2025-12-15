@@ -11,7 +11,7 @@ from tuxemon.core.core_manager import (
     CoreManager,
     EffectManager,
 )
-from tuxemon.db import CommonCondition, CommonEffect
+from tuxemon.db import LogicCondition, ParameterizableRule
 from tuxemon.plugin import PluginObject
 
 
@@ -61,7 +61,9 @@ class TestCoreManager(unittest.TestCase):
         self.manager.classes = {
             "effect_type": MagicMock(return_value=effect_instance)
         }
-        raw_effects = [CommonEffect(type="effect_type", parameters=["param"])]
+        raw_effects = [
+            ParameterizableRule(type="effect_type", parameters=["param"])
+        ]
         parsed_effects = self.manager.parse_object_effect(raw_effects)
         self.assertIn(effect_instance, parsed_effects)
 
@@ -71,7 +73,7 @@ class TestCoreManager(unittest.TestCase):
             "condition_type": MagicMock(return_value=condition_instance)
         }
         raw_conditions = [
-            CommonCondition(
+            LogicCondition(
                 type="condition_type", parameters=["param"], operator="is"
             )
         ]
@@ -100,7 +102,9 @@ class TestEffectManager(unittest.TestCase):
         self.manager.classes = {
             "effect_type": MagicMock(return_value=effect_instance)
         }
-        raw_effects = [CommonEffect(type="effect_type", parameters=["param"])]
+        raw_effects = [
+            ParameterizableRule(type="effect_type", parameters=["param"])
+        ]
         parsed_effects = self.manager.parse_effects(raw_effects)
         self.assertIn(effect_instance, parsed_effects)
 
@@ -130,7 +134,7 @@ class TestConditionManager(unittest.TestCase):
             "condition_type": MagicMock(return_value=condition_instance)
         }
         raw_conditions = [
-            CommonCondition(
+            LogicCondition(
                 type="condition_type", parameters=["param"], operator="is"
             )
         ]

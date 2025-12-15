@@ -1,7 +1,6 @@
 {
   "tech_id": 184,
   "accuracy": 0.95,
-  "animation": "amethyst_radiate",
   "effects": [
     {
       "type": "give",
@@ -21,13 +20,11 @@
       "type": "damage"
     }
   ],
-  "flip_axes": "",
   "speed": "fast",
   "potency": 0.5,
   "power": 2,
   "range": "melee",
   "recharge": 3,
-  "sfx": "sfx_forcefield",
   "slug": "suplex",
   "sort": "damage",
   "modifiers": [],
@@ -49,5 +46,14 @@
   ],
   "use_failure": "combat_miss",
   "use_success": null,
-  "use_tech": "combat_used_x"
+  "use_tech": "combat_used_x",
+  "visuals": {
+    "animation": "amethyst_radiate",
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": "sfx_forcefield",
+    "volume": 1.5
+  }
 }

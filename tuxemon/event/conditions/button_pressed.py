@@ -4,9 +4,8 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from tuxemon.event import MapCondition
+from tuxemon.db import SpatialCondition
 from tuxemon.event.eventcondition import EventCondition
-from tuxemon.platform.const import intentions
 from tuxemon.platform.const.intentions import constants
 from tuxemon.session import Session
 
@@ -16,32 +15,24 @@ class ButtonPressedCondition(EventCondition):
     """
     Check to see if a particular key was pressed.
 
-    Currently only "K_RETURN" is supported.
-
     Script usage:
         .. code-block::
 
             is button_pressed <button>
 
     Script parameters:
-        button: A button/intention key (E.g. "K_RETURN").
-
+        button: A button/intention key (E.g. "INTERACT").
     """
 
     name = "button_pressed"
 
-    def test(self, session: Session, condition: MapCondition) -> bool:
+    def test(self, session: Session, condition: SpatialCondition) -> bool:
         button = str(condition.parameters[0])
 
-        # TODO: workaround for old maps.  eventually need to decide on a scheme
-        # and fix existing scripts
-        if button == "K_RETURN":
-            button_id = intentions.INTERACT
-        else:
-            try:
-                button_id = constants[button]
-            except KeyError:
-                raise ValueError(f"Cannot support key type: {button}")
+        try:
+            button_id = constants[button]
+        except KeyError:
+            raise ValueError(f"Cannot support key type: {button}")
 
         # Loop through each event
         for event in session.client.key_events:

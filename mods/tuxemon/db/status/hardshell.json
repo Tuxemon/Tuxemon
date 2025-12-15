@@ -1,5 +1,4 @@
 {
-  "animation": null,
   "modifiers": [],
   "behaviors": {},
   "category": "positive",
@@ -8,11 +7,9 @@
       "type": "statchange"
     }
   ],
-  "flip_axes": "",
   "icon": "gfx/ui/icons/status/icon_hardshell.png",
   "on_positive_status": "replaced",
   "on_negative_status": "removed",
-  "sfx": "sfx_bite",
   "slug": "hardshell",
   "sort": "meta",
   "stat_modifiers": {
@@ -24,5 +21,14 @@
   "cond_id": 1,
   "use_failure": null,
   "use_success": "combat_state_hardshell_get",
-  "gain_cond": null
+  "gain_cond": null,
+  "visuals": {
+    "animation": null,
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": "sfx_bite",
+    "volume": 1.5
+  }
 }

@@ -4,14 +4,13 @@ from __future__ import annotations
 
 import logging
 from dataclasses import dataclass
-from enum import Enum
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional
 
-from tuxemon.combat.utils import alive_party
-from tuxemon.formula import config_monster
+from tuxemon.combat.combat_context import CombatType
+from tuxemon.combat.experience_strategies import calculate_experience
 from tuxemon.locale import T
 from tuxemon.monster_dir.stats import BasicStats
-from tuxemon.prepare import DEFAULT_TP_GAIN, MAX_LEVEL
+from tuxemon.prepare import DEFAULT_TP_GAIN
 
 if TYPE_CHECKING:
     from tuxemon.combat.damage_tracker import DamageTracker
@@ -20,13 +19,6 @@ if TYPE_CHECKING:
     from tuxemon.technique.technique import Technique
 
 logger = logging.getLogger(__name__)
-
-
-class ExperienceMethod(Enum):
-    DEFAULT = "default"
-    XP_EQUAL = "xp_equal"
-    XP_TRANSMITTER = "xp_transmitter"
-    XP_FEEDER = "xp_feeder"
 
 
 @dataclass
@@ -50,10 +42,12 @@ class RewardSystem:
     def __init__(
         self,
         session: Session,
-        damage_map: DamageTracker,
+        combat_type: CombatType,
+        calculator: RewardCalculator,
     ) -> None:
         self.session = session
-        self.damage_map = damage_map
+        self.combat_type = combat_type
+        self.calculator = calculator
 
     def apply_penalties(self, monster: Monster) -> None:
         """Applies defeat-related penalties to the specified monster."""
@@ -62,108 +56,144 @@ class RewardSystem:
         if owner.bag.find_item("friendship_scroll"):
             monster.bond_handler.apply_bond_modifier("fainted")
 
-    def award_rewards(self, monster: Monster) -> RewardData:
-        """
-        Calculate and distribute rewards (experience, money, and moves)
-        to the winning monsters in a battle.
+    def award_rewards(
+        self, loser: Monster, winners: Optional[set[Monster]] = None
+    ) -> RewardData:
+        """Calculate and distribute rewards to winners."""
+        if winners is None:
+            winners = self.calculator.get_attackers(loser)
 
-        This method determines which monsters contributed to fainting the
-        defeated `monster` and calculates their individual rewards based
-        on various conditions, such as whether the battle involves a
-        trainer. Rewards include money, experience points, and potential
-        move updates. Additionally, messages are generated to summarize
-        the results, and the method updates the game's state if necessary.
-
-        Parameters:
-            monster: The monster that was defeated in battle.
-
-        Returns:
-            RewardData: An object containing:
-                - `winners`: A list of winners with
-                details about their money and experience rewards.
-                - `messages`: A list of messages summarizing
-                reward details, including experience gains.
-                - `moves`: A list of any new moves learned
-                by the winning monsters.
-                - `update`: A flag indicating whether the game state
-                (e.g., HUD or leveling up) needs to be updated.
-                - `prize`: The total monetary prize awarded if the
-                battle was against a trainer.
-        """
-        winners = self.damage_map.get_attackers(monster)
         rewards_data = RewardData([], [], [], False, 0)
 
-        if winners:
-            winner = next(iter(winners))
+        if not winners:
+            return rewards_data
 
-            if winner.owner is not None:
-                all_monsters = set(alive_party(winner.owner))
-            else:
-                all_monsters = set()
+        # Handle non-participants
+        self.calculator.calculate_non_participant_rewards(loser, winners)
 
-            non_participants = all_monsters - winners
+        # Handle winners
+        for winner in winners:
+            if winner.owner and winner.owner.is_player:
+                if winner.is_fainted:
+                    continue
+                entry = self.calculator.calculate_winner_entry(loser, winner)
+                rewards_data.winners.append(entry)
 
-            if non_participants:
-                _, awarded_exp = calculate_experience(
-                    monster, next(iter(winners)), self.damage_map
+                self.calculator.update_moves_and_messages(
+                    winner, entry, rewards_data
                 )
-                for non_participant in non_participants:
-                    levels = non_participant.give_experience(awarded_exp)
-                    non_participant.moves.update_moves(non_participant, levels)
 
-            for winner in winners:
-                # Award money and experience
-                awarded_exp, _ = calculate_experience(
-                    monster, winner, self.damage_map
-                )
-                awarded_money = calculate_money(monster, winner)
+                if self.combat_type == CombatType.TRAINER:
+                    rewards_data.prize += entry.money
 
-                # Grant experience and update moves
-                if winner.owner and winner.owner.is_player:
-                    calculate_tps(winner, monster)
-                    levels = winner.give_experience(awarded_exp)
-
-                    rewards_data.winners.append(
-                        RewardDataEntry(
-                            winner=winner,
-                            money=awarded_money,
-                            experience=awarded_exp,
-                            levels_gained=levels,
-                        )
-                    )
-
-                    new_moves = winner.moves.update_moves(winner, levels)
-                    if new_moves:
-                        rewards_data.moves.extend(new_moves)
-                    rewards_data.messages.append(
-                        T.format(
-                            "combat_gain_exp",
-                            {"name": winner.name.upper(), "xp": awarded_exp},
-                        )
-                    )
-
-                    # Add money for trainer battles
-                    if self.session.client.combat_session.is_trainer_battle:
-                        rewards_data.prize += awarded_money
-
-                    # Update HUD or handle level-up externally
-                    rewards_data.update = True
+                rewards_data.update = True
 
         return rewards_data
 
 
+class RewardCalculator:
+    def __init__(self, damage_map: DamageTracker):
+        self.damage_map = damage_map
+
+    def get_attackers(self, loser: Monster) -> set[Monster]:
+        return self.damage_map.get_attackers(loser)
+
+    def calculate_non_participant_rewards(
+        self, loser: Monster, winners: set[Monster]
+    ) -> None:
+        """Distribute experience to non-participating monsters in the party."""
+        first_winner = next(iter(winners))
+        _, awarded_exp = calculate_experience(
+            loser, first_winner, self.damage_map
+        )
+
+        owner = first_winner.owner
+        if owner:
+            all_monsters = set(owner.party.alive)
+            non_participants = all_monsters - winners
+            for non_participant in non_participants:
+                levels = non_participant.give_experience(awarded_exp)
+                non_participant.moves.update_moves(non_participant, levels)
+
+    def calculate_winner_entry(
+        self, loser: Monster, winner: Monster
+    ) -> RewardDataEntry:
+        """
+        Calculate rewards for a single winning monster against a defeated loser.
+        """
+        awarded_exp, _ = calculate_experience(loser, winner, self.damage_map)
+        awarded_money = calculate_money(loser, winner)
+
+        calculate_tps(winner, loser)
+        levels = winner.give_experience(awarded_exp)
+
+        return RewardDataEntry(
+            winner=winner,
+            money=awarded_money,
+            experience=awarded_exp,
+            levels_gained=levels,
+        )
+
+    def update_moves_and_messages(
+        self, winner: Monster, entry: RewardDataEntry, rewards_data: RewardData
+    ) -> None:
+        """Update moves and add messages for a winner."""
+        new_moves = winner.moves.update_moves(winner, entry.levels_gained)
+        if new_moves:
+            rewards_data.moves.extend(new_moves)
+
+        rewards_data.messages.append(
+            T.format(
+                "combat_gain_exp",
+                {"name": winner.name.upper(), "xp": entry.experience},
+            )
+        )
+
+
+class TrainerRewardCalculator(RewardCalculator):
+    def calculate_winner_entry(
+        self, loser: Monster, winner: Monster
+    ) -> RewardDataEntry:
+        entry = super().calculate_winner_entry(loser, winner)
+        return entry
+
+
+class WildRewardCalculator(RewardCalculator):
+    def calculate_winner_entry(
+        self, loser: Monster, winner: Monster
+    ) -> RewardDataEntry:
+        entry = super().calculate_winner_entry(loser, winner)
+        return entry
+
+
+class HordeRewardCalculator(RewardCalculator):
+    def calculate_winner_entry(
+        self, loser: Monster, winner: Monster
+    ) -> RewardDataEntry:
+        entry = super().calculate_winner_entry(loser, winner)
+        return entry
+
+
 def calculate_money(loser: Monster, winner: Monster) -> int:
     """
-    Calculate money to be awarded using a default method or custom methods.
+    Calculate battle reward money.
+    - Base money = loser.level * loser.money_modifier
+    - Winner's held item can boost rewards (e.g. Amulet Coin).
+    - Loser's held item can increase or reduce payout (e.g. Rich Charm).
+    - Final payout = base_money * winner_multiplier * loser_multiplier
     """
-    held_item = winner.held_item
+    base_money = int(loser.level * loser.money_modifier)
 
-    def default_method() -> int:
-        return int(loser.level * loser.money_modifier)
+    winner_multiplier = 1.0
+    loser_multiplier = 1.0
 
-    methods = {ExperienceMethod.DEFAULT.value: default_method}
+    if winner.held_item and winner.held_item.money_multiplier:
+        winner_multiplier = winner.held_item.money_multiplier
 
-    return methods[ExperienceMethod.DEFAULT.value]()
+    if loser.held_item and loser.held_item.money_multiplier:
+        loser_multiplier = loser.held_item.money_multiplier
+
+    return int(base_money * winner_multiplier * loser_multiplier)
 
 
 def calculate_tps(
@@ -192,124 +222,3 @@ def calculate_tps(
             awarded_stats.append((stat_name, tp_gain))
 
     return awarded_stats
-
-
-def calculate_experience(
-    loser: Monster, winner: Monster, damages: DamageTracker
-) -> tuple[int, int]:
-    """
-    Calculate experience for participants and non-participants using defined methods.
-
-    Returns:
-        tuple[int, int]: (participant_exp, non_participant_exp)
-    """
-
-    if winner.level >= MAX_LEVEL:
-        return 0, 0
-
-    total_hits, monster_hits = damages.count_hits(loser, winner)
-
-    exp_multiplier = 1.0
-    experience_multipliers = config_monster.experience_multipliers
-    if experience_multipliers:
-        method = winner.acquisition.value
-        exp_multiplier = experience_multipliers.get(method, 1.0)
-        logger.debug(f"Experience multiplier for {method}: {exp_multiplier}")
-
-    def default_method() -> tuple[int, int]:
-        base_exp = calculate_experience_base(
-            loser.total_experience,
-            loser.level,
-            loser.experience_modifier,
-        )
-        total_exp = round(base_exp * exp_multiplier)
-
-        participants = damages.get_attackers(loser)
-        num_participants = len(participants) if participants else 1
-
-        divided_exp = total_exp // num_participants
-        return divided_exp, 0
-
-    def equal_method() -> tuple[int, int]:
-        base_exp = calculate_experience_base(
-            loser.total_experience,
-            loser.level,
-            loser.experience_modifier,
-        )
-        total_exp = round(base_exp * exp_multiplier)
-        proportional_exp = int(total_exp * (monster_hits / total_hits))
-        return proportional_exp, 0
-
-    def feeder_method() -> tuple[int, int]:
-        base_exp = calculate_experience_base(
-            loser.total_experience,
-            loser.level,
-            loser.experience_modifier,
-        )
-        total_exp = round(base_exp * exp_multiplier)
-
-        participants = damages.get_attackers(loser)
-        item_holder_exp = total_exp // 2
-        participant_exp = (
-            (total_exp - item_holder_exp) // len(participants)
-            if participants
-            else 0
-        )
-
-        held_item = winner.held_item
-        if held_item and held_item.slug == ExperienceMethod.XP_FEEDER.value:
-            participant_exp = item_holder_exp
-
-        return participant_exp, 0
-
-    def transmitter_method() -> tuple[int, int]:
-        base_exp = calculate_experience_base(
-            loser.total_experience,
-            loser.level,
-            loser.experience_modifier,
-        )
-        total_exp = round(base_exp * exp_multiplier)
-
-        participants = damages.get_attackers(loser)
-
-        if winner.owner is None:
-            return 0, 0
-
-        all_monsters = set(alive_party(winner.owner))
-        non_participants = all_monsters - participants
-
-        participant_exp = (
-            total_exp // 2 // len(participants) if participants else 0
-        )
-        non_participant_exp = (
-            total_exp // 2 // len(non_participants) if non_participants else 0
-        )
-
-        return participant_exp, non_participant_exp
-
-    methods = {
-        ExperienceMethod.DEFAULT.value: default_method,
-        ExperienceMethod.XP_EQUAL.value: equal_method,
-        ExperienceMethod.XP_TRANSMITTER.value: transmitter_method,
-        ExperienceMethod.XP_FEEDER.value: feeder_method,
-    }
-
-    held_item = winner.held_item
-    if held_item:
-        if held_item.slug == ExperienceMethod.XP_TRANSMITTER.value:
-            return methods[ExperienceMethod.XP_TRANSMITTER.value]()
-        elif held_item.slug == ExperienceMethod.XP_FEEDER.value:
-            return methods[ExperienceMethod.XP_FEEDER.value]()
-        elif held_item.slug == ExperienceMethod.XP_EQUAL.value:
-            return methods[ExperienceMethod.XP_EQUAL.value]()
-
-    return methods[ExperienceMethod.DEFAULT.value]()
-
-
-def calculate_experience_base(
-    total_experience: float, level: int, experience_modifier: float
-) -> int:
-    """
-    Base formula for experience calculation without hits.
-    """
-    return int((total_experience // level) * experience_modifier)

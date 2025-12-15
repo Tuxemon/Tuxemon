@@ -1,7 +1,6 @@
 {
   "tech_id": 56,
   "accuracy": 0.8,
-  "animation": "lightning_bolt_138",
   "effects": [
     {
       "type": "give",
@@ -21,13 +20,11 @@
       "type": "damage"
     }
   ],
-  "flip_axes": "",
   "speed": "normal",
   "potency": 1,
   "power": 1.25,
   "range": "ranged",
   "recharge": 2,
-  "sfx": "sfx_shine",
   "slug": "starfall",
   "sort": "damage",
   "modifiers": [],
@@ -51,5 +48,14 @@
   ],
   "use_failure": "combat_miss",
   "use_success": null,
-  "use_tech": "combat_used_x"
+  "use_tech": "combat_used_x",
+  "visuals": {
+    "animation": "lightning_bolt_138",
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": "sfx_shine",
+    "volume": 1.5
+  }
 }

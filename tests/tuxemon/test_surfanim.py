@@ -29,7 +29,7 @@ class TestSurfaceAnimation(unittest.TestCase):
         self.animation = SurfaceAnimation(self.frames)
 
     def test_init(self):
-        self.assertEqual(self.animation.loop, True)
+        self.assertEqual(self.animation.loop, -1)
         self.assertEqual(self.animation.state, State.STOPPED)
 
     def test_get_frame(self):
@@ -49,7 +49,7 @@ class TestSurfaceAnimation(unittest.TestCase):
         )
 
     def test_is_finished(self):
-        animation = SurfaceAnimation(self.frames, loop=False)
+        animation = SurfaceAnimation(self.frames, loop=0)
         self.assertFalse(animation.is_finished())
         animation.play()
         animation.update(3.0)
@@ -152,7 +152,7 @@ class TestSurfaceAnimation(unittest.TestCase):
         def callback():
             triggered.append(True)
 
-        self.animation.loop = False
+        self.animation.loop = 0
         self.animation._on_completion_callback = callback
         self.animation.play()
         self.animation.update(3.1)
@@ -166,7 +166,7 @@ class TestSurfaceAnimation(unittest.TestCase):
         def callback():
             count.append("called")
 
-        self.animation.loop = False
+        self.animation.loop = 0
         self.animation._on_completion_callback = callback
         self.animation.play()
         self.animation.update(3.1)
@@ -191,7 +191,7 @@ class TestSurfaceAnimation(unittest.TestCase):
         )
 
     def test_looping_resets_elapsed(self):
-        self.animation.loop = True
+        self.animation.loop = -1
         self.animation.play()
         self.animation.update(3.5)
         self.assertEqual(self.animation.state, State.PLAYING)

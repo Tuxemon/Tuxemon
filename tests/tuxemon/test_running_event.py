@@ -14,7 +14,6 @@ class TestRunningEvent(unittest.TestCase):
         self.assertEqual({}, event.context)
         self.assertEqual(0, event.action_index)
         self.assertIsNone(event.current_action)
-        self.assertIsNone(event.current_map_action)
         self.assertEqual(EventState.WAITING, event.state)
 
     def test_get_next_action(self):
@@ -89,3 +88,88 @@ class TestRunningEvent(unittest.TestCase):
         event.context["score"] = 42
         event.context["score"] += 8
         self.assertEqual(event.context["score"], 50)
+
+    def test_tick_accumulates_elapsed_time(self):
+        map_event = Mock(acts=[1], timeout=None, delay=None)
+        event = RunningEvent(map_event)
+
+        self.assertEqual(event.elapsed_time, 0.0)
+        ready = event.tick(1.5)
+        self.assertTrue(ready)
+        self.assertAlmostEqual(event.elapsed_time, 1.5)
+
+        ready = event.tick(2.0)
+        self.assertTrue(ready)
+        self.assertAlmostEqual(event.elapsed_time, 3.5)
+
+    def test_tick_respects_delay(self):
+        map_event = Mock(acts=[1], timeout=None, delay=3.0)
+        event = RunningEvent(map_event)
+
+        self.assertFalse(event.tick(2.0))
+        self.assertEqual(event.elapsed_time, 2.0)
+
+        self.assertTrue(event.tick(2.0))
+        self.assertEqual(event.elapsed_time, 4.0)
+
+    def test_tick_respects_timeout(self):
+        map_event = Mock(acts=[1], timeout=5.0, delay=None)
+        event = RunningEvent(map_event)
+
+        self.assertTrue(event.tick(4.0))
+        self.assertFalse(event.is_cancelled())
+        self.assertEqual(event.elapsed_time, 4.0)
+
+        self.assertFalse(event.tick(2.0))
+        self.assertTrue(event.is_cancelled())
+
+    def test_tick_delay_and_timeout_combined(self):
+        map_event = Mock(acts=[1], timeout=8.0, delay=3.0)
+        event = RunningEvent(map_event)
+
+        self.assertFalse(event.tick(2.0))
+        self.assertEqual(event.elapsed_time, 2.0)
+
+        self.assertTrue(event.tick(2.0))
+        self.assertFalse(event.is_cancelled())
+
+        self.assertFalse(event.tick(5.0))
+        self.assertTrue(event.is_cancelled())
+
+    def test_tick_active_window(self):
+        map_event = Mock(acts=[1], delay=3.0, timeout=8.0)
+        event = RunningEvent(map_event)
+
+        self.assertFalse(event.tick(2.0))
+        self.assertFalse(event.is_cancelled())
+
+        self.assertTrue(event.tick(2.0))
+        self.assertFalse(event.is_cancelled())
+
+        self.assertTrue(event.tick(3.0))
+        self.assertFalse(event.is_cancelled())
+
+        self.assertFalse(event.tick(2.0))
+        self.assertTrue(event.is_cancelled())
+
+    def test_tick_active_window_with_context_flag(self):
+        map_event = Mock(acts=[1], delay=3.0, timeout=8.0)
+        event = RunningEvent(map_event)
+
+        self.assertFalse(event.tick(2.0))
+        self.assertFalse(event.is_cancelled())
+        self.assertNotIn("window_triggered", event.context)
+
+        ready = event.tick(2.0)
+        self.assertTrue(ready)
+        if ready and not event.context.get("window_triggered"):
+            event.context["window_triggered"] = True
+        self.assertTrue(event.context["window_triggered"])
+
+        ready = event.tick(2.0)
+        self.assertTrue(ready)
+        self.assertTrue(event.context["window_triggered"])
+
+        ready = event.tick(3.0)
+        self.assertFalse(ready)
+        self.assertTrue(event.is_cancelled())

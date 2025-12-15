@@ -5,7 +5,7 @@ from __future__ import annotations
 import logging
 from collections import defaultdict
 from collections.abc import Callable, Mapping, Sequence
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from enum import Enum, auto
 from math import cos, pi, sin, sqrt
 from typing import Any, Optional, Union, cast
@@ -43,6 +43,8 @@ class AnimatedPropertyData:
 
     initial: float
     final: float
+    true_initial: float
+    true_final: float
 
 
 @dataclass
@@ -485,17 +487,21 @@ class Animation(TaskBase):
         transition: Union[str, Callable[[float], float], None] = None,
         initial: Union[float, Callable[[], float], None] = None,
         relative: bool = False,
-        callback: Optional[ScheduledFunction] = None,
+        yoyo: bool = False,
+        yoyo_loops: int = -1,
         **kwargs: Any,
     ) -> None:
         super().__init__()
 
-        self.targets: list[AnimatedTargetData] = field(default_factory=list)
-        self._targets: Sequence[ref[object]] = field(default_factory=list)
+        self.targets: list[AnimatedTargetData] = []
+        self._targets: Sequence[ref[object]] = []
 
         self.delay = delay
         self._state = AnimationState.NOT_STARTED
         self._round_values = round_values
+
+        if duration is not None and duration < 0:
+            raise ValueError("Duration must be non-negative")
 
         self._duration = (
             self.default_duration if duration is None else duration
@@ -503,7 +509,17 @@ class Animation(TaskBase):
         self._transition = self._resolve_transition(transition)
         self._initial = initial
         self._relative = relative
-        self._elapsed = 0.0
+        self._elapsed: float = 0.0
+
+        if yoyo_loops == 0:
+            raise ValueError(
+                "yoyo_loops must be -1 or a positive integer (>=1)"
+            )
+
+        self._yoyo = yoyo
+        self._is_yoyo_reverse: bool = False
+        self._yoyo_loops = yoyo_loops
+        self._half_cycle_count: int = 0
 
         if not kwargs:
             raise ValueError(
@@ -549,10 +565,15 @@ class Animation(TaskBase):
             setattr(target, name, value)
 
     def update(self, time_delta: float) -> None:
+
         if self._state in (AnimationState.FINISHED, AnimationState.ABORTED):
             return
 
         if self._state is not AnimationState.RUNNING:
+            return
+
+        if self._duration == 0:
+            self.finish()
             return
 
         self._elapsed += time_delta
@@ -586,18 +607,47 @@ class Animation(TaskBase):
         if self._state is not AnimationState.RUNNING:
             return
 
-        self._state = AnimationState.FINISHED
-
         for target_data in self.targets:
             target = target_data.target_ref()
-            if target is None:
-                continue
-            for name, prop_data in target_data.properties.items():
-                self._set_value(target, name, prop_data.final)
+            if target:
+                for name, prop_data in target_data.properties.items():
+                    self._set_value(target, name, prop_data.final)
 
         self._execute_callbacks(ScheduleType.ON_UPDATE)
-        self._execute_callbacks(ScheduleType.ON_FINISH)
 
+        if self._yoyo:
+            self._half_cycle_count += 1
+            max_half_cycles = self._yoyo_loops * 2
+
+            if (
+                self._yoyo_loops > 0
+                and self._half_cycle_count >= max_half_cycles
+            ):
+                self._state = AnimationState.FINISHED
+                for target_data in self.targets:
+                    target = target_data.target_ref()
+                    if target:
+                        for name, prop_data in target_data.properties.items():
+                            self._set_value(
+                                target, name, prop_data.true_initial
+                            )
+                self._execute_callbacks(ScheduleType.ON_FINISH)
+                self.kill()
+                return
+
+            self._elapsed = 0.0
+            self._is_yoyo_reverse = not self._is_yoyo_reverse
+            for target_data in self.targets:
+                for prop_data in target_data.properties.values():
+                    prop_data.initial, prop_data.final = (
+                        prop_data.final,
+                        prop_data.initial,
+                    )
+            return
+
+        # Non-yoyo finish
+        self._state = AnimationState.FINISHED
+        self._execute_callbacks(ScheduleType.ON_FINISH)
         self.kill()
 
     def abort(self) -> None:
@@ -657,7 +707,10 @@ class Animation(TaskBase):
                         value += initial
 
                     properties_map[name] = AnimatedPropertyData(
-                        initial=initial, final=value
+                        initial=initial,
+                        final=value,
+                        true_initial=initial,
+                        true_final=value,
                     )
                 except AttributeError:
                     logger.warning(

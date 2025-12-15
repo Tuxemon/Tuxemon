@@ -18,6 +18,7 @@ from tuxemon.npc import NPC
 from tuxemon.platform.const import buttons
 from tuxemon.platform.events import PlayerInput
 from tuxemon.tools import fix_measure, format_playtime
+from tuxemon.tuxepedia import TuxepediaReporter
 
 MenuGameObj = Callable[[], object]
 lookup_cache: dict[str, MonsterModel] = {}
@@ -60,12 +61,13 @@ class CharacterState(PygameMenuState):
 
         # tuxepedia data
         filters = list(lookup_cache.values())
-        completeness = self.char.tuxepedia.get_completeness(len(filters))
-        percentage = round(completeness * 100, 1)
+        reporter = TuxepediaReporter(self.char.tuxepedia.data)
+        completeness = reporter.get_completeness_report(len(filters))
+        percentage = round(completeness["registered_percent"] * 100, 1)
         seen = self.char.tuxepedia.get_seen_count()
         caught = self.char.tuxepedia.get_caught_count()
 
-        if self.char.tuxepedia.entries:
+        if self.char.tuxepedia.data.entries:
             _msg_progress = {"value": str(percentage)}
             _msg_seen = {"param": str(seen + caught), "all": str(len(filters))}
             _msg_caught = {"param": str(caught), "all": str(len(filters))}

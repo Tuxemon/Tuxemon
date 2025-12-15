@@ -1,7 +1,6 @@
 {
   "tech_id": 25,
   "accuracy": 0.6,
-  "animation": "explosion_ice_112",
   "effects": [
     {
       "type": "give",
@@ -17,13 +16,11 @@
       ]
     }
   ],
-  "flip_axes": "",
   "speed": "normal",
   "potency": 1,
   "power": 3,
   "range": "melee",
   "recharge": 3,
-  "sfx": "sfx_tornado",
   "slug": "snowstorm",
   "sort": "damage",
   "modifiers": [],
@@ -46,5 +43,14 @@
   ],
   "use_failure": "combat_miss",
   "use_success": null,
-  "use_tech": "combat_used_x"
+  "use_tech": "combat_used_x",
+  "visuals": {
+    "animation": "explosion_ice_112",
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": "sfx_tornado",
+    "volume": 1.5
+  }
 }

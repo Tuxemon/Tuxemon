@@ -77,7 +77,7 @@ class CharMoveAction(EventAction):
         else:
             logger.error("No valid path was generated")
 
-    def update(self, session: Session) -> None:
+    def update(self, session: Session, dt: float) -> None:
         if self.character is None:
             self.stop()
             return

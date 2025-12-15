@@ -1,7 +1,6 @@
 {
   "tech_id": 230,
   "accuracy": 0.7,
-  "animation": "foodthrow",
   "effects": [
     {
       "type": "give",
@@ -21,13 +20,11 @@
       "type": "damage"
     }
   ],
-  "flip_axes": "",
   "speed": "normal",
   "potency": 1.0,
   "power": 2.0,
   "range": "ranged",
   "recharge": 2,
-  "sfx": "sfx_bounce",
   "slug": "just_desserts",
   "sort": "damage",
   "modifiers": [],
@@ -50,5 +47,14 @@
   ],
   "use_failure": "combat_miss",
   "use_success": null,
-  "use_tech": "combat_used_x"
+  "use_tech": "combat_used_x",
+  "visuals": {
+    "animation": "foodthrow",
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": "sfx_bounce",
+    "volume": 1.5
+  }
 }

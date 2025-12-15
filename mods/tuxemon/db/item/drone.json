@@ -21,5 +21,14 @@
   },
   "use_failure": "menu_storage_swap_monster_fail",
   "use_item": "combat_used_x",
-  "use_success": "generic_success"
+  "use_success": "generic_success",
+  "visuals": {
+    "animation": null,
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": null,
+    "volume": 0.0
+  }
 }

@@ -1,0 +1,49 @@
+{
+  "tech_id": 264,
+  "accuracy": 1.0,
+  "effects": [
+    {
+      "type": "life_share",
+      "parameters": [
+        "target_to_user",
+        "simple"
+      ]
+    }
+  ],
+  "speed": "very_fast",
+  "potency": 0.0,
+  "power": 1.0,
+  "range": "special",
+  "recharge": 1,
+  "slug": "data_swap",
+  "sort": "damage",
+  "modifiers": [],
+  "behaviors": {},
+  "target": {
+    "enemy_monster": true,
+    "enemy_team": false,
+    "enemy_trainer": false,
+    "own_monster": false,
+    "own_team": false,
+    "own_trainer": false
+  },
+  "category": "special",
+  "tags": [
+    "machine"
+  ],
+  "types": [
+    "metal"
+  ],
+  "use_failure": "combat_miss",
+  "use_success": null,
+  "use_tech": "combat_used_x",
+  "visuals": {
+    "animation": "metal_delete",
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": null,
+    "volume": 1.5
+  }
+}

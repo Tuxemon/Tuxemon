@@ -72,6 +72,7 @@ class TransitionTeleportAction(EventAction):
         )
         teleport_queue.enqueue(request)
 
+        session.world.prepare_for_teleport()
         session.world.transition_manager.fade_and_teleport(
             _time,
             rgb,

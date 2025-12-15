@@ -11,7 +11,13 @@ from tuxemon.combat.action_queue import ActionQueue, EnqueuedAction
 from tuxemon.combat.combat_context import CombatType
 from tuxemon.combat.damage_tracker import DamageTracker
 from tuxemon.combat.field_monsters import FieldMonsters
-from tuxemon.combat.utils import alive_party, battlefield, defeated
+from tuxemon.combat.reward_system import (
+    HordeRewardCalculator,
+    RewardCalculator,
+    TrainerRewardCalculator,
+    WildRewardCalculator,
+)
+from tuxemon.combat.utils import battlefield
 from tuxemon.db import EffectPhase, TargetType
 from tuxemon.event import get_event_bus
 from tuxemon.locale import T
@@ -86,7 +92,7 @@ class CombatSession:
     def active_players(self) -> Iterable[NPC]:
         """All trainers still active in the battle."""
         for player in self.players:
-            if not defeated(player):
+            if not player.party.is_fainted:
                 yield player
 
     @property
@@ -129,12 +135,12 @@ class CombatSession:
     @property
     def defeated_players(self) -> Sequence[NPC]:
         """All trainers who have lost (party fully fainted)."""
-        return [p for p in self.players if defeated(p)]
+        return [p for p in self.players if p.party.is_fainted]
 
     @property
     def remaining_players(self) -> Sequence[NPC]:
         """Alias for non-defeated players. WIP: subject to future team logic."""
-        return [p for p in self.players if not defeated(p)]
+        return [p for p in self.players if not p.party.is_fainted]
 
     def get_bench(self, player: NPC) -> Sequence[Monster]:
         """Returns non-fainted, off-field monsters for the given player."""
@@ -273,6 +279,17 @@ class CombatSession:
     def reset_combat_type(self) -> None:
         self._combat_type = None
 
+    def get_calculator(self, combat_type: CombatType) -> RewardCalculator:
+        """Return the appropriate RewardCalculator based on combat type."""
+        if combat_type is CombatType.TRAINER:
+            return TrainerRewardCalculator(self.damage_tracker)
+        elif combat_type is CombatType.MONSTER:
+            return WildRewardCalculator(self.damage_tracker)
+        elif combat_type is CombatType.HORDE:
+            return HordeRewardCalculator(self.damage_tracker)
+        else:
+            raise ValueError(f"Unknown combat type: {combat_type}")
+
     @property
     def is_trainer_battle(self) -> bool:
         return self.combat_type is CombatType.TRAINER
@@ -390,7 +407,7 @@ class CombatSession:
         Calculates the maximum number of positions for a player based on
         their party size and battle mode.
         """
-        if len(alive_party(player)) == 1:
+        if len(player.party.alive) == 1:
             return 1
         return 2 if self.is_double else 1
 

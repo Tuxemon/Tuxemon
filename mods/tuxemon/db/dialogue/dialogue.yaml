@@ -1,0 +1,123 @@
+# slug: Unique identifier for this dialogue style (example: "default", "black-orange")
+#        Must have a translation entry in base.po with msgid = slug.
+# bg_color: Background RGB color in "R:G:B" format (example: "248:248:248" for light gray)
+# font_color: Text RGB color in "R:G:B" format (example: "10:10:10" for near black)
+# font_shadow_color: Shadow RGB color in "R:G:B" format (example: "192:192:192" for medium gray)
+# border_slug: Name of the border style (example: "borders", "borders-black")
+#        Must correspond to a valid border resource file at gfx/borders/<border_slug>.png
+# border_path: Path to the border image file (example: "gfx/borders/borders.png")
+#        File MUST exist in the filesystem and match BORDERS_SIZE dimensions.
+# line_spacing: Integer spacing between lines (example: 0 for default, 4 for extra spacing)
+
+- bg_color: 248:248:248
+  border_path: gfx/borders/borders.png
+  border_slug: borders
+  font_color: '10:10:10'
+  font_shadow_color: 192:192:192
+  line_spacing: 0
+  slug: default
+- bg_color: 248:248:248
+  border_path: gfx/borders/borders.png
+  border_slug: borders
+  font_color: 0:51:0
+  font_shadow_color: 192:192:192
+  line_spacing: 0
+  slug: default-green
+- bg_color: 248:248:248
+  border_path: gfx/borders/borders.png
+  border_slug: borders
+  font_color: 0:0:51
+  font_shadow_color: 192:192:192
+  line_spacing: 0
+  slug: default-blue
+- bg_color: 248:248:248
+  border_path: gfx/borders/borders.png
+  border_slug: borders
+  font_color: '51:0:51'
+  font_shadow_color: 192:192:192
+  line_spacing: 0
+  slug: default-purple
+- bg_color: 248:248:248
+  border_path: gfx/borders/borders.png
+  border_slug: borders
+  font_color: 0:51:51
+  font_shadow_color: 192:192:192
+  line_spacing: 0
+  slug: default-turquoise
+- bg_color: 248:248:248
+  border_path: gfx/borders/borders.png
+  border_slug: borders
+  font_color: '51:0:0'
+  font_shadow_color: 192:192:192
+  line_spacing: 0
+  slug: default-umber1
+- bg_color: 248:248:248
+  border_path: gfx/borders/borders.png
+  border_slug: borders
+  font_color: '51:51:0'
+  font_shadow_color: 192:192:192
+  line_spacing: 0
+  slug: default-umber2
+- bg_color: 0:0:0
+  border_path: gfx/borders/borders-black.png
+  border_slug: borders-black
+  font_color: 255:204:102
+  font_shadow_color: 0:0:0
+  line_spacing: 0
+  slug: black-orange
+- bg_color: 0:0:0
+  border_path: gfx/borders/borders-black.png
+  border_slug: borders-black
+  font_color: 255:255:0
+  font_shadow_color: 0:0:0
+  line_spacing: 0
+  slug: black-yellow
+- bg_color: 0:0:0
+  border_path: gfx/borders/borders-black.png
+  border_slug: borders-black
+  font_color: 0:255:0
+  font_shadow_color: 0:0:0
+  line_spacing: 0
+  slug: black-green
+- bg_color: 0:0:0
+  border_path: gfx/borders/borders-black.png
+  border_slug: borders-black
+  font_color: 0:255:255
+  font_shadow_color: 0:0:0
+  line_spacing: 0
+  slug: black-cyan
+- bg_color: 0:0:0
+  border_path: gfx/borders/borders-black.png
+  border_slug: borders-black
+  font_color: 255:0:255
+  font_shadow_color: 0:0:0
+  line_spacing: 0
+  slug: black-magenta
+- bg_color: 0:51:102
+  border_path: gfx/borders/borders-blue.png
+  border_slug: borders-blue
+  font_color: 255:255:0
+  font_shadow_color: 0:51:102
+  line_spacing: 0
+  slug: blue-yellow
+- bg_color: 255:153:0
+  border_path: gfx/borders/borders-orange.png
+  border_slug: borders-orange
+  font_color: 0:0:0
+  font_shadow_color: 255:153:0
+  line_spacing: 0
+  slug: orange-black
+- bg_color: '51:51:51'
+  border_path: gfx/borders/borders-gray.png
+  border_slug: borders-gray
+  font_color: 248:248:248
+  font_shadow_color: '51:51:51'
+  line_spacing: 0
+  slug: gray-white
+- bg_color: 248:248:248
+  border_path: gfx/borders/borders-thin.png
+  border_slug: borders
+  font_color: '10:10:10'
+  font_shadow_color: 192:192:192
+  line_spacing: 4
+  slug: thin-border

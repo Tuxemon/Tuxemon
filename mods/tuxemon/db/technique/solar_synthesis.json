@@ -1,7 +1,6 @@
 {
   "tech_id": 189,
   "accuracy": 1,
-  "animation": "green_circle",
   "effects": [
     {
       "type": "photogenesis",
@@ -12,18 +11,18 @@
       ]
     }
   ],
-  "flip_axes": "",
   "healing_power": 2,
   "speed": "normal",
   "potency": 1,
   "power": 0,
   "range": "special",
   "recharge": 2,
-  "sfx": "sfx_shine",
   "slug": "solar_synthesis",
   "sort": "damage",
   "modifiers": [],
-  "behaviors": {},
+  "behaviors": {
+    "bypasses_selection": true
+  },
   "target": {
     "enemy_monster": false,
     "enemy_team": false,
@@ -42,5 +41,14 @@
   ],
   "use_failure": "solar_synthesis_fail",
   "use_success": null,
-  "use_tech": "combat_used_x"
+  "use_tech": "combat_used_x",
+  "visuals": {
+    "animation": "green_circle",
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": "sfx_shine",
+    "volume": 1.5
+  }
 }

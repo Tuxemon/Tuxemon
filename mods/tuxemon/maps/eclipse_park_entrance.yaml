@@ -98,7 +98,7 @@ events:
     - translated_dialog eclipse_park_assistant
     conditions:
     - is char_facing_tile player
-    - is button_pressed K_RETURN
+    - is button_pressed INTERACT
     type: event
     x: 7
     y: 5

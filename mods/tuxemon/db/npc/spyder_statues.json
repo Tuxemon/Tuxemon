@@ -3,6 +3,7 @@
     "slug": "spyder_statue_blue",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "statue_blue",
       "combat_front": "noclass",
@@ -13,6 +14,7 @@
     "slug": "spyder_statue_red",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "statue_red",
       "combat_front": "noclass",
@@ -23,6 +25,7 @@
     "slug": "spyder_statue_orange",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "statue_orange",
       "combat_front": "noclass",
@@ -33,6 +36,7 @@
     "slug": "spyder_statue_grey",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "statue_grey",
       "combat_front": "noclass",
@@ -43,6 +47,7 @@
     "slug": "spyder_statue_green",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "statue_green",
       "combat_front": "noclass",

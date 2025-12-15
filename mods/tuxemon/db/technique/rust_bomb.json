@@ -1,7 +1,6 @@
 {
   "tech_id": 86,
   "accuracy": 0.6,
-  "animation": "smokebomb_puff_128",
   "effects": [
     {
       "type": "give",
@@ -17,13 +16,11 @@
       ]
     }
   ],
-  "flip_axes": "",
   "speed": "normal",
   "potency": 0.5,
   "power": 2.25,
   "range": "ranged",
   "recharge": 2,
-  "sfx": "sfx_tornado",
   "slug": "rust_bomb",
   "sort": "damage",
   "modifiers": [],
@@ -46,5 +43,14 @@
   ],
   "use_failure": "combat_miss",
   "use_success": null,
-  "use_tech": "combat_used_x"
+  "use_tech": "combat_used_x",
+  "visuals": {
+    "animation": "smokebomb_puff_128",
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": "sfx_tornado",
+    "volume": 1.5
+  }
 }

@@ -1,0 +1,53 @@
+{
+  "tech_id": 250,
+  "accuracy": 0.85,
+  "effects": [
+    {
+      "type": "give",
+      "parameters": [
+        "festering",
+        "enemy_monster"
+      ]
+    },
+    {
+      "type": "damage"
+    }
+  ],
+  "speed": "fast",
+  "potency": 1.0,
+  "power": 2.4,
+  "range": "ranged",
+  "recharge": 1,
+  "slug": "wicked_wind",
+  "sort": "damage",
+  "modifiers": [],
+  "behaviors": {},
+  "target": {
+    "enemy_monster": true,
+    "enemy_team": false,
+    "enemy_trainer": false,
+    "own_monster": false,
+    "own_team": false,
+    "own_trainer": false
+  },
+  "category": "exotic",
+  "tags": [
+    "weather"
+  ],
+  "types": [
+    "shadow",
+    "sky"
+  ],
+  "use_failure": "combat_miss",
+  "use_success": null,
+  "use_tech": "combat_used_x",
+  "visuals": {
+    "animation": "tornado_basic",
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": null,
+    "volume": 1.5
+  }
+}

@@ -2,6 +2,7 @@
   "slug": "penguin",
   "speech": {"profile": {"default": {}}},
   "combat": {},
+  "audio": {},
   "template": {
     "sprite_name": "penguin",
     "combat_front": "penguin",

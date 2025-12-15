@@ -2,7 +2,6 @@
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-import time
 from dataclasses import dataclass
 from typing import final
 
@@ -14,7 +13,7 @@ from tuxemon.session import Session
 @dataclass
 class WaitAction(EventAction):
     """
-    Block event chain for some time.
+    Block the event chain for a given duration.
 
     Script usage:
         .. code-block::
@@ -22,17 +21,19 @@ class WaitAction(EventAction):
             wait <seconds>
 
     Script parameters:
-        seconds: Time in seconds for the event engine to wait for.
-
+        seconds: Duration in seconds for the event engine to wait.
+                The wait is measured using accumulated delta time (dt)
+                from the game loop, not wall clock time.
     """
 
     name = "wait"
     seconds: float
+    elapsed: float = 0.0
 
-    # TODO: use event loop time, not wall clock
     def start(self, session: Session) -> None:
-        self.finish_time = time.time() + self.seconds
+        self.elapsed = 0.0
 
-    def update(self, session: Session) -> None:
-        if time.time() >= self.finish_time:
+    def update(self, session: Session, dt: float) -> None:
+        self.elapsed += dt
+        if self.elapsed >= self.seconds:
             self.stop()

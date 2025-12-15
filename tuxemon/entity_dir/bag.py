@@ -59,7 +59,7 @@ class BagHandler:
             logger.debug(
                 f"Item box '{locker}' does not exist. Creating new item box."
             )
-            self._item_boxes.create_box(locker, "item")
+            self._item_boxes.create_box(locker)
 
         existing = self.find_item(item.slug)
         if existing:

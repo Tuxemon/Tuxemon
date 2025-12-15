@@ -5,7 +5,8 @@ from __future__ import annotations
 import logging
 from dataclasses import dataclass
 
-from tuxemon.event import MapCondition, get_npc
+from tuxemon.db import SpatialCondition
+from tuxemon.event import get_npc
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.monster import Monster
 from tuxemon.prepare import MAX_MOVES
@@ -42,7 +43,7 @@ class CheckMaxTechCondition(EventCondition):
 
     name = "check_max_tech"
 
-    def test(self, session: Session, condition: MapCondition) -> bool:
+    def test(self, session: Session, condition: SpatialCondition) -> bool:
         target_name = condition.parameters[0]
 
         target_character = get_npc(session, target_name)

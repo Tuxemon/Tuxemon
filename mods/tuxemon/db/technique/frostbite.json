@@ -1,7 +1,6 @@
 {
   "tech_id": 87,
   "accuracy": 0.8,
-  "animation": "lance_ice",
   "effects": [
     {
       "type": "give",
@@ -17,13 +16,11 @@
       ]
     }
   ],
-  "flip_axes": "xy",
   "speed": "normal",
   "potency": 0.5,
   "power": 3,
   "range": "reach",
   "recharge": 3,
-  "sfx": "sfx_bite",
   "slug": "frostbite",
   "sort": "damage",
   "modifiers": [],
@@ -46,5 +43,14 @@
   ],
   "use_failure": "combat_miss",
   "use_success": null,
-  "use_tech": "combat_used_x"
+  "use_tech": "combat_used_x",
+  "visuals": {
+    "animation": "lance_ice",
+    "flip_axes": "xy",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": "sfx_bite",
+    "volume": 1.5
+  }
 }

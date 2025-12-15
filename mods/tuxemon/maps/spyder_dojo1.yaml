@@ -5,7 +5,7 @@ events:
     - translated_dialog spyder_dojo_fu2
     conditions:
     - is char_facing_tile player
-    - is button_pressed K_RETURN
+    - is button_pressed INTERACT
     height: 1
     type: event
     width: 2
@@ -17,7 +17,7 @@ events:
     - translated_dialog spyder_dojo_yin2
     conditions:
     - is char_facing_tile player
-    - is button_pressed K_RETURN
+    - is button_pressed INTERACT
     height: 1
     type: event
     width: 2
@@ -29,7 +29,7 @@ events:
     - translated_dialog spyder_dojo_zhu2
     conditions:
     - is char_facing_tile player
-    - is button_pressed K_RETURN
+    - is button_pressed INTERACT
     height: 1
     type: event
     width: 2
@@ -41,7 +41,7 @@ events:
     - translated_dialog spyder_dojo_xiang2
     conditions:
     - is char_facing_tile player
-    - is button_pressed K_RETURN
+    - is button_pressed INTERACT
     height: 1
     type: event
     width: 2

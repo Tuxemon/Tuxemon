@@ -18,7 +18,7 @@ class Element:
     _elements: dict[str, Element] = {}
 
     def __init__(self, slug: Optional[str] = None) -> None:
-        self.name: str = ""
+        self.slug: str = ""
         self.icon: str = ""
         self.types: Sequence[ElementItemModel] = []
 
@@ -31,30 +31,25 @@ class Element:
         if slug in Element._elements:
             cached_element = Element._elements[slug]
             self.slug = slug
-            self.name = cached_element.name
             self.types = cached_element.types
             self.icon = cached_element.icon
             return
 
         results = ElementModel.lookup(slug, db)
         self.slug = slug
-        self.name = T.translate(self.slug)
         self.types = results.types
         self.icon = results.icon
 
         Element._elements[slug] = self
 
+    @property
+    def name(self) -> str:
+        """Translated display name for this element."""
+        return T.translate(self.slug) if self.slug else ""
+
     @classmethod
     def get_element(cls, slug: str) -> Optional[Element]:
-        """
-        Retrieves a Element object by its slug.
-
-        Parameters:
-            slug: The unique identifier for the element.
-
-        Returns:
-            The Element object if found, otherwise None.
-        """
+        """Retrieves an Element object by its slug."""
         return cls._elements.get(slug)
 
     @classmethod
@@ -69,12 +64,7 @@ class Element:
 
     @classmethod
     def get_all_elements(cls) -> dict[str, Element]:
-        """
-        Returns all loaded elements.
-
-        Returns:
-            A dictionary of all loaded Element objects.
-        """
+        """Returns all loaded elements."""
         if not cls._elements:
             cls.load_all_elements()
         return cls._elements
@@ -85,7 +75,12 @@ class Element:
         cls._elements.clear()
 
     def __repr__(self) -> str:
-        return f"Element(slug={self.slug}, name={self.name}, types={self.types}, icon={self.icon})"
+        return (
+            f"Element(slug={self.slug}, "
+            f"name={self.name}, "
+            f"types={self.types}, "
+            f"icon={self.icon}, "
+        )
 
     def lookup_field(self, element: str, field: str) -> Optional[float]:
         """Looks up the element against for this element."""
@@ -99,8 +94,7 @@ class Element:
         mult = self.lookup_field(element, "multiplier")
         if mult is None:
             logger.error(
-                f"Multiplier for element '{element}' not found in "
-                f"this element '{self.slug}'"
+                f"Multiplier for element '{element}' not found in this element '{self.slug}'"
             )
             return 1.0
         return mult

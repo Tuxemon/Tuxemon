@@ -16,7 +16,7 @@ from tuxemon.states.world_state import WorldState
 @dataclass
 class FadeOutAction(EventAction):
     """
-    Fade out.
+    Fade out and block until the fade duration has completed.
 
     Script usage:
         .. code-block::
@@ -34,15 +34,19 @@ class FadeOutAction(EventAction):
     name = "fade_out"
     trans_time: Optional[float] = None
     rgb: Optional[str] = None
+    elapsed: float = 0.0
 
     def start(self, session: Session) -> None:
-        pass
-
-    def update(self, session: Session) -> None:
         world = session.client.get_state_by_name(WorldState)
-        _time = TRANS_TIME if self.trans_time is None else self.trans_time
-        rgb: ColorLike = BLACK_COLOR
+        self._time = TRANS_TIME if self.trans_time is None else self.trans_time
+        self._rgb: ColorLike = BLACK_COLOR
         if self.rgb:
-            rgb = string_to_colorlike(self.rgb)
-        world.transition_manager.fade_out(_time, rgb)
-        self.stop()
+            self._rgb = string_to_colorlike(self.rgb)
+
+        world.transition_manager.fade_out(self._time, self._rgb)
+        self.elapsed = 0.0
+
+    def update(self, session: Session, dt: float) -> None:
+        self.elapsed += dt
+        if self.elapsed >= self._time:
+            self.stop()

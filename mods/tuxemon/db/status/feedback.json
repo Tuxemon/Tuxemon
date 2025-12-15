@@ -1,5 +1,4 @@
 {
-  "animation": null,
   "modifiers": [],
   "behaviors": {},
   "category": "positive",
@@ -12,15 +11,22 @@
       ]
     }
   ],
-  "flip_axes": "",
   "icon": "gfx/ui/icons/status/icon_feedback.png",
   "on_positive_status": "replaced",
   "on_negative_status": "replaced",
-  "sfx": "sfx_pulse",
   "slug": "feedback",
   "sort": "meta",
   "cond_id": 30,
   "use_failure": null,
   "use_success": "combat_state_feedback_get",
-  "gain_cond": null
+  "gain_cond": null,
+  "visuals": {
+    "animation": null,
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": "sfx_pulse",
+    "volume": 1.5
+  }
 }

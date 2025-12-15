@@ -84,8 +84,14 @@
   "height": 115,
   "weight": 55,
   "sounds": {
-    "combat_call": "sound_tux",
-    "faint_call": "sound_tux_faint"
+    "combat_call": {
+      "sfx": "sound_tux",
+      "volume": 1.5
+    },
+    "faint_call": {
+      "sfx": "sound_tux_faint",
+      "volume": 1.5
+    }
   },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,

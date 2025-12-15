@@ -1,19 +1,16 @@
 {
   "tech_id": 51,
   "accuracy": 1,
-  "animation": "triple_whammy_80",
   "effects": [
     {
       "type": "damage"
     }
   ],
-  "flip_axes": "",
   "speed": "normal",
   "potency": 0.0,
   "power": 1.25,
   "range": "touch",
   "recharge": 1,
-  "sfx": "sfx_pulse",
   "slug": "shadow_boxing",
   "sort": "damage",
   "modifiers": [],
@@ -36,5 +33,14 @@
   ],
   "use_failure": "combat_miss",
   "use_success": null,
-  "use_tech": "combat_used_x"
+  "use_tech": "combat_used_x",
+  "visuals": {
+    "animation": "triple_whammy_80",
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": "sfx_pulse",
+    "volume": 1.5
+  }
 }

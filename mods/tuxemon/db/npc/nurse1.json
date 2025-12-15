@@ -2,6 +2,7 @@
   "slug": "nurse1",
   "speech": {"profile": {"default": {}}},
   "combat": {},
+  "audio": {},
   "template": {
     "sprite_name": "nurse",
     "combat_front": "nurse",

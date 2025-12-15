@@ -70,7 +70,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_pc_alert"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="42" name="Route Music" type="event" x="0" y="0" width="16" height="16">
@@ -99,14 +99,14 @@
     <property name="act2" value="wild_encounter kernel,50,3"/>
     <property name="act3" value="set_variable kernelquest:done"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="62" name="PC3" type="event" x="240" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_pc_alert"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="71" name="PC4" type="event" x="64" y="128" width="16" height="16">
@@ -114,7 +114,7 @@
     <property name="act1" value="translated_dialog spyder_data_pc04"/>
     <property name="act2" value="translated_dialog_choice snokari:woodoor:furnursus,lightest"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
     <property name="cond3" value="not variable_set lightest:snokari"/>
    </properties>
   </object>
@@ -123,7 +123,7 @@
     <property name="act1" value="translated_dialog spyder_data_pc06"/>
     <property name="act2" value="translated_dialog_choice shybulb:ruption:narcileaf,binary77"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
     <property name="cond3" value="not variable_set binary77:shybulb"/>
    </properties>
   </object>
@@ -132,7 +132,7 @@
     <property name="act1" value="translated_dialog spyder_data_pc08"/>
     <property name="act2" value="translated_dialog_choice ignibus:squink:possessun,smallest"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
     <property name="cond3" value="not variable_set smallest:ignibus"/>
    </properties>
   </object>
@@ -141,7 +141,7 @@
     <property name="act1" value="translated_dialog spyder_data_pc07"/>
     <property name="act2" value="translated_dialog_choice pythock:snarlon:pigabyte,tallest"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
     <property name="cond3" value="not variable_set tallest:snarlon"/>
    </properties>
   </object>
@@ -150,7 +150,7 @@
     <property name="act1" value="translated_dialog spyder_data_pc09"/>
     <property name="act2" value="translated_dialog_choice apeoro:jemuar:mauai,heaviest"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
     <property name="cond3" value="not variable_set heaviest:jemuar"/>
    </properties>
   </object>
@@ -159,7 +159,7 @@
     <property name="act1" value="translated_dialog spyder_data_pc10"/>
     <property name="act2" value="translated_dialog_choice baobaraffe:statursus:exclawvate,binary193"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
     <property name="cond3" value="not variable_set binary193:baobaraffe"/>
    </properties>
   </object>
@@ -168,7 +168,7 @@
     <property name="act1" value="translated_dialog spyder_data_pc05"/>
     <property name="act2" value="translated_dialog_choice shammer:drokoro:rhincus,binary144"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
     <property name="cond3" value="not variable_set binary144:shammer"/>
    </properties>
   </object>

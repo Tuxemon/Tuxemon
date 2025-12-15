@@ -26,7 +26,7 @@ events:
     - translated_dialog_choice 1floor:2floor:no,choice_floor
     conditions:
     - is char_facing_tile player
-    - is button_pressed K_RETURN
+    - is button_pressed INTERACT
     height: 1
     type: event
     width: 2
@@ -37,7 +37,7 @@ events:
     - translated_dialog_choice 1floor:2floor:no,choice_floor
     conditions:
     - is char_facing_tile player
-    - is button_pressed K_RETURN
+    - is button_pressed INTERACT
     height: 1
     type: event
     width: 2

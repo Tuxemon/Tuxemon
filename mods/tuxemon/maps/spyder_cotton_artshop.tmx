@@ -179,7 +179,7 @@
     <property name="act3" value="translated_dialog player_wallet"/>
     <property name="act4" value="translated_dialog_choice yes:no,barmaid_starry"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
     <property name="cond3" value="not has_item player,p_starry_night"/>
     <property name="cond4" value="is money_is player,greater_or_equal,1000"/>
    </properties>
@@ -191,7 +191,7 @@
     <property name="act3" value="translated_dialog player_wallet"/>
     <property name="act4" value="translated_dialog_choice yes:no,barmaid_trepidation"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
     <property name="cond3" value="not has_item player,p_trepidation"/>
     <property name="cond4" value="is money_is player,greater_or_equal,1000"/>
    </properties>
@@ -203,7 +203,7 @@
     <property name="act3" value="translated_dialog player_wallet"/>
     <property name="act4" value="translated_dialog_choice yes:no,barmaid_monsters"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
     <property name="cond3" value="not has_item player,p_monsters_eyes"/>
     <property name="cond4" value="is money_is player,greater_or_equal,1000"/>
    </properties>
@@ -276,7 +276,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_cottonart_barmaid_painting_sold_billie"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="45" name="Billie Visit" type="event" x="48" y="64" width="16" height="48">

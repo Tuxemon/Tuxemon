@@ -1,11 +1,11 @@
 babel
 cbor
-neteria
+websockets
 pillow
 pygame-ce==2.5.3
 pyscroll>=2.31
 pytmx==3.32
-requests>=2.32.3
+requests
 natsort
 PyYAML>=6.0.2
 prompt_toolkit

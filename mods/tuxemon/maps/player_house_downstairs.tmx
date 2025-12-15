@@ -51,7 +51,7 @@
     <property name="cond10" value="is party_size player,greater_than,0"/>
     <property name="cond20" value="is char_at player"/>
     <property name="cond30" value="is char_facing player,up"/>
-    <property name="cond40" value="is button_pressed K_RETURN"/>
+    <property name="cond40" value="is button_pressed INTERACT"/>
     <property name="cond50" value="not variable_set scene:yes"/>
    </properties>
   </object>
@@ -59,7 +59,7 @@
    <properties>
     <property name="act10" value="translated_dialog xero_taba_poster"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="26" name="Go Upstairs" type="event" x="0" y="16" width="16" height="16">
@@ -126,7 +126,7 @@
     <property name="act9" value="set_variable aeble_talk:2"/>
     <property name="cond1" value="is variable_set aeble_talk:1"/>
     <property name="cond2" value="is char_at player"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond3" value="is button_pressed INTERACT"/>
     <property name="cond4" value="is char_facing player,up"/>
    </properties>
   </object>
@@ -158,7 +158,7 @@
    <properties>
     <property name="act1" value="translated_dialog waterwater"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="38" name="create mom3" type="event" x="0" y="64" width="16" height="16">
@@ -189,7 +189,7 @@
     <property name="act3" value="set_variable announce_trials:2"/>
     <property name="cond1" value="is char_facing player,up"/>
     <property name="cond2" value="is char_at player"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond3" value="is button_pressed INTERACT"/>
     <property name="cond4" value="is variable_set announce_trials:1"/>
    </properties>
   </object>

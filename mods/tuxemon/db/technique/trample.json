@@ -1,7 +1,6 @@
 {
   "tech_id": 219,
   "accuracy": 0.9,
-  "animation": "triple_whammy_80",
   "effects": [
     {
       "type": "give",
@@ -14,13 +13,11 @@
       "type": "damage"
     }
   ],
-  "flip_axes": "",
   "speed": "fast",
   "potency": 0.8,
   "power": 2.5,
   "range": "melee",
   "recharge": 3,
-  "sfx": "sfx_kick",
   "slug": "trample",
   "sort": "damage",
   "modifiers": [],
@@ -43,5 +40,14 @@
   ],
   "use_failure": "combat_miss",
   "use_success": null,
-  "use_tech": "combat_used_x"
+  "use_tech": "combat_used_x",
+  "visuals": {
+    "animation": "triple_whammy_80",
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": "sfx_kick",
+    "volume": 1.5
+  }
 }

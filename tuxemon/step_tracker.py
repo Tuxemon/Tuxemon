@@ -7,6 +7,8 @@ from collections.abc import Mapping
 from dataclasses import dataclass, field
 from typing import Any, Optional
 
+from tuxemon.event import get_event_bus
+
 logger = logging.getLogger(__name__)
 
 
@@ -79,6 +81,13 @@ class StepTracker:
         self.cycle_count += 1
         logger.info(f"StepTracker cycle reset to {self.initial_countdown}.")
 
+        get_event_bus().publish(
+            "step_tracker_cycle_reset",
+            initial_countdown=self.initial_countdown,
+            cycle_count=self.cycle_count,
+            tracker=self,
+        )
+
     def check_milestone_events(self) -> Optional[float]:
         triggered_milestone: Optional[float] = None
         if self.milestones:
@@ -103,6 +112,12 @@ class StepTracker:
         if milestone not in self.milestone_status:
             self.milestone_status[milestone] = MilestoneStatus(triggered=True)
             logger.info(f"Milestone {milestone} triggered.")
+
+            get_event_bus().publish(
+                "step_tracker_milestone_triggered",
+                milestone=milestone,
+                tracker=self,
+            )
 
     def show_milestone_dialogue(self, milestone: float) -> None:
         if milestone in self.milestone_status:
@@ -130,6 +145,9 @@ class StepTrackerManager:
         self.global_event_triggered = False
 
     def update_all(self, diff_x: float, diff_y: float) -> None:
+        if not self.trackers:
+            return
+
         for tracker in self.trackers.values():
             tracker.update_steps(diff_x, diff_y)
 

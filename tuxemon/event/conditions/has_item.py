@@ -5,7 +5,8 @@ from __future__ import annotations
 import logging
 from dataclasses import dataclass
 
-from tuxemon.event import MapCondition, get_npc
+from tuxemon.db import SpatialCondition
+from tuxemon.event import get_npc
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
 from tuxemon.tools import compare
@@ -35,7 +36,7 @@ class HasItemCondition(EventCondition):
 
     name = "has_item"
 
-    def test(self, session: Session, condition: MapCondition) -> bool:
+    def test(self, session: Session, condition: SpatialCondition) -> bool:
         def op(itm_qty: int, op: str, qty: int) -> bool:
             return compare(op, itm_qty, qty)
 

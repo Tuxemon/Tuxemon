@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+import time
 from abc import ABC, abstractmethod
 from collections.abc import Sequence
 from dataclasses import dataclass, field
@@ -36,7 +37,7 @@ class ActionContextManager:
         if self.action.cancelled:
             logger.warning("Event is cancelled, not starting")
         else:
-            self.action.start(self.session)
+            self.action.on_start(self.session)
         return self.action
 
     def __exit__(
@@ -106,7 +107,7 @@ class EventAction(ABC):
     * type, if a tuple, may include None to indicate the parameter is optional
     * name must be a valid python string
 
-    After parsing the parameters of the MapAction, the parameter's value
+    After parsing the parameters of the ParameterizableRule, the parameter's value
     will be passed to the type constructor.
 
     Example types: str, int, float, Monster, Item
@@ -171,11 +172,16 @@ class EventAction(ABC):
             logger.debug("Action is cancelled, not running")
             return
         try:
+            last_time = time.perf_counter()
             while not self.done and not self.cancelled:
                 if self._skip:
                     return
-                else:
-                    self.update(session)
+
+                now = time.perf_counter()
+                dt = now - last_time
+                last_time = now
+
+                self.update(session, dt)
         except Exception as e:
             logger.error(f"Error running action: {e}")
             raise
@@ -192,27 +198,27 @@ class EventAction(ABC):
     @abstractmethod
     def start(self, session: Session) -> None:
         """
-        Called only once, when the action is started.
+        Called only once by EventAction.on_start().
+        Subclasses must implement their unique initialization logic here.
+        """
 
-        For all actions, you will need to override this method.
-
-        For actions that only need to run one frame you can simply
-        put all the code here.  If the action will need to run over
-        several frames, you can init your action here, then override
-        the update method.
+    def on_start(self, session: Session) -> None:
+        """
+        Protocol method: Called once when the action is started.
+        Handles cancellation checks and calls the abstract start()
+        method for subclass logic.
         """
         if self.cancelled:
-            logger.debug("Action is cancelled, not starting")
+            logger.debug(f"Action is cancelled, not starting")
             self.stop()
             return
         try:
-            # start the action
-            pass
+            self.start(session)
         except Exception as e:
             logger.error(f"Error starting action: {e}")
             raise
 
-    def update(self, session: Session) -> None:
+    def update(self, session: Session, dt: float) -> None:
         """
         Called once per frame while action is running.
 

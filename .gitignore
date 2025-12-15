@@ -64,7 +64,6 @@ Thumbs.db
 
 # Eric6
 *.epj
-/__init__.py
 .eric6project
 
 # KDevelop

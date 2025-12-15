@@ -19,23 +19,32 @@ logger = logging.getLogger(__name__)
 class InfoAction(EventAction):
     """
     Records monster's attribute values inside a game variable.
-    It allows to record the monster's owner attribute values too.
+    It allows recording the monster's owner attribute values too.
 
     Script usage:
-        .. code-block::
 
-            info <variable>,<attribute>
+        .. code-block:: text
+
+           info <variable>,<attribute>
 
     Script parameters:
-        variable: Name of the variable where to store the monster id.
-        attribute: The attribute to check (level, speed, etc.)
 
-    eg. "info name_variable,level"
-    -> if the monster is lv 4, then it'll create a variable called:
+        variable:
+            Name of the variable where to store the monster id.
+
+        attribute:
+            The attribute to check (level, speed, etc.)
+
+    Examples:
+
+        "info name_variable,level"
+        -> if the monster is lv 4, then it'll create a variable called:
         "info_level:4"
-    eg. "info name_variable,owner_steps"
-    -> if the owner walked 69 steps, then it'll create a variable called:
+
+        "info name_variable,owner_steps"
+        -> if the owner walked 69 steps, then it'll create a variable called:
         "info_owner_steps:69"
+
     """
 
     name = "info"

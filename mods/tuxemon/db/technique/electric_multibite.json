@@ -1,7 +1,6 @@
 {
   "tech_id": 220,
   "accuracy": 0.9,
-  "animation": "beartrap",
   "effects": [
     {
       "type": "give",
@@ -20,13 +19,11 @@
       "type": "damage"
     }
   ],
-  "flip_axes": "",
   "speed": "fast",
   "potency": 0.15,
   "power": 1.2,
   "range": "touch",
   "recharge": 3,
-  "sfx": "sfx_bite",
   "slug": "electric_multibite",
   "sort": "damage",
   "modifiers": [],
@@ -49,5 +46,14 @@
   ],
   "use_failure": "combat_miss",
   "use_success": null,
-  "use_tech": "combat_used_x"
+  "use_tech": "combat_used_x",
+  "visuals": {
+    "animation": "beartrap",
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": "sfx_bite",
+    "volume": 1.5
+  }
 }

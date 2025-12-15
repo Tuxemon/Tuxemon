@@ -1,7 +1,6 @@
 {
   "tech_id": 244,
   "accuracy": 1,
-  "animation": "ruby_radiate",
   "effects": [
     {
       "type": "give",
@@ -11,17 +10,17 @@
       ]
     }
   ],
-  "flip_axes": "",
   "speed": "fast",
   "potency": 1,
   "power": 0,
   "range": "special",
   "recharge": 2,
-  "sfx": "sfx_pulse",
   "slug": "frighten",
   "sort": "damage",
   "modifiers": [],
-  "behaviors": {},
+  "behaviors": {
+    "bypasses_selection": true
+  },
   "target": {
     "enemy_monster": true,
     "enemy_team": false,
@@ -40,5 +39,14 @@
   ],
   "use_failure": "combat_miss",
   "use_success": null,
-  "use_tech": "combat_used_x"
+  "use_tech": "combat_used_x",
+  "visuals": {
+    "animation": "ruby_radiate",
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": "sound_yehehe",
+    "volume": 1.5
+  }
 }

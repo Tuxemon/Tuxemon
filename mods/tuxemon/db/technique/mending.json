@@ -1,24 +1,23 @@
 {
   "tech_id": 169,
   "accuracy": 1,
-  "animation": "x_attack",
   "effects": [
     {
       "type": "healing"
     }
   ],
-  "flip_axes": "",
   "healing_power": 2.0,
   "speed": "extremely_fast",
   "potency": 1,
   "power": 0,
   "range": "special",
   "recharge": 1,
-  "sfx": "sfx_shine",
   "slug": "mending",
   "sort": "damage",
   "modifiers": [],
-  "behaviors": {},
+  "behaviors": {
+    "bypasses_selection": true
+  },
   "target": {
     "enemy_monster": false,
     "enemy_team": false,
@@ -36,5 +35,14 @@
   ],
   "use_failure": "combat_miss",
   "use_success": null,
-  "use_tech": "combat_used_x"
+  "use_tech": "combat_used_x",
+  "visuals": {
+    "animation": "x_attack",
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": "sfx_shine",
+    "volume": 1.5
+  }
 }

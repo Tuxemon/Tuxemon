@@ -126,10 +126,7 @@ class LocalPygameClient(BaseClient):
                 if time_since_draw >= frame_length:
                     time_since_draw -= frame_length
                     draw()
-                    if self.input_manager.controller_overlay:
-                        self.input_manager.controller_overlay.draw(screen)
-                    if self.input_manager.show_visualizer:
-                        self.input_manager.draw_visualizer(screen)
+                    self.input_manager.draw_inputs(screen)
                     flip()
                 if self.config.show_fps:
                     self.renderer.update(clock_tick)
@@ -152,6 +149,7 @@ class LocalPygameClient(BaseClient):
         """
         self.network_manager.update(time_delta)
         events = self.input_manager.process_events()
+        self.input_manager.update(time_delta)
         self.key_events = list(self.event_manager.process_events(events))
         self.event_data = {}
         self.event_engine.update(time_delta)

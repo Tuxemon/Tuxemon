@@ -69,7 +69,7 @@
     <property name="act10" value="translated_dialog 37707_computer"/>
     <property name="act20" value="set_variable 37707_tower:activated"/>
     <property name="cond10" value="is char_facing_tile player"/>
-    <property name="cond20" value="is button_pressed K_RETURN"/>
+    <property name="cond20" value="is button_pressed INTERACT"/>
     <property name="cond30" value="not variable_set 37707_tower:activated"/>
    </properties>
   </object>

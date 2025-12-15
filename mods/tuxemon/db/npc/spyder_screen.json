@@ -2,6 +2,7 @@
   "slug": "spyder_screen",
   "speech": {"profile": {"default": {}}},
   "combat": {},
+  "audio": {},
   "template": {
     "sprite_name": "screen",
     "combat_front": "noclass",

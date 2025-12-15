@@ -16,21 +16,24 @@ if TYPE_CHECKING:
 @dataclass
 class CurrentHitPointsCondition(CoreCondition):
     """
-    Compares the Monster's current hitpoints against the given value.
+    Compares the Monster's current hitpoints against a specified value.
 
-    If an integer is passed, it will compare against the number directly, if a
-    decimal between 0.0 and 1.0 is passed it will compare the current hp
-    against the total hp.
+    **Parameters**
+    - ``operator``: The comparison operator (e.g. ``<``, ``>``, ``<=``, ``>=``).
+    - ``hp``: The value to compare against. If an integer, compares directly to current HP.
+    If a float between 0.0 and 1.0, compares the current HP against that fraction of total HP.
 
-    Parameters:
-        operator: The operator <, >, etc.
-        hp: The hp (int or float) to compare with.
+    **Returns**
+    - ``True`` if the comparison evaluates successfully.
+    - ``False`` otherwise.
 
-    Example:
-    "conditions": [
-        "is current_hp <,1.0",
-    ],
+    **Example**
 
+    .. code-block:: json
+
+        "conditions": [
+            "is current_hp <,1.0"
+        ]
     """
 
     name = "current_hp"

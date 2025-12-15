@@ -3,10 +3,16 @@
 from __future__ import annotations
 
 import logging
+from collections.abc import Callable
 from dataclasses import dataclass
-from typing import Optional, final
+from pathlib import Path
+from typing import Any, Optional, final
 
+import yaml
+
+from tuxemon.constants.paths import mods_folder
 from tuxemon.event.eventaction import EventAction
+from tuxemon.platform.combo_detector import ComboProfile
 from tuxemon.session import Session
 
 logger = logging.getLogger(__name__)
@@ -34,67 +40,91 @@ BUTTON_NAME_TO_ID = {k.upper(): v for k, v in BUTTON_NAME_TO_ID.items()}
 BUTTON_ID_TO_NAME = {v: k for k, v in BUTTON_NAME_TO_ID.items()}
 
 
+def load_yaml(filepath: Path) -> Any:
+    try:
+        with filepath.open() as file:
+            return yaml.safe_load(file)
+    except FileNotFoundError:
+        logger.error(f"Config file not found: {filepath}")
+        raise
+    except yaml.YAMLError as exc:
+        logger.error(f"Error parsing YAML file: {exc}")
+        raise exc
+
+
 @final
 @dataclass
 class AddComboAction(EventAction):
     """
-    Registers a new combo sequence with the ComboDetector.
+    Registers one or more combos from a YAML string.
 
     Script usage:
         .. code-block::
 
-            add_combo  <combo_name>[,buttons][,max_delay_ms]
+            add_combo <yaml_data>
 
     Script parameters:
-        combo_name: Required. A name or ID for the combo.
-        buttons: Required. A colon-separated list of button names (e.g. LEFT:RIGHT:A).
-        max_delay_ms: Optional. Max delay between presses (default: 1000).
-        event_name: The name of the event whose actions will be executed (optional)
+        yaml_file: Name of the YAML file (without extension) located in the mods folder.
     """
 
     name = "add_combo"
-    combo_name: str
-    values: str
-    event_name: Optional[str] = None
+    yaml_data: Optional[str] = None
 
     def start(self, session: Session) -> None:
+        yaml_file = self.yaml_data or "combos"
+        path = mods_folder / f"{yaml_file}.yaml"
         try:
-            parts = self.values.split(",")
-            button_names = parts[0].split(":")
-            button_sequence = [
-                BUTTON_NAME_TO_ID[name.strip().upper()]
-                for name in button_names
-            ]
-            if not button_sequence:
-                logger.warning(f"Combo '{self.combo_name}' has no buttons.")
-                return
-            max_delay_ms = int(parts[1]) if len(parts) > 1 else 1000
-        except KeyError as e:
-            logger.warning(f"Unknown button name in combo: {e}")
-            return
+            data = load_yaml(path)
+            self._register_combos_from_yaml(data, session)
         except Exception as e:
-            logger.warning(f"Invalid combo definition: {self.values} — {e}")
-            return
+            logger.warning(f"Failed to load combo YAML from '{path}': {e}")
 
-        def on_combo_triggered() -> None:
-            logger.info(f"Combo '{self.combo_name}' triggered!")
-            if not self.event_name:
-                return
-            session.client.event_engine.execute_action(
-                "call_event", [self.event_name]
-            )
+    def _register_combos_from_yaml(self, data: Any, session: Session) -> None:
+        for combo in data.get("combos", []):
+            try:
+                button_sequence = [
+                    BUTTON_NAME_TO_ID[name.strip().upper()]
+                    for name in combo["buttons"]
+                ]
+                if not button_sequence:
+                    logger.warning(
+                        f"Combo '{combo.get('name', '?')}' has no buttons."
+                    )
+                    continue
 
-        try:
-            session.client.input_manager.combo_manager.detector.add_combo(
-                button_sequence, on_combo_triggered, max_delay_ms
-            )
-            named_sequence = [
-                BUTTON_ID_TO_NAME.get(b, str(b)) for b in button_sequence
-            ]
-            logger.debug(
-                f"Combo '{self.combo_name}' registered: {named_sequence}"
-            )
-        except Exception as e:
-            logger.warning(
-                f"Failed to register combo: {type(e).__name__}: {e}"
-            )
+                max_delay_s = float(combo.get("max_delay_s", 1.0))
+                delays_s = [max_delay_s] * len(button_sequence)
+
+                def make_callback(
+                    event_name: Optional[str],
+                ) -> Callable[[], None]:
+                    def callback() -> None:
+                        logger.info(f"Combo '{combo['name']}' triggered!")
+                        if event_name:
+                            session.client.event_engine.execute_action(
+                                "call_event", [event_name]
+                            )
+
+                    return callback
+
+                profile = ComboProfile(
+                    name=combo["name"],
+                    buttons=button_sequence,
+                    callback=make_callback(combo.get("event_name")),
+                    delays_s=delays_s,
+                    description=f"YAML-defined combo for {combo['name']}",
+                )
+
+                session.client.input_manager.combo_manager.detector.add_combo(
+                    profile
+                )
+                named_sequence = [
+                    BUTTON_ID_TO_NAME.get(b, str(b)) for b in button_sequence
+                ]
+                logger.debug(
+                    f"Combo '{combo['name']}' registered: {named_sequence}"
+                )
+            except Exception as e:
+                logger.warning(
+                    f"Failed to register combo '{combo.get('name', '?')}': {e}"
+                )

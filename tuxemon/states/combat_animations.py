@@ -17,7 +17,7 @@ from pygame.surface import Surface
 from pygame.transform import flip as pg_flip
 
 from tuxemon import graphics, prepare
-from tuxemon.combat.utils import alive_party, build_hud_text
+from tuxemon.combat.utils import build_hud_text
 from tuxemon.formula import config_combat
 from tuxemon.menu.menu import Menu
 from tuxemon.sprite import CaptureDeviceSprite, HordeSprite, Sprite
@@ -74,6 +74,7 @@ class CombatAnimations(Menu[None], ABC):
         super().__init__()
         self.session = context.session
         self.graphics = context.graphics
+        self.music = context.music
         self.sprite_map = MonsterSpriteMap()
         self.capdevs: list[CaptureDeviceSprite] = []
         self.horde_sprite: Optional[HordeSprite] = None
@@ -225,41 +226,27 @@ class CombatAnimations(Menu[None], ABC):
         self.task(partial(self.sprites.add, sprite), interval=1.3)
 
         # Load and play combat call sound
-        self.play_sound_effect(monster.combat_call, 1.3)
+        if monster.combat_call.sfx:
+            self.play_sound_effect(
+                monster.combat_call.sfx, monster.combat_call.volume
+            )
 
-    def animate_sprite_spin(self, sprite: Sprite) -> None:
-        self.animate(
-            sprite,
-            rotation=360,
-            initial=0,
-            duration=0.8,
-            transition="in_out_quint",
+    def animate_sprite_tackle(self, attacker: Sprite) -> None:
+        duration = 0.3
+        original_x = attacker.rect.x
+        _, horizontal = self.combat_zone.get_zone(attacker.rect)
+
+        delta = (
+            scale(14) if horizontal is HorizontalAlignment.LEFT else -scale(14)
         )
 
-    def animate_sprite_tackle(self, sprite: Sprite) -> None:
-        duration = 0.3
-        original_x = sprite.rect.x
-        delta = 0
-
-        _, horizontal = self.combat_zone.get_zone(sprite.rect)
-
-        if horizontal is HorizontalAlignment.LEFT:
-            delta = scale(14)
-        elif horizontal is HorizontalAlignment.RIGHT:
-            delta = -scale(14)
-
         self.animate(
-            sprite.rect,
+            attacker.rect,
             x=original_x + delta,
             duration=duration,
             transition="out_circ",
-        )
-        self.animate(
-            sprite.rect,
-            x=original_x,
-            duration=duration,
-            transition="in_out_circ",
-            delay=0.35,
+            yoyo=True,
+            yoyo_loops=1,
         )
 
     def animate_monster_faint(self, monster: Monster) -> None:
@@ -373,7 +360,8 @@ class CombatAnimations(Menu[None], ABC):
             if monster.current_hp > 0
             else monster.faint_call
         )
-        self.play_sound_effect(cry)
+        if cry.sfx:
+            self.play_sound_effect(cry.sfx, cry.volume)
         self.animate(sprite.rect, x=x_offset, relative=True, duration=2)
         self.status_icons.animate_icons(monster, self.animate)
 
@@ -531,7 +519,7 @@ class CombatAnimations(Menu[None], ABC):
             tray, _, _ = self.animate_party_hud_left(home)
 
             self.horde_sprite = HordeSprite(
-                opponent_party=player.monsters,
+                opponent_party=player.party,
                 tray_rect=home,
                 shadow_text_func=self.shadow_text,
                 scale_func=scale,
@@ -717,10 +705,11 @@ class CombatAnimations(Menu[None], ABC):
         self.animate_sprites(enemy, back_island, front_island, player_back)
         if not self.client.combat_session.is_trainer_battle:
             sound = session.right_player.monsters[0].combat_call
-            self.play_sound_effect(sound, 1.5)
+            if sound.sfx:
+                self.play_sound_effect(sound.sfx, sound.volume)
 
         start_message = self.client.combat_session.get_start_message()
-        self.dialog.alert(start_message)
+        self.dialog.alert(start_message, self.text_area)
 
     def flip_sprites(self, enemy: Sprite, player_back: Sprite) -> None:
         """Flip the sprites horizontally."""
@@ -774,10 +763,11 @@ class CombatAnimations(Menu[None], ABC):
         )
 
     def play_sound_effect(
-        self, sound: str, value: float = prepare.CONFIG.sound_volume
+        self, sound: str, value: Optional[float] = None
     ) -> None:
         """Play the sound effect."""
-        self.client.sound_manager.play_sound(sound, value)
+        volume = value or self.client.config.sound_volume
+        self.client.sound_manager.play_sound(sound, volume)
 
     def animate_throwing(
         self,
@@ -879,7 +869,7 @@ class CombatAnimations(Menu[None], ABC):
                 full_text = success_header_text + "\n" + success_text
                 delay += len(full_text) * config_combat.letter_time
                 self.task(
-                    partial(self.dialog.alert, full_text),
+                    partial(self.dialog.alert, full_text, self.text_area),
                     interval=delay,
                 )
 
@@ -898,7 +888,10 @@ class CombatAnimations(Menu[None], ABC):
                 self.task(
                     partial(toggle_visible, monster_sprite), interval=delay
                 )
-                self.play_sound_effect(monster.combat_call, delay)
+                if monster.combat_call.sfx:
+                    self.play_sound_effect(
+                        monster.combat_call.sfx, monster.combat_call.volume
+                    )
 
             def capture_capsule(delay: float) -> None:
                 assert sprite.animation
@@ -911,7 +904,7 @@ class CombatAnimations(Menu[None], ABC):
             def show_failure(delay: float) -> None:
                 delay += len(failure_text) * config_combat.letter_time
                 self.task(
-                    partial(self.dialog.alert, failure_text),
+                    partial(self.dialog.alert, failure_text, self.text_area),
                     interval=delay,
                 )
 
@@ -938,7 +931,7 @@ class CombatAnimations(Menu[None], ABC):
         if delete:
             self._delete_monster_huds(monsters)
 
-        alive_members = alive_party(character)
+        alive_members = character.party.alive
         if len(monsters) > 1 and len(monsters) <= len(alive_members):
             self._update_multiple_huds(monsters, animate)
         else:

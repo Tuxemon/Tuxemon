@@ -58,7 +58,7 @@ events:
     - translated_dialog welcome_location_town
     conditions:
     - is char_facing_tile player
-    - is button_pressed K_RETURN
+    - is button_pressed INTERACT
     type: event
     x: 9
     y: 12

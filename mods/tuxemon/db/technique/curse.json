@@ -1,0 +1,52 @@
+{
+  "tech_id": 252,
+  "accuracy": 0.95,
+  "effects": [
+    {
+      "type": "foresight",
+      "parameters": [
+        "2"
+      ]
+    },
+    {
+      "type": "damage"
+    }
+  ],
+  "speed": "extremely_fast",
+  "potency": 0.0,
+  "power": 0.5,
+  "range": "ranged",
+  "recharge": 2,
+  "slug": "curse",
+  "sort": "damage",
+  "modifiers": [],
+  "behaviors": {},
+  "target": {
+    "enemy_monster": true,
+    "enemy_team": false,
+    "enemy_trainer": false,
+    "own_monster": false,
+    "own_team": false,
+    "own_trainer": false
+  },
+  "category": "special",
+  "tags": [
+    "staff"
+  ],
+  "types": [
+    "cosmic",
+    "shadow"
+  ],
+  "use_failure": "combat_miss",
+  "use_success": null,
+  "use_tech": "combat_used_x",
+  "visuals": {
+    "animation": "staffstrike",
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": null,
+    "volume": 1.5
+  }
+}

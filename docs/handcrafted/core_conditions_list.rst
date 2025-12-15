@@ -1,0 +1,13 @@
+.. autoscriptinfoclass:: tuxemon.core.conditions.base.BaseCondition
+.. autoscriptinfoclass:: tuxemon.core.conditions.can_evolve.CanEvolveCondition
+.. autoscriptinfoclass:: tuxemon.core.conditions.current_hp.CurrentHitPointsCondition
+.. autoscriptinfoclass:: tuxemon.core.conditions.facing_sprite.FacingSpriteCondition
+.. autoscriptinfoclass:: tuxemon.core.conditions.facing_tile.FacingTileCondition
+.. autoscriptinfoclass:: tuxemon.core.conditions.has_path.HasPathCondition
+.. autoscriptinfoclass:: tuxemon.core.conditions.has_status.HasStatusCondition
+.. autoscriptinfoclass:: tuxemon.core.conditions.has_tech.HasTechCondition
+.. autoscriptinfoclass:: tuxemon.core.conditions.location_inside.LocationInsideCondition
+.. autoscriptinfoclass:: tuxemon.core.conditions.location_type.LocationTypeCondition
+.. autoscriptinfoclass:: tuxemon.core.conditions.status.CurrentStatusCondition
+.. autoscriptinfoclass:: tuxemon.core.conditions.variable.VariableCondition
+.. autoscriptinfoclass:: tuxemon.core.conditions.wild_monster.WildMonsterCondition

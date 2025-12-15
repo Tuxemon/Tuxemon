@@ -3,12 +3,11 @@
 import unittest
 from unittest.mock import MagicMock
 
+from pydantic_core import ValidationError
+
 from tuxemon.db import Modifier
 from tuxemon.element import Element, ElementTypesHandler
-from tuxemon.modifiers import (
-    ModifierMode,
-    ModifiersHandler,
-)
+from tuxemon.modifiers import ModifiersHandler
 from tuxemon.monster import Monster
 
 
@@ -171,21 +170,8 @@ class TestModifiersHandler(unittest.TestCase):
         self.assertEqual(handler.first_applicable_damage(self.monster), 0.5)
 
     def test_invalid_attribute(self):
-        modifiers = [
-            Modifier(attribute="invalid", values=["fire"], multiplier=0.5),
-        ]
-        handler = ModifiersHandler(modifiers)
-        self.monster.types.current = [self.fire]
-        weakest = handler.weakest_link(self.monster)
-        self.assertEqual(weakest, 1.0)
-        strongest = handler.strongest_link(self.monster)
-        self.assertEqual(strongest, 1.0)
-        cumulative = handler.cumulative_damage(self.monster)
-        self.assertEqual(cumulative, 1.0)
-        average = handler.average_damage(self.monster)
-        self.assertEqual(average, 1.0)
-        first_applicable = handler.first_applicable_damage(self.monster)
-        self.assertEqual(first_applicable, 1.0)
+        with self.assertRaises(ValidationError):
+            Modifier(attribute="invalid", values=["fire"], multiplier=0.5)
 
     def test_list_modifiers(self):
         modifiers = [

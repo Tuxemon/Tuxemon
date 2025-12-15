@@ -46,8 +46,15 @@ class BasicStats:
 
 
 @dataclass
-class TemporaryStatBoosts(BasicStats):
-    """Temporary additive boosts to a monster's base stats."""
+class CustomStatBoosts(BasicStats):
+    """
+    Persistent, user- or modder-defined additive boosts to a monster's base
+    stats.
+
+    Unlike training points (which represent earned growth), custom stat boosts
+    are external modifications that can be saved, loaded, and adjusted to
+    tailor a monster's attributes beyond its natural progression.
+    """
 
     def to_dict(self) -> Mapping[str, int]:
         return {
@@ -55,7 +62,7 @@ class TemporaryStatBoosts(BasicStats):
         }
 
     @classmethod
-    def from_dict(cls, data: Mapping[str, int]) -> TemporaryStatBoosts:
+    def from_dict(cls, data: Mapping[str, int]) -> CustomStatBoosts:
         valid_fields = {field.name for field in fields(cls)}
         filtered_data = {k: v for k, v in data.items() if k in valid_fields}
         return cls(**filtered_data)
@@ -86,7 +93,7 @@ class StatCalculator:
         shape: ShapeHandler,
         taste_cold: str,
         taste_warm: str,
-        modifiers: TemporaryStatBoosts,
+        custom_stats: CustomStatBoosts,
         training_points: TrainingPoints,
     ):
         self.base_stats = base_stats
@@ -94,7 +101,7 @@ class StatCalculator:
         self.shape = shape
         self.taste_cold = taste_cold
         self.taste_warm = taste_warm
-        self.modifiers = modifiers
+        self.custom_stats = custom_stats
         self.training_points = training_points
 
     def calculate(self) -> BasicStats:
@@ -116,7 +123,7 @@ class StatCalculator:
             base_value = getattr(self.shape.attributes, stat) * multiplier
             raw_tp = getattr(self.training_points, stat)
             scaled_tp = int(raw_tp * level_scale)
-            modifier = getattr(self.modifiers, stat, 0)
+            modifier = getattr(self.custom_stats, stat, 0)
             total = base_value + scaled_tp + modifier
             setattr(stats, stat, total)
         return stats
@@ -163,19 +170,41 @@ class StatCalculator:
 
         return round(modified_stat)
 
+    def calculate_at_level(self, target_level: int) -> BasicStats:
+        """Returns final stats at a specific level without modifying internal state."""
+        if target_level <= 0:
+            raise ValueError("Target level must be a positive integer.")
+
+        raw_stats = self.calculate_raw_stats(level=target_level)
+        cold = Taste.get_taste(self.taste_cold)
+        warm = Taste.get_taste(self.taste_warm)
+        return self.apply_stat_updates(raw_stats, cold, warm)
+
+
+class StatAnalyzer:
+    """Provides detailed analysis, breakdown, and growth projections for monster stats."""
+
+    def __init__(self, calculator: StatCalculator):
+        self.calculator = calculator
+
     def get_breakdown(self) -> dict[str, dict[str, Any]]:
         """Returns a detailed breakdown of each stat's calculation."""
         breakdown = {}
-        multiplier = self.level + COEFF_STATS
-        level_scale = self.level / 100
-        cold = Taste.get_taste(self.taste_cold)
-        warm = Taste.get_taste(self.taste_warm)
+        multiplier = self.calculator.level + COEFF_STATS
+        level_scale = self.calculator.level / 100
+        cold = Taste.get_taste(self.calculator.taste_cold)
+        warm = Taste.get_taste(self.calculator.taste_warm)
 
         for stat_name in BasicStats.names():
-            base_value = getattr(self.shape.attributes, stat_name) * multiplier
-            raw_tp = getattr(self.training_points, stat_name)
+            base_value = (
+                getattr(self.calculator.shape.attributes, stat_name)
+                * multiplier
+            )
+            raw_tp = getattr(self.calculator.training_points, stat_name)
             scaled_tp = int(raw_tp * level_scale)
-            modifier_value = getattr(self.modifiers, stat_name, 0)
+            modifier_value = getattr(
+                self.calculator.custom_stats, stat_name, 0
+            )
 
             pre_taste_total = base_value + scaled_tp + modifier_value
 
@@ -186,7 +215,7 @@ class StatCalculator:
                         if stat_name in modifier.values:
                             taste_multiplier *= modifier.multiplier
 
-            final_value = int(pre_taste_total * taste_multiplier)
+            final_value = round(pre_taste_total * taste_multiplier)
 
             breakdown[stat_name] = {
                 "base_value": int(base_value),
@@ -200,18 +229,29 @@ class StatCalculator:
         return breakdown
 
     def evaluate_taste_efficiency(self) -> float:
-        """Returns a synergy score based on how well tastes match shape attributes."""
+        """Returns a normalized synergy score (-1 to +1) based on taste effects."""
         breakdown = self.get_breakdown()
-        score = 0.0
+        score: float = 0.0
+        total_base: float = 0.0
 
         for stat_name, data in breakdown.items():
-            base_stat_value = getattr(self.shape.attributes, stat_name)
+            base_stat_value = getattr(
+                self.calculator.shape.attributes, stat_name
+            )
+            total_base += base_stat_value
+
             if data["taste_multiplier"] > 1.0:
                 score += base_stat_value * (data["taste_multiplier"] - 1.0)
             elif data["taste_multiplier"] < 1.0:
                 score -= base_stat_value * (1.0 - data["taste_multiplier"])
 
-        return score
+        # Normalize to [-1, +1] range
+        if total_base > 0:
+            normalized_score = score / total_base
+        else:
+            normalized_score = 0.0
+
+        return normalized_score
 
     def get_stat_growth_curve(self, max_level: int) -> dict[int, BasicStats]:
         """Returns a level-to-stats map showing progression up to max_level."""
@@ -220,19 +260,9 @@ class StatCalculator:
 
         growth_curve = {}
         for level in range(1, max_level + 1):
-            growth_curve[level] = self.calculate_at_level(level)
+            growth_curve[level] = self.calculator.calculate_at_level(level)
 
         return growth_curve
-
-    def calculate_at_level(self, target_level: int) -> BasicStats:
-        """Returns final stats at a specific level without modifying internal state."""
-        if target_level <= 0:
-            raise ValueError("Target level must be a positive integer.")
-
-        raw_stats = self.calculate_raw_stats(level=target_level)
-        cold = Taste.get_taste(self.taste_cold)
-        warm = Taste.get_taste(self.taste_warm)
-        return self.apply_stat_updates(raw_stats, cold, warm)
 
 
 def randomize_stats(min_val: int, max_val: int) -> BasicStats:

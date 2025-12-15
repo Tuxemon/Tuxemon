@@ -26,8 +26,8 @@ class TestYAMLEventLoader(unittest.TestCase):
         self.assertGreater(len(result["event"]), 0)
         event = result["event"][0]
         self.assertEqual(event.name, "test_event")
-        self.assertEqual(event.x, 1)
-        self.assertEqual(event.y, 2)
+        self.assertEqual(event.box.x, 1)
+        self.assertEqual(event.box.y, 2)
 
     def test_load_collision(self):
         result = self.loader.load_collision(self.valid_yaml_path)

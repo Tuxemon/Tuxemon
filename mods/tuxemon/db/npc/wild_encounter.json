@@ -2,6 +2,7 @@
   "slug": "wild_encounter",
   "speech": {"profile": {"default": {}}},
   "combat": {},
+  "audio": {},
   "template": {
     "sprite_name": "invisible",
     "combat_front": "noclass",

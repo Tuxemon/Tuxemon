@@ -1,7 +1,6 @@
 {
   "tech_id": 241,
   "accuracy": 0.9,
-  "animation": "rockfall_193",
   "effects": [
     {
       "type": "multiattack",
@@ -13,13 +12,11 @@
       "type": "damage"
     }
   ],
-  "flip_axes": "",
   "speed": "normal",
   "potency": 0.0,
   "power": 1,
   "range": "ranged",
   "recharge": 3,
-  "sfx": "sfx_crumble2",
   "slug": "rocky_barrage",
   "sort": "damage",
   "modifiers": [],
@@ -42,5 +39,14 @@
   ],
   "use_failure": "combat_miss",
   "use_success": null,
-  "use_tech": "combat_used_x"
+  "use_tech": "combat_used_x",
+  "visuals": {
+    "animation": "rockfall_193",
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": "sfx_crumble2",
+    "volume": 1.5
+  }
 }

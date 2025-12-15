@@ -1,7 +1,6 @@
 {
   "tech_id": 46,
   "accuracy": 1,
-  "animation": "waterspurt",
   "effects": [
     {
       "type": "give",
@@ -14,18 +13,18 @@
       "type": "healing"
     }
   ],
-  "flip_axes": "",
   "healing_power": 2.0,
   "speed": "normal",
   "potency": 0.9,
   "power": 0,
   "range": "special",
   "recharge": 2,
-  "sfx": "sfx_forcefield",
   "slug": "wallow",
   "sort": "damage",
   "modifiers": [],
-  "behaviors": {},
+  "behaviors": {
+    "bypasses_selection": true
+  },
   "target": {
     "enemy_monster": false,
     "enemy_team": false,
@@ -43,5 +42,14 @@
   ],
   "use_failure": "combat_miss",
   "use_success": null,
-  "use_tech": "combat_used_x"
+  "use_tech": "combat_used_x",
+  "visuals": {
+    "animation": "waterspurt",
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": "sfx_forcefield",
+    "volume": 1.5
+  }
 }

@@ -323,21 +323,21 @@
    <properties>
     <property name="act10" value="translated_dialog xero_citypark_achievement"/>
     <property name="cond10" value="is char_facing_tile player"/>
-    <property name="cond20" value="is button_pressed K_RETURN"/>
+    <property name="cond20" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="102" name="Sign: Leather Town" type="event" x="608" y="160" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog citypark"/>
     <property name="cond10" value="is char_facing_tile player"/>
-    <property name="cond20" value="is button_pressed K_RETURN"/>
+    <property name="cond20" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="111" name="ripjimmy" type="event" x="32" y="384" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog ripjimmy"/>
     <property name="cond10" value="is char_facing_tile player"/>
-    <property name="cond30" value="is button_pressed K_RETURN"/>
+    <property name="cond30" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="112" name="make npcs" type="event" x="48" y="0" width="16" height="16">
@@ -358,7 +358,7 @@
     <property name="act50" value="translated_dialog_choice mistaken:thats_me,cityparkchoice"/>
     <property name="cond10" value="is char_at player"/>
     <property name="cond20" value="is char_facing player,right"/>
-    <property name="cond30" value="is button_pressed K_RETURN"/>
+    <property name="cond30" value="is button_pressed INTERACT"/>
     <property name="cond40" value="is variable_set firstgo:no"/>
    </properties>
   </object>

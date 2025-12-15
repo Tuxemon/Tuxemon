@@ -1,19 +1,16 @@
 {
   "tech_id": 92,
   "accuracy": 1,
-  "animation": "tux_attack",
   "effects": [
     {
       "type": "damage"
     }
   ],
-  "flip_axes": "",
   "speed": "extremely_fast",
   "potency": 0.0,
   "power": 2,
   "range": "melee",
   "recharge": 1,
-  "sfx": "sfx_forcefield",
   "slug": "tux_attack",
   "sort": "damage",
   "modifiers": [],
@@ -36,5 +33,14 @@
   ],
   "use_failure": "combat_miss",
   "use_success": null,
-  "use_tech": "combat_used_x"
+  "use_tech": "combat_used_x",
+  "visuals": {
+    "animation": "tux_attack",
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": "sfx_forcefield",
+    "volume": 1.5
+  }
 }

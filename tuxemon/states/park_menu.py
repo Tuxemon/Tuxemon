@@ -67,7 +67,7 @@ class MainParkMenuState(PopUpMenu[MenuGameObj]):
         self.itm_description: Optional[str] = None
         params = {"player": monster.get_owner().name}
         message = T.format("combat_player_choice", params)
-        self.combat.dialog.alert(message)
+        self.combat.dialog.alert(message, self.combat.text_area)
 
     def calculate_menu_rectangle(self) -> Rect:
         rect_screen = prepare.SCREEN_RECT.copy()
@@ -148,7 +148,9 @@ class MainParkMenuState(PopUpMenu[MenuGameObj]):
 
         def choose_item() -> None:
             items_filtered = ItemFilter(self.player.items)
-            items_filtered.set_filter_usable_in_state("MainCombatMenuState")
+            items_filtered.set_filter_combat_targets(
+                self.session, self.player.monsters, self.opponents
+            )
             menu = self.client.push_state(
                 ItemMenuState(self.player, self.name, items_filtered)
             )

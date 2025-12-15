@@ -111,6 +111,7 @@ class RandomEncounterAction(EventAction):
             teams=[player, npc],
             combat_type=CombatType.MONSTER,
             graphics=environment.battle_graphics,
+            music=environment.battle_music,
             battle_mode=BattleMode.SINGLE,
         )
         session.client.queue_state("CombatState", context=context)
@@ -124,11 +125,11 @@ class RandomEncounterAction(EventAction):
 
         session.client.push_state("FlashTransition", color=rgb)
 
-        session.client.event_engine.execute_action(
-            "play_music", [environment.battle_music], True
-        )
+        sound = environment.battle_music.battle
+        if sound.music:
+            session.client.current_music.play(sound.music, sound.volume)
 
-    def update(self, session: Session) -> None:
+    def update(self, session: Session, dt: float) -> None:
         try:
             session.client.get_queued_state_by_name("CombatState")
         except ValueError:

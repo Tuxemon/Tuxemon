@@ -1,7 +1,6 @@
 {
   "tech_id": 159,
   "accuracy": 0.9,
-  "animation": "explosion_sun_32",
   "effects": [
     {
       "type": "give",
@@ -14,13 +13,11 @@
       "type": "damage"
     }
   ],
-  "flip_axes": "",
   "speed": "normal",
   "potency": 0.9,
   "power": 1.1,
   "range": "ranged",
   "recharge": 1,
-  "sfx": "sfx_shine",
   "slug": "sunburst",
   "sort": "damage",
   "modifiers": [],
@@ -43,5 +40,14 @@
   ],
   "use_failure": "combat_miss",
   "use_success": null,
-  "use_tech": "combat_used_x"
+  "use_tech": "combat_used_x",
+  "visuals": {
+    "animation": "explosion_sun_32",
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": "sfx_shine",
+    "volume": 1.5
+  }
 }

@@ -93,7 +93,7 @@ events:
     conditions:
     - is char_at player
     - is char_facing player,up
-    - is button_pressed K_RETURN
+    - is button_pressed INTERACT
     x: 2
     y: 6
     type: event

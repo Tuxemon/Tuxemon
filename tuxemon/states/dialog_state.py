@@ -26,10 +26,13 @@ class DialogState(PopUpMenu[None]):
     """
     Game state with a graphic box and some text in it.
 
-    Pressing the action button:
-    * if text is being displayed, will cause text speed to go max
-    * when text is displayed completely, then will show the next message
-    * if there are no more messages, then the dialog will close
+    Features:
+    * Pressing the action button fast-forwards text.
+    * When text is complete, shows the next message.
+    * If no more messages, closes the dialog.
+    * Optionally auto-closes after N seconds, either:
+        - after the final line (default), or
+        - per line (each line advances after N seconds).
     """
 
     name: ClassVar[str] = "DialogState"
@@ -40,12 +43,23 @@ class DialogState(PopUpMenu[None]):
         avatar: Optional[Sprite] = None,
         box_style: Optional[dict[str, Any]] = None,
         on_complete: Optional[Callable[[], None]] = None,
+        auto_close: bool = True,
+        close_after: Optional[float] = None,
+        per_line_timeout: bool = False,
+        advance_buttons: Optional[list[int]] = None,
         **kwargs: Any,
     ) -> None:
         super().__init__(**kwargs)
         self.text_queue = list(text)
         self.avatar = avatar
         self.on_complete = on_complete
+        self.auto_close = auto_close
+        self.close_after = close_after
+        self.advance_buttons = advance_buttons or [buttons.A]
+        self.per_line_timeout = per_line_timeout
+
+        self._elapsed_time: float = 0.0
+        self._timer_active: bool = False
 
         default_box_style: dict[str, Any] = {
             "bg_color": self.background_color,
@@ -83,28 +97,110 @@ class DialogState(PopUpMenu[None]):
             self.sprites.add(self.avatar)
 
     def on_open(self) -> None:
+        """Start the dialog when the state is opened."""
         self.next_text()
+        if not self.text_queue and not self.auto_close:
+            self._timer_active = False
+
+    def add_advance_button(self, button: int) -> None:
+        """Add a button that can advance the dialog."""
+        if button not in self.advance_buttons:
+            self.advance_buttons.append(button)
+
+    def remove_advance_button(self, button: int) -> None:
+        """Remove a button from the dialog advance list."""
+        if button in self.advance_buttons:
+            self.advance_buttons.remove(button)
 
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
-        if event.pressed and event.button == buttons.A:
+        """Handle player input to fast-forward or advance dialog lines."""
+        if event.pressed and event.button in self.advance_buttons:
             if not self.dialog.is_dialog_complete(self.dialog_box):
                 logger.debug("Fast-forwarding current dialog line")
                 self.dialog.dump_remaining_text(self.dialog_box)
             else:
-                logger.debug("Dialog line complete, advancing to next")
-                self.next_text()
+                if self.dialog.is_busy():
+                    logger.debug(
+                        "Ignoring rapid click during AlertManager transition."
+                    )
+                    return None
+                if self.text_queue or self.auto_close:
+                    self.next_text()
+                    logger.debug("Dialog line complete, advancing to next")
         return None
 
+    def update(self, dt: float) -> None:
+        """Update dialog text, avatar, and auto-close timer each frame."""
+        super().update(dt)
+
+        if self.dialog_box.drawing_text:
+            self.dialog.update(dt)
+
+        if self.avatar:
+            self.avatar.update(dt)
+
+        # Handle auto-close countdown
+        if self._timer_active and self.close_after is not None:
+            self._elapsed_time += dt
+            if self._elapsed_time >= self.close_after:
+                if self.per_line_timeout and self.text_queue:
+                    # Advance automatically to next line
+                    logger.debug("Auto-advancing to next line after timeout")
+                    self._timer_active = False
+                    self.next_text()
+                else:
+                    # Close dialog after final line
+                    logger.debug("Dialog auto-closing after timeout")
+                    self.close_dialog()
+
     def next_text(self) -> Optional[str]:
+        """Advance to the next line of dialog or close when finished."""
         if self.dialog_box.drawing_text:
             return None
 
-        try:
+        if self.text_queue:
             text = self.text_queue.pop(0)
-            self.dialog.alert(text)
+
+            if not text:
+                return self.next_text()
+
+            self.dialog.alert(text, self.dialog_box)
+            self._reset_timer()
             return text
-        except IndexError:
-            self.client.pop_state(self)
-            if self.on_complete:
+
+        # No more text left
+        self._reset_timer()
+
+        if not self._timer_active and self.auto_close:
+            self.close_dialog()
+
+        return None
+
+    def close_dialog(self) -> None:
+        """Close the dialog immediately and trigger the completion callback."""
+        self._timer_active = False
+        self.client.pop_state(self)
+        self.client.event_bus.publish(
+            "DIALOG_CLOSED",
+            payload={
+                "state": self.name,
+                "auto_close": self.auto_close,
+                "remaining_text": self.text_queue.copy(),
+            },
+        )
+        if self.on_complete:
+            try:
                 self.on_complete()
-            return None
+            except Exception as e:
+                logger.error(f"Error in on_complete callback: {e}")
+
+    def _reset_timer(self) -> None:
+        """Reset elapsed time and activate the timer if conditions are met."""
+        self._elapsed_time = 0.0
+
+        if self.close_after is not None:
+            if self.per_line_timeout or not self.text_queue:
+                self._timer_active = True
+                return
+
+        self._timer_active = False

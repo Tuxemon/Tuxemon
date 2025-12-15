@@ -99,6 +99,7 @@ class ControllerConfigModel(BaseModel):
     transparency: int = 45
     hide_mouse: bool = True
     show_input_visualizer: bool = False
+    combo_window_seconds: float = 5.0
 
 
 class LoggingConfigModel(BaseModel):
@@ -317,6 +318,7 @@ class ControllerConfig:
         self.transparency = controller.transparency
         self.hide_mouse = controller.hide_mouse
         self.show_input_visualizer = controller.show_input_visualizer
+        self.combo_window_seconds = controller.combo_window_seconds
 
 
 class LocaleConfig:

@@ -16,8 +16,22 @@ if TYPE_CHECKING:
 @dataclass
 class LocationTypeCondition(CoreCondition):
     """
-    Determines whether the player's current location type matches a
-    specified category.
+    Checks whether the player's current location type matches a specified category.
+
+    **Parameters**
+    - ``location_type``: The type of location to check (must be one of the defined MAP_TYPES).
+
+    **Returns**
+    - ``True`` if the player's current location matches the given type.
+    - ``False`` otherwise.
+
+    **Example**
+
+    .. code-block:: json
+
+        "conditions": [
+            "is location_type cave"
+        ]
     """
 
     name = "location_type"

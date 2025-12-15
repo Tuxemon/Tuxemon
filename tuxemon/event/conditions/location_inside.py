@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from tuxemon.event import MapCondition
+from tuxemon.db import SpatialCondition
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
 
@@ -25,6 +25,6 @@ class LocationInsideCondition(EventCondition):
 
     name = "location_inside"
 
-    def test(self, session: Session, condition: MapCondition) -> bool:
+    def test(self, session: Session, condition: SpatialCondition) -> bool:
         client = session.client
         return client.map_manager.map_inside

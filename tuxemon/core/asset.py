@@ -8,7 +8,7 @@ from tuxemon.constants.paths import CORE_CONDITION_PATH, CORE_EFFECT_PATH
 from tuxemon.core.core_condition import CoreCondition
 from tuxemon.core.core_effect import CoreEffect
 from tuxemon.core.core_manager import ConditionManager, EffectManager
-from tuxemon.db import CommonCondition, CommonEffect
+from tuxemon.db import LogicCondition, ParameterizableRule
 from tuxemon.plugin import PluginObject
 
 
@@ -24,11 +24,11 @@ class CoreAssetManager:
         )
 
     def parse_effects(
-        self, data: Sequence[CommonEffect]
+        self, data: Sequence[ParameterizableRule]
     ) -> Sequence[PluginObject]:
         return self.effect_manager.parse_effects(data) if data else []
 
     def parse_conditions(
-        self, data: Sequence[CommonCondition]
+        self, data: Sequence[LogicCondition]
     ) -> Sequence[PluginObject]:
         return self.condition_manager.parse_conditions(data) if data else []

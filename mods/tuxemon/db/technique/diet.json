@@ -1,7 +1,6 @@
 {
   "tech_id": 231,
   "accuracy": 1.0,
-  "animation": "egg_crack",
   "effects": [
     {
       "type": "give",
@@ -11,13 +10,11 @@
       ]
     }
   ],
-  "flip_axes": "",
   "speed": "normal",
   "potency": 1.0,
   "power": 0.0,
   "range": "special",
   "recharge": 3,
-  "sfx": "sfx_bounce",
   "slug": "diet",
   "sort": "damage",
   "modifiers": [],
@@ -40,5 +37,14 @@
   ],
   "use_failure": "combat_miss",
   "use_success": null,
-  "use_tech": "combat_used_x"
+  "use_tech": "combat_used_x",
+  "visuals": {
+    "animation": "egg_crack",
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": "sfx_bounce",
+    "volume": 1.5
+  }
 }

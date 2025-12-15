@@ -7,8 +7,10 @@ import random
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Optional, final
 
+from tuxemon.boxes import BoxMetadata
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
+from tuxemon.prepare import MAX_KENNEL
 
 if TYPE_CHECKING:
     from tuxemon.npc import NPC
@@ -48,7 +50,9 @@ class QuarantineAction(EventAction):
         boxes = character.monster_boxes
 
         if not boxes.has_box(self.name, "monster"):
-            boxes.create_box(self.name, "monster")
+            boxes.create_box(
+                self.name, BoxMetadata(max_capacity=MAX_KENNEL, is_hidden=True)
+            )
 
         to_quarantine = [
             mon
@@ -95,7 +99,7 @@ class QuarantineAction(EventAction):
             monster.plague.inoculate(self.plague_slug)
 
             if party.transfer_monster_to_party(monster):
-                boxes.remove_monster_from(self.name, monster)
+                boxes.remove_from_box("monster", self.name, monster)
                 logger.info(f"{monster} has been inoculated and released")
             else:
                 logger.warning(f"Failed to release {monster} to party")

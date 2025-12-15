@@ -2,6 +2,7 @@
   "slug": "maple_girl",
   "speech": {"profile": {"default": {}}},
   "combat": {},
+  "audio": {},
   "template": {
     "sprite_name": "fashionista_fiery",
     "combat_front": "fashionista",

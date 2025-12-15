@@ -5,6 +5,7 @@ from __future__ import annotations
 import logging
 import random
 from dataclasses import dataclass, field
+from enum import Enum
 from pathlib import Path
 from typing import TYPE_CHECKING, Any
 
@@ -26,8 +27,8 @@ lookup_cache: dict[str, MonsterModel] = {}
 @dataclass
 class ActionConfig:
     trigger: float = 0.0
-    lower_bound: int = 0
-    upper_bound: int = 0
+    level_bounds: tuple[int, int] = (0, 0)
+    failure_dialog: str = "fishing_rod_failure"
     stages: list[str] = field(default_factory=list)
     stage_weights: dict[str, float] = field(default_factory=dict)
     shapes: list[str] = field(default_factory=list)
@@ -39,14 +40,18 @@ class ActionConfig:
     animation_color: list[int] = field(default_factory=list)
     environment: dict[str, str] = field(default_factory=dict)
     held_items: dict[str, float] = field(default_factory=dict)
-    exp_req_mod: list[float] = field(default_factory=list)
+    exp_req_mod: float | None = None
+    cast_time: float = 1.0
+    wait_time: float = 2.0
+    bite_time: float = 1.0
+    encounter_time: float = 0.5
 
     def validate_parameters(self) -> None:
         if not (0 <= self.trigger <= 1):
             raise ValueError("Trigger must be between 0 and 1 inclusive.")
-        if self.lower_bound < 0 or self.upper_bound < 0:
+        if self.level_bounds[0] < 0 or self.level_bounds[1] < 0:
             raise ValueError("Bounds must be non-negative.")
-        if self.lower_bound > self.upper_bound:
+        if self.level_bounds[0] > self.level_bounds[1]:
             raise ValueError("Lower bound cannot exceed upper bound.")
 
 
@@ -76,18 +81,29 @@ class Loader:
         return cls._config_fishing
 
 
+class FishingStage(Enum):
+    CAST = 1
+    WAIT = 2
+    BITE = 3
+    ENCOUNTER = 4
+    DONE = 5
+
+
 @dataclass
 class FishingEffect(CoreEffect):
     """This effect triggers fishing."""
 
     name = "fishing"
+    stage: FishingStage = FishingStage.CAST
+    _elapsed: float = 0.0
+    _duration: float = 0.0
+    _pending_encounter: tuple[str, int] | None = None
+    _trigger_next_frame: bool = False
 
     def apply_item(self, session: Session, item: Item) -> ItemEffectResult:
         if not lookup_cache:
             _lookup_monsters()
 
-        self.player = session.player
-        self.client = session.client
         fishing_configs = Loader.get_config_fishing(f"{self.name}.yaml")
 
         self._fish: ActionConfig = fishing_configs[item.slug]
@@ -97,13 +113,88 @@ class FishingEffect(CoreEffect):
 
         if monster_slugs and random.random() <= self._fish.trigger:
             mon_slug = monster_slugs[0]
-            level = random.randint(
-                self._fish.lower_bound, self._fish.upper_bound
-            )
-            self._trigger_fishing_encounter(mon_slug, level)
-            return ItemEffectResult(name=item.name, success=True)
+            low, high = self._fish.level_bounds
+            level = random.randint(low, high)
+            self._pending_encounter = (mon_slug, level)
 
-        return ItemEffectResult(name=item.name)
+        self.stage = FishingStage.CAST
+        self._elapsed = 0.0
+        self._duration = self._fish.cast_time
+        return ItemEffectResult(name=item.name, success=True)
+
+    def update(self, session: Session, dt: float) -> None:
+        session.client.movement_manager.lock_controls(session.player)
+        if self.stage == FishingStage.DONE:
+            return
+
+        self._elapsed += dt
+
+        if self.stage == FishingStage.CAST and self._elapsed >= self._duration:
+            self.stage = FishingStage.WAIT
+            self._elapsed = 0.0
+            self._duration = self._fish.wait_time
+
+        elif (
+            self.stage == FishingStage.WAIT and self._elapsed >= self._duration
+        ):
+            self.stage = FishingStage.BITE
+            self._elapsed = 0.0
+            self._duration = self._fish.bite_time
+
+        elif (
+            self.stage == FishingStage.BITE and self._elapsed >= self._duration
+        ):
+            if self._pending_encounter:
+                self._trigger_next_frame = True
+            self.stage = FishingStage.ENCOUNTER
+            self._elapsed = 0.0
+            self._duration = self._fish.encounter_time
+
+        elif (
+            self.stage == FishingStage.ENCOUNTER
+            and self._elapsed >= self._duration
+        ):
+            if self._trigger_next_frame and self._pending_encounter:
+                mon_slug, level = self._pending_encounter
+                exp_req_mod = self._fish.exp_req_mod
+                environment = (
+                    self._fish.environment.get("night")
+                    if session.player.game_variables.get("stage_of_day")
+                    == "night"
+                    else self._fish.environment.get("default")
+                )
+                rgb = ":".join(map(str, self._fish.animation_color))
+                held_item = None
+                if self._fish.held_items:
+                    items, weights = zip(*self._fish.held_items.items())
+                    held_item = random.choices(items, weights=weights, k=1)[0]
+
+                session.client.event_engine.execute_action(
+                    "wild_encounter",
+                    [
+                        mon_slug,
+                        level,
+                        exp_req_mod,
+                        None,
+                        environment,
+                        rgb,
+                        held_item,
+                    ],
+                    True,
+                )
+                self._pending_encounter = None
+                self._trigger_next_frame = False
+            else:
+                dialog_key = self._fish.failure_dialog
+                session.client.event_engine.execute_action(
+                    "translated_dialog", [dialog_key], True
+                )
+                logger.info("Fishing attempt ended with no catch.")
+            session.client.movement_manager.unlock_controls(session.player)
+            self.stage = FishingStage.DONE
+
+    def is_finished(self) -> bool:
+        return self.stage == FishingStage.DONE
 
     def _get_fishing_monsters(self) -> list[str]:
         """Return a list of monster slugs based on config filters and weighted selection."""
@@ -151,31 +242,9 @@ class FishingEffect(CoreEffect):
         return shape_weight * stage_weight * type_weight * tag_weight
 
     def _trigger_fishing_encounter(self, mon_slug: str, level: int) -> None:
-        """Trigger a fishing encounter with environment, color, held item, and exp modifier."""
-        environment = (
-            self._fish.environment.get("night")
-            if self.player.game_variables.get("stage_of_day") == "night"
-            else self._fish.environment.get("default")
-        )
-
-        rgb = ":".join(map(str, self._fish.animation_color))
-
-        held_item = None
-        if self._fish.held_items:
-            items, weights = zip(*self._fish.held_items.items())
-            held_item = random.choices(items, weights=weights, k=1)[0]
-
-        logger.debug(
-            f"Selected monster: {mon_slug}, level: {level}, held_item: {held_item}"
-        )
-
-        exp_req_mod = self._fish.exp_req_mod
-
-        self.client.event_engine.execute_action(
-            "wild_encounter",
-            [mon_slug, level, exp_req_mod, None, environment, rgb, held_item],
-            True,
-        )
+        """Prepare a fishing encounter (store slug + level only)."""
+        self._pending_encounter = (mon_slug, level)
+        self._trigger_next_frame = True
 
 
 def _lookup_monsters() -> None:

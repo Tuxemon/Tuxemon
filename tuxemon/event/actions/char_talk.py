@@ -78,7 +78,7 @@ class CharTalkAction(EventAction):
         text = TextFormatter.replace_text(session, line, T)
         open_dialog(client=session.client, text=[T.translate(text)])
 
-    def update(self, session: Session) -> None:
+    def update(self, session: Session, dt: float) -> None:
         try:
             session.client.get_state_by_name("DialogState")
         except ValueError:

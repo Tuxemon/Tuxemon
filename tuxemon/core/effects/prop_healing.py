@@ -25,7 +25,6 @@ class PropHealingEffect(CoreEffect):
         proportional: The percentage of the max HP (from 0 to 1)
 
     eg prop_healing own_monster,0.25 (1/4 max enemy HP)
-
     """
 
     name = "prop_healing"

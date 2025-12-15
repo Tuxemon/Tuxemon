@@ -25,7 +25,7 @@ class AnimationEntity:
         self,
         slug: str,
         duration: Optional[float] = None,
-        loop: Optional[bool] = None,
+        loop: Optional[int] = None,
     ) -> None:
         self.slug = slug
         self.duration = duration
@@ -58,7 +58,7 @@ class AnimationManager:
         self,
         slug: str,
         duration: Optional[float] = None,
-        loop: Optional[bool] = None,
+        loop: Optional[int] = None,
     ) -> SurfaceAnimation:
         """
         Retrieves a cached animation or creates a new one.
@@ -126,9 +126,9 @@ def setup_and_play_animation(
         manager: Instance of AnimationManager to manage caching and playback.
     """
     if loop == "loop":
-        loop_mode = True
+        loop_mode = -1
     elif loop == "noloop":
-        loop_mode = False
+        loop_mode = 0
     else:
         raise ValueError(f"{loop} value must be 'loop' or 'noloop'")
 

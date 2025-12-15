@@ -28,7 +28,7 @@
     },
     {
       "level_learned": 19,
-      "technique": "shadow_boxing"
+      "technique": "horn"
     },
     {
       "level_learned": 25,
@@ -82,8 +82,14 @@
   "height": 92,
   "weight": 402,
   "sounds": {
-    "combat_call": "sound_burble_02",
-    "faint_call": "sound_burble_02_faint"
+    "combat_call": {
+      "sfx": "sound_burble_02",
+      "volume": 1.5
+    },
+    "faint_call": {
+      "sfx": "sound_burble_02_faint",
+      "volume": 1.5
+    }
   },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,

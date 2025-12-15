@@ -1,0 +1,48 @@
+{
+  "tech_id": 253,
+  "accuracy": 1.0,
+  "effects": [
+    {
+      "type": "life_swap"
+    },
+    {
+      "type": "damage"
+    }
+  ],
+  "speed": "extremely_slow",
+  "potency": 0.0,
+  "power": 0.0,
+  "range": "touch",
+  "recharge": 2,
+  "slug": "kiss",
+  "sort": "damage",
+  "modifiers": [],
+  "behaviors": {},
+  "target": {
+    "enemy_monster": true,
+    "enemy_team": false,
+    "enemy_trainer": false,
+    "own_monster": false,
+    "own_team": false,
+    "own_trainer": false
+  },
+  "category": "special",
+  "tags": [
+    "tongue"
+  ],
+  "types": [
+    "normal"
+  ],
+  "use_failure": "combat_miss",
+  "use_success": null,
+  "use_tech": "combat_used_x",
+  "visuals": {
+    "animation": "tonguelash",
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": null,
+    "volume": 1.5
+  }
+}

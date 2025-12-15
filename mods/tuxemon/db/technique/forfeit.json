@@ -1,21 +1,20 @@
 {
-  "animation": null,
   "accuracy": 0,
   "effects": [
     {
       "type": "forfeit"
     }
   ],
-  "flip_axes": "",
   "speed": "fast",
   "potency": 0,
   "power": 0,
   "range": "special",
-  "sfx": "sfx_pulse",
   "slug": "menu_forfeit",
   "sort": "meta",
   "modifiers": [],
-  "behaviors": {},
+  "behaviors": {
+    "bypasses_selection": true
+  },
   "target": {
     "enemy_monster": false,
     "enemy_team": false,
@@ -31,5 +30,14 @@
   "tech_id": 0,
   "use_failure": "generic_failure",
   "use_success": null,
-  "use_tech": "combat_used_x"
+  "use_tech": "combat_used_x",
+  "visuals": {
+    "animation": null,
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": "sfx_pulse",
+    "volume": 1.5
+  }
 }

@@ -68,7 +68,7 @@ class WorldMenuState(PygameMenuState):
         self.menu_manager = menu_manager
         self.menu_manager.set_menu_renderer(self)
         self.update_menu_from_manager()
-        self.handler = MonsterMenuHandler(self.client, self.char)
+        self.handler = MonsterMenuHandler(self.client, self.char.party)
 
     def update_menu_from_manager(self) -> None:
         """Refreshes the menu display using items provided by the manager."""

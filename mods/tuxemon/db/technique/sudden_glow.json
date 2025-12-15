@@ -1,7 +1,6 @@
 {
   "tech_id": 67,
   "accuracy": 1,
-  "animation": "heal_burst_120",
   "effects": [
     {
       "type": "give",
@@ -21,18 +20,18 @@
       "type": "healing"
     }
   ],
-  "flip_axes": "",
   "healing_power": 2.0,
   "speed": "normal",
   "potency": 1,
   "power": 0,
   "range": "special",
   "recharge": 2,
-  "sfx": "sfx_shine",
   "slug": "sudden_glow",
   "sort": "damage",
   "modifiers": [],
-  "behaviors": {},
+  "behaviors": {
+    "bypasses_selection": true
+  },
   "target": {
     "enemy_monster": false,
     "enemy_team": false,
@@ -51,5 +50,14 @@
   ],
   "use_failure": "combat_miss",
   "use_success": null,
-  "use_tech": "combat_used_x"
+  "use_tech": "combat_used_x",
+  "visuals": {
+    "animation": "heal_burst_120",
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": "sfx_shine",
+    "volume": 1.5
+  }
 }

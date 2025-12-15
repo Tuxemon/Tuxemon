@@ -43,6 +43,8 @@ class NPCState(BaseModel):
     item_boxes: dict[str, list[Mapping[str, Any]]] = Field(
         default_factory=dict
     )
+    monster_box_metadata: dict[str, Any] = Field(default_factory=dict)
+    item_box_metadata: dict[str, Any] = Field(default_factory=dict)
     tile_pos: Optional[tuple[int, int]] = Field(default=None)
     teleport_faint: dict[str, Any] = Field(default_factory=dict)
     tracker: dict[str, Any] = Field(default_factory=dict)
@@ -61,4 +63,5 @@ class SaveData(BaseModel):
     npc_state: Optional[NPCState] = Field(default=None)
     world_state: Optional[WorldSave] = Field(default=None)
     session_state: Optional[SessionSave] = Field(default=None)
+    shop_stock: dict[str, dict[str, Any]] = Field(default_factory=dict)
     persistent_state: list[NPCState] = Field(default_factory=list)

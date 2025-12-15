@@ -82,7 +82,7 @@ class PathfindToCharAction(EventAction):
 
         self.moving_entity.pathfind(final_destination)
 
-    def update(self, session: Session) -> None:
+    def update(self, session: Session, dt: float) -> None:
         assert self.moving_entity
         if not (self.moving_entity.moving or self.moving_entity.path):
             self.stop()

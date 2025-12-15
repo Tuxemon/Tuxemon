@@ -19,38 +19,7 @@ if TYPE_CHECKING:
 logger = logging.getLogger(__name__)
 
 
-class MapCondition(NamedTuple):
-    type: str
-    parameters: Sequence[str]
-    x: int
-    y: int
-    width: int
-    height: int
-    operator: str
-    name: Optional[str]
-
-
-class MapAction(NamedTuple):
-    type: str
-    parameters: Sequence[str]
-    name: Optional[str]
-
-
-class EventObject(NamedTuple):
-    id: Optional[int]
-    name: str
-    x: int
-    y: int
-    w: int
-    h: int
-    conds: Sequence[MapCondition]
-    acts: Sequence[MapAction]
-
-
 __all__ = [
-    "EventObject",
-    "MapAction",
-    "MapCondition",
     "get_npc",
     "get_npc_by_iid",
     "get_npc_pos",

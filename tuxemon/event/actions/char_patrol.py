@@ -74,7 +74,7 @@ class CharPatrolAction(EventAction):
             logger.error(f"Failed to parse patrol path: {e}")
             return
 
-    def update(self, session: Session) -> None:
+    def update(self, session: Session, dt: float) -> None:
         if not self.character or not self.patrol_points:
             self.stop()
             return

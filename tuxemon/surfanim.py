@@ -134,7 +134,7 @@ class SurfaceAnimation:
     def __init__(
         self,
         frames: Sequence[tuple[Union[str, Surface], float]],
-        loop: bool = True,
+        loop: int = -1,
         play_mode: PlayMode = PlayMode.FORWARD,
     ) -> None:
         self._frame_manager = FrameManager(frames)
@@ -145,6 +145,7 @@ class SurfaceAnimation:
         self._state: State = State.STOPPED
         self._play_mode = play_mode
         self._loop = loop
+        self._completed_loops: int = 0
         self._rate: float = 1.0
         self._visibility: bool = True
         self._on_completion_callback: Optional[Callable[..., Any]] = None
@@ -162,8 +163,24 @@ class SurfaceAnimation:
         return self.get_frame(self.frames_played)
 
     def is_finished(self) -> bool:
-        """Return ``True`` if this animation has finished playing."""
-        return not self.loop and self.elapsed >= self.duration
+        if self._loop == -1:
+            return False
+        if self._state == State.STOPPED:
+            return False  # not playing yet
+
+        if self._state == State.PLAYING:
+            total_elapsed = (
+                self._internal_clock - self._playing_start_time
+            ) * self.rate
+        else:  # PAUSED
+            total_elapsed = (
+                self._paused_start_time - self._playing_start_time
+            ) * self.rate
+
+        allowed_cycles = self._loop + 1
+        completed = int(total_elapsed // self.duration)
+
+        return completed >= allowed_cycles
 
     def play(self, start_time: Optional[float] = None) -> None:
         """Start playing the animation."""
@@ -171,7 +188,7 @@ class SurfaceAnimation:
             start_time = self._internal_clock
 
         if self._state == State.PLAYING:
-            if not self.loop and self.is_finished():
+            if self.loop != -1 and self.is_finished():
                 # If non-looping and finished, restart from the beginning
                 self._playing_start_time = start_time
                 self._state = State.PLAYING
@@ -275,18 +292,22 @@ class SurfaceAnimation:
         self._rate = rate
 
     @property
-    def loop(self) -> bool:
+    def loop(self) -> int:
         return self._loop
 
     @loop.setter
-    def loop(self, loop: bool) -> None:
-        if self.state == State.PLAYING and self._loop and not loop:
-            # If we are turning off looping while the animation is playing,
-            # we need to modify the _playing_start_time so that the rest of
-            # the animation will play, and then stop. Otherwise, the
-            # animation will immediately stop playing if it has already looped.
+    def loop(self, loop: int) -> None:
+        if loop < -1:
+            raise ValueError("loop must be -1 (infinite) or >= 0")
+
+        # If we are turning off infinite looping while the animation is playing,
+        # adjust the start time so the current cycle finishes instead of stopping
+        # immediately.
+        if self.state == State.PLAYING and self._loop == -1 and loop >= 0:
             self._playing_start_time = self._internal_clock - self.elapsed
-        self._loop = bool(loop)
+
+        self._loop = loop
+        self._completed_loops = 0
 
     @property
     def state(self) -> State:
@@ -313,25 +334,29 @@ class SurfaceAnimation:
 
     @property
     def elapsed(self) -> float:
-        """
-        Get the elapsed time of the animation.
-        """
         if self._state == State.STOPPED:
             return 0.0
 
         if self._state == State.PLAYING:
-            elapsed = (
+            total_elapsed = (
                 self._internal_clock - self._playing_start_time
             ) * self.rate
-        else:  # State.PAUSED
-            elapsed = (
+        else:  # PAUSED
+            total_elapsed = (
                 self._paused_start_time - self._playing_start_time
             ) * self.rate
 
-        if self.loop:
-            return elapsed % self.duration
-        else:
-            return clip(elapsed, 0, self.duration)
+        if self._loop == -1:
+            return total_elapsed % self.duration
+
+        allowed_cycles = self._loop + 1
+        completed = int(total_elapsed // self.duration)
+        self._completed_loops = completed
+
+        if completed >= allowed_cycles:
+            return self.duration
+
+        return total_elapsed % self.duration
 
     @property
     def progress(self) -> float:
@@ -385,7 +410,7 @@ class SurfaceAnimation:
         if total_frames == 0:
             return
 
-        if self.loop:
+        if self.loop == -1:
             frame_num = frame_num % total_frames
         else:
             frame_num = clip(frame_num, 0, total_frames - 1)

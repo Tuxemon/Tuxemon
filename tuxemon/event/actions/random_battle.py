@@ -117,14 +117,16 @@ class RandomBattleAction(EventAction):
             teams=[player, npc],
             combat_type=CombatType.TRAINER,
             graphics=env.battle_graphics,
+            music=env.battle_music,
             battle_mode=BattleMode.SINGLE,
         )
         session.client.push_state("CombatState", context=context)
-        session.client.event_engine.execute_action(
-            "play_music", [env.battle_music], True
-        )
+        active_music = npc.get_active_battle_music(env.battle_music)
+        sound = active_music.battle
+        if sound.music:
+            session.client.current_music.play(sound.music, sound.volume)
 
-    def update(self, session: Session) -> None:
+    def update(self, session: Session, dt: float) -> None:
         try:
             session.client.get_state_by_name("CombatState")
         except ValueError:

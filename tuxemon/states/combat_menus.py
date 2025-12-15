@@ -15,7 +15,7 @@ from pygame.surface import Surface
 from tuxemon import graphics, prepare, tools
 from tuxemon.combat import utils
 from tuxemon.combat.menu_visibility import MenuProfiles
-from tuxemon.db import EffectPhase, State, TechSort
+from tuxemon.db import EffectPhase, SpeedLabel, State
 from tuxemon.item.filter import ItemFilter
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
@@ -77,7 +77,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             )
         params = {"name": monster.name}
         message = T.format("combat_monster_choice", params)
-        self.combat.dialog.alert(message)
+        self.combat.dialog.alert(message, self.combat.text_area)
 
         self.type_icon_sprites: list[Sprite] = []
         self.text_sprites: dict[str, Sprite] = {}
@@ -86,22 +86,22 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
 
     def _clear_tech_overlay(self) -> None:
         """Remove technique icons/text from the overlay."""
-        if hasattr(self, "range_icon_sprite") and self.range_icon_sprite:
+        if self.range_icon_sprite:
             if self.range_icon_sprite in self.sprites:
                 self.sprites.remove(self.range_icon_sprite)
             self.range_icon_sprite = None
 
-        if hasattr(self, "speed_icon_sprite") and self.speed_icon_sprite:
+        if self.speed_icon_sprite:
             if self.speed_icon_sprite in self.sprites:
                 self.sprites.remove(self.speed_icon_sprite)
             self.speed_icon_sprite = None
 
-        if hasattr(self, "type_icon_sprites"):
+        if self.type_icon_sprites:
             for spr in self.type_icon_sprites:
                 if spr in self.sprites:
                     self.sprites.remove(spr)
 
-        if hasattr(self, "text_sprites"):
+        if self.text_sprites:
             for spr in self.text_sprites.values():
                 if spr in self.sprites:
                     self.sprites.remove(spr)
@@ -129,6 +129,16 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
 
         if self.enemy.combat.forfeit:
             visibility_map["menu_forfeit"] = True
+
+        items_filtered = ItemFilter(self.character.items)
+        items_filtered.set_filter_combat_targets(
+            self.session, self.character.monsters, self.opponents
+        )
+        if not items_filtered.items:
+            visibility_map["menu_item"] = False
+
+        if self.character.party.party_size == 1:
+            visibility_map["menu_monster"] = False
 
         for key, method_name in menu_map.items():
             callback = getattr(self, method_name)
@@ -226,7 +236,9 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
         def choose_item() -> None:
             # open menu to choose item
             items_filtered = ItemFilter(self.character.items)
-            items_filtered.set_filter_usable_in_state("MainCombatMenuState")
+            items_filtered.set_filter_combat_targets(
+                self.session, self.character.monsters, self.opponents
+            )
             menu = self.client.push_state(
                 ItemMenuState(self.character, self.name, items_filtered)
             )
@@ -318,7 +330,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                 tech_enabled = True
 
                 if tech.is_recharging:
-                    tech_name = f"{tech.name} ({abs(tech.next_use)})"
+                    tech_name = f"{tech.name} ({abs(tech.current_cooldown)})"
                     tech_color = self.unavailable_color
                     tech_enabled = False
 
@@ -342,34 +354,30 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
 
             def show() -> None:
                 # Clear the combat dialog so the old "What will X do?" text disappears
-                self.combat.dialog.alert("", dialog_speed="max")
+                self.combat.dialog.alert(
+                    "", self.combat.text_area, dialog_speed="max"
+                )
 
                 screen_w, screen_h = prepare.SCREEN_SIZE
 
                 # --- Clear old sprites if they exist ---
-                if (
-                    hasattr(self, "range_icon_sprite")
-                    and self.range_icon_sprite
-                ):
+                if self.range_icon_sprite:
                     if self.range_icon_sprite in self.sprites:
                         self.sprites.remove(self.range_icon_sprite)
                     self.range_icon_sprite = None
 
-                if (
-                    hasattr(self, "speed_icon_sprite")
-                    and self.speed_icon_sprite
-                ):
+                if self.speed_icon_sprite:
                     if self.speed_icon_sprite in self.sprites:
                         self.sprites.remove(self.speed_icon_sprite)
                     self.speed_icon_sprite = None
 
-                if hasattr(self, "type_icon_sprites"):
+                if self.type_icon_sprites:
                     for spr in self.type_icon_sprites:
                         if spr in self.sprites:
                             self.sprites.remove(spr)
                 self.type_icon_sprites = []
 
-                if hasattr(self, "text_sprites"):
+                if self.text_sprites:
                     for spr in self.text_sprites.values():
                         if spr in self.sprites:
                             self.sprites.remove(spr)
@@ -377,8 +385,8 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
 
                 # --- Technique reference ---
                 tech = menu.get_selected_item()
-                assert tech and tech.game_object
-                technique = tech.game_object
+                assert tech
+                technique: Technique = tech.game_object
 
                 # --- Draw type icons ---
                 if technique.types.current:
@@ -412,54 +420,39 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                             )
 
                 # --- Draw range icon ---
-                if technique.range:
-                    path = f"gfx/ui/icons/range/{technique.range.name.lower()}.png"
-                    try:
-                        surf = graphics.load_and_scale(path, prepare.SCALE)
-                        spr = Sprite()
-                        spr.image = surf
-                        spr.rect = surf.get_rect()
-                        spr.rect.topleft = (
-                            fix_measure(screen_w, 7 / 256),
-                            fix_measure(screen_h, 121 / 144),
-                        )
-                        self.sprites.add(spr, layer=200)
-                        self.range_icon_sprite = spr
-                    except Exception as e:
-                        logger.error(f"Could not load range icon {path}: {e}")
+                path = f"gfx/ui/icons/range/{technique.range.name.lower()}.png"
+                try:
+                    surf = graphics.load_and_scale(path, prepare.SCALE)
+                    spr = Sprite()
+                    spr.image = surf
+                    spr.rect = surf.get_rect()
+                    spr.rect.topleft = (
+                        fix_measure(screen_w, 7 / 256),
+                        fix_measure(screen_h, 121 / 144),
+                    )
+                    self.sprites.add(spr, layer=200)
+                    self.range_icon_sprite = spr
+                except Exception as e:
+                    logger.error(f"Could not load range icon {path}: {e}")
 
                 # --- Draw speed icon ---
-                if technique.speed is not None:
-                    mapping = {
-                        -3: "extremely_slow",
-                        -2: "very_slow",
-                        -1: "slow",
-                        0: "normal",
-                        1: "fast",
-                        2: "very_fast",
-                        3: "extremely_fast",
-                    }
-                    if hasattr(technique.speed, "value"):
-                        speed_val = technique.speed.value
-                    elif isinstance(technique.speed, int):
-                        speed_val = mapping.get(technique.speed, "normal")
-                    else:
-                        speed_val = str(technique.speed).lower()
+                speed_label = SpeedLabel.from_numeric(technique.speed)
+                speed_val = speed_label.value
 
-                    path = f"gfx/ui/icons/speed/{speed_val}.png"
-                    try:
-                        surf = graphics.load_and_scale(path, prepare.SCALE)
-                        spr = Sprite()
-                        spr.image = surf
-                        spr.rect = surf.get_rect()
-                        spr.rect.topleft = (
-                            fix_measure(screen_w, 135 / 256),
-                            fix_measure(screen_h, 113 / 144),
-                        )
-                        self.sprites.add(spr, layer=200)
-                        self.speed_icon_sprite = spr
-                    except Exception as e:
-                        logger.error(f"Could not load speed icon {path}: {e}")
+                path = f"gfx/ui/icons/speed/{speed_val}.png"
+                try:
+                    surf = graphics.load_and_scale(path, prepare.SCALE)
+                    spr = Sprite()
+                    spr.image = surf
+                    spr.rect = surf.get_rect()
+                    spr.rect.topleft = (
+                        fix_measure(screen_w, 135 / 256),
+                        fix_measure(screen_h, 113 / 144),
+                    )
+                    self.sprites.add(spr, layer=200)
+                    self.speed_icon_sprite = spr
+                except Exception as e:
+                    logger.error(f"Could not load speed icon {path}: {e}")
 
                 # --- Draw text labels ---
                 font = self.font
@@ -467,7 +460,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
 
                 text_lines = {
                     "accuracy": f"{T.translate('technique_accuracy')} {int(technique.accuracy * 100)}%",
-                    "recharge": f"{T.translate('technique_recharge')} {technique.recharge_length} {T.translate('technique_turns')}",
+                    "recharge": f"{T.translate('technique_recharge')} {technique.cooldown_duration} {T.translate('technique_turns')}",
                 }
 
                 # Only add Power if it's not zero
@@ -509,7 +502,9 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                 # Restore the original combat prompt
                 params = {"name": self.monster.name}
                 message = T.format("combat_monster_choice", params)
-                self.combat.dialog.alert(message, dialog_speed="max")
+                self.combat.dialog.alert(
+                    message, self.combat.text_area, dialog_speed="max"
+                )
 
             menu.on_menu_selection_change_callback = show
             menu.on_close_callback = hide
@@ -576,7 +571,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             if len(self.opponents) > 1:
                 self.client.remove_state_by_name("CombatTargetMenuState")
             self.client.remove_state_by_name("Menu")
-            self.client.remove_state_by_name("MainCombatMenuState")
+            self.client.pop_state(self)
 
         choose_technique()
 
@@ -601,11 +596,10 @@ class CombatTargetMenuState(Menu[Monster]):
         self._create_menu()
 
     def initialize_items(self) -> Generator[MenuItem[Monster], None, None]:
-        """Generates menu items based on targeting rules."""
-        if (
-            self.technique.has_type("aether")
-            or self.technique.sort == TechSort.meta
-        ):
+        """Generates menu items based on targeting rules for 2vs2 or 1vs2 combat."""
+        self.targeting_map.clear()
+
+        if self.technique.behaviors.bypasses_selection:
             yield self._create_menu_item(self.monster)
             return
 
@@ -618,10 +612,7 @@ class CombatTargetMenuState(Menu[Monster]):
             )
             self.targeting_map[targeting_class].extend(monsters)
 
-            if (
-                targeting_class not in self.technique.target
-                or not self.technique.target[targeting_class]
-            ):
+            if not self.technique.target.get(targeting_class):
                 continue
 
             for monster in monsters:
@@ -678,25 +669,26 @@ class CombatTargetMenuState(Menu[Monster]):
         super().refresh_layout()
 
     def _update_borders(self) -> None:
-        """Clears old borders and draws new ones around the selected item."""
+        """Draws borders around the currently selected monster in 2vs2/1vs2 combat."""
         for sprite in self.menu_items:
             sprite.image.fill((0, 0, 0, 0))
 
         if selected := self.get_selected_item():
-            selected.image = Surface(selected.rect.size, SRCALPHA)
             monster = selected.game_object
             pos = self.combat_state.sprite_map.get_sprite(monster)
             if pos is None:
-                raise KeyError(f"Sprite not found for entity: {monster.name}")
-            scale = tools.scale(12)
+                return
+
+            selected.image = Surface(selected.rect.size, SRCALPHA)
+            BORDER_OFFSET = tools.scale(12)
             selected.rect.center = (
-                pos.rect.centerx - scale,
-                pos.rect.centery - scale,
+                pos.rect.centerx - BORDER_OFFSET,
+                pos.rect.centery - BORDER_OFFSET,
             )
             self.border.draw(selected.image)
 
             if selected.description:
-                self.dialog.alert(selected.description)
+                self.dialog.alert(selected.description, self.text_area)
 
     def on_menu_selection_change(self) -> None:
         """Handles border updates when selection changes."""

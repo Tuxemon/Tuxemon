@@ -370,7 +370,7 @@
     <property name="act1" value="translated_dialog spyder_pc_recorded_conversation"/>
     <property name="act2" value="translated_dialog_choice no:yes,unveildefossilator"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="133" name="Flashback Dempsey" type="event" x="208" y="16" width="16" height="16">
@@ -378,7 +378,7 @@
     <property name="act1" value="translated_dialog spyder_pc_recorded_conversation"/>
     <property name="act2" value="translated_dialog_choice no:yes,dempsey_flashback"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="134" name="Trigger Fossilator" type="event" x="160" y="16" width="16" height="16">

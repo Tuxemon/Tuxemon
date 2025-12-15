@@ -25,7 +25,6 @@ from pygame.surface import Surface
 from pygame.transform import rotozoom, scale
 
 from tuxemon import graphics
-from tuxemon.combat.utils import fainted_party
 from tuxemon.platform.const import buttons
 from tuxemon.platform.events import PlayerInput
 from tuxemon.surfanim import SurfaceAnimation
@@ -33,6 +32,7 @@ from tuxemon.tools import scale as tuxemon_scale
 
 if TYPE_CHECKING:
     from tuxemon.db import BattleIconsModel
+    from tuxemon.entity_dir.party import PartyHandler
     from tuxemon.menu.interface import MenuItem
     from tuxemon.monster import Monster
 
@@ -363,7 +363,7 @@ class HordeSprite(Sprite):
 
     def __init__(
         self,
-        opponent_party: list[Monster],
+        opponent_party: PartyHandler,
         tray_rect: Rect,
         shadow_text_func: Callable[[str], Surface],
         scale_func: Callable[[int], int],
@@ -377,10 +377,9 @@ class HordeSprite(Sprite):
 
     def update_count_display(self) -> bool:
         """Updates the sprite to show the current horde count as text only."""
-        horde = [m for m in self.opponent_party if not m.is_fainted]
-        if not horde:
+        if self.is_defeated():
             return False
-        horde_size = len(horde)
+        horde_size = len(self.opponent_party.alive)
         horde_text = f"x{horde_size}"
         text_surface = self.shadow_text(horde_text)
         x_pad = self.scale(2)
@@ -395,7 +394,7 @@ class HordeSprite(Sprite):
 
     def is_defeated(self) -> bool:
         """Checks if the entire horde is defeated."""
-        return fainted_party(self.opponent_party)
+        return self.opponent_party.is_fainted
 
     def animate_in(self, animate_func: Callable[..., object]) -> None:
         """Animates the horde icon sliding into its final position."""

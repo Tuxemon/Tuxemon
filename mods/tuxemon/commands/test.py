@@ -9,8 +9,9 @@ from typing import TYPE_CHECKING
 
 from tuxemon.cli.clicommand import CLICommand
 from tuxemon.cli.exceptions import ParseError
-from tuxemon.event import MapCondition
+from tuxemon.db import SpatialCondition, Operator, BoundingBox
 from tuxemon.script.parser import parse_condition_string
+from tuxemon.tools import safe_enum_value
 
 if TYPE_CHECKING:
     from tuxemon.cli.context import InvokeContext
@@ -41,7 +42,7 @@ class TestConditionParentCommand(CLICommand):
             ctx: Contains references to parts of the game and CLI interface.
         """
         conditions = (
-            ctx.session.client.event_engine.condition_manager.get_conditions()
+            ctx.session.client.condition_manager.get_conditions()
         )
         for condition in conditions:
             command = TestConditionCommand()
@@ -72,11 +73,20 @@ class TestConditionCommand(CLICommand):
         line = f"is {self.name} {line}"
         try:
             opr, typ, args = parse_condition_string(line)
-            cond = MapCondition(typ, args, 0, 0, 0, 0, opr, "USERINPUT")
+            operator = safe_enum_value(
+                Operator, opr, default=Operator.IS
+            )
+            cond = SpatialCondition(
+                type=typ,
+                parameters=args,
+                box=BoundingBox(x=0, y=0, width=1, height=1),
+                operator=operator,
+                name="USERINPUT"
+            )
         except ValueError:
             raise ParseError
         try:
-            result = ctx.session.client.event_engine.check_condition(cond)
+            result = ctx.session.client.evaluator.evaluate(cond)
             print(result)
         except Exception:
             traceback.print_exc()

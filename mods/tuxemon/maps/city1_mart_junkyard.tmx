@@ -57,7 +57,7 @@
     <property name="act30" value="translated_dialog mart_junkyard01"/>
     <property name="act40" value="set_variable got_first_tuxemon:true"/>
     <property name="cond10" value="is char_facing_tile player"/>
-    <property name="cond20" value="is button_pressed K_RETURN"/>
+    <property name="cond20" value="is button_pressed INTERACT"/>
     <property name="cond30" value="not variable_set got_first_tuxemon:true"/>
     <property name="cond40" value="is variable_set maple_bedroom1:true"/>
    </properties>
@@ -69,7 +69,7 @@
     <property name="act30" value="translated_dialog mart_junkyard02"/>
     <property name="act40" value="set_variable got_first_tuxemon:true"/>
     <property name="cond10" value="is char_facing_tile player"/>
-    <property name="cond20" value="is button_pressed K_RETURN"/>
+    <property name="cond20" value="is button_pressed INTERACT"/>
     <property name="cond30" value="not variable_set got_first_tuxemon:true"/>
     <property name="cond40" value="is variable_set maple_bedroom1:true"/>
    </properties>

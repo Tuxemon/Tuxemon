@@ -92,8 +92,14 @@
   "height": 300,
   "weight": 0.1,
   "sounds": {
-    "combat_call": "sfx_tornado",
-    "faint_call": "sfx_tornado_faint"
+    "combat_call": {
+      "sfx": "sfx_tornado",
+      "volume": 1.5
+    },
+    "faint_call": {
+      "sfx": "sfx_tornado_faint",
+      "volume": 1.5
+    }
   },
   "catch_rate": 35.0,
   "lower_catch_resistance": 0.95,

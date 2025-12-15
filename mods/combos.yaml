@@ -1,0 +1,5 @@
+combos:
+  - name: "example"           # Unique identifier for the combo (used for logging and debugging)
+    buttons: ["DOWN", "RIGHT"]  # Sequence of button presses required to trigger the combo
+    max_delay_s: 0.8         # Maximum allowed delay (in seconds) between each button press
+    event_name: "cast_example"  # Name of the event to trigger when the combo is successfully executed

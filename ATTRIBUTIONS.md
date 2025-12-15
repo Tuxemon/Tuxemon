@@ -1382,6 +1382,18 @@ By JaskRendix
 * ["Misc Hit Preview"](https://wiki.tuxemon.org/File:Misc_Hit_preview.gif)
 [https://opengameart.org/content/pixelated-hit-animations CC BY on OGA]  This work, made by Viktor Hahn (Viktor.Hahn@web.de), is licensed under the Creative Commons Attributio...
 
+* ["Horn"](https://wiki.tuxemon.org/File:Horn.gif)
+Animation by HippasusTwo
+
+* ["Stickyweb"](https://wiki.tuxemon.org/File:Stickyweb.gif)
+Animation by HippasusTwo
+
+* ["Celldivision"](https://wiki.tuxemon.org/File:Celldivision.gif)
+Animation by HippasusTwo
+
+* ["Smellysock"](https://wiki.tuxemon.org/File:Smellysock.gif)
+Animation by HippasusTwo
+
 * ["Needle"](https://wiki.tuxemon.org/images/9/95/Needle.gif)
 Animation by HippasusTwo
 

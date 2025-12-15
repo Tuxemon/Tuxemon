@@ -2,21 +2,22 @@
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-import logging
-from collections.abc import Mapping, Sequence
+from collections.abc import Sequence
 from typing import TYPE_CHECKING, Any, Optional
 from uuid import UUID
 
-from tuxemon import networking
-from tuxemon.npc import NPC
+from tuxemon.network.networking import CharData, update_client
 
 if TYPE_CHECKING:
-    from tuxemon.client import LocalPygameClient
+    from tuxemon.base_client import BaseClient
     from tuxemon.monster import Monster
     from tuxemon.save_state import NPCState
     from tuxemon.session import Session
+    from tuxemon.network.manager import NetworkManager
+    from tuxemon.npc import NPC
 
 logger = logging.getLogger(__name__)
+
 
 
 class NPCManager:
@@ -71,25 +72,35 @@ class NPCManager:
         )
 
     def update_npcs_off_map(
-        self, time_delta: float, client: LocalPygameClient
+        self, time_delta: float, client: BaseClient
     ) -> None:
         """Updates NPCs off-map and synchronizes their positions."""
         for entity in self.npcs_off_map.values():
             entity.update(time_delta)
             if entity.update_location:
-                char_dict = {"tile_pos": entity.final_move_dest}
-                networking.update_client(entity, char_dict, client)
+                char_dict = CharData(
+                    tile_pos=entity.final_move_dest,
+                    name=entity.name,
+                    facing=entity.facing,
+                    monsters=[],
+                    inventory=[],
+                )
+                update_client(entity, char_dict, client)
                 entity.update_location = False
 
-    def update_npcs(
-        self, time_delta: float, client: LocalPygameClient
-    ) -> None:
+    def update_npcs(self, time_delta: float, client: BaseClient) -> None:
         """Updates NPCs and synchronizes their positions."""
         for entity in self.npcs.values():
             entity.update(time_delta)
             if entity.update_location:
-                char_dict = {"tile_pos": entity.final_move_dest}
-                networking.update_client(entity, char_dict, client)
+                char_dict = CharData(
+                    tile_pos=entity.final_move_dest,
+                    name=entity.name,
+                    facing=entity.facing,
+                    monsters=[],
+                    inventory=[],
+                )
+                update_client(entity, char_dict, client)
                 entity.update_location = False
 
     def clear_npcs(self) -> None:
@@ -138,7 +149,7 @@ class NPCManager:
         )
 
     def add_clients_to_map(
-        self, registry: Mapping[str, Any], current_map: str
+        self, registry: dict[str, Any], current_map: str
     ) -> None:
         """
         Add players in the current map as NPCs.
@@ -229,3 +240,21 @@ class NPCManager:
                 f"Loaded persistent NPC: {state.player_name} ({state.player_slug}) "
                 f"on map {state.current_map}. Current Map: {current_map_name}"
             )
+
+    def handle_player_teleport(
+        self,
+        client: BaseClient,
+        char: NPC,
+        network: NetworkManager,
+    ) -> None:
+        """Handles NPC and player updates after teleport."""
+        client.event_data["transition"] = False
+
+        if network.is_connected():
+            assert network.client
+            current_map = client.get_map_name()
+            self.add_clients_to_map(network.client.registry, current_map)
+            network.client.update_player(char.facing.value)
+
+        self.update_npcs(0, client)
+        self.update_npcs_off_map(0, client)

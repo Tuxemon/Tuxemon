@@ -12,6 +12,7 @@
       }
     },
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "scientist_brown",
       "combat_front": "scientist_brown",
@@ -31,6 +32,7 @@
       }
     },
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "robot",
       "combat_front": "xeon",
@@ -50,6 +52,7 @@
       }
     },
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "knight",
       "combat_front": "knightlord",
@@ -69,6 +72,7 @@
       }
     },
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "knight",
       "combat_front": "enforcer_agent",
@@ -88,6 +92,7 @@
       }
     },
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "soldier",
       "combat_front": "aviator",
@@ -107,6 +112,7 @@
       }
     },
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "soldier",
       "combat_front": "soldier",
@@ -126,6 +132,7 @@
       }
     },
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "scientist",
       "combat_front": "scientist",
@@ -145,6 +152,7 @@
       }
     },
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "soldier",
       "combat_front": "soldier",
@@ -164,6 +172,7 @@
       }
     },
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "soldier",
       "combat_front": "soldier",
@@ -183,6 +192,7 @@
       }
     },
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "robot",
       "combat_front": "chrome_robo",
@@ -202,6 +212,7 @@
       }
     },
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "scientist_fiery",
       "combat_front": "scientist",
@@ -221,6 +232,7 @@
       }
     },
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "knight",
       "combat_front": "enforcer_boss",
@@ -240,6 +252,7 @@
       }
     },
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "soldier",
       "combat_front": "soldier",
@@ -259,6 +272,7 @@
       }
     },
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "scientist_black",
       "combat_front": "scientist_black",
@@ -269,6 +283,7 @@
     "slug": "spyder_nimrod_dirk",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "knight",
       "combat_front": "enforcer_rookie",
@@ -279,6 +294,7 @@
     "slug": "spyder_nimrod_jake",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "soldier",
       "combat_front": "soldier",
@@ -289,6 +305,7 @@
     "slug": "spyder_nimrod_jervis",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "scientist_brown",
       "combat_front": "scientist",
@@ -299,6 +316,7 @@
     "slug": "spyder_nimrod_elara",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "florist_rose",
       "combat_front": "florist",

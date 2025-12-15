@@ -2,11 +2,11 @@
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 import logging
 import os
-from typing import Optional, Union
+from typing import Any, Optional
 
-from tuxemon.rumble.tools import Rumble, find_library
-
-from .libshake import LibShakeRumble
+from tuxemon.rumble.libshake import DummyRumble, LibShakeRumble, Rumble
+from tuxemon.rumble.patterns import get_pattern
+from tuxemon.rumble.tools import RumbleParams, find_library
 
 # Set up logging for the rumble manager.
 logger = logging.getLogger(__name__)
@@ -18,7 +18,7 @@ class RumbleManager:
         The Rumble Manager automatically selects an available
         rumble backend and controls controller haptic feedback.
         """
-        self.rumbler: Union[LibShakeRumble, Rumble]
+        self.rumbler: Rumble
         self.backend: Optional[str] = None
 
         # Get backend locations, allowing for dynamic configuration
@@ -38,7 +38,17 @@ class RumbleManager:
             self.rumbler = LibShakeRumble(lib_shake)
         else:
             logger.warning("No backend available, using Rumble.")
-            self.rumbler = Rumble()
+            self.rumbler = DummyRumble()
+
+    def rumble(self, params: RumbleParams) -> None:
+        self.rumbler.rumble(params)
+
+    def play_pattern(self, target: int, name: str, **kwargs: Any) -> None:
+        sequence = get_pattern(name, **kwargs)
+        self.rumbler.rumble_sequence(target, sequence)
+
+    def update(self, dt: float) -> None:
+        self.rumbler.update(dt)
 
     def select_backend(self, locations: list[str]) -> Optional[str]:
         """

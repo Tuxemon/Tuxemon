@@ -10,7 +10,7 @@ from typing import Optional
 
 from tuxemon import plugin
 from tuxemon.constants.paths import LIBDIR, get_plugin_paths
-from tuxemon.db import CommonCondition, CommonEffect
+from tuxemon.db import LogicCondition, ParameterizableRule
 from tuxemon.plugin import PluginObject
 
 logger = logging.getLogger(__name__)
@@ -94,7 +94,7 @@ class CoreManager:
             self.unload_plugin(name)
 
     def parse_object_effect(
-        self, raw: Sequence[CommonEffect]
+        self, raw: Sequence[ParameterizableRule]
     ) -> Sequence[PluginObject]:
         """Parse raw effect data into PluginObject effects."""
         effects = []
@@ -109,7 +109,7 @@ class CoreManager:
         return effects
 
     def parse_object_condition(
-        self, raw: Sequence[CommonCondition]
+        self, raw: Sequence[LogicCondition]
     ) -> Sequence[PluginObject]:
         """Parse raw condition data into PluginObject conditions."""
         conditions = []
@@ -147,7 +147,7 @@ class EffectManager(CoreManager):
         self.effect_class = effect_class
 
     def parse_effects(
-        self, raw: Sequence[CommonEffect]
+        self, raw: Sequence[ParameterizableRule]
     ) -> Sequence[PluginObject]:
         """Convert raw effect data into the specified effect objects."""
         return self.parse_object_effect(raw)
@@ -170,7 +170,7 @@ class ConditionManager(CoreManager):
         self.condition_class = condition_class
 
     def parse_conditions(
-        self, raw: Sequence[CommonCondition]
+        self, raw: Sequence[LogicCondition]
     ) -> Sequence[PluginObject]:
         """Convert raw condition data into the specified condition objects."""
         return self.parse_object_condition(raw)

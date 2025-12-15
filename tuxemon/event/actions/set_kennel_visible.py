@@ -9,7 +9,6 @@ from typing import TYPE_CHECKING, Optional, final
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.prepare import KENNEL
-from tuxemon.states.pc_kennel import HIDDEN_LIST
 from tuxemon.tools import parse_flag
 
 if TYPE_CHECKING:
@@ -62,7 +61,13 @@ class SetKennelVisibleAction(EventAction):
         if not character.monster_boxes.has_box(kennel, "monster"):
             return
 
-        if is_visible:
-            HIDDEN_LIST.remove(kennel)
-        else:
-            HIDDEN_LIST.append(kennel) if kennel not in HIDDEN_LIST else None
+        try:
+            character.monster_boxes.set_box_hidden(
+                kennel, "monster", not is_visible
+            )
+            logger.info(
+                f"Set kennel '{kennel}' visibility for {self.npc_slug}: "
+                f"{'visible' if is_visible else 'hidden'}"
+            )
+        except ValueError as e:
+            logger.error(str(e))

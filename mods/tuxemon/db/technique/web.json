@@ -1,7 +1,6 @@
 {
   "tech_id": 42,
   "accuracy": 0.8,
-  "animation": "snake_right",
   "effects": [
     {
       "type": "give",
@@ -14,13 +13,11 @@
       "type": "damage"
     }
   ],
-  "flip_axes": "x",
   "speed": "normal",
   "potency": 1,
   "power": 1.25,
   "range": "melee",
   "recharge": 2,
-  "sfx": "sfx_squeak",
   "slug": "web",
   "sort": "damage",
   "modifiers": [],
@@ -42,5 +39,14 @@
   ],
   "use_failure": "combat_miss",
   "use_success": null,
-  "use_tech": "combat_used_x"
+  "use_tech": "combat_used_x",
+  "visuals": {
+    "animation": "snake_right",
+    "flip_axes": "x",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": "sfx_squeak",
+    "volume": 1.5
+  }
 }

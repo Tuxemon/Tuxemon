@@ -2,7 +2,7 @@ name: Tuxemon
 on:
   push:
     branches:
-    - development # only pushes on development. So the release variable will be set correctly
+      - development # only pushes on development. So the release variable will be set correctly
   pull_request:
   page_build:
   workflow_dispatch:
@@ -13,7 +13,7 @@ env:
 
 jobs:
   appdata_validation:
-    uses: ./.github/workflows/appdata_validation.yml 
+    uses: ./.github/workflows/appdata_validation.yml
 
 
   flatpak:
@@ -21,16 +21,17 @@ jobs:
     with:
       IS_RELEASE: ${{ github.event_name == 'push' && github.ref_type == 'tag' && startswith(github.ref_name, 'v') }}
 
-
   build_installer_windows:
-    uses: ./.github/workflows/installer_windows.yml 
-
+    uses: ./.github/workflows/installer_windows.yml
 
   python-app:
-    uses: ./.github/workflows/python-app.yml 
+    uses: ./.github/workflows/python-app.yml
+
+  docs:
+    uses: ./.github/workflows/docs.yml
 
   publish:
-    needs: [flatpak, build_installer_windows]
+    needs: [flatpak, build_installer_windows, docs]
     runs-on: ubuntu-latest # does not matter which
     # a prerelase is created when pushing to master
     # a release is created when a tag will be set

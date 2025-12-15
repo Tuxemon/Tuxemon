@@ -1,7 +1,6 @@
 {
   "tech_id": 147,
   "accuracy": 0.8,
-  "animation": "demiurge",
   "effects": [
     {
       "type": "give",
@@ -21,17 +20,17 @@
       "type": "damage"
     }
   ],
-  "flip_axes": "",
   "speed": "normal",
   "potency": 0.8,
   "power": 2,
   "range": "touch",
   "recharge": 2,
-  "sfx": "sfx_forcefield",
   "slug": "demiurge",
   "sort": "damage",
   "modifiers": [],
-  "behaviors": {},
+  "behaviors": {
+    "bypasses_selection": true
+  },
   "target": {
     "enemy_monster": true,
     "enemy_team": false,
@@ -49,5 +48,14 @@
   ],
   "use_failure": "combat_miss",
   "use_success": null,
-  "use_tech": "combat_used_x"
+  "use_tech": "combat_used_x",
+  "visuals": {
+    "animation": "demiurge",
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": "sfx_forcefield",
+    "volume": 1.5
+  }
 }

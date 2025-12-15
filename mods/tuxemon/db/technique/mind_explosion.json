@@ -1,7 +1,6 @@
 {
   "tech_id": 225,
   "accuracy": 1.0,
-  "animation": "explosion_mushroom_128",
   "effects": [
     {
       "type": "give",
@@ -21,13 +20,11 @@
       "type": "damage"
     }
   ],
-  "flip_axes": "",
   "speed": "normal",
   "potency": 0.5,
   "power": 3.0,
   "range": "ranged",
   "recharge": 3,
-  "sfx": "sfx_pulse",
   "slug": "mind_explosion",
   "sort": "damage",
   "modifiers": [],
@@ -50,5 +47,14 @@
   ],
   "use_failure": "combat_miss",
   "use_success": null,
-  "use_tech": "combat_used_x"
+  "use_tech": "combat_used_x",
+  "visuals": {
+    "animation": "explosion_mushroom_128",
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": "sfx_pulse",
+    "volume": 1.5
+  }
 }

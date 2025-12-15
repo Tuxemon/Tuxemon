@@ -423,7 +423,7 @@
     <property name="cond1" value="is variable_set moveit2:now"/>
     <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="is char_facing player,down"/>
-    <property name="cond4" value="is button_pressed K_RETURN"/>
+    <property name="cond4" value="is button_pressed INTERACT"/>
     <property name="cond5" value="not variable_set opentwo:yes"/>
    </properties>
   </object>
@@ -433,7 +433,7 @@
     <property name="cond1" value="is variable_set moveit3:now"/>
     <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="is char_facing player,down"/>
-    <property name="cond4" value="is button_pressed K_RETURN"/>
+    <property name="cond4" value="is button_pressed INTERACT"/>
     <property name="cond5" value="not variable_set openthree:yes"/>
    </properties>
   </object>
@@ -443,7 +443,7 @@
     <property name="cond1" value="not variable_set allthree:done"/>
     <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="is char_facing player,down"/>
-    <property name="cond4" value="is button_pressed K_RETURN"/>
+    <property name="cond4" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="37" name="locked" type="event" x="272" y="48" width="16" height="16">

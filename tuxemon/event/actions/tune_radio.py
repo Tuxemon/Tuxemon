@@ -86,7 +86,7 @@ class TuneRadioAction(EventAction):
         else:
             self.client.push_state("NuPhoneRadioMenu", character=character)
 
-    def update(self, session: Session) -> None:
+    def update(self, session: Session, dt: float) -> None:
         if not any(
             state.name in {"NuPhoneRadioMenu", "NuPhoneRadioTuner"}
             for state in session.client.active_states

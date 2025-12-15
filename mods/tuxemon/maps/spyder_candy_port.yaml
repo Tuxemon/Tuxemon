@@ -1,4 +1,10 @@
 events:
+  Play Music:
+    actions:
+    - play_music music_town_theme
+    conditions:
+    - not music_playing music_town_theme
+    type: event
   Create Captain:
     actions:
     - create_npc spyder_captain,37,8

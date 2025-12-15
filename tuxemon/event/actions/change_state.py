@@ -48,7 +48,7 @@ class ChangeStateAction(EventAction):
 
         self.client.push_state(self.state_name)
 
-    def update(self, session: Session) -> None:
+    def update(self, session: Session, dt: float) -> None:
         try:
             session.client.get_state_by_name(self.state_name)
         except ValueError:

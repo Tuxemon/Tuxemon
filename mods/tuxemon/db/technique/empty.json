@@ -1,21 +1,20 @@
 {
-  "animation": null,
   "accuracy": 0,
   "effects": [
     {
       "type": "empty"
     }
   ],
-  "flip_axes": "",
   "potency": 0,
   "power": 0,
   "speed": "normal",
   "range": "special",
-  "sfx": "sfx_pulse",
   "slug": "empty",
   "sort": "meta",
   "modifiers": [],
-  "behaviors": {},
+  "behaviors": {
+    "bypasses_selection": true
+  },
   "target": {
     "enemy_monster": false,
     "enemy_team": false,
@@ -32,5 +31,14 @@
   "types": [],
   "use_failure": "combat_none",
   "use_success": null,
-  "use_tech": "combat_skip"
+  "use_tech": "combat_skip",
+  "visuals": {
+    "animation": null,
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": "sfx_pulse",
+    "volume": 1.5
+  }
 }

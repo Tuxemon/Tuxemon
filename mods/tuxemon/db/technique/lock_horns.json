@@ -1,0 +1,52 @@
+{
+  "tech_id": 259,
+  "accuracy": 0.95,
+  "effects": [
+    {
+      "type": "give",
+      "parameters": [
+        "harpooned",
+        "enemy_monster"
+      ]
+    },
+    {
+      "type": "damage"
+    }
+  ],
+  "speed": "normal",
+  "potency": 1.0,
+  "power": 1.5,
+  "range": "touch",
+  "recharge": 1,
+  "slug": "lock_horns",
+  "sort": "damage",
+  "modifiers": [],
+  "behaviors": {},
+  "target": {
+    "enemy_monster": true,
+    "enemy_team": false,
+    "enemy_trainer": false,
+    "own_monster": false,
+    "own_team": false,
+    "own_trainer": false
+  },
+  "category": "animal",
+  "tags": [
+    "megafauna"
+  ],
+  "types": [
+    "heroic"
+  ],
+  "use_failure": "combat_miss",
+  "use_success": null,
+  "use_tech": "combat_used_x",
+  "visuals": {
+    "animation": "horn",
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": null,
+    "volume": 1.5
+  }
+}

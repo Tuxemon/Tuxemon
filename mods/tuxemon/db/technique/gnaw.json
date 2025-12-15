@@ -1,19 +1,16 @@
 {
   "tech_id": 215,
   "accuracy": 1.0,
-  "animation": "gnaw",
   "effects": [
     {
       "type": "damage"
     }
   ],
-  "flip_axes": "",
   "speed": "fast",
   "potency": 0.0,
   "power": 1.0,
   "range": "touch",
   "recharge": 1,
-  "sfx": "sfx_bite",
   "slug": "gnaw",
   "sort": "damage",
   "modifiers": [],
@@ -35,5 +32,14 @@
   ],
   "use_failure": "combat_miss",
   "use_success": null,
-  "use_tech": "combat_used_x"
+  "use_tech": "combat_used_x",
+  "visuals": {
+    "animation": "gnaw",
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": "sfx_bite",
+    "volume": 1.5
+  }
 }

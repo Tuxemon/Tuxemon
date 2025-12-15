@@ -1,7 +1,6 @@
 {
   "tech_id": 233,
   "accuracy": 0.9,
-  "animation": "cakechomp",
   "effects": [
     {
       "type": "give",
@@ -14,13 +13,11 @@
       "type": "damage"
     }
   ],
-  "flip_axes": "",
   "speed": "normal",
   "potency": 1.0,
   "power": 3.0,
   "range": "melee",
   "recharge": 3,
-  "sfx": "sfx_bounce",
   "slug": "heavenly_desserts",
   "sort": "damage",
   "modifiers": [],
@@ -42,5 +39,14 @@
   ],
   "use_failure": "combat_miss",
   "use_success": null,
-  "use_tech": "combat_used_x"
+  "use_tech": "combat_used_x",
+  "visuals": {
+    "animation": "cakechomp",
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": "sfx_bounce",
+    "volume": 1.5
+  }
 }

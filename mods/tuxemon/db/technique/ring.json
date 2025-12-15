@@ -1,7 +1,6 @@
 {
   "tech_id": 145,
   "accuracy": 0.8,
-  "animation": "pulse_absorb",
   "effects": [
     {
       "type": "give",
@@ -17,13 +16,11 @@
       ]
     }
   ],
-  "flip_axes": "",
   "speed": "normal",
   "potency": 1,
   "power": 2,
   "range": "reach",
   "recharge": 2,
-  "sfx": "sfx_forcefield",
   "slug": "ring",
   "sort": "damage",
   "modifiers": [],
@@ -45,5 +42,14 @@
   ],
   "use_failure": "combat_miss",
   "use_success": null,
-  "use_tech": "combat_used_x"
+  "use_tech": "combat_used_x",
+  "visuals": {
+    "animation": "pulse_absorb",
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": "sfx_forcefield",
+    "volume": 1.5
+  }
 }

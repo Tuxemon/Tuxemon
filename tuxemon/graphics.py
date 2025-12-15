@@ -178,6 +178,7 @@ def load_animated_sprite(
     filenames: Iterable[str],
     delay: float,
     scale: float = prepare.SCALE,
+    loop: int = -1,
 ) -> Sprite:
     """
     Load a set of images and return an animated sprite.
@@ -209,7 +210,7 @@ def load_animated_sprite(
     if not anim:
         raise ValueError("Cannot create animated sprite: no valid frames.")
 
-    tech = SurfaceAnimation(anim, True)
+    tech = SurfaceAnimation(anim, loop)
     tech.play()
     return Sprite(animation=tech)
 
@@ -268,7 +269,7 @@ def animation_frame_files(directory: str, name: str) -> Sequence[str]:
 
 
 def create_animation(
-    frames: Iterable[Surface], duration: float, loop: bool
+    frames: Iterable[Surface], duration: float, loop: int
 ) -> SurfaceAnimation:
     """
     Create animation from frames, a list of surfaces.
@@ -282,7 +283,7 @@ def create_animation(
         Created animation.
     """
     data = [(f, duration) for f in frames]
-    animation = SurfaceAnimation(data, loop=loop)
+    animation = SurfaceAnimation(frames=data, loop=loop)
     return animation
 
 

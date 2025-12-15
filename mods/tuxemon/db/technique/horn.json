@@ -1,0 +1,45 @@
+{
+  "tech_id": 245,
+  "accuracy": 0.75,
+  "effects": [
+    {
+      "type": "damage"
+    }
+  ],
+  "speed": "slow",
+  "potency": 0.0,
+  "power": 2.5,
+  "range": "touch",
+  "recharge": 1,
+  "slug": "horn",
+  "sort": "damage",
+  "modifiers": [],
+  "behaviors": {},
+  "target": {
+    "enemy_monster": true,
+    "enemy_team": false,
+    "enemy_trainer": false,
+    "own_monster": false,
+    "own_team": false,
+    "own_trainer": false
+  },
+  "category": "powerful",
+  "tags": [
+    "megafauna"
+  ],
+  "types": [
+    "normal"
+  ],
+  "use_failure": "combat_miss",
+  "use_success": null,
+  "use_tech": "combat_used_x",
+  "visuals": {
+    "animation": "horn",
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": null,
+    "volume": 1.5
+  }
+}

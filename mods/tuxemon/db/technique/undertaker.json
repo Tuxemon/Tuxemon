@@ -1,7 +1,6 @@
 {
   "tech_id": 152,
   "accuracy": 1,
-  "animation": "x_attack",
   "effects": [
     {
       "type": "give",
@@ -17,13 +16,11 @@
       ]
     }
   ],
-  "flip_axes": "",
   "speed": "extremely_slow",
   "potency": 1,
   "power": 1,
   "range": "melee",
   "recharge": 1,
-  "sfx": "sfx_pulse",
   "slug": "undertaker",
   "sort": "damage",
   "modifiers": [],
@@ -46,5 +43,14 @@
   ],
   "use_failure": "combat_miss",
   "use_success": null,
-  "use_tech": "combat_used_x"
+  "use_tech": "combat_used_x",
+  "visuals": {
+    "animation": "x_attack",
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": "sfx_pulse",
+    "volume": 1.5
+  }
 }

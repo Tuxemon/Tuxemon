@@ -81,6 +81,12 @@
   <object id="235" type="collision" x="32" y="288" width="32" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="6" name="Events">
+  <object id="94" name="Play Music" type="event" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="play_music music_town_theme"/>
+    <property name="cond1" value="not music_playing music_town_theme"/>
+   </properties>
+  </object>
   <object id="95" name="Teleport to Route 6" type="event" x="480" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_route6.tmx,30,19,0.3"/>
@@ -278,7 +284,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_multi_martsign"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="228" name="Teleport to Candy House 2" type="event" x="32" y="384" width="16" height="16">

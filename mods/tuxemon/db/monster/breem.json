@@ -31,8 +31,16 @@
       "technique": "viper"
     },
     {
+      "level_learned": 31,
+      "technique": "combat_clone"
+    },
+    {
       "level_learned": 34,
       "technique": "thorn_burst"
+    },
+    {
+      "level_learned": 40,
+      "technique": "damage_division"
     }
   ],
   "evolutions": [],
@@ -74,8 +82,14 @@
   "height": 100,
   "weight": 25,
   "sounds": {
-    "combat_call": "sound_spit_02",
-    "faint_call": "sound_spit_02_faint"
+    "combat_call": {
+      "sfx": "sound_spit_02",
+      "volume": 1.5
+    },
+    "faint_call": {
+      "sfx": "sound_spit_02_faint",
+      "volume": 1.5
+    }
   },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.95,

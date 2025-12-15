@@ -1,7 +1,6 @@
 {
   "tech_id": 58,
   "accuracy": 1.0,
-  "animation": "drip_green",
   "effects": [
     {
       "type": "transfer",
@@ -14,13 +13,11 @@
       "type": "damage"
     }
   ],
-  "flip_axes": "",
   "speed": "normal",
   "potency": 1,
   "power": 2.0,
   "range": "melee",
   "recharge": 1,
-  "sfx": "sfx_bubbles",
   "slug": "suck_poison",
   "sort": "damage",
   "modifiers": [],
@@ -42,5 +39,14 @@
   ],
   "use_failure": "combat_miss",
   "use_success": null,
-  "use_tech": "combat_used_x"
+  "use_tech": "combat_used_x",
+  "visuals": {
+    "animation": "drip_green",
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": "sfx_bubbles",
+    "volume": 1.5
+  }
 }

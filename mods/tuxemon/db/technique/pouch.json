@@ -1,7 +1,6 @@
 {
   "tech_id": 198,
   "accuracy": 1,
-  "animation": "egg_crack",
   "effects": [
     {
       "type": "cooldown",
@@ -13,17 +12,17 @@
       ]
     }
   ],
-  "flip_axes": "",
   "speed": "normal",
   "potency": 1,
   "power": 0,
   "range": "special",
   "recharge": 2,
-  "sfx": "sfx_bounce",
   "slug": "pouch",
   "sort": "damage",
   "modifiers": [],
-  "behaviors": {},
+  "behaviors": {
+    "bypasses_selection": true
+  },
   "target": {
     "enemy_monster": false,
     "enemy_team": false,
@@ -41,5 +40,14 @@
   ],
   "use_failure": "combat_miss",
   "use_success": null,
-  "use_tech": "combat_used_x"
+  "use_tech": "combat_used_x",
+  "visuals": {
+    "animation": "egg_crack",
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": "sfx_bounce",
+    "volume": 1.5
+  }
 }

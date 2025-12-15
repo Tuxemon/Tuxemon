@@ -1,7 +1,6 @@
 {
   "tech_id": 204,
   "accuracy": 0.8,
-  "animation": null,
   "conditions": [
     {
       "type": "status",
@@ -26,13 +25,11 @@
       ]
     }
   ],
-  "flip_axes": "",
   "speed": "extremely_fast",
   "potency": 1,
   "power": 1,
   "range": "melee",
   "recharge": 4,
-  "sfx": "sfx_crumble1",
   "slug": "burrow_blast",
   "sort": "damage",
   "modifiers": [],
@@ -54,5 +51,14 @@
   ],
   "use_failure": "burrow_blast_fail",
   "use_success": "burrow_blast_success",
-  "use_tech": "combat_used_x"
+  "use_tech": "combat_used_x",
+  "visuals": {
+    "animation": null,
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": "sfx_crumble1",
+    "volume": 1.5
+  }
 }

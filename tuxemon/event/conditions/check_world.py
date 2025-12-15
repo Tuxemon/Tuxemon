@@ -5,7 +5,8 @@ from __future__ import annotations
 import logging
 from dataclasses import dataclass
 
-from tuxemon.event import MapCondition, get_npc
+from tuxemon.db import SpatialCondition
+from tuxemon.event import get_npc
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.graphics import string_to_colorlike
 from tuxemon.session import Session
@@ -40,7 +41,7 @@ class CheckWorldCondition(EventCondition):
 
     name = "check_world"
 
-    def test(self, session: Session, condition: MapCondition) -> bool:
+    def test(self, session: Session, condition: SpatialCondition) -> bool:
         params = condition.parameters
         if params[0] == "layer":
             if len(params) > 1:

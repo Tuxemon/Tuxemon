@@ -1,7 +1,6 @@
 {
   "tech_id": 143,
   "accuracy": 0.7,
-  "animation": "blue_circle",
   "effects": [
     {
       "type": "give",
@@ -21,13 +20,11 @@
       "type": "damage"
     }
   ],
-  "flip_axes": "",
   "speed": "normal",
   "potency": 0.7,
   "power": 1.7,
   "range": "melee",
   "recharge": 2,
-  "sfx": "sfx_shine",
   "slug": "platinum",
   "sort": "damage",
   "modifiers": [],
@@ -52,5 +49,14 @@
   ],
   "use_failure": "combat_miss",
   "use_success": null,
-  "use_tech": "combat_used_x"
+  "use_tech": "combat_used_x",
+  "visuals": {
+    "animation": "blue_circle",
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": "sfx_shine",
+    "volume": 1.5
+  }
 }

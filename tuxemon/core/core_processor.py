@@ -34,6 +34,29 @@ class EffectProcessor:
     def __init__(self, effects: Sequence[PluginObject]) -> None:
         self.effects = effects
 
+    def update(self, session: Session, dt: float) -> None:
+        if not self.effects:
+            return
+        for effect in self.effects:
+            if isinstance(effect, CoreEffect):
+                effect.update(session, dt)
+        self.prune_finished()
+
+    def is_finished(self) -> bool:
+        if not self.effects:
+            return True
+        for effect in self.effects:
+            if isinstance(effect, CoreEffect) and not effect.is_finished():
+                return False
+        return True
+
+    def prune_finished(self) -> None:
+        self.effects = [
+            effect
+            for effect in self.effects
+            if not (isinstance(effect, CoreEffect) and effect.is_finished())
+        ]
+
     def process_globally(
         self,
         session: Session,

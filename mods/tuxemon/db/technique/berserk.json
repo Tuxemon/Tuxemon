@@ -1,7 +1,6 @@
 {
   "tech_id": 44,
   "accuracy": 0.8,
-  "animation": "constantburn",
   "effects": [
     {
       "type": "give",
@@ -14,13 +13,11 @@
       "type": "damage"
     }
   ],
-  "flip_axes": "",
   "speed": "slow",
   "potency": 1,
   "power": 2.25,
   "range": "melee",
   "recharge": 2,
-  "sfx": "sfx_growl",
   "slug": "berserk",
   "sort": "damage",
   "modifiers": [],
@@ -42,5 +39,14 @@
   ],
   "use_failure": "combat_miss",
   "use_success": null,
-  "use_tech": "combat_used_x"
+  "use_tech": "combat_used_x",
+  "visuals": {
+    "animation": "constantburn",
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": "sfx_growl",
+    "volume": 1.5
+  }
 }

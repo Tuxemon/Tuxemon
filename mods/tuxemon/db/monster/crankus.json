@@ -20,15 +20,15 @@
     },
     {
       "level_learned": 13,
-      "technique": "flow"
-    },
-    {
-      "level_learned": 16,
       "technique": "icicle_spear"
     },
     {
-      "level_learned": 19,
+      "level_learned": 16,
       "technique": "font"
+    },
+    {
+      "level_learned": 19,
+      "technique": "horn"
     },
     {
       "level_learned": 25,
@@ -86,8 +86,14 @@
   "height": 180,
   "weight": 102,
   "sounds": {
-    "combat_call": "sound_whistle",
-    "faint_call": "sound_whistle_faint"
+    "combat_call": {
+      "sfx": "sound_whistle",
+      "volume": 1.5
+    },
+    "faint_call": {
+      "sfx": "sound_whistle_faint",
+      "volume": 1.5
+    }
   },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.95,

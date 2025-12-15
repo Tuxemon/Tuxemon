@@ -149,6 +149,7 @@ class Session(AbstractSession["LocalPygameClient"]):
         self.client.npc_manager.load_persistent_npc_states(
             self, save_data.persistent_state or []
         )
+        self.client.shop_manager.load_from_dict(save_data.shop_stock)
 
     def save_state(self, index: int, slot: int) -> SaveData:
         """

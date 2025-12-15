@@ -1,7 +1,6 @@
 {
   "tech_id": 226,
   "accuracy": 1.0,
-  "animation": "flower",
   "effects": [
     {
       "type": "give",
@@ -11,13 +10,11 @@
       ]
     }
   ],
-  "flip_axes": "",
   "speed": "normal",
   "potency": 1.0,
   "power": 0.0,
   "range": "special",
   "recharge": 1,
-  "sfx": "sfx_shpring",
   "slug": "flower_armor",
   "sort": "damage",
   "modifiers": [],
@@ -39,5 +36,14 @@
   ],
   "use_failure": "combat_miss",
   "use_success": null,
-  "use_tech": "combat_used_x"
+  "use_tech": "combat_used_x",
+  "visuals": {
+    "animation": "flower",
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": "sfx_shpring",
+    "volume": 1.5
+  }
 }

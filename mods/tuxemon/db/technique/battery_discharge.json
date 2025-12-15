@@ -1,7 +1,6 @@
 {
   "tech_id": 83,
   "accuracy": 0.8,
-  "animation": "disintegrate_83",
   "effects": [
     {
       "type": "damage"
@@ -14,14 +13,12 @@
       ]
     }
   ],
-  "flip_axes": "",
   "healing_power": 3.0,
   "speed": "normal",
   "potency": 0.0,
   "power": 1.25,
   "range": "ranged",
   "recharge": 2,
-  "sfx": "sfx_kick",
   "slug": "battery_discharge",
   "sort": "damage",
   "modifiers": [],
@@ -43,5 +40,14 @@
   ],
   "use_failure": "combat_miss",
   "use_success": null,
-  "use_tech": "combat_used_x"
+  "use_tech": "combat_used_x",
+  "visuals": {
+    "animation": "disintegrate_83",
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": "sfx_kick",
+    "volume": 1.5
+  }
 }

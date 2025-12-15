@@ -14,6 +14,7 @@ from tuxemon.entity_dir.battle import BattlesHandler
 from tuxemon.entity_dir.party import PartyHandler
 from tuxemon.entity_dir.path import PathController
 from tuxemon.entity_dir.routing import RoutingPolicy
+from tuxemon.entity_dir.steps import StepManager
 from tuxemon.game_variables import GameVariablesManager, PlayerVariablesManager
 from tuxemon.locale import T
 from tuxemon.map.map import proj
@@ -34,10 +35,15 @@ from tuxemon.step_tracker import StepTrackerManager, decode_steps, encode_steps
 from tuxemon.teleporter import TeleportFaint
 from tuxemon.tools import vector2_to_tile_pos
 from tuxemon.tracker import TrackingData, decode_tracking, encode_tracking
-from tuxemon.tuxepedia import Tuxepedia, decode_tuxepedia, encode_tuxepedia
+from tuxemon.tuxepedia import (
+    TuxepediaManager,
+    decode_tuxepedia,
+    encode_tuxepedia,
+)
 from tuxemon.ui.cipher_processor import decode_cipher, encode_cipher
 
 if TYPE_CHECKING:
+    from tuxemon.db import BattleMusicModel
     from tuxemon.economy.applier import ShopInventory
     from tuxemon.economy.economy import Economy
     from tuxemon.item.item import Item
@@ -73,17 +79,16 @@ class NPC(Entity[NPCState]):
         self.template = npc_data.template
         self.combat = npc_data.combat
         self.persistence = npc_data.persistence
+        self.audio = npc_data.audio
 
-        # This is the NPC's name to be used in dialog
-        self.name = T.translate(self.slug)
-
+        self._custom_name: Optional[str] = None
         # general
         self.behavior: Optional[str] = "wander"  # not used for now
         self._variables = GameVariablesManager()
         self.battle_handler = BattlesHandler()
         # Tracks Tuxepedia (monster seen or caught)
-        self.tuxepedia = Tuxepedia()
-        self.relationships = Relationships()
+        self.tuxepedia = TuxepediaManager(session.client.event_bus)
+        self.relationships = Relationships(session.client.event_bus)
         self.money_controller = MoneyController(self)
         # list of ways player can interact with the Npc
         self.interactions: Sequence[str] = []
@@ -93,6 +98,7 @@ class NPC(Entity[NPCState]):
         self.teleport_faint = TeleportFaint()
         self.tracker = TrackingData()
         self.step_tracker = StepTrackerManager()
+        self.step_manager = StepManager(session, self.step_tracker)
         self.unlocked_letters: set[str] = set()
         # Variables for long-term item and monster storage
         # Keeping these separate so other code can safely
@@ -113,7 +119,15 @@ class NPC(Entity[NPCState]):
             self.client.map_manager,
             self.client.npc_manager,
         )
-        self.final_move_dest = [0, 0]
+        self.final_move_dest: tuple[int, int] = (0, 0)
+
+    @property
+    def name(self) -> str:
+        return self._custom_name or T.translate(self.slug)
+
+    @name.setter
+    def name(self, value: str) -> None:
+        self._custom_name = value
 
     @property
     def game_variables(self) -> PlayerVariablesManager:
@@ -149,6 +163,8 @@ class NPC(Entity[NPCState]):
         Returns:
             Dictionary containing all the information about the npc.
         """
+        monster_boxes_state = self.monster_boxes.get_state()
+        item_boxes_state = self.item_boxes.get_state()
 
         state: dict[str, Any] = {
             "current_map": session.client.get_map_name(),
@@ -165,8 +181,12 @@ class NPC(Entity[NPCState]):
             "player_slug": self.slug,
             "player_name": self.name,
             "player_steps": self.steps,
-            "monster_boxes": self.monster_boxes.get_state(),
-            "item_boxes": self.item_boxes.get_state(),
+            "monster_boxes": monster_boxes_state["monster_boxes"],
+            "monster_box_metadata": monster_boxes_state[
+                "monster_box_metadata"
+            ],
+            "item_boxes": item_boxes_state["item_boxes"],
+            "item_box_metadata": item_boxes_state["item_box_metadata"],
             "tile_pos": self.tile_pos,
             "teleport_faint": self.teleport_faint.to_dict(),
             "tracker": encode_tracking(self.tracker),
@@ -187,8 +207,12 @@ class NPC(Entity[NPCState]):
         """
         self.set_facing(Direction(save_data.facing or "down"))
         self._variables.set_player_state(save_data.game_variables)
-        self.tuxepedia = decode_tuxepedia(save_data.tuxepedia)
-        self.relationships = decode_relationships(save_data.relationships)
+        self.tuxepedia = decode_tuxepedia(
+            save_data.tuxepedia, session.client.event_bus
+        )
+        self.relationships = decode_relationships(
+            save_data.relationships, session.client.event_bus
+        )
         self.battle_handler.decode_battle(save_data)
         self.bag.decode_items(save_data)
         self.party.decode_party(save_data)
@@ -217,6 +241,13 @@ class NPC(Entity[NPCState]):
                 "combat_front", ""
             )
             self.sprite_controller.load_sprites(self.template)
+
+    def get_active_battle_music(
+        self, default_music: BattleMusicModel
+    ) -> BattleMusicModel:
+        if self.audio and self.audio.battle_music:
+            return self.audio.battle_music
+        return default_music
 
     def pathfind(self, destination: tuple[int, int]) -> None:
         self.path_controller.start_path(destination)

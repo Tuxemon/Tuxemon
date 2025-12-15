@@ -80,8 +80,14 @@
   "height": 35,
   "weight": 10,
   "sounds": {
-    "combat_call": "sound_ghost_1",
-    "faint_call": "sound_ghost_1_faint"
+    "combat_call": {
+      "sfx": "sound_ghost_1",
+      "volume": 1.5
+    },
+    "faint_call": {
+      "sfx": "sound_ghost_1_faint",
+      "volume": 1.5
+    }
   },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,

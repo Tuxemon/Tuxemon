@@ -69,7 +69,7 @@ events:
     - translated_dialog here_to_east
     conditions:
     - is char_facing_tile player
-    - is button_pressed K_RETURN
+    - is button_pressed INTERACT
     type: event
     x: 37
     y: 7
@@ -136,7 +136,7 @@ events:
     - translated_dialog eclipse_crystal_alert_skating
     conditions:
     - is char_facing_tile player
-    - is button_pressed K_RETURN
+    - is button_pressed INTERACT
     type: event
     x: 26
     y: 9
@@ -145,7 +145,7 @@ events:
     - translated_dialog welcome_location_town
     conditions:
     - is char_facing_tile player
-    - is button_pressed K_RETURN
+    - is button_pressed INTERACT
     type: event
     x: 32
     y: 17

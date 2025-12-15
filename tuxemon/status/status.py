@@ -15,9 +15,12 @@ from tuxemon.db import (
     EffectPhase,
     Range,
     ResponseStatus,
+    SoundProperties,
     StatModel,
     StatusBehaviors,
     StatusModel,
+    StepEffectType,
+    VisualProperties,
     db,
 )
 from tuxemon.locale import T
@@ -63,24 +66,25 @@ class Status:
         self.bond: bool = False
         self.counter: int = 0
         self.cond_id: int = 0
-        self.animation: Optional[str] = None
         self.category: Optional[CategoryStatus] = None
-        self.description: str = ""
-        self.flip_axes: FlipAxes = FlipAxes.NONE
+        self.visuals = VisualProperties(
+            animation=None, flip_axes=FlipAxes.NONE, loop=-1
+        )
         self.gain_cond: str = ""
         self.icon: str = ""
-        self.name: str = ""
         self.duration: int = 0
         self.phase: EffectPhase = EffectPhase.DEFAULT
         self.range: Range = Range.melee
         self.stack_level: int = 1
         self.step_interval: int = 0
-        self.step_damage: int = 0
+        self.step_effect_value: float = 0.0
+        self.step_effect_type: StepEffectType = StepEffectType.NONE
+        self._step_hp_change: int = 0
         self.on_positive_status: Optional[ResponseStatus] = None
         self.on_negative_status: Optional[ResponseStatus] = None
         self.on_tech_use: Optional[str] = None
         self.on_item_use: Optional[str] = None
-        self.sfx: str = ""
+        self.sound = SoundProperties(sfx=None, volume=1.5)
         self.sort: str = ""
         self.slug: str = ""
         self.use_success: str = ""
@@ -106,6 +110,14 @@ class Status:
         method = cls(host, steps, save_data)
         method.load(slug)
         return method
+
+    @property
+    def name(self) -> str:
+        return T.translate(self.slug)
+
+    @property
+    def description(self) -> str:
+        return T.translate(f"{self.slug}_description")
 
     @property
     def host(self) -> Monster:
@@ -135,8 +147,6 @@ class Status:
         """
         results = StatusModel.lookup(slug, db)
         self.slug = results.slug
-        self.name = T.translate(self.slug)
-        self.description = T.translate(f"{self.slug}_description")
 
         self.sort = results.sort
 
@@ -150,7 +160,8 @@ class Status:
         self.modifiers = ModifiersHandler(results.modifiers)
         self.behaviors = results.behaviors
         self.step_interval = results.step_interval
-        self.step_damage = results.step_damage
+        self.step_effect_value = results.step_effect_value
+        self.step_effect_type = results.step_effect_type
         # monster stats
         self.stat_modifiers = results.stat_modifiers
 
@@ -165,17 +176,12 @@ class Status:
 
         self.cond_id = results.cond_id
 
-        self.effects = self.core_assets.parse_effects(results.effects)
+        self.effect_defs = results.effects
         self.conditions = self.core_assets.parse_conditions(results.conditions)
         self.condition_handler = ConditionProcessor(self.conditions)
-        self.effect_handler = EffectProcessor(self.effects)
 
-        # Load the animation sprites that will be used for this status
-        self.animation = results.animation
-        self.flip_axes = results.flip_axes
-
-        # Load the sound effect for this status
-        self.sfx = results.sfx
+        self.visuals = results.visuals
+        self.sound = results.sound
 
     def has_phase(self, phase: EffectPhase) -> bool:
         """Returns True if the current phase is equal to the provided phase, False otherwise."""
@@ -216,11 +222,15 @@ class Status:
         """
         Applies the status's effects using EffectProcessor and returns the results.
         """
+        self.effects = self.core_assets.parse_effects(self.effect_defs)
+        self.effect_handler = EffectProcessor(self.effects)
         self.set_phase(phase)
         result = self.effect_handler.process_status(
             session=session,
             source=self,
         )
+        if session.client:
+            session.client.active_statuses.append(self)
         return result
 
     def tick_turn(self) -> None:
@@ -250,6 +260,34 @@ class Status:
             f"Duration/Uses refreshed."
         )
 
+    def _calculate_step_hp_change(self, ticks: int) -> int:
+        """
+        Calculates the total HP change (damage or heal) applied by the
+        status for the given number of steps/intervals (ticks).
+        """
+        if (
+            self.step_effect_type == StepEffectType.NONE
+            or self.step_effect_value == 0.0
+        ):
+            return 0
+
+        value = self.step_effect_value
+        monster = self.host
+        hp_change_per_tick: float = 0.0
+
+        if self.step_effect_type == StepEffectType.FLAT_DAMAGE:
+            hp_change_per_tick = -value
+        elif self.step_effect_type == StepEffectType.PERCENT_MAX_HP_DAMAGE:
+            hp_change_per_tick = -(monster.hp * (value / 100))
+        elif self.step_effect_type == StepEffectType.PERCENT_CURRENT_HP_DAMAGE:
+            hp_change_per_tick = -(monster.current_hp * (value / 100))
+        elif self.step_effect_type == StepEffectType.PERCENT_MAX_HP_HEAL:
+            hp_change_per_tick = monster.hp * (value / 100)
+        elif self.step_effect_type == StepEffectType.PERCENT_CURRENT_HP_HEAL:
+            hp_change_per_tick = monster.current_hp * (value / 100)
+
+        return round(hp_change_per_tick * ticks)
+
     def tick_steps(
         self, session: Session, steps: float
     ) -> Optional[StatusEffectResult]:
@@ -257,19 +295,23 @@ class Status:
         Advance the step counter and trigger the status effect if the interval
         is reached. Returns the result if the effect was triggered.
         """
-        if self.step_interval > 0:
-            old_steps = self._steps
-            self._steps += steps
+        if self.step_interval <= 0:
+            return None
 
-            old_interval_count = old_steps // self.step_interval
-            new_interval_count = self._steps // self.step_interval
+        old_steps = self._steps
+        self._steps += steps
 
-            if new_interval_count > old_interval_count:
-                logger.debug(
-                    f"[Status Step Tick] {self.slug} triggered after "
-                    f"{new_interval_count} intervals."
-                )
-                return self.use(session, EffectPhase.ON_STEP_INTERVAL)
+        old_interval_count = old_steps // self.step_interval
+        new_interval_count = self._steps // self.step_interval
+
+        if new_interval_count > old_interval_count:
+            ticks = int(new_interval_count - old_interval_count)
+            logger.debug(
+                f"[Status Step Tick] {self.slug} triggered after "
+                f"{new_interval_count} intervals. Ticking {ticks} times."
+            )
+            self._step_hp_change = self._calculate_step_hp_change(ticks)
+            return self.use(session, EffectPhase.ON_STEP_INTERVAL)
 
         return None
 

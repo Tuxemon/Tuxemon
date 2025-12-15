@@ -14,7 +14,7 @@ from typing import (
 
 from pygame.surface import Surface
 
-from tuxemon import networking, prepare
+from tuxemon import prepare
 from tuxemon.camera.camera import Camera
 from tuxemon.db import Direction
 from tuxemon.faction.manager import FactionManager
@@ -28,7 +28,7 @@ from tuxemon.world.manager import WorldMenuManager
 from tuxemon.world.transition import WorldTransition
 
 if TYPE_CHECKING:
-    from tuxemon.networking import EventData
+    from tuxemon.network.networking import EventData, update_client
 
 logger = logging.getLogger(__name__)
 
@@ -54,8 +54,8 @@ class WorldState(State):
         )
         self.player = self.session.player
         self.camera = Camera(self.player, self.client.boundary)
-        self.client.camera_manager.add_camera(self.camera)
-        self.faction_manager = FactionManager()
+        self.client.camera_manager.add_camera(self.player.slug, self.camera)
+        self.faction_manager = FactionManager(self.client.event_bus)
         self.register_input_handlers()
         self.client.map_transition.change_map(map_name, yaml_name)
         self.client.reset_renderer()
@@ -83,6 +83,16 @@ class WorldState(State):
         for button, config in self.input_handler.get_handlers().items():
             self.input_router.register(button, config)
 
+    def prepare_for_teleport(self) -> None:
+        """
+        Stops all WorldState background activity and locks player controls
+        in preparation for a map change or teleport.
+        """
+        self.remove_animations_of(self)
+        self.stop_scheduled_callbacks()
+        self.client.movement_manager.stop_char(self.player)
+        self.client.movement_manager.lock_controls(self.player)
+
     def resume(self) -> None:
         """Called after returning focus to this state"""
         self.client.movement_manager.unlock_controls(self.player)
@@ -94,27 +104,9 @@ class WorldState(State):
 
     def broadcast_player_teleport_change(self) -> None:
         """Tell clients/host that player has moved after teleport."""
-        # Set the transition variable in event_data to false when we're done
-        self.client.event_data["transition"] = False
-
-        # Update the server/clients of our new map and populate any other players.
-        self.network = self.client.network_manager
-        if self.network.is_connected():
-            assert self.network.client
-            current_map = self.client.get_map_name()
-            self.client.npc_manager.add_clients_to_map(
-                self.network.client.client.registry, current_map
-            )
-            self.network.client.update_player(self.player.facing)
-
-        # Update the location of the npcs. Doesn't send network data.
-        for npc in self.client.npc_manager.npcs.values():
-            char_dict = {"tile_pos": npc.tile_pos}
-            networking.update_client(npc, char_dict, self.client)
-
-        for npc in self.client.npc_manager.npcs_off_map.values():
-            char_dict = {"tile_pos": npc.tile_pos}
-            networking.update_client(npc, char_dict, self.client)
+        self.client.npc_manager.handle_player_teleport(
+            self.client, self.player, self.client.network_manager
+        )
 
     def update(self, time_delta: float) -> None:
         """
@@ -124,6 +116,7 @@ class WorldState(State):
             time_delta: Amount of time passed since last frame.
         """
         super().update(time_delta)
+        self.faction_manager.update(time_delta, self.session)
         self.client.npc_manager.update_npcs(time_delta, self.client)
         self.client.npc_manager.update_npcs_off_map(time_delta, self.client)
         self.client.map_renderer.update(time_delta)
@@ -229,7 +222,7 @@ class WorldState(State):
         """
         target = registry[event_data["target"]]["sprite"]
         target_name = str(target.name)
-        networking.update_client(target, event_data["char_dict"], self.client)
+        update_client(target, event_data["char_dict"], self.client)
         if event_data["interaction"] == "DUEL":
             if not event_data["response"]:
                 self.interaction_menu.visible = True

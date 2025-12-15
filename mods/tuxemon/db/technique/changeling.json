@@ -1,7 +1,6 @@
 {
   "tech_id": 183,
   "accuracy": 1,
-  "animation": "amethyst",
   "effects": [
     {
       "type": "give",
@@ -11,13 +10,11 @@
       ]
     }
   ],
-  "flip_axes": "",
   "speed": "normal",
   "potency": 1,
   "power": 0,
   "range": "special",
   "recharge": 4,
-  "sfx": "sfx_pulse",
   "slug": "changeling",
   "sort": "damage",
   "modifiers": [],
@@ -39,5 +36,14 @@
   ],
   "use_failure": "combat_miss",
   "use_success": null,
-  "use_tech": "combat_used_x"
+  "use_tech": "combat_used_x",
+  "visuals": {
+    "animation": "amethyst",
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": "sfx_pulse",
+    "volume": 1.5
+  }
 }

@@ -90,28 +90,28 @@
     <property name="act1" value="translated_dialog route2"/>
     <property name="act2" value="translated_dialog route2_description"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="83" name="Sign: City Park" type="event" x="144" y="32" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog citypark"/>
     <property name="cond10" value="is char_facing_tile player"/>
-    <property name="cond20" value="is button_pressed K_RETURN"/>
+    <property name="cond20" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="84" name="Sign: Column 1" type="event" x="176" y="112" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog column1"/>
     <property name="cond10" value="is char_facing_tile player"/>
-    <property name="cond20" value="is button_pressed K_RETURN"/>
+    <property name="cond20" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="85" name="Sign: Column 2" type="event" x="240" y="80" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog column2"/>
     <property name="cond10" value="is char_facing_tile player"/>
-    <property name="cond20" value="is button_pressed K_RETURN"/>
+    <property name="cond20" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="87" name="create npc" type="event" x="48" y="0" width="16" height="16">
@@ -135,7 +135,7 @@
     <property name="act90" value="translated_dialog_choice sure_i_do:not_really,route2choice"/>
     <property name="cond10" value="is char_at player"/>
     <property name="cond20" value="is char_facing player,left"/>
-    <property name="cond30" value="is button_pressed K_RETURN"/>
+    <property name="cond30" value="is button_pressed INTERACT"/>
     <property name="cond40" value="is variable_set skadoosh:yes"/>
     <property name="cond50" value="not variable_set leavemealone:yes"/>
     <property name="cond60" value="not variable_set sadsong:yes"/>
@@ -430,7 +430,7 @@
     <property name="act50" value="unlock_controls"/>
     <property name="cond10" value="is char_at player"/>
     <property name="cond20" value="is char_facing player,left"/>
-    <property name="cond30" value="is button_pressed K_RETURN"/>
+    <property name="cond30" value="is button_pressed INTERACT"/>
     <property name="cond40" value="is variable_set leavemealone:yes"/>
    </properties>
   </object>

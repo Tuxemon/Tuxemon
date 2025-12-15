@@ -39,7 +39,7 @@ events:
     - open_journal dollfin
     conditions:
     - is char_facing_tile player
-    - is button_pressed K_RETURN
+    - is button_pressed INTERACT
     type: event
     x: 8
     y: 8
@@ -48,7 +48,7 @@ events:
     - open_journal memnomnom
     conditions:
     - is char_facing_tile player
-    - is button_pressed K_RETURN
+    - is button_pressed INTERACT
     type: event
     x: 9
     y: 8
@@ -57,7 +57,7 @@ events:
     - open_journal budaye
     conditions:
     - is char_facing_tile player
-    - is button_pressed K_RETURN
+    - is button_pressed INTERACT
     type: event
     x: 10
     y: 8
@@ -66,7 +66,7 @@ events:
     - open_journal grintot
     conditions:
     - is char_facing_tile player
-    - is button_pressed K_RETURN
+    - is button_pressed INTERACT
     type: event
     x: 11
     y: 8
@@ -75,7 +75,7 @@ events:
     - open_journal ignibus
     conditions:
     - is char_facing_tile player
-    - is button_pressed K_RETURN
+    - is button_pressed INTERACT
     type: event
     x: 12
     y: 8
@@ -258,7 +258,7 @@ events:
     - translated_dialog potions_in_shop
     conditions:
     - is char_facing_tile player
-    - is button_pressed K_RETURN
+    - is button_pressed INTERACT
     type: event
     width: 5
     x: 8

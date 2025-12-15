@@ -1,5 +1,4 @@
 {
-  "animation": null,
   "modifiers": [],
   "behaviors": {},
   "category": "negative",
@@ -21,16 +20,23 @@
       ]
     }
   ],
-  "flip_axes": "",
   "icon": "gfx/ui/icons/status/icon_lifegift.png",
   "on_positive_status": "replaced",
   "on_negative_status": "replaced",
   "bond": true,
-  "sfx": "sfx_bite",
   "slug": "lifegift",
   "sort": "meta",
   "cond_id": 33,
   "use_failure": null,
   "use_success": "combat_state_lifegift_end",
-  "gain_cond": "combat_state_lifegift_get"
+  "gain_cond": "combat_state_lifegift_get",
+  "visuals": {
+    "animation": null,
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": "sfx_bite",
+    "volume": 1.5
+  }
 }

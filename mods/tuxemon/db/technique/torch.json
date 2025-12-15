@@ -1,7 +1,6 @@
 {
   "tech_id": 150,
   "accuracy": 0.7,
-  "animation": "pulse",
   "effects": [
     {
       "type": "give",
@@ -14,13 +13,11 @@
       "type": "damage"
     }
   ],
-  "flip_axes": "",
   "speed": "normal",
   "potency": 0.2,
   "power": 1.4,
   "range": "reach",
   "recharge": 1,
-  "sfx": "sfx_flames1",
   "slug": "torch",
   "sort": "damage",
   "modifiers": [],
@@ -43,5 +40,14 @@
   ],
   "use_failure": "combat_miss",
   "use_success": null,
-  "use_tech": "combat_used_x"
+  "use_tech": "combat_used_x",
+  "visuals": {
+    "animation": "pulse",
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": "sfx_flames1",
+    "volume": 1.5
+  }
 }

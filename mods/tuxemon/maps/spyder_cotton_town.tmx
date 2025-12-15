@@ -126,7 +126,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_multi_martsign"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="531" name="Talk hackerintro" type="event" x="400" y="592" width="48" height="16">
@@ -156,7 +156,7 @@
   <object id="533" name="Sign: Cathedral Centre" type="event" x="272" y="416" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog Cathedral_Center"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
     <property name="cond3" value="is char_facing_tile player"/>
    </properties>
   </object>
@@ -172,7 +172,7 @@
    <properties>
     <property name="act1" value="translated_dialog cotton_town_fountain"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="538" name="Teleport to Dryad's Grove" type="event" x="0" y="112" width="16" height="16">
@@ -195,7 +195,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_omnichannel_sign"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="542" name="Create Monk" type="event" x="80" y="112" width="16" height="16">
@@ -310,7 +310,7 @@
    <properties>
     <property name="act1" value="translated_dialog welcome_location_town"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="562" name="Play Music" type="event" x="0" y="0" width="16" height="16">
@@ -489,14 +489,14 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_door_locked"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="595" name="Door locked" type="event" x="560" y="416" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_door_locked"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="596" name="Talk to confused" type="event" x="112" y="544" width="16" height="16">

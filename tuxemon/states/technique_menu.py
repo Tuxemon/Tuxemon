@@ -135,7 +135,9 @@ class TechniqueMenuState(Menu[Technique]):
         # show technique description
         if technique:
             if technique.description:
-                self.dialog.alert(technique.description, dialog_speed="max")
+                self.dialog.alert(
+                    technique.description, self.text_area, dialog_speed="max"
+                )
 
     def is_valid_entry(self, technique: Optional[Technique]) -> bool:
         """
@@ -157,7 +159,7 @@ class TechniqueMenuState(Menu[Technique]):
                 "acc": int(tech.accuracy * 100),
                 "pot": int(tech.potency * 100),
                 "pow": tech.power,
-                "rec": str(tech.recharge_length),
+                "rec": str(tech.cooldown_duration),
             },
         )
         if tech.description and tech.description != f"{tech.slug}_description":

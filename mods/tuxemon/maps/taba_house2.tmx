@@ -68,42 +68,42 @@
     <property name="act2" value="translated_dialog taba_house2_owner1"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_facing player,up"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond3" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="46" name="Reading1" type="event" x="0" y="64" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog taba_house2_reading1"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="47" name="Reading2" type="event" x="16" y="64" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog taba_house2_reading2"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="48" name="Reading3" type="event" x="32" y="64" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog taba_house2_reading3"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="49" name="Reading4" type="event" x="48" y="64" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog taba_house2_reading4"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="50" name="Books" type="event" x="0" y="32" width="64" height="16">
    <properties>
     <property name="act1" value="translated_dialog taba_house2_books"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="51" name="Create Reader1" type="event" x="64" y="64" width="16" height="16">

@@ -177,6 +177,7 @@ class MenuCursorController(Generic[T]):
         self,
         previous_item: Optional[MenuItem[T]],
         new_item: Optional[MenuItem[T]],
+        animate: bool = True,
     ) -> None:
         """
         Handles transition of focus between menu items and updates cursor
@@ -185,7 +186,8 @@ class MenuCursorController(Generic[T]):
         Parameters:
             previous_item: The menu item that was previously focused.
             new_item: The newly selected menu item.
+            animate: If True, cursor movement is animated. Defaults to True.
         """
         self._update_focus(previous_item, False)
         self._update_focus(new_item, True)
-        self.trigger_cursor_update(animate=True)
+        self.trigger_cursor_update(animate=animate)

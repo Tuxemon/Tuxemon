@@ -58,28 +58,28 @@
    <properties>
     <property name="act10" value="translated_dialog_choice 0floor:1floor:no,choice_floor"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="42" name="Elevator2a" type="event" x="176" y="224" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog_choice 0floor:1floor:no,choice_floor"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="43" name="Elevator1b" type="event" x="128" y="224" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog_choice 0floor:1floor:no,choice_floor"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="44" name="Elevator2b" type="event" x="192" y="224" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog_choice 0floor:1floor:no,choice_floor"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="62" name="Choice Floor Ground" type="event" x="128" y="192" width="16" height="16">
@@ -298,7 +298,7 @@
     <property name="act4" value="translated_dialog spyder_hospital_pc_message6"/>
     <property name="act5" value="translated_dialog spyder_hospital_pc_message9"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="116" name="PC Dr Lee 2" type="event" x="128" y="16" width="16" height="16">
@@ -308,7 +308,7 @@
     <property name="act3" value="translated_dialog spyder_hospital_pc_message7"/>
     <property name="act4" value="translated_dialog spyder_hospital_pc_message8"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
  </objectgroup>

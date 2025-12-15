@@ -1,7 +1,6 @@
 {
   "tech_id": 3,
   "accuracy": 0.75,
-  "animation": "slash_power",
   "effects": [
     {
       "type": "give",
@@ -14,13 +13,11 @@
       "type": "damage"
     }
   ],
-  "flip_axes": "x",
   "speed": "normal",
   "potency": 0.2,
   "power": 1.75,
   "range": "reach",
   "recharge": 2,
-  "sfx": "sfx_kick",
   "slug": "fire_claw",
   "sort": "damage",
   "modifiers": [],
@@ -43,5 +40,14 @@
   ],
   "use_failure": "combat_miss",
   "use_success": null,
-  "use_tech": "combat_used_x"
+  "use_tech": "combat_used_x",
+  "visuals": {
+    "animation": "slash_power",
+    "flip_axes": "x",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": "sfx_kick",
+    "volume": 1.5
+  }
 }

@@ -17,7 +17,7 @@ logger = logging.getLogger(__name__)
 
 @final
 @dataclass
-class AddHeldItemction(EventAction):
+class AddHeldItemAction(EventAction):
     """
     Adds a held item to a specific monster.
 

@@ -1,0 +1,49 @@
+{
+  "tech_id": 260,
+  "accuracy": 0.95,
+  "effects": [
+    {
+      "type": "prop_healing",
+      "parameters": [
+        "own_team",
+        "0.33"
+      ]
+    }
+  ],
+  "speed": "normal",
+  "potency": 1.0,
+  "power": 0.0,
+  "range": "special",
+  "recharge": 1,
+  "slug": "healing_herb",
+  "sort": "damage",
+  "modifiers": [],
+  "behaviors": {},
+  "target": {
+    "enemy_monster": false,
+    "enemy_team": false,
+    "enemy_trainer": false,
+    "own_monster": true,
+    "own_team": false,
+    "own_trainer": false
+  },
+  "category": "special",
+  "tags": [
+    "plant"
+  ],
+  "types": [
+    "wood"
+  ],
+  "use_failure": "combat_miss",
+  "use_success": null,
+  "use_tech": "combat_used_x",
+  "visuals": {
+    "animation": "leafstab",
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": null,
+    "volume": 1.5
+  }
+}

@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from tuxemon.event import MapCondition
+from tuxemon.db import SpatialCondition
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
 
@@ -30,7 +30,7 @@ class CurrentStateCondition(EventCondition):
 
     name = "current_state"
 
-    def test(self, session: Session, condition: MapCondition) -> bool:
+    def test(self, session: Session, condition: SpatialCondition) -> bool:
         current_state = session.client.current_state
         assert current_state
         states = condition.parameters[0].split(":")

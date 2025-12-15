@@ -16,7 +16,8 @@ from tuxemon.states.world_state import WorldState
 @dataclass
 class ScreenTransitionAction(EventAction):
     """
-    Initiate a screen transition.
+    Initiate a screen transition that blocks until both fade out and fade in
+    are complete.
 
     Script usage:
         .. code-block::
@@ -34,20 +35,26 @@ class ScreenTransitionAction(EventAction):
     name = "screen_transition"
     trans_time: Optional[float] = None
     rgb: Optional[str] = None
+    elapsed: float = 0.0
 
     def start(self, session: Session) -> None:
-        pass
-
-    def update(self, session: Session) -> None:
+        self._fade_in_triggered = False
         world = session.client.get_state_by_name(WorldState)
-        _time = TRANS_TIME if self.trans_time is None else self.trans_time
-        rgb: ColorLike = BLACK_COLOR
+        self._time = TRANS_TIME if self.trans_time is None else self.trans_time
+        self._rgb: ColorLike = BLACK_COLOR
         if self.rgb:
-            rgb = string_to_colorlike(self.rgb)
+            self._rgb = string_to_colorlike(self.rgb)
 
-        def fade_in() -> None:
-            world.transition_manager.fade_in(_time, rgb)
+        world.transition_manager.fade_out(self._time, self._rgb)
+        self.elapsed = 0.0
 
-        world.transition_manager.fade_out(_time, rgb)
-        world.task(fade_in, interval=_time)
-        self.stop()
+    def update(self, session: Session, dt: float) -> None:
+        self.elapsed += dt
+        world = session.client.get_state_by_name(WorldState)
+
+        if self.elapsed >= self._time and not self._fade_in_triggered:
+            world.transition_manager.fade_in(self._time, self._rgb)
+            self._fade_in_triggered = True
+
+        if self.elapsed >= 2 * self._time:
+            self.stop()

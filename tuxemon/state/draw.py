@@ -15,7 +15,7 @@ from tuxemon.ui.text_renderer import TextRenderer
 
 if TYPE_CHECKING:
     from tuxemon.config import TuxemonConfig
-    from tuxemon.event import MapCondition
+    from tuxemon.db import SpatialCondition
     from tuxemon.state.manager import StateManager
     from tuxemon.state.state import State
 
@@ -56,7 +56,7 @@ class Renderer:
         self.state_drawer.draw()
 
     def draw_debug(
-        self, partial_events: list[Sequence[tuple[bool, MapCondition]]]
+        self, partial_events: list[Sequence[tuple[bool, SpatialCondition]]]
     ) -> None:
         """Draws debug overlays if enabled."""
         self.debug_drawer.draw_event_debug(partial_events)
@@ -174,7 +174,7 @@ class EventDebugDrawer:
         self.failure_color = failure_color
 
     def draw_event_debug(
-        self, partial_events: list[Sequence[tuple[bool, MapCondition]]]
+        self, partial_events: list[Sequence[tuple[bool, SpatialCondition]]]
     ) -> None:
         """Overlay event data on the screen."""
         initial_x, initial_y = self.initial_x, self.initial_y

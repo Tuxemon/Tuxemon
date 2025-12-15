@@ -73,7 +73,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_multi_martsign"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="136" name="Teleport to Protagonist House" type="event" x="160" y="96" width="16" height="16">
@@ -87,7 +87,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_papertown_home"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="134" name="Sign Repairs" type="event" x="64" y="240" width="16" height="16">
@@ -101,7 +101,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_multi_underrepairs"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
     <property name="cond3" value="not variable_set captainreturns:yes"/>
    </properties>
   </object>
@@ -109,7 +109,7 @@
    <properties>
     <property name="act1" value="translated_dialog welcome_location_town"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="141" name="Sign for Daycare, Before Opening" type="event" x="256" y="64" width="16" height="16">
@@ -117,7 +117,7 @@
     <property name="act1" value="translated_dialog spyder_papertown_daycare1"/>
     <property name="cond1" value="not variable_set seentimber:yes"/>
     <property name="cond2" value="is char_facing_tile player"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond3" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="142" name="Teleport to Route 1" type="event" x="224" y="0" width="16" height="16">
@@ -174,7 +174,7 @@
     <property name="act1" value="translated_dialog spyder_papertown_daycare2"/>
     <property name="cond1" value="is variable_set seentimber:yes"/>
     <property name="cond2" value="is char_facing_tile player"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond3" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="158" name="Create Conileaf" type="event" x="384" y="32" width="16" height="16">
@@ -353,7 +353,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_papertown_sunnyside"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="200" name="Create Captain" type="event" x="64" y="256" width="16" height="16">
@@ -486,7 +486,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_papertown_rival"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="240" name="My First Mon - Not Met" type="event" x="368" y="208" width="144" height="16">
@@ -522,7 +522,7 @@
     <property name="act25" value="translated_dialog spyder_papertown_rockitten"/>
     <property name="act30" value="translated_dialog_choice yes:no,rockittenchosen"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
     <property name="cond3" value="is party_size player,less_than,1"/>
    </properties>
   </object>
@@ -533,7 +533,7 @@
     <property name="act25" value="translated_dialog spyder_papertown_lambert"/>
     <property name="act30" value="translated_dialog_choice yes:no,lambertchosen"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
     <property name="cond3" value="is party_size player,less_than,1"/>
    </properties>
   </object>
@@ -544,7 +544,7 @@
     <property name="act25" value="translated_dialog spyder_papertown_nut"/>
     <property name="act30" value="translated_dialog_choice yes:no,nutchosen"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
     <property name="cond3" value="is party_size player,less_than,1"/>
    </properties>
   </object>
@@ -555,7 +555,7 @@
     <property name="act25" value="translated_dialog spyder_papertown_tweesher"/>
     <property name="act30" value="translated_dialog_choice yes:no,tweesherchosen"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
     <property name="cond3" value="is party_size player,less_than,1"/>
    </properties>
   </object>
@@ -566,7 +566,7 @@
     <property name="act25" value="translated_dialog spyder_papertown_agnite"/>
     <property name="act30" value="translated_dialog_choice yes:no,agnitechosen"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
     <property name="cond3" value="is party_size player,less_than,1"/>
    </properties>
   </object>

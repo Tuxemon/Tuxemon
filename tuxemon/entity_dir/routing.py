@@ -9,7 +9,7 @@ from typing import TYPE_CHECKING, Any, Optional
 import yaml
 
 from tuxemon.constants.paths import mods_folder
-from tuxemon.prepare import KENNEL
+from tuxemon.prepare import KENNEL, LOCKER
 
 if TYPE_CHECKING:
     from tuxemon.save_state import NPCState
@@ -47,13 +47,17 @@ class RoutingPolicy:
     name: str
     force_to_box: bool = False
     kennel_override: Optional[str] = None
+    locker_override: Optional[str] = None
     max_party_size: Optional[int] = None
     allow_party_addition: bool = True
     auto_release_if_box_full: bool = False
+    auto_discard_if_box_full: bool = False
     overflow_kennel: Optional[str] = None
+    overflow_locker: Optional[str] = None
     max_box_capacity: Optional[int] = None
     nickname_rules: dict[str, Any] = field(default_factory=dict)
     kennel_name_rules: dict[str, Any] = field(default_factory=dict)
+    locker_name_rules: dict[str, Any] = field(default_factory=dict)
 
     @classmethod
     def from_registry(cls, name: str) -> RoutingPolicy:
@@ -62,15 +66,21 @@ class RoutingPolicy:
             name=name,
             force_to_box=bool(raw.get("force_to_box", False)),
             kennel_override=raw.get("kennel_override"),
+            locker_override=raw.get("locker_override"),
             max_party_size=raw.get("max_party_size"),
             allow_party_addition=bool(raw.get("allow_party_addition", True)),
             auto_release_if_box_full=bool(
                 raw.get("auto_release_if_box_full", False)
             ),
+            auto_discard_if_box_full=bool(
+                raw.get("auto_discard_if_box_full", False)
+            ),
             overflow_kennel=raw.get("overflow_kennel"),
+            overflow_locker=raw.get("overflow_locker"),
             max_box_capacity=raw.get("max_box_capacity"),
             nickname_rules=raw.get("nickname_rules", {}),
             kennel_name_rules=raw.get("kennel_name_rules", {}),
+            locker_name_rules=raw.get("locker_name_rules", {}),
         )
 
     def should_force_to_box(self) -> bool:
@@ -78,6 +88,9 @@ class RoutingPolicy:
 
     def get_kennel(self) -> str:
         return self.kennel_override or KENNEL
+
+    def get_locker(self) -> str:
+        return self.locker_override or LOCKER
 
     def to_dict(self) -> str:
         return self.name

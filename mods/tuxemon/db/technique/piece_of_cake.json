@@ -1,7 +1,6 @@
 {
   "tech_id": 228,
   "accuracy": 1.0,
-  "animation": "cakechomp",
   "effects": [
     {
       "type": "give",
@@ -14,18 +13,18 @@
       "type": "healing"
     }
   ],
-  "flip_axes": "",
   "healing_power": 0.5,
   "speed": "fast",
   "potency": 1.0,
   "power": 0.0,
   "range": "special",
   "recharge": 2,
-  "sfx": "sfx_bounce",
   "slug": "piece_of_cake",
   "sort": "damage",
   "modifiers": [],
-  "behaviors": {},
+  "behaviors": {
+    "bypasses_selection": true
+  },
   "target": {
     "enemy_monster": false,
     "enemy_team": false,
@@ -43,5 +42,14 @@
   ],
   "use_failure": "combat_miss",
   "use_success": null,
-  "use_tech": "combat_used_x"
+  "use_tech": "combat_used_x",
+  "visuals": {
+    "animation": "cakechomp",
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": "sfx_bounce",
+    "volume": 1.5
+  }
 }

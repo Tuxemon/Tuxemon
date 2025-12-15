@@ -8,7 +8,7 @@ from enum import Enum
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from tuxemon.db import BattleGraphicsModel
+    from tuxemon.db import BattleGraphicsModel, BattleMusicModel
     from tuxemon.npc import NPC
     from tuxemon.session import Session
 
@@ -31,6 +31,7 @@ class CombatContext:
     session: Session
     teams: list[NPC]
     graphics: BattleGraphicsModel
+    music: BattleMusicModel
     combat_type: CombatType
     battle_mode: BattleMode
 

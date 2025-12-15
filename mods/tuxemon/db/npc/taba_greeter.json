@@ -2,6 +2,7 @@
   "slug": "taba_greeter",
   "speech": {"profile": {"default": {}}},
   "combat": {},
+  "audio": {},
   "template": {
     "sprite_name": "shopassistant",
     "combat_front": "adventurer",

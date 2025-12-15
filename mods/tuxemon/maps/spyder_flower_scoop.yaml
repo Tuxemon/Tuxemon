@@ -65,7 +65,7 @@ events:
     - open_shop spyder_shopassistant,both_item
     conditions:
     - is char_facing_tile player
-    - is button_pressed K_RETURN
+    - is button_pressed INTERACT
     type: event
     x: 2
     y: 6
@@ -76,7 +76,7 @@ events:
     - open_shop spyder_shopassistant,both_item
     conditions:
     - is char_facing_tile player
-    - is button_pressed K_RETURN
+    - is button_pressed INTERACT
     type: event
     x: 1
     y: 7

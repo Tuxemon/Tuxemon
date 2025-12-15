@@ -47,6 +47,12 @@ class CoreEffect:
     def __post_init__(self) -> None:
         cast_dataclass_parameters(self)
 
+    def update(self, session: Session, dt: float) -> None:
+        pass
+
+    def is_finished(self) -> bool:
+        return True
+
     def apply_globally(self, session: Session) -> EffectResult:
         return EffectResult()
 

@@ -6,7 +6,7 @@ import logging
 from dataclasses import dataclass
 
 from tuxemon.camera.camera import unproject
-from tuxemon.event import MapCondition
+from tuxemon.db import SpatialCondition
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
 from tuxemon.tools import compare
@@ -31,7 +31,7 @@ class CameraAtCondition(EventCondition):
 
     name = "camera_at"
 
-    def test(self, session: Session, condition: MapCondition) -> bool:
+    def test(self, session: Session, condition: SpatialCondition) -> bool:
         map_size = session.client.map_manager.map_size
         pos_x = int(condition.parameters[0])
         pos_y = int(condition.parameters[1])

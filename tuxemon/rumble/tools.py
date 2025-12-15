@@ -60,19 +60,6 @@ class RumbleParams:
         )
 
 
-class Rumble:
-    """
-    A class to handle controller haptic feedback and rumbling effects.
-    """
-
-    def __init__(self) -> None:
-        """Initialize the Rumble instance."""
-
-    def rumble(self, params: RumbleParams) -> None:
-        """Simulate a rumble effect on the controller."""
-        logger.debug(f"Rumbling parameters: {params.__str__()}.")
-
-
 def find_library(locations: list[str]) -> Optional[str]:
     """
     Attempts to load a library from the provided locations.

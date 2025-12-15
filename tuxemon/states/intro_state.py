@@ -34,7 +34,7 @@ class IntroState(PopUpMenu[MenuGameObj]):
     def __init__(self) -> None:
         super().__init__()
 
-        self.triggered = False
+        self.triggered: bool = False
 
         if IntroState._cached_sprites is None:
             IntroState._cached_sprites = self._load_sprites()
@@ -64,7 +64,9 @@ class IntroState(PopUpMenu[MenuGameObj]):
             return None
 
         try:
-            return load_animated_sprite(sprite_files, 0.07)
+            sprite = load_animated_sprite(sprite_files, 0.07)
+            self.client.current_music.play("music_main_theme")
+            return sprite
         except ValueError as e:
             logger.error(f"Failed to load animated sprite: {e}")
             self.client.replace_state("StartState")

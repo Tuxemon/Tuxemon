@@ -1,7 +1,6 @@
 {
   "tech_id": 212,
   "accuracy": 0.8,
-  "animation": "pollenbullet",
   "effects": [
     {
       "type": "give",
@@ -14,13 +13,11 @@
       "type": "damage"
     }
   ],
-  "flip_axes": "",
   "speed": "normal",
   "potency": 0.3,
   "power": 1.5,
   "range": "ranged",
   "recharge": 2,
-  "sfx": "sfx_shpring",
   "slug": "pollen_blast",
   "sort": "damage",
   "modifiers": [],
@@ -42,5 +39,14 @@
   ],
   "use_failure": "combat_miss",
   "use_success": null,
-  "use_tech": "combat_used_x"
+  "use_tech": "combat_used_x",
+  "visuals": {
+    "animation": "pollenbullet",
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": "sfx_shpring",
+    "volume": 1.5
+  }
 }

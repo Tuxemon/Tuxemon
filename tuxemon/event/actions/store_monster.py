@@ -58,8 +58,7 @@ class StoreMonsterAction(EventAction):
             logger.error(f"No box found with name {box}")
             return
 
-        success = character.party.transfer_monster_to_box(monster, box)
-        if success:
+        if character.party.transfer_monster_to_box(monster, box):
             logger.info(f"{monster.name} stored in '{box}' box!")
         else:
             logger.error(

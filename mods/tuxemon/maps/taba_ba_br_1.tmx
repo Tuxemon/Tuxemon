@@ -76,7 +76,7 @@
     <property name="act3" value="set_variable choose:chose"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_facing player,left"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond3" value="is button_pressed INTERACT"/>
     <property name="cond4" value="not variable_set choose:chose"/>
     <property name="cond5" value="not variable_set movealong:now"/>
    </properties>

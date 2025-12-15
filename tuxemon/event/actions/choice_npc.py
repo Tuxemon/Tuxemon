@@ -62,7 +62,7 @@ class ChoiceNpcAction(EventAction):
 
         session.client.push_state("ChoiceNpc", menu=MenuOptions(options))
 
-    def update(self, session: Session) -> None:
+    def update(self, session: Session, dt: float) -> None:
         try:
             session.client.get_state_by_name("ChoiceNpc")
         except ValueError:

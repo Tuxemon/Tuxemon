@@ -2365,6 +2365,12 @@ msgstr ""
 msgid "blossom"
 msgstr "Blossom"
 
+msgid "bomb_description"
+msgstr "They set a bomb."
+
+msgid "bomb"
+msgstr "Bomb"
+
 msgid "boulder_description"
 msgstr "The user shelters beneath a rocky shell."
 
@@ -2504,6 +2510,12 @@ msgstr ""
 msgid "cloud_aether"
 msgstr "Cloud Aether"
 
+msgid "combat_clone_description"
+msgstr "They begin to divide themselves and send the copy to attack."
+
+msgid "combat_clone"
+msgstr "Combat Clone"
+
 msgid "conjurer_description"
 msgstr "The user conjures a force field that traps the opponent."
 
@@ -2515,6 +2527,12 @@ msgstr "The user wraps its body around the opponent, squeezing tightly."
 
 msgid "constrict"
 msgstr "Constrict"
+
+msgid "counterspell_description"
+msgstr "Protection against ranged attacks like other spells."
+
+msgid "counterspell"
+msgstr "Counterspell"
 
 msgid "crushing_bite_description"
 msgstr ""
@@ -2530,6 +2548,12 @@ msgstr "The user fires a sharp, crystalline projectile at the opponent."
 msgid "crystal"
 msgstr "Crystal"
 
+msgid "curse_description"
+msgstr "They caste a curse that takes effect later on."
+
+msgid "curse"
+msgstr "Curse"
+
 msgid "cutting_leaves_description"
 msgstr ""
 "They charge into the opponent with cutting, sharp leaves that may snag "
@@ -2537,6 +2561,24 @@ msgstr ""
 
 msgid "cutting_leaves"
 msgstr "Cutting Leaves"
+
+msgid "damage_division_description"
+msgstr "They divide into two and give the duplicate part of their damage."
+
+msgid "damage_division"
+msgstr "Damage Division"
+
+msgid "data_swap_description"
+msgstr "They swap data, and hp."
+
+msgid "data_swap"
+msgstr "Data Swap"
+
+msgid "deletion_request_description"
+msgstr "They try to put the opponent's deletion into a data queue."
+
+msgid "deletion_request"
+msgstr "Deletion Request"
 
 msgid "demiurge_description"
 msgstr ""
@@ -2639,6 +2681,12 @@ msgstr "The device saps the target's energy, empowering the user."
 msgid "energy_field"
 msgstr "Energy Field"
 
+msgid "entomb_description"
+msgstr "They pin you to the ground with great force and assemble a tomb around you."
+
+msgid "entomb"
+msgstr "Entomb"
+
 msgid "evasion_description"
 msgstr ""
 "The user becomes a blur of motion, making it difficult to hit with ranged "
@@ -2646,6 +2694,12 @@ msgstr ""
 
 msgid "evasion"
 msgstr "Evasion"
+
+msgid "external_power_description"
+msgstr "The user uses a ranged attack that can be different types."
+
+msgid "external_power"
+msgstr "External Power"
 
 msgid "eyebite_description"
 msgstr "A glance from the user saps the target of its vim and vigor."
@@ -2876,12 +2930,24 @@ msgstr "The user charges forward, striking the opponent with its head."
 msgid "hammerhead"
 msgstr "Hammerhead"
 
+msgid "harpoon_description"
+msgstr "A well aimed harpoon that can take down even a white whale."
+
+msgid "harpoon"
+msgstr "Harpoon"
+
 msgid "hawk_description"
 msgstr ""
 "The user soars high into the air before diving down with a powerful attack."
 
 msgid "hawk"
 msgstr "Hawk"
+
+msgid "healing_herb_description"
+msgstr "They give a healing leaf to heal an ally."
+
+msgid "healing_herb"
+msgstr "Healing Herb"
 
 msgid "heavenly_desserts_description"
 msgstr ""
@@ -2896,6 +2962,18 @@ msgstr "The user falls into a restorative sleep."
 
 msgid "hibernate"
 msgstr "Hibernate"
+
+msgid "hook_description"
+msgstr "They aim to hook the opponent, perhaps with a horn or limb."
+
+msgid "hook"
+msgstr "Hook"
+
+msgid "horn_description"
+msgstr "They jab powerfully but wildly with a horn, risking many misses."
+
+msgid "horn"
+msgstr "Horn"
 
 msgid "ice_claw_description"
 msgstr ""
@@ -2926,6 +3004,12 @@ msgstr "The user launches a volley of sharp ice shards at the opponent."
 msgid "icicle_spear"
 msgstr "Icicle Spear"
 
+msgid "implosion_description"
+msgstr "They try to blow themselves up and the opponent."
+
+msgid "implosion"
+msgstr "Implosion"
+
 msgid "infectious_bite_description"
 msgstr ""
 "A sharp fast bite that injects a festering toxin. May leave the target with "
@@ -2933,6 +3017,12 @@ msgstr ""
 
 msgid "infectious_bite"
 msgstr "Infectious Bite"
+
+msgid "inner_power_description"
+msgstr "The user calls upon their inner power to unleash an attack of the same type."
+
+msgid "inner_power"
+msgstr "Inner Power"
 
 msgid "insanity_description"
 msgstr "The user becomes consumed by rage, increasing its power."
@@ -2961,6 +3051,12 @@ msgstr "The user ignites with inner fire, increasing its attack power."
 
 msgid "kindling_flame"
 msgstr "Kindling Flame"
+
+msgid "kiss_description"
+msgstr "They exchange a kiss, and health."
+
+msgid "kiss"
+msgstr "Kiss"
 
 msgid "kraken_description"
 msgstr ""
@@ -3041,11 +3137,23 @@ msgstr "The user draws power from its ancestors to unleash an attack."
 msgid "lineage"
 msgstr "Lineage"
 
+msgid "lock_horns_description"
+msgstr "They try to lock horns with the enemy. "
+
+msgid "lock_horns"
+msgstr "Lock Horns"
+
 msgid "lust_description"
 msgstr "The user uses its charm to weaken the opponent's defenses."
 
 msgid "lust"
 msgstr "Lust"
+
+msgid "magic_spell_description"
+msgstr "They try to increase enemy cooldowns of non-ranged moves."
+
+msgid "magic_spell"
+msgstr "Magic Spell"
 
 msgid "magma_description"
 msgstr "The user erupts with a torrent of molten rock."
@@ -3299,6 +3407,12 @@ msgstr ""
 msgid "pouch"
 msgstr "Pouch"
 
+msgid "power_theft_description"
+msgstr "The user steals some power, perhaps by gene exchange, and uses it to launch an attack of the enemy type."
+
+msgid "power_theft"
+msgstr "Power Theft"
+
 msgid "proboscis_description"
 msgstr ""
 "The user extends a long, proboscis-like appendage, draining the opponent's "
@@ -3455,6 +3569,12 @@ msgstr ""
 msgid "sand_spray"
 msgstr "Sand Spray"
 
+msgid "sands_of_time_description"
+msgstr "They imbue sand around them with the power to turn time."
+
+msgid "sands_of_time"
+msgstr "Sands of Time"
+
 msgid "scope_description"
 msgstr "Identifies an opponent's strengths and weaknesses."
 
@@ -3546,6 +3666,12 @@ msgstr ""
 
 msgid "snowstorm"
 msgstr "Snowstorm"
+
+msgid "sockpuppet_description"
+msgstr "Tobedefined."
+
+msgid "sockpuppet"
+msgstr "Sockpuppet"
 
 msgid "solar_synthesis_description"
 msgstr "Heals the user's health by absorbing sunlight."
@@ -3943,6 +4069,12 @@ msgstr ""
 msgid "whirlwind"
 msgstr "Whirlwind"
 
+msgid "wicked_wind_description"
+msgstr "An ill wind draws near."
+
+msgid "wicked_wind"
+msgstr "Wicked Wind"
+
 msgid "wiggle_description"
 msgstr ""
 "The user shakes their body back and forth, creating a silly, attention-"
@@ -4226,6 +4358,9 @@ msgstr "Body Type"
 msgid "monster_menu_release"
 msgstr "Release"
 
+msgid "menu_sort"
+msgstr "Sort"
+
 msgid "shop_heal_to"
 msgstr "Heal to {hp} HP"
 
@@ -4243,6 +4378,18 @@ msgstr "Buy"
 
 msgid "sell"
 msgstr "Sell"
+
+msgid "sort_by_level"
+msgstr "Sort by Level"
+
+msgid "sort_by_hp"
+msgstr "Sort by HP"
+
+msgid "sort_by_name"
+msgstr "Sort by Name"
+
+msgid "sort_by_id"
+msgstr "Sort by ID"
 
 # Release notifications
 msgid "cant_release"
@@ -4717,7 +4864,7 @@ msgid "multiplayer_host_game"
 msgstr "Host Game"
 
 msgid "multiplayer_scan_games"
-msgstr "Scan for Games"
+msgstr "Browse Available Servers"
 
 msgid "multiplayer_join_game"
 msgstr "Join Game"
@@ -9237,6 +9384,12 @@ msgstr "The water ripples, but nothing bites."
 
 msgid "bivouac_success"
 msgstr "The bivouac restored your team's strength!"
+
+msgid "trap_failed"
+msgstr "The trap snaps shut, yet the earth falls silent."
+
+msgid "trap_triggered"
+msgstr "The trap springs, and a creature emerges from below."
 
 msgid "itsswimmingtime"
 msgstr "Do you want to swim?"

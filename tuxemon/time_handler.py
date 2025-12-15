@@ -2,22 +2,21 @@
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-import datetime as dt
-from datetime import datetime
+from datetime import date, datetime
 
 from tuxemon import prepare
 
 
 def get_current_time() -> datetime:
     """Gets the current date and time"""
-    return dt.datetime.now()
+    return datetime.now()
 
 
 def today_ordinal() -> int:
     """
     It gives today's proleptic Gregorian ordinal.
     """
-    return dt.date.today().toordinal()
+    return date.today().toordinal()
 
 
 def calculate_day_night_cycle(time: datetime) -> str:

@@ -12,6 +12,7 @@
       }
     },
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "miner_blue",
       "combat_front": "miner",
@@ -31,6 +32,7 @@
       }
     },
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "miner_green",
       "combat_front": "miner",
@@ -50,6 +52,7 @@
       }
     },
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "miner_red",
       "combat_front": "miner",
@@ -69,6 +72,7 @@
       }
     },
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "miner_yellow",
       "combat_front": "miner",
@@ -88,6 +92,7 @@
       }
     },
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "miner",
       "combat_front": "miner",
@@ -107,6 +112,7 @@
       }
     },
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "miner_blue",
       "combat_front": "miner",
@@ -126,6 +132,7 @@
       }
     },
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "miner_green",
       "combat_front": "miner",
@@ -145,6 +152,7 @@
       }
     },
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "miner_red",
       "combat_front": "miner",
@@ -164,6 +172,7 @@
       }
     },
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "miner_yellow",
       "combat_front": "miner",
@@ -183,6 +192,7 @@
       }
     },
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "miner",
       "combat_front": "miner",
@@ -193,6 +203,7 @@
     "slug": "eclipse_lionmountain_scientist",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "scientist_fiery",
       "combat_front": "scientist",
@@ -203,6 +214,7 @@
     "slug": "eclipse_lionmountain_enforcer",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "knight_green",
       "combat_front": "enforcer_agent",
@@ -213,6 +225,7 @@
     "slug": "eclipse_lionmountain_nurse",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "nurse",
       "combat_front": "nurse",
@@ -223,6 +236,7 @@
     "slug": "eclipse_lionmountain_snarlon",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "landrace",
       "combat_front": "sludgehog",

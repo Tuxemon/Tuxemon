@@ -1,0 +1,55 @@
+{
+  "tech_id": 247,
+  "accuracy": 0.85,
+  "effects": [
+    {
+      "type": "give",
+      "parameters": [
+        "harpooned",
+        "enemy_monster"
+      ]
+    },
+    {
+      "type": "damage"
+    }
+  ],
+  "speed": "slow",
+  "potency": 0.9,
+  "power": 2.8,
+  "range": "ranged",
+  "recharge": 2,
+  "slug": "harpoon",
+  "sort": "damage",
+  "modifiers": [],
+  "behaviors": {},
+  "target": {
+    "enemy_monster": true,
+    "enemy_team": false,
+    "enemy_trainer": false,
+    "own_monster": false,
+    "own_team": false,
+    "own_trainer": false
+  },
+  "category": "powerful",
+  "tags": [
+    "ice",
+    "water",
+    "gadgets"
+  ],
+  "types": [
+    "frost",
+    "metal"
+  ],
+  "use_failure": "combat_miss",
+  "use_success": null,
+  "use_tech": "combat_used_x",
+  "visuals": {
+    "animation": "needle",
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": null,
+    "volume": 1.5
+  }
+}

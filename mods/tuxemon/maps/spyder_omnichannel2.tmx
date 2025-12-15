@@ -211,7 +211,7 @@
     <property name="act1" value="translated_dialog spyder_omnichannel2_pc"/>
     <property name="act2" value="set_variable omnichannel1wall:yes"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="42" name="Threats" type="event" x="0" y="32" width="16" height="16">

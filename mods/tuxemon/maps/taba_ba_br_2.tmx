@@ -155,7 +155,7 @@
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_facing player,down"/>
     <property name="cond3" value="is variable_set lossbattle:yes"/>
-    <property name="cond4" value="is button_pressed K_RETURN"/>
+    <property name="cond4" value="is button_pressed INTERACT"/>
     <property name="cond5" value="is variable_set acolyte2battledone:yes"/>
    </properties>
   </object>

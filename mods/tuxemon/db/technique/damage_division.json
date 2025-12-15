@@ -1,0 +1,51 @@
+{
+  "tech_id": 261,
+  "accuracy": 0.95,
+  "effects": [
+    {
+      "type": "prop_healing",
+      "parameters": [
+        "own_monster",
+        "0.5"
+      ]
+    }
+  ],
+  "speed": "extremely_slow",
+  "potency": 1,
+  "power": 0,
+  "range": "special",
+  "recharge": 3,
+  "slug": "damage_division",
+  "sort": "damage",
+  "modifiers": [],
+  "behaviors": {},
+  "target": {
+    "enemy_monster": false,
+    "enemy_team": false,
+    "enemy_trainer": false,
+    "own_monster": true,
+    "own_team": false,
+    "own_trainer": false
+  },
+  "category": "special",
+  "tags": [
+    "healing",
+    "summoner"
+  ],
+  "types": [
+    "normal",
+    "wood"
+  ],
+  "use_failure": "combat_miss",
+  "use_success": null,
+  "use_tech": "combat_used_x",
+  "visuals": {
+    "animation": "celldivision",
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": null,
+    "volume": 1.5
+  }
+}

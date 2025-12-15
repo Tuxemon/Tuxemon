@@ -27,6 +27,18 @@
       "technique": "changeling"
     },
     {
+      "level_learned": 22,
+      "technique": "taunt"
+    },
+    {
+      "level_learned": 25,
+      "technique": "magic_spell"
+    },
+    {
+      "level_learned": 28,
+      "technique": "entomb"
+    },
+    {
       "level_learned": 40,
       "technique": "shadow_blast"
     }
@@ -93,8 +105,14 @@
   "height": 123,
   "weight": 0.1,
   "sounds": {
-    "combat_call": "sound_weird_09",
-    "faint_call": "sound_weird_09_faint"
+    "combat_call": {
+      "sfx": "sound_weird_09",
+      "volume": 1.5
+    },
+    "faint_call": {
+      "sfx": "sound_weird_09_faint",
+      "volume": 1.5
+    }
   },
   "catch_rate": 70.0,
   "lower_catch_resistance": 0.95,

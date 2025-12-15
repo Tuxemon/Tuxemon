@@ -46,7 +46,7 @@ class RenamePlayerAction(EventAction):
             random=bool(self.random),
         )
 
-    def update(self, session: Session) -> None:
+    def update(self, session: Session, dt: float) -> None:
         try:
             session.client.get_state_by_name("InputMenu")
         except ValueError:

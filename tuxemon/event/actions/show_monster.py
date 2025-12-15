@@ -57,7 +57,7 @@ class ShowMonsterAction(EventAction):
         params = {"monster": monster, "source": self.name}
         self.client.push_state("MonsterInfoState", kwargs=params)
 
-    def update(self, session: Session) -> None:
+    def update(self, session: Session, dt: float) -> None:
         try:
             session.client.get_state_by_name("MonsterInfoState")
         except ValueError:

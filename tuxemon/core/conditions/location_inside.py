@@ -15,10 +15,22 @@ if TYPE_CHECKING:
 @dataclass
 class LocationInsideCondition(CoreCondition):
     """
-    Checks against the location type the player's in.
+    Checks whether the player is currently inside or outside a location.
 
-    Accepts "inside" or "outside"
+    **Parameters**
+    - ``location_inside``: Must be either ``"inside"`` or ``"outside"``.
 
+    **Returns**
+    - ``True`` if the player's current location matches the given value.
+    - ``False`` otherwise.
+
+    **Example**
+
+    .. code-block:: json
+
+        "conditions": [
+            "is location_inside inside"
+        ]
     """
 
     name = "location_inside"

@@ -8,19 +8,39 @@
     },
     {
       "level_learned": 1,
-      "technique": "venomous_tentacle"
+      "technique": "pseudopod"
     },
     {
       "level_learned": 4,
-      "technique": "pseudopod"
+      "technique": "venomous_tentacle"
     },
     {
       "level_learned": 10,
       "technique": "slime"
     },
     {
+      "level_learned": 16,
+      "technique": "inner_power"
+    },
+    {
       "level_learned": 19,
       "technique": "kraken"
+    },
+    {
+      "level_learned": 22,
+      "technique": "sockpuppet"
+    },
+    {
+      "level_learned": 25,
+      "technique": "external_power"
+    },
+    {
+      "level_learned": 31,
+      "technique": "damage_division"
+    },
+    {
+      "level_learned": 37,
+      "technique": "combat_clone"
     },
     {
       "level_learned": 40,
@@ -54,8 +74,14 @@
   "height": 100,
   "weight": 60,
   "sounds": {
-    "combat_call": "sound_whistle",
-    "faint_call": "sound_whistle_faint"
+    "combat_call": {
+      "sfx": "sound_whistle",
+      "volume": 1.5
+    },
+    "faint_call": {
+      "sfx": "sound_whistle_faint",
+      "volume": 1.5
+    }
   },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,

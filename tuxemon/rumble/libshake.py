@@ -1,11 +1,14 @@
 # SPDX-License-Identifier: GPL-3.0
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+import logging
+from abc import ABC, abstractmethod
 from ctypes import *
-from threading import Lock, Thread
-from time import sleep
+from threading import Lock
 from typing import Any
 
-from tuxemon.rumble.tools import Rumble, RumbleParams
+from tuxemon.rumble.tools import RumbleParams
+
+logger = logging.getLogger(__name__)
 
 Shake_EffectType = c_int
 SHAKE_EFFECT_RUMBLE = Shake_EffectType(0)
@@ -71,6 +74,55 @@ class Shake_Effect(Structure):
     ]
 
 
+class Rumble(ABC):
+
+    @abstractmethod
+    def rumble(self, params: RumbleParams) -> None:
+        """Start or simulate a rumble effect on the controller."""
+
+    @abstractmethod
+    def update(self, dt: float) -> None:
+        """Update internal state, clean up expired effects, etc."""
+
+    @abstractmethod
+    def rumble_sequence(
+        self, target: int, sequence: list[tuple[float, float]]
+    ) -> None:
+        """Play a sequence of rumble effects on a device."""
+
+
+class DummyRumble(Rumble):
+
+    def __init__(self) -> None:
+        logger.info(
+            "DummyRumble initialized. No hardware effects will be played."
+        )
+
+    def rumble(self, params: RumbleParams) -> None:
+        logger.debug(f"[DummyRumble] rumble called with {params}")
+
+    def update(self, dt: float) -> None:
+        pass
+
+    def rumble_sequence(
+        self, target: int, sequence: list[tuple[float, float]]
+    ) -> None:
+        logger.debug(
+            f"[DummyRumble] rumble_sequence called on target {target} with {sequence}"
+        )
+
+    def device_info(self, device: Any) -> None:
+        logger.info(
+            f"[DummyRumble] Device info requested for {device}. Returning dummy values."
+        )
+
+    def device_count(self) -> int:
+        return 0
+
+    def quit(self) -> None:
+        logger.info("[DummyRumble] Quit called. Nothing to clean up.")
+
+
 class LibShakeRumble(Rumble):
     def __init__(self, library: str = "libshake.so") -> None:
         try:
@@ -82,24 +134,19 @@ class LibShakeRumble(Rumble):
         self.effect_type = SHAKE_EFFECT_PERIODIC
         self.periodic_waveform = SHAKE_PERIODIC_SINE
         self.lock = Lock()
+        self._elapsed_time: float = 0.0
+        self._active_effects: dict[int, list[dict[str, Any]]] = {}
 
     def rumble(self, params: RumbleParams) -> None:
         """
         Start the rumble effect for the given target device(s).
         """
-        if params.target == -1:  # Target all devices
-            for i in range(self.libShake.Shake_NumOfDevices()):
-                params.target = i
-                self._start_thread(params)
-        else:
-            self._start_thread(params)
 
-    def _execute_rumble_effect(self, params: RumbleParams) -> None:
-        """
-        Execute the rumble effect on the target device.
-        """
-        if self.libShake.Shake_NumOfDevices() > 0:
-            device = self.libShake.Shake_Open(int(params.target))
+        def create_and_start_effect(target_device: int) -> None:
+            device = self.libShake.Shake_Open(target_device)
+            if device < 0:
+                logger.warning(f"Failed to open device {target_device}.")
+                return
 
             with self.lock:
                 effect = Shake_Effect()
@@ -107,42 +154,61 @@ class LibShakeRumble(Rumble):
                     pointer(effect), self.effect_type
                 )
 
-                if self.effect_type == SHAKE_EFFECT_PERIODIC:
-                    effect.periodic.waveform = self.periodic_waveform
-                    effect.periodic.period = int(params.period)
-                    effect.periodic.magnitude = int(params.magnitude)
-                    effect.periodic.envelope.attackLength = int(
-                        params.attack_length
-                    )
-                    effect.periodic.envelope.attackLevel = int(
-                        params.attack_level
-                    )
-                    effect.periodic.envelope.fadeLength = int(
-                        params.fade_length
-                    )
-                    effect.periodic.envelope.fadeLevel = int(params.fade_level)
+                # configure effect fields...
+                effect.periodic.waveform = self.periodic_waveform
+                effect.periodic.period = int(params.period)
+                effect.periodic.magnitude = int(params.magnitude)
+                effect.periodic.envelope.attackLength = int(
+                    params.attack_length
+                )
+                effect.periodic.envelope.attackLevel = int(params.attack_level)
+                effect.periodic.envelope.fadeLength = int(params.fade_length)
+                effect.periodic.envelope.fadeLevel = int(params.fade_level)
 
                 effect.direction = int(params.direction)
-                effect.length = int(
-                    params.length * 1000
-                )  # Convert to milliseconds
+                effect.length = int(params.length * 1000)
                 effect.delay = int(params.delay)
 
                 id = self.libShake.Shake_UploadEffect(device, pointer(effect))
+                if id < 0:
+                    logger.warning("Failed to upload effect.")
+                    self.libShake.Shake_Close(device)
+                    return
+
                 self.libShake.Shake_Play(device, id)
 
-                sleep(params.length)  # Wait for the duration of the effect
-                self.libShake.Shake_EraseEffect(device, id)
+                end_time = self._elapsed_time + params.length
+                effect_record = {"id": id, "end_time": end_time}
 
-            self.libShake.Shake_Close(device)
+                # append to list instead of overwriting
+                if device not in self._active_effects:
+                    self._active_effects[device] = []
+                self._active_effects[device].append(effect_record)
 
-    def _start_thread(self, params: RumbleParams) -> None:
-        """
-        Start a thread to execute the rumble effect.
-        """
-        t = Thread(target=self._execute_rumble_effect, args=(params,))
-        t.daemon = True
-        t.start()
+        if params.target == -1:
+            for i in range(self.libShake.Shake_NumOfDevices()):
+                create_and_start_effect(i)
+        else:
+            create_and_start_effect(int(params.target))
+
+    def update(self, dt: float) -> None:
+        self._elapsed_time += dt
+        with self.lock:
+            for device, effects in list(self._active_effects.items()):
+                expired = []
+                for effect_info in effects:
+                    if self._elapsed_time >= effect_info["end_time"]:
+                        self.libShake.Shake_EraseEffect(
+                            device, effect_info["id"]
+                        )
+                        expired.append(effect_info)
+                # remove expired effects
+                for e in expired:
+                    effects.remove(e)
+                # if no effects left, close device and remove entry
+                if not effects:
+                    self.libShake.Shake_Close(device)
+                    del self._active_effects[device]
 
     def device_info(self, device: Any) -> None:
         """
@@ -196,14 +262,14 @@ class LibShakeRumble(Rumble):
                                 f"* {waveform_name}"
                             )
 
-        print(f"Device #{info['id']}")
-        print(f" Name: {info['name']}")
-        print(f" Adjustable gain: {info['gain_support']}")
-        print(f" Adjustable autocenter: {info['autocenter_support']}")
-        print(f" Effect capacity: {info['effect_capacity']}")
-        print(" Supported effects:")
+        logger.info(f"Device #{info['id']}")
+        logger.info(f" Name: {info['name']}")
+        logger.info(f" Adjustable gain: {info['gain_support']}")
+        logger.info(f" Adjustable autocenter: {info['autocenter_support']}")
+        logger.info(f" Effect capacity: {info['effect_capacity']}")
+        logger.info(" Supported effects:")
         for effect in info["supported_effects"]:
-            print(f"  {effect}")
+            logger.info(f"  {effect}")
 
     def device_count(self) -> int:
         """Return the number of available devices."""
@@ -211,4 +277,76 @@ class LibShakeRumble(Rumble):
 
     def quit(self) -> None:
         """Clean up and release resources."""
+        with self.lock:
+            for device, effects in self._active_effects.items():
+                for effect_info in effects:
+                    self.libShake.Shake_EraseEffect(device, effect_info["id"])
+                self.libShake.Shake_Close(device)
+            self._active_effects.clear()
         self.libShake.Shake_Quit()
+
+    def rumble_sequence(
+        self, target: int, sequence: list[tuple[float, float]]
+    ) -> None:
+        """
+        Play a sequence of rumble effects on a device.
+
+        Parameters:
+            target: Device index (or -1 for all devices).
+            sequence: List of (duration, pause) tuples in seconds.
+                    Example: [(0.2, 0.1), (0.2, 0.1), (0.2, 0.0)]
+                    → rumble 0.2s, pause 0.1s, rumble 0.2s, pause 0.1s, rumble 0.2s
+        """
+
+        def create_effect(
+            device: int, duration: float, pause: float, start_time: float
+        ) -> float:
+            effect = Shake_Effect()
+            self.libShake.Shake_InitEffect(pointer(effect), self.effect_type)
+
+            # Configure periodic waveform for pulsation
+            effect.periodic.waveform = self.periodic_waveform
+            effect.periodic.period = 200  # ms cycle length
+            effect.periodic.magnitude = 20000
+            effect.periodic.envelope.attackLength = 50
+            effect.periodic.envelope.attackLevel = 0
+            effect.periodic.envelope.fadeLength = 50
+            effect.periodic.envelope.fadeLevel = 0
+
+            effect.direction = 0
+            effect.length = int(duration * 1000)  # ms
+            effect.delay = int(pause * 1000)  # ms
+
+            id = self.libShake.Shake_UploadEffect(device, pointer(effect))
+            if id < 0:
+                logger.warning("Failed to upload effect.")
+                return start_time
+
+            self.libShake.Shake_Play(device, id)
+
+            end_time = start_time + duration + pause
+            if device not in self._active_effects:
+                self._active_effects[device] = []
+            self._active_effects[device].append(
+                {"id": id, "end_time": end_time}
+            )
+
+            return end_time
+
+        if target == -1:
+            devices = list(range(self.libShake.Shake_NumOfDevices()))
+        else:
+            devices = [target]
+
+        for device in devices:
+            handle = self.libShake.Shake_Open(device)
+            if handle < 0:
+                logger.warning(f"Failed to open device {device}.")
+                continue
+
+            with self.lock:
+                start_time = self._elapsed_time
+                for duration, pause in sequence:
+                    start_time = create_effect(
+                        handle, duration, pause, start_time
+                    )

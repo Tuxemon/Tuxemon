@@ -89,10 +89,6 @@ class WorldTransition:
             self.fade_in(duration, color, character)
 
         self.movement.lock_controls(character)
-        self.world.remove_animations_of(self.world)
-        self.world.stop_scheduled_callbacks()
-        self.movement.stop_and_reset_char(character)
-
         self.fade_out(duration, color, character)
         task = self.world.task(teleport_function, interval=duration)
         task.chain(fade_in, duration + 0.5)

@@ -55,28 +55,28 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_leathershaft2_pc"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="69" name="Papers" type="event" x="32" y="96" width="32" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_leathershaft2_papers"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="70" name="Dude" type="event" x="112" y="64" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_leathershaft2_dude"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="71" name="Achievement" type="event" x="64" y="32" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_leathershaft2_achievement"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="72" name="Create NPCs" type="event" x="16" y="16" width="16" height="16">

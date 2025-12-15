@@ -79,8 +79,14 @@
   "height": 55,
   "weight": 6,
   "sounds": {
-    "combat_call": "sound_cat_meow3",
-    "faint_call": "sound_cat_meow3_faint"
+    "combat_call": {
+      "sfx": "sound_cat_meow3",
+      "volume": 1.5
+    },
+    "faint_call": {
+      "sfx": "sound_cat_meow3_faint",
+      "volume": 1.5
+    }
   },
   "catch_rate": 100.0,
   "lower_catch_resistance": 0.95,

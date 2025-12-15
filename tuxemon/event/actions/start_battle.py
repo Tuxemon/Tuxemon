@@ -82,16 +82,18 @@ class StartBattleAction(EventAction):
             teams=fighters,
             combat_type=CombatType.TRAINER,
             graphics=env.battle_graphics,
+            music=env.battle_music,
             battle_mode=BattleMode.SINGLE,
         )
         session.client.push_state("CombatState", context=context)
 
-        filename = env.battle_music if not self.music else self.music
-        session.client.event_engine.execute_action(
-            "play_music", [filename], True
-        )
+        active_music = character1.get_active_battle_music(env.battle_music)
+        sound = active_music.battle
+        if sound.music:
+            filename = sound.music if not self.music else self.music
+            session.client.current_music.play(filename, sound.volume)
 
-    def update(self, session: Session) -> None:
+    def update(self, session: Session, dt: float) -> None:
         try:
             session.client.get_state_by_name("CombatState")
         except ValueError:

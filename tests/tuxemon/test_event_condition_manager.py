@@ -3,7 +3,7 @@
 import unittest
 from unittest.mock import MagicMock, patch
 
-from tuxemon.event import MapCondition
+from tuxemon.db import SpatialCondition
 from tuxemon.event.eventcondition import ConditionManager, EventCondition
 from tuxemon.event.running import ConditionEvaluator
 
@@ -23,7 +23,7 @@ class TestConditionManager(unittest.TestCase):
         self.condition_manager = ConditionManager()
 
     def test_get_condition_found(self):
-        mock_cond_data = MagicMock(spec=MapCondition)
+        mock_cond_data = MagicMock(spec=SpatialCondition)
         mock_cond_data.type = "char_at"
         mock_cond_data.operator = "is"
 
@@ -32,7 +32,7 @@ class TestConditionManager(unittest.TestCase):
         self.assertEqual(condition.is_expected, True)
 
     def test_get_condition_not_found(self):
-        mock_cond_data = MagicMock(spec=MapCondition)
+        mock_cond_data = MagicMock(spec=SpatialCondition)
         mock_cond_data.type = "nonexistent"
         mock_cond_data.operator = "is"
 

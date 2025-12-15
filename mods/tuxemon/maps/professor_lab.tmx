@@ -65,7 +65,7 @@
     <property name="act6" value="translated_dialog_choice yes:no,rockittenchoice"/>
     <property name="cond1" value="not variable_set havetuxemon:yes"/>
     <property name="cond2" value="is char_facing_tile player"/>
-    <property name="cond4" value="is button_pressed K_RETURN"/>
+    <property name="cond4" value="is button_pressed INTERACT"/>
     <property name="cond5" value="is variable_set gettuxemon:now"/>
    </properties>
   </object>
@@ -78,7 +78,7 @@
     <property name="act6" value="translated_dialog_choice yes:no,cardilingchoice"/>
     <property name="cond1" value="not variable_set havetuxemon:yes"/>
     <property name="cond2" value="is char_facing_tile player"/>
-    <property name="cond4" value="is button_pressed K_RETURN"/>
+    <property name="cond4" value="is button_pressed INTERACT"/>
     <property name="cond5" value="is variable_set gettuxemon:now"/>
    </properties>
   </object>
@@ -91,7 +91,7 @@
     <property name="act6" value="translated_dialog_choice yes:no,tweesherchoice"/>
     <property name="cond1" value="not variable_set havetuxemon:yes"/>
     <property name="cond2" value="is char_facing_tile player"/>
-    <property name="cond4" value="is button_pressed K_RETURN"/>
+    <property name="cond4" value="is button_pressed INTERACT"/>
     <property name="cond5" value="is variable_set gettuxemon:now"/>
    </properties>
   </object>

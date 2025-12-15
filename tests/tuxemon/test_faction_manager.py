@@ -4,6 +4,7 @@ import unittest
 from unittest.mock import Mock, patch
 
 from tuxemon.db import FactionAlignment, FactionRelationStatus
+from tuxemon.event.eventbus import EventBus
 from tuxemon.faction.faction import Faction
 from tuxemon.faction.manager import FactionManager
 
@@ -11,7 +12,8 @@ from tuxemon.faction.manager import FactionManager
 class TestFactionManager(unittest.TestCase):
 
     def setUp(self):
-        self.faction_manager = FactionManager()
+        self.event_bus = EventBus()
+        self.faction_manager = FactionManager(self.event_bus)
 
     def test_init(self):
         self.assertEqual(self.faction_manager._factions, {})
@@ -197,3 +199,61 @@ class TestFactionManager(unittest.TestCase):
         self.faction_manager.get_factions_by_member("npc1")
         self.faction_manager.clear_membership_cache()
         self.assertEqual(self.faction_manager._membership_cache, {})
+
+    def test_update_triggers_maintenance(self):
+        faction = Faction()
+        faction.slug = "faction1"
+        faction.add_member("npc1")
+        faction.update = Mock()
+        faction.evaluate_rank_change = Mock()
+        self.faction_manager.register(faction)
+        session = Mock()
+        session.player = Mock()
+        session.player.game_variables = Mock()
+        session.player.game_variables.get_state.return_value = {}
+        self.faction_manager.update(601.0, session)
+        faction.update.assert_called_once_with(601.0)
+        faction.evaluate_rank_change.assert_called_with("npc1", {})
+
+    def test_resolve_diplomacy_rivals(self):
+        faction1 = Faction()
+        faction1.slug = "faction1"
+        faction1.alignment = FactionAlignment.LAWFUL
+        faction2 = Faction()
+        faction2.slug = "faction2"
+        faction2.alignment = FactionAlignment.CHAOTIC
+        self.faction_manager.register(faction1)
+        self.faction_manager.register(faction2)
+        self.faction_manager.resolve_diplomacy("faction1", "faction2")
+        self.assertEqual(
+            faction1.get_relation("faction2"), FactionRelationStatus.RIVAL
+        )
+
+    def test_get_factions_by_member_cache_reuse(self):
+        faction = Faction()
+        faction.slug = "faction1"
+        faction.add_member("npc1")
+        self.faction_manager.register(faction)
+        result1 = self.faction_manager.get_factions_by_member("npc1")
+        with patch.object(
+            Faction, "has_member", return_value=False
+        ) as mock_has_member:
+            result2 = self.faction_manager.get_factions_by_member("npc1")
+            mock_has_member.assert_not_called()
+        self.assertEqual(result1, result2)
+
+    def test_on_faction_loaded_logs(self):
+        faction = Faction()
+        faction.slug = "faction1"
+        with self.assertLogs("tuxemon.faction.manager", level="INFO") as cm:
+            self.faction_manager.on_faction_loaded(faction)
+        self.assertTrue(
+            any("detected faction loaded" in msg for msg in cm.output)
+        )
+
+    def test_load_core_factions_failure(self):
+        with patch.object(
+            Faction, "load_from_db", side_effect=Exception("DB error")
+        ):
+            self.faction_manager.load_core_factions(["bad_faction"])
+        self.assertEqual(self.faction_manager.all_factions(), [])

@@ -1,19 +1,16 @@
 {
   "tech_id": 6,
   "accuracy": 1,
-  "animation": "crushingball",
   "effects": [
     {
       "type": "damage"
     }
   ],
-  "flip_axes": "",
   "speed": "normal",
   "potency": 0.0,
   "power": 1.5,
   "range": "touch",
   "recharge": 1,
-  "sfx": "sfx_crumble2",
   "slug": "rock",
   "sort": "damage",
   "modifiers": [],
@@ -35,5 +32,14 @@
   ],
   "use_failure": "combat_miss",
   "use_success": null,
-  "use_tech": "combat_used_x"
+  "use_tech": "combat_used_x",
+  "visuals": {
+    "animation": "crushingball",
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": "sfx_crumble2",
+    "volume": 1.5
+  }
 }

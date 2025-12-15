@@ -63,6 +63,7 @@ class HeadlessClient(BaseClient):
         """
         # self.network_manager.update(time_delta)
         events = self.input_manager.process_events()
+        self.input_manager.update(time_delta)
         self.key_events = list(self.event_manager.process_events(events))
         self.event_data = {}
         self.event_engine.update(time_delta)

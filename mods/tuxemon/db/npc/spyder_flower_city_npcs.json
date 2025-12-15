@@ -3,6 +3,7 @@
     "slug": "spyder_flower_cady",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "snugglepot",
       "combat_front": "yellowbelt",
@@ -13,6 +14,7 @@
     "slug": "spyder_flower_fez",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "beachcomber_copper",
       "combat_front": "yellowbelt",
@@ -23,6 +25,7 @@
     "slug": "spyder_flower_mieke",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "catgirl_blue",
       "combat_front": "catgirl",
@@ -33,6 +36,7 @@
     "slug": "spyder_flower_sandy",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "childactor",
       "combat_front": "yellowbelt",
@@ -43,6 +47,7 @@
     "slug": "spyder_flower_teach",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "picnicker",
       "combat_front": "picnicker",
@@ -53,6 +58,7 @@
     "slug": "spyder_flower_monk",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "monk_blue",
       "combat_front": "monk",
@@ -63,6 +69,7 @@
     "slug": "spyder_flowerhouse1_willie",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "firefighter",
       "combat_front": "firefighter",
@@ -73,6 +80,7 @@
     "slug": "spyder_flowerhouse2_pip",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "soldier",
       "combat_front": "soldier",
@@ -83,6 +91,7 @@
     "slug": "spyder_flowerhouse1_jonette",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "granny",
       "combat_front": "adventurer",
@@ -93,6 +102,7 @@
     "slug": "spyder_flower_lissa",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "florist",
       "combat_front": "florist",
@@ -103,6 +113,7 @@
     "slug": "spyder_flowerhouse2_bruce",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "scientist_black",
       "combat_front": "scientist",
@@ -113,6 +124,7 @@
     "slug": "spyder_flowerpetshop_denzel",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "shopkeeper_blonde",
       "combat_front": "adventurer",
@@ -123,6 +135,7 @@
     "slug": "spyder_flowerpetshop_titus",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "shopassistant_grey",
       "combat_front": "shopassistant",
@@ -133,6 +146,7 @@
     "slug": "spyder_shopassistant",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "shopkeeper",
       "combat_front": "adventurer",

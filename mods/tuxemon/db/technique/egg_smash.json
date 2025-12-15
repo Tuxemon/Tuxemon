@@ -1,19 +1,16 @@
 {
   "tech_id": 232,
   "accuracy": 0.9,
-  "animation": "egg_crack",
   "effects": [
     {
       "type": "damage"
     }
   ],
-  "flip_axes": "",
   "speed": "normal",
   "potency": 0.0,
   "power": 2.0,
   "range": "ranged",
   "recharge": 2,
-  "sfx": "sfx_kick",
   "slug": "egg_smash",
   "sort": "damage",
   "modifiers": [],
@@ -38,5 +35,14 @@
   ],
   "use_failure": "combat_miss",
   "use_success": null,
-  "use_tech": "combat_used_x"
+  "use_tech": "combat_used_x",
+  "visuals": {
+    "animation": "egg_crack",
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": "sfx_kick",
+    "volume": 1.5
+  }
 }

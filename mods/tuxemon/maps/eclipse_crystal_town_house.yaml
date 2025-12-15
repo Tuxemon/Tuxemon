@@ -48,7 +48,7 @@ events:
     - translated_dialog eclipse_crystal_tvwatch
     conditions:
     - is char_facing_tile player
-    - is button_pressed K_RETURN
+    - is button_pressed INTERACT
     height: 1
     type: event
     width: 2

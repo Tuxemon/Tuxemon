@@ -830,5 +830,9 @@
   {
     "file": "monster/reverse_Woosh-2.ogg",
     "slug": "sound_woosh_2_faint"
+  },
+  {
+    "file": "monster/yehehe.ogg",
+    "slug": "sound_yehehe"
   }
 ]

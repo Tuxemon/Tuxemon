@@ -7,9 +7,8 @@ from typing import Any, ClassVar, Optional
 
 from pygame.surface import Surface
 
-from tuxemon.item.item import INFINITE_ITEMS, Item
+from tuxemon.item.item import Item
 from tuxemon.item.shop_utils import (
-    filter_inventory,
     generate_label,
 )
 from tuxemon.menu.interface import MenuItem
@@ -28,16 +27,25 @@ class ShopItemMenuState(ShopMenuState[Item]):
 
     def _display_asset_description(self, asset: MenuItem[Item]) -> None:
         if asset.description:
-            self.dialog.alert(asset.description, dialog_speed="max")
+            self.dialog.alert(
+                asset.description, self.text_area, dialog_speed="max"
+            )
 
     def _filter_inventory(self) -> list[Item]:
-        return filter_inventory(self.buyer, self.seller, self.economy)
+        return self.applier.filter_items(
+            self.buyer,
+            self.seller,
+            self.economy,
+            self.client.shop_manager,
+        )
 
     def _populate_menu(self, inventory: list[Item]) -> None:
         for item in inventory:
             if self.buyer.is_player:
-                key = f"{self.economy.model.slug}:{item.slug}"
-                qty = self.buyer.game_variables.get(key, 0)
+                key = self.client.shop_manager.get_full_label(
+                    self.economy.model.slug, item.slug
+                )
+                qty = self.client.shop_manager.get_quantity(key)
                 label, _, price = generate_label(item, self.economy, qty)
                 unavailable = price > self.buyer_manager.get_money()
                 self._add_menu_item(item, label, {"price": price}, unavailable)
@@ -53,21 +61,21 @@ class ShopItemMenuState(ShopMenuState[Item]):
         item = menu_item.game_object
         if self.buyer.is_player:
             price: int = menu_item.metadata.get("price", 1)
-            label = f"{self.economy.model.slug}:{item.slug}"
+            label = self.client.shop_manager.get_full_label(
+                self.economy.model.slug, item.slug
+            )
 
             def buy_item(quantity: int) -> None:
+                total_price, _ = self.economy.calculate_price(item, quantity)
                 self.transaction_manager.buy_item(
-                    self.buyer, item, quantity, label, price
+                    self.buyer, item, quantity, label, total_price
                 )
                 self.reload_shop()
 
-            money = self.buyer_manager.get_money()
-            qty_can_afford = int(money / price)
-            inventory = self.buyer.game_variables.get(label, INFINITE_ITEMS)
             max_quantity = (
-                qty_can_afford
-                if inventory == INFINITE_ITEMS
-                else min(qty_can_afford, inventory)
+                self.client.shop_manager.get_max_affordable_quantity(
+                    label, price, self.buyer_manager.get_money()
+                )
             )
             return {
                 "callback": partial(buy_item),
@@ -76,7 +84,8 @@ class ShopItemMenuState(ShopMenuState[Item]):
             }
         elif self.seller.is_player:
             metadata_cost = menu_item.metadata.get("cost")
-            basic_cost = self.economy.lookup_item_field(item.slug, "cost")
+            item_model = self.economy.get_item(item.slug)
+            basic_cost = item_model.cost if item_model else None
             if metadata_cost is not None:
                 cost = metadata_cost
             elif basic_cost:
@@ -85,8 +94,14 @@ class ShopItemMenuState(ShopMenuState[Item]):
                 cost = round(item.cost * self.economy.model.resale_multiplier)
 
             def sell_item(quantity: int) -> None:
+                label = self.client.shop_manager.get_full_label(
+                    self.economy.model.slug, item.slug
+                )
+                total_price, _ = self.economy.calculate_price(
+                    item, quantity, seller_mode=True
+                )
                 self.transaction_manager.sell_item(
-                    self.seller, item, quantity, cost
+                    self.seller, item, quantity, total_price, label
                 )
                 self.reload_shop()
 
@@ -106,11 +121,14 @@ class ShopItemBuyMenuState(ShopItemMenuState):
     def on_menu_selection(self, menu_item: MenuItem[Item]) -> None:
         item = menu_item.game_object
         price: int = menu_item.metadata.get("price", 1)
-        label = f"{self.economy.model.slug}:{item.slug}"
+        label = self.client.shop_manager.get_full_label(
+            self.economy.model.slug, item.slug
+        )
 
         def buy_item(quantity: int) -> None:
+            total_price, _ = self.economy.calculate_price(item, quantity)
             self.transaction_manager.buy_item(
-                self.buyer, item, quantity, label, price
+                self.buyer, item, quantity, label, total_price
             )
             self.reload_items()
             if (
@@ -119,13 +137,8 @@ class ShopItemBuyMenuState(ShopItemMenuState):
             ):
                 self.on_menu_selection_change()
 
-        money = self.buyer_manager.get_money()
-        qty_can_afford = int(money / price)
-        inventory = self.buyer.game_variables.get(label, INFINITE_ITEMS)
-        max_quantity = (
-            qty_can_afford
-            if inventory == INFINITE_ITEMS
-            else min(qty_can_afford, inventory)
+        max_quantity = self.client.shop_manager.get_max_affordable_quantity(
+            label, price, self.buyer_manager.get_money()
         )
 
         self.client.state_manager.push_state(
@@ -147,7 +160,8 @@ class ShopItemSellMenuState(ShopItemMenuState):
     def on_menu_selection(self, menu_item: MenuItem[Item]) -> None:
         item = menu_item.game_object
         metadata_cost = menu_item.metadata.get("cost")
-        basic_cost = self.economy.lookup_item_field(item.slug, "cost")
+        item_model = self.economy.get_item(item.slug)
+        basic_cost = item_model.cost if item_model else None
 
         if metadata_cost is not None:
             cost = metadata_cost
@@ -157,8 +171,14 @@ class ShopItemSellMenuState(ShopItemMenuState):
             cost = round(item.cost * self.economy.model.resale_multiplier)
 
         def sell_item(quantity: int) -> None:
+            label = self.client.shop_manager.get_full_label(
+                self.economy.model.slug, item.slug
+            )
+            total_price, _ = self.economy.calculate_price(
+                item, quantity, seller_mode=True
+            )
             self.transaction_manager.sell_item(
-                self.seller, item, quantity, cost
+                self.seller, item, quantity, total_price, label
             )
             self.reload_items()
             if not self.seller.bag.has_item(item.slug):

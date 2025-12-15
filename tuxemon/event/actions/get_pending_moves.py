@@ -88,7 +88,7 @@ class GetPendingMovesAction(EventAction):
 
         session.client.event_data.pop("check_max_tech", None)
 
-    def update(self, session: Session) -> None:
+    def update(self, session: Session, dt: float) -> None:
         try:
             session.client.get_state_by_name("TechniqueMenuState")
         except ValueError:

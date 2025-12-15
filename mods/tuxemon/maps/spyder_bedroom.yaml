@@ -40,7 +40,7 @@ events:
     - set_monster_status
     - set_teleport_faint player,spyder_bedroom.tmx,6,5
     conditions:
-    - is button_pressed K_RETURN
+    - is button_pressed INTERACT
     - is char_facing_tile player
     height: 2
     type: event
@@ -79,7 +79,7 @@ events:
     - access_pc player
     conditions:
     - is char_facing_tile player
-    - is button_pressed K_RETURN
+    - is button_pressed INTERACT
     - not variable_set kernelquest:yes
     type: event
     x: 3
@@ -89,7 +89,7 @@ events:
     - translated_dialog spyder_pc_alert
     conditions:
     - is char_facing_tile player
-    - is button_pressed K_RETURN
+    - is button_pressed INTERACT
     - is variable_set kernelquest:yes
     type: event
     x: 3

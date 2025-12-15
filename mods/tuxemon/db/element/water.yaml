@@ -1,0 +1,43 @@
+# slug: Unique identifier for the element type (example: "aether", "fire", "water")
+#       Must have:
+#          - A translation entry in base.po with msgid = slug
+#          - A sound file "sound_<slug>_call" in the sounds database
+#          - A sound file "sound_<slug>_faint" in the sounds database
+# icon: Path to the icon file for the element (example: "gfx/ui/icons/element/aether_type.png")
+#       The file MUST exist in the filesystem and match ELEMENT_SIZE dimensions.
+# types: List of type interactions for this element
+#   against: Name of the opposing element type (example: "fire")
+#            Must correspond to a valid element entry in the database.
+#   multiplier: Float multiplier applied when interacting with that type (range 0.0–2.0, example: 1.0)
+
+slug: water
+icon: gfx/ui/icons/element/water_type.png
+types:
+- against: aether
+  multiplier: 1
+- against: earth
+  multiplier: 1
+- against: fire
+  multiplier: 2
+- against: frost
+  multiplier: 0.5
+- against: heroic
+  multiplier: 1
+- against: lightning
+  multiplier: 1
+- against: cosmic
+  multiplier: 1
+- against: metal
+  multiplier: 1
+- against: normal
+  multiplier: 1
+- against: shadow
+  multiplier: 1
+- against: sky
+  multiplier: 1
+- against: venom
+  multiplier: 1
+- against: water
+  multiplier: 0.5
+- against: wood
+  multiplier: 0.5

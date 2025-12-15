@@ -1,7 +1,6 @@
 {
   "tech_id": 12,
   "accuracy": 1,
-  "animation": "pound",
   "effects": [
     {
       "type": "give",
@@ -14,13 +13,11 @@
       "type": "damage"
     }
   ],
-  "flip_axes": "",
   "speed": "normal",
   "potency": 0.1,
   "power": 2.25,
   "range": "melee",
   "recharge": 2,
-  "sfx": "sfx_lightning2",
   "slug": "thunderball",
   "sort": "damage",
   "modifiers": [],
@@ -42,5 +39,14 @@
   ],
   "use_failure": "combat_miss",
   "use_success": null,
-  "use_tech": "combat_used_x"
+  "use_tech": "combat_used_x",
+  "visuals": {
+    "animation": "pound",
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": "sfx_lightning2",
+    "volume": 1.5
+  }
 }

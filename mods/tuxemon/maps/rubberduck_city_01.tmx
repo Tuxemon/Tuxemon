@@ -213,7 +213,7 @@
     <property name="act10" value="translated_dialog rubberduck_city_01"/>
     <property name="cond10" value="is char_at player"/>
     <property name="cond20" value="is char_facing player,up"/>
-    <property name="cond30" value="is button_pressed K_RETURN"/>
+    <property name="cond30" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="135" name="empty house" type="event" x="720" y="352" width="16" height="16">
@@ -221,7 +221,7 @@
     <property name="act10" value="translated_dialog rubberduck_city_02"/>
     <property name="cond10" value="is char_at player"/>
     <property name="cond20" value="is char_facing player,up"/>
-    <property name="cond30" value="is button_pressed K_RETURN"/>
+    <property name="cond30" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="136" name="empty house" type="event" x="800" y="496" width="16" height="16">
@@ -229,7 +229,7 @@
     <property name="act10" value="translated_dialog rubberduck_city_01"/>
     <property name="cond10" value="is char_at player"/>
     <property name="cond20" value="is char_facing player,up"/>
-    <property name="cond30" value="is button_pressed K_RETURN"/>
+    <property name="cond30" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="137" name="empty house" type="event" x="624" y="496" width="16" height="16">
@@ -237,7 +237,7 @@
     <property name="act10" value="translated_dialog rubberduck_city_04"/>
     <property name="cond10" value="is char_at player"/>
     <property name="cond20" value="is char_facing player,up"/>
-    <property name="cond30" value="is button_pressed K_RETURN"/>
+    <property name="cond30" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="138" name="empty house" type="event" x="432" y="624" width="16" height="16">
@@ -245,7 +245,7 @@
     <property name="act10" value="translated_dialog rubberduck_city_03"/>
     <property name="cond10" value="is char_at player"/>
     <property name="cond20" value="is char_facing player,up"/>
-    <property name="cond30" value="is button_pressed K_RETURN"/>
+    <property name="cond30" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="139" name="empty house" type="event" x="208" y="624" width="16" height="16">
@@ -253,7 +253,7 @@
     <property name="act10" value="translated_dialog rubberduck_city_02"/>
     <property name="cond10" value="is char_at player"/>
     <property name="cond20" value="is char_facing player,up"/>
-    <property name="cond30" value="is button_pressed K_RETURN"/>
+    <property name="cond30" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="140" name="empty house" type="event" x="384" y="784" width="32" height="16">
@@ -261,7 +261,7 @@
     <property name="act10" value="translated_dialog rubberduck_city_05"/>
     <property name="cond10" value="is char_at player"/>
     <property name="cond20" value="is char_facing player,up"/>
-    <property name="cond30" value="is button_pressed K_RETURN"/>
+    <property name="cond30" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="141" name="empty house" type="event" x="432" y="768" width="16" height="16">
@@ -269,7 +269,7 @@
     <property name="act10" value="translated_dialog rubberduck_city_05"/>
     <property name="cond10" value="is char_at player"/>
     <property name="cond20" value="is char_facing player,up"/>
-    <property name="cond30" value="is button_pressed K_RETURN"/>
+    <property name="cond30" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="142" name="empty house" type="event" x="448" y="784" width="16" height="16">
@@ -277,7 +277,7 @@
     <property name="act10" value="translated_dialog rubberduck_city_05"/>
     <property name="cond10" value="is char_at player"/>
     <property name="cond20" value="is char_facing player,up"/>
-    <property name="cond30" value="is button_pressed K_RETURN"/>
+    <property name="cond30" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="143" name="empty house" type="event" x="416" y="752" width="16" height="16">
@@ -285,7 +285,7 @@
     <property name="act10" value="translated_dialog rubberduck_city_05"/>
     <property name="cond10" value="is char_at player"/>
     <property name="cond20" value="is char_facing player,up"/>
-    <property name="cond30" value="is button_pressed K_RETURN"/>
+    <property name="cond30" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="144" name="empty house" type="event" x="432" y="464" width="16" height="16">
@@ -293,7 +293,7 @@
     <property name="act10" value="translated_dialog rubberduck_city_06"/>
     <property name="cond10" value="is char_at player"/>
     <property name="cond20" value="is char_facing player,up"/>
-    <property name="cond30" value="is button_pressed K_RETURN"/>
+    <property name="cond30" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="145" name="empty house" type="event" x="864" y="688" width="16" height="16">
@@ -301,7 +301,7 @@
     <property name="act10" value="translated_dialog rubberduck_city_07"/>
     <property name="cond10" value="is char_at player"/>
     <property name="cond20" value="is char_facing player,up"/>
-    <property name="cond30" value="is button_pressed K_RETURN"/>
+    <property name="cond30" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="146" name="empty house" type="event" x="240" y="416" width="16" height="16">
@@ -309,7 +309,7 @@
     <property name="act10" value="translated_dialog rubberduck_city_02"/>
     <property name="cond10" value="is char_at player"/>
     <property name="cond20" value="is char_facing player,up"/>
-    <property name="cond30" value="is button_pressed K_RETURN"/>
+    <property name="cond30" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="150" name="cave route" type="event" x="480" y="272" width="16" height="16">
@@ -317,7 +317,7 @@
     <property name="act10" value="translated_dialog rubberduck_city_08"/>
     <property name="cond10" value="is char_at player"/>
     <property name="cond20" value="is char_facing player,up"/>
-    <property name="cond30" value="is button_pressed K_RETURN"/>
+    <property name="cond30" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="151" name="where_to_go" type="event" x="992" y="704" width="16" height="32">
@@ -338,7 +338,7 @@
     <property name="act10" value="translated_dialog rubberduck_city_10"/>
     <property name="cond10" value="is char_at player"/>
     <property name="cond20" value="is char_facing player,up"/>
-    <property name="cond30" value="is button_pressed K_RETURN"/>
+    <property name="cond30" value="is button_pressed INTERACT"/>
    </properties>
   </object>
  </objectgroup>

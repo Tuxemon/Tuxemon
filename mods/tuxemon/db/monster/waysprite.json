@@ -110,8 +110,14 @@
   "height": 15,
   "weight": 1,
   "sounds": {
-    "combat_call": "sound_cute_04",
-    "faint_call": "sound_cute_04_faint"
+    "combat_call": {
+      "sfx": "sound_cute_04",
+      "volume": 1.5
+    },
+    "faint_call": {
+      "sfx": "sound_cute_04_faint",
+      "volume": 1.5
+    }
   },
   "catch_rate": 100,
   "lower_catch_resistance": 0.95,

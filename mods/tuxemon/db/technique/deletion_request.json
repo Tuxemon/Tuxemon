@@ -1,0 +1,51 @@
+{
+  "tech_id": 265,
+  "accuracy": 0.9,
+  "effects": [
+    {
+      "type": "foresight",
+      "parameters": [
+        "2"
+      ]
+    },
+    {
+      "type": "damage"
+    }
+  ],
+  "speed": "slow",
+  "potency": 0.0,
+  "power": 2.0,
+  "range": "ranged",
+  "recharge": 2,
+  "slug": "deletion_request",
+  "sort": "damage",
+  "modifiers": [],
+  "behaviors": {},
+  "target": {
+    "enemy_monster": true,
+    "enemy_team": false,
+    "enemy_trainer": false,
+    "own_monster": false,
+    "own_team": false,
+    "own_trainer": false
+  },
+  "category": "exotic",
+  "tags": [
+    "machine"
+  ],
+  "types": [
+    "metal"
+  ],
+  "use_failure": "combat_miss",
+  "use_success": null,
+  "use_tech": "combat_used_x",
+  "visuals": {
+    "animation": "metal_delete",
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": null,
+    "volume": 1.5
+  }
+}

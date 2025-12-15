@@ -11,7 +11,9 @@ from typing import TYPE_CHECKING, Optional
 from tuxemon.formula import config_combat
 
 if TYPE_CHECKING:
+    from tuxemon.menu.alert import AlertManager
     from tuxemon.state.state import State
+    from tuxemon.ui.text import TextArea
 
 logger = logging.getLogger(__name__)
 
@@ -65,15 +67,19 @@ class TextAnimationManager:
             f"Added XP message: '{message}'. Total XP messages: {len(self._xp_messages)}"
         )
 
-    def trigger_xp_animation(self, alert_func: Callable[..., None]) -> None:
+    def trigger_xp_animation(
+        self, alert_func: Callable[..., None], text_area: TextArea
+    ) -> None:
         if self._xp_messages:
             combined_message = "\n".join(self._xp_messages)
             logger.debug(
                 f"Triggering XP animation with combined message: {combined_message!r}"
             )
-            timed_text_animation = partial(alert_func, combined_message)
             duration = self.compute_text_anim_time(combined_message)
             self._pending_xp_duration = duration
+            timed_text_animation = partial(
+                alert_func, combined_message, text_area
+            )
             self.add_text_animation(timed_text_animation, duration)
             self._xp_messages.clear()
             logger.debug("Cleared XP messages after triggering animation")
@@ -86,16 +92,19 @@ class CombatNotifier:
         self,
         state: State,
         text_anim_manager: TextAnimationManager,
-        alert_method: Callable[..., None],
+        alert_manager: AlertManager,
         lock_update: bool,
     ):
         self.state = state
         self.text_anim = text_anim_manager
-        self._alert_method = alert_method
+        self.alert_manager = alert_manager
         self._lock_update = lock_update
 
     def show_message_and_wait_for_input(
-        self, message: str, override_lock: Optional[bool] = None
+        self,
+        message: str,
+        text_area: TextArea,
+        override_lock: Optional[bool] = None,
     ) -> None:
         """
         Displays a combat message and, if configured, pushes a state to wait for player input.
@@ -110,7 +119,7 @@ class CombatNotifier:
         )
 
         self.text_anim.add_text_animation(
-            partial(self._alert_method, message), action_time
+            partial(self.alert_manager.alert, message, text_area), action_time
         )
 
         should_lock = (
@@ -125,7 +134,9 @@ class CombatNotifier:
                 interval=action_time,
             )
 
-    def trigger_xp_and_wait_for_input(self, delay: float = 3.0) -> None:
+    def trigger_xp_and_wait_for_input(
+        self, text_area: TextArea, delay: float = 3.0
+    ) -> None:
         """
         Triggers XP animation and schedules input block based on actual animation duration.
         """
@@ -145,7 +156,11 @@ class CombatNotifier:
 
         # First queue the XP animation trigger
         self.state.task(
-            partial(self.text_anim.trigger_xp_animation, self._alert_method),
+            partial(
+                self.text_anim.trigger_xp_animation,
+                self.alert_manager.alert,
+                text_area,
+            ),
             interval=delay,
         )
 

@@ -1,7 +1,6 @@
 {
   "tech_id": 165,
   "accuracy": 0.8,
-  "animation": "wall_fire",
   "effects": [
     {
       "type": "give",
@@ -21,13 +20,11 @@
       "type": "damage"
     }
   ],
-  "flip_axes": "",
   "speed": "very_slow",
   "potency": 0.8,
   "power": 1.9,
   "range": "reach",
   "recharge": 3,
-  "sfx": "sfx_flames1",
   "slug": "wall_fire",
   "sort": "damage",
   "modifiers": [],
@@ -50,5 +47,14 @@
   ],
   "use_failure": "combat_miss",
   "use_success": null,
-  "use_tech": "combat_used_x"
+  "use_tech": "combat_used_x",
+  "visuals": {
+    "animation": "wall_fire",
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": "sfx_flames1",
+    "volume": 1.5
+  }
 }

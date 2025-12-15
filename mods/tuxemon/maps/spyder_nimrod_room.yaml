@@ -106,7 +106,7 @@ events:
     - translated_dialog spyder_nimrod_papers1
     conditions:
     - is char_facing_tile player
-    - is button_pressed K_RETURN
+    - is button_pressed INTERACT
     type: event
     x: 6
     y: 3
@@ -115,7 +115,7 @@ events:
     - translated_dialog spyder_nimrod_papers2
     conditions:
     - is char_facing_tile player
-    - is button_pressed K_RETURN
+    - is button_pressed INTERACT
     type: event
     x: 3
     y: 3

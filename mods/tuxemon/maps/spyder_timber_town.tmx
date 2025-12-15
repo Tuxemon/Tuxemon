@@ -261,14 +261,14 @@
    <properties>
     <property name="act1" value="translated_dialog welcome_location_town"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="354" name="Sign: Scoop" type="event" x="480" y="368" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_scoop_sign"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="357" name="Environment Day" type="event" x="16" y="0" width="16" height="16">
@@ -297,7 +297,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_multi_martsign"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="364" name="Teleport to Flower City 1" type="event" x="624" y="192" width="16" height="16">
@@ -454,7 +454,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_door_locked"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="389" name="Play Music" type="event" x="0" y="0" width="16" height="16">

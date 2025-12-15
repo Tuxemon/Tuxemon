@@ -66,6 +66,7 @@ class CreateNpcAction(EventAction):
         npc_details = load_party(slug)
         npc.template = npc_details.template
         npc.combat = npc_details.combat
+        npc.audio = npc_details.audio
         game_variables = session.player.game_variables.get_state()
         if npc_details.monsters:
             load_party_monsters(npc, npc_details, game_variables)

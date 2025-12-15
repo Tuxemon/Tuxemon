@@ -53,7 +53,7 @@ class WithdrawMonsterAction(EventAction):
             logger.error("Monster not found")
             return
 
-        player.monster_boxes.remove_monster(monster)
+        player.monster_boxes.remove_from_box("monster", None, monster)
 
         character = get_npc(session, self.character)
         if character is None:
@@ -65,7 +65,11 @@ class WithdrawMonsterAction(EventAction):
                 f"{character.name} withdrew {monster.name} into party!"
             )
         else:
-            character.party.send_monster_to_box(monster)
-            logger.info(
-                f"{character.name}'s party was full. {monster.name} sent to box instead."
-            )
+            if character.party.send_monster_to_box(monster):
+                logger.info(
+                    f"{character.name}'s party was full. {monster.name} sent to box instead."
+                )
+            else:
+                logger.error(
+                    f"Failed to withdraw monster '{monster.name}' from box"
+                )

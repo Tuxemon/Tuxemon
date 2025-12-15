@@ -43,10 +43,10 @@ class MethodAnimationCache:
         Returns:
             A Sprite object representing the method's animation, or None if unavailable.
         """
-        if not method.animation:
+        if not method.visuals.animation:
             return None
 
-        key = MethodKey(method.animation, is_flipped)
+        key = MethodKey(method.visuals.animation, is_flipped)
 
         if key not in self._sprites:
             self._sprites[key] = self._load_sprite(method, is_flipped)
@@ -67,13 +67,16 @@ class MethodAnimationCache:
             A Sprite object or None if the method has no animation.
         """
 
-        if not method.animation:
+        if not method.visuals.animation:
             return None
 
-        animation = self._manager.get_or_create_animation(method.animation)
+        animation = self._manager.get_or_create_animation(
+            slug=method.visuals.animation,
+            loop=method.visuals.loop,
+        )
 
         if is_flipped:
-            animation.flip(method.flip_axes)
+            animation.flip(method.visuals.flip_axes)
 
         animation.play()
         return Sprite(animation=animation)

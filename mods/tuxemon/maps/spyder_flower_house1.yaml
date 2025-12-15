@@ -24,7 +24,7 @@ events:
     - translated_dialog spyder_flowerhouse1_tv
     conditions:
     - is char_facing_tile player
-    - is button_pressed K_RETURN
+    - is button_pressed INTERACT
     height: 1
     type: event
     width: 2

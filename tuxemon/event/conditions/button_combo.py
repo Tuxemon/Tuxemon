@@ -2,7 +2,7 @@
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-from tuxemon.event import MapCondition
+from tuxemon.db import SpatialCondition
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.platform.const.intentions import constants
 from tuxemon.session import Session
@@ -23,7 +23,7 @@ class ButtonComboCondition(EventCondition):
 
     name = "button_combo"
 
-    def test(self, session: Session, condition: MapCondition) -> bool:
+    def test(self, session: Session, condition: SpatialCondition) -> bool:
         _buttons = condition.parameters[0].split(":")
         ids: list[int] = []
         for _button in _buttons:

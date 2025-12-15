@@ -5,8 +5,8 @@ from __future__ import annotations
 import logging
 from dataclasses import dataclass
 
-from tuxemon.db import EvolutionStage, GenderType
-from tuxemon.event import MapCondition, get_npc
+from tuxemon.db import EvolutionStage, GenderType, SpatialCondition
+from tuxemon.event import get_npc
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
 
@@ -31,7 +31,7 @@ class HasPartyBreederCondition(EventCondition):
 
     name = "has_party_breeder"
 
-    def test(self, session: Session, condition: MapCondition) -> bool:
+    def test(self, session: Session, condition: SpatialCondition) -> bool:
         _character = condition.parameters[0]
         character = get_npc(session, _character)
         if character is None:

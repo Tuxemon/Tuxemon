@@ -4,14 +4,15 @@ from __future__ import annotations
 
 import logging
 from dataclasses import dataclass, field
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional
 
-from tuxemon.db import Acquisition
+from tuxemon.db import Acquisition, EconomyItemModel, EconomyMonsterModel
 from tuxemon.economy.economy import Economy
 from tuxemon.item.item import Item
 from tuxemon.monster import Monster
 
 if TYPE_CHECKING:
+    from tuxemon.economy.shop_manager import ShopManager
     from tuxemon.npc import NPC
     from tuxemon.session import Session
 
@@ -32,82 +33,154 @@ class ShopInventory:
 
 class EconomyApplier:
     """
-    Manages the application of an Economy's definitions to a character (e.g., NPC),
-    creating actual game entities (Items, Monsters) and populating their inventories
-    based on economy data and character game variables.
+    Applies an Economy's definitions to a character (NPC),
+    creating items/monsters and populating shop inventories
+    using ShopManager for persistent stock tracking.
     """
 
+    def _process_economy_entity(
+        self,
+        economy: Economy,
+        entity: NPC,
+        eco_model: EconomyItemModel | EconomyMonsterModel,
+        shop_manager: ShopManager,
+    ) -> Optional[Item | Monster]:
+        """Process a single item or monster model and return the created entity, or None."""
+
+        entity_name = eco_model.slug
+        label = shop_manager.get_full_label(economy.model.slug, entity_name)
+        is_item = isinstance(eco_model, EconomyItemModel)
+        entity_type = "Item" if is_item else "Monster"
+
+        default_quantity = (
+            eco_model.inventory if is_item else (eco_model.inventory or 1)
+        )
+        quantity = shop_manager.get_or_set_default(label, default_quantity)
+
+        if eco_model.variables and not economy.variable(
+            eco_model.variables, entity
+        ):
+            logger.debug(
+                f"Skipping {entity_type} '{entity_name}' (variables mismatch)"
+            )
+            return None
+
+        try:
+            if is_item:
+                item_instance = Item.create(entity_name)
+                item_instance.set_quantity(quantity)
+                return item_instance
+            else:
+                assert isinstance(eco_model, EconomyMonsterModel)
+                monster_instance = Monster.spawn_base(
+                    entity_name, eco_model.level
+                )
+                monster_instance.set_acquisition(Acquisition.PURCHASED)
+                return monster_instance
+        except Exception as e:
+            logger.error(
+                f"[{economy.model.slug}] Could not create {entity_type} '{entity_name}': {type(e).__name__}: {e}"
+            )
+            return None
+
+    def get_available_items(
+        self,
+        session: Session,
+        economy: Economy,
+        shop_manager: ShopManager,
+    ) -> list[Item]:
+        """Return the list of available items for the given session and economy."""
+        player = session.player
+        shop_items: list[Item] = []
+        for eco_item_model in economy.model.items:
+            item = self._process_economy_entity(
+                economy, player, eco_item_model, shop_manager
+            )
+            if isinstance(item, Item):
+                shop_items.append(item)
+        return shop_items
+
+    def get_available_monsters(
+        self,
+        session: Session,
+        economy: Economy,
+        shop_manager: ShopManager,
+    ) -> list[Monster]:
+        """Return the list of available monsters for the given session and economy."""
+        player = session.player
+        shop_monsters: list[Monster] = []
+        for eco_monster_model in economy.model.monsters:
+            monster = self._process_economy_entity(
+                economy, player, eco_monster_model, shop_manager
+            )
+            if isinstance(monster, Monster):
+                shop_monsters.append(monster)
+        return shop_monsters
+
     def apply_economy_to_character(
-        self, session: Session, economy: Economy, character: NPC
+        self,
+        session: Session,
+        economy: Economy,
+        character: NPC,
+        shop_manager: ShopManager,
     ) -> None:
         """
-        Applies economy-defined items and monsters to a character, populating a separate
-        shop inventory based on the player's game variables and availability conditions.
+        Apply economy-defined items and monsters to a character's shop inventory.
+        Uses ShopManager for persistent stock.
         """
-        player = session.player
-        shop_items = []
-        shop_monsters = []
-
-        # Process items
-        for eco_item_model in economy.model.items:
-            label = f"{economy.model.slug}:{eco_item_model.name}"
-
-            if not player.game_variables.has(label):
-                initial_quantity = economy.lookup_item_field(
-                    eco_item_model.name, "inventory"
-                )
-                player.game_variables.set(label, initial_quantity)
-
-            if eco_item_model.variables and not economy.variable(
-                eco_item_model.variables, player
-            ):
-                logger.debug(f"Skipping item '{eco_item_model.name}'")
-                continue
-
-            try:
-                item_instance = Item.create(eco_item_model.name)
-                item_instance.set_quantity(
-                    int(player.game_variables.get(label))
-                )
-                shop_items.append(item_instance)
-            except Exception as e:
-                logger.error(
-                    f"Could not create Item '{eco_item_model.name}': {e}"
-                )
-
-        # Process monsters
-        for eco_monster_model in economy.model.monsters:
-            label = f"{economy.model.slug}:{eco_monster_model.name}"
-
-            if not player.game_variables.has(label):
-                default = (
-                    economy.get_monster_field(
-                        eco_monster_model.name, "inventory"
-                    )
-                    or 1
-                )
-                player.game_variables.set(label, default)
-
-            if eco_monster_model.variables and not economy.variable(
-                eco_monster_model.variables, player
-            ):
-                logger.debug(f"Skipping monster '{eco_monster_model.name}'")
-                continue
-
-            try:
-                monster = Monster.spawn_base(
-                    eco_monster_model.name, eco_monster_model.level
-                )
-                monster.set_acquisition(Acquisition.PURCHASED)
-                shop_monsters.append(monster)
-            except Exception as e:
-                logger.error(
-                    f"Could not create Monster '{eco_monster_model.name}': {e}"
-                )
-
+        items = self.get_available_items(session, economy, shop_manager)
+        monsters = self.get_available_monsters(session, economy, shop_manager)
         character.shop_inventory = ShopInventory(
-            items=shop_items, monsters=shop_monsters
+            items=items, monsters=monsters
         )
         logger.info(
-            f"Shop inventory set for '{character.slug}' with {len(shop_items)} items and {len(shop_monsters)} monsters."
+            f"Shop inventory set for '{character.slug}' with {len(items)} items and {len(monsters)} monsters."
         )
+
+    def filter_items(
+        self,
+        buyer: NPC,
+        seller: NPC,
+        economy: Economy,
+        shop_manager: ShopManager,
+    ) -> list[Item]:
+        if buyer.is_player:
+            raw_inventory = (
+                seller.shop_inventory.items if seller.shop_inventory else []
+            )
+            inventory = [
+                item
+                for item in raw_inventory
+                if shop_manager.is_available(
+                    f"{economy.model.slug}:{item.slug}"
+                )
+            ]
+        else:
+            inventory = [
+                item for item in seller.items if item.behaviors.resellable
+            ]
+
+        return sorted(inventory, key=lambda x: x.name)
+
+    def filter_monsters(
+        self,
+        buyer: NPC,
+        seller: NPC,
+        economy: Economy,
+        shop_manager: ShopManager,
+    ) -> list[Monster]:
+        if buyer.is_player:
+            raw_inventory = (
+                seller.shop_inventory.monsters if seller.shop_inventory else []
+            )
+            inventory = [
+                monster
+                for monster in raw_inventory
+                if shop_manager.is_available(
+                    f"{economy.model.slug}:{monster.slug}"
+                )
+            ]
+        else:
+            inventory = list(seller.party.monsters)
+
+        return sorted(inventory, key=lambda x: x.name)

@@ -1,19 +1,16 @@
 {
   "tech_id": 137,
   "accuracy": 0.8,
-  "animation": "flameball_red",
   "effects": [
     {
       "type": "damage"
     }
   ],
-  "flip_axes": "",
   "speed": "very_slow",
   "potency": 0.0,
   "power": 1.4,
   "range": "ranged",
   "recharge": 1,
-  "sfx": "sfx_flamethrower",
   "slug": "magma",
   "sort": "damage",
   "modifiers": [],
@@ -36,5 +33,14 @@
   ],
   "use_failure": "combat_miss",
   "use_success": null,
-  "use_tech": "combat_used_x"
+  "use_tech": "combat_used_x",
+  "visuals": {
+    "animation": "flameball_red",
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": "sfx_flamethrower",
+    "volume": 1.5
+  }
 }

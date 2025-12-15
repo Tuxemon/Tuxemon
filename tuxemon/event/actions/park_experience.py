@@ -48,7 +48,7 @@ class ParkExperienceAction(EventAction):
 
         self.client.push_state("ParkState", session=session)
 
-    def update(self, session: Session) -> None:
+    def update(self, session: Session, dt: float) -> None:
         if self.option == "stop":
             try:
                 session.client.get_state_by_name("ParkState")

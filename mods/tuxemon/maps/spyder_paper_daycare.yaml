@@ -51,7 +51,7 @@ events:
   Give Monster Yes:
     actions:
     - get_player_monster daycare_choice
-    - create_kennel player,daycare
+    - create_kennel player,daycare,true
     - set_kennel_visible player,daycare,false
     - store_monster daycare_choice,daycare
     - set_variable stored:stored
@@ -76,7 +76,7 @@ events:
     - translated_dialog spyder_papertown_grannypiper8
     conditions:
     - is char_facing_tile player
-    - is button_pressed K_RETURN
+    - is button_pressed INTERACT
     - is variable_set seentimber:yes
     type: event
     x: 8
@@ -86,7 +86,7 @@ events:
     - translated_dialog spyder_papertown_grannypiper10
     conditions:
     - is char_facing_tile player
-    - is button_pressed K_RETURN
+    - is button_pressed INTERACT
     - not variable_set seentimber:yes
     type: event
     x: 8

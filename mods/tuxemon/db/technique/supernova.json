@@ -1,7 +1,6 @@
 {
   "tech_id": 81,
   "accuracy": 0.75,
-  "animation": "fireball_114",
   "effects": [
     {
       "type": "give",
@@ -14,13 +13,11 @@
       "type": "damage"
     }
   ],
-  "flip_axes": "x",
   "speed": "extremely_slow",
   "potency": 1,
   "power": 3,
   "range": "ranged",
   "recharge": 3,
-  "sfx": "sfx_shine",
   "slug": "supernova",
   "sort": "damage",
   "modifiers": [],
@@ -43,5 +40,14 @@
   ],
   "use_failure": "combat_miss",
   "use_success": null,
-  "use_tech": "combat_used_x"
+  "use_tech": "combat_used_x",
+  "visuals": {
+    "animation": "fireball_114",
+    "flip_axes": "x",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": "sfx_shine",
+    "volume": 1.5
+  }
 }

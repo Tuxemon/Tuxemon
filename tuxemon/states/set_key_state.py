@@ -70,7 +70,12 @@ class SetKeyState(PygameMenuState):
             if event.value == pressed_key_str:
                 # Update the configuration file with the new key
                 self.client.config.update_control(self.value, pressed_key)
-                return event
+                keyboard = self.client.input_manager.core_devices.keyboard
+                if keyboard is not None:
+                    keyboard.reload_mapping(
+                        self.client.config.input.keyboard_button_map
+                    )
+                    return event
 
         return None
 

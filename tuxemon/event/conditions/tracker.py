@@ -5,7 +5,8 @@ from __future__ import annotations
 import logging
 from dataclasses import dataclass
 
-from tuxemon.event import MapCondition, get_npc
+from tuxemon.db import SpatialCondition
+from tuxemon.event import get_npc
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
 
@@ -29,7 +30,7 @@ class TrackerCondition(EventCondition):
 
     name = "tracker"
 
-    def test(self, session: Session, condition: MapCondition) -> bool:
+    def test(self, session: Session, condition: SpatialCondition) -> bool:
         _character, _map_name = condition.parameters
         character = get_npc(session, _character)
         if character is None:

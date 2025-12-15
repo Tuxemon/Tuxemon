@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from tuxemon.event import MapCondition
+from tuxemon.db import SpatialCondition
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
 from tuxemon.tools import compare, number_or_variable
@@ -30,7 +30,7 @@ class VariableIsCondition(EventCondition):
 
     name = "variable_is"
 
-    def test(self, session: Session, condition: MapCondition) -> bool:
+    def test(self, session: Session, condition: SpatialCondition) -> bool:
         # Read the parameters
         variables = session.player.game_variables
         operand1 = number_or_variable(

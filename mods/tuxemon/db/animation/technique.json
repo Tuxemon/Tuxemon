@@ -738,5 +738,21 @@
   {
     "file": "technique",
     "slug": "foodthrow"
+  },
+  {
+    "file": "technique",
+    "slug": "horn"
+  },
+  {
+    "file": "technique",
+    "slug": "stickyweb"
+  },
+  {
+    "file": "technique",
+    "slug": "smellysock"
+  },
+  {
+    "file": "technique",
+    "slug": "celldivision"
   }
 ]

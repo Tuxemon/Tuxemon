@@ -62,7 +62,7 @@ class AccessPCAction(EventAction):
             "PCState", character=character, menu_builder=menu_builder
         )
 
-    def update(self, session: Session) -> None:
+    def update(self, session: Session, dt: float) -> None:
         try:
             session.client.get_state_by_name("PCState")
         except ValueError:

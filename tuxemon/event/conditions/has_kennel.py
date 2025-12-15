@@ -5,7 +5,8 @@ from __future__ import annotations
 import logging
 from dataclasses import dataclass
 
-from tuxemon.event import MapCondition, get_npc
+from tuxemon.db import SpatialCondition
+from tuxemon.event import get_npc
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
 from tuxemon.tools import compare
@@ -35,7 +36,7 @@ class HasKennelCondition(EventCondition):
 
     name = "has_kennel"
 
-    def test(self, session: Session, condition: MapCondition) -> bool:
+    def test(self, session: Session, condition: SpatialCondition) -> bool:
         _character, kennel_name, check, _number = condition.parameters[:4]
         number = int(_number)
         character = get_npc(session, _character)

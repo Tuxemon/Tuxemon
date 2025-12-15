@@ -90,7 +90,7 @@ events:
     - translated_dialog_choice yes:no,chooses
     conditions:
     - is char_facing_tile player
-    - is button_pressed K_RETURN
+    - is button_pressed INTERACT
     type: event
     x: 1
     y: 5
@@ -130,7 +130,7 @@ events:
     - access_pc player
     conditions:
     - is char_facing_tile player
-    - is button_pressed K_RETURN
+    - is button_pressed INTERACT
     - not variable_set kernelquest:yes
     type: event
     x: 10
@@ -140,7 +140,7 @@ events:
     - translated_dialog spyder_pc_alert
     conditions:
     - is char_facing_tile player
-    - is button_pressed K_RETURN
+    - is button_pressed INTERACT
     - is variable_set kernelquest:yes
     type: event
     x: 10

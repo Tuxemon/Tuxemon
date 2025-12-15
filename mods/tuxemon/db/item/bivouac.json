@@ -19,5 +19,14 @@
   },
   "use_failure": "generic_failure",
   "use_item": "combat_used_x",
-  "use_success": "bivouac_success"
+  "use_success": "bivouac_success",
+  "visuals": {
+    "animation": null,
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": null,
+    "volume": 0.0
+  }
 }

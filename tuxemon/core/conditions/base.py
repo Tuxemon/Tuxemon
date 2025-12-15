@@ -17,10 +17,24 @@ if TYPE_CHECKING:
 @dataclass
 class BaseCondition(CoreCondition):
     """
-    Generic condition evaluator for monster attributes.
+    Evaluates a Monster or Technique against specified attributes.
 
-    Compares values from a specified source (e.g., 'tags', 'types')
-    against the given options.
+    **Parameters**
+    - ``source``: The attribute set to check (e.g. ``tags``, ``types``, ``shape``, ``terrains``, ``species``).
+    - ``options``: A colon-separated list of expected values or negations (e.g. ``water:!fire``).
+    - ``match``: Flag determining evaluation mode. ``"true"`` requires all conditions to match, ``"false"`` requires any.
+
+    **Returns**
+    - ``True`` if the target's attributes satisfy the given options.
+    - ``False`` otherwise.
+
+    **Example**
+
+    .. code-block:: json
+
+        "conditions": [
+            "is base types water:!fire"
+        ]
     """
 
     name = "base"

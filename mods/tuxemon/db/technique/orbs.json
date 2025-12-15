@@ -1,7 +1,6 @@
 {
   "tech_id": 141,
   "accuracy": 1,
-  "animation": "metallic_absorb",
   "effects": [
     {
       "type": "damage"
@@ -14,17 +13,17 @@
       ]
     }
   ],
-  "flip_axes": "",
   "speed": "normal",
   "potency": 1,
   "power": 2,
   "range": "ranged",
   "recharge": 3,
-  "sfx": "sfx_pulse",
   "slug": "orbs",
   "sort": "damage",
   "modifiers": [],
-  "behaviors": {},
+  "behaviors": {
+    "bypasses_selection": true
+  },
   "target": {
     "enemy_monster": true,
     "enemy_team": false,
@@ -42,5 +41,14 @@
   ],
   "use_failure": "combat_miss",
   "use_success": null,
-  "use_tech": "combat_used_x"
+  "use_tech": "combat_used_x",
+  "visuals": {
+    "animation": "metallic_absorb",
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": "sfx_pulse",
+    "volume": 1.5
+  }
 }

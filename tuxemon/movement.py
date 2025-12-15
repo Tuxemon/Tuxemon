@@ -121,8 +121,7 @@ class MovementManager:
 
     def stop_char(self, character: NPC) -> None:
         """Stops the character and releases movement controls."""
-        if self.has_pending_movement(character):
-            del self.wants_to_move_char[character.slug]
+        self.wants_to_move_char.pop(character.slug, None)
         self.event_manager.release_controls(self.input_manager)
         character.cancel_movement()
 
@@ -138,8 +137,7 @@ class MovementManager:
 
     def stop_and_reset_char(self, character: NPC) -> None:
         """Stops the character and aborts all ongoing movement actions."""
-        if self.has_pending_movement(character):
-            del self.wants_to_move_char[character.slug]
+        self.wants_to_move_char.pop(character.slug, None)
         self.event_manager.release_controls(self.input_manager)
         character.abort_movement()
 

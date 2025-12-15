@@ -1,19 +1,16 @@
 {
   "tech_id": 171,
   "accuracy": 0.6,
-  "animation": "ice_storm",
   "effects": [
     {
       "type": "damage"
     }
   ],
-  "flip_axes": "",
   "speed": "very_slow",
   "potency": 0.0,
   "power": 2.5,
   "range": "ranged",
   "recharge": 2,
-  "sfx": "sfx_tornado",
   "slug": "ice_storm",
   "sort": "damage",
   "modifiers": [],
@@ -35,5 +32,14 @@
   ],
   "use_failure": "combat_miss",
   "use_success": null,
-  "use_tech": "combat_used_x"
+  "use_tech": "combat_used_x",
+  "visuals": {
+    "animation": "ice_storm",
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": "sfx_tornado",
+    "volume": 1.5
+  }
 }

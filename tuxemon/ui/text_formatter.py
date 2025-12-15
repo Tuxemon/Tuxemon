@@ -92,7 +92,7 @@ class TextFormatter:
     def _register_unit_measure_replacements(self) -> None:
         """Registers replacements for units of measurement (metric vs. imperial)."""
         player = self.session.player
-        unit_measure = prepare.CONFIG.unit_measure
+        unit_measure = self.session.client.config.unit_measure
 
         unit_map = {}
         if unit_measure == "metric":
@@ -112,7 +112,7 @@ class TextFormatter:
     def _register_monster_replacements(self) -> None:
         """Registers replacements for each monster in the player's party."""
         player = self.session.player
-        unit_measure = prepare.CONFIG.unit_measure
+        unit_measure = self.session.client.config.unit_measure
 
         # Define common monster attributes and their callables
         monster_attributes = {

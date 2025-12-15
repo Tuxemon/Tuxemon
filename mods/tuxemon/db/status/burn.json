@@ -1,5 +1,4 @@
 {
-  "animation": null,
   "modifiers": [
     {
       "attribute": "type",
@@ -31,17 +30,25 @@
       ]
     }
   ],
-  "flip_axes": "",
   "icon": "gfx/ui/icons/status/icon_burn.png",
   "on_positive_status": "replaced",
   "on_negative_status": "replaced",
-  "step_damage": 1,
+  "step_effect_value": 1.0,
+  "step_effect_type": "flat_damage",
   "step_interval": 10,
-  "sfx": "sfx_pulse",
   "slug": "burn",
   "sort": "meta",
   "cond_id": 22,
   "use_failure": "generic_failure",
   "use_success": "combat_state_burn_end",
-  "gain_cond": "combat_state_burn_get"
+  "gain_cond": "combat_state_burn_get",
+  "visuals": {
+    "animation": null,
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": "sfx_pulse",
+    "volume": 1.5
+  }
 }

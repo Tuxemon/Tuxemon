@@ -1,23 +1,22 @@
 {
   "tech_id": 176,
   "accuracy": 1,
-  "animation": "meltdown",
   "effects": [
     {
       "type": "scope"
     }
   ],
-  "flip_axes": "",
   "speed": "normal",
   "potency": 1,
   "power": 0,
   "range": "special",
   "recharge": 1,
-  "sfx": "sfx_shine",
   "slug": "scope",
   "sort": "damage",
   "modifiers": [],
-  "behaviors": {},
+  "behaviors": {
+    "bypasses_selection": true
+  },
   "target": {
     "enemy_monster": true,
     "enemy_team": false,
@@ -35,5 +34,14 @@
   ],
   "use_failure": "combat_none",
   "use_success": null,
-  "use_tech": "combat_used_x"
+  "use_tech": "combat_used_x",
+  "visuals": {
+    "animation": "meltdown",
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": "sfx_shine",
+    "volume": 1.5
+  }
 }

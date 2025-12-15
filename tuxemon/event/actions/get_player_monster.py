@@ -161,7 +161,7 @@ class GetPlayerMonsterAction(EventAction):
         ):
             menu.escape_key_exits = False
 
-    def update(self, session: Session) -> None:
+    def update(self, session: Session, dt: float) -> None:
         try:
             session.client.get_state_by_name("MonsterMenuState")
         except ValueError:

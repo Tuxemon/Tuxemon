@@ -1,0 +1,122 @@
+# slug: Unique identifier for the shape (example: "blob", "dragon", "knight")
+#       A translation entry with this msgid MUST exist in base.po, otherwise validation fails.
+# attributes: Statistical attributes of the shape
+#   armour: Integer armour value (example: 8)
+#   dodge: Integer dodge/avoidance value (example: 4)
+#   hp: Hit Points (health) value (example: 8)
+#   melee: Melee attack strength (example: 4)
+#   ranged: Ranged attack strength (example: 8)
+#   speed: Movement speed value (example: 4)
+
+- attributes:
+    armour: 8
+    dodge: 4
+    hp: 8
+    melee: 4
+    ranged: 8
+    speed: 4
+  slug: blob
+- attributes:
+    armour: 7
+    dodge: 5
+    hp: 7
+    melee: 8
+    ranged: 4
+    speed: 5
+  slug: brute
+- attributes:
+    armour: 7
+    dodge: 5
+    hp: 6
+    melee: 6
+    ranged: 6
+    speed: 6
+  slug: dragon
+- attributes:
+    armour: 5
+    dodge: 7
+    hp: 4
+    melee: 8
+    ranged: 4
+    speed: 8
+  slug: flier
+- attributes:
+    armour: 7
+    dodge: 5
+    hp: 7
+    melee: 4
+    ranged: 8
+    speed: 5
+  slug: grub
+- attributes:
+    armour: 5
+    dodge: 7
+    hp: 4
+    melee: 4
+    ranged: 8
+    speed: 8
+  slug: humanoid
+- attributes:
+    armour: 4
+    dodge: 8
+    hp: 5
+    melee: 8
+    ranged: 4
+    speed: 7
+  slug: hunter
+- attributes:
+    armour: 8
+    dodge: 4
+    hp: 8
+    melee: 8
+    ranged: 4
+    speed: 4
+  slug: landrace
+- attributes:
+    armour: 8
+    dodge: 4
+    hp: 8
+    melee: 6
+    ranged: 6
+    speed: 4
+  slug: leviathan
+- attributes:
+    armour: 6
+    dodge: 6
+    hp: 8
+    melee: 6
+    ranged: 6
+    speed: 4
+  slug: piscine
+- attributes:
+    armour: 4
+    dodge: 8
+    hp: 5
+    melee: 4
+    ranged: 8
+    speed: 7
+  slug: polliwog
+- attributes:
+    armour: 6
+    dodge: 6
+    hp: 6
+    melee: 4
+    ranged: 8
+    speed: 6
+  slug: serpent
+- attributes:
+    armour: 6
+    dodge: 6
+    hp: 4
+    melee: 6
+    ranged: 6
+    speed: 8
+  slug: sprite
+- attributes:
+    armour: 6
+    dodge: 6
+    hp: 6
+    melee: 8
+    ranged: 4
+    speed: 6
+  slug: varmint

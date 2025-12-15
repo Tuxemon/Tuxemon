@@ -1,7 +1,6 @@
 {
   "tech_id": 33,
   "accuracy": 0.8,
-  "animation": "rockfall_193",
   "effects": [
     {
       "type": "give",
@@ -17,13 +16,11 @@
       ]
     }
   ],
-  "flip_axes": "",
   "speed": "extremely_slow",
   "potency": 0.8,
   "power": 2.25,
   "range": "ranged",
   "recharge": 3,
-  "sfx": "sfx_crumble3",
   "slug": "avalanche",
   "sort": "damage",
   "modifiers": [],
@@ -47,5 +44,14 @@
   ],
   "use_failure": "combat_miss",
   "use_success": null,
-  "use_tech": "combat_used_x"
+  "use_tech": "combat_used_x",
+  "visuals": {
+    "animation": "rockfall_193",
+    "flip_axes": "",
+    "loop": 0
+  },
+  "sound": {
+    "sfx": "sfx_crumble3",
+    "volume": 1.5
+  }
 }

@@ -7,7 +7,7 @@ from abc import ABC, abstractmethod
 from typing import TYPE_CHECKING, NamedTuple, Optional
 
 if TYPE_CHECKING:
-    from tuxemon.event import MapCondition
+    from tuxemon.db import SpatialCondition
 
 
 class Dimensions(NamedTuple):
@@ -209,12 +209,12 @@ class CompositeBoundary(Boundary):
 
 
 class MapConditionBoundary(Boundary):
-    def __init__(self, condition: MapCondition):
+    def __init__(self, condition: SpatialCondition):
         self._condition = condition
-        self.x = float(condition.x)
-        self.y = float(condition.y)
-        self.width = condition.width
-        self.height = condition.height
+        self.x = float(condition.box.x)
+        self.y = float(condition.box.y)
+        self.width = condition.box.width
+        self.height = condition.box.height
 
     def is_within(self, position: tuple[float, float]) -> bool:
         return (

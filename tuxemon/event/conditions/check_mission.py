@@ -5,8 +5,8 @@ from __future__ import annotations
 import logging
 from dataclasses import dataclass
 
-from tuxemon.db import MissionStatus
-from tuxemon.event import MapCondition, get_npc
+from tuxemon.db import MissionStatus, SpatialCondition
+from tuxemon.event import get_npc
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
 
@@ -40,7 +40,7 @@ class CheckMissionCondition(EventCondition):
 
     name = "check_mission"
 
-    def test(self, session: Session, condition: MapCondition) -> bool:
+    def test(self, session: Session, condition: SpatialCondition) -> bool:
         params = condition.parameters
         if len(params) < 3:
             logger.error("Not enough parameters in check_mission condition.")

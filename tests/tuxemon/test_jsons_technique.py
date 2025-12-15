@@ -5,8 +5,8 @@ import unittest
 from pathlib import Path
 from typing import Any
 
-ALL_TECHNIQUES: int = 250
-MAX_TECH_ID: int = 244
+ALL_TECHNIQUES: int = 272
+MAX_TECH_ID: int = 266
 # effects with simple_damage_calculate()
 SIMPLE_DAMAGE_EFFECT = ("damage", "retaliate", "revenge", "money", "splash")
 # effects with simple_heal()

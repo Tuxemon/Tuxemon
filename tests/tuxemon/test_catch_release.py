@@ -14,7 +14,7 @@ def mockNPC(self) -> None:
     self.is_player = True
     self._variables = GameVariablesManager()
     self.monster_boxes = MonsterBoxes()
-    self.monster_boxes.create_box(KENNEL, "monster")
+    self.monster_boxes.create_box(KENNEL)
     self.party = PartyHandler(self.monster_boxes, self)
     self.party._monsters = []
 

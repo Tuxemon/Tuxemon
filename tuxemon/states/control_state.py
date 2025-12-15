@@ -17,7 +17,6 @@ from tuxemon.menu.menu import PygameMenuState
 from tuxemon.menu.theme import get_theme
 from tuxemon.platform.const import buttons
 from tuxemon.platform.events import PlayerInput
-from tuxemon.platform.platform_pygame.events import PygameKeyboardInput
 from tuxemon.state.state import State
 
 
@@ -241,10 +240,11 @@ class ControlState(PygameMenuState):
 
     def reload_controls(self) -> None:
         self.client.config.input.reload_input_map()
-        keyboard = PygameKeyboardInput(
-            self.client.config.input.keyboard_button_map
-        )
-        self.client.input_manager.event_queue.set_input(0, 0, keyboard)
+        keyboard = self.client.input_manager.core_devices.keyboard
+        if keyboard is not None:
+            keyboard.reload_mapping(
+                self.client.config.input.keyboard_button_map
+            )
 
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
         if event.button in (buttons.BACK, buttons.B):

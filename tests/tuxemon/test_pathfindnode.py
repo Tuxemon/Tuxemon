@@ -1,145 +1,145 @@
 # SPDX-License-Identifier: GPL-3.0
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
-import unittest
+import pytest
 
 from tuxemon.movement import PathfindNode
 
 
-class TestPathfindNode(unittest.TestCase):
-    def test_initialization(self):
-        node = PathfindNode((1, 2))
-        self.assertEqual(node.get_value(), (1, 2))
-        self.assertEqual(node.get_depth(), 0)
+@pytest.fixture
+def root_node():
+    return PathfindNode((0, 0))
 
-        parent = PathfindNode((0, 0))
-        node = PathfindNode((1, 2), parent)
-        self.assertEqual(node.get_value(), (1, 2))
-        self.assertEqual(node.get_depth(), 1)
 
-    def test_parent_and_depth(self):
-        node = PathfindNode((1, 2))
-        parent = PathfindNode((0, 0))
-        node.set_parent(parent)
-        self.assertEqual(node.get_parent(), parent)
-        self.assertEqual(node.get_depth(), 1)
+@pytest.fixture
+def child_node(root_node):
+    return PathfindNode((1, 1), root_node)
 
-    def test_value(self):
-        node = PathfindNode((3, 4))
-        self.assertEqual(node.get_value(), (3, 4))
 
-    def test_string_representation(self):
-        node = PathfindNode((1, 2))
-        self.assertEqual(str(node), "(1, 2)")
+@pytest.fixture
+def grandchild_node(child_node):
+    return PathfindNode((2, 2), child_node)
 
-        parent = PathfindNode((0, 0))
-        node.set_parent(parent)
-        self.assertIn("(1, 2)", str(node))
-        self.assertIn("(0, 0)", str(node))
 
-    def test_edge_cases(self):
-        node = PathfindNode(())
-        self.assertEqual(node.get_value(), ())
+@pytest.mark.parametrize(
+    "value,parent,expected_depth",
+    [
+        ((1, 2), None, 0),
+        ((1, 2), PathfindNode((0, 0)), 1),
+        ((3, 4), None, 0),
+        ((2147483647, 2147483647), None, 0),
+        ((-2147483648, -2147483648), None, 0),
+    ],
+)
+def test_initialization_and_values(value, parent, expected_depth):
+    node = PathfindNode(value, parent)
+    assert node.get_value() == value
+    assert node.get_depth() == expected_depth
 
-        node = PathfindNode((1, 2), None)
-        self.assertIsNone(node.get_parent())
-        self.assertEqual(node.get_depth(), 0)
 
-        with self.assertRaises(AttributeError):
-            node = PathfindNode((1, 2), "invalid_parent")
+@pytest.mark.parametrize("value", [(), (1000000, 1000000)])
+def test_edge_and_large_values(value):
+    node = PathfindNode(value)
+    assert node.get_value() == value
 
-    def test_large_values(self):
-        value = (1000000, 1000000)
-        node = PathfindNode(value)
-        self.assertEqual(node.get_value(), value)
 
-    def test_deep_hierarchy(self):
-        parent = PathfindNode((0, 0))
-        for _ in range(1000):
-            parent = PathfindNode((1, 1), parent)
-        self.assertEqual(parent.get_depth(), 1000)
+def test_parent_and_depth(root_node):
+    node = PathfindNode((1, 2))
+    node.set_parent(root_node)
+    assert node.get_parent() == root_node
+    assert node.get_depth() == 1
 
-    def test_circular_reference(self):
-        node = PathfindNode((1, 2))
-        with self.assertRaises(ValueError):
-            node.set_parent(node)
 
-    def test_reconstruct_path(self):
-        root = PathfindNode((0, 0))
-        child = PathfindNode((1, 1), root)
-        grandchild = PathfindNode((2, 2), child)
+@pytest.mark.parametrize(
+    "value,expected_str",
+    [((1, 2), "(1, 2)"), ((0, 0), "(0, 0)")],
+)
+def test_string_representation_simple(value, expected_str):
+    node = PathfindNode(value)
+    assert expected_str in str(node)
 
-        self.assertEqual(grandchild.reconstruct_path(), [(2, 2), (1, 1)])
 
-    def test_reconstruct_path_single_node(self):
-        node = PathfindNode((0, 0))
-        self.assertEqual(node.reconstruct_path(), [])
+def test_string_representation_multi_level(grandchild_node):
+    s = str(grandchild_node)
+    assert "(0, 0)" in s
+    assert "(1, 1)" in s
+    assert "(2, 2)" in s
 
-    def test_invalid_parent_assignment(self):
-        node = PathfindNode((1, 2))
-        with self.assertRaises(ValueError):
-            node.set_parent(None)
-        # Parent cannot be the node itself
-        with self.assertRaises(ValueError):
-            node.set_parent(node)
 
-    def test_boundary_values(self):
-        # Max value for a 32-bit integer
-        max_int = (2147483647, 2147483647)
-        node = PathfindNode(max_int)
-        self.assertEqual(node.get_value(), max_int)
-        # Min value for a 32-bit integer
-        min_int = (-2147483648, -2147483648)
-        node = PathfindNode(min_int)
-        self.assertEqual(node.get_value(), min_int)
+@pytest.mark.parametrize(
+    "invalid_parent,expected_exception",
+    [("invalid_parent", AttributeError), (None, ValueError)],
+)
+def test_invalid_parent_assignment(invalid_parent, expected_exception):
+    node = PathfindNode((1, 2))
+    with pytest.raises(expected_exception):
+        node.set_parent(invalid_parent)
 
-    def test_depth_update(self):
-        root = PathfindNode((0, 0))
-        child = PathfindNode((1, 1), root)
-        self.assertEqual(child.get_depth(), 1)
 
-        grandchild = PathfindNode((2, 2), child)
-        self.assertEqual(grandchild.get_depth(), 2)
+def test_circular_reference():
+    node = PathfindNode((1, 2))
+    with pytest.raises(ValueError):
+        node.set_parent(node)
 
-        grandchild.set_parent(root)
-        self.assertEqual(grandchild.get_depth(), 1)
 
-    def test_multi_level_string_representation(self):
-        parent = PathfindNode((0, 0))
-        child = PathfindNode((1, 1), parent)
-        grandchild = PathfindNode((2, 2), child)
+def test_deep_hierarchy(root_node):
+    parent = root_node
+    for _ in range(1000):
+        parent = PathfindNode((1, 1), parent)
+    assert parent.get_depth() == 1000
 
-        self.assertIn("(0, 0)", str(grandchild))
-        self.assertIn("(1, 1)", str(grandchild))
-        self.assertIn("(2, 2)", str(grandchild))
 
-    def test_large_hierarchy_performance(self):
-        root = PathfindNode((0, 0))
-        current = root
-        # Create a deep hierarchy
-        for i in range(10000):
-            current = PathfindNode((i + 1, i + 1), current)
-        self.assertEqual(len(current.reconstruct_path()), 10000)
+def test_large_hierarchy_performance(root_node):
+    current = root_node
+    for i in range(10000):
+        current = PathfindNode((i + 1, i + 1), current)
+    assert len(current.reconstruct_path()) == 10000
 
-    def test_node_comparison_by_f_cost(self):
-        node1 = PathfindNode((0, 0), g_cost=1.0, h_cost=2.0)  # f_cost = 3.0
-        node2 = PathfindNode((1, 1), g_cost=2.0, h_cost=2.0)  # f_cost = 4.0
-        self.assertTrue(node1 < node2)
 
-    def test_reconstruct_path_after_parent_change(self):
-        root = PathfindNode((0, 0))
-        child = PathfindNode((1, 1), root)
-        alt_root = PathfindNode((9, 9))
-        child.set_parent(alt_root)
-        self.assertEqual(child.reconstruct_path(), [(1, 1)])
+def test_reconstruct_path(grandchild_node):
+    assert grandchild_node.reconstruct_path() == [(2, 2), (1, 1)]
 
-    def test_node_equality(self):
-        node1 = PathfindNode((1, 2))
-        node2 = PathfindNode((1, 2))
-        self.assertNotEqual(node1, node2)
 
-    def test_branching_path_reconstruction(self):
-        root = PathfindNode((0, 0))
-        branch1 = PathfindNode((1, 0), root)
-        branch2 = PathfindNode((0, 1), root)
-        leaf = PathfindNode((1, 1), branch2)
-        self.assertEqual(leaf.reconstruct_path(), [(1, 1), (0, 1)])
+def test_reconstruct_path_single_node(root_node):
+    assert root_node.reconstruct_path() == []
+
+
+def test_reconstruct_path_after_parent_change(child_node):
+    alt_root = PathfindNode((9, 9))
+    child_node.set_parent(alt_root)
+    assert child_node.reconstruct_path() == [(1, 1)]
+
+
+def test_branching_path_reconstruction(root_node):
+    branch1 = PathfindNode((1, 0), root_node)
+    branch2 = PathfindNode((0, 1), root_node)
+    leaf = PathfindNode((1, 1), branch2)
+    assert leaf.reconstruct_path() == [(1, 1), (0, 1)]
+
+
+@pytest.mark.parametrize(
+    "g_cost,h_cost,other_g,other_h,expected",
+    [
+        (1.0, 2.0, 2.0, 2.0, True),  # f_cost 3.0 < 4.0
+        (2.0, 2.0, 1.0, 2.0, False),  # f_cost 4.0 > 3.0
+    ],
+)
+def test_node_comparison_by_f_cost(g_cost, h_cost, other_g, other_h, expected):
+    node1 = PathfindNode((0, 0), g_cost=g_cost, h_cost=h_cost)
+    node2 = PathfindNode((1, 1), g_cost=other_g, h_cost=other_h)
+    assert (node1 < node2) == expected
+
+
+def test_node_equality():
+    node1 = PathfindNode((1, 2))
+    node2 = PathfindNode((1, 2))
+    assert node1 != node2
+
+
+def test_depth_update(root_node, child_node):
+    assert child_node.get_depth() == 1
+
+    grandchild = PathfindNode((2, 2), child_node)
+    assert grandchild.get_depth() == 2
+
+    grandchild.set_parent(root_node)
+    assert grandchild.get_depth() == 1

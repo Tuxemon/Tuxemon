@@ -15,7 +15,22 @@ if TYPE_CHECKING:
 @dataclass
 class CurrentStatusCondition(CoreCondition):
     """
-    Checks against the creature's current statuses.
+    Checks whether the target Monster currently has a specific status effect.
+
+    **Parameters**
+    - ``expected``: The slug of the status to check for (e.g. ``poisoned``, ``sleep``).
+
+    **Returns**
+    - ``True`` if the Monster has the given status.
+    - ``False`` otherwise.
+
+    **Example**
+
+    .. code-block:: json
+
+        "conditions": [
+            "is status poisoned"
+        ]
     """
 
     name = "status"

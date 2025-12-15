@@ -285,7 +285,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_mansion_painting"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="66" name="Talk Picnicker" type="event" x="80" y="176" width="16" height="16">

@@ -86,6 +86,7 @@ def get_save_data(session: Session) -> SaveData:
         npc_state=npc_state,
         world_state=world_state,
         session_state=session_state,
+        shop_stock=session.client.shop_manager.dump_to_dict(),
     )
 
 

@@ -91,7 +91,7 @@ class PCMenuBuilder:
                 "ItemStorageState", character=char
             )
 
-        if char.item_boxes.get_all_monsters_visible():
+        if char.item_boxes.get_all_items_visible():
             menu.append(("menu_item_storage", item_storage_callback))
 
         if len(char.items) > 1:

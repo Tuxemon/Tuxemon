@@ -7,19 +7,20 @@ from tuxemon import prepare
 from tuxemon.db import Direction
 from tuxemon.entity import Body, Mover
 from tuxemon.event.eventaction import ActionManager
+from tuxemon.event.eventbus import EventBus
 from tuxemon.event.eventengine import EventEngine
 from tuxemon.event.running import ConditionEvaluator
 from tuxemon.game_variables import GameVariablesManager
 from tuxemon.math import Point3, Vector3
 from tuxemon.player import Player
 from tuxemon.session import local_session
-from tuxemon.tuxepedia import Tuxepedia
+from tuxemon.tuxepedia import TuxepediaManager
 
 
 def mockPlayer(self) -> None:
     self.name = "Jeff"
     self._variables = GameVariablesManager()
-    self.tuxepedia = Tuxepedia()
+    self.tuxepedia = TuxepediaManager(EventBus())
     self.body = Body(Point3(0, 0, 0))
     self.mover = Mover(self.body)
 

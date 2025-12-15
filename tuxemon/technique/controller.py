@@ -112,20 +112,16 @@ class TechController:
 
         if self.technique.menu_actions_data:
             for action_data in self.technique.menu_actions_data:
-                key = action_data.get("key")
-                display_text = action_data.get(
-                    "display_text",
-                    key.replace("_", " ").title() if key else "Unnamed Option",
-                )
-                if key:
-                    action_func = self.get_basic_action(key)
-                    options.append(
-                        ChoiceOption(
-                            key=key,
-                            display_text=display_text,
-                            action=action_func,
-                        )
+                key = action_data.key
+                display_text = T.translate(action_data.display_text)
+                action_func = self.get_basic_action(key)
+                options.append(
+                    ChoiceOption(
+                        key=key,
+                        display_text=display_text,
+                        action=action_func,
                     )
+                )
         else:
             if self.technique.confirm_text:
                 options.append(

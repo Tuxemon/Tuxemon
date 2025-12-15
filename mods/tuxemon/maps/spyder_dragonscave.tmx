@@ -214,7 +214,7 @@
     <property name="act3" value="set_variable dragonscavedrokoro:yes"/>
     <property name="act4" value="remove_npc spyder_drokoro"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
     <property name="cond3" value="not variable_set dragonscavedrokoro:yes"/>
    </properties>
   </object>
@@ -225,7 +225,7 @@
     <property name="act3" value="set_variable dragonscavedrokoro:yes"/>
     <property name="act4" value="remove_npc spyder_drokoro"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
     <property name="cond3" value="not variable_set dragonscavedrokoro:yes"/>
    </properties>
   </object>

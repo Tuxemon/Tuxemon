@@ -923,7 +923,7 @@ def modify_stat(
     stat_attr = stat_map.get(stat)
 
     if stat_attr:
-        current_value = getattr(monster.modifiers, stat_attr, 0)
+        current_value = getattr(monster.custom_stats, stat_attr, 0)
 
         if operation == "add":
             new_value = current_value + int(value)
@@ -933,5 +933,5 @@ def modify_stat(
         else:
             raise ValueError(f"Invalid operation: {operation}")
 
-        setattr(monster.modifiers, stat_attr, new_value)
+        setattr(monster.custom_stats, stat_attr, new_value)
         monster.set_stats()

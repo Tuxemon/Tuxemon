@@ -15,8 +15,19 @@ if TYPE_CHECKING:
 @dataclass
 class HasStatusCondition(CoreCondition):
     """
-    Checks if the creature has a status or not.
+    Checks whether the target Monster currently has any status effect.
 
+    **Returns**
+    - ``True`` if the Monster has at least one status.
+    - ``False`` if the Monster has no statuses.
+
+    **Example**
+
+    .. code-block:: json
+
+        "conditions": [
+            "is has_status"
+        ]
     """
 
     name = "has_status"

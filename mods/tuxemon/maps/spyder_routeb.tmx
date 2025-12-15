@@ -75,7 +75,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_datacenter_sign"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="70" name="Create Electra" type="event" x="256" y="560" width="16" height="16">

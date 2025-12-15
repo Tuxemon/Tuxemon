@@ -332,7 +332,7 @@
     <property name="act1" value="translated_dialog spyder_nimrod_pc_message1"/>
     <property name="act2" value="translated_dialog spyder_nimrod_pc_message2"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="71" name="Notes" type="event" x="32" y="256" width="16" height="16">
@@ -340,7 +340,7 @@
     <property name="act1" value="translated_dialog spyder_nimrod_note1"/>
     <property name="act2" value="translated_dialog spyder_nimrod_note2"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
  </objectgroup>

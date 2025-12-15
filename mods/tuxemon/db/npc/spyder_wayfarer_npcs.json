@@ -12,6 +12,7 @@
       }
     },
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "scientist_black",
       "combat_front": "scientist",
@@ -31,6 +32,7 @@
       }
     },
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "knight",
       "combat_front": "enforcer_rookie",
@@ -50,6 +52,7 @@
       }
     },
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "nurse",
       "combat_front": "nurse",
@@ -69,6 +72,7 @@
       }
     },
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "nurse_blue",
       "combat_front": "nurse",
@@ -88,6 +92,7 @@
       }
     },
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "beachcomber_fiery",
       "combat_front": "yellowbelt",
@@ -107,6 +112,7 @@
       }
     },
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "nurse_red",
       "combat_front": "nurse",
@@ -126,6 +132,7 @@
       }
     },
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "nurse_lapi",
       "combat_front": "nurse",
@@ -145,6 +152,7 @@
       }
     },
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "scientist",
       "combat_front": "scientist",
@@ -164,6 +172,7 @@
       }
     },
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "knight",
       "combat_front": "enforcer_agent",
@@ -174,6 +183,7 @@
     "slug": "spyder_wayfarer2_gae",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "granny",
       "combat_front": "adventurer",
@@ -184,6 +194,7 @@
     "slug": "spyder_wayfarer1_addy",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "nurse_green",
       "combat_front": "nurse",
@@ -194,6 +205,7 @@
     "slug": "spyder_wayfarer1_wes",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "maniac_violet",
       "combat_front": "adventurer",
@@ -204,6 +216,7 @@
     "slug": "spyder_wayfarer2_kim",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "maniac",
       "combat_front": "adventurer",
@@ -214,6 +227,7 @@
     "slug": "spyder_wayfarer1_norm",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "shopkeeper_brown",
       "combat_front": "adventurer",

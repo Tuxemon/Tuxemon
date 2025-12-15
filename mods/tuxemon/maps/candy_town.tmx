@@ -177,7 +177,7 @@
     <property name="act10" value="translated_dialog candy_town"/>
     <property name="act20" value="translated_dialog candy_town_description"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="213" name="Teleport to Route6" type="event" x="80" y="624" width="16" height="16">

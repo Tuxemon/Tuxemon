@@ -9,6 +9,7 @@ from typing import Optional, final
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.locale import T
+from tuxemon.relationship import Connection
 from tuxemon.session import Session
 
 logger = logging.getLogger(__name__)
@@ -70,15 +71,17 @@ class AddContactsAction(EventAction):
         relationships = character.relationships
         contact = relationships.get_connection(self.npc_slug)
         if contact is None:
-            relationships.add_connection(
-                slug=self.npc_slug,
+            new_connection = Connection(
                 relationship_type=self.relation or "unknown",
                 strength=self.strength or 50,
                 steps=self.steps or character.steps,
                 decay_rate=self.decay_rate or 0.01,
                 decay_threshold=self.decay_threshold or 500,
             )
+            relationships.add_connection(
+                slug=self.npc_slug, connection=new_connection
+            )
         else:
-            contact.apply_decay(character)
+            contact.apply_decay(character.steps)
             logger.error(f"{self.npc_slug} already exist")
             return

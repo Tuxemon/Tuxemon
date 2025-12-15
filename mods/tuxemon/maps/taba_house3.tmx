@@ -69,7 +69,7 @@
     <property name="act2" value="translated_dialog taba_house3_owner1"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_facing player,up"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond3" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="52" name="Create Client1" type="event" x="0" y="96" width="16" height="16">

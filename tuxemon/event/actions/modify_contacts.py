@@ -43,27 +43,14 @@ class ModifyContactsAction(EventAction):
             logger.error(f"{self.character} not found")
             return
 
-        relationships = character.relationships
-        contact = relationships.get_connection(self.npc_slug)
-
+        contact = character.relationships.get_connection(self.npc_slug)
         if contact is None:
-            logger.error(f"{self.npc_slug} already exist")
+            logger.error(f"Contact '{self.npc_slug}' does not exist")
             return
 
-        if self.attribute == "decay_rate":
-            relationships.update_connection_decay_rate(
-                self.npc_slug, self.value
-            )
-        elif self.attribute == "decay_threshold":
-            relationships.update_connection_decay_threshold(
-                self.npc_slug, int(self.value)
-            )
-        elif self.attribute == "strength":
-            relationships.update_connection_strength(
-                self.npc_slug, int(self.value)
-            )
-        else:
-            logger.error(
-                f"{self.attribute} must be 'strength', 'decay_rate' or 'decay_threshold'"
-            )
-            return
+        session.client.event_bus.publish(
+            "relationship_modified",
+            npc_slug=self.npc_slug,
+            attribute=self.attribute,
+            value=self.value,
+        )

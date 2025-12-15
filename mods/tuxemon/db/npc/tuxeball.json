@@ -2,6 +2,7 @@
   "slug": "tuxeball",
   "speech": {"profile": {"default": {}}},
   "combat": {},
+  "audio": {},
   "template": {
     "sprite_name": "tuxeball",
     "combat_front": "noclass",

@@ -150,14 +150,14 @@
     <property name="act1" value="translated_dialog flower_city"/>
     <property name="act2" value="translated_dialog flower_city_description"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="185" name="Sign: Timber North" type="event" x="528" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog tunnel"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="199" name="Teleport to Flower City" type="event" x="544" y="624" width="16" height="16">

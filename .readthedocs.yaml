@@ -12,4 +12,11 @@ sphinx:
 python:
     version: 3.10
     install:
-    - requirements: docs/requirements.txt
+    - requirements:
+        - sphinx
+        - sphinx-rtd-theme
+        - sphinx-autodoc-typehints
+        - sphinx.ext.napoleon
+    
+    - method: pip
+      path: .

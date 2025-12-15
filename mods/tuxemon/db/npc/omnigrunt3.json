@@ -2,6 +2,7 @@
   "slug": "omnigrunt3",
   "speech": {"profile": {"default": {}}},
   "combat": {},
+  "audio": {},
   "template": {
     "sprite_name": "knight",
     "combat_front": "knight",

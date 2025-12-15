@@ -17,28 +17,38 @@ if TYPE_CHECKING:
 @dataclass
 class InputVariableAction(EventAction):
     """
-    Set a code and checks if it's correct or not.
+    Set a code and check if it's correct or not.
     The player's output will be by default lowercase.
 
     Script usage:
-        .. code-block::
 
-            input_variable <variable>,<question>[,answer][,escape]
+        .. code-block:: text
+
+           input_variable <variable>,<question>[,answer][,escape]
 
     Script parameters:
-        question: The question the player needs to reply (eg. "access_code")
-            then you create the msgid "access_code" inside the PO file:
+
+        question:
+            The question the player needs to reply (e.g. "access_code").
+            Then you create the msgid "access_code" inside the PO file:
+
                 msgid "access_code"
                 msgstr "Here the actual question?"
-        variable: Name of the variable where to store the output.
-        escape: Optional string flag ("true", "1", "yes" for True),
-            defaults to False when omitted
 
-    eg. "input_variable access_code,response_question"
-    eg. "input_variable access_code,response_question,escape"
+        variable:
+            Name of the variable where to store the output.
 
-    -> "is variable_set response_question:whatswrittenbytheplayer"
-    -> "not variable_set response_question:whatswrittenbytheplayer"
+        escape:
+            Optional string flag ("true", "1", "yes" for True),
+            defaults to False when omitted.
+
+    Examples:
+
+        "input_variable access_code,response_question"
+        "input_variable access_code,response_question,escape"
+
+        -> "is variable_set response_question:whatswrittenbytheplayer"
+        -> "not variable_set response_question:whatswrittenbytheplayer"
     """
 
     name = "input_variable"

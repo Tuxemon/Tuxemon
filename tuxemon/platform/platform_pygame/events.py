@@ -5,7 +5,7 @@ from __future__ import annotations
 import logging
 from collections.abc import Generator, Mapping
 from dataclasses import dataclass, field
-from typing import Any, ClassVar, Optional
+from typing import ClassVar, Optional
 
 import pygame as pg
 from pygame.event import Event
@@ -34,32 +34,6 @@ class PygameEventQueueHandler(EventQueueHandler):
     def __init__(self) -> None:
         super().__init__()
 
-    def add_input(
-        self, player: int, index: int, handler: InputHandler[Any]
-    ) -> None:
-        """
-        Add an input handler to process.
-
-        Parameters:
-            player: Number of the player the handler belongs to.
-            index: The input slot or device index to assign the handler to.
-            handler: Handler whose events will be processed from now on.
-        """
-        self._inputs[player][index] = handler
-
-    def set_input(
-        self, player: int, index: int, handler: InputHandler[Any]
-    ) -> None:
-        """
-        Sets an input handler to process.
-
-        Parameters:
-            player: Number of the player the handler belongs to.
-            element: Index to modify
-            handler: Handler whose events will be processed from now on.
-        """
-        self._inputs[player][index] = handler
-
     def process_events(self) -> Generator[PlayerInput, None, None]:
         for pg_event in pg.event.get():
             for input_handler in self.get_input_handlers():
@@ -69,7 +43,9 @@ class PygameEventQueueHandler(EventQueueHandler):
                 local_session.client.event_engine.execute_action("quit")
 
         for input_handler in self.get_input_handlers():
-            yield from input_handler.get_events()
+            for event in input_handler.get_events():
+                if all(f(event) for f in self._filters):
+                    yield event
 
 
 class InputMappingStrategy:
@@ -301,6 +277,12 @@ class PygameKeyboardInput(PygameEventHandler):
         None: events.UNICODE,
     }
 
+    def __init__(
+        self, event_map: Optional[Mapping[Optional[int], int]] = None
+    ) -> None:
+        super().__init__(event_map or self.default_input_map)
+        self._initialize_buttons_from_map(self.event_map)
+
     def process_event(self, input_event: Event) -> None:
         """
         Processes a pygame event.
@@ -313,6 +295,23 @@ class PygameKeyboardInput(PygameEventHandler):
 
         if pressed or released:
             self._handle_key_event(input_event, pressed)
+
+    def reload_mapping(self, new_map: Mapping[Optional[int], int]) -> None:
+        """Update the key→button mapping in place."""
+        self.event_map = new_map
+        self._initialize_buttons_from_map(new_map)
+
+    def _initialize_buttons_from_map(
+        self, mapping: Mapping[Optional[int], int]
+    ) -> None:
+        """Ensure self.buttons matches the given mapping."""
+        for button in mapping.values():
+            if button not in self.buttons:
+                self.buttons[button] = PlayerInput(button)
+
+        for button in list(self.buttons.keys()):
+            if button not in mapping.values():
+                del self.buttons[button]
 
     def _handle_key_event(self, input_event: Event, pressed: bool) -> None:
         """Handles key press or release events."""
@@ -338,11 +337,24 @@ class PygameKeyboardInput(PygameEventHandler):
             pass
 
 
+# +-----------------------+
+# |         UP            |
+# |   +---------------+   |
+# |   |               |   |
+# | L |     GAP       | R |
+# | E |   (dead zone) | I |
+# | F |               | G |
+# | T +---------------+ H |
+# |         DOWN          |
+# +-----------------------+
+
+
 DPAD_IMAGE = "gfx/d-pad.png"
 A_BUTTON_IMAGE = "gfx/a-button.png"
 B_BUTTON_IMAGE = "gfx/b-button.png"
 A_BUTTON_SCALE = 1.0
 B_BUTTON_SCALE = 2.1
+DPAD_GAP_RATIO = 0.2
 
 
 @dataclass
@@ -390,13 +402,27 @@ class TouchOverlayUI:
         width, height = dpad_surface.get_width(), dpad_surface.get_height()
         pos_x, pos_y = dpad_position
 
-        w3, h2, h3 = width // 3, height // 2, height // 3
+        gap_size = int(width * DPAD_GAP_RATIO)
+        half_gap = gap_size // 2
+
+        w_arm = width - gap_size  # Total width of the horizontal arms (L+R)
+        h_arm = height - gap_size  # Total height of the vertical arms (U+D)
 
         dpad_rects = DPadRectsInfo(
-            up=Rect(pos_x + w3, pos_y, w3, h2),
-            down=Rect(pos_x + w3, pos_y + h2, w3, h2),
-            left=Rect(pos_x, pos_y + h3, width // 2, h3),
-            right=Rect(pos_x + width // 2, pos_y + h3, width // 2, h3),
+            up=Rect(pos_x + half_gap, pos_y, width - gap_size, h_arm // 2),
+            down=Rect(
+                pos_x + half_gap,
+                pos_y + height - h_arm // 2,
+                width - gap_size,
+                h_arm // 2,
+            ),
+            left=Rect(pos_x, pos_y + half_gap, w_arm // 2, height - gap_size),
+            right=Rect(
+                pos_x + width - w_arm // 2,
+                pos_y + half_gap,
+                w_arm // 2,
+                height - gap_size,
+            ),
         )
 
         self.dpad = DPadInfo(
@@ -476,27 +502,64 @@ class PygameTouchOverlayInput(PygameEventHandler):
             buttons.B: PlayerInput(buttons.B),
         }
         self.load()
+        self._active_touches: dict[int, int] = {}
 
     def load(self) -> None:
         """Loads the UI elements."""
         self.ui.load()
 
     def process_event(self, input_event: Event) -> None:
-        """Handles touch events."""
-        if input_event.type not in (pg.MOUSEBUTTONDOWN, pg.MOUSEBUTTONUP):
-            return
+        """Handles both mouse and finger touch events."""
 
-        mouse_pos = input_event.pos
-        pressed = input_event.type == pg.MOUSEBUTTONDOWN
+        if input_event.type in (pg.FINGERDOWN, pg.FINGERUP, pg.FINGERMOTION):
+            touch_pos = (
+                int(input_event.x * prepare.SCREEN_SIZE[0]),
+                int(input_event.y * prepare.SCREEN_SIZE[1]),
+            )
+            finger_id = input_event.fingerid
 
-        button = self.get_touched_button(mouse_pos)
+            if input_event.type == pg.FINGERDOWN:
+                self._handle_finger_down(finger_id, touch_pos)
+            elif input_event.type == pg.FINGERUP:
+                self._handle_finger_up(finger_id)
+            elif input_event.type == pg.FINGERMOTION:
+                self._handle_finger_motion(finger_id, touch_pos)
+
+    def _handle_finger_down(
+        self, finger_id: int, touch_pos: tuple[int, int]
+    ) -> None:
+        button = self.get_touched_button(touch_pos)
         if button is not None:
-            if pressed:
+            if button not in self._active_touches.values():
                 self.press(button)
-            else:
+            self._active_touches[finger_id] = button
+
+    def _handle_finger_up(self, finger_id: int) -> None:
+        if finger_id in self._active_touches:
+            button = self._active_touches[finger_id]
+            del self._active_touches[finger_id]
+            if button not in self._active_touches.values():
                 self.release(button)
 
-    def get_touched_button(self, mouse_pos: tuple[int, int]) -> Optional[int]:
+    def _handle_finger_motion(
+        self, finger_id: int, touch_pos: tuple[int, int]
+    ) -> None:
+        if finger_id in self._active_touches:
+            current_button = self._active_touches[finger_id]
+            new_button = self.get_touched_button(touch_pos)
+
+            if new_button != current_button:
+                if current_button not in self._active_touches.values():
+                    self.release(current_button)
+
+                if new_button is not None:
+                    if new_button not in self._active_touches.values():
+                        self.press(new_button)
+                    self._active_touches[finger_id] = new_button
+                else:
+                    del self._active_touches[finger_id]
+
+    def get_touched_button(self, pos: tuple[int, int]) -> Optional[int]:
         """Determine which button was pressed based on position."""
         for name, rect in [
             (buttons.UP, self.ui.dpad.rect.up),
@@ -506,7 +569,7 @@ class PygameTouchOverlayInput(PygameEventHandler):
             (buttons.A, self.ui.a_button.rect),
             (buttons.B, self.ui.b_button.rect),
         ]:
-            if rect.collidepoint(mouse_pos):
+            if rect.collidepoint(pos):
                 logger.debug(f"Touch detected on: {name}")
                 return name
         return None

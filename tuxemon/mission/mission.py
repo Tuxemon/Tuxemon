@@ -26,8 +26,9 @@ class Mission:
 
     def __init__(self) -> None:
         self.slug: str = ""
-        self.name: str = ""
-        self.description: str = ""
+        self._custom_name: Optional[str] = None
+        self._description_slug: str = ""
+        self._custom_description: Optional[str] = None
         self.generated: bool = False
         self.prerequisites: Sequence[dict[str, Any]] = []
         self.connected_missions: Sequence[dict[str, Any]] = []
@@ -42,18 +43,36 @@ class Mission:
         self.status: MissionStatus = MissionStatus.pending
         self.instance_id: UUID = uuid4()
 
+    @property
+    def name(self) -> str:
+        if self._custom_name is not None:
+            return self._custom_name
+        return T.translate(self.slug) if self.slug else ""
+
+    @name.setter
+    def name(self, value: str) -> None:
+        self._custom_name = value
+
+    @property
+    def description(self) -> str:
+        if self._custom_description is not None:
+            return self._custom_description
+        return (
+            T.translate(self._description_slug)
+            if self._description_slug
+            else ""
+        )
+
+    @description.setter
+    def description(self, value: str) -> None:
+        self._custom_description = value
+
     @classmethod
     def from_db(cls, slug: str) -> Mission:
-        """Creates a new Mission instance loaded from the database."""
-        try:
-            results = MissionModel.lookup(slug, db)
-        except LookupError as e:
-            raise LookupError(f"Mission with slug '{slug}' not found.") from e
-
+        results = MissionModel.lookup(slug, db)
         mission = cls()
         mission.slug = results.slug
-        mission.name = T.translate(results.slug)
-        mission.description = T.translate(results.description)
+        mission._description_slug = results.description
         mission.prerequisites = results.prerequisites
         mission.connected_missions = results.connected_missions
         mission.required_items = results.required_items
@@ -70,15 +89,13 @@ class Mission:
         """
         results = MissionModel.lookup(slug, db)
         self.slug = results.slug
-        self.name = T.translate(results.slug)
-        self.description = T.translate(results.description)
+        self._description_slug = results.description
         self.prerequisites = results.prerequisites
         self.connected_missions = results.connected_missions
         self.required_items = results.required_items
         self.required_monsters = results.required_monsters
         self.required_missions = results.required_missions
         self.steps = {s.slug: s for s in results.steps.values()}
-        self.status = self.status
 
     def update_status(self, new_status: MissionStatus) -> None:
         """

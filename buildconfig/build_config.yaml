@@ -7,7 +7,7 @@ packages:
   - pytmx
   - pyscroll
   - pygame
-  - neteria
+  - websockets
   - natsort
   - tuxemon
 excludes:

@@ -3,6 +3,7 @@
     "slug": "eclipse_route7_arnold",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "scientist",
       "combat_front": "scientist",
@@ -13,6 +14,7 @@
     "slug": "eclipse_route7_sylvester",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "beachcomber_copper",
       "combat_front": "beachgoer",
@@ -23,6 +25,7 @@
     "slug": "eclipse_route7_fritz",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "maniac_violet",
       "combat_front": "adventurer",
@@ -42,6 +45,7 @@
       }
     },
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "monk_black",
       "combat_front": "monk",
@@ -61,6 +65,7 @@
       }
     },
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "magician_blonde",
       "combat_front": "magician",
@@ -80,6 +85,7 @@
       }
     },
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "florist_fiery",
       "combat_front": "florist",
@@ -99,6 +105,7 @@
       }
     },
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "boss_orange",
       "combat_front": "baller",
@@ -118,6 +125,7 @@
       }
     },
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "professor_lapi",
       "combat_front": "professor",
@@ -137,6 +145,7 @@
       }
     },
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "cooldude_black",
       "combat_front": "rocker",
@@ -156,6 +165,7 @@
       }
     },
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "rogue_copper",
       "combat_front": "winger",
@@ -175,6 +185,7 @@
       }
     },
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "picnicker",
       "combat_front": "picnicker",
@@ -194,6 +205,7 @@
       }
     },
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "postboy_green",
       "combat_front": "cooldude",
@@ -213,6 +225,7 @@
       }
     },
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "tennisplayer_green",
       "combat_front": "coach",
@@ -223,6 +236,7 @@
     "slug": "eclipse_route7_nurse",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "nurse_lapi",
       "combat_front": "nurse",

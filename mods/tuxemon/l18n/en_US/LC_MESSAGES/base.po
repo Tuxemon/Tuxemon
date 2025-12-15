@@ -4876,7 +4876,7 @@ msgid "multiplayer_host_game"
 msgstr "Host Game"
 
 msgid "multiplayer_scan_games"
-msgstr "Scan for Games"
+msgstr "Browse Available Servers"
 
 msgid "multiplayer_join_game"
 msgstr "Join Game"

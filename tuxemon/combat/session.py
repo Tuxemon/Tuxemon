@@ -11,6 +11,12 @@ from tuxemon.combat.action_queue import ActionQueue, EnqueuedAction
 from tuxemon.combat.combat_context import CombatType
 from tuxemon.combat.damage_tracker import DamageTracker
 from tuxemon.combat.field_monsters import FieldMonsters
+from tuxemon.combat.reward_system import (
+    HordeRewardCalculator,
+    RewardCalculator,
+    TrainerRewardCalculator,
+    WildRewardCalculator,
+)
 from tuxemon.combat.utils import battlefield
 from tuxemon.db import EffectPhase, TargetType
 from tuxemon.event import get_event_bus
@@ -272,6 +278,17 @@ class CombatSession:
 
     def reset_combat_type(self) -> None:
         self._combat_type = None
+
+    def get_calculator(self, combat_type: CombatType) -> RewardCalculator:
+        """Return the appropriate RewardCalculator based on combat type."""
+        if combat_type is CombatType.TRAINER:
+            return TrainerRewardCalculator(self.damage_tracker)
+        elif combat_type is CombatType.MONSTER:
+            return WildRewardCalculator(self.damage_tracker)
+        elif combat_type is CombatType.HORDE:
+            return HordeRewardCalculator(self.damage_tracker)
+        else:
+            raise ValueError(f"Unknown combat type: {combat_type}")
 
     @property
     def is_trainer_battle(self) -> bool:

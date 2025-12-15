@@ -1,264 +1,321 @@
 # SPDX-License-Identifier: GPL-3.0
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
-import unittest
-from unittest.mock import MagicMock, patch
+from unittest.mock import MagicMock, PropertyMock
 
+import pytest
+
+from tuxemon.combat.combat_context import CombatType
 from tuxemon.combat.damage_tracker import DamageTracker
+from tuxemon.combat.experience_strategies import calculate_experience_base
 from tuxemon.combat.reward_system import (
     RewardSystem,
+    TrainerRewardCalculator,
     calculate_experience,
-    calculate_experience_base,
     calculate_money,
+    calculate_tps,
 )
-from tuxemon.db import Acquisition
+from tuxemon.db import Acquisition, ExperienceMethod
 from tuxemon.monster import Monster
-from tuxemon.monster_dir.experience import MonsterExperience
 from tuxemon.monster_dir.stats import BasicStats
 from tuxemon.monster_dir.status import MonsterStatusHandler
 from tuxemon.npc import NPC
+from tuxemon.prepare import MAX_LEVEL
 
 
-class TestRewardSystem(unittest.TestCase):
-    def setUp(self):
-        self.loser = Monster()
-        self.loser.name = "pairagrin"
-        self.loser.set_level(5)
-        self.loser.money_modifier = 2.0
-        self.loser.status = MagicMock(spec=MonsterStatusHandler)
-        self.loser.current_hp = 0
-        self.loser.stage = "basic"
-        self.loser.moves = MagicMock()
-        self.loser.set_total_experience(1000)
-        self.loser.set_experience_modifier(1.5)
+class DummyItem:
+    def __init__(self, method: ExperienceMethod, multiplier: float):
+        self.reward_method = method
+        self.money_multiplier = multiplier
 
-        self.winner = Monster()
-        self.winner.name = "rockitten"
-        self.winner.set_level(5)
-        self.winner.moves = MagicMock()
-        self.winner.current_hp = 50
-        self.winner.stage = "basic"
-        self.winner.acquisition = Acquisition.UNKNOWN
-        self.winner.owner = MagicMock(spec=NPC)
-        self.winner.owner.is_player = True
-        self.winner.owner.monsters = [self.winner]
-        self.winner.owner.party = MagicMock()
-        self.winner.owner.party.alive = [self.winner]
-        self.winner.item_handler = MagicMock()
-        self.winner.item_handler.held_item.return_value = MagicMock(
-            slug="xp_transmitter"
-        )
-        self.winner.base_stats = BasicStats()
 
-        self.damage_tracker = DamageTracker()
-        self.damage_tracker.log_damage(self.winner, self.loser, 10, 1)
+@pytest.fixture
+def setup_combat():
+    loser = Monster()
+    loser.name = "pairagrin"
+    loser.set_level(5)
+    loser.money_modifier = 1.0
+    loser.status = MagicMock(spec=MonsterStatusHandler)
+    loser.current_hp = 0
+    loser.stage = "basic"
+    loser.moves = MagicMock()
+    loser.set_total_experience(1000)
+    loser.set_experience_modifier(1.5)
 
-    def test_reward_system_winner(self):
-        reward_system = RewardSystem(
-            MagicMock(combat_type="trainer"), self.damage_tracker
-        )
-        rewards = reward_system.award_rewards(self.loser)
+    winner = Monster()
+    winner.name = "rockitten"
+    winner.set_level(5)
+    winner.moves = MagicMock()
+    winner.current_hp = 50
+    winner.stage = "basic"
+    winner.acquisition = Acquisition.UNKNOWN
+    winner.owner = MagicMock(spec=NPC)
+    winner.owner.is_player = True
+    winner.owner.monsters = [winner]
+    winner.owner.party = MagicMock()
+    winner.owner.party.alive = [winner]
+    winner.base_stats = BasicStats()
 
-        self.assertEqual(len(rewards.winners), 1)
-        self.assertEqual(rewards.winners[0].winner, self.winner)
+    session = MagicMock()
+    combat_type = CombatType.TRAINER
 
-    def test_reward_system_money(self):
-        reward_system = RewardSystem(
-            MagicMock(combat_type="trainer"), self.damage_tracker
-        )
-        rewards = reward_system.award_rewards(self.loser)
+    damage_tracker = DamageTracker()
+    damage_tracker.log_damage(winner, loser, 10, 1)
 
-        awarded_money = calculate_money(self.loser, self.winner)
-        self.assertEqual(rewards.winners[0].money, awarded_money)
-        self.assertEqual(rewards.prize, awarded_money)
+    calculator = TrainerRewardCalculator(damage_tracker)
+    reward_system = RewardSystem(session, combat_type, calculator)
 
-    def test_reward_system_experience(self):
-        reward_system = RewardSystem(
-            MagicMock(combat_type="trainer"), self.damage_tracker
-        )
-        rewards = reward_system.award_rewards(self.loser)
+    return (
+        loser,
+        winner,
+        damage_tracker,
+        reward_system,
+        calculator,
+        session,
+        combat_type,
+    )
 
-        awarded_exp, _ = calculate_experience(
-            self.loser, self.winner, self.damage_tracker
-        )
-        self.assertEqual(rewards.winners[0].experience, awarded_exp)
 
-    def test_reward_system_update(self):
-        reward_system = RewardSystem(
-            MagicMock(combat_type="trainer"), self.damage_tracker
-        )
-        rewards = reward_system.award_rewards(self.loser)
-        self.assertTrue(rewards.update)
+def test_reward_system_basic(setup_combat):
+    loser, winner, damage_tracker, reward_system, _, _, _ = setup_combat
+    rewards = reward_system.award_rewards(loser)
 
-    def test_calculate_money_default_method(self):
-        money = calculate_money(self.loser, self.winner)
-        expected_money = int(self.loser.level * self.loser.money_modifier)
-        self.assertEqual(money, expected_money)
+    assert len(rewards.winners) == 1
+    assert rewards.winners[0].winner == winner
+    assert rewards.winners[0].money == calculate_money(loser, winner)
+    assert rewards.prize == calculate_money(loser, winner)
+    assert (
+        rewards.winners[0].experience
+        == calculate_experience(loser, winner, damage_tracker)[0]
+    )
+    assert rewards.update
 
-    def test_calculate_experience_default_method(self):
-        experience = calculate_experience(
-            self.loser, self.winner, self.damage_tracker
-        )
-        expected_experience = int(
-            (self.loser.total_experience // (self.loser.level))
-            * self.loser.experience_modifier
-        )
-        self.assertEqual(experience[0], expected_experience)
 
-    def test_calculate_experience_with_transmitter(self):
-        mock_monsters = [
-            MagicMock(
-                spec=Monster,
-                name="participant1",
-                current_hp=50,
-                status=[],
-                stage="basic",
+@pytest.mark.parametrize("multiplier", [2.0, 0.5, 0.0, -1.0])
+def test_calculate_money_with_item_multiplier(setup_combat, multiplier):
+    loser, winner, _, _, _, _, _ = setup_combat
+    type(loser).held_item = PropertyMock(return_value=None)
+    type(winner).held_item = PropertyMock(
+        return_value=DummyItem(ExperienceMethod.DEFAULT, multiplier)
+    )
+    money = calculate_money(loser, winner)
+    assert money >= 0
+
+
+@pytest.mark.parametrize(
+    "item,expected_func",
+    [
+        (
+            None,
+            lambda l, w, d: int(
+                (l.total_experience // l.level) * l.experience_modifier
             ),
-            MagicMock(
-                spec=Monster,
-                name="participant2",
-                current_hp=50,
-                status=[],
-                stage="basic",
-            ),
-            MagicMock(
-                spec=Monster,
-                name="non_participant",
-                current_hp=50,
-                status=[],
-                stage="basic",
-            ),
-        ]
-
-        self.winner.item_handler = MagicMock()
-        self.winner.item_handler.held_item = MagicMock(slug="xp_transmitter")
-
-        experience = calculate_experience(
-            self.loser, self.winner, self.damage_tracker
-        )
-
-        total_exp = calculate_experience_base(
-            self.loser.total_experience,
-            self.loser.level,
-            self.loser.experience_modifier,
-        )
-        participants = self.damage_tracker.get_attackers(self.loser)
-        participant_exp = total_exp // 2 // len(participants)
-
-        self.assertEqual(experience[0], participant_exp)
-
-    def test_calculate_experience_base(self):
-        experience = calculate_experience_base(
-            self.loser.total_experience,
-            self.loser.level,
-            self.loser.experience_modifier,
-        )
-        expected_experience = int(
-            (self.loser.total_experience // (self.loser.level))
-            * self.loser.experience_modifier
-        )
-        self.assertEqual(experience, expected_experience)
-
-    def test_award_rewards_distribution(self):
-        mock_monsters = [
-            MagicMock(
-                spec=Monster,
-                give_experience=MagicMock(),
-                moves=MagicMock(),
-                level=5,
-                status=MonsterStatusHandler(),
-                current_hp=50,
-                is_fainted=False,
-                stage="basic",
+        ),
+        (
+            DummyItem(ExperienceMethod.XP_TRANSMITTER, 2.0),
+            lambda l, w, d: calculate_experience_base(
+                l.total_experience, l.level, l.experience_modifier
             )
-            for _ in range(3)
-        ]
+            // 2
+            // len(d.get_attackers(l)),
+        ),
+    ],
+)
+def test_calculate_experience_methods(setup_combat, item, expected_func):
+    loser, winner, damage_tracker, _, _, _, _ = setup_combat
+    type(winner).held_item = PropertyMock(return_value=item)
+    exp, _ = calculate_experience(loser, winner, damage_tracker)
+    assert exp == expected_func(loser, winner, damage_tracker)
 
-        self.winner.owner.monsters = mock_monsters
-        self.winner.owner.party = MagicMock()
-        self.winner.owner.party.alive = mock_monsters
 
-        reward_system = RewardSystem(
-            MagicMock(combat_type="trainer"), self.damage_tracker
+def test_calculate_experience_max_level_returns_zero(setup_combat):
+    loser, winner, damage_tracker, _, _, _, _ = setup_combat
+    winner.set_level(MAX_LEVEL)
+    exp = calculate_experience(loser, winner, damage_tracker)
+    assert exp == (0, 0)
+
+
+def test_award_rewards_distribution_to_party(setup_combat):
+    loser, winner, damage_tracker, reward_system, _, _, _ = setup_combat
+    mock_monsters = [
+        MagicMock(
+            spec=Monster,
+            give_experience=MagicMock(),
+            moves=MagicMock(),
+            level=5,
+            status=MonsterStatusHandler(),
+            current_hp=50,
+            is_fainted=False,
+            stage="basic",
         )
-        rewards = reward_system.award_rewards(self.loser)
+        for _ in range(3)
+    ]
+    winner.owner.monsters = mock_monsters
+    winner.owner.party.alive = mock_monsters
 
-        self.assertEqual(len(rewards.winners), 1)
-        self.assertEqual(rewards.winners[0].winner, self.winner)
+    rewards = reward_system.award_rewards(loser)
+    assert rewards.winners[0].winner == winner
+    for monster in mock_monsters:
+        monster.give_experience.assert_called()
 
-        awarded_money = calculate_money(self.loser, self.winner)
-        awarded_exp, _ = calculate_experience(
-            self.loser, self.winner, self.damage_tracker
-        )
-        self.assertEqual(rewards.winners[0].money, awarded_money)
-        self.assertEqual(rewards.winners[0].experience, awarded_exp)
 
-        for monster in mock_monsters:
-            monster.give_experience.assert_called()
+def test_award_rewards_no_winners(setup_combat):
+    loser, _, _, _, _, session, combat_type = setup_combat
+    empty_tracker = DamageTracker()
+    calculator = TrainerRewardCalculator(empty_tracker)
+    reward_system = RewardSystem(session, combat_type, calculator)
+    rewards = reward_system.award_rewards(loser)
+    assert rewards.winners == []
+    assert rewards.prize == 0
+    assert not rewards.update
+    assert rewards.moves == []
+    assert rewards.messages == []
 
-    def test_award_rewards_no_winners(self):
-        empty_tracker = DamageTracker()
-        reward_system = RewardSystem(
-            MagicMock(combat_type="trainer"), empty_tracker
-        )
-        rewards = reward_system.award_rewards(self.loser)
 
-        self.assertEqual(len(rewards.winners), 0)
-        self.assertEqual(rewards.prize, 0)
-        self.assertFalse(rewards.update)
-        self.assertEqual(rewards.moves, [])
-        self.assertEqual(rewards.messages, [])
+def test_award_rewards_moves_updates(setup_combat):
+    (
+        loser,
+        winner,
+        damage_tracker,
+        reward_system,
+        calculator,
+        session,
+        combat_type,
+    ) = setup_combat
+    winner.moves.update_moves.return_value = ["Fireball"]
 
-    def test_award_rewards_no_new_moves(self):
-        self.winner.moves.update_moves.return_value = []
-        reward_system = RewardSystem(
-            MagicMock(combat_type="trainer"), self.damage_tracker
-        )
-        rewards = reward_system.award_rewards(self.loser)
+    second_winner = Monster()
+    second_winner.name = "rockitten"
+    second_winner.stage = "basic"
+    second_winner.set_level(5)
+    second_winner.moves = MagicMock()
+    second_winner.moves.update_moves.return_value = ["Ram"]
+    second_winner.acquisition = Acquisition.UNKNOWN
+    second_winner.owner = winner.owner
+    second_winner.current_hp = 50
+    second_winner.item_handler = MagicMock(held_item=MagicMock(slug="default"))
 
-        self.assertEqual(rewards.moves, [])
+    damage_tracker.log_damage(second_winner, loser, 5, 1)
 
-    def test_award_rewards_multiple_move_updates(self):
-        self.winner.moves.update_moves.return_value = ["Fireball"]
-        second_winner = Monster()
-        second_winner.name = "rockitten"
-        second_winner.stage = "basic"
-        second_winner.set_level(5)
-        second_winner.moves = MagicMock()
-        second_winner.moves.update_moves.return_value = ["Ram"]
-        second_winner.acquisition = Acquisition.UNKNOWN
-        second_winner.owner = self.winner.owner
-        second_winner.current_hp = 50
-        second_winner.item_handler = MagicMock(
-            held_item=MagicMock(slug="default")
-        )
+    reward_system = RewardSystem(session, combat_type, calculator)
+    rewards = reward_system.award_rewards(loser)
+    assert set(rewards.moves) == {"Fireball", "Ram"}
 
-        self.damage_tracker.log_damage(second_winner, self.loser, 5, 1)
 
-        reward_system = RewardSystem(
-            MagicMock(combat_type="trainer"), self.damage_tracker
-        )
-        rewards = reward_system.award_rewards(self.loser)
+def test_award_rewards_non_player_monster(setup_combat):
+    loser, winner, _, reward_system, _, _, _ = setup_combat
+    winner.owner.is_player = False
+    rewards = reward_system.award_rewards(loser)
+    assert rewards.prize == 0
+    assert rewards.messages == []
+    assert not rewards.update
 
-        self.assertIn("Fireball", rewards.moves)
-        self.assertIn("Ram", rewards.moves)
-        self.assertEqual(len(rewards.moves), 2)
 
-    def test_award_rewards_with_held_item_modifier(self):
-        self.winner.item_handler.held_item = MagicMock(slug="xp_transmitter")
-        reward_system = RewardSystem(
-            MagicMock(combat_type="trainer"), self.damage_tracker
-        )
-        rewards = reward_system.award_rewards(self.loser)
+@pytest.mark.parametrize(
+    "loser_stats,winner_stats,tp_gain,expected_len",
+    [
+        (BasicStats(hp=10, melee=20), BasicStats(hp=5, melee=10), 3, 2),
+        (BasicStats(hp=5, melee=5), BasicStats(hp=10, melee=10), None, 0),
+    ],
+)
+def test_calculate_tps_awards(
+    loser_stats, winner_stats, tp_gain, expected_len
+):
+    loser = Monster()
+    loser.base_stats = loser_stats
+    winner = Monster()
+    winner.base_stats = winner_stats
+    winner.give_tps = MagicMock()
+    awarded = (
+        calculate_tps(winner, loser, tp_gain=tp_gain)
+        if tp_gain
+        else calculate_tps(winner, loser)
+    )
+    assert len(awarded) == expected_len
+    if expected_len:
+        for stat, gain in awarded:
+            winner.give_tps.assert_any_call(stat, gain)
+    else:
+        winner.give_tps.assert_not_called()
 
-        self.assertGreater(rewards.winners[0].experience, 0)
 
-    def test_award_rewards_non_player_monster(self):
-        self.winner.owner.is_player = False
-        reward_system = RewardSystem(
-            MagicMock(combat_type="trainer"), self.damage_tracker
-        )
-        rewards = reward_system.award_rewards(self.loser)
+def test_apply_penalties_sets_hp_and_bond(setup_combat):
+    _, _, _, _, calculator, session, combat_type = setup_combat
+    monster = Monster()
+    monster.current_hp = 50
+    monster.get_owner = MagicMock()
+    owner = monster.get_owner.return_value
+    owner.bag.find_item.return_value = True
+    monster.bond_handler = MagicMock()
 
-        self.assertEqual(rewards.prize, 0)
-        self.assertEqual(rewards.messages, [])
-        self.assertFalse(rewards.update)
+    reward_system = RewardSystem(session, combat_type, calculator)
+    reward_system.apply_penalties(monster)
+    assert monster.current_hp == 0
+    monster.bond_handler.apply_bond_modifier.assert_called_with("fainted")
+
+
+def test_award_rewards_fainted_winner_gets_none(setup_combat):
+    loser, winner, _, reward_system, _, _, _ = setup_combat
+    winner.current_hp = 0
+    rewards = reward_system.award_rewards(loser)
+    assert rewards.winners == []
+    assert rewards.prize == 0
+
+
+def test_award_rewards_winner_without_owner(setup_combat):
+    loser, winner, _, reward_system, _, _, _ = setup_combat
+    winner.owner = None
+    rewards = reward_system.award_rewards(loser)
+    assert rewards.winners == []
+    assert rewards.prize == 0
+
+
+def test_award_rewards_loser_with_zero_money_modifier(setup_combat):
+    loser, winner, _, reward_system, _, _, _ = setup_combat
+    loser.money_modifier = 0
+    rewards = reward_system.award_rewards(loser)
+    assert rewards.prize == 0
+    assert all(entry.money == 0 for entry in rewards.winners)
+
+
+def test_award_rewards_loser_with_item_multiplier(setup_combat):
+    loser, winner, _, reward_system, _, _, _ = setup_combat
+    type(loser).held_item = PropertyMock(
+        return_value=DummyItem(ExperienceMethod.DEFAULT, 2.0)
+    )
+    type(winner).held_item = PropertyMock(
+        return_value=DummyItem(ExperienceMethod.DEFAULT, 2.0)
+    )
+    rewards = reward_system.award_rewards(loser)
+    base_money = int(loser.level * loser.money_modifier)
+    expected = (
+        base_money
+        * loser.held_item.money_multiplier
+        * winner.held_item.money_multiplier
+    )
+    assert rewards.prize == expected
+
+
+def test_award_rewards_multiple_winners_mixed_states(setup_combat):
+    (
+        loser,
+        winner,
+        damage_tracker,
+        reward_system,
+        calculator,
+        session,
+        combat_type,
+    ) = setup_combat
+    second_winner = Monster()
+    second_winner.name = "ally"
+    second_winner.stage = "basic"
+    second_winner.set_level(5)
+    second_winner.moves = MagicMock()
+    second_winner.acquisition = Acquisition.UNKNOWN
+    second_winner.owner = winner.owner
+    second_winner.current_hp = 0
+    damage_tracker.log_damage(second_winner, loser, 5, 1)
+
+    reward_system = RewardSystem(session, combat_type, calculator)
+    rewards = reward_system.award_rewards(loser)
+    assert len(rewards.winners) == 1
+    assert rewards.winners[0].winner == winner

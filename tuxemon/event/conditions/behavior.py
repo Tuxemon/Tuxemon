@@ -41,7 +41,7 @@ class BehaviorCondition(EventCondition):
                 session,
                 SpatialCondition(
                     type="button_pressed",
-                    parameters=["K_RETURN"],
+                    parameters=["INTERACT"],
                     box=condition.box,
                     operator=Operator.IS,
                     name="cond20",

@@ -8,6 +8,7 @@ from tuxemon.db import MonsterModel, SpatialCondition, db
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
 from tuxemon.tools import compare
+from tuxemon.tuxepedia import TuxepediaReporter
 
 lookup_cache: dict[str, MonsterModel] = {}
 
@@ -44,12 +45,14 @@ class TuxepediaCondition(EventCondition):
         else:
             total = len(lookup_cache)
 
-        completeness = player.tuxepedia.get_completeness(total)
+        reporter = TuxepediaReporter(player.tuxepedia.data)
+        completeness = reporter.get_completeness_report(total)
+        registered = completeness.get("registered_percent", 0.0)
 
         if not 0.0 <= float(value) <= 1.0:
             raise ValueError(f"{value} must be between 0.0 and 100.0")
 
-        return compare(operator, completeness, float(value))
+        return compare(operator, float(registered), float(value))
 
 
 def _lookup_monsters() -> None:

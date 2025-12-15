@@ -119,8 +119,14 @@ class DialogState(PopUpMenu[None]):
                 logger.debug("Fast-forwarding current dialog line")
                 self.dialog.dump_remaining_text(self.dialog_box)
             else:
-                logger.debug("Dialog line complete, advancing to next")
-                self.next_text()
+                if self.dialog.is_busy():
+                    logger.debug(
+                        "Ignoring rapid click during AlertManager transition."
+                    )
+                    return None
+                if self.text_queue or self.auto_close:
+                    self.next_text()
+                    logger.debug("Dialog line complete, advancing to next")
         return None
 
     def update(self, dt: float) -> None:
@@ -154,6 +160,10 @@ class DialogState(PopUpMenu[None]):
 
         if self.text_queue:
             text = self.text_queue.pop(0)
+
+            if not text:
+                return self.next_text()
+
             self.dialog.alert(text, self.dialog_box)
             self._reset_timer()
             return text

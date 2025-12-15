@@ -195,14 +195,14 @@
    <properties>
     <property name="act1" value="translated_dialog welcome_location_city"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="412" name="Sign: Route 5" type="event" x="32" y="96" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog here_to_west"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="413" name="Teleport to Pet Shop" type="event" x="160" y="432" width="16" height="16">
@@ -217,7 +217,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_flower_dojo_sign"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="423" name="Teleport to Flower House 2" type="event" x="368" y="272" width="16" height="16">
@@ -480,7 +480,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_multi_martsign"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="471" name="Teleport to Routed 1" type="event" x="400" y="624" width="16" height="16">
@@ -571,7 +571,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_door_locked"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="501" name="Play Music" type="event" x="0" y="0" width="16" height="16">
@@ -598,7 +598,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_flower_sign"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
     <property name="cond3" value="not battle_outcome_count player,won,spyder_nimrod_tru,1"/>
    </properties>
   </object>

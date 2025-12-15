@@ -287,7 +287,6 @@ class CombatState(CombatAnimations):
         for i in range(actual_actions):
             monster = pending_monsters.pop(0)
             logger.debug(f"Processing monster #{i + 1}: {monster.name}")
-            monster.moves.recharge_moves()
             self.show_monster_action_menu(monster)
 
     def handle_action_queue(self) -> None:
@@ -315,12 +314,13 @@ class CombatState(CombatAnimations):
             self.client.remove_state_by_name("MonsterMenuState")
 
         def validate(menu_item: MenuItem[Monster]) -> bool:
-            monster = menu_item.game_object
-            if monster.is_fainted:
-                return False
-            if monster in self.client.combat_session.active_monsters:
-                return False
-            return True
+            if isinstance(menu_item, Monster):
+                if menu_item.is_fainted:
+                    return False
+                if menu_item in self.client.combat_session.active_monsters:
+                    return False
+                return True
+            return False
 
         state = self.client.push_state(MonsterMenuState(player.monsters))
         state.task(
@@ -432,6 +432,7 @@ class CombatState(CombatAnimations):
                     monster
                 )
             )
+            monster.moves.recharge_moves()
 
             if char in self.client.combat_session.human_players:
                 # Still add to queue for menu interaction
@@ -779,8 +780,9 @@ class CombatState(CombatAnimations):
         Parameters:
             monster: Monster that was fainted.
         """
-        damage_map = self.client.combat_session.damage_tracker
-        reward_system = RewardSystem(self.session, damage_map)
+        combat_type = self.client.combat_session.combat_type
+        calculator = self.client.combat_session.get_calculator(combat_type)
+        reward_system = RewardSystem(self.session, combat_type, calculator)
         reward_system.apply_penalties(monster)
         rewards = reward_system.award_rewards(monster)
 
@@ -905,7 +907,8 @@ class CombatState(CombatAnimations):
         self.award_experience_and_money(monster)
         # Remove monster from damage map
         self.client.combat_session.damage_tracker.remove_monster(monster)
-        play_outcome_music(self.session, self.music, monster)
+        if len(self.client.combat_session.remaining_players) <= 1:
+            play_outcome_music(self.session, self.music, monster)
 
     def clean_combat(self) -> None:
         """Clean combat."""

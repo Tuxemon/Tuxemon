@@ -112,7 +112,7 @@ def battlefield(session: Session, monster: Monster) -> None:
 
 
 def get_battle_outcome_music(
-    session: Session, music: BattleMusicModel, monster: Monster
+    session: Session, default_music: BattleMusicModel, monster: Monster
 ) -> Optional[tuple[str, float]]:
     """
     Return the appropriate music track based on outcome and participants.
@@ -125,21 +125,30 @@ def get_battle_outcome_music(
     if not any(True for _ in session.client.combat_session.human_players):
         return None
 
+    # Use override if present, else fall back to default
+    active_music = monster.owner.get_active_battle_music(default_music)
+
     # If the defeated was a player → defeat music
     if (
         monster.owner.is_player
-        and music.defeat_music
-        and music.defeat_music.music
+        and active_music.defeat_music
+        and active_music.defeat_music.music
     ):
-        return (music.defeat_music.music, music.defeat_music.volume)
+        return (
+            active_music.defeat_music.music,
+            active_music.defeat_music.volume,
+        )
 
     # If the defeated was not a player → victory music
     if (
         not monster.owner.is_player
-        and music.victory_music
-        and music.victory_music.music
+        and active_music.victory_music
+        and active_music.victory_music.music
     ):
-        return (music.victory_music.music, music.victory_music.volume)
+        return (
+            active_music.victory_music.music,
+            active_music.victory_music.volume,
+        )
 
     return None
 

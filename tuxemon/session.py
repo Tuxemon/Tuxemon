@@ -146,6 +146,7 @@ class Session(AbstractSession["LocalPygameClient"]):
         self.player.set_state(self, save_data.npc_state or NPCState())
         self.world.set_state(self, save_data.world_state or WorldSave())
         self.set_state(save_data.session_state or SessionSave())
+        self.client.shop_manager.load_from_dict(save_data.shop_stock)
 
     def save_state(self, index: int, slot: int) -> SaveData:
         """

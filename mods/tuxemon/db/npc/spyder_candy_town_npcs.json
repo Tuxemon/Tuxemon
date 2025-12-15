@@ -3,6 +3,7 @@
     "slug": "spyder_candy_henrik",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "knight_red",
       "combat_front": "enforcer_rookie",
@@ -13,6 +14,7 @@
     "slug": "spyder_candy_eliane",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "florist_fiery",
       "combat_front": "florist",
@@ -23,6 +25,7 @@
     "slug": "spyder_candycafe_nora",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "barmaid_red",
       "combat_front": "barmaid",
@@ -33,6 +36,7 @@
     "slug": "spyder_candyhouse2_indiana",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "professor_green",
       "combat_front": "professor",
@@ -43,6 +47,7 @@
     "slug": "spyder_candyhouse2_barney",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "riverboatcaptain",
       "combat_front": "enforcer_rookie",
@@ -53,6 +58,7 @@
     "slug": "spyder_candyhouse3_joanie",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "catgirl",
       "combat_front": "catgirl",
@@ -63,6 +69,7 @@
     "slug": "spyder_candyhouse1_tillie",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "picnicker",
       "combat_front": "picnicker",
@@ -73,6 +80,7 @@
     "slug": "spyder_candyhouse1_sawyer",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "maniac_yellow",
       "combat_front": "adventurer",
@@ -83,6 +91,7 @@
     "slug": "spyder_shopassistant",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "shopkeeper",
       "combat_front": "adventurer",
@@ -93,6 +102,7 @@
     "slug": "spyder_candyinn_cott",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "shopkeeper",
       "combat_front": "adventurer",
@@ -103,6 +113,7 @@
     "slug": "spyder_candyinn_lyle",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "riverboatcaptain",
       "combat_front": "pirate",
@@ -113,6 +124,7 @@
     "slug": "spyder_candyinn_bob",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "maniac_rose",
       "combat_front": "adventurer",
@@ -123,6 +135,7 @@
     "slug": "spyder_candyinn_prof",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "professor_lapi",
       "combat_front": "professor",
@@ -133,6 +146,7 @@
     "slug": "spyder_candyinn_jess",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "goth",
       "combat_front": "adventurer",
@@ -143,6 +157,7 @@
     "slug": "spyder_candyinn_james",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "beachcomber_fiery",
       "combat_front": "yellowbelt",
@@ -153,6 +168,7 @@
     "slug": "spyder_candyport_monk",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "monk_blue",
       "combat_front": "monk",
@@ -163,6 +179,7 @@
     "slug": "spyder_candyinn_monk",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "monk_green",
       "combat_front": "monk",

@@ -203,7 +203,11 @@ class ComboDetector:
     def _check_release_completion(
         self, event: PlayerInput, hold_time: float, now: float
     ) -> list[_ActiveCombo]:
-        if int(event.value) != 0 or hold_time <= 0:
+        try:
+            val = int(event.value)
+        except (ValueError, TypeError):
+            return []
+        if val != 0 or hold_time <= 0:
             return []
         return [
             ac

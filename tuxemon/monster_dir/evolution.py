@@ -7,18 +7,25 @@ import random
 from typing import TYPE_CHECKING
 
 from tuxemon.db import (
-    GenderType,
     LearningMethod,
     MonsterEvolutionItemModel,
-    PartyConditionsModel,
     SeenStatus,
 )
-from tuxemon.locale import T
-from tuxemon.tools import compare
+from tuxemon.monster_dir.evolution_conditions import (
+    check_bond,
+    check_location_items_moves,
+    check_party_conditions,
+    check_simple_conditions,
+    check_stats,
+    check_steps,
+    check_tastes,
+    check_variables,
+)
 
 if TYPE_CHECKING:
-    from tuxemon.entity_dir.party import PartyHandler
+    from tuxemon.item.item import Item
     from tuxemon.monster import Monster
+    from tuxemon.monster_dir.evolution_registry import EvolutionRegistry
 
 logger = logging.getLogger(__name__)
 
@@ -41,12 +48,51 @@ class Evolution:
             for history in self.monster.history
         )
 
+    def is_valid_evolution_target(self, target_slug: str) -> bool:
+        """
+        Checks if the target slug is a possible direct evolution from this
+        monster or exists anywhere in its evolutionary history/future.
+        """
+        return self.has_evolution_to(target_slug) or self.has_history_to(
+            target_slug
+        )
+
+    def confirm_pending_evolution(
+        self, registry: EvolutionRegistry, evolution_slug: str
+    ) -> None:
+        """
+        Handles all monster-side and registry cleanup when a pending evolution is confirmed.
+        """
+        registry.clear_missed(self.monster.instance_id, evolution_slug)
+        registry.clear_pending(self.monster.instance_id)
+        self.monster.experience_handler.reset_status_flags()
+
+        logger.info(
+            f"Confirmed evolution of {self.monster.name}. Registry cleanup complete."
+        )
+
+    def deny_pending_evolution(
+        self, registry: EvolutionRegistry, evolution_slug: str
+    ) -> None:
+        """
+        Handles all monster-side and registry cleanup when a pending evolution is denied.
+        It logs the evolution as 'missed' and resets the monster's temporary status flags.
+        """
+        self.monster.experience_handler.reset_status_flags()
+        registry.log_missed(
+            self.monster.instance_id, evolution_slug, self.monster.level
+        )
+        registry.clear_pending(self.monster.instance_id)
+        logger.info(
+            f"Denied evolution of {self.monster.name}. Missed evolution logged at level {self.monster.level}."
+        )
+
     def evolve_monster(self, new_monster: Monster) -> None:
         if not self.is_eligible_for_evolution():
             return
 
         owner = self.monster.get_owner()
-        self.update_new_monster_properties(new_monster)
+        new_monster.transfer_properties_from(self.monster)
 
         for move in new_monster.moves.moveset:
             if move.learning_method == LearningMethod.EVOLUTION:
@@ -68,35 +114,6 @@ class Evolution:
             and self.monster in self.monster.owner.monsters
         )
 
-    def update_new_monster_properties(self, new_monster: Monster) -> None:
-        new_monster.set_level(self.monster.level)
-        new_monster.current_hp = min(self.monster.current_hp, new_monster.hp)
-        new_monster.moves = self.monster.moves
-        new_monster.status = self.monster.status
-        new_monster.instance_id = self.monster.instance_id
-        if self.monster.gender in new_monster.gender_weights:
-            new_monster.gender = self.monster.gender
-        else:
-            new_monster.gender = new_monster.assign_gender(
-                new_monster.gender_weights
-            )
-        new_monster.capture = self.monster.capture
-        new_monster.capture_device = self.monster.capture_device
-        new_monster.taste_cold = self.monster.taste_cold
-        new_monster.taste_warm = self.monster.taste_warm
-        new_monster.plague = self.monster.plague
-        new_monster.name = (
-            new_monster.name
-            if self.monster.name == T.translate(self.monster.slug)
-            else self.monster.name
-        )
-        # Copy flairs from old monster to new monster
-        for flair_category, new_flair in new_monster.flairs.items():
-            if flair_category in self.monster.flairs:
-                new_monster.flairs[flair_category] = self.monster.flairs[
-                    flair_category
-                ]
-
     def can_evolve(
         self,
         evolution_item: MonsterEvolutionItemModel,
@@ -107,115 +124,36 @@ class Evolution:
 
         Parameters:
             evolution_item: The evolution item to apply.
-            context: A dictionary containing the current context,
-            including the map inside status.
+            context: A dictionary containing the current context
+                (e.g., location, item usage).
 
         Returns:
             bool: True if the monster can evolve, False otherwise.
-
-        Notes:
-            The context dictionary is expected to contain keys (eg. 'map_inside').
         """
         if self.monster.owner is None:
             return False
 
-        owner = self.monster.get_owner()
-
-        # Check if the evolution is actually possible
         if evolution_item.monster_slug == self.monster.slug:
             return False
 
-        conditions = []
-        if evolution_item.at_level is not None:
-            conditions.append(
-                compare(
-                    "greater_or_equal",
-                    self.monster.level,
-                    evolution_item.at_level,
-                )
-            )
-        if evolution_item.gender is not None:
-            conditions.append(evolution_item.gender == self.monster.gender)
-        if evolution_item.inside is not None:
-            conditions.append(
-                evolution_item.inside == context.get("map_inside", False)
-            )
-        if evolution_item.element is not None:
-            conditions.append(self.monster.has_type(evolution_item.element))
-        if evolution_item.tech is not None:
-            conditions.append(owner.party.has_tech(evolution_item.tech))
-        if evolution_item.acquisition is not None:
-            conditions.append(
-                evolution_item.acquisition == self.monster.acquisition
-            )
-        if evolution_item.moves:
-            moves_slugs = {mov.slug for mov in self.monster.moves.get_moves()}
-            conditions.extend(
-                monster in moves_slugs for monster in evolution_item.moves
-            )
+        owner = self.monster.get_owner()
+        conditions: list[bool] = []
 
-        if evolution_item.tastes:
-            for taste_type, required_value in evolution_item.tastes.items():
-                monster_taste = getattr(
-                    self.monster, f"taste_{taste_type}", None
-                )
-                conditions.append(monster_taste == required_value)
+        check_simple_conditions(self.monster, evolution_item, conditions)
+        check_location_items_moves(
+            self.monster, evolution_item, context, conditions
+        )
+        check_tastes(self.monster, evolution_item, conditions)
+        check_stats(self.monster, evolution_item, conditions)
+        check_variables(self.monster, evolution_item, conditions)
+        check_steps(self.monster, evolution_item, conditions)
+        check_bond(self.monster, evolution_item, conditions)
 
-        # Check if the monster's stats meet the evolution conditions
-        if evolution_item.stats is not None:
-            stat1 = self.monster.return_stat(evolution_item.stats.stat_type)
-            operator = evolution_item.stats.comparison
-
-            if evolution_item.stats.target_stat is not None:
-                stat2 = self.monster.return_stat(
-                    evolution_item.stats.target_stat
-                )
-            elif evolution_item.stats.target_value is not None:
-                stat2 = evolution_item.stats.target_value
-            else:
-                raise ValueError(
-                    "StatsComparison must have either target_stat or target_value."
-                )
-
-            conditions.append(compare(operator.value, stat1, stat2))
-
-        # Check if the monster's game variables meet the evolution conditions
-        if evolution_item.variables:
-            for variable in evolution_item.variables:
-                for key, value in variable.items():
-                    conditions.append(
-                        owner.game_variables.has(key)
-                        and owner.game_variables.get(key) == value
-                    )
-
-        # Check if the monster has taken the required number of steps
-        if evolution_item.steps is not None:
-            result = evolution_item.steps - int(self.monster.steps)
-            conditions.append(result == 0)
-            self.monster.steps += 1
-            self.monster.experience_handler.trigger_experience_flags()
-
-        # Check if the party conditions
         if evolution_item.party_conditions is not None:
             conditions.append(
                 check_party_conditions(
                     owner.party, evolution_item.party_conditions
                 )
-            )
-
-        # Check if the monster's bond meets the evolution conditions
-        if evolution_item.bond is not None:
-            _operator = evolution_item.bond.comparison
-            _value = evolution_item.bond.value
-            _bond = self.monster.bond_handler.bond
-            conditions.append(compare(_operator.value, _bond, _value))
-
-        # Check if the monster is holding the required item for evolution
-        if evolution_item.held_item is not None:
-            held_item = self.monster.held_item
-            conditions.append(
-                held_item is not None
-                and held_item.slug == evolution_item.held_item
             )
 
         # If the evolution requires an item, do not evolve unless it's being used
@@ -239,49 +177,32 @@ class Evolution:
         # Conditions not met
         return False
 
+    def get_possible_item_evolutions(
+        self, item: Item, context: dict[str, bool]
+    ) -> list[tuple[MonsterEvolutionItemModel, float]]:
+        """
+        Filters and returns evolution models possible with the given item,
+        along with their weights.
+        """
+        possible_evolutions = []
 
-def check_party_conditions(
-    party_handler: PartyHandler, conditions_model: PartyConditionsModel
-) -> bool:
-    """
-    Evaluates whether the player's party meets the specified evolution conditions.
-    """
-    conditions = []
+        for evolution_model in self.monster.evolutions:
+            item_weights = evolution_model.item
 
-    # Check party alignment
-    if conditions_model.alignment is not None:
-        alignment = party_handler.alignment
-        conditions.append(alignment == conditions_model.alignment)
+            if isinstance(item_weights, dict) and item.slug in item_weights:
+                weight = item_weights[item.slug]
 
-    # Check required monster slugs
-    if conditions_model.monster_slugs is not None:
-        slug_counts: dict[str, int] = {}
-        for mon in party_handler.monsters:
-            slug_counts[mon.slug] = slug_counts.get(mon.slug, 0) + 1
+                if weight > 0.0 and self.can_evolve(evolution_model, context):
+                    possible_evolutions.append((evolution_model, weight))
 
-        for slug, required_count in conditions_model.monster_slugs.items():
-            conditions.append(slug_counts.get(slug, 0) >= required_count)
+        return possible_evolutions
 
-    # Check required monster types
-    if conditions_model.monster_types is not None:
-        type_counts: dict[str, int] = {}
-        for mon in party_handler.monsters:
-            types = mon.types.current
-            for t in types:
-                slug = t.slug
-                type_counts[slug] = type_counts.get(slug, 0) + 1
-
-        for type_, required_count in conditions_model.monster_types.items():
-            conditions.append(type_counts.get(type_, 0) >= required_count)
-
-    # Check required genders
-    if conditions_model.genders is not None:
-        gender_counts: dict[GenderType, int] = {}
-        for mon in party_handler.monsters:
-            gender = mon.gender
-            gender_counts[gender] = gender_counts.get(gender, 0) + 1
-
-        for gender, required_count in conditions_model.genders.items():
-            conditions.append(gender_counts.get(gender, 0) >= required_count)
-
-    return all(conditions)
+    def choose_evolution_model(
+        self,
+        possible_evolutions: list[tuple[MonsterEvolutionItemModel, float]],
+    ) -> MonsterEvolutionItemModel:
+        if len(possible_evolutions) == 1:
+            return possible_evolutions[0][0]
+        evolution_choices, weights = zip(*possible_evolutions)
+        choices: list[MonsterEvolutionItemModel] = list(evolution_choices)
+        return random.choices(choices, weights=list(weights), k=1)[0]

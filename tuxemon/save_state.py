@@ -63,3 +63,4 @@ class SaveData(BaseModel):
     npc_state: Optional[NPCState] = Field(default=None)
     world_state: Optional[WorldSave] = Field(default=None)
     session_state: Optional[SessionSave] = Field(default=None)
+    shop_stock: dict[str, dict[str, Any]] = Field(default_factory=dict)

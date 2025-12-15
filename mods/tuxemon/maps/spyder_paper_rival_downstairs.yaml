@@ -14,7 +14,7 @@ events:
     - translated_dialog_choice no:yes,billie_grandma
     conditions:
     - is char_facing_tile player
-    - is button_pressed K_RETURN
+    - is button_pressed INTERACT
     - not variable_set billie_grandma
     type: event
     x: 8
@@ -62,7 +62,7 @@ events:
     - translated_dialog spyder_rivaldownstairs_package
     conditions:
     - is char_facing_tile player
-    - is button_pressed K_RETURN
+    - is button_pressed INTERACT
     - is variable_set billie_grandma
     type: event
     x: 8
@@ -81,7 +81,7 @@ events:
     - set_variable flashback:on
     conditions:
     - is char_facing_tile player
-    - is button_pressed K_RETURN
+    - is button_pressed INTERACT
     height: 1
     type: event
     width: 2

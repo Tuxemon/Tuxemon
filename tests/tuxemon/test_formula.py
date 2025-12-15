@@ -262,28 +262,28 @@ class TestModifyStat(unittest.TestCase):
 
     def setUp(self):
         self.monster = MagicMock(spec=Monster)
-        self.monster.modifiers = MagicMock()
+        self.monster.custom_stats = MagicMock()
         self.monster.set_stats = MagicMock()
 
     def test_add_operation(self):
-        self.monster.modifiers.armour = 10
+        self.monster.custom_stats.armour = 10
         stat = "armour"
         value = 5.0
         operation = "add"
         expected_value = 15
         modify_stat(self.monster, stat, value, operation)
-        self.assertEqual(self.monster.modifiers.armour, expected_value)
+        self.assertEqual(self.monster.custom_stats.armour, expected_value)
         self.monster.set_stats.assert_called_once()
 
     def test_multiply_operation(self):
         self.monster.armour = 10
-        self.monster.modifiers.armour = 0
+        self.monster.custom_stats.armour = 0
         stat = "armour"
         value = 1.5
         operation = "multiply"
         expected_value = 15
         modify_stat(self.monster, stat, value, operation)
-        self.assertEqual(self.monster.modifiers.armour, expected_value)
+        self.assertEqual(self.monster.custom_stats.armour, expected_value)
         self.monster.set_stats.assert_called_once()
 
     def test_invalid_operation(self):
@@ -301,7 +301,7 @@ class TestModifyStat(unittest.TestCase):
         self.monster.set_stats.assert_not_called()
 
     def test_modify_stat_calls_set_stats(self):
-        self.monster.modifiers.armour = 10
+        self.monster.custom_stats.armour = 10
         stat = "armour"
         value = 5.0
         operation = "add"

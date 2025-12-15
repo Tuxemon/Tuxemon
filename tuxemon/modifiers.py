@@ -29,11 +29,80 @@ def handle_tag(modifier: Modifier, monster: Monster) -> Optional[float]:
     return None
 
 
+def handle_terrain(modifier: Modifier, monster: Monster) -> Optional[float]:
+    if any(t in modifier.values for t in monster.terrains):
+        return modifier.multiplier
+    return None
+
+
+def handle_shape(modifier: Modifier, monster: Monster) -> Optional[float]:
+    if any(t == monster.shape.slug for t in modifier.values):
+        return modifier.multiplier
+    return None
+
+
+def handle_stage(modifier: Modifier, monster: Monster) -> Optional[float]:
+    if any(t == monster.stage.value for t in modifier.values):
+        return modifier.multiplier
+    return None
+
+
+def handle_species(modifier: Modifier, monster: Monster) -> Optional[float]:
+    if any(t == monster.species for t in modifier.values):
+        return modifier.multiplier
+    return None
+
+
+def handle_stat(modifier: Modifier, monster: Monster) -> Optional[float]:
+    logger.warning(
+        "handle_stat() is a reserved placeholder for taste/terrain/weather modifiers. "
+        "Do not use directly."
+    )
+    return None
+
+
+def handle_stat_max(modifier: Modifier, monster: Monster) -> Optional[float]:
+    """
+    Check if the modifier applies to the monster's highest base stat.
+    """
+    stats_dict = {
+        name: getattr(monster.base_stats, name)
+        for name in monster.base_stats.names()
+    }
+    highest_stat_name = max(stats_dict.keys(), key=lambda k: stats_dict[k])
+
+    if highest_stat_name in modifier.values:
+        return modifier.multiplier
+    return None
+
+
+def handle_stat_min(modifier: Modifier, monster: Monster) -> Optional[float]:
+    """
+    Check if the modifier applies to the monster's lowest base stat.
+    """
+    stats_dict = {
+        name: getattr(monster.base_stats, name)
+        for name in monster.base_stats.names()
+    }
+    lowest_stat_name = min(stats_dict.keys(), key=lambda k: stats_dict[k])
+
+    if lowest_stat_name in modifier.values:
+        return modifier.multiplier
+    return None
+
+
 ATTRIBUTE_HANDLER_REGISTRY: dict[
     str, Callable[[Modifier, Monster], Optional[float]]
 ] = {
     "type": handle_type,
     "tag": handle_tag,
+    "terrain": handle_terrain,
+    "shape": handle_shape,
+    "stage": handle_stage,
+    "species": handle_species,
+    "stat": handle_stat,
+    "stat_max": handle_stat_max,
+    "stat_min": handle_stat_min,
 }
 
 CONDITION_REGISTRY: dict[str, Callable[[Monster], bool]] = {

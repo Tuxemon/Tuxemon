@@ -15,10 +15,19 @@ if TYPE_CHECKING:
 @dataclass
 class CanEvolveCondition(CoreCondition):
     """
-    Checks if the target Monster meets its evolution criteria.
+    Checks whether the target Monster currently meets its evolution criteria.
 
-    This condition evaluates whether the Monster's current state matches
-    its evolution requirements.
+    **Returns**
+    - ``True`` if the Monster can evolve under its current state and context.
+    - ``False`` if the Monster cannot evolve or has no evolution paths.
+
+    **Example**
+
+    .. code-block:: json
+
+        "conditions": [
+            "is can_evolve"
+        ]
     """
 
     name = "can_evolve"

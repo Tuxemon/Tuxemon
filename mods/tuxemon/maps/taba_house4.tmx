@@ -67,7 +67,7 @@
     <property name="act2" value="translated_dialog taba_house4_owner1"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_facing player,right"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond3" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="47" name="Talk2" type="event" x="144" y="96" width="16" height="16">
@@ -76,14 +76,14 @@
     <property name="act2" value="translated_dialog taba_house4_owner1"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_facing player,up"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond3" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="49" name="Dish" type="event" x="16" y="80" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog taba_house4_dish1"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="51" name="Waiter" type="event" x="64" y="32" width="16" height="16">

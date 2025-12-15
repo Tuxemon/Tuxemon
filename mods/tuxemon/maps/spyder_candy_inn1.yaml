@@ -52,7 +52,7 @@ events:
     - translated_dialog spyder_candyinn_cott1
     conditions:
     - is char_facing_tile player
-    - is button_pressed K_RETURN
+    - is button_pressed INTERACT
     type: event
     x: 11
     y: 7

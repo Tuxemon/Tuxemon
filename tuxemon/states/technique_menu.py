@@ -174,7 +174,7 @@ class TechniqueMenuState(Menu[Technique]):
                 "acc": int(tech.accuracy * 100),
                 "pot": int(tech.potency * 100),
                 "pow": tech.power,
-                "rec": str(tech.recharge_length),
+                "rec": str(tech.cooldown_duration),
             },
         )
         if tech.description and tech.description != f"{tech.slug}_description":

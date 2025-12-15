@@ -11,6 +11,7 @@ from tuxemon.core.asset import CoreAssetManager
 from tuxemon.core.core_effect import TechEffectResult
 from tuxemon.core.core_processor import ConditionProcessor, EffectProcessor
 from tuxemon.db import (
+    MenuAction,
     Range,
     SoundProperties,
     TechBehaviors,
@@ -48,21 +49,19 @@ class Technique:
         self.counter: int = 0
         self.tech_id: int = 0
         self.accuracy: float = 0.0
-        self.description: str = ""
         self.visuals = VisualProperties(
             animation=None, flip_axes=FlipAxes.NONE, loop=-1
         )
         self.hit: bool = False
         self.speed: int = 0
-        self.name: str = ""
-        self.next_use: int = 0
+        self.current_cooldown: int = 0
         self.potency: float = 0.0
         self.power: float = 1.0
         self.default_potency: float = 0.0
         self.default_power: float = 1.0
         self.range: Range = Range.melee
         self.healing_power: float = 0.0
-        self.recharge_length: int = 0
+        self.cooldown_duration: int = 0
         self.sound = SoundProperties(sfx=None, volume=1.5)
         self.sort: str = ""
         self.slug: str = ""
@@ -74,7 +73,7 @@ class Technique:
         self.use_tech: str = ""
         self.confirm_text: str = ""
         self.cancel_text: str = ""
-        self.menu_actions_data: Sequence[Mapping[str, str]] = []
+        self.menu_actions_data: Sequence[MenuAction] = []
 
         self.core_assets = CoreAssetManager()
         self.effects: Sequence[PluginObject] = []
@@ -91,9 +90,17 @@ class Technique:
         return method
 
     @property
+    def name(self) -> str:
+        return T.translate(self.slug)
+
+    @property
+    def description(self) -> str:
+        return T.translate(f"{self.slug}_description")
+
+    @property
     def is_recharging(self) -> bool:
         """Returns whether the technique is currently recharging."""
-        return self.next_use > 0
+        return self.current_cooldown > 0
 
     def load(self, slug: str) -> None:
         """
@@ -105,8 +112,6 @@ class Technique:
         """
         results = TechniqueModel.lookup(slug, db)
         self.slug = results.slug  # a short English identifier
-        self.name = T.translate(self.slug)
-        self.description = T.translate(f"{self.slug}_description")
 
         self.sort = results.sort
 
@@ -130,7 +135,7 @@ class Technique:
         self.speed = results.speed.numeric_value
         self.behaviors = results.behaviors
         self.healing_power = results.healing_power
-        self.recharge_length = results.recharge
+        self.cooldown_duration = results.recharge
         self.range = results.range
         self.tech_id = results.tech_id
         self.menu_actions_data = results.menu_actions
@@ -159,11 +164,11 @@ class Technique:
         return self.condition_handler.validate(session=session, target=target)
 
     def recharge(self) -> None:
-        if self.next_use > 0:
-            self.next_use -= 1
+        if self.current_cooldown > 0:
+            self.current_cooldown -= 1
 
     def full_recharge(self) -> None:
-        self.next_use = 0
+        self.current_cooldown = 0
 
     def use(
         self, session: Session, user: Monster, target: Monster
@@ -179,7 +184,7 @@ class Technique:
             user=user,
             target=target,
         )
-        self.next_use = self.recharge_length
+        self.current_cooldown = self.cooldown_duration
         if session.client:
             session.client.active_techniques.append(self)
         return result

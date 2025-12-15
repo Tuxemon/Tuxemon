@@ -56,5 +56,8 @@ class SetEconomyAction(EventAction):
 
         applier = EconomyApplier()
         applier.apply_economy_to_character(
-            session, character.economy, character
+            session,
+            character.economy,
+            character,
+            session.client.shop_manager,
         )

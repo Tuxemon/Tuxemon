@@ -1,12 +1,13 @@
-from sphinx.ext.autodoc import ClassDocumenter, ModuleDocumenter
-from sphinx.application import Sphinx
-from docutils.statemachine import StringList
 from typing import Optional
+
+from docutils.statemachine import StringList
+from sphinx.application import Sphinx
+from sphinx.ext.autodoc import ClassDocumenter, ModuleDocumenter
 
 
 class ScriptClassDocumenter(ClassDocumenter):
-    objtype = 'scriptinfoclass'
-    directivetype = 'scriptinfoclass'
+    objtype = "scriptinfoclass"
+    directivetype = "scriptinfoclass"
     priority = ClassDocumenter.priority - 1
     titles_allowed = True
 
@@ -32,6 +33,6 @@ class ScriptClassDocumenter(ClassDocumenter):
 
 def setup(app: Sphinx) -> None:
 
-    app.setup_extension('sphinx.ext.autodoc')  # Require autodoc extension
+    app.setup_extension("sphinx.ext.autodoc")  # Require autodoc extension
 
     app.add_autodocumenter(ScriptClassDocumenter)

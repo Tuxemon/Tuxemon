@@ -4,10 +4,14 @@ from __future__ import annotations
 
 import logging
 from collections.abc import Callable
-from typing import Optional
+from typing import TYPE_CHECKING, Optional
 
 from tuxemon.db import State
 from tuxemon.item.item import Item
+
+if TYPE_CHECKING:
+    from tuxemon.monster import Monster
+    from tuxemon.session import Session
 
 logger = logging.getLogger(__name__)
 
@@ -96,3 +100,29 @@ class ItemFilter:
         """Set filter that excludes items matching the condition."""
         self.clear_filters()
         self.add_filter(not_filter(filter_func))
+
+    def set_filter_combat_targets(
+        self,
+        session: Session,
+        monsters: list[Monster],
+        opponents: list[Monster],
+    ) -> None:
+        """
+        Show items usable in MainCombatMenuState that are visible,
+        and that have at least one valid target (monster or opponent).
+        """
+
+        def usable(item: Item) -> bool:
+            return any(
+                item.validate_monster(session, m) for m in monsters
+            ) or (
+                item.behaviors.throwable
+                and any(item.validate_monster(session, o) for o in opponents)
+            )
+
+        self.clear_filters()
+        self.add_filter(
+            lambda item: State["MainCombatMenuState"] in item.usable_in
+        )
+        self.add_filter(lambda item: item.behaviors.visible)
+        self.add_filter(usable)

@@ -61,7 +61,7 @@
     <property name="act7" value="unlock_controls"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_facing player,up"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond3" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="10" name="talk to timmy2" type="event" x="32" y="48" width="16" height="16">
@@ -74,7 +74,7 @@
     <property name="act7" value="unlock_controls"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_facing player,right"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond3" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="11" name="enter the battle area" type="event" x="32" y="32" width="16" height="16">

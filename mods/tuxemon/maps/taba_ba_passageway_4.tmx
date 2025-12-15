@@ -67,7 +67,7 @@
     <property name="act9" value="char_face omnigrunt5,left"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_facing player,down"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond3" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="17" name="heal tuxemon left" type="event" x="80" y="144" width="16" height="16">
@@ -83,7 +83,7 @@
     <property name="act9" value="char_face omnigrunt5,left"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_facing player,right"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond3" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="18" name="heal tuxemon down" type="event" x="96" y="160" width="16" height="16">
@@ -99,7 +99,7 @@
     <property name="act9" value="char_face omnigrunt5,left"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_facing player,up"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond3" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="19" name="teleport to main" type="event" x="48" y="0" width="16" height="16">

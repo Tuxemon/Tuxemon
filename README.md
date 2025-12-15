@@ -1,12 +1,18 @@
 Tuxemon
 ==============
 
-Tuxemon is a free, open source monster-fighting RPG.  It's in constant
-development and improving all the time!  Contributors of all skill and
+Tuxemon is a free, open source monster-fighting RPG. It's in constant
+development and improving all the time! Contributors of all skill and
 level are welcome to join.
 
-[![Build Status](https://travis-ci.org/Tuxemon/Tuxemon.svg?branch=development)](https://travis-ci.org/Tuxemon/Tuxemon)
+![Python 3.10](https://img.shields.io/badge/python-3.10-blue.svg)
+![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)
 [![Documentation Status](https://readthedocs.org/projects/tuxemon/badge/?version=latest)](https://tuxemon.readthedocs.io/en/latest/?badge=latest)
+
+[![Discord](https://img.shields.io/badge/Discord-join-blue?logo=discord&logoColor=white)](https://discord.gg/3ZffZwz)
+[![Website](https://img.shields.io/badge/website-tuxemon.org-blue)](https://www.tuxemon.org)
+[![Reddit](https://img.shields.io/reddit/subreddit-subscribers/Tuxemon?style=social)](https://www.reddit.com/r/tuxemon)
+[![YouTube](https://img.shields.io/youtube/channel/subscribers/UC6BJ6H7dB2Dpb8wzcYhDU3w?style=social)](https://www.youtube.com/channel/UC6BJ6H7dB2Dpb8wzcYhDU3w)
 
 ![screenshot](https://www.tuxemon.org/images/featurette-01.png)
 

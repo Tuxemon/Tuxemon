@@ -3,6 +3,7 @@
     "slug": "spyder_timberhouse_zed",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "firefighter",
       "combat_front": "firefighter",
@@ -13,6 +14,7 @@
     "slug": "spyder_timbercafe_grady",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "magician",
       "combat_front": "magician",
@@ -23,6 +25,7 @@
     "slug": "spyder_shopassistant",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "shopkeeper",
       "combat_front": "adventurer",
@@ -33,6 +36,7 @@
     "slug": "spyder_outsidewalled_rogue",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "rogue_green",
       "combat_front": "rogue",
@@ -43,6 +47,7 @@
     "slug": "spyder_outsidewalled_midas",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "picnicker",
       "combat_front": "picnicker",

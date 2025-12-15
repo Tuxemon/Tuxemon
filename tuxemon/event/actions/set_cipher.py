@@ -52,18 +52,21 @@ class SetCipherAction(EventAction):
     Toggles ciphering for dialogue by enabling or disabling the CipherProcessor.
 
     Script usage:
-        .. code-block::
-            set_cipher <option>,<cipher_map>
+
+        .. code-block:: text
+
+        set_cipher <option>,<cipher_map>
 
     Parameters:
-        option:
-        - "enable": Activates ciphering using the provided cipher map (if any).
-        - "disable": Disables ciphering entirely.
 
-        cipher_map: the filename (without extension) of a YAML file located in
-            the mods folder.
-        - If omitted during "enable", the default cipher map is used.
-        - Ignored when option is "disable".
+        option:
+            - "enable": Activates ciphering using the provided cipher map (if any).
+            - "disable": Disables ciphering entirely.
+
+        cipher_map:
+            The filename (without extension) of a YAML file located in the mods folder.
+            - If omitted during "enable", the default cipher map is used.
+            - Ignored when option is "disable".
     """
 
     name = "set_cipher"

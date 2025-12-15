@@ -99,7 +99,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_omnichannel_note"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="40" name="Threats" type="event" x="0" y="32" width="16" height="16">
@@ -113,7 +113,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_omnichannel4_elevator_nopass"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
     <property name="cond3" value="not has_item player,spyder_pass"/>
    </properties>
   </object>
@@ -121,7 +121,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_omnichannel4_elevator_nopass"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
     <property name="cond3" value="not has_item player,spyder_pass"/>
    </properties>
   </object>
@@ -129,7 +129,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_omnichannel4_elevator_pass"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
     <property name="cond3" value="is has_item player,spyder_pass"/>
    </properties>
   </object>
@@ -137,7 +137,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_omnichannel4_elevator_pass"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
     <property name="cond3" value="is has_item player,spyder_pass"/>
    </properties>
   </object>
@@ -146,7 +146,7 @@
     <property name="act1" value="translated_dialog spyder_omnichannel_intro"/>
     <property name="act2" value="translated_dialog_choice yes:no,cut_scenes2"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
     <property name="cond3" value="not variable_set cut_scenes2:yes"/>
    </properties>
   </object>
@@ -166,7 +166,7 @@
     <property name="act1" value="translated_dialog spyder_omnichannel_intro"/>
     <property name="act2" value="translated_dialog_choice yes:no,cut_scenes1"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
     <property name="cond3" value="not variable_set cut_scenes1:yes"/>
    </properties>
   </object>

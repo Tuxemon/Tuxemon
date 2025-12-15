@@ -114,9 +114,7 @@ class WildEncounterAction(EventAction):
 
         sound = environment.battle_music.battle
         if sound.music:
-            session.client.event_engine.execute_action(
-                "play_music", [sound.music, sound.volume], True
-            )
+            session.client.current_music.play(sound.music, sound.volume)
 
     def update(self, session: Session, dt: float) -> None:
         try:

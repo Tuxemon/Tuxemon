@@ -77,45 +77,78 @@ class PricePolicy:
         return 0
 
     def apply_modifiers(
-        self, base: int, qty: int, slug: str
+        self,
+        base_price: int,
+        quantity: int,
+        slug: str,
     ) -> tuple[int, int]:
-        tax = self.get_tax_rate(slug)
-        discount = self.get_discount(slug)
-        fee = self.get_transaction_fee(slug)
+        """
+        Calculates the final purchase price for an entity, applying tax, discount,
+        and a transaction fee.
+        """
+        tax_rate = self.get_tax_rate(slug)
+        discount_rate = self.get_discount(slug)
+        transaction_fee = self.get_transaction_fee(slug)
 
-        taxed = base * (1 + tax)
-        discounted = taxed * (1 - discount)
-        total = discounted + fee if qty == -1 else discounted * qty + fee
-        final = round(total)
-        discount_percent = round((1 - discounted / base) * 100)
+        taxed_unit_price = base_price * (1 + tax_rate)
+
+        discounted_unit_price = taxed_unit_price * (1 - discount_rate)
+
+        if quantity == -1:
+            total = discounted_unit_price + transaction_fee
+        else:
+            total = discounted_unit_price * quantity + transaction_fee
+
+        final_price = round(total)
+
+        if taxed_unit_price > 0:
+            effective_discount = round(
+                (1 - discounted_unit_price / taxed_unit_price) * 100
+            )
+        else:
+            effective_discount = 0
 
         logger.debug(
-            f"[apply_modifiers] Base={base}, Qty={qty}, Tax={tax}, Discount={discount}, Fee={fee}"
+            f"[apply_modifiers] Final Price: {final_price}, Effective Discount %: {effective_discount}"
         )
-        logger.debug(
-            f"[apply_modifiers] Final={final}, Discount%={discount_percent}"
-        )
-        return final, discount_percent
+
+        return final_price, effective_discount
 
     def apply_resell_modifiers(
-        self, cost: int, qty: int, slug: str
+        self,
+        base_cost: int,
+        quantity: int,
+        slug: str,
     ) -> tuple[int, int]:
-        bonus = self.get_resell_bonus(slug)
-        tax = self.get_resell_tax_rate(slug)
-        fee = self.get_seller_fee(slug)
+        """
+        Calculates the final amount the player receives when reselling,
+        applying a bonus, a tax (fee), and a flat seller fee.
+        """
+        bonus_rate = self.get_resell_bonus(slug)
+        tax_rate = self.get_resell_tax_rate(slug)
+        seller_fee = self.get_seller_fee(slug)
 
-        adjusted = cost * (1 + bonus) * (1 - tax)
-        total = adjusted + fee if qty == -1 else adjusted * qty + fee
-        final = max(round(total), 0)
-        change_percent = round((adjusted / cost - 1) * 100)
+        adjusted_unit_cost = base_cost * (1 + bonus_rate) * (1 - tax_rate)
+
+        if quantity == -1:
+            total = adjusted_unit_cost + seller_fee
+        else:
+            total = adjusted_unit_cost * quantity + seller_fee
+
+        final_amount = max(round(total), 0)
+
+        if base_cost > 0:
+            effective_change = round(
+                (adjusted_unit_cost / base_cost - 1) * 100
+            )
+        else:
+            effective_change = 0
 
         logger.debug(
-            f"[apply_resell_modifiers] Cost={cost}, Qty={qty}, Bonus={bonus}, Tax={tax}, Fee={fee}"
+            f"[apply_resell_modifiers] Final Resell Price: {final_amount}, Effective % Change: {effective_change}"
         )
-        logger.debug(
-            f"[apply_resell_modifiers] Final={final}, Change%={change_percent}"
-        )
-        return final, change_percent
+
+        return final_amount, effective_change
 
 
 class StaticYamlPolicy(PricePolicy):

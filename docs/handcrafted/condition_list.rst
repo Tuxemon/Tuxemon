@@ -1,6 +1,7 @@
 .. autoscriptinfoclass:: tuxemon.event.conditions.afk_state.AFKStateCondition
-.. autoscriptinfoclass:: tuxemon.event.conditions.battle_outcome.BattleOutcomeCountCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.battle_outcome.BattleOutcomeCondition
+.. autoscriptinfoclass:: tuxemon.event.conditions.battle_outcome_count.BattleOutcomeCountCondition
+.. autoscriptinfoclass:: tuxemon.event.conditions.behavior.BehaviorCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.bill_exists.BillExistsCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.bill_is.BillIsCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.button_combo.ButtonComboCondition
@@ -15,8 +16,8 @@
 .. autoscriptinfoclass:: tuxemon.event.conditions.char_facing.CharFacingCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.char_facing_char.CharFacingCharCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.char_facing_tile.CharFacingTileCondition
-.. autoscriptinfoclass:: tuxemon.event.conditions.char_in_boundary.CharInBoundaryCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.char_in.CharInCondition
+.. autoscriptinfoclass:: tuxemon.event.conditions.char_in_boundary.CharInBoundaryCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.char_moved.CharMovedCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.char_sprite.CharSpriteCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.check_char_parameter.CheckCharParameterCondition

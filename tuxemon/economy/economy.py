@@ -6,8 +6,10 @@ import logging
 from collections.abc import Sequence
 from typing import TYPE_CHECKING, Optional
 
-from tuxemon.db import EconomyItemModel, EconomyModel, db
+from tuxemon.db import EconomyItemModel, EconomyModel, EconomyMonsterModel, db
 from tuxemon.economy.price_policy import PricePolicy
+from tuxemon.item.item import Item
+from tuxemon.monster import Monster
 from tuxemon.prepare import GRAD_BLUE
 
 if TYPE_CHECKING:
@@ -28,6 +30,8 @@ class Economy:
     ) -> None:
         self.policy = policy or PricePolicy()
         self.model: EconomyModel
+        self._items_map: dict[str, EconomyItemModel] = {}  # New
+        self._monsters_map: dict[str, EconomyMonsterModel] = {}  # New
 
         if slug:
             self.load(slug)
@@ -57,6 +61,10 @@ class Economy:
         try:
             results = EconomyModel.lookup(slug, db)
             self.model = results
+            self._items_map = {item.slug: item for item in self.model.items}
+            self._monsters_map = {
+                monster.slug: monster for monster in self.model.monsters
+            }
         except Exception as e:
             logger.error(f"Failed to load economy '{slug}': {e}")
             raise RuntimeError(
@@ -66,103 +74,79 @@ class Economy:
     def set_policy(self, policy: PricePolicy) -> None:
         self.policy = policy
 
-    def lookup_item_field(self, item_slug: str, field: str) -> Optional[int]:
-        """
-        Looks up the value of a field for an item definition in the economy.
-
-        Parameters:
-            item_slug: The slug of the item definition to look up.
-            field: The field to look up (e.g., "price", "cost", "inventory").
-
-        Returns:
-            The value of the field if found, otherwise None.
-        """
-        item = next(
-            (item for item in self.model.items if item.name == item_slug),
-            None,
-        )
-        if item and hasattr(item, field):
-            return int(getattr(item, field))
-        return None
-
-    def update_item_quantity(self, item_slug: str, quantity: int) -> None:
-        """
-        Updates the inventory quantity field of an item definition within this economy.
-        This primarily affects the data model for the economy itself, not
-        an NPC's actual inventory.
-
-        Parameters:
-            item_slug: The slug of the item definition to update.
-            quantity: The new quantity for the item definition.
-        """
-        self.update_item_field(item_slug, "inventory", quantity)
-
     def get_item(self, item_slug: str) -> Optional[EconomyItemModel]:
         """
-        Gets an EconomyItemModel definition from the economy by its slug.
-
-        Parameters:
-            item_slug: The slug of the item definition to get.
-
-        Returns:
-            The EconomyItemModel if found, otherwise None.
+        Gets an EconomyItemModel definition from the economy by its slug (O(1) lookup).
         """
-        return next(
-            (item for item in self.model.items if item.name == item_slug),
-            None,
-        )
+        return self._items_map.get(item_slug)
 
-    def update_item_field(
-        self, item_slug: str, field: str, value: int
+    def get_monster(self, monster_slug: str) -> Optional[EconomyMonsterModel]:
+        """
+        Gets an EconomyMonsterModel definition from the economy by its name (O(1) lookup).
+        """
+        return self._monsters_map.get(monster_slug)
+
+    def _get_entity_model(
+        self, entity: Item | Monster
+    ) -> Optional[EconomyItemModel | EconomyMonsterModel]:
+        """
+        Internal method to safely retrieve the associated economy model (Item or Monster).
+        """
+        if isinstance(entity, Item):
+            return self.get_item(entity.slug)
+        elif isinstance(entity, Monster):
+            return self.get_monster(entity.slug)
+        return None
+
+    def refresh_maps(self) -> None:
+        """
+        Rebuild lookup maps from the current model.
+        Useful when items/monsters are modified directly.
+        """
+        self._items_map = {item.slug: item for item in self.model.items}
+        self._monsters_map = {
+            monster.slug: monster for monster in self.model.monsters
+        }
+
+    def update_entity_field(
+        self, entity_slug: str, entity_kind: str, field: str, value: int
     ) -> None:
         """
-        Updates the value of a specific field for an item definition in the economy.
-
-        Parameters:
-            item_slug: The slug of the item definition to update.
-            field: The field to update.
-            value: The new value of the field.
-
-        Raises:
-            RuntimeError: If the item definition is not found in the economy.
+        Updates the value of a specific field for an entity definition in the economy.
+        entity_kind should be "item" or "monster".
         """
-        item = self.get_item(item_slug)
-        if item:
-            if hasattr(item, field):
-                setattr(item, field, value)
-            else:
-                raise AttributeError(
-                    f"Item definition '{item_slug}' has no field '{field}'"
-                )
+        entity_model: EconomyItemModel | EconomyMonsterModel | None
+
+        if entity_kind == "item":
+            entity_model = self.get_item(entity_slug)
+        elif entity_kind == "monster":
+            entity_model = self.get_monster(entity_slug)
         else:
-            raise RuntimeError(
-                f"Item definition '{item_slug}' not found in economy '{self.model.slug}'"
+            raise ValueError(
+                "Invalid entity kind provided. Use 'item' or 'monster'."
             )
 
-    def get_monster_field(
-        self, monster_name: str, field: str
-    ) -> Optional[int]:
-        """
-        Gets the value of a field for a monster definition in the economy.
+        if entity_model is None:
+            raise RuntimeError(
+                f"Entity definition '{entity_slug}' not found in economy '{self.model.slug}'"
+            )
 
-        Parameters:
-            monster_name: The name of the monster definition to get.
-            field: The field to get (e.g., "level", "inventory").
+        if hasattr(entity_model, field):
+            setattr(entity_model, field, value)
+        else:
+            raise AttributeError(
+                f"Entity definition '{entity_slug}' has no field '{field}'"
+            )
 
-        Returns:
-            The value of the field if found, otherwise None.
-        """
-        monster = next(
-            (
-                monster
-                for monster in self.model.monsters
-                if monster.name == monster_name
-            ),
-            None,
+    def update_item_quantity(self, item_slug: str, quantity: int) -> None:
+        self.update_entity_field(item_slug, "item", "inventory", quantity)
+
+    def update_monster_quantity(
+        self, monster_slug: str, quantity: int
+    ) -> None:
+        self.update_entity_field(
+            monster_slug, "monster", "inventory", quantity
         )
-        if monster and hasattr(monster, field):
-            return int(getattr(monster, field))
-        return None
 
     def variable(
         self, variables: Sequence[dict[str, str]], character: NPC
@@ -181,6 +165,8 @@ class Economy:
             True if all specified variable conditions match the character's
             game variables, otherwise False.
         """
+        if not variables:
+            return True
         return all(
             all(
                 character.game_variables.get(key) == value
@@ -188,3 +174,65 @@ class Economy:
             )
             for variable in variables
         )
+
+    def calculate_price(
+        self,
+        entity: Item | Monster,
+        quantity: int,
+        seller_mode: bool = False,
+    ) -> tuple[int, int]:
+        """
+        Calculate the final transaction price for an Item or Monster.
+
+        Parameters:
+            entity: The Item or Monster to calculate the price for.
+            quantity: The quantity being bought or sold.
+            seller_mode: True if the entity is being resold *to* the shop
+                (cost for buyer), False if it is being sold *by* the shop
+                (price for buyer).
+
+        Returns:
+            (final_price, discount_percent)
+        """
+        entity_model = self._get_entity_model(entity)
+        base_value: float
+
+        if seller_mode:
+            # --- Calculating Resale Cost (Price to Buyer) ---
+            lookup_cost = entity_model.cost if entity_model else None
+
+            if lookup_cost is not None:
+                base_value = float(lookup_cost)
+            else:
+                intrinsic_cost = (
+                    entity.cost if isinstance(entity, Item) else entity.hp
+                )
+                base_value = intrinsic_cost * self.model.resale_multiplier
+
+            return self.policy.apply_resell_modifiers(
+                round(base_value), quantity, entity.slug
+            )
+
+        else:
+            # --- Calculating Purchase Price (Price from Shop) ---
+            lookup_price = entity_model.price if entity_model else None
+
+            if lookup_price is not None:
+                base_value = lookup_price
+            else:
+                if isinstance(entity, Item):
+                    intrinsic_cost = entity.cost
+                    base_value = round(
+                        intrinsic_cost * self.model.resale_multiplier
+                    )
+                    logger.warning(
+                        f"Missing price for Item '{entity.slug}'. Falling back to resale calculation."
+                    )
+                else:
+                    raise ValueError(
+                        f"Missing mandatory price for monster: {entity.slug} in economy '{self.model.slug}'"
+                    )
+
+            return self.policy.apply_modifiers(
+                base_value, quantity, entity.slug
+            )

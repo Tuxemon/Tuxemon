@@ -72,7 +72,7 @@ events:
     conditions:
     - is has_item player,surfboard
     - is char_facing_tile player,surfable
-    - is button_pressed K_RETURN
+    - is button_pressed INTERACT
     - not char_in player,surfable
     type: event
   Create Quarantine Kennel:

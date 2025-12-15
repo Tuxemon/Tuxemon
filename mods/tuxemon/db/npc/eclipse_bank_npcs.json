@@ -12,6 +12,7 @@
       }
     },
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "scientist",
       "combat_front": "scientist",
@@ -31,6 +32,7 @@
       }
     },
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "beachcomber_copper",
       "combat_front": "beachgoer",
@@ -50,6 +52,7 @@
       }
     },
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "maniac_violet",
       "combat_front": "adventurer",
@@ -69,6 +72,7 @@
       }
     },
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "monk_black",
       "combat_front": "monk",
@@ -88,6 +92,7 @@
       }
     },
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "magician_blonde",
       "combat_front": "magician",
@@ -107,6 +112,7 @@
       }
     },
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "florist_fiery",
       "combat_front": "florist",
@@ -126,6 +132,7 @@
       }
     },
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "professor_lapi",
       "combat_front": "professor",
@@ -145,6 +152,7 @@
       }
     },
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "cooldude_black",
       "combat_front": "rocker",
@@ -164,6 +172,7 @@
       }
     },
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "rogue_copper",
       "combat_front": "winger",
@@ -174,6 +183,7 @@
     "slug": "eclipse_bank_bob",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "picnicker",
       "combat_front": "picnicker",
@@ -184,6 +194,7 @@
     "slug": "eclipse_bank_jeff",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "boss_orange",
       "combat_front": "baller",
@@ -194,6 +205,7 @@
     "slug": "eclipse_zircon",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "scientist",
       "combat_front": "scientist",

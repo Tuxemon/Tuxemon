@@ -17,8 +17,22 @@ if TYPE_CHECKING:
 @dataclass
 class FacingSpriteCondition(CoreCondition):
     """
-    Checks if the player is facing a specific sprite.
-    (eg. maniac, swimmer, log)
+    Checks whether the player is currently facing a specific sprite (e.g. NPC or object).
+
+    **Parameters**
+    - ``sprite``: The name of the sprite to check (e.g. ``maniac``, ``swimmer``, ``log``).
+
+    **Returns**
+    - ``True`` if the player is facing the given sprite.
+    - ``False`` otherwise.
+
+    **Example**
+
+    .. code-block:: json
+
+        "conditions": [
+            "is facing_sprite maniac"
+        ]
     """
 
     name = "facing_sprite"

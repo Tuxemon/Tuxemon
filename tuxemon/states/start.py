@@ -55,13 +55,14 @@ class StartState(PygameMenuState):
     ) -> None:
         # If there is a save, then move the cursor to "Load game" first
         index = get_index_of_latest_save()
-        config = prepare.CONFIG
 
         def new_game() -> None:
             launcher = GameLauncher(self.client)
             launcher.launch(
                 session=local_session,
-                meta=db.mod_metadata.get_mod_metadata(config.mods[0]),
+                meta=db.mod_metadata.get_mod_metadata(
+                    self.client.config.mods[0]
+                ),
                 remove_states=["StartState"],
             )
 
@@ -86,7 +87,7 @@ class StartState(PygameMenuState):
                 font_size=self.font_type.big,
                 button_id="menu_load",
             )
-        if len(config.mods) == 1:
+        if len(self.client.config.mods) == 1:
             menu.add.button(
                 title=T.translate("menu_new_game"),
                 action=new_game,
@@ -96,7 +97,9 @@ class StartState(PygameMenuState):
         else:
             menu.add.button(
                 title=T.translate("menu_new_game"),
-                action=change_state("ModsChoice", mods=config.mods),
+                action=change_state(
+                    "ModsChoice", mods=self.client.config.mods
+                ),
                 font_size=self.font_type.big,
                 button_id="menu_mod_choice",
             )

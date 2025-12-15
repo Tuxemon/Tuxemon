@@ -19,15 +19,15 @@
   "battle_music": {
     "battle": {
       "music": "music_battle_loop",
-      "volume": 0.5
+      "volume": 1.0
     },
     "victory_music": {
       "music": "music_win_battle_boss",
-      "volume": 0.5
+      "volume": 1.0
     },
     "defeat_music": {
       "music": "music_gameover",
-      "volume": 0.5
+      "volume": 1.0
     }
   },
   "slug": "underwater"

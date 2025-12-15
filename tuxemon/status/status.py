@@ -19,6 +19,7 @@ from tuxemon.db import (
     StatModel,
     StatusBehaviors,
     StatusModel,
+    StepEffectType,
     VisualProperties,
     db,
 )
@@ -66,19 +67,19 @@ class Status:
         self.counter: int = 0
         self.cond_id: int = 0
         self.category: Optional[CategoryStatus] = None
-        self.description: str = ""
         self.visuals = VisualProperties(
             animation=None, flip_axes=FlipAxes.NONE, loop=-1
         )
         self.gain_cond: str = ""
         self.icon: str = ""
-        self.name: str = ""
         self.duration: int = 0
         self.phase: EffectPhase = EffectPhase.DEFAULT
         self.range: Range = Range.melee
         self.stack_level: int = 1
         self.step_interval: int = 0
-        self.step_damage: int = 0
+        self.step_effect_value: float = 0.0
+        self.step_effect_type: StepEffectType = StepEffectType.NONE
+        self._step_hp_change: int = 0
         self.on_positive_status: Optional[ResponseStatus] = None
         self.on_negative_status: Optional[ResponseStatus] = None
         self.on_tech_use: Optional[str] = None
@@ -111,6 +112,14 @@ class Status:
         return method
 
     @property
+    def name(self) -> str:
+        return T.translate(self.slug)
+
+    @property
+    def description(self) -> str:
+        return T.translate(f"{self.slug}_description")
+
+    @property
     def host(self) -> Monster:
         """Returns the monster associated with this status."""
         return self._host
@@ -138,8 +147,6 @@ class Status:
         """
         results = StatusModel.lookup(slug, db)
         self.slug = results.slug
-        self.name = T.translate(self.slug)
-        self.description = T.translate(f"{self.slug}_description")
 
         self.sort = results.sort
 
@@ -153,7 +160,8 @@ class Status:
         self.modifiers = ModifiersHandler(results.modifiers)
         self.behaviors = results.behaviors
         self.step_interval = results.step_interval
-        self.step_damage = results.step_damage
+        self.step_effect_value = results.step_effect_value
+        self.step_effect_type = results.step_effect_type
         # monster stats
         self.stat_modifiers = results.stat_modifiers
 
@@ -252,6 +260,34 @@ class Status:
             f"Duration/Uses refreshed."
         )
 
+    def _calculate_step_hp_change(self, ticks: int) -> int:
+        """
+        Calculates the total HP change (damage or heal) applied by the
+        status for the given number of steps/intervals (ticks).
+        """
+        if (
+            self.step_effect_type == StepEffectType.NONE
+            or self.step_effect_value == 0.0
+        ):
+            return 0
+
+        value = self.step_effect_value
+        monster = self.host
+        hp_change_per_tick: float = 0.0
+
+        if self.step_effect_type == StepEffectType.FLAT_DAMAGE:
+            hp_change_per_tick = -value
+        elif self.step_effect_type == StepEffectType.PERCENT_MAX_HP_DAMAGE:
+            hp_change_per_tick = -(monster.hp * (value / 100))
+        elif self.step_effect_type == StepEffectType.PERCENT_CURRENT_HP_DAMAGE:
+            hp_change_per_tick = -(monster.current_hp * (value / 100))
+        elif self.step_effect_type == StepEffectType.PERCENT_MAX_HP_HEAL:
+            hp_change_per_tick = monster.hp * (value / 100)
+        elif self.step_effect_type == StepEffectType.PERCENT_CURRENT_HP_HEAL:
+            hp_change_per_tick = monster.current_hp * (value / 100)
+
+        return round(hp_change_per_tick * ticks)
+
     def tick_steps(
         self, session: Session, steps: float
     ) -> Optional[StatusEffectResult]:
@@ -259,19 +295,23 @@ class Status:
         Advance the step counter and trigger the status effect if the interval
         is reached. Returns the result if the effect was triggered.
         """
-        if self.step_interval > 0:
-            old_steps = self._steps
-            self._steps += steps
+        if self.step_interval <= 0:
+            return None
 
-            old_interval_count = old_steps // self.step_interval
-            new_interval_count = self._steps // self.step_interval
+        old_steps = self._steps
+        self._steps += steps
 
-            if new_interval_count > old_interval_count:
-                logger.debug(
-                    f"[Status Step Tick] {self.slug} triggered after "
-                    f"{new_interval_count} intervals."
-                )
-                return self.use(session, EffectPhase.ON_STEP_INTERVAL)
+        old_interval_count = old_steps // self.step_interval
+        new_interval_count = self._steps // self.step_interval
+
+        if new_interval_count > old_interval_count:
+            ticks = int(new_interval_count - old_interval_count)
+            logger.debug(
+                f"[Status Step Tick] {self.slug} triggered after "
+                f"{new_interval_count} intervals. Ticking {ticks} times."
+            )
+            self._step_hp_change = self._calculate_step_hp_change(ticks)
+            return self.use(session, EffectPhase.ON_STEP_INTERVAL)
 
         return None
 

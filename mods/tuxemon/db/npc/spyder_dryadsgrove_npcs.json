@@ -12,6 +12,7 @@
       }
     },
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "woodnymph",
       "combat_front": "waternymph",
@@ -31,6 +32,7 @@
       }
     },
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "woodnymph",
       "combat_front": "metalnymph",
@@ -50,6 +52,7 @@
       }
     },
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "firenymph",
       "combat_front": "firenymph",
@@ -69,6 +72,7 @@
       }
     },
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "woodnymph",
       "combat_front": "earthnymph",
@@ -88,6 +92,7 @@
       }
     },
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "woodnymph",
       "combat_front": "woodnymph",
@@ -98,6 +103,7 @@
     "slug": "spyder_volcoli",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "volcoli",
       "combat_front": "noclass",
@@ -108,6 +114,7 @@
     "slug": "spyder_dryadsgrove_boy",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "childactor_black",
       "combat_front": "yellowbelt",
@@ -118,6 +125,7 @@
     "slug": "spyder_dryadsgrove_dad",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "beachcomber_gray",
       "combat_front": "yellowbelt",

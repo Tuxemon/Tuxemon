@@ -17,7 +17,22 @@ if TYPE_CHECKING:
 @dataclass
 class FacingTileCondition(CoreCondition):
     """
-    Checks if the player is facing specific tiles.
+    Checks whether the player is currently facing a specific type of tile.
+
+    **Parameters**
+    - ``facing_tile``: The tile slug or surface key to check against.
+
+    **Returns**
+    - ``True`` if the player is facing a tile of the given type.
+    - ``False`` otherwise.
+
+    **Example**
+
+    .. code-block:: json
+
+        "conditions": [
+            "is facing_tile water"
+        ]
     """
 
     name = "facing_tile"

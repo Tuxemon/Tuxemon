@@ -182,7 +182,7 @@ events:
     - translated_dialog welcome_location_route
     conditions:
     - is char_facing_tile player
-    - is button_pressed K_RETURN
+    - is button_pressed INTERACT
     x: 12
     y: 8
     type: event

@@ -53,7 +53,7 @@
     <property name="act1" value="translated_dialog aardornforyou"/>
     <property name="act2" value="add_monster aardorn,4"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="562" name="Play Music" type="event" x="112" y="0" width="16" height="16">
@@ -133,7 +133,7 @@
     <property name="act1" value="translated_dialog resetcleo"/>
     <property name="act2" value="set_variable testcleo:no"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="609" name="Create Shopkeeper" type="event" x="48" y="256" width="16" height="16">
@@ -150,7 +150,7 @@
     <property name="act2" value="translated_dialog spyder_scoop_welcome"/>
     <property name="act3" value="open_shop spyder_shopassistant,both_item"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="611" name="Open Shop" type="event" x="48" y="272" width="16" height="16">
@@ -159,7 +159,7 @@
     <property name="act2" value="translated_dialog spyder_scoop_welcome"/>
     <property name="act3" value="open_shop spyder_shopassistant,both_item"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="612" name="Create Tech Shop" type="event" x="48" y="224" width="16" height="16">
@@ -176,7 +176,7 @@
     <property name="act2" value="translated_dialog spyder_scoop_welcome"/>
     <property name="act3" value="open_shop spyder_wayfarer1_norm,both_item"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="614" name="Create Barmaid - hidden away" type="event" x="64" y="336" width="16" height="16">
@@ -194,7 +194,7 @@
     <property name="cond2" value="not variable_set chooses:yes"/>
     <property name="cond3" value="is variable_set introdcottoncafe2:yes"/>
     <property name="cond4" value="is char_facing_tile player"/>
-    <property name="cond5" value="is button_pressed K_RETURN"/>
+    <property name="cond5" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="616" name="Talk Barmaid (1st)" type="event" x="64" y="368" width="16" height="16">
@@ -207,7 +207,7 @@
     <property name="cond3" value="not variable_set introdcottoncafe2:yes"/>
     <property name="cond4" value="is char_at player"/>
     <property name="cond5" value="is char_facing player,up"/>
-    <property name="cond6" value="is button_pressed K_RETURN"/>
+    <property name="cond6" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="617" name="Create Barmaid - accessible" type="event" x="80" y="336" width="16" height="16">
@@ -230,7 +230,7 @@
     <property name="act1" value="translated_dialog addlevel"/>
     <property name="act2" value="set_monster_level"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="620" name="Create Box1" type="event" x="320" y="224" width="16" height="16">

@@ -4,13 +4,13 @@
 #        File MUST exist in the filesystem and match NATIVE_RESOLUTION dimensions.
 # resale_multiplier: Float multiplier applied when reselling items (example: 0.5)
 # items: List of items available in this economy
-#   name: Slug of the item (must exist in the item database)
+#   slug: Slug of the item (must exist in the item database)
 #   price: Purchase price of the item (integer, example: 20)
 #   cost: Internal cost value for the item (integer, example: 5)
 #   inventory: Quantity available (default -1 = unlimited)
 #   variables: Optional list of variables affecting the item (must be non-empty if provided)
 # monsters: List of monsters available in this economy
-#   name: Slug of the monster (must exist in the monster database)
+#   slug: Slug of the monster (must exist in the monster database)
 #   price: Purchase price of the monster (integer)
 #   cost: Internal cost value for the monster (integer)
 #   inventory: Quantity available (must be > 0, default = 1)
@@ -20,13 +20,13 @@
 background: gfx/ui/item/item_menu_bg.png
 items:
 - cost: 5
-  name: potion
+  slug: potion
   price: 20
 - cost: 20
-  name: revive
+  slug: revive
   price: 100
 - cost: 10
-  name: tuxeball
+  slug: tuxeball
   price: 50
 monsters: []
 resale_multiplier: 0.5

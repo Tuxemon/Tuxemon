@@ -46,8 +46,15 @@ class BasicStats:
 
 
 @dataclass
-class TemporaryStatBoosts(BasicStats):
-    """Temporary additive boosts to a monster's base stats."""
+class CustomStatBoosts(BasicStats):
+    """
+    Persistent, user- or modder-defined additive boosts to a monster's base
+    stats.
+
+    Unlike training points (which represent earned growth), custom stat boosts
+    are external modifications that can be saved, loaded, and adjusted to
+    tailor a monster's attributes beyond its natural progression.
+    """
 
     def to_dict(self) -> Mapping[str, int]:
         return {
@@ -55,7 +62,7 @@ class TemporaryStatBoosts(BasicStats):
         }
 
     @classmethod
-    def from_dict(cls, data: Mapping[str, int]) -> TemporaryStatBoosts:
+    def from_dict(cls, data: Mapping[str, int]) -> CustomStatBoosts:
         valid_fields = {field.name for field in fields(cls)}
         filtered_data = {k: v for k, v in data.items() if k in valid_fields}
         return cls(**filtered_data)
@@ -86,7 +93,7 @@ class StatCalculator:
         shape: ShapeHandler,
         taste_cold: str,
         taste_warm: str,
-        modifiers: TemporaryStatBoosts,
+        custom_stats: CustomStatBoosts,
         training_points: TrainingPoints,
     ):
         self.base_stats = base_stats
@@ -94,7 +101,7 @@ class StatCalculator:
         self.shape = shape
         self.taste_cold = taste_cold
         self.taste_warm = taste_warm
-        self.modifiers = modifiers
+        self.custom_stats = custom_stats
         self.training_points = training_points
 
     def calculate(self) -> BasicStats:
@@ -116,7 +123,7 @@ class StatCalculator:
             base_value = getattr(self.shape.attributes, stat) * multiplier
             raw_tp = getattr(self.training_points, stat)
             scaled_tp = int(raw_tp * level_scale)
-            modifier = getattr(self.modifiers, stat, 0)
+            modifier = getattr(self.custom_stats, stat, 0)
             total = base_value + scaled_tp + modifier
             setattr(stats, stat, total)
         return stats
@@ -195,7 +202,9 @@ class StatAnalyzer:
             )
             raw_tp = getattr(self.calculator.training_points, stat_name)
             scaled_tp = int(raw_tp * level_scale)
-            modifier_value = getattr(self.calculator.modifiers, stat_name, 0)
+            modifier_value = getattr(
+                self.calculator.custom_stats, stat_name, 0
+            )
 
             pre_taste_total = base_value + scaled_tp + modifier_value
 

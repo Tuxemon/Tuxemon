@@ -5,7 +5,7 @@ from __future__ import annotations
 import time
 from abc import ABC, abstractmethod
 from collections import defaultdict
-from collections.abc import Generator, Mapping
+from collections.abc import Callable, Generator, Mapping
 from typing import Any, ClassVar, Generic, Optional, TypeVar
 
 _InputEventType = TypeVar("_InputEventType", contravariant=True)
@@ -23,12 +23,27 @@ class EventQueueHandler(ABC):
         self._inputs: defaultdict[int, dict[int, InputHandler[Any]]] = (
             defaultdict(dict)
         )
+        self._filters: list[Callable[[PlayerInput], bool]] = []
 
-    def add_input(
+    @property
+    def filter_active(self) -> bool:
+        return bool(self._filters)
+
+    def set_input(
         self, player_id: int, index: int, input_handler: InputHandler[Any]
     ) -> None:
         """Add a new input device to be monitored for a specific player."""
         self._inputs[player_id][index] = input_handler
+
+    def set_event_filter(
+        self, filter_func: Callable[[PlayerInput], bool]
+    ) -> None:
+        self._filters.append(filter_func)
+
+    def clear_event_filter(self) -> None:
+        if not self._filters:
+            return
+        self._filters.pop()
 
     def get_input_handlers(self) -> Generator[InputHandler[Any], None, None]:
         """

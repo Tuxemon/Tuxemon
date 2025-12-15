@@ -47,7 +47,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_leatherhouse2_tv"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="64" name="Create Scientist" type="event" x="96" y="96" width="16" height="16">

@@ -69,7 +69,7 @@
    <properties>
     <property name="act1" value="translated_dialog taba_house1_calendar"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="42" name="Husband Talk" type="event" x="32" y="16" width="16" height="16">
@@ -88,14 +88,14 @@
    <properties>
     <property name="act1" value="translated_dialog taba_house1_reading"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="45" name="Watching" type="event" x="16" y="32" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog taba_house1_watching"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
  </objectgroup>

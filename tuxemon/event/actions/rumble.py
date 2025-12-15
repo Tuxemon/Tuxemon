@@ -68,4 +68,4 @@ class RumbleAction(EventAction):
             fade_level=self.fade_level,
             direction=self.direction,
         )
-        session.client.rumble.rumble(params)
+        session.client.rumble_manager.rumble(params)

@@ -14,7 +14,7 @@ events:
     - translated_dialog spyder_rivaloffice_haiku
     conditions:
     - is char_facing_tile player
-    - is button_pressed K_RETURN
+    - is button_pressed INTERACT
     type: event
     x: 2
     y: 4

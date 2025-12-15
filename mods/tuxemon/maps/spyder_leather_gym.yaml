@@ -6,7 +6,7 @@ events:
     - translated_dialog spyder_leathergym_board
     conditions:
     - is char_facing_tile player
-    - is button_pressed K_RETURN
+    - is button_pressed INTERACT
     type: event
     x: 6
     y: 2
@@ -37,7 +37,7 @@ events:
     - translated_dialog spyder_leathergym_chadine1
     conditions:
     - is char_facing_tile player
-    - is button_pressed K_RETURN
+    - is button_pressed INTERACT
     type: event
     x: 5
     y: 8

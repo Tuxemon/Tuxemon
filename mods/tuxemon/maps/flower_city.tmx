@@ -173,7 +173,7 @@
    <properties>
     <property name="act1" value="translated_dialog Cotton_Mart"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="208" name="Sign: Flower City" type="event" x="32" y="48" width="16" height="16">
@@ -181,14 +181,14 @@
     <property name="act10" value="translated_dialog cotton_town"/>
     <property name="act20" value="translated_dialog cotton_town_description"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="209" name="Sign: Flower East" type="event" x="608" y="208" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog route5"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="220" name="Teleport to Leather Town" type="event" x="224" y="624" width="16" height="16">

@@ -12,7 +12,6 @@ from pydantic import BaseModel, Field
 from pygame.surface import Surface
 
 from tuxemon.constants import paths
-from tuxemon.item.shop_utils import filter_party
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.quantity import QuantityAndCostMenu
@@ -100,7 +99,12 @@ class ShopTrainingMenuState(ShopMenuState[Monster]):
         """
         The training shop's inventory is the player's own party.
         """
-        return filter_party(self.buyer, self.seller, self.economy)
+        return self.applier.filter_monsters(
+            self.buyer,
+            self.seller,
+            self.economy,
+            self.client.shop_manager,
+        )
 
     def _populate_menu(self, inventory: list[Monster]) -> None:
         """Populates the menu with the player's monsters and their training costs."""

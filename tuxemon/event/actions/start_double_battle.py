@@ -95,12 +95,11 @@ class StartDoubleBattleAction(EventAction):
         )
         session.client.push_state("CombatState", context=context)
         # music
-        sound = env.battle_music.battle
+        active_music = character1.get_active_battle_music(env.battle_music)
+        sound = active_music.battle
         if sound.music:
             filename = sound.music if not self.music else self.music
-            session.client.event_engine.execute_action(
-                "play_music", [filename], True
-            )
+            session.client.current_music.play(filename, sound.volume)
 
     def update(self, session: Session, dt: float) -> None:
         try:

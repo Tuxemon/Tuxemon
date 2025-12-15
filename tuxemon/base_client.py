@@ -14,6 +14,7 @@ from tuxemon.boundary import BoundaryChecker
 from tuxemon.camera.camera import CameraManager
 from tuxemon.combat.session import CombatSession
 from tuxemon.constants import paths
+from tuxemon.economy.shop_manager import ShopManager
 from tuxemon.event import get_event_bus
 from tuxemon.event.eventaction import ActionManager
 from tuxemon.event.eventcondition import ConditionManager
@@ -28,7 +29,7 @@ from tuxemon.map.map_transition import MapTransition
 from tuxemon.map.map_view import AbstractRenderer, NullRenderer
 from tuxemon.menu.alert import AlertManager
 from tuxemon.movement import MovementManager, Pathfinder
-from tuxemon.networking import NetworkManager
+from tuxemon.network.manager import NetworkManager
 from tuxemon.npc_manager import NPCManager
 from tuxemon.park_tracker import ParkSession
 from tuxemon.platform.afk_manager import AFKManager
@@ -123,7 +124,6 @@ class BaseClient(ABC):
 
         # Set up rumble support for gamepads
         self.rumble_manager = RumbleManager()
-        self.rumble = self.rumble_manager.rumbler
 
         # TODO: phase these out
         self.key_events: Sequence[PlayerInput] = []
@@ -168,6 +168,7 @@ class BaseClient(ABC):
         self.weather_manager = WorldWeatherManager()
         self.cipher_processor: Optional[CipherProcessor] = None
         self.alert_manager = AlertManager(self.event_bus)
+        self.shop_manager = ShopManager()
 
     @property
     def is_running(self) -> bool:
@@ -189,6 +190,7 @@ class BaseClient(ABC):
         """Handles necessary cleanup before shutting down."""
         self.map_loader.clear_cache()
         self.current_music.stop()
+        self.event_bus.reset_all_events()
         local_session.reset()
         local_session.reset_time()
         logger.info("Performing cleanup before exiting...")
@@ -203,6 +205,7 @@ class BaseClient(ABC):
         self.alert_manager.update(time_delta)
         self.weather_manager.update(time_delta)
         self.state_manager.update(time_delta)
+        self.rumble_manager.update(time_delta)
         if self.state_manager.current_state is None:
             self.state = ClientState.EXITING
 

@@ -5,8 +5,8 @@
 # modifiers: List of modifiers applied to this terrain
 #   Each modifier can adjust attributes or behaviors (example: speed reduction in swamp terrain).
 #   Fields inside a modifier:
-#     attribute: Attribute being modified (example: "stat")
-#     values: List of values associated with the modification (example: ["speed"])
+#     attribute: Attribute being modified (example: "type")
+#     values: List of values associated with the modification (example: ["fire"])
 #     multiplier: Float multiplier applied to the attribute (range 0.0–2.0, example: 0.9)
 #     priority: Integer priority; higher values take precedence (example: 0)
 #     stacking: How this modifier stacks with others (example: "multiplicative")

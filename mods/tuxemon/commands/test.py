@@ -9,7 +9,7 @@ from typing import TYPE_CHECKING
 
 from tuxemon.cli.clicommand import CLICommand
 from tuxemon.cli.exceptions import ParseError
-from tuxemon.db import SpatialCondition, Operator
+from tuxemon.db import SpatialCondition, Operator, BoundingBox
 from tuxemon.script.parser import parse_condition_string
 from tuxemon.tools import safe_enum_value
 
@@ -79,10 +79,7 @@ class TestConditionCommand(CLICommand):
             cond = SpatialCondition(
                 type=typ,
                 parameters=args,
-                x=0,
-                y=0,
-                width=0,
-                height=0,
+                box=BoundingBox(x=0, y=0, width=1, height=1),
                 operator=operator,
                 name="USERINPUT"
             )

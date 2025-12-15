@@ -64,7 +64,7 @@
     <property name="act2" value="translated_dialog spyder_scoop_welcome"/>
     <property name="act3" value="open_shop spyder_shopassistant,both_item"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="20" name="Open Shop" type="event" x="16" y="112" width="16" height="16">
@@ -73,7 +73,7 @@
     <property name="act2" value="translated_dialog spyder_scoop_welcome"/>
     <property name="act3" value="open_shop spyder_shopassistant,both_item"/>
     <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="21" name="Create Shopkeeper" type="event" x="16" y="96" width="16" height="16">

@@ -18,10 +18,9 @@ from pygame.rect import Rect
 from pygame.surface import Surface
 
 from tuxemon import prepare, tools
-from tuxemon.item.shop_utils import (
-    TransactionManager,
-    calc_internal_rect,
-)
+from tuxemon.economy.applier import EconomyApplier
+from tuxemon.economy.transaction import TransactionManager
+from tuxemon.item.shop_utils import calc_internal_rect
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import Menu
 from tuxemon.menu.quantity import QuantityAndCostMenu
@@ -37,8 +36,10 @@ if TYPE_CHECKING:
 
 
 class ShopAsset(Protocol):
-    name: str
-    description: str
+    @property
+    def name(self) -> str: ...
+    @property
+    def description(self) -> str: ...
 
 
 T = TypeVar("T", bound=ShopAsset)
@@ -86,11 +87,12 @@ class ShopMenuState(Menu[T], Generic[T], ABC):
         self.buyer = buyer
         self.seller = seller
         self.economy = economy
+        self.applier = EconomyApplier()
         self.update_background(self.economy.model.background)
         self.buyer_manager = self.buyer.money_controller.money_manager
         self.seller_manager = self.seller.money_controller.money_manager
         self.transaction_manager = TransactionManager(
-            self.buyer_manager, self.seller_manager
+            self.buyer_manager, self.seller_manager, self.client.shop_manager
         )
         self.paginator = Paginator(self.inventory, prepare.MAX_MENU_ITEMS)
 

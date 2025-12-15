@@ -3,6 +3,7 @@
     "slug": "spyder_grannypiper",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "granny_yellow",
       "combat_front": "adventurer",
@@ -13,6 +14,7 @@
     "slug": "spyder_conileaffrolicking",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "conileaf",
       "combat_front": "adventurer",
@@ -23,6 +25,7 @@
     "slug": "spyder_rockittenfrolicking",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "rockitten",
       "combat_front": "adventurer",
@@ -33,6 +36,7 @@
     "slug": "spyder_papermart_harith",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "beachcomber_copper",
       "combat_front": "adventurer",
@@ -43,6 +47,7 @@
     "slug": "spyder_papermart_miles",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "tennisplayer_green",
       "combat_front": "tennisplayer",
@@ -53,6 +58,7 @@
     "slug": "spyder_papermart_shirley",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "picnicker",
       "combat_front": "picnicker",
@@ -63,6 +69,7 @@
     "slug": "spyder_papermart_rafael",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "tennisplayer_lapi",
       "combat_front": "tennisplayer",
@@ -73,6 +80,7 @@
     "slug": "spyder_papertown_mom",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "homemaker",
       "combat_front": "adventurer",
@@ -83,6 +91,7 @@
     "slug": "spyder_papertown_silver",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "florist",
       "combat_front": "florist",
@@ -93,6 +102,7 @@
     "slug": "spyder_papermanor_princeton",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "maniac_yellow",
       "combat_front": "adventurer",
@@ -103,6 +113,7 @@
     "slug": "spyder_shopassistant",
     "speech": {"profile": {"default": {}}},
     "combat": {},
+    "audio": {},
     "template": {
       "sprite_name": "shopkeeper",
       "combat_front": "adventurer",

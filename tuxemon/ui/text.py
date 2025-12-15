@@ -2,6 +2,7 @@
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+from collections.abc import Iterator
 from typing import Optional, Union
 
 from pygame import SRCALPHA
@@ -14,6 +15,7 @@ from tuxemon import prepare
 from tuxemon.graphics import ColorLike
 from tuxemon.sprite import Sprite
 from tuxemon.ui.draw import (
+    RenderedChar,
     TextOverflow,
     break_text_into_lines,
     calculate_alignment_offset,
@@ -105,6 +107,7 @@ class TextArea(Sprite):
         self._rendered_text = None
         self._text_rect = None
         self._text = ""
+        self._iter: Optional[Iterator[RenderedChar]] = None
 
     def __iter__(self) -> TextArea:
         return self
@@ -118,8 +121,15 @@ class TextArea(Sprite):
 
     @text.setter
     def text(self, value: str) -> None:
-        if value != self._text:
-            self._text = value
+        if value == self._text:
+            return
+
+        self._text = value
+
+        if not self._text:
+            self.drawing_text = False
+            self.image = Surface(self.rect.size, SRCALPHA)
+            return
 
         if self.animated:
             self._start_text_animation()
@@ -128,6 +138,9 @@ class TextArea(Sprite):
 
     def __next__(self) -> None:
         if self.animated:
+            if self._iter is None:
+                self.drawing_text = False
+                raise StopIteration
             try:
                 rendered_char = next(self._iter)
                 self.image.blit(rendered_char.surface, rendered_char.rect)

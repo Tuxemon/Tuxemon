@@ -20,12 +20,18 @@ class UpdateCipherAction(EventAction):
     Updates the list of unlocked letters for a character used by the CipherProcessor.
 
     Script usage:
-        .. code-block::
-            update_cipher <character>[,letter]
+
+        .. code-block:: text
+
+        update_cipher <character>[,letter]
 
     Parameters:
-        character: Either "player" or npc slug name (e.g. "npc_maple").
-        letter: A single uppercase letter (or multiple separated by ':') to add to
+
+        character:
+            Either "player" or npc slug name (e.g. "npc_maple").
+
+        letter:
+            A single uppercase letter (or multiple separated by ':') to add to
             the character's unlocked set. If omitted, no new letters will be added,
             but the CipherProcessor will be updated with the current unlocked state.
     """

@@ -27,7 +27,7 @@ events:
     - open_shop spyder_flowerpetshop_titus,buy_monster
     conditions:
     - is char_facing_tile player
-    - is button_pressed K_RETURN
+    - is button_pressed INTERACT
     type: event
     x: 7
     y: 5
@@ -39,7 +39,7 @@ events:
     - open_shop spyder_flowerpetshop_titus,buy_monster
     conditions:
     - is char_facing_tile player
-    - is button_pressed K_RETURN
+    - is button_pressed INTERACT
     type: event
     x: 8
     y: 4

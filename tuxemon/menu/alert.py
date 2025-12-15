@@ -19,19 +19,37 @@ logger = logging.getLogger(__name__)
 
 
 @dataclass
+class SplitAlertState:
+    """Manages the state for an alert that is split into multiple lines."""
+
+    dialog_lines: list[str]
+    dialog_index: int = 0
+    dialog_speed: str = CONFIG.dialog_speed
+
+    def current_line(self) -> Optional[str]:
+        """Returns the current line to be displayed."""
+        if 0 <= self.dialog_index < len(self.dialog_lines):
+            return self.dialog_lines[self.dialog_index]
+        return None
+
+    def advance(self) -> None:
+        """Move to the next line index."""
+        self.dialog_index += 1
+
+
+@dataclass
 class AlertEntry:
     message: str
     text_area: TextArea
     callback: Optional[Callable[[], None]]
     dialog_speed: str
     split_lines: bool
+    split_state: Optional[SplitAlertState] = None
 
 
 class AlertManager:
     def __init__(self, event_bus: EventBus) -> None:
         self.event_bus = event_bus
-        self._dialog_lines: list[str] = []
-        self._dialog_index: int = 0
         self._final_callback: Optional[Callable[[], None]] = None
         self._time_accum: float = 0.0
         self.character_delay = resolve_character_delay(CONFIG.dialog_speed)
@@ -39,6 +57,7 @@ class AlertManager:
         self._alert_queue: deque[AlertEntry] = deque()
         self._is_busy: bool = False
         self._active_area: Optional[TextArea] = None
+        self._active_split_state: Optional[SplitAlertState] = None
 
     def update(self, dt: float) -> None:
         area = self._active_area
@@ -75,6 +94,7 @@ class AlertManager:
                     pass
             except Exception as e:
                 logger.warning(f"Unexpected error while dumping text: {e}")
+
             self._on_line_complete()
 
     def alert(
@@ -86,8 +106,23 @@ class AlertManager:
         split_lines: bool = False,
     ) -> None:
         """Queue a new alert message for display in a TextArea."""
+        split_state: Optional[SplitAlertState] = None
+        if split_lines:
+            lines = message.splitlines()
+            if lines:
+                split_state = SplitAlertState(
+                    dialog_lines=lines, dialog_speed=dialog_speed
+                )
+
         self._alert_queue.append(
-            AlertEntry(message, text_area, callback, dialog_speed, split_lines)
+            AlertEntry(
+                message,
+                text_area,
+                callback,
+                dialog_speed,
+                split_lines,
+                split_state,
+            )
         )
         if not self._is_busy:
             self._process_next_alert()
@@ -98,6 +133,9 @@ class AlertManager:
             self._is_busy = True
             next_alert = self._alert_queue.popleft()
             self._active_area = next_alert.text_area
+            self._active_split_state = (
+                next_alert.split_state
+            )  # Set the active state
 
             def alert_complete_callback() -> None:
                 try:
@@ -105,32 +143,41 @@ class AlertManager:
                         next_alert.callback()
                 except Exception as e:
                     logger.error(f"Error in alert callback: {e}")
-                finally:
-                    self._finish_alert()
 
             self._final_callback = alert_complete_callback
 
             if next_alert.split_lines:
-                self._dialog_lines = next_alert.message.splitlines()
-                self._dialog_index = 0
+                # If there is no split state (empty message), finish immediately
+                if not self._active_split_state:
+                    self._on_alert_complete()
+                    return
+
+                first_line = self._active_split_state.current_line()
+                if first_line is None:
+                    # No lines to show, finish immediately
+                    self._on_alert_complete()
+                    return
+
                 self.event_bus.publish(
                     "DIALOG_STARTED",
                     payload={
                         "state": "DialogState",
-                        "message": self._dialog_lines[0],
-                        "split_lines": next_alert.split_lines,
+                        "message": first_line,
+                        "split_lines": True,
                     },
                 )
-                self.advance_dialog_line(
-                    next_alert.dialog_speed, next_alert.text_area
+
+                self._animate_next_line(
+                    self._active_split_state, next_alert.text_area
                 )
+                self._active_split_state.advance()
             else:
                 self.event_bus.publish(
                     "DIALOG_STARTED",
                     payload={
                         "state": "DialogState",
                         "message": next_alert.message,
-                        "split_lines": next_alert.split_lines,
+                        "split_lines": False,
                     },
                 )
                 self.animate_text(
@@ -141,30 +188,55 @@ class AlertManager:
         else:
             self._is_busy = False
             self._active_area = None
+            self._active_split_state = None
+
+    def _animate_next_line(
+        self, split_state: SplitAlertState, text_area: TextArea
+    ) -> None:
+        """Helper to animate the current line from the split state."""
+        line = split_state.current_line()
+        if line is not None:
+            self.animate_text(text_area, line, split_state.dialog_speed)
+        else:
+            self._on_alert_complete()
 
     def advance_dialog_line(
         self, dialog_speed: str, text_area: TextArea
     ) -> None:
         """Advance to the next line of a split-line alert."""
-        if self._dialog_index < len(self._dialog_lines):
-            line = self._dialog_lines[self._dialog_index]
-            self._dialog_index += 1
-            self.animate_text(text_area, line, dialog_speed)
+        if self._active_split_state:
+
+            line = self._active_split_state.current_line()
+
+            if line is not None:
+                self.animate_text(text_area, line, dialog_speed)
+                self._active_split_state.advance()
+            else:
+                # All lines done
+                self._active_split_state = None
+                self._on_alert_complete()
         else:
-            # All lines done
-            self._dialog_lines = []
-            self._dialog_index = 0
+            # Not a split alert, or state is complete
             self._on_alert_complete()
 
     def _on_line_complete(self) -> None:
         """Handle completion of a line, advancing or finishing the alert."""
-        # If more lines remain, advance automatically
-        if self._dialog_index < len(self._dialog_lines):
-            current_area = self._current_text_area()
-            if current_area:
-                self.advance_dialog_line(CONFIG.dialog_speed, current_area)
-        # Otherwise, finish the alert (close)
-        else:
+        # Check if we are in a multi-line alert and if there are more lines
+        if self._active_split_state:
+            next_line = self._active_split_state.current_line()
+
+            if next_line is not None:
+                # More lines remain — wait for DialogState to advance or
+                # auto-advance if delay is 0
+                logger.debug(
+                    "Waiting for DialogState to advance to the next line."
+                )
+
+        # If no split state, or the split state is finished, finalize the alert.
+        if (
+            self._active_split_state is None
+            or self._active_split_state.current_line() is None
+        ):
             self._on_alert_complete()
 
     def _on_alert_complete(self) -> None:
@@ -173,13 +245,17 @@ class AlertManager:
             try:
                 self._final_callback()
             except Exception as e:
-                logger.error(f"Error in final callback: {e}")
+                logger.error(f"Error in alert callback: {e}")
             finally:
                 self._final_callback = None
+
+        # Always finish the alert, even if no callback
+        self._finish_alert()
 
     def _finish_alert(self) -> None:
         """Mark the current alert as finished and process the next one."""
         self._is_busy = False
+        self._active_split_state = None
         self._process_next_alert()
 
     def dump_remaining_text(self, text_area: TextArea) -> None:
@@ -210,8 +286,6 @@ class AlertManager:
 
     def current_message(self) -> Optional[str]:
         """Return the current message line being displayed, if any."""
-        if self._dialog_lines and 0 <= self._dialog_index < len(
-            self._dialog_lines
-        ):
-            return self._dialog_lines[self._dialog_index]
+        if self._active_split_state:
+            return self._active_split_state.current_line()
         return None

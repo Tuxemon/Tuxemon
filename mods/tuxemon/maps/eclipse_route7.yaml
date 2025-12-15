@@ -380,7 +380,7 @@ events:
     - translated_dialog here_to_east
     conditions:
     - is char_facing_tile player
-    - is button_pressed K_RETURN
+    - is button_pressed INTERACT
     x: 33
     y: 1
     type: event

@@ -4,7 +4,8 @@ from __future__ import annotations
 
 import logging
 from collections.abc import Mapping, Sequence
-from typing import Any, Optional
+from enum import Enum
+from typing import TYPE_CHECKING, Any, Optional
 
 from tuxemon.db import (
     FactionAlignment,
@@ -16,7 +17,18 @@ from tuxemon.db import (
 )
 from tuxemon.locale import T
 
+if TYPE_CHECKING:
+    from tuxemon.event.eventbus import EventBus
+
 logger = logging.getLogger(__name__)
+
+
+class FactionEvent(Enum):
+    RELATION_CHANGED = "faction_relation_changed"
+    MEMBER_JOINED = "faction_member_joined"
+    MEMBER_REMOVED = "faction_member_removed"
+    PROMOTED = "faction_npc_promoted"
+    DEMOTED = "faction_npc_demoted"
 
 
 class Faction:
@@ -31,11 +43,12 @@ class Faction:
 
     MAX_PUBLIC_REPUTATION: int = 100
 
-    def __init__(self) -> None:
+    def __init__(self, event_bus: Optional[EventBus] = None) -> None:
+        self._event_bus = event_bus
         self._rank_cache: dict[str, str] = {}
         self.slug: str = ""
-        self.name: str = ""
-        self.description: str = ""
+        self._custom_name: Optional[str] = None
+        self._custom_description: Optional[str] = None
         self.kind: Optional[FactionKind] = None
         self.alignment: Optional[FactionAlignment] = None
         self.badge_id: Optional[str] = None
@@ -45,6 +58,28 @@ class Faction:
         self.reputation: dict[str, int] = {}
         self.relations: dict[str, FactionRelationStatus] = {}
         self._public_reputation: int = 0
+        self._decay_timer: float = 0.0
+        self._decay_interval: float = 600.0
+        self._decay_rate: float = 0.05
+        self._neutral_baseline: int = 50
+
+    @property
+    def name(self) -> str:
+        return self._custom_name or T.translate(self.slug)
+
+    @name.setter
+    def name(self, value: str) -> None:
+        self._custom_name = value
+
+    @property
+    def description(self) -> str:
+        return self._custom_description or T.translate(
+            f"{self.slug}_description"
+        )
+
+    @description.setter
+    def description(self, value: str) -> None:
+        self._custom_description = value
 
     @classmethod
     def load_from_db(cls, slug: str) -> Faction:
@@ -56,10 +91,32 @@ class Faction:
         faction._populate_from_model(results)
         return faction
 
+    def update(self, dt: float) -> None:
+        self._decay_timer += dt
+
+        if self._public_reputation != self._neutral_baseline:
+            change = (
+                (self._neutral_baseline - self._public_reputation)
+                * dt
+                * self._decay_rate
+            )
+            self.set_public_reputation(self._public_reputation + int(change))
+
+        if self._decay_timer >= self._decay_interval:
+            self._decay_timer = 0.0
+
+            min_threshold = (
+                self.ranks[0].threshold if self.ranks else float("inf")
+            )
+
+            for npc_id in list(self.members):
+                rep = self.get_reputation(npc_id)
+
+                if rep < min_threshold:
+                    self.remove_member(npc_id)
+
     def _populate_from_model(self, model: FactionModel) -> None:
         self.slug = model.slug
-        self.name = T.translate(model.slug)
-        self.description = T.translate(f"{model.slug}_description")
         self.kind = model.kind
         self.alignment = model.alignment
         self.badge_id = model.badge_id
@@ -115,6 +172,14 @@ class Faction:
             f"Faction {self.slug} changed relation with {other_id} "
             f"from {old_status} to {new_status}"
         )
+        if self._event_bus:
+            self._event_bus.publish(
+                FactionEvent.RELATION_CHANGED.value,
+                faction_slug=self.slug,
+                other_faction_slug=other_id,
+                old_status=old_status,
+                new_status=new_status,
+            )
 
     def modify_reputation(self, npc_id: str, amount: int) -> None:
         self.reputation[npc_id] = self.reputation.get(npc_id, 0) + amount
@@ -130,6 +195,12 @@ class Faction:
 
     def on_member_joined(self, npc_id: str) -> None:
         logger.info(f"{npc_id} joined faction {self.slug}")
+        if self._event_bus:
+            self._event_bus.publish(
+                FactionEvent.MEMBER_JOINED.value,
+                faction_slug=self.slug,
+                npc_id=npc_id,
+            )
 
     def remove_member(self, npc_id: str) -> None:
         if npc_id in self.members:
@@ -138,53 +209,43 @@ class Faction:
 
     def on_member_removed(self, npc_id: str) -> None:
         logger.info(f"{npc_id} left faction {self.slug}")
+        if self._event_bus:
+            self._event_bus.publish(
+                FactionEvent.MEMBER_REMOVED.value,
+                faction_slug=self.slug,
+                npc_id=npc_id,
+            )
 
     def has_member(self, npc_id: str) -> bool:
         return npc_id in self.members
 
-    def check_promotion(
-        self,
-        npc_id: str,
-        game_variables: dict[str, Any],
+    def evaluate_rank_change(
+        self, npc_id: str, game_variables: dict[str, Any]
     ) -> Optional[str]:
-        if not self.can_be_promoted(npc_id, game_variables):
-            return None
-
         rep = self.get_reputation(npc_id)
-        current_rank = self.get_current_rank(npc_id)
-        next_rank = None
-
-        for rank in self.ranks:
-            if rep >= rank.threshold:
-                next_rank = rank.title
-            else:
-                break
-
-        if next_rank and current_rank and next_rank != current_rank:
-            self.on_promotion(npc_id, next_rank)
-            return next_rank
-        return None
-
-    def check_degradation(self, npc_id: str) -> Optional[str]:
-        rep = self.get_reputation(npc_id)
+        desired_rank = self.get_rank_for_reputation(rep)
         current_rank = self.get_current_rank(npc_id)
 
-        if current_rank is None:
-            if self.ranks and rep >= self.ranks[0].threshold:
-                return self.ranks[0].title
-            return None
-
-        for rank in reversed(self.ranks):
-            if rep >= rank.threshold:
-                if rank.title != current_rank:
-                    self.on_degradation(npc_id, current_rank, rank.title)
-                    return rank.title
-                break
+        if desired_rank and desired_rank != current_rank:
+            if self.can_be_promoted(npc_id, game_variables):
+                self.on_promotion(npc_id, desired_rank)
+            elif current_rank is not None:
+                self.on_degradation(npc_id, current_rank, desired_rank)
+            return desired_rank
         return None
 
     def on_promotion(self, npc_id: str, new_rank: str) -> None:
         self.set_rank(npc_id, new_rank)
         logger.info(f"{npc_id} promoted to {new_rank} in faction {self.slug}")
+        if self._event_bus:
+            self._event_bus.publish(
+                FactionEvent.PROMOTED.value,
+                faction_slug=self.slug,
+                npc_id=npc_id,
+                new_rank=new_rank,
+                reputation=self.get_reputation(npc_id),
+                power_level=self.power_level,
+            )
 
     def on_degradation(
         self, npc_id: str, old_rank: str, new_rank: str
@@ -193,6 +254,16 @@ class Faction:
         logger.info(
             f"{npc_id} demoted from {old_rank} to {new_rank} in faction {self.slug}"
         )
+        if self._event_bus:
+            self._event_bus.publish(
+                FactionEvent.DEMOTED.value,
+                faction_slug=self.slug,
+                npc_id=npc_id,
+                old_rank=old_rank,
+                new_rank=new_rank,
+                reputation=self.get_reputation(npc_id),
+                power_level=self.power_level,
+            )
 
     def can_be_promoted(
         self,

@@ -373,18 +373,22 @@ def cast_value(
 
     # Handle empty string
     if isinstance(value, str) and not value.strip():
-        if str in constructors_to_try:
-            return ""
         if is_optional:
             return None
+        if str in constructors_to_try:
+            return ""
         raise ValueError(f"Parameter '{param_name}' cannot be empty string.")
 
     # First pass: direct isinstance
     for constructor in constructors_to_try:
         if get_origin(constructor) is Literal:
             continue
-        if isinstance(value, constructor):
-            return value
+        origin = get_origin(constructor) or constructor
+        try:
+            if isinstance(value, origin):
+                return value
+        except TypeError:
+            continue
 
     # Special handling for numerics
     if any(c in constructors_to_try for c in (int, float, Decimal, Fraction)):
@@ -472,8 +476,13 @@ def cast_value(
         if origin in (list, set, tuple):
             try:
                 if isinstance(value, str):
-                    # split on commas, strip whitespace
-                    items = [v.strip() for v in value.split(",") if v.strip()]
+                    parts = value.split(",")
+                    if is_optional:
+                        items = [
+                            p.strip() if p.strip() else None for p in parts
+                        ]
+                    else:
+                        items = [p.strip() for p in parts]
                     return origin(items)
                 return origin(value)
             except Exception:

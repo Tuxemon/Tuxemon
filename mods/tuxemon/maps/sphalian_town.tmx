@@ -81,7 +81,7 @@
     <property name="act10" value="translated_dialog old_sphalian_town01"/>
     <property name="cond10" value="is char_at player"/>
     <property name="cond20" value="is char_facing player,up"/>
-    <property name="cond30" value="is button_pressed K_RETURN"/>
+    <property name="cond30" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="36" name="go to route1a right" type="event" x="208" y="384" width="16" height="16">

@@ -1,84 +1,24 @@
 # SPDX-License-Identifier: GPL-3.0
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
-import unittest
 from typing import Any, Mapping
-from unittest.mock import MagicMock
 
+import pytest
+
+from tuxemon.event.eventbus import EventBus
 from tuxemon.relationship import (
     Connection,
+    RelationshipConstants,
     Relationships,
+    RelationshipStatus,
     decode_relationships,
     encode_relationships,
 )
 
 
-class TestConnection(unittest.TestCase):
-    def test_connection_initialization(self):
-        connection = Connection(
-            relationship_type="friend",
-            strength=75,
-            steps=100,
-            decay_rate=0.02,
-            decay_threshold=1000,
-        )
-        self.assertEqual(connection.relationship_type, "friend")
-        self.assertEqual(connection.strength, 75)
-        self.assertEqual(connection.steps, 100)
-        self.assertEqual(connection.decay_rate, 0.02)
-        self.assertEqual(connection.decay_threshold, 1000)
-
-    def test_update_steps(self):
-        connection = Connection(relationship_type="friend")
-        mock_npc = MagicMock(steps=200)
-        connection.update_steps(mock_npc)
-        self.assertEqual(connection.steps, 200)
-
-    def test_apply_decay_no_decay(self):
-        connection = Connection(
-            relationship_type="friend",
-            strength=75,
-            steps=100,
-            decay_threshold=500,
-        )
-        mock_npc = MagicMock(steps=400)
-        connection.apply_decay(mock_npc)
-        self.assertEqual(connection.strength, 75)
-
-    def test_apply_decay_minimum_strength(self):
-        connection = Connection(
-            relationship_type="friend",
-            strength=5,
-            steps=0,
-            decay_rate=0.5,
-            decay_threshold=100,
-        )
-        mock_npc = MagicMock(steps=200)
-        connection.apply_decay(mock_npc)
-        self.assertEqual(connection.strength, 4)
-
-    def test_apply_decay_maximum_strength(self):
-        connection = Connection(
-            relationship_type="friend",
-            strength=95,
-            steps=0,
-            decay_rate=0.5,
-            decay_threshold=100,
-        )
-        mock_npc = MagicMock(steps=200)
-        connection.apply_decay(mock_npc)
-        self.assertEqual(connection.strength, 94)
-
-    def test_get_state(self):
-        connection = Connection(
-            relationship_type="friend",
-            strength=75,
-            steps=100,
-            decay_rate=0.02,
-            decay_threshold=1000,
-        )
-        state = connection.get_state()
-        self.assertEqual(
-            state,
+@pytest.mark.parametrize(
+    "kwargs, expected_state",
+    [
+        (
             {
                 "relationship_type": "friend",
                 "strength": 75,
@@ -86,98 +26,307 @@ class TestConnection(unittest.TestCase):
                 "decay_rate": 0.02,
                 "decay_threshold": 1000,
             },
-        )
-
-
-class TestRelationships(unittest.TestCase):
-    def setUp(self):
-        self.relationships = Relationships()
-
-    def test_add_connection(self):
-        self.relationships.add_connection(
-            "npc1", "friend", 75, 100, 0.02, 1000
-        )
-        connection = self.relationships.get_connection("npc1")
-        self.assertIsNotNone(connection)
-        self.assertEqual(connection.relationship_type, "friend")
-
-    def test_remove_connection(self):
-        self.relationships.add_connection(
-            "npc1", "friend", 75, 100, 0.02, 1000
-        )
-        self.relationships.remove_connection("npc1")
-        connection = self.relationships.get_connection("npc1")
-        self.assertIsNone(connection)
-
-    def test_update_connection_strength(self):
-        self.relationships.add_connection(
-            "npc1", "friend", 75, 100, 0.02, 1000
-        )
-        self.relationships.update_connection_strength("npc1", 90)
-        connection = self.relationships.get_connection("npc1")
-        self.assertEqual(connection.strength, 90)
-
-    def test_get_connection(self):
-        self.relationships.add_connection(
-            "npc1", "friend", 75, 100, 0.02, 1000
-        )
-        connection = self.relationships.get_connection("npc1")
-        self.assertIsNotNone(connection)
-        self.assertEqual(connection.relationship_type, "friend")
-
-    def test_get_all_connections(self):
-        self.relationships.add_connection(
-            "npc1", "friend", 75, 100, 0.02, 1000
-        )
-        self.relationships.add_connection("npc2", "enemy", 25, 50, 0.01, 500)
-        connections = self.relationships.get_all_connections()
-        self.assertEqual(len(connections), 2)
-        self.assertIn("npc1", connections)
-        self.assertIn("npc2", connections)
-
-    def test_update_connection_decay_rate(self):
-        self.relationships.add_connection(
-            "npc1", "friend", 75, 100, 0.02, 1000
-        )
-        self.relationships.update_connection_decay_rate("npc1", 0.05)
-        connection = self.relationships.get_connection("npc1")
-        self.assertEqual(connection.decay_rate, 0.05)
-
-    def test_update_connection_decay_threshold(self):
-        self.relationships.add_connection(
-            "npc1", "friend", 75, 100, 0.02, 1000
-        )
-        self.relationships.update_connection_decay_threshold("npc1", 1500)
-        connection = self.relationships.get_connection("npc1")
-        self.assertEqual(connection.decay_threshold, 1500)
-
-
-class TestEncodingDecoding(unittest.TestCase):
-    def test_encode_relationships(self):
-        relationships = Relationships()
-        relationships.add_connection("npc1", "friend", 75, 100, 0.02, 1000)
-        encoded_data = encode_relationships(relationships)
-        self.assertIsInstance(encoded_data, dict)
-        self.assertIn("npc1", encoded_data)
-        self.assertEqual(encoded_data["npc1"]["relationship_type"], "friend")
-
-    def test_decode_relationships(self):
-        json_data = {
-            "npc1": {
+            {
                 "relationship_type": "friend",
                 "strength": 75,
                 "steps": 100,
                 "decay_rate": 0.02,
                 "decay_threshold": 1000,
-            }
-        }
-        relationships = decode_relationships(json_data)
-        connection = relationships.get_connection("npc1")
-        self.assertIsNotNone(connection)
-        self.assertEqual(connection.relationship_type, "friend")
+            },
+        ),
+        (
+            {
+                "relationship_type": "rival",
+                "strength": 50,
+                "steps": 10,
+                "decay_rate": 0.1,
+                "decay_threshold": 200,
+            },
+            {
+                "relationship_type": "rival",
+                "strength": 50,
+                "steps": 10,
+                "decay_rate": 0.1,
+                "decay_threshold": 200,
+            },
+        ),
+    ],
+    ids=["friend_init", "rival_init"],
+)
+def test_connection_initialization(kwargs, expected_state):
+    connection = Connection(**kwargs)
+    assert connection.get_state() == expected_state
 
-    def test_decode_empty_relationships(self):
-        json_data: Mapping[str, Any] = {}
-        relationships = decode_relationships(json_data)
-        self.assertIsInstance(relationships, Relationships)
-        self.assertEqual(len(relationships.get_all_connections()), 0)
+
+def test_update_steps():
+    connection = Connection(relationship_type="friend")
+    connection.update_steps(current_steps=200)
+    assert connection.steps == 200
+
+
+def test_apply_decay_no_decay():
+    connection = Connection(
+        relationship_type="friend",
+        strength=75,
+        steps=100,
+        decay_threshold=500,
+    )
+    connection.apply_decay(current_steps=400)
+    assert connection.strength == 75
+
+
+@pytest.mark.parametrize(
+    "strength, expected",
+    [
+        (5, 4),  # minimum strength decay
+        (95, 94),  # maximum strength decay
+    ],
+    ids=["min_strength", "max_strength"],
+)
+def test_apply_decay_strength_variants(strength, expected):
+    connection = Connection(
+        relationship_type="friend",
+        strength=strength,
+        steps=0,
+        decay_rate=0.5,
+        decay_threshold=100,
+    )
+    connection.apply_decay(current_steps=200)
+    assert connection.strength == expected
+
+
+def test_get_state():
+    connection = Connection(
+        relationship_type="friend",
+        strength=75,
+        steps=100,
+        decay_rate=0.02,
+        decay_threshold=1000,
+    )
+    state = connection.get_state()
+    assert state == {
+        "relationship_type": "friend",
+        "strength": 75,
+        "steps": 100,
+        "decay_rate": 0.02,
+        "decay_threshold": 1000,
+    }
+
+
+def test_apply_decay_with_profile_mod():
+    connection = Connection(
+        "friend", strength=50, steps=0, decay_rate=1.0, decay_threshold=100
+    )
+    connection.get_profile_value = lambda key: (
+        2.0 if key == "decay_rate_mod" else 1.0
+    )
+    connection.apply_decay(current_steps=200)
+    assert connection.strength == 46
+
+
+def test_get_status():
+    connection = Connection("friend", strength=90)
+    status = connection.get_status()
+    assert status == RelationshipStatus.BEST_FRIEND
+
+
+@pytest.fixture
+def event_bus():
+    return EventBus()
+
+
+@pytest.fixture
+def relationships(event_bus):
+    return Relationships(event_bus)
+
+
+@pytest.fixture
+def connection():
+    return Connection("friend", 75, 100, 0.02, 1000)
+
+
+# Relationships tests
+def test_add_connection(relationships, connection):
+    relationships.add_connection("npc1", connection)
+    conn = relationships.get_connection("npc1")
+    assert conn is not None
+    assert conn.relationship_type == "friend"
+
+
+def test_remove_connection(relationships, connection):
+    relationships.add_connection("npc1", connection)
+    relationships.remove_connection("npc1")
+    assert relationships.get_connection("npc1") is None
+
+
+def test_update_connection_strength(relationships, connection):
+    relationships.add_connection("npc1", connection)
+    relationships.update_connection_strength("npc1", 90)
+    assert relationships.get_connection("npc1").strength == 90
+
+
+def test_get_connection(relationships, connection):
+    relationships.add_connection("npc1", connection)
+    conn = relationships.get_connection("npc1")
+    assert conn is not None
+    assert conn.relationship_type == "friend"
+
+
+def test_get_all_connections(relationships, connection):
+    relationships.add_connection("npc1", connection)
+    other = Connection("enemy", 25, 50, 0.01, 500)
+    relationships.add_connection("npc2", other)
+    connections = relationships.get_all_connections()
+    assert len(connections) == 2
+    assert "npc1" in connections
+    assert "npc2" in connections
+
+
+def test_update_connection_decay_rate(relationships, connection):
+    relationships.add_connection("npc1", connection)
+    relationships.update_connection_decay_rate("npc1", 0.05)
+    assert relationships.get_connection("npc1").decay_rate == 0.05
+
+
+def test_update_connection_decay_threshold(relationships, connection):
+    relationships.add_connection("npc1", connection)
+    relationships.update_connection_decay_threshold("npc1", 1500)
+    assert relationships.get_connection("npc1").decay_threshold == 1500
+
+
+@pytest.mark.parametrize(
+    "new_strength, expected",
+    [
+        (999, RelationshipConstants.STRENGTH[1]),  # clamp to max
+        (-50, RelationshipConstants.STRENGTH[0]),  # clamp to min
+    ],
+    ids=["clamp_max", "clamp_min"],
+)
+def test_update_connection_strength_clamps(
+    relationships, connection, new_strength, expected
+):
+    relationships.add_connection("npc1", connection)
+    relationships.update_connection_strength("npc1", new_strength)
+    assert relationships.get_connection("npc1").strength == expected
+
+
+def test_modify_connection_strength_with_increase_mod(relationships):
+    conn = Connection("friend", 50, 0, 0.01, 100)
+    relationships.add_connection("npc1", conn)
+    conn.get_profile_value = lambda key: (
+        2.0 if key == "strength_increase_mod" else 1.0
+    )
+    relationships.modify_connection_strength("npc1", 10)
+    assert conn.strength == 70
+
+
+def test_modify_connection_strength_with_decrease_mod(relationships):
+    conn = Connection("friend", 50, 0, 0.01, 100)
+    relationships.add_connection("npc1", conn)
+    conn.get_profile_value = lambda key: (
+        2.0 if key == "strength_decrease_mod" else 1.0
+    )
+    relationships.modify_connection_strength("npc1", -10)
+    assert conn.strength == 30
+
+
+# Encoding/Decoding tests
+def test_encode_relationships(relationships, connection):
+    relationships.add_connection("npc1", connection)
+    encoded = encode_relationships(relationships)
+    assert isinstance(encoded, dict)
+    assert "npc1" in encoded
+    assert encoded["npc1"]["relationship_type"] == "friend"
+
+
+def test_decode_relationships(event_bus):
+    json_data = {
+        "npc1": {
+            "relationship_type": "friend",
+            "strength": 75,
+            "steps": 100,
+            "decay_rate": 0.02,
+            "decay_threshold": 1000,
+        }
+    }
+    relationships = decode_relationships(json_data, event_bus)
+    conn = relationships.get_connection("npc1")
+    assert conn is not None
+    assert conn.relationship_type == "friend"
+
+
+def test_decode_empty_relationships(event_bus):
+    json_data: Mapping[str, Any] = {}
+    relationships = decode_relationships(json_data, event_bus)
+    assert isinstance(relationships, Relationships)
+    assert len(relationships.get_all_connections()) == 0
+
+
+def test_encode_decode_roundtrip(relationships, connection, event_bus):
+    relationships.add_connection("npc1", connection)
+    encoded = encode_relationships(relationships)
+    decoded = decode_relationships(encoded, event_bus)
+    conn = decoded.get_connection("npc1")
+    assert conn.relationship_type == "friend"
+    assert conn.strength == 75
+    assert conn.steps == 100
+
+
+# EventBus integration tests
+@pytest.fixture
+def relationships_with_eventbus(event_bus):
+    conn = Connection("friend", 50, 0, 0.01, 100)
+    rel = Relationships(event_bus=event_bus)
+    rel.add_connection("npc1", conn)
+    return rel
+
+
+def test_strength_update_via_eventbus(event_bus, relationships_with_eventbus):
+    event_bus.publish(
+        "relationship_modified",
+        npc_slug="npc1",
+        attribute="strength",
+        value=80,
+    )
+    assert relationships_with_eventbus.get_connection("npc1").strength == 80
+
+
+def test_decay_rate_update_via_eventbus(
+    event_bus, relationships_with_eventbus
+):
+    event_bus.publish(
+        "relationship_modified",
+        npc_slug="npc1",
+        attribute="decay_rate",
+        value=0.05,
+    )
+    assert (
+        relationships_with_eventbus.get_connection("npc1").decay_rate == 0.05
+    )
+
+
+def test_decay_threshold_update_via_eventbus(
+    event_bus, relationships_with_eventbus
+):
+    event_bus.publish(
+        "relationship_modified",
+        npc_slug="npc1",
+        attribute="decay_threshold",
+        value=200,
+    )
+    assert (
+        relationships_with_eventbus.get_connection("npc1").decay_threshold
+        == 200
+    )
+
+
+def test_invalid_attribute_via_eventbus(
+    event_bus, relationships_with_eventbus
+):
+    event_bus.publish(
+        "relationship_modified",
+        npc_slug="npc1",
+        attribute="unknown_attr",
+        value=123,
+    )
+    assert relationships_with_eventbus.get_connection("npc1").strength == 50

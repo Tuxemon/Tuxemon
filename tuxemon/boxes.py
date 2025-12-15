@@ -471,7 +471,7 @@ class ItemBoxes(BoxCollection):
         self.metadata_manager.create(box_id, "item", metadata)
 
     def remove_box(self, box_id: str, force: bool = False) -> None:
-        """Remove an item box, optionally forcing removal if non‑empty."""
+        """Remove an item box, optionally forcing removal if non-empty."""
         if box_id not in self.item_boxes:
             raise ValueError(f"Item box '{box_id}' doesn't exist.")
         if not force and self.item_boxes[box_id]:

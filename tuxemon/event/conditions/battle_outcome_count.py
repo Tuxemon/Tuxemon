@@ -20,18 +20,31 @@ class BattleOutcomeCountCondition(EventCondition):
     against a specific opponent.
 
     Script usage:
-        .. code-block::
 
-            is battle_outcome_count <fighter>,<outcome>,<opponent>,<count>
+        .. code-block:: text
+
+           is battle_outcome_count <fighter>,<outcome>,<opponent>,<count>
 
     Script parameters:
-        fighter_slug: The slug of the battle participant (e.g., "player").
-        outcome: The desired battle outcome ("won", "lost", or "draw").
-        opponent_slug: The slug of the opponent (e.g., "npc_maple").
-        count: Minimum number of times the outcome must have occurred.
+
+        fighter_slug:
+            The slug of the battle participant (e.g., "player").
+
+        outcome:
+            The desired battle outcome ("won", "lost", or "draw").
+
+        opponent_slug:
+            The slug of the opponent (e.g., "npc_maple").
+
+        count:
+            Minimum number of times the outcome must have occurred.
 
     Example:
-        `is battle_outcome_count player,won,npc_maple,2`
+
+        .. code-block:: text
+
+           is battle_outcome_count player,won,npc_maple,2
+
         Checks if the 'player' has won at least 2 times against 'npc_maple'.
     """
 

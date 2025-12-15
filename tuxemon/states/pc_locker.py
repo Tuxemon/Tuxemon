@@ -119,6 +119,44 @@ class ItemTakeState(PygameMenuState):
 
     name: ClassVar[str] = "ItemTakeState"
 
+    def __init__(self, box_name: str, character: NPC) -> None:
+        width, height = prepare.SCREEN_SIZE
+
+        theme = self._setup_theme(prepare.BG_PC_LOCKER)
+        theme.scrollarea_position = locals.POSITION_EAST
+        theme.widget_alignment = locals.ALIGN_CENTER
+
+        # menu
+        theme.title = True
+
+        columns = 3
+
+        self.box_name = box_name
+        self.char = character
+        self.box = self.char.item_boxes.get_items(self.box_name)
+
+        # Widgets are like a pygame_menu label, image, etc.
+        num_widgets = 2
+        rows = math.ceil(len(self.box) / columns) * num_widgets
+
+        super().__init__(
+            height=height, width=width, columns=columns, rows=rows
+        )
+
+        column_width = fix_measure(self.menu._width, 0.33)
+        self.menu._column_max_width = [
+            column_width,
+            column_width,
+            column_width,
+        ]
+
+        menu_items_map = []
+        for item in self.box:
+            menu_items_map.append(item)
+
+        self.add_menu_items(self.menu, menu_items_map)
+        self.reset_theme()
+
     def add_menu_items(
         self,
         menu: pygame_menu.Menu,
@@ -230,44 +268,6 @@ class ItemTakeState(PygameMenuState):
         box_label = T.translate(self.box_name).upper()
         label = f"{box_label} ({len(self.box)} types - {sum(sum_total)} items)"
         menu.set_title(label).center_content()
-
-    def __init__(self, box_name: str, character: NPC) -> None:
-        width, height = prepare.SCREEN_SIZE
-
-        theme = self._setup_theme(prepare.BG_PC_LOCKER)
-        theme.scrollarea_position = locals.POSITION_EAST
-        theme.widget_alignment = locals.ALIGN_CENTER
-
-        # menu
-        theme.title = True
-
-        columns = 3
-
-        self.box_name = box_name
-        self.char = character
-        self.box = self.char.item_boxes.get_items(self.box_name)
-
-        # Widgets are like a pygame_menu label, image, etc.
-        num_widgets = 2
-        rows = math.ceil(len(self.box) / columns) * num_widgets
-
-        super().__init__(
-            height=height, width=width, columns=columns, rows=rows
-        )
-
-        column_width = fix_measure(self.menu._width, 0.33)
-        self.menu._column_max_width = [
-            column_width,
-            column_width,
-            column_width,
-        ]
-
-        menu_items_map = []
-        for item in self.box:
-            menu_items_map.append(item)
-
-        self.add_menu_items(self.menu, menu_items_map)
-        self.reset_theme()
 
 
 class ItemBoxState(PygameMenuState):

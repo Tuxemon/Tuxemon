@@ -35,7 +35,7 @@ class ToUseTileCondition(EventCondition):
             SpatialCondition(
                 type="button_pressed",
                 parameters=[
-                    "K_RETURN",
+                    "INTERACT",
                 ],
                 operator=Operator.IS,
                 box=box,

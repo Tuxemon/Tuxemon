@@ -2,6 +2,7 @@
   "effects": [],
   "slug": "xp_feeder",
   "sort": "utility",
+  "reward_method": "xp_feeder",
   "sprite": "gfx/items/xp-feeder.png",
   "category": "none",
   "usable_in": [

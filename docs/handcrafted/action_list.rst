@@ -2,7 +2,7 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.add_collision.AddCollisionAction
 .. autoscriptinfoclass:: tuxemon.event.actions.add_combo.AddComboAction
 .. autoscriptinfoclass:: tuxemon.event.actions.add_contacts.AddContactsAction
-.. autoscriptinfoclass:: tuxemon.event.actions.add_held_item.AddHeldItemction
+.. autoscriptinfoclass:: tuxemon.event.actions.add_held_item.AddHeldItemAction
 .. autoscriptinfoclass:: tuxemon.event.actions.add_item.AddItemAction
 .. autoscriptinfoclass:: tuxemon.event.actions.add_monster.AddMonsterAction
 .. autoscriptinfoclass:: tuxemon.event.actions.add_step_tracker.AddStepTrackerAction
@@ -10,6 +10,7 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.add_tracker.AddTrackerAction
 .. autoscriptinfoclass:: tuxemon.event.actions.adjust_bill_penalty.AdjustBillPenaltyAction
 .. autoscriptinfoclass:: tuxemon.event.actions.afk_threshold.AFKThresholdAction
+.. autoscriptinfoclass:: tuxemon.event.actions.behavior.BehaviorAction
 .. autoscriptinfoclass:: tuxemon.event.actions.boundary_move.BoundaryMoveAction
 .. autoscriptinfoclass:: tuxemon.event.actions.boundary_resize.BoundaryResizeAction
 .. autoscriptinfoclass:: tuxemon.event.actions.boundary_set.BoundarySetAction
@@ -54,8 +55,8 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.fade_out.FadeOutAction
 .. autoscriptinfoclass:: tuxemon.event.actions.fadeout_music.FadeoutMusicAction
 .. autoscriptinfoclass:: tuxemon.event.actions.format_variable.FormatVariableAction
-.. autoscriptinfoclass:: tuxemon.event.actions.get_pending_moves.GetPendingMovesAction
 .. autoscriptinfoclass:: tuxemon.event.actions.get_party_monsters.GetPartyMonsterAction
+.. autoscriptinfoclass:: tuxemon.event.actions.get_pending_moves.GetPendingMovesAction
 .. autoscriptinfoclass:: tuxemon.event.actions.get_player_monster.GetPlayerMonsterAction
 .. autoscriptinfoclass:: tuxemon.event.actions.give_experience.GiveExperienceAction
 .. autoscriptinfoclass:: tuxemon.event.actions.info.InfoAction
@@ -79,8 +80,8 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.open_shop.OpenShopAction
 .. autoscriptinfoclass:: tuxemon.event.actions.overwrite_tech.OverwriteTechAction
 .. autoscriptinfoclass:: tuxemon.event.actions.park_experience.ParkExperienceAction
-.. autoscriptinfoclass:: tuxemon.event.actions.pathfind_to_char.PathfindToCharAction
 .. autoscriptinfoclass:: tuxemon.event.actions.pathfind.PathfindAction
+.. autoscriptinfoclass:: tuxemon.event.actions.pathfind_to_char.PathfindToCharAction
 .. autoscriptinfoclass:: tuxemon.event.actions.pause_music.PauseMusicAction
 .. autoscriptinfoclass:: tuxemon.event.actions.play_map_animation.PlayMapAnimationAction
 .. autoscriptinfoclass:: tuxemon.event.actions.play_music.PlayMusicAction
@@ -89,6 +90,7 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.print.PrintAction
 .. autoscriptinfoclass:: tuxemon.event.actions.quarantine.QuarantineAction
 .. autoscriptinfoclass:: tuxemon.event.actions.quit.QuitAction
+.. autoscriptinfoclass:: tuxemon.event.actions.quit_world.QuitWorldAction
 .. autoscriptinfoclass:: tuxemon.event.actions.random_battle.RandomBattleAction
 .. autoscriptinfoclass:: tuxemon.event.actions.random_encounter.RandomEncounterAction
 .. autoscriptinfoclass:: tuxemon.event.actions.random_horde.RandomHordeAction
@@ -99,7 +101,7 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.remove_combo.RemoveComboAction
 .. autoscriptinfoclass:: tuxemon.event.actions.remove_contacts.RemoveContactsAction
 .. autoscriptinfoclass:: tuxemon.event.actions.remove_flair.RemoveFlairAction
-.. autoscriptinfoclass:: tuxemon.event.actions.remove_held_item.RemoveHeldItemction
+.. autoscriptinfoclass:: tuxemon.event.actions.remove_held_item.RemoveHeldItemAction
 .. autoscriptinfoclass:: tuxemon.event.actions.remove_monster.RemoveMonsterAction
 .. autoscriptinfoclass:: tuxemon.event.actions.remove_npc.RemoveNpcAction
 .. autoscriptinfoclass:: tuxemon.event.actions.remove_state.RemoveStateAction
@@ -111,6 +113,7 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.replace_party_from_yaml.ReplacePartyFromYamlAction
 .. autoscriptinfoclass:: tuxemon.event.actions.replace_techs_from_yaml.ReplaceTechsFromYamlAction
 .. autoscriptinfoclass:: tuxemon.event.actions.rumble.RumbleAction
+.. autoscriptinfoclass:: tuxemon.event.actions.rumble_pattern.RumblePatternAction
 .. autoscriptinfoclass:: tuxemon.event.actions.save_game.SaveGameAction
 .. autoscriptinfoclass:: tuxemon.event.actions.save_timestamp.SaveTimestampAction
 .. autoscriptinfoclass:: tuxemon.event.actions.screen_transition.ScreenTransitionAction
@@ -150,21 +153,23 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.stop_cinema_mode.StopCinemaModeAction
 .. autoscriptinfoclass:: tuxemon.event.actions.store_monster.StoreMonsterAction
 .. autoscriptinfoclass:: tuxemon.event.actions.store_party.StorePartyAction
-.. autoscriptinfoclass:: tuxemon.event.actions.teleport_faint.TeleportFaintAction
 .. autoscriptinfoclass:: tuxemon.event.actions.teleport.TeleportAction
+.. autoscriptinfoclass:: tuxemon.event.actions.teleport_faint.TeleportFaintAction
 .. autoscriptinfoclass:: tuxemon.event.actions.toggle_evolution_block.ToggleEvolutionBlockAction
 .. autoscriptinfoclass:: tuxemon.event.actions.trading.TradingAction
 .. autoscriptinfoclass:: tuxemon.event.actions.transfer_money.TransferMoneyAction
 .. autoscriptinfoclass:: tuxemon.event.actions.transition_teleport.TransitionTeleportAction
 .. autoscriptinfoclass:: tuxemon.event.actions.transition_teleport_return.TransitionTeleportReturnAction
-.. autoscriptinfoclass:: tuxemon.event.actions.translated_dialog_choice.TranslatedDialogChoiceAction
 .. autoscriptinfoclass:: tuxemon.event.actions.translated_dialog.TranslatedDialogAction
+.. autoscriptinfoclass:: tuxemon.event.actions.translated_dialog_choice.TranslatedDialogChoiceAction
 .. autoscriptinfoclass:: tuxemon.event.actions.trigger_status.TriggerStatusAction
+.. autoscriptinfoclass:: tuxemon.event.actions.tune_radio.TuneRadioAction
 .. autoscriptinfoclass:: tuxemon.event.actions.unload_sound.UnloadSoundAction
 .. autoscriptinfoclass:: tuxemon.event.actions.unlock_controls.UnlockControlsAction
 .. autoscriptinfoclass:: tuxemon.event.actions.unpause_music.UnpauseMusicAction
 .. autoscriptinfoclass:: tuxemon.event.actions.update_cipher.UpdateCipherAction
 .. autoscriptinfoclass:: tuxemon.event.actions.update_tile_properties.UpdateTilePropertiesAction
+.. autoscriptinfoclass:: tuxemon.event.actions.update_time.UpdateTimeAction
 .. autoscriptinfoclass:: tuxemon.event.actions.variable_math.VariableMathAction
 .. autoscriptinfoclass:: tuxemon.event.actions.wait.WaitAction
 .. autoscriptinfoclass:: tuxemon.event.actions.wild_encounter.WildEncounterAction

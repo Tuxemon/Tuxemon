@@ -261,6 +261,24 @@ class TestCastValue(unittest.TestCase):
     def test_empty_string_optional(self):
         self.assertIsNone(cast_value(((Optional[int], "param"), "")))
 
+    def test_empty_string_casts_to_none_for_optional(self):
+        self.assertIsNone(cast_value(((Optional[str], "param"), "")))
+        self.assertIsNone(cast_value(((Optional[int], "param"), "")))
+        self.assertIsNone(cast_value(((Union[int, None], "param"), "")))
+        self.assertEqual(cast_value(((str, "param"), "")), "")
+
+    def test_empty_string_in_collections(self):
+        self.assertEqual(
+            cast_value(((Optional[list[str]], "param"), ",1.0")), [None, "1.0"]
+        )
+        self.assertEqual(
+            cast_value(((Optional[tuple[str]], "param"), "a,,b")),
+            ("a", None, "b"),
+        )
+        self.assertEqual(
+            cast_value(((list[str], "param"), "x,,y")), ["x", "", "y"]
+        )
+
 
 class TestCompare(unittest.TestCase):
     def test_less_than(self):

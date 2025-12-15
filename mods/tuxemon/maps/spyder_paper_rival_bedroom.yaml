@@ -4,7 +4,7 @@ events:
     - translated_dialog spyder_rivalbedroom_bed
     conditions:
     - is char_facing_tile player
-    - is button_pressed K_RETURN
+    - is button_pressed INTERACT
     height: 2
     type: event
     width: 2
@@ -15,7 +15,7 @@ events:
     - translated_dialog spyder_rivalbedroom_bookshelf
     conditions:
     - is char_facing_tile player
-    - is button_pressed K_RETURN
+    - is button_pressed INTERACT
     height: 1
     type: event
     width: 2
@@ -36,7 +36,7 @@ events:
     - tune_radio player,94.7
     conditions:
     - is char_facing_tile player
-    - is button_pressed K_RETURN
+    - is button_pressed INTERACT
     type: event
     x: 0
     y: 5
@@ -51,7 +51,7 @@ events:
     - access_pc player
     conditions:
     - is char_facing_tile player
-    - is button_pressed K_RETURN
+    - is button_pressed INTERACT
     type: event
     x: 2
     y: 3
@@ -60,7 +60,7 @@ events:
     - translated_dialog spyder_rivalbedroom_weights
     conditions:
     - is char_facing_tile player
-    - is button_pressed K_RETURN
+    - is button_pressed INTERACT
     type: event
     x: 1
     y: 6

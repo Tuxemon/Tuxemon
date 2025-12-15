@@ -52,7 +52,7 @@ class KeyboardSetup:
     ) -> Optional[PygameKeyboardInput]:
         if config.input.keyboard_button_map:
             keyboard = PygameKeyboardInput(config.input.keyboard_button_map)
-            event_queue.add_input(0, 10, keyboard)
+            event_queue.set_input(0, 10, keyboard)
             logger.info("Keyboard set up successfully")
             return keyboard
         return None
@@ -76,7 +76,7 @@ class GamepadSetup:
         if controller_type:
             strategy = self._get_mapping_strategy(controller_type)
             gamepad = PygameGamepadInput(strategy)
-            event_queue.add_input(0, 20, gamepad)
+            event_queue.set_input(0, 20, gamepad)
             logger.info(
                 f"{controller_type.capitalize()} gamepad set up successfully"
             )
@@ -91,7 +91,7 @@ class ControllerOverlaySetup:
         if config.controller.overlay:
             overlay = PygameTouchOverlayInput(config.controller.transparency)
             overlay.load()
-            event_queue.add_input(0, 30, overlay)
+            event_queue.set_input(0, 30, overlay)
             logger.info("Controller overlay set up successfully")
             return overlay
         return None
@@ -103,7 +103,7 @@ class MouseSetup:
     ) -> Optional[PygameMouseInput]:
         if not config.controller.hide_mouse:
             mouse = PygameMouseInput()
-            event_queue.add_input(0, 40, mouse)
+            event_queue.set_input(0, 40, mouse)
             logger.info("Mouse set up successfully")
             return mouse
         return None

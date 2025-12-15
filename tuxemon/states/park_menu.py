@@ -148,7 +148,9 @@ class MainParkMenuState(PopUpMenu[MenuGameObj]):
 
         def choose_item() -> None:
             items_filtered = ItemFilter(self.player.items)
-            items_filtered.set_filter_usable_in_state("MainCombatMenuState")
+            items_filtered.set_filter_combat_targets(
+                self.session, self.player.monsters, self.opponents
+            )
             menu = self.client.push_state(
                 ItemMenuState(self.player, self.name, items_filtered)
             )

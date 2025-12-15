@@ -1,125 +1,144 @@
 # SPDX-License-Identifier: GPL-3.0
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
-import unittest
 from unittest.mock import Mock
+
+import pytest
 
 from tuxemon.camera.camera import Camera, CameraController, CameraManager
 
 
-class TestCameraManager(unittest.TestCase):
-    def setUp(self):
-        self.manager = CameraManager()
-        self.camera1 = Mock(spec=Camera)
-        self.camera2 = Mock(spec=Camera)
-        self.input_event = Mock()
-
-    def test_add_camera_sets_active_if_none(self):
-        self.manager.add_camera("cam1", self.camera1)
-        self.assertIn("cam1", self.manager.cameras)
-        self.assertEqual(self.manager.active_camera, self.camera1)
-        self.assertIsInstance(self.manager.controller, CameraController)
-
-    def test_add_camera_does_not_override_active(self):
-        self.manager.add_camera("cam1", self.camera1)
-        self.manager.add_camera("cam2", self.camera2)
-        self.assertEqual(self.manager.active_camera, self.camera1)
-
-    def test_set_active_camera_switches_control(self):
-        self.manager.add_camera("cam1", self.camera1)
-        self.manager.add_camera("cam2", self.camera2)
-        self.manager.set_active_camera("cam2")
-        self.assertEqual(self.manager.active_camera, self.camera2)
-        self.assertIsInstance(self.manager.controller, CameraController)
-        self.assertEqual(self.manager.controller.camera, self.camera2)
-
-    def test_set_active_camera_raises_if_unmanaged(self):
-        with self.assertRaises(ValueError):
-            self.manager.set_active_camera("camX")
-
-    def test_update_calls_active_camera_update(self):
-        self.manager.add_camera("cam1", self.camera1)
-        self.manager.update(0.1)
-        self.camera1.update.assert_called_once_with(0.1)
-
-    def test_handle_input_delegates_to_controller(self):
-        self.manager.add_camera("cam1", self.camera1)
-        self.manager.controller.handle_input = Mock(
-            return_value=self.input_event
-        )
-        result = self.manager.handle_input(self.input_event)
-        self.manager.controller.handle_input.assert_called_once_with(
-            self.input_event
-        )
-        self.assertEqual(result, self.input_event)
-
-    def test_handle_input_returns_none_if_no_controller(self):
-        result = self.manager.handle_input(self.input_event)
-        self.assertIsNone(result)
-
-    def test_get_active_camera_returns_correct_camera(self):
-        self.manager.add_camera("cam1", self.camera1)
-        self.assertEqual(self.manager.get_active_camera(), self.camera1)
-
-    def test_remove_nonexistent_camera_raises(self):
-        with self.assertRaises(ValueError):
-            self.manager.remove_camera("camX")
-
-    def test_remove_inactive_camera_leaves_active_intact(self):
-        self.manager.add_camera("cam1", self.camera1)
-        self.manager.add_camera("cam2", self.camera2)
-        self.manager.remove_camera("cam2")
-        self.assertEqual(self.manager.get_active_camera(), self.camera1)
-
-    def test_remove_active_camera_clears_active(self):
-        self.manager.add_camera("cam1", self.camera1)
-        self.manager.remove_camera("cam1")
-        self.assertIsNone(self.manager.get_active_camera())
-        self.assertIsNone(self.manager.controller)
-
-    def test_remove_active_camera_with_multiple_then_clear(self):
-        self.manager.add_camera("cam1", self.camera1)
-        self.manager.add_camera("cam2", self.camera2)
-        self.manager.remove_camera("cam1")
-        self.assertIsNone(self.manager.get_active_camera())
-        self.assertIsNone(self.manager.controller)
-        self.manager.set_active_camera("cam2")
-        self.assertEqual(self.manager.get_active_camera(), self.camera2)
+@pytest.fixture
+def manager():
+    return CameraManager()
 
 
-class IntegrationTestCameraManager(unittest.TestCase):
-    def setUp(self):
-        self.player = Mock()
-        self.boundary = Mock()
-        self.camera1 = Camera(self.player, self.boundary)
-        self.camera2 = Camera(self.player, self.boundary)
-        self.manager = CameraManager()
-
-    def test_add_and_switch_real_cameras(self):
-        self.manager.add_camera("cam1", self.camera1)
-        self.manager.add_camera("cam2", self.camera2)
-
-        self.assertEqual(self.manager.get_active_camera(), self.camera1)
-
-        self.manager.set_active_camera("cam2")
-        self.assertEqual(self.manager.get_active_camera(), self.camera2)
-        self.assertIsInstance(self.manager.controller, CameraController)
-        self.assertEqual(self.manager.controller.camera, self.camera2)
+@pytest.fixture
+def cameras():
+    return Mock(spec=Camera), Mock(spec=Camera)
 
 
-class StressTestCameraManager(unittest.TestCase):
-    def setUp(self):
-        self.manager = CameraManager()
+@pytest.fixture
+def input_event():
+    return Mock()
 
-    def test_add_and_remove_many_cameras(self):
-        for i in range(100):
-            cam = Mock(spec=Camera)
-            self.manager.add_camera(f"cam{i}", cam)
 
-        self.assertEqual(len(self.manager.cameras), 100)
+def test_add_camera_sets_active_if_none(manager, cameras):
+    camera1, _ = cameras
+    manager.add_camera("cam1", camera1)
+    assert "cam1" in manager.cameras
+    assert manager.active_camera == camera1
+    assert isinstance(manager.controller, CameraController)
 
-        for i in range(100):
-            self.manager.remove_camera(f"cam{i}")
 
-        self.assertEqual(len(self.manager.cameras), 0)
-        self.assertIsNone(self.manager.get_active_camera())
-        self.assertIsNone(self.manager.controller)
+def test_add_camera_does_not_override_active(manager, cameras):
+    camera1, camera2 = cameras
+    manager.add_camera("cam1", camera1)
+    manager.add_camera("cam2", camera2)
+    assert manager.active_camera == camera1
+
+
+def test_set_active_camera_switches_control(manager, cameras):
+    camera1, camera2 = cameras
+    manager.add_camera("cam1", camera1)
+    manager.add_camera("cam2", camera2)
+    manager.set_active_camera("cam2")
+    assert manager.active_camera == camera2
+    assert isinstance(manager.controller, CameraController)
+    assert manager.controller.camera == camera2
+
+
+def test_set_active_camera_raises_if_unmanaged(manager):
+    with pytest.raises(ValueError):
+        manager.set_active_camera("camX")
+
+
+def test_update_calls_active_camera_update(manager, cameras):
+    camera1, _ = cameras
+    manager.add_camera("cam1", camera1)
+    manager.update(0.1)
+    camera1.update.assert_called_once_with(0.1)
+
+
+def test_handle_input_delegates_to_controller(manager, cameras, input_event):
+    camera1, _ = cameras
+    manager.add_camera("cam1", camera1)
+    manager.controller.handle_input = Mock(return_value=input_event)
+    result = manager.handle_input(input_event)
+    manager.controller.handle_input.assert_called_once_with(input_event)
+    assert result == input_event
+
+
+def test_handle_input_returns_none_if_no_controller(manager, input_event):
+    result = manager.handle_input(input_event)
+    assert result is None
+
+
+def test_get_active_camera_returns_correct_camera(manager, cameras):
+    camera1, _ = cameras
+    manager.add_camera("cam1", camera1)
+    assert manager.get_active_camera() == camera1
+
+
+def test_remove_nonexistent_camera_raises(manager):
+    with pytest.raises(ValueError):
+        manager.remove_camera("camX")
+
+
+def test_remove_inactive_camera_leaves_active_intact(manager, cameras):
+    camera1, camera2 = cameras
+    manager.add_camera("cam1", camera1)
+    manager.add_camera("cam2", camera2)
+    manager.remove_camera("cam2")
+    assert manager.get_active_camera() == camera1
+
+
+def test_remove_active_camera_clears_active(manager, cameras):
+    camera1, _ = cameras
+    manager.add_camera("cam1", camera1)
+    manager.remove_camera("cam1")
+    assert manager.get_active_camera() is None
+    assert manager.controller is None
+
+
+def test_remove_active_camera_with_multiple_then_clear(manager, cameras):
+    camera1, camera2 = cameras
+    manager.add_camera("cam1", camera1)
+    manager.add_camera("cam2", camera2)
+    manager.remove_camera("cam1")
+    assert manager.get_active_camera() is None
+    assert manager.controller is None
+    manager.set_active_camera("cam2")
+    assert manager.get_active_camera() == camera2
+
+
+def test_integration_add_and_switch_real_cameras():
+    player = Mock()
+    boundary = Mock()
+    camera1 = Camera(player, boundary)
+    camera2 = Camera(player, boundary)
+    manager = CameraManager()
+
+    manager.add_camera("cam1", camera1)
+    manager.add_camera("cam2", camera2)
+
+    assert manager.get_active_camera() == camera1
+
+    manager.set_active_camera("cam2")
+    assert manager.get_active_camera() == camera2
+    assert isinstance(manager.controller, CameraController)
+    assert manager.controller.camera == camera2
+
+
+def test_stress_add_and_remove_many_cameras(manager):
+    for i in range(100):
+        cam = Mock(spec=Camera)
+        manager.add_camera(f"cam{i}", cam)
+
+    assert len(manager.cameras) == 100
+
+    for i in range(100):
+        manager.remove_camera(f"cam{i}")
+
+    assert len(manager.cameras) == 0
+    assert manager.get_active_camera() is None
+    assert manager.controller is None

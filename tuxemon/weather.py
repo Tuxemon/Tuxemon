@@ -5,7 +5,7 @@ from __future__ import annotations
 import logging
 from typing import Optional
 
-from tuxemon.db import Modifier, WeatherModel, db
+from tuxemon.db import Modifier, Temperature, WeatherModel, Wind, db
 
 logger = logging.getLogger(__name__)
 
@@ -18,6 +18,8 @@ class Weather:
     def __init__(self, slug: Optional[str] = None) -> None:
         self.slug = slug
         self.modifiers: list[Modifier] = []
+        self._temperature: Optional[Temperature] = None
+        self._wind: Optional[Wind] = None
 
         if self.slug:
             self.load(self.slug)
@@ -33,7 +35,8 @@ class Weather:
 
         results = WeatherModel.lookup(slug, db)
         self.modifiers = results.modifiers
-
+        self._temperature = results.temperature
+        self._wind = results.wind
         Weather._weathers[slug] = self
 
     @classmethod
@@ -78,3 +81,21 @@ class Weather:
 
     def __repr__(self) -> str:
         return f"Weather(slug={self.slug}, modifiers={self.modifiers})"
+
+    @property
+    def current_temperature(self) -> Temperature:
+        """Returns the Temperature category loaded from the database model."""
+        if self._temperature is None:
+            raise RuntimeError(
+                f"Temperature not loaded for weather slug: {self.slug}"
+            )
+        return self._temperature
+
+    @property
+    def current_wind(self) -> Wind:
+        """Returns the Wind category loaded from the database model."""
+        if self._wind is None:
+            raise RuntimeError(
+                f"Wind not loaded for weather slug: {self.slug}"
+            )
+        return self._wind

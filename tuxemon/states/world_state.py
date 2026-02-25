@@ -8,7 +8,6 @@ from typing import (
     TYPE_CHECKING,
     Any,
     ClassVar,
-    no_type_check,
 )
 
 from pygame.surface import Surface
@@ -23,6 +22,7 @@ from tuxemon.event.eventmiddleware import (
     WorldCommandMiddleware,
 )
 from tuxemon.faction.manager import FactionManager
+from tuxemon.network.networking import EventData, update_client
 from tuxemon.platform.events import PlayerInput
 from tuxemon.prepare import DEV_TOOLS
 from tuxemon.save_state import WorldSave
@@ -33,7 +33,6 @@ from tuxemon.world.transition import WorldTransition
 
 if TYPE_CHECKING:
     from tuxemon.base_client import BaseClient
-    from tuxemon.network.networking import EventData, update_client
 
 logger = logging.getLogger(__name__)
 
@@ -233,7 +232,6 @@ class WorldState(State):
 
         return False
 
-    @no_type_check  # FIXME: dead code
     def handle_interaction(
         self, event_data: EventData, registry: Mapping[str, Any]
     ) -> None:
@@ -241,16 +239,15 @@ class WorldState(State):
         Presents options window when another player has interacted with this player.
 
         :param event_data: Information on the type of interaction and who sent it.
-        :param registry:
-
-        :type event_data: Dictionary
-        :type registry: Dictionary
+        :param registry: Registry mapping client UUIDs to sprite data.
         """
-        target = registry[event_data["target"]]["sprite"]
+        if event_data.target is None:
+            return
+        target = registry[event_data.target]["sprite"]
         target_name = str(target.name)
-        update_client(target, event_data["char_dict"], self.client)
-        if event_data["interaction"] == "DUEL":
-            if not event_data["response"]:
+        update_client(target, event_data.char_dict, self.client)
+        if event_data.interaction == "DUEL":
+            if not event_data.response:
                 self.interaction_menu.visible = True
                 self.interaction_menu.interactable = True
                 self.interaction_menu.player = target
@@ -262,19 +259,12 @@ class WorldState(State):
                 ]
             else:
                 if self.wants_duel:
-                    if event_data["response"] == "Accept":
-                        world = self.client.current_state
-                        pd = self.player.__dict__
-                        event_data = {
-                            "type": "CLIENT_INTERACTION",
-                            "interaction": "START_DUEL",
-                            "target": [event_data["target"]],
-                            "response": None,
-                            "char_dict": {
-                                "monsters": pd["monsters"],
-                                "inventory": pd["inventory"],
-                            },
-                        }
+                    if event_data.response == "Accept":
+                        duel_event = event_data.copy(
+                            interaction="START_DUEL",
+                            target=event_data.target,
+                            response=None,
+                        )
                         self.client.server.notify_client_interaction(
-                            "cuuid", event_data
+                            "cuuid", duel_event
                         )

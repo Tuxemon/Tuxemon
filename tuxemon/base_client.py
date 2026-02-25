@@ -147,10 +147,7 @@ class BaseClient(ABC):
         self.key_events: Sequence[PlayerInput] = []
         self.event_data: dict[str, Any] = {}
 
-        # Set up our combat engine and router.
         self.combat_session = CombatSession()
-        # self.combat_engine = CombatEngine(self, self.combat_session)
-        # self.combat_router = CombatRouter(self, self.combat_engine)
 
         self.movement_manager = MovementManager(
             self.event_manager, self.input_manager

@@ -881,7 +881,6 @@ class CombatState(CombatAnimations):
         Animate monsters that need to be fainted.
 
         * Animation to remove monster is handled here
-        TODO: check for faint status, not HP
         """
         for (
             _,

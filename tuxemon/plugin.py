@@ -6,7 +6,6 @@ import importlib
 import importlib.util
 import inspect
 import logging
-import sys
 from abc import ABC, abstractmethod
 from collections.abc import Iterable, Mapping, Sequence
 from dataclasses import dataclass
@@ -25,11 +24,6 @@ from tuxemon.constants.paths import (
 )
 
 logger = logging.getLogger(__name__)
-log_hdlr = logging.StreamHandler(sys.stdout)
-log_hdlr.setLevel(logging.DEBUG)
-log_hdlr.setFormatter(
-    logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s"),
-)
 
 
 @runtime_checkable

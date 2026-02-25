@@ -72,6 +72,10 @@ if TYPE_CHECKING:
 
 logger = logging.getLogger(__name__)
 
+# Border width (12px) plus horizontal/vertical padding used in fit_border()
+_BORDER_WIDTH_H = 18
+_BORDER_WIDTH_V = 19
+
 
 @dataclass(frozen=True)
 class FontSettings:
@@ -575,10 +579,9 @@ class Menu(Generic[T], State):
         rect1 = rect1.union(rect2)
 
         # expand the bounding box by the border and some padding
-        # TODO: do not hardcode these values
         # border is 12, padding is the rest
-        rect1.width += self.client.context.scaling.scale_int(18)
-        rect1.height += self.client.context.scaling.scale_int(19)
+        rect1.width += self.client.context.scaling.scale_int(_BORDER_WIDTH_H)
+        rect1.height += self.client.context.scaling.scale_int(_BORDER_WIDTH_V)
         rect1.topleft = 0, 0
 
         # set our rect and adjust the centers to match

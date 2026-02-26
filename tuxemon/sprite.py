@@ -569,8 +569,6 @@ class MenuSpriteGroup(SpriteGroup[_MenuElement]):
         Returns:
             New menu item offset.
         """
-        # TODO: some sort of smart way to pick items based on location on
-        # screen
         if not len(self):
             return 0
 
@@ -652,6 +650,9 @@ class VisualSpriteList(RelativeGroup[_MenuElement]):
         self._columns = 1
         self.line_spacing: int | None = None
         self.max_width_per_column: int | None = None
+        # Viewport pagination. None means "show all" (default).
+        self._items_per_page: int | None = None
+        self._current_page: int = 0
 
     @property
     def columns(self) -> int:
@@ -661,6 +662,51 @@ class VisualSpriteList(RelativeGroup[_MenuElement]):
     def columns(self, value: int) -> None:
         self._columns = value
         self._needs_arrange = True
+
+    def invalidate_arrangement(self) -> None:
+        """Mark the arrangement as dirty so it will be recalculated on next draw."""
+        self._needs_arrange = True
+
+    @property
+    def items_per_page(self) -> int | None:
+        """Items visible per page. None means show all (default)."""
+        return self._items_per_page
+
+    @items_per_page.setter
+    def items_per_page(self, value: int | None) -> None:
+        if value is not None and value < 1:
+            raise ValueError("items_per_page must be a positive integer or None")
+        self._items_per_page = value
+        self._current_page = 0
+        self._needs_arrange = True
+
+    @property
+    def current_page(self) -> int:
+        """Zero-based index of the currently visible page."""
+        return self._current_page
+
+    @property
+    def total_pages(self) -> int:
+        """Total number of pages given current items and items_per_page."""
+        if self._items_per_page is None or not len(self):
+            return 1
+        return math.ceil(len(self) / self._items_per_page)
+
+    def next_page(self) -> bool:
+        """Advance to the next page. Returns True if the page changed."""
+        if self._current_page < self.total_pages - 1:
+            self._current_page += 1
+            self._needs_arrange = True
+            return True
+        return False
+
+    def prev_page(self) -> bool:
+        """Move to the previous page. Returns True if the page changed."""
+        if self._current_page > 0:
+            self._current_page -= 1
+            self._needs_arrange = True
+            return True
+        return False
 
     def calc_bounding_rect(self) -> Rect:
         if self._needs_arrange:
@@ -700,14 +746,15 @@ class VisualSpriteList(RelativeGroup[_MenuElement]):
         """
         Iterate through menu items and position them in the menu.
         Defaults to a multi-column layout with items placed horizontally first.
+
+        When ``items_per_page`` is set, only items on ``_current_page`` are
+        made visible and positioned; all others are hidden.
         """
         if not len(self):
             return
 
-        # max_width = 0
         max_height = 0
         for item in self.sprites():
-            # max_width = max(max_width, item.rect.width)
             max_height = max(max_height, item.rect.height)
 
         self.update_rect_from_parent()
@@ -716,20 +763,33 @@ class VisualSpriteList(RelativeGroup[_MenuElement]):
         if self.max_width_per_column is not None:
             self._columns = max(1, width // max(1, self.max_width_per_column))
 
-        items_per_column = math.ceil(len(self) / self._columns)
+        # Determine which items to show.
+        all_sprites = self.sprites()
+        if self._items_per_page is None:
+            visible_sprites = all_sprites
+            hidden_sprites: list[_MenuElement] = []
+        else:
+            start = self._current_page * self._items_per_page
+            end = start + self._items_per_page
+            visible_sprites = all_sprites[start:end]
+            hidden_sprites = [s for s in all_sprites if s not in visible_sprites]
+
+        # Hide off-page items.
+        for item in hidden_sprites:
+            item.visible = False
+
+        items_per_column = math.ceil(len(visible_sprites) / self._columns)
 
         if self.expand:
             logger.debug("expanding menu...")
-            # fill available space
-            line_spacing = self.line_spacing or (height // items_per_column)
+            line_spacing = self.line_spacing or (height // max(1, items_per_column))
         else:
             line_spacing = int(max_height * 1.2)
 
         column_spacing = width // self._columns
 
-        # TODO: pagination API
-
-        for index, item in enumerate(self.sprites()):
+        for index, item in enumerate(visible_sprites):
+            item.visible = True
             oy, ox = divmod(index, self._columns)
             item.rect.topleft = ox * column_spacing, oy * line_spacing
 
@@ -774,26 +834,53 @@ class VisualSpriteList(RelativeGroup[_MenuElement]):
         else:
             raise NotImplementedError
 
+    def _lr_to_tb_index_for_count(self, lr_index: int, count: int) -> int:
+        """Like _lr_to_tb_index but for an arbitrary item count."""
+        rows, remainder = divmod(count, self.columns)
+        row, col = divmod(lr_index, self.columns)
+        n_complete = col if col < remainder else remainder
+        n_incomplete = 0 if col < remainder else col - remainder
+        return n_complete * (rows + 1) + n_incomplete * rows + row
+
+    def _tb_to_lr_index_for_count(self, tb_index: int, count: int) -> int:
+        """Like _tb_to_lr_index but for an arbitrary item count."""
+        rows, remainder = divmod(count, self.columns)
+        if tb_index < remainder * (rows + 1):
+            col, row = divmod(tb_index, rows + 1)
+        else:
+            col, row = divmod(tb_index - remainder * (rows + 1), rows)
+            col += remainder
+        return row * self.columns + col
+
     def _allowed_input(self) -> Container[int]:
         return set(self._2d_movement_dict)
 
     def _advance_input(self, index: int, button: int) -> int:
         """Advance the index given the input."""
-
-        # Layout (horizontal):
-        #        0 1 2 3 4 ... columns-1
-        #      0 X X X X X ... X
-        #      1 X X X X X ... X
-        #      2 X X X X X ... X
-        #    ... . . . . . ... .
-        # rows-1 X X X X X ... X
-        #   rows X X _ _ _ ... _
-        #          ^
-        #          |
-        #       remainder=2
-
         index_type, incr = self._2d_movement_dict[button]
 
+        if self._items_per_page is not None:
+            # Constrain navigation to current page's range.
+            page_start = self._current_page * self._items_per_page
+            page_end = min(page_start + self._items_per_page, len(self))
+            page_len = page_end - page_start
+
+            if page_len == 0:
+                return index
+
+            local_index = index - page_start
+
+            if index_type == "tb":
+                local_index = self._lr_to_tb_index_for_count(local_index, page_len)
+
+            local_index = (local_index + incr) % page_len
+
+            if index_type == "tb":
+                local_index = self._tb_to_lr_index_for_count(local_index, page_len)
+
+            return page_start + local_index
+
+        # Original logic (unchanged) when pagination is off.
         if index_type == "tb":
             index = self._lr_to_tb_index(index, self.orientation)
 

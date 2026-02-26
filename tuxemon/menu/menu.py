@@ -820,15 +820,8 @@ class Menu(Generic[T], State):
             if ani:
                 if self.animate_contents:
                     self._show_contents = True
-                    # TODO: make some "dirty" or invalidate layout API
-                    # this will make sure items are arranged as menu opens
                     ani.schedule(
-                        partial(
-                            setattr,
-                            self.menu_items,
-                            "_needs_arrange",
-                            True,
-                        ),
+                        self.menu_items.invalidate_arrangement,
                         ScheduleType.ON_UPDATE,
                     )
                 ani.schedule(show_items, ScheduleType.ON_FINISH)

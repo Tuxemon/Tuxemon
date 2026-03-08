@@ -22,6 +22,8 @@ def main(
     config: TuxemonConfig,
     context: DisplayContext,
     load_slot: int | None = None,
+    host_server: bool = False,
+    server_port: int = 40081,
 ) -> None:
     """
     Initialize and launch the game using a local Pygame client.
@@ -36,6 +38,11 @@ def main(
     client = LocalPygameClient.create(config, context)
     local_session.set_client(client)
 
+    if host_server and client.network_manager.server:
+        client.network_manager.server.server_port = server_port
+        client.network_manager.server.start_hosting()
+        logger.info("Multiplayer server started on port %s", server_port)
+
     configure_game_states(client, config, load_slot)
 
     if config.collision_map:
@@ -45,7 +52,12 @@ def main(
     pygame.quit()
 
 
-def headless(config: TuxemonConfig, context: DisplayContext) -> None:
+def headless(
+    config: TuxemonConfig,
+    context: DisplayContext,
+    host_server: bool = False,
+    server_port: int = 40081,
+) -> None:
     """
     Start the game in headless mode for server or automated use.
 
@@ -55,6 +67,12 @@ def headless(config: TuxemonConfig, context: DisplayContext) -> None:
     log.configure()
 
     control = HeadlessClient(config, context)
+    if host_server and control.network_manager.server:
+        control.network_manager.server.server_port = server_port
+        control.network_manager.server.start_hosting()
+        logger.info(
+            "Headless multiplayer server started on port %s", server_port
+        )
     control.push_state("HeadlessServerState")
     control.main()
 

@@ -35,14 +35,24 @@ class WebsocketServerWrapper:
         self.heartbeat_timeout = 10  # Seconds to wait for pong
         self.max_clients: int | None = None
         self.debug: bool = False
+        self.startup_error: Exception | None = None
+        self.server_started = threading.Event()
 
-    def start_listening(self, port: int) -> None:
+    def start_listening(self, port: int) -> bool:
         """Starts the network thread and the asynchronous server."""
+        self.startup_error = None
+        self.server_started.clear()
         self.net_thread = threading.Thread(
             target=self._run_async_loop, args=("0.0.0.0", port), daemon=True
         )
         self.net_thread.start()
         self.loop_ready.wait()
+
+        self.server_started.wait(timeout=1.5)
+        if self.startup_error is not None:
+            logger.error("Failed to start WebSocket server: %s", self.startup_error)
+            return False
+        return self.server_started.is_set()
 
     def stop_listening(self) -> None:
         """Stops the server loop and disconnects all active clients."""
@@ -125,12 +135,17 @@ class WebsocketServerWrapper:
                 ping_interval=self.heartbeat_interval,
                 ping_timeout=self.heartbeat_timeout,
             ) as server:
+                self.server_started.set()
                 logger.info(
                     f"WebSocket server started on {host}:{port} with heartbeats."
                 )
                 await server.wait_closed()
 
-        self.loop.run_until_complete(start())
+        try:
+            self.loop.run_until_complete(start())
+        except Exception as e:
+            self.startup_error = e
+            logger.error("WebSocket server startup failed: %s", e)
 
     async def _handler(self, websocket: ServerConnection) -> None:
         cuuid = None
@@ -175,7 +190,11 @@ class WebsocketServerWrapper:
             pass
 
         except Exception as e:
-            logger.error(f"Handshake failed: {e}")
+            message = str(e)
+            if "no close frame received or sent" in message:
+                logger.warning("Handshake interrupted: %s", message)
+            else:
+                logger.error(f"Handshake failed: {e}")
             reason = "handshake_failed"
             cuuid = cuuid or str(uuid4())
             self._handle_disconnect(cuuid, reason=reason)
@@ -210,7 +229,13 @@ class WebsocketServerWrapper:
         except asyncio.CancelledError:
             logger.info(f"Listener cancelled for {cuuid}")
         except Exception as e:
-            logger.error(f"Error in client listener for {cuuid}: {e}")
+            message = str(e)
+            if "no close frame received or sent" in message:
+                logger.warning(
+                    "Client %s disconnected abruptly: %s", cuuid, message
+                )
+            else:
+                logger.error(f"Error in client listener for {cuuid}: {e}")
 
     def _is_valid_event(self, payload: dict[str, Any]) -> bool:
         if "type" not in payload:

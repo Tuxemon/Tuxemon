@@ -525,6 +525,8 @@ class SpriteGroup(LayeredUpdates, Generic[_GroupElement]):
     def calc_bounding_rect(self) -> Rect:
         """A rect object that contains all sprites of this group."""
         sprites = self.sprites()
+        if not sprites:
+            return Rect(0, 0, 0, 0)
         if len(sprites) == 1:
             return Rect(sprites[0].rect)
         else:

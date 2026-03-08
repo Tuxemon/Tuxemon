@@ -20,9 +20,9 @@ from tuxemon.locale.locale import T
 from tuxemon.menu.menu import PygameMenuState
 from tuxemon.platform.const.graphics import BG_START_SCREEN, BLACK_COLOR
 from tuxemon.platform.const.sizes import PLAYER_NPC
-from tuxemon.save import get_index_of_latest_save
 from tuxemon.session import local_session
 from tuxemon.state.state import State
+from tuxemon.tools import open_dialog
 
 if TYPE_CHECKING:
     from tuxemon.base_client import BaseClient
@@ -60,10 +60,23 @@ class StartState(PygameMenuState):
         self,
         menu: Menu,
     ) -> None:
-        # If there is a save, then move the cursor to "Load game" first
-        index = get_index_of_latest_save()
-
         def new_game() -> None:
+            if not self.client.solana_manager.has_wallet_connection():
+                open_dialog(
+                    self.client,
+                    ["Connect a Solana devnet wallet before playing SolaMon."],
+                )
+                return
+
+            if not self.client.network_manager.is_connected():
+                open_dialog(
+                    self.client,
+                    [
+                        "SolaMon is multiplayer-only. Host or join a game first."
+                    ],
+                )
+                return
+
             launcher = GameLauncher(self.client)
             launcher.launch(
                 session=local_session,
@@ -71,6 +84,13 @@ class StartState(PygameMenuState):
                     self.client.config.mods[0]
                 ),
                 remove_states=["StartState"],
+            )
+
+        def connect_wallet() -> None:
+            self.client.push_state(
+                "InputMenu",
+                prompt="Enter Solana devnet wallet address",
+                callback=self._set_wallet,
             )
 
         def change_state(
@@ -87,46 +107,23 @@ class StartState(PygameMenuState):
         def exit_game() -> None:
             self.client.quit()
 
-        if index is not None:
-            menu.add.button(
-                title=T.translate("menu_load"),
-                action=change_state("LoadMenuState"),
-                font_size=self.font_type.big,
-                button_id="menu_load",
-            )
-        if len(self.client.config.mods) == 1:
-            menu.add.button(
-                title=T.translate("menu_new_game"),
-                action=new_game,
-                font_size=self.font_type.big,
-                button_id="menu_new_game",
-            )
-        else:
-            menu.add.button(
-                title=T.translate("menu_new_game"),
-                action=change_state(
-                    "ModsChoice", mods=self.client.config.mods
-                ),
-                font_size=self.font_type.big,
-                button_id="menu_mod_choice",
-            )
         menu.add.button(
-            title=T.translate("menu_battle"),
-            action=change_state(
-                "DifficultyPickState", on_pick=self.start_battle
-            ),
+            title="CONNECT WALLET",
+            action=connect_wallet,
             font_size=self.font_type.big,
-            button_id="menu_battle",
+            button_id="solamon_wallet_connect",
         )
         menu.add.button(
-            title=T.translate("menu_minigame"),
-            action=change_state(
-                "DifficultyPickState",
-                on_pick=self.start_minigame,
-                difficulties=["easy", "normal", "hard"],
-            ),
+            title=T.translate("menu_multiplayer"),
+            action=change_state("MultiplayerMenu"),
             font_size=self.font_type.big,
-            button_id="menu_minigame",
+            button_id="menu_multiplayer",
+        )
+        menu.add.button(
+            title="PLAY SOLAMON",
+            action=new_game,
+            font_size=self.font_type.big,
+            button_id="menu_new_game",
         )
         menu.add.button(
             title=T.translate("menu_options"),
@@ -139,6 +136,24 @@ class StartState(PygameMenuState):
             action=exit_game,
             font_size=self.font_type.big,
             button_id="exit",
+        )
+
+    def _set_wallet(self, wallet_address: str) -> None:
+        if not self.client.solana_manager.is_valid_wallet_address(
+            wallet_address
+        ):
+            open_dialog(
+                self.client,
+                [
+                    "Invalid wallet address. Please enter a valid Solana public key."
+                ],
+            )
+            return
+
+        self.client.solana_manager.connect_wallet(wallet_address)
+        open_dialog(
+            self.client,
+            ["Wallet connected. You can now host/join multiplayer and play."],
         )
 
     def __init__(self, client: BaseClient, **kwargs: Any) -> None:

@@ -198,6 +198,34 @@ uv sync
 uv run python run_tuxemon.py
 ```
 
+
+SolaMon (Solana Devnet Multiplayer)
+--------
+
+SolaMon now enforces multiplayer + wallet-gated gameplay on devnet:
+
+- You must connect a Solana wallet before starting gameplay.
+- You must host or join multiplayer before starting gameplay (single-player launch is blocked).
+- Creating a trainer mints a **SolaMon Trainers** NFT and charges `0.1 SOL`.
+- Catching a monster mints a **SolaMon** NFT.
+- Releasing a monster burns the matching **SolaMon** NFT.
+- Getting items mints **SolaMon Items** NFTs, and consuming items burns them.
+- Badge rewards can mint **SolaMon Badges** NFTs via the `badge_chain <badge_id>` effect.
+
+Configuration lives under the new `[solana]` config section in `tuxemon.yaml`:
+
+```
+[solana]
+enabled = true
+rpc_url = "https://api.devnet.solana.com"
+wallet_address = "<player wallet>"
+treasury_address = "<game treasury wallet>"
+service_endpoint = "https://your-signer-service/mint"
+trainer_mint_price_sol = 0.1
+```
+
+When `service_endpoint` is omitted, actions run in simulation mode (logged events), which is useful for local multiplayer testing before wiring your signer/mint backend.
+
 Controls
 --------
 

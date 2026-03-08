@@ -118,6 +118,15 @@ class LoggingConfigModel(BaseModel):
     file_keep_max: int = 5
 
 
+class SolanaConfig(BaseModel):
+    enabled: bool = True
+    rpc_url: str = "https://api.devnet.solana.com"
+    wallet_address: str = ""
+    treasury_address: str = ""
+    service_endpoint: str | None = None
+    trainer_mint_price_sol: float = 0.1
+
+
 class TuxemonFullConfig(BaseModel):
     display: DisplayConfig = Field(default_factory=DisplayConfig)
     game: GameConfig = Field(default_factory=GameConfig)
@@ -129,6 +138,7 @@ class TuxemonFullConfig(BaseModel):
         default_factory=ControllerConfigModel
     )
     logging: LoggingConfigModel = Field(default_factory=LoggingConfigModel)
+    solana: SolanaConfig = Field(default_factory=SolanaConfig)
 
 
 class TuxemonConfig:
@@ -248,6 +258,10 @@ class TuxemonConfig:
     @property
     def save_method(self) -> str:
         return self.config_model.game.save_method
+
+    @property
+    def solana(self) -> SolanaConfig:
+        return self.config_model.solana
 
     @property
     def items_consumed_on_failure(self) -> bool:

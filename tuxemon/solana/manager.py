@@ -70,24 +70,6 @@ class SolanaManager:
         )
         self._submit(event)
 
-    def has_wallet_connection(self) -> bool:
-        """Whether the current player wallet is connected/configured."""
-        return bool(self.wallet_address.strip())
-
-    def connect_wallet(self, wallet_address: str) -> None:
-        """Attach a wallet address for devnet gameplay and minting."""
-        self.wallet_address = wallet_address.strip()
-
-    @staticmethod
-    def is_valid_wallet_address(wallet_address: str) -> bool:
-        """Lightweight base58-like validation for Solana public keys."""
-        value = wallet_address.strip()
-        if len(value) < 32 or len(value) > 44:
-            return False
-        base58_chars = (
-            "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz"
-        )
-        return all(c in base58_chars for c in value)
 
     def mint_monster(self, monster_slug: str, instance_id: str) -> None:
         event = ChainEvent(

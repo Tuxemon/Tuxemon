@@ -202,10 +202,6 @@ uv run python run_tuxemon.py
 SolaMon (Solana Devnet Multiplayer)
 --------
 
-SolaMon now enforces multiplayer + wallet-gated gameplay on devnet:
-
-- You must connect a Solana wallet before starting gameplay.
-- You must host or join multiplayer before starting gameplay (single-player launch is blocked).
 - Creating a trainer mints a **SolaMon Trainers** NFT and charges `0.1 SOL`.
 - Catching a monster mints a **SolaMon** NFT.
 - Releasing a monster burns the matching **SolaMon** NFT.

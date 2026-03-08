@@ -202,8 +202,6 @@ uv run python run_tuxemon.py
 SolaMon (Solana Devnet Multiplayer)
 --------
 
-This branch includes SolaMon on-chain hooks for Solana devnet:
-
 - Creating a trainer mints a **SolaMon Trainers** NFT and charges `0.1 SOL`.
 - Catching a monster mints a **SolaMon** NFT.
 - Releasing a monster burns the matching **SolaMon** NFT.

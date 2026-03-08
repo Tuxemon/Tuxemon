@@ -70,6 +70,7 @@ class SolanaManager:
         )
         self._submit(event)
 
+
     def mint_monster(self, monster_slug: str, instance_id: str) -> None:
         event = ChainEvent(
             action="mint",

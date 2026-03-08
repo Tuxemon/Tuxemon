@@ -54,7 +54,10 @@ def build_parser() -> ArgumentParser:
         "--host-server",
         action="store_true",
         default=False,
-        help="Start the multiplayer websocket server immediately.",
+        help=(
+            "Start multiplayer server. Use with --headless in a separate "
+            "terminal for dedicated server mode."
+        ),
     )
     parser.add_argument(
         "--server-port",
@@ -140,6 +143,11 @@ def launch_game(argv: list[str] | None = None) -> None:
 
     try:
         apply_config_from_args(config, args)
+
+        if args.host_server and not args.headless:
+            raise ValueError(
+                "Use '--headless --host-server' to run the server in a separate terminal."
+            )
 
         if args.headless:
             tuxemon_main.headless(

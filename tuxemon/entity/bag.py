@@ -67,6 +67,10 @@ class BagHandler:
                 f"{existing.quantity} → {existing.quantity + quantity}."
             )
             existing.increase_quantity(quantity)
+            if self.owner.session._client is not None:
+                self.owner.session.client.solana_manager.mint_item(
+                    existing.slug, str(existing.instance_id), quantity
+                )
             return True
 
         if self.is_full:
@@ -75,11 +79,19 @@ class BagHandler:
             )
             item.set_quantity(quantity)
             self._item_boxes.add_item(locker, item)
+            if self.owner.session._client is not None:
+                self.owner.session.client.solana_manager.mint_item(
+                    item.slug, str(item.instance_id), quantity
+                )
             return True
 
         logger.debug(f"Adding new item '{item.slug}' to bag.")
         item.set_quantity(quantity)
         self._items.append(item)
+        if self.owner.session._client is not None:
+            self.owner.session.client.solana_manager.mint_item(
+                item.slug, str(item.instance_id), quantity
+            )
         return True
 
     def remove_item(self, item: Item, quantity: int = 1) -> bool:
@@ -96,6 +108,10 @@ class BagHandler:
 
         if item.quantity == 0:
             self._items.remove(item)
+            if self.owner.session._client is not None:
+                self.owner.session.client.solana_manager.burn_item(
+                    item.slug, str(item.instance_id), quantity
+                )
             return True
 
         # Try to remove from stock
@@ -114,6 +130,10 @@ class BagHandler:
                 f"Reducing '{item.slug}' quantity to {item.quantity}."
             )
 
+        if self.owner.session._client is not None:
+            self.owner.session.client.solana_manager.burn_item(
+                item.slug, str(item.instance_id), quantity
+            )
         return True
 
     def find_item(self, slug: str) -> Item | None:

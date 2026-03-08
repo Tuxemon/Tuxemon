@@ -227,6 +227,7 @@ trainer_mint_price_sol = 0.1
 When `service_endpoint` is omitted, in-game Phantom/Solflare buttons open provider sites and full one-click linking depends on your wallet backend.
 
 For local development without a backend, use **CREATE DEVNET WALLET** (uses `solana-keygen`) or **IMPORT PRIVATE KEY** (JSON byte array).
+When `service_endpoint` is omitted, actions run in simulation mode (logged events), which is useful for local multiplayer testing before wiring your signer/mint backend.
 
 Controls
 --------

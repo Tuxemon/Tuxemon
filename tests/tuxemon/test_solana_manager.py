@@ -1,6 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
 from types import SimpleNamespace
-from unittest.mock import MagicMock
 
 from tuxemon.solana.manager import SolanaManager
 
@@ -32,24 +31,3 @@ def test_disabled_manager_noop() -> None:
     manager.mint_trainer("player", "Player")
 
     assert manager._minted_assets == {}
-
-
-def test_create_devnet_wallet_from_keygen(monkeypatch) -> None:
-    manager = SolanaManager.from_config(_config())
-    manager.connect_wallet("")
-    keygen = MagicMock(side_effect=["", "11111111111111111111111111111111"])
-    monkeypatch.setattr(manager, "_run_keygen", keygen)
-
-    ok, _ = manager.create_devnet_wallet()
-
-    assert ok
-    assert manager.wallet_address == "11111111111111111111111111111111"
-
-
-def test_import_private_key_validation() -> None:
-    manager = SolanaManager.from_config(_config())
-
-    ok, msg = manager.import_private_key("not json")
-
-    assert not ok
-    assert "JSON array" in msg

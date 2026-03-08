@@ -302,31 +302,29 @@ class MultiplayerDiscovery:
         self.client = client
 
     def update_multiplayer_list(self) -> None:
-        """
-        Populates the list of available games with hardcoded entries.
-        Replace with real API call when matchmaking backend is ready.
-        """
+        """Refreshes available games, including the local hosted server."""
+        games: list[GameEntry] = []
+
         try:
-            games: list[GameEntry] = [
-                {
-                    "ip": "127.0.0.1",
-                    "port": 40081,
-                    "name": "Local Test Server",
-                },
-                {
-                    "ip": "192.168.1.50",
-                    "port": 40081,
-                    "name": "LAN Party Server",
-                },
-            ]
-            self.client.available_games = [
-                (str(entry["ip"]), int(entry["port"])) for entry in games
-            ]
-            self.client.server_list = [str(entry["name"]) for entry in games]
+            server = self.client.game.network_manager.server
+            if server and server.listening:
+                games.append(
+                    {
+                        "ip": "127.0.0.1",
+                        "port": int(server.server_port),
+                        "name": str(server.server_name or "Local Hosted Server"),
+                    }
+                )
         except Exception as e:
-            logger.warning(f"Failed to populate server list: {e}")
-            self.client.available_games = []
-            self.client.server_list = []
+            logger.warning(f"Failed to discover local hosted server: {e}")
+
+        self.client.available_games = [
+            (str(entry["ip"]), int(entry["port"])) for entry in games
+        ]
+        self.client.server_list = [
+            f"{entry['name']} ({entry['ip']}:{entry['port']})"
+            for entry in games
+        ]
 
 
 class InteractionManager:
@@ -399,13 +397,7 @@ class ConnectionManager:
                 self.state = ConnState.READY
 
     def connect_to_host(self, ip: str, port: int) -> None:
-        """
-        Attempts to connect to the selected multiplayer server immediately.
-        """
-        if self.client.game.network_manager.is_host():
-            logger.info("Skipping client connection: running as host.")
-            return
-
+        """Attempts to connect to the selected multiplayer server."""
         logger.info(f"Connecting to WS server: {ip}:{port}")
         self.client.client.start_connection(ip, port)
         self.state = ConnState.REGISTERING

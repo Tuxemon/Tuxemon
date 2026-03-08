@@ -170,8 +170,7 @@ def test_input_translator_facing_event(client, monkeypatch):
 def test_connection_manager_state_transitions(client, monkeypatch):
     cm = client.connection_manager
 
-    client.game.network_manager.is_host.return_value = False
-
+    client.client.start_connection = MagicMock()
     cm.connect_to_host("127.0.0.1", 40081)
     assert cm.state == ConnState.REGISTERING
 
@@ -197,6 +196,42 @@ def test_connection_manager_state_transitions(client, monkeypatch):
     cm.update()
     assert cm.state == ConnState.READY
 
+
+
+
+def test_update_multiplayer_list_includes_local_hosted_server(client):
+    server = MagicMock()
+    server.listening = True
+    server.server_port = 40123
+    server.server_name = "My Hosted Server"
+    client.game.network_manager.server = server
+
+    client.discovery.update_multiplayer_list()
+
+    assert client.available_games == [("127.0.0.1", 40123)]
+    assert client.server_list == ["My Hosted Server (127.0.0.1:40123)"]
+
+
+def test_update_multiplayer_list_empty_without_hosted_server(client):
+    server = MagicMock()
+    server.listening = False
+    client.game.network_manager.server = server
+
+    client.discovery.update_multiplayer_list()
+
+    assert client.available_games == []
+    assert client.server_list == []
+
+
+def test_connection_manager_connects_even_when_running_as_host(client):
+    cm = client.connection_manager
+    client.client.start_connection = MagicMock()
+    client.game.network_manager.is_host.return_value = True
+
+    cm.connect_to_host("127.0.0.1", 40081)
+
+    client.client.start_connection.assert_called_once_with("127.0.0.1", 40081)
+    assert cm.state == ConnState.REGISTERING
 
 def test_interaction_manager_finds_cuuid(client, monkeypatch):
     sprite = MagicMock()

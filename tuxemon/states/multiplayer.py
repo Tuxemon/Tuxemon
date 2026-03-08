@@ -64,27 +64,22 @@ class MultiplayerMenu(PygameMenuState):
         assert self.network.client
         assert self.network.server
 
-        if self.network.server.listening:
-            self.client.pop_state(self)
-            open_dialog(
-                self.client, [T.translate("multiplayer_already_hosting")]
-            )
-            return
+        if not self.network.server.listening:
+            self.network.server.start_hosting()
 
-        self.network.server.start_hosting()
-        self.network.client.connect_to_host(
-            "127.0.0.1",
-            self.network.server.server_port,
-        )
+        if not self.network.client.listening:
+            self.network.client.connect_to_host(
+                "127.0.0.1",
+                self.network.server.server_port,
+            )
+
         self.client.pop_state(self)
         open_dialog(self.client, [T.translate("multiplayer_hosting_ready")])
 
     def load_server_list(self) -> None:
         """Loads the hardcoded server list and opens the selection menu."""
         assert self.network.client
-        if not self.network.is_host():
-            self.network.client.update_multiplayer_list()
-
+        self.network.client.update_multiplayer_list()
         self.client.push_state("MultiplayerSelect")
 
     def join_by_ip(self) -> None:

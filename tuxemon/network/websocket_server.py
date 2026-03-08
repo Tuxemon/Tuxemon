@@ -190,7 +190,11 @@ class WebsocketServerWrapper:
             pass
 
         except Exception as e:
-            logger.error(f"Handshake failed: {e}")
+            message = str(e)
+            if "no close frame received or sent" in message:
+                logger.warning("Handshake interrupted: %s", message)
+            else:
+                logger.error(f"Handshake failed: {e}")
             reason = "handshake_failed"
             cuuid = cuuid or str(uuid4())
             self._handle_disconnect(cuuid, reason=reason)
@@ -225,7 +229,13 @@ class WebsocketServerWrapper:
         except asyncio.CancelledError:
             logger.info(f"Listener cancelled for {cuuid}")
         except Exception as e:
-            logger.error(f"Error in client listener for {cuuid}: {e}")
+            message = str(e)
+            if "no close frame received or sent" in message:
+                logger.warning(
+                    "Client %s disconnected abruptly: %s", cuuid, message
+                )
+            else:
+                logger.error(f"Error in client listener for {cuuid}: {e}")
 
     def _is_valid_event(self, payload: dict[str, Any]) -> bool:
         if "type" not in payload:

@@ -242,6 +242,19 @@ class TuxemonServer:
                 cuuid, event_data.map_name, event_data.char_dict
             )
 
+        if event_data.char_dict and event_data.map_name:
+            name = (
+                event_data.char_dict.name
+                if hasattr(event_data.char_dict, "name")
+                else str(event_data.char_dict.get("name", "unknown"))
+            )
+            logger.info(
+                "Client session active: cuuid=%s name=%s map=%s",
+                cuuid,
+                name,
+                event_data.map_name,
+            )
+
         self.notify_populate_client(cuuid, event_data)
 
     def handle_ping_event(self, cuuid: str, event_data: EventData) -> None:

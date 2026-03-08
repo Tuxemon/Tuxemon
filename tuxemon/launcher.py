@@ -47,6 +47,18 @@ class GameLauncher:
         """
         logger.info(f"Launching mod '{meta.name}' version {meta.version}")
 
+        if not self.client.solana_manager.has_wallet_connection():
+            logger.warning(
+                "Launch blocked: Solana wallet is required for SolaMon."
+            )
+            return
+
+        if not self.client.network_manager.is_connected():
+            logger.warning(
+                "Launch blocked: multiplayer connection is required for SolaMon."
+            )
+            return
+
         tile_pos = meta.starting_position
         map_path = fetch_asset("maps", meta.starting_map)
         player_slug = random.choice(meta.starting_players)

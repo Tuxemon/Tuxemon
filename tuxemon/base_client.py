@@ -49,6 +49,7 @@ from tuxemon.session import local_session
 from tuxemon.state.loader import StateLoader
 from tuxemon.state.manager import StateManager
 from tuxemon.state.repository import StateRepository
+from tuxemon.solana import SolanaManager
 from tuxemon.state.state import State
 from tuxemon.teleporter import Teleporter
 from tuxemon.trade_manager import TradeManager
@@ -115,6 +116,9 @@ class BaseClient(ABC):
         # Set up our networking for multiplayer.
         self.network_manager = NetworkManager(self)
         self.network_manager.initialize()
+
+        # SolaMon on-chain manager (Solana devnet).
+        self.solana_manager = SolanaManager.from_config(config.solana)
 
         # Set up our game's event engine which executes actions based on
         # conditions defined in map files.

@@ -185,3 +185,27 @@ def test_update_handles_client_timeout(server):
         "abc", {"type": "CLIENT_DISCONNECTED"}
     )
     server.client_registry.remove_client.assert_called_once_with("abc")
+
+
+def test_update_assigns_event_number_when_missing(server):
+    server.server.get_incoming_events = MagicMock(
+        return_value=[("abc", {"type": "PING"})]
+    )
+    server.event_router.route_event = MagicMock()
+
+    server.update()
+
+    event_data = server.event_router.route_event.call_args[0][1]
+    assert event_data.type.name == "PING"
+    assert isinstance(event_data.event_number, int)
+
+
+def test_update_ignores_non_dict_events(server):
+    server.server.get_incoming_events = MagicMock(
+        return_value=[("abc", "not-a-dict")]
+    )
+    server.event_router.route_event = MagicMock()
+
+    server.update()
+
+    server.event_router.route_event.assert_not_called()

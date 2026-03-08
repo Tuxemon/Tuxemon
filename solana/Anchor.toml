@@ -1,0 +1,12 @@
+[toolchain]
+anchor_version = "0.30.1"
+
+[provider]
+cluster = "devnet"
+wallet = "~/.config/solana/id.json"
+
+[programs.localnet]
+solamon_state = "SoLaMoN1111111111111111111111111111111111111"
+
+[scripts]
+test = "anchor test"

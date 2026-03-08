@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from collections.abc import Callable, Generator
+from functools import partial
 from typing import TYPE_CHECKING, Any, ClassVar
 
 from pygame_menu.menu import Menu
@@ -70,7 +71,7 @@ class MultiplayerMenu(PygameMenuState):
             )
             return
 
-        self.network.server.listening = True
+        self.network.server.start_hosting()
         self.network.client.connect_to_host(
             "127.0.0.1",
             self.network.server.server_port,
@@ -89,8 +90,31 @@ class MultiplayerMenu(PygameMenuState):
     def join_by_ip(self) -> None:
         """Pushes an input menu to get the IP/Port from the user."""
         self.client.push_state(
-            "InputMenu", prompt=T.translate("multiplayer_join_prompt")
+            "InputMenu",
+            prompt=T.translate("multiplayer_join_prompt"),
+            callback=self._join_by_ip_callback,
         )
+
+    def _join_by_ip_callback(self, text: str) -> None:
+        assert self.network.client
+        raw = text.strip()
+        if not raw:
+            open_dialog(self.client, [T.translate("multiplayer_join_prompt")])
+            return
+
+        host = raw
+        port = 40081
+        if ":" in raw:
+            host_part, port_part = raw.rsplit(":", 1)
+            host = host_part.strip() or host
+            try:
+                port = int(port_part.strip())
+            except ValueError:
+                open_dialog(self.client, ["Invalid port. Use ip:port"])
+                return
+
+        self.network.client.selected_game = (host, port)
+        self.join()
 
     def join(self) -> None:
         """
@@ -123,11 +147,28 @@ class MultiplayerSelect(PopUpMenu[None]):
         assert self.network.client
         servers = self.network.client.server_list
         if servers:
-            for server in servers:
+            for index, server in enumerate(servers):
                 label = self.shadow_text(server)
-                yield MenuItem(label, None, None, None)
+                yield MenuItem(
+                    label,
+                    None,
+                    None,
+                    partial(self._join_selected_server, index),
+                )
         else:
             label = self.shadow_text(T.translate("multiplayer_no_servers"))
             item = MenuItem(label, None, None, None)
             item.enabled = False
             yield item
+
+    def _join_selected_server(self, index: int) -> None:
+        assert self.network.client
+        if index >= len(self.network.client.available_games):
+            return
+
+        self.network.client.selected_game = (
+            self.network.client.available_games[index]
+        )
+        ip, port = self.network.client.selected_game
+        self.network.client.connect_to_host(ip, port)
+        self.client.pop_state(self)

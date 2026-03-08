@@ -438,11 +438,20 @@ class EventRouter:
         self.handlers[event_type.value] = handler
 
     def route_event(self, cuuid: str, event_data: EventData) -> None:
+        event_key = event_data.type.value  # use string key consistently
+
+        handler = self.handlers.get(event_key)
+        if not handler:
+            logger.warning(f"Unhandled event type: {event_key}")
+            return
+
         if cuuid not in self.registry:
+            if event_key == EventType.PUSH_SELF.value:
+                handler(cuuid, event_data)
+                return
             logger.warning(f"CUUID {cuuid} not found in registry.")
             return
 
-        event_key = event_data.type.value  # use string key consistently
         event_list = self.registry[cuuid].setdefault("event_list", {})
         last_event_number = event_list.get(event_key, -1)
 
@@ -450,12 +459,7 @@ class EventRouter:
             return
 
         event_list[event_key] = event_data.event_number
-
-        handler = self.handlers.get(event_key)
-        if handler:
-            handler(cuuid, event_data)
-        else:
-            logger.warning(f"Unhandled event type: {event_key}")
+        handler(cuuid, event_data)
 
 
 class ClientRegistry:

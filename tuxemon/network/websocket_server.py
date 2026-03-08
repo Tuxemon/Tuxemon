@@ -183,7 +183,7 @@ class WebsocketServerWrapper:
             self.client_registry[cuuid] = websocket
             self.incoming_queue.put((cuuid, data))
 
-            await self._listen_to_client(cuuid, websocket)
+            reason = await self._listen_to_client(cuuid, websocket)
 
         except StopAsyncIteration:
             # Normal end of async iterator
@@ -199,13 +199,12 @@ class WebsocketServerWrapper:
             cuuid = cuuid or str(uuid4())
             self._handle_disconnect(cuuid, reason=reason)
         finally:
-            closed = getattr(websocket, "closed", False)
-            if cuuid is not None and isinstance(closed, bool) and closed:
+            if cuuid is not None and cuuid in self.client_registry:
                 self._handle_disconnect(cuuid, reason=reason)
 
     async def _listen_to_client(
         self, cuuid: str, websocket: ServerConnection
-    ) -> None:
+    ) -> str:
         """Receives messages from a single connected client."""
         try:
             async for message in websocket:
@@ -228,14 +227,18 @@ class WebsocketServerWrapper:
                     logger.error(f"Invalid JSON from client {cuuid}")
         except asyncio.CancelledError:
             logger.info(f"Listener cancelled for {cuuid}")
+            return "listener_cancelled"
         except Exception as e:
             message = str(e)
             if "no close frame received or sent" in message:
                 logger.warning(
                     "Client %s disconnected abruptly: %s", cuuid, message
                 )
-            else:
-                logger.error(f"Error in client listener for {cuuid}: {e}")
+                return "connection_lost"
+            logger.error(f"Error in client listener for {cuuid}: {e}")
+            return "listener_error"
+
+        return "connection_closed"
 
     def _is_valid_event(self, payload: dict[str, Any]) -> bool:
         if "type" not in payload:

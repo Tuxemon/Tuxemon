@@ -248,3 +248,27 @@ def test_handle_push_self_persists_character_state(server, tmp_path, monkeypatch
     payload = json.loads(server.state_file.read_text(encoding="utf-8"))
     assert "PlayerOne" in payload
     assert payload["PlayerOne"]["map_name"] == "forest"
+
+
+def test_route_event_allows_push_self_for_unregistered_client(server):
+    event = MagicMock()
+    event.type.value = "PUSH_SELF"
+    event.event_number = 1
+    server.event_router.handlers["PUSH_SELF"] = MagicMock()
+
+    server.event_router.route_event("new_client", event)
+
+    server.event_router.handlers["PUSH_SELF"].assert_called_once_with(
+        "new_client", event
+    )
+
+
+def test_route_event_rejects_non_push_for_unregistered_client(server):
+    event = MagicMock()
+    event.type.value = "PING"
+    event.event_number = 1
+    server.event_router.handlers["PING"] = MagicMock()
+
+    server.event_router.route_event("missing", event)
+
+    server.event_router.handlers["PING"].assert_not_called()

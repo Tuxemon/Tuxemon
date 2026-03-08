@@ -259,3 +259,34 @@ def test_interaction_manager_finds_cuuid(client, monkeypatch):
 
     payload = client.client.send_event.call_args[0][0]
     assert payload["target"] == "abc"
+
+
+def test_connection_manager_stays_registering_until_player_populated(client):
+    cm = client.connection_manager
+    client.client._registered = True
+    client.populated = False
+    client.sync_manager.populate_player = MagicMock(return_value=False)
+    cm.state = ConnState.REGISTERING
+
+    cm.update()
+
+    assert cm.state == ConnState.REGISTERING
+
+
+def test_populate_player_handles_uninitialized_map(client, monkeypatch):
+    fake_player = MagicMock()
+    fake_player.__dict__ = {
+        "tile_pos": [0, 0],
+        "name": "Test",
+        "facing": "down",
+    }
+    monkeypatch.setattr("tuxemon.session.local_session._player", fake_player)
+    client.game.get_map_name.side_effect = ValueError(
+        "Name of the map requested when no map is active"
+    )
+    client.client.send_event = MagicMock()
+
+    result = client.sync_manager.populate_player()
+
+    assert result is False
+    client.client.send_event.assert_not_called()

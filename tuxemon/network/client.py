@@ -114,9 +114,9 @@ class TuxemonClient:
         """Refreshes the list of available multiplayer servers."""
         self.discovery.update_multiplayer_list()
 
-    def populate_player(self, event_type: str = "PUSH_SELF") -> None:
+    def populate_player(self, event_type: str = "PUSH_SELF") -> bool:
         """Sends the local player's character data to the server."""
-        self.sync_manager.populate_player(event_type)
+        return self.sync_manager.populate_player(event_type)
 
     def update_player(
         self,
@@ -258,10 +258,16 @@ class PlayerSyncManager:
         event_data_obj = EventData.from_dict(payload)
         self.client.send_event(event_data_obj.to_dict())
 
-    def populate_player(self, event_type: str = "PUSH_SELF") -> None:
-        """Sends client character to the server."""
-        player_data = local_session.player.__dict__
-        map_name = self.game.get_map_name()
+    def populate_player(self, event_type: str = "PUSH_SELF") -> bool:
+        """Sends client character to the server when player/map are ready."""
+        try:
+            player_data = local_session.player.__dict__
+            map_name = self.game.get_map_name()
+        except ValueError as e:
+            logger.debug(
+                f"Skipping player population until game is initialized: {e}"
+            )
+            return False
 
         char_dict = {
             "tile_pos": player_data.get("tile_pos", [0, 0]),
@@ -275,6 +281,7 @@ class PlayerSyncManager:
             char_dict=char_dict,
         )
         self.client.populated = True
+        return True
 
     def update_player(
         self, direction: str, event_type: str = "CLIENT_MAP_UPDATE"
@@ -393,8 +400,8 @@ class ConnectionManager:
 
         if self.state is ConnState.REGISTERING:
             if self.client.client.registered and not self.client.populated:
-                self.client.sync_manager.populate_player()
-                self.state = ConnState.READY
+                if self.client.sync_manager.populate_player():
+                    self.state = ConnState.READY
 
     def connect_to_host(self, ip: str, port: int) -> None:
         """Attempts to connect to the selected multiplayer server."""

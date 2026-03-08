@@ -15,7 +15,9 @@ logger = logging.getLogger(__name__)
 
 
 def build_parser() -> ArgumentParser:
-    parser = ArgumentParser(description="Start the Tuxemon game or headless server.")
+    parser = ArgumentParser(
+        description="Start the Tuxemon game or headless server."
+    )
 
     parser.add_argument(
         "-m",
@@ -47,6 +49,18 @@ def build_parser() -> ArgumentParser:
         action="store_true",
         default=False,
         help="Run in headless mode (no graphical interface).",
+    )
+    parser.add_argument(
+        "--host-server",
+        action="store_true",
+        default=False,
+        help="Start the multiplayer websocket server immediately.",
+    )
+    parser.add_argument(
+        "--server-port",
+        type=int,
+        default=40081,
+        help="Server port to use with --host-server (default: 40081).",
     )
 
     return parser
@@ -114,6 +128,7 @@ def launch_game(argv: list[str] | None = None) -> None:
     args = parse_args(argv)
 
     from tuxemon.platform import platform
+
     platform.init()
 
     platform_mode = "headless" if args.headless else "pygame"
@@ -127,9 +142,20 @@ def launch_game(argv: list[str] | None = None) -> None:
         apply_config_from_args(config, args)
 
         if args.headless:
-            tuxemon_main.headless(config=config, context=context)
+            tuxemon_main.headless(
+                config=config,
+                context=context,
+                host_server=args.host_server,
+                server_port=args.server_port,
+            )
         else:
-            tuxemon_main.main(config=config, context=context, load_slot=args.slot)
+            tuxemon_main.main(
+                config=config,
+                context=context,
+                load_slot=args.slot,
+                host_server=args.host_server,
+                server_port=args.server_port,
+            )
 
     except Exception as e:
         handle_fatal_error(e)

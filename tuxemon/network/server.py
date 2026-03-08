@@ -126,13 +126,21 @@ class TuxemonServer:
             "TuxemonServer: Shutdown complete. Server is no longer listening."
         )
 
-    def start_hosting(self) -> None:
+    def start_hosting(self) -> bool:
         """Starts websocket listening for multiplayer hosting."""
         if self.listening:
-            return
-        self.server.start_listening(self.server_port)
-        self.listening = True
-        logger.info("TuxemonServer: Hosting started on %s", self.server_port)
+            return True
+        started = self.server.start_listening(self.server_port)
+        self.listening = bool(started)
+        if self.listening:
+            logger.info("TuxemonServer: Hosting started on %s", self.server_port)
+            return True
+
+        logger.error(
+            "TuxemonServer: Failed to host on port %s (already in use or startup failure)",
+            self.server_port,
+        )
+        return False
 
     def get_next_event_number(self) -> int:
         """
@@ -146,7 +154,10 @@ class TuxemonServer:
         incoming = self.server.get_incoming_events()
         for cuuid, event_dict in incoming:
             try:
-                event_data = EventData.from_dict(event_dict)
+                normalized = self._normalize_event_dict(cuuid, event_dict)
+                if normalized is None:
+                    continue
+                event_data = EventData.from_dict(normalized)
                 self.server_event_handler(cuuid, event_data)
             except Exception:
                 logger.exception(f"Critical error handling event from {cuuid}")
@@ -154,6 +165,30 @@ class TuxemonServer:
         timed_out = self.client_registry.check_timeouts(self.server_timestamp)
         for cuuid in timed_out:
             self._handle_timeout_disconnection(cuuid)
+
+    def _normalize_event_dict(
+        self, cuuid: str, event_dict: Any
+    ) -> dict[str, Any] | None:
+        """Normalizes incoming network payloads before EventData decoding."""
+        if not isinstance(event_dict, dict):
+            logger.warning(
+                "Ignoring malformed event from %s: expected dict, got %s",
+                cuuid,
+                type(event_dict).__name__,
+            )
+            return None
+
+        normalized = dict(event_dict)
+
+        if "type" not in normalized:
+            logger.warning(
+                "Ignoring malformed event from %s: missing event type",
+                cuuid,
+            )
+            return None
+
+        normalized.setdefault("event_number", self.get_next_event_number())
+        return normalized
 
     def _handle_timeout_disconnection(self, cuuid: str) -> None:
         """Internal helper to clean up a timed-out client."""

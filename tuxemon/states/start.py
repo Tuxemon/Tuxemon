@@ -20,7 +20,8 @@ from tuxemon.menu.menu import PygameMenuState
 from tuxemon.platform.const.graphics import BG_START_SCREEN, BLACK_COLOR
 from tuxemon.session import local_session
 from tuxemon.state.state import State
-from tuxemon.tools import open_dialog
+from tuxemon.tools import open_choice_dialog, open_dialog
+from tuxemon.ui.menu_options import MenuOptions, create_choice_options
 
 if TYPE_CHECKING:
     from tuxemon.base_client import BaseClient
@@ -65,18 +66,17 @@ class StartState(PygameMenuState):
                     self.client,
                     [
                         f"Wallet already connected: {wallet[:4]}...{wallet[-4:]}",
-                        "To switch wallet, paste another private key.",
+                        "Choose Create or Import to change wallet.",
                     ],
                 )
 
-            self.client.push_state(
-                "InputMenu",
-                prompt=(
-                    "Paste private key JSON array (32 or 64 bytes). "
-                    "Leave empty to auto-create a devnet wallet."
-                ),
-                callback=self._wallet_connect_callback,
-            )
+            actions = {
+                "IMPORT PRIVATE KEY": self._open_import_wallet_input,
+                "CREATE DEVNET WALLET": self._create_wallet,
+            }
+            options = create_choice_options(actions)
+            menu = MenuOptions(options)
+            open_choice_dialog(self.client, menu, escape_key_exits=True)
 
         def change_state(
             state: State | str, **kwargs: Any
@@ -120,25 +120,40 @@ class StartState(PygameMenuState):
             button_id="exit",
         )
 
+    def _open_import_wallet_input(self) -> None:
+        self.client.push_state(
+            "InputMenu",
+            prompt="Paste private key JSON array (32 or 64 bytes)",
+            callback=self._wallet_connect_callback,
+        )
+
+    def _create_wallet(self) -> None:
+        ok, message = self._call_solana_method(
+            "create_devnet_wallet",
+            default_error=(
+                False,
+                "This build does not support in-game devnet wallet creation.",
+            ),
+        )
+        self._show_wallet_status(ok, message)
+        if ok:
+            self.menu.clear()
+            self.add_menu_items(self.menu)
+
     def _wallet_connect_callback(self, private_key_payload: str) -> None:
         payload = private_key_payload.strip()
-        if payload:
-            ok, message = self._call_solana_method(
-                "import_private_key",
-                payload,
-                default_error=(
-                    False,
-                    "This build does not support private key import.",
-                ),
-            )
-        else:
-            ok, message = self._call_solana_method(
-                "create_devnet_wallet",
-                default_error=(
-                    False,
-                    "This build does not support in-game devnet wallet creation.",
-                ),
-            )
+        if not payload:
+            open_dialog(self.client, ["Please paste a private key JSON array."])
+            return
+
+        ok, message = self._call_solana_method(
+            "import_private_key",
+            payload,
+            default_error=(
+                False,
+                "This build does not support private key import.",
+            ),
+        )
 
         self._show_wallet_status(ok, message)
         if ok:

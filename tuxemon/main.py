@@ -67,6 +67,7 @@ def headless(
     log.configure()
 
     control = HeadlessClient(config, context)
+    local_session.set_client(control)
     if host_server and control.network_manager.server:
         control.network_manager.server.server_port = server_port
         control.network_manager.server.start_hosting()

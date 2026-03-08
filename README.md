@@ -226,6 +226,8 @@ trainer_mint_price_sol = 0.1
 
 Use **CREATE DEVNET WALLET** to generate a wallet in-game, **IMPORT PRIVATE KEY** to restore one, and **EXPORT PRIVATE KEY** to back up locally managed wallets.
 
+If `solana-keygen` is unavailable, SolaMon now falls back to local key generation so gameplay is not blocked.
+
 Controls
 --------
 

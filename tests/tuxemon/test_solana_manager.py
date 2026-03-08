@@ -46,6 +46,22 @@ def test_create_devnet_wallet_from_keygen(monkeypatch) -> None:
     assert manager.wallet_address == "11111111111111111111111111111111"
 
 
+def test_create_devnet_wallet_fallback_without_keygen(monkeypatch) -> None:
+    manager = SolanaManager.from_config(_config())
+    manager.connect_wallet("")
+
+    monkeypatch.setattr(
+        manager,
+        "_run_keygen",
+        MagicMock(side_effect=RuntimeError("solana-keygen missing")),
+    )
+
+    ok, _ = manager.create_devnet_wallet()
+
+    assert ok
+    assert manager.is_valid_wallet_address(manager.wallet_address)
+
+
 def test_import_private_key_validation() -> None:
     manager = SolanaManager.from_config(_config())
 

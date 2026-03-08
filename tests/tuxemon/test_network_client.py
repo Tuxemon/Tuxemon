@@ -290,3 +290,34 @@ def test_populate_player_handles_uninitialized_map(client, monkeypatch):
 
     assert result is False
     client.client.send_event.assert_not_called()
+
+
+def test_update_player_handles_uninitialized_map(client, monkeypatch):
+    fake_player = MagicMock()
+    fake_player.__dict__ = {"tile_pos": [3, 4]}
+    monkeypatch.setattr("tuxemon.session.local_session._player", fake_player)
+    client.game.get_map_name.side_effect = ValueError(
+        "Name of the map requested when no map is active"
+    )
+    client.client.send_event = MagicMock()
+
+    result = client.sync_manager.update_player("down")
+
+    assert result is False
+    client.client.send_event.assert_not_called()
+
+
+def test_update_player_sends_when_initialized(client, monkeypatch):
+    fake_player = MagicMock()
+    fake_player.__dict__ = {"tile_pos": [3, 4]}
+    monkeypatch.setattr("tuxemon.session.local_session._player", fake_player)
+    client.game.get_map_name.return_value = "start-town"
+    client.client.send_event = MagicMock()
+
+    result = client.sync_manager.update_player("down")
+
+    assert result is True
+    payload = client.client.send_event.call_args[0][0]
+    assert payload["type"] == "CLIENT_MAP_UPDATE"
+    assert payload["map_name"] == "start-town"
+    assert payload["char_dict"]["tile_pos"] == (3, 4)

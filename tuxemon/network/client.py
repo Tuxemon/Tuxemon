@@ -22,6 +22,12 @@ if TYPE_CHECKING:
 logger = logging.getLogger(__name__)
 
 
+def _facing_member_name(value: Any) -> str:
+    """Convert facing value to Direction enum member name expected by EventData."""
+    if hasattr(value, "name"):
+        return str(value.name)
+    return str(value or "down").upper()
+
 class GameEntry(TypedDict):
     ip: str
     port: int
@@ -122,9 +128,9 @@ class TuxemonClient:
         self,
         direction: str,
         event_type: str = "CLIENT_MAP_UPDATE",
-    ) -> None:
+    ) -> bool:
         """Updates the server with the player's current map and position."""
-        self.sync_manager.update_player(direction, event_type)
+        return self.sync_manager.update_player(direction, event_type)
 
     def set_key_condition(self, event: Any) -> None:
         """Translates input events into network events."""
@@ -272,7 +278,7 @@ class PlayerSyncManager:
         char_dict = {
             "tile_pos": player_data.get("tile_pos", [0, 0]),
             "name": player_data.get("name", "Unnamed Player"),
-            "facing": player_data.get("facing", "down"),
+            "facing": _facing_member_name(player_data.get("facing", "down")),
         }
 
         self._send_event(
@@ -285,12 +291,25 @@ class PlayerSyncManager:
 
     def update_player(
         self, direction: str, event_type: str = "CLIENT_MAP_UPDATE"
-    ) -> None:
+    ) -> bool:
         """Sends client's current map and location to the server."""
-        pd = local_session.player.__dict__
-        map_name = self.game.get_map_name()
+        try:
+            pd = local_session.player.__dict__
+            map_name = self.game.get_map_name()
+        except ValueError as e:
+            logger.debug(
+                f"Skipping player update until game is initialized: {e}"
+            )
+            return False
 
-        char_dict = {"tile_pos": pd["tile_pos"]}
+        char_dict = {
+            "tile_pos": pd.get("tile_pos", [0, 0]),
+            "name": pd.get("name", "Unnamed Player"),
+            "facing": _facing_member_name(pd.get("facing", "down")),
+            "running": pd.get("running", False),
+            "monsters": pd.get("monsters", []),
+            "inventory": pd.get("inventory", []),
+        }
 
         self._send_event(
             event_type,
@@ -298,6 +317,7 @@ class PlayerSyncManager:
             direction=direction,
             char_dict=char_dict,
         )
+        return True
 
 
 class MultiplayerDiscovery:

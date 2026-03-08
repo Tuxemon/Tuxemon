@@ -100,10 +100,14 @@ class StartState(PygameMenuState):
             )
 
         def create_wallet() -> None:
-            ok, message = self.client.solana_manager.create_devnet_wallet()
-            open_dialog(self.client, [message])
-            if ok:
-                self._show_connected_wallet()
+            ok, message = self._call_solana_method(
+                "create_devnet_wallet",
+                default_error=(
+                    False,
+                    "This build does not support in-game devnet wallet creation.",
+                ),
+            )
+            self._show_wallet_status(ok, message)
 
         def change_state(
             state: State | str, **kwargs: Any
@@ -169,28 +173,64 @@ class StartState(PygameMenuState):
         )
 
     def _connect_provider(self, provider: str) -> None:
-        ok, message = self.client.solana_manager.connect_wallet_provider(
-            provider
+        ok, message = self._call_solana_method(
+            "connect_wallet_provider",
+            provider,
+            default_error=(
+                False,
+                "This build does not support direct wallet provider connect.",
+            ),
         )
-        open_dialog(self.client, [message])
-        if ok:
-            self._show_connected_wallet()
+        self._show_wallet_status(ok, message)
 
     def _import_private_key(self, private_key_payload: str) -> None:
-        ok, message = self.client.solana_manager.import_private_key(
-            private_key_payload
+        ok, message = self._call_solana_method(
+            "import_private_key",
+            private_key_payload,
+            default_error=(
+                False,
+                "This build does not support private key import.",
+            ),
         )
-        open_dialog(self.client, [message])
-        if ok:
-            self._show_connected_wallet()
+        self._show_wallet_status(ok, message)
 
-    def _show_connected_wallet(self) -> None:
+    def _show_wallet_status(self, ok: bool, message: str) -> None:
+        if not ok:
+            open_dialog(self.client, [message])
+            return
+
         wallet = self.client.solana_manager.wallet_address
         if wallet:
             open_dialog(
                 self.client,
-                [f"Connected wallet: {wallet[:4]}...{wallet[-4:]}"],
+                [f"{message}\nConnected wallet: {wallet[:4]}...{wallet[-4:]}"],
             )
+        else:
+            open_dialog(self.client, [message])
+
+    def _call_solana_method(
+        self,
+        method: str,
+        *args: Any,
+        default_error: tuple[bool, str],
+    ) -> tuple[bool, str]:
+        func = getattr(self.client.solana_manager, method, None)
+        if not callable(func):
+            logger.error("Missing SolanaManager method: %s", method)
+            return default_error
+        try:
+            result = func(*args)
+            if (
+                isinstance(result, tuple)
+                and len(result) == 2
+                and isinstance(result[0], bool)
+                and isinstance(result[1], str)
+            ):
+                return result
+        except Exception as exc:
+            logger.exception("Solana wallet action failed: %s", method)
+            return False, f"Wallet action failed: {exc}"
+        return False, "Wallet action returned an unexpected response"
 
     def __init__(self, client: BaseClient, **kwargs: Any) -> None:
         width, height = client.context.resolution

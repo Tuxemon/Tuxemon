@@ -14,12 +14,10 @@ from pygame_menu.locals import ALIGN_CENTER, POSITION_EAST
 from pygame_menu.menu import Menu
 
 from tuxemon.database.runtime import db
-from tuxemon.entity.player import Player
 from tuxemon.launcher import GameLauncher
 from tuxemon.locale.locale import T
 from tuxemon.menu.menu import PygameMenuState
 from tuxemon.platform.const.graphics import BG_START_SCREEN, BLACK_COLOR
-from tuxemon.platform.const.sizes import PLAYER_NPC
 from tuxemon.session import local_session
 from tuxemon.state.state import State
 from tuxemon.tools import open_dialog
@@ -64,7 +62,9 @@ class StartState(PygameMenuState):
             if not self.client.solana_manager.has_wallet_connection():
                 open_dialog(
                     self.client,
-                    ["Connect a Solana devnet wallet before playing SolaMon."],
+                    [
+                        "Connect a Phantom/Solflare wallet or import/create a dev wallet first."
+                    ],
                 )
                 return
 
@@ -86,12 +86,24 @@ class StartState(PygameMenuState):
                 remove_states=["StartState"],
             )
 
-        def connect_wallet() -> None:
+        def connect_phantom() -> None:
+            self._connect_provider("phantom")
+
+        def connect_solflare() -> None:
+            self._connect_provider("solflare")
+
+        def import_private_key() -> None:
             self.client.push_state(
                 "InputMenu",
-                prompt="Enter Solana devnet wallet address",
-                callback=self._set_wallet,
+                prompt="Paste private key JSON array (32 or 64 bytes)",
+                callback=self._import_private_key,
             )
+
+        def create_wallet() -> None:
+            ok, message = self.client.solana_manager.create_devnet_wallet()
+            open_dialog(self.client, [message])
+            if ok:
+                self._show_connected_wallet()
 
         def change_state(
             state: State | str, **kwargs: Any
@@ -108,10 +120,28 @@ class StartState(PygameMenuState):
             self.client.quit()
 
         menu.add.button(
-            title="CONNECT WALLET",
-            action=connect_wallet,
+            title="CONNECT PHANTOM",
+            action=connect_phantom,
             font_size=self.font_type.big,
-            button_id="solamon_wallet_connect",
+            button_id="solamon_wallet_connect_phantom",
+        )
+        menu.add.button(
+            title="CONNECT SOLFLARE",
+            action=connect_solflare,
+            font_size=self.font_type.big,
+            button_id="solamon_wallet_connect_solflare",
+        )
+        menu.add.button(
+            title="IMPORT PRIVATE KEY",
+            action=import_private_key,
+            font_size=self.font_type.big,
+            button_id="solamon_wallet_import",
+        )
+        menu.add.button(
+            title="CREATE DEVNET WALLET",
+            action=create_wallet,
+            font_size=self.font_type.big,
+            button_id="solamon_wallet_create",
         )
         menu.add.button(
             title=T.translate("menu_multiplayer"),
@@ -138,23 +168,29 @@ class StartState(PygameMenuState):
             button_id="exit",
         )
 
-    def _set_wallet(self, wallet_address: str) -> None:
-        if not self.client.solana_manager.is_valid_wallet_address(
-            wallet_address
-        ):
+    def _connect_provider(self, provider: str) -> None:
+        ok, message = self.client.solana_manager.connect_wallet_provider(
+            provider
+        )
+        open_dialog(self.client, [message])
+        if ok:
+            self._show_connected_wallet()
+
+    def _import_private_key(self, private_key_payload: str) -> None:
+        ok, message = self.client.solana_manager.import_private_key(
+            private_key_payload
+        )
+        open_dialog(self.client, [message])
+        if ok:
+            self._show_connected_wallet()
+
+    def _show_connected_wallet(self) -> None:
+        wallet = self.client.solana_manager.wallet_address
+        if wallet:
             open_dialog(
                 self.client,
-                [
-                    "Invalid wallet address. Please enter a valid Solana public key."
-                ],
+                [f"Connected wallet: {wallet[:4]}...{wallet[-4:]}"],
             )
-            return
-
-        self.client.solana_manager.connect_wallet(wallet_address)
-        open_dialog(
-            self.client,
-            ["Wallet connected. You can now host/join multiplayer and play."],
-        )
 
     def __init__(self, client: BaseClient, **kwargs: Any) -> None:
         width, height = client.context.resolution
@@ -182,24 +218,6 @@ class StartState(PygameMenuState):
     def shutdown(self) -> None:
         self.unsubscribe("afk.threshold_reached", self._on_afk_threshold)
         super().shutdown()
-
-    def start_battle(self, difficulty: str) -> None:
-        Player.create(local_session, slug=PLAYER_NPC)
-        self.client.push_state(
-            "WorldState", session=local_session, map_name=None
-        )
-        self.client.event_engine.execute_action(
-            "set_variable", [f"difficulty:{difficulty}"]
-        )
-        self.client.event_engine.execute_action("load_yaml", ["battle_menu"])
-
-    def start_minigame(self, difficulty: str) -> None:
-        self.client.push_state(
-            "MinigameState",
-            difficulty=difficulty,
-            streak=0,
-            score=0,
-        )
 
 
 class ModsChoice(PygameMenuState):

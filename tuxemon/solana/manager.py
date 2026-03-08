@@ -173,6 +173,39 @@ class SolanaManager:
         except error.URLError as exc:
             logger.error("SolaMon chain service unavailable: %s", exc)
 
+    def _post_and_read(self, payload: dict[str, Any]) -> dict[str, Any]:
+        data = json.dumps(payload).encode("utf-8")
+        req = request.Request(
+            self.service_endpoint or "",
+            data=data,
+            headers={"Content-Type": "application/json"},
+            method="POST",
+        )
+        try:
+            with request.urlopen(req, timeout=15) as response:
+                raw = response.read().decode("utf-8")
+            return json.loads(raw) if raw else {}
+        except (error.URLError, json.JSONDecodeError):
+            return {}
+
+    def _run_keygen(self, cmd: list[str]) -> str:
+        try:
+            proc = subprocess.run(
+                cmd,
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            return proc.stdout.strip()
+        except FileNotFoundError as exc:
+            raise RuntimeError(
+                "solana-keygen is required for local wallet create/import"
+            ) from exc
+        except subprocess.CalledProcessError as exc:
+            raise RuntimeError(
+                exc.stderr.strip() or "solana-keygen command failed"
+            ) from exc
+
     def _asset_id(self, namespace: str, unique_key: str) -> str:
         digest = hashlib.sha256(
             f"{namespace}:{unique_key}:{self.wallet_address}".encode("utf-8")

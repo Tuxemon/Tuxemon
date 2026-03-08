@@ -14,15 +14,13 @@ from pygame_menu.locals import ALIGN_CENTER, POSITION_EAST
 from pygame_menu.menu import Menu
 
 from tuxemon.database.runtime import db
-from tuxemon.entity.player import Player
 from tuxemon.launcher import GameLauncher
 from tuxemon.locale.locale import T
 from tuxemon.menu.menu import PygameMenuState
 from tuxemon.platform.const.graphics import BG_START_SCREEN, BLACK_COLOR
-from tuxemon.platform.const.sizes import PLAYER_NPC
-from tuxemon.save import get_index_of_latest_save
 from tuxemon.session import local_session
 from tuxemon.state.state import State
+from tuxemon.tools import open_dialog
 
 if TYPE_CHECKING:
     from tuxemon.base_client import BaseClient
@@ -60,10 +58,25 @@ class StartState(PygameMenuState):
         self,
         menu: Menu,
     ) -> None:
-        # If there is a save, then move the cursor to "Load game" first
-        index = get_index_of_latest_save()
-
         def new_game() -> None:
+            if not self.client.solana_manager.has_wallet_connection():
+                open_dialog(
+                    self.client,
+                    [
+                        "Connect a Phantom/Solflare wallet or import/create a dev wallet first."
+                    ],
+                )
+                return
+
+            if not self.client.network_manager.is_connected():
+                open_dialog(
+                    self.client,
+                    [
+                        "SolaMon is multiplayer-only. Host or join a game first."
+                    ],
+                )
+                return
+
             launcher = GameLauncher(self.client)
             launcher.launch(
                 session=local_session,
@@ -72,6 +85,29 @@ class StartState(PygameMenuState):
                 ),
                 remove_states=["StartState"],
             )
+
+        def connect_phantom() -> None:
+            self._connect_provider("phantom")
+
+        def connect_solflare() -> None:
+            self._connect_provider("solflare")
+
+        def import_private_key() -> None:
+            self.client.push_state(
+                "InputMenu",
+                prompt="Paste private key JSON array (32 or 64 bytes)",
+                callback=self._import_private_key,
+            )
+
+        def create_wallet() -> None:
+            ok, message = self._call_solana_method(
+                "create_devnet_wallet",
+                default_error=(
+                    False,
+                    "This build does not support in-game devnet wallet creation.",
+                ),
+            )
+            self._show_wallet_status(ok, message)
 
         def change_state(
             state: State | str, **kwargs: Any
@@ -87,46 +123,41 @@ class StartState(PygameMenuState):
         def exit_game() -> None:
             self.client.quit()
 
-        if index is not None:
-            menu.add.button(
-                title=T.translate("menu_load"),
-                action=change_state("LoadMenuState"),
-                font_size=self.font_type.big,
-                button_id="menu_load",
-            )
-        if len(self.client.config.mods) == 1:
-            menu.add.button(
-                title=T.translate("menu_new_game"),
-                action=new_game,
-                font_size=self.font_type.big,
-                button_id="menu_new_game",
-            )
-        else:
-            menu.add.button(
-                title=T.translate("menu_new_game"),
-                action=change_state(
-                    "ModsChoice", mods=self.client.config.mods
-                ),
-                font_size=self.font_type.big,
-                button_id="menu_mod_choice",
-            )
         menu.add.button(
-            title=T.translate("menu_battle"),
-            action=change_state(
-                "DifficultyPickState", on_pick=self.start_battle
-            ),
+            title="CONNECT PHANTOM",
+            action=connect_phantom,
             font_size=self.font_type.big,
-            button_id="menu_battle",
+            button_id="solamon_wallet_connect_phantom",
         )
         menu.add.button(
-            title=T.translate("menu_minigame"),
-            action=change_state(
-                "DifficultyPickState",
-                on_pick=self.start_minigame,
-                difficulties=["easy", "normal", "hard"],
-            ),
+            title="CONNECT SOLFLARE",
+            action=connect_solflare,
             font_size=self.font_type.big,
-            button_id="menu_minigame",
+            button_id="solamon_wallet_connect_solflare",
+        )
+        menu.add.button(
+            title="IMPORT PRIVATE KEY",
+            action=import_private_key,
+            font_size=self.font_type.big,
+            button_id="solamon_wallet_import",
+        )
+        menu.add.button(
+            title="CREATE DEVNET WALLET",
+            action=create_wallet,
+            font_size=self.font_type.big,
+            button_id="solamon_wallet_create",
+        )
+        menu.add.button(
+            title=T.translate("menu_multiplayer"),
+            action=change_state("MultiplayerMenu"),
+            font_size=self.font_type.big,
+            button_id="menu_multiplayer",
+        )
+        menu.add.button(
+            title="PLAY SOLAMON",
+            action=new_game,
+            font_size=self.font_type.big,
+            button_id="menu_new_game",
         )
         menu.add.button(
             title=T.translate("menu_options"),
@@ -140,6 +171,66 @@ class StartState(PygameMenuState):
             font_size=self.font_type.big,
             button_id="exit",
         )
+
+    def _connect_provider(self, provider: str) -> None:
+        ok, message = self._call_solana_method(
+            "connect_wallet_provider",
+            provider,
+            default_error=(
+                False,
+                "This build does not support direct wallet provider connect.",
+            ),
+        )
+        self._show_wallet_status(ok, message)
+
+    def _import_private_key(self, private_key_payload: str) -> None:
+        ok, message = self._call_solana_method(
+            "import_private_key",
+            private_key_payload,
+            default_error=(
+                False,
+                "This build does not support private key import.",
+            ),
+        )
+        self._show_wallet_status(ok, message)
+
+    def _show_wallet_status(self, ok: bool, message: str) -> None:
+        if not ok:
+            open_dialog(self.client, [message])
+            return
+
+        wallet = self.client.solana_manager.wallet_address
+        if wallet:
+            open_dialog(
+                self.client,
+                [f"{message}\nConnected wallet: {wallet[:4]}...{wallet[-4:]}"],
+            )
+        else:
+            open_dialog(self.client, [message])
+
+    def _call_solana_method(
+        self,
+        method: str,
+        *args: Any,
+        default_error: tuple[bool, str],
+    ) -> tuple[bool, str]:
+        func = getattr(self.client.solana_manager, method, None)
+        if not callable(func):
+            logger.error("Missing SolanaManager method: %s", method)
+            return default_error
+        try:
+            result = func(*args)
+            if (
+                isinstance(result, tuple)
+                and len(result) == 2
+                and isinstance(result[0], bool)
+                and isinstance(result[1], str)
+            ):
+                return result
+        except Exception as exc:
+            logger.exception("Solana wallet action failed: %s", method)
+            return False, f"Wallet action failed: {exc}"
+        return False, "Wallet action returned an unexpected response"
 
     def __init__(self, client: BaseClient, **kwargs: Any) -> None:
         width, height = client.context.resolution
@@ -167,24 +258,6 @@ class StartState(PygameMenuState):
     def shutdown(self) -> None:
         self.unsubscribe("afk.threshold_reached", self._on_afk_threshold)
         super().shutdown()
-
-    def start_battle(self, difficulty: str) -> None:
-        Player.create(local_session, slug=PLAYER_NPC)
-        self.client.push_state(
-            "WorldState", session=local_session, map_name=None
-        )
-        self.client.event_engine.execute_action(
-            "set_variable", [f"difficulty:{difficulty}"]
-        )
-        self.client.event_engine.execute_action("load_yaml", ["battle_menu"])
-
-    def start_minigame(self, difficulty: str) -> None:
-        self.client.push_state(
-            "MinigameState",
-            difficulty=difficulty,
-            streak=0,
-            score=0,
-        )
 
 
 class ModsChoice(PygameMenuState):

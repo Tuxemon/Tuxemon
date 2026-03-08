@@ -62,9 +62,7 @@ class StartState(PygameMenuState):
             if not self.client.solana_manager.has_wallet_connection():
                 open_dialog(
                     self.client,
-                    [
-                        "Connect a Phantom/Solflare wallet or import/create a dev wallet first."
-                    ],
+                    ["Create or import a devnet wallet first."],
                 )
                 return
 
@@ -86,12 +84,6 @@ class StartState(PygameMenuState):
                 remove_states=["StartState"],
             )
 
-        def connect_phantom() -> None:
-            self._connect_provider("phantom")
-
-        def connect_solflare() -> None:
-            self._connect_provider("solflare")
-
         def import_private_key() -> None:
             self.client.push_state(
                 "InputMenu",
@@ -105,6 +97,16 @@ class StartState(PygameMenuState):
                 default_error=(
                     False,
                     "This build does not support in-game devnet wallet creation.",
+                ),
+            )
+            self._show_wallet_status(ok, message)
+
+        def export_private_key() -> None:
+            ok, message = self._call_solana_method(
+                "export_connected_private_key",
+                default_error=(
+                    False,
+                    "This build does not support private key export.",
                 ),
             )
             self._show_wallet_status(ok, message)
@@ -124,18 +126,6 @@ class StartState(PygameMenuState):
             self.client.quit()
 
         menu.add.button(
-            title="CONNECT PHANTOM",
-            action=connect_phantom,
-            font_size=self.font_type.big,
-            button_id="solamon_wallet_connect_phantom",
-        )
-        menu.add.button(
-            title="CONNECT SOLFLARE",
-            action=connect_solflare,
-            font_size=self.font_type.big,
-            button_id="solamon_wallet_connect_solflare",
-        )
-        menu.add.button(
             title="IMPORT PRIVATE KEY",
             action=import_private_key,
             font_size=self.font_type.big,
@@ -146,6 +136,12 @@ class StartState(PygameMenuState):
             action=create_wallet,
             font_size=self.font_type.big,
             button_id="solamon_wallet_create",
+        )
+        menu.add.button(
+            title="EXPORT PRIVATE KEY",
+            action=export_private_key,
+            font_size=self.font_type.big,
+            button_id="solamon_wallet_export",
         )
         menu.add.button(
             title=T.translate("menu_multiplayer"),
@@ -171,17 +167,6 @@ class StartState(PygameMenuState):
             font_size=self.font_type.big,
             button_id="exit",
         )
-
-    def _connect_provider(self, provider: str) -> None:
-        ok, message = self._call_solana_method(
-            "connect_wallet_provider",
-            provider,
-            default_error=(
-                False,
-                "This build does not support direct wallet provider connect.",
-            ),
-        )
-        self._show_wallet_status(ok, message)
 
     def _import_private_key(self, private_key_payload: str) -> None:
         ok, message = self._call_solana_method(

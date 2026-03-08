@@ -6,9 +6,8 @@ import hashlib
 import json
 import logging
 import subprocess
-import webbrowser
 from dataclasses import asdict, dataclass
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 from urllib import error, request
@@ -46,6 +45,7 @@ class SolanaManager:
         self.service_endpoint = service_endpoint
         self.trainer_mint_price_sol = trainer_mint_price_sol
         self._minted_assets: dict[str, ChainEvent] = {}
+        self._wallet_keypair_files: dict[str, Path] = {}
 
     @property
     def wallet_dir(self) -> Path:
@@ -80,49 +80,6 @@ class SolanaManager:
         )
         return all(c in base58_chars for c in value)
 
-    def connect_wallet_provider(self, provider: str) -> tuple[bool, str]:
-        """Connect using Phantom or Solflare through an external wallet flow."""
-        provider = provider.lower().strip()
-        if provider not in {"phantom", "solflare"}:
-            return False, "Unsupported wallet provider"
-
-        if self.service_endpoint:
-            payload = self._post_and_read(
-                {
-                    "action": "wallet_connect",
-                    "provider": provider,
-                    "cluster": "devnet",
-                    "rpc_url": self.rpc_url,
-                }
-            )
-            wallet = str(payload.get("wallet_address", "")).strip()
-            auth_url = str(payload.get("auth_url", "")).strip()
-            if wallet and self.is_valid_wallet_address(wallet):
-                self.connect_wallet(wallet)
-                return True, f"Connected {provider.title()} wallet: {wallet}"
-            if auth_url:
-                try:
-                    webbrowser.open(auth_url)
-                except Exception as exc:
-                    return False, f"Failed to open browser: {exc}"
-                return (
-                    True,
-                    f"Opened {provider.title()} connection flow in browser.",
-                )
-
-        fallback_url = {
-            "phantom": "https://phantom.app/",
-            "solflare": "https://solflare.com/",
-        }[provider]
-        try:
-            webbrowser.open(fallback_url)
-        except Exception as exc:
-            return False, f"Failed to open browser: {exc}"
-        return (
-            False,
-            f"Opened {provider.title()} site. Configure service_endpoint for one-click in-game linking.",
-        )
-
     def create_devnet_wallet(self) -> tuple[bool, str]:
         """Create a new local devnet wallet and automatically connect it."""
         if self.service_endpoint:
@@ -140,7 +97,7 @@ class SolanaManager:
 
         wallet_file = (
             self.wallet_dir
-            / f"solamon-devnet-{datetime.utcnow().strftime('%Y%m%d%H%M%S')}.json"
+            / f"solamon-devnet-{datetime.now(timezone.utc).strftime('%Y%m%d%H%M%S')}.json"
         )
         try:
             self._run_keygen(
@@ -163,7 +120,8 @@ class SolanaManager:
             return False, "Generated wallet was invalid"
 
         self.connect_wallet(pubkey)
-        return True, f"Wallet created and connected: {pubkey} ({wallet_file})"
+        self._wallet_keypair_files[pubkey] = wallet_file
+        return True, f"Wallet created and connected: {pubkey}"
 
     def import_private_key(self, private_key_payload: str) -> tuple[bool, str]:
         """Import private key JSON (64-byte array) and connect the wallet."""
@@ -196,7 +154,7 @@ class SolanaManager:
 
         wallet_file = (
             self.wallet_dir
-            / f"solamon-imported-{datetime.utcnow().strftime('%Y%m%d%H%M%S')}.json"
+            / f"solamon-imported-{datetime.now(timezone.utc).strftime('%Y%m%d%H%M%S')}.json"
         )
         wallet_file.write_text(json.dumps(parsed), encoding="utf-8")
 
@@ -211,7 +169,30 @@ class SolanaManager:
             return False, "Imported key did not produce a valid wallet address"
 
         self.connect_wallet(pubkey)
+        self._wallet_keypair_files[pubkey] = wallet_file
         return True, f"Wallet imported and connected: {pubkey}"
+
+    def export_connected_private_key(self) -> tuple[bool, str]:
+        """Export the connected wallet private key JSON to an export file."""
+        wallet = self.wallet_address.strip()
+        if not wallet:
+            return False, "No connected wallet to export"
+
+        source = self._wallet_keypair_files.get(wallet)
+        if source is None or not source.exists():
+            return (
+                False,
+                "Connected wallet keypair is not locally managed, cannot export.",
+            )
+
+        export_path = (
+            self.wallet_dir
+            / f"solamon-export-{wallet[:6]}-{datetime.now(timezone.utc).strftime('%Y%m%d%H%M%S')}.json"
+        )
+        export_path.write_text(
+            source.read_text(encoding="utf-8"), encoding="utf-8"
+        )
+        return True, f"Private key exported to: {export_path}"
 
     def mint_trainer(self, player_slug: str, player_name: str | None) -> None:
         event = ChainEvent(

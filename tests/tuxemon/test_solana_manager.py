@@ -53,3 +53,20 @@ def test_import_private_key_validation() -> None:
 
     assert not ok
     assert "JSON array" in msg
+
+
+def test_export_private_key(monkeypatch, tmp_path) -> None:
+    manager = SolanaManager.from_config(_config())
+    keyfile = tmp_path / "wallet.json"
+    keyfile.write_text("[1,2,3]", encoding="utf-8")
+
+    manager.connect_wallet("11111111111111111111111111111111")
+    manager._wallet_keypair_files[manager.wallet_address] = keyfile
+    monkeypatch.setattr(
+        SolanaManager, "wallet_dir", property(lambda self: tmp_path)
+    )
+
+    ok, message = manager.export_connected_private_key()
+
+    assert ok
+    assert "Private key exported to:" in message

@@ -126,13 +126,21 @@ class TuxemonServer:
             "TuxemonServer: Shutdown complete. Server is no longer listening."
         )
 
-    def start_hosting(self) -> None:
+    def start_hosting(self) -> bool:
         """Starts websocket listening for multiplayer hosting."""
         if self.listening:
-            return
-        self.server.start_listening(self.server_port)
-        self.listening = True
-        logger.info("TuxemonServer: Hosting started on %s", self.server_port)
+            return True
+        started = self.server.start_listening(self.server_port)
+        self.listening = bool(started)
+        if self.listening:
+            logger.info("TuxemonServer: Hosting started on %s", self.server_port)
+            return True
+
+        logger.error(
+            "TuxemonServer: Failed to host on port %s (already in use or startup failure)",
+            self.server_port,
+        )
+        return False
 
     def get_next_event_number(self) -> int:
         """

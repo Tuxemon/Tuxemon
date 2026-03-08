@@ -212,15 +212,15 @@ def test_update_multiplayer_list_includes_local_hosted_server(client):
     assert client.server_list == ["My Hosted Server (127.0.0.1:40123)"]
 
 
-def test_update_multiplayer_list_empty_without_hosted_server(client):
+def test_update_multiplayer_list_includes_default_server_without_local_host(client):
     server = MagicMock()
     server.listening = False
     client.game.network_manager.server = server
 
     client.discovery.update_multiplayer_list()
 
-    assert client.available_games == []
-    assert client.server_list == []
+    assert client.available_games == [("127.0.0.1", 40081)]
+    assert client.server_list == ["Default Tuxemon Server (127.0.0.1:40081)"]
 
 
 def test_connection_manager_connects_even_when_running_as_host(client):
@@ -321,3 +321,24 @@ def test_update_player_sends_when_initialized(client, monkeypatch):
     assert payload["type"] == "CLIENT_MAP_UPDATE"
     assert payload["map_name"] == "start-town"
     assert payload["char_dict"]["tile_pos"] == (3, 4)
+
+
+def test_populate_player_sends_running_field(client, monkeypatch):
+    fake_player = MagicMock()
+    fake_player.__dict__ = {
+        "tile_pos": [0, 0],
+        "name": "Test",
+        "facing": "down",
+        "running": True,
+        "monsters": [],
+        "inventory": [],
+    }
+    monkeypatch.setattr("tuxemon.session.local_session._player", fake_player)
+    client.game.get_map_name.return_value = "start-town"
+    client.client.send_event = MagicMock()
+
+    result = client.sync_manager.populate_player()
+
+    assert result is True
+    payload = client.client.send_event.call_args[0][0]
+    assert payload["char_dict"]["running"] is True

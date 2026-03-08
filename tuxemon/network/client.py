@@ -279,6 +279,9 @@ class PlayerSyncManager:
             "tile_pos": player_data.get("tile_pos", [0, 0]),
             "name": player_data.get("name", "Unnamed Player"),
             "facing": _facing_member_name(player_data.get("facing", "down")),
+            "running": player_data.get("running", False),
+            "monsters": player_data.get("monsters", []),
+            "inventory": player_data.get("inventory", []),
         }
 
         self._send_event(
@@ -330,18 +333,22 @@ class MultiplayerDiscovery:
 
     def update_multiplayer_list(self) -> None:
         """Refreshes available games, including the local hosted server."""
-        games: list[GameEntry] = []
+        games: list[GameEntry] = [
+            {
+                "ip": "127.0.0.1",
+                "port": int(self.client.server_port),
+                "name": "Default Tuxemon Server",
+            }
+        ]
 
         try:
             server = self.client.game.network_manager.server
             if server and server.listening:
-                games.append(
-                    {
-                        "ip": "127.0.0.1",
-                        "port": int(server.server_port),
-                        "name": str(server.server_name or "Local Hosted Server"),
-                    }
-                )
+                games[0] = {
+                    "ip": "127.0.0.1",
+                    "port": int(server.server_port),
+                    "name": str(server.server_name or "Local Hosted Server"),
+                }
         except Exception as e:
             logger.warning(f"Failed to discover local hosted server: {e}")
 

@@ -11,7 +11,7 @@ from tuxemon.network.websocket_server import WebsocketServerWrapper
 @pytest.fixture
 def server(monkeypatch):
     monkeypatch.setattr(
-        WebsocketServerWrapper, "start_listening", lambda self, port: None
+        WebsocketServerWrapper, "start_listening", lambda self, port: True
     )
     game = MagicMock()
     return TuxemonServer(game)
@@ -37,13 +37,24 @@ def test_get_next_event_number_increments(server):
 
 
 def test_start_hosting_sets_listening_and_starts_wrapper(server):
-    server.server.start_listening = MagicMock()
+    server.server.start_listening = MagicMock(return_value=True)
     server.listening = False
 
-    server.start_hosting()
+    result = server.start_hosting()
 
+    assert result is True
     assert server.listening
     server.server.start_listening.assert_called_once_with(server.server_port)
+
+
+def test_start_hosting_returns_false_when_wrapper_fails(server):
+    server.server.start_listening = MagicMock(return_value=False)
+    server.listening = False
+
+    result = server.start_hosting()
+
+    assert result is False
+    assert server.listening is False
 
 
 def test_server_event_handler_routes_event(server):

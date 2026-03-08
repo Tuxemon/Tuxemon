@@ -68,7 +68,14 @@ class MultiplayerMenu(PygameMenuState):
         assert self.network.server
 
         if not self.network.server.listening:
-            self.network.server.start_hosting()
+            started = self.network.server.start_hosting()
+            if not started:
+                open_dialog(
+                    self.client,
+                    [
+                        "Could not host locally on this port. Trying to join existing local server instead."
+                    ],
+                )
 
         self.network.client.connect_to_host(
             "127.0.0.1",

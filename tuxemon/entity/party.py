@@ -230,6 +230,10 @@ class PartyHandler:
             return False
 
         self.remove_monster(monster)
+        if self.owner.session._client is not None:
+            self.owner.session.client.solana_manager.burn_monster(
+                str(monster.instance_id)
+            )
         monster.owner = None
         return True
 

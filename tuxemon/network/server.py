@@ -53,8 +53,7 @@ class TuxemonServer:
 
         self.server = WebsocketServerWrapper(self)
         self.server.max_clients = 32
-        self.server.start_listening(self.server_port)
-        self.listening = True
+        self.listening = False
         self.client_registry = ClientRegistry(timeout=self.timeout)
         self.event_router = EventRouter(
             self.client_registry.registry, self.get_next_event_number
@@ -126,6 +125,14 @@ class TuxemonServer:
         logger.info(
             "TuxemonServer: Shutdown complete. Server is no longer listening."
         )
+
+    def start_hosting(self) -> None:
+        """Starts websocket listening for multiplayer hosting."""
+        if self.listening:
+            return
+        self.server.start_listening(self.server_port)
+        self.listening = True
+        logger.info("TuxemonServer: Hosting started on %s", self.server_port)
 
     def get_next_event_number(self) -> int:
         """

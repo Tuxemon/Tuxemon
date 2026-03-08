@@ -564,6 +564,11 @@ def on_capture_success(item: Item, target: Monster, character: NPC) -> None:
     if config.capdev_effects:
         apply_effects(config.capdev_effects, target)
 
+    if character.session._client is not None:
+        character.session.client.solana_manager.mint_monster(
+            target.slug, str(target.instance_id)
+        )
+
 
 def apply_effects(config: list[CaptureDeviceEffect], target: Monster) -> None:
     for effect in config:

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import logging
 from collections.abc import Mapping
+from typing import Callable
 
 from tuxemon.money.bill import BillEntry
 from tuxemon.money.portfolio import PortfolioManager
@@ -17,27 +18,38 @@ class MoneyManager:
         self.bank_account: int = 0
         self.bills: dict[str, BillEntry] = {}
         self.portfolio_manager: PortfolioManager = PortfolioManager()
+        self.on_money_changed: Callable[[int, str], None] | None = None
+
+    def _notify_money_change(self, delta: int, reason: str) -> None:
+        if self.on_money_changed is not None and delta != 0:
+            self.on_money_changed(delta, reason)
 
     def set_money(self, amount: int) -> None:
         if amount < 0:
             raise AttributeError(f"{amount} must be >= 0")
+        previous = self.money
         self.money = amount
+        self._notify_money_change(self.money - previous, "set_money")
 
     def add_money(self, amount: int) -> None:
+        previous = self.money
         self.money += amount
         if self.money < 0:
             logger.warning(
                 f"Money underflow: clamped to 0 after subtracting {amount}"
             )
             self.money = 0
+        self._notify_money_change(self.money - previous, "add_money")
 
     def remove_money(self, amount: int) -> None:
+        previous = self.money
         self.money -= amount
         if self.money < 0:
             logger.warning(
                 f"Money underflow: clamped to 0 after subtracting {amount}"
             )
             self.money = 0
+        self._notify_money_change(self.money - previous, "remove_money")
 
     def get_money(self) -> int:
         return self.money

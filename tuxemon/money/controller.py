@@ -23,6 +23,20 @@ class MoneyController:
     def __init__(self, npc: NPC) -> None:
         self.npc = npc
         self.money_manager = MoneyManager()
+        self.money_manager.on_money_changed = self._on_money_changed
+
+    def _on_money_changed(self, delta: int, reason: str) -> None:
+        if not self.npc.is_player:
+            return
+        session = self.npc.session
+        if session._client is None:
+            return
+
+        solana = session.client.solana_manager
+        if delta > 0:
+            solana.reward_currency(delta, reason)
+        elif delta < 0:
+            solana.spend_currency(abs(delta), reason)
 
     def save(self) -> Mapping[str, Any]:
         """Prepares a dictionary of the money manager to be saved to a file."""
@@ -31,6 +45,7 @@ class MoneyController:
     def load(self, save_data: NPCState) -> None:
         """Recreates money manager from saved data."""
         self.money_manager = decode_money(save_data.money or {})
+        self.money_manager.on_money_changed = self._on_money_changed
 
     def transfer_money_to(self, amount: int, recipient: NPC) -> None:
         if amount <= 0:

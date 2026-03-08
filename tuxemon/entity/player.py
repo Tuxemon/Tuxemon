@@ -46,6 +46,10 @@ class Player(NPC):
 
         if not session.has_player():
             session.set_player(player)
+            if session._client is not None:
+                session.client.solana_manager.mint_trainer(
+                    player.slug, player.name
+                )
 
         return player
 

@@ -198,6 +198,52 @@ uv sync
 uv run python run_tuxemon.py
 ```
 
+
+SolaMon (Solana Devnet Multiplayer)
+--------
+
+SolaMon now enforces multiplayer + wallet-gated gameplay on devnet:
+
+- You must connect a Solana wallet before starting gameplay (private key import, or local devnet wallet creation).
+- You must host or join multiplayer before starting gameplay (single-player launch is blocked).
+- Creating a trainer mints a **SolaMon Trainers** NFT and charges `0.1 SOL`.
+- Catching a monster mints a **SolaMon** NFT.
+- Releasing a monster burns the matching **SolaMon** NFT.
+- Getting items mints **SolaMon Items** NFTs, and consuming items burns them.
+- Badge rewards can mint **SolaMon Badges** NFTs via the `badge_chain <badge_id>` effect.
+
+Configuration lives under the new `[solana]` config section in `tuxemon.yaml`:
+
+```
+[solana]
+enabled = true
+rpc_url = "https://api.devnet.solana.com"
+wallet_address = "<player wallet>"
+treasury_address = "<game treasury wallet>"
+service_endpoint = "https://your-signer-service/mint"
+trainer_mint_price_sol = 0.1
+cluster = "devnet"
+official_token_mint = "AayJpSNSwD9iuXzRnaNmTvrLVRste74TNjzJ8Edzpump"
+```
+
+Use **CREATE DEVNET WALLET** to generate a wallet in-game, **IMPORT PRIVATE KEY** to restore one, and **EXPORT PRIVATE KEY** to back up locally managed wallets.
+
+If `solana-keygen` is unavailable, SolaMon now falls back to local key generation so gameplay is not blocked.
+
+In-game currency rewards now emit on-chain currency events: on **devnet** the game uses **SOL**, and on **mainnet-beta** it targets the official token mint `AayJpSNSwD9iuXzRnaNmTvrLVRste74TNjzJ8Edzpump`.
+
+You can start a dedicated multiplayer server directly from CLI:
+
+```
+python run_tuxemon.py --headless --host-server --server-port 40081
+```
+
+Or host from the normal client startup:
+
+```
+python run_tuxemon.py --host-server
+```
+
 Controls
 --------
 

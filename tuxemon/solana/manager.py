@@ -33,18 +33,22 @@ class SolanaManager:
         self,
         *,
         enabled: bool,
+        cluster: str,
         rpc_url: str,
         wallet_address: str,
         treasury_address: str,
         service_endpoint: str | None,
         trainer_mint_price_sol: float,
+        official_token_mint: str,
     ) -> None:
         self.enabled = enabled
+        self.cluster = cluster
         self.rpc_url = rpc_url
         self.wallet_address = wallet_address
         self.treasury_address = treasury_address
         self.service_endpoint = service_endpoint
         self.trainer_mint_price_sol = trainer_mint_price_sol
+        self.official_token_mint = official_token_mint
         self._minted_assets: dict[str, ChainEvent] = {}
         self._wallet_keypair_files: dict[str, Path] = {}
 
@@ -58,12 +62,49 @@ class SolanaManager:
     def from_config(cls, config: Any) -> SolanaManager:
         return cls(
             enabled=config.enabled,
+            cluster=config.cluster,
             rpc_url=config.rpc_url,
             wallet_address=config.wallet_address,
             treasury_address=config.treasury_address,
             service_endpoint=config.service_endpoint,
             trainer_mint_price_sol=config.trainer_mint_price_sol,
+            official_token_mint=config.official_token_mint,
         )
+
+    def currency_asset(self) -> str:
+        return "SOL" if self.cluster == "devnet" else self.official_token_mint
+
+    def reward_currency(self, amount: int, reason: str) -> None:
+        if amount <= 0:
+            return
+        event = ChainEvent(
+            action="reward",
+            collection="SolaMon Currency",
+            owner_wallet=self.wallet_address,
+            asset_id=self._asset_id("currency", f"{reason}:{amount}"),
+            metadata={
+                "amount": amount,
+                "reason": reason,
+                "asset": self.currency_asset(),
+            },
+        )
+        self._submit(event)
+
+    def spend_currency(self, amount: int, reason: str) -> None:
+        if amount <= 0:
+            return
+        event = ChainEvent(
+            action="spend",
+            collection="SolaMon Currency",
+            owner_wallet=self.wallet_address,
+            asset_id=self._asset_id("currency", f"{reason}:{amount}"),
+            metadata={
+                "amount": amount,
+                "reason": reason,
+                "asset": self.currency_asset(),
+            },
+        )
+        self._submit(event)
 
     def has_wallet_connection(self) -> bool:
         return bool(self.wallet_address.strip())
@@ -287,7 +328,7 @@ class SolanaManager:
         payload = asdict(event)
         payload["rpc_url"] = self.rpc_url
         payload["treasury_address"] = self.treasury_address
-        payload["cluster"] = "devnet"
+        payload["cluster"] = self.cluster
 
         if self.service_endpoint:
             self._post(payload)

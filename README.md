@@ -222,11 +222,15 @@ wallet_address = "<player wallet>"
 treasury_address = "<game treasury wallet>"
 service_endpoint = "https://your-signer-service/mint"
 trainer_mint_price_sol = 0.1
+cluster = "devnet"
+official_token_mint = "AayJpSNSwD9iuXzRnaNmTvrLVRste74TNjzJ8Edzpump"
 ```
 
 Use **CREATE DEVNET WALLET** to generate a wallet in-game, **IMPORT PRIVATE KEY** to restore one, and **EXPORT PRIVATE KEY** to back up locally managed wallets.
 
 If `solana-keygen` is unavailable, SolaMon now falls back to local key generation so gameplay is not blocked.
+
+In-game currency rewards now emit on-chain currency events: on **devnet** the game uses **SOL**, and on **mainnet-beta** it targets the official token mint `AayJpSNSwD9iuXzRnaNmTvrLVRste74TNjzJ8Edzpump`.
 
 You can start a dedicated multiplayer server directly from CLI:
 

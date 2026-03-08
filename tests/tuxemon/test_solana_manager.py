@@ -8,11 +8,13 @@ from tuxemon.solana.manager import SolanaManager
 def _config(enabled: bool = True) -> SimpleNamespace:
     return SimpleNamespace(
         enabled=enabled,
+        cluster="devnet",
         rpc_url="https://api.devnet.solana.com",
         wallet_address="wallet-abc",
         treasury_address="treasury-xyz",
         service_endpoint=None,
         trainer_mint_price_sol=0.1,
+        official_token_mint="AayJpSNSwD9iuXzRnaNmTvrLVRste74TNjzJ8Edzpump",
     )
 
 
@@ -86,3 +88,16 @@ def test_export_private_key(monkeypatch, tmp_path) -> None:
 
     assert ok
     assert "Private key exported to:" in message
+
+
+def test_currency_asset_devnet_and_mainnet() -> None:
+    manager = SolanaManager.from_config(_config())
+    assert manager.currency_asset() == "SOL"
+
+    mainnet_cfg = _config()
+    mainnet_cfg.cluster = "mainnet-beta"
+    manager2 = SolanaManager.from_config(mainnet_cfg)
+    assert (
+        manager2.currency_asset()
+        == "AayJpSNSwD9iuXzRnaNmTvrLVRste74TNjzJ8Edzpump"
+    )

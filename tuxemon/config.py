@@ -120,11 +120,13 @@ class LoggingConfigModel(BaseModel):
 
 class SolanaConfig(BaseModel):
     enabled: bool = True
+    cluster: Literal["devnet", "mainnet-beta"] = "devnet"
     rpc_url: str = "https://api.devnet.solana.com"
     wallet_address: str = ""
     treasury_address: str = ""
     service_endpoint: str | None = None
     trainer_mint_price_sol: float = 0.1
+    official_token_mint: str = "AayJpSNSwD9iuXzRnaNmTvrLVRste74TNjzJ8Edzpump"
 
 
 class TuxemonFullConfig(BaseModel):

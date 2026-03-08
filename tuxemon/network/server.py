@@ -8,6 +8,7 @@ from collections.abc import Callable
 from dataclasses import asdict, replace
 from datetime import datetime
 from itertools import count
+from pathlib import Path
 from typing import TYPE_CHECKING, Any
 
 from tuxemon.db import Direction
@@ -52,6 +53,9 @@ class TuxemonServer:
         self.server_timestamp: datetime = datetime.now()
 
         self.server = WebsocketServerWrapper(self)
+        self.state_dir = Path.cwd() / "server"
+        self.state_file = self.state_dir / "characters.json"
+        self.character_state_store: dict[str, dict[str, Any]] = {}
         self.server.max_clients = 32
         self.listening = False
         self.client_registry = ClientRegistry(timeout=self.timeout)
@@ -66,6 +70,58 @@ class TuxemonServer:
             self.client_registry,
         )
         self._register_event_handlers()
+        self._load_character_states()
+
+
+    def _load_character_states(self) -> None:
+        """Load persisted character states from server folder."""
+        try:
+            if not self.state_file.exists():
+                return
+            payload = json.loads(self.state_file.read_text(encoding="utf-8"))
+            if isinstance(payload, dict):
+                self.character_state_store = payload
+                logger.info(
+                    "Loaded %s persisted character states from %s",
+                    len(self.character_state_store),
+                    self.state_file,
+                )
+        except Exception as e:
+            logger.warning("Failed to load persisted character states: %s", e)
+
+    def _save_character_states(self) -> None:
+        try:
+            self.state_dir.mkdir(parents=True, exist_ok=True)
+            self.state_file.write_text(
+                json.dumps(self.character_state_store, indent=2),
+                encoding="utf-8",
+            )
+        except Exception as e:
+            logger.warning("Failed to persist character states: %s", e)
+
+    def _persist_character_state(
+        self,
+        cuuid: str,
+        map_name: str | None,
+        char_data: CharData | dict[str, Any] | None,
+    ) -> None:
+        if not char_data:
+            return
+
+        if isinstance(char_data, CharData):
+            data = char_data.to_dict()
+        else:
+            data = dict(char_data)
+
+        name = str(data.get("name", "")).strip() or cuuid
+        entry = {
+            "cuuid": cuuid,
+            "map_name": map_name or "",
+            "char_dict": data,
+            "updated_at": datetime.now().isoformat(),
+        }
+        self.character_state_store[name] = entry
+        self._save_character_states()
 
     def _register_event_handlers(self) -> None:
         """
@@ -254,6 +310,9 @@ class TuxemonServer:
                 name,
                 event_data.map_name,
             )
+            self._persist_character_state(
+                cuuid, event_data.map_name, event_data.char_dict
+            )
 
         self.notify_populate_client(cuuid, event_data)
 
@@ -314,10 +373,12 @@ class TuxemonServer:
         self.notify_client(cuuid, event_data)
 
     def update_char_dict(self, cuuid: str, char_data: CharData | None) -> None:
-        """
-        Updates the character dictionary for a client with new data.
-        """
+        """Updates character state and persists it to server folder."""
         self.client_registry.update_char_dict(cuuid, char_data)
+        map_name = None
+        if cuuid in self.client_registry.registry:
+            map_name = self.client_registry.registry[cuuid].get("map_name")
+        self._persist_character_state(cuuid, map_name, char_data)
 
     def notify_client(self, cuuid: str, event_data: EventData) -> None:
         """

@@ -2,6 +2,7 @@
 # Copyright (c) 2014-2026 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from unittest.mock import MagicMock
 
+import json
 import pytest
 
 from tuxemon.network.server import TuxemonServer
@@ -80,6 +81,7 @@ def test_handle_push_self_event_registers_and_notifies(server):
     server.client_registry.register_client = MagicMock()
     server.notify_populate_client = MagicMock()
 
+    server.notify_populate_client = MagicMock()
     server.handle_push_self_event("abc", event)
 
     server.client_registry.register_client.assert_called_once_with(
@@ -220,3 +222,29 @@ def test_update_ignores_non_dict_events(server):
     server.update()
 
     server.event_router.route_event.assert_not_called()
+
+
+def test_handle_push_self_persists_character_state(server, tmp_path, monkeypatch):
+    server.state_dir = tmp_path / "server"
+    server.state_file = server.state_dir / "characters.json"
+    server.character_state_store = {}
+
+    event = MagicMock(
+        map_name="forest",
+        char_dict={
+            "name": "PlayerOne",
+            "tile_pos": [1, 2],
+            "facing": "DOWN",
+            "running": False,
+            "monsters": [],
+            "inventory": [],
+        },
+    )
+
+    server.notify_populate_client = MagicMock()
+    server.handle_push_self_event("abc", event)
+
+    assert server.state_file.exists()
+    payload = json.loads(server.state_file.read_text(encoding="utf-8"))
+    assert "PlayerOne" in payload
+    assert payload["PlayerOne"]["map_name"] == "forest"

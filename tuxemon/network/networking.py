@@ -15,7 +15,6 @@ from tuxemon.item.item import decode_items, encode_items
 from tuxemon.monster.monster import decode_monsters, encode_monsters
 from tuxemon.platform.const.sizes import PLAYER_NPC
 from tuxemon.session import local_session
-from tuxemon.states import world_state as world
 
 if TYPE_CHECKING:
     from tuxemon.base_client import BaseClient
@@ -59,6 +58,7 @@ class CharData:
     inventory: list[Item] = field(
         default_factory=list
     )  # List of items in the character's inventory
+    money: int = 0
 
     def copy(self, **updates: Any) -> CharData:
         return replace(self, **updates)
@@ -72,6 +72,7 @@ class CharData:
             "slug": self.slug,
             "monsters": encode_monsters(self.monsters),
             "inventory": encode_items(self.inventory),
+            "money": self.money,
         }
 
     @staticmethod
@@ -84,6 +85,7 @@ class CharData:
             slug=data.get("slug"),
             monsters=decode_monsters(data.get("monsters", [])),
             inventory=decode_items(data.get("inventory", [])),
+            money=int(data.get("money", 0)),
         )
 
 
@@ -218,43 +220,45 @@ def populate_client(
 def update_client(
     sprite: NPC, char_data: CharData | None, game: BaseClient
 ) -> None:
-    """Corrects character location when it changes map or loses sync.
-
-    Updates a client's character information, correcting its location and
-    synchronization when switching maps or when data becomes out of sync.
-
-    Parameters:
-        sprite: The NPC object representing the local client's character
-            (stored in the registry).
-        char_data: A CharData object containing updated character state (e.g., tile position, facing).
-        game: The game control object (server or client) for managing the game's state.
-    """
-    # Functionality is incomplete due to lack of global x/y implementation
-    return
+    """Apply latest replicated state to a remote client sprite."""
     if char_data is None:
         return
 
-    # Get the game world state
-    world_state = game.get_state_by_name(world.WorldState)
+    sprite_slug = str(getattr(sprite, "slug", "") or "")
+    if not sprite_slug.startswith("remote_"):
+        # Ignore local player and regular world NPC updates; this function is
+        # only for replicated remote peers.
+        return
 
-    # Convert CharData to dictionary
-    data = char_data.to_dict()
+    try:
+        sprite.name = char_data.name
+    except Exception:
+        pass
 
-    # Update sprite attributes
-    for item, value in data.items():
-        sprite.__dict__[item] = value
+    try:
+        sprite.facing = char_data.facing
+    except Exception:
+        pass
 
-        # Handle tile position updates
-        if item == "tile_pos":
-            tile_size = game.context.tile_size
-            position = [
-                value[0] * tile_size[0],
-                value[1] * tile_size[1],
-            ]
-            global_x = getattr(world_state, "global_x", 0)
-            global_y = getattr(world_state, "global_y", 0)
-            abs_position = [
-                position[0] + global_x,
-                position[1] + (global_y - tile_size[1]),
-            ]
-            sprite.__dict__["position"] = abs_position
+    try:
+        sprite.running = bool(char_data.running)
+    except Exception:
+        pass
+
+    try:
+        sprite.monsters = list(char_data.monsters)
+    except Exception:
+        pass
+
+    try:
+        sprite.inventory = list(char_data.inventory)
+    except Exception:
+        pass
+
+    tile_pos = (int(char_data.tile_pos[0]), int(char_data.tile_pos[1]))
+    if getattr(sprite, "tile_pos", None) != tile_pos:
+        try:
+            sprite.set_position(tile_pos)
+        except Exception:
+            pass
+    sprite._last_tile_pos = tile_pos

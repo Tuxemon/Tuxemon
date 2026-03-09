@@ -121,6 +121,24 @@ class TuxemonServer:
             return wallet_address
         return parsed or "Unnamed Player"
 
+    def _sanitize_saved_char_dict(
+        self, char_dict: dict[str, Any] | None
+    ) -> dict[str, Any] | None:
+        """Normalizes persisted payloads from older builds before decoding."""
+        if not isinstance(char_dict, dict):
+            return None
+
+        cleaned = dict(char_dict)
+        facing = cleaned.get("facing")
+        if isinstance(facing, str):
+            cleaned["facing"] = facing.upper()
+
+        tile_pos = cleaned.get("tile_pos")
+        if isinstance(tile_pos, tuple):
+            cleaned["tile_pos"] = list(tile_pos)
+
+        return cleaned
+
     def _persist_character_state(
         self,
         cuuid: str,
@@ -366,7 +384,7 @@ class TuxemonServer:
         saved_state = self._get_saved_state(wallet, cuuid)
 
         if saved_state:
-            saved_char = saved_state.get("char_dict")
+            saved_char = self._sanitize_saved_char_dict(saved_state.get("char_dict"))
             if isinstance(saved_char, dict) and {"tile_pos", "facing", "name"}.issubset(saved_char):
                 if isinstance(event_data, EventData):
                     event_data = event_data.copy(

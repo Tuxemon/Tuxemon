@@ -245,6 +245,7 @@ def test_handle_push_self_persists_character_state(server, tmp_path, monkeypatch
 
     event = MagicMock(
         map_name="forest",
+        wallet_address="WalletPersist123",
         char_dict={
             "name": "PlayerOne",
             "tile_pos": [1, 2],
@@ -260,8 +261,8 @@ def test_handle_push_self_persists_character_state(server, tmp_path, monkeypatch
 
     assert server.state_file.exists()
     payload = json.loads(server.state_file.read_text(encoding="utf-8"))
-    assert "abc" in payload
-    assert payload["abc"]["map_name"] == "forest"
+    assert "WalletPersist123" in payload
+    assert payload["WalletPersist123"]["map_name"] == "forest"
 
 
 def test_route_event_allows_push_self_for_unregistered_client(server):
@@ -347,3 +348,69 @@ def test_persist_character_state_accepts_legacy_signature(server, tmp_path):
     assert "abc" in payload
     assert payload["abc"]["map_name"] == "forest"
     assert payload["abc"]["char_dict"]["name"] == "LegacyPlayer"
+
+
+def test_handle_push_self_event_rejects_walletless_clients(server):
+    event = MagicMock(
+        map_name="forest",
+        wallet_address="",
+        char_dict={
+            "name": "Guest",
+            "tile_pos": [1, 1],
+            "facing": "DOWN",
+            "running": False,
+            "monsters": [],
+            "inventory": [],
+        },
+    )
+    server.client_registry.register_client = MagicMock()
+    server.notify_populate_client = MagicMock()
+    server.server.disconnect_client = MagicMock()
+
+    server.handle_push_self_event("abc", event)
+
+    server.client_registry.register_client.assert_not_called()
+    server.notify_populate_client.assert_not_called()
+    server.server.disconnect_client.assert_called_once_with("abc")
+
+
+def test_handle_push_self_event_accepts_saved_lowercase_facing(server, tmp_path):
+    server.state_dir = tmp_path / "server"
+    server.state_file = server.state_dir / "characters.json"
+    server.character_state_store = {
+        "WalletABC": {
+            "cuuid": "old",
+            "wallet_address": "WalletABC",
+            "map_name": "start_tuxemon.tmx",
+            "char_dict": {
+                "tile_pos": [2, 3],
+                "name": "WalletABC",
+                "facing": "down",
+                "running": False,
+                "slug": "npc_red",
+                "monsters": [],
+                "inventory": [],
+            },
+        }
+    }
+
+    event = MagicMock(
+        map_name="forest",
+        wallet_address="WalletABC",
+        char_dict={
+            "name": "Red",
+            "tile_pos": [1, 2],
+            "facing": "DOWN",
+            "running": False,
+            "monsters": [],
+            "inventory": [],
+        },
+    )
+
+    server.notify_populate_client = MagicMock()
+
+    server.handle_push_self_event("abc", event)
+
+    server.notify_populate_client.assert_called_once()
+    _, outbound = server.notify_populate_client.call_args[0]
+    assert outbound.char_dict["facing"] == "DOWN"

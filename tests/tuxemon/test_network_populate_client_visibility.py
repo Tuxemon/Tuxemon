@@ -3,7 +3,7 @@ from types import SimpleNamespace
 from unittest.mock import MagicMock
 
 from tuxemon.db import Direction
-from tuxemon.network.networking import CharData, EventData, EventType, populate_client
+from tuxemon.network.networking import CharData, EventData, EventType, populate_client, update_client
 
 
 def _event(name: str, slug: str) -> EventData:
@@ -54,3 +54,72 @@ def test_populate_client_uses_unique_remote_slug(monkeypatch):
     assert registry["c1"]["sprite"] is npc1
     assert registry["c2"]["sprite"] is npc2
     assert game.npc_manager.place_npc_on_map.call_count == 2
+
+
+def test_update_client_applies_remote_position_and_state():
+    sprite = SimpleNamespace(
+        slug="remote_c1",
+        name="Old",
+        facing=Direction.UP,
+        running=False,
+        tile_pos=(0, 0),
+        _last_tile_pos=(0, 0),
+        monsters=[],
+        inventory=[],
+    )
+
+    def _set_position(pos):
+        sprite.tile_pos = tuple(pos)
+
+    sprite.set_position = _set_position
+
+    char_data = CharData(
+        tile_pos=(9, 3),
+        name="Remote",
+        facing=Direction.LEFT,
+        running=True,
+        monsters=[],
+        inventory=[],
+    )
+
+    update_client(sprite, char_data, MagicMock())
+
+    assert sprite.name == "Remote"
+    assert sprite.facing == Direction.LEFT
+    assert sprite.running is True
+    assert sprite.tile_pos == (9, 3)
+    assert sprite._last_tile_pos == (9, 3)
+
+
+def test_update_client_ignores_non_remote_entities():
+    sprite = SimpleNamespace(
+        slug="npc_red",
+        name="Local",
+        facing=Direction.UP,
+        running=False,
+        tile_pos=(1, 1),
+        _last_tile_pos=(1, 1),
+        monsters=[],
+        inventory=[],
+    )
+
+    def _set_position(pos):
+        sprite.tile_pos = tuple(pos)
+
+    sprite.set_position = _set_position
+
+    char_data = CharData(
+        tile_pos=(9, 3),
+        name="Remote",
+        facing=Direction.LEFT,
+        running=True,
+        monsters=[],
+        inventory=[],
+    )
+
+    update_client(sprite, char_data, MagicMock())
+
+    assert sprite.name == "Local"
+    assert sprite.facing == Direction.UP
+    assert sprite.running is False
+    assert sprite.tile_pos == (1, 1)

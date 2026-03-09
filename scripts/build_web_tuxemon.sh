@@ -10,9 +10,9 @@ OUT_DIR="$ROOT_DIR/build/web"
 
 mkdir -p "$OUT_DIR"
 
-if ! python -c "import pygbag" >/dev/null 2>&1; then
+if ! py -c "import pygbag" >/dev/null 2>&1; then
   echo "Installing pygbag..."
-  python -m pip install pygbag
+  py -m pip install pygbag
 fi
 
 # Prepare a lean app folder for browser build.
@@ -24,7 +24,8 @@ cp -r "$ROOT_DIR/mods" "$WEB_APP_DIR/mods"
 cp "$ROOT_DIR/requirements.txt" "$WEB_APP_DIR/requirements.txt"
 
 # pygbag builds from an app root that contains main.py.
-python -m pygbag --build --archive --ume_block 0 --app_name "Tuxemon" "$WEB_APP_DIR"
+"$PY_CMD" -m pygbag --build --archive --ume_block 0 --app_name "Tuxemon" --disable-sound-format-error "$WEB_APP_DIR"
+py -m pygbag --build --archive --ume_block 0 --app_name "Tuxemon" "$WEB_APP_DIR"
 
 # Collect generated output in a predictable place.
 if [ -d "$WEB_APP_DIR/build/web" ]; then

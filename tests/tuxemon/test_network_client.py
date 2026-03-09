@@ -1,5 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0
 # Copyright (c) 2014-2026 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+from types import SimpleNamespace
 from unittest.mock import MagicMock
 
 import pygame as pg
@@ -468,3 +469,36 @@ def test_dispatch_client_map_update_populates_unknown_client(client, monkeypatch
 
     dispatcher_module.populate_client.assert_called_once()
     client.update_client_map.assert_called_once()
+
+
+def test_sync_player_state_if_changed_sends_only_on_change(client, monkeypatch):
+    client.listening = True
+    client.client._registered = True
+    client.client.send_event = MagicMock()
+    client.game.get_map_name.return_value = "start-town"
+    client.game.solana_manager.wallet_address = "WalletABC"
+
+    fake_money_manager = MagicMock()
+    fake_money_manager.get_money.return_value = 123
+    fake_money_controller = MagicMock(money_manager=fake_money_manager)
+
+    fake_player = SimpleNamespace(
+        tile_pos=[0, 0],
+        name="Red",
+        facing="down",
+        running=False,
+        slug="npc_red",
+        monsters=[],
+        inventory=[],
+        money_controller=fake_money_controller,
+    )
+
+    monkeypatch.setattr("tuxemon.session.local_session._player", fake_player)
+
+    client.sync_manager.sync_player_state_if_changed()
+    client.sync_manager.sync_player_state_if_changed()
+
+    assert client.client.send_event.call_count == 1
+    payload = client.client.send_event.call_args[0][0]
+    assert payload["char_dict"]["money"] == 123
+    assert payload["char_dict"]["name"] == "WalletABC"

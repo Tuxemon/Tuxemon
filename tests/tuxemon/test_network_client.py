@@ -538,3 +538,45 @@ def test_sync_player_state_if_changed_sends_only_on_change(client, monkeypatch):
     payload = client.client.send_event.call_args[0][0]
     assert payload["char_dict"]["money"] == 123
     assert payload["char_dict"]["name"] == "WalletABC"
+
+
+def test_force_sync_player_state_delegates(client):
+    client.sync_manager.force_sync_player_state = MagicMock()
+
+    client.force_sync_player_state()
+
+    client.sync_manager.force_sync_player_state.assert_called_once()
+
+
+def test_player_sync_manager_force_sync_resets_snapshot(client, monkeypatch):
+    client.listening = True
+    client.client._registered = True
+    client.client.send_event = MagicMock()
+    client.game.get_map_name.return_value = "start-town"
+    client.game.solana_manager.wallet_address = "WalletABC"
+
+    fake_money_manager = MagicMock()
+    fake_money_manager.get_money.return_value = 123
+    fake_money_controller = MagicMock(money_manager=fake_money_manager)
+
+    from types import SimpleNamespace
+
+    fake_player = SimpleNamespace(
+        tile_pos=[0, 0],
+        name="WalletABC",
+        facing="down",
+        running=False,
+        slug="npc_red",
+        monsters=[],
+        inventory=[],
+        money_controller=fake_money_controller,
+    )
+
+    monkeypatch.setattr("tuxemon.session.local_session._player", fake_player)
+
+    client.sync_manager.sync_player_state_if_changed()
+    assert client.client.send_event.call_count == 1
+
+    client.sync_manager.force_sync_player_state()
+
+    assert client.client.send_event.call_count == 2

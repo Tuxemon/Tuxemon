@@ -137,6 +137,10 @@ class TuxemonClient:
         """Sends the local player's character data to the server."""
         return self.sync_manager.populate_player(event_type)
 
+    def force_sync_player_state(self) -> None:
+        """Forces an immediate full-state sync on next network tick."""
+        self.sync_manager.force_sync_player_state()
+
     def update_player(
         self,
         direction: str,
@@ -321,6 +325,11 @@ class PlayerSyncManager:
             "inventory": inventory,
             "money": money,
         }
+
+    def force_sync_player_state(self) -> None:
+        """Forces the next sync pass to send a full snapshot."""
+        self._last_synced_snapshot = None
+        self.sync_player_state_if_changed()
 
     def sync_player_state_if_changed(self) -> None:
         """Sends a full CLIENT_MAP_UPDATE snapshot when local player state changes."""

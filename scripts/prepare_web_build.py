@@ -5,11 +5,13 @@
 - copies run_tuxemon.py as web/main.py
 - copies tuxemon/, mods/, requirements.txt
 - removes unsupported audio formats recursively
+- validates no unsupported audio remains
 """
 
 from __future__ import annotations
 
 import argparse
+import os
 import shutil
 from pathlib import Path
 
@@ -30,6 +32,38 @@ def copy_tree(src: Path, dst: Path) -> None:
     shutil.copytree(src, dst)
 
 
+def find_unsupported_audio(root: Path) -> list[Path]:
+    files: list[Path] = []
+    for path in root.rglob("*"):
+        if path.is_file() and path.suffix.lower() in UNSUPPORTED_AUDIO_EXTENSIONS:
+            files.append(path)
+    return files
+
+
+def robust_unlink(path: Path) -> bool:
+    try:
+        path.unlink()
+        return True
+    except PermissionError:
+        try:
+            os.chmod(path, 0o666)
+            path.unlink()
+            return True
+        except Exception:
+            return False
+    except Exception:
+        return False
+
+
+def remove_unsupported_audio(root: Path) -> tuple[int, list[Path]]:
+    removed = 0
+    failed: list[Path] = []
+    for path in find_unsupported_audio(root):
+        if robust_unlink(path):
+            removed += 1
+        else:
+            failed.append(path)
+    return removed, failed
 def remove_unsupported_audio(root: Path) -> int:
     removed = 0
     for path in root.rglob("*"):
@@ -55,6 +89,19 @@ def main() -> None:
     copy_tree(root / "tuxemon", web_dir / "tuxemon")
     copy_tree(root / "mods", web_dir / "mods")
     shutil.copy2(root / "requirements.txt", web_dir / "requirements.txt")
+
+    mods_dir = web_dir / "mods"
+    removed, failed = remove_unsupported_audio(mods_dir)
+    remaining = find_unsupported_audio(mods_dir)
+
+    print(f"Prepared web app folder: {web_dir}")
+    print(f"Removed unsupported audio files: {removed}")
+
+    if failed or remaining:
+        print("ERROR: Unsupported audio files still present after cleanup:")
+        for path in sorted(set(failed + remaining)):
+            print(f" - {path}")
+        raise SystemExit(1)
 
     removed = remove_unsupported_audio(web_dir / "mods")
     print(f"Prepared web app folder: {web_dir}")

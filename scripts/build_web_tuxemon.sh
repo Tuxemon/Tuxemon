@@ -8,6 +8,28 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 WEB_APP_DIR="$ROOT_DIR/web"
 OUT_DIR="$ROOT_DIR/build/web"
 
+if command -v py >/dev/null 2>&1; then
+  PY_CMD="py"
+elif command -v python >/dev/null 2>&1; then
+  PY_CMD="python"
+elif command -v python3 >/dev/null 2>&1; then
+  PY_CMD="python3"
+else
+  echo "No Python interpreter found (py/python/python3)."
+  exit 1
+fi
+
+mkdir -p "$OUT_DIR"
+
+if ! "$PY_CMD" -c "import pygbag" >/dev/null 2>&1; then
+  echo "Installing pygbag..."
+  "$PY_CMD" -m pip install pygbag
+fi
+
+"$PY_CMD" "$ROOT_DIR/scripts/prepare_web_build.py" --root "$ROOT_DIR"
+
+# pygbag builds from an app root that contains main.py.
+"$PY_CMD" -m pygbag --build --archive --ume_block 0 --app_name "Tuxemon" --disable-sound-format-error "$WEB_APP_DIR"
 mkdir -p "$OUT_DIR"
 
 if ! py -c "import pygbag" >/dev/null 2>&1; then

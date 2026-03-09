@@ -11,6 +11,8 @@ if "%PORT%"=="" set "PORT=8000"
 where py >nul 2>nul
 if errorlevel 1 set "PY_CMD=python"
 
+if "%PORT%"=="" set "PORT=8000"
+
 if not exist "%OUT_DIR%" (
   echo No browser build found at %OUT_DIR%
   echo Run: scripts\build_web_tuxemon.bat
@@ -19,3 +21,4 @@ if not exist "%OUT_DIR%" (
 
 cd /d "%OUT_DIR%" || exit /b 1
 %PY_CMD% -m http.server %PORT% --bind 0.0.0.0
+py -m http.server %PORT% --bind 0.0.0.0

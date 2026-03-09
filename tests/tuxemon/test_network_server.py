@@ -1,5 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0
 # Copyright (c) 2014-2026 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+import logging
 from unittest.mock import MagicMock
 
 import json
@@ -114,6 +115,29 @@ def test_handle_ping_event_updates_timestamp(server):
     args = server.client_registry.set_client_data.call_args[0]
     assert args[0] == "abc"
     assert args[1] == "ping_timestamp"
+
+
+def test_handle_ping_event_does_not_persist_state(server):
+    event = MagicMock()
+    server.client_registry.set_client_data = MagicMock()
+    server._persist_registry_state = MagicMock()
+
+    server.handle_ping_event("abc", event)
+
+    server.client_registry.set_client_data.assert_called_once()
+    server._persist_registry_state.assert_not_called()
+
+
+def test_update_skips_persist_for_ping(server):
+    server.server.get_incoming_events = MagicMock(
+        return_value=[("abc", {"type": "PING", "event_number": 1})]
+    )
+    server.event_router.route_event = MagicMock()
+    server._persist_registry_state = MagicMock()
+
+    server.update()
+
+    server._persist_registry_state.assert_not_called()
 
 
 def test_handle_client_interaction_event_updates_and_notifies(server):
@@ -328,6 +352,152 @@ def test_handle_map_update_event_updates_and_notifies(server):
     server.notify_client.assert_called_once_with("abc", event)
 
 
+def test_handle_map_update_event_logs_rename(server, caplog):
+    server.client_registry.registry = {
+        "abc": {
+            "wallet_address": "Wallet123",
+            "map_name": "forest",
+            "char_dict": {"name": "OldName"},
+        }
+    }
+
+    event = MagicMock(map_name="forest", char_dict={"name": "NewName"})
+    server.update_char_dict = MagicMock()
+    server.notify_client = MagicMock()
+
+    with caplog.at_level(logging.WARNING):
+        server.handle_map_update_event("abc", event)
+
+    assert "Character rename detected" in caplog.text
+
+
+def test_update_char_dict_accepts_dict_payload(server):
+    server.client_registry.registry = {
+        "abc": {
+            "char_dict": {"name": "OldName", "running": False},
+        }
+    }
+
+    server.client_registry.update_char_dict("abc", {"name": "NewName"})
+
+    assert server.client_registry.registry["abc"]["char_dict"]["name"] == "NewName"
+
+
+
+
+def test_update_char_dict_persists_map_and_position_changes(server, tmp_path, caplog):
+    server.state_dir = tmp_path / "server"
+    server.state_file = server.state_dir / "characters.json"
+    server.character_state_store = {
+        "WalletXYZ": {
+            "cuuid": "abc",
+            "wallet_address": "WalletXYZ",
+            "map_name": "forest",
+            "char_dict": {
+                "name": "PlayerOne",
+                "tile_pos": [1, 2],
+                "facing": "DOWN",
+                "running": False,
+                "monsters": [],
+                "inventory": [],
+            },
+        }
+    }
+    server.client_registry.registry = {
+        "abc": {
+            "wallet_address": "WalletXYZ",
+            "map_name": "mountain",
+            "char_dict": {
+                "name": "PlayerOne",
+                "tile_pos": [9, 9],
+                "facing": "DOWN",
+                "running": False,
+                "monsters": [],
+                "inventory": [],
+            },
+        }
+    }
+
+    with caplog.at_level(logging.WARNING):
+        server.update_char_dict("abc", {"tile_pos": [9, 9]})
+
+    payload = json.loads(server.state_file.read_text(encoding="utf-8"))
+    assert payload["WalletXYZ"]["map_name"] == "mountain"
+    assert payload["WalletXYZ"]["char_dict"]["tile_pos"] == [9, 9]
+    assert "Persisted character map change to characters.json" in caplog.text
+    assert "Persisted character position change to characters.json" in caplog.text
+
+
+def test_handle_map_update_event_persists_partial_payload_using_registry_state(server, tmp_path):
+    server.state_dir = tmp_path / "server"
+    server.state_file = server.state_dir / "characters.json"
+    server.character_state_store = {}
+    server.client_registry.registry = {
+        "abc": {
+            "wallet_address": "Wallet123",
+            "map_name": "forest",
+            "char_dict": {
+                "name": "OldName",
+                "tile_pos": [1, 2],
+                "facing": "DOWN",
+                "running": False,
+                "monsters": [],
+                "inventory": [],
+            },
+        }
+    }
+
+    event = MagicMock(map_name="desert", char_dict={"name": "NewName"})
+    server.notify_client = MagicMock()
+
+    server.handle_map_update_event("abc", event)
+
+    payload = json.loads(server.state_file.read_text(encoding="utf-8"))
+    assert payload["Wallet123"]["map_name"] == "desert"
+    assert payload["Wallet123"]["char_dict"]["name"] == "NewName"
+    assert payload["Wallet123"]["char_dict"]["tile_pos"] == [1, 2]
+
+def test_update_char_dict_persists_renamed_name_to_state_file(server, tmp_path, caplog):
+    server.state_dir = tmp_path / "server"
+    server.state_file = server.state_dir / "characters.json"
+    server.character_state_store = {
+        "WalletXYZ": {
+            "cuuid": "abc",
+            "wallet_address": "WalletXYZ",
+            "map_name": "forest",
+            "char_dict": {
+                "name": "OldName",
+                "tile_pos": [1, 2],
+                "facing": "DOWN",
+                "running": False,
+                "monsters": [],
+                "inventory": [],
+            },
+        }
+    }
+    server.client_registry.registry = {
+        "abc": {
+            "wallet_address": "WalletXYZ",
+            "map_name": "forest",
+            "char_dict": {
+                "name": "OldName",
+                "tile_pos": [1, 2],
+                "facing": "DOWN",
+                "running": False,
+                "monsters": [],
+                "inventory": [],
+            },
+        }
+    }
+
+    with caplog.at_level(logging.WARNING):
+        server.update_char_dict("abc", {"name": "NewName"})
+
+    payload = json.loads(server.state_file.read_text(encoding="utf-8"))
+    assert payload["WalletXYZ"]["char_dict"]["name"] == "NewName"
+    assert "Persisted character rename to characters.json" in caplog.text
+
+
 def test_persist_character_state_accepts_legacy_signature(server, tmp_path):
     server.state_dir = tmp_path / "server"
     server.state_file = server.state_dir / "characters.json"
@@ -414,3 +584,147 @@ def test_handle_push_self_event_accepts_saved_lowercase_facing(server, tmp_path)
     server.notify_populate_client.assert_called_once()
     _, outbound = server.notify_populate_client.call_args[0]
     assert outbound.char_dict["facing"] == "DOWN"
+
+
+def test_persist_character_state_emits_terminal_log_for_rename_and_party_change(server, tmp_path):
+    server.state_dir = tmp_path / "server"
+    server.state_file = server.state_dir / "characters.json"
+    server.character_state_store = {
+        "WalletXYZ": {
+            "cuuid": "abc",
+            "wallet_address": "WalletXYZ",
+            "map_name": "forest",
+            "char_dict": {
+                "name": "OldName",
+                "tile_pos": [1, 2],
+                "facing": "DOWN",
+                "running": False,
+                "monsters": [{"slug": "a"}],
+                "inventory": [],
+            },
+        }
+    }
+    server.server._emit_terminal_log = MagicMock()
+
+    server._persist_character_state(
+        "abc",
+        "WalletXYZ",
+        "forest",
+        {
+            "name": "NewName",
+            "tile_pos": [1, 2],
+            "facing": "DOWN",
+            "running": False,
+            "monsters": [{"slug": "a"}, {"slug": "b"}],
+            "inventory": [],
+        },
+    )
+
+    emitted_logs = "\n".join(call.args[0] for call in server.server._emit_terminal_log.call_args_list)
+    assert "Persisted character rename to characters.json" in emitted_logs
+    assert "Persisted party size change to characters.json" in emitted_logs
+
+
+def test_handle_map_update_event_logs_incoming_party_change_to_terminal(server):
+    server.client_registry.registry = {
+        "abc": {
+            "wallet_address": "Wallet123",
+            "map_name": "forest",
+            "char_dict": {
+                "name": "OldName",
+                "tile_pos": [1, 2],
+                "facing": "DOWN",
+                "running": False,
+                "monsters": [{"slug": "a"}],
+                "inventory": [],
+            },
+        }
+    }
+    server.server._emit_terminal_log = MagicMock()
+    event = MagicMock(
+        map_name="forest",
+        char_dict={
+            "name": "OldName",
+            "monsters": [{"slug": "a"}, {"slug": "b"}],
+        },
+    )
+    server.update_char_dict = MagicMock()
+    server.notify_client = MagicMock()
+
+    server.handle_map_update_event("abc", event)
+
+    emitted_logs = "\n".join(call.args[0] for call in server.server._emit_terminal_log.call_args_list)
+    assert "Incoming party size change detected" in emitted_logs
+
+
+def test_persist_character_state_skips_unchanged_payload(server, tmp_path):
+    server.state_dir = tmp_path / "server"
+    server.state_file = server.state_dir / "characters.json"
+    server.character_state_store = {
+        "WalletABC": {
+            "cuuid": "abc",
+            "wallet_address": "WalletABC",
+            "map_name": "forest",
+            "char_dict": {
+                "name": "WalletABC",
+                "tile_pos": [0, 0],
+                "facing": "DOWN",
+                "running": False,
+                "monsters": [],
+                "inventory": [],
+            },
+        }
+    }
+    server._save_character_states = MagicMock()
+    server.server._emit_terminal_log = MagicMock()
+
+    server._persist_character_state(
+        "abc",
+        "WalletABC",
+        "forest",
+        {
+            "name": "WalletABC",
+            "tile_pos": [0, 0],
+            "facing": "DOWN",
+            "running": False,
+            "monsters": [],
+            "inventory": [],
+        },
+    )
+
+    server._save_character_states.assert_not_called()
+    server.server._emit_terminal_log.assert_not_called()
+
+
+def test_handle_map_update_event_emits_terminal_map_update_log(server):
+    server.client_registry.registry = {
+        "abc": {
+            "wallet_address": "Wallet123",
+            "map_name": "forest",
+            "char_dict": {"name": "OldName", "tile_pos": [1, 2]},
+        }
+    }
+    server.server._emit_terminal_log = MagicMock()
+    event = MagicMock(map_name="desert", char_dict={"name": "OldName", "tile_pos": [4, 5]})
+    server.update_char_dict = MagicMock()
+    server.notify_client = MagicMock()
+
+    server.handle_map_update_event("abc", event)
+
+    emitted_logs = "\n".join(call.args[0] for call in server.server._emit_terminal_log.call_args_list)
+    assert "Map update received" in emitted_logs
+    assert "tile_pos=[4, 5]" in emitted_logs
+
+
+def test_update_emits_terminal_processed_log_for_non_ping(server):
+    server.server.get_incoming_events = MagicMock(
+        return_value=[("abc", {"type": "CLIENT_MAP_UPDATE", "event_number": 1, "map_name": "forest", "char_dict": {"name": "Wallet123", "tile_pos": [1, 1], "facing": "DOWN", "running": False, "monsters": [], "inventory": []}})]
+    )
+    server.server._emit_terminal_log = MagicMock()
+    server.event_router.route_event = MagicMock()
+    server._persist_registry_state = MagicMock()
+
+    server.update()
+
+    emitted_logs = "\n".join(call.args[0] for call in server.server._emit_terminal_log.call_args_list)
+    assert "Processed event: cuuid=abc type=CLIENT_MAP_UPDATE" in emitted_logs

@@ -245,6 +245,7 @@ def test_handle_push_self_persists_character_state(server, tmp_path, monkeypatch
 
     event = MagicMock(
         map_name="forest",
+        wallet_address="WalletPersist123",
         char_dict={
             "name": "PlayerOne",
             "tile_pos": [1, 2],
@@ -260,8 +261,8 @@ def test_handle_push_self_persists_character_state(server, tmp_path, monkeypatch
 
     assert server.state_file.exists()
     payload = json.loads(server.state_file.read_text(encoding="utf-8"))
-    assert "abc" in payload
-    assert payload["abc"]["map_name"] == "forest"
+    assert "WalletPersist123" in payload
+    assert payload["WalletPersist123"]["map_name"] == "forest"
 
 
 def test_route_event_allows_push_self_for_unregistered_client(server):
@@ -349,7 +350,7 @@ def test_persist_character_state_accepts_legacy_signature(server, tmp_path):
     assert payload["abc"]["char_dict"]["name"] == "LegacyPlayer"
 
 
-def test_handle_push_self_event_allows_walletless_clients(server):
+def test_handle_push_self_event_rejects_walletless_clients(server):
     event = MagicMock(
         map_name="forest",
         wallet_address="",
@@ -368,8 +369,6 @@ def test_handle_push_self_event_allows_walletless_clients(server):
 
     server.handle_push_self_event("abc", event)
 
-    server.client_registry.register_client.assert_called_once_with(
-        "abc", "forest", event.char_dict, ""
-    )
-    server.notify_populate_client.assert_called_once()
-    server.server.disconnect_client.assert_not_called()
+    server.client_registry.register_client.assert_not_called()
+    server.notify_populate_client.assert_not_called()
+    server.server.disconnect_client.assert_called_once_with("abc")

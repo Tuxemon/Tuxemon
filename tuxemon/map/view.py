@@ -434,7 +434,7 @@ class MapRenderer(AbstractRenderer):
         self.cinema_y_ratio: float | None = None
         self.map_animations = AnimationManager()
         self.bubble_manager = BubbleManager(context=context)
-        self._name_font = Font(None, max(14, int(14 * context.scale)))
+        self._name_font = Font(None, max(7, int(7 * context.scale)))
         self._name_cache: dict[tuple[str, tuple[int, int, int]], Surface] = {}
 
     @property

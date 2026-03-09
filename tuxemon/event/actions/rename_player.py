@@ -41,6 +41,13 @@ class RenamePlayerAction(EventAction):
     def set_player_name(self, char: NPC, name: str) -> None:
         char.name = name
 
+        try:
+            network = char.session.client.network_manager
+            if network and network.is_connected() and network.client is not None:
+                network.client.force_sync_player_state()
+        except Exception as e:
+            logger.debug("Failed to force sync renamed player state: %s", e)
+
     def start(self, session: Session) -> None:
         character = session.get_npc(self.character)
 

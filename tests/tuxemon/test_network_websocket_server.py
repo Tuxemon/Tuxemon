@@ -69,9 +69,9 @@ def test_handler_registers_new_client(wrapper):
 
     asyncio.run(wrapper._handler(websocket))
 
-    assert len(wrapper.registry) == 1
-    cuuid = list(wrapper.registry.keys())[0]
-    assert wrapper.registry[cuuid]["peer"] == "1.2.3.4:9999"
+    cuuid, event = wrapper.incoming_queue.get_nowait()
+    assert cuuid
+    assert event["cuuid"] is None
 
 
 def test_listener_updates_last_message(wrapper):
@@ -132,3 +132,32 @@ def test_handler_sets_reason_on_handshake_failure(wrapper, caplog):
 
     cuuid, event = wrapper.incoming_queue.get_nowait()
     assert event["reason"] == "handshake_failed"
+
+
+def test_handler_emits_terminal_log_for_new_connection(wrapper, capsys):
+    websocket = AsyncMock()
+    websocket.remote_address = ("1.2.3.4", 9999)
+    websocket.recv = AsyncMock(return_value=json.dumps({"cuuid": None}))
+    websocket.__aiter__.return_value = iter([])
+
+    asyncio.run(wrapper._handler(websocket))
+
+    captured = capsys.readouterr()
+    assert "[SERVER] Client connected" in captured.out
+    assert any("[SERVER] Client connected" in line for line in wrapper.get_recent_logs())
+
+
+def test_handler_emits_terminal_log_for_rejected_connection(wrapper, capsys):
+    wrapper.max_clients = 1
+    wrapper.client_registry = {"existing": MagicMock()}
+
+    websocket = AsyncMock()
+    websocket.remote_address = ("1.2.3.4", 9999)
+    websocket.recv = AsyncMock(return_value=json.dumps({"cuuid": None}))
+    websocket.close = AsyncMock()
+
+    asyncio.run(wrapper._handler(websocket))
+
+    captured = capsys.readouterr()
+    assert "[SERVER] Connection rejected" in captured.out
+    assert any("[SERVER] Connection rejected" in line for line in wrapper.get_recent_logs())

@@ -304,7 +304,7 @@ class TuxemonServer:
                 if hasattr(event_data.char_dict, "name")
                 else str(event_data.char_dict.get("name", "unknown"))
             )
-            logger.info(
+            logger.warning(
                 "Client session active: cuuid=%s name=%s map=%s",
                 cuuid,
                 name,

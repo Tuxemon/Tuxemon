@@ -170,7 +170,7 @@ class WebsocketServerWrapper:
             provided_cuuid = data.get("cuuid")
             if provided_cuuid and provided_cuuid in self.registry:
                 cuuid = provided_cuuid
-                logger.info(f"Client {cuuid} reconnected from {peer_str}.")
+                logger.warning(f"Client {cuuid} reconnected from {peer_str}.")
             else:
                 cuuid = str(uuid4())
                 self.registry[cuuid] = {
@@ -178,7 +178,7 @@ class WebsocketServerWrapper:
                     "connected_at": datetime.now(),
                     "last_message_at": datetime.now(),
                 }
-                logger.info(f"New client {cuuid} connected from {peer_str}.")
+                logger.warning(f"New client {cuuid} connected from {peer_str}.")
 
             self.client_registry[cuuid] = websocket
             self.incoming_queue.put((cuuid, data))

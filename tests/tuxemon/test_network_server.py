@@ -93,6 +93,7 @@ def test_handle_push_self_event_registers_and_notifies(server):
     server.client_registry.set_client_data = MagicMock()
     server.notify_populate_client = MagicMock()
 
+    server.notify_populate_client = MagicMock()
     server.handle_push_self_event("abc", event)
 
     server.client_registry.register_client.assert_called_once_with(

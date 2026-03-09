@@ -213,7 +213,6 @@ SolaMon now enforces multiplayer + wallet-gated gameplay on devnet:
 - Badge rewards can mint **SolaMon Badges** NFTs via the `badge_chain <badge_id>` effect.
 
 Configuration lives under the new `[solana]` config section in `tuxemon.yaml`:
-
 ```
 [solana]
 enabled = true
@@ -225,6 +224,30 @@ trainer_mint_price_sol = 0.1
 cluster = "devnet"
 official_token_mint = "AayJpSNSwD9iuXzRnaNmTvrLVRste74TNjzJ8Edzpump"
 ```
+
+Browser Multiplayer Prototype
+--------
+
+This repository now includes a lightweight browser-playable multiplayer
+prototype so you can run a web game loop quickly without the desktop client.
+
+Start it with:
+
+```shell
+python scripts/run_web_multiplayer.py --http-port 8080 --ws-port 8765
+```
+
+Then open:
+
+```text
+http://localhost:8080/?wsPort=8765
+```
+
+Controls:
+
+- Move: `WASD` or arrow keys
+- Rename trainer: use the input + button
+- Multiplayer: open multiple tabs/browsers/devices pointed at the same server
 
 Use **CREATE DEVNET WALLET** to generate a wallet in-game, **IMPORT PRIVATE KEY** to restore one, and **EXPORT PRIVATE KEY** to back up locally managed wallets.
 

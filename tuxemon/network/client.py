@@ -375,7 +375,13 @@ class PlayerSyncManager:
             sort_keys=True,
         )
 
-        if snapshot == self._last_synced_snapshot:
+        now = time.monotonic()
+        periodic_sync_due = (
+            self._last_synced_snapshot is not None
+            and (now - self._last_sync_sent_at) >= self._periodic_sync_interval_s
+        )
+
+        if snapshot == self._last_synced_snapshot and not periodic_sync_due:
             return
 
         previous = self._last_synced_state or {}

@@ -460,12 +460,40 @@ class TuxemonServer:
         self._persist_registry_state(cuuid)
 
     def handle_map_update_event(self, cuuid: str, event_data: EventData) -> None:
+        previous_name = None
+        existing = self.client_registry.registry.get(cuuid, {}).get("char_dict")
+        if isinstance(existing, CharData):
+            previous_name = existing.name
+        elif isinstance(existing, dict):
+            previous_name = existing.get("name")
+
+        incoming_name = None
+        if isinstance(event_data.char_dict, CharData):
+            incoming_name = event_data.char_dict.name
+        elif isinstance(event_data.char_dict, dict):
+            incoming_name = event_data.char_dict.get("name")
+
         logger.warning(
             "Map update: cuuid=%s map=%s wallet=%s",
             cuuid,
             event_data.map_name,
             self.client_registry.registry.get(cuuid, {}).get("wallet_address", ""),
         )
+        if (
+            isinstance(incoming_name, str)
+            and incoming_name.strip()
+            and previous_name != incoming_name
+        ):
+            logger.warning(
+                "Character rename detected: cuuid=%s wallet=%s old_name=%s new_name=%s",
+                cuuid,
+                self.client_registry.registry.get(cuuid, {}).get(
+                    "wallet_address", ""
+                )
+                or "(none)",
+                previous_name or "(unset)",
+                incoming_name,
+            )
         self.client_registry.set_client_data(cuuid, "map_name", event_data.map_name)
         self.update_char_dict(cuuid, event_data.char_dict)
         self.notify_client(cuuid, event_data)
@@ -673,7 +701,13 @@ class ClientRegistry:
             return
 
         existing = self.registry[cuuid].get("char_dict")
-        char_data_dict = asdict(char_data)
+        if isinstance(char_data, CharData):
+            char_data_dict = asdict(char_data)
+        elif isinstance(char_data, dict):
+            char_data_dict = dict(char_data)
+        else:
+            logger.warning("Invalid character data type for CUUID %s", cuuid)
+            return
 
         if isinstance(existing, dict):
             existing.update(char_data_dict)

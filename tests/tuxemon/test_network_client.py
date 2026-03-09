@@ -1,5 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0
 # Copyright (c) 2014-2026 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+from types import SimpleNamespace
 from unittest.mock import MagicMock
 
 import pygame as pg
@@ -126,6 +127,42 @@ def test_update_client_map_updates_registry(client):
         sprite, {"hp": 100}, client.game
     )
 
+
+
+
+def test_update_client_map_places_remote_on_current_map(client):
+    sprite = MagicMock()
+    client.client.registry["abc"] = {"sprite": sprite}
+    client.game.get_map_name.return_value = "forest"
+    event_data = MagicMock()
+    event_data.map_name = "forest"
+    event_data.char_dict = {"hp": 100}
+
+    import tuxemon.network.client as client_module
+
+    client_module.update_client = MagicMock()
+
+    client.update_client_map("abc", event_data)
+
+    client.game.npc_manager.add_npc.assert_called_once_with(sprite)
+    client.game.npc_manager.add_npc_off_map.assert_not_called()
+
+
+def test_update_client_map_places_remote_off_current_map(client):
+    sprite = MagicMock()
+    client.client.registry["abc"] = {"sprite": sprite}
+    client.game.get_map_name.return_value = "forest"
+    event_data = MagicMock()
+    event_data.map_name = "town"
+    event_data.char_dict = {"hp": 100}
+
+    import tuxemon.network.client as client_module
+
+    client_module.update_client = MagicMock()
+
+    client.update_client_map("abc", event_data)
+
+    client.game.npc_manager.add_npc_off_map.assert_called_once_with(sprite)
 
 def test_event_counter_monotonic(client):
     n1 = next(client.event_counter)
@@ -382,6 +419,20 @@ def test_connection_manager_connect_to_host_fails_when_socket_drops(client, monk
     assert "server-side" in client.last_connection_error
 
 
+
+
+def test_connection_manager_connect_to_host_requires_wallet(client):
+    cm = client.connection_manager
+    client.game.solana_manager.has_wallet_connection.return_value = False
+    client.client.start_connection = MagicMock()
+
+    result = cm.connect_to_host("127.0.0.1", 40081)
+
+    assert result is False
+    assert cm.state == ConnState.DISCONNECTED
+    assert "Wallet connection required" in client.last_connection_error
+    client.client.start_connection.assert_not_called()
+
 def test_connection_manager_diagnose_timeout(client):
     cm = client.connection_manager
     msg = cm._diagnose_failure("10.0.0.2", 40081, "Timed out waiting for registration")
@@ -454,3 +505,36 @@ def test_dispatch_client_map_update_populates_unknown_client(client, monkeypatch
 
     dispatcher_module.populate_client.assert_called_once()
     client.update_client_map.assert_called_once()
+
+
+def test_sync_player_state_if_changed_sends_only_on_change(client, monkeypatch):
+    client.listening = True
+    client.client._registered = True
+    client.client.send_event = MagicMock()
+    client.game.get_map_name.return_value = "start-town"
+    client.game.solana_manager.wallet_address = "WalletABC"
+
+    fake_money_manager = MagicMock()
+    fake_money_manager.get_money.return_value = 123
+    fake_money_controller = MagicMock(money_manager=fake_money_manager)
+
+    fake_player = SimpleNamespace(
+        tile_pos=[0, 0],
+        name="Red",
+        facing="down",
+        running=False,
+        slug="npc_red",
+        monsters=[],
+        inventory=[],
+        money_controller=fake_money_controller,
+    )
+
+    monkeypatch.setattr("tuxemon.session.local_session._player", fake_player)
+
+    client.sync_manager.sync_player_state_if_changed()
+    client.sync_manager.sync_player_state_if_changed()
+
+    assert client.client.send_event.call_count == 1
+    payload = client.client.send_event.call_args[0][0]
+    assert payload["char_dict"]["money"] == 123
+    assert payload["char_dict"]["name"] == "WalletABC"

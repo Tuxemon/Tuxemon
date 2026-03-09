@@ -79,13 +79,17 @@ class GameLauncher:
         starting_money = random.randint(*meta.starting_money)
         execute.execute_action("set_money", ["player", starting_money])
 
-        # Set name
-        name = (
-            meta.starting_names[0]
-            if len(meta.starting_names) == 1
-            else random.choice(meta.starting_names)
-        )
-        session.player.name = T.translate(name)
+        # Set initial name to wallet for multiplayer identity continuity.
+        wallet = str(self.client.solana_manager.wallet_address or "").strip()
+        if wallet:
+            session.player.name = wallet
+        else:
+            name = (
+                meta.starting_names[0]
+                if len(meta.starting_names) == 1
+                else random.choice(meta.starting_names)
+            )
+            session.player.name = T.translate(name)
 
         # Set template
         template = ["player", meta.sprite, meta.combat_sheet]

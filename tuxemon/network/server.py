@@ -121,6 +121,24 @@ class TuxemonServer:
             return wallet_address
         return parsed or "Unnamed Player"
 
+    def _sanitize_saved_char_dict(
+        self, char_dict: dict[str, Any] | None
+    ) -> dict[str, Any] | None:
+        """Normalizes persisted payloads from older builds before decoding."""
+        if not isinstance(char_dict, dict):
+            return None
+
+        cleaned = dict(char_dict)
+        facing = cleaned.get("facing")
+        if isinstance(facing, str):
+            cleaned["facing"] = facing.upper()
+
+        tile_pos = cleaned.get("tile_pos")
+        if isinstance(tile_pos, tuple):
+            cleaned["tile_pos"] = list(tile_pos)
+
+        return cleaned
+
     def _persist_character_state(
         self,
         cuuid: str,
@@ -162,8 +180,29 @@ class TuxemonServer:
             "updated_at": datetime.now().isoformat(),
         }
         key = self._state_key(wallet, cuuid)
+        previous = self.character_state_store.get(key)
         self.character_state_store[key] = entry
         logger.warning("Saved character state: key=%s cuuid=%s map=%s", key, cuuid, entry["map_name"])
+
+        prev_name = None
+        prev_map = None
+        if isinstance(previous, dict):
+            prev_name = (
+                previous.get("char_dict", {}).get("name")
+                if isinstance(previous.get("char_dict"), dict)
+                else None
+            )
+            prev_map = previous.get("map_name")
+
+        current_name = data.get("name")
+        current_map = entry["map_name"]
+        if prev_name != current_name or prev_map != current_map:
+            logger.warning(
+                "Character state changed: wallet=%s name=%s map=%s",
+                wallet or "(none)",
+                current_name,
+                current_map,
+            )
         self._save_character_states()
 
     def _get_saved_state(self, wallet_address: str | None, cuuid: str) -> dict[str, Any] | None:
@@ -366,7 +405,7 @@ class TuxemonServer:
         saved_state = self._get_saved_state(wallet, cuuid)
 
         if saved_state:
-            saved_char = saved_state.get("char_dict")
+            saved_char = self._sanitize_saved_char_dict(saved_state.get("char_dict"))
             if isinstance(saved_char, dict) and {"tile_pos", "facing", "name"}.issubset(saved_char):
                 if isinstance(event_data, EventData):
                     event_data = event_data.copy(

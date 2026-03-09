@@ -18,6 +18,7 @@ from tuxemon.launcher import GameLauncher
 from tuxemon.locale.locale import T
 from tuxemon.menu.menu import PygameMenuState
 from tuxemon.platform.const.graphics import BG_START_SCREEN, BLACK_COLOR
+from tuxemon.save import get_index_of_latest_save
 from tuxemon.session import local_session
 from tuxemon.state.state import State
 from tuxemon.tools import open_choice_dialog, open_dialog
@@ -59,6 +60,21 @@ class StartState(PygameMenuState):
         self,
         menu: Menu,
     ) -> None:
+        index = get_index_of_latest_save()
+
+        def new_game() -> None:
+            if len(self.client.config.mods) == 1:
+                launcher = GameLauncher(self.client)
+                launcher.launch(
+                    session=local_session,
+                    meta=db.mod_metadata.get_mod_metadata(
+                        self.client.config.mods[0]
+                    ),
+                    remove_states=["StartState"],
+                )
+                return
+            self.client.push_state("ModsChoice", mods=self.client.config.mods)
+
         def connect_wallet() -> None:
             wallet = self.client.solana_manager.wallet_address
             if wallet:
@@ -91,6 +107,21 @@ class StartState(PygameMenuState):
 
         def exit_game() -> None:
             self.client.quit()
+
+        if index is not None:
+            menu.add.button(
+                title=T.translate("menu_load"),
+                action=change_state("LoadMenuState"),
+                font_size=self.font_type.big,
+                button_id="menu_load",
+            )
+
+        menu.add.button(
+            title=T.translate("menu_new_game"),
+            action=new_game,
+            font_size=self.font_type.big,
+            button_id="menu_new_game",
+        )
 
         menu.add.button(
             title="WALLET CONNECTION",

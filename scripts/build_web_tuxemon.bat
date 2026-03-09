@@ -30,27 +30,9 @@ if errorlevel 1 (
   %PY_CMD% -m pip install pygbag || goto :error
 )
 
-%PY_CMD% "%ROOT_DIR%\scripts\prepare_web_build.py" --root "%ROOT_DIR%" || goto :error
+%PY_CMD% "%ROOT_DIR%\scripts\prepare_web_build_v2.py" --root "%ROOT_DIR%" || goto :error
 
 %PY_CMD% -m pygbag --build --archive --ume_block 0 --app_name Tuxemon --disable-sound-format-error "%WEB_APP_DIR%" || goto :error
-
-if not exist "%OUT_DIR%" mkdir "%OUT_DIR%"
-
-py -c "import pygbag" >nul 2>nul
-if errorlevel 1 (
-  echo Installing pygbag...
-  py -m pip install pygbag || goto :error
-)
-
-if exist "%WEB_APP_DIR%" rmdir /s /q "%WEB_APP_DIR%"
-mkdir "%WEB_APP_DIR%" || goto :error
-
-copy /y "%ROOT_DIR%\run_tuxemon.py" "%WEB_APP_DIR%\main.py" >nul || goto :error
-xcopy "%ROOT_DIR%\tuxemon" "%WEB_APP_DIR%\tuxemon" /E /I /Q /Y >nul || goto :error
-xcopy "%ROOT_DIR%\mods" "%WEB_APP_DIR%\mods" /E /I /Q /Y >nul || goto :error
-copy /y "%ROOT_DIR%\requirements.txt" "%WEB_APP_DIR%\requirements.txt" >nul || goto :error
-
-py -m pygbag --build --archive --ume_block 0 --app_name Tuxemon "%WEB_APP_DIR%" || goto :error
 
 if exist "%WEB_APP_DIR%\build\web" (
   if exist "%OUT_DIR%" rmdir /s /q "%OUT_DIR%"

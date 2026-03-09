@@ -1,12 +1,5 @@
 #!/usr/bin/env python3
-"""Prepare temporary web app folder for pygbag build.
-
-- recreates ./web from source files
-- copies run_tuxemon.py as web/main.py
-- copies tuxemon/, mods/, requirements.txt
-- removes unsupported audio formats recursively
-- validates no unsupported audio remains
-"""
+"""Prepare temporary web app folder for pygbag build (v2, robust)."""
 
 from __future__ import annotations
 
@@ -33,11 +26,11 @@ def copy_tree(src: Path, dst: Path) -> None:
 
 
 def find_unsupported_audio(root: Path) -> list[Path]:
-    files: list[Path] = []
-    for path in root.rglob("*"):
-        if path.is_file() and path.suffix.lower() in UNSUPPORTED_AUDIO_EXTENSIONS:
-            files.append(path)
-    return files
+    return [
+        path
+        for path in root.rglob("*")
+        if path.is_file() and path.suffix.lower() in UNSUPPORTED_AUDIO_EXTENSIONS
+    ]
 
 
 def robust_unlink(path: Path) -> bool:
@@ -66,17 +59,6 @@ def remove_unsupported_audio(root: Path) -> tuple[int, list[Path]]:
     return removed, failed
 
 
-def normalize_remove_result(result: object) -> tuple[int, list[Path]]:
-    """Compatibility guard for older script variants returning only int."""
-    if isinstance(result, tuple) and len(result) == 2:
-        removed, failed = result
-        if isinstance(removed, int) and isinstance(failed, list):
-            return removed, failed
-    if isinstance(result, int):
-        return result, []
-    raise TypeError(f"Unexpected remove_unsupported_audio result: {type(result)!r}")
-
-
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--root", required=True)
@@ -95,7 +77,15 @@ def main() -> None:
     shutil.copy2(root / "requirements.txt", web_dir / "requirements.txt")
 
     mods_dir = web_dir / "mods"
-    removed, failed = normalize_remove_result(remove_unsupported_audio(mods_dir))
+    result = remove_unsupported_audio(mods_dir)
+    if isinstance(result, tuple):
+        removed = int(result[0])
+        failed = list(result[1])
+    else:
+        # ultra-defensive compatibility, shouldn't happen in v2
+        removed = int(result)
+        failed = []
+
     remaining = find_unsupported_audio(mods_dir)
 
     print(f"Prepared web app folder: {web_dir}")

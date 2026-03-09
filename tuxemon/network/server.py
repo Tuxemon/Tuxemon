@@ -373,13 +373,6 @@ class TuxemonServer:
         and character data, then notifies others.
         """
         wallet = self._normalize_wallet(event_data.wallet_address)
-        if not wallet:
-            logger.warning(
-                "Rejected client %s: wallet connection is required for multiplayer.",
-                cuuid,
-            )
-            self.server.disconnect_client(cuuid)
-            return
 
         saved_state = self._get_saved_state(wallet, cuuid)
 

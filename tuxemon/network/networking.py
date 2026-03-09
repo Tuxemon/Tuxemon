@@ -59,6 +59,7 @@ class CharData:
     inventory: list[Item] = field(
         default_factory=list
     )  # List of items in the character's inventory
+    money: int = 0
 
     def copy(self, **updates: Any) -> CharData:
         return replace(self, **updates)
@@ -72,6 +73,7 @@ class CharData:
             "slug": self.slug,
             "monsters": encode_monsters(self.monsters),
             "inventory": encode_items(self.inventory),
+            "money": self.money,
         }
 
     @staticmethod
@@ -84,6 +86,7 @@ class CharData:
             slug=data.get("slug"),
             monsters=decode_monsters(data.get("monsters", [])),
             inventory=decode_items(data.get("inventory", [])),
+            money=int(data.get("money", 0)),
         )
 
 

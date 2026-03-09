@@ -2,6 +2,7 @@
 # Copyright (c) 2014-2026 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import json
 import logging
 import time
 from enum import Enum, auto
@@ -121,6 +122,7 @@ class TuxemonClient:
         """Synchronizes game state and handles connection updates per frame."""
         self.connection_manager.update()
         self.check_notify()
+        self.sync_manager.sync_player_state_if_changed()
 
     def check_notify(self) -> None:
         """Dispatches incoming server events to appropriate handlers."""
@@ -261,6 +263,7 @@ class PlayerSyncManager:
     def __init__(self, client: TuxemonClient):
         self.client = client
         self.game = client.game
+        self._last_synced_snapshot: str | None = None
 
     def _wallet_address(self) -> str:
         wallet = str(self.game.solana_manager.wallet_address or "").strip()
@@ -273,6 +276,12 @@ class PlayerSyncManager:
         return name or "Unnamed Player"
 
     def _build_char_payload(self, player_data: dict[str, Any], wallet: str) -> dict[str, Any]:
+        money = 0
+        try:
+            money = int(local_session.player.money_controller.money_manager.get_money())
+        except Exception:
+            money = 0
+
         return {
             "tile_pos": player_data.get("tile_pos", [0, 0]),
             "name": self._resolve_player_name(player_data.get("name"), wallet),
@@ -281,7 +290,49 @@ class PlayerSyncManager:
             "slug": player_data.get("slug"),
             "monsters": player_data.get("monsters", []),
             "inventory": player_data.get("inventory", []),
+            "money": money,
         }
+
+    def sync_player_state_if_changed(self) -> None:
+        """Sends a full CLIENT_MAP_UPDATE snapshot when local player state changes."""
+        if not self.client.listening or not self.client.client.registered:
+            return
+
+        try:
+            player_data = local_session.player.__dict__
+            map_name = self.game.get_map_name()
+        except Exception:
+            return
+
+        wallet = self._wallet_address()
+        char_dict = self._build_char_payload(player_data, wallet)
+        snapshot = json.dumps(
+            {
+                "map_name": map_name,
+                "wallet_address": wallet,
+                "char_dict": EventData.from_dict(
+                    {
+                        "type": "CLIENT_MAP_UPDATE",
+                        "event_number": 0,
+                        "map_name": map_name,
+                        "char_dict": char_dict,
+                        "wallet_address": wallet,
+                    }
+                ).to_dict()["char_dict"],
+            },
+            sort_keys=True,
+        )
+
+        if snapshot == self._last_synced_snapshot:
+            return
+
+        self._send_event(
+            "CLIENT_MAP_UPDATE",
+            map_name=map_name,
+            char_dict=char_dict,
+            wallet_address=wallet,
+        )
+        self._last_synced_snapshot = snapshot
 
     def _send_event(self, event_type: str, **fields: Any) -> None:
         """
@@ -486,6 +537,16 @@ class ConnectionManager:
 
     def connect_to_host(self, ip: str, port: int) -> bool:
         """Attempts to connect to the selected multiplayer server."""
+        if not self.client.game.solana_manager.has_wallet_connection():
+            self.state = ConnState.DISCONNECTED
+            self.client.last_connection_error = (
+                "Wallet connection required. Create or import a devnet wallet first."
+            )
+            logger.warning(
+                "Blocked WS connection to %s:%s: missing wallet connection", ip, port
+            )
+            return False
+
         logger.warning("Connecting to WS server: %s:%s", ip, port)
         self.client.client.start_connection(ip, port)
         self.state = ConnState.REGISTERING

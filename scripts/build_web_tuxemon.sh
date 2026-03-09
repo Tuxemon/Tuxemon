@@ -8,22 +8,11 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 WEB_APP_DIR="$ROOT_DIR/web"
 OUT_DIR="$ROOT_DIR/build/web"
 
-if command -v py >/dev/null 2>&1; then
-  PY_CMD="py"
-elif command -v python >/dev/null 2>&1; then
-  PY_CMD="python"
-elif command -v python3 >/dev/null 2>&1; then
-  PY_CMD="python3"
-else
-  echo "No Python interpreter found (py/python/python3)."
-  exit 1
-fi
-
 mkdir -p "$OUT_DIR"
 
-if ! "$PY_CMD" -c "import pygbag" >/dev/null 2>&1; then
+if ! python -c "import pygbag" >/dev/null 2>&1; then
   echo "Installing pygbag..."
-  "$PY_CMD" -m pip install pygbag
+  python -m pip install pygbag
 fi
 
 # Prepare a lean app folder for browser build.
@@ -35,7 +24,7 @@ cp -r "$ROOT_DIR/mods" "$WEB_APP_DIR/mods"
 cp "$ROOT_DIR/requirements.txt" "$WEB_APP_DIR/requirements.txt"
 
 # pygbag builds from an app root that contains main.py.
-"$PY_CMD" -m pygbag --build --archive --ume_block 0 --app_name "Tuxemon" "$WEB_APP_DIR"
+python -m pygbag --build --archive --ume_block 0 --app_name "Tuxemon" "$WEB_APP_DIR"
 
 # Collect generated output in a predictable place.
 if [ -d "$WEB_APP_DIR/build/web" ]; then

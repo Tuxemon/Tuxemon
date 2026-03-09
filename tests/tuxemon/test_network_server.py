@@ -1,5 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0
 # Copyright (c) 2014-2026 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+import logging
 from unittest.mock import MagicMock
 
 import json
@@ -326,6 +327,37 @@ def test_handle_map_update_event_updates_and_notifies(server):
     server.client_registry.set_client_data.assert_called_once_with("abc", "map_name", "forest")
     server.update_char_dict.assert_called_once_with("abc", {"hp": 1})
     server.notify_client.assert_called_once_with("abc", event)
+
+
+def test_handle_map_update_event_logs_rename(server, caplog):
+    server.client_registry.registry = {
+        "abc": {
+            "wallet_address": "Wallet123",
+            "map_name": "forest",
+            "char_dict": {"name": "OldName"},
+        }
+    }
+
+    event = MagicMock(map_name="forest", char_dict={"name": "NewName"})
+    server.update_char_dict = MagicMock()
+    server.notify_client = MagicMock()
+
+    with caplog.at_level(logging.WARNING):
+        server.handle_map_update_event("abc", event)
+
+    assert "Character rename detected" in caplog.text
+
+
+def test_update_char_dict_accepts_dict_payload(server):
+    server.client_registry.registry = {
+        "abc": {
+            "char_dict": {"name": "OldName", "running": False},
+        }
+    }
+
+    server.client_registry.update_char_dict("abc", {"name": "NewName"})
+
+    assert server.client_registry.registry["abc"]["char_dict"]["name"] == "NewName"
 
 
 def test_persist_character_state_accepts_legacy_signature(server, tmp_path):

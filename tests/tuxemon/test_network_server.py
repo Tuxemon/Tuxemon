@@ -77,17 +77,32 @@ def test_handle_client_disconnected_event_removes_and_notifies(server):
 
 
 def test_handle_push_self_event_registers_and_notifies(server):
-    event = MagicMock(map_name="forest", char_dict={"hp": 100})
+    event = MagicMock(
+        map_name="forest",
+        wallet_address="Wallet123",
+        char_dict={
+            "name": "Red",
+            "tile_pos": [1, 1],
+            "facing": "DOWN",
+            "running": False,
+            "monsters": [],
+            "inventory": [],
+        },
+    )
     server.client_registry.register_client = MagicMock()
+    server.client_registry.set_client_data = MagicMock()
     server.notify_populate_client = MagicMock()
 
     server.notify_populate_client = MagicMock()
     server.handle_push_self_event("abc", event)
 
     server.client_registry.register_client.assert_called_once_with(
+        "abc", "forest", event.char_dict, "Wallet123"
         "abc", "forest", {"hp": 100}, ""
     )
-    server.notify_populate_client.assert_called_once_with("abc", event)
+    stored_payload = server.client_registry.set_client_data.call_args_list[-1][0][2]
+    assert stored_payload["name"] == "Wallet123"
+    server.notify_populate_client.assert_called_once()
 
 
 def test_handle_ping_event_updates_timestamp(server):

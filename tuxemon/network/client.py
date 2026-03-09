@@ -297,6 +297,10 @@ class PlayerSyncManager:
             return False
 
         wallet = self._wallet_address()
+        resolved_name = self._resolve_player_name(player_data.get("name"), wallet)
+        char_dict = {
+            "tile_pos": player_data.get("tile_pos", [0, 0]),
+            "name": resolved_name,
         char_dict = {
             "tile_pos": player_data.get("tile_pos", [0, 0]),
             "name": self._resolve_player_name(player_data.get("name"), wallet),
@@ -330,6 +334,10 @@ class PlayerSyncManager:
             return False
 
         wallet = self._wallet_address()
+        resolved_name = self._resolve_player_name(pd.get("name"), wallet)
+        char_dict = {
+            "tile_pos": pd.get("tile_pos", [0, 0]),
+            "name": resolved_name,
         char_dict = {
             "tile_pos": pd.get("tile_pos", [0, 0]),
             "name": self._resolve_player_name(pd.get("name"), wallet),

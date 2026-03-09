@@ -398,3 +398,27 @@ def test_connection_manager_diagnose_gateway_refusal(client):
     )
     assert "router/gateway" in msg
     assert "host machine IP" in msg
+
+
+def test_populate_player_uses_wallet_address_as_default_name(client, monkeypatch):
+    client.game.solana_manager.wallet_address = "WalletABC"
+    fake_player = MagicMock()
+    fake_player.name = "Red"
+    fake_player.__dict__ = {
+        "tile_pos": [0, 0],
+        "name": "Red",
+        "facing": "down",
+        "running": False,
+        "monsters": [],
+        "inventory": [],
+    }
+    monkeypatch.setattr("tuxemon.session.local_session._player", fake_player)
+    client.game.get_map_name.return_value = "start-town"
+    client.client.send_event = MagicMock()
+
+    result = client.sync_manager.populate_player()
+
+    assert result is True
+    payload = client.client.send_event.call_args[0][0]
+    assert payload["wallet_address"] == "WalletABC"
+    assert payload["char_dict"]["name"] == "WalletABC"

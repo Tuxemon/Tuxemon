@@ -352,6 +352,14 @@ class TuxemonServer:
         if saved_state:
             saved_char = saved_state.get("char_dict")
             if isinstance(saved_char, dict) and {"tile_pos", "facing", "name"}.issubset(saved_char):
+                if isinstance(event_data, EventData):
+                    event_data = event_data.copy(
+                        map_name=saved_state.get("map_name") or event_data.map_name,
+                        char_dict=CharData.from_dict(saved_char),
+                    )
+                else:
+                    event_data.map_name = saved_state.get("map_name") or event_data.map_name
+                    event_data.char_dict = saved_char
                 event_data = event_data.copy(
                     map_name=saved_state.get("map_name") or event_data.map_name,
                     char_dict=CharData.from_dict(saved_char),
@@ -372,6 +380,17 @@ class TuxemonServer:
             )
 
         if event_data.char_dict and event_data.map_name:
+            map_name = event_data.map_name
+            payload = self._char_data_to_dict(event_data.char_dict) or {}
+            payload["name"] = self._normalize_character_name(payload.get("name"), wallet)
+            self.client_registry.set_client_data(cuuid, "char_dict", payload)
+
+            if isinstance(event_data, EventData):
+                event_data = event_data.copy(
+                    char_dict=CharData.from_dict(payload),
+                    wallet_address=wallet,
+                )
+
             payload = self._char_data_to_dict(event_data.char_dict) or {}
             payload["name"] = self._normalize_character_name(payload.get("name"), wallet)
             self.client_registry.set_client_data(cuuid, "char_dict", payload)
@@ -380,6 +399,11 @@ class TuxemonServer:
                 cuuid,
                 wallet or "(none)",
                 payload["name"],
+                map_name,
+                len(self.client_registry.registry),
+            )
+            self._persist_character_state(
+                cuuid, wallet, map_name, payload
                 event_data.map_name,
                 len(self.client_registry.registry),
             )
@@ -455,6 +479,9 @@ class TuxemonServer:
         )
         self.notify_client(cuuid, event_data)
 
+    def update_char_dict(
+        self, cuuid: str, char_data: CharData | dict[str, Any] | None
+    ) -> None:
     def update_char_dict(self, cuuid: str, char_data: CharData | None) -> None:
         """Updates character state and persists it to server folder."""
         self.client_registry.update_char_dict(cuuid, char_data)
@@ -594,7 +621,9 @@ class ClientRegistry:
         elif isinstance(existing, dict):
             existing[key] = value
 
-    def update_char_dict(self, cuuid: str, char_data: CharData | None) -> None:
+    def update_char_dict(
+        self, cuuid: str, char_data: CharData | dict[str, Any] | None
+    ) -> None:
         if cuuid not in self.registry:
             return
 

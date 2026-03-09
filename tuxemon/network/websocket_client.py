@@ -236,11 +236,23 @@ class WebsocketClientWrapper:
                 await asyncio.gather(*pending, return_exceptions=True)
 
         except ConnectionRefusedError:
-            self._last_error = "Connection refused"
-            logger.error("Connection refused.")
+            side_hint = (
+                "local server-side"
+                if ip in {"127.0.0.1", "localhost"}
+                else "remote server/network"
+            )
+            self._last_error = (
+                f"{side_hint} refusal at {uri}: TCP connection refused"
+            )
+            logger.error(
+                "%s. Ensure a websocket server is listening on %s and that"
+                " firewalls allow this port.",
+                self._last_error,
+                uri,
+            )
         except OSError as e:
-            self._last_error = str(e)
-            logger.error(f"Socket connection error: {e}")
+            self._last_error = f"socket error while connecting to {uri}: {e}"
+            logger.error(f"Socket connection error while connecting to {uri}: {e}")
         except Exception as e:
             self._last_error = str(e)
             logger.error(f"Unexpected connection error: {e}")

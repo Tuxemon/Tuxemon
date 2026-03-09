@@ -18,6 +18,7 @@ from tuxemon.launcher import GameLauncher
 from tuxemon.locale.locale import T
 from tuxemon.menu.menu import PygameMenuState
 from tuxemon.platform.const.graphics import BG_START_SCREEN, BLACK_COLOR
+from tuxemon.save import get_index_of_latest_save
 from tuxemon.session import local_session
 from tuxemon.state.state import State
 from tuxemon.tools import open_choice_dialog, open_dialog

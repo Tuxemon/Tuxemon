@@ -360,7 +360,8 @@ class TuxemonServer:
                     continue
                 event_data = EventData.from_dict(normalized)
                 self.server_event_handler(cuuid, event_data)
-                self._persist_registry_state(cuuid)
+                if event_data.type != EventType.PING:
+                    self._persist_registry_state(cuuid)
                 logger.warning("Processed event: cuuid=%s type=%s", cuuid, event_data.type.value)
             except Exception:
                 logger.exception(f"Critical error handling event from {cuuid}")
@@ -500,7 +501,6 @@ class TuxemonServer:
         self.client_registry.set_client_data(
             cuuid, "ping_timestamp", datetime.now()
         )
-        self._persist_registry_state(cuuid)
 
     def handle_map_update_event(self, cuuid: str, event_data: EventData) -> None:
         previous_name = None

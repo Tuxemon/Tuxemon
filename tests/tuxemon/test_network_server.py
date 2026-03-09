@@ -117,6 +117,29 @@ def test_handle_ping_event_updates_timestamp(server):
     assert args[1] == "ping_timestamp"
 
 
+def test_handle_ping_event_does_not_persist_state(server):
+    event = MagicMock()
+    server.client_registry.set_client_data = MagicMock()
+    server._persist_registry_state = MagicMock()
+
+    server.handle_ping_event("abc", event)
+
+    server.client_registry.set_client_data.assert_called_once()
+    server._persist_registry_state.assert_not_called()
+
+
+def test_update_skips_persist_for_ping(server):
+    server.server.get_incoming_events = MagicMock(
+        return_value=[("abc", {"type": "PING", "event_number": 1})]
+    )
+    server.event_router.route_event = MagicMock()
+    server._persist_registry_state = MagicMock()
+
+    server.update()
+
+    server._persist_registry_state.assert_not_called()
+
+
 def test_handle_client_interaction_event_updates_and_notifies(server):
     event = MagicMock(char_dict={"hp": 50})
     server.update_char_dict = MagicMock()

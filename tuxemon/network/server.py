@@ -313,7 +313,11 @@ class TuxemonServer:
 
     def _handle_timeout_disconnection(self, cuuid: str) -> None:
         """Internal helper to clean up a timed-out client."""
-        logger.info(f"Client Timeout: {cuuid}")
+        logger.warning(
+            "Client timeout: cuuid=%s wallet=%s",
+            cuuid,
+            self.client_registry.registry.get(cuuid, {}).get("wallet_address", ""),
+        )
         event_data = self.event_factory.create_event(
             EventType.CLIENT_DISCONNECTED, cuuid
         )
@@ -351,6 +355,14 @@ class TuxemonServer:
         and character data, then notifies others.
         """
         wallet = self._normalize_wallet(event_data.wallet_address)
+        if not wallet:
+            logger.warning(
+                "Rejected client %s: wallet connection is required for multiplayer.",
+                cuuid,
+            )
+            self.server.disconnect_client(cuuid)
+            return
+
         saved_state = self._get_saved_state(wallet, cuuid)
 
         if saved_state:
@@ -416,6 +428,12 @@ class TuxemonServer:
         self._persist_registry_state(cuuid)
 
     def handle_map_update_event(self, cuuid: str, event_data: EventData) -> None:
+        logger.warning(
+            "Map update: cuuid=%s map=%s wallet=%s",
+            cuuid,
+            event_data.map_name,
+            self.client_registry.registry.get(cuuid, {}).get("wallet_address", ""),
+        )
         self.client_registry.set_client_data(cuuid, "map_name", event_data.map_name)
         self.update_char_dict(cuuid, event_data.char_dict)
         self.notify_client(cuuid, event_data)

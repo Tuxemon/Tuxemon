@@ -316,6 +316,12 @@ class PlayerSyncManager:
             "wallet_address": wallet,
         }
         self._send_event(event_type, **payload)
+        self.client.populated = True
+        return True
+
+    def update_player(self, direction: str, event_type: str = "CLIENT_MAP_UPDATE") -> bool:
+        }
+        self._send_event(event_type, **payload)
         resolved_name = self._resolve_player_name(player_data.get("name"), wallet)
         char_dict = {
             "tile_pos": player_data.get("tile_pos", [0, 0]),

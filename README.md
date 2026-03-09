@@ -225,43 +225,29 @@ cluster = "devnet"
 official_token_mint = "AayJpSNSwD9iuXzRnaNmTvrLVRste74TNjzJ8Edzpump"
 ```
 
-Browser Build (Full Tuxemon in Browser)
+Browser Multiplayer Prototype
 --------
 
-To run the **actual Tuxemon game** in a web browser (not the simplified prototype),
-this repository now includes build/serve scripts based on `pygbag` (pygame->WASM).
+This repository now includes a lightweight browser-playable multiplayer
+prototype so you can run a web game loop quickly without the desktop client.
 
-Build the browser package:
-
-```shell
-./scripts/build_web_tuxemon.sh
-```
-
-Serve the built web app:
+Start it with:
 
 ```shell
-./scripts/serve_web_tuxemon.sh 8000
+py scripts/run_web_multiplayer.py --http-port 8080 --ws-port 8765
 ```
 
-On Windows CMD/PowerShell, use the `.bat` scripts (these prefer `py` over `python`) instead:
-
-```bat
-scripts\build_web_tuxemon.bat
-scripts\serve_web_tuxemon.bat 8000
-```
-
-Open:
+Then open:
 
 ```text
-http://localhost:8000
+http://localhost:8080/?wsPort=8765
 ```
 
-Notes:
+Controls:
 
-- This packages the full `run_tuxemon.py` + `tuxemon/` + `mods/` content for browser runtime.
-- Build output is written to `build/web`.
-- First build can take time because `pygbag` and wasm assets are prepared.
-- Build scripts pass `--disable-sound-format-error` and also remove `.mp3` files from the temporary `web/` copy before packaging, avoiding pygbag audio-format aborts across versions.
+- Move: `WASD` or arrow keys
+- Rename trainer: use the input + button
+- Multiplayer: open multiple tabs/browsers/devices pointed at the same server
 
 Use **CREATE DEVNET WALLET** to generate a wallet in-game, **IMPORT PRIVATE KEY** to restore one, and **EXPORT PRIVATE KEY** to back up locally managed wallets.
 
@@ -272,13 +258,13 @@ In-game currency rewards now emit on-chain currency events: on **devnet** the ga
 You can start a dedicated multiplayer server directly from CLI:
 
 ```
-python run_tuxemon.py --headless --host-server --server-port 40081
+py run_tuxemon.py --headless --host-server --server-port 40081
 ```
 
 Or host from the normal client startup:
 
 ```
-python run_tuxemon.py --host-server
+py run_tuxemon.py --host-server
 ```
 
 Controls

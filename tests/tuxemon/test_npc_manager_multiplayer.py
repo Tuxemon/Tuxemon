@@ -28,3 +28,26 @@ def test_add_clients_to_map_does_not_clear_existing_npcs(monkeypatch) -> None:
     clear_mock.assert_not_called()
     add_on_map_mock.assert_called_once_with(sprite_same)
     add_off_map_mock.assert_called_once_with(sprite_other)
+
+
+def test_add_clients_to_map_normalizes_map_name(monkeypatch) -> None:
+    mgr = NPCManager()
+
+    add_on_map_mock = MagicMock()
+    add_off_map_mock = MagicMock()
+
+    monkeypatch.setattr(mgr, "add_npc", add_on_map_mock)
+    monkeypatch.setattr(mgr, "add_npc_off_map", add_off_map_mock)
+
+    sprite_same = MagicMock()
+    sprite_other = MagicMock()
+
+    registry = {
+        "c1": {"sprite": sprite_same, "map_name": "maps\\Map_A.tmx"},
+        "c2": {"sprite": sprite_other, "map_name": "maps/map_b.tmx"},
+    }
+
+    mgr.add_clients_to_map(registry, "maps/map_a.tmx")
+
+    add_on_map_mock.assert_called_once_with(sprite_same)
+    add_off_map_mock.assert_called_once_with(sprite_other)

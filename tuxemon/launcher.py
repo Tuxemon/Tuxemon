@@ -54,10 +54,9 @@ class GameLauncher:
             return
 
         if not self.client.network_manager.is_connected():
-            logger.warning(
-                "Launch blocked: multiplayer connection is required for SolaMon."
+            logger.info(
+                "Launching while multiplayer connection is still initializing."
             )
-            return
 
         tile_pos = meta.starting_position
         map_path = fetch_asset("maps", meta.starting_map)

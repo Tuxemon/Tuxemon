@@ -309,6 +309,13 @@ class PlayerSyncManager:
 
         wallet = self._wallet_address()
         char_dict = self._build_char_payload(player_data, wallet)
+
+        payload = {
+            "map_name": map_name,
+            "char_dict": char_dict,
+            "wallet_address": wallet,
+        }
+        self._send_event(event_type, **payload)
         resolved_name = self._resolve_player_name(player_data.get("name"), wallet)
         char_dict = {
             "tile_pos": player_data.get("tile_pos", [0, 0]),
@@ -347,6 +354,14 @@ class PlayerSyncManager:
 
         wallet = self._wallet_address()
         char_dict = self._build_char_payload(pd, wallet)
+
+        payload = {
+            "map_name": map_name,
+            "direction": direction,
+            "char_dict": char_dict,
+            "wallet_address": wallet,
+        }
+        self._send_event(event_type, **payload)
         resolved_name = self._resolve_player_name(pd.get("name"), wallet)
         char_dict = {
             "tile_pos": pd.get("tile_pos", [0, 0]),

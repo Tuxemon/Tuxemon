@@ -186,15 +186,28 @@ class TuxemonServer:
         wallet = self._normalize_wallet(wallet_address)
         data["name"] = self._normalize_character_name(data.get("name"), wallet)
 
+        key = self._state_key(wallet, cuuid)
+        previous = self.character_state_store.get(key)
+
+        prev_char_dict = None
+        prev_map = None
+        if isinstance(previous, dict):
+            prev_char_dict = (
+                previous.get("char_dict") if isinstance(previous.get("char_dict"), dict) else None
+            )
+            prev_map = previous.get("map_name")
+
+        current_map = map_name or ""
+        if prev_map == current_map and prev_char_dict == data:
+            return
+
         entry = {
             "cuuid": cuuid,
             "wallet_address": wallet,
-            "map_name": map_name or "",
+            "map_name": current_map,
             "char_dict": data,
             "updated_at": datetime.now().isoformat(),
         }
-        key = self._state_key(wallet, cuuid)
-        previous = self.character_state_store.get(key)
         self.character_state_store[key] = entry
         self._emit_server_log(f"Saved character state: key={key} cuuid={cuuid} map={entry['map_name']}")
 

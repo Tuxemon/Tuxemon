@@ -347,3 +347,29 @@ def test_persist_character_state_accepts_legacy_signature(server, tmp_path):
     assert "abc" in payload
     assert payload["abc"]["map_name"] == "forest"
     assert payload["abc"]["char_dict"]["name"] == "LegacyPlayer"
+
+
+def test_handle_push_self_event_allows_walletless_clients(server):
+    event = MagicMock(
+        map_name="forest",
+        wallet_address="",
+        char_dict={
+            "name": "Guest",
+            "tile_pos": [1, 1],
+            "facing": "DOWN",
+            "running": False,
+            "monsters": [],
+            "inventory": [],
+        },
+    )
+    server.client_registry.register_client = MagicMock()
+    server.notify_populate_client = MagicMock()
+    server.server.disconnect_client = MagicMock()
+
+    server.handle_push_self_event("abc", event)
+
+    server.client_registry.register_client.assert_called_once_with(
+        "abc", "forest", event.char_dict, ""
+    )
+    server.notify_populate_client.assert_called_once()
+    server.server.disconnect_client.assert_not_called()

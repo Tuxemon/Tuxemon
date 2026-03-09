@@ -264,8 +264,8 @@ class WebsocketServerWrapper:
     def _handle_disconnect(self, cuuid: str, reason: str = "unknown") -> None:
         """Cleans up the registry and notifies the game thread."""
         peer = self.registry.get(cuuid, {}).get("peer", "unknown")
-        logger.info(
-            f"Client {cuuid} disconnected from {peer}, reason={reason}"
+        self._emit_terminal_log(
+            f"[SERVER] Client disconnected: cuuid={cuuid} peer={peer} reason={reason}"
         )
 
         self.client_registry.pop(cuuid, None)

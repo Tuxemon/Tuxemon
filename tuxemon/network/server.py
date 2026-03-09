@@ -203,6 +203,13 @@ class TuxemonServer:
                 current_name,
                 current_map,
             )
+        if prev_name != current_name:
+            logger.warning(
+                "Persisted character rename to characters.json: wallet=%s old_name=%s new_name=%s",
+                wallet or "(none)",
+                prev_name or "(unset)",
+                current_name,
+            )
         self._save_character_states()
 
     def _get_saved_state(self, wallet_address: str | None, cuuid: str) -> dict[str, Any] | None:
@@ -555,12 +562,14 @@ class TuxemonServer:
         """Updates character state and persists it to server folder."""
         self.client_registry.update_char_dict(cuuid, char_data)
         map_name = None
+        wallet = None
+        merged_char_data: CharData | dict[str, Any] | None = None
         if cuuid in self.client_registry.registry:
             map_name = self.client_registry.registry[cuuid].get("map_name")
-        wallet = None
-        if cuuid in self.client_registry.registry:
             wallet = self.client_registry.registry[cuuid].get("wallet_address")
-        self._persist_character_state(cuuid, wallet, map_name, char_data)
+            merged_char_data = self.client_registry.registry[cuuid].get("char_dict")
+
+        self._persist_character_state(cuuid, wallet, map_name, merged_char_data)
 
     def notify_client(self, cuuid: str, event_data: EventData) -> None:
         """

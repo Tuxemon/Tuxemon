@@ -360,6 +360,47 @@ def test_update_char_dict_accepts_dict_payload(server):
     assert server.client_registry.registry["abc"]["char_dict"]["name"] == "NewName"
 
 
+def test_update_char_dict_persists_renamed_name_to_state_file(server, tmp_path, caplog):
+    server.state_dir = tmp_path / "server"
+    server.state_file = server.state_dir / "characters.json"
+    server.character_state_store = {
+        "WalletXYZ": {
+            "cuuid": "abc",
+            "wallet_address": "WalletXYZ",
+            "map_name": "forest",
+            "char_dict": {
+                "name": "OldName",
+                "tile_pos": [1, 2],
+                "facing": "DOWN",
+                "running": False,
+                "monsters": [],
+                "inventory": [],
+            },
+        }
+    }
+    server.client_registry.registry = {
+        "abc": {
+            "wallet_address": "WalletXYZ",
+            "map_name": "forest",
+            "char_dict": {
+                "name": "OldName",
+                "tile_pos": [1, 2],
+                "facing": "DOWN",
+                "running": False,
+                "monsters": [],
+                "inventory": [],
+            },
+        }
+    }
+
+    with caplog.at_level(logging.WARNING):
+        server.update_char_dict("abc", {"name": "NewName"})
+
+    payload = json.loads(server.state_file.read_text(encoding="utf-8"))
+    assert payload["WalletXYZ"]["char_dict"]["name"] == "NewName"
+    assert "Persisted character rename to characters.json" in caplog.text
+
+
 def test_persist_character_state_accepts_legacy_signature(server, tmp_path):
     server.state_dir = tmp_path / "server"
     server.state_file = server.state_dir / "characters.json"

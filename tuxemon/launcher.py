@@ -54,9 +54,10 @@ class GameLauncher:
             return
 
         if not self.client.network_manager.is_connected():
-            logger.info(
-                "Launching while multiplayer connection is still initializing."
+            logger.warning(
+                "Launch blocked: active multiplayer connection is required."
             )
+            return
 
         tile_pos = meta.starting_position
         map_path = fetch_asset("maps", meta.starting_map)

@@ -50,3 +50,20 @@ def test_join_selected_server_failure_shows_diagnosis(monkeypatch) -> None:
     args = open_dialog_mock.call_args[0]
     assert "Connection failed to 127.0.0.1:40081" in args[1][0]
     assert "server-side refusal" in args[1][1]
+
+
+def test_join_by_ip_gateway_address_shows_hint(monkeypatch) -> None:
+    state = multiplayer_module.MultiplayerMenu.__new__(multiplayer_module.MultiplayerMenu)
+    state.network = MagicMock()
+    state.network.client = MagicMock()
+    state.client = MagicMock()
+
+    open_dialog_mock = MagicMock()
+    monkeypatch.setattr(multiplayer_module, "open_dialog", open_dialog_mock)
+
+    state._join_by_ip_callback("192.168.0.1:40081")
+
+    open_dialog_mock.assert_called_once()
+    args = open_dialog_mock.call_args[0]
+    assert "router/gateway" in args[1][0]
+    state.network.client.connect_to_host.assert_not_called()

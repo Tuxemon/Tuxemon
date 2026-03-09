@@ -22,6 +22,17 @@ if TYPE_CHECKING:
 
 MenuGameObj = Callable[[], object]
 
+def _looks_like_gateway_ip(host: str) -> bool:
+    host_l = host.strip().lower()
+    return (
+        host_l.startswith("192.168.")
+        and host_l.endswith(".1")
+        or host_l.startswith("10.")
+        and host_l.endswith(".1")
+        or host_l.startswith("172.")
+        and host_l.endswith(".1")
+    )
+
 
 def add_menu_items(menu: Menu, items: list[tuple[str, MenuGameObj]]) -> None:
     for key, callback in items:
@@ -122,6 +133,16 @@ class MultiplayerMenu(PygameMenuState):
             except ValueError:
                 open_dialog(self.client, ["Invalid port. Use ip:port"])
                 return
+
+        if _looks_like_gateway_ip(host):
+            open_dialog(
+                self.client,
+                [
+                    f"{host} looks like a router/gateway address.",
+                    "Use the host machine IP that is running the multiplayer server.",
+                ],
+            )
+            return
 
         self.network.client.selected_game = (host, port)
         self.join()

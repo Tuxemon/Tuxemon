@@ -24,3 +24,21 @@ def test_pathfind_action_pathfinds_when_entity_exists() -> None:
     action.start(session)
 
     npc.pathfind.assert_called_once_with((4, 5))
+
+
+def test_pathfind_action_times_out_and_stops() -> None:
+    action = PathfindAction("npc_maple", 50, 50)
+    action.stop = MagicMock()
+
+    session = MagicMock()
+    npc = MagicMock()
+    npc.tile_pos = (0, 0)
+    npc.moving = True
+    npc.path = [(1, 1)]
+    session.get_npc.return_value = npc
+
+    action.start(session)
+
+    action.update(session, action.timeout_s + 0.1)
+
+    action.stop.assert_called_once()

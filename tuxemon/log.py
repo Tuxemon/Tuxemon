@@ -97,3 +97,13 @@ def configure() -> None:
 
         pyscroll_logger = logging.getLogger("orthographic")
         pyscroll_logger.setLevel(logging.ERROR)
+    else:
+        # Ensure dedicated server and multiplayer flows still emit logs,
+        # even when debug logging is disabled in user config.
+        root_logger = logging.getLogger()
+        if not root_logger.handlers:
+            logging.basicConfig(
+                level=log_level,
+                format="[%(asctime)s] %(name)s - %(levelname)s - %(message)s",
+                stream=sys.stdout,
+            )

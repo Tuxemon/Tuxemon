@@ -64,6 +64,13 @@ def remove_unsupported_audio(root: Path) -> tuple[int, list[Path]]:
         else:
             failed.append(path)
     return removed, failed
+def remove_unsupported_audio(root: Path) -> int:
+    removed = 0
+    for path in root.rglob("*"):
+        if path.is_file() and path.suffix.lower() in UNSUPPORTED_AUDIO_EXTENSIONS:
+            path.unlink()
+            removed += 1
+    return removed
 
 
 def main() -> None:
@@ -95,6 +102,10 @@ def main() -> None:
         for path in sorted(set(failed + remaining)):
             print(f" - {path}")
         raise SystemExit(1)
+
+    removed = remove_unsupported_audio(web_dir / "mods")
+    print(f"Prepared web app folder: {web_dir}")
+    print(f"Removed unsupported audio files: {removed}")
 
 
 if __name__ == "__main__":

@@ -262,6 +262,29 @@ Notes:
 - Build output is written to `build/web`.
 - First build can take time because `pygbag` and wasm assets are prepared.
 - Build scripts now run `scripts/prepare_web_build.py`, which removes unsupported audio formats (`.mp3`, `.flac`, `.m4a`, `.aac`, `.wma`, `.aiff`, `.alac`) from the temporary `web/` copy, verifies none remain, and then runs pygbag with `--disable-sound-format-error`.
+Browser Multiplayer Prototype
+--------
+
+This repository now includes a lightweight browser-playable multiplayer
+prototype so you can run a web game loop quickly without the desktop client.
+
+Start it with:
+
+```shell
+py scripts/run_web_multiplayer.py --http-port 8080 --ws-port 8765
+```
+
+Then open:
+
+```text
+http://localhost:8080/?wsPort=8765
+```
+
+Controls:
+
+- Move: `WASD` or arrow keys
+- Rename trainer: use the input + button
+- Multiplayer: open multiple tabs/browsers/devices pointed at the same server
 
 Use **CREATE DEVNET WALLET** to generate a wallet in-game, **IMPORT PRIVATE KEY** to restore one, and **EXPORT PRIVATE KEY** to back up locally managed wallets.
 
@@ -272,13 +295,13 @@ In-game currency rewards now emit on-chain currency events: on **devnet** the ga
 You can start a dedicated multiplayer server directly from CLI:
 
 ```
-python run_tuxemon.py --headless --host-server --server-port 40081
+py run_tuxemon.py --headless --host-server --server-port 40081
 ```
 
 Or host from the normal client startup:
 
 ```
-python run_tuxemon.py --host-server
+py run_tuxemon.py --host-server
 ```
 
 Controls

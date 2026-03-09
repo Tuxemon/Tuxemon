@@ -124,11 +124,30 @@ class TuxemonServer:
     def _persist_character_state(
         self,
         cuuid: str,
-        wallet_address: str | None,
-        map_name: str | None,
-        char_data: CharData | dict[str, Any] | None,
+        wallet_or_map: str | None,
+        map_name_or_char: str | CharData | dict[str, Any] | None = None,
+        char_data: CharData | dict[str, Any] | None = None,
     ) -> None:
-        data = self._char_data_to_dict(char_data)
+        """Persist character state.
+
+        Supports both current calls:
+            _persist_character_state(cuuid, wallet, map_name, char_data)
+        and legacy calls still seen in some builds:
+            _persist_character_state(cuuid, map_name, char_data)
+        """
+        wallet_address: str | None
+        map_name: str | None
+
+        if char_data is None and not isinstance(map_name_or_char, str):
+            wallet_address = ""
+            map_name = wallet_or_map
+            char_payload = map_name_or_char
+        else:
+            wallet_address = wallet_or_map
+            map_name = map_name_or_char if isinstance(map_name_or_char, str) else None
+            char_payload = char_data
+
+        data = self._char_data_to_dict(char_payload)
         if not data:
             return
 
@@ -366,23 +385,6 @@ class TuxemonServer:
             )
             self._persist_character_state(
                 cuuid, wallet, event_data.map_name, payload
-            )
-
-        if event_data.char_dict and event_data.map_name:
-            name = (
-                event_data.char_dict.name
-                if hasattr(event_data.char_dict, "name")
-                else str(event_data.char_dict.get("name", "unknown"))
-            )
-            logger.info(
-                "Client session connected: cuuid=%s name=%s map=%s active_clients=%s",
-                cuuid,
-                name,
-                event_data.map_name,
-                len(self.client_registry.registry),
-            )
-            self._persist_character_state(
-                cuuid, event_data.map_name, event_data.char_dict
             )
 
         self.notify_populate_client(cuuid, event_data)

@@ -311,3 +311,25 @@ def test_handle_map_update_event_updates_and_notifies(server):
     server.client_registry.set_client_data.assert_called_once_with("abc", "map_name", "forest")
     server.update_char_dict.assert_called_once_with("abc", {"hp": 1})
     server.notify_client.assert_called_once_with("abc", event)
+
+
+def test_persist_character_state_accepts_legacy_signature(server, tmp_path):
+    server.state_dir = tmp_path / "server"
+    server.state_file = server.state_dir / "characters.json"
+    server.character_state_store = {}
+
+    char_dict = {
+        "name": "LegacyPlayer",
+        "tile_pos": [1, 2],
+        "facing": "DOWN",
+        "running": False,
+        "monsters": [],
+        "inventory": [],
+    }
+
+    server._persist_character_state("abc", "forest", char_dict)
+
+    payload = json.loads(server.state_file.read_text(encoding="utf-8"))
+    assert "abc" in payload
+    assert payload["abc"]["map_name"] == "forest"
+    assert payload["abc"]["char_dict"]["name"] == "LegacyPlayer"

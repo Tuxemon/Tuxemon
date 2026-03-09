@@ -47,3 +47,22 @@ def test_launcher_requires_multiplayer(monkeypatch) -> None:
     launcher.launch(session=MagicMock(), meta=_meta())
 
     client.push_state.assert_not_called()
+
+
+def test_launcher_sets_wallet_as_initial_player_name(monkeypatch) -> None:
+    client = MagicMock()
+    client.solana_manager.has_wallet_connection.return_value = True
+    client.solana_manager.wallet_address = "WalletXYZ"
+    client.network_manager.is_connected.return_value = True
+
+    launcher = GameLauncher(client)
+
+    fake_player = MagicMock()
+    fake_session = MagicMock(player=fake_player)
+
+    monkeypatch.setattr("tuxemon.launcher.fetch_asset", lambda *_args: "map.tmx")
+    monkeypatch.setattr("tuxemon.launcher.Player.create", lambda *_args, **_kwargs: fake_player)
+
+    launcher.launch(session=fake_session, meta=_meta())
+
+    assert fake_session.player.name == "WalletXYZ"

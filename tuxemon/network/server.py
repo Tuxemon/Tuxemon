@@ -360,10 +360,6 @@ class TuxemonServer:
                 else:
                     event_data.map_name = saved_state.get("map_name") or event_data.map_name
                     event_data.char_dict = saved_char
-                event_data = event_data.copy(
-                    map_name=saved_state.get("map_name") or event_data.map_name,
-                    char_dict=CharData.from_dict(saved_char),
-                )
 
         if cuuid in self.client_registry.registry:
             # Reconnection logic
@@ -391,9 +387,6 @@ class TuxemonServer:
                     wallet_address=wallet,
                 )
 
-            payload = self._char_data_to_dict(event_data.char_dict) or {}
-            payload["name"] = self._normalize_character_name(payload.get("name"), wallet)
-            self.client_registry.set_client_data(cuuid, "char_dict", payload)
             logger.info(
                 "Client connected: cuuid=%s wallet=%s name=%s map=%s active_clients=%s",
                 cuuid,
@@ -404,11 +397,6 @@ class TuxemonServer:
             )
             self._persist_character_state(
                 cuuid, wallet, map_name, payload
-                event_data.map_name,
-                len(self.client_registry.registry),
-            )
-            self._persist_character_state(
-                cuuid, wallet, event_data.map_name, payload
             )
 
         self.notify_populate_client(cuuid, event_data)
@@ -482,7 +470,6 @@ class TuxemonServer:
     def update_char_dict(
         self, cuuid: str, char_data: CharData | dict[str, Any] | None
     ) -> None:
-    def update_char_dict(self, cuuid: str, char_data: CharData | None) -> None:
         """Updates character state and persists it to server folder."""
         self.client_registry.update_char_dict(cuuid, char_data)
         map_name = None

@@ -310,44 +310,11 @@ class PlayerSyncManager:
         wallet = self._wallet_address()
         char_dict = self._build_char_payload(player_data, wallet)
 
-        payload = {
-            "map_name": map_name,
-            "char_dict": char_dict,
-            "wallet_address": wallet,
-        }
-        self._send_event(event_type, **payload)
+        self._send_event(event_type, map_name=map_name, char_dict=char_dict, wallet_address=wallet)
         self.client.populated = True
         return True
 
     def update_player(self, direction: str, event_type: str = "CLIENT_MAP_UPDATE") -> bool:
-        }
-        self._send_event(event_type, **payload)
-        resolved_name = self._resolve_player_name(player_data.get("name"), wallet)
-        char_dict = {
-            "tile_pos": player_data.get("tile_pos", [0, 0]),
-            "name": resolved_name,
-        char_dict = {
-            "tile_pos": player_data.get("tile_pos", [0, 0]),
-            "name": self._resolve_player_name(player_data.get("name"), wallet),
-            "facing": _facing_member_name(player_data.get("facing", "down")),
-            "running": player_data.get("running", False),
-            "slug": player_data.get("slug"),
-            "monsters": player_data.get("monsters", []),
-            "inventory": player_data.get("inventory", []),
-        }
-
-        self._send_event(
-            event_type,
-            map_name=map_name,
-            char_dict=char_dict,
-            wallet_address=wallet,
-        )
-        self.client.populated = True
-        return True
-
-    def update_player(
-        self, direction: str, event_type: str = "CLIENT_MAP_UPDATE"
-    ) -> bool:
         """Sends client's current map and location to the server."""
         try:
             pd = local_session.player.__dict__
@@ -360,27 +327,6 @@ class PlayerSyncManager:
 
         wallet = self._wallet_address()
         char_dict = self._build_char_payload(pd, wallet)
-
-        payload = {
-            "map_name": map_name,
-            "direction": direction,
-            "char_dict": char_dict,
-            "wallet_address": wallet,
-        }
-        self._send_event(event_type, **payload)
-        resolved_name = self._resolve_player_name(pd.get("name"), wallet)
-        char_dict = {
-            "tile_pos": pd.get("tile_pos", [0, 0]),
-            "name": resolved_name,
-        char_dict = {
-            "tile_pos": pd.get("tile_pos", [0, 0]),
-            "name": self._resolve_player_name(pd.get("name"), wallet),
-            "facing": _facing_member_name(pd.get("facing", "down")),
-            "running": pd.get("running", False),
-            "slug": pd.get("slug"),
-            "monsters": pd.get("monsters", []),
-            "inventory": pd.get("inventory", []),
-        }
 
         self._send_event(
             event_type,

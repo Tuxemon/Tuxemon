@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+import time
 from enum import Enum, auto
 from itertools import count
 from typing import TYPE_CHECKING, Any, TypedDict
@@ -12,7 +13,10 @@ import pygame as pg
 from tuxemon.entity.npc import NPC
 from tuxemon.network.event_dispatcher import EventDispatcher
 from tuxemon.network.networking import EventData, update_client
-from tuxemon.network.websocket_client import WebsocketClientWrapper
+from tuxemon.network.websocket_client import (
+    ConnectionState,
+    WebsocketClientWrapper,
+)
 from tuxemon.session import local_session
 from tuxemon.states import world_state as world
 
@@ -21,6 +25,12 @@ if TYPE_CHECKING:
 
 logger = logging.getLogger(__name__)
 
+
+def _facing_member_name(value: Any) -> str:
+    """Convert facing value to Direction enum member name expected by EventData."""
+    if hasattr(value, "name"):
+        return str(value.name)
+    return str(value or "down").upper()
 
 class GameEntry(TypedDict):
     ip: str
@@ -63,6 +73,7 @@ class TuxemonClient:
         self.populated: bool = False
         self.listening: bool = False
         self.event_counter = count(start=1)
+        self.last_connection_error: str | None = None
 
         # Networking wrapper: handles loop, JSON, ping.
         self.client = WebsocketClientWrapper(
@@ -78,14 +89,20 @@ class TuxemonClient:
         """Helper to send a high-level event dict over the network."""
         self.client.send_event(event_data)
 
-    def connect_to_host(self, ip_address: str, port: int) -> None:
-        """
-        Sets up the client to attempt connection to a specified host/port
-        and kicks off connection immediately.
-        """
+    def connect_to_host(self, ip_address: str, port: int) -> bool:
+        """Attempts immediate connection and returns whether it succeeded."""
         self.selected_game = (ip_address, port)
-        self.listening = True
-        self.connection_manager.connect_to_host(ip_address, port)
+        connected = self.connection_manager.connect_to_host(ip_address, port)
+        self.listening = connected
+        if not connected:
+            logger.warning("Connection failed to %s:%s", ip_address, port)
+        else:
+            self.last_connection_error = None
+        return connected
+
+    def get_connection_error_message(self) -> str:
+        """Returns a user-facing reason for the last failed connection attempt."""
+        return self.last_connection_error or "Unknown connection error"
 
     def disconnect(self) -> None:
         """Closes the client connection and resets its state."""
@@ -114,17 +131,17 @@ class TuxemonClient:
         """Refreshes the list of available multiplayer servers."""
         self.discovery.update_multiplayer_list()
 
-    def populate_player(self, event_type: str = "PUSH_SELF") -> None:
+    def populate_player(self, event_type: str = "PUSH_SELF") -> bool:
         """Sends the local player's character data to the server."""
-        self.sync_manager.populate_player(event_type)
+        return self.sync_manager.populate_player(event_type)
 
     def update_player(
         self,
         direction: str,
         event_type: str = "CLIENT_MAP_UPDATE",
-    ) -> None:
+    ) -> bool:
         """Updates the server with the player's current map and position."""
-        self.sync_manager.update_player(direction, event_type)
+        return self.sync_manager.update_player(direction, event_type)
 
     def set_key_condition(self, event: Any) -> None:
         """Translates input events into network events."""
@@ -245,6 +262,16 @@ class PlayerSyncManager:
         self.client = client
         self.game = client.game
 
+    def _wallet_address(self) -> str:
+        wallet = str(self.game.solana_manager.wallet_address or "").strip()
+        return wallet
+
+    def _resolve_player_name(self, raw_name: Any, wallet: str) -> str:
+        name = str(raw_name or "").strip()
+        if name.lower() in {"", "red", "unnamed player"} and wallet:
+            return wallet
+        return name or "Unnamed Player"
+
     def _send_event(self, event_type: str, **fields: Any) -> None:
         """
         Helper for building and sending typed events with an incrementing
@@ -258,39 +285,69 @@ class PlayerSyncManager:
         event_data_obj = EventData.from_dict(payload)
         self.client.send_event(event_data_obj.to_dict())
 
-    def populate_player(self, event_type: str = "PUSH_SELF") -> None:
-        """Sends client character to the server."""
-        player_data = local_session.player.__dict__
-        map_name = self.game.get_map_name()
+    def populate_player(self, event_type: str = "PUSH_SELF") -> bool:
+        """Sends client character to the server when player/map are ready."""
+        try:
+            player_data = local_session.player.__dict__
+            map_name = self.game.get_map_name()
+        except ValueError as e:
+            logger.debug(
+                f"Skipping player population until game is initialized: {e}"
+            )
+            return False
 
+        wallet = self._wallet_address()
         char_dict = {
             "tile_pos": player_data.get("tile_pos", [0, 0]),
-            "name": player_data.get("name", "Unnamed Player"),
-            "facing": player_data.get("facing", "down"),
+            "name": self._resolve_player_name(player_data.get("name"), wallet),
+            "facing": _facing_member_name(player_data.get("facing", "down")),
+            "running": player_data.get("running", False),
+            "slug": player_data.get("slug"),
+            "monsters": player_data.get("monsters", []),
+            "inventory": player_data.get("inventory", []),
         }
 
         self._send_event(
             event_type,
             map_name=map_name,
             char_dict=char_dict,
+            wallet_address=wallet,
         )
         self.client.populated = True
+        return True
 
     def update_player(
         self, direction: str, event_type: str = "CLIENT_MAP_UPDATE"
-    ) -> None:
+    ) -> bool:
         """Sends client's current map and location to the server."""
-        pd = local_session.player.__dict__
-        map_name = self.game.get_map_name()
+        try:
+            pd = local_session.player.__dict__
+            map_name = self.game.get_map_name()
+        except ValueError as e:
+            logger.debug(
+                f"Skipping player update until game is initialized: {e}"
+            )
+            return False
 
-        char_dict = {"tile_pos": pd["tile_pos"]}
+        wallet = self._wallet_address()
+        char_dict = {
+            "tile_pos": pd.get("tile_pos", [0, 0]),
+            "name": self._resolve_player_name(pd.get("name"), wallet),
+            "facing": _facing_member_name(pd.get("facing", "down")),
+            "running": pd.get("running", False),
+            "slug": pd.get("slug"),
+            "monsters": pd.get("monsters", []),
+            "inventory": pd.get("inventory", []),
+        }
 
         self._send_event(
             event_type,
             map_name=map_name,
             direction=direction,
             char_dict=char_dict,
+            wallet_address=wallet,
         )
+        return True
 
 
 class MultiplayerDiscovery:
@@ -302,31 +359,33 @@ class MultiplayerDiscovery:
         self.client = client
 
     def update_multiplayer_list(self) -> None:
-        """
-        Populates the list of available games with hardcoded entries.
-        Replace with real API call when matchmaking backend is ready.
-        """
+        """Refreshes available games, including the local hosted server."""
+        games: list[GameEntry] = [
+            {
+                "ip": "127.0.0.1",
+                "port": int(self.client.server_port),
+                "name": "Default Tuxemon Server",
+            }
+        ]
+
         try:
-            games: list[GameEntry] = [
-                {
+            server = self.client.game.network_manager.server
+            if server and server.listening:
+                games[0] = {
                     "ip": "127.0.0.1",
-                    "port": 40081,
-                    "name": "Local Test Server",
-                },
-                {
-                    "ip": "192.168.1.50",
-                    "port": 40081,
-                    "name": "LAN Party Server",
-                },
-            ]
-            self.client.available_games = [
-                (str(entry["ip"]), int(entry["port"])) for entry in games
-            ]
-            self.client.server_list = [str(entry["name"]) for entry in games]
+                    "port": int(server.server_port),
+                    "name": str(server.server_name or "Local Hosted Server"),
+                }
         except Exception as e:
-            logger.warning(f"Failed to populate server list: {e}")
-            self.client.available_games = []
-            self.client.server_list = []
+            logger.warning(f"Failed to discover local hosted server: {e}")
+
+        self.client.available_games = [
+            (str(entry["ip"]), int(entry["port"])) for entry in games
+        ]
+        self.client.server_list = [
+            f"{entry['name']} ({entry['ip']}:{entry['port']})"
+            for entry in games
+        ]
 
 
 class InteractionManager:
@@ -356,6 +415,8 @@ class InteractionManager:
 
         pd = local_session.player.__dict__
 
+        wallet = str(self.game.solana_manager.wallet_address or "").strip()
+
         event_data = {
             "type": event_type,
             "event_number": next(self.client.event_counter),
@@ -366,6 +427,7 @@ class InteractionManager:
                 "monsters": pd.get("monsters", []),
                 "inventory": pd.get("inventory", []),
             },
+            "wallet_address": wallet,
         }
 
         self.client.send_event(EventData.from_dict(event_data).to_dict())
@@ -395,20 +457,78 @@ class ConnectionManager:
 
         if self.state is ConnState.REGISTERING:
             if self.client.client.registered and not self.client.populated:
-                self.client.sync_manager.populate_player()
-                self.state = ConnState.READY
+                if self.client.sync_manager.populate_player():
+                    self.state = ConnState.READY
 
-    def connect_to_host(self, ip: str, port: int) -> None:
-        """
-        Attempts to connect to the selected multiplayer server immediately.
-        """
-        if self.client.game.network_manager.is_host():
-            logger.info("Skipping client connection: running as host.")
-            return
+    @staticmethod
+    def _diagnose_failure(ip: str, port: int, raw_error: str) -> str:
+        msg = raw_error.strip() if raw_error else "Timed out waiting for registration"
+        msg_l = msg.lower()
 
-        logger.info(f"Connecting to WS server: {ip}:{port}")
+        ip_l = ip.strip().lower()
+        private_gateway = (
+            ip_l.startswith("192.168.")
+            and ip_l.endswith(".1")
+            or ip_l.startswith("10.")
+            and ip_l.endswith(".1")
+            or ip_l.startswith("172.")
+            and ip_l.endswith(".1")
+        )
+
+        if "refused" in msg_l:
+            side = (
+                "server-side" if ip in {"127.0.0.1", "localhost"} else "remote-server/network"
+            )
+            gateway_hint = (
+                " This IP looks like a router/gateway address; use the host machine IP running SolaMon server instead."
+                if private_gateway
+                else ""
+            )
+            return (
+                f"{side} refusal at {ip}:{port} ({msg}). "
+                "Server is not listening on that address/port or blocked by firewall."
+                f"{gateway_hint}"
+            )
+        if "timed out" in msg_l:
+            return (
+                f"Connection timed out reaching {ip}:{port}. "
+                "Likely network/firewall issue or unreachable server host."
+            )
+        return f"Connection failed for {ip}:{port}: {msg}"
+
+    def connect_to_host(self, ip: str, port: int) -> bool:
+        """Attempts to connect to the selected multiplayer server."""
+        logger.warning("Connecting to WS server: %s:%s", ip, port)
         self.client.client.start_connection(ip, port)
         self.state = ConnState.REGISTERING
+
+        timeout_s = 3.0
+        interval_s = 0.05
+        deadline = time.monotonic() + timeout_s
+        saw_connect_attempt = False
+        while time.monotonic() < deadline:
+            ws_state = self.client.client.state
+            if ws_state in {ConnectionState.CONNECTING, ConnectionState.CONNECTED}:
+                saw_connect_attempt = True
+
+            if self.client.client.registered:
+                logger.warning("Connected to WS server: %s:%s", ip, port)
+                self.client.last_connection_error = None
+                return True
+
+            if saw_connect_attempt and ws_state is ConnectionState.DISCONNECTED:
+                break
+
+            time.sleep(interval_s)
+
+        self.state = ConnState.DISCONNECTED
+        self.client.client.disconnect()
+        err = self.client.client.last_error or "Timed out waiting for registration"
+        diagnosis = self._diagnose_failure(ip, port, err)
+        self.client.last_connection_error = diagnosis
+        logger.warning("Failed to connect to WS server %s:%s (%s)", ip, port, err)
+        logger.warning("Connection diagnosis: %s", diagnosis)
+        return False
 
     def disconnect(self) -> None:
         self.state = ConnState.DISCONNECTED

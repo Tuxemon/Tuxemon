@@ -212,9 +212,15 @@ class TuxemonServer:
         self._emit_server_log(f"Saved character state: key={key} cuuid={cuuid} map={entry['map_name']}")
 
         prev_name = None
+        prev_map = None
         prev_tile_pos = None
+        prev_char_dict = None
         if isinstance(previous, dict):
+            prev_char_dict = (
+                previous.get("char_dict") if isinstance(previous.get("char_dict"), dict) else None
+            )
             prev_name = prev_char_dict.get("name") if prev_char_dict else None
+            prev_map = previous.get("map_name")
             prev_tile_pos = prev_char_dict.get("tile_pos") if prev_char_dict else None
 
         current_name = data.get("name")
@@ -369,11 +375,7 @@ class TuxemonServer:
                 self.server_event_handler(cuuid, event_data)
                 if event_data.type != EventType.PING:
                     self._persist_registry_state(cuuid)
-                    self._emit_server_log(
-                        f"Processed event: cuuid={cuuid} type={event_data.type.value}"
-                    )
-                else:
-                    logger.debug("Processed ping event: cuuid=%s", cuuid)
+                logger.warning("Processed event: cuuid=%s type=%s", cuuid, event_data.type.value)
             except Exception:
                 logger.exception(f"Critical error handling event from {cuuid}")
 
@@ -528,22 +530,26 @@ class TuxemonServer:
             incoming_name = event_data.char_dict.get("name")
 
         wallet = self.client_registry.registry.get(cuuid, {}).get("wallet_address", "")
-        incoming_tile_pos = None
-        if isinstance(event_data.char_dict, CharData):
-            incoming_tile_pos = event_data.char_dict.tile_pos
-        elif isinstance(event_data.char_dict, dict):
-            incoming_tile_pos = event_data.char_dict.get("tile_pos")
-
-        self._emit_server_log(
-            f"Map update received: cuuid={cuuid} wallet={wallet or '(none)'} map={event_data.map_name} name={incoming_name or '(unset)'} tile_pos={incoming_tile_pos}"
+        logger.warning(
+            "Map update: cuuid=%s map=%s wallet=%s",
+            cuuid,
+            event_data.map_name,
+            wallet,
         )
         if (
             isinstance(incoming_name, str)
             and incoming_name.strip()
             and previous_name != incoming_name
         ):
-            self._emit_server_log(
-                f"Character rename detected: cuuid={cuuid} wallet={wallet or '(none)'} old_name={previous_name or '(unset)'} new_name={incoming_name}"
+            logger.warning(
+                "Character rename detected: cuuid=%s wallet=%s old_name=%s new_name=%s",
+                cuuid,
+                self.client_registry.registry.get(cuuid, {}).get(
+                    "wallet_address", ""
+                )
+                or "(none)",
+                previous_name or "(unset)",
+                incoming_name,
             )
         previous_party_size = 0
         if isinstance(existing, CharData):

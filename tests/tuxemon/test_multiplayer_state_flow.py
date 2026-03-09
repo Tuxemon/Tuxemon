@@ -11,6 +11,7 @@ def test_join_selected_server_connects_and_launches(monkeypatch) -> None:
     state.network = MagicMock()
     state.network.client = MagicMock()
     state.network.client.available_games = [("127.0.0.1", 40081)]
+    state.network.client.connect_to_host.return_value = True
 
     state.client = MagicMock()
     state.client.solana_manager.has_wallet_connection.return_value = True

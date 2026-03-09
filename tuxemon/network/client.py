@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+import time
 from enum import Enum, auto
 from itertools import count
 from typing import TYPE_CHECKING, Any, TypedDict
@@ -84,14 +85,14 @@ class TuxemonClient:
         """Helper to send a high-level event dict over the network."""
         self.client.send_event(event_data)
 
-    def connect_to_host(self, ip_address: str, port: int) -> None:
-        """
-        Sets up the client to attempt connection to a specified host/port
-        and kicks off connection immediately.
-        """
+    def connect_to_host(self, ip_address: str, port: int) -> bool:
+        """Attempts immediate connection and returns whether it succeeded."""
         self.selected_game = (ip_address, port)
-        self.listening = True
-        self.connection_manager.connect_to_host(ip_address, port)
+        connected = self.connection_manager.connect_to_host(ip_address, port)
+        self.listening = connected
+        if not connected:
+            logger.warning("Connection failed to %s:%s", ip_address, port)
+        return connected
 
     def disconnect(self) -> None:
         """Closes the client connection and resets its state."""
@@ -430,11 +431,24 @@ class ConnectionManager:
                 if self.client.sync_manager.populate_player():
                     self.state = ConnState.READY
 
-    def connect_to_host(self, ip: str, port: int) -> None:
+    def connect_to_host(self, ip: str, port: int) -> bool:
         """Attempts to connect to the selected multiplayer server."""
-        logger.info(f"Connecting to WS server: {ip}:{port}")
+        logger.warning("Connecting to WS server: %s:%s", ip, port)
         self.client.client.start_connection(ip, port)
         self.state = ConnState.REGISTERING
+
+        timeout_s = 3.0
+        interval_s = 0.05
+        deadline = time.monotonic() + timeout_s
+        while time.monotonic() < deadline:
+            if self.client.client.registered:
+                logger.warning("Connected to WS server: %s:%s", ip, port)
+                return True
+            time.sleep(interval_s)
+
+        self.state = ConnState.DISCONNECTED
+        self.client.client.disconnect()
+        return False
 
     def disconnect(self) -> None:
         self.state = ConnState.DISCONNECTED

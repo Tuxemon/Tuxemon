@@ -16,7 +16,9 @@ def client():
 
 
 def test_connect_and_disconnect(client):
-    client.connect_to_host("127.0.0.1", 40081)
+    client.connection_manager.connect_to_host = MagicMock(return_value=True)
+    result = client.connect_to_host("127.0.0.1", 40081)
+    assert result is True
     assert client.listening
     assert client.selected_game == ("127.0.0.1", 40081)
 
@@ -171,7 +173,9 @@ def test_connection_manager_state_transitions(client, monkeypatch):
     cm = client.connection_manager
 
     client.client.start_connection = MagicMock()
-    cm.connect_to_host("127.0.0.1", 40081)
+    client.client._registered = True
+    result = cm.connect_to_host("127.0.0.1", 40081)
+    assert result is True
     assert cm.state == ConnState.REGISTERING
 
     fake_player = MagicMock()
@@ -226,10 +230,12 @@ def test_update_multiplayer_list_includes_default_server_without_local_host(clie
 def test_connection_manager_connects_even_when_running_as_host(client):
     cm = client.connection_manager
     client.client.start_connection = MagicMock()
+    client.client._registered = True
     client.game.network_manager.is_host.return_value = True
 
-    cm.connect_to_host("127.0.0.1", 40081)
+    result = cm.connect_to_host("127.0.0.1", 40081)
 
+    assert result is True
     client.client.start_connection.assert_called_once_with("127.0.0.1", 40081)
     assert cm.state == ConnState.REGISTERING
 
@@ -342,3 +348,16 @@ def test_populate_player_sends_running_field(client, monkeypatch):
     assert result is True
     payload = client.client.send_event.call_args[0][0]
     assert payload["char_dict"]["running"] is True
+
+
+def test_connection_manager_connect_to_host_fails_on_timeout(client):
+    cm = client.connection_manager
+    client.client.start_connection = MagicMock()
+    client.client.disconnect = MagicMock()
+    client.client._registered = False
+
+    result = cm.connect_to_host("127.0.0.1", 40081)
+
+    assert result is False
+    assert cm.state == ConnState.DISCONNECTED
+    client.client.disconnect.assert_called_once()

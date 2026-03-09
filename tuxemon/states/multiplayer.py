@@ -77,10 +77,16 @@ class MultiplayerMenu(PygameMenuState):
                     ],
                 )
 
-        self.network.client.connect_to_host(
+        connected = self.network.client.connect_to_host(
             "127.0.0.1",
             self.network.server.server_port,
         )
+        if not connected:
+            open_dialog(
+                self.client,
+                ["Unable to connect to server. Make sure server is running."],
+            )
+            return
 
         self.client.pop_state(self)
         self._launch_multiplayer_game()
@@ -127,7 +133,13 @@ class MultiplayerMenu(PygameMenuState):
             return
 
         ip, port = self.network.client.selected_game
-        self.network.client.connect_to_host(ip, port)
+        connected = self.network.client.connect_to_host(ip, port)
+        if not connected:
+            open_dialog(
+                self.client,
+                [f"Connection failed to {ip}:{port}"],
+            )
+            return
         self._launch_multiplayer_game()
 
     def _launch_multiplayer_game(self) -> None:
@@ -181,7 +193,14 @@ class MultiplayerSelect(PopUpMenu[None]):
 
         ip, port = self.network.client.available_games[index]
         self.network.client.selected_game = (ip, port)
-        self.network.client.connect_to_host(ip, port)
+        connected = self.network.client.connect_to_host(ip, port)
+        if not connected:
+            open_dialog(
+                self.client,
+                [f"Connection failed to {ip}:{port}"],
+            )
+            return
+
         self.client.pop_state(self)
 
         if not self.client.solana_manager.has_wallet_connection():

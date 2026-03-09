@@ -272,6 +272,17 @@ class PlayerSyncManager:
             return wallet
         return name or "Unnamed Player"
 
+    def _build_char_payload(self, player_data: dict[str, Any], wallet: str) -> dict[str, Any]:
+        return {
+            "tile_pos": player_data.get("tile_pos", [0, 0]),
+            "name": self._resolve_player_name(player_data.get("name"), wallet),
+            "facing": _facing_member_name(player_data.get("facing", "down")),
+            "running": player_data.get("running", False),
+            "slug": player_data.get("slug"),
+            "monsters": player_data.get("monsters", []),
+            "inventory": player_data.get("inventory", []),
+        }
+
     def _send_event(self, event_type: str, **fields: Any) -> None:
         """
         Helper for building and sending typed events with an incrementing
@@ -297,6 +308,7 @@ class PlayerSyncManager:
             return False
 
         wallet = self._wallet_address()
+        char_dict = self._build_char_payload(player_data, wallet)
         resolved_name = self._resolve_player_name(player_data.get("name"), wallet)
         char_dict = {
             "tile_pos": player_data.get("tile_pos", [0, 0]),
@@ -334,6 +346,7 @@ class PlayerSyncManager:
             return False
 
         wallet = self._wallet_address()
+        char_dict = self._build_char_payload(pd, wallet)
         resolved_name = self._resolve_player_name(pd.get("name"), wallet)
         char_dict = {
             "tile_pos": pd.get("tile_pos", [0, 0]),

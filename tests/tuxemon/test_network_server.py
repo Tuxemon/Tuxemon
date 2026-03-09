@@ -98,7 +98,6 @@ def test_handle_push_self_event_registers_and_notifies(server):
 
     server.client_registry.register_client.assert_called_once_with(
         "abc", "forest", event.char_dict, "Wallet123"
-        "abc", "forest", {"hp": 100}, ""
     )
     stored_payload = server.client_registry.set_client_data.call_args_list[-1][0][2]
     assert stored_payload["name"] == "Wallet123"

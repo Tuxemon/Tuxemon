@@ -73,6 +73,7 @@ class TuxemonClient:
         self.populated: bool = False
         self.listening: bool = False
         self.event_counter = count(start=1)
+        self.last_connection_error: str | None = None
 
         # Networking wrapper: handles loop, JSON, ping.
         self.client = WebsocketClientWrapper(
@@ -95,7 +96,13 @@ class TuxemonClient:
         self.listening = connected
         if not connected:
             logger.warning("Connection failed to %s:%s", ip_address, port)
+        else:
+            self.last_connection_error = None
         return connected
+
+    def get_connection_error_message(self) -> str:
+        """Returns a user-facing reason for the last failed connection attempt."""
+        return self.last_connection_error or "Unknown connection error"
 
     def disconnect(self) -> None:
         """Closes the client connection and resets its state."""
@@ -434,6 +441,23 @@ class ConnectionManager:
                 if self.client.sync_manager.populate_player():
                     self.state = ConnState.READY
 
+    @staticmethod
+    def _diagnose_failure(ip: str, port: int, raw_error: str) -> str:
+        msg = raw_error.strip() if raw_error else "Timed out waiting for registration"
+        msg_l = msg.lower()
+        if "refused" in msg_l:
+            side = "server-side" if ip in {"127.0.0.1", "localhost"} else "remote-server/network"
+            return (
+                f"{side} refusal at {ip}:{port} ({msg}). "
+                "Server is not listening on that address/port or blocked by firewall."
+            )
+        if "timed out" in msg_l:
+            return (
+                f"Connection timed out reaching {ip}:{port}. "
+                "Likely network/firewall issue or unreachable server host."
+            )
+        return f"Connection failed for {ip}:{port}: {msg}"
+
     def connect_to_host(self, ip: str, port: int) -> bool:
         """Attempts to connect to the selected multiplayer server."""
         logger.warning("Connecting to WS server: %s:%s", ip, port)
@@ -451,6 +475,7 @@ class ConnectionManager:
 
             if self.client.client.registered:
                 logger.warning("Connected to WS server: %s:%s", ip, port)
+                self.client.last_connection_error = None
                 return True
 
             if saw_connect_attempt and ws_state is ConnectionState.DISCONNECTED:
@@ -461,7 +486,10 @@ class ConnectionManager:
         self.state = ConnState.DISCONNECTED
         self.client.client.disconnect()
         err = self.client.client.last_error or "Timed out waiting for registration"
+        diagnosis = self._diagnose_failure(ip, port, err)
+        self.client.last_connection_error = diagnosis
         logger.warning("Failed to connect to WS server %s:%s (%s)", ip, port, err)
+        logger.warning("Connection diagnosis: %s", diagnosis)
         return False
 
     def disconnect(self) -> None:

@@ -379,3 +379,11 @@ def test_connection_manager_connect_to_host_fails_when_socket_drops(client, monk
     assert result is False
     assert cm.state == ConnState.DISCONNECTED
     client.client.disconnect.assert_called_once()
+    assert "server-side" in client.last_connection_error
+
+
+def test_connection_manager_diagnose_timeout(client):
+    cm = client.connection_manager
+    msg = cm._diagnose_failure("10.0.0.2", 40081, "Timed out waiting for registration")
+    assert "timed out" in msg.lower()
+    assert "10.0.0.2:40081" in msg

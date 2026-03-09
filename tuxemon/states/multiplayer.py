@@ -137,7 +137,7 @@ class MultiplayerMenu(PygameMenuState):
         if not connected:
             open_dialog(
                 self.client,
-                [f"Connection failed to {ip}:{port}"],
+                [f"Connection failed to {ip}:{port}", self.network.client.get_connection_error_message()],
             )
             return
         self._launch_multiplayer_game()
@@ -197,7 +197,7 @@ class MultiplayerSelect(PopUpMenu[None]):
         if not connected:
             open_dialog(
                 self.client,
-                [f"Connection failed to {ip}:{port}"],
+                [f"Connection failed to {ip}:{port}", self.network.client.get_connection_error_message()],
             )
             return
 

@@ -283,7 +283,23 @@ class PlayerSyncManager:
         self.client = client
         self.game = client.game
         self._last_synced_snapshot: str | None = None
+        self._last_synced_state: dict[str, Any] | None = None
+        self._last_sync_sent_at = 0.0
+        self._periodic_sync_interval_s = 2.0
         self._force_sync_pending = False
+
+    def _ensure_sync_fields(self) -> None:
+        """Backfills sync fields for older/partially-merged builds."""
+        if not hasattr(self, "_last_synced_snapshot"):
+            self._last_synced_snapshot = None
+        if not hasattr(self, "_last_synced_state"):
+            self._last_synced_state = None
+        if not hasattr(self, "_last_sync_sent_at"):
+            self._last_sync_sent_at = 0.0
+        if not hasattr(self, "_periodic_sync_interval_s"):
+            self._periodic_sync_interval_s = 2.0
+        if not hasattr(self, "_force_sync_pending"):
+            self._force_sync_pending = False
 
     def _wallet_address(self) -> str:
         wallet = str(self.game.solana_manager.wallet_address or "").strip()
@@ -329,13 +345,26 @@ class PlayerSyncManager:
 
     def force_sync_player_state(self) -> None:
         """Forces the next sync pass to send a full snapshot."""
+        self._ensure_sync_fields()
+        logger.warning(
+            "Force sync requested for local player state: listening=%s registered=%s",
+            self.client.listening,
+            self.client.client.registered,
+        )
         self._last_synced_snapshot = None
         self._force_sync_pending = True
         self.sync_player_state_if_changed()
 
     def sync_player_state_if_changed(self) -> None:
         """Sends a full CLIENT_MAP_UPDATE snapshot when local player state changes."""
+        self._ensure_sync_fields()
         if not self.client.listening or not self.client.client.registered:
+            if self._force_sync_pending:
+                logger.warning(
+                    "Skipping forced player sync until connection is ready: listening=%s registered=%s",
+                    self.client.listening,
+                    self.client.client.registered,
+                )
             return
 
         try:
@@ -363,8 +392,50 @@ class PlayerSyncManager:
             sort_keys=True,
         )
 
-        if snapshot == self._last_synced_snapshot:
+        now = time.monotonic()
+        periodic_sync_due = (
+            self._last_synced_snapshot is not None
+            and (now - self._last_sync_sent_at) >= self._periodic_sync_interval_s
+        )
+
+        if snapshot == self._last_synced_snapshot and not periodic_sync_due:
             return
+
+        previous = self._last_synced_state or {}
+        prev_name = previous.get("name")
+        prev_map = previous.get("map_name")
+        prev_tile_pos = previous.get("tile_pos")
+        prev_party_size = int(previous.get("party_size", 0) or 0)
+        current_name = char_dict.get("name")
+        current_tile_pos = char_dict.get("tile_pos")
+        current_party_size = len(char_dict.get("monsters") or [])
+
+        if prev_name != current_name:
+            logger.warning(
+                "Local player rename detected before sync: old_name=%s new_name=%s",
+                prev_name or "(unset)",
+                current_name,
+            )
+        if prev_map != map_name:
+            logger.warning(
+                "Local player map change detected before sync: old_map=%s new_map=%s tile_pos=%s",
+                prev_map or "(unset)",
+                map_name,
+                current_tile_pos,
+            )
+        if prev_tile_pos != current_tile_pos and prev_map == map_name:
+            logger.debug(
+                "Local player position changed before sync: map=%s old_tile_pos=%s new_tile_pos=%s",
+                map_name,
+                prev_tile_pos,
+                current_tile_pos,
+            )
+        if prev_party_size != current_party_size:
+            logger.warning(
+                "Local player party size changed before sync: old_party_size=%s new_party_size=%s",
+                prev_party_size,
+                current_party_size,
+            )
 
         self._send_event(
             "CLIENT_MAP_UPDATE",
@@ -372,7 +443,22 @@ class PlayerSyncManager:
             char_dict=char_dict,
             wallet_address=wallet,
         )
+        logger.warning(
+            "Sent CLIENT_MAP_UPDATE: map=%s name=%s tile_pos=%s wallet=%s periodic=%s",
+            map_name,
+            current_name,
+            current_tile_pos,
+            wallet or "(none)",
+            periodic_sync_due,
+        )
         self._last_synced_snapshot = snapshot
+        self._last_sync_sent_at = now
+        self._last_synced_state = {
+            "name": current_name,
+            "map_name": map_name,
+            "tile_pos": current_tile_pos,
+            "party_size": current_party_size,
+        }
         self._force_sync_pending = False
 
     def _send_event(self, event_type: str, **fields: Any) -> None:

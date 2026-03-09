@@ -291,6 +291,7 @@ class PlayerSyncManager:
             "name": player_data.get("name", "Unnamed Player"),
             "facing": _facing_member_name(player_data.get("facing", "down")),
             "running": player_data.get("running", False),
+            "slug": player_data.get("slug"),
             "monsters": player_data.get("monsters", []),
             "inventory": player_data.get("inventory", []),
         }
@@ -321,6 +322,7 @@ class PlayerSyncManager:
             "name": pd.get("name", "Unnamed Player"),
             "facing": _facing_member_name(pd.get("facing", "down")),
             "running": pd.get("running", False),
+            "slug": pd.get("slug"),
             "monsters": pd.get("monsters", []),
             "inventory": pd.get("inventory", []),
         }

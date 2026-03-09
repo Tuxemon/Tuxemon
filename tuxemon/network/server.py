@@ -572,6 +572,11 @@ class NotificationManager:
     def notify_populate_client(
         self, cuuid: str, event_data: EventData
     ) -> None:
+        logger.warning(
+            "Broadcasting PUSH_SELF for %s to %s peers",
+            cuuid,
+            max(0, len(self.client_registry.registry) - 1),
+        )
         new_client_event = json.dumps(event_data.copy(cuuid=cuuid).to_dict())
         self.server.notify_broadcast(
             exclude_cuuid=cuuid, json_data=new_client_event
@@ -586,6 +591,11 @@ class NotificationManager:
                 cuuid=client_id,
                 map_name=data["map_name"],
                 char_dict=data["char_dict"],
+            )
+            logger.warning(
+                "Sending existing client snapshot %s -> newcomer %s",
+                client_id,
+                cuuid,
             )
             self.send_notification(cuuid, existing_client_event)
 

@@ -272,13 +272,13 @@ In-game currency rewards now emit on-chain currency events: on **devnet** the ga
 You can start a dedicated multiplayer server directly from CLI:
 
 ```
-python run_tuxemon.py --headless --host-server --server-port 40081
+py run_tuxemon.py --headless --host-server --server-port 40081
 ```
 
 Or host from the normal client startup:
 
 ```
-python run_tuxemon.py --host-server
+py run_tuxemon.py --host-server
 ```
 
 Controls

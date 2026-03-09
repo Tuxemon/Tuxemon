@@ -3,6 +3,7 @@
 from types import SimpleNamespace
 from unittest.mock import MagicMock
 
+import logging
 import pygame as pg
 import pytest
 
@@ -613,4 +614,208 @@ def test_force_sync_player_state_waits_until_registered(client, monkeypatch):
     client.client._registered = True
     client.sync_manager.sync_player_state_if_changed()
 
+    assert client.client.send_event.call_count == 1
+
+
+def test_sync_player_state_if_changed_logs_rename_and_map_change(client, monkeypatch, caplog):
+    client.listening = True
+    client.client._registered = True
+    client.client.send_event = MagicMock()
+    client.game.get_map_name.return_value = "start-town"
+    client.game.solana_manager.wallet_address = "WalletABC"
+
+    fake_money_manager = MagicMock()
+    fake_money_manager.get_money.return_value = 1
+    fake_money_controller = MagicMock(money_manager=fake_money_manager)
+
+    fake_player = SimpleNamespace(
+        tile_pos=[1, 2],
+        name="WalletABC",
+        facing="down",
+        running=False,
+        slug="npc_red",
+        monsters=[],
+        inventory=[],
+        money_controller=fake_money_controller,
+    )
+
+    monkeypatch.setattr("tuxemon.session.local_session._player", fake_player)
+    client.sync_manager.sync_player_state_if_changed()
+
+    fake_player.name = "Ash"
+    client.game.get_map_name.return_value = "desert"
+    fake_player.tile_pos = [9, 9]
+
+    with caplog.at_level(logging.WARNING):
+        client.sync_manager.sync_player_state_if_changed()
+
+    assert "Local player rename detected before sync" in caplog.text
+    assert "Local player map change detected before sync" in caplog.text
+    assert "Sent CLIENT_MAP_UPDATE" in caplog.text
+
+
+def test_force_sync_player_state_logs_when_not_ready(client, monkeypatch, caplog):
+    client.listening = False
+    client.client._registered = False
+    client.client.send_event = MagicMock()
+    client.game.get_map_name.return_value = "start-town"
+    client.game.solana_manager.wallet_address = "WalletABC"
+
+    fake_money_manager = MagicMock()
+    fake_money_manager.get_money.return_value = 1
+    fake_money_controller = MagicMock(money_manager=fake_money_manager)
+
+    fake_player = SimpleNamespace(
+        tile_pos=[0, 0],
+        name="WalletABC",
+        facing="down",
+        running=False,
+        slug="npc_red",
+        monsters=[],
+        inventory=[],
+        money_controller=fake_money_controller,
+    )
+    monkeypatch.setattr("tuxemon.session.local_session._player", fake_player)
+
+    with caplog.at_level(logging.WARNING):
+        client.sync_manager.force_sync_player_state()
+
+    assert "Force sync requested for local player state" in caplog.text
+    assert "Skipping forced player sync until connection is ready" in caplog.text
+
+
+def test_sync_player_state_if_changed_logs_party_size_change(client, monkeypatch, caplog):
+    class _FakeEventData:
+        def __init__(self, payload):
+            self.payload = payload
+
+        def to_dict(self):
+            return {"char_dict": self.payload["char_dict"]}
+
+    monkeypatch.setattr(
+        "tuxemon.network.client.EventData.from_dict",
+        lambda payload: _FakeEventData(payload),
+    )
+
+    client.listening = True
+    client.client._registered = True
+    client.client.send_event = MagicMock()
+    client.game.get_map_name.return_value = "start-town"
+    client.game.solana_manager.wallet_address = "WalletABC"
+
+    fake_money_manager = MagicMock()
+    fake_money_manager.get_money.return_value = 1
+    fake_money_controller = MagicMock(money_manager=fake_money_manager)
+
+    fake_player = SimpleNamespace(
+        tile_pos=[1, 2],
+        name="WalletABC",
+        facing="down",
+        running=False,
+        slug="npc_red",
+        monsters=[{"slug": "a"}],
+        inventory=[],
+        money_controller=fake_money_controller,
+    )
+
+    monkeypatch.setattr("tuxemon.session.local_session._player", fake_player)
+    client.sync_manager.sync_player_state_if_changed()
+
+    fake_player.monsters.append({"slug": "b"})
+
+    with caplog.at_level(logging.WARNING):
+        client.sync_manager.sync_player_state_if_changed()
+
+    assert "Local player party size changed before sync" in caplog.text
+
+
+def test_sync_player_state_if_changed_sends_periodic_snapshot_even_without_state_change(client, monkeypatch):
+    class _FakeEventData:
+        def __init__(self, payload):
+            self.payload = payload
+
+        def to_dict(self):
+            return {"char_dict": self.payload["char_dict"]}
+
+    monkeypatch.setattr(
+        "tuxemon.network.client.EventData.from_dict",
+        lambda payload: _FakeEventData(payload),
+    )
+
+    times = iter([10.0, 13.5])
+    monkeypatch.setattr("tuxemon.network.client.time.monotonic", lambda: next(times))
+
+    client.listening = True
+    client.client._registered = True
+    client.client.send_event = MagicMock()
+    client.game.get_map_name.return_value = "start-town"
+    client.game.solana_manager.wallet_address = "WalletABC"
+
+    fake_money_manager = MagicMock()
+    fake_money_manager.get_money.return_value = 1
+    fake_money_controller = MagicMock(money_manager=fake_money_manager)
+
+    fake_player = SimpleNamespace(
+        tile_pos=[0, 0],
+        name="WalletABC",
+        facing="down",
+        running=False,
+        slug="npc_red",
+        monsters=[],
+        inventory=[],
+        money_controller=fake_money_controller,
+    )
+
+    monkeypatch.setattr("tuxemon.session.local_session._player", fake_player)
+
+    client.sync_manager.sync_player_state_if_changed()
+    client.sync_manager.sync_player_state_if_changed()
+
+    assert client.client.send_event.call_count == 2
+
+
+def test_sync_manager_backfills_missing_periodic_fields(client, monkeypatch):
+    class _FakeEventData:
+        def __init__(self, payload):
+            self.payload = payload
+
+        def to_dict(self):
+            return {"char_dict": self.payload["char_dict"]}
+
+    monkeypatch.setattr(
+        "tuxemon.network.client.EventData.from_dict",
+        lambda payload: _FakeEventData(payload),
+    )
+
+    client.listening = True
+    client.client._registered = True
+    client.client.send_event = MagicMock()
+    client.game.get_map_name.return_value = "start-town"
+    client.game.solana_manager.wallet_address = "WalletABC"
+
+    fake_money_manager = MagicMock()
+    fake_money_manager.get_money.return_value = 1
+    fake_money_controller = MagicMock(money_manager=fake_money_manager)
+
+    fake_player = SimpleNamespace(
+        tile_pos=[0, 0],
+        name="WalletABC",
+        facing="down",
+        running=False,
+        slug="npc_red",
+        monsters=[],
+        inventory=[],
+        money_controller=fake_money_controller,
+    )
+
+    monkeypatch.setattr("tuxemon.session.local_session._player", fake_player)
+
+    # Simulate older object state missing periodic fields (like after conflict/manual merge)
+    del client.sync_manager._last_sync_sent_at
+    del client.sync_manager._periodic_sync_interval_s
+
+    client.sync_manager.sync_player_state_if_changed()
+
+    assert hasattr(client.sync_manager, "_last_sync_sent_at")
+    assert hasattr(client.sync_manager, "_periodic_sync_interval_s")
     assert client.client.send_event.call_count == 1

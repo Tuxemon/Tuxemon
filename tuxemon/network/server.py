@@ -8,6 +8,7 @@ from collections.abc import Callable
 from dataclasses import asdict, replace
 from datetime import datetime
 from itertools import count
+from pathlib import Path
 from typing import TYPE_CHECKING, Any
 
 from tuxemon.db import Direction
@@ -52,6 +53,9 @@ class TuxemonServer:
         self.server_timestamp: datetime = datetime.now()
 
         self.server = WebsocketServerWrapper(self)
+        self.state_dir = Path.cwd() / "server"
+        self.state_file = self.state_dir / "characters.json"
+        self.character_state_store: dict[str, dict[str, Any]] = {}
         self.server.max_clients = 32
         self.listening = False
         self.client_registry = ClientRegistry(timeout=self.timeout)
@@ -66,6 +70,113 @@ class TuxemonServer:
             self.client_registry,
         )
         self._register_event_handlers()
+        self._load_character_states()
+
+
+    def _load_character_states(self) -> None:
+        """Load persisted character states from server folder."""
+        try:
+            if not self.state_file.exists():
+                return
+            payload = json.loads(self.state_file.read_text(encoding="utf-8"))
+            if isinstance(payload, dict):
+                self.character_state_store = payload
+                logger.info(
+                    "Loaded %s persisted character states from %s",
+                    len(self.character_state_store),
+                    self.state_file,
+                )
+        except Exception as e:
+            logger.warning("Failed to load persisted character states: %s", e)
+
+    def _save_character_states(self) -> None:
+        try:
+            self.state_dir.mkdir(parents=True, exist_ok=True)
+            self.state_file.write_text(
+                json.dumps(self.character_state_store, indent=2),
+                encoding="utf-8",
+            )
+        except Exception as e:
+            logger.warning("Failed to persist character states: %s", e)
+
+    def _char_data_to_dict(
+        self, char_data: CharData | dict[str, Any] | None
+    ) -> dict[str, Any] | None:
+        if not char_data:
+            return None
+        return char_data.to_dict() if isinstance(char_data, CharData) else dict(char_data)
+
+    def _normalize_wallet(self, wallet_address: str | None) -> str:
+        if not isinstance(wallet_address, str):
+            return ""
+        return wallet_address.strip()
+
+    def _state_key(self, wallet_address: str | None, cuuid: str) -> str:
+        wallet = self._normalize_wallet(wallet_address)
+        return wallet or cuuid
+
+    def _normalize_character_name(self, name: str | None, wallet_address: str) -> str:
+        parsed = str(name or "").strip()
+        if parsed.lower() in {"", "red", "unnamed player"} and wallet_address:
+            return wallet_address
+        return parsed or "Unnamed Player"
+
+    def _persist_character_state(
+        self,
+        cuuid: str,
+        wallet_or_map: str | None,
+        map_name_or_char: str | CharData | dict[str, Any] | None = None,
+        char_data: CharData | dict[str, Any] | None = None,
+    ) -> None:
+        """Persist character state.
+
+        Supports both current calls:
+            _persist_character_state(cuuid, wallet, map_name, char_data)
+        and legacy calls still seen in some builds:
+            _persist_character_state(cuuid, map_name, char_data)
+        """
+        wallet_address: str | None
+        map_name: str | None
+
+        if char_data is None and not isinstance(map_name_or_char, str):
+            wallet_address = ""
+            map_name = wallet_or_map
+            char_payload = map_name_or_char
+        else:
+            wallet_address = wallet_or_map
+            map_name = map_name_or_char if isinstance(map_name_or_char, str) else None
+            char_payload = char_data
+
+        data = self._char_data_to_dict(char_payload)
+        if not data:
+            return
+
+        wallet = self._normalize_wallet(wallet_address)
+        data["name"] = self._normalize_character_name(data.get("name"), wallet)
+
+        entry = {
+            "cuuid": cuuid,
+            "wallet_address": wallet,
+            "map_name": map_name or "",
+            "char_dict": data,
+            "updated_at": datetime.now().isoformat(),
+        }
+        self.character_state_store[self._state_key(wallet, cuuid)] = entry
+        self._save_character_states()
+
+    def _get_saved_state(self, wallet_address: str | None, cuuid: str) -> dict[str, Any] | None:
+        return self.character_state_store.get(self._state_key(wallet_address, cuuid))
+
+    def _persist_registry_state(self, cuuid: str) -> None:
+        data = self.client_registry.registry.get(cuuid)
+        if not data:
+            return
+        self._persist_character_state(
+            cuuid,
+            data.get("wallet_address"),
+            data.get("map_name"),
+            data.get("char_dict"),
+        )
 
     def _register_event_handlers(self) -> None:
         """
@@ -77,6 +188,12 @@ class TuxemonServer:
         )
         self.event_router.register_handler(
             EventType.PING, self.handle_ping_event
+        )
+        self.event_router.register_handler(
+            EventType.CLIENT_MAP_UPDATE, self.handle_map_update_event
+        )
+        self.event_router.register_handler(
+            EventType.CLIENT_FACING, self.handle_facing_event
         )
         self.event_router.register_handler(
             EventType.CLIENT_INTERACTION, self.handle_client_interaction_event
@@ -126,13 +243,21 @@ class TuxemonServer:
             "TuxemonServer: Shutdown complete. Server is no longer listening."
         )
 
-    def start_hosting(self) -> None:
+    def start_hosting(self) -> bool:
         """Starts websocket listening for multiplayer hosting."""
         if self.listening:
-            return
-        self.server.start_listening(self.server_port)
-        self.listening = True
-        logger.info("TuxemonServer: Hosting started on %s", self.server_port)
+            return True
+        started = self.server.start_listening(self.server_port)
+        self.listening = bool(started)
+        if self.listening:
+            logger.info("TuxemonServer: Hosting started on %s", self.server_port)
+            return True
+
+        logger.error(
+            "TuxemonServer: Failed to host on port %s (already in use or startup failure)",
+            self.server_port,
+        )
+        return False
 
     def get_next_event_number(self) -> int:
         """
@@ -146,7 +271,10 @@ class TuxemonServer:
         incoming = self.server.get_incoming_events()
         for cuuid, event_dict in incoming:
             try:
-                event_data = EventData.from_dict(event_dict)
+                normalized = self._normalize_event_dict(cuuid, event_dict)
+                if normalized is None:
+                    continue
+                event_data = EventData.from_dict(normalized)
                 self.server_event_handler(cuuid, event_data)
             except Exception:
                 logger.exception(f"Critical error handling event from {cuuid}")
@@ -154,6 +282,30 @@ class TuxemonServer:
         timed_out = self.client_registry.check_timeouts(self.server_timestamp)
         for cuuid in timed_out:
             self._handle_timeout_disconnection(cuuid)
+
+    def _normalize_event_dict(
+        self, cuuid: str, event_dict: Any
+    ) -> dict[str, Any] | None:
+        """Normalizes incoming network payloads before EventData decoding."""
+        if not isinstance(event_dict, dict):
+            logger.warning(
+                "Ignoring malformed event from %s: expected dict, got %s",
+                cuuid,
+                type(event_dict).__name__,
+            )
+            return None
+
+        normalized = dict(event_dict)
+
+        if "type" not in normalized:
+            logger.warning(
+                "Ignoring malformed event from %s: missing event type",
+                cuuid,
+            )
+            return None
+
+        normalized.setdefault("event_number", self.get_next_event_number())
+        return normalized
 
     def _handle_timeout_disconnection(self, cuuid: str) -> None:
         """Internal helper to clean up a timed-out client."""
@@ -194,17 +346,57 @@ class TuxemonServer:
         Registers a new client or updates an existing one with initial map
         and character data, then notifies others.
         """
+        wallet = self._normalize_wallet(event_data.wallet_address)
+        saved_state = self._get_saved_state(wallet, cuuid)
+
+        if saved_state:
+            saved_char = saved_state.get("char_dict")
+            if isinstance(saved_char, dict) and {"tile_pos", "facing", "name"}.issubset(saved_char):
+                if isinstance(event_data, EventData):
+                    event_data = event_data.copy(
+                        map_name=saved_state.get("map_name") or event_data.map_name,
+                        char_dict=CharData.from_dict(saved_char),
+                    )
+                else:
+                    event_data.map_name = saved_state.get("map_name") or event_data.map_name
+                    event_data.char_dict = saved_char
+
         if cuuid in self.client_registry.registry:
             # Reconnection logic
             self.client_registry.set_client_data(cuuid, "is_away", False)
             self.client_registry.set_client_data(
                 cuuid, "ping_timestamp", datetime.now()
             )
+            self.client_registry.set_client_data(cuuid, "wallet_address", wallet)
             logger.info(f"Player {cuuid} has returned to the world.")
         else:
             # New player logic
             self.client_registry.register_client(
-                cuuid, event_data.map_name, event_data.char_dict
+                cuuid, event_data.map_name, event_data.char_dict, wallet
+            )
+
+        if event_data.char_dict and event_data.map_name:
+            map_name = event_data.map_name
+            payload = self._char_data_to_dict(event_data.char_dict) or {}
+            payload["name"] = self._normalize_character_name(payload.get("name"), wallet)
+            self.client_registry.set_client_data(cuuid, "char_dict", payload)
+
+            if isinstance(event_data, EventData):
+                event_data = event_data.copy(
+                    char_dict=CharData.from_dict(payload),
+                    wallet_address=wallet,
+                )
+
+            logger.info(
+                "Client connected: cuuid=%s wallet=%s name=%s map=%s active_clients=%s",
+                cuuid,
+                wallet or "(none)",
+                payload["name"],
+                map_name,
+                len(self.client_registry.registry),
+            )
+            self._persist_character_state(
+                cuuid, wallet, map_name, payload
             )
 
         self.notify_populate_client(cuuid, event_data)
@@ -217,6 +409,16 @@ class TuxemonServer:
         self.client_registry.set_client_data(
             cuuid, "ping_timestamp", datetime.now()
         )
+        self._persist_registry_state(cuuid)
+
+    def handle_map_update_event(self, cuuid: str, event_data: EventData) -> None:
+        self.client_registry.set_client_data(cuuid, "map_name", event_data.map_name)
+        self.update_char_dict(cuuid, event_data.char_dict)
+        self.notify_client(cuuid, event_data)
+
+    def handle_facing_event(self, cuuid: str, event_data: EventData) -> None:
+        self.update_char_dict(cuuid, event_data.char_dict)
+        self.notify_client(cuuid, event_data)
 
     def handle_client_interaction_event(
         self, cuuid: str, event_data: EventData
@@ -265,11 +467,18 @@ class TuxemonServer:
         )
         self.notify_client(cuuid, event_data)
 
-    def update_char_dict(self, cuuid: str, char_data: CharData | None) -> None:
-        """
-        Updates the character dictionary for a client with new data.
-        """
+    def update_char_dict(
+        self, cuuid: str, char_data: CharData | dict[str, Any] | None
+    ) -> None:
+        """Updates character state and persists it to server folder."""
         self.client_registry.update_char_dict(cuuid, char_data)
+        map_name = None
+        if cuuid in self.client_registry.registry:
+            map_name = self.client_registry.registry[cuuid].get("map_name")
+        wallet = None
+        if cuuid in self.client_registry.registry:
+            wallet = self.client_registry.registry[cuuid].get("wallet_address")
+        self._persist_character_state(cuuid, wallet, map_name, char_data)
 
     def notify_client(self, cuuid: str, event_data: EventData) -> None:
         """
@@ -329,11 +538,20 @@ class EventRouter:
         self.handlers[event_type.value] = handler
 
     def route_event(self, cuuid: str, event_data: EventData) -> None:
+        event_key = event_data.type.value  # use string key consistently
+
+        handler = self.handlers.get(event_key)
+        if not handler:
+            logger.warning(f"Unhandled event type: {event_key}")
+            return
+
         if cuuid not in self.registry:
+            if event_key == EventType.PUSH_SELF.value:
+                handler(cuuid, event_data)
+                return
             logger.warning(f"CUUID {cuuid} not found in registry.")
             return
 
-        event_key = event_data.type.value  # use string key consistently
         event_list = self.registry[cuuid].setdefault("event_list", {})
         last_event_number = event_list.get(event_key, -1)
 
@@ -341,12 +559,7 @@ class EventRouter:
             return
 
         event_list[event_key] = event_data.event_number
-
-        handler = self.handlers.get(event_key)
-        if handler:
-            handler(cuuid, event_data)
-        else:
-            logger.warning(f"Unhandled event type: {event_key}")
+        handler(cuuid, event_data)
 
 
 class ClientRegistry:
@@ -368,6 +581,7 @@ class ClientRegistry:
         cuuid: str,
         map_name: str | None = None,
         char_dict: CharData | None = None,
+        wallet_address: str = "",
     ) -> None:
         default_char = CharData(
             tile_pos=(0, 0), name="", facing=Direction.DOWN, running=False
@@ -378,6 +592,7 @@ class ClientRegistry:
             "char_dict": char_dict or default_char,
             "ping_timestamp": datetime.now(),
             "event_list": {},
+            "wallet_address": wallet_address,
         }
 
     def update_char_field(self, cuuid: str, key: str, value: Any) -> None:
@@ -393,7 +608,9 @@ class ClientRegistry:
         elif isinstance(existing, dict):
             existing[key] = value
 
-    def update_char_dict(self, cuuid: str, char_data: CharData | None) -> None:
+    def update_char_dict(
+        self, cuuid: str, char_data: CharData | dict[str, Any] | None
+    ) -> None:
         if cuuid not in self.registry:
             return
 
@@ -458,6 +675,11 @@ class NotificationManager:
     def notify_populate_client(
         self, cuuid: str, event_data: EventData
     ) -> None:
+        logger.warning(
+            "Broadcasting PUSH_SELF for %s to %s peers",
+            cuuid,
+            max(0, len(self.client_registry.registry) - 1),
+        )
         new_client_event = json.dumps(event_data.copy(cuuid=cuuid).to_dict())
         self.server.notify_broadcast(
             exclude_cuuid=cuuid, json_data=new_client_event
@@ -472,6 +694,11 @@ class NotificationManager:
                 cuuid=client_id,
                 map_name=data["map_name"],
                 char_dict=data["char_dict"],
+            )
+            logger.warning(
+                "Sending existing client snapshot %s -> newcomer %s",
+                client_id,
+                cuuid,
             )
             self.send_notification(cuuid, existing_client_event)
 

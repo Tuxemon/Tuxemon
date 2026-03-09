@@ -10,8 +10,10 @@ from enum import Enum
 from typing import TYPE_CHECKING, Any
 
 from tuxemon.db import Direction
+from tuxemon.entity.npc import NPC
 from tuxemon.item.item import decode_items, encode_items
 from tuxemon.monster.monster import decode_monsters, encode_monsters
+from tuxemon.platform.const.sizes import PLAYER_NPC
 from tuxemon.session import local_session
 from tuxemon.states import world_state as world
 
@@ -50,6 +52,7 @@ class CharData:
     name: str  # Character's display name
     facing: Direction  # Direction the character is currently facing (e.g., up, down)
     running: bool = False
+    slug: str | None = None
     monsters: list[Monster] = field(
         default_factory=list
     )  # List of monsters the character owns
@@ -66,6 +69,7 @@ class CharData:
             "name": self.name,
             "facing": self.facing.name,
             "running": self.running,
+            "slug": self.slug,
             "monsters": encode_monsters(self.monsters),
             "inventory": encode_items(self.inventory),
         }
@@ -77,6 +81,7 @@ class CharData:
             name=data["name"],
             facing=Direction[data["facing"]],
             running=bool(data["running"]),
+            slug=data.get("slug"),
             monsters=decode_monsters(data.get("monsters", [])),
             inventory=decode_items(data.get("inventory", [])),
         )
@@ -110,6 +115,7 @@ class EventData:
     response: Any | None = (
         None  # Optional response payload (e.g., dialogue result, battle outcome)
     )
+    wallet_address: str | None = None
 
     def copy(self, **updates: Any) -> EventData:
         return replace(self, **updates)
@@ -125,6 +131,7 @@ class EventData:
             "kb_key": self.kb_key,
             "target": self.target,
             "response": self.response,
+            "wallet_address": self.wallet_address,
         }
 
     @staticmethod
@@ -143,6 +150,7 @@ class EventData:
             kb_key=data.get("kb_key"),
             target=data.get("target"),
             response=data.get("response"),
+            wallet_address=data.get("wallet_address"),
         )
 
 
@@ -170,23 +178,37 @@ def populate_client(
     if event_data.char_dict is None or event_data.map_name is None:
         raise ValueError(f"Incomplete event data for client {cuuid}")
 
+    existing = registry.get(cuuid, {}).get("sprite")
+    if existing is not None:
+        registry[cuuid]["map_name"] = event_data.map_name
+        return existing
+
     char_data = event_data.char_dict
     char_name = char_data.name
     tile_pos_x, tile_pos_y = char_data.tile_pos
 
-    # Create the NPC sprite based on the provided information
-    game.event_engine.execute_action(
-        "create_npc", [char_name, tile_pos_x, tile_pos_y]
-    )
-    char = local_session.get_npc(char_name)
-    if char is None:
-        raise RuntimeError(f"Failed to create or retrieve NPC for {char_name}")
+    base_slug = char_data.slug or PLAYER_NPC
+    try:
+        char = NPC.create(local_session, base_slug)
+    except Exception:
+        logger.warning(
+            "Failed to create remote NPC from slug '%s'; falling back to PLAYER_NPC.",
+            base_slug,
+        )
+        char = NPC.create(local_session, PLAYER_NPC)
 
+    char.slug = f"remote_{cuuid}"
+    char.name = char_name
     char.is_player = True
-    char._last_tile_pos = char.tile_pos
     char.interactions = ["TRADE", "DUEL"]
+    game.npc_manager.place_npc_on_map(
+        char,
+        event_data.map_name,
+        tile_pos_x,
+        tile_pos_y,
+    )
+    char._last_tile_pos = char.tile_pos
 
-    # Update the registry with the client sprite and map name
     registry[cuuid]["sprite"] = char
     registry[cuuid]["map_name"] = event_data.map_name
 

@@ -2,6 +2,7 @@
 # Copyright (c) 2014-2026 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from unittest.mock import MagicMock
 
+import json
 import pytest
 
 from tuxemon.network.server import TuxemonServer
@@ -11,7 +12,7 @@ from tuxemon.network.websocket_server import WebsocketServerWrapper
 @pytest.fixture
 def server(monkeypatch):
     monkeypatch.setattr(
-        WebsocketServerWrapper, "start_listening", lambda self, port: None
+        WebsocketServerWrapper, "start_listening", lambda self, port: True
     )
     game = MagicMock()
     return TuxemonServer(game)
@@ -37,13 +38,24 @@ def test_get_next_event_number_increments(server):
 
 
 def test_start_hosting_sets_listening_and_starts_wrapper(server):
-    server.server.start_listening = MagicMock()
+    server.server.start_listening = MagicMock(return_value=True)
     server.listening = False
 
-    server.start_hosting()
+    result = server.start_hosting()
 
+    assert result is True
     assert server.listening
     server.server.start_listening.assert_called_once_with(server.server_port)
+
+
+def test_start_hosting_returns_false_when_wrapper_fails(server):
+    server.server.start_listening = MagicMock(return_value=False)
+    server.listening = False
+
+    result = server.start_hosting()
+
+    assert result is False
+    assert server.listening is False
 
 
 def test_server_event_handler_routes_event(server):
@@ -69,10 +81,11 @@ def test_handle_push_self_event_registers_and_notifies(server):
     server.client_registry.register_client = MagicMock()
     server.notify_populate_client = MagicMock()
 
+    server.notify_populate_client = MagicMock()
     server.handle_push_self_event("abc", event)
 
     server.client_registry.register_client.assert_called_once_with(
-        "abc", "forest", {"hp": 100}
+        "abc", "forest", {"hp": 100}, ""
     )
     server.notify_populate_client.assert_called_once_with("abc", event)
 
@@ -185,3 +198,116 @@ def test_update_handles_client_timeout(server):
         "abc", {"type": "CLIENT_DISCONNECTED"}
     )
     server.client_registry.remove_client.assert_called_once_with("abc")
+
+
+def test_update_assigns_event_number_when_missing(server):
+    server.server.get_incoming_events = MagicMock(
+        return_value=[("abc", {"type": "PING"})]
+    )
+    server.event_router.route_event = MagicMock()
+
+    server.update()
+
+    event_data = server.event_router.route_event.call_args[0][1]
+    assert event_data.type.name == "PING"
+    assert isinstance(event_data.event_number, int)
+
+
+def test_update_ignores_non_dict_events(server):
+    server.server.get_incoming_events = MagicMock(
+        return_value=[("abc", "not-a-dict")]
+    )
+    server.event_router.route_event = MagicMock()
+
+    server.update()
+
+    server.event_router.route_event.assert_not_called()
+
+
+def test_handle_push_self_persists_character_state(server, tmp_path, monkeypatch):
+    server.state_dir = tmp_path / "server"
+    server.state_file = server.state_dir / "characters.json"
+    server.character_state_store = {}
+
+    event = MagicMock(
+        map_name="forest",
+        char_dict={
+            "name": "PlayerOne",
+            "tile_pos": [1, 2],
+            "facing": "DOWN",
+            "running": False,
+            "monsters": [],
+            "inventory": [],
+        },
+    )
+
+    server.notify_populate_client = MagicMock()
+    server.handle_push_self_event("abc", event)
+
+    assert server.state_file.exists()
+    payload = json.loads(server.state_file.read_text(encoding="utf-8"))
+    assert "abc" in payload
+    assert payload["abc"]["map_name"] == "forest"
+
+
+def test_route_event_allows_push_self_for_unregistered_client(server):
+    event = MagicMock()
+    event.type.value = "PUSH_SELF"
+    event.event_number = 1
+    server.event_router.handlers["PUSH_SELF"] = MagicMock()
+
+    server.event_router.route_event("new_client", event)
+
+    server.event_router.handlers["PUSH_SELF"].assert_called_once_with(
+        "new_client", event
+    )
+
+
+def test_route_event_rejects_non_push_for_unregistered_client(server):
+    event = MagicMock()
+    event.type.value = "PING"
+    event.event_number = 1
+    server.event_router.handlers["PING"] = MagicMock()
+
+    server.event_router.route_event("missing", event)
+
+    server.event_router.handlers["PING"].assert_not_called()
+
+
+def test_handle_push_self_uses_wallet_state_key(server, tmp_path):
+    server.state_dir = tmp_path / "server"
+    server.state_file = server.state_dir / "characters.json"
+    server.character_state_store = {}
+
+    event = MagicMock(
+        map_name="forest",
+        wallet_address="Wallet123",
+        char_dict={
+            "name": "Red",
+            "tile_pos": [1, 2],
+            "facing": "DOWN",
+            "running": False,
+            "monsters": [],
+            "inventory": [],
+        },
+    )
+
+    server.notify_populate_client = MagicMock()
+    server.handle_push_self_event("abc", event)
+
+    payload = json.loads(server.state_file.read_text(encoding="utf-8"))
+    assert "Wallet123" in payload
+    assert payload["Wallet123"]["char_dict"]["name"] == "Wallet123"
+
+
+def test_handle_map_update_event_updates_and_notifies(server):
+    event = MagicMock(map_name="forest", char_dict={"hp": 1})
+    server.client_registry.set_client_data = MagicMock()
+    server.update_char_dict = MagicMock()
+    server.notify_client = MagicMock()
+
+    server.handle_map_update_event("abc", event)
+
+    server.client_registry.set_client_data.assert_called_once_with("abc", "map_name", "forest")
+    server.update_char_dict.assert_called_once_with("abc", {"hp": 1})
+    server.notify_client.assert_called_once_with("abc", event)

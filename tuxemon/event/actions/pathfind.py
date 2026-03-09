@@ -2,11 +2,14 @@
 # Copyright (c) 2014-2026 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import logging
 from dataclasses import dataclass
 from typing import final
 
 from tuxemon.event.eventaction import EventAction
 from tuxemon.session import Session
+
+logger = logging.getLogger(__name__)
 
 
 @final
@@ -33,11 +36,20 @@ class PathfindAction(EventAction):
 
     def start(self, session: Session) -> None:
         self.moving_entity = session.get_npc(self.npc_slug)
-        assert self.moving_entity
+        if self.moving_entity is None:
+            logger.warning(
+                "PathfindAction skipped: entity '%s' not found.",
+                self.npc_slug,
+            )
+            self.stop()
+            return
+
         destination = (self.tile_pos_x, self.tile_pos_y)
         self.moving_entity.pathfind(destination)
 
     def update(self, session: Session, dt: float) -> None:
-        assert self.moving_entity
+        if self.moving_entity is None:
+            self.stop()
+            return
         if not (self.moving_entity.moving or self.moving_entity.path):
             self.stop()

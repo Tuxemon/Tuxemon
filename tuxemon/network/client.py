@@ -159,6 +159,21 @@ class TuxemonClient:
             return
         sprite = entry["sprite"]
         self.client.registry[cuuid]["map_name"] = event_data.map_name
+
+        try:
+            current_map = str(self.game.get_map_name() or "")
+        except Exception:
+            current_map = ""
+        remote_map = str(event_data.map_name or "")
+
+        try:
+            if remote_map and remote_map == current_map:
+                self.game.npc_manager.add_npc(sprite)
+            else:
+                self.game.npc_manager.add_npc_off_map(sprite)
+        except Exception as e:
+            logger.debug("Failed to reconcile remote map visibility for %s: %s", cuuid, e)
+
         update_client(sprite, event_data.char_dict, self.game)
 
     def player_interact(

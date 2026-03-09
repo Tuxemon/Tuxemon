@@ -128,6 +128,42 @@ def test_update_client_map_updates_registry(client):
     )
 
 
+
+
+def test_update_client_map_places_remote_on_current_map(client):
+    sprite = MagicMock()
+    client.client.registry["abc"] = {"sprite": sprite}
+    client.game.get_map_name.return_value = "forest"
+    event_data = MagicMock()
+    event_data.map_name = "forest"
+    event_data.char_dict = {"hp": 100}
+
+    import tuxemon.network.client as client_module
+
+    client_module.update_client = MagicMock()
+
+    client.update_client_map("abc", event_data)
+
+    client.game.npc_manager.add_npc.assert_called_once_with(sprite)
+    client.game.npc_manager.add_npc_off_map.assert_not_called()
+
+
+def test_update_client_map_places_remote_off_current_map(client):
+    sprite = MagicMock()
+    client.client.registry["abc"] = {"sprite": sprite}
+    client.game.get_map_name.return_value = "forest"
+    event_data = MagicMock()
+    event_data.map_name = "town"
+    event_data.char_dict = {"hp": 100}
+
+    import tuxemon.network.client as client_module
+
+    client_module.update_client = MagicMock()
+
+    client.update_client_map("abc", event_data)
+
+    client.game.npc_manager.add_npc_off_map.assert_called_once_with(sprite)
+
 def test_event_counter_monotonic(client):
     n1 = next(client.event_counter)
     n2 = next(client.event_counter)

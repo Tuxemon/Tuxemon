@@ -180,8 +180,29 @@ class TuxemonServer:
             "updated_at": datetime.now().isoformat(),
         }
         key = self._state_key(wallet, cuuid)
+        previous = self.character_state_store.get(key)
         self.character_state_store[key] = entry
         logger.warning("Saved character state: key=%s cuuid=%s map=%s", key, cuuid, entry["map_name"])
+
+        prev_name = None
+        prev_map = None
+        if isinstance(previous, dict):
+            prev_name = (
+                previous.get("char_dict", {}).get("name")
+                if isinstance(previous.get("char_dict"), dict)
+                else None
+            )
+            prev_map = previous.get("map_name")
+
+        current_name = data.get("name")
+        current_map = entry["map_name"]
+        if prev_name != current_name or prev_map != current_map:
+            logger.warning(
+                "Character state changed: wallet=%s name=%s map=%s",
+                wallet or "(none)",
+                current_name,
+                current_map,
+            )
         self._save_character_states()
 
     def _get_saved_state(self, wallet_address: str | None, cuuid: str) -> dict[str, Any] | None:

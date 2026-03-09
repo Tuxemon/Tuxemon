@@ -74,6 +74,13 @@ class NPCRepository:
 
 
 class NPCManager:
+    @staticmethod
+    def _normalize_map_name(map_name: str | None) -> str:
+        if not map_name:
+            return ""
+        norm = str(map_name).replace("\\", "/")
+        return norm.rsplit("/", 1)[-1].lower()
+
     def __init__(self) -> None:
         self._on_map = NPCRepository()
         self._off_map = NPCRepository()
@@ -237,16 +244,17 @@ class NPCManager:
     def add_clients_to_map(
         self, registry: dict[str, Any], current_map: str
     ) -> None:
-        self.clear_npcs()
-
+        """Places remote client sprites without clearing regular world NPCs/player."""
+        current_norm = self._normalize_map_name(current_map)
         for client in registry.values():
             if "sprite" not in client:
                 continue
 
             sprite = client["sprite"]
             client_map = client.get("map_name")
+            client_norm = self._normalize_map_name(client_map)
 
-            if client_map == current_map:
+            if client_norm == current_norm:
                 self.add_npc(sprite)
             else:
                 self.add_npc_off_map(sprite)

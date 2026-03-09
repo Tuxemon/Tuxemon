@@ -224,9 +224,26 @@ def update_client(
     if char_data is None:
         return
 
-    sprite.name = char_data.name
-    sprite.facing = char_data.facing
-    sprite.running = bool(char_data.running)
+    sprite_slug = str(getattr(sprite, "slug", "") or "")
+    if not sprite_slug.startswith("remote_"):
+        # Ignore local player and regular world NPC updates; this function is
+        # only for replicated remote peers.
+        return
+
+    try:
+        sprite.name = char_data.name
+    except Exception:
+        pass
+
+    try:
+        sprite.facing = char_data.facing
+    except Exception:
+        pass
+
+    try:
+        sprite.running = bool(char_data.running)
+    except Exception:
+        pass
 
     try:
         sprite.monsters = list(char_data.monsters)
@@ -240,5 +257,8 @@ def update_client(
 
     tile_pos = (int(char_data.tile_pos[0]), int(char_data.tile_pos[1]))
     if getattr(sprite, "tile_pos", None) != tile_pos:
-        sprite.set_position(tile_pos)
+        try:
+            sprite.set_position(tile_pos)
+        except Exception:
+            pass
     sprite._last_tile_pos = tile_pos

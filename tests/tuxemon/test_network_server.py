@@ -561,3 +561,74 @@ def test_handle_push_self_event_accepts_saved_lowercase_facing(server, tmp_path)
     server.notify_populate_client.assert_called_once()
     _, outbound = server.notify_populate_client.call_args[0]
     assert outbound.char_dict["facing"] == "DOWN"
+
+
+def test_persist_character_state_emits_terminal_log_for_rename_and_party_change(server, tmp_path):
+    server.state_dir = tmp_path / "server"
+    server.state_file = server.state_dir / "characters.json"
+    server.character_state_store = {
+        "WalletXYZ": {
+            "cuuid": "abc",
+            "wallet_address": "WalletXYZ",
+            "map_name": "forest",
+            "char_dict": {
+                "name": "OldName",
+                "tile_pos": [1, 2],
+                "facing": "DOWN",
+                "running": False,
+                "monsters": [{"slug": "a"}],
+                "inventory": [],
+            },
+        }
+    }
+    server.server._emit_terminal_log = MagicMock()
+
+    server._persist_character_state(
+        "abc",
+        "WalletXYZ",
+        "forest",
+        {
+            "name": "NewName",
+            "tile_pos": [1, 2],
+            "facing": "DOWN",
+            "running": False,
+            "monsters": [{"slug": "a"}, {"slug": "b"}],
+            "inventory": [],
+        },
+    )
+
+    emitted_logs = "\n".join(call.args[0] for call in server.server._emit_terminal_log.call_args_list)
+    assert "Persisted character rename to characters.json" in emitted_logs
+    assert "Persisted party size change to characters.json" in emitted_logs
+
+
+def test_handle_map_update_event_logs_incoming_party_change_to_terminal(server):
+    server.client_registry.registry = {
+        "abc": {
+            "wallet_address": "Wallet123",
+            "map_name": "forest",
+            "char_dict": {
+                "name": "OldName",
+                "tile_pos": [1, 2],
+                "facing": "DOWN",
+                "running": False,
+                "monsters": [{"slug": "a"}],
+                "inventory": [],
+            },
+        }
+    }
+    server.server._emit_terminal_log = MagicMock()
+    event = MagicMock(
+        map_name="forest",
+        char_dict={
+            "name": "OldName",
+            "monsters": [{"slug": "a"}, {"slug": "b"}],
+        },
+    )
+    server.update_char_dict = MagicMock()
+    server.notify_client = MagicMock()
+
+    server.handle_map_update_event("abc", event)
+
+    emitted_logs = "\n".join(call.args[0] for call in server.server._emit_terminal_log.call_args_list)
+    assert "Incoming party size change detected" in emitted_logs

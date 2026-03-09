@@ -682,3 +682,48 @@ def test_force_sync_player_state_logs_when_not_ready(client, monkeypatch, caplog
 
     assert "Force sync requested for local player state" in caplog.text
     assert "Skipping forced player sync until connection is ready" in caplog.text
+
+
+def test_sync_player_state_if_changed_logs_party_size_change(client, monkeypatch, caplog):
+    class _FakeEventData:
+        def __init__(self, payload):
+            self.payload = payload
+
+        def to_dict(self):
+            return {"char_dict": self.payload["char_dict"]}
+
+    monkeypatch.setattr(
+        "tuxemon.network.client.EventData.from_dict",
+        lambda payload: _FakeEventData(payload),
+    )
+
+    client.listening = True
+    client.client._registered = True
+    client.client.send_event = MagicMock()
+    client.game.get_map_name.return_value = "start-town"
+    client.game.solana_manager.wallet_address = "WalletABC"
+
+    fake_money_manager = MagicMock()
+    fake_money_manager.get_money.return_value = 1
+    fake_money_controller = MagicMock(money_manager=fake_money_manager)
+
+    fake_player = SimpleNamespace(
+        tile_pos=[1, 2],
+        name="WalletABC",
+        facing="down",
+        running=False,
+        slug="npc_red",
+        monsters=[{"slug": "a"}],
+        inventory=[],
+        money_controller=fake_money_controller,
+    )
+
+    monkeypatch.setattr("tuxemon.session.local_session._player", fake_player)
+    client.sync_manager.sync_player_state_if_changed()
+
+    fake_player.monsters.append({"slug": "b"})
+
+    with caplog.at_level(logging.WARNING):
+        client.sync_manager.sync_player_state_if_changed()
+
+    assert "Local player party size changed before sync" in caplog.text

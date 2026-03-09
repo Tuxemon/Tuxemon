@@ -382,8 +382,10 @@ class PlayerSyncManager:
         prev_name = previous.get("name")
         prev_map = previous.get("map_name")
         prev_tile_pos = previous.get("tile_pos")
+        prev_party_size = int(previous.get("party_size", 0) or 0)
         current_name = char_dict.get("name")
         current_tile_pos = char_dict.get("tile_pos")
+        current_party_size = len(char_dict.get("monsters") or [])
 
         if prev_name != current_name:
             logger.warning(
@@ -405,6 +407,12 @@ class PlayerSyncManager:
                 prev_tile_pos,
                 current_tile_pos,
             )
+        if prev_party_size != current_party_size:
+            logger.warning(
+                "Local player party size changed before sync: old_party_size=%s new_party_size=%s",
+                prev_party_size,
+                current_party_size,
+            )
 
         self._send_event(
             "CLIENT_MAP_UPDATE",
@@ -424,6 +432,7 @@ class PlayerSyncManager:
             "name": current_name,
             "map_name": map_name,
             "tile_pos": current_tile_pos,
+            "party_size": current_party_size,
         }
         self._force_sync_pending = False
 

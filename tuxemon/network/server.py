@@ -99,6 +99,20 @@ class TuxemonServer:
         except Exception as e:
             logger.warning("Failed to persist character states: %s", e)
 
+    def _emit_server_log(self, message: str) -> None:
+        """Emit a server log to module logger and websocket terminal stream."""
+        emit = getattr(self.server, "_emit_terminal_log", None)
+        if callable(emit):
+            emit(f"[SERVER] {message}")
+            return
+        logger.warning(message)
+
+    def _party_size(self, data: dict[str, Any] | None) -> int:
+        if not isinstance(data, dict):
+            return 0
+        monsters = data.get("monsters")
+        return len(monsters) if isinstance(monsters, list) else 0
+
     def _char_data_to_dict(
         self, char_data: CharData | dict[str, Any] | None
     ) -> dict[str, Any] | None:
@@ -182,56 +196,54 @@ class TuxemonServer:
         key = self._state_key(wallet, cuuid)
         previous = self.character_state_store.get(key)
         self.character_state_store[key] = entry
-        logger.warning("Saved character state: key=%s cuuid=%s map=%s", key, cuuid, entry["map_name"])
+        self._emit_server_log(f"Saved character state: key={key} cuuid={cuuid} map={entry['map_name']}")
 
         prev_name = None
         prev_map = None
         prev_tile_pos = None
+        prev_char_dict = None
         if isinstance(previous, dict):
-            prev_name = (
-                previous.get("char_dict", {}).get("name")
-                if isinstance(previous.get("char_dict"), dict)
-                else None
+            prev_char_dict = (
+                previous.get("char_dict") if isinstance(previous.get("char_dict"), dict) else None
             )
+            prev_name = prev_char_dict.get("name") if prev_char_dict else None
             prev_map = previous.get("map_name")
-            if isinstance(previous.get("char_dict"), dict):
-                prev_tile_pos = previous.get("char_dict", {}).get("tile_pos")
+            prev_tile_pos = prev_char_dict.get("tile_pos") if prev_char_dict else None
 
         current_name = data.get("name")
         current_map = entry["map_name"]
         current_tile_pos = data.get("tile_pos")
+        prev_party_size = self._party_size(prev_char_dict)
+        current_party_size = self._party_size(data)
 
-        if prev_name != current_name or prev_map != current_map or prev_tile_pos != current_tile_pos:
-            logger.warning(
-                "Character state changed: wallet=%s name=%s map=%s tile_pos=%s",
-                wallet or "(none)",
-                current_name,
-                current_map,
-                current_tile_pos,
+        if (
+            prev_name != current_name
+            or prev_map != current_map
+            or prev_tile_pos != current_tile_pos
+            or prev_party_size != current_party_size
+        ):
+            self._emit_server_log(
+                f"Character state changed: wallet={wallet or '(none)'} name={current_name} map={current_map} tile_pos={current_tile_pos} party_size={current_party_size}"
             )
 
         if prev_name != current_name:
-            logger.warning(
-                "Persisted character rename to characters.json: wallet=%s old_name=%s new_name=%s",
-                wallet or "(none)",
-                prev_name or "(unset)",
-                current_name,
+            self._emit_server_log(
+                f"Persisted character rename to characters.json: wallet={wallet or '(none)'} old_name={prev_name or '(unset)'} new_name={current_name}"
             )
 
         if prev_map != current_map:
-            logger.warning(
-                "Persisted character map change to characters.json: wallet=%s old_map=%s new_map=%s",
-                wallet or "(none)",
-                prev_map or "(unset)",
-                current_map,
+            self._emit_server_log(
+                f"Persisted character map change to characters.json: wallet={wallet or '(none)'} old_map={prev_map or '(unset)'} new_map={current_map}"
             )
 
         if prev_tile_pos != current_tile_pos:
-            logger.warning(
-                "Persisted character position change to characters.json: wallet=%s old_tile_pos=%s new_tile_pos=%s",
-                wallet or "(none)",
-                prev_tile_pos,
-                current_tile_pos,
+            self._emit_server_log(
+                f"Persisted character position change to characters.json: wallet={wallet or '(none)'} old_tile_pos={prev_tile_pos} new_tile_pos={current_tile_pos}"
+            )
+
+        if prev_party_size != current_party_size:
+            self._emit_server_log(
+                f"Persisted party size change to characters.json: wallet={wallet or '(none)'} old_party_size={prev_party_size} new_party_size={current_party_size}"
             )
 
         self._save_character_states()
@@ -504,11 +516,12 @@ class TuxemonServer:
         elif isinstance(event_data.char_dict, dict):
             incoming_name = event_data.char_dict.get("name")
 
+        wallet = self.client_registry.registry.get(cuuid, {}).get("wallet_address", "")
         logger.warning(
             "Map update: cuuid=%s map=%s wallet=%s",
             cuuid,
             event_data.map_name,
-            self.client_registry.registry.get(cuuid, {}).get("wallet_address", ""),
+            wallet,
         )
         if (
             isinstance(incoming_name, str)
@@ -524,6 +537,22 @@ class TuxemonServer:
                 or "(none)",
                 previous_name or "(unset)",
                 incoming_name,
+            )
+        previous_party_size = 0
+        if isinstance(existing, CharData):
+            previous_party_size = len(existing.monsters or [])
+        elif isinstance(existing, dict) and isinstance(existing.get("monsters"), list):
+            previous_party_size = len(existing.get("monsters") or [])
+
+        incoming_party_size = 0
+        if isinstance(event_data.char_dict, CharData):
+            incoming_party_size = len(event_data.char_dict.monsters or [])
+        elif isinstance(event_data.char_dict, dict) and isinstance(event_data.char_dict.get("monsters"), list):
+            incoming_party_size = len(event_data.char_dict.get("monsters") or [])
+
+        if incoming_party_size != previous_party_size:
+            self._emit_server_log(
+                f"Incoming party size change detected: cuuid={cuuid} wallet={wallet or '(none)'} old_party_size={previous_party_size} new_party_size={incoming_party_size}"
             )
         self.client_registry.set_client_data(cuuid, "map_name", event_data.map_name)
         self.update_char_dict(cuuid, event_data.char_dict)

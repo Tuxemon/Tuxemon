@@ -47,9 +47,22 @@ class PathfindToCharAction(EventAction):
     def start(self, session: Session) -> None:
         client = session.client
         target_entity = session.get_npc(self.target_entity)
-        assert target_entity
+        if target_entity is None:
+            logger.warning(
+                "PathfindToCharAction skipped: target '%s' not found.",
+                self.target_entity,
+            )
+            self.stop()
+            return
+
         self.moving_entity = session.get_npc(self.entity)
-        assert self.moving_entity
+        if self.moving_entity is None:
+            logger.warning(
+                "PathfindToCharAction skipped: moving entity '%s' not found.",
+                self.entity,
+            )
+            self.stop()
+            return
 
         distance = max(1, self.distance or 1)
 
@@ -82,6 +95,8 @@ class PathfindToCharAction(EventAction):
         self.moving_entity.pathfind(final_destination)
 
     def update(self, session: Session, dt: float) -> None:
-        assert self.moving_entity
+        if self.moving_entity is None:
+            self.stop()
+            return
         if not (self.moving_entity.moving or self.moving_entity.path):
             self.stop()

@@ -9,15 +9,29 @@ from typing import TYPE_CHECKING, Any, ClassVar
 from pygame_menu.menu import Menu
 
 from tuxemon.animation import Animation, ScheduleType
+from tuxemon.database.runtime import db
+from tuxemon.launcher import GameLauncher
 from tuxemon.locale.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import PopUpMenu, PygameMenuState
+from tuxemon.session import local_session
 from tuxemon.tools import open_dialog
 
 if TYPE_CHECKING:
     from tuxemon.base_client import BaseClient
 
 MenuGameObj = Callable[[], object]
+
+def _looks_like_gateway_ip(host: str) -> bool:
+    host_l = host.strip().lower()
+    return (
+        host_l.startswith("192.168.")
+        and host_l.endswith(".1")
+        or host_l.startswith("10.")
+        and host_l.endswith(".1")
+        or host_l.startswith("172.")
+        and host_l.endswith(".1")
+    )
 
 
 def add_menu_items(menu: Menu, items: list[tuple[str, MenuGameObj]]) -> None:
@@ -60,31 +74,38 @@ class MultiplayerMenu(PygameMenuState):
         return ani
 
     def host_game(self) -> None:
-        """Starts the local server and attempts to connect the client to it."""
+        """Starts the local server, connects, and launches multiplayer."""
         assert self.network.client
         assert self.network.server
 
-        if self.network.server.listening:
-            self.client.pop_state(self)
-            open_dialog(
-                self.client, [T.translate("multiplayer_already_hosting")]
-            )
-            return
+        if not self.network.server.listening:
+            started = self.network.server.start_hosting()
+            if not started:
+                open_dialog(
+                    self.client,
+                    [
+                        "Could not host locally on this port. Trying to join existing local server instead."
+                    ],
+                )
 
-        self.network.server.start_hosting()
-        self.network.client.connect_to_host(
+        connected = self.network.client.connect_to_host(
             "127.0.0.1",
             self.network.server.server_port,
         )
+        if not connected:
+            open_dialog(
+                self.client,
+                ["Unable to connect to server. Make sure server is running."],
+            )
+            return
+
         self.client.pop_state(self)
-        open_dialog(self.client, [T.translate("multiplayer_hosting_ready")])
+        self._launch_multiplayer_game()
 
     def load_server_list(self) -> None:
         """Loads the hardcoded server list and opens the selection menu."""
         assert self.network.client
-        if not self.network.is_host():
-            self.network.client.update_multiplayer_list()
-
+        self.network.client.update_multiplayer_list()
         self.client.push_state("MultiplayerSelect")
 
     def join_by_ip(self) -> None:
@@ -113,21 +134,46 @@ class MultiplayerMenu(PygameMenuState):
                 open_dialog(self.client, ["Invalid port. Use ip:port"])
                 return
 
+        if _looks_like_gateway_ip(host):
+            open_dialog(
+                self.client,
+                [
+                    f"{host} looks like a router/gateway address.",
+                    "Use the host machine IP that is running the multiplayer server.",
+                ],
+            )
+            return
+
         self.network.client.selected_game = (host, port)
         self.join()
 
     def join(self) -> None:
-        """
-        Enables the client connection attempt based on a pre-selected game.
-        This is typically called *after* MultiplayerSelect/InputMenu provides an IP.
-        """
+        """Connects to selected game and launches the multiplayer world."""
         assert self.network.client
-        if self.network.is_host():
+        if not self.network.client.selected_game:
             return
-        else:
-            if self.network.client.selected_game:
-                ip, port = self.network.client.selected_game
-                self.network.client.connect_to_host(ip, port)
+
+        ip, port = self.network.client.selected_game
+        connected = self.network.client.connect_to_host(ip, port)
+        if not connected:
+            open_dialog(
+                self.client,
+                [f"Connection failed to {ip}:{port}", self.network.client.get_connection_error_message()],
+            )
+            return
+        self._launch_multiplayer_game()
+
+    def _launch_multiplayer_game(self) -> None:
+        if not self.client.solana_manager.has_wallet_connection():
+            open_dialog(self.client, ["Create or import a devnet wallet first."])
+            return
+
+        launcher = GameLauncher(self.client)
+        launcher.launch(
+            session=local_session,
+            meta=db.mod_metadata.get_mod_metadata(self.client.config.mods[0]),
+            remove_states=["StartState", "MultiplayerMenu", "MultiplayerSelect"],
+        )
 
 
 class MultiplayerSelect(PopUpMenu[None]):
@@ -166,9 +212,25 @@ class MultiplayerSelect(PopUpMenu[None]):
         if index >= len(self.network.client.available_games):
             return
 
-        self.network.client.selected_game = (
-            self.network.client.available_games[index]
-        )
-        ip, port = self.network.client.selected_game
-        self.network.client.connect_to_host(ip, port)
+        ip, port = self.network.client.available_games[index]
+        self.network.client.selected_game = (ip, port)
+        connected = self.network.client.connect_to_host(ip, port)
+        if not connected:
+            open_dialog(
+                self.client,
+                [f"Connection failed to {ip}:{port}", self.network.client.get_connection_error_message()],
+            )
+            return
+
         self.client.pop_state(self)
+
+        if not self.client.solana_manager.has_wallet_connection():
+            open_dialog(self.client, ["Create or import a devnet wallet first."])
+            return
+
+        launcher = GameLauncher(self.client)
+        launcher.launch(
+            session=local_session,
+            meta=db.mod_metadata.get_mod_metadata(self.client.config.mods[0]),
+            remove_states=["StartState", "MultiplayerMenu", "MultiplayerSelect"],
+        )

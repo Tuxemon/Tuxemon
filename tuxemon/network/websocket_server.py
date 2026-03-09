@@ -38,11 +38,6 @@ class WebsocketServerWrapper:
         self.startup_error: Exception | None = None
         self.server_started = threading.Event()
 
-    def _emit_terminal_log(self, message: str) -> None:
-        """Emit logs to both logger and stdout for dedicated server terminals."""
-        logger.warning(message)
-        print(message, flush=True)
-
     def start_listening(self, port: int) -> bool:
         """Starts the network thread and the asynchronous server."""
         self.startup_error = None
@@ -189,7 +184,7 @@ class WebsocketServerWrapper:
             provided_cuuid = data.get("cuuid")
             if provided_cuuid and provided_cuuid in self.registry:
                 cuuid = provided_cuuid
-                self._emit_terminal_log(f"[SERVER] Client reconnected: cuuid={cuuid} peer={peer_str}")
+                logger.warning(f"Client {cuuid} reconnected from {peer_str}.")
             else:
                 cuuid = str(uuid4())
                 self.registry[cuuid] = {
@@ -197,7 +192,7 @@ class WebsocketServerWrapper:
                     "connected_at": datetime.now(),
                     "last_message_at": datetime.now(),
                 }
-                self._emit_terminal_log(f"[SERVER] New client connected: cuuid={cuuid} peer={peer_str}")
+                logger.warning(f"New client {cuuid} connected from {peer_str}.")
 
             self.client_registry[cuuid] = websocket
             self.incoming_queue.put((cuuid, data))

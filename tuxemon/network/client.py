@@ -286,6 +286,19 @@ class PlayerSyncManager:
         self._last_synced_state: dict[str, Any] | None = None
         self._force_sync_pending = False
 
+    def _ensure_sync_fields(self) -> None:
+        """Backfills sync fields for older/partially-merged builds."""
+        if not hasattr(self, "_last_synced_snapshot"):
+            self._last_synced_snapshot = None
+        if not hasattr(self, "_last_synced_state"):
+            self._last_synced_state = None
+        if not hasattr(self, "_last_sync_sent_at"):
+            self._last_sync_sent_at = 0.0
+        if not hasattr(self, "_periodic_sync_interval_s"):
+            self._periodic_sync_interval_s = 2.0
+        if not hasattr(self, "_force_sync_pending"):
+            self._force_sync_pending = False
+
     def _wallet_address(self) -> str:
         wallet = str(self.game.solana_manager.wallet_address or "").strip()
         return wallet
@@ -341,6 +354,7 @@ class PlayerSyncManager:
 
     def sync_player_state_if_changed(self) -> None:
         """Sends a full CLIENT_MAP_UPDATE snapshot when local player state changes."""
+        self._ensure_sync_fields()
         if not self.client.listening or not self.client.client.registered:
             if self._force_sync_pending:
                 logger.warning(

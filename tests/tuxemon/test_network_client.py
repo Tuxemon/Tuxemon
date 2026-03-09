@@ -387,3 +387,14 @@ def test_connection_manager_diagnose_timeout(client):
     msg = cm._diagnose_failure("10.0.0.2", 40081, "Timed out waiting for registration")
     assert "timed out" in msg.lower()
     assert "10.0.0.2:40081" in msg
+
+
+def test_connection_manager_diagnose_gateway_refusal(client):
+    cm = client.connection_manager
+    msg = cm._diagnose_failure(
+        "192.168.0.1",
+        40081,
+        "remote server/network refusal at ws://192.168.0.1:40081: TCP connection refused",
+    )
+    assert "router/gateway" in msg
+    assert "host machine IP" in msg

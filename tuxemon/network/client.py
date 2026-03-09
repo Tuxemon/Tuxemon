@@ -445,11 +445,30 @@ class ConnectionManager:
     def _diagnose_failure(ip: str, port: int, raw_error: str) -> str:
         msg = raw_error.strip() if raw_error else "Timed out waiting for registration"
         msg_l = msg.lower()
+
+        ip_l = ip.strip().lower()
+        private_gateway = (
+            ip_l.startswith("192.168.")
+            and ip_l.endswith(".1")
+            or ip_l.startswith("10.")
+            and ip_l.endswith(".1")
+            or ip_l.startswith("172.")
+            and ip_l.endswith(".1")
+        )
+
         if "refused" in msg_l:
-            side = "server-side" if ip in {"127.0.0.1", "localhost"} else "remote-server/network"
+            side = (
+                "server-side" if ip in {"127.0.0.1", "localhost"} else "remote-server/network"
+            )
+            gateway_hint = (
+                " This IP looks like a router/gateway address; use the host machine IP running SolaMon server instead."
+                if private_gateway
+                else ""
+            )
             return (
                 f"{side} refusal at {ip}:{port} ({msg}). "
                 "Server is not listening on that address/port or blocked by firewall."
+                f"{gateway_hint}"
             )
         if "timed out" in msg_l:
             return (

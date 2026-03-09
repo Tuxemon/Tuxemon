@@ -234,7 +234,7 @@ prototype so you can run a web game loop quickly without the desktop client.
 Start it with:
 
 ```shell
-python scripts/run_web_multiplayer.py --http-port 8080 --ws-port 8765
+py scripts/run_web_multiplayer.py --http-port 8080 --ws-port 8765
 ```
 
 Then open:
@@ -258,13 +258,13 @@ In-game currency rewards now emit on-chain currency events: on **devnet** the ga
 You can start a dedicated multiplayer server directly from CLI:
 
 ```
-python run_tuxemon.py --headless --host-server --server-port 40081
+py run_tuxemon.py --headless --host-server --server-port 40081
 ```
 
 Or host from the normal client startup:
 
 ```
-python run_tuxemon.py --host-server
+py run_tuxemon.py --host-server
 ```
 
 Controls

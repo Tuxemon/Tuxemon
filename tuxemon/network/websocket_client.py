@@ -60,6 +60,7 @@ class WebsocketClientWrapper:
         self._port: int | None = None
 
         self._ping_interval = ping_interval
+        self._last_error: str | None = None
 
     @property
     def registered(self) -> bool:
@@ -72,6 +73,10 @@ class WebsocketClientWrapper:
     @property
     def state(self) -> ConnectionState:
         return self._state
+
+    @property
+    def last_error(self) -> str | None:
+        return self._last_error
 
     def start_connection(self, ip: str, port: int | None = None) -> None:
         """
@@ -86,6 +91,7 @@ class WebsocketClientWrapper:
 
         self._ip = ip
         self._port = port if port is not None else self.port
+        self._last_error = None
 
         self._running.set()
         self._net_thread = threading.Thread(
@@ -230,8 +236,25 @@ class WebsocketClientWrapper:
                 await asyncio.gather(*pending, return_exceptions=True)
 
         except ConnectionRefusedError:
-            logger.error("Connection refused.")
+            side_hint = (
+                "local server-side"
+                if ip in {"127.0.0.1", "localhost"}
+                else "remote server/network"
+            )
+            self._last_error = (
+                f"{side_hint} refusal at {uri}: TCP connection refused"
+            )
+            logger.error(
+                "%s. Ensure a websocket server is listening on %s and that"
+                " firewalls allow this port.",
+                self._last_error,
+                uri,
+            )
+        except OSError as e:
+            self._last_error = f"socket error while connecting to {uri}: {e}"
+            logger.error(f"Socket connection error while connecting to {uri}: {e}")
         except Exception as e:
+            self._last_error = str(e)
             logger.error(f"Unexpected connection error: {e}")
         finally:
             self._registered = False

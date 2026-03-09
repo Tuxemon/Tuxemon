@@ -237,8 +237,7 @@ class NPCManager:
     def add_clients_to_map(
         self, registry: dict[str, Any], current_map: str
     ) -> None:
-        self.clear_npcs()
-
+        """Places remote client sprites without clearing regular world NPCs/player."""
         for client in registry.values():
             if "sprite" not in client:
                 continue

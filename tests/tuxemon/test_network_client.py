@@ -16,7 +16,9 @@ def client():
 
 
 def test_connect_and_disconnect(client):
-    client.connect_to_host("127.0.0.1", 40081)
+    client.connection_manager.connect_to_host = MagicMock(return_value=True)
+    result = client.connect_to_host("127.0.0.1", 40081)
+    assert result is True
     assert client.listening
     assert client.selected_game == ("127.0.0.1", 40081)
 
@@ -170,9 +172,10 @@ def test_input_translator_facing_event(client, monkeypatch):
 def test_connection_manager_state_transitions(client, monkeypatch):
     cm = client.connection_manager
 
-    client.game.network_manager.is_host.return_value = False
-
-    cm.connect_to_host("127.0.0.1", 40081)
+    client.client.start_connection = MagicMock()
+    client.client._registered = True
+    result = cm.connect_to_host("127.0.0.1", 40081)
+    assert result is True
     assert cm.state == ConnState.REGISTERING
 
     fake_player = MagicMock()
@@ -197,6 +200,44 @@ def test_connection_manager_state_transitions(client, monkeypatch):
     cm.update()
     assert cm.state == ConnState.READY
 
+
+
+
+def test_update_multiplayer_list_includes_local_hosted_server(client):
+    server = MagicMock()
+    server.listening = True
+    server.server_port = 40123
+    server.server_name = "My Hosted Server"
+    client.game.network_manager.server = server
+
+    client.discovery.update_multiplayer_list()
+
+    assert client.available_games == [("127.0.0.1", 40123)]
+    assert client.server_list == ["My Hosted Server (127.0.0.1:40123)"]
+
+
+def test_update_multiplayer_list_includes_default_server_without_local_host(client):
+    server = MagicMock()
+    server.listening = False
+    client.game.network_manager.server = server
+
+    client.discovery.update_multiplayer_list()
+
+    assert client.available_games == [("127.0.0.1", 40081)]
+    assert client.server_list == ["Default Tuxemon Server (127.0.0.1:40081)"]
+
+
+def test_connection_manager_connects_even_when_running_as_host(client):
+    cm = client.connection_manager
+    client.client.start_connection = MagicMock()
+    client.client._registered = True
+    client.game.network_manager.is_host.return_value = True
+
+    result = cm.connect_to_host("127.0.0.1", 40081)
+
+    assert result is True
+    client.client.start_connection.assert_called_once_with("127.0.0.1", 40081)
+    assert cm.state == ConnState.REGISTERING
 
 def test_interaction_manager_finds_cuuid(client, monkeypatch):
     sprite = MagicMock()
@@ -224,3 +265,136 @@ def test_interaction_manager_finds_cuuid(client, monkeypatch):
 
     payload = client.client.send_event.call_args[0][0]
     assert payload["target"] == "abc"
+
+
+def test_connection_manager_stays_registering_until_player_populated(client):
+    cm = client.connection_manager
+    client.client._registered = True
+    client.populated = False
+    client.sync_manager.populate_player = MagicMock(return_value=False)
+    cm.state = ConnState.REGISTERING
+
+    cm.update()
+
+    assert cm.state == ConnState.REGISTERING
+
+
+def test_populate_player_handles_uninitialized_map(client, monkeypatch):
+    fake_player = MagicMock()
+    fake_player.__dict__ = {
+        "tile_pos": [0, 0],
+        "name": "Test",
+        "facing": "down",
+    }
+    monkeypatch.setattr("tuxemon.session.local_session._player", fake_player)
+    client.game.get_map_name.side_effect = ValueError(
+        "Name of the map requested when no map is active"
+    )
+    client.client.send_event = MagicMock()
+
+    result = client.sync_manager.populate_player()
+
+    assert result is False
+    client.client.send_event.assert_not_called()
+
+
+def test_update_player_handles_uninitialized_map(client, monkeypatch):
+    fake_player = MagicMock()
+    fake_player.__dict__ = {"tile_pos": [3, 4]}
+    monkeypatch.setattr("tuxemon.session.local_session._player", fake_player)
+    client.game.get_map_name.side_effect = ValueError(
+        "Name of the map requested when no map is active"
+    )
+    client.client.send_event = MagicMock()
+
+    result = client.sync_manager.update_player("down")
+
+    assert result is False
+    client.client.send_event.assert_not_called()
+
+
+def test_update_player_sends_when_initialized(client, monkeypatch):
+    fake_player = MagicMock()
+    fake_player.__dict__ = {"tile_pos": [3, 4]}
+    monkeypatch.setattr("tuxemon.session.local_session._player", fake_player)
+    client.game.get_map_name.return_value = "start-town"
+    client.client.send_event = MagicMock()
+
+    result = client.sync_manager.update_player("down")
+
+    assert result is True
+    payload = client.client.send_event.call_args[0][0]
+    assert payload["type"] == "CLIENT_MAP_UPDATE"
+    assert payload["map_name"] == "start-town"
+    assert payload["char_dict"]["tile_pos"] == (3, 4)
+
+
+def test_populate_player_sends_running_field(client, monkeypatch):
+    fake_player = MagicMock()
+    fake_player.__dict__ = {
+        "tile_pos": [0, 0],
+        "name": "Test",
+        "facing": "down",
+        "running": True,
+        "monsters": [],
+        "inventory": [],
+    }
+    monkeypatch.setattr("tuxemon.session.local_session._player", fake_player)
+    client.game.get_map_name.return_value = "start-town"
+    client.client.send_event = MagicMock()
+
+    result = client.sync_manager.populate_player()
+
+    assert result is True
+    payload = client.client.send_event.call_args[0][0]
+    assert payload["char_dict"]["running"] is True
+
+
+def test_connection_manager_connect_to_host_fails_when_socket_drops(client, monkeypatch):
+    cm = client.connection_manager
+    client.client.start_connection = MagicMock()
+    client.client.disconnect = MagicMock()
+    client.client._registered = False
+    client.client._last_error = "Connection refused"
+
+    import tuxemon.network.client as client_module
+
+    states = [
+        client_module.ConnectionState.CONNECTING,
+        client_module.ConnectionState.DISCONNECTED,
+    ]
+
+    monkeypatch.setattr(
+        type(client.client),
+        "state",
+        property(
+            lambda self: states.pop(0)
+            if states
+            else client_module.ConnectionState.DISCONNECTED
+        ),
+    )
+
+    result = cm.connect_to_host("127.0.0.1", 40081)
+
+    assert result is False
+    assert cm.state == ConnState.DISCONNECTED
+    client.client.disconnect.assert_called_once()
+    assert "server-side" in client.last_connection_error
+
+
+def test_connection_manager_diagnose_timeout(client):
+    cm = client.connection_manager
+    msg = cm._diagnose_failure("10.0.0.2", 40081, "Timed out waiting for registration")
+    assert "timed out" in msg.lower()
+    assert "10.0.0.2:40081" in msg
+
+
+def test_connection_manager_diagnose_gateway_refusal(client):
+    cm = client.connection_manager
+    msg = cm._diagnose_failure(
+        "192.168.0.1",
+        40081,
+        "remote server/network refusal at ws://192.168.0.1:40081: TCP connection refused",
+    )
+    assert "router/gateway" in msg
+    assert "host machine IP" in msg

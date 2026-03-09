@@ -64,17 +64,13 @@ def remove_unsupported_audio(root: Path) -> tuple[int, list[Path]]:
         else:
             failed.append(path)
     return removed, failed
-
-
-def normalize_remove_result(result: object) -> tuple[int, list[Path]]:
-    """Compatibility guard for older script variants returning only int."""
-    if isinstance(result, tuple) and len(result) == 2:
-        removed, failed = result
-        if isinstance(removed, int) and isinstance(failed, list):
-            return removed, failed
-    if isinstance(result, int):
-        return result, []
-    raise TypeError(f"Unexpected remove_unsupported_audio result: {type(result)!r}")
+def remove_unsupported_audio(root: Path) -> int:
+    removed = 0
+    for path in root.rglob("*"):
+        if path.is_file() and path.suffix.lower() in UNSUPPORTED_AUDIO_EXTENSIONS:
+            path.unlink()
+            removed += 1
+    return removed
 
 
 def main() -> None:
@@ -95,7 +91,7 @@ def main() -> None:
     shutil.copy2(root / "requirements.txt", web_dir / "requirements.txt")
 
     mods_dir = web_dir / "mods"
-    removed, failed = normalize_remove_result(remove_unsupported_audio(mods_dir))
+    removed, failed = remove_unsupported_audio(mods_dir)
     remaining = find_unsupported_audio(mods_dir)
 
     print(f"Prepared web app folder: {web_dir}")
@@ -106,6 +102,10 @@ def main() -> None:
         for path in sorted(set(failed + remaining)):
             print(f" - {path}")
         raise SystemExit(1)
+
+    removed = remove_unsupported_audio(web_dir / "mods")
+    print(f"Prepared web app folder: {web_dir}")
+    print(f"Removed unsupported audio files: {removed}")
 
 
 if __name__ == "__main__":

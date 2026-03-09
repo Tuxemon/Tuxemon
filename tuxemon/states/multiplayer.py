@@ -73,10 +73,19 @@ class MultiplayerMenu(PygameMenuState):
 
         return ani
 
+    def _ensure_wallet_connected(self) -> bool:
+        if self.client.solana_manager.has_wallet_connection():
+            return True
+        open_dialog(self.client, ["Create or import a devnet wallet first."])
+        return False
+
     def host_game(self) -> None:
         """Starts the local server, connects, and launches multiplayer."""
         assert self.network.client
         assert self.network.server
+
+        if not self._ensure_wallet_connected():
+            return
 
         if not self.network.server.listening:
             started = self.network.server.start_hosting()
@@ -153,6 +162,9 @@ class MultiplayerMenu(PygameMenuState):
         if not self.network.client.selected_game:
             return
 
+        if not self._ensure_wallet_connected():
+            return
+
         ip, port = self.network.client.selected_game
         connected = self.network.client.connect_to_host(ip, port)
         if not connected:
@@ -164,8 +176,7 @@ class MultiplayerMenu(PygameMenuState):
         self._launch_multiplayer_game()
 
     def _launch_multiplayer_game(self) -> None:
-        if not self.client.solana_manager.has_wallet_connection():
-            open_dialog(self.client, ["Create or import a devnet wallet first."])
+        if not self._ensure_wallet_connected():
             return
 
         launcher = GameLauncher(self.client)
@@ -212,6 +223,10 @@ class MultiplayerSelect(PopUpMenu[None]):
         if index >= len(self.network.client.available_games):
             return
 
+        if not self.client.solana_manager.has_wallet_connection():
+            open_dialog(self.client, ["Create or import a devnet wallet first."])
+            return
+
         ip, port = self.network.client.available_games[index]
         self.network.client.selected_game = (ip, port)
         connected = self.network.client.connect_to_host(ip, port)
@@ -223,10 +238,6 @@ class MultiplayerSelect(PopUpMenu[None]):
             return
 
         self.client.pop_state(self)
-
-        if not self.client.solana_manager.has_wallet_connection():
-            open_dialog(self.client, ["Create or import a devnet wallet first."])
-            return
 
         launcher = GameLauncher(self.client)
         launcher.launch(

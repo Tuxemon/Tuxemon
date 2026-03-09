@@ -161,7 +161,9 @@ class TuxemonServer:
             "char_dict": data,
             "updated_at": datetime.now().isoformat(),
         }
-        self.character_state_store[self._state_key(wallet, cuuid)] = entry
+        key = self._state_key(wallet, cuuid)
+        self.character_state_store[key] = entry
+        logger.warning("Saved character state: key=%s cuuid=%s map=%s", key, cuuid, entry["map_name"])
         self._save_character_states()
 
     def _get_saved_state(self, wallet_address: str | None, cuuid: str) -> dict[str, Any] | None:
@@ -276,6 +278,8 @@ class TuxemonServer:
                     continue
                 event_data = EventData.from_dict(normalized)
                 self.server_event_handler(cuuid, event_data)
+                self._persist_registry_state(cuuid)
+                logger.warning("Processed event: cuuid=%s type=%s", cuuid, event_data.type.value)
             except Exception:
                 logger.exception(f"Critical error handling event from {cuuid}")
 

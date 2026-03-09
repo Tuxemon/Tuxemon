@@ -13,6 +13,9 @@ class _FakeAdd:
     def button(self, **kwargs):
         self._sink.append(kwargs)
 
+    def label(self, **kwargs):
+        self._sink.append(kwargs)
+
 
 class _FakeMenu:
     def __init__(self):
@@ -33,32 +36,26 @@ def _build_state(wallet_connected: bool) -> StartState:
     return state
 
 
-def test_start_menu_without_wallet_hides_multiplayer(monkeypatch) -> None:
+def test_start_menu_without_wallet_hides_multiplayer() -> None:
     state = _build_state(wallet_connected=False)
     menu = _FakeMenu()
-    monkeypatch.setattr(start_module, "get_index_of_latest_save", lambda: None)
-
     StartState.add_menu_items(state, menu)
 
-    button_ids = [item["button_id"] for item in menu.items]
+    button_ids = [item["button_id"] for item in menu.items if "button_id" in item]
     assert button_ids == [
-        "menu_new_game",
         "solamon_wallet_connect",
         "menu_options",
         "exit",
     ]
 
 
-def test_start_menu_with_wallet_shows_multiplayer(monkeypatch) -> None:
+def test_start_menu_with_wallet_shows_multiplayer() -> None:
     state = _build_state(wallet_connected=True)
     menu = _FakeMenu()
-    monkeypatch.setattr(start_module, "get_index_of_latest_save", lambda: None)
-
     StartState.add_menu_items(state, menu)
 
-    button_ids = [item["button_id"] for item in menu.items]
+    button_ids = [item["button_id"] for item in menu.items if "button_id" in item]
     assert button_ids == [
-        "menu_new_game",
         "solamon_wallet_connect",
         "menu_multiplayer",
         "menu_options",
@@ -66,12 +63,12 @@ def test_start_menu_with_wallet_shows_multiplayer(monkeypatch) -> None:
     ]
 
 
-def test_start_menu_shows_load_when_save_exists(monkeypatch) -> None:
-    state = _build_state(wallet_connected=False)
+def test_start_menu_never_shows_load_or_new_game() -> None:
+    state = _build_state(wallet_connected=True)
     menu = _FakeMenu()
-    monkeypatch.setattr(start_module, "get_index_of_latest_save", lambda: 1)
 
     StartState.add_menu_items(state, menu)
 
-    button_ids = [item["button_id"] for item in menu.items]
-    assert button_ids[0] == "menu_load"
+    button_ids = [item.get("button_id") for item in menu.items if "button_id" in item]
+    assert "menu_load" not in button_ids
+    assert "menu_new_game" not in button_ids

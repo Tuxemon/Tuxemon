@@ -149,6 +149,11 @@ def launch_game(argv: list[str] | None = None) -> None:
                 "Use '--headless --host-server' to run the server in a separate terminal."
             )
 
+        if args.slot is not None:
+            raise ValueError(
+                "Single-player save/load is disabled in online-world mode. Join multiplayer instead."
+            )
+
         if args.headless:
             tuxemon_main.headless(
                 config=config,

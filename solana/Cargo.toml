@@ -1,0 +1,3 @@
+[workspace]
+members = ["programs/solamon_state"]
+resolver = "2"

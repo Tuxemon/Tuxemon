@@ -186,6 +186,7 @@ class TuxemonServer:
 
         prev_name = None
         prev_map = None
+        prev_tile_pos = None
         if isinstance(previous, dict):
             prev_name = (
                 previous.get("char_dict", {}).get("name")
@@ -193,16 +194,22 @@ class TuxemonServer:
                 else None
             )
             prev_map = previous.get("map_name")
+            if isinstance(previous.get("char_dict"), dict):
+                prev_tile_pos = previous.get("char_dict", {}).get("tile_pos")
 
         current_name = data.get("name")
         current_map = entry["map_name"]
-        if prev_name != current_name or prev_map != current_map:
+        current_tile_pos = data.get("tile_pos")
+
+        if prev_name != current_name or prev_map != current_map or prev_tile_pos != current_tile_pos:
             logger.warning(
-                "Character state changed: wallet=%s name=%s map=%s",
+                "Character state changed: wallet=%s name=%s map=%s tile_pos=%s",
                 wallet or "(none)",
                 current_name,
                 current_map,
+                current_tile_pos,
             )
+
         if prev_name != current_name:
             logger.warning(
                 "Persisted character rename to characters.json: wallet=%s old_name=%s new_name=%s",
@@ -210,6 +217,23 @@ class TuxemonServer:
                 prev_name or "(unset)",
                 current_name,
             )
+
+        if prev_map != current_map:
+            logger.warning(
+                "Persisted character map change to characters.json: wallet=%s old_map=%s new_map=%s",
+                wallet or "(none)",
+                prev_map or "(unset)",
+                current_map,
+            )
+
+        if prev_tile_pos != current_tile_pos:
+            logger.warning(
+                "Persisted character position change to characters.json: wallet=%s old_tile_pos=%s new_tile_pos=%s",
+                wallet or "(none)",
+                prev_tile_pos,
+                current_tile_pos,
+            )
+
         self._save_character_states()
 
     def _get_saved_state(self, wallet_address: str | None, cuuid: str) -> dict[str, Any] | None:

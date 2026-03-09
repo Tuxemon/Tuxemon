@@ -13,7 +13,10 @@ import pygame as pg
 from tuxemon.entity.npc import NPC
 from tuxemon.network.event_dispatcher import EventDispatcher
 from tuxemon.network.networking import EventData, update_client
-from tuxemon.network.websocket_client import WebsocketClientWrapper
+from tuxemon.network.websocket_client import (
+    ConnectionState,
+    WebsocketClientWrapper,
+)
 from tuxemon.session import local_session
 from tuxemon.states import world_state as world
 
@@ -440,14 +443,25 @@ class ConnectionManager:
         timeout_s = 3.0
         interval_s = 0.05
         deadline = time.monotonic() + timeout_s
+        saw_connect_attempt = False
         while time.monotonic() < deadline:
+            ws_state = self.client.client.state
+            if ws_state in {ConnectionState.CONNECTING, ConnectionState.CONNECTED}:
+                saw_connect_attempt = True
+
             if self.client.client.registered:
                 logger.warning("Connected to WS server: %s:%s", ip, port)
                 return True
+
+            if saw_connect_attempt and ws_state is ConnectionState.DISCONNECTED:
+                break
+
             time.sleep(interval_s)
 
         self.state = ConnState.DISCONNECTED
         self.client.client.disconnect()
+        err = self.client.client.last_error or "Timed out waiting for registration"
+        logger.warning("Failed to connect to WS server %s:%s (%s)", ip, port, err)
         return False
 
     def disconnect(self) -> None:

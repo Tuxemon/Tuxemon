@@ -350,11 +350,29 @@ def test_populate_player_sends_running_field(client, monkeypatch):
     assert payload["char_dict"]["running"] is True
 
 
-def test_connection_manager_connect_to_host_fails_on_timeout(client):
+def test_connection_manager_connect_to_host_fails_when_socket_drops(client, monkeypatch):
     cm = client.connection_manager
     client.client.start_connection = MagicMock()
     client.client.disconnect = MagicMock()
     client.client._registered = False
+    client.client._last_error = "Connection refused"
+
+    import tuxemon.network.client as client_module
+
+    states = [
+        client_module.ConnectionState.CONNECTING,
+        client_module.ConnectionState.DISCONNECTED,
+    ]
+
+    monkeypatch.setattr(
+        type(client.client),
+        "state",
+        property(
+            lambda self: states.pop(0)
+            if states
+            else client_module.ConnectionState.DISCONNECTED
+        ),
+    )
 
     result = cm.connect_to_host("127.0.0.1", 40081)
 

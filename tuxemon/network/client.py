@@ -486,6 +486,16 @@ class ConnectionManager:
 
     def connect_to_host(self, ip: str, port: int) -> bool:
         """Attempts to connect to the selected multiplayer server."""
+        if not self.client.game.solana_manager.has_wallet_connection():
+            self.state = ConnState.DISCONNECTED
+            self.client.last_connection_error = (
+                "Wallet connection required. Create or import a devnet wallet first."
+            )
+            logger.warning(
+                "Blocked WS connection to %s:%s: missing wallet connection", ip, port
+            )
+            return False
+
         logger.warning("Connecting to WS server: %s:%s", ip, port)
         self.client.client.start_connection(ip, port)
         self.state = ConnState.REGISTERING

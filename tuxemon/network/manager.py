@@ -33,10 +33,16 @@ class NetworkManager:
     def update(self, dt: float) -> None:
         if self.client and self.client.listening:
             self.client.update()
-            current_map = self.parent.get_map_name()
-            self.parent.npc_manager.add_clients_to_map(
-                self.client.registry, current_map
-            )
+            try:
+                current_map = self.parent.get_map_name()
+            except ValueError:
+                logger.debug(
+                    "Skipping remote-client map placement: no active map yet."
+                )
+            else:
+                self.parent.npc_manager.add_clients_to_map(
+                    self.client.registry, current_map
+                )
 
         if self.server and self.server.listening:
             self.server.update()

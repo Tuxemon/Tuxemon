@@ -99,29 +99,65 @@ class TuxemonServer:
         except Exception as e:
             logger.warning("Failed to persist character states: %s", e)
 
+    def _char_data_to_dict(
+        self, char_data: CharData | dict[str, Any] | None
+    ) -> dict[str, Any] | None:
+        if not char_data:
+            return None
+        return char_data.to_dict() if isinstance(char_data, CharData) else dict(char_data)
+
+    def _normalize_wallet(self, wallet_address: str | None) -> str:
+        if not isinstance(wallet_address, str):
+            return ""
+        return wallet_address.strip()
+
+    def _state_key(self, wallet_address: str | None, cuuid: str) -> str:
+        wallet = self._normalize_wallet(wallet_address)
+        return wallet or cuuid
+
+    def _normalize_character_name(self, name: str | None, wallet_address: str) -> str:
+        parsed = str(name or "").strip()
+        if parsed.lower() in {"", "red", "unnamed player"} and wallet_address:
+            return wallet_address
+        return parsed or "Unnamed Player"
+
     def _persist_character_state(
         self,
         cuuid: str,
+        wallet_address: str | None,
         map_name: str | None,
         char_data: CharData | dict[str, Any] | None,
     ) -> None:
-        if not char_data:
+        data = self._char_data_to_dict(char_data)
+        if not data:
             return
 
-        if isinstance(char_data, CharData):
-            data = char_data.to_dict()
-        else:
-            data = dict(char_data)
+        wallet = self._normalize_wallet(wallet_address)
+        data["name"] = self._normalize_character_name(data.get("name"), wallet)
 
-        name = str(data.get("name", "")).strip() or cuuid
         entry = {
             "cuuid": cuuid,
+            "wallet_address": wallet,
             "map_name": map_name or "",
             "char_dict": data,
             "updated_at": datetime.now().isoformat(),
         }
-        self.character_state_store[name] = entry
+        self.character_state_store[self._state_key(wallet, cuuid)] = entry
         self._save_character_states()
+
+    def _get_saved_state(self, wallet_address: str | None, cuuid: str) -> dict[str, Any] | None:
+        return self.character_state_store.get(self._state_key(wallet_address, cuuid))
+
+    def _persist_registry_state(self, cuuid: str) -> None:
+        data = self.client_registry.registry.get(cuuid)
+        if not data:
+            return
+        self._persist_character_state(
+            cuuid,
+            data.get("wallet_address"),
+            data.get("map_name"),
+            data.get("char_dict"),
+        )
 
     def _register_event_handlers(self) -> None:
         """
@@ -133,6 +169,12 @@ class TuxemonServer:
         )
         self.event_router.register_handler(
             EventType.PING, self.handle_ping_event
+        )
+        self.event_router.register_handler(
+            EventType.CLIENT_MAP_UPDATE, self.handle_map_update_event
+        )
+        self.event_router.register_handler(
+            EventType.CLIENT_FACING, self.handle_facing_event
         )
         self.event_router.register_handler(
             EventType.CLIENT_INTERACTION, self.handle_client_interaction_event
@@ -285,17 +327,45 @@ class TuxemonServer:
         Registers a new client or updates an existing one with initial map
         and character data, then notifies others.
         """
+        wallet = self._normalize_wallet(event_data.wallet_address)
+        saved_state = self._get_saved_state(wallet, cuuid)
+
+        if saved_state:
+            saved_char = saved_state.get("char_dict")
+            if isinstance(saved_char, dict) and {"tile_pos", "facing", "name"}.issubset(saved_char):
+                event_data = event_data.copy(
+                    map_name=saved_state.get("map_name") or event_data.map_name,
+                    char_dict=CharData.from_dict(saved_char),
+                )
+
         if cuuid in self.client_registry.registry:
             # Reconnection logic
             self.client_registry.set_client_data(cuuid, "is_away", False)
             self.client_registry.set_client_data(
                 cuuid, "ping_timestamp", datetime.now()
             )
+            self.client_registry.set_client_data(cuuid, "wallet_address", wallet)
             logger.info(f"Player {cuuid} has returned to the world.")
         else:
             # New player logic
             self.client_registry.register_client(
-                cuuid, event_data.map_name, event_data.char_dict
+                cuuid, event_data.map_name, event_data.char_dict, wallet
+            )
+
+        if event_data.char_dict and event_data.map_name:
+            payload = self._char_data_to_dict(event_data.char_dict) or {}
+            payload["name"] = self._normalize_character_name(payload.get("name"), wallet)
+            self.client_registry.set_client_data(cuuid, "char_dict", payload)
+            logger.info(
+                "Client connected: cuuid=%s wallet=%s name=%s map=%s active_clients=%s",
+                cuuid,
+                wallet or "(none)",
+                payload["name"],
+                event_data.map_name,
+                len(self.client_registry.registry),
+            )
+            self._persist_character_state(
+                cuuid, wallet, event_data.map_name, payload
             )
 
         if event_data.char_dict and event_data.map_name:
@@ -325,6 +395,16 @@ class TuxemonServer:
         self.client_registry.set_client_data(
             cuuid, "ping_timestamp", datetime.now()
         )
+        self._persist_registry_state(cuuid)
+
+    def handle_map_update_event(self, cuuid: str, event_data: EventData) -> None:
+        self.client_registry.set_client_data(cuuid, "map_name", event_data.map_name)
+        self.update_char_dict(cuuid, event_data.char_dict)
+        self.notify_client(cuuid, event_data)
+
+    def handle_facing_event(self, cuuid: str, event_data: EventData) -> None:
+        self.update_char_dict(cuuid, event_data.char_dict)
+        self.notify_client(cuuid, event_data)
 
     def handle_client_interaction_event(
         self, cuuid: str, event_data: EventData
@@ -379,7 +459,10 @@ class TuxemonServer:
         map_name = None
         if cuuid in self.client_registry.registry:
             map_name = self.client_registry.registry[cuuid].get("map_name")
-        self._persist_character_state(cuuid, map_name, char_data)
+        wallet = None
+        if cuuid in self.client_registry.registry:
+            wallet = self.client_registry.registry[cuuid].get("wallet_address")
+        self._persist_character_state(cuuid, wallet, map_name, char_data)
 
     def notify_client(self, cuuid: str, event_data: EventData) -> None:
         """
@@ -482,6 +565,7 @@ class ClientRegistry:
         cuuid: str,
         map_name: str | None = None,
         char_dict: CharData | None = None,
+        wallet_address: str = "",
     ) -> None:
         default_char = CharData(
             tile_pos=(0, 0), name="", facing=Direction.DOWN, running=False
@@ -492,6 +576,7 @@ class ClientRegistry:
             "char_dict": char_dict or default_char,
             "ping_timestamp": datetime.now(),
             "event_list": {},
+            "wallet_address": wallet_address,
         }
 
     def update_char_field(self, cuuid: str, key: str, value: Any) -> None:

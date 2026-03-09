@@ -262,6 +262,16 @@ class PlayerSyncManager:
         self.client = client
         self.game = client.game
 
+    def _wallet_address(self) -> str:
+        wallet = str(self.game.solana_manager.wallet_address or "").strip()
+        return wallet
+
+    def _resolve_player_name(self, raw_name: Any, wallet: str) -> str:
+        name = str(raw_name or "").strip()
+        if name.lower() in {"", "red", "unnamed player"} and wallet:
+            return wallet
+        return name or "Unnamed Player"
+
     def _send_event(self, event_type: str, **fields: Any) -> None:
         """
         Helper for building and sending typed events with an incrementing
@@ -286,9 +296,10 @@ class PlayerSyncManager:
             )
             return False
 
+        wallet = self._wallet_address()
         char_dict = {
             "tile_pos": player_data.get("tile_pos", [0, 0]),
-            "name": player_data.get("name", "Unnamed Player"),
+            "name": self._resolve_player_name(player_data.get("name"), wallet),
             "facing": _facing_member_name(player_data.get("facing", "down")),
             "running": player_data.get("running", False),
             "slug": player_data.get("slug"),
@@ -300,6 +311,7 @@ class PlayerSyncManager:
             event_type,
             map_name=map_name,
             char_dict=char_dict,
+            wallet_address=wallet,
         )
         self.client.populated = True
         return True
@@ -317,9 +329,10 @@ class PlayerSyncManager:
             )
             return False
 
+        wallet = self._wallet_address()
         char_dict = {
             "tile_pos": pd.get("tile_pos", [0, 0]),
-            "name": pd.get("name", "Unnamed Player"),
+            "name": self._resolve_player_name(pd.get("name"), wallet),
             "facing": _facing_member_name(pd.get("facing", "down")),
             "running": pd.get("running", False),
             "slug": pd.get("slug"),
@@ -332,6 +345,7 @@ class PlayerSyncManager:
             map_name=map_name,
             direction=direction,
             char_dict=char_dict,
+            wallet_address=wallet,
         )
         return True
 
@@ -401,6 +415,8 @@ class InteractionManager:
 
         pd = local_session.player.__dict__
 
+        wallet = str(self.game.solana_manager.wallet_address or "").strip()
+
         event_data = {
             "type": event_type,
             "event_number": next(self.client.event_counter),
@@ -411,6 +427,7 @@ class InteractionManager:
                 "monsters": pd.get("monsters", []),
                 "inventory": pd.get("inventory", []),
             },
+            "wallet_address": wallet,
         }
 
         self.client.send_event(EventData.from_dict(event_data).to_dict())

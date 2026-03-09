@@ -115,6 +115,7 @@ class EventData:
     response: Any | None = (
         None  # Optional response payload (e.g., dialogue result, battle outcome)
     )
+    wallet_address: str | None = None
 
     def copy(self, **updates: Any) -> EventData:
         return replace(self, **updates)
@@ -130,6 +131,7 @@ class EventData:
             "kb_key": self.kb_key,
             "target": self.target,
             "response": self.response,
+            "wallet_address": self.wallet_address,
         }
 
     @staticmethod
@@ -148,6 +150,7 @@ class EventData:
             kb_key=data.get("kb_key"),
             target=data.get("target"),
             response=data.get("response"),
+            wallet_address=data.get("wallet_address"),
         )
 
 

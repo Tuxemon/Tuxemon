@@ -368,6 +368,23 @@ class TuxemonServer:
                 cuuid, wallet, event_data.map_name, payload
             )
 
+        if event_data.char_dict and event_data.map_name:
+            name = (
+                event_data.char_dict.name
+                if hasattr(event_data.char_dict, "name")
+                else str(event_data.char_dict.get("name", "unknown"))
+            )
+            logger.info(
+                "Client session connected: cuuid=%s name=%s map=%s active_clients=%s",
+                cuuid,
+                name,
+                event_data.map_name,
+                len(self.client_registry.registry),
+            )
+            self._persist_character_state(
+                cuuid, event_data.map_name, event_data.char_dict
+            )
+
         self.notify_populate_client(cuuid, event_data)
 
     def handle_ping_event(self, cuuid: str, event_data: EventData) -> None:

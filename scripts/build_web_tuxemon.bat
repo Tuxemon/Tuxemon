@@ -10,10 +10,10 @@ set "OUT_DIR=%ROOT_DIR%\build\web"
 
 if not exist "%OUT_DIR%" mkdir "%OUT_DIR%"
 
-python -c "import pygbag" >nul 2>nul
+py -c "import pygbag" >nul 2>nul
 if errorlevel 1 (
   echo Installing pygbag...
-  python -m pip install pygbag || goto :error
+  py -m pip install pygbag || goto :error
 )
 
 if exist "%WEB_APP_DIR%" rmdir /s /q "%WEB_APP_DIR%"
@@ -24,7 +24,7 @@ xcopy "%ROOT_DIR%\tuxemon" "%WEB_APP_DIR%\tuxemon" /E /I /Q /Y >nul || goto :err
 xcopy "%ROOT_DIR%\mods" "%WEB_APP_DIR%\mods" /E /I /Q /Y >nul || goto :error
 copy /y "%ROOT_DIR%\requirements.txt" "%WEB_APP_DIR%\requirements.txt" >nul || goto :error
 
-python -m pygbag --build --archive --ume_block 0 --app_name Tuxemon "%WEB_APP_DIR%" || goto :error
+py -m pygbag --build --archive --ume_block 0 --app_name Tuxemon "%WEB_APP_DIR%" || goto :error
 
 if exist "%WEB_APP_DIR%\build\web" (
   if exist "%OUT_DIR%" rmdir /s /q "%OUT_DIR%"

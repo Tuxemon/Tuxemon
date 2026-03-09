@@ -14,4 +14,4 @@ if not exist "%OUT_DIR%" (
 )
 
 cd /d "%OUT_DIR%" || exit /b 1
-python -m http.server %PORT% --bind 0.0.0.0
+py -m http.server %PORT% --bind 0.0.0.0

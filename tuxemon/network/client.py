@@ -283,6 +283,7 @@ class PlayerSyncManager:
         self.client = client
         self.game = client.game
         self._last_synced_snapshot: str | None = None
+        self._force_sync_pending = False
 
     def _wallet_address(self) -> str:
         wallet = str(self.game.solana_manager.wallet_address or "").strip()
@@ -329,6 +330,7 @@ class PlayerSyncManager:
     def force_sync_player_state(self) -> None:
         """Forces the next sync pass to send a full snapshot."""
         self._last_synced_snapshot = None
+        self._force_sync_pending = True
         self.sync_player_state_if_changed()
 
     def sync_player_state_if_changed(self) -> None:
@@ -371,6 +373,7 @@ class PlayerSyncManager:
             wallet_address=wallet,
         )
         self._last_synced_snapshot = snapshot
+        self._force_sync_pending = False
 
     def _send_event(self, event_type: str, **fields: Any) -> None:
         """

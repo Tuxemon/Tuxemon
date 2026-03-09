@@ -284,8 +284,6 @@ class PlayerSyncManager:
         self.game = client.game
         self._last_synced_snapshot: str | None = None
         self._last_synced_state: dict[str, Any] | None = None
-        self._last_sync_sent_at = 0.0
-        self._periodic_sync_interval_s = 2.0
         self._force_sync_pending = False
 
     def _ensure_sync_fields(self) -> None:
@@ -345,7 +343,6 @@ class PlayerSyncManager:
 
     def force_sync_player_state(self) -> None:
         """Forces the next sync pass to send a full snapshot."""
-        self._ensure_sync_fields()
         logger.warning(
             "Force sync requested for local player state: listening=%s registered=%s",
             self.client.listening,
@@ -444,15 +441,13 @@ class PlayerSyncManager:
             wallet_address=wallet,
         )
         logger.warning(
-            "Sent CLIENT_MAP_UPDATE: map=%s name=%s tile_pos=%s wallet=%s periodic=%s",
+            "Sent CLIENT_MAP_UPDATE: map=%s name=%s tile_pos=%s wallet=%s",
             map_name,
             current_name,
             current_tile_pos,
             wallet or "(none)",
-            periodic_sync_due,
         )
         self._last_synced_snapshot = snapshot
-        self._last_sync_sent_at = now
         self._last_synced_state = {
             "name": current_name,
             "map_name": map_name,

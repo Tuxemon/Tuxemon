@@ -212,9 +212,15 @@ class TuxemonServer:
         self._emit_server_log(f"Saved character state: key={key} cuuid={cuuid} map={entry['map_name']}")
 
         prev_name = None
+        prev_map = None
         prev_tile_pos = None
+        prev_char_dict = None
         if isinstance(previous, dict):
+            prev_char_dict = (
+                previous.get("char_dict") if isinstance(previous.get("char_dict"), dict) else None
+            )
             prev_name = prev_char_dict.get("name") if prev_char_dict else None
+            prev_map = previous.get("map_name")
             prev_tile_pos = prev_char_dict.get("tile_pos") if prev_char_dict else None
 
         current_name = data.get("name")

@@ -7,6 +7,7 @@ import json
 import logging
 import threading
 from datetime import datetime
+from collections import deque
 from queue import Empty, Queue
 from typing import TYPE_CHECKING, Any
 from uuid import uuid4
@@ -37,6 +38,22 @@ class WebsocketServerWrapper:
         self.debug: bool = False
         self.startup_error: Exception | None = None
         self.server_started = threading.Event()
+        self.server_logs: deque[str] = deque(maxlen=200)
+
+    def _emit_terminal_log(self, message: str) -> None:
+        """Emit connection diagnostics to both the logger and server terminal."""
+        stamped_message = (
+            f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] {message}"
+        )
+        self.server_logs.append(stamped_message)
+        logger.warning(message)
+        print(stamped_message, flush=True)
+
+    def get_recent_logs(self, limit: int = 20) -> list[str]:
+        """Return the latest server-side connection logs for debugging."""
+        if limit <= 0:
+            return []
+        return list(self.server_logs)[-limit:]
 
     def start_listening(self, port: int) -> bool:
         """Starts the network thread and the asynchronous server."""
@@ -178,13 +195,18 @@ class WebsocketServerWrapper:
                 logger.warning(
                     f"Rejecting new connection from {peer_str}: server full"
                 )
+                self._emit_terminal_log(
+                    f"[SERVER] Connection rejected: peer={peer_str} reason=server_full"
+                )
                 await websocket.close(code=4000, reason="Server full")
                 return
 
             provided_cuuid = data.get("cuuid")
             if provided_cuuid and provided_cuuid in self.registry:
                 cuuid = provided_cuuid
-                logger.warning(f"Client {cuuid} reconnected from {peer_str}.")
+                self._emit_terminal_log(
+                    f"[SERVER] Client reconnected: cuuid={cuuid} peer={peer_str}"
+                )
             else:
                 cuuid = str(uuid4())
                 self.registry[cuuid] = {
@@ -192,7 +214,9 @@ class WebsocketServerWrapper:
                     "connected_at": datetime.now(),
                     "last_message_at": datetime.now(),
                 }
-                logger.warning(f"New client {cuuid} connected from {peer_str}.")
+                self._emit_terminal_log(
+                    f"[SERVER] Client connected: cuuid={cuuid} peer={peer_str}"
+                )
 
             self.client_registry[cuuid] = websocket
             self.incoming_queue.put((cuuid, data))

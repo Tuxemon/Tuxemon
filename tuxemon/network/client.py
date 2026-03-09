@@ -301,6 +301,9 @@ class PlayerSyncManager:
         char_dict = {
             "tile_pos": player_data.get("tile_pos", [0, 0]),
             "name": resolved_name,
+        char_dict = {
+            "tile_pos": player_data.get("tile_pos", [0, 0]),
+            "name": self._resolve_player_name(player_data.get("name"), wallet),
             "facing": _facing_member_name(player_data.get("facing", "down")),
             "running": player_data.get("running", False),
             "slug": player_data.get("slug"),
@@ -335,6 +338,9 @@ class PlayerSyncManager:
         char_dict = {
             "tile_pos": pd.get("tile_pos", [0, 0]),
             "name": resolved_name,
+        char_dict = {
+            "tile_pos": pd.get("tile_pos", [0, 0]),
+            "name": self._resolve_player_name(pd.get("name"), wallet),
             "facing": _facing_member_name(pd.get("facing", "down")),
             "running": pd.get("running", False),
             "slug": pd.get("slug"),

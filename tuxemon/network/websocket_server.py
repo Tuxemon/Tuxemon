@@ -153,6 +153,20 @@ class WebsocketServerWrapper:
         try:
             first_msg = await asyncio.wait_for(websocket.recv(), timeout=5.0)
             data = json.loads(first_msg)
+            event_type = str(data.get("type", "UNKNOWN")) if isinstance(data, dict) else "INVALID"
+            claimed_name = None
+            claimed_map = None
+            if isinstance(data, dict):
+                char_dict = data.get("char_dict")
+                if isinstance(char_dict, dict):
+                    claimed_name = str(char_dict.get("name", "")).strip() or None
+                claimed_map = data.get("map_name")
+            logger.info(
+                "Incoming client handshake payload: event=%s map=%s name=%s",
+                event_type,
+                claimed_map,
+                claimed_name,
+            )
 
             peer = websocket.remote_address
             peer_str = f"{peer[0]}:{peer[1]}" if peer else "unknown"

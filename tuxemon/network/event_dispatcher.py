@@ -169,6 +169,24 @@ def handle_client_facing(self: EventDispatcher, event_data: EventData) -> None:
     logger.info(f"Client {cuuid} updated facing direction.")
 
 
+
+
+@EventDispatcher.handler(EventType.CLIENT_MAP_UPDATE)
+def handle_client_map_update(self: EventDispatcher, event_data: EventData) -> None:
+    cuuid = event_data.cuuid
+    if cuuid is None or event_data.char_dict is None:
+        logger.warning("Missing data in CLIENT_MAP_UPDATE event")
+        return
+
+    if cuuid not in self.client.registry:
+        try:
+            populate_client(cuuid, event_data, self.game, self.client.registry)
+        except Exception as e:
+            logger.warning("Failed to populate client %s on map update: %s", cuuid, e)
+            return
+
+    self.client.update_client_map(cuuid, event_data)
+
 @EventDispatcher.handler(EventType.CLIENT_INTERACTION)
 def handle_interaction(self: EventDispatcher, event_data: EventData) -> None:
     cuuid = event_data.cuuid

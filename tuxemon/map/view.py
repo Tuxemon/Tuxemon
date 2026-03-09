@@ -12,6 +12,7 @@ from typing import TYPE_CHECKING
 from pygame import SRCALPHA
 from pygame.draw import line
 from pygame.gfxdraw import box
+from pygame.font import Font
 from pygame.rect import Rect
 from pygame.surface import Surface
 
@@ -57,6 +58,10 @@ DIRECTION_TO_FACING: dict[Direction, EntityFacing] = {
     Direction.RIGHT: EntityFacing.right,
 }
 
+
+LOCAL_PLAYER_NAME_COLOR: ColorLike = (148, 0, 211)
+REMOTE_PLAYER_NAME_COLOR: ColorLike = (255, 255, 255)
+NAME_SHADOW_COLOR: ColorLike = (0, 0, 0)
 
 @dataclass
 class WorldSurfaces:
@@ -429,6 +434,8 @@ class MapRenderer(AbstractRenderer):
         self.cinema_y_ratio: float | None = None
         self.map_animations = AnimationManager()
         self.bubble_manager = BubbleManager(context=context)
+        self._name_font = Font(None, max(14, int(14 * context.scale)))
+        self._name_cache: dict[tuple[str, tuple[int, int, int]], Surface] = {}
 
     @property
     def label(self) -> str:
@@ -473,6 +480,7 @@ class MapRenderer(AbstractRenderer):
         map_animations = self._get_map_animations()
         surfaces = npc_surfaces + map_animations
         screen_surfaces = self._position_surfaces(current_map, surfaces)
+        screen_surfaces.extend(self._get_rendered_nameplates(current_map))
         screen_surfaces.extend(
             self.bubble_manager.get_rendered_bubbles(current_map)
         )
@@ -560,6 +568,47 @@ class MapRenderer(AbstractRenderer):
 
         pixel_x, pixel_y = npc.position
         return [WorldSurfaces(frame, Vector2(pixel_x, pixel_y), layer)]
+
+    def _get_name_color(self, npc: NPC) -> ColorLike:
+        local_player = getattr(npc.session, "player", None)
+        if local_player is not None and npc is local_player:
+            return LOCAL_PLAYER_NAME_COLOR
+        return REMOTE_PLAYER_NAME_COLOR
+
+    def _get_name_surface(self, npc: NPC) -> Surface:
+        text = npc.name
+        color = self._get_name_color(npc)
+        cache_key = (text, tuple(color))
+        cached = self._name_cache.get(cache_key)
+        if cached is not None:
+            return cached
+
+        fg = self._name_font.render(text, True, color)
+        shadow = self._name_font.render(text, True, NAME_SHADOW_COLOR)
+        image = Surface((fg.get_width() + 2, fg.get_height() + 2), SRCALPHA)
+        image.blit(shadow, (1, 1))
+        image.blit(fg, (0, 0))
+        self._name_cache[cache_key] = image
+        return image
+
+    def _get_rendered_nameplates(
+        self, current_map: AbstractMap
+    ) -> list[tuple[Surface, Rect, int]]:
+        rendered: list[tuple[Surface, Rect, int]] = []
+        for npc in self.npc_manager.npcs.values():
+            sprite_renderer = npc.sprite_controller.get_sprite_renderer()
+            entity_pos_vector = Vector2(npc.tile_pos)
+            center_x, center_y = get_pos_from_tilepos(
+                current_map, self.context, entity_pos_vector
+            )
+            name_surface = self._get_name_surface(npc)
+            name_rect = name_surface.get_rect()
+            name_rect.midtop = (
+                center_x + (sprite_renderer.rect.width // 2),
+                center_y + int(self.context.tile_size[1] * 0.9),
+            )
+            rendered.append((name_surface, name_rect, current_map.sprite_layer + 1))
+        return rendered
 
 
 class BubbleManager:

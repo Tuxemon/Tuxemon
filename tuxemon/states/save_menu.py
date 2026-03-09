@@ -19,7 +19,7 @@ from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import PopUpMenu
 from tuxemon.platform.const.graphics import WHITE_COLOR
 from tuxemon.save import get_save_path
-from tuxemon.tools import open_choice_dialog
+from tuxemon.tools import open_choice_dialog, open_dialog
 from tuxemon.ui.menu_options import MenuOptions, create_choice_options
 from tuxemon.ui.text import draw_text
 
@@ -171,39 +171,12 @@ class SaveMenuState(PopUpMenu[None]):
         )
 
     def on_menu_selection(self, menuitem: MenuItem[None]) -> None:
-        def positive_answer() -> None:
-            self.client.remove_state_by_name("ChoiceState")
-            self.client.remove_state_by_name("SaveMenuState")
-
-            self.save()
-
-        def negative_answer() -> None:
-            self.client.remove_state_by_name("ChoiceState")
-
-        def delete_answer() -> None:
-            slot = self.selected_index + 1
-            delete_save_slot(slot)
-            self.menu_items.clear()
-            self.reload_items()
-            self.client.remove_state_by_name("ChoiceState")
-
-        def ask_confirmation() -> None:
-            actions = {
-                "overwrite": positive_answer,
-                "keep": negative_answer,
-                "delete": delete_answer,
-            }
-            options = create_choice_options(actions)
-            menu = MenuOptions(options)
-            open_choice_dialog(self.client, menu, escape_key_exits=True)
-
-        save_path = save.get_save_path(self.selected_index + 1)
-        save_data = save.load(save_path)
-        if save_data:
-            ask_confirmation()
-        else:
-            self.client.remove_state_by_name("SaveMenuState")
-            self.save()
+        logger.warning("Save attempt blocked in online-world mode.")
+        self.client.remove_state_by_name("SaveMenuState")
+        open_dialog(
+            self.client,
+            ["Saving and loading local files is disabled in online-world mode."],
+        )
 
 
 def delete_save_slot(slot_num: int) -> bool:

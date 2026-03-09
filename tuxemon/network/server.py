@@ -372,7 +372,7 @@ class TuxemonServer:
                 cuuid, "ping_timestamp", datetime.now()
             )
             self.client_registry.set_client_data(cuuid, "wallet_address", wallet)
-            logger.info(f"Player {cuuid} has returned to the world.")
+            logger.warning(f"Player {cuuid} has returned to the world.")
         else:
             # New player logic
             self.client_registry.register_client(
@@ -391,7 +391,7 @@ class TuxemonServer:
                     wallet_address=wallet,
                 )
 
-            logger.info(
+            logger.warning(
                 "Client connected: cuuid=%s wallet=%s name=%s map=%s active_clients=%s",
                 cuuid,
                 wallet or "(none)",
@@ -674,6 +674,7 @@ class NotificationManager:
         """Serializes once and broadcasts to all other clients."""
         updated_event = event_data.copy(cuuid=cuuid)
         json_data = json.dumps(updated_event.to_dict())
+        logger.warning("Broadcasting event type=%s from cuuid=%s", updated_event.type.value, cuuid)
         self.server.notify_broadcast(exclude_cuuid=cuuid, json_data=json_data)
 
     def notify_populate_client(

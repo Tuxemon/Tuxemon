@@ -422,3 +422,35 @@ def test_populate_player_uses_wallet_address_as_default_name(client, monkeypatch
     payload = client.client.send_event.call_args[0][0]
     assert payload["wallet_address"] == "WalletABC"
     assert payload["char_dict"]["name"] == "WalletABC"
+
+
+def test_dispatch_client_map_update_populates_unknown_client(client, monkeypatch):
+    import tuxemon.network.event_dispatcher as dispatcher_module
+
+    client.update_client_map = MagicMock()
+    monkeypatch.setattr(
+        dispatcher_module,
+        "populate_client",
+        MagicMock(return_value=MagicMock()),
+    )
+
+    event_dict = {
+        "type": "CLIENT_MAP_UPDATE",
+        "event_number": 1,
+        "cuuid": "new_cuuid",
+        "map_name": "start-town",
+        "char_dict": {
+            "tile_pos": [1, 2],
+            "name": "Player",
+            "facing": "DOWN",
+            "running": False,
+            "slug": "player",
+            "monsters": [],
+            "inventory": [],
+        },
+    }
+
+    client.dispatcher.dispatch(event_dict)
+
+    dispatcher_module.populate_client.assert_called_once()
+    client.update_client_map.assert_called_once()

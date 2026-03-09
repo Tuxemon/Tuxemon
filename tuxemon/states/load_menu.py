@@ -8,6 +8,7 @@ from typing import TYPE_CHECKING, Any, ClassVar
 from pygame.rect import Rect
 
 from tuxemon.menu.interface import MenuItem
+from tuxemon.tools import open_dialog
 
 from .save_menu import SLOT_HEIGHT_RATIO, SLOT_WIDTH_RATIO, SaveMenuState
 
@@ -41,8 +42,9 @@ class LoadMenuState(SaveMenuState):
             self.add(item)
 
     def on_menu_selection(self, menuitem: MenuItem[None] | None) -> None:
-        self.client.event_engine.execute_action(
-            "load_game",
-            [self.selected_index],
-            True,
+        logger.warning("Load attempt blocked in online-world mode.")
+        self.client.remove_state_by_name("LoadMenuState")
+        open_dialog(
+            self.client,
+            ["Loading local files is disabled in online-world mode."],
         )

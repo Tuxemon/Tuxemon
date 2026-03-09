@@ -20,7 +20,8 @@ from tuxemon.menu.menu import PygameMenuState
 from tuxemon.platform.const.graphics import BG_START_SCREEN, BLACK_COLOR
 from tuxemon.session import local_session
 from tuxemon.state.state import State
-from tuxemon.tools import open_dialog
+from tuxemon.tools import open_choice_dialog, open_dialog
+from tuxemon.ui.menu_options import MenuOptions, create_choice_options
 
 if TYPE_CHECKING:
     from tuxemon.base_client import BaseClient
@@ -58,58 +59,24 @@ class StartState(PygameMenuState):
         self,
         menu: Menu,
     ) -> None:
-        def new_game() -> None:
-            if not self.client.solana_manager.has_wallet_connection():
-                open_dialog(
-                    self.client,
-                    ["Create or import a devnet wallet first."],
-                )
-                return
-
-            if not self.client.network_manager.is_connected():
+        def connect_wallet() -> None:
+            wallet = self.client.solana_manager.wallet_address
+            if wallet:
                 open_dialog(
                     self.client,
                     [
-                        "SolaMon is multiplayer-only. Host or join a game first."
+                        f"Wallet already connected: {wallet[:4]}...{wallet[-4:]}",
+                        "Choose Create or Import to change wallet.",
                     ],
                 )
-                return
 
-            launcher = GameLauncher(self.client)
-            launcher.launch(
-                session=local_session,
-                meta=db.mod_metadata.get_mod_metadata(
-                    self.client.config.mods[0]
-                ),
-                remove_states=["StartState"],
-            )
-
-        def import_private_key() -> None:
-            self.client.push_state(
-                "InputMenu",
-                prompt="Paste private key JSON array (32 or 64 bytes)",
-                callback=self._import_private_key,
-            )
-
-        def create_wallet() -> None:
-            ok, message = self._call_solana_method(
-                "create_devnet_wallet",
-                default_error=(
-                    False,
-                    "This build does not support in-game devnet wallet creation.",
-                ),
-            )
-            self._show_wallet_status(ok, message)
-
-        def export_private_key() -> None:
-            ok, message = self._call_solana_method(
-                "export_connected_private_key",
-                default_error=(
-                    False,
-                    "This build does not support private key export.",
-                ),
-            )
-            self._show_wallet_status(ok, message)
+            actions = {
+                "IMPORT PRIVATE KEY": self._open_import_wallet_input,
+                "CREATE DEVNET WALLET": self._create_wallet,
+            }
+            options = create_choice_options(actions)
+            menu = MenuOptions(options)
+            open_choice_dialog(self.client, menu, escape_key_exits=True)
 
         def change_state(
             state: State | str, **kwargs: Any
@@ -126,35 +93,20 @@ class StartState(PygameMenuState):
             self.client.quit()
 
         menu.add.button(
-            title="IMPORT PRIVATE KEY",
-            action=import_private_key,
+            title="WALLET CONNECTION",
+            action=connect_wallet,
             font_size=self.font_type.big,
-            button_id="solamon_wallet_import",
+            button_id="solamon_wallet_connect",
         )
-        menu.add.button(
-            title="CREATE DEVNET WALLET",
-            action=create_wallet,
-            font_size=self.font_type.big,
-            button_id="solamon_wallet_create",
-        )
-        menu.add.button(
-            title="EXPORT PRIVATE KEY",
-            action=export_private_key,
-            font_size=self.font_type.big,
-            button_id="solamon_wallet_export",
-        )
-        menu.add.button(
-            title=T.translate("menu_multiplayer"),
-            action=change_state("MultiplayerMenu"),
-            font_size=self.font_type.big,
-            button_id="menu_multiplayer",
-        )
-        menu.add.button(
-            title="PLAY SOLAMON",
-            action=new_game,
-            font_size=self.font_type.big,
-            button_id="menu_new_game",
-        )
+
+        if self.client.solana_manager.has_wallet_connection():
+            menu.add.button(
+                title=T.translate("menu_multiplayer"),
+                action=change_state("MultiplayerMenu"),
+                font_size=self.font_type.big,
+                button_id="menu_multiplayer",
+            )
+
         menu.add.button(
             title=T.translate("menu_options"),
             action=change_state("ControlState", main_menu=True),
@@ -168,16 +120,45 @@ class StartState(PygameMenuState):
             button_id="exit",
         )
 
-    def _import_private_key(self, private_key_payload: str) -> None:
+    def _open_import_wallet_input(self) -> None:
+        self.client.push_state(
+            "InputMenu",
+            prompt="Paste private key JSON array (32 or 64 bytes)",
+            callback=self._wallet_connect_callback,
+        )
+
+    def _create_wallet(self) -> None:
+        ok, message = self._call_solana_method(
+            "create_devnet_wallet",
+            default_error=(
+                False,
+                "This build does not support in-game devnet wallet creation.",
+            ),
+        )
+        self._show_wallet_status(ok, message)
+        if ok:
+            self.menu.clear()
+            self.add_menu_items(self.menu)
+
+    def _wallet_connect_callback(self, private_key_payload: str) -> None:
+        payload = private_key_payload.strip()
+        if not payload:
+            open_dialog(self.client, ["Please paste a private key JSON array."])
+            return
+
         ok, message = self._call_solana_method(
             "import_private_key",
-            private_key_payload,
+            payload,
             default_error=(
                 False,
                 "This build does not support private key import.",
             ),
         )
+
         self._show_wallet_status(ok, message)
+        if ok:
+            self.menu.clear()
+            self.add_menu_items(self.menu)
 
     def _show_wallet_status(self, ok: bool, message: str) -> None:
         if not ok:

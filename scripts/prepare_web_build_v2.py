@@ -133,7 +133,7 @@ def write_browser_requirements(src: Path, dst: Path) -> None:
     filtered = [
         line
         for line in lines
-        if line.strip() and not line.strip().startswith("pydantic") and not line.strip().lower().startswith("pyyaml")
+        if line.strip() and not line.strip().startswith("pydantic") and not line.strip().lower().startswith("pyyaml") and not line.strip().lower().startswith("pillow")
     ]
     dst.write_text("\n".join(filtered) + "\n", encoding="utf-8")
 

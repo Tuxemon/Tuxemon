@@ -261,7 +261,7 @@ Notes:
 - This packages the full `run_tuxemon.py` + `tuxemon/` + `mods/` content for browser runtime.
 - Build output is written to `build/web`.
 - First build can take time because `pygbag` and wasm assets are prepared.
-- Build scripts now run `scripts/prepare_web_build_v2.py`, which removes unsupported audio formats (`.mp3`, `.flac`, `.m4a`, `.aac`, `.wma`, `.aiff`, `.alac`), writes browser-safe requirements (excluding `pydantic` and `PyYAML`), injects a lightweight `pydantic` compatibility shim, vendors local `yaml` package into the web bundle to avoid runtime pip fetches, verifies cleanup, and then runs pygbag with `--disable-sound-format-error`.
+- Build scripts now run `scripts/prepare_web_build_v2.py`, which removes unsupported audio formats (`.mp3`, `.flac`, `.m4a`, `.aac`, `.wma`, `.aiff`, `.alac`), writes browser-safe requirements (excluding `pydantic`, `PyYAML`, and `pillow`), injects a lightweight `pydantic` compatibility shim, vendors local `yaml` package into the web bundle to avoid runtime pip fetches, verifies cleanup, and then runs pygbag with `--disable-sound-format-error`.
 - Runtime now installs pygame submodule aliases (`pygame.rect`, `pygame.surface`, etc.) at startup to support wasm environments where pygame is exposed as a flat module and prevent browser-time `pygame.rect` package fetch errors.
 
 Use **CREATE DEVNET WALLET** to generate a wallet in-game, **IMPORT PRIVATE KEY** to restore one, and **EXPORT PRIVATE KEY** to back up locally managed wallets.

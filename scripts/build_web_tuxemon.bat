@@ -40,6 +40,10 @@ if exist "%WEB_APP_DIR%\build\web" (
   move "%WEB_APP_DIR%\build\web" "%OUT_DIR%" >nul || goto :error
 )
 
+if exist "%OUT_DIR%\index.html" (
+  %PY_CMD% "%ROOT_DIR%\scripts\patch_pygbag_index.py" "%OUT_DIR%\index.html" || goto :error
+)
+
 echo Built browser package at: %OUT_DIR%
 exit /b 0
 

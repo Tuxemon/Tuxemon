@@ -38,4 +38,9 @@ if [ -d "$WEB_APP_DIR/build/web" ]; then
   mv "$WEB_APP_DIR/build/web" "$OUT_DIR"
 fi
 
+INDEX_HTML="$OUT_DIR/index.html"
+if [ -f "$INDEX_HTML" ]; then
+  "$PY_CMD" "$ROOT_DIR/scripts/patch_pygbag_index.py" "$INDEX_HTML"
+fi
+
 echo "Built browser package at: $OUT_DIR"

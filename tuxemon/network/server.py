@@ -52,6 +52,8 @@ class TuxemonServer:
         self.ips: list[str] = []
         self._event_counter = count(start=1)
         self.server_timestamp: datetime = datetime.now()
+        self._last_periodic_persist_at: datetime = self.server_timestamp
+        self._periodic_persist_interval_seconds: int = 5
 
         self.server = WebsocketServerWrapper(self)
         self.state_dir = Path.cwd() / "server"
@@ -74,6 +76,11 @@ class TuxemonServer:
         )
         self._register_event_handlers()
         self._load_character_states()
+        logger.info(
+            "Persistent multiplayer state path: json=%s sqlite=%s",
+            self.state_file,
+            self.state_db_file,
+        )
 
 
     def _ensure_state_store_path(self) -> None:
@@ -315,6 +322,17 @@ class TuxemonServer:
             data.get("char_dict"),
         )
 
+    def _persist_all_connected_clients(self) -> None:
+        for cuuid in list(self.client_registry.registry.keys()):
+            self._persist_registry_state(cuuid)
+
+    def _periodic_persist_connected_clients(self) -> None:
+        delta = (self.server_timestamp - self._last_periodic_persist_at).total_seconds()
+        if delta < self._periodic_persist_interval_seconds:
+            return
+        self._persist_all_connected_clients()
+        self._last_periodic_persist_at = self.server_timestamp
+
     def _register_event_handlers(self) -> None:
         """
         Registers all event handlers with the event router for dispatching
@@ -419,6 +437,8 @@ class TuxemonServer:
             except Exception:
                 logger.exception(f"Critical error handling event from {cuuid}")
 
+        self._periodic_persist_connected_clients()
+
         timed_out = self.client_registry.check_timeouts(self.server_timestamp)
         for cuuid in timed_out:
             self._handle_timeout_disconnection(cuuid)
@@ -458,6 +478,7 @@ class TuxemonServer:
             EventType.CLIENT_DISCONNECTED, cuuid
         )
         self.notify_client(cuuid, event_data)
+        self._persist_registry_state(cuuid)
         self.server.disconnect_client(cuuid)
         self.client_registry.remove_client(cuuid)
 
@@ -475,6 +496,7 @@ class TuxemonServer:
         Handles a client disconnection event triggered by the network wrapper
         and notifies other clients.
         """
+        self._persist_registry_state(cuuid)
         self.client_registry.remove_client(cuuid)
 
         logger.info(

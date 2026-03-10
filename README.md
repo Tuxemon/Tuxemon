@@ -246,6 +246,18 @@ python run_tuxemon.py --headless --host-server --server-port 40081
 
 Then run full clients and join the host from Multiplayer menu.
 
+
+Persistence Troubleshooting (Headless Host)
+--------
+
+If you suspect progress is not being persisted, verify the host storage directly:
+
+```shell
+python scripts/inspect_server_state.py
+```
+
+You should see rows in `player_states` and `state_events` under `server/state.db`.
+
 Quick Browser Multiplayer (Full Game)
 --------
 

@@ -8,6 +8,7 @@ import importlib
 import os
 import shutil
 from pathlib import Path
+from typing import Iterable
 
 UNSUPPORTED_AUDIO_EXTENSIONS = {
     ".mp3",
@@ -87,6 +88,78 @@ class BaseModel:
         return deepcopy(self) if deep else self.__class__(**self.model_dump())
 '''
 
+BROWSER_EXCLUDE_REQUIREMENTS = {"pydantic", "pyyaml", "pillow", "prompt-toolkit", "cbor"}
+VENDORED_MODULE_MAP = {
+    "babel": "babel",
+    "cbor": "cbor2",
+    "websockets": "websockets",
+    "packaging": "packaging",
+    "pyscroll": "pyscroll",
+    "pytmx": "pytmx",
+    "requests": "requests",
+    "natsort": "natsort",
+    "prompt_toolkit": "prompt_toolkit",
+    "pygame-menu-ce": "pygame_menu",
+    "pygame_ce": "pygame",
+    "pygame-ce": "pygame",
+}
+
+
+def normalize_requirement_name(line: str) -> str:
+    raw = line.strip()
+    for sep in ("==", ">=", "<=", "~=", "!=", "<", ">"):
+        if sep in raw:
+            raw = raw.split(sep, 1)[0].strip()
+            break
+    return raw.lower().replace("_", "-")
+
+
+def copy_module_to_web(module_name: str, web_dir: Path) -> bool:
+    try:
+        module = importlib.import_module(module_name)
+    except Exception:
+        return False
+
+    module_file = getattr(module, "__file__", None)
+    if not module_file:
+        return False
+
+    source = Path(module_file).resolve()
+    if source.name == "__init__.py":
+        src_dir = source.parent
+        dst_dir = web_dir / src_dir.name
+        if dst_dir.exists():
+            shutil.rmtree(dst_dir)
+        shutil.copytree(src_dir, dst_dir)
+        return True
+
+    dst_file = web_dir / source.name
+    shutil.copy2(source, dst_file)
+    return True
+
+
+def vendor_dependencies(requirements: Iterable[str], web_dir: Path) -> tuple[list[str], list[str]]:
+    unresolved: list[str] = []
+    vendored: list[str] = []
+
+    for line in requirements:
+        req = line.strip()
+        if not req or req.startswith("#"):
+            continue
+
+        norm = normalize_requirement_name(req)
+        if norm in BROWSER_EXCLUDE_REQUIREMENTS:
+            continue
+
+        module_name = VENDORED_MODULE_MAP.get(norm)
+        if module_name and copy_module_to_web(module_name, web_dir):
+            vendored.append(req)
+            continue
+
+        unresolved.append(req)
+
+    return unresolved, vendored
+
 
 def copy_tree(src: Path, dst: Path) -> None:
     if dst.exists():
@@ -128,14 +201,16 @@ def remove_unsupported_audio(root: Path) -> tuple[int, list[Path]]:
     return removed, failed
 
 
-def write_browser_requirements(src: Path, dst: Path) -> None:
+def write_browser_requirements(src: Path, dst: Path, web_dir: Path) -> None:
     lines = src.read_text(encoding="utf-8").splitlines()
-    filtered = [
-        line
-        for line in lines
-        if line.strip() and not line.strip().startswith("pydantic") and not line.strip().lower().startswith("pyyaml") and not line.strip().lower().startswith("pillow")
-    ]
-    dst.write_text("\n".join(filtered) + "\n", encoding="utf-8")
+    unresolved, vendored = vendor_dependencies(lines, web_dir)
+    if unresolved:
+        dst.write_text("\n".join(unresolved) + "\n", encoding="utf-8")
+    else:
+        dst.write_text("", encoding="utf-8")
+    print(f"Vendored dependencies into web bundle: {len(vendored)}")
+    if unresolved:
+        print(f"Unresolved runtime dependencies left in requirements: {len(unresolved)}")
 
 
 def write_pydantic_stub(web_dir: Path) -> None:
@@ -171,7 +246,7 @@ def main() -> None:
     shutil.copy2(root / "run_tuxemon.py", web_dir / "main.py")
     copy_tree(root / "tuxemon", web_dir / "tuxemon")
     copy_tree(root / "mods", web_dir / "mods")
-    write_browser_requirements(root / "requirements.txt", web_dir / "requirements.txt")
+    write_browser_requirements(root / "requirements.txt", web_dir / "requirements.txt", web_dir)
     write_pydantic_stub(web_dir)
     copy_local_yaml_package(web_dir)
 

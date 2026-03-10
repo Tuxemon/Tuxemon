@@ -13,6 +13,7 @@ from typing import TYPE_CHECKING, Any
 
 from tuxemon.db import Direction
 from tuxemon.network.networking import CharData, EventData, EventType
+from tuxemon.network.state_store import ServerStateStore
 from tuxemon.network.websocket_server import WebsocketServerWrapper
 
 if TYPE_CHECKING:
@@ -56,6 +57,8 @@ class TuxemonServer:
         self.state_dir = Path.cwd() / "server"
         self.state_file = self.state_dir / "characters.json"
         self.character_state_store: dict[str, dict[str, Any]] = {}
+        self.state_db_file = self.state_dir / "state.db"
+        self.state_store = ServerStateStore(self.state_db_file)
         self.server.max_clients = 32
         self.listening = False
         self.client_registry = ClientRegistry(timeout=self.timeout)
@@ -73,14 +76,35 @@ class TuxemonServer:
         self._load_character_states()
 
 
+    def _ensure_state_store_path(self) -> None:
+        expected = self.state_dir / "state.db"
+        if expected != self.state_db_file:
+            self.state_db_file = expected
+            self.state_store = ServerStateStore(self.state_db_file)
+
     def _load_character_states(self) -> None:
-        """Load persisted character states from server folder."""
+        """Load persisted character states from SQLite first, then JSON fallback."""
+        self._ensure_state_store_path()
         try:
+            db_payload = self.state_store.load_player_states()
+            if db_payload:
+                self.character_state_store = db_payload
+                logger.info(
+                    "Loaded %s persisted character states from %s",
+                    len(self.character_state_store),
+                    self.state_db_file,
+                )
+                return
+
             if not self.state_file.exists():
                 return
+
             payload = json.loads(self.state_file.read_text(encoding="utf-8"))
             if isinstance(payload, dict):
                 self.character_state_store = payload
+                for key, value in payload.items():
+                    if isinstance(value, dict):
+                        self.state_store.upsert_player_state(key, value)
                 logger.info(
                     "Loaded %s persisted character states from %s",
                     len(self.character_state_store),
@@ -90,12 +114,16 @@ class TuxemonServer:
             logger.warning("Failed to load persisted character states: %s", e)
 
     def _save_character_states(self) -> None:
+        self._ensure_state_store_path()
         try:
             self.state_dir.mkdir(parents=True, exist_ok=True)
             self.state_file.write_text(
                 json.dumps(self.character_state_store, indent=2),
                 encoding="utf-8",
             )
+            for key, value in self.character_state_store.items():
+                if isinstance(value, dict):
+                    self.state_store.upsert_player_state(key, value)
         except Exception as e:
             logger.warning("Failed to persist character states: %s", e)
 
@@ -259,6 +287,18 @@ class TuxemonServer:
                 f"Persisted party size change to characters.json: wallet={wallet or '(none)'} old_party_size={prev_party_size} new_party_size={current_party_size}"
             )
 
+        self._ensure_state_store_path()
+        self.state_store.append_state_event(
+            key,
+            "STATE_SNAPSHOT",
+            {
+                "cuuid": cuuid,
+                "wallet_address": wallet,
+                "map_name": current_map,
+                "char_dict": data,
+            },
+            entry["updated_at"],
+        )
         self._save_character_states()
 
     def _get_saved_state(self, wallet_address: str | None, cuuid: str) -> dict[str, Any] | None:
@@ -451,6 +491,12 @@ class TuxemonServer:
         and character data, then notifies others.
         """
         wallet = self._normalize_wallet(event_data.wallet_address)
+        if not wallet:
+            self._emit_server_log(
+                f"Rejected walletless multiplayer session for cuuid={cuuid}"
+            )
+            self.server.disconnect_client(cuuid)
+            return
 
         saved_state = self._get_saved_state(wallet, cuuid)
 

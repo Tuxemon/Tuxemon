@@ -9,13 +9,20 @@
   <body>
     <main>
       <h1>SolaMon Browser Multiplayer</h1>
-      <p>Move with arrow keys / WASD. Open this page in multiple tabs or devices.</p>
+      <p>Collect yellow orbs. First trainer to 15 points wins.</p>
       <div class="toolbar">
         <input id="nameInput" maxlength="16" placeholder="Trainer name" />
         <button id="setName">Set Name</button>
         <span id="status">Connecting...</span>
       </div>
-      <canvas id="game" width="800" height="500"></canvas>
+      <section class="layout">
+        <canvas id="game" width="800" height="500"></canvas>
+        <aside>
+          <h2>Leaderboard</h2>
+          <ol id="scoreboard"></ol>
+          <p class="hint">Move with arrow keys or WASD. Open this page in multiple tabs/devices.</p>
+        </aside>
+      </section>
     </main>
     <script src="game.js"></script>
   </body>

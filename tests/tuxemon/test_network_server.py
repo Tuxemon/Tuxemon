@@ -655,3 +655,25 @@ def test_handle_map_update_event_logs_incoming_party_change_to_terminal(server):
 
     emitted_logs = "\n".join(call.args[0] for call in server.server._emit_terminal_log.call_args_list)
     assert "Incoming party size change detected" in emitted_logs
+
+
+def test_handle_client_disconnected_event_persists_before_removal(server):
+    event = MagicMock()
+    server._persist_registry_state = MagicMock()
+    server.client_registry.remove_client = MagicMock()
+    server.notify_client = MagicMock()
+
+    server.handle_client_disconnected_event("abc", event)
+
+    server._persist_registry_state.assert_called_once_with("abc")
+    server.client_registry.remove_client.assert_called_once_with("abc")
+
+
+def test_update_runs_periodic_persist(server):
+    server.server.get_incoming_events = MagicMock(return_value=[])
+    server.client_registry.check_timeouts = MagicMock(return_value=[])
+    server._periodic_persist_connected_clients = MagicMock()
+
+    server.update()
+
+    server._periodic_persist_connected_clients.assert_called_once()

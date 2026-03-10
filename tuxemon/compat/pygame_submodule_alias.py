@@ -1,15 +1,16 @@
-"""Compatibility helpers for runtimes where pygame submodules are not real packages.
-
-Some wasm pygame runtimes expose most APIs on the top-level `pygame` module,
-while imports like `from pygame.rect import Rect` fail. This helper installs
-lightweight `sys.modules` aliases for commonly used pygame submodules.
-"""
+"""Compatibility helpers for runtimes where pygame submodules are not real packages."""
 
 from __future__ import annotations
 
 import sys
 from types import ModuleType
 from typing import Any
+
+
+class _DummyRect:
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        self.args = args
+        self.kwargs = kwargs
 
 
 def _make_module(name: str, exports: dict[str, Any]) -> ModuleType:
@@ -19,69 +20,73 @@ def _make_module(name: str, exports: dict[str, Any]) -> ModuleType:
     return module
 
 
+def _resolve(pygame: Any, *paths: str) -> Any:
+    for path in paths:
+        current = pygame
+        ok = True
+        for part in path.split('.'):
+            if not hasattr(current, part):
+                ok = False
+                break
+            current = getattr(current, part)
+        if ok and current is not None:
+            return current
+    return None
+
+
 def install_pygame_submodule_aliases(pygame: Any) -> None:
     """Install synthetic pygame submodules when they are missing."""
     mapping: dict[str, dict[str, Any]] = {
         "pygame.rect": {
-            "Rect": getattr(pygame, "Rect", None),
-            "FRect": getattr(pygame, "FRect", None),
+            "Rect": _resolve(pygame, "Rect", "rect.Rect") or _DummyRect,
+            "FRect": _resolve(pygame, "FRect", "rect.FRect") or _DummyRect,
         },
         "pygame.surface": {
-            "Surface": getattr(pygame, "Surface", None),
+            "Surface": _resolve(pygame, "Surface", "surface.Surface"),
         },
         "pygame.font": {
-            "Font": getattr(pygame, "Font", None),
-            "get_default_font": getattr(pygame, "get_default_font", None),
+            "Font": _resolve(pygame, "Font", "font.Font"),
+            "get_default_font": _resolve(
+                pygame, "get_default_font", "font.get_default_font"
+            ),
         },
         "pygame.color": {
-            "Color": getattr(pygame, "Color", None),
+            "Color": _resolve(pygame, "Color", "color.Color"),
         },
         "pygame.event": {
-            "Event": getattr(pygame, "Event", None),
+            "Event": _resolve(pygame, "Event", "event.Event"),
         },
         "pygame.transform": {
-            "scale": getattr(getattr(pygame, "transform", None), "scale", None),
-            "smoothscale": getattr(
-                getattr(pygame, "transform", None), "smoothscale", None
-            ),
-            "rotate": getattr(getattr(pygame, "transform", None), "rotate", None),
-            "rotozoom": getattr(
-                getattr(pygame, "transform", None), "rotozoom", None
-            ),
-            "flip": getattr(getattr(pygame, "transform", None), "flip", None),
+            "scale": _resolve(pygame, "transform.scale"),
+            "smoothscale": _resolve(pygame, "transform.smoothscale"),
+            "rotate": _resolve(pygame, "transform.rotate"),
+            "rotozoom": _resolve(pygame, "transform.rotozoom"),
+            "flip": _resolve(pygame, "transform.flip"),
         },
         "pygame.image": {
-            "load": getattr(getattr(pygame, "image", None), "load", None),
-            "frombuffer": getattr(getattr(pygame, "image", None), "frombuffer", None),
-            "tobytes": getattr(getattr(pygame, "image", None), "tobytes", None),
+            "load": _resolve(pygame, "image.load"),
+            "frombuffer": _resolve(pygame, "image.frombuffer"),
+            "tobytes": _resolve(pygame, "image.tobytes"),
         },
         "pygame.draw": {
-            "line": getattr(getattr(pygame, "draw", None), "line", None),
-            "rect": getattr(getattr(pygame, "draw", None), "rect", None),
-            "circle": getattr(getattr(pygame, "draw", None), "circle", None),
+            "line": _resolve(pygame, "draw.line"),
+            "rect": _resolve(pygame, "draw.rect"),
+            "circle": _resolve(pygame, "draw.circle"),
         },
         "pygame.joystick": {
-            "Joystick": getattr(getattr(pygame, "joystick", None), "Joystick", None),
-            "JoystickType": getattr(
-                getattr(pygame, "joystick", None), "JoystickType", None
-            ),
-            "get_count": getattr(
-                getattr(pygame, "joystick", None), "get_count", None
-            ),
-            "init": getattr(getattr(pygame, "joystick", None), "init", None),
+            "Joystick": _resolve(pygame, "joystick.Joystick"),
+            "JoystickType": _resolve(pygame, "joystick.JoystickType"),
+            "get_count": _resolve(pygame, "joystick.get_count"),
+            "init": _resolve(pygame, "joystick.init"),
         },
         "pygame.sprite": {
-            "Sprite": getattr(getattr(pygame, "sprite", None), "Sprite", None),
-            "DirtySprite": getattr(
-                getattr(pygame, "sprite", None), "DirtySprite", None
-            ),
-            "Group": getattr(getattr(pygame, "sprite", None), "Group", None),
-            "LayeredUpdates": getattr(
-                getattr(pygame, "sprite", None), "LayeredUpdates", None
-            ),
+            "Sprite": _resolve(pygame, "sprite.Sprite"),
+            "DirtySprite": _resolve(pygame, "sprite.DirtySprite"),
+            "Group": _resolve(pygame, "sprite.Group"),
+            "LayeredUpdates": _resolve(pygame, "sprite.LayeredUpdates"),
         },
         "pygame.gfxdraw": {
-            "box": getattr(getattr(pygame, "gfxdraw", None), "box", None),
+            "box": _resolve(pygame, "gfxdraw.box"),
         },
     }
 
@@ -89,5 +94,7 @@ def install_pygame_submodule_aliases(pygame: Any) -> None:
         if module_name in sys.modules:
             continue
         cleaned = {k: v for k, v in exports.items() if v is not None}
+        if module_name == "pygame.rect" and not cleaned:
+            cleaned = {"Rect": _DummyRect, "FRect": _DummyRect}
         if cleaned:
             sys.modules[module_name] = _make_module(module_name, cleaned)

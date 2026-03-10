@@ -64,6 +64,19 @@ except Exception as exc:  # noqa: BLE001
     raise
 '''
 
+
+SITECUSTOMIZE_PYGAME_ALIAS = '''"""Install pygame aliases as early as possible in wasm runtime."""
+
+try:
+    import pygame
+    from tuxemon.compat.pygame_submodule_alias import install_pygame_submodule_aliases
+
+    install_pygame_submodule_aliases(pygame)
+    print("[SolaMon web] sitecustomize pygame aliases installed")
+except Exception as exc:  # noqa: BLE001
+    print("[SolaMon web] sitecustomize alias init skipped:", repr(exc))
+'''
+
 PYDANTIC_STUB = '''"""Minimal pydantic compatibility shim for browser builds."""
 
 from __future__ import annotations
@@ -199,6 +212,12 @@ def write_browser_requirements(src: Path, dst: Path, web_dir: Path) -> None:
         print(f"Unresolved runtime dependencies left in requirements: {len(unresolved)}")
 
 
+
+def write_sitecustomize(web_dir: Path) -> None:
+    (web_dir / "sitecustomize.py").write_text(
+        SITECUSTOMIZE_PYGAME_ALIAS, encoding="utf-8"
+    )
+
 def write_pydantic_stub(web_dir: Path) -> None:
     pkg = web_dir / "pydantic"
     pkg.mkdir(parents=True, exist_ok=True)
@@ -266,6 +285,7 @@ def main() -> None:
     copy_tree(root / "mods", web_dir / "mods")
 
     write_browser_requirements(root / "requirements.txt", web_dir / "requirements.txt", web_dir)
+    write_sitecustomize(web_dir)
     write_pydantic_stub(web_dir)
     copy_local_yaml_package(web_dir)
 

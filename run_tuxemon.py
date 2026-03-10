@@ -19,6 +19,8 @@ install_pygame_submodule_aliases(pygame)
 from tuxemon.prepare import DisplayContext, headless_init, pygame_init
 from tuxemon.user_config import CONFIG, TuxemonConfig
 
+install_pygame_submodule_aliases(pygame)
+
 logger = logging.getLogger(__name__)
 
 

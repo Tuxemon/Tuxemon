@@ -213,7 +213,6 @@ SolaMon now enforces multiplayer + wallet-gated gameplay on devnet:
 - Badge rewards can mint **SolaMon Badges** NFTs via the `badge_chain <badge_id>` effect.
 
 Configuration lives under the new `[solana]` config section in `tuxemon.yaml`:
-
 ```
 [solana]
 enabled = true
@@ -225,6 +224,45 @@ trainer_mint_price_sol = 0.1
 cluster = "devnet"
 official_token_mint = "AayJpSNSwD9iuXzRnaNmTvrLVRste74TNjzJ8Edzpump"
 ```
+
+Browser Build (Full Tuxemon in Browser)
+--------
+
+To run the **actual Tuxemon game** in a web browser (not the simplified prototype),
+this repository now includes build/serve scripts based on `pygbag` (pygame->WASM).
+
+Build the browser package:
+
+```shell
+./scripts/build_web_tuxemon.sh
+```
+
+Serve the built web app:
+
+```shell
+./scripts/serve_web_tuxemon.sh 8000
+```
+
+On Windows CMD/PowerShell, use the `.bat` scripts (these prefer `py` over `python`) instead:
+
+```bat
+scripts\build_web_tuxemon.bat
+scripts\serve_web_tuxemon.bat 8000
+```
+
+Open:
+
+```text
+http://localhost:8000
+```
+
+Notes:
+
+- This packages the full `run_tuxemon.py` + `tuxemon/` + `mods/` content for browser runtime.
+- Build output is written to `build/web`.
+- First build can take time because `pygbag` and wasm assets are prepared.
+- Build scripts now run `scripts/prepare_web_build_v2.py`, which removes unsupported audio formats (`.mp3`, `.flac`, `.m4a`, `.aac`, `.wma`, `.aiff`, `.alac`), vendors common pure-Python dependencies into the web bundle, keeps runtime requirements minimal (typically only `pygame-ce`), injects a lightweight `pydantic` compatibility shim, vendors local `yaml` package to avoid runtime pip fetches, writes a diagnostic `web/main.py` wrapper that prints startup tracebacks, verifies cleanup, and then runs pygbag with `--disable-sound-format-error`.
+- Runtime now installs pygame submodule aliases (`pygame.rect`, `pygame.surface`, etc.) at startup to support wasm environments where pygame is exposed as a flat module and prevent browser-time `pygame.rect` package fetch errors.
 
 Use **CREATE DEVNET WALLET** to generate a wallet in-game, **IMPORT PRIVATE KEY** to restore one, and **EXPORT PRIVATE KEY** to back up locally managed wallets.
 

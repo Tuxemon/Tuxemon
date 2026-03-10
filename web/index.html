@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SolaMon Browser Multiplayer</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main>
+      <h1>SolaMon Browser Multiplayer</h1>
+      <p>Move with arrow keys / WASD. Open this page in multiple tabs or devices.</p>
+      <div class="toolbar">
+        <input id="nameInput" maxlength="16" placeholder="Trainer name" />
+        <button id="setName">Set Name</button>
+        <span id="status">Connecting...</span>
+      </div>
+      <canvas id="game" width="800" height="500"></canvas>
+    </main>
+    <script src="game.js"></script>
+  </body>
+</html>

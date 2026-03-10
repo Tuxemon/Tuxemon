@@ -14,12 +14,24 @@ from __future__ import annotations
 import json
 import logging
 from collections.abc import Mapping
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
-from PIL import Image as PILImage
-from PIL.Image import Image
+try:
+    from PIL import Image as PILImage
+except Exception:  # noqa: BLE001
+    PILImage = None
+
+if TYPE_CHECKING:
+    from PIL.Image import Image
+else:
+    Image = Any
 
 logger = logging.getLogger(__name__)
+
+
+def _require_pillow() -> None:
+    if PILImage is None:
+        raise RuntimeError("Pillow is required for fusion operations but is not installed.")
 
 
 class Body:
@@ -189,6 +201,8 @@ class Body:
         ]
 
         # Load the image files.
+        _require_pillow()
+
         if self.body_image_path:
             self.body_image = PILImage.open(self.body_image_path)
         if self.face_image_path:
@@ -225,6 +239,8 @@ def replace_color(
     Returns:
         A PIL Image() object of the image with the given colors replaced.
     """
+    _require_pillow()
+
     img = image.convert("RGBA")
     raw = bytearray(img.tobytes())
 
@@ -280,6 +296,8 @@ def fuse(
         >>> fuse(body=sapsnap, face=vivitron)
         >>> fuse(body=vivitron, face=sapsnap)
     """
+    _require_pillow()
+
     logger.info(
         f"Starting fusion for body '{body.name}' and face '{face.name}'."
     )

@@ -26,6 +26,8 @@ BROWSER_EXCLUDE_REQUIREMENTS = {
     "pillow",
     "prompt-toolkit",
     "cbor",
+    "pygame-ce",
+    "pygame",
 }
 
 VENDORED_MODULE_MAP = {

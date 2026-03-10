@@ -225,6 +225,56 @@ cluster = "devnet"
 official_token_mint = "AayJpSNSwD9iuXzRnaNmTvrLVRste74TNjzJ8Edzpump"
 ```
 
+
+
+Persistent Multiplayer World (Server-Authoritative)
+--------
+
+To avoid browser-runtime instability (e.g., grey-window failures), SolaMon now supports a **server-authoritative persistence approach** for multiplayer sessions:
+
+- Multiplayer host persists player state on the server in both:
+  - `server/characters.json` (human-readable backup)
+  - `server/state.db` (SQLite durable store)
+- Saved state includes map, position, facing, party/inventory payload, and wallet identity key.
+- On reconnect, the host restores the latest saved state by wallet (or client id fallback) before repopulating peers.
+
+Run a dedicated persistent host:
+
+```shell
+python run_tuxemon.py --headless --host-server --server-port 40081
+```
+
+Then run full clients and join the host from Multiplayer menu.
+
+Quick Browser Multiplayer (Full Game)
+--------
+
+To run the **full Tuxemon browser build with multiplayer hosting** in one command:
+
+```shell
+python scripts/run_web_multiplayer.py --http-port 8000 --server-port 40081
+```
+
+If you have not built browser assets yet, run this first:
+
+```shell
+./scripts/build_web_tuxemon.sh
+```
+
+Or let the launcher build automatically:
+
+```shell
+python scripts/run_web_multiplayer.py --build --http-port 8000 --server-port 40081
+```
+
+Then open:
+
+```text
+http://localhost:8000
+```
+
+This serves the **full game**, not the arcade prototype, and starts a headless multiplayer host.
+
 Browser Build (Full Tuxemon in Browser)
 --------
 

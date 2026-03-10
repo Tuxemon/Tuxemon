@@ -68,6 +68,21 @@ import sys
 from types import ModuleType
 
 
+class _DummyRect:
+    def __init__(self, *args, **kwargs):
+        self.args = args
+        self.kwargs = kwargs
+
+
+class _DummySprite:
+    pass
+
+
+class _DummyGroup(list):
+    def add(self, *args, **kwargs):
+        return None
+
+
 def _mk(name, exports):
     mod = ModuleType(name)
     for key, val in exports.items():
@@ -91,15 +106,24 @@ try:
         "LayeredUpdates": getattr(sprite_obj, "LayeredUpdates", None),
     }
 
+    rect_clean = {k: v for k, v in rect_exports.items() if v is not None}
+    if not rect_clean:
+        rect_clean = {"Rect": _DummyRect, "FRect": _DummyRect}
+
+    sprite_clean = {k: v for k, v in sprite_exports.items() if v is not None}
+    if not sprite_clean:
+        sprite_clean = {
+            "Sprite": _DummySprite,
+            "DirtySprite": _DummySprite,
+            "Group": _DummyGroup,
+            "LayeredUpdates": _DummyGroup,
+        }
+
     if "pygame.rect" not in sys.modules:
-        sys.modules["pygame.rect"] = _mk(
-            "pygame.rect", {k: v for k, v in rect_exports.items() if v is not None}
-        )
+        sys.modules["pygame.rect"] = _mk("pygame.rect", rect_clean)
 
     if "pygame.sprite" not in sys.modules:
-        sys.modules["pygame.sprite"] = _mk(
-            "pygame.sprite", {k: v for k, v in sprite_exports.items() if v is not None}
-        )
+        sys.modules["pygame.sprite"] = _mk("pygame.sprite", sprite_clean)
 
     print("[SolaMon web] sitecustomize pygame aliases installed")
 except Exception as exc:  # noqa: BLE001

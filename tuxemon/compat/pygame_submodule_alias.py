@@ -13,6 +13,15 @@ class _DummyRect:
         self.kwargs = kwargs
 
 
+class _DummySprite:
+    pass
+
+
+class _DummyGroup(list):
+    def add(self, *args: Any, **kwargs: Any) -> None:
+        return None
+
+
 def _make_module(name: str, exports: dict[str, Any]) -> ModuleType:
     module = ModuleType(name)
     for key, value in exports.items():
@@ -96,5 +105,12 @@ def install_pygame_submodule_aliases(pygame: Any) -> None:
         cleaned = {k: v for k, v in exports.items() if v is not None}
         if module_name == "pygame.rect" and not cleaned:
             cleaned = {"Rect": _DummyRect, "FRect": _DummyRect}
+        if module_name == "pygame.sprite" and not cleaned:
+            cleaned = {
+                "Sprite": _DummySprite,
+                "DirtySprite": _DummySprite,
+                "Group": _DummyGroup,
+                "LayeredUpdates": _DummyGroup,
+            }
         if cleaned:
             sys.modules[module_name] = _make_module(module_name, cleaned)

@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import importlib
 import os
 import shutil
 from pathlib import Path
@@ -61,6 +62,12 @@ def model_validator(*args, **kwargs):
 
 
 class BaseModel:
+    def __init_subclass__(cls, **kwargs):
+        # pydantic accepts class declaration kwargs like validate_assignment=True
+        # (e.g. class M(BaseModel, validate_assignment=True)).
+        # Ignore them in this lightweight compatibility shim.
+        return None
+
     def __init__(self, **data):
         for key, val in data.items():
             setattr(self, key, val)
@@ -126,7 +133,7 @@ def write_browser_requirements(src: Path, dst: Path) -> None:
     filtered = [
         line
         for line in lines
-        if line.strip() and not line.strip().startswith("pydantic")
+        if line.strip() and not line.strip().startswith("pydantic") and not line.strip().lower().startswith("pyyaml")
     ]
     dst.write_text("\n".join(filtered) + "\n", encoding="utf-8")
 
@@ -136,6 +143,18 @@ def write_pydantic_stub(web_dir: Path) -> None:
     pkg.mkdir(parents=True, exist_ok=True)
     (pkg / "__init__.py").write_text(PYDANTIC_STUB, encoding="utf-8")
 
+
+
+
+def copy_local_yaml_package(web_dir: Path) -> None:
+    """Vendor local PyYAML package into web build to avoid runtime pip fetch."""
+    yaml_mod = importlib.import_module("yaml")
+    yaml_file = Path(getattr(yaml_mod, "__file__", "")).resolve()
+    yaml_pkg = yaml_file.parent
+    target = web_dir / "yaml"
+    if target.exists():
+        shutil.rmtree(target)
+    shutil.copytree(yaml_pkg, target)
 
 def main() -> None:
     parser = argparse.ArgumentParser()
@@ -154,6 +173,7 @@ def main() -> None:
     copy_tree(root / "mods", web_dir / "mods")
     write_browser_requirements(root / "requirements.txt", web_dir / "requirements.txt")
     write_pydantic_stub(web_dir)
+    copy_local_yaml_package(web_dir)
 
     mods_dir = web_dir / "mods"
     removed, failed = remove_unsupported_audio(mods_dir)

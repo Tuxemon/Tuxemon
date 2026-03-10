@@ -5,6 +5,10 @@ from tuxemon.compat.rect import ReadOnlyRect
 Rect: type[ReadOnlyRect]
 
 try:
-    from pygame.rect import Rect
-except ImportError:
+    import pygame
+
+    Rect = getattr(pygame, "Rect", None)
+    if Rect is None:
+        from tuxemon.compat.rect import Rect
+except Exception:
     from tuxemon.compat.rect import Rect

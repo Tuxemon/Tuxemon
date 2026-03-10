@@ -8,6 +8,14 @@ import sys
 from argparse import ArgumentParser, Namespace
 from pathlib import Path
 
+import pygame
+
+from tuxemon.compat.pygame_submodule_alias import install_pygame_submodule_aliases
+
+# Install pygame submodule aliases before importing other tuxemon modules,
+# so imports like `from pygame.rect import Rect` resolve in wasm runtimes.
+install_pygame_submodule_aliases(pygame)
+
 from tuxemon.prepare import DisplayContext, headless_init, pygame_init
 from tuxemon.user_config import CONFIG, TuxemonConfig
 

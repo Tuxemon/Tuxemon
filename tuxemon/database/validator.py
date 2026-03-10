@@ -5,7 +5,7 @@ from __future__ import annotations
 from pathlib import Path
 from typing import TYPE_CHECKING
 
-from PIL import Image, UnidentifiedImageError
+import logging
 
 from tuxemon.constants.asset_loader import (
     fetch_asset,
@@ -15,6 +15,9 @@ from tuxemon.platform.const.sizes import NATIVE_RESOLUTION
 
 if TYPE_CHECKING:
     from tuxemon.database.data import ModData
+
+
+logger = logging.getLogger(__name__)
 
 
 class Validator:
@@ -67,6 +70,12 @@ class Validator:
         Returns:
             True if file respects
         """
+        try:
+            from PIL import Image, UnidentifiedImageError
+        except Exception:
+            logger.debug("PIL unavailable; skipping strict image size validation for %s", file)
+            return True
+
         try:
             path = fetch_asset(file)
             with Image.open(path) as sprite:

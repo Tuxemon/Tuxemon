@@ -20,7 +20,6 @@ UNSUPPORTED_AUDIO_EXTENSIONS = {
     ".alac",
 }
 
-# Exclude deps that are problematic in browser-wasm runtime.
 BROWSER_EXCLUDE_REQUIREMENTS = {
     "pydantic",
     "pyyaml",
@@ -29,7 +28,6 @@ BROWSER_EXCLUDE_REQUIREMENTS = {
     "cbor",
 }
 
-# Vendored pure-python modules copied into web/ to reduce runtime pip fetches.
 VENDORED_MODULE_MAP = {
     "babel": "babel",
     "websockets": "websockets",
@@ -64,14 +62,45 @@ except Exception as exc:  # noqa: BLE001
     raise
 '''
 
-
 SITECUSTOMIZE_PYGAME_ALIAS = '''"""Install pygame aliases as early as possible in wasm runtime."""
+
+import sys
+from types import ModuleType
+
+
+def _mk(name, exports):
+    mod = ModuleType(name)
+    for key, val in exports.items():
+        setattr(mod, key, val)
+    return mod
+
 
 try:
     import pygame
-    from tuxemon.compat.pygame_submodule_alias import install_pygame_submodule_aliases
 
-    install_pygame_submodule_aliases(pygame)
+    rect_exports = {
+        "Rect": getattr(pygame, "Rect", None),
+        "FRect": getattr(pygame, "FRect", None),
+    }
+
+    sprite_obj = getattr(pygame, "sprite", None)
+    sprite_exports = {
+        "Sprite": getattr(sprite_obj, "Sprite", None),
+        "DirtySprite": getattr(sprite_obj, "DirtySprite", None),
+        "Group": getattr(sprite_obj, "Group", None),
+        "LayeredUpdates": getattr(sprite_obj, "LayeredUpdates", None),
+    }
+
+    if "pygame.rect" not in sys.modules:
+        sys.modules["pygame.rect"] = _mk(
+            "pygame.rect", {k: v for k, v in rect_exports.items() if v is not None}
+        )
+
+    if "pygame.sprite" not in sys.modules:
+        sys.modules["pygame.sprite"] = _mk(
+            "pygame.sprite", {k: v for k, v in sprite_exports.items() if v is not None}
+        )
+
     print("[SolaMon web] sitecustomize pygame aliases installed")
 except Exception as exc:  # noqa: BLE001
     print("[SolaMon web] sitecustomize alias init skipped:", repr(exc))
@@ -175,8 +204,7 @@ def copy_module_to_web(module_name: str, web_dir: Path) -> bool:
         shutil.copytree(src_dir, dst_dir)
         return True
 
-    dst_file = web_dir / source.name
-    shutil.copy2(source, dst_file)
+    shutil.copy2(source, web_dir / source.name)
     return True
 
 
@@ -212,11 +240,9 @@ def write_browser_requirements(src: Path, dst: Path, web_dir: Path) -> None:
         print(f"Unresolved runtime dependencies left in requirements: {len(unresolved)}")
 
 
-
 def write_sitecustomize(web_dir: Path) -> None:
-    (web_dir / "sitecustomize.py").write_text(
-        SITECUSTOMIZE_PYGAME_ALIAS, encoding="utf-8"
-    )
+    (web_dir / "sitecustomize.py").write_text(SITECUSTOMIZE_PYGAME_ALIAS, encoding="utf-8")
+
 
 def write_pydantic_stub(web_dir: Path) -> None:
     pkg = web_dir / "pydantic"

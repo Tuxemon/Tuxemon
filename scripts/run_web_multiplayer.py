@@ -1,166 +1,102 @@
-"""Run a browser-playable multiplayer SolaMon prototype.
+"""Run full Tuxemon in browser with a hosted multiplayer server.
 
-Starts:
-- a static HTTP server for the web client
-- a WebSocket server that synchronizes player movement
+This launcher is for the full game (not the arcade prototype).
+It starts:
+- a headless multiplayer server (`run_tuxemon.py --headless --host-server`)
+- a static HTTP server serving browser build output (`build/web`)
+
+Build browser assets first with scripts/build_web_tuxemon.sh (or .bat on Windows),
+or pass --build to do that automatically.
 """
 
 from __future__ import annotations
 
 import argparse
-import asyncio
-import json
-import secrets
-from dataclasses import dataclass, field
-from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
+import http.server
+import socketserver
+import subprocess
+import sys
+import threading
 from pathlib import Path
-from threading import Thread
-from typing import Any
-
-import websockets
+from typing import Sequence
 
 
-@dataclass
-class Player:
-    """Server-side player state."""
-
-    pid: str
-    name: str
-    x: float
-    y: float
-    color: str
-
-
-@dataclass
-class MultiplayerState:
-    """Holds active players and sockets."""
-
-    players: dict[str, Player] = field(default_factory=dict)
-    sockets: dict[str, Any] = field(default_factory=dict)
-
-    def snapshot(self) -> dict[str, Any]:
-        return {
-            "type": "state",
-            "players": {
-                pid: {
-                    "name": player.name,
-                    "x": player.x,
-                    "y": player.y,
-                    "color": player.color,
-                }
-                for pid, player in self.players.items()
-            },
-        }
+class ReusableTCPServer(socketserver.TCPServer):
+    allow_reuse_address = True
 
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--http-port", type=int, default=8080)
-    parser.add_argument("--ws-port", type=int, default=8765)
+    parser.add_argument("--http-port", type=int, default=8000)
+    parser.add_argument("--server-port", type=int, default=40081)
+    parser.add_argument("--build", action="store_true", help="Build browser bundle before launch")
+    parser.add_argument("--python-cmd", default=sys.executable)
+    parser.add_argument("--web-dir", default="build/web")
     return parser.parse_args()
 
 
-def start_static_server(http_port: int) -> ThreadingHTTPServer:
-    web_root = Path(__file__).resolve().parent.parent / "web"
+def build_command() -> list[str]:
+    if sys.platform.startswith("win"):
+        return ["cmd", "/c", "scripts\\build_web_tuxemon.bat"]
+    return ["bash", "scripts/build_web_tuxemon.sh"]
 
-    class Handler(SimpleHTTPRequestHandler):
-        def __init__(self, *args: Any, **kwargs: Any) -> None:
-            super().__init__(*args, directory=str(web_root), **kwargs)
 
-    server = ThreadingHTTPServer(("0.0.0.0", http_port), Handler)
-    thread = Thread(target=server.serve_forever, daemon=True)
-    thread.start()
-    print(f"[web] Static client available at http://localhost:{http_port}")
+def headless_command(python_cmd: str, server_port: int) -> list[str]:
+    return [
+        python_cmd,
+        "run_tuxemon.py",
+        "--headless",
+        "--host-server",
+        "--server-port",
+        str(server_port),
+    ]
+
+
+def ensure_web_build(web_dir: Path) -> None:
+    if not (web_dir / "index.html").exists():
+        raise FileNotFoundError(
+            "Browser build output not found at "
+            f"{web_dir}. Run scripts/build_web_tuxemon.sh first."
+        )
+
+
+def start_static_server(web_dir: Path, http_port: int) -> ReusableTCPServer:
+    handler = lambda *args, **kwargs: http.server.SimpleHTTPRequestHandler(  # noqa: E731
+        *args, directory=str(web_dir), **kwargs
+    )
+    server = ReusableTCPServer(("0.0.0.0", http_port), handler)
+    threading.Thread(target=server.serve_forever, daemon=True).start()
     return server
 
 
-async def broadcast_state(state: MultiplayerState) -> None:
-    if not state.sockets:
-        return
-
-    payload = json.dumps(state.snapshot())
-    dead: list[str] = []
-    for pid, ws in state.sockets.items():
-        try:
-            await ws.send(payload)
-        except Exception:
-            dead.append(pid)
-
-    for pid in dead:
-        state.sockets.pop(pid, None)
-        state.players.pop(pid, None)
-
-
-def random_color() -> str:
-    palette = [
-        "#ff6b6b",
-        "#4ecdc4",
-        "#ffe66d",
-        "#5f27cd",
-        "#1dd1a1",
-        "#54a0ff",
-        "#ff9f43",
-    ]
-    return secrets.choice(palette)
-
-
-async def handler(websocket: Any, state: MultiplayerState) -> None:
-    player_id = secrets.token_hex(4)
-    state.sockets[player_id] = websocket
-    state.players[player_id] = Player(
-        pid=player_id,
-        name=f"Trainer-{player_id[:4]}",
-        x=400,
-        y=250,
-        color=random_color(),
-    )
-
-    await websocket.send(json.dumps({"type": "welcome", "id": player_id}))
-    await broadcast_state(state)
-
-    try:
-        async for msg in websocket:
-            data = json.loads(msg)
-            msg_type = data.get("type")
-            player = state.players.get(player_id)
-            if not player:
-                continue
-
-            if msg_type == "move":
-                player.x = max(20, min(780, float(data.get("x", player.x))))
-                player.y = max(20, min(480, float(data.get("y", player.y))))
-            elif msg_type == "rename":
-                name = str(data.get("name", "")).strip()
-                player.name = name[:16] or player.name
-
-            await broadcast_state(state)
-    finally:
-        state.sockets.pop(player_id, None)
-        state.players.pop(player_id, None)
-        await broadcast_state(state)
-
-
-async def run_ws_server(ws_port: int) -> None:
-    state = MultiplayerState()
-    async with websockets.serve(
-        lambda ws: handler(ws, state),
-        "0.0.0.0",
-        ws_port,
-    ):
-        print(f"[websocket] Multiplayer server listening on ws://localhost:{ws_port}")
-        await asyncio.Future()
+def run_subprocess(cmd: Sequence[str]) -> None:
+    subprocess.run(list(cmd), check=True)
 
 
 def main() -> None:
     args = parse_args()
-    static_server = start_static_server(args.http_port)
+    web_dir = Path(args.web_dir).resolve()
+
+    if args.build:
+        run_subprocess(build_command())
+
+    ensure_web_build(web_dir)
+
+    headless_proc = subprocess.Popen(headless_command(args.python_cmd, args.server_port))
+    http_server = start_static_server(web_dir, args.http_port)
+
+    print(f"[solamon] Serving full browser game: http://localhost:{args.http_port}")
+    print(f"[solamon] Multiplayer headless server on port: {args.server_port}")
 
     try:
-        asyncio.run(run_ws_server(args.ws_port))
+        headless_proc.wait()
     except KeyboardInterrupt:
         print("\nShutting down...")
     finally:
-        static_server.shutdown()
+        http_server.shutdown()
+        if headless_proc.poll() is None:
+            headless_proc.terminate()
+            headless_proc.wait(timeout=10)
 
 
 if __name__ == "__main__":

@@ -122,9 +122,10 @@ class TuxemonClient:
         self,
         direction: str,
         event_type: str = "CLIENT_MAP_UPDATE",
+        position: tuple[int, int] | None = None,
     ) -> None:
         """Updates the server with the player's current map and position."""
-        self.sync_manager.update_player(direction, event_type)
+        self.sync_manager.update_player(direction, event_type, position)
 
     def set_key_condition(self, event: Any) -> None:
         """Translates input events into network events."""
@@ -277,13 +278,16 @@ class PlayerSyncManager:
         self.client.populated = True
 
     def update_player(
-        self, direction: str, event_type: str = "CLIENT_MAP_UPDATE"
+        self,
+        direction: str,
+        event_type: str = "CLIENT_MAP_UPDATE",
+        position: tuple[int, int] | None = None,
     ) -> None:
         """Sends client's current map and location to the server."""
         pd = local_session.player.__dict__
         map_name = self.game.get_map_name()
 
-        char_dict = {"tile_pos": pd["tile_pos"]}
+        char_dict = {"tile_pos": position or pd["tile_pos"]}
 
         self._send_event(
             event_type,

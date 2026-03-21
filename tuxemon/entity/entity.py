@@ -241,54 +241,40 @@ class Entity:
         """Completely stop all movement."""
         self.mover.stop()
 
-    def pos_update(self) -> None:
-        """WIP.  Required to be called after position changes."""
-        self.network_notify_location_change()
-
-    def network_notify_start_moving(self, direction: Direction) -> None:
-        if self.network.is_connected():
-            assert self.network.client
-            self.network.client.update_player(
-                direction, event_type="CLIENT_MOVE_START"
-            )
-
-    def network_notify_stop_moving(self) -> None:
-        if self.network.is_connected():
-            assert self.network.client
-            self.network.client.update_player(
-                self.facing, event_type="CLIENT_MOVE_COMPLETE"
-            )
-
-    def network_notify_location_change(self) -> None:
-        self.update_location = True
-
     def update_physics(self, dt: float) -> None:
         """Move the entity according to the movement vector."""
+        before_velocity = self.body.velocity
+        was_moving = before_velocity != Vector2(0, 0)
         before_tile = self._last_tile_pos
 
         self.body.update(dt)
 
-        after_tile = self.tile_pos
-        self._last_tile_pos = after_tile
+        after_velocity = self.body.velocity
+        is_moving = after_velocity != Vector2(0, 0)
 
-        if after_tile != before_tile:
-            dx = after_tile[0] - before_tile[0]
-            dy = after_tile[1] - before_tile[1]
-
+        if not was_moving and is_moving:
             self.event_bus.publish(
-                "entity_moved",
+                "entity_move_start",
                 entity=self,
-                diff_x=dx,
-                diff_y=dy,
-                steps=1,
+                direction=self.facing,
             )
 
-        self.pos_update()
+        after_tile = self.tile_pos
+        if after_tile != before_tile:
+            self._last_tile_pos = after_tile
+            self.on_tile_changed()
+            self.event_bus.publish(
+                "entity_tile_change",
+                entity=self,
+                pos=after_tile,
+            )
+
+        if was_moving and not is_moving:
+            self.event_bus.publish("entity_move_stop", entity=self)
 
     def set_position(self, pos: Sequence[float]) -> None:
         """Set the entity's position in the game world."""
         self.body.position = Vector2(*pos)
-        self.pos_update()
 
     def on_tile_changed(self) -> None:
         """
@@ -297,7 +283,6 @@ class Entity:
         Do NOT call from set_position() or physics.
         """
         self.add_collision(self.tile_pos)
-        self.pos_update()
 
     def set_current_map(self, map_slug: str | None) -> None:
         """Set the entity's map in the game world."""

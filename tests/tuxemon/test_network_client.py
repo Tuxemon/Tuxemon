@@ -76,9 +76,9 @@ def test_populate_player_delegates(client):
 
 def test_update_player_delegates(client):
     client.sync_manager.update_player = MagicMock()
-    client.update_player("north", "CLIENT_MAP_UPDATE")
+    client.update_player("north", "CLIENT_MAP_UPDATE", None)
     client.sync_manager.update_player.assert_called_once_with(
-        "north", "CLIENT_MAP_UPDATE"
+        "north", "CLIENT_MAP_UPDATE", None
     )
 
 

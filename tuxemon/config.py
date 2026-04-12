@@ -49,6 +49,8 @@ class GameConfig(BaseModel):
 
     data: str = "tuxemon"
     cli_enabled: bool = False
+    cli_host: str = "127.0.0.1"
+    cli_port: int = 8000
     net_controller_enabled: bool = False
     dev_tools: bool = False
     recompile_translations: bool = True
@@ -224,6 +226,14 @@ class TuxemonConfig:
     @property
     def cli(self) -> bool:
         return self.config_model.game.cli_enabled
+
+    @property
+    def cli_host(self) -> str:
+        return self.config_model.game.cli_host
+
+    @property
+    def cli_port(self) -> int:
+        return self.config_model.game.cli_port
 
     @property
     def net_controller_enabled(self) -> bool:

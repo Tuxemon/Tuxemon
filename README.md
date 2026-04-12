@@ -230,82 +230,11 @@ Use *Tiled* map editor: https://www.mapeditor.org/
 CLI Interface
 --------------
 
-The CLI interface is a very convenient way to debug and develop your
-maps. After you enable the CLI interface, you can use the terminal to
-enter commands.  You could, for example, give yourself potions to
-battle, or add a monster directly to your party.  It's also possible to
-change game variables directly.  In fact, any action or condition that
-is usable in the map can be used with the CLI interface.
+Tuxemon includes a debugging interface that exposes game commands over a local HTTP API.
 
-### Setting up
+Documentation is available at:
 
-You can enable cli by changing `cli_enabled` to `True` in the
-`tuxemon.yaml` file:
-
-```
-[game]
-cli_enabled = True
-```
-
-### Commands
-
-- `help [command_name]` — Lists all commands, or specific information on a command.
-- `action <action_name> [params]` — Execute EventAction.  Uses same syntax as the map script.
-- `test <condition_name> [params]` — Test EventCondition.  Uses same syntax as the map script.
-- `random_encounter` — Sets you in a wild tuxemon battle, similar to walking in tall grass.
-- `trainer_battle <npc_slug>` — Sets you in a trainer battle with specified npc.
-- `quit` — Quits the game.
-- `whereami` — Prints out the map filename.
-- `shell` — Starts the Python shell, that you can use to modify the game directly. For advanced users.
-
-### CLI Examples
-
-Get Commands
-
-```
-> help
-Available Options
-=================
-action  help  quit  random_encounter  shell  test  trainer_battle  whereami
-
-Enter 'help [command]' for more info.
-```
-
-Get help on an action
-
-```
-> help action teleport
-
-    Teleport the player to a particular map and tile coordinates.
-
-    Script usage:
-        .. code-block::
-
-            teleport <map_name>,<x>,<y>
-
-    Script parameters:
-        map_name: Name of the map to teleport to.
-        x: X coordinate of the map to teleport to.
-        y: Y coordinate of the map to teleport to.
-```
-
-Test and give an item
-```
-> test has_item player,potion
-False
-> action add_item potion,1
-> test has_item player,potion
-True
-```
-
-**NOTE!**  The CLI interface is new and the error messages are not very
-helpful. In general, you should be using the commands when the game is
-playing, and you are on the world map.
-
-
-Check out the
-[scripting reference](https://tuxemon.readthedocs.io/en/latest/handcrafted/scripting.html) 
-for all the available actions and conditions for use with `action` and `test`!
+- [CLI API Documentation](docs/cli_api.md)
 
 
 Building

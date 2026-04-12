@@ -1,6 +1,8 @@
 babel
 cbor
 websockets
+fastapi
+uvicorn
 pillow
 packaging
 pygame-ce==2.5.7

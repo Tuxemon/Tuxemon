@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tuxemon Live Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0d0f14;
+            --surface: #151820;
+            --surface2: #1c2030;
+            --border: #2a3050;
+            --accent: #7fffd4;
+            --accent2: #4fc3f7;
+            --accent3: #ff7043;
+            --warn: #ffeb3b;
+            --danger: #f44336;
+            --ok: #66bb6a;
+            --text: #cdd6f4;
+            --muted: #6c7a9c;
+            --font-mono: 'Share Tech Mono', monospace;
+            --font-display: 'Orbitron', sans-serif;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: var(--font-mono);
+            background: var(--bg);
+            color: var(--text);
+            padding: 24px;
+            min-height: 100vh;
+            background-image:
+                radial-gradient(ellipse at 10% 0%, rgba(127,255,212,0.04) 0%, transparent 50%),
+                radial-gradient(ellipse at 90% 100%, rgba(79,195,247,0.04) 0%, transparent 50%);
+        }
+
+        h1 {
+            font-family: var(--font-display);
+            font-size: 1.3em;
+            letter-spacing: 0.2em;
+            color: var(--accent);
+            text-transform: uppercase;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        h1::before {
+            content: '';
+            display: inline-block;
+            width: 8px; height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--accent);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            grid-template-rows: auto auto auto;
+            gap: 16px;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            opacity: 0.4;
+        }
+
+        .card-title {
+            font-family: var(--font-display);
+            font-size: 0.6em;
+            letter-spacing: 0.25em;
+            color: var(--muted);
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+
+        /* Player card */
+        .player-card { grid-column: 1; grid-row: 1 / 3; }
+
+        .player-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 6px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.85em;
+        }
+        .player-row:last-child { border-bottom: none; }
+        .player-row .label { color: var(--muted); }
+        .player-row .val { color: var(--accent); font-size: 1.1em; }
+
+        /* Time card */
+        .time-card { grid-column: 1; grid-row: 3; }
+
+        .time-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .time-cell .label { font-size: 0.7em; color: var(--muted); margin-bottom: 2px; }
+        .time-cell .val { color: var(--accent2); font-size: 1.1em; }
+
+        /* Party card */
+        .party-card { grid-column: 2; grid-row: 1; }
+
+        #party-container {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .mon-card {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            padding: 10px 12px;
+            min-width: 160px;
+            flex: 1;
+            transition: border-color 0.3s;
+        }
+
+        .mon-card.fainted { border-color: var(--danger); opacity: 0.6; }
+
+        .mon-name {
+            font-family: var(--font-display);
+            font-size: 0.7em;
+            letter-spacing: 0.1em;
+            color: var(--text);
+            margin-bottom: 2px;
+        }
+
+        .mon-sub {
+            font-size: 0.75em;
+            color: var(--muted);
+            margin-bottom: 8px;
+        }
+
+        .bar-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.65em;
+            color: var(--muted);
+            margin-bottom: 3px;
+        }
+
+        .bar-track {
+            height: 6px;
+            background: #0d0f14;
+            border-radius: 3px;
+            overflow: hidden;
+            margin-bottom: 6px;
+        }
+
+        .bar-fill {
+            height: 100%;
+            border-radius: 3px;
+            transition: width 0.5s ease;
+        }
+
+        /* Party stats card */
+        .stats-card { grid-column: 2; grid-row: 2; }
+
+        .stats-inner {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        /* Slots pips */
+        .pips { display: flex; gap: 5px; align-items: center; }
+        .pip {
+            width: 14px; height: 14px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            transition: background 0.3s, box-shadow 0.3s;
+        }
+        .pip.filled {
+            background: var(--accent);
+            box-shadow: 0 0 6px var(--accent);
+            border-color: var(--accent);
+        }
+
+        /* Level range */
+        .level-range { flex: 1; min-width: 180px; }
+        .level-range .label { font-size: 0.7em; color: var(--muted); margin-bottom: 6px; }
+        .level-track {
+            position: relative;
+            height: 6px;
+            background: var(--surface2);
+            border-radius: 3px;
+            margin-bottom: 4px;
+        }
+        .level-fill {
+            position: absolute;
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent2), var(--accent));
+            border-radius: 3px;
+            transition: left 0.5s, width 0.5s;
+        }
+        .level-avg-marker {
+            position: absolute;
+            top: -3px;
+            width: 2px; height: 12px;
+            background: var(--warn);
+            box-shadow: 0 0 4px var(--warn);
+            border-radius: 1px;
+            transition: left 0.5s;
+            transform: translateX(-50%);
+        }
+        .level-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.65em;
+            color: var(--muted);
+        }
+
+        /* Status badges */
+        .badges { display: flex; gap: 8px; flex-wrap: wrap; }
+        .badge {
+            font-size: 0.65em;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 3px 8px;
+            border-radius: 3px;
+            border: 1px solid;
+            font-family: var(--font-display);
+        }
+        .badge.ok    { color: var(--ok);     border-color: var(--ok);     background: rgba(102,187,106,0.08); }
+        .badge.warn  { color: var(--warn);   border-color: var(--warn);   background: rgba(255,235,59,0.08); }
+        .badge.danger{ color: var(--danger); border-color: var(--danger); background: rgba(244,67,54,0.08); }
+        .badge.info  { color: var(--accent2);border-color: var(--accent2);background: rgba(79,195,247,0.08); }
+        .badge.neutral{color: var(--muted);  border-color: var(--border); background: transparent; }
+
+
+
+        .stat-separator {
+            width: 1px;
+            height: 40px;
+            background: var(--border);
+        }
+
+        .stat-block { text-align: center; }
+        .stat-block .label { font-size: 0.65em; color: var(--muted); margin-bottom: 4px; }
+        .stat-block .val { color: var(--accent); font-size: 1.2em; }
+
+        #connection-status {
+            position: fixed;
+            top: 16px; right: 24px;
+            font-size: 0.7em;
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        #connection-dot {
+            width: 7px; height: 7px;
+            border-radius: 50%;
+            background: var(--danger);
+            transition: background 0.3s;
+        }
+        #connection-dot.connected { background: var(--ok); box-shadow: 0 0 6px var(--ok); }
+    </style>
+</head>
+<body>
+
+<div id="connection-status">
+    <div id="connection-dot"></div>
+    <span id="connection-label">disconnected</span>
+</div>
+
+<h1>Tuxemon Live Dashboard</h1>
+
+<div class="grid">
+
+    <div class="card player-card">
+        <div class="card-title">Player</div>
+        <div class="player-row"><span class="label">Name</span><span class="val" id="player-name">—</span></div>
+        <div class="player-row"><span class="label">Map</span><span class="val" id="player-map">—</span></div>
+        <div class="player-row"><span class="label">Position</span><span class="val" id="player-pos">—</span></div>
+        <div class="player-row"><span class="label">Money</span><span class="val" id="player-money">—</span></div>
+        <div class="player-row"><span class="label">Bank</span><span class="val" id="player-bank">—</span></div>
+    </div>
+
+    <div class="card party-card">
+        <div class="card-title">Monster Party</div>
+        <div id="party-container"></div>
+    </div>
+
+    <div class="card stats-card">
+        <div class="card-title">Party Stats</div>
+        <div class="stats-inner">
+
+            <div>
+                <div style="font-size:0.7em;color:var(--muted);margin-bottom:6px;">Slots</div>
+                <div class="pips" id="party-pips"></div>
+            </div>
+
+            <div class="stat-separator"></div>
+
+            <div class="level-range">
+                <div class="label">Level Range</div>
+                <div class="level-track">
+                    <div class="level-fill" id="level-fill"></div>
+                    <div class="level-avg-marker" id="level-avg-marker"></div>
+                </div>
+                <div class="level-labels">
+                    <span id="level-low">—</span>
+                    <span style="color:var(--warn)">avg <span id="level-avg">—</span></span>
+                    <span id="level-high">—</span>
+                </div>
+            </div>
+
+            <div class="stat-separator"></div>
+
+            <div class="badges" id="party-badges"></div>
+
+        </div>
+    </div>
+
+    <div class="card time-card">
+        <div class="card-title">World Time</div>
+        <div class="time-grid">
+            <div class="time-cell"><div class="label">Hour</div><div class="val" id="time-hour">—</div></div>
+            <div class="time-cell"><div class="label">Date</div><div class="val" id="time-date">—</div></div>
+            <div class="time-cell"><div class="label">Season</div><div class="val" id="time-season">—</div></div>
+            <div class="time-cell"><div class="label">Stage</div><div class="val" id="time-stage">—</div></div>
+        </div>
+    </div>
+
+    <div class="card var-editor">
+        <div class="card-title">Live Variable Editor</div>
+        <div class="var-form">
+            <select id="var-scope" class="var-input">
+                <option value="player">Player</option>
+                <option value="world">World</option>
+            </select>
+            <input type="text" id="var-key" class="var-input" placeholder="Variable Name">
+            <input type="text" id="var-val" class="var-input" placeholder="Value">
+            <button class="btn" onclick="sendVar('set')">SET VARIABLE</button>
+        </div>
+        <div id="player-vars" class="var-list"></div>
+    </div>
+
+</div>
+<script>
+    // --- WebSocket ---
+    const ws = new WebSocket(`ws://${window.location.host}/live/session`);
+    const dot = document.getElementById("connection-dot");
+    const connLabel = document.getElementById("connection-label");
+
+    // Caches for diffing
+    let lastPlayerVars = {};
+    let lastWorldVars = {};
+
+    function sendVar(action, keyOverride = null, scopeOverride = null) {
+        const scope = scopeOverride || document.getElementById("var-scope").value;
+        const key = keyOverride || document.getElementById("var-key").value;
+        const val = document.getElementById("var-val").value;
+
+        let parsedVal = val;
+        if (val.toLowerCase() === "true") parsedVal = true;
+        else if (val.toLowerCase() === "false") parsedVal = false;
+        else if (!isNaN(val) && val !== "") parsedVal = Number(val);
+
+        ws.send(JSON.stringify({
+            action: action,
+            scope: scope,
+            key: key,
+            value: parsedVal,
+        }));
+    }
+
+    ws.onopen = () => {
+        dot.classList.add("connected");
+        connLabel.textContent = "live";
+    };
+
+    ws.onclose = () => {
+        dot.classList.remove("connected");
+        connLabel.textContent = "disconnected";
+    };
+
+    // --- Efficient variable diffing ---
+    function updateVarList(container, oldVars, newVars, scope) {
+        // Remove deleted variables
+        for (const key in oldVars) {
+            if (!(key in newVars)) {
+                const el = document.getElementById(`var-${scope}-${key}`);
+                if (el) el.remove();
+            }
+        }
+
+        // Add or update variables
+        for (const [key, value] of Object.entries(newVars)) {
+            const id = `var-${scope}-${key}`;
+            let el = document.getElementById(id);
+
+            if (!el) {
+                // Create new element
+                el = document.createElement("div");
+                el.className = "var-item";
+                el.id = id;
+                el.innerHTML = `
+                    <span>
+                        <b style="color:var(--muted)">[${scope[0].toUpperCase()}]</b>
+                        ${key}: <span class="val"></span>
+                    </span>
+                    <button class="btn-del" onclick="sendVar('remove', '${key}', '${scope}')">X</button>
+                `;
+                container.appendChild(el);
+            }
+
+            // Update only if changed
+            const valSpan = el.querySelector(".val");
+            if (valSpan.textContent !== String(value)) {
+                valSpan.textContent = value;
+            }
+        }
+    }
+
+    ws.onmessage = (event) => {
+        const data = JSON.parse(event.data);
+
+        // Player
+        document.getElementById("player-name").textContent = data.player.name;
+        document.getElementById("player-map").textContent = data.player.map;
+        document.getElementById("player-pos").textContent = JSON.stringify(data.player.tile_pos);
+        document.getElementById("player-money").textContent = data.player.money;
+        document.getElementById("player-bank").textContent = data.player.bank_account ?? "—";
+
+        // Party monsters
+        const partyContainer = document.getElementById("party-container");
+        partyContainer.innerHTML = "";
+
+        data.party.forEach(mon => {
+            const hpPct = (mon.hp.ratio * 100).toFixed(0);
+            const xpPct = (mon.exp.progress * 100).toFixed(0);
+            const hpColor = hpPct < 20 ? "var(--danger)" : hpPct < 50 ? "var(--warn)" : "var(--ok)";
+            const fainted = mon.hp.current === 0;
+
+            partyContainer.innerHTML += `
+                <div class="mon-card${fainted ? " fainted" : ""}">
+                    <div class="mon-name">${mon.name} <span style="color:var(--muted);font-size:0.85em;">Lv.${mon.level}</span></div>
+                    <div class="mon-sub">${mon.species} ${mon.gender}</div>
+                    <div class="bar-label"><span>HP</span><span>${mon.hp.current}/${mon.hp.max}</span></div>
+                    <div class="bar-track"><div class="bar-fill" style="width:${hpPct}%;background:${hpColor};"></div></div>
+                    <div class="bar-label"><span>EXP</span><span>${xpPct}%</span></div>
+                    <div class="bar-track"><div class="bar-fill" style="width:${xpPct}%;background:var(--accent2);"></div></div>
+                </div>`;
+        });
+
+        // Party stats
+        if (data.party_stats) {
+            const ps = data.party_stats;
+
+            // Pips
+            const pips = document.getElementById("party-pips");
+            pips.innerHTML = "";
+            for (let i = 0; i < ps.limit; i++) {
+                const pip = document.createElement("div");
+                pip.className = "pip" + (i < ps.size ? " filled" : "");
+                pips.appendChild(pip);
+            }
+
+            // Level range bar
+            const lo = ps.level_lowest ?? 0;
+            const hi = ps.level_highest ?? 100;
+            const avg = ps.level_average ?? lo;
+            const MAX_LEVEL = 100;
+            const leftPct  = (lo  / MAX_LEVEL) * 100;
+            const widthPct = ((hi - lo) / MAX_LEVEL) * 100;
+            const avgPct   = (avg / MAX_LEVEL) * 100;
+
+            document.getElementById("level-fill").style.left  = leftPct + "%";
+            document.getElementById("level-fill").style.width = Math.max(widthPct, 1) + "%";
+            document.getElementById("level-avg-marker").style.left = avgPct + "%";
+            document.getElementById("level-low").textContent  = lo;
+            document.getElementById("level-high").textContent = hi;
+            document.getElementById("level-avg").textContent  = avg;
+
+            // Badges
+            const badges = document.getElementById("party-badges");
+            badges.innerHTML = "";
+
+            const addBadge = (text, cls) => {
+                badges.innerHTML += `<span class="badge ${cls}">${text}</span>`;
+            };
+
+            if (ps.is_fainted)      addBadge("Fainted", "danger");
+            else if (ps.is_healed)  addBadge("Healed", "ok");
+            else                    addBadge("Damaged", "warn");
+
+            if (ps.alignment)       addBadge(ps.alignment, "info");
+        }
+
+        // Time
+        document.getElementById("time-hour").textContent   = data.time.hour;
+        document.getElementById("time-date").textContent   =
+            `${data.time.year}-${String(data.time.month).padStart(2, "0")}-${String(data.time.day).padStart(2, "0")}`;
+        document.getElementById("time-season").textContent = data.time.season;
+        document.getElementById("time-stage").textContent  = data.time.stage_of_day;
+
+        // --- Variable Editor (diff-based, fast) ---
+        const playerVarContainer = document.getElementById("player-vars");
+        updateVarList(playerVarContainer, lastPlayerVars, data.player.variables, "player");
+        lastPlayerVars = data.player.variables;
+
+        const worldVarContainer = document.getElementById("world-vars");
+        if (worldVarContainer) {
+            updateVarList(worldVarContainer, lastWorldVars, data.player.world_variables, "world");
+            lastWorldVars = data.player.world_variables;
+        }
+    };
+</script>
+</body>
+</html>

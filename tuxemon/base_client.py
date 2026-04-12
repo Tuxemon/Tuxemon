@@ -7,14 +7,12 @@ from abc import ABC, abstractmethod
 from collections.abc import Callable, Sequence
 from enum import Enum
 from queue import Empty, Queue
-from threading import Thread
 from typing import TYPE_CHECKING, Any, TypeVar, overload
 from uuid import UUID
 
 from tuxemon.audio import MusicPlayerState, SoundManager
 from tuxemon.boundary import BoundaryChecker
 from tuxemon.camera.camera import CameraManager
-from tuxemon.cli.processor import CommandProcessor
 from tuxemon.combat.session import CombatSession
 from tuxemon.constants import paths
 from tuxemon.core.active_effect import ActiveEffectManager
@@ -193,12 +191,25 @@ class BaseClient(ABC):
 
         self.command_queue: Queue[Callable[[], None]] = Queue()
 
-        if self.config.cli:
+        if True:
+            from threading import Thread
+
+            from tuxemon.cli.processor import CommandProcessor
+            from tuxemon.cli.server import start_api
+
             local_session.set_client(self)
             self.cli = CommandProcessor(local_session)
-            thread = Thread(target=self.cli.run)
-            thread.daemon = True
-            thread.start()
+
+            api_thread = Thread(
+                target=start_api,
+                args=(self.cli, self.config.cli_host, self.config.cli_port),
+                daemon=True,
+            )
+            api_thread.start()
+
+            logger.info(
+                f"CLI API available at http://{self.config.cli_host}:{self.config.cli_port}/docs"
+            )
 
     @property
     def is_running(self) -> bool:

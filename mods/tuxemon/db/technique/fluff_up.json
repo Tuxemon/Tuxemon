@@ -22,10 +22,10 @@
     "bypasses_selection": true
   },
   "target": {
-    "enemy_monster": true,
+    "enemy_monster": false,
     "enemy_team": false,
     "enemy_trainer": false,
-    "own_monster": false,
+    "own_monster": true,
     "own_team": false,
     "own_trainer": false
   },

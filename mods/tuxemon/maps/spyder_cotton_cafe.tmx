@@ -130,7 +130,7 @@
   <object id="23" name="Create Goth (1st)" type="event" x="80" y="96" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_cottoncafe_cayden,2,6"/>
-    <property name="act2" value="char_wander spyder_cottoncafe_cayden,1,7,10,10"/>
+    <property name="act2" value="char_wander spyder_cottoncafe_cayden,,1,7,10,10"/>
     <property name="cond1" value="not char_exists spyder_cottoncafe_cayden"/>
    </properties>
   </object>

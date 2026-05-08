@@ -217,7 +217,7 @@
     <property name="cond3" value="not variable_set omnichannel1wall:yes"/>
    </properties>
   </object>
-  <object id="54" name="Autosave Lvl 2" x="16" y="160" width="32" height="16">
+  <object id="54" name="Autosave Lvl 2" type="event" x="16" y="160" width="32" height="16">
    <properties>
     <property name="act1" value="autosave"/>
     <property name="act2" value="set_variable save3:yes"/>

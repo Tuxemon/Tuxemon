@@ -584,7 +584,7 @@
     <property name="cond2" value="is char_facing player,right"/>
    </properties>
   </object>
-  <object id="285" name="Autosave Cotton" x="208" y="16" width="32" height="16">
+  <object id="285" name="Autosave Cotton" type="event" x="208" y="16" width="32" height="16">
    <properties>
     <property name="act1" value="autosave"/>
     <property name="act2" value="set_variable save1:yes"/>

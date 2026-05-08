@@ -1130,8 +1130,7 @@ msgstr "TM: Avalanche"
 
 msgid "tm_avalanche_description"
 msgstr ""
-"Technique Manual that teaches a Water or Earth Tuxemon the Avalanche "
-"technique."
+"Technique Manual that teaches the Avalanche technique."
 
 msgid "tm_acid"
 msgstr "TM: Acid"
@@ -1173,13 +1172,13 @@ msgid "tm_blossom"
 msgstr "TM: Blossom"
 
 msgid "tm_blossom_description"
-msgstr "Technique Manual that teaches a Wood Tuxemon the Blossom technique."
+msgstr "Technique Manual that teaches the Blossom technique."
 
 msgid "tm_surf"
 msgstr "TM: Surf"
 
 msgid "tm_surf_description"
-msgstr "Technique Manual that teaches a Water Tuxemon the Surf technique."
+msgstr "Technique Manual that teaches the Surf technique."
 
 msgid "tm_earth"
 msgstr "Technical Manual (Earth)"

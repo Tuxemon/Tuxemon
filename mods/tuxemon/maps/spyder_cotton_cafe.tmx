@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="12" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="44">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="12" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="45">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -265,6 +265,12 @@
     <property name="act1" value="create_npc spyder_cottontown_barmaid,0,4"/>
     <property name="cond1" value="not char_exists spyder_cottontown_barmaid"/>
     <property name="cond2" value="is variable_set visitedcottoncafe:yes"/>
+   </properties>
+  </object>
+  <object id="44" name="Environment" type="event" x="16" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_environment interior"/>
+    <property name="cond2" value="not environment_is interior"/>
    </properties>
   </object>
  </objectgroup>

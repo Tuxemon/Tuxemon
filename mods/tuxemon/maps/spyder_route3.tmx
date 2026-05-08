@@ -217,6 +217,7 @@
     <property name="act07" value="char_talk spyder_route3_zoolander,post_battle_lose"/>
     <property name="act08" value="add_item sledgehammer"/>
     <property name="act09" value="translated_dialog sledgehammer,,center,center,center"/>
+    <property name="act11" value="autosave"/>
     <property name="behav1" value="talk spyder_route3_zoolander"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_route3_zoolander"/>
    </properties>

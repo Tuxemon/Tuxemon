@@ -121,25 +121,25 @@ msgid "ancient_tea"
 msgstr "Ancient Tea"
 
 msgid "ancient_tea_description"
-msgstr "Adds 1,500 to a monster's XP."
+msgstr "Adds 4,500 to a monster's XP."
 
 msgid "imperial_tea"
 msgstr "Imperial Tea"
 
 msgid "imperial_tea_description"
-msgstr "Adds 3,000 to a monster's XP."
+msgstr "Adds 10,000 to a monster's XP."
 
 msgid "mystery_tea"
 msgstr "Mystery Tea"
 
 msgid "mystery_tea_description"
-msgstr "Adds 500 to a monster's XP."
+msgstr "Adds 1,500 to a monster's XP."
 
 msgid "tea"
 msgstr "Tea"
 
 msgid "tea_description"
-msgstr "Adds 125 to a monster's XP."
+msgstr "Adds 500 to a monster's XP."
 
 msgid "revive"
 msgstr "Revive"
@@ -6867,7 +6867,7 @@ msgid "picc_description"
 msgstr "It accompanies divers, providing much needed oxygen."
 
 msgid "picc"
-msgstr "Picc"
+msgstr "PiCC"
 
 msgid "pickoon_description"
 msgstr ""
@@ -12641,8 +12641,7 @@ msgid "spyder_wayfarer_maniac"
 msgstr ""
 "My tuxemon aren't sick! This is just an excuse to sell us medicine we don't need. \n"
 " When I was your age, we didn't have medicine. We swam in mountain streams and if you got a sniffle, well, tough! \n"
-" And anyway, I saw the Enforcers coming down Route 4 before anyone so much as sniffled, so how could \n"
-" ... \n"
+" And anyway, I saw the Enforcers coming down Route 4 before anyone so much as sniffled, so how could ... \n"
 " ah ah achoo! \n"
 " ... \n"
 " That doesn't mean anything. I have an itchy nose."

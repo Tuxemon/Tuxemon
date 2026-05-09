@@ -2,7 +2,7 @@ conditions: []
 effects:
 - type: gain_xp
   parameters:
-  - '500'
+  - '1500'
 slug: mystery_tea
 sort: potion
 sprite: gfx/items/mystery_tea.png

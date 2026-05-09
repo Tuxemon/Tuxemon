@@ -11,6 +11,7 @@ from tuxemon.monster.listener import monster_update_listener
 if TYPE_CHECKING:
     from tuxemon.entity.entity import Entity
     from tuxemon.monster.monster import Monster
+    from tuxemon.entity.npc import NPC
     from tuxemon.session import Session
     from tuxemon.step_tracker import StepTrackerManager
 

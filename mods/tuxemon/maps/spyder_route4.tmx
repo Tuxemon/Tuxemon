@@ -541,9 +541,14 @@
   <object id="100" name="Talk Nurse" type="event" x="224" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_generic_nurse"/>
-    <property name="act2" value="set_monster_health"/>
-    <property name="act3" value="set_monster_status"/>
-    <property name="act4" value="translated_dialog spyder_output_nurse2"/>
+    <property name="act11" value="char_stop player"/>
+    <property name="act12" value="lock_controls"/>
+    <property name="act13" value="screen_transition 1"/>
+    <property name="act14" value="wait 0.5"/>
+    <property name="act15" value="unlock_controls"/>
+    <property name="act20" value="set_monster_health"/>
+    <property name="act30" value="set_monster_status"/>
+    <property name="act40" value="translated_dialog spyder_output_nurse2"/>
     <property name="behav1" value="talk spyder_route4_nurse"/>
    </properties>
   </object>

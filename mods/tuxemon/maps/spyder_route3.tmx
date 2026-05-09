@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="714">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="716">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="map_type" value="route"/>
@@ -703,6 +703,13 @@
     <property name="act1" value="char_talk spyder_route3_weaver,post_battle_lose"/>
     <property name="behav1" value="talk spyder_route3_weaver"/>
     <property name="cond1" value="is battle_outcome player,won,spyder_route3_weaver"/>
+   </properties>
+  </object>
+  <object id="715" name="Talk Zoolander 2" type="event" x="96" y="320" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_route3_zoolander3"/>
+    <property name="behav1" value="talk spyder_route3_zoolander"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_route3_zoolander"/>
    </properties>
   </object>
  </objectgroup>

@@ -12463,7 +12463,7 @@ msgstr ""
 
 msgid "spyder_route3_boulder"
 msgstr ""
-"I need to find something in my bag that can help me push this boulder... Ah,"
+"I need to find something in my bag that can help me break this boulder... Ah,"
 " if only I had the right item..."
 
 msgid "spyder_route3_sign"
@@ -12491,6 +12491,10 @@ msgstr ""
 
 msgid "spyder_route3_zoolander2"
 msgstr "Ah, I dropped my sledgehammer!"
+
+msgid "spyder_route3_zoolander3"
+msgstr "Now, where did I put that sledgehammer? \n"
+" I'll need it if I'm to break through that boulder between here and the Inn."
 
 msgid "spyder_route3_qqq1"
 msgstr "Ah, the Enforcers weren't meant to let anyone out!"

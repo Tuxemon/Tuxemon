@@ -75,7 +75,7 @@ class LevelUpSummaryState(PygameMenuState):
 
         for stat_name, (old, new, delta) in self.diff.items():
             sign = "+" if delta > 0 else ""
-            text = f"{stat_name.upper()}: {old} → {new} ({sign}{delta})"
+            text = f"{T.translate(stat_name).upper()}: {old} → {new} ({sign}{delta})"
             menu.add.label(text, font_size=self.font_type.small)
 
         menu.add.vertical_margin(10)

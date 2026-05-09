@@ -107,7 +107,7 @@ class NPC(Entity):
         self.teleport_faint = TeleportFaint()
         self.tracker = TrackingData()
         self.step_tracker = StepTrackerManager()
-        self.step_manager = StepManager(session, self.step_tracker)
+        self.step_manager = StepManager(session, self.step_tracker, self)
         self.unlocked_letters: set[str] = set()
         # Variables for long-term item and monster storage
         # Keeping these separate so other code can safely

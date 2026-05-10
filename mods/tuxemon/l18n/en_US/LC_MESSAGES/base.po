@@ -1843,7 +1843,7 @@ msgid "combat_state_confused_get"
 msgstr "{target} is confused."
 
 msgid "combat_state_confused_tech"
-msgstr "{target} gets muddled and not {name}!"
+msgstr "{target} gets muddled and does not use {name}!"
 
 msgid "combat_state_gold"
 msgstr "{name} gets {gold}!"

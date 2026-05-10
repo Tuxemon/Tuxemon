@@ -155,7 +155,7 @@ def test_set_level_below_min():
 
 def test_set_level_resets_progress():
     m = MonsterExperience(level=1)
-    exp4 = m.experience_required(level_delta=3)
+    m.experience_required(level_delta=3)
     exp5 = m.experience_required(level_delta=4)
 
     m._total_experience = exp5 - 1

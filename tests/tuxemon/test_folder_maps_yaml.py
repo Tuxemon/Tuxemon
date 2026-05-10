@@ -7,7 +7,7 @@ from typing import Any
 import pytest
 
 from tuxemon.constants.asset_loader import fetch_asset
-from tuxemon.database.runtime import db  # initializes asset loader
+from tuxemon.database.runtime import db  # noqa: F401  # side‑effect import
 from tuxemon.database.yaml_utils import load_yaml
 from tuxemon.script.parser import parse_action_string
 

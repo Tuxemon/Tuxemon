@@ -54,12 +54,6 @@ class RumbleManager:
         """
         Attempts to locate a backend library from the provided locations.
         """
-        try:
-            from ctypes import cdll
-        except ImportError:
-            logger.debug("Ctypes is unavailable.")
-            return None
-
         lib_shake = find_library(locations)
         if lib_shake:
             logger.debug(f"Found library at: {lib_shake}")

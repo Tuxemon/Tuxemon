@@ -43,7 +43,7 @@ class CraftingStationAction(EventAction):
 
         if self.client.current_state.name == "CraftMenuState":
             logger.error(
-                f"The state 'CraftMenuState' is already active. No action taken."
+                "The state 'CraftMenuState' is already active. No action taken."
             )
             self.stop()
             return

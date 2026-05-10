@@ -4,9 +4,7 @@ import random
 
 import pytest
 
-from tuxemon.db import ItemBehaviors
 from tuxemon.item.durability import Durability
-from tuxemon.item.item import Item
 
 
 @pytest.mark.parametrize(

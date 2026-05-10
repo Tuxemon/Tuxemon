@@ -7,7 +7,6 @@ import pytest
 from tuxemon.boundary import BoundaryChecker
 from tuxemon.client import LocalPygameClient
 from tuxemon.db import Direction
-from tuxemon.entity.npc import NPC
 from tuxemon.map.collision_manager import CollisionManager
 from tuxemon.map.manager import MapManager
 from tuxemon.map.map import dirs2

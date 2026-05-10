@@ -221,7 +221,7 @@ def test_element_cache_clears(elements):
 def test_multiplier_cache_reuse(elements):
     ElementTypesHandler.clear_cache()
 
-    score1 = ElementTypesHandler.calculate_affinity_score(
+    ElementTypesHandler.calculate_affinity_score(
         [elements["fire"]], [elements["metal"]]
     )
     assert ("fire", "metal") in ElementTypesHandler._multiplier_cache

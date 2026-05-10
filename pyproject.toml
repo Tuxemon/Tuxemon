@@ -106,6 +106,7 @@ select = [
     "W",    # pycodestyle warnings
     "UP",   # pyupgrade
     "I",    # import sorting
+    "F",    # enables F401 and all Pyflakes rules
 ]
 
 [tool.ruff.lint.isort]

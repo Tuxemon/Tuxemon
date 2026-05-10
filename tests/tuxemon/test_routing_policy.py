@@ -91,7 +91,6 @@ class TestRegistryLazyLoad:
     def test_empty_registry_triggers_load_on_has(self, monkeypatch):
         RoutingPolicyRegistry._policies = {}
         called = []
-        original = RoutingPolicyRegistry.load_from_file
 
         def fake_load(cls=None):
             called.append(True)

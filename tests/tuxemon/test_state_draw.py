@@ -2,7 +2,6 @@
 # Copyright (c) 2014-2026 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from unittest.mock import MagicMock, patch
 
-import pygame
 import pytest
 
 from tuxemon.platform.const.graphics import GREEN_COLOR, RED_COLOR

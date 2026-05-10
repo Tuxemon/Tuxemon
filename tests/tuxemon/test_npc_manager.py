@@ -143,20 +143,6 @@ def test_load_persistent_mixed_valid_invalid(MockNPC, npc_manager, session):
     assert npc_manager.npcs_off_map == {}
 
 
-@patch("tuxemon.npc_manager.NPC.from_save")
-def test_load_persistent_does_not_clear_existing(
-    MockNPC, npc_manager, session
-):
-    existing = MagicMock(slug="existing")
-    npc_manager.add_npc(existing)
-    state = MagicMock(player_slug="npc_new", current_map="map_a")
-    new_npc = MagicMock(slug="npc_new")
-    MockNPC.return_value = new_npc
-    npc_manager.load_persistent_npc_states(session, [state])
-    assert "existing" in npc_manager.npcs
-    assert "npc_new" in npc_manager.npcs
-
-
 def test_clear_npcs_filters_correctly(npc_manager):
     persistent = MagicMock(slug="p", persistence=True)
     non_persistent = MagicMock(slug="np", persistence=False)

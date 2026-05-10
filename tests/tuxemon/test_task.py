@@ -155,7 +155,7 @@ def test_large_dt_triggers_multiple_intervals(cb):
 def test_chaining_multiple_tasks(cb, cb2):
     t1 = Task(cb, DEFAULT_INTERVAL)
     t2 = t1.chain(cb2, DEFAULT_INTERVAL)
-    t3 = t2.chain(lambda: None, DEFAULT_INTERVAL)
+    t2.chain(lambda: None, DEFAULT_INTERVAL)
 
     g = Group()
     g.add(t1)

@@ -122,7 +122,7 @@ def test_reconstruct_path_after_parent_change(child_node):
 
 
 def test_branching_path_reconstruction(root_node):
-    branch1 = PathfindNode((1, 0), root_node)
+    PathfindNode((1, 0), root_node)
     branch2 = PathfindNode((0, 1), root_node)
     leaf = PathfindNode((1, 1), branch2)
     assert leaf.reconstruct_path() == [(1, 1), (0, 1)]

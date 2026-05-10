@@ -44,7 +44,7 @@ class ShowMonsterAction(EventAction):
 
         if self.client.current_state.name == "MonsterInfoState":
             logger.error(
-                f"The state 'MonsterInfoState' is already active. No action taken."
+                "The state 'MonsterInfoState' is already active. No action taken."
             )
             self.stop()
             return

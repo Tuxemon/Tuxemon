@@ -2,7 +2,6 @@
 # Copyright (c) 2014-2026 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from pathlib import Path
 
-import pygame
 import pytest
 from pygame.font import Font
 from pygame.rect import Rect

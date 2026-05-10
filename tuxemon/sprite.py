@@ -17,7 +17,7 @@ from typing import (
 
 from pygame import SRCALPHA
 from pygame.rect import FRect, Rect
-from pygame.sprite import DirtySprite, Group, LayeredUpdates
+from pygame.sprite import DirtySprite, LayeredUpdates
 from pygame.sprite import Sprite as PySprite
 from pygame.surface import Surface
 from pygame.transform import rotate, rotozoom, scale

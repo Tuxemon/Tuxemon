@@ -62,7 +62,7 @@ class RandomHordeAction(EventAction):
             return
 
         if check_repellent(player):
-            logger.info(f"Repellent active, skipping encounter.")
+            logger.info("Repellent active, skipping encounter.")
             self.stop()
             return
 

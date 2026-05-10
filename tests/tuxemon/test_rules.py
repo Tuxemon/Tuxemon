@@ -1,18 +1,9 @@
 # SPDX-License-Identifier: GPL-3.0
 # Copyright (c) 2014-2026 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 import sys
-import types
-
-import pytest
 
 from tuxemon.database.runtime import db
-from tuxemon.startup_rules import StartupRule, load_mod_startup_rules
 from tuxemon.startup_state_machine import (
-    RuleBackground,
-    RuleIntro,
-    RuleLoadSlot,
-    RuleMods,
-    RuleSplash,
     StartupStateMachine,
 )
 

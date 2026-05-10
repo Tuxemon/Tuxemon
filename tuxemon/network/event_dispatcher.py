@@ -79,7 +79,7 @@ def handle_push_self(self: EventDispatcher, event_data: EventData) -> None:
         logger.warning("Missing cuuid in PUSH_SELF event")
         return
 
-    entry = self.client.registry.setdefault(cuuid, {})
+    self.client.registry.setdefault(cuuid, {})
     sprite = populate_client(
         cuuid, event_data, self.game, self.client.registry
     )

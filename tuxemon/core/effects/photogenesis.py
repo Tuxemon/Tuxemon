@@ -53,7 +53,6 @@ class PhotogenesisEffect(CoreEffect):
 
         hit = session.client.combat_session.get_tech_hit(user)
         extra: list[str] = []
-        done: bool = False
 
         tech.hit = tech.accuracy >= hit
 

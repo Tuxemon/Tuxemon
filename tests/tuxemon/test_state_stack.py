@@ -125,8 +125,6 @@ def test_all(stack):
 
 def test_get_states_by_name(stack):
     class StateImpl(State):
-        name = "test_state"
-
         def __init__(self, client, name="test_state"):
             super().__init__(client)
             self._name = name
@@ -148,8 +146,6 @@ def test_get_states_by_name_not_found(stack):
 
 def test_get_states_by_name_multiple_matches(stack):
     class NamedState(State):
-        name = "duplicate"
-
         def __init__(self, client, name="duplicate"):
             super().__init__(client)
             self._name = name

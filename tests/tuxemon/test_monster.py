@@ -6,7 +6,7 @@ import pytest
 
 from tuxemon.database.rules import config_monster
 from tuxemon.database.runtime import db
-from tuxemon.db import GenderType, Modifier
+from tuxemon.db import GenderType
 from tuxemon.monster.monster import Monster
 from tuxemon.monster.stats import IndividualValues
 from tuxemon.shape import ShapeHandler

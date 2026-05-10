@@ -5,7 +5,6 @@ from __future__ import annotations
 import logging
 from typing import TYPE_CHECKING, Any, ClassVar
 
-import pygame
 from pygame.surface import Surface
 
 from tuxemon import tools

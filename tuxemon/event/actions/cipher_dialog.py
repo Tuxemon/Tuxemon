@@ -6,8 +6,6 @@ import logging
 from dataclasses import dataclass
 from typing import Any, final
 
-from tuxemon.database.runtime import db
-from tuxemon.db import DialogueModel
 from tuxemon.event.eventaction import EventAction
 from tuxemon.graphics import string_to_colorlike
 from tuxemon.locale.locale import T

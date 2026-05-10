@@ -168,14 +168,6 @@ def test_global_events_unregister_nonexistent(state_manager, callbacks):
     state_manager.unregister_global_event("pre_state_update", cb)
 
 
-def test_reset_events(state_manager, callbacks):
-    cb, _, _ = callbacks
-    state_manager.register_global_event("test_event", cb, priority=10)
-    assert state_manager.event_bus._listeners
-    state_manager.event_bus.reset_all_events()
-    assert not state_manager.event_bus._listeners
-
-
 def test_global_events_unregister_correct_callback(state_manager, callbacks):
     cb1, cb2, _ = callbacks
     state_manager.register_global_event("pre_state_update", cb1)

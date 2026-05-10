@@ -93,7 +93,7 @@ def test_record_battle(handler):
 def test_get_last_battle(handler):
     assert handler.get_last_battle() is None
 
-    b1 = handler.record_battle("npc", OutputBattle.WON)
+    handler.record_battle("npc", OutputBattle.WON)
     b2 = handler.record_battle("npc", OutputBattle.LOST)
 
     assert handler.get_last_battle() == b2

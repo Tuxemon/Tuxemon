@@ -116,12 +116,8 @@ class EvolutionAction(EventAction):
             registry.add_pending(monster.instance_id, slug)
 
         evolved = Monster.spawn_base(slug, monster.level)
-        evolved.taste_cold = monster.taste_cold
-        evolved.taste_warm = monster.taste_warm
-        evolved.individual_values = monster.individual_values
-        evolved.training_points = monster.training_points
-        evolved.custom_stats = monster.custom_stats
-        evolved.set_stats()
+        evolved.transfer_properties_from(monster)
+        monster.evolution_handler.evolve_monster(evolved)
 
         self.client.push_state(
             "EvolutionState",

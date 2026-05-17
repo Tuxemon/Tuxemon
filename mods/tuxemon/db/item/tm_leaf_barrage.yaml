@@ -11,7 +11,7 @@ conditions:
 effects:
 - type: learn_tm
   parameters:
-  - supernova
+  - leaf_barrage
 slug: tm_leaf_barrage
 sort: utility
 sprite: gfx/items/tm_wood.png

@@ -30,10 +30,6 @@ events:
   Heal Afford:
     actions:
     - set_variable billcathedral:null
-    - format_variable party_lost_hp,-int
-    - modify_money player,,party_lost_hp
-    - set_monster_health
-    - set_monster_status
     - char_face spyder_cathedral_nurse,up
     - lock_controls
     - wait 1
@@ -41,6 +37,10 @@ events:
     - unlock_controls
     - char_face spyder_cathedral_nurse,down
     - translated_dialog spyder_billing_cathedral2
+    - format_variable party_lost_hp,-int
+    - modify_money player,,party_lost_hp
+    - set_monster_health
+    - set_monster_status
     - translated_dialog spyder_billing_cathedral6
     conditions:
     - is variable_set billcathedral:proceed
@@ -124,6 +124,7 @@ events:
     type: event
   Talk Nurse:
     actions:
+    - set_party_status player
     - translated_dialog spyder_billing_cathedral1
     - translated_dialog_choice yes:no,billcathedral
     conditions:

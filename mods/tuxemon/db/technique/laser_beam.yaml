@@ -1,0 +1,41 @@
+tech_id: 238
+accuracy: 1.0
+effects:
+- type: give
+  parameters:
+  - blinded
+  - enemy_monster
+- type: damage
+speed: extremely_fast
+potency: 0.3
+power: 3.0
+range: ranged
+recharge: 4
+slug: laser_beam
+sort: damage
+modifiers: []
+behaviors: {}
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: powerful
+tags:
+- machine
+- electricity
+types:
+- lightning
+- metal
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: energy_beam
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_blaster
+  volume: 1.5

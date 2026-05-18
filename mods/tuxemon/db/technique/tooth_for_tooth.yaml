@@ -1,0 +1,42 @@
+tech_id: 242
+accuracy: 1.0
+effects:
+- type: prop_damage
+  parameters:
+  - own_monster
+  - '0.5'
+- type: prop_damage
+  parameters:
+  - enemy_monster
+  - '0.5'
+speed: normal
+potency: 0.0
+power: 0.0
+range: melee
+recharge: 3
+slug: tooth_for_tooth
+sort: damage
+modifiers: []
+behaviors: {}
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: reserved
+tags:
+- reserved
+types:
+- normal
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: lance_ice
+  flip_axes: xy
+  loop: 0
+sound:
+  sfx: sfx_bite
+  volume: 1.5

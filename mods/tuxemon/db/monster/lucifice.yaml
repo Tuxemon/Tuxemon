@@ -1,0 +1,74 @@
+slug: lucifice
+species: ninth_circle
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: ice_claw
+- level_learned: 1
+  technique: goad
+- level_learned: 4
+  technique: torch
+- level_learned: 7
+  technique: orbs
+- level_learned: 13
+  technique: muck
+- level_learned: 28
+  technique: chill_mist
+- level_learned: 34
+  technique: grinding
+- level_learned: 43
+  technique: tsunami
+- level_learned: 46
+  technique: snowstorm
+- level_learned: 52
+  technique: shadow_blast
+evolutions: []
+history:
+- slug: lucifice
+  stage: stage2
+  evolves_from:
+  - demosnow
+  evolves_into: []
+- slug: waysprite
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - angesnow
+  - demosnow
+- slug: demosnow
+  stage: stage1
+  evolves_from:
+  - waysprite
+  evolves_into:
+  - lucifice
+terrains:
+- extraplanar
+tags:
+- ice
+- leadership
+- weather
+- darkness
+- flame
+- calamity
+shape: sprite
+stage: stage2
+types:
+- frost
+- shadow
+gender_weights:
+  neuter: 1.0
+txmn_id: 265
+height: 180
+weight: 90
+sounds:
+  combat_call:
+    sfx: sound_weird_09
+    volume: 1.5
+  faint_call:
+    sfx: sound_weird_09_faint
+    volume: 1.5
+catch_rate: 35.0
+lower_catch_resistance: 0.85
+upper_catch_resistance: 1.1

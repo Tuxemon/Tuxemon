@@ -1,0 +1,39 @@
+tech_id: 134
+accuracy: 0.8
+effects:
+- type: give
+  parameters:
+  - burn
+  - own_team:enemy_team
+- type: damage
+speed: very_slow
+potency: 1
+power: 2.9
+range: ranged
+recharge: 2
+slug: lava
+sort: damage
+modifiers: []
+behaviors: {}
+target:
+  enemy_monster: true
+  enemy_team: true
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: powerful
+tags:
+- calamity
+types:
+- fire
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: shield_lava
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_flamethrower
+  volume: 1.5

@@ -1,0 +1,41 @@
+tech_id: 228
+accuracy: 1.0
+effects:
+- type: give
+  parameters:
+  - charging
+  - own_monster
+- type: healing
+healing_power: 0.5
+speed: fast
+potency: 1.0
+power: 0.0
+range: special
+recharge: 2
+slug: piece_of_cake
+sort: damage
+modifiers: []
+behaviors:
+  bypasses_selection: true
+target:
+  enemy_monster: false
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: true
+  own_team: false
+  own_trainer: false
+category: condition_imposer
+tags:
+- food
+types:
+- normal
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: cakechomp
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_bounce
+  volume: 1.5

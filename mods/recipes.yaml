@@ -1,0 +1,500 @@
+# Each entry defines a crafting recipe used in-game.
+# - recipe_slug: example_slug           # Unique ID for this recipe (used as a message key)
+#   recipe_text: craft_unknown_output   # Message key for localized recipe description
+#   possible_outputs:                   # Items this recipe can produce, with weighted chances
+#     - slug: potion                    # Common result — must be a valid item slug
+#       quantity: 1
+#       weight: 0.8                     # 80% chance to get a regular potion
+#       type: item                      # Explicitly state if item, quest_trigger or lore_trigger
+#     - slug: super_potion
+#       quantity: 1
+#       weight: 0.15                    # 15% chance for an enhanced version
+#       type: item                      # Explicitly state if item, quest_trigger or lore_trigger
+#     - slug: imperial_potion
+#       quantity: 1
+#       weight: 0.05                    # 5% chance to craft something rare and fancy
+#       type: item                      # Explicitly state if item, quest_trigger or lore_trigger
+#   required_ingredients:               # Items the player must spend to perform crafting
+#     tea: 2                            # Needs 2 units of 'tea'
+#   required_tools:
+#     - slug: surfboard
+#       consumed: false
+#     - slug: enchanted_spoon
+#       consumed: true
+#   crafting_method: cooking            # Slug for a crafting method used (if any)
+
+- recipe_slug: rub_pork_chops
+  recipe_text: rub_pork_chops_description
+  required_ingredients:
+    root_beast_bark: 2
+    glowfat: 1
+    crackle_salt: 1
+    starpepper: 1
+    sweetroot: 1
+  possible_outputs:
+    - slug: rub_pork_chops
+      quantity: 1
+      weight: 0.9
+      type: item
+    - slug: bite_of_despair
+      quantity: 1
+      weight: 0.1
+      type: item
+  crafting_method: cooking  
+
+- recipe_slug: mille_feuille
+  recipe_text: mille_feuille_description
+  required_ingredients:
+    meal_dust: 2
+    sweetroot: 1
+    mistflour_eggs: 2
+    suncrust_butter: 1
+    moo_bloom: 1
+    crackle_salt: 1
+  possible_outputs:
+    - slug: mille_feuille
+      quantity: 1
+      weight: 0.8
+      type: item
+    - slug: whispersoup
+      quantity: 1
+      weight: 0.2
+      type: item
+  crafting_method: cooking  
+
+- recipe_slug: cheesecake
+  recipe_text: cheesecake_description
+  required_ingredients:
+    mistflour_eggs: 2
+    moo_bloom: 1
+    glowfat: 1
+    suncrust_butter: 1
+    crackle_salt: 1
+  possible_outputs:
+    - slug: cheesecake
+      quantity: 1
+      weight: 0.8
+      type: item
+    - slug: inferno_custard
+      quantity: 1
+      weight: 0.2
+      type: item
+  crafting_method: cooking  
+
+- recipe_slug: cream_puffs
+  recipe_text: cream_puffs_description
+  required_ingredients:
+    sweetroot: 2
+    mistflour_eggs: 2
+    glowfat: 1
+    moo_bloom: 1
+    meal_dust: 1
+    crackle_salt: 1
+  possible_outputs:
+    - slug: cream_puffs
+      quantity: 1
+      weight: 0.9
+      type: item
+    - slug: bite_of_despair
+      quantity: 1
+      weight: 0.1
+      type: item
+  crafting_method: cooking  
+
+- recipe_slug: crepes
+  recipe_text: crepes_description
+  required_ingredients:
+    meal_dust: 2
+    sweetroot: 1
+    mistflour_eggs: 2
+    suncrust_butter: 1
+    crackle_salt: 1
+    starpepper: 1
+  possible_outputs:
+    - slug: crepes
+      quantity: 1
+      weight: 0.9
+      type: item
+    - slug: whispersoup
+      quantity: 1
+      weight: 0.1
+      type: item
+  crafting_method: cooking  
+
+- recipe_slug: rub_steak
+  recipe_text: rub_steak_description
+  required_ingredients:
+    flamehorn_shank: 1
+    glowfat: 1
+    crackle_salt: 1
+    starpepper: 1
+    sweetroot: 1
+  possible_outputs:
+    - slug: rub_steak
+      quantity: 1
+      weight: 0.9
+      type: item
+    - slug: bite_of_despair
+      quantity: 1
+      weight: 0.1
+      type: item
+  crafting_method: cooking  
+
+- recipe_slug: meatballs
+  recipe_text: meatballs_description
+  required_ingredients:
+    stonefruit_bulbs: 2
+    meal_dust: 1
+    mistflour_eggs: 2
+    zestsap: 1
+    crackle_salt: 1
+    starpepper: 1
+  possible_outputs:
+    - slug: meatballs
+      quantity: 2
+      weight: 0.8
+      type: item
+    - slug: inferno_custard
+      quantity: 1
+      weight: 0.2
+      type: item
+  crafting_method: cooking  
+
+- recipe_slug: shell_tacos
+  recipe_text: shell_tacos_description
+  required_ingredients:
+    zestroot_wraps: 2
+    zestsap: 1
+    moo_bloom: 1
+    field_greens: 1
+    crackle_salt: 1
+  possible_outputs:
+    - slug: shell_tacos
+      quantity: 1
+      weight: 0.9
+      type: item
+    - slug: bite_of_despair
+      quantity: 1
+      weight: 0.1
+      type: item
+  crafting_method: cooking  
+
+- recipe_slug: potato_casserole
+  recipe_text: potato_casserole_description
+  required_ingredients:
+    stonefruit_bulbs: 2
+    zestsap: 1
+    moo_bloom: 1
+    sweetroot: 1
+    crackle_salt: 1
+  possible_outputs:
+    - slug: potato_casserole
+      quantity: 1
+      weight: 0.8
+      type: item
+    - slug: dread_omelette
+      quantity: 1
+      weight: 0.2
+      type: item
+  crafting_method: cooking  
+
+- recipe_slug: phyllo
+  recipe_text: phyllo_description
+  required_ingredients:
+    meal_dust: 1
+    sweetroot: 1
+    mistflour_eggs: 1
+    suncrust_butter: 1
+    zestsap: 1
+    crackle_salt: 1
+  possible_outputs:
+    - slug: phyllo
+      quantity: 1
+      weight: 0.9
+      type: item
+    - slug: bite_of_despair
+      quantity: 1
+      weight: 0.1
+      type: item
+  crafting_method: cooking  
+
+- recipe_slug: croissants
+  recipe_text: croissants_description
+  required_ingredients:
+    meal_dust: 1
+    sweetroot: 1
+    mistflour_eggs: 1
+    suncrust_butter: 1
+    crackle_salt: 1
+    spice_dust: 1
+  possible_outputs:
+    - slug: croissants
+      quantity: 1
+      weight: 0.8
+      type: item
+    - slug: dread_omelette
+      quantity: 1
+      weight: 0.2
+      type: item
+  crafting_method: cooking  
+
+- recipe_slug: rub_chicken
+  recipe_text: rub_chicken_description
+  required_ingredients:
+    sky_feather: 1
+    glowfat: 1
+    crackle_salt: 1
+    starpepper: 1
+  possible_outputs:
+    - slug: rub_chicken
+      quantity: 1
+      weight: 0.9
+      type: item
+    - slug: bite_of_despair
+      quantity: 1
+      weight: 0.1
+      type: item
+  crafting_method: cooking  
+
+- recipe_slug: potato_fries
+  recipe_text: potato_fries_description
+  required_ingredients:
+    stonefruit_bulbs: 1
+    glowfat: 1
+    crackle_salt: 1
+    sweetroot: 1
+  possible_outputs:
+    - slug: potato_fries
+      quantity: 1
+      weight: 0.8
+      type: item
+    - slug: dread_omelette
+      quantity: 1
+      weight: 0.2
+      type: item
+  crafting_method: cooking  
+
+- recipe_slug: pretzels
+  recipe_text: pretzels_description
+  required_ingredients:
+    meal_dust: 2
+    sweetroot: 1
+    mistflour_eggs: 1
+    glowfat: 1
+    crackle_salt: 1
+    starpepper: 1
+  possible_outputs:
+    - slug: pretzels
+      quantity: 2
+      weight: 0.9
+      type: item
+    - slug: bite_of_despair
+      quantity: 1
+      weight: 0.1
+      type: item
+  crafting_method: cooking  
+
+- recipe_slug: mashed_potatoes
+  recipe_text: mashed_potatoes_description
+  required_ingredients:
+    stonefruit_bulbs: 1
+    moo_bloom: 1
+    crackle_salt: 1
+  possible_outputs:
+    - slug: mashed_potatoes
+      quantity: 1
+      weight: 0.8
+      type: item
+    - slug: inferno_custard
+      quantity: 1
+      weight: 0.2
+      type: item
+  crafting_method: cooking  
+
+- recipe_slug: rub_ribs
+  recipe_text: rub_ribs_description
+  required_ingredients:
+    stonefruit_bulbs: 2
+    glowfat: 1
+    crackle_salt: 1
+    starpepper: 1
+  possible_outputs:
+    - slug: rub_ribs
+      quantity: 1
+      weight: 0.9
+      type: item
+    - slug: bite_of_despair
+      quantity: 1
+      weight: 0.1
+      type: item
+  crafting_method: cooking  
+
+- recipe_slug: pie
+  recipe_text: pie_description
+  required_ingredients:
+    meal_dust: 1
+    mistflour_eggs: 1
+    suncrust_butter: 1
+    beastmoss: 1
+    crackle_salt: 1
+  possible_outputs:
+    - slug: pie
+      quantity: 1
+      weight: 0.8
+      type: item
+    - slug: whispersoup
+      quantity: 1
+      weight: 0.2
+      type: item
+  crafting_method: cooking  
+
+- recipe_slug: honey_cake
+  recipe_text: honey_cake_description
+  required_ingredients:
+    meal_dust: 1
+    sweetroot: 1
+    mistflour_eggs: 1
+    suncrust_butter: 1
+    spice_dust: 1
+  possible_outputs:
+    - slug: honey_cake
+      quantity: 1
+      weight: 0.9
+      type: item
+    - slug: bite_of_despair
+      quantity: 1
+      weight: 0.1
+      type: item
+  crafting_method: cooking  
+
+- recipe_slug: souffle
+  recipe_text: souffle_description
+  required_ingredients:
+    mistflour_eggs: 2
+    moo_bloom: 1
+    glowfat: 1
+    zestsap: 1
+    crackle_salt: 1
+  possible_outputs:
+    - slug: souffle
+      quantity: 1
+      weight: 0.8
+      type: item
+    - slug: dread_omelette
+      quantity: 1
+      weight: 0.2
+      type: item
+  crafting_method: cooking  
+
+- recipe_slug: hash
+  recipe_text: hash_description
+  required_ingredients:
+    stonefruit_bulbs: 1
+    field_greens: 1
+    glowfat: 1
+    crackle_salt: 1
+    starpepper: 1
+  possible_outputs:
+    - slug: hash
+      quantity: 1
+      weight: 0.9
+      type: item
+    - slug: bite_of_despair
+      quantity: 1
+      weight: 0.1
+      type: item
+  crafting_method: cooking  
+
+- recipe_slug: pita
+  recipe_text: pita_description
+  required_ingredients:
+    meal_dust: 2
+    crackle_salt: 1
+    glowfat: 1
+    spice_dust: 1
+  possible_outputs:
+    - slug: pita
+      quantity: 1
+      weight: 0.8
+      type: item
+    - slug: whispersoup
+      quantity: 1
+      weight: 0.2
+      type: item
+  crafting_method: cooking  
+
+- recipe_slug: pastry
+  recipe_text: pastry_description
+  required_ingredients:
+    meal_dust: 2
+    sweetroot: 1
+    mistflour_eggs: 2
+    suncrust_butter: 1
+    spice_dust: 1
+  possible_outputs:
+    - slug: pastry
+      quantity: 1
+      weight: 0.9
+      type: item
+    - slug: bite_of_despair
+      quantity: 1
+      weight: 0.1
+      type: item
+  crafting_method: cooking  
+
+- recipe_slug: pudding
+  recipe_text: pudding_description
+  required_ingredients:
+    sweetroot: 2
+    mistflour_eggs: 2
+    glowfat: 1
+    moo_bloom: 1
+    meal_dust: 1
+  possible_outputs:
+    - slug: pudding
+      quantity: 1
+      weight: 0.8
+      type: item
+    - slug: inferno_custard
+      quantity: 1
+      weight: 0.2
+      type: item
+  crafting_method: cooking  
+
+- recipe_slug: pancakes
+  recipe_text: pancakes_description
+  required_ingredients:
+    meal_dust: 2
+    sweetroot: 1
+    mistflour_eggs: 1
+    suncrust_butter: 1
+    spice_dust: 1
+  possible_outputs:
+    - slug: pancakes
+      quantity: 2
+      weight: 0.9
+      type: item
+    - slug: bite_of_despair
+      quantity: 1
+      weight: 0.1
+      type: item
+  crafting_method: cooking  
+
+- recipe_slug: wings
+  recipe_text: wings_description
+  required_ingredients:
+    meal_dust: 2
+    starpepper: 1
+    crackle_salt: 1
+    glowfat: 1
+    mistflour_eggs: 1
+  possible_outputs:
+    - slug: wings
+      quantity: 1
+      weight: 0.8
+      type: item
+    - slug: inferno_custard
+      quantity: 1
+      weight: 0.2
+      type: item
+  crafting_method: cooking  

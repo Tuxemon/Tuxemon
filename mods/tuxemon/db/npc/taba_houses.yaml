@@ -1,0 +1,120 @@
+- slug: taba_house1_husband
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: maniac
+    combat_sheet: adventurer
+    slug: maniac
+- slug: taba_house1_wife
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: granny
+    combat_sheet: heroine
+    slug: heroine
+- slug: taba_house2_owner
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: homemaker_fiery
+    combat_sheet: heroine
+    slug: heroine
+- slug: taba_house2_reader1
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: heroine_brown
+    combat_sheet: heroine
+    slug: heroine
+- slug: taba_house2_reader2
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: heroine_red
+    combat_sheet: heroine
+    slug: heroine
+- slug: taba_house3_owner
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: homemaker_black
+    combat_sheet: heroine
+    slug: heroine
+- slug: taba_house3_client1
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: florist_rose
+    combat_sheet: florist
+    slug: florist
+- slug: taba_house3_client2
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: homemaker_fiery
+    combat_sheet: heroine
+    slug: homemaker
+- slug: taba_house4_client1
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor_green
+    combat_sheet: professor
+    slug: professor
+- slug: taba_house4_waiter
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: shopassistant_grey
+    combat_sheet: adventurer
+    slug: shopassistant
+- slug: taba_house4_client2
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: shopassistant_red
+    combat_sheet: adventurer
+    slug: shopassistant
+- slug: taba_house4_owner
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: florist_fiery
+    combat_sheet: florist
+    slug: florist

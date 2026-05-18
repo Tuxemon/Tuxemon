@@ -1,0 +1,64 @@
+slug: yiinaang
+species: balance
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: gust
+- level_learned: 1
+  technique: midnight_mantle
+- level_learned: 4
+  technique: electrical_storm
+- level_learned: 7
+  technique: firestorm
+- level_learned: 13
+  technique: magma
+- level_learned: 16
+  technique: energy_claws
+- level_learned: 19
+  technique: bubble_trap
+- level_learned: 25
+  technique: muddle
+- level_learned: 28
+  technique: snowstorm
+- level_learned: 31
+  technique: one_two
+- level_learned: 37
+  technique: arcane_eye
+- level_learned: 40
+  technique: supernova
+- level_learned: 55
+  technique: divinity_beam
+evolutions: []
+history:
+- slug: yiinaang
+  stage: standalone
+  evolves_from: []
+  evolves_into: []
+terrains: []
+tags:
+- celestial
+- healing
+- light
+- darkness
+shape: blob
+stage: standalone
+types:
+- shadow
+- cosmic
+gender_weights:
+  neuter: 1.0
+txmn_id: 146
+height: 200
+weight: 0.1
+sounds:
+  combat_call:
+    sfx: sound_echo_gurgle_whoosh_1
+    volume: 1.5
+  faint_call:
+    sfx: sound_echo_gurgle_whoosh_1_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.05

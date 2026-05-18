@@ -1,0 +1,90 @@
+{
+    "maps": [
+        {
+            "fileName": "eclipse_lion_mountain_middle.tmx",
+            "height": 640,
+            "width": 640,
+            "x": -320,
+            "y": 640
+        },
+        {
+            "fileName": "eclipse_lion_mountain_low.tmx",
+            "height": 320,
+            "width": 640,
+            "x": -320,
+            "y": 1280
+        },
+        {
+            "fileName": "eclipse_park.tmx",
+            "height": 640,
+            "width": 640,
+            "x": -320,
+            "y": 1600
+        },
+        {
+            "fileName": "eclipse_park_south.tmx",
+            "height": 640,
+            "width": 960,
+            "x": -640,
+            "y": 2240
+        },
+        {
+            "fileName": "eclipse_route7.tmx",
+            "height": 640,
+            "width": 640,
+            "x": -960,
+            "y": 1600
+        },
+        {
+            "fileName": "eclipse_crystal_town.tmx",
+            "height": 320,
+            "width": 640,
+            "x": -960,
+            "y": 1280
+        },
+        {
+            "fileName": "eclipse_routei.tmx",
+            "height": 640,
+            "width": 640,
+            "x": 320,
+            "y": 1600
+        },
+        {
+            "fileName": "eclipse_routeh.tmx",
+            "height": 640,
+            "width": 640,
+            "x": 320,
+            "y": 2240
+        },
+        {
+            "fileName": "eclipse_routeg.tmx",
+            "height": 640,
+            "width": 640,
+            "x": 320,
+            "y": 2880
+        },
+        {
+            "fileName": "eclipse_routef.tmx",
+            "height": 320,
+            "width": 640,
+            "x": 320,
+            "y": 3520
+        },
+        {
+            "fileName": "eclipse_lion_mountain_high.tmx",
+            "height": 640,
+            "width": 640,
+            "x": -320,
+            "y": 0
+        },
+        {
+            "fileName": "eclipse_obsidian_town.tmx",
+            "height": 320,
+            "width": 640,
+            "x": 320,
+            "y": 0
+        }
+    ],
+    "onlyShowAdjacentMaps": false,
+    "type": "world"
+}

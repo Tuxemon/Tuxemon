@@ -1,165 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" width="18" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="53">
- <tileset firstgid="1" name="factory" tilewidth="16" tileheight="16" tilecount="32" columns="8">
-  <image source="../gfx/tilesets/factory.png" width="128" height="64"/>
- </tileset>
- <tileset firstgid="33" name="Interior_Walls_by_George" tilewidth="16" tileheight="16" tilecount="210" columns="15">
-  <image source="../gfx/tilesets/Interior_Walls_by_George.png" width="240" height="224"/>
- </tileset>
- <tileset firstgid="243" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="88" columns="11">
-  <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>
- </tileset>
- <tileset firstgid="331" name="Interior_Tiles_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1000" columns="40">
-  <image source="../gfx/tilesets/Interior_Tiles_by_ArMM1998.png" width="640" height="400"/>
- </tileset>
- <tileset firstgid="1331" name="Interior_Floors_by_George" tilewidth="16" tileheight="16" tilecount="54" columns="9">
-  <image source="../gfx/tilesets/Interior_Floors_by_George.png" width="144" height="96"/>
- </tileset>
- <tileset firstgid="1385" name="kitchen" tilewidth="16" tileheight="16" tilecount="16" columns="4">
-  <image source="../gfx/tilesets/kitchen.png" width="64" height="64"/>
- </tileset>
- <tileset firstgid="1401" name="Set_Pieces_by_Kelvin_Shadewing" tilewidth="16" tileheight="16" tilecount="1440" columns="45">
-  <image source="../gfx/tilesets/Set_Pieces_by_Kelvin_Shadewing.png" width="720" height="512"/>
- </tileset>
- <tileset firstgid="2841" name="KelvinShadewing_Terrain" tilewidth="16" tileheight="16" tilecount="285" columns="19">
-  <image source="../gfx/tilesets/KelvinShadewing_Terrain.png" width="304" height="240"/>
- </tileset>
- <tileset firstgid="3126" name="Office_interiors_16x16" tilewidth="16" tileheight="16" tilecount="528" columns="22">
-  <image source="../gfx/tilesets/Office_interiors_16x16.png" width="352" height="384"/>
- </tileset>
- <tileset firstgid="3654" name="Office_interiors_shadowless_16x16" tilewidth="16" tileheight="16" tilecount="528" columns="22">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="18" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="72">
+ <properties>
+  <property name="edges" value="clamped"/>
+  <property name="inside" type="bool" value="true"/>
+  <property name="map_type" value="dungeon"/>
+  <property name="scenario" value="spyder"/>
+  <property name="slug" value="nimrod_bottom"/>
+ </properties>
+ <tileset firstgid="1" name="Office_interiors_shadowless_16x16" tilewidth="16" tileheight="16" tilecount="528" columns="22">
   <image source="../gfx/tilesets/Office_interiors_shadowless_16x16.png" width="352" height="384"/>
  </tileset>
+ <tileset firstgid="529" source="../gfx/tilesets/core_indoor_floors.tsx"/>
+ <tileset firstgid="4393" source="../gfx/tilesets/core_indoor_walls.tsx"/>
+ <tileset firstgid="8257" source="../gfx/tilesets/core_indoor_stairs.tsx"/>
+ <tileset firstgid="11227" source="../gfx/tilesets/core_set pieces.tsx"/>
  <layer id="1" name="Tile Layer 1" width="18" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYBhcoJhxFI/iUTyKRzEIAwDeSJLR
+   eJxjYBhcQExvFI/iUTyKRzEIAwBczlYR
   </data>
  </layer>
- <layer id="2" name="Tile Layer 3" width="18" height="20">
+ <layer id="2" name="Tile Layer 2" width="18" height="20">
   <data encoding="base64" compression="zlib">
-   eJzVk0sKwjAQhofWrnsGEdSl6NYHXsBnV76KtF0K3sN6Gu0NvIUexgkkOI6TULQbAx8tmT8fSZhEABBVQFIR/zbmAcACWQbuXB2ZWjgiK1y/RjbIQcg0tKeD7CzEzLMVMl3iUSPxAFJG5r17eEbVueeEc3fkQb5n5lGZnNUlj+8D1PzX1+ah9W/3Y2r5j/sxNZvngnNXRsE8PFMQz8TSO6YvqEfqtZnOST1B+4J6pF6LwT3GgmfkyJu30wwB2kgrLO+h5zSZPq4fIgPt6cHn++KeG/lPsZ4Jb1ndG39f3LN3nJOPsvfzBB/2XOs=
+   eJyllEFOwkAUht8C2x0Cm3ZDPIHtEm16BDxGI+EengD1CsqWk6iJumsUDtDWjbDjPZiXmT5m0lYn+fPa+X8+ptM3zQOAHHWnalvJfBIetTKu20jm3yI4jK8AOg2ZrxQnDfVcMmzmcJ6zg/g0MzM4Tx7AM2rp2f+DsxOs90KpqhcjgHf8/QfqEzUeaY81V5wMa+lQNaxzCkvm1uDQeMF9ehWid2ByZIZ8ySlw7hL3Kop1rQSHMmVU922cKXo3sa4ujun/dT3sEe8/62HPxemjdy5EvWVyZIZ85iws/UO6Vr7JsfXaAz+Po3cyC8fWa1XDGXJxXIPPzjdeb1DrDhx6zislzvzi/A61Bb1v8nxJzqNx3/MBzvzTdRaW8yU5Py2+Lzza7s8eElyzMg==
   </data>
  </layer>
- <layer id="3" name="Tile Layer 4" width="18" height="20">
+ <layer id="3" name="Tile Layer 3" width="18" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYIAADwbiQAgUO+OQDyTSnGQoxqU+nEhzCKlPQ2I7EWEOTD0+tfj8iK4Pn9oEEuSWo/GNmTH1oIth46O7JxooxoekzoQZIoau5hkThM0HlSc2ngmBUXPoY84VKpkzFMAcfgaGufyk6UngZmBI5EYV2wQ0YzMVzKEEAADfShIJ
+   eJxjYBgFIxlM0mdgCNdH8Ev0IWLoaiygYuFY5EfBKKAUsDMyMKgC6XUDZH+dMgNDvTKqWC7QTXmMpJmzGmjGGmXC6ogFAJDpCbM=
   </data>
  </layer>
- <objectgroup id="4" name="Events">
-  <object id="1" name="Teleport to Flower City" type="event" x="128" y="304" width="48" height="16">
-   <properties>
-    <property name="act1" value="transition_teleport spyder_flower_city.tmx,19,10,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
-   </properties>
-  </object>
-  <object id="2" name="Teleport to Nimrod Middle" type="event" x="256" y="272" width="32" height="32">
-   <properties>
-    <property name="act1" value="transition_teleport spyder_nimrod_middle.tmx,15,18,0.3"/>
-    <property name="act2" value="player_face left"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
-   </properties>
-  </object>
-  <object id="34" name="Create Dirk" type="event" x="64" y="304" width="16" height="16">
-   <properties>
-    <property name="act1" value="create_npc spyder_enforcer_rookie,4,19"/>
-    <property name="act2" value="npc_face spyder_enforcer_rookie,up"/>
-    <property name="cond1" value="not npc_exists spyder_enforcer_rookie"/>
-   </properties>
-  </object>
-  <object id="35" name="Talk Dirk" type="event" x="32" y="176" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog spyder_nimrod_dirk1"/>
-    <property name="behav1" value="talk spyder_enforcer_rookie"/>
-   </properties>
-  </object>
-  <object id="38" name="Create Guard" type="event" x="112" y="304" width="16" height="16">
-   <properties>
-    <property name="act1" value="create_npc spyder_soldier,7,19"/>
-    <property name="act2" value="npc_face spyder_soldier,right"/>
-    <property name="cond1" value="not npc_exists spyder_soldier"/>
-    <property name="cond2" value="not variable_set nimrodtru:yes"/>
-   </properties>
-  </object>
-  <object id="39" name="Talk Guard" type="event" x="96" y="304" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog spyder_nimrod_guard1"/>
-    <property name="behav1" value="talk spyder_soldier"/>
-   </properties>
-  </object>
-  <object id="40" name="Create Rebel" type="event" x="208" y="240" width="16" height="16">
-   <properties>
-    <property name="act1" value="create_npc spyder_nimrod_rebel,12,15"/>
-    <property name="cond1" value="not npc_exists spyder_nimrod_rebel"/>
-   </properties>
-  </object>
-  <object id="41" name="Talk Rebel" type="event" x="192" y="240" width="16" height="16">
-   <properties>
-    <property name="act2" value="translated_dialog spyder_nimrod_rebel1"/>
-    <property name="act3" value="start_battle spyder_nimrod_rebel"/>
-    <property name="act4" value="translated_dialog spyder_nimrod_rebel2"/>
-    <property name="act6" value="set_variable nimrodrebel:yes"/>
-    <property name="behav1" value="talk spyder_nimrod_rebel"/>
-    <property name="cond1" value="not variable_set nimrodrebel:yes"/>
-   </properties>
-  </object>
-  <object id="42" name="Create Bowie" type="event" x="32" y="240" width="16" height="16">
-   <properties>
-    <property name="act1" value="create_npc spyder_nimrod_bowie,1,15"/>
-    <property name="cond1" value="not npc_exists spyder_nimrod_bowie"/>
-   </properties>
-  </object>
-  <object id="43" name="Talk Bowie" type="event" x="16" y="240" width="16" height="16">
-   <properties>
-    <property name="act2" value="translated_dialog spyder_nimrod_bowie1"/>
-    <property name="act3" value="start_battle spyder_nimrod_bowie"/>
-    <property name="act4" value="translated_dialog spyder_nimrod_bowie2"/>
-    <property name="act6" value="set_variable nimrodbowie:yes"/>
-    <property name="behav1" value="talk spyder_nimrod_bowie"/>
-    <property name="cond1" value="not variable_set nimrodbowie:yes"/>
-   </properties>
-  </object>
-  <object id="44" name="Create Tru" type="event" x="16" y="288" width="16" height="16">
-   <properties>
-    <property name="act1" value="create_npc spyder_nimrod_tru,1,18"/>
-    <property name="act2" value="npc_face spyder_nimrod_tru,right"/>
-    <property name="cond1" value="not npc_exists spyder_nimrod_tru"/>
-   </properties>
-  </object>
-  <object id="45" name="Talk Tru" type="event" x="32" y="288" width="16" height="16">
-   <properties>
-    <property name="act2" value="translated_dialog spyder_nimrod_tru1"/>
-    <property name="act3" value="start_battle spyder_nimrod_tru"/>
-    <property name="act4" value="translated_dialog spyder_nimrod_tru2"/>
-    <property name="act6" value="set_variable nimrodtru:yes"/>
-    <property name="act7" value="pathfind spyder_soldier,0,17"/>
-    <property name="act8" value="remove_npc spyder_soldier"/>
-    <property name="behav1" value="talk spyder_nimrod_tru"/>
-    <property name="cond1" value="not variable_set nimrodtru:yes"/>
-   </properties>
-  </object>
-  <object id="48" name="Teleport to  Flower City" type="event" x="0" y="256" width="16" height="48">
-   <properties>
-    <property name="act1" value="transition_teleport spyder_flower_city.tmx,11,4,0.3"/>
-    <property name="act2" value="player_face left"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing left"/>
-   </properties>
-  </object>
-  <object id="49" type="collision" x="32" y="256" width="48" height="32"/>
-  <object id="52" name="Environment" type="event" x="16" y="0" width="16" height="16">
-   <properties>
-    <property name="act1" value="set_variable environment:snow"/>
-    <property name="cond1" value="not variable_set environment:snow"/>
-   </properties>
-  </object>
- </objectgroup>
- <objectgroup id="5" name="Collisions">
+ <layer id="4" name="Above Player" width="18" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFQxEU6xMWI8QfBaOAWmDGQDsACYQzMjBEMA60K6gDAPxIA9I=
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" id="5" name="Collisions">
   <object id="3" type="collision" x="0" y="0" width="288" height="32"/>
-  <object id="6" type="collision" x="16" y="224" width="96" height="16"/>
-  <object id="7" type="collision" x="96" y="224" width="16" height="80"/>
+  <object id="6" type="collision" x="16" y="208" width="96" height="32"/>
+  <object id="7" type="collision" x="96" y="240" width="16" height="64"/>
   <object id="8" type="collision" x="176" y="208" width="16" height="112"/>
   <object id="9" type="collision" x="192" y="208" width="80" height="32"/>
   <object id="11" type="collision" x="176" y="80" width="80" height="32"/>
@@ -167,14 +45,303 @@
   <object id="13" type="collision" x="224" y="112" width="32" height="16"/>
   <object id="14" type="collision" x="16" y="80" width="112" height="32"/>
   <object id="17" type="collision" x="192" y="64" width="16" height="16"/>
-  <object id="18" type="collision" x="256" y="48" width="16" height="176"/>
+  <object id="18" type="collision" x="256" y="48" width="16" height="160"/>
   <object id="20" type="collision" x="80" y="48" width="16" height="32"/>
   <object id="21" type="collision" x="32" y="32" width="16" height="32"/>
   <object id="22" type="collision" x="224" y="32" width="16" height="32"/>
   <object id="23" type="collision" x="32" y="112" width="32" height="16"/>
   <object id="24" type="collision" x="96" y="112" width="32" height="16"/>
-  <object id="46" type="collision" x="0" y="80" width="16" height="144"/>
+  <object id="46" type="collision" x="0" y="80" width="16" height="160"/>
   <object id="50" type="collision" x="240" y="256" width="16" height="48"/>
   <object id="51" type="collision" x="256" y="256" width="32" height="16"/>
+  <object id="57" type="collision" x="112" y="272" width="16" height="32"/>
+  <object id="63" type="collision" x="32" y="256" width="48" height="32"/>
+ </objectgroup>
+ <objectgroup color="#ffff00" id="4" name="Events">
+  <object id="1" name="Teleport to Flower City" type="event" x="128" y="304" width="48" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport player,spyder_flower_city.tmx,19,10,0.3"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
+   </properties>
+  </object>
+  <object id="2" name="Teleport to Nimrod Middle" type="event" x="256" y="272" width="32" height="32">
+   <properties>
+    <property name="act1" value="transition_teleport player,spyder_nimrod_middle.tmx,15,18,0.3"/>
+    <property name="act2" value="char_face player,left"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
+   </properties>
+  </object>
+  <object id="34" name="Create Dirk" type="event" x="64" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_nimrod_dirk,4,19"/>
+    <property name="act2" value="char_face spyder_nimrod_dirk,up"/>
+    <property name="cond1" value="not char_exists spyder_nimrod_dirk"/>
+   </properties>
+  </object>
+  <object id="35" name="Talk Dirk" type="event" x="96" y="256" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_nimrod_dirk1"/>
+    <property name="behav1" value="talk spyder_nimrod_dirk"/>
+   </properties>
+  </object>
+  <object id="38" name="Create Guard" type="event" x="112" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_nimrod_jake,7,19"/>
+    <property name="act2" value="char_face spyder_nimrod_jake,right"/>
+    <property name="cond1" value="not char_exists spyder_nimrod_jake"/>
+    <property name="cond2" value="not battle_outcome_count player,won,spyder_nimrod_tru,1"/>
+   </properties>
+  </object>
+  <object id="39" name="Talk Guard" type="event" x="96" y="272" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_nimrod_guard1"/>
+    <property name="behav1" value="talk spyder_nimrod_jake"/>
+   </properties>
+  </object>
+  <object id="40" name="Create Rebel" type="event" x="192" y="240" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_nimrod_rebel,12,15"/>
+    <property name="act2" value="char_face spyder_nimrod_rebel,right"/>
+    <property name="cond1" value="not char_exists spyder_nimrod_rebel"/>
+   </properties>
+  </object>
+  <object id="41" name="Talk Rebel" type="event" x="192" y="256" width="16" height="16">
+   <properties>
+    <property name="act1" value="char_talk spyder_nimrod_rebel,pre_battle"/>
+    <property name="act2" value="add_monster grimachin,25,spyder_nimrod_rebel,5,10"/>
+    <property name="act3" value="start_battle player,spyder_nimrod_rebel"/>
+    <property name="act4" value="char_talk spyder_nimrod_rebel,post_battle_lose"/>
+    <property name="behav1" value="talk spyder_nimrod_rebel"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_nimrod_rebel"/>
+   </properties>
+  </object>
+  <object id="42" name="Create Bowie" type="event" x="16" y="240" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_nimrod_bowie,1,15"/>
+    <property name="cond1" value="not char_exists spyder_nimrod_bowie"/>
+   </properties>
+  </object>
+  <object id="43" name="Talk Bowie" type="event" x="16" y="224" width="16" height="16">
+   <properties>
+    <property name="act1" value="char_talk spyder_nimrod_bowie,pre_battle"/>
+    <property name="act2" value="add_monster tigrock,35,spyder_nimrod_bowie,5,10"/>
+    <property name="act3" value="add_monster embazook,35,spyder_nimrod_bowie,5,10"/>
+    <property name="act4" value="start_battle player,spyder_nimrod_bowie"/>
+    <property name="act5" value="char_talk spyder_nimrod_bowie,post_battle_lose"/>
+    <property name="behav1" value="talk spyder_nimrod_bowie"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_nimrod_bowie"/>
+   </properties>
+  </object>
+  <object id="44" name="Create Tru" type="event" x="16" y="288" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_nimrod_tru,1,18"/>
+    <property name="act2" value="char_face spyder_nimrod_tru,right"/>
+    <property name="cond1" value="not char_exists spyder_nimrod_tru"/>
+   </properties>
+  </object>
+  <object id="45" name="Talk Tru" type="event" x="96" y="240" width="16" height="16">
+   <properties>
+    <property name="act01" value="char_talk spyder_nimrod_tru,pre_battle"/>
+    <property name="act02" value="add_monster grimachin,20,spyder_nimrod_tru,5,10"/>
+    <property name="act03" value="add_monster tigrock,25,spyder_nimrod_tru,5,10"/>
+    <property name="act04" value="add_monster komodraw,25,spyder_nimrod_tru,5,10"/>
+    <property name="act05" value="add_monster sharpfin,25,spyder_nimrod_tru,5,10"/>
+    <property name="act06" value="add_monster embazook,25,spyder_nimrod_tru,5,10"/>
+    <property name="act07" value="start_battle player,spyder_nimrod_tru"/>
+    <property name="act08" value="char_talk spyder_nimrod_tru,post_battle_lose"/>
+    <property name="act09" value="translated_dialog spyder_nimrod_tru3"/>
+    <property name="act11" value="pathfind spyder_nimrod_jake,0,17"/>
+    <property name="act12" value="remove_npc spyder_nimrod_jake"/>
+    <property name="behav1" value="talk spyder_nimrod_tru"/>
+    <property name="cond1" value="not battle_outcome_count player,won,spyder_nimrod_tru,1"/>
+   </properties>
+  </object>
+  <object id="48" name="Teleport to  Flower City" type="event" x="0" y="256" width="16" height="48">
+   <properties>
+    <property name="act1" value="transition_teleport player,spyder_flower_city.tmx,11,4,0.3"/>
+    <property name="act2" value="char_face player,left"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,left"/>
+   </properties>
+  </object>
+  <object id="52" name="Environment" type="event" x="16" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_environment interior"/>
+    <property name="cond1" value="not environment_is interior"/>
+   </properties>
+  </object>
+  <object id="53" name="Talk Rebel" type="event" x="208" y="240" width="32" height="16">
+   <properties>
+    <property name="act1" value="lock_controls"/>
+    <property name="act2" value="pathfind_to_char player,spyder_nimrod_rebel"/>
+    <property name="act3" value="char_talk spyder_nimrod_rebel,pre_battle"/>
+    <property name="act4" value="unlock_controls"/>
+    <property name="act5" value="add_monster grimachin,25,spyder_nimrod_rebel,5,10"/>
+    <property name="act6" value="start_battle player,spyder_nimrod_rebel"/>
+    <property name="act7" value="char_talk spyder_nimrod_rebel,post_battle_lose"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_nimrod_rebel"/>
+    <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
+   </properties>
+  </object>
+  <object id="54" name="Talk Tru" type="event" x="32" y="288" width="32" height="16">
+   <properties>
+    <property name="act01" value="lock_controls"/>
+    <property name="act02" value="pathfind_to_char player,spyder_nimrod_tru"/>
+    <property name="act03" value="char_talk spyder_nimrod_tru,pre_battle"/>
+    <property name="act04" value="unlock_controls"/>
+    <property name="act05" value="add_monster grimachin,20,spyder_nimrod_tru,5,10"/>
+    <property name="act06" value="add_monster tigrock,25,spyder_nimrod_tru,5,10"/>
+    <property name="act07" value="add_monster komodraw,25,spyder_nimrod_tru,5,10"/>
+    <property name="act08" value="add_monster sharpfin,25,spyder_nimrod_tru,5,10"/>
+    <property name="act09" value="add_monster embazook,25,spyder_nimrod_tru,5,10"/>
+    <property name="act10" value="start_battle player,spyder_nimrod_tru"/>
+    <property name="act11" value="char_talk spyder_nimrod_tru,post_battle_lose"/>
+    <property name="act12" value="translated_dialog spyder_nimrod_tru3"/>
+    <property name="act14" value="pathfind spyder_nimrod_jake,0,17"/>
+    <property name="act15" value="remove_npc spyder_nimrod_jake"/>
+    <property name="cond1" value="not battle_outcome_count player,won,spyder_nimrod_tru,1"/>
+    <property name="cond2" value="is char_at player"/>
+   </properties>
+  </object>
+  <object id="55" name="Talk Bowie" type="event" x="16" y="256" width="16" height="32">
+   <properties>
+    <property name="act1" value="lock_controls"/>
+    <property name="act2" value="pathfind_to_char player,spyder_nimrod_bowie"/>
+    <property name="act3" value="char_talk spyder_nimrod_bowie,pre_battle"/>
+    <property name="act4" value="unlock_controls"/>
+    <property name="act5" value="add_monster tigrock,35,spyder_nimrod_bowie,5,10"/>
+    <property name="act6" value="add_monster embazook,35,spyder_nimrod_bowie,5,10"/>
+    <property name="act7" value="start_battle player,spyder_nimrod_bowie"/>
+    <property name="act8" value="char_talk spyder_nimrod_bowie,post_battle_lose"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_nimrod_bowie"/>
+    <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
+   </properties>
+  </object>
+  <object id="58" name="Post Talk Rebel" type="event" x="176" y="240" width="16" height="16">
+   <properties>
+    <property name="act1" value="char_talk spyder_nimrod_rebel,post_battle_lose"/>
+    <property name="behav1" value="talk spyder_nimrod_rebel"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_nimrod_rebel"/>
+   </properties>
+  </object>
+  <object id="59" name="Post Talk Bowie" type="event" x="32" y="224" width="16" height="16">
+   <properties>
+    <property name="act1" value="char_talk spyder_nimrod_bowie,post_battle_lose"/>
+    <property name="behav1" value="talk spyder_nimrod_bowie"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_nimrod_bowie"/>
+   </properties>
+  </object>
+  <object id="60" name="Post Talk Tru" type="event" x="96" y="224" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_nimrod_tru3"/>
+    <property name="behav1" value="talk spyder_nimrod_tru"/>
+    <property name="cond1" value="is battle_outcome_count player,won,spyder_nimrod_tru,1"/>
+   </properties>
+  </object>
+  <object id="62" name="Play Music" type="event" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="play_music music_10_empire"/>
+    <property name="cond1" value="not music_playing music_10_empire"/>
+   </properties>
+  </object>
+  <object id="64" name="Flashback Xeon" type="event" x="112" y="112" width="16" height="16">
+   <properties>
+    <property name="act01" value="lock_controls"/>
+    <property name="act03" value="set_layer 102:51:0:128"/>
+    <property name="act04" value="translated_dialog spyder_xeon_creation_trigger_yes"/>
+    <property name="act05" value="camera_position 9,8"/>
+    <property name="act10" value="pathfind spyder_nimrod_elara,9,8"/>
+    <property name="act11" value="char_face spyder_nimrod_elara,up"/>
+    <property name="act12" value="create_npc spyder_nimrod_zircon,10,15"/>
+    <property name="act13" value="pathfind spyder_nimrod_zircon,10,7"/>
+    <property name="act14" value="char_face spyder_nimrod_zircon,left"/>
+    <property name="act15" value="create_npc spyder_nimrod_argon,8,15"/>
+    <property name="act16" value="pathfind spyder_nimrod_argon,8,7"/>
+    <property name="act17" value="char_face spyder_nimrod_argon,right"/>
+    <property name="act18" value="create_npc spyder_nimrod_xeon,9,3"/>
+    <property name="act19" value="translated_dialog spyder_xeon_creation1"/>
+    <property name="act20" value="pathfind spyder_nimrod_xeon,9,7"/>
+    <property name="act32" value="translated_dialog spyder_xeon_creation2"/>
+    <property name="act33" value="translated_dialog spyder_xeon_creation3,,bottomleft"/>
+    <property name="act34" value="translated_dialog spyder_xeon_creation4"/>
+    <property name="act35" value="translated_dialog spyder_xeon_creation5,,bottomright"/>
+    <property name="act36" value="translated_dialog spyder_xeon_creation6"/>
+    <property name="act37" value="translated_dialog spyder_xeon_creation7,,bottomleft"/>
+    <property name="act38" value="translated_dialog spyder_xeon_creation8"/>
+    <property name="act39" value="translated_dialog spyder_xeon_creation9,,bottomright"/>
+    <property name="act40" value="translated_dialog spyder_xeon_creation10"/>
+    <property name="act41" value="translated_dialog spyder_xeon_creation11,,bottomleft"/>
+    <property name="act50" value="pathfind spyder_nimrod_argon,8,15"/>
+    <property name="act51" value="remove_npc spyder_nimrod_argon"/>
+    <property name="act52" value="pathfind spyder_nimrod_zircon,10,15"/>
+    <property name="act53" value="remove_npc spyder_nimrod_zircon"/>
+    <property name="act54" value="pathfind spyder_nimrod_xeon,9,3"/>
+    <property name="act55" value="remove_npc spyder_nimrod_xeon"/>
+    <property name="act56" value="pathfind spyder_nimrod_elara,4,11"/>
+    <property name="act60" value="set_variable xeon_creation:done"/>
+    <property name="act61" value="set_layer"/>
+    <property name="act62" value="unlock_controls"/>
+    <property name="act63" value="set_variable flashback:off"/>
+    <property name="act64" value="camera_position"/>
+    <property name="cond1" value="is variable_set xeon_creation:yes"/>
+   </properties>
+  </object>
+  <object id="65" name="Teleport to Nimrod Room" type="event" x="0" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport player,spyder_nimrod_room.tmx,8,3,0.3"/>
+    <property name="act2" value="char_face player,left"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,left"/>
+   </properties>
+  </object>
+  <object id="66" name="Create Dr Elara" type="event" x="64" y="176" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_nimrod_elara,4,11"/>
+    <property name="cond1" value="not char_exists spyder_nimrod_elara"/>
+   </properties>
+  </object>
+  <object id="67" name="Talk Elara" type="event" x="80" y="208" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_xeon_creation_trigger"/>
+    <property name="act2" value="translated_dialog_choice no:yes,xeon_creation"/>
+    <property name="behav1" value="talk spyder_nimrod_elara"/>
+    <property name="cond1" value="not variable_set xeon_creation"/>
+   </properties>
+  </object>
+  <object id="68" name="Talk Elara Yes" type="event" x="96" y="208" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_xeon_creation_trigger_after"/>
+    <property name="behav1" value="talk spyder_nimrod_elara"/>
+    <property name="cond1" value="is variable_set xeon_creation:done"/>
+   </properties>
+  </object>
+  <object id="69" name="Talk Elara No" type="event" x="64" y="208" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_xeon_creation_trigger_no"/>
+    <property name="behav1" value="talk spyder_nimrod_elara"/>
+    <property name="cond1" value="is variable_set xeon_creation:no"/>
+   </properties>
+  </object>
+  <object id="70" name="PC Email" type="event" x="64" y="256" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_nimrod_pc_message1"/>
+    <property name="act2" value="translated_dialog spyder_nimrod_pc_message2"/>
+    <property name="cond1" value="is char_facing_tile player"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
+   </properties>
+  </object>
+  <object id="71" name="Notes" type="event" x="32" y="256" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_nimrod_note1"/>
+    <property name="act2" value="translated_dialog spyder_nimrod_note2"/>
+    <property name="cond1" value="is char_facing_tile player"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

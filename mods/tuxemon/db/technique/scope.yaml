@@ -1,0 +1,36 @@
+tech_id: 176
+accuracy: 1
+effects:
+- type: scope
+speed: normal
+potency: 1
+power: 0
+range: special
+recharge: 1
+slug: scope
+sort: damage
+modifiers: []
+behaviors:
+  bypasses_selection: true
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: exotic
+tags:
+- universal
+types:
+- normal
+use_failure: combat_none
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: meltdown
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_shine
+  volume: 1.5

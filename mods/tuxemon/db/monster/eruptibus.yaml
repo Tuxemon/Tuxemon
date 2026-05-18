@@ -1,0 +1,68 @@
+slug: eruptibus
+species: hot_rock
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: fire_ball
+- level_learned: 1
+  technique: boulder
+- level_learned: 4
+  technique: one_two
+- level_learned: 7
+  technique: fire_claw
+- level_learned: 13
+  technique: tinder
+- level_learned: 16
+  technique: berserk
+- level_learned: 19
+  technique: hibernate
+- level_learned: 25
+  technique: energy_field
+evolutions: []
+history:
+- slug: eruptibus
+  stage: stage1
+  evolves_from:
+  - ignibus
+  - ignibus
+  evolves_into: []
+- slug: ignibus
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - eruptibus
+  - eruptibus
+  - embazook
+  - embazook
+terrains:
+- desert
+- mountains
+tags:
+- flame
+- bite
+- rock
+- bomber
+- calamity
+shape: landrace
+stage: stage1
+types:
+- earth
+- fire
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 32
+height: 600
+weight: 12000
+sounds:
+  combat_call:
+    sfx: sound_troll_02
+    volume: 1.5
+  faint_call:
+    sfx: sound_troll_02_faint
+    volume: 1.5
+catch_rate: 70.0
+lower_catch_resistance: 0.85
+upper_catch_resistance: 1.1

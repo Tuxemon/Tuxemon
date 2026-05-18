@@ -1,0 +1,49 @@
+tech_id: 206
+accuracy: 0.8
+conditions:
+- type: status
+  parameters:
+  - grabbed
+  operator: not
+- type: status
+  parameters:
+  - stuck
+  operator: not
+effects:
+- type: disappear
+  parameters:
+  - strike
+speed: extremely_fast
+potency: 1
+power: 1
+range: melee
+recharge: 4
+slug: rift_dash
+sort: damage
+modifiers: []
+behaviors: {}
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: simple
+tags:
+- machine
+- electricity
+- speed
+types:
+- lightning
+- cosmic
+use_failure: rift_dash_fail
+use_success: rift_dash_success
+use_tech: combat_used_x
+visuals:
+  animation: null
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_kick
+  volume: 1.5

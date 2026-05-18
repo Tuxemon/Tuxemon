@@ -1,0 +1,36 @@
+tech_id: 168
+accuracy: 0.7
+effects:
+- type: damage
+speed: extremely_slow
+potency: 0.0
+power: 2.9
+range: touch
+recharge: 2
+slug: earthquake
+sort: damage
+modifiers: []
+behaviors: {}
+target:
+  enemy_monster: true
+  enemy_team: true
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: powerful
+tags:
+- calamity
+- ground
+types:
+- earth
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: rockfall_264
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_crumble1
+  volume: 1.5

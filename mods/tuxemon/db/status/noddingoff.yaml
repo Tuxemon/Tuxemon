@@ -1,0 +1,23 @@
+modifiers: []
+behaviors: {}
+category: negative
+effects:
+- type: noddingoff
+  parameters:
+  - '0.5'
+icon: gfx/ui/icons/status/icon_noddingoff.png
+on_tech_use: empty
+slug: noddingoff
+sort: meta
+cond_id: 6
+duration: 5
+use_failure: null
+use_success: combat_state_dozing_get
+gain_cond: combat_state_noddingoff_get
+visuals:
+  animation: null
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_pulse
+  volume: 1.5

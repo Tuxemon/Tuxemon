@@ -1,0 +1,75 @@
+slug: bugnin
+species: honour
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: clamp_on
+- level_learned: 1
+  technique: buzz
+- level_learned: 4
+  technique: splinter
+- level_learned: 7
+  technique: font
+- level_learned: 10
+  technique: evasion
+- level_learned: 13
+  technique: sting
+- level_learned: 16
+  technique: undertaker
+- level_learned: 19
+  technique: perfect_cut
+- level_learned: 25
+  technique: blade
+- level_learned: 28
+  technique: sleep_bomb
+- level_learned: 46
+  technique: vorpal
+evolutions: []
+history:
+- slug: bugnin
+  stage: stage2
+  evolves_from:
+  - katacoon
+  evolves_into: []
+- slug: katapill
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - katacoon
+- slug: katacoon
+  stage: stage1
+  evolves_from:
+  - katapill
+  evolves_into:
+  - bugnin
+  - sumchon
+  - gladiatorbug
+terrains:
+- woodland
+tags:
+- fists
+- bug
+- sharp
+shape: brute
+stage: stage2
+types:
+- metal
+- venom
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 58
+height: 150
+weight: 52
+sounds:
+  combat_call:
+    sfx: sound_swords_clash
+    volume: 1.5
+  faint_call:
+    sfx: sound_swords_clash_faint
+    volume: 1.5
+catch_rate: 35.0
+lower_catch_resistance: 0.8
+upper_catch_resistance: 1.05

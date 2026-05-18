@@ -1,0 +1,81 @@
+slug: waysprite
+species: wavering
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: ice_claw
+- level_learned: 1
+  technique: goad
+- level_learned: 4
+  technique: beam
+- level_learned: 7
+  technique: orbs
+- level_learned: 13
+  technique: neutralize
+evolutions:
+- at_level: 14
+  monster_slug: angesnow
+  variables:
+  - key: daytime
+    value: 'true'
+- at_level: 14
+  monster_slug: demosnow
+  variables:
+  - key: daytime
+    value: 'false'
+history:
+- slug: waysprite
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - angesnow
+  - demosnow
+- slug: angesnow
+  stage: stage1
+  evolves_from:
+  - waysprite
+  evolves_into:
+  - seraphice
+- slug: demosnow
+  stage: stage1
+  evolves_from:
+  - waysprite
+  evolves_into:
+  - lucifice
+- slug: lucifice
+  stage: stage2
+  evolves_from:
+  - demosnow
+  evolves_into: []
+- slug: seraphice
+  stage: stage2
+  evolves_from:
+  - angesnow
+  evolves_into: []
+terrains:
+- extraplanar
+tags:
+- ice
+- leadership
+- weather
+shape: sprite
+stage: basic
+types:
+- frost
+gender_weights:
+  neuter: 1.0
+txmn_id: 262
+height: 15
+weight: 1
+sounds:
+  combat_call:
+    sfx: sound_cute_04
+    volume: 1.5
+  faint_call:
+    sfx: sound_cute_04_faint
+    volume: 1.5
+catch_rate: 100
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.25

@@ -1,0 +1,39 @@
+tech_id: 32
+accuracy: 0.8
+effects:
+- type: give
+  parameters:
+  - blinded
+  - enemy_monster
+- type: damage
+speed: normal
+potency: 0.2
+power: 1.25
+range: touch
+recharge: 1
+slug: sand_spray
+sort: damage
+modifiers: []
+behaviors: {}
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: simple
+tags:
+- ground
+types:
+- earth
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: explosion_dusty_96
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_sand
+  volume: 1.5

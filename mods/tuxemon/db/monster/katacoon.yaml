@@ -1,0 +1,92 @@
+slug: katacoon
+species: stance
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: clamp_on
+- level_learned: 1
+  technique: buzz
+- level_learned: 4
+  technique: splinter
+- level_learned: 7
+  technique: font
+- level_learned: 10
+  technique: evasion
+- level_learned: 13
+  technique: sting
+evolutions:
+- at_level: 12
+  monster_slug: bugnin
+  stats:
+    stat_type: dodge
+    comparison: greater_than
+    target_stat: speed
+- at_level: 12
+  monster_slug: sumchon
+  stats:
+    stat_type: speed
+    comparison: greater_than
+    target_stat: dodge
+- at_level: 12
+  monster_slug: gladiatorbug
+  stats:
+    stat_type: speed
+    comparison: equals
+    target_stat: dodge
+history:
+- slug: katacoon
+  stage: stage1
+  evolves_from:
+  - katapill
+  evolves_into:
+  - bugnin
+  - sumchon
+  - gladiatorbug
+- slug: katapill
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - katacoon
+- slug: bugnin
+  stage: stage2
+  evolves_from:
+  - katacoon
+  evolves_into: []
+- slug: sumchon
+  stage: stage2
+  evolves_from:
+  - katacoon
+  evolves_into: []
+- slug: gladiatorbug
+  stage: stage2
+  evolves_from:
+  - katacoon
+  evolves_into: []
+terrains:
+- woodland
+tags:
+- fists
+- bug
+shape: grub
+stage: stage1
+types:
+- metal
+- venom
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 57
+height: 58
+weight: 12
+sounds:
+  combat_call:
+    sfx: sound_insekt001
+    volume: 1.5
+  faint_call:
+    sfx: sound_insekt001_faint
+    volume: 1.5
+catch_rate: 70.0
+lower_catch_resistance: 0.9
+upper_catch_resistance: 1.15

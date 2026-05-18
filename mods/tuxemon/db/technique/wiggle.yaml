@@ -1,0 +1,36 @@
+tech_id: 210
+accuracy: 1.0
+effects:
+- type: empty
+speed: extremely_fast
+potency: 0.0
+power: 0
+range: special
+recharge: 1
+slug: wiggle
+sort: damage
+modifiers: []
+behaviors:
+  bypasses_selection: true
+target:
+  enemy_monster: false
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: true
+  own_team: false
+  own_trainer: false
+category: special
+tags:
+- weak
+types:
+- normal
+use_failure: combat_miss
+use_success: null
+use_tech: wiggle_success
+visuals:
+  animation: tail
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_kick
+  volume: 1.5

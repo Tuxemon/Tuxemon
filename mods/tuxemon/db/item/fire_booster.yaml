@@ -1,0 +1,28 @@
+conditions:
+- type: can_evolve
+  operator: is
+- type: has_path
+  parameters:
+  - fire_booster
+  operator: is
+effects:
+- type: evolve
+slug: fire_booster
+sort: utility
+sprite: gfx/items/fire_booster.png
+category: morph
+usable_in:
+- WorldState
+modifiers: []
+behaviors:
+  show_dialog_on_success: false
+use_failure: generic_failure
+use_item: combat_used_x
+use_success: generic_success
+visuals:
+  animation: null
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: null
+  volume: 0.0

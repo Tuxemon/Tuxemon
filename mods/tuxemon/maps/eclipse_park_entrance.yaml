@@ -1,0 +1,128 @@
+events:
+  Clear:
+    actions:
+    - lock_controls
+    - set_variable paypark:null
+    - pathfind player,4,4
+    - char_face player,up
+    - unlock_controls
+    conditions:
+    - is variable_set paypark:no
+    type: event
+  Create Elroy:
+    actions:
+    - create_npc eclipse_park_reception,1,7
+    - char_face eclipse_park_reception,right
+    conditions:
+    - not char_exists eclipse_park_reception
+    type: event
+    x: 1
+    y: 7
+  Create Emily:
+    actions:
+    - create_npc eclipse_park_florist,8,5
+    - char_face eclipse_park_florist,left
+    conditions:
+    - not char_exists eclipse_park_florist
+    type: event
+    x: 8
+    y: 5
+  No Money:
+    actions:
+    - lock_controls
+    - translated_dialog eclipse_park_nomoney
+    - set_variable paypark:null
+    - pathfind player,4,4
+    - char_face player,up
+    - unlock_controls
+    conditions:
+    - is variable_set paypark:yes
+    - not money_is player,greater_or_equal,500
+    type: event
+  No Pay:
+    actions:
+    - lock_controls
+    - set_variable paypark:null
+    - pathfind player,4,4
+    - char_face player,up
+    - unlock_controls
+    conditions:
+    - is variable_set paypark:no
+    type: event
+  Pay:
+    actions:
+    - translated_dialog eclipse_park_yesmoney
+    - lock_controls
+    - modify_money player,-500
+    - add_item tuxeball_park,25
+    - pathfind player,4,9
+    - char_face player,down
+    - set_variable paypark:null
+    - add_step_tracker player,steps_park,500,100:0
+    - park_experience start
+    - unlock_controls
+    conditions:
+    - is variable_set paypark:yes
+    - is money_is player,greater_or_equal,500
+    type: event
+  Payment:
+    actions:
+    - char_stop player
+    - lock_controls
+    - wait 1
+    - char_face player,left
+    - wait 1
+    - pathfind player,3,7
+    - wait 1
+    - unlock_controls
+    - translated_dialog eclipse_park_welcome
+    - translated_dialog_choice yes:no,paypark
+    conditions:
+    - is char_at player
+    - is char_facing player,down
+    - not variable_set paypark:yes
+    - not variable_set paypark:no
+    height: 1
+    type: event
+    width: 4
+    x: 3
+    y: 7
+  Route Music:
+    actions:
+    - play_music music_cathedral_theme
+    conditions:
+    - not music_playing music_cathedral_theme
+    type: event
+  Talk Emily:
+    actions:
+    - translated_dialog eclipse_park_assistant
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed INTERACT
+    type: event
+    x: 7
+    y: 5
+  Teleport Mountain:
+    actions:
+    - transition_teleport player,eclipse_lion_mountain_low.tmx,7,18,0.3
+    - char_face player,up
+    conditions:
+    - is char_at player
+    - is char_facing player,up
+    height: 1
+    type: event
+    width: 2
+    x: 4
+    y: 2
+  Teleport Park:
+    actions:
+    - transition_teleport player,eclipse_park.tmx,8,3,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,down
+    height: 1
+    type: event
+    width: 2
+    x: 4
+    y: 9

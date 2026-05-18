@@ -1,0 +1,46 @@
+tech_id: 204
+accuracy: 0.8
+conditions:
+- type: status
+  parameters:
+  - grabbed
+  operator: not
+- type: status
+  parameters:
+  - stuck
+  operator: not
+effects:
+- type: disappear
+  parameters:
+  - strike
+speed: extremely_fast
+potency: 1
+power: 1
+range: melee
+recharge: 4
+slug: burrow_blast
+sort: damage
+modifiers: []
+behaviors: {}
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: simple
+tags:
+- ground
+types:
+- earth
+use_failure: burrow_blast_fail
+use_success: burrow_blast_success
+use_tech: combat_used_x
+visuals:
+  animation: null
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_crumble1
+  volume: 1.5

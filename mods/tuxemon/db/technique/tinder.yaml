@@ -1,0 +1,40 @@
+tech_id: 178
+accuracy: 1
+effects:
+- type: give
+  parameters:
+  - burn
+  - enemy_monster
+speed: normal
+potency: 1
+power: 0
+range: special
+recharge: 1
+slug: tinder
+sort: damage
+modifiers: []
+behaviors:
+  bypasses_selection: true
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: condition_imposer
+tags:
+- flame
+- gadgets
+types:
+- fire
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: null
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_flames1
+  volume: 1.5

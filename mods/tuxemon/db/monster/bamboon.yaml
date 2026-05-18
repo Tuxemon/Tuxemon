@@ -1,0 +1,73 @@
+slug: bamboon
+species: prehensile
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: stick
+- level_learned: 1
+  technique: clamp_on
+- level_learned: 7
+  technique: mending
+- level_learned: 10
+  technique: tail_lash
+- level_learned: 16
+  technique: blade
+- level_learned: 22
+  technique: stabilo
+- level_learned: 25
+  technique: one_two
+- level_learned: 28
+  technique: all_in
+- level_learned: 31
+  technique: woodsmash
+- level_learned: 34
+  technique: give_all
+evolutions: []
+history:
+- slug: bamboon
+  stage: stage1
+  evolves_from:
+  - budaye
+  - budaye
+  evolves_into: []
+- slug: budaye
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - bamboon
+  - bamboon
+  - frondly
+  - frondly
+terrains:
+- grassland
+- jungle
+tags:
+- plant
+- leadership
+- food
+- soldier
+- tail
+- staff
+shape: sprite
+stage: stage1
+types:
+- wood
+- heroic
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 28
+height: 120
+weight: 40
+sounds:
+  combat_call:
+    sfx: sound_woosh_1
+    volume: 1.5
+  faint_call:
+    sfx: sound_woosh_1_faint
+    volume: 1.5
+catch_rate: 70.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.05

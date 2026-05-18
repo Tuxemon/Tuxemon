@@ -1,0 +1,65 @@
+slug: apeoro
+species: old_block
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: strike
+- level_learned: 1
+  technique: tail_lash
+- level_learned: 4
+  technique: constrict
+- level_learned: 7
+  technique: terror
+- level_learned: 10
+  technique: insanity
+- level_learned: 13
+  technique: bubble_trap
+- level_learned: 19
+  technique: sleep_bomb
+- level_learned: 25
+  technique: shrapnel
+- level_learned: 28
+  technique: wall_of_steel
+evolutions: []
+history:
+- slug: apeoro
+  stage: stage1
+  evolves_from:
+  - tetrchimp
+  evolves_into: []
+- slug: tetrchimp
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - apeoro
+terrains:
+- desert
+- extraplanar
+- ruins
+tags:
+- mental
+- gadgets
+- tail
+shape: humanoid
+stage: stage1
+types:
+- lightning
+- cosmic
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 197
+height: 197
+weight: 145
+sounds:
+  combat_call:
+    sfx: sound_terminal_03
+    volume: 1.5
+  faint_call:
+    sfx: sound_terminal_03_faint
+    volume: 1.5
+catch_rate: 70.0
+lower_catch_resistance: 0.9
+upper_catch_resistance: 1.15

@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.11.1-99-gec89c545" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="47">
+ <properties>
+  <property name="edges" value="clamped"/>
+ </properties>
+ <tileset firstgid="1" source="../gfx/tilesets/core_outdoor.tsx"/>
+ <tileset firstgid="2776" source="../gfx/tilesets/core_buildings.tsx"/>
+ <tileset firstgid="5126" source="../gfx/tilesets/oceanset_outside.tsx"/>
+ <layer id="1" name="Tile Layer 1" width="20" height="30">
+  <data encoding="csv">
+137,137,137,137,137,137,137,137,137,137,137,100,100,100,100,100,100,100,100,100,
+137,137,137,137,137,137,137,137,137,137,137,100,100,100,100,100,100,100,100,100,
+137,137,137,137,137,137,137,1307,1307,137,137,137,137,100,100,100,100,100,100,100,
+137,137,137,137,137,137,137,1307,1307,1307,1307,137,137,137,137,137,100,100,100,137,
+137,137,137,137,137,137,137,137,1307,1307,1307,1307,137,137,137,137,137,100,137,137,
+137,137,137,137,137,137,137,137,137,1307,1307,137,137,137,137,137,137,137,137,137,
+137,137,137,137,137,100,100,137,137,137,137,137,137,137,137,137,137,137,137,137,
+137,137,137,137,137,100,100,100,100,137,137,137,137,137,137,137,137,137,137,137,
+137,137,137,137,137,137,100,100,100,100,100,100,137,137,137,137,137,137,137,137,
+137,137,137,137,137,137,137,100,100,100,100,100,100,100,100,137,137,137,137,137,
+137,137,137,137,137,137,137,137,137,137,100,100,100,100,100,100,137,137,137,137,
+137,137,137,137,137,137,137,137,137,137,137,137,137,100,100,100,100,137,137,100,
+137,137,137,137,137,137,137,137,137,137,137,137,137,137,137,100,100,137,137,100,
+137,137,137,137,137,137,137,137,137,137,137,137,137,137,137,137,137,137,137,137,
+137,137,137,1307,1307,137,137,137,137,137,137,137,137,137,137,137,137,137,137,137,
+137,137,1307,1307,1307,1307,137,137,137,137,137,137,137,137,137,137,137,137,137,137,
+137,137,1307,1307,1307,1307,137,137,137,137,137,137,137,137,137,137,137,137,137,137,
+137,137,1307,1307,1307,137,137,137,137,137,137,137,137,137,137,137,137,137,137,137,
+137,137,137,137,137,137,137,137,137,100,100,100,100,137,137,137,137,137,137,137,
+137,137,137,137,137,100,100,100,100,100,100,100,100,100,100,137,137,137,137,137,
+137,100,100,137,137,100,100,100,100,100,100,100,100,100,100,137,137,137,137,137,
+100,100,100,137,137,137,137,137,137,137,137,137,137,137,137,137,137,137,137,137,
+100,100,137,137,137,137,137,137,137,137,137,137,137,137,137,137,137,137,137,137,
+100,100,137,137,137,137,137,137,137,137,137,137,137,137,137,137,137,137,137,137,
+100,137,137,137,137,137,137,137,137,137,137,137,137,137,137,137,137,137,137,137,
+100,137,137,137,137,137,137,137,137,137,137,137,137,137,137,137,137,137,137,137,
+137,137,137,137,137,137,137,137,137,137,137,137,137,137,137,137,137,137,137,1307,
+137,137,137,137,137,137,137,137,137,137,137,137,137,137,1307,1307,1307,1307,1307,1307,
+137,137,137,137,137,137,137,137,137,137,1307,1307,1307,1307,1307,1307,1307,1307,1307,1307,
+137,137,137,137,137,137,137,137,137,1307,1307,1307,1307,1307,1307,1307,1307,1307,1307,1307
+</data>
+ </layer>
+ <layer id="2" name="Tile Layer 2" width="20" height="30">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,3209,3210,3211,3212,3213,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,3256,3257,3258,3259,3260,0,
+6126,0,0,0,0,0,0,0,0,0,0,0,0,0,3303,3304,3305,3304,3307,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,3350,3351,3352,3351,3354,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,3209,3210,3211,3212,3213,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,3256,3257,3258,3259,3260,0,0,0,0,0,0,0,0,0,
+6126,0,0,0,0,0,3303,3304,3305,3304,3307,0,0,0,0,0,0,63,63,0,
+6111,0,0,0,0,0,3350,3351,3352,3351,3354,0,0,0,0,0,0,63,63,0,
+6110,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+6126,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,63,63,0,0,0,0,3214,3215,3216,3217,3218,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,3261,3262,3263,3264,3265,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,3308,3309,3310,3309,3312,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,3355,3356,3357,3356,3359,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,6111,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,6111,6110,6111,6111,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="3" name="Tile Layer 3" width="20" height="30">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,6094,6095,0,0,0,0,0,0,
+6094,6095,0,0,0,0,0,0,0,0,0,0,6110,6111,0,0,0,0,0,6094,
+6110,6111,0,0,0,0,0,0,0,0,0,0,6126,6127,0,0,0,0,0,6110,
+6095,6127,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6126,
+6111,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+6127,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+5991,5992,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+6007,6008,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+6094,6095,0,0,0,0,0,0,0,0,0,6094,6095,0,0,0,0,0,0,0,
+6110,6111,0,0,0,0,0,0,0,0,0,6110,6111,6080,6081,6082,0,0,0,0,
+6095,6127,0,0,0,0,0,0,0,0,0,6126,6127,6096,6097,6098,0,0,0,0,
+6094,6095,0,0,0,0,0,0,0,0,0,0,0,6112,6113,6114,0,0,0,0,
+6095,6111,0,0,0,0,0,0,0,0,0,0,0,6128,6129,6130,0,0,0,0,
+6111,6127,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+6127,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6094,6095,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6110,6111,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6126,6127,
+0,0,0,0,0,0,6080,6081,6082,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,6096,6097,6098,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,6112,6113,6114,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,6128,6129,6130,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5990,5991,5992,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6006,6007,6008,
+5990,5991,5992,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+6006,6007,6008,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,6094,6095,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,6094,6095,6110,6094,6095,0,0,0,0,0,0,0,0,0,0,
+0,0,0,6094,6095,6110,6094,6095,6110,6111,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="7" name="Tile Layer 4" width="20" height="30">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <objectgroup color="#ffff00" id="4" name="Events">
+  <object id="4" name="Teleport to Ice Route" type="event" x="0" y="464" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport player,water_route_ice.tmx,28,24,0.5"/>
+    <property name="act2" value="char_face player,left"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,left"/>
+   </properties>
+  </object>
+  <object id="5" name="Teleport to Volcano Path" type="event" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport player,water_volcano_path.tmx,1,19,0.5"/>
+    <property name="act2" value="char_face player,up"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
+   </properties>
+  </object>
+  <object id="6" name="Teleport to Volcano Path" type="event" x="16" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport player,water_volcano_path.tmx,2,19,0.5"/>
+    <property name="act2" value="char_face player,up"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
+   </properties>
+  </object>
+  <object id="7" name="Teleport to Volcano Path" type="event" x="32" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport player,water_volcano_path.tmx,3,19,0.5"/>
+    <property name="act2" value="char_face player,up"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
+   </properties>
+  </object>
+  <object id="8" name="Teleport to Volcano Path" type="event" x="48" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport player,water_volcano_path.tmx,4,19,0.5"/>
+    <property name="act2" value="char_face player,up"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
+   </properties>
+  </object>
+  <object id="9" name="Teleport to Volcano Path" type="event" x="64" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport player,water_volcano_path.tmx,5,19,0.5"/>
+    <property name="act2" value="char_face player,up"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
+   </properties>
+  </object>
+  <object id="10" name="Teleport to Volcano Path" type="event" x="80" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport player,water_volcano_path.tmx,6,19,0.5"/>
+    <property name="act2" value="char_face player,up"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
+   </properties>
+  </object>
+  <object id="11" name="Teleport to Volcano Path" type="event" x="96" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport player,water_volcano_path.tmx,7,19,0.5"/>
+    <property name="act2" value="char_face player,up"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
+   </properties>
+  </object>
+  <object id="12" name="Teleport to Volcano Path" type="event" x="112" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport player,water_volcano_path.tmx,8,19,0.5"/>
+    <property name="act2" value="char_face player,up"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
+   </properties>
+  </object>
+  <object id="13" name="Teleport to Volcano Path" type="event" x="128" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport player,water_volcano_path.tmx,9,19,0.5"/>
+    <property name="act2" value="char_face player,up"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
+   </properties>
+  </object>
+  <object id="14" name="Teleport to Volcano Path" type="event" x="144" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport player,water_volcano_path.tmx,10,19,0.5"/>
+    <property name="act2" value="char_face player,up"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
+   </properties>
+  </object>
+  <object id="15" name="Teleport to Volcano Path" type="event" x="160" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport player,water_volcano_path.tmx,11,19,0.5"/>
+    <property name="act2" value="char_face player,up"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
+   </properties>
+  </object>
+  <object id="16" name="Teleport to Ice Route" type="event" x="0" y="448" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport player,water_route_ice.tmx,28,23,0.5"/>
+    <property name="act2" value="char_face player,left"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,left"/>
+   </properties>
+  </object>
+  <object id="17" name="Teleport to Ice Route" type="event" x="0" y="432" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport player,water_route_ice.tmx,28,22,0.5"/>
+    <property name="act2" value="char_face player,left"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,left"/>
+   </properties>
+  </object>
+  <object id="18" name="Teleport to Ice Route" type="event" x="0" y="416" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport player,water_route_ice.tmx,28,21,0.5"/>
+    <property name="act2" value="char_face player,left"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,left"/>
+   </properties>
+  </object>
+  <object id="19" name="Create Volcano Guy 1" type="event" x="96" y="368" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc water_scientist,6,23"/>
+    <property name="cond1" value="not char_exists water_scientist"/>
+   </properties>
+  </object>
+  <object id="20" name="Talk Volcano Guy 1" type="event" x="112" y="384" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog water_volcano_guy1"/>
+    <property name="act20" value="translated_dialog water_volcano_guy2"/>
+    <property name="behav1" value="talk water_scientist"/>
+   </properties>
+  </object>
+  <object id="21" name="Create Volcano Guy 2" type="event" x="240" y="256" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc water_niceguy1,15,16"/>
+    <property name="cond1" value="not char_exists water_niceguy1"/>
+   </properties>
+  </object>
+  <object id="22" name="Talk Volcano Guy 2" type="event" x="256" y="272" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog water_volcano_guy3"/>
+    <property name="act20" value="translated_dialog water_volcano_guy4"/>
+    <property name="behav1" value="talk water_niceguy1"/>
+   </properties>
+  </object>
+  <object id="23" name="Create Volcano Guy 3" type="event" x="64" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc water_niceguy2,4,3"/>
+    <property name="cond1" value="not char_exists water_niceguy2"/>
+   </properties>
+  </object>
+  <object id="24" name="Talk Volcano Guy 3" type="event" x="80" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog water_volcano_guy5"/>
+    <property name="behav1" value="talk water_niceguy2"/>
+   </properties>
+  </object>
+  <object id="25" name="Play Music" type="event" x="304" y="112" width="16" height="16">
+   <properties>
+    <property name="act1" value="play_music music_valor_heroes"/>
+    <property name="cond1" value="not music_playing music_valor_heroes"/>
+   </properties>
+  </object>
+  <object id="26" name="Set Environment" type="event" x="272" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_environment sand"/>
+    <property name="cond1" value="not environment_is sand"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup color="#ff0000" id="5" name="Collisions">
+  <object id="28" type="collision" x="144" y="320" width="80" height="64"/>
+  <object id="29" type="collision" x="96" y="144" width="80" height="64"/>
+  <object id="30" type="collision" x="224" y="32" width="80" height="64"/>
+  <object id="31" type="collision" x="192" y="16" width="32" height="48"/>
+  <object id="32" type="collision" x="304" y="32" width="16" height="48"/>
+  <object id="33" type="collision" x="0" y="32" width="32" height="48"/>
+  <object id="34" type="collision" x="0" y="64" width="16" height="48"/>
+  <object id="35" type="collision" x="0" y="112" width="32" height="128"/>
+  <object id="36" type="collision" x="112" y="304" width="16" height="48"/>
+  <object id="37" type="collision" x="16" y="384" width="32" height="32"/>
+  <object id="38" type="collision" x="288" y="352" width="32" height="32"/>
+  <object id="39" type="collision" x="112" y="432" width="32" height="48"/>
+  <object id="40" type="collision" x="144" y="448" width="32" height="32"/>
+  <object id="41" type="collision" x="80" y="448" width="32" height="32"/>
+  <object id="42" type="collision" x="48" y="464" width="32" height="16"/>
+  <object id="43" type="collision" x="0" y="240" width="16" height="16"/>
+  <object id="44" type="collision" x="224" y="192" width="16" height="32"/>
+  <object id="45" type="collision" x="176" y="160" width="32" height="32"/>
+  <object id="46" type="collision" x="288" y="256" width="32" height="32"/>
+ </objectgroup>
+</map>

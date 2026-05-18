@@ -1,0 +1,43 @@
+tech_id: 15
+accuracy: 1
+effects:
+- type: give
+  parameters:
+  - exhausted
+  - enemy_monster
+- type: give
+  parameters:
+  - hardshell
+  - own_monster
+speed: normal
+potency: 1
+power: 0
+range: special
+recharge: 3
+slug: static_field
+sort: damage
+modifiers: []
+behaviors:
+  bypasses_selection: true
+target:
+  enemy_monster: false
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: true
+  own_team: false
+  own_trainer: false
+category: powerful
+tags:
+- shielded
+types:
+- lightning
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: disintegrate_83
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_forcefield
+  volume: 1.5

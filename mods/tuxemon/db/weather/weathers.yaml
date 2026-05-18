@@ -1,0 +1,80 @@
+# slug: Unique identifier for the weather condition (example: "misty", "windy", "freezing")
+#       The slug must correspond to a valid weather type defined in the database.
+# name: Human-readable name of the weather condition (example: "weather_misty")
+#       A translation entry with this msgid MUST exist in base.po, otherwise validation fails.
+# temperature: General temperature category for this weather state
+#       Must be one of: freezing, cold, mild, warm, hot, scorching
+# wind: General wind intensity level for this weather state
+#       Must be one of: calm, breezy, windy, gusty, stormy
+# modifiers: List of modifiers applied to this weather condition
+#   Each modifier can adjust attributes or behaviors (example: reduce speed in freezing weather).
+#   Fields inside a modifier:
+#     attribute: Attribute being modified (example: "type")
+#     values: List of values associated with the modification (example: ["fire"])
+#     multiplier: Float multiplier applied to the attribute (range 0.0–2.0, example: 0.9)
+#     priority: Integer priority; higher values take precedence (example: 0)
+#     stacking: How this modifier stacks with others (example: "multiplicative")
+#     max_stacks: Maximum number of times this modifier can stack (example: None = unlimited)
+#     condition_name: Optional condition function name to determine applicability (example: None)
+#     source: Optional origin of the modifier (example: "item", "ability")
+#     turns_remaining: Optional number of turns before modifier expires (example: None)
+
+- slug: misty
+  name: weather_misty
+  temperature: mild
+  wind: calm
+  modifiers: []
+
+- slug: windy
+  name: weather_windy
+  temperature: mild
+  wind: windy
+  modifiers: []
+
+- slug: freezing
+  name: weather_freezing
+  temperature: freezing
+  wind: breezy
+  modifiers: []
+
+- slug: hot
+  name: weather_hot
+  temperature: hot
+  wind: calm
+  modifiers: []
+
+- slug: cloudy
+  name: weather_cloudy
+  temperature: mild
+  wind: breezy
+  modifiers: []
+
+- slug: foggy
+  name: weather_foggy
+  temperature: cold
+  wind: calm
+  modifiers: []
+
+- slug: thunderstorm
+  name: weather_thunderstorm
+  temperature: warm
+  wind: stormy
+  modifiers: []
+
+- slug: snow
+  name: weather_snow
+  temperature: cold
+  wind: breezy
+  modifiers: []
+
+- slug: rain
+  name: weather_rain
+  temperature: mild
+  wind: gusty
+  modifiers: []
+
+- slug: sunny
+  name: weather_sunny
+  temperature: warm
+  wind: calm
+  modifiers: []

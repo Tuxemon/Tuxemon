@@ -1,0 +1,55 @@
+slug: sprorm
+species: galvanised
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: wall_of_steel
+- level_learned: 4
+  technique: mudslide
+- level_learned: 10
+  technique: take_cover
+- level_learned: 16
+  technique: roll
+- level_learned: 19
+  technique: rust_bomb
+- level_learned: 28
+  technique: earthquake
+evolutions:
+- at_level: 32
+  monster_slug: sphake
+history:
+- slug: sprorm
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - sphake
+- slug: sphake
+  stage: stage1
+  evolves_from:
+  - sprorm
+  evolves_into: []
+terrains: []
+tags:
+- steel
+- ground
+shape: sprite
+stage: basic
+types:
+- metal
+gender_weights:
+  neuter: 1.0
+txmn_id: 303
+height: 30
+weight: 10
+sounds:
+  combat_call:
+    sfx: sound_robot1
+    volume: 1.5
+  faint_call:
+    sfx: sound_robot1_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.05

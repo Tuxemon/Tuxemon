@@ -1,0 +1,124 @@
+# Range level a monster can have
+level_range: [0, 100]
+
+# Maximum Training Points (TPs) a single stat can have
+max_tps: 150
+
+# Maximum total TPs a monster can accumulate across all stats
+max_total_tps: 300
+
+# Default TP gained per battle or training action
+default_tp_gain: 1
+
+# Maximum number of moves a monster can know at once
+max_moves: 4
+
+# Range for catch rate values (0 = impossible, 100 = guaranteed)
+catch_rate_range: [0, 100]
+
+# Range for catch resistance multipliers (higher = harder to catch)
+catch_resistance_range: [0.0, 2.0]
+
+# Starting bond value when a monster is first obtained
+starting_bond: 25
+
+# Allowed bond range (0 = no bond, 100 = maximum bond)
+bond_range: [0, 100]
+
+# Bond changes triggered by specific events
+bond_modifiers:
+  # Bond penalty when the monster faints in battle
+  fainted: -10
+
+# Allowed range for Individual Values (IVs)
+iv_range: [0, 15]
+
+# Multiplier used in stat calculation formulas
+coeff_stats: 7
+
+# Defines a random interval for weight fluctuation (±10% variation)
+weight_range: [-0.1, 0.1]
+
+# Defines a random interval for height fluctuation (±10% variation)
+height_range: [-0.1, 0.1]
+
+# Maps bond value ranges to qualitative sentiment labels.
+bond_sentiments:
+  despises: [0, 20]
+  wary: [21, 50]
+  gets_along: [51, 75]
+  adores: [76, 100]
+
+# Maps each bond sentiment label to its corresponding icon file path.
+# These icons are used in the UI to visually represent the monster's bond level.
+# The labels must match those defined in 'bond_sentiments' to ensure correct mapping.
+bond_icons:
+  despises: gfx/ui/icons/bond/bond1.png
+  wary: gfx/ui/icons/bond/bond2.png
+  gets_along: gfx/ui/icons/bond/bond3.png
+  adores: gfx/ui/icons/bond/bond4.png
+
+# Maps sentiment labels to localized string templates for player-facing messages.
+bond_strings:
+  despises: menu_bond_despise
+  wary: menu_bond_wary
+  gets_along: menu_bond_along
+  adores: menu_bond_adore
+
+# Defines opposite taste relationships as a dictionary of lists.
+# Each taste maps to a list of its opposite(s), allowing for future extensibility.
+opposite_tastes:
+  taste_peppy: [taste_mild]
+  taste_mild: [taste_peppy]
+  taste_salty: [taste_sweet]
+  taste_sweet: [taste_salty]
+  taste_hearty: [taste_soft]
+  taste_soft: [taste_hearty]
+  taste_zesty: [taste_flakey]
+  taste_flakey: [taste_zesty]
+  taste_refined: [taste_dry]
+  taste_dry: [taste_refined]
+  taste_savory: [taste_bland]
+  taste_bland: [taste_savory]
+
+# Defines bond adjustment values based on taste preference match level.
+# These values influence bond growth or decay depending on how well a monster's taste aligns with a given item.
+bond_preferences:
+  great: 10
+  good: 5
+  average: 0
+  bad: -5
+  terrible: -10
+
+# Experience gain multipliers based on acquisition method
+experience_multipliers:
+  unknown: 1.0        # Neutral baseline
+  captured: 1.0       # Standard experience gain
+  traded: 1.5         # Boost for socially acquired creatures
+  bred: 1.2           # Slight bonus for homegrown companions
+  gifted: 1.2         # Emotional value translates to faster growth
+  purchased: 0.9      # Slight malus—less personal connection
+  rescued: 1.3        # Strong emotional arc boosts experience
+  created: 1.0        # Neutral—can be adjusted based on lore
+
+# Monster experience group definitions for leveling mechanics.
+# Each group defines how quickly a monster gains levels based on experience.
+# These values are referenced by monster species via their 'exp_group_slug'.
+# 'multiplier' adjusts the base experience required for leveling.
+# 'experience_coefficient' defines the exponent used in the formula: (level + level_delta) ** experience_coefficient.
+# Together, they control the steepness and pace of level progression.
+experience_groups:
+  default:
+    multiplier: 1.0
+    description: Standard leveling rate
+    experience_coefficient: 3
+
+  fast:
+    multiplier: 0.8
+    description: Levels up quickly (80% of base EXP)
+    experience_coefficient: 3
+
+  slow:
+    multiplier: 1.25
+    description: Levels up slowly (125% of base EXP)
+    experience_coefficient: 3

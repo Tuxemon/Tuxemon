@@ -1,0 +1,40 @@
+tech_id: 177
+accuracy: 0.75
+effects:
+- type: prop_damage
+  parameters:
+  - enemy_monster
+  - '0.25'
+speed: normal
+potency: 0.0
+power: 0
+range: reliable
+recharge: 2
+slug: panjandrum
+sort: damage
+modifiers: []
+behaviors: {}
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: exotic
+tags:
+- gadgets
+- calamity
+- bomber
+types:
+- normal
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: explosion_mushroom_128
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_machine_beep
+  volume: 1.5

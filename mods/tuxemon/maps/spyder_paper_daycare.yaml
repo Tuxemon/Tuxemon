@@ -1,0 +1,213 @@
+events:
+  Create Granny Piper:
+    actions:
+    - create_npc spyder_grannypiper,3,6
+    - char_face spyder_grannypiper,right
+    conditions:
+    - not char_exists spyder_grannypiper
+    type: event
+  FlashBack Billie Grandma:
+    actions:
+    - lock_controls
+    - set_template player,invisible
+    - set_layer 102:51:0:128
+    - create_npc spyder_billie,13,7
+    - char_face spyder_billie,left
+    - pathfind spyder_billie,4,6
+    - char_face spyder_billie,left
+    - translated_dialog spyder_billie_flashback1,,top
+    - translated_dialog spyder_billie_flashback2
+    - translated_dialog spyder_billie_flashback3,,top
+    - translated_dialog spyder_billie_flashback4
+    - translated_dialog spyder_billie_flashback5,,top
+    - translated_dialog spyder_billie_flashback6
+    - translated_dialog spyder_billie_flashback7,,top
+    - translated_dialog spyder_billie_flashback8
+    - translated_dialog spyder_billie_flashback9,,top
+    - translated_dialog spyder_billie_flashback10
+    - translated_dialog spyder_billie_flashback11,,top
+    - translated_dialog spyder_billie_flashback12,,top
+    - pathfind spyder_billie,3,8
+    - remove_npc spyder_billie
+    - char_face spyder_grannypiper,down
+    - pathfind spyder_grannypiper,2,3
+    - char_face spyder_grannypiper,up
+    - translated_dialog spyder_billie_flashback_end
+    - set_variable billie_grandma:done
+    - set_layer 0:0:0:255
+    - unlock_controls
+    - set_variable flashback:off
+    - transition_teleport player,spyder_paper_rival_downstairs.tmx,7,9
+    - char_face player,right
+    conditions:
+    - is variable_set billie_grandma:yes
+    type: event
+  Give Monster No:
+    actions:
+    - set_variable give_monster:null
+    conditions:
+    - is variable_set give_monster:no
+    type: event
+  Give Monster Yes:
+    actions:
+    - get_player_monster daycare_choice
+    - create_kennel player,daycare,true
+    - set_kennel_visible player,daycare,false
+    - store_monster daycare_choice,daycare
+    - set_variable stored:stored
+    - info daycare_choice,name
+    - copy_variable daycare_name,info_name
+    - info daycare_choice,owner_steps
+    - copy_variable daycare_steps,info_owner_steps
+    - info daycare_choice,level
+    - copy_variable daycare_old_level,info_level
+    conditions:
+    - is variable_set give_monster:yes
+    - not variable_set stored:stored
+    type: event
+  Music:
+    actions:
+    - play_music music_cathedral_theme
+    conditions:
+    - not music_playing music_cathedral_theme
+    type: event
+  Pamphlet 1:
+    actions:
+    - translated_dialog spyder_papertown_grannypiper8
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed INTERACT
+    - is variable_set seentimber:yes
+    type: event
+    x: 8
+    y: 5
+  Pamphlet 2:
+    actions:
+    - translated_dialog spyder_papertown_grannypiper10
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed INTERACT
+    - not variable_set seentimber:yes
+    type: event
+    x: 8
+    y: 5
+  Return Monster No:
+    actions:
+    - set_variable return_monster:null
+    conditions:
+    - is variable_set return_monster:no
+    type: event
+  Return Monster Yes Cash:
+    actions:
+    - info daycare_choice,owner_steps
+    - variable_math info_owner_steps,-,daycare_steps,daycare_exp
+    - give_experience daycare_choice,daycare_exp
+    - info daycare_choice,level
+    - variable_math info_level,-,daycare_old_level,daycare_level
+    - format_variable daycare_level,int
+    - format_variable daycare_exp,int
+    - translated_dialog spyder_papertown_grannypiper6
+    - format_variable daycare_exp,-int
+    - modify_money player,,daycare_exp
+    - set_variable return_monster:null
+    - set_variable give_monster:null
+    - set_variable stored:null
+    - withdraw_monster daycare_choice,player
+    conditions:
+    - is variable_set give_monster:yes
+    - is variable_set return_monster:yes
+    - is money_is player,greater_or_equal,daycare_exp
+    type: event
+  Return Monster Yes No Cash:
+    actions:
+    - translated_dialog spyder_papertown_grannypiper7
+    - set_variable return_monster:null
+    conditions:
+    - is variable_set return_monster:yes
+    - not money_is player,greater_or_equal,daycare_exp
+    type: event
+  Talk Granny Piper No Monster:
+    actions:
+    - translated_dialog spyder_papertown_grannypiper9
+    behav:
+    - talk spyder_grannypiper
+    conditions:
+    - not party_size player,greater_than,1
+    - is variable_set seentimber:yes
+    - is variable_set introducedaycare:yes
+    - not variable_set stored:stored
+    type: event
+  Talk Granny Piper Open 1:
+    actions:
+    - translated_dialog spyder_papertown_grannypiper3
+    - set_variable introducedaycare:yes
+    behav:
+    - talk spyder_grannypiper
+    conditions:
+    - is variable_set seentimber:yes
+    - not variable_set introducedaycare:yes
+    type: event
+  Talk Granny Piper Open 3:
+    actions:
+    - translated_dialog spyder_papertown_grannypiper5
+    - translated_dialog_choice yes:no,return_monster
+    behav:
+    - talk spyder_grannypiper
+    conditions:
+    - is variable_set seentimber:yes
+    - is variable_set introducedaycare:yes
+    - is variable_set stored:stored
+    type: event
+  Talk Granny Piper Yes Monster:
+    actions:
+    - translated_dialog spyder_papertown_grannypiper4
+    - translated_dialog_choice yes:no,give_monster
+    behav:
+    - talk spyder_grannypiper
+    conditions:
+    - is party_size player,greater_than,1
+    - is variable_set seentimber:yes
+    - is variable_set introducedaycare:yes
+    - not variable_set stored:stored
+    type: event
+  Talk Granny Piper1:
+    actions:
+    - translated_dialog spyder_papertown_grannypiper1
+    - set_variable spokengrannypiper:yes
+    behav:
+    - talk spyder_grannypiper
+    conditions:
+    - not variable_set spokengrannypiper:yes
+    - not variable_set seentimber:yes
+    type: event
+  Talk Granny Piper2:
+    actions:
+    - translated_dialog spyder_papertown_grannypiper2
+    behav:
+    - talk spyder_grannypiper
+    conditions:
+    - is variable_set spokengrannypiper:yes
+    - not variable_set seentimber:yes
+    type: event
+  Teleport to Back:
+    actions:
+    - transition_teleport player,spyder_paper_town.tmx,22,3,0.3
+    - char_face player,right
+    conditions:
+    - is char_at player
+    - is char_facing player,right
+    type: event
+    x: 13
+    y: 7
+  Teleport to Cotton Town:
+    actions:
+    - transition_teleport player,spyder_paper_town.tmx,20,5,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,down
+    height: 1
+    type: event
+    width: 2
+    x: 2
+    y: 8

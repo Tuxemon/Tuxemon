@@ -1,0 +1,37 @@
+tech_id: 169
+accuracy: 1
+effects:
+- type: healing
+healing_power: 2.0
+speed: extremely_fast
+potency: 1
+power: 0
+range: special
+recharge: 1
+slug: mending
+sort: damage
+modifiers: []
+behaviors:
+  bypasses_selection: true
+target:
+  enemy_monster: false
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: true
+  own_team: false
+  own_trainer: false
+category: special
+tags:
+- leadership
+types:
+- metal
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: x_attack
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_shine
+  volume: 1.5

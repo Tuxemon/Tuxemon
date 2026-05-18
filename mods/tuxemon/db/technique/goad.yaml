@@ -1,0 +1,40 @@
+tech_id: 39
+accuracy: 0.8
+effects:
+- type: give
+  parameters:
+  - enraged
+  - enemy_monster
+- type: damage
+speed: very_fast
+potency: 0.8
+power: 1.75
+range: melee
+recharge: 2
+slug: goad
+sort: damage
+modifiers: []
+behaviors: {}
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: simple
+tags:
+- speed
+- shielded
+types:
+- normal
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: buff_rage
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_kick
+  volume: 1.5

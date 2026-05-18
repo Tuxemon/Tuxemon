@@ -1,0 +1,10 @@
+combos:
+  - name: "example"                 # Unique identifier for the combo (used for logging and debugging)
+    buttons: ["DOWN", "RIGHT"]      # Sequence of button presses required to trigger the combo
+    max_delay_s: 0.8                # Maximum allowed delay (in seconds) between each button press
+    event_name: "cast_example"      # Name of the event to trigger when the combo is successfully executed
+    description: "Example combo for testing"  # Optional text description for debugging or documentation
+    character: "npc_slug"           # Character associated with this combo (optional)
+    difficulty: 1                   # Difficulty level: 1 = easy, 2 = medium, 3 = hard
+    priority: 0                     # Priority value: higher numbers make the combo take precedence
+    trigger_on_release: false       # Whether the combo triggers on button release (true) or press (false)

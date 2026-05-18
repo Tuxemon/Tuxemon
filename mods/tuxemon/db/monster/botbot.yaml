@@ -1,0 +1,90 @@
+slug: botbot
+species: socket
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: beam
+- level_learned: 1
+  technique: levitate
+- level_learned: 4
+  technique: strike
+- level_learned: 7
+  technique: radiance
+- level_learned: 13
+  technique: battery_discharge
+evolutions:
+- monster_slug: av8r
+  item:
+    booster_tech: 0.2
+- monster_slug: picc
+  item:
+    booster_tech: 0.2
+- monster_slug: mrmoswitch
+  item:
+    booster_tech: 0.2
+- monster_slug: k9
+  item:
+    booster_tech: 0.2
+- monster_slug: b_ver_1
+  item:
+    booster_tech: 0.2
+history:
+- slug: botbot
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - av8r
+  - picc
+  - mrmoswitch
+  - k9
+  - b_ver_1
+- slug: b_ver_1
+  stage: stage1
+  evolves_from:
+  - botbot
+  evolves_into: []
+- slug: k9
+  stage: stage1
+  evolves_from:
+  - botbot
+  evolves_into: []
+- slug: mrmoswitch
+  stage: stage1
+  evolves_from:
+  - botbot
+  evolves_into: []
+- slug: picc
+  stage: stage1
+  evolves_from:
+  - botbot
+  evolves_into: []
+- slug: av8r
+  stage: stage1
+  evolves_from:
+  - botbot
+  evolves_into: []
+terrains:
+- urban
+tags:
+- machine
+shape: grub
+stage: basic
+types:
+- metal
+gender_weights:
+  neuter: 1.0
+txmn_id: 125
+height: 40
+weight: 4
+sounds:
+  combat_call:
+    sfx: sound_game_shot_light_gun
+    volume: 1.5
+  faint_call:
+    sfx: sound_game_shot_light_gun_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.05

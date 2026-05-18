@@ -1,0 +1,32 @@
+monsters:
+- encounter_rate: 0.5
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 45
+  - 50
+  monster: pythwire
+  variables:
+    - key: daytime
+      value: "true"
+- encounter_rate: 0.5
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 45
+  - 50
+  monster: ouroboutlet
+  variables:
+    - key: daytime
+      value: "false"
+- encounter_rate: 0.5
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 40
+  - 45
+  monster: sockeserp
+  variables:
+    - key: daytime
+      value: "true"
+slug: spyder_datacenter

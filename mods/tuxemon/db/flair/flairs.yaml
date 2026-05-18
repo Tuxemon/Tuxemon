@@ -1,0 +1,28 @@
+# slug: Unique name of the flair (example: "stars")
+#        Must not be empty or whitespace.
+#        A corresponding sprite file MUST exist at:
+#        gfx/sprites/flairs/<sprite_type_override or category>/<slug>.png
+# category: Category of the flair item (example: "common", "rare")
+# weight: Float value representing rarity or probability (≥ 0, example: 1.0)
+# layer: Drawing layer for the flair (integer, higher numbers are drawn on top, example: 0)
+# layer_order: Drawing order within the same layer (lower numbers drawn first, example: 0)
+# x_offset: Optional horizontal offset from the sprite origin (example: null or 5)
+# y_offset: Optional vertical offset from the sprite origin (example: null or -3)
+# sprite_type: Optional set of sprite types this flair applies to
+#              (examples: ["front"], ["back"], ["menu01"])
+#              If null, applies to all sprite types.
+# sprite_type_override: Optional override for the folder used in the file path
+#                       (example: "universal"). If null, defaults to category.
+# color: Optional color tint to apply to the flair sprite (example: null or a ColorModel entry)
+
+- category: common
+  weight: 1.0
+  slug: stars
+  layer: 0
+  layer_order: 0
+  x_offset: null
+  y_offset: null
+  sprite_type:
+  - front
+  sprite_type_override: null
+  color: null

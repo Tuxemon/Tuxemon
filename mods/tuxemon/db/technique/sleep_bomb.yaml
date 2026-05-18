@@ -1,0 +1,39 @@
+tech_id: 59
+accuracy: 0.75
+effects:
+- type: give
+  parameters:
+  - noddingoff
+  - own_team:enemy_team
+- type: damage
+speed: normal
+potency: 1
+power: 2.25
+range: reach
+recharge: 2
+slug: sleep_bomb
+sort: damage
+modifiers: []
+behaviors: {}
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: exotic
+tags:
+- bomber
+types:
+- cosmic
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: sparks_white
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_tornado
+  volume: 1.5

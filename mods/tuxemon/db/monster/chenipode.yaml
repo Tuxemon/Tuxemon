@@ -1,0 +1,59 @@
+slug: chenipode
+species: travel_bug
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: rock
+- level_learned: 1
+  technique: clamp_on
+- level_learned: 4
+  technique: quicksand
+- level_learned: 7
+  technique: hammerhead
+- level_learned: 13
+  technique: take_cover
+- level_learned: 25
+  technique: tonguespear
+- level_learned: 28
+  technique: sand_spray
+- level_learned: 31
+  technique: rocky_barrage
+evolutions:
+- monster_slug: exapode
+  steps: '2500'
+history:
+- slug: chenipode
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - exapode
+- slug: exapode
+  stage: stage1
+  evolves_from:
+  - chenipode
+  evolves_into: []
+terrains: []
+tags:
+- bug
+shape: grub
+stage: basic
+types:
+- normal
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 346
+height: 15
+weight: 0.5
+sounds:
+  combat_call:
+    sfx: sound_insekt001
+    volume: 1.5
+  faint_call:
+    sfx: sound_insekt001_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.25

@@ -1,0 +1,26 @@
+# Configuration for the healing shop service.
+cathedral:
+  background: "gfx/ui/item/item_menu_bg.png"
+  base_healing_cost: 5
+
+  # Defines the cost scaling type.
+  # Options: "linear", "polynomial", "exponential"
+  cost_scaling_type: "linear"
+
+  # Parameters for the polynomial cost function:
+  # Cost = (level ^ exponent) * base_cost_per_level
+  polynomial_exponent: null
+
+  # Threshold above which monsters are excluded from the healing menu.
+  exclude_if_hp_ratio_above: 1.0
+
+  # Multiplier applied to the healing cost per HP when reviving a fainted monster (HP = 0).
+  # This makes reviving more expensive than regular healing.
+  revive_cost_multiplier: 1.0
+
+  # Flat cost added when reviving a fainted monster, regardless of how much HP is restored.
+  # This is charged once per revival, on top of the per-HP healing cost.
+  revive_cost: 0
+
+  # Whether fainted monsters (HP = 0) can be healed in this shop.
+  allow_fainted_monsters: true

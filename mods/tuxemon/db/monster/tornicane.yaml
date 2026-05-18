@@ -1,0 +1,71 @@
+slug: tornicane
+species: water_sprite
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: fire_ball
+- level_learned: 1
+  technique: chill_mist
+- level_learned: 4
+  technique: muddle
+- level_learned: 7
+  technique: invictus
+- level_learned: 13
+  technique: midnight_mantle
+- level_learned: 25
+  technique: flamethrower
+- level_learned: 28
+  technique: water_blast
+- level_learned: 31
+  technique: breathe_fire
+- level_learned: 40
+  technique: shadow_blast
+evolutions: []
+history:
+- slug: tornicane
+  stage: stage2
+  evolves_from:
+  - spirain
+  evolves_into: []
+- slug: seirein
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - loliferno
+  - spirain
+- slug: spirain
+  stage: stage1
+  evolves_from:
+  - seirein
+  evolves_into:
+  - tornicane
+terrains:
+- coastal
+- swamp
+tags:
+- water
+- darkness
+- ghost
+- weather
+shape: sprite
+stage: stage2
+types:
+- water
+- sky
+gender_weights:
+  neuter: 1.0
+txmn_id: 165
+height: 300
+weight: 0.1
+sounds:
+  combat_call:
+    sfx: sfx_tornado
+    volume: 1.5
+  faint_call:
+    sfx: sfx_tornado_faint
+    volume: 1.5
+catch_rate: 35.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.05

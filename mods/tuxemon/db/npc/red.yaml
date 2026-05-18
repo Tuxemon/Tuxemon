@@ -1,0 +1,10 @@
+slug: npc_red
+speech:
+  profile:
+    default: {}
+combat: {}
+audio: {}
+template:
+  sprite_name: adventurer
+  combat_sheet: adventurer
+  slug: adventurer

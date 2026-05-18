@@ -1,0 +1,41 @@
+tech_id: 145
+accuracy: 0.8
+effects:
+- type: give
+  parameters:
+  - recover
+  - own_monster
+- type: splash
+  parameters:
+  - '2'
+speed: normal
+potency: 1
+power: 2
+range: reach
+recharge: 2
+slug: ring
+sort: damage
+modifiers: []
+behaviors: {}
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: reserved
+tags:
+- reserved
+types:
+- wood
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: pulse_absorb
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_forcefield
+  volume: 1.5

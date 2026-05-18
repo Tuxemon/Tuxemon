@@ -1,0 +1,65 @@
+slug: cowpignon
+species: enhancement
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: fungal_spore
+- level_learned: 1
+  technique: solar_synthesis
+- level_learned: 4
+  technique: petrify
+- level_learned: 7
+  technique: pseudopod
+- level_learned: 13
+  technique: amnesia
+- level_learned: 16
+  technique: negation
+- level_learned: 19
+  technique: hallucinogen_spore
+- level_learned: 25
+  technique: stabilo
+- level_learned: 28
+  technique: radiance
+- level_learned: 31
+  technique: phantasmal_force
+- level_learned: 37
+  technique: splinter
+- level_learned: 40
+  technique: mind_explosion
+evolutions: []
+history:
+- slug: cowpignon
+  stage: standalone
+  evolves_from: []
+  evolves_into: []
+terrains:
+- grassland
+- woodland
+tags:
+- plant
+- love
+- mental
+- food
+shape: sprite
+stage: standalone
+types:
+- wood
+- cosmic
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 107
+height: 30.48
+weight: 2
+sounds:
+  combat_call:
+    sfx: sound_die_04
+    volume: 1.5
+  faint_call:
+    sfx: sound_die_04_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.05

@@ -1,0 +1,39 @@
+tech_id: 80
+accuracy: 0.8
+effects:
+- type: give
+  parameters:
+  - poison
+  - enemy_monster
+- type: damage
+speed: normal
+potency: 1
+power: 2.25
+range: reach
+recharge: 2
+slug: venomous_tentacle
+sort: damage
+modifiers: []
+behaviors: {}
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: simple
+tags:
+- pseudopod
+types:
+- water
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: tentacles_water
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_bubbles
+  volume: 1.5

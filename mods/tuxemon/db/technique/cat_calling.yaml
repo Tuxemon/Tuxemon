@@ -1,0 +1,40 @@
+tech_id: 124
+accuracy: 1
+effects:
+- type: give
+  parameters:
+  - charmed
+  - enemy_monster
+speed: normal
+potency: 1
+power: 0
+range: special
+recharge: 2
+slug: cat_calling
+sort: damage
+modifiers: []
+behaviors:
+  bypasses_selection: true
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: condition_imposer
+tags:
+- love
+- leadership
+types:
+- cosmic
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: calling
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_growl
+  volume: 1.5

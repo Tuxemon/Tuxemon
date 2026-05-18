@@ -1,0 +1,206 @@
+- slug: spyder_omnichannel_beaverbrook
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: ceo
+    combat_sheet: ceo
+    slug: ceo
+- slug: spyder_omnichannel_schwartz
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_omnichannel_schwartz1
+        post_battle_win: null
+        post_battle_lose: spyder_omnichannel_schwartz2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: rogue
+    combat_sheet: rogue
+    slug: rogue
+- slug: spyder_omnichannel_strauss
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_omnichannel_strauss1
+        post_battle_win: null
+        post_battle_lose: spyder_omnichannel_strauss2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: warrior
+    combat_sheet: warrior
+    slug: warrior
+- slug: spyder_omnichannel_william
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_omnichannel_william1
+        post_battle_win: null
+        post_battle_lose: spyder_omnichannel_william2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: beachcomber_black
+    combat_sheet: yellowbelt
+    slug: yellowbelt
+- slug: spyder_omnichannel_tohei
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_omnichannel_tohei1
+        post_battle_win: null
+        post_battle_lose: spyder_omnichannel_tohei2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: spyderrookie
+    combat_sheet: spyder_rookie
+    slug: spyder_rookie
+- slug: spyder_omnichannel_worm
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: 37707_female
+    combat_sheet: ceo
+    slug: ceo
+- slug: spyder_omnichannel_enforcer
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: knight
+    combat_sheet: enforcer_rookie
+    slug: enforcer_rookie
+- slug: spyder_omnichannel_thedukeofdeadair
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: rogue_red
+    combat_sheet: rogue
+    slug: rogue
+- slug: spyder_omnichannel_dempsey
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_omnichannel_dempsey1
+        post_battle_win: null
+        post_battle_lose: spyder_omnichannel_dempsey2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: spyderboss
+    combat_sheet: spyder_boss
+    slug: spyder_boss
+- slug: spyder_omnichannel_crane
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_omnichannel_crane1
+        post_battle_win: null
+        post_battle_lose: spyder_omnichannel_crane2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: spyderrookie
+    combat_sheet: spyder_rookie
+    slug: spyder_rookie
+- slug: spyder_omnichannel_carnegie
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_omnichannel_carnegie1
+        post_battle_win: null
+        post_battle_lose: spyder_omnichannel_carnegie2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: cooldude
+    combat_sheet: cooldude
+    slug: cooldude
+- slug: spyder_omnichannel_byrne
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_omnichannel_byrne1
+        post_battle_win: null
+        post_battle_lose: spyder_omnichannel_byrne2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor_green
+    combat_sheet: professor
+    slug: professor
+- slug: spyder_omnichannel_bettger
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_omnichannel_bettger1
+        post_battle_win: null
+        post_battle_lose: spyder_omnichannel_bettger2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: rogue_copper
+    combat_sheet: rogue
+    slug: rogue
+- slug: spyder_omnichannel_talbot
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: spyderrookie
+    combat_sheet: spyder_rookie
+    slug: spyder_rookie
+- slug: spyder_omnichannel_gore
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: spyderrookie
+    combat_sheet: spyder_rookie
+    slug: spyder_rookie
+- slug: spyder_omnichannel_danita
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: nurse
+    combat_sheet: nurse
+    slug: nurse
+- slug: spyder_omnichannel_ethan
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: maniac_yellow
+    combat_sheet: adventurer
+    slug: maniac

@@ -1,0 +1,46 @@
+tech_id: 143
+accuracy: 0.7
+effects:
+- type: give
+  parameters:
+  - focused
+  - own_monster
+- type: give
+  parameters:
+  - softened
+  - enemy_monster
+- type: damage
+speed: normal
+potency: 0.7
+power: 1.7
+range: melee
+recharge: 2
+slug: platinum
+sort: damage
+modifiers: []
+behaviors: {}
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: simple
+tags:
+- gemstone
+- machine
+- shielded
+- steel
+types:
+- metal
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: blue_circle
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_shine
+  volume: 1.5

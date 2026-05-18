@@ -1,0 +1,26 @@
+effects:
+- type: food_preference
+  parameters:
+  - taste_refined
+  - taste_mild
+slug: mille_feuille
+sort: utility
+sprite: gfx/items/box.png
+category: food
+cost: 1200
+usable_in:
+- WorldState
+modifiers: []
+behaviors:
+  consumable: true
+  resellable: true
+use_failure: generic_failure
+use_item: combat_used_x
+use_success: generic_success
+visuals:
+  animation: null
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: null
+  volume: 0.0

@@ -1,0 +1,61 @@
+events:
+  Choice Floor 1st:
+    actions:
+    - transition_teleport player,spyder_candy_hospital1.tmx,7,15,0.3
+    - set_variable choice_floor:null
+    conditions:
+    - is variable_set choice_floor:1floor
+    type: event
+  Choice Floor 2nd:
+    actions:
+    - transition_teleport player,spyder_candy_hospital2.tmx,11,15,0.3
+    - set_variable choice_floor:null
+    conditions:
+    - is variable_set choice_floor:2floor
+    type: event
+  Create Nurse:
+    actions:
+    - create_npc spyder_cathedral_nurse,5,4
+    - set_teleport_faint player,spyder_candy_center.tmx,6,7
+    - load_yaml spyder_cathedral
+    conditions:
+    - not char_exists spyder_cathedral_nurse
+    type: event
+  Elevator1:
+    actions:
+    - translated_dialog_choice 1floor:2floor:no,choice_floor
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed INTERACT
+    height: 1
+    type: event
+    width: 2
+    x: 13
+    y: 4
+  Elevator2:
+    actions:
+    - translated_dialog_choice 1floor:2floor:no,choice_floor
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed INTERACT
+    height: 1
+    type: event
+    width: 2
+    x: 17
+    y: 4
+  Go Outside:
+    actions:
+    - transition_teleport player,spyder_candy_town.tmx,14,35,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,down
+    type: event
+    x: 6
+    y: 10
+  Route Music:
+    actions:
+    - play_music music_cathedral_theme
+    conditions:
+    - not music_playing music_cathedral_theme
+    type: event

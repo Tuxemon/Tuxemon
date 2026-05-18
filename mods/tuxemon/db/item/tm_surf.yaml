@@ -1,0 +1,39 @@
+conditions:
+- type: base
+  parameters:
+  - types
+  - water
+  operator: is
+- type: base
+  parameters:
+  - shape
+  - piscine:polliwog:leviathan
+  operator: is
+- type: has_tech
+  parameters:
+  - surf
+  operator: not
+effects:
+- type: learn_tm
+  parameters:
+  - surf
+slug: tm_surf
+sort: utility
+sprite: gfx/items/tm_water.png
+category: technique
+cost: 2500
+usable_in:
+- WorldState
+modifiers: []
+behaviors:
+  resellable: true
+use_failure: generic_failure
+use_item: combat_used_x
+use_success: generic_success
+visuals:
+  animation: null
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: null
+  volume: 0.0

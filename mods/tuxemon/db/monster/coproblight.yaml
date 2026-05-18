@@ -1,0 +1,62 @@
+slug: coproblight
+species: skull_poo
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: rock
+- level_learned: 1
+  technique: fume
+- level_learned: 4
+  technique: spit_poison
+- level_learned: 7
+  technique: electroplate
+- level_learned: 13
+  technique: ants
+- level_learned: 16
+  technique: cat_calling
+- level_learned: 19
+  technique: quicksand
+- level_learned: 25
+  technique: biting_winds
+- level_learned: 28
+  technique: cloud_aether
+- level_learned: 31
+  technique: greenstone
+- level_learned: 37
+  technique: earthquake
+- level_learned: 40
+  technique: surge
+evolutions: []
+history:
+- slug: coproblight
+  stage: standalone
+  evolves_from: []
+  evolves_into: []
+terrains: []
+tags:
+- shielded
+- ground
+- rock
+- toxic
+shape: blob
+stage: standalone
+types:
+- earth
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 173
+height: 45
+weight: 8
+sounds:
+  combat_call:
+    sfx: sound_spit_01
+    volume: 1.5
+  faint_call:
+    sfx: sound_spit_01_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.9
+upper_catch_resistance: 1.15

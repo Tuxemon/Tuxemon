@@ -1,0 +1,62 @@
+monsters:
+- encounter_rate: 1
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 25
+  - 28
+  monster: coleorus
+  variables:
+    - key: daytime
+      value: "true"
+- encounter_rate: 1
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 20
+  - 25
+  monster: tourbidi
+  variables:
+    - key: daytime
+      value: "true"
+- encounter_rate: 3
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 25
+  - 28
+  monster: shybulb
+  variables:
+    - key: daytime
+      value: "true"
+- encounter_rate: 3
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 25
+  - 28
+  monster: narcileaf
+  variables:
+    - key: daytime
+      value: "false"
+- encounter_rate: 3
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 28
+  - 30
+  monster: sapsnap
+  variables:
+    - key: daytime
+      value: "false"
+- encounter_rate: 1
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 25
+  - 28
+  monster: lambert
+  variables:
+    - key: daytime
+      value: "false"
+slug: spyder_dryadsgrove

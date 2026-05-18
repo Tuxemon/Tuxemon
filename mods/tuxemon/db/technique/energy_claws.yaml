@@ -1,0 +1,39 @@
+tech_id: 31
+accuracy: 0.8
+effects:
+- type: give
+  parameters:
+  - sniping
+  - own_monster
+- type: damage
+speed: normal
+potency: 1
+power: 2.25
+range: melee
+recharge: 3
+slug: energy_claws
+sort: damage
+modifiers: []
+behaviors: {}
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: exotic
+tags:
+- claws
+types:
+- lightning
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: slash_power
+  flip_axes: x
+  loop: 0
+sound:
+  sfx: sfx_kick
+  volume: 1.5

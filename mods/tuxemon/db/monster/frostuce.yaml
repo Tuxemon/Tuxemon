@@ -1,0 +1,70 @@
+slug: frostuce
+species: freezerburn
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: ice_shield
+- level_learned: 1
+  technique: solar_synthesis
+- level_learned: 4
+  technique: poison_courtship
+- level_learned: 7
+  technique: stabilo
+- level_learned: 13
+  technique: icicle_spear
+- level_learned: 19
+  technique: fester
+- level_learned: 25
+  technique: splinter
+- level_learned: 28
+  technique: blossom
+- level_learned: 40
+  technique: snowstorm
+- level_learned: 55
+  technique: woodsmash
+evolutions: []
+history:
+- slug: frostuce
+  stage: stage2
+  evolves_from:
+  - lettice
+  evolves_into: []
+- slug: cohldrabi
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - lettice
+- slug: lettice
+  stage: stage1
+  evolves_from:
+  - cohldrabi
+  evolves_into:
+  - frostuce
+terrains:
+- boreal_snow
+tags:
+- plant
+- ice
+shape: humanoid
+stage: stage2
+types:
+- wood
+- frost
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 384
+height: 100
+weight: 18
+sounds:
+  combat_call:
+    sfx: sound_ice
+    volume: 1.5
+  faint_call:
+    sfx: sound_ice_faint
+    volume: 1.5
+catch_rate: 35.0
+lower_catch_resistance: 0.9
+upper_catch_resistance: 1.15

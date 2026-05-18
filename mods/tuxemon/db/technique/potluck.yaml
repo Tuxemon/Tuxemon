@@ -1,0 +1,45 @@
+tech_id: 235
+accuracy: 1.0
+effects:
+- type: give
+  parameters:
+  - exhausted
+  - own_monster
+- type: give
+  parameters:
+  - noddingoff
+  - enemy_monster
+- type: healing
+healing_power: 1.0
+speed: normal
+potency: 0.8
+power: 0.0
+range: special
+recharge: 1
+slug: potluck
+sort: damage
+modifiers: []
+behaviors:
+  bypasses_selection: true
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: special
+tags:
+- food
+types:
+- normal
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: cakechomp
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_bounce
+  volume: 1.5

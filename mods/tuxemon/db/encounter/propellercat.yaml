@@ -1,0 +1,10 @@
+monsters:
+- encounter_rate: 1
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 2
+  - 64
+  monster: propellercat
+  variables: []
+slug: propellercat

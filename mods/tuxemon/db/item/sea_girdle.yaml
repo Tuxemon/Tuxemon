@@ -1,0 +1,30 @@
+conditions:
+- type: can_evolve
+  operator: is
+- type: has_path
+  parameters:
+  - sea_girdle
+  operator: is
+effects:
+- type: evolve
+slug: sea_girdle
+sort: utility
+sprite: gfx/items/sea_girdle.png
+category: morph
+cost: 2000
+usable_in:
+- WorldState
+modifiers: []
+behaviors:
+  show_dialog_on_success: false
+  resellable: true
+use_failure: generic_failure
+use_item: combat_used_x
+use_success: generic_success
+visuals:
+  animation: null
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: null
+  volume: 0.0

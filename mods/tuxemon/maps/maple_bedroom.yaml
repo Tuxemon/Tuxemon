@@ -1,0 +1,114 @@
+events:
+  Go Downstairs:
+    x: 7
+    y: 2
+    type: event
+    conditions:
+    - is char_at player
+    - is char_facing player,left
+    actions:
+    - transition_teleport player,maple_house.tmx,11,2,0.3
+    - char_face player,down
+  Use Computer:
+    x: 4
+    y: 2
+    type: event
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed INTERACT
+    actions:
+    - translated_dialog maple_pc_entry_1
+  Read Sign:
+    x: 8
+    y: 1
+    type: event
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed INTERACT
+    - not time_is date,equals,4-27
+    actions:
+    - translated_dialog maple_bedroom_sign
+  Read Apr27:
+    x: 8
+    y: 1
+    type: event
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed INTERACT
+    - is time_is date,equals,4-27
+    actions:
+    - translated_dialog maple_bedroom_sign_apr27
+  Stop:
+    x: 6
+    y: 4
+    height: 2
+    width: 1
+    type: event
+    conditions:
+    - is char_at player
+    - not time_is date,equals,4-27
+    - not variable_set flashback27apr
+    actions:
+    - char_stop player
+    - lock_controls
+    - create_npc callie_wren,7,2
+    - wait 1
+    - pathfind callie_wren,8,5
+    - char_face callie_wren,left
+    - wait 1
+    - char_face player,right
+    - wait 1
+    - translated_dialog professorswife_room
+    - pathfind player,7,2
+    - remove_npc callie_wren
+    - unlock_controls
+  Stop 27Apr:
+    x: 8
+    y: 4
+    height: 1
+    width: 1
+    type: event
+    conditions:
+    - is char_at player
+    - is time_is date,equals,4-27
+    - not variable_set flashback27apr
+    actions:
+    - char_stop player
+    - lock_controls
+    - set_variable flashback:on
+    - pathfind player,6,6
+    - char_face player,up
+    - set_layer 102:51:0:128
+    - translated_dialog flashback_apr27_start,,center
+    - create_npc maple_wren,7,2
+    - pathfind maple_wren,0,4
+    - char_face maple_wren,down
+    - wait 1
+    - create_npc callie_wren,7,2
+    - pathfind callie_wren,4,4
+    - wait 1
+    - char_face maple_wren,right
+    - translated_dialog flashback_apr27_maple_1,,bottomleft
+    - translated_dialog flashback_apr27_callie_1,,bottomright
+    - translated_dialog flashback_apr27_maple_2,,bottomleft
+    - wait 1
+    - translated_dialog flashback_apr27_kay_voice,,top
+    - wait 1
+    - translated_dialog flashback_apr27_maple_3,,bottomleft
+    - translated_dialog flashback_apr27_maple_final,,bottomleft
+    - wait 1
+    - pathfind maple_wren,4,3
+    - wait 1
+    - char_face maple_wren,up
+    - wait 2
+    - pathfind maple_wren,7,2
+    - remove_npc maple_wren
+    - wait 1
+    - translated_dialog flashback_apr27_callie_final,,bottomright
+    - pathfind callie_wren,7,2
+    - remove_npc callie_wren
+    - translated_dialog flashback_apr27_end,,center
+    - set_layer
+    - set_variable flashback:off
+    - set_variable flashback27apr:done
+    - unlock_controls

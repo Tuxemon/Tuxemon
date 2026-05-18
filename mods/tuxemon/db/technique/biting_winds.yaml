@@ -1,0 +1,39 @@
+tech_id: 24
+accuracy: 0.8
+effects:
+- type: give
+  parameters:
+  - softened
+  - enemy_monster
+- type: damage
+speed: slow
+potency: 1
+power: 1.25
+range: ranged
+recharge: 2
+slug: biting_winds
+sort: damage
+modifiers: []
+behaviors: {}
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: simple
+tags:
+- weather
+types:
+- sky
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: explosion_ice_112
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_tornado
+  volume: 1.5

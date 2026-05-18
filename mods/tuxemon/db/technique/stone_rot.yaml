@@ -1,0 +1,39 @@
+tech_id: 84
+accuracy: 1.0
+effects:
+- type: give
+  parameters:
+  - poison
+  - enemy_monster
+speed: fast
+potency: 0.9
+power: 0
+range: special
+recharge: 1
+slug: stone_rot
+sort: damage
+modifiers: []
+behaviors:
+  bypasses_selection: true
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: condition_imposer
+tags:
+- toxic
+types:
+- venom
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: drip_green
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_crumble2
+  volume: 1.5

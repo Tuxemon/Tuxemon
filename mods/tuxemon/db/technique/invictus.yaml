@@ -1,0 +1,46 @@
+tech_id: 63
+accuracy: 0.75
+effects:
+- type: give
+  parameters:
+  - enraged
+  - own_monster
+- type: give
+  parameters:
+  - grabbed
+  - enemy_monster
+- type: damage
+speed: slow
+potency: 1
+power: 1.25
+range: touch
+recharge: 2
+slug: invictus
+sort: damage
+modifiers: []
+behaviors: {}
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: simple
+tags:
+- bite
+- fists
+- leadership
+- fury
+types:
+- heroic
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: triforce_163
+  flip_axes: xy
+  loop: 0
+sound:
+  sfx: sfx_bite
+  volume: 1.5

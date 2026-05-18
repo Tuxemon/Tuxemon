@@ -1,0 +1,54 @@
+- file: tileset
+  slug: dragonbirth
+  frame_x: 48
+  frame_y: 64
+
+- file: tileset
+  slug: grass_blue
+  frame_x: 16
+  frame_y: 16
+
+- file: tileset
+  slug: party6
+  frame_x: 32
+  frame_y: 16
+
+- file: tileset
+  slug: party2
+  frame_x: 32
+  frame_y: 16
+
+- file: tileset
+  slug: party4
+  frame_x: 32
+  frame_y: 16
+
+- file: tileset
+  slug: party5
+  frame_x: 32
+  frame_y: 16
+
+- file: tileset
+  slug: party1
+  frame_x: 32
+  frame_y: 16
+
+- file: tileset
+  slug: sign01
+  frame_x: 16
+  frame_y: 32
+
+- file: tileset
+  slug: party3
+  frame_x: 32
+  frame_y: 16
+
+- file: tileset
+  slug: grass
+  frame_x: 16
+  frame_y: 16
+
+- file: tileset
+  slug: grass_red
+  frame_x: 16
+  frame_y: 16

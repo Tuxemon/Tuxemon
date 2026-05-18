@@ -1,0 +1,949 @@
+- file: technique
+  slug: crystal
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: rockfall_193
+  frame_x: 120
+  frame_y: 118
+
+- file: technique
+  slug: bubbleattack
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: flower
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: ruby
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: 12_hits_for_separation9
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: claws_twice_blue
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: buff_fast
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: shield_lava
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: debuff_melee
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: watershot
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: gnaw
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: heal_swarm
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: skull
+  frame_x: 54
+  frame_y: 70
+
+- file: technique
+  slug: heal_cross_120
+  frame_x: 120
+  frame_y: 120
+
+- file: technique
+  slug: spikes_ice
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: 12_hits_for_separation1
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: ice_storm
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: explosion_mushroom_128
+  frame_x: 120
+  frame_y: 120
+
+- file: technique
+  slug: horn
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: icetacle
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: snake_front_128
+  frame_x: 120
+  frame_y: 120
+
+- file: technique
+  slug: smokebomb_plume
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: spikes_fire
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: misc_hit_preview1
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: firelion_right
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: woodsmash
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: misc_hit_preview3
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: gloop_violet
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: lightning_claw
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: explosion_total_192
+  frame_x: 120
+  frame_y: 120
+
+- file: technique
+  slug: explosion_cloud_48
+  frame_x: 48
+  frame_y: 48
+
+- file: technique
+  slug: bite_zombie
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: metallic_absorb
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: waterbullet
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: snake_up_128
+  frame_x: 120
+  frame_y: 120
+
+- file: technique
+  slug: misc_hit_preview2
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: stickyweb
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: debian_64
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: firelion_front
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: ruby_radiate
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: 12_hits_for_separation4
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: explosion_burst
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: sparks_blue
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: spike_ice
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: cakechomp
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: pound_rock
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: pollenbullet
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: debian_240
+  frame_x: 170
+  frame_y: 240
+
+- file: technique
+  slug: x_attack
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: tornado_bulk
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: 12_hits_for_separation10
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: fireworks
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: misc_hit_preview5
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: shield_ice
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: tornado_volume
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: join_80
+  frame_x: 80
+  frame_y: 80
+
+- file: technique
+  slug: fire_fade
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: waterfall
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: tentacles_water
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: lightning_claw_large
+  frame_x: 120
+  frame_y: 120
+
+- file: technique
+  slug: shield_rock
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: spikes_metal
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: smokebomb
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: emerald_radiate
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: lightning_spheres
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: drip_blue_alt
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: lance_ice
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: drip_red
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: claw_blue
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: yellow_circle
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: constantburn
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: turquoise_circle
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: 12_hits_for_separation2
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: shield_turtle
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: 12_hits_for_separation5
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: slash_fire
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: 12_hits_for_separation6
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: green_circle
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: disintegrate_83
+  frame_x: 63
+  frame_y: 83
+
+- file: technique
+  slug: slash_double_188
+  frame_x: 120
+  frame_y: 93
+
+- file: technique
+  slug: snake_right
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: meltdown
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: metallic_radiate
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: 12_hits_for_separation8
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: wall_wood
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: breath_fire
+  frame_x: 120
+  frame_y: 72
+
+- file: technique
+  slug: needle
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: explosion_dusty_96
+  frame_x: 96
+  frame_y: 96
+
+- file: technique
+  slug: bite
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: fire_storm
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: pulse
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: red_circle
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: explosion_multi_128
+  frame_x: 120
+  frame_y: 75
+
+- file: technique
+  slug: emerald
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: misc_hit_preview4
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: smokebomb_puff_128
+  frame_x: 120
+  frame_y: 120
+
+- file: technique
+  slug: celldivision
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: amethyst_radiate
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: drip_orange
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: firelion_back
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: blue_circle
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: demiurge
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: drip_blue
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: warp
+  frame_x: 48
+  frame_y: 48
+
+- file: technique
+  slug: bomb_bright
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: fire_big_dark_96
+  frame_x: 83
+  frame_y: 99
+
+- file: technique
+  slug: ruby_absorb
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: shield_turtle_right
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: spikes_rock
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: buff_armour
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: 12_hits_for_separation11
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: explosion_ice_112
+  frame_x: 112
+  frame_y: 100
+
+- file: technique
+  slug: bomb
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: pushtrap_front
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: explosion_sun_32
+  frame_x: 32
+  frame_y: 32
+
+- file: technique
+  slug: skull_fire
+  frame_x: 96
+  frame_y: 112
+
+- file: technique
+  slug: clock
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: calling
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: metal_delete
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: whisp_fire
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: flameball_blue
+  frame_x: 32
+  frame_y: 32
+
+- file: technique
+  slug: pushtrap_right
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: amethyst
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: heal_burst_120
+  frame_x: 120
+  frame_y: 120
+
+- file: technique
+  slug: leafstab
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: crushingball
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: rockfall_264
+  frame_x: 109
+  frame_y: 120
+
+- file: technique
+  slug: wall_ice
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: claws_twice_red
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: slash_200
+  frame_x: 120
+  frame_y: 103
+
+- file: technique
+  slug: gloop_blue
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: fire_big_156
+  frame_x: 120
+  frame_y: 116
+
+- file: technique
+  slug: snowball
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: explosion_small
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: tornado_basic
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: appearance
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: fireball_114
+  frame_x: 114
+  frame_y: 91
+
+- file: technique
+  slug: sparks_green_alt
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: thunderstrike
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: drip_red_alt
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: rollingball
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: egg_crack
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: amethyst_absorb
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: sparks_white_alt
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: waterspurt
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: shadow_blast
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: screen
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: buff_ranged
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: tonguelash
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: ubuntu
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: power_arc_154
+  frame_x: 120
+  frame_y: 108
+
+- file: technique
+  slug: pulse_radiate
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: triple_whammy_80
+  frame_x: 80
+  frame_y: 80
+
+- file: technique
+  slug: smellysock
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: breath_blue
+  frame_x: 120
+  frame_y: 72
+
+- file: technique
+  slug: lightning_bolt_138
+  frame_x: 120
+  frame_y: 73
+
+- file: technique
+  slug: shield_fire
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: spike_rock
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: beam
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: 12_hits_for_separation3
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: triforce_163
+  frame_x: 120
+  frame_y: 104
+
+- file: technique
+  slug: gloop_orange
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: slash_power
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: drip_green
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: wall_fire
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: claw_yellow_169
+  frame_x: 120
+  frame_y: 102
+
+- file: technique
+  slug: tux_attack
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: flameball_red
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: energy_beam
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: 12_hits_for_separation7
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: pound
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: sparks_gold
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: pound_bright
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: explosion_big_126
+  frame_x: 120
+  frame_y: 119
+
+- file: technique
+  slug: divinity_beam
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: foodthrow
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: tail
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: crystal_absorb
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: sparks_blue_alt
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: buff_rage
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: sparks_white
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: staffstrike
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: emerald_absorb
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: pulse_absorb
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: beartrap
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: sparks_green
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: sparks_gold_alt
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: crystal_radiate
+  frame_x: 64
+  frame_y: 64
+
+- file: technique
+  slug: sparks_red
+  frame_x: 64
+  frame_y: 64

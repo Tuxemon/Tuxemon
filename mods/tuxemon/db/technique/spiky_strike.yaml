@@ -1,0 +1,36 @@
+tech_id: 199
+accuracy: 0.95
+effects:
+- type: damage
+speed: normal
+potency: 0.0
+power: 1.5
+range: reach
+recharge: 1
+slug: spiky_strike
+sort: damage
+modifiers: []
+behaviors: {}
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: basic
+tags:
+- sharp
+types:
+- earth
+- wood
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: needle
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_kick
+  volume: 1.5

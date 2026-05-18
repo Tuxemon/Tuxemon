@@ -1,0 +1,61 @@
+slug: sampsack
+species: brawn
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: punch
+- level_learned: 1
+  technique: invictus
+- level_learned: 4
+  technique: strike
+- level_learned: 7
+  technique: constrict
+- level_learned: 13
+  technique: shuriken
+- level_learned: 16
+  technique: blade
+- level_learned: 19
+  technique: platinum
+- level_learned: 25
+  technique: undertaker
+- level_learned: 28
+  technique: time_crisis
+- level_learned: 31
+  technique: arcane_eye
+- level_learned: 37
+  technique: all_in
+- level_learned: 40
+  technique: insanity
+evolutions: []
+history:
+- slug: sampsack
+  stage: standalone
+  evolves_from: []
+  evolves_into: []
+terrains:
+- urban
+tags:
+- fists
+- fury
+shape: brute
+stage: standalone
+types:
+- heroic
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 97
+height: 225
+weight: 235
+sounds:
+  combat_call:
+    sfx: sound_human_06
+    volume: 1.5
+  faint_call:
+    sfx: sound_human_06_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.9
+upper_catch_resistance: 1.15

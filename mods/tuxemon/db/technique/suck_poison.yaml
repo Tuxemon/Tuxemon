@@ -1,0 +1,39 @@
+tech_id: 58
+accuracy: 1.0
+effects:
+- type: transfer
+  parameters:
+  - poison
+  - user_to_target
+- type: damage
+speed: normal
+potency: 1
+power: 2.0
+range: melee
+recharge: 1
+slug: suck_poison
+sort: damage
+modifiers: []
+behaviors: {}
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: reserved
+tags:
+- reserved
+types:
+- venom
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: drip_green
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_bubbles
+  volume: 1.5

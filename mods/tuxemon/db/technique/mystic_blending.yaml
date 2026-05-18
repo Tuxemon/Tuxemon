@@ -1,0 +1,45 @@
+tech_id: 139
+accuracy: 1
+effects:
+- type: give
+  parameters:
+  - recover
+  - own_monster
+- type: give
+  parameters:
+  - focused
+  - enemy_monster
+- type: healing
+healing_power: 3.0
+speed: normal
+potency: 1
+power: 0
+range: special
+recharge: 4
+slug: mystic_blending
+sort: damage
+modifiers: []
+behaviors: {}
+target:
+  enemy_monster: false
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: true
+  own_team: false
+  own_trainer: false
+category: exotic
+tags:
+- healing
+- mental
+types:
+- cosmic
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: sparks_blue
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_shine
+  volume: 1.5

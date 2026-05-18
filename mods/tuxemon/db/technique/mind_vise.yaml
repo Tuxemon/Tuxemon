@@ -1,0 +1,40 @@
+tech_id: 185
+accuracy: 1
+effects:
+- type: give
+  parameters:
+  - stuck
+  - enemy_monster
+- type: damage
+speed: normal
+potency: 1
+power: 1
+range: melee
+recharge: 1
+slug: mind_vise
+sort: damage
+modifiers: []
+behaviors: {}
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: simple
+tags:
+- ghost
+- mental
+types:
+- cosmic
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: amethyst
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_pulse
+  volume: 1.5

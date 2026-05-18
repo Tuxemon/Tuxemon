@@ -1,0 +1,62 @@
+slug: nudikill
+species: dark_bishop
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: flood
+- level_learned: 1
+  technique: feint
+- level_learned: 4
+  technique: muck
+- level_learned: 7
+  technique: fiery
+- level_learned: 13
+  technique: suck_poison
+- level_learned: 19
+  technique: rot
+- level_learned: 25
+  technique: bubble_trap
+- level_learned: 28
+  technique: caustic_spray
+evolutions: []
+history:
+- slug: nudikill
+  stage: stage1
+  evolves_from:
+  - nudiflot_male
+  evolves_into: []
+- slug: nudiflot_male
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - nudikill
+terrains:
+- coastal
+- freshwater
+- sea
+tags:
+- toxic
+- darkness
+- mental
+shape: polliwog
+stage: stage1
+types:
+- water
+- venom
+gender_weights:
+  male: 1.0
+txmn_id: 53
+height: 122
+weight: 35
+sounds:
+  combat_call:
+    sfx: sound_splash_1
+    volume: 1.5
+  faint_call:
+    sfx: sound_splash_1_faint
+    volume: 1.5
+catch_rate: 70.0
+lower_catch_resistance: 0.9
+upper_catch_resistance: 1.15

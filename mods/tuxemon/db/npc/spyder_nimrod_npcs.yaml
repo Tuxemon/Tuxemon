@@ -1,0 +1,236 @@
+- slug: spyder_nimrod_zircon
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_nimrod_zircon1
+        post_battle_win: null
+        post_battle_lose: spyder_nimrod_zircon2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: scientist_brown
+    combat_sheet: scientist_brown
+    slug: scientist
+- slug: spyder_nimrod_xeon
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_nimrod_xeon1
+        post_battle_win: null
+        post_battle_lose: spyder_nimrod_xeon2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: robot
+    combat_sheet: xeon
+    slug: robot
+- slug: spyder_nimrod_tru
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_nimrod_tru1
+        post_battle_win: null
+        post_battle_lose: spyder_nimrod_tru2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: knight
+    combat_sheet: knightlord
+    slug: knightlord
+- slug: spyder_nimrod_thatcher
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_nimrod_thatcher1
+        post_battle_win: null
+        post_battle_lose: spyder_nimrod_thatcher2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: knight
+    combat_sheet: enforcer_agent
+    slug: enforcer_agent
+- slug: spyder_nimrod_rebel
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_nimrod_rebel1
+        post_battle_win: null
+        post_battle_lose: spyder_nimrod_rebel2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: soldier
+    combat_sheet: aviator
+    slug: aviator
+- slug: spyder_nimrod_maverick
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_nimrod_maverick1
+        post_battle_win: null
+        post_battle_lose: spyder_nimrod_maverick2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: soldier
+    combat_sheet: soldier
+    slug: soldier
+- slug: spyder_nimrod_mace
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_nimrod_mace1
+        post_battle_win: null
+        post_battle_lose: spyder_nimrod_mace2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: scientist
+    combat_sheet: scientist
+    slug: scientist
+- slug: spyder_nimrod_justice
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_nimrod_justice1
+        post_battle_win: null
+        post_battle_lose: spyder_nimrod_justice2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: soldier
+    combat_sheet: soldier
+    slug: soldier
+- slug: spyder_nimrod_honour
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_nimrod_honour1
+        post_battle_win: null
+        post_battle_lose: spyder_nimrod_honour2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: soldier
+    combat_sheet: soldier
+    slug: soldier
+- slug: spyder_nimrod_chromerobo
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_nimrod_chromerobo1
+        post_battle_win: null
+        post_battle_lose: spyder_nimrod_chromerobo2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: robot
+    combat_sheet: chrome_robo
+    slug: robot
+- slug: spyder_nimrod_antimony
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_nimrod_antimony1
+        post_battle_win: null
+        post_battle_lose: spyder_nimrod_antimony2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: scientist_fiery
+    combat_sheet: scientist
+    slug: scientist
+- slug: spyder_nimrod_bowie
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_nimrod_bowie1
+        post_battle_win: null
+        post_battle_lose: spyder_nimrod_bowie2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: knight
+    combat_sheet: enforcer_boss
+    slug: enforcer_boss
+- slug: spyder_nimrod_archer
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_nimrod_archer1
+        post_battle_win: null
+        post_battle_lose: spyder_nimrod_archer2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: soldier
+    combat_sheet: soldier
+    slug: soldier
+- slug: spyder_nimrod_argon
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_nimrod_argon1
+        post_battle_win: null
+        post_battle_lose: spyder_nimrod_argon2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: scientist_black
+    combat_sheet: scientist_black
+    slug: scientist
+- slug: spyder_nimrod_dirk
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: knight
+    combat_sheet: enforcer_rookie
+    slug: enforcer_rookie
+- slug: spyder_nimrod_jake
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: soldier
+    combat_sheet: soldier
+    slug: soldier
+- slug: spyder_nimrod_jervis
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: scientist_brown
+    combat_sheet: scientist
+    slug: scientist
+- slug: spyder_nimrod_elara
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: florist_rose
+    combat_sheet: florist
+    slug: florist

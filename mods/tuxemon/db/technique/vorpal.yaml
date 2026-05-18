@@ -1,0 +1,39 @@
+tech_id: 155
+accuracy: 0.95
+effects:
+- type: give
+  parameters:
+  - revenge
+  - enemy_monster
+- type: damage
+speed: fast
+potency: 1
+power: 3
+range: melee
+recharge: 3
+slug: vorpal
+sort: damage
+modifiers: []
+behaviors: {}
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: reserved
+tags:
+- reserved
+types:
+- metal
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: amethyst_radiate
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_forcefield
+  volume: 1.5

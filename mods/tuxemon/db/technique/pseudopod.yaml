@@ -1,0 +1,39 @@
+tech_id: 68
+accuracy: 1
+effects:
+- type: give
+  parameters:
+  - festering
+  - enemy_monster
+- type: damage
+speed: normal
+potency: 0.7
+power: 1.25
+range: reach
+recharge: 1
+slug: pseudopod
+sort: damage
+modifiers: []
+behaviors: {}
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: simple
+tags:
+- pseudopod
+types:
+- venom
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: snake_right
+  flip_axes: x
+  loop: 0
+sound:
+  sfx: sfx_squeak
+  volume: 1.5

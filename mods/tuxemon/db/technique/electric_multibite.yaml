@@ -1,0 +1,42 @@
+tech_id: 220
+accuracy: 0.9
+effects:
+- type: give
+  parameters:
+  - slow
+  - enemy_monster
+- type: multiattack
+  parameters:
+  - '2'
+speed: fast
+potency: 0.15
+power: 1.2
+range: touch
+recharge: 3
+slug: electric_multibite
+sort: damage
+modifiers: []
+behaviors: {}
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: exotic
+tags:
+- bite
+- electricity
+types:
+- lightning
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: beartrap
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_bite
+  volume: 1.5

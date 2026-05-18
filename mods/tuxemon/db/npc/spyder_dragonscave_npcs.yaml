@@ -1,0 +1,177 @@
+- slug: spyder_dragonscave_angrybrute
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: knight
+    combat_sheet: enforcer_rookie
+    slug: enforcer_rookie
+- slug: spyder_dragonscave_benden
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_dragonscave_benden1
+        post_battle_win: null
+        post_battle_lose: spyder_dragonscave_benden2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: dragonrider_black
+    combat_sheet: dragonrider
+    slug: dragonrider
+- slug: spyder_dragonscave_cailin
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_dragonscave_cailin1
+        post_battle_win: null
+        post_battle_lose: spyder_dragonscave_cailin2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: dragonrider_blue
+    combat_sheet: dragonrider
+    slug: dragonrider
+- slug: spyder_dragonscave_concernedbrute
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: knight
+    combat_sheet: enforcer_rookie
+    slug: enforcer_rookie
+- slug: spyder_dragonscave_daenny
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_dragonscave_daenny1
+        post_battle_win: null
+        post_battle_lose: spyder_dragonscave_daenny2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: dragonrider
+    combat_sheet: dragonrider
+    slug: dragonrider
+- slug: spyder_dragonscave_griffin
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_dragonscave_griffin1
+        post_battle_win: null
+        post_battle_lose: spyder_dragonscave_griffin2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: dragonrider_fiery
+    combat_sheet: dragonrider
+    slug: dragonrider
+- slug: spyder_dragonscave_lazybrute
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: knight
+    combat_sheet: enforcer_rookie
+    slug: enforcer_rookie
+- slug: spyder_dragonscave_lessa
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_dragonscave_lessa1
+        post_battle_win: null
+        post_battle_lose: spyder_dragonscave_lessa2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: dragonrider_black
+    combat_sheet: dragonrider
+    slug: dragonrider
+- slug: spyder_dragonscave_lucille
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_dragonscave_lucille1
+        post_battle_win: null
+        post_battle_lose: spyder_dragonscave_lucille2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: knight
+    combat_sheet: enforcer_agent
+    slug: enforcer_agent
+- slug: spyder_dragonscave_mal
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_dragonscave_mal1
+        post_battle_win: null
+        post_battle_lose: spyder_dragonscave_mal2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: spyderboss_fiery
+    combat_sheet: spyder_boss
+    slug: spyder_boss
+- slug: spyder_dragonscave_ray
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_dragonscave_ray1
+        post_battle_win: null
+        post_battle_lose: spyder_dragonscave_ray2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: spyderrookie
+    combat_sheet: spyder_rookie
+    slug: spyder_rookie
+- slug: spyder_dragonscave_tomas
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_dragonscave_tomas1
+        post_battle_win: null
+        post_battle_lose: spyder_dragonscave_tomas2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: dragonrider_green
+    combat_sheet: dragonrider
+    slug: dragonrider
+- slug: spyder_drokoro
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: drokoro
+    combat_sheet: noclass
+    slug: noclass
+    is_static_prop: true
+- slug: spyder_dragonscave_nurse
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: nurse_green
+    combat_sheet: nurse
+    slug: nurse

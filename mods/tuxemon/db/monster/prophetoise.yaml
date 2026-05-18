@@ -1,0 +1,66 @@
+slug: prophetoise
+species: dragon_bone
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: rock
+- level_learned: 1
+  technique: energy_field
+- level_learned: 4
+  technique: tinder
+- level_learned: 7
+  technique: muck
+- level_learned: 13
+  technique: sleep_bomb
+- level_learned: 19
+  technique: staff_smash
+- level_learned: 25
+  technique: shadow_boxing
+- level_learned: 28
+  technique: flamethrower
+- level_learned: 55
+  technique: divinity_beam
+evolutions: []
+history:
+- slug: prophetoise
+  stage: stage1
+  evolves_from:
+  - forturtle
+  evolves_into: []
+- slug: forturtle
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - prophetoise
+terrains:
+- desert
+- jungle
+- ruins
+tags:
+- flame
+- mental
+- celestial
+- staff
+shape: humanoid
+stage: stage1
+types:
+- fire
+- cosmic
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 88
+height: 108
+weight: 88
+sounds:
+  combat_call:
+    sfx: sound_spell_fire_07
+    volume: 1.5
+  faint_call:
+    sfx: sound_spell_fire_07_faint
+    volume: 1.5
+catch_rate: 70.0
+lower_catch_resistance: 0.9
+upper_catch_resistance: 1.15

@@ -1,0 +1,37 @@
+tech_id: 121
+accuracy: 0.6
+effects:
+- type: multiattack
+  parameters:
+  - '3'
+speed: slow
+potency: 0.0
+power: 1
+range: reach
+recharge: 1
+slug: air_chain
+sort: damage
+modifiers: []
+behaviors: {}
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: simple
+tags:
+- bird
+types:
+- sky
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: triforce_163
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_tornado
+  volume: 1.5

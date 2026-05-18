@@ -1,0 +1,46 @@
+tech_id: 67
+accuracy: 1
+effects:
+- type: give
+  parameters:
+  - focused
+  - enemy_monster
+- type: give
+  parameters:
+  - recover
+  - own_monster
+- type: healing
+healing_power: 2.0
+speed: normal
+potency: 1
+power: 0
+range: special
+recharge: 2
+slug: sudden_glow
+sort: damage
+modifiers: []
+behaviors:
+  bypasses_selection: true
+target:
+  enemy_monster: false
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: true
+  own_team: false
+  own_trainer: false
+category: exotic
+tags:
+- light
+- healing
+types:
+- heroic
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: heal_burst_120
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_shine
+  volume: 1.5

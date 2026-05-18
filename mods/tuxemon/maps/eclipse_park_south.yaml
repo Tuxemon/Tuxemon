@@ -1,0 +1,258 @@
+events:
+  Alert 100:
+    actions:
+    - translated_dialog eclipse_park_steps100,,center,center
+    - set_step_tracker_milestone_shown player,steps_park,100
+    conditions:
+    - is step_tracker player,steps_park,100
+    type: event
+  Encounters 1:
+    actions:
+    - random_encounter eclipse_park
+    - play_map_animation grass,0.1,noloop,player
+    conditions:
+    - is char_at player
+    - is char_moved player
+    - is current_state WorldState
+    height: 3
+    type: event
+    width: 14
+    x: 42
+    y: 2
+  Encounters 10:
+    actions:
+    - random_encounter eclipse_park
+    - play_map_animation grass,0.1,noloop,player
+    conditions:
+    - is char_at player
+    - is char_moved player
+    - is current_state WorldState
+    height: 8
+    type: event
+    width: 8
+    x: 1
+    y: 2
+  Encounters 11:
+    actions:
+    - random_encounter eclipse_park
+    - play_map_animation grass,0.1,noloop,player
+    conditions:
+    - is char_at player
+    - is char_moved player
+    - is current_state WorldState
+    height: 2
+    type: event
+    width: 10
+    x: 1
+    y: 13
+  Encounters 2:
+    actions:
+    - random_encounter eclipse_park
+    - play_map_animation grass,0.1,noloop,player
+    conditions:
+    - is char_at player
+    - is char_moved player
+    - is current_state WorldState
+    height: 3
+    type: event
+    width: 12
+    x: 30
+    y: 8
+  Encounters 3:
+    actions:
+    - random_encounter eclipse_park
+    - play_map_animation grass,0.1,noloop,player
+    conditions:
+    - is char_at player
+    - is char_moved player
+    - is current_state WorldState
+    height: 4
+    type: event
+    width: 3
+    x: 30
+    y: 14
+  Encounters 4:
+    actions:
+    - random_encounter eclipse_park
+    - play_map_animation grass,0.1,noloop,player
+    conditions:
+    - is char_at player
+    - is char_moved player
+    - is current_state WorldState
+    height: 10
+    type: event
+    width: 4
+    x: 22
+    y: 11
+  Encounters 5:
+    actions:
+    - random_encounter eclipse_park
+    - play_map_animation grass,0.1,noloop,player
+    conditions:
+    - is char_at player
+    - is char_moved player
+    - is current_state WorldState
+    height: 3
+    type: event
+    width: 7
+    x: 23
+    y: 23
+  Encounters 6:
+    actions:
+    - random_encounter eclipse_park
+    - play_map_animation grass,0.1,noloop,player
+    conditions:
+    - is char_at player
+    - is char_moved player
+    - is current_state WorldState
+    height: 13
+    type: event
+    width: 6
+    x: 30
+    y: 25
+  Encounters 7:
+    actions:
+    - random_encounter eclipse_park
+    - play_map_animation grass_blue,0.1,noloop,player
+    conditions:
+    - is char_at player
+    - is char_moved player
+    - is current_state WorldState
+    height: 6
+    type: event
+    width: 3
+    x: 54
+    y: 29
+  Encounters 8:
+    actions:
+    - random_encounter eclipse_park
+    - play_map_animation grass,0.1,noloop,player
+    conditions:
+    - is char_at player
+    - is char_moved player
+    - is current_state WorldState
+    height: 2
+    type: event
+    width: 6
+    x: 51
+    y: 20
+  Encounters 9:
+    actions:
+    - random_encounter eclipse_park
+    - play_map_animation grass,0.1,noloop,player
+    conditions:
+    - is char_at player
+    - is char_moved player
+    - is current_state WorldState
+    height: 33
+    type: event
+    width: 4
+    x: 12
+    y: 5
+  Environment Day:
+    actions:
+    - set_environment park
+    conditions:
+    - not time_is stage_of_day,equals,night
+    - not environment_is park
+    type: event
+  Environment Night:
+    actions:
+    - set_environment night_park
+    conditions:
+    - is time_is stage_of_day,equals,night
+    - not environment_is night_park
+    type: event
+  Play Music:
+    actions:
+    - play_music music_chibi_ninja
+    conditions:
+    - not music_playing music_chibi_ninja
+    type: event
+  Sign:
+    actions:
+    - translated_dialog welcome_location_route
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed INTERACT
+    type: event
+    x: 55
+    y: 5
+  Steps:
+    actions:
+    - transition_teleport player,eclipse_park_entrance.tmx,5,4,0.3
+    - char_face player,up
+    - add_item tuxeball_park,-25
+    - park_experience stop
+    - remove_step_tracker player,steps_park
+    conditions:
+    - is step_tracker player,steps_park,0
+    type: event
+  Teleport Cabin:
+    actions:
+    - transition_teleport player,eclipse_park_cabin.tmx,6,5,0.3
+    - char_face player,up
+    conditions:
+    - is char_at player
+    - is char_facing player,up
+    type: event
+    x: 6
+    y: 34
+  Teleport Park:
+    actions:
+    - transition_teleport player,eclipse_park.tmx,38,39,0.3
+    - char_face player,up
+    conditions:
+    - is char_at player
+    - is char_facing player,up
+    type: event
+    x: 58
+    y: 0
+  Teleport RiverA:
+    actions:
+    - transition_teleport player,eclipse_routeh.tmx,0,8,0.3
+    - char_face player,left
+    conditions:
+    - is char_at player
+    - is char_facing player,right
+    type: event
+    x: 59
+    y: 8
+  Teleport RiverB:
+    actions:
+    - transition_teleport player,eclipse_routeh.tmx,0,9,0.3
+    - char_face player,left
+    conditions:
+    - is char_at player
+    - is char_facing player,right
+    type: event
+    x: 59
+    y: 9
+  Teleport RiverC:
+    actions:
+    - transition_teleport player,eclipse_routeh.tmx,0,10,0.3
+    - char_face player,left
+    conditions:
+    - is char_at player
+    - is char_facing player,right
+    type: event
+    x: 59
+    y: 10
+  Teleport RiverD:
+    actions:
+    - transition_teleport player,eclipse_routeh.tmx,0,11,0.3
+    - char_face player,left
+    conditions:
+    - is char_at player
+    - is char_facing player,right
+    type: event
+    x: 59
+    y: 11
+  Tuxeball:
+    actions:
+    - transition_teleport player,eclipse_park_entrance.tmx,5,4,0.3
+    - char_face player,up
+    - park_experience stop
+    conditions:
+    - not has_item player,tuxeball_park
+    type: event

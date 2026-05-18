@@ -1,0 +1,26 @@
+conditions: []
+effects:
+- type: gain_xp
+  parameters:
+  - '1500'
+slug: ancient_tea
+sort: potion
+sprite: gfx/items/ancient_tea.png
+category: none
+cost: 3150
+usable_in:
+- WorldState
+modifiers: []
+behaviors:
+  resellable: true
+  show_dialog_on_success: false
+use_failure: generic_failure
+use_item: combat_used_x
+use_success: generic_success
+visuals:
+  animation: null
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: null
+  volume: 0.0

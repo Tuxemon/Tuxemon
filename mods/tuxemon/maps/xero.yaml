@@ -1,0 +1,23 @@
+events:
+  Check Max Moves:
+    actions:
+    - translated_dialog new_tech_delete
+    - get_pending_moves chosen_tech
+    - remove_tech chosen_tech
+    conditions:
+    - is check_max_tech player
+    - is current_state MainCombatMenuState
+    type: event
+  Evolution all:
+    actions:
+    - evolution player
+    conditions:
+    - is check_evolution player
+    - is current_state WorldState
+    type: event
+  Update Time Variables:
+    actions:
+    - update_time player
+    conditions:
+    - is current_state TeleporterState
+    type: event

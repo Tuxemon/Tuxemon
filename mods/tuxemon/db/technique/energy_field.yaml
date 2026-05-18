@@ -1,0 +1,43 @@
+tech_id: 22
+accuracy: 1
+effects:
+- type: give
+  parameters:
+  - charging
+  - own_monster
+- type: give
+  parameters:
+  - exhausted
+  - enemy_monster
+speed: very_fast
+potency: 1
+power: 0
+range: special
+recharge: 3
+slug: energy_field
+sort: damage
+modifiers: []
+behaviors:
+  bypasses_selection: true
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: true
+  own_team: false
+  own_trainer: false
+category: powerful
+tags:
+- machine
+types:
+- lightning
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: screen
+  flip_axes: x
+  loop: 0
+sound:
+  sfx: sfx_pulse
+  volume: 1.5

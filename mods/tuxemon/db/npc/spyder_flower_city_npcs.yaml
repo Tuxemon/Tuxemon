@@ -1,0 +1,140 @@
+- slug: spyder_flower_cady
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: snugglepot
+    combat_sheet: yellowbelt
+    slug: snugglepot
+- slug: spyder_flower_fez
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: beachcomber_copper
+    combat_sheet: yellowbelt
+    slug: beachcomber
+- slug: spyder_flower_mieke
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: catgirl_blue
+    combat_sheet: catgirl
+    slug: catgirl
+- slug: spyder_flower_sandy
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: childactor
+    combat_sheet: yellowbelt
+    slug: childactor
+- slug: spyder_flower_teach
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: picnicker
+    combat_sheet: picnicker
+    slug: picnicker
+- slug: spyder_flower_monk
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: monk_blue
+    combat_sheet: monk
+    slug: monk
+- slug: spyder_flowerhouse1_willie
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: firefighter
+    combat_sheet: firefighter
+    slug: firefighter
+- slug: spyder_flowerhouse2_pip
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: soldier
+    combat_sheet: soldier
+    slug: soldier
+- slug: spyder_flowerhouse1_jonette
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: granny
+    combat_sheet: adventurer
+    slug: granny
+- slug: spyder_flower_lissa
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: florist
+    combat_sheet: florist
+    slug: florist
+- slug: spyder_flowerhouse2_bruce
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: scientist_black
+    combat_sheet: scientist
+    slug: scientist
+- slug: spyder_flowerpetshop_denzel
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: shopkeeper_blonde
+    combat_sheet: adventurer
+    slug: shopkeeper
+- slug: spyder_flowerpetshop_titus
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: shopassistant_grey
+    combat_sheet: shopassistant
+    slug: shopassistant
+- slug: spyder_shopassistant
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: shopkeeper
+    combat_sheet: adventurer
+    slug: shopkeeper

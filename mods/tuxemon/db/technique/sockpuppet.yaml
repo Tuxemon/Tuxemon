@@ -1,0 +1,43 @@
+tech_id: 258
+accuracy: 1.0
+effects:
+- type: cooldown_modifier
+  parameters:
+  - enemy_monster
+  - '5'
+  - sort
+  - damage
+speed: fast
+potency: 0.0
+power: 0.0
+range: ranged
+recharge: 5
+slug: sockpuppet
+sort: damage
+modifiers: []
+behaviors: {}
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: special
+tags:
+- machine
+- shielded
+- weak
+- gadgets
+types:
+- normal
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: smellysock
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: null
+  volume: 1.5

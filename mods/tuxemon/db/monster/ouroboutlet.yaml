@@ -1,0 +1,59 @@
+slug: ouroboutlet
+species: infinite_energy
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: strike
+- level_learned: 1
+  technique: surge
+- level_learned: 4
+  technique: viper
+- level_learned: 7
+  technique: radiance
+- level_learned: 13
+  technique: constrict
+- level_learned: 19
+  technique: amnesia
+- level_learned: 25
+  technique: shuriken
+- level_learned: 28
+  technique: electrical_storm
+evolutions: []
+history:
+- slug: ouroboutlet
+  stage: stage1
+  evolves_from:
+  - pythwire
+  evolves_into: []
+- slug: pythwire
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - ouroboutlet
+  - sockeserp
+terrains:
+- urban
+tags:
+- electricity
+shape: serpent
+stage: stage1
+types:
+- lightning
+- metal
+gender_weights:
+  neuter: 1.0
+txmn_id: 90
+height: 62
+weight: 4
+sounds:
+  combat_call:
+    sfx: sound_misc_07
+    volume: 1.5
+  faint_call:
+    sfx: sound_misc_07_faint
+    volume: 1.5
+catch_rate: 70.0
+lower_catch_resistance: 0.9
+upper_catch_resistance: 1.15

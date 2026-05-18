@@ -1,0 +1,125 @@
+events:
+
+  Scenario:
+    actions:
+    - change_bg gradient_blue
+    - translated_dialog_choice spyder_campaign:xero_campaign:water_campaign,scenario_choice
+    conditions:
+    - not variable_set scenario_choice
+    - not variable_set gender_choice
+    - not variable_set race_choice
+    type: event
+
+  Gender:
+    actions:
+    - change_bg gradient_blue,choice_gender,image
+    - translated_dialog_choice gender_male:gender_female:gender_nonbinary,gender_choice
+    conditions:
+    - is variable_set scenario_choice
+    - not variable_set gender_choice
+    - not variable_set race_choice
+    type: event
+
+  Gender Male:
+    actions:
+    - set_char_attribute player,gender,male
+    - change_bg gradient_blue,choice_gender,image
+    - translated_dialog_choice black_male:white_male,race_choice
+    conditions:
+    - is variable_set scenario_choice
+    - is variable_set gender_choice:gender_male
+    - not variable_set race_choice
+    type: event
+
+
+  Gender Female:
+    actions:
+    - set_char_attribute player,gender,female
+    - change_bg gradient_blue,choice_gender,image
+    - translated_dialog_choice black_female:white_female,race_choice
+    conditions:
+    - is variable_set scenario_choice
+    - is variable_set gender_choice:gender_female
+    - not variable_set race_choice
+    type: event
+
+
+  Gender Nonbinary:
+    actions:
+    - set_char_attribute player,gender,nonbinary
+    - change_bg gradient_blue,choice_gender,image
+    - translated_dialog_choice gender_enby:gender_whatever,race_choice
+    conditions:
+    - is variable_set scenario_choice
+    - is variable_set gender_choice:gender_nonbinary
+    - not variable_set race_choice
+    type: event
+
+
+
+  Black Female:
+    actions:
+    - set_template player,brownheroine_brown,heroineblack
+    conditions:
+    - is variable_set race_choice:black_female
+    type: event
+  Black Male:
+    actions:
+    - set_template player,adventurerblack,adventurerblack
+    conditions:
+    - is variable_set race_choice:black_male
+    type: event
+  Gender Enby:
+    actions:
+    - set_template player,enbyasian,enbyasian
+    conditions:
+    - is variable_set race_choice:gender_enby
+    type: event
+  Whatever Penguin:
+    actions:
+    - set_template player,penguin,penguin
+    conditions:
+    - is variable_set race_choice:gender_whatever
+    type: event
+  White Female:
+    actions:
+    - set_template player,heroine,heroine
+    conditions:
+    - is variable_set race_choice:white_female
+    type: event
+  White Male:
+    actions:
+    - set_template player,adventurer,adventurer
+    conditions:
+    - is variable_set race_choice:white_male
+    type: event
+
+
+
+  Spyder:
+    actions:
+    - change_bg gradient_blue
+    - transition_teleport player,spyder_bedroom.tmx,4,4,0.3
+    conditions:
+    - is variable_set scenario_choice:spyder_campaign
+    - is variable_set gender_choice
+    - is variable_set race_choice
+    type: event
+  Xero:
+    actions:
+    - change_bg gradient_blue
+    - transition_teleport player,player_house_bedroom.tmx,4,4,0.3
+    conditions:
+    - is variable_set scenario_choice:xero_campaign
+    - is variable_set gender_choice
+    - is variable_set race_choice
+    type: event
+  Water:
+    actions:
+    - change_bg gradient_blue
+    - transition_teleport player,water_end_of_desert.tmx,11,32,0.5
+    conditions:
+    - is variable_set scenario_choice:water_campaign
+    - is variable_set gender_choice
+    - is variable_set race_choice
+    type: event

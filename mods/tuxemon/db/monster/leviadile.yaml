@@ -1,0 +1,75 @@
+slug: leviadile
+species: crocodile
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: ice_shield
+- level_learned: 1
+  technique: water_bullet
+- level_learned: 4
+  technique: slice
+- level_learned: 7
+  technique: geyser
+- level_learned: 13
+  technique: water_blast
+- level_learned: 19
+  technique: grinding
+- level_learned: 25
+  technique: tsunami
+- level_learned: 31
+  technique: kraken
+- level_learned: 37
+  technique: frostbite
+- level_learned: 40
+  technique: viper
+- level_learned: 55
+  technique: energy_beam
+evolutions: []
+history:
+- slug: leviadile
+  stage: stage2
+  evolves_from:
+  - krokivip
+  evolves_into: []
+- slug: kroki
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - krokivip
+- slug: krokivip
+  stage: stage1
+  evolves_from:
+  - kroki
+  evolves_into:
+  - leviadile
+terrains:
+- sea
+tags:
+- ice
+- water
+- bite
+- toxic
+- fury
+shape: leviathan
+stage: stage2
+types:
+- water
+- venom
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 371
+height: 680
+weight: 2500
+sounds:
+  combat_call:
+    sfx: sound_woosh_2
+    volume: 1.5
+  faint_call:
+    sfx: sound_woosh_2_faint
+    volume: 1.5
+catch_rate: 35.0
+lower_catch_resistance: 0.9
+upper_catch_resistance: 1.15

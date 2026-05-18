@@ -1,0 +1,70 @@
+- slug: spyder_dante
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: shopassistant
+    combat_sheet: adventurer
+    slug: shopassistant
+- slug: spyder_shady
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: cooldude_blue
+    combat_sheet: cooldude
+    slug: cooldude
+- slug: spyder_captain
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: riverboatcaptain
+    combat_sheet: enforcer_rookie
+    slug: riverboatcaptain
+- slug: spyder_billie
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: fashionista
+    combat_sheet: fashionista
+    slug: fashionista
+- slug: spyder_cathedral_nurse
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: nurse
+    combat_sheet: nurse
+    slug: nurse
+- slug: spyder_shopkeeper
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: shopkeeper
+    combat_sheet: shopassistant
+    slug: shopkeeper
+- slug: spyder_shopassistant
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: shopassistant
+    combat_sheet: shopassistant
+    slug: shopassistant

@@ -1,0 +1,10 @@
+slug: 37707_female_missing
+speech:
+  profile:
+    default: {}
+combat: {}
+audio: {}
+template:
+  sprite_name: 37707_female_missing
+  combat_sheet: heroine
+  slug: heroine

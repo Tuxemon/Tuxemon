@@ -1,0 +1,64 @@
+slug: lunight
+species: quasar
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: beam
+- level_learned: 1
+  technique: fire_ball
+- level_learned: 4
+  technique: shrapnel
+- level_learned: 7
+  technique: arcane_eye
+- level_learned: 13
+  technique: acid
+- level_learned: 16
+  technique: strike
+- level_learned: 19
+  technique: lineage
+- level_learned: 25
+  technique: sleep_bomb
+- level_learned: 28
+  technique: radiance
+- level_learned: 31
+  technique: gold_digger
+- level_learned: 37
+  technique: muddle
+- level_learned: 40
+  technique: perfect_cut
+evolutions: []
+history:
+- slug: lunight
+  stage: standalone
+  evolves_from: []
+  evolves_into: []
+terrains:
+- extraplanar
+- ruins
+tags:
+- darkness
+- celestial
+- steel
+- calamity
+shape: sprite
+stage: standalone
+types:
+- shadow
+- cosmic
+gender_weights:
+  neuter: 1.0
+txmn_id: 229
+height: 55
+weight: 17
+sounds:
+  combat_call:
+    sfx: sound_ghost_1
+    volume: 1.5
+  faint_call:
+    sfx: sound_ghost_1_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.9
+upper_catch_resistance: 1.15

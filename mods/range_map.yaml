@@ -1,0 +1,41 @@
+# The range_map dictionary defines the relationships between technique ranges
+# and the corresponding user and target stats with associated weights.
+
+# Close combat techniques that rely on the user's melee stat and target's armour stat.
+melee:
+  - user_stat: melee
+    weight: 1.0  # User stat: melee with weight 1.0
+  - target_stat: armour
+    weight: 1.0  # Target stat: armour with weight 1.0
+
+# Techniques requiring a touch, relying on the user's melee skill
+# and target's dodge ability to determine effectiveness.
+touch:
+  - user_stat: melee
+    weight: 1.0  # User stat: melee with weight 1.0
+  - target_stat: dodge
+    weight: 1.0  # Target stat: dodge with weight 1.0
+
+# Long-range techniques that depend on the user's ranged accuracy
+# and the target's dodge ability to calculate success and damage.
+ranged:
+  - user_stat: ranged
+    weight: 1.0  # User stat: ranged with weight 1.0
+  - target_stat: dodge
+    weight: 1.0  # Target stat: dodge with weight 1.0
+
+# Techniques with extended reach, relying on the user's ranged stats
+# and the target's armour to assess damage.
+reach:
+  - user_stat: ranged
+    weight: 1.0  # User stat: ranged with weight 1.0
+  - target_stat: armour
+    weight: 1.0  # Target stat: armour with weight 1.0
+
+# Reliable techniques that utilize the user's level and apply resistance-based
+# reduction from the target to calculate damage. "Resist" is kept here as placeholder.
+reliable:
+  - user_stat: level
+    weight: 1.0  # User stat: level with weight 1.0
+  - target_stat: resist
+    weight: 1.0  # Target stat: resist with weight 1.0

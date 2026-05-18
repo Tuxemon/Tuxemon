@@ -1,0 +1,64 @@
+slug: hatchling
+species: egg
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: roll
+- level_learned: 1
+  technique: peck
+- level_learned: 4
+  technique: whirlwind
+- level_learned: 7
+  technique: egg_smash
+- level_learned: 13
+  technique: fluff_up
+- level_learned: 25
+  technique: altitude
+- level_learned: 28
+  technique: peregrine
+- level_learned: 31
+  technique: air_chain
+- level_learned: 34
+  technique: one_two
+evolutions:
+- at_level: 18
+  monster_slug: birdling
+history:
+- slug: hatchling
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - birdling
+- slug: birdling
+  stage: stage1
+  evolves_from:
+  - hatchling
+  evolves_into: []
+terrains:
+- grassland
+- jungle
+- woodland
+tags:
+- bird
+shape: flier
+stage: basic
+types:
+- sky
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 81
+height: 20
+weight: 1
+sounds:
+  combat_call:
+    sfx: sound_cute_01
+    volume: 1.5
+  faint_call:
+    sfx: sound_cute_01_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.25

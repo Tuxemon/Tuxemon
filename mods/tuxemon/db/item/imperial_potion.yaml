@@ -1,0 +1,37 @@
+conditions:
+- type: current_hp
+  parameters:
+  - <
+  - '1.0'
+  operator: is
+- type: current_hp
+  parameters:
+  - '>'
+  - '0'
+  operator: is
+effects:
+- type: heal
+  parameters:
+  - '500'
+  - fixed
+slug: imperial_potion
+sort: potion
+sprite: gfx/items/imperial_potion.png
+category: potion
+cost: 1000
+usable_in:
+- MainCombatMenuState
+- WorldState
+modifiers: []
+behaviors:
+  resellable: true
+use_failure: generic_failure
+use_item: combat_used_x
+use_success: generic_success
+visuals:
+  animation: null
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: null
+  volume: 0.0

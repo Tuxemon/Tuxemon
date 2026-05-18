@@ -1,0 +1,41 @@
+tech_id: 47
+accuracy: 0.8
+effects:
+- type: give
+  parameters:
+  - lifeleech
+  - enemy_monster
+- type: splash
+  parameters:
+  - '2'
+speed: normal
+potency: 0.5
+power: 1
+range: reach
+recharge: 1
+slug: proboscis
+sort: damage
+modifiers: []
+behaviors: {}
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: simple
+tags:
+- bug
+types:
+- normal
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: lance_ice
+  flip_axes: xy
+  loop: 0
+sound:
+  sfx: sfx_squeak
+  volume: 1.5

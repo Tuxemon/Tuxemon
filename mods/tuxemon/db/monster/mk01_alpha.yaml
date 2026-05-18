@@ -1,0 +1,75 @@
+slug: mk01_alpha
+species: threat
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: electrical_storm
+- level_learned: 1
+  technique: wall_of_steel
+- level_learned: 4
+  technique: shrapnel
+- level_learned: 7
+  technique: beam
+- level_learned: 13
+  technique: blade
+- level_learned: 16
+  technique: acid
+- level_learned: 19
+  technique: platinum
+- level_learned: 25
+  technique: crystal
+- level_learned: 28
+  technique: lineage
+evolutions:
+- at_level: 32
+  monster_slug: mk01_delta
+- at_level: 32
+  monster_slug: mk01_gamma
+history:
+- slug: mk01_alpha
+  stage: stage1
+  evolves_from:
+  - mk01_proto
+  evolves_into:
+  - mk01_delta
+  - mk01_gamma
+- slug: mk01_proto
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - mk01_alpha
+  - mk01_beta
+- slug: mk01_gamma
+  stage: stage2
+  evolves_from:
+  - mk01_alpha
+  evolves_into: []
+- slug: mk01_delta
+  stage: stage2
+  evolves_from:
+  - mk01_alpha
+  - mk01_beta
+  evolves_into: []
+terrains: []
+tags: []
+shape: dragon
+stage: stage1
+types:
+- metal
+gender_weights:
+  neuter: 1.0
+txmn_id: 0
+height: 0.1
+weight: 100
+sounds:
+  combat_call:
+    sfx: sound_robot1
+    volume: 1.5
+  faint_call:
+    sfx: sound_robot1_faint
+    volume: 1.5
+catch_rate: 70.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.05

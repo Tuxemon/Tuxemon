@@ -1,0 +1,81 @@
+name: Tuxemon
+on:
+  push:
+    branches:
+      - development # only pushes on development. So the release variable will be set correctly
+  pull_request:
+  page_build:
+  workflow_dispatch:
+
+env:
+  IS_RELEASE: ${{ github.event_name == 'push' && github.ref_type == 'tag' && startswith(github.ref_name, 'v') }}
+
+
+jobs:
+  metainfo_validation:
+    uses: ./.github/workflows/metainfo_validation.yml 
+
+  flatpak:
+    uses: ./.github/workflows/flatpak.yml 
+    with:
+      IS_RELEASE: ${{ github.event_name == 'push' && github.ref_type == 'tag' && startswith(github.ref_name, 'v') }}
+
+  build_installer_windows:
+    uses: ./.github/workflows/installer_windows.yml
+
+  python-app:
+    uses: ./.github/workflows/python-app.yml
+
+  docs:
+    uses: ./.github/workflows/docs.yml
+
+  publish:
+    needs: [flatpak, build_installer_windows, docs]
+    runs-on: ubuntu-latest # does not matter which
+    # a prerelase is created when pushing to master
+    # a release is created when a tag will be set
+    # last condition is the same as IS_RELEASE,
+    # but environment variables cannot be used outside of steps
+    # so it was copied to here too
+    if: ${{ github.ref == 'refs/heads/development' || (github.event_name == 'push' && github.ref_type == 'tag' && startswith(github.ref_name, 'v'))  }}
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+
+      - name: list artifacts folder
+        run: |
+          echo "Show artifacts folder:"
+          ls artifacts
+          echo "Show artifacts/tuxemon_windows_installer folder:"
+          ls "artifacts/tuxemon_windows_installer"
+          echo "Show artifacts/Tuxemon-x86_64:"
+          ls "artifacts/Tuxemon-x86_64"
+
+      - name: Determine release title
+        uses: haya14busa/action-cond@v1
+        id: release_title
+        with:
+          cond: ${{ env.IS_RELEASE }}
+          if_true: 'Tuxemon Release ${{ github.ref_name }}'
+          if_false: 'Latest Build (Development)'
+
+      - name: Determine release tag
+        uses: haya14busa/action-cond@v1
+        id: release_tag
+        with:
+          cond: ${{ env.IS_RELEASE }}
+          if_true: 'stable'
+          if_false: 'latest'
+
+      - name: Update GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          prerelease: ${{ env.IS_RELEASE == 'false' }}
+          name: ${{ steps.release_title.outputs.value }}
+          tag_name: ${{ steps.release_tag.outputs.value }}
+          files: |
+            **/artifacts/tuxemon_windows_installer/*.exe
+            **/Tuxemon-x86_64/Tuxemon.flatpak

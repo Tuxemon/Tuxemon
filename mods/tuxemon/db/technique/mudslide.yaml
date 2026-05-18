@@ -1,0 +1,39 @@
+tech_id: 89
+accuracy: 0.8
+effects:
+- type: give
+  parameters:
+  - softened
+  - enemy_monster
+- type: damage
+speed: extremely_slow
+potency: 1
+power: 2.25
+range: melee
+recharge: 2
+slug: mudslide
+sort: damage
+modifiers: []
+behaviors: {}
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: simple
+tags:
+- ground
+types:
+- earth
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: spikes_rock
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_sand
+  volume: 1.5

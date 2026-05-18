@@ -1,0 +1,44 @@
+tech_id: 167
+accuracy: 1.0
+effects:
+- type: give
+  parameters:
+  - elementalshield
+  - own_monster
+- type: give
+  parameters:
+  - burn
+  - enemy_monster
+speed: normal
+potency: 1.0
+power: 0.0
+range: special
+recharge: 2
+slug: fire_shield
+sort: damage
+modifiers: []
+behaviors:
+  bypasses_selection: true
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: exotic
+tags:
+- soldier
+- shielded
+types:
+- fire
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: shield_fire
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_flames1
+  volume: 1.5

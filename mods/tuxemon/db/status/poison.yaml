@@ -1,0 +1,33 @@
+modifiers:
+- attribute: type
+  values:
+  - venom
+  multiplier: 0.0
+  source: poison immunity
+behaviors:
+  persists_after_combat: true
+category: negative
+effects:
+- type: poisoned
+  parameters:
+  - '8'
+  - weakest
+icon: gfx/ui/icons/status/icon_poison.png
+on_positive_status: replaced
+on_negative_status: replaced
+step_effect_value: 1.0
+step_effect_type: flat_damage
+step_interval: 10
+slug: poison
+sort: meta
+cond_id: 2
+use_failure: null
+use_success: combat_state_poison_end
+gain_cond: combat_state_poison_get
+visuals:
+  animation: drip_green
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_pulse
+  volume: 1.5

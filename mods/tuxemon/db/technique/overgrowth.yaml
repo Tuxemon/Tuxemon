@@ -1,0 +1,40 @@
+tech_id: 27
+accuracy: 0.8
+effects:
+- type: give
+  parameters:
+  - grabbed
+  - enemy_monster
+- type: damage
+speed: very_slow
+potency: 1
+power: 2.25
+range: ranged
+recharge: 2
+slug: overgrowth
+sort: damage
+modifiers: []
+behaviors: {}
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: simple
+tags:
+- Plant
+- summoner
+types:
+- wood
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: snake_right
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_shpring
+  volume: 1.5

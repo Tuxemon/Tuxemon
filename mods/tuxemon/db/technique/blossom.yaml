@@ -1,0 +1,42 @@
+tech_id: 26
+accuracy: 0.85
+effects:
+- type: damage
+- type: prop_healing
+  parameters:
+  - own_monster
+  - '0.2'
+healing_power: 2.0
+speed: normal
+potency: 1
+power: 1.25
+range: ranged
+recharge: 2
+slug: blossom
+sort: damage
+modifiers: []
+behaviors: {}
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: simple
+tags:
+- bug
+- Plant
+- healing
+types:
+- wood
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: gloop_orange
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_squeak
+  volume: 1.5

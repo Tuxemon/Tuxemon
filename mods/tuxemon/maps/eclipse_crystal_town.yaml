@@ -1,0 +1,173 @@
+events:
+  Event 5:
+    actions:
+    - char_stop player
+    - lock_controls
+    - set_layer 0:0:0:255
+    - play_sound japanese_temple_bell_small
+    - translated_dialog eclipse_event5_1
+    - translated_dialog eclipse_event5_2,,top
+    - play_sound japanese_temple_bell_small
+    - set_layer
+    - set_variable eclipse_event5:yes
+    - unlock_controls
+    conditions:
+    - not variable_set eclipse_event5:yes
+    type: event
+  Create Barmaid:
+    actions:
+    - create_npc eclipse_crystal_barmaid,26,13
+    - char_face eclipse_crystal_barmaid,left
+    conditions:
+    - not char_exists eclipse_crystal_barmaid
+    type: event
+  Create Hacker:
+    actions:
+    - create_npc eclipse_crystal_magician_fiery,32,5
+    conditions:
+    - not char_exists eclipse_crystal_magician_fiery
+    type: event
+  Create Homemaker:
+    actions:
+    - create_npc eclipse_crystal_homemaker,22,12,wander
+    conditions:
+    - not char_exists eclipse_crystal_homemaker
+    type: event
+  Crystal Bank:
+    actions:
+    - transition_teleport player,eclipse_crystal_bank1.tmx,2,15,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,up
+    type: event
+    x: 6
+    y: 7
+  Lion Mountain1:
+    actions:
+    - transition_teleport player,eclipse_lion_mountain_low.tmx,0,9,0.3
+    - char_face player,right
+    conditions:
+    - is char_at player
+    - is char_facing player,right
+    type: event
+    x: 39
+    y: 9
+  Lion Mountain2:
+    actions:
+    - transition_teleport player,eclipse_lion_mountain_low.tmx,0,10,0.3
+    - char_face player,right
+    conditions:
+    - is char_at player
+    - is char_facing player,right
+    type: event
+    x: 39
+    y: 10
+  Mountain Sign:
+    actions:
+    - translated_dialog here_to_east
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed INTERACT
+    type: event
+    x: 37
+    y: 7
+  Play Music:
+    actions:
+    - play_music music_town_theme
+    conditions:
+    - not music_playing music_town_theme
+    type: event
+  Talk Barmaid:
+    actions:
+    - translated_dialog eclipse_crystal_barmaid
+    behav:
+    - talk eclipse_crystal_barmaid
+    type: event
+  Talk Hacker:
+    actions:
+    - translated_dialog eclipse_crystal_hackerchat
+    behav:
+    - talk eclipse_crystal_magician_fiery
+    type: event
+  Teleport Cafe:
+    actions:
+    - transition_teleport player,eclipse_crystal_town_cafe.tmx,8,11,0.3
+    - char_face player,up
+    conditions:
+    - is char_at player
+    - is char_facing player,up
+    type: event
+    x: 23
+    y: 4
+  Teleport House:
+    actions:
+    - transition_teleport player,eclipse_crystal_town_house.tmx,4,7,0.3
+    - char_face player,up
+    conditions:
+    - is char_at player
+    - is char_facing player,up
+    type: event
+    x: 37
+    y: 17
+  Teleport Route7 1:
+    actions:
+    - transition_teleport player,eclipse_route7.tmx,35,0,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,down
+    type: event
+    x: 35
+    y: 19
+  Teleport Route7 2:
+    actions:
+    - transition_teleport player,eclipse_route7.tmx,36,0,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,down
+    type: event
+    x: 36
+    y: 19
+  Town Frozen Lake:
+    actions:
+    - translated_dialog eclipse_crystal_alert_skating
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed INTERACT
+    type: event
+    x: 26
+    y: 9
+  Town Sign:
+    actions:
+    - translated_dialog welcome_location_town
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed INTERACT
+    type: event
+    x: 32
+    y: 17
+  Tuxecenter:
+    actions:
+    - transition_teleport player,eclipse_crystal_center.tmx,6,10,0.3
+    - char_face player,up
+    conditions:
+    - is char_at player
+    - is char_facing player,up
+    type: event
+    x: 34
+    y: 4
+  Create Hiker:
+    actions:
+    - create_npc eclipse_route7_pia,35,8
+    conditions:
+    - not char_exists eclipse_route7_pia
+    type: event
+  Talk Hiker:
+    actions:
+    - translated_dialog eclipse_crystal_hiker1
+    - translated_dialog eclipse_crystal_hiker2
+    behav:
+    - talk eclipse_route7_pia
+    type: event

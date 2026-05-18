@@ -1,0 +1,96 @@
+events:
+  Go Downstairs:
+    actions:
+    - transition_teleport player,spyder_downstairs.tmx,0,2,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    type: event
+    x: 7
+    y: 2
+  Intro Question:
+    actions:
+    - translated_dialog spyder_intro_question
+    - translated_dialog_choice no:yes,question_intro
+    conditions:
+    - not variable_set question_intro:yes
+    - not variable_set question_intro:no
+    type: event
+  No Intro:
+    actions:
+    - set_variable spyder_intro:yes
+    - transition_teleport player,spyder_paper_scoop.tmx,4,8,0.3
+    - char_face player,right
+    conditions:
+    - is variable_set question_intro:yes
+    - not variable_set spyder_intro:yes
+    type: event
+  Play Music:
+    actions:
+    - play_music music_home
+    conditions:
+    - not music_playing music_home
+    type: event
+  Resting in Bed:
+    actions:
+    - screen_transition 1
+    - wait 0.5
+    - translated_dialog spyder_papertown_restinbed
+    - set_monster_health
+    - set_monster_status
+    - set_teleport_faint player,spyder_bedroom.tmx,6,5
+    conditions:
+    - is button_pressed INTERACT
+    - is char_facing_tile player
+    height: 2
+    type: event
+    width: 1
+    x: 0
+    y: 2
+  Spyder Intro:
+    actions:
+    - change_bg_char gradient_blue,spyder_omnichannel_beaverbrook
+    - translated_dialog spyder_intro00
+    - change_bg gradient_blue,spyder_tumble,image
+    - translated_dialog spyder_intro01
+    - change_bg_monster gradient_blue,dollfin
+    - translated_dialog dollfin,,,center,center
+    - change_bg_monster gradient_blue,ignibus
+    - translated_dialog ignibus,,,center,center
+    - change_bg_monster gradient_blue,memnomnom
+    - translated_dialog memnomnom,,,center,center
+    - change_bg_monster gradient_blue,budaye
+    - translated_dialog budaye,,,center,center
+    - change_bg_monster gradient_blue,grintot
+    - translated_dialog grintot,,,center,center
+    - change_bg gradient_blue,spyder_monsters,image
+    - translated_dialog spyder_intro02
+    - change_bg gradient_blue,spyder_morph,image
+    - translated_dialog spyder_intro03
+    - set_variable spyder_intro:yes
+    - transition_teleport player,spyder_paper_scoop.tmx,4,8,0.3
+    - char_face player,right
+    conditions:
+    - is variable_set question_intro:no
+    - not variable_set spyder_intro:yes
+    type: event
+  Use Computer:
+    actions:
+    - access_pc player
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed INTERACT
+    - not variable_set kernelquest:yes
+    type: event
+    x: 3
+    y: 1
+  Use Computer Kernel:
+    actions:
+    - translated_dialog spyder_pc_alert
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed INTERACT
+    - is variable_set kernelquest:yes
+    type: event
+    x: 3
+    y: 1

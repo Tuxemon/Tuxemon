@@ -1,0 +1,40 @@
+tech_id: 150
+accuracy: 0.7
+effects:
+- type: give
+  parameters:
+  - flinching
+  - enemy_monster
+- type: damage
+speed: normal
+potency: 0.2
+power: 1.4
+range: reach
+recharge: 1
+slug: torch
+sort: damage
+modifiers: []
+behaviors: {}
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: simple
+tags:
+- flame
+- gadgets
+types:
+- fire
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: pulse
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_flames1
+  volume: 1.5

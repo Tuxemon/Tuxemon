@@ -1,0 +1,64 @@
+slug: solight
+species: pulsar
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: beam
+- level_learned: 1
+  technique: wall_of_steel
+- level_learned: 4
+  technique: shrapnel
+- level_learned: 7
+  technique: fire_claw
+- level_learned: 13
+  technique: energy_claws
+- level_learned: 16
+  technique: give_all
+- level_learned: 19
+  technique: electrical_storm
+- level_learned: 25
+  technique: lava
+- level_learned: 28
+  technique: arcane_eye
+- level_learned: 31
+  technique: fire_shield
+- level_learned: 37
+  technique: kindling_flame
+- level_learned: 40
+  technique: supernova
+evolutions: []
+history:
+- slug: solight
+  stage: standalone
+  evolves_from: []
+  evolves_into: []
+terrains:
+- extraplanar
+- ruins
+tags:
+- celestial
+- light
+- steel
+- calamity
+shape: sprite
+stage: standalone
+types:
+- fire
+- cosmic
+gender_weights:
+  neuter: 1.0
+txmn_id: 230
+height: 55
+weight: 17
+sounds:
+  combat_call:
+    sfx: sound_glitch_call
+    volume: 1.5
+  faint_call:
+    sfx: sound_glitch_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.9
+upper_catch_resistance: 1.15

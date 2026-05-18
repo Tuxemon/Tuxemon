@@ -1,0 +1,73 @@
+slug: puparmor
+species: fortified
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: bullet
+- level_learned: 1
+  technique: frighten
+- level_learned: 4
+  technique: buzz
+- level_learned: 7
+  technique: hibernate
+- level_learned: 10
+  technique: perfect_cut
+- level_learned: 13
+  technique: blade
+- level_learned: 16
+  technique: lineage
+- level_learned: 19
+  technique: viper
+- level_learned: 22
+  technique: shuriken
+- level_learned: 25
+  technique: eyebite
+evolutions:
+- at_level: 12
+  monster_slug: weavifly
+history:
+- slug: puparmor
+  stage: stage1
+  evolves_from:
+  - cataspike
+  evolves_into:
+  - weavifly
+- slug: cataspike
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - puparmor
+- slug: weavifly
+  stage: stage2
+  evolves_from:
+  - puparmor
+  evolves_into: []
+terrains: []
+tags:
+- sharp
+- bug
+- bomber
+- shielded
+shape: blob
+stage: stage1
+types:
+- metal
+- venom
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 34
+height: 35
+weight: 8.5
+sounds:
+  combat_call:
+    sfx: sound_insekt001
+    volume: 1.5
+  faint_call:
+    sfx: sound_insekt001_faint
+    volume: 1.5
+catch_rate: 70.0
+lower_catch_resistance: 0.9
+upper_catch_resistance: 1.15

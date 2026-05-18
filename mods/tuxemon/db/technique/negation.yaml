@@ -1,0 +1,41 @@
+tech_id: 140
+accuracy: 1
+effects:
+- type: give
+  parameters:
+  - festering
+  - enemy_monster
+speed: normal
+potency: 1
+power: 0
+range: special
+recharge: 2
+slug: negation
+sort: damage
+modifiers: []
+behaviors:
+  bypasses_selection: true
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: condition_imposer
+tags:
+- toxic
+- healing
+- mental
+types:
+- normal
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: skull_fire
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_pulse
+  volume: 1.5

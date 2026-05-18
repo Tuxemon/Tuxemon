@@ -1,0 +1,31 @@
+conditions:
+- type: wild_monster
+  operator: is
+- type: base
+  parameters:
+  - species
+  - '!threat'
+  operator: is
+effects:
+- type: capture
+slug: tuxeball_hearty
+sort: utility
+sprite: gfx/items/tuxeball_hearty.png
+category: capture
+cost: 450
+usable_in:
+- MainCombatMenuState
+modifiers: []
+behaviors:
+  throwable: true
+  resellable: true
+use_failure: generic_failure
+use_item: combat_used_x
+use_success: generic_success
+visuals:
+  animation: capture_1
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: null
+  volume: 0.0

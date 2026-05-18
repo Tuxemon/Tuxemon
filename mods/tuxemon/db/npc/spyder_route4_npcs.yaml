@@ -1,0 +1,116 @@
+- slug: spyder_route4_beck
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_route4_beck1
+        post_battle_win: null
+        post_battle_lose: spyder_route4_beck2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: tennisplayer
+    combat_sheet: yellowbelt
+    slug: yellowbelt
+- slug: spyder_route4_marshall
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_route4_marshall1
+        post_battle_win: null
+        post_battle_lose: spyder_route4_marshall2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: soldier
+    combat_sheet: soldier
+    slug: soldier
+- slug: spyder_route4_rincewind
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_route4_rincewind1
+        post_battle_win: null
+        post_battle_lose: spyder_route4_rincewind2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: beachcomber_blue
+    combat_sheet: yellowbelt
+    slug: yellowbelt
+- slug: spyder_route4_roger
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_route4_roger1
+        post_battle_win: null
+        post_battle_lose: spyder_route4_roger2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: soldier
+    combat_sheet: soldier
+    slug: soldier
+- slug: spyder_route4_wulf
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_route4_wulf1
+        post_battle_win: null
+        post_battle_lose: spyder_route4_wulf2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: maniac
+    combat_sheet: alchemist
+    slug: alchemist
+- slug: spyder_route4_rosamund
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_route4_rosamund1
+        post_battle_win: null
+        post_battle_lose: spyder_route4_rosamund2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: picnicker
+    combat_sheet: picnicker
+    slug: picnicker
+- slug: spyder_route4_super
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: box
+    combat_sheet: noclass
+    slug: noclass
+    is_static_prop: true
+- slug: spyder_route4_boost
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: box
+    combat_sheet: noclass
+    slug: noclass
+    is_static_prop: true
+- slug: spyder_route4_nurse
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: nurse_green
+    combat_sheet: nurse
+    slug: nurse

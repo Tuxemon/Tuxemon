@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="107">
+ <properties>
+  <property name="edges" value="clamped"/>
+  <property name="inside" type="bool" value="true"/>
+  <property name="map_type" value="dungeon"/>
+  <property name="scenario" value="spyder"/>
+  <property name="slug" value="hospital1"/>
+ </properties>
+ <tileset firstgid="1" name="Interiors_16x16" tilewidth="16" tileheight="16" tilecount="2592" columns="16">
+  <image source="../gfx/tilesets/Interiors_16x16.png" width="256" height="2592"/>
+ </tileset>
+ <tileset firstgid="2593" name="Tilesets_16x16" tilewidth="16" tileheight="16" tilecount="1760" columns="40">
+  <image source="../gfx/tilesets/Tilesets_16x16.png" width="640" height="704"/>
+ </tileset>
+ <tileset firstgid="4353" name="Office_interiors_shadowless_16x16" tilewidth="16" tileheight="16" tilecount="528" columns="22">
+  <image source="../gfx/tilesets/Office_interiors_shadowless_16x16.png" width="352" height="384"/>
+ </tileset>
+ <layer id="7" name="Tile Layer 1" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eAGVkrFNA1EQRM8FYEqgHCpBdilOMJRgwJZTEgQlGARyagIEXZAyLxh5dPK/PYLVaDWzc/vndnHWdYuirsTPCo09HqWr6lqamxE6fA6qT9X9tI32q3TwnXwmqtcBtF+lg1+p1qqN6k71cKK3X4vP+Z3m31UfKu/Y7+3X4lM/15vZ6UW4Ffo/gXDs9CR8VllnDTwz1uFxq+LdP8JfYf5rOHb6En6Hzhp4ZqzDI/ODO5Vf5tPnmUk+84Nj18yj6plJ/Zt6vklOcCD9UrsPlXXMeB7M+4PzPxzygrOOGd7gvpVf5ed7xW9MfpWf7xW/Mfk5nwrxy/y4Te6R91+cH3NwHhUyQ37cMl7cJvdIHpfi+FbmUfXMoOeW8cr78y6ZB9/+T5/3t9dslVefZybza92fd62wf39//gkFLQ==
+  </data>
+ </layer>
+ <layer id="8" name="Tile Layer 2" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eAFjYKAdaGNnYGgHYmIBIfXTgGZNJ8E8UtUT685RdaMhUMnHwKCBA1cAxUkFm3hx61iPRw6XLmqbtwPohg4cOIMM9z0A6tmAA08gwzxc4TAqTtsQAACXcBSk
+  </data>
+ </layer>
+ <layer id="9" name="Tile Layer 3" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eAHtUksOAUEQLRbYkDgAl+AG3IAbcBHBHjNia8xcQFhwA8INuArxKlRS6dT8wlIlb7rr1Xuvk+4hInqUiJ4A16j+XrN+Wa/97KuWiWoA10rltSpEbUCqh31f9cyzXvuZayCr+cnjXqoDb1f5B9gPVS+6OL/Mx/AEQGR4Q3ATYGrMxO+uHrRbYG94duB8YGnM3Jxf9jN1f4ci0REQTr8fczKX80UnPa9rlXdC1hkQTr8fczIXv+ikT1vT3i/N/59/fwNzvO8C8AAfcPu8JwTI2AAhEAFun5Rn/Y9JemumM/L+j1beLzKsXJe7FIiuQFpl1d2Qdc+QF6d7AeOVMhg=
+  </data>
+ </layer>
+ <layer id="10" name="Tile Layer 4" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eAFjYBgFoyEwGgKjIUDfEDjKhLBvK5CNzkfIjrIGcwgAAC5bAv0=
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" id="3" name="Collisions">
+  <object id="32" type="collision" x="0" y="0" width="320" height="32"/>
+  <object id="33" type="collision" x="96" y="160" width="128" height="80"/>
+  <object id="48" type="collision" x="32" y="96" width="96" height="32"/>
+  <object id="49" type="collision" x="48" y="288" width="48" height="32"/>
+  <object id="50" type="collision" x="224" y="288" width="48" height="32"/>
+  <object id="52" type="collision" x="192" y="96" width="96" height="32"/>
+  <object id="53" type="collision" x="144" y="32" width="32" height="96"/>
+  <object id="54" type="collision" x="192" y="48" width="48" height="16"/>
+  <object id="55" type="collision" x="80" y="48" width="48" height="16"/>
+  <object id="56" type="collision" x="0" y="96" width="16" height="32"/>
+  <object id="57" type="collision" x="304" y="96" width="16" height="32"/>
+  <object id="58" type="collision" x="48" y="128" width="16" height="144"/>
+  <object id="59" type="collision" x="256" y="128" width="16" height="144"/>
+  <object id="60" type="collision" x="288" y="240" width="32" height="32"/>
+  <object id="61" type="collision" x="0" y="240" width="32" height="32"/>
+ </objectgroup>
+ <objectgroup color="#ffff00" id="4" name="Events">
+  <object id="41" name="Elevator1a" type="event" x="112" y="224" width="16" height="16">
+   <properties>
+    <property name="act10" value="translated_dialog_choice 0floor:2floor:no,choice_floor"/>
+    <property name="cond1" value="is char_facing_tile player"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
+   </properties>
+  </object>
+  <object id="42" name="Elevator2a" type="event" x="176" y="224" width="16" height="16">
+   <properties>
+    <property name="act10" value="translated_dialog_choice 0floor:2floor:no,choice_floor"/>
+    <property name="cond1" value="is char_facing_tile player"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
+   </properties>
+  </object>
+  <object id="43" name="Elevator1b" type="event" x="128" y="224" width="16" height="16">
+   <properties>
+    <property name="act10" value="translated_dialog_choice 0floor:2floor:no,choice_floor"/>
+    <property name="cond1" value="is char_facing_tile player"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
+   </properties>
+  </object>
+  <object id="44" name="Elevator2b" type="event" x="192" y="224" width="16" height="16">
+   <properties>
+    <property name="act10" value="translated_dialog_choice 0floor:2floor:no,choice_floor"/>
+    <property name="cond1" value="is char_facing_tile player"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
+   </properties>
+  </object>
+  <object id="62" name="Choice Floor Ground" type="event" x="128" y="192" width="16" height="16">
+   <properties>
+    <property name="act10" value="transition_teleport player,spyder_candy_center.tmx,14,5,0.3"/>
+    <property name="act20" value="set_variable choice_floor:null"/>
+    <property name="cond1" value="is variable_set choice_floor:0floor"/>
+   </properties>
+  </object>
+  <object id="63" name="Choice Floor 2nd" type="event" x="144" y="192" width="16" height="16">
+   <properties>
+    <property name="act10" value="transition_teleport player,spyder_candy_hospital2.tmx,11,15,0.3"/>
+    <property name="act20" value="set_variable choice_floor:null"/>
+    <property name="cond1" value="is variable_set choice_floor:2floor"/>
+   </properties>
+  </object>
+  <object id="68" name="Create Eleni" type="event" x="208" y="128" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_hospital1_eleni,13,8"/>
+    <property name="cond1" value="not char_exists spyder_hospital1_eleni"/>
+   </properties>
+  </object>
+  <object id="70" name="Talk Aurora" type="event" x="64" y="160" width="32" height="16">
+   <properties>
+    <property name="act01" value="lock_controls"/>
+    <property name="act02" value="pathfind_to_char player,spyder_hospital1_aurora"/>
+    <property name="act03" value="char_talk spyder_hospital1_aurora,pre_battle"/>
+    <property name="act04" value="unlock_controls"/>
+    <property name="act05" value="add_monster exclawvate,40,spyder_hospital1_aurora,5,10"/>
+    <property name="act06" value="start_battle player,spyder_hospital1_aurora"/>
+    <property name="act07" value="char_talk spyder_hospital1_aurora,post_battle_lose"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_hospital1_aurora"/>
+    <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
+   </properties>
+  </object>
+  <object id="71" name="Create Aurora" type="event" x="64" y="128" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_hospital1_aurora,4,8"/>
+    <property name="cond1" value="not char_exists spyder_hospital1_aurora"/>
+   </properties>
+  </object>
+  <object id="72" name="Talk Eleni" type="event" x="224" y="160" width="32" height="16">
+   <properties>
+    <property name="act01" value="lock_controls"/>
+    <property name="act02" value="pathfind_to_char player,spyder_hospital1_eleni"/>
+    <property name="act03" value="char_talk spyder_hospital1_eleni,pre_battle"/>
+    <property name="act04" value="unlock_controls"/>
+    <property name="act05" value="add_monster boltnu,30,spyder_hospital1_eleni,5,10"/>
+    <property name="act06" value="add_monster taupypus,30,spyder_hospital1_eleni,5,10"/>
+    <property name="act07" value="add_monster snaki,30,spyder_hospital1_eleni,5,10"/>
+    <property name="act08" value="add_monster galnec,30,spyder_hospital1_eleni,5,10"/>
+    <property name="act09" value="start_battle player,spyder_hospital1_eleni"/>
+    <property name="act10" value="char_talk spyder_hospital1_eleni,post_battle_lose"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_hospital1_eleni"/>
+    <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
+   </properties>
+  </object>
+  <object id="73" name="Create Felu" type="event" x="0" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_hospital1_felu,0,19"/>
+    <property name="act2" value="char_face spyder_hospital1_felu,right"/>
+    <property name="cond1" value="not char_exists spyder_hospital1_felu"/>
+   </properties>
+  </object>
+  <object id="74" name="Talk Felu" type="event" x="32" y="272" width="16" height="16">
+   <properties>
+    <property name="act01" value="lock_controls"/>
+    <property name="act02" value="pathfind_to_char player,spyder_hospital1_felu"/>
+    <property name="act03" value="char_talk spyder_hospital1_felu,pre_battle"/>
+    <property name="act04" value="unlock_controls"/>
+    <property name="act05" value="add_monster anu,30,spyder_hospital1_felu,5,10"/>
+    <property name="act06" value="add_monster galnec,30,spyder_hospital1_felu,5,10"/>
+    <property name="act07" value="start_battle player,spyder_hospital1_felu"/>
+    <property name="act08" value="char_talk spyder_hospital1_felu,post_battle_lose"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_hospital1_felu"/>
+    <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
+   </properties>
+  </object>
+  <object id="75" name="Create Fring" type="event" x="96" y="32" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_hospital1_fring,6,2"/>
+    <property name="cond1" value="not char_exists spyder_hospital1_fring"/>
+   </properties>
+  </object>
+  <object id="76" name="Talk Fring" type="event" x="16" y="80" width="16" height="16">
+   <properties>
+    <property name="act01" value="lock_controls"/>
+    <property name="act02" value="pathfind_to_char player,spyder_hospital1_fring"/>
+    <property name="act03" value="char_talk spyder_hospital1_fring,pre_battle"/>
+    <property name="act04" value="unlock_controls"/>
+    <property name="act05" value="add_monster anu,30,spyder_hospital1_fring,5,10"/>
+    <property name="act06" value="add_monster selket,30,spyder_hospital1_fring,5,10"/>
+    <property name="act07" value="start_battle player,spyder_hospital1_fring"/>
+    <property name="act08" value="char_talk spyder_hospital1_fring,post_battle_lose"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_hospital1_fring"/>
+    <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
+   </properties>
+  </object>
+  <object id="79" name="Create Walt" type="event" x="224" y="32" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_hospital1_walt,14,2"/>
+    <property name="cond1" value="not char_exists spyder_hospital1_walt"/>
+   </properties>
+  </object>
+  <object id="81" name="Talk Walt" type="event" x="176" y="80" width="16" height="16">
+   <properties>
+    <property name="act01" value="lock_controls"/>
+    <property name="act02" value="pathfind_to_char player,spyder_hospital1_walt"/>
+    <property name="act03" value="char_talk spyder_hospital1_walt,pre_battle"/>
+    <property name="act04" value="unlock_controls"/>
+    <property name="act05" value="add_monster anu,34,spyder_hospital1_walt,5,10"/>
+    <property name="act06" value="add_monster taupypus,27,spyder_hospital1_walt,5,10"/>
+    <property name="act07" value="start_battle player,spyder_hospital1_walt"/>
+    <property name="act08" value="char_talk spyder_hospital1_walt,post_battle_lose"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_hospital1_walt"/>
+    <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
+   </properties>
+  </object>
+  <object id="83" name="Create Liane" type="event" x="272" y="128" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_hospital1_liane,17,8"/>
+    <property name="cond1" value="not char_exists spyder_hospital1_liane"/>
+   </properties>
+  </object>
+  <object id="84" name="Talk Liane" type="event" x="272" y="224" width="16" height="16">
+   <properties>
+    <property name="act01" value="lock_controls"/>
+    <property name="act02" value="pathfind_to_char player,spyder_hospital1_liane"/>
+    <property name="act03" value="char_talk spyder_hospital1_liane,pre_battle"/>
+    <property name="act04" value="unlock_controls"/>
+    <property name="act05" value="add_monster boltnu,36,spyder_hospital1_liane,5,10"/>
+    <property name="act06" value="add_monster snaki,36,spyder_hospital1_liane,5,10"/>
+    <property name="act07" value="start_battle player,spyder_hospital1_liane"/>
+    <property name="act08" value="char_talk spyder_hospital1_liane,post_battle_lose"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_hospital1_liane"/>
+    <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
+   </properties>
+  </object>
+  <object id="85" name="Route Music" type="event" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="play_music music_cathedral_theme"/>
+    <property name="cond1" value="not music_playing music_cathedral_theme"/>
+   </properties>
+  </object>
+  <object id="88" name="Create Nurse" type="event" x="144" y="272" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_hospital1_marylyn,9,17"/>
+    <property name="act2" value="char_face spyder_hospital1_marylyn,up"/>
+    <property name="cond1" value="not char_exists spyder_hospital1_marylyn"/>
+   </properties>
+  </object>
+  <object id="89" name="Talk Nurse" type="event" x="144" y="224" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_hospital1_nurse1"/>
+    <property name="behav1" value="talk spyder_hospital1_marylyn"/>
+   </properties>
+  </object>
+  <object id="90" name="Create Pem" type="event" x="224" y="80" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_hospital1_pem,9,17"/>
+    <property name="act2" value="char_face spyder_hospital1_pem,up"/>
+    <property name="cond1" value="not char_exists spyder_hospital1_pem"/>
+   </properties>
+  </object>
+  <object id="93" name="Talk Pem" type="event" x="240" y="96" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_hospital1_pem1"/>
+    <property name="behav1" value="talk spyder_hospital1_pem"/>
+   </properties>
+  </object>
+  <object id="94" name="Environment" type="event" x="16" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_environment interior"/>
+    <property name="cond1" value="not environment_is interior"/>
+   </properties>
+  </object>
+  <object id="95" name="Talk Fring" type="event" x="128" y="80" width="16" height="16">
+   <properties>
+    <property name="act01" value="lock_controls"/>
+    <property name="act02" value="pathfind_to_char player,spyder_hospital1_fring"/>
+    <property name="act03" value="char_talk spyder_hospital1_fring,pre_battle"/>
+    <property name="act04" value="unlock_controls"/>
+    <property name="act05" value="add_monster anu,30,spyder_hospital1_fring,5,10"/>
+    <property name="act06" value="add_monster selket,30,spyder_hospital1_fring,5,10"/>
+    <property name="act07" value="start_battle player,spyder_hospital1_fring"/>
+    <property name="act08" value="char_talk spyder_hospital1_fring,post_battle_lose"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_hospital1_fring"/>
+    <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
+   </properties>
+  </object>
+  <object id="96" name="Talk Walt" type="event" x="288" y="80" width="16" height="16">
+   <properties>
+    <property name="act01" value="lock_controls"/>
+    <property name="act02" value="pathfind_to_char player,spyder_hospital1_walt"/>
+    <property name="act03" value="char_talk spyder_hospital1_walt,pre_battle"/>
+    <property name="act04" value="unlock_controls"/>
+    <property name="act05" value="add_monster anu,34,spyder_hospital1_walt,5,10"/>
+    <property name="act06" value="add_monster taupypus,27,spyder_hospital1_walt,5,10"/>
+    <property name="act07" value="start_battle player,spyder_hospital1_walt"/>
+    <property name="act08" value="char_talk spyder_hospital1_walt,post_battle_lose"/>
+    <property name="cond1" value="not battle_outcome player,won,spyder_hospital1_walt"/>
+    <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="not char_defeated player"/>
+   </properties>
+  </object>
+  <object id="97" name="Create Garvan" type="event" x="16" y="176" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_hospital1_smith,1,11"/>
+    <property name="cond1" value="not char_exists spyder_hospital1_smith"/>
+    <property name="cond2" value="not variable_set quarantine_garvan:yes"/>
+   </properties>
+  </object>
+  <object id="98" name="Talk Garvan" type="event" x="48" y="176" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_hospital1_scientist1"/>
+    <property name="act2" value="translated_dialog spyder_hospital1_scientist2"/>
+    <property name="act3" value="set_variable quarantine_garvan:yes"/>
+    <property name="act4" value="quarantine player,spyderbite,out,1"/>
+    <property name="behav1" value="talk spyder_hospital1_smith"/>
+    <property name="cond1" value="not variable_set quarantine_garvan:yes"/>
+   </properties>
+  </object>
+  <object id="99" name="Talk Felu" type="event" x="48" y="256" width="16" height="16">
+   <properties>
+    <property name="act1" value="char_talk spyder_hospital1_felu,post_battle_lose"/>
+    <property name="behav1" value="talk spyder_hospital1_felu"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_hospital1_felu"/>
+   </properties>
+  </object>
+  <object id="100" name="Post Talk Fring" type="event" x="32" y="96" width="16" height="16">
+   <properties>
+    <property name="act1" value="char_talk spyder_hospital1_fring,post_battle_lose"/>
+    <property name="behav1" value="talk spyder_hospital1_fring"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_hospital1_fring"/>
+   </properties>
+  </object>
+  <object id="101" name="Post Talk Aurora" type="event" x="48" y="160" width="16" height="16">
+   <properties>
+    <property name="act1" value="char_talk spyder_hospital1_aurora,post_battle_lose"/>
+    <property name="behav1" value="talk spyder_hospital1_aurora"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_hospital1_aurora"/>
+   </properties>
+  </object>
+  <object id="102" name="Post Talk Eleni" type="event" x="256" y="160" width="16" height="16">
+   <properties>
+    <property name="act1" value="char_talk spyder_hospital1_eleni,post_battle_lose"/>
+    <property name="behav1" value="talk spyder_hospital1_eleni"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_hospital1_eleni"/>
+   </properties>
+  </object>
+  <object id="103" name="Post Talk Liane" type="event" x="256" y="224" width="16" height="16">
+   <properties>
+    <property name="act1" value="char_talk spyder_hospital1_liane,post_battle_lose"/>
+    <property name="behav1" value="talk spyder_hospital1_liane"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_hospital1_liane"/>
+   </properties>
+  </object>
+  <object id="104" name="Post Talk Walt" type="event" x="272" y="96" width="16" height="16">
+   <properties>
+    <property name="act1" value="char_talk spyder_hospital1_walt,post_battle_lose"/>
+    <property name="behav1" value="talk spyder_hospital1_walt"/>
+    <property name="cond1" value="is battle_outcome player,won,spyder_hospital1_walt"/>
+   </properties>
+  </object>
+  <object id="105" name="PC Researcher 1" type="event" x="64" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_hospital_pc_message_rivalry1"/>
+    <property name="cond1" value="is char_facing_tile player"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
+   </properties>
+  </object>
+  <object id="106" name="PC Researcher 2" type="event" x="256" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_hospital_pc_message_rivalry2"/>
+    <property name="cond1" value="is char_facing_tile player"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

@@ -1,0 +1,180 @@
+- slug: eclipse_route7_arnold
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: scientist
+    combat_sheet: scientist
+    slug: scientist
+- slug: eclipse_route7_sylvester
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: beachcomber_copper
+    combat_sheet: beachgoer
+    slug: beachgoer
+- slug: eclipse_route7_fritz
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: maniac_violet
+    combat_sheet: adventurer
+    slug: maniac
+- slug: eclipse_route7_statius
+  speech:
+    profile:
+      default:
+        pre_battle: eclipse_route7_statius1
+        post_battle_win: null
+        post_battle_lose: eclipse_route7_statius2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: monk_black
+    combat_sheet: monk
+    slug: monk
+- slug: eclipse_route7_jacopo
+  speech:
+    profile:
+      default:
+        pre_battle: eclipse_route7_jacopo1
+        post_battle_win: null
+        post_battle_lose: eclipse_route7_jacopo2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: magician_blonde
+    combat_sheet: magician
+    slug: magician
+- slug: eclipse_route7_pia
+  speech:
+    profile:
+      default:
+        pre_battle: eclipse_route7_pia1
+        post_battle_win: null
+        post_battle_lose: eclipse_route7_pia2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: florist_fiery
+    combat_sheet: florist
+    slug: florist
+- slug: eclipse_route7_penitent
+  speech:
+    profile:
+      default:
+        pre_battle: eclipse_route7_penitent1
+        post_battle_win: null
+        post_battle_lose: eclipse_route7_penitent2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: boss_orange
+    combat_sheet: baller
+    slug: baller
+- slug: eclipse_route7_nino
+  speech:
+    profile:
+      default:
+        pre_battle: eclipse_route7_nino1
+        post_battle_win: null
+        post_battle_lose: eclipse_route7_nino2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor_lapi
+    combat_sheet: professor
+    slug: professor
+- slug: eclipse_route7_hugh
+  speech:
+    profile:
+      default:
+        pre_battle: eclipse_route7_hugh1
+        post_battle_win: null
+        post_battle_lose: eclipse_route7_hugh2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: cooldude_black
+    combat_sheet: rocker
+    slug: rocker
+- slug: eclipse_route7_arnaut
+  speech:
+    profile:
+      default:
+        pre_battle: eclipse_route7_arnaut1
+        post_battle_win: null
+        post_battle_lose: eclipse_route7_arnaut2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: rogue_copper
+    combat_sheet: winger
+    slug: winger
+- slug: eclipse_route7_conrad
+  speech:
+    profile:
+      default:
+        pre_battle: eclipse_route7_conrad1
+        post_battle_win: null
+        post_battle_lose: eclipse_route7_conrad2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: picnicker
+    combat_sheet: picnicker
+    slug: picnicker
+- slug: eclipse_route7_manfred
+  speech:
+    profile:
+      default:
+        pre_battle: eclipse_route7_manfred1
+        post_battle_win: null
+        post_battle_lose: eclipse_route7_manfred2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: postboy_green
+    combat_sheet: cooldude
+    slug: postboy
+- slug: eclipse_route7_sordello
+  speech:
+    profile:
+      default:
+        pre_battle: eclipse_route7_sordello1
+        post_battle_win: null
+        post_battle_lose: eclipse_route7_sordello2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: tennisplayer_green
+    combat_sheet: coach
+    slug: coach
+- slug: eclipse_route7_nurse
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: nurse_lapi
+    combat_sheet: nurse
+    slug: nurse

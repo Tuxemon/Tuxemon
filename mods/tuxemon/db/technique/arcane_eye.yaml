@@ -1,0 +1,40 @@
+tech_id: 158
+accuracy: 1
+effects:
+- type: give
+  parameters:
+  - elementalshield
+  - own_monster
+speed: normal
+potency: 1
+power: 0
+range: special
+recharge: 1
+slug: arcane_eye
+sort: damage
+modifiers: []
+behaviors:
+  bypasses_selection: true
+target:
+  enemy_monster: false
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: true
+  own_team: false
+  own_trainer: false
+category: condition_imposer
+tags:
+- gaze
+- summoner
+types:
+- cosmic
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: crystal_absorb
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_pulse
+  volume: 1.5

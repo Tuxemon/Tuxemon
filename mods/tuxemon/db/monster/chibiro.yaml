@@ -1,0 +1,61 @@
+slug: chibiro
+species: false_turnip
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: sting
+- level_learned: 1
+  technique: fluff_up
+- level_learned: 4
+  technique: overgrowth
+- level_learned: 7
+  technique: fester
+- level_learned: 13
+  technique: stonehenge
+- level_learned: 16
+  technique: blossom
+- level_learned: 19
+  technique: chameleon
+- level_learned: 25
+  technique: sylvan
+- level_learned: 28
+  technique: radiance
+- level_learned: 31
+  technique: cat_calling
+- level_learned: 37
+  technique: splinter
+- level_learned: 40
+  technique: clairaudience
+evolutions: []
+history:
+- slug: chibiro
+  stage: standalone
+  evolves_from: []
+  evolves_into: []
+terrains: []
+tags:
+- plant
+- ground
+shape: varmint
+stage: standalone
+types:
+- wood
+- normal
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 296
+height: 36
+weight: 3
+sounds:
+  combat_call:
+    sfx: sound_burble_02
+    volume: 1.5
+  faint_call:
+    sfx: sound_burble_02_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.9
+upper_catch_resistance: 1.15

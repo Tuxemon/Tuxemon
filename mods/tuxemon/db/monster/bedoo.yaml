@@ -1,0 +1,70 @@
+slug: bedoo
+species: bed_trap
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: water_bullet
+- level_learned: 1
+  technique: hibernate
+- level_learned: 4
+  technique: flood
+- level_learned: 7
+  technique: ice_shield
+- level_learned: 13
+  technique: chill_mist
+- level_learned: 16
+  technique: water_blast
+- level_learned: 19
+  technique: orbs
+- level_learned: 25
+  technique: biting_winds
+- level_learned: 28
+  technique: mobbing
+- level_learned: 31
+  technique: shapechange
+- level_learned: 37
+  technique: frostbite
+- level_learned: 40
+  technique: breath
+- level_learned: 55
+  technique: dreamwalk
+evolutions: []
+history:
+- slug: bedoo
+  stage: stage1
+  evolves_from:
+  - jelillow
+  evolves_into: []
+- slug: jelillow
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - bedoo
+terrains:
+- mountains
+- woodland
+tags:
+- mental
+- megafauna
+shape: blob
+stage: stage1
+types:
+- water
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 208
+height: 200
+weight: 15
+sounds:
+  combat_call:
+    sfx: sound_robot2
+    volume: 1.5
+  faint_call:
+    sfx: sound_robot2_faint
+    volume: 1.5
+catch_rate: 70.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.05

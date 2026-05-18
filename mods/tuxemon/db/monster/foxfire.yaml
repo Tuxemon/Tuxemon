@@ -1,0 +1,69 @@
+slug: foxfire
+species: smoke
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: fire_ball
+- level_learned: 1
+  technique: fume
+- level_learned: 4
+  technique: fluff_up
+- level_learned: 7
+  technique: breathe_fire
+- level_learned: 13
+  technique: one_two
+- level_learned: 16
+  technique: torch
+- level_learned: 19
+  technique: lava
+- level_learned: 25
+  technique: all_in
+- level_learned: 28
+  technique: invictus
+- level_learned: 31
+  technique: give_all
+- level_learned: 37
+  technique: supernova
+- level_learned: 40
+  technique: flamethrower
+evolutions:
+- at_level: 30
+  monster_slug: vulpyre
+history:
+- slug: foxfire
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - vulpyre
+- slug: vulpyre
+  stage: stage1
+  evolves_from:
+  - foxfire
+  evolves_into: []
+terrains: []
+tags:
+- flame
+- calamity
+- claws
+shape: varmint
+stage: basic
+types:
+- fire
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 149
+height: 41
+weight: 2
+sounds:
+  combat_call:
+    sfx: sound_cat_purr_twit5
+    volume: 1.5
+  faint_call:
+    sfx: sound_cat_purr_twit5_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.05

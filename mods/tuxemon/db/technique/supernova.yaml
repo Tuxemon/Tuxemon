@@ -1,0 +1,40 @@
+tech_id: 81
+accuracy: 0.75
+effects:
+- type: give
+  parameters:
+  - chargedup
+  - enemy_monster
+- type: damage
+speed: extremely_slow
+potency: 1
+power: 3
+range: ranged
+recharge: 3
+slug: supernova
+sort: damage
+modifiers: []
+behaviors: {}
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: powerful
+tags:
+- light
+- celestial
+types:
+- fire
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: fireball_114
+  flip_axes: x
+  loop: 0
+sound:
+  sfx: sfx_shine
+  volume: 1.5

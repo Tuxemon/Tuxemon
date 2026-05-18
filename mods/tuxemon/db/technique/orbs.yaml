@@ -1,0 +1,40 @@
+tech_id: 141
+accuracy: 1
+effects:
+- type: damage
+- type: switch
+  parameters:
+  - enemy_monster
+  - random
+speed: normal
+potency: 1
+power: 2
+range: ranged
+recharge: 3
+slug: orbs
+sort: damage
+modifiers: []
+behaviors:
+  bypasses_selection: true
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: exotic
+tags:
+- summoner
+types:
+- cosmic
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: metallic_absorb
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_pulse
+  volume: 1.5

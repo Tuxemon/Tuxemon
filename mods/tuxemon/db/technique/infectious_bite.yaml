@@ -1,0 +1,40 @@
+tech_id: 218
+accuracy: 0.95
+effects:
+- type: give
+  parameters:
+  - festering
+  - enemy_monster
+- type: damage
+speed: fast
+potency: 0.3
+power: 1.0
+range: touch
+recharge: 2
+slug: infectious_bite
+sort: damage
+modifiers: []
+behaviors: {}
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: simple
+tags:
+- bite
+types:
+- venom
+- wood
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: snake_right
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_bite
+  volume: 1.5

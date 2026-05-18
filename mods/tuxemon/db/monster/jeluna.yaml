@@ -1,0 +1,59 @@
+slug: jeluna
+species: moon_phase
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: midnight_mantle
+- level_learned: 1
+  technique: shooting_star
+- level_learned: 4
+  technique: radiance
+- level_learned: 10
+  technique: roll
+- level_learned: 19
+  technique: sunburst
+- level_learned: 22
+  technique: roll
+- level_learned: 40
+  technique: supernova
+- level_learned: 46
+  technique: tsunami
+- level_learned: 55
+  technique: tornado
+evolutions: []
+history:
+- slug: jeluna
+  stage: standalone
+  evolves_from: []
+  evolves_into: []
+terrains:
+- boreal_snow
+- extraterrestrial
+- ruins
+- sea
+tags:
+- celestial
+- light
+- darkness
+shape: blob
+stage: standalone
+types:
+- water
+- cosmic
+gender_weights:
+  neuter: 1.0
+txmn_id: 305
+height: 30
+weight: 2
+sounds:
+  combat_call:
+    sfx: sound_splash_1
+    volume: 1.5
+  faint_call:
+    sfx: sound_splash_1_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.05

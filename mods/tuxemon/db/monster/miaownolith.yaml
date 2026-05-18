@@ -1,0 +1,70 @@
+slug: miaownolith
+species: desolate
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: eyebite
+- level_learned: 1
+  technique: feint
+- level_learned: 4
+  technique: shuriken
+- level_learned: 7
+  technique: slice
+- level_learned: 13
+  technique: sand_spray
+- level_learned: 19
+  technique: petrify
+- level_learned: 25
+  technique: fluff_up
+- level_learned: 28
+  technique: overgrowth
+- level_learned: 37
+  technique: oedipus
+evolutions: []
+history:
+- slug: miaownolith
+  stage: stage1
+  evolves_from:
+  - memnomnom
+  - memnomnom
+  evolves_into: []
+- slug: memnomnom
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - miaownolith
+  - miaownolith
+  - pyraminx
+  - pyraminx
+  - mauai
+  - mauai
+terrains: []
+tags:
+- ground
+- claws
+- summoner
+- ghost
+- rock
+shape: hunter
+stage: stage1
+types:
+- earth
+- normal
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 20
+height: 210
+weight: 255
+sounds:
+  combat_call:
+    sfx: sound_roar_05
+    volume: 1.5
+  faint_call:
+    sfx: sound_roar_05_faint
+    volume: 1.5
+catch_rate: 70.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.25

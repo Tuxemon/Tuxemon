@@ -1,0 +1,36 @@
+tech_id: 99
+accuracy: 0.6
+effects:
+- type: money
+speed: very_slow
+potency: 1
+power: 1
+range: melee
+recharge: 1
+slug: gold_digger
+sort: damage
+modifiers: []
+behaviors:
+  bypasses_selection: true
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: exotic
+tags:
+- gemstone
+types:
+- normal
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: sparks_gold_alt
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_shine
+  volume: 1.5

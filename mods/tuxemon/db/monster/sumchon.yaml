@@ -1,0 +1,74 @@
+slug: sumchon
+species: wrestling
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: clamp_on
+- level_learned: 1
+  technique: buzz
+- level_learned: 4
+  technique: splinter
+- level_learned: 7
+  technique: font
+- level_learned: 10
+  technique: evasion
+- level_learned: 13
+  technique: sting
+- level_learned: 16
+  technique: fluff_up
+- level_learned: 19
+  technique: wall_of_steel
+- level_learned: 25
+  technique: invictus
+- level_learned: 28
+  technique: blade
+- level_learned: 46
+  technique: suplex
+evolutions: []
+history:
+- slug: sumchon
+  stage: stage2
+  evolves_from:
+  - katacoon
+  evolves_into: []
+- slug: katapill
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - katacoon
+- slug: katacoon
+  stage: stage1
+  evolves_from:
+  - katapill
+  evolves_into:
+  - bugnin
+  - sumchon
+  - gladiatorbug
+terrains:
+- woodland
+tags:
+- fists
+- bug
+shape: brute
+stage: stage2
+types:
+- metal
+- heroic
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 59
+height: 150
+weight: 125
+sounds:
+  combat_call:
+    sfx: sound_grunt_03
+    volume: 1.5
+  faint_call:
+    sfx: sound_grunt_03_faint
+    volume: 1.5
+catch_rate: 35.0
+lower_catch_resistance: 0.9
+upper_catch_resistance: 1.15

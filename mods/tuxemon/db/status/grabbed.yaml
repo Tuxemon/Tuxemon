@@ -1,0 +1,31 @@
+modifiers: []
+behaviors: {}
+category: negative
+conditions:
+- type: current_hp
+  parameters:
+  - '>'
+  - '0'
+  operator: is
+effects:
+- type: grabbed
+  parameters:
+  - '2'
+  - ranged:reach
+icon: gfx/ui/icons/status/icon_grabbed.png
+on_positive_status: replaced
+on_negative_status: replaced
+bond: true
+slug: grabbed
+sort: meta
+cond_id: 5
+use_failure: null
+use_success: combat_state_grabbed_get
+gain_cond: null
+visuals:
+  animation: null
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_pulse
+  volume: 1.5

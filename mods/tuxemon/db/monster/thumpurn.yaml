@@ -1,0 +1,60 @@
+slug: thumpurn
+species: lagomorph
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: gnaw
+- level_learned: 1
+  technique: fire_ball
+- level_learned: 4
+  technique: fire_claw
+- level_learned: 10
+  technique: mudslide
+- level_learned: 13
+  technique: earthquake
+- level_learned: 19
+  technique: flamethrower
+evolutions:
+- at_level: 20
+  monster_slug: volconey
+history:
+- slug: thumpurn
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - volconey
+- slug: volconey
+  stage: stage1
+  evolves_from:
+  - thumpurn
+  evolves_into: []
+terrains:
+- desert
+- grassland
+- woodland
+tags:
+- flame
+- ground
+shape: brute
+stage: basic
+types:
+- fire
+- normal
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 298
+height: 65
+weight: 23
+sounds:
+  combat_call:
+    sfx: sound_spell_fire_06
+    volume: 1.5
+  faint_call:
+    sfx: sound_spell_fire_06_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.05

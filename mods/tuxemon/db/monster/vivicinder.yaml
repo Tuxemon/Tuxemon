@@ -1,0 +1,74 @@
+slug: vivicinder
+species: lit
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: stone_rot
+- level_learned: 1
+  technique: hammerhead
+- level_learned: 4
+  technique: quicksand
+- level_learned: 7
+  technique: spit_poison
+- level_learned: 13
+  technique: wallow
+- level_learned: 16
+  technique: salamander
+- level_learned: 19
+  technique: flamethrower
+- level_learned: 25
+  technique: refresh
+- level_learned: 31
+  technique: fire_shield
+- level_learned: 40
+  technique: firestorm
+evolutions: []
+history:
+- slug: vivicinder
+  stage: stage1
+  evolves_from:
+  - vivipere
+  evolves_into: []
+- slug: vivipere
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - vivicinder
+  - viviphyta
+  - viviteel
+  - vivitrans
+  - vivitron
+  - vividactil
+  - vividactil
+  - vividactil
+  - vivisource
+terrains:
+- ruins
+- underground
+- urban
+tags:
+- shapeshifter
+- bite
+- flame
+shape: serpent
+stage: stage1
+types:
+- fire
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 133
+height: 95
+weight: 6
+sounds:
+  combat_call:
+    sfx: sound_foom_0
+    volume: 1.5
+  faint_call:
+    sfx: sound_foom_0_faint
+    volume: 1.5
+catch_rate: 70.0
+lower_catch_resistance: 0.9
+upper_catch_resistance: 1.15

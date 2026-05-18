@@ -1,0 +1,13 @@
+description: >
+  Place custom effect plugins in this folder.
+  Any effect defined here will override the core effect with the same name.
+
+how_to_use:
+  - Create a .py file defining a class that inherits from CoreEffect.
+  - Set the class attribute "name" to the effect's identifier.
+  - The engine will automatically load and override matching core effects.
+
+example:
+  file: debug_effect.py
+  class_name: DebugEffect
+  effect_name: debug_effect

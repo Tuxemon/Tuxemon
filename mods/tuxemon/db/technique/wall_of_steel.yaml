@@ -1,0 +1,39 @@
+tech_id: 62
+accuracy: 0.75
+effects:
+- type: give
+  parameters:
+  - hardshell
+  - own_monster
+- type: damage
+speed: normal
+potency: 1
+power: 1.25
+range: melee
+recharge: 2
+slug: wall_of_steel
+sort: damage
+modifiers: []
+behaviors: {}
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: simple
+tags:
+- summoner
+types:
+- metal
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: screen
+  flip_axes: x
+  loop: 0
+sound:
+  sfx: sfx_forcefield
+  volume: 1.5

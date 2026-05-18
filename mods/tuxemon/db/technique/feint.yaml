@@ -1,0 +1,44 @@
+tech_id: 36
+accuracy: 1
+effects:
+- type: give
+  parameters:
+  - focused
+  - own_monster
+- type: remove
+  parameters:
+  - positive
+  - enemy_monster
+- type: damage
+speed: normal
+potency: 1
+power: 1
+range: melee
+recharge: 1
+slug: feint
+sort: damage
+modifiers: []
+behaviors:
+  bypasses_selection: true
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: condition_imposer
+tags:
+- sharp
+types:
+- normal
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: lightning_bolt_138
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_kick
+  volume: 1.5

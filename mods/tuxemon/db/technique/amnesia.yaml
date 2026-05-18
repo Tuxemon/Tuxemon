@@ -1,0 +1,39 @@
+tech_id: 53
+accuracy: 0.8
+effects:
+- type: give
+  parameters:
+  - exhausted
+  - enemy_monster:own_monster
+- type: damage
+speed: normal
+potency: 1
+power: 2.25
+range: reach
+recharge: 2
+slug: amnesia
+sort: damage
+modifiers: []
+behaviors: {}
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: simple
+tags:
+- mental
+types:
+- cosmic
+use_failure: combat_miss
+use_success: combat_amnesia_get
+use_tech: combat_used_x
+visuals:
+  animation: sparks_gold_alt
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_pulse
+  volume: 1.5

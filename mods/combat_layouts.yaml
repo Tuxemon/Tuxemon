@@ -1,0 +1,74 @@
+LAYOUT_GROUPS:
+  1_PLAYER:
+    - LEFT_COMBAT
+  2_PLAYERS:
+    - LEFT_COMBAT
+    - RIGHT_COMBAT
+  3_PLAYERS:
+    - LEFT_COMBAT
+    - CENTER_COMBAT
+    - RIGHT_COMBAT
+
+LAYOUT_COORDINATES:
+  LEFT_COMBAT:
+    # Position where the monster appears on the left side of the battlefield
+    home: [0, 62, 96, 70]
+    # Position for the first monster in a 2 vs 2 setup (left side)
+    home0: [15, 62, 96, 70] # [+15 px right vs home]
+    # Position for the second monster in a 2 vs 2 setup (left side)
+    home1: [-15, 62, 96, 70] # [-15 px left vs home]
+    # Position of the HUD showing name, level, etc. (left side)
+    hud: [145, 45, 110, 50] # fixed HUD for single monster
+    # HUD position for the first monster in a 2 vs 2 setup
+    hud0: [145, 25, 110, 50] # shifted upward for first HUD
+    monster_status_icon_slot_0: [164, 61, 9, 9] # status icon aligned with hud0
+    # HUD position for the second monster in a 2 vs 2 setup
+    hud1: [145, 45, 110, 50] # same as hud (fallback for 2nd monster)
+    monster_status_icon_slot_1: [164, 81, 9, 9] # status icon aligned with hud
+    # Tuxeball icon strip (left side, shows number of available monsters)
+    party: [145, 57, 110, 50] # placed just below the HUD region
+    # Monster box image position for single monster
+    monster_box_home: [48, 108, 2, 2] # [+47 px right, +46 px below vs home]
+    # Monster box image for first monster in a 2 vs 2 setup
+    monster_box_home0: [62, 108, 2, 2] # [+15 px right vs monster_box_home]
+    # Monster box image for second monster in a 2 vs 2 setup
+    monster_box_home1: [32, 108, 2, 2] # [-15 px left vs monster_box_home]
+    # These positions define where HUD text lines are drawn.
+    # The values are in [x, y, width, height] format, but width/height are unused and set to 1.
+    # Line 1 usually shows monster name, gender icon, and level.
+    # Line 2 typically shows HP bar or additional status info.
+    hud_line1: [12, 11, 1, 1]  # top line: monster, lv, etc.
+    hud_line2: [12, 19, 1, 1]  # second line: position hp_bar
+
+
+  RIGHT_COMBAT:
+    home: [140, 18, 96, 70]
+    home0: [125, 18, 96, 70]
+    home1: [155, 18, 96, 70]
+    hud: [18, 0, 85, 30]
+    hud0: [18, 0, 85, 30]
+    monster_status_icon_slot_0: [15, 17, 9, 9]
+    hud1: [18, 20, 85, 30]
+    monster_status_icon_slot_1: [15, 37, 9, 9]
+    party: [18, 12, 85, 30]
+    monster_box_home: [188, 64, 2, 2]
+    monster_box_home0: [172, 64, 2, 2]
+    monster_box_home1: [202, 64, 2, 2]
+    hud_line1: [5, 5, 1, 1]
+    hud_line2: [5, 13, 1, 1]
+
+  CENTER_COMBAT:
+    home: [70, 40, 96, 70]
+    home0: [85, 40, 96, 70]
+    home1: [55, 40, 96, 70]
+    hud: [80, 20, 110, 50]
+    hud0: [80, 5, 110, 50]
+    monster_status_icon_slot_0: [99, 41, 9, 9]
+    hud1: [80, 35, 110, 50]
+    monster_status_icon_slot_1: [99, 71, 9, 9]
+    party: [80, 50, 110, 50]
+    monster_box_home: [117, 86, 1, 1]
+    monster_box_home0: [102, 86, 1, 1]
+    monster_box_home1: [132, 86, 1, 1]
+    hud_line1: [5, 11, 1, 1]
+    hud_line2: [5, 19, 1, 1]

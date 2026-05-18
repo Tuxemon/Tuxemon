@@ -1,0 +1,111 @@
+events:
+  Teleport to Routef1:
+    actions:
+    - transition_teleport player,eclipse_routef.tmx,24,0,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,down
+    type: event
+    x: 24
+    y: 39
+    type: event
+  Teleport to Routef2:
+    actions:
+    - transition_teleport player,eclipse_routef.tmx,25,0,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,down
+    type: event
+    x: 25
+    y: 39
+    type: event
+  Teleport to Routef3:
+    actions:
+    - transition_teleport player,eclipse_routef.tmx,26,0,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,down
+    type: event
+    x: 26
+    y: 39
+    type: event
+  Teleport to Routef4:
+    actions:
+    - transition_teleport player,eclipse_routef.tmx,27,0,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,down
+    type: event
+    x: 27
+    y: 39
+    type: event
+  Teleport to Routeh1:
+    actions:
+    - transition_teleport player,eclipse_routeh.tmx,23,39,0.3
+    - char_face player,up
+    conditions:
+    - is char_at player
+    - is char_facing player,up
+    type: event
+    x: 23
+    y: 0
+    type: event
+  Teleport to Routeh2:
+    actions:
+    - transition_teleport player,eclipse_routeh.tmx,24,39,0.3
+    - char_face player,up
+    conditions:
+    - is char_at player
+    - is char_facing player,up
+    type: event
+    x: 24
+    y: 0
+    type: event
+  Teleport to Routeh3:
+    actions:
+    - transition_teleport player,eclipse_routeh.tmx,25,39,0.3
+    - char_face player,up
+    conditions:
+    - is char_at player
+    - is char_facing player,up
+    type: event
+    x: 25
+    y: 0
+    type: event
+  Teleport to Routeh4:
+    actions:
+    - transition_teleport player,eclipse_routeh.tmx,26,39,0.3
+    - char_face player,up
+    conditions:
+    - is char_at player
+    - is char_facing player,up
+    type: event
+    x: 26
+    y: 0
+    type: event
+  Teleport to Routeh5:
+    actions:
+    - transition_teleport player,eclipse_routeh.tmx,36,39,0.3
+    - char_face player,up
+    conditions:
+    - is char_at player
+    - is char_facing player,up
+    type: event
+    x: 36
+    y: 0
+    type: event
+  Teleport to Routeh6:
+    actions:
+    - transition_teleport player,eclipse_routeh.tmx,37,39,0.3
+    - char_face player,up
+    conditions:
+    - is char_at player
+    - is char_facing player,up
+    type: event
+    x: 37
+    y: 0
+    type: event

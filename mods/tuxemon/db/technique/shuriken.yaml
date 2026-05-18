@@ -1,0 +1,40 @@
+tech_id: 16
+accuracy: 0.8
+effects:
+- type: give
+  parameters:
+  - diehard
+  - own_monster
+- type: damage
+speed: normal
+potency: 1
+power: 2.25
+range: ranged
+recharge: 2
+slug: shuriken
+sort: damage
+modifiers: []
+behaviors: {}
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: simple
+tags:
+- soldier
+- steel
+types:
+- metal
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: explosion_small
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_kick
+  volume: 1.5

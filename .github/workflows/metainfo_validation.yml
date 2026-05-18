@@ -1,0 +1,40 @@
+name: MetaInfo Validation
+
+on:
+  workflow_call:
+
+jobs:
+  metainfo_validation:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v6
+
+    - name: Update package list
+      run: sudo apt update
+
+    - name: Install Flatpak tooling
+      run: |
+        sudo apt install -y flatpak flatpak-builder
+        sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+        # Install the matching runtime and SDK non-interactively
+        sudo flatpak install -y --noninteractive flathub org.freedesktop.Platform//24.08 org.freedesktop.Sdk//24.08
+
+    - name: Build Flatpak
+      run: |
+        flatpak-builder --force-clean build-dir buildconfig/flatpak/org.tuxemon.Tuxemon.yaml
+
+    - name: Validate AppStream metadata
+      run: |
+        flatpak-builder --run build-dir buildconfig/flatpak/org.tuxemon.Tuxemon.yaml \
+          appstreamcli validate /app/share/metainfo/org.tuxemon.Tuxemon.metainfo.xml
+
+    - name: Smoke test game startup
+      run: |
+        flatpak-builder --run build-dir buildconfig/flatpak/org.tuxemon.Tuxemon.yaml \
+          sh -c "org.tuxemon.Tuxemon --version || true"
+
+    - name: Validate all mod tables and files
+      run: |
+        flatpak-builder --run build-dir buildconfig/flatpak/org.tuxemon.Tuxemon.yaml \
+          sh -c 'TUXEMON_MOD_PATH=/app/share/Tuxemon/mods python3 -c "from tuxemon.database.validate_mod_data import validate_mod_data; validate_mod_data()"'

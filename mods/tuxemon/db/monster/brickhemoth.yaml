@@ -1,0 +1,75 @@
+slug: brickhemoth
+species: brick_wall
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: ram
+- level_learned: 1
+  technique: boulder
+- level_learned: 4
+  technique: riposte
+- level_learned: 7
+  technique: assault
+- level_learned: 13
+  technique: thunderball
+- level_learned: 28
+  technique: glower
+- level_learned: 31
+  technique: wall_of_steel
+- level_learned: 34
+  technique: surge
+- level_learned: 43
+  technique: stampede
+- level_learned: 46
+  technique: earthquake
+- level_learned: 52
+  technique: rocky_barrage
+evolutions: []
+history:
+- slug: brickhemoth
+  stage: stage2
+  evolves_from:
+  - bricgard
+  evolves_into: []
+- slug: imbrickcile
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - bricgard
+- slug: bricgard
+  stage: stage1
+  evolves_from:
+  - imbrickcile
+  evolves_into:
+  - brickhemoth
+terrains:
+- ruins
+- urban
+tags:
+- fists
+- rock
+- fury
+- shielded
+shape: brute
+stage: stage2
+types:
+- earth
+- heroic
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 261
+height: 180
+weight: 120
+sounds:
+  combat_call:
+    sfx: sound_woosh_2
+    volume: 1.5
+  faint_call:
+    sfx: sound_woosh_2_faint
+    volume: 1.5
+catch_rate: 35.0
+lower_catch_resistance: 0.85
+upper_catch_resistance: 1.1

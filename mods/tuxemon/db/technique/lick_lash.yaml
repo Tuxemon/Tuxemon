@@ -1,0 +1,40 @@
+tech_id: 209
+accuracy: 0.8
+effects:
+- type: give
+  parameters:
+  - flinching
+  - enemy_monster
+- type: damage
+speed: normal
+potency: 1.0
+power: 1.5
+range: melee
+recharge: 3
+slug: lick_lash
+sort: damage
+modifiers: []
+behaviors: {}
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: simple
+tags:
+- tongue
+types:
+- normal
+- earth
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: pound
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_squeak
+  volume: 1.5

@@ -1,0 +1,99 @@
+events:
+  Event 7:
+    actions:
+    - char_stop player
+    - lock_controls
+    - set_layer 0:0:0:255
+    - play_sound japanese_temple_bell_small
+    - translated_dialog eclipse_event7_1,,top
+    - translated_dialog eclipse_event7_2,,top
+    - play_sound japanese_temple_bell_small
+    - set_layer
+    - set_variable eclipse_event7:yes
+    - unlock_controls
+    conditions:
+    - not variable_set eclipse_event7:yes
+    type: event
+  Create Beck:
+    actions:
+    - create_npc eclipse_crystal_monk_orange,7,7
+    - char_face eclipse_crystal_monk_orange,right
+    conditions:
+    - not char_exists eclipse_crystal_monk_orange
+    type: event
+  Create Granny:
+    actions:
+    - create_npc eclipse_crystal_granny,10,6
+    - char_face eclipse_crystal_granny,left
+    conditions:
+    - not char_exists eclipse_crystal_granny
+    type: event
+  Create Maniac:
+    actions:
+    - create_npc eclipse_crystal_maniac_green,8,5
+    conditions:
+    - not char_exists eclipse_crystal_maniac_green
+    type: event
+  Create Monk:
+    actions:
+    - create_npc eclipse_crystal_tennisplayer,7,6
+    - char_face eclipse_crystal_tennisplayer,right
+    conditions:
+    - not char_exists eclipse_crystal_tennisplayer
+    type: event
+  Create ShopKeeper:
+    actions:
+    - create_npc eclipse_crystal_shopkeeper,2,4
+    conditions:
+    - not char_exists eclipse_crystal_shopkeeper
+    type: event
+  Go Outside:
+    actions:
+    - transition_teleport player,eclipse_crystal_town.tmx,23,5,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,down
+    type: event
+    x: 8
+    y: 11
+  Play Music:
+    actions:
+    - play_music music_home
+    conditions:
+    - not music_playing music_home
+    type: event
+  Talk Beck:
+    actions:
+    - translated_dialog eclipse_crystal_beck
+    behav:
+    - talk eclipse_crystal_tennisplayer
+    type: event
+  Talk Granny:
+    actions:
+    - translated_dialog eclipse_crystal_granny
+    behav:
+    - talk eclipse_crystal_granny
+    type: event
+  Talk Maniac:
+    actions:
+    - translated_dialog eclipse_crystal_maniac
+    behav:
+    - talk eclipse_crystal_maniac_green
+    type: event
+  Talk Monk:
+    actions:
+    - translated_dialog eclipse_crystal_monk
+    behav:
+    - talk eclipse_crystal_monk_orange
+    type: event
+  Talk ShopKeeper:
+    actions:
+    - translated_dialog eclipse_crystal_shopkeeper
+    conditions:
+    - is char_at player
+    - is char_facing player,up
+    - is button_pressed INTERACT
+    x: 2
+    y: 6
+    type: event

@@ -1,0 +1,10 @@
+slug: postboy
+speech:
+  profile:
+    default: {}
+combat: {}
+audio: {}
+template:
+  sprite_name: postboy
+  combat_sheet: adventurer
+  slug: postboy

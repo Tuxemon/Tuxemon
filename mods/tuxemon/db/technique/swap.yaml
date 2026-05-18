@@ -1,0 +1,43 @@
+accuracy: 0.0
+conditions:
+- type: status
+  parameters:
+  - grabbed
+  operator: not
+- type: status
+  parameters:
+  - stuck
+  operator: not
+effects:
+- type: swap
+potency: 0.0
+power: 0
+range: special
+speed: normal
+slug: swap
+sort: meta
+modifiers: []
+behaviors:
+  bypasses_selection: true
+target:
+  enemy_monster: false
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: true
+  own_team: false
+  own_trainer: false
+tech_id: 0
+category: notype
+tags:
+- notype
+types: []
+use_failure: null
+use_success: null
+use_tech: combat_swap
+visuals:
+  animation: null
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_pulse
+  volume: 1.5

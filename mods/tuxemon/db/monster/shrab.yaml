@@ -1,0 +1,58 @@
+slug: shrab
+species: muscly_crab
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: flood
+- level_learned: 1
+  technique: ice_shield
+- level_learned: 4
+  technique: terror
+- level_learned: 10
+  technique: phantasmal_force
+- level_learned: 13
+  technique: mind_vise
+- level_learned: 19
+  technique: flow
+evolutions: []
+history:
+- slug: shrab
+  stage: stage1
+  evolves_from:
+  - sheye
+  evolves_into: []
+- slug: sheye
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - shrab
+terrains:
+- coastal
+- freshwater
+- sea
+tags:
+- mental
+- bite
+- shielded
+shape: polliwog
+stage: stage1
+types:
+- water
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 286
+height: 100
+weight: 100
+sounds:
+  combat_call:
+    sfx: sound_glitch_call
+    volume: 1.5
+  faint_call:
+    sfx: sound_glitch_faint
+    volume: 1.5
+catch_rate: 70.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.05

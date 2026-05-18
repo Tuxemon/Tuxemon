@@ -1,0 +1,10 @@
+slug: cotton_misa_bro
+speech:
+  profile:
+    default: {}
+combat: {}
+audio: {}
+template:
+  sprite_name: childactor_fiery
+  combat_sheet: yellowbelt
+  slug: childactor

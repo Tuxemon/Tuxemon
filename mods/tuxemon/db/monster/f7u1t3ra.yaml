@@ -1,0 +1,57 @@
+slug: f7u1t3ra
+species: glitched
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: fluff_up
+- level_learned: 1
+  technique: sting
+- level_learned: 4
+  technique: splinter
+- level_learned: 7
+  technique: chameleon
+- level_learned: 13
+  technique: spit_poison
+- level_learned: 16
+  technique: shadow_boxing
+- level_learned: 19
+  technique: stabilo
+- level_learned: 25
+  technique: walls
+- level_learned: 28
+  technique: pseudopod
+- level_learned: 31
+  technique: air_chain
+- level_learned: 37
+  technique: feline
+- level_learned: 40
+  technique: blossom
+evolutions: []
+history:
+- slug: f7u1t3ra
+  stage: standalone
+  evolves_from: []
+  evolves_into: []
+terrains: []
+tags: []
+shape: flier
+stage: standalone
+types:
+- wood
+gender_weights:
+  neuter: 1.0
+txmn_id: 0
+height: 0.1
+weight: 25
+sounds:
+  combat_call:
+    sfx: sound_whistle
+    volume: 1.5
+  faint_call:
+    sfx: sound_whistle_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.05

@@ -1,0 +1,72 @@
+slug: frondly
+species: helping_hand
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: stick
+- level_learned: 1
+  technique: clamp_on
+- level_learned: 7
+  technique: mending
+- level_learned: 10
+  technique: tail_lash
+- level_learned: 16
+  technique: mobbing
+- level_learned: 22
+  technique: stabilo
+- level_learned: 25
+  technique: lantern
+- level_learned: 28
+  technique: divinity_beam
+- level_learned: 31
+  technique: woodsmash
+- level_learned: 34
+  technique: flower_bloom
+evolutions: []
+history:
+- slug: frondly
+  stage: stage1
+  evolves_from:
+  - budaye
+  - budaye
+  evolves_into: []
+- slug: budaye
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - bamboon
+  - bamboon
+  - frondly
+  - frondly
+terrains:
+- jungle
+tags:
+- plant
+- leadership
+- food
+- love
+- pseudopod
+- tail
+shape: sprite
+stage: stage1
+types:
+- wood
+- cosmic
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 29
+height: 160
+weight: 60
+sounds:
+  combat_call:
+    sfx: sound_cat_purr_twit5
+    volume: 1.5
+  faint_call:
+    sfx: sound_cat_purr_twit5_faint
+    volume: 1.5
+catch_rate: 70.0
+lower_catch_resistance: 0.8
+upper_catch_resistance: 1.05

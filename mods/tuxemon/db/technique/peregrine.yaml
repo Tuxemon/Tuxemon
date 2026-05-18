@@ -1,0 +1,36 @@
+tech_id: 65
+accuracy: 0.8
+effects:
+- type: damage
+speed: extremely_fast
+potency: 0.0
+power: 1.75
+range: melee
+recharge: 2
+slug: peregrine
+sort: damage
+modifiers: []
+behaviors: {}
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: simple
+tags:
+- bird
+- speed
+types:
+- sky
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: pound_bright
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_tornado
+  volume: 1.5

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="48" height="32" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="212">
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="48" height="32" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="212">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -22,9 +22,7 @@
    </animation>
   </tile>
  </tileset>
- <tileset firstgid="1313" name="My_tuxemon_sheet" tilewidth="16" tileheight="16" tilecount="104" columns="8">
-  <image source="../gfx/tilesets/My_tuxemon_sheet.png" width="128" height="208"/>
- </tileset>
+ <tileset firstgid="1313" source="../gfx/tilesets/My_tuxemon_sheet.tsx"/>
  <layer id="1" name="Tile Layer 1" width="48" height="32">
   <data encoding="base64" compression="zlib">
    eAHtVslKBDEQnYtfoqjgIV5cQA+CW4PCeHGBcTu4/f8XWA/qQRGSSdlJ0430oaiklpeXqp7KLDcWi6WRXbOG/Vj3nWj4gsiByGFCjsRmsXLrXD4wiYFzcvnr7OD4ZHJ5H2rgbqk/5sGz1+HDZ/NyOTinhJPyd5r3o3pf9Z3odxHg2vNtH3Jc4nNy+X2wYmzwZa3h45r3AH97ju15jJXbp/h7757DpJ18uT8TvlijH/AF3cMGH/2MgS4JsEoxNf5NwY9rzD3rZHlzfe7kdeGM63uHUMAn307i8LvAObDdmDXnFjlgz7xbjaOvtQ4FfPIAd9wB51v+JT7kfy95DyqPilPK9fiDA4t3AB7XJ7K+MnKtOJfGBv+p2l9Ev6q8qc3DrxTj4U/e5F7CTPnH5p/iZG2sO/tgfVhPnX/MN95PmT9rz99DqgdT5h/XOrWf+aff8dBwlqXqTtuQ9bdvC9+Y1vpDZz/egNbz39aGb8yQujX/T6nJV095NnVdOTG+JY7fVa0OlVi2dy3r6r3XEPz5fzTWXk5/ifsP/Gvmz1BzxdsD1N9+wzVzZ4zvf0/4b/eQHcmJZ1bLueKtf9849K1v7hTyZv7j9m+u/1z/mjkwxvfzCz3q8bo=
@@ -40,7 +38,7 @@
    eAHt1DEKACAMBME0fs7/P0js9SBFMCcr2CjoOoURDAQQQKCXwBwRt9mr9Fxza9/rDuNVv7o3Y6fOqfRX92b6KxvV2fQrHfYQQACBPwVOf7/TS937naxpRQABBBBAAAFfgQW7LxWb
   </data>
  </layer>
- <layer id="4" name="Above Player" width="48" height="32">
+ <layer id="4" name="Tile Layer 4" width="48" height="32">
   <data encoding="base64" compression="zlib">
    eAHtWEduxDAMVILdU3Y3OaW9Ia/JA4K8Kr2c0usTMzoQMAiNqGK5ACEw4IoSyRnZFux1Lt9OFs55tLaUHgvwWALiSznV5rO+Upd5ljdGXK5r11s8tC5r/ZDzm859oXnKeEg+Vq/9LecOgEPgCDgGLBMd4q31Q88LL+YZn9OlcwwsZ4y41iUcGHcfb2U7CWcy46s5jcHfc4j1De0d0xOro7WWjNdkr2N9/RzjW8KhRY7FX/ecmh6Lfyrf223n7oB74AF4BMQu8PsSuAKugRtgLEvVMxV+U+X7hGv4DLwAr8Ab8A5YNqSeFc6cM+CXnD0hrpqfHody5hSbuh7NT4+tvf7APfgJfAHfwA8gtsL74RrYALvAHlBi8t4QOjuterl6rHq5893+If7d+e53osRj/c7Jcyb7FcqNzYXW18ZEh/jaern50rfU5/YrWe+/A1tZqW6Wx3iy9bVx1m8u8Vr9Op/p1uv6GrN+c4n3tQ+sjuwDm6+NS/2WPuV/zNL+tfrHzi/V/Z/Xzw78Ab5jNBI=
   </data>
@@ -50,7 +48,7 @@
    eAHt0MEJwDAMA0BDM072SLNNm/0f8QyBPlxOoKdAXIQQIECAAAECBAj8UWBcEXd2Zivmyd9vdhX9X9HcZwIECBAgQIAAgTOB3s52VgS+FtgUrwJu
   </data>
  </layer>
- <objectgroup color="#ff0000" id="6" name="Collision">
+ <objectgroup color="#ff0000" id="6" name="Collisions">
   <properties>
    <property name="Collision" value=""/>
   </properties>
@@ -81,48 +79,6 @@
   <object id="151" type="collision" x="208" y="320" width="32" height="16"/>
   <object id="152" type="collision" x="544" y="240" width="96" height="48"/>
   <object id="153" type="collision" x="544" y="288" width="16" height="32"/>
-  <object id="154" type="collision" x="352" y="192" width="80" height="16">
-   <properties>
-    <property name="continue" value="down"/>
-    <property name="enter_from" value="up"/>
-    <property name="exit_to" value="down"/>
-   </properties>
-  </object>
-  <object id="155" type="collision" x="368" y="160" width="48" height="16">
-   <properties>
-    <property name="continue" value="down"/>
-    <property name="enter_from" value="up"/>
-    <property name="exit_to" value="down"/>
-   </properties>
-  </object>
-  <object id="156" type="collision" x="464" y="80" width="16" height="48">
-   <properties>
-    <property name="continue" value="right"/>
-    <property name="enter_from" value="left"/>
-    <property name="exit_to" value="right"/>
-   </properties>
-  </object>
-  <object id="157" type="collision" x="304" y="80" width="16" height="48">
-   <properties>
-    <property name="continue" value="left"/>
-    <property name="enter_from" value="right"/>
-    <property name="exit_to" value="left"/>
-   </properties>
-  </object>
-  <object id="158" type="collision" x="304" y="128" width="80" height="16">
-   <properties>
-    <property name="continue" value="down"/>
-    <property name="enter_from" value="up"/>
-    <property name="exit_to" value="down"/>
-   </properties>
-  </object>
-  <object id="159" type="collision" x="400" y="128" width="80" height="16">
-   <properties>
-    <property name="continue" value="down"/>
-    <property name="enter_from" value="up"/>
-    <property name="exit_to" value="down"/>
-   </properties>
-  </object>
   <object id="160" type="collision" x="400" y="368" width="16" height="16"/>
   <object id="161" type="collision" x="560" y="80" width="80" height="48"/>
   <object id="162" type="collision" x="384" y="240" width="128" height="16"/>
@@ -141,19 +97,18 @@
   <object id="178" type="collision" x="432" y="256" width="48" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="7" name="Events">
-  <object id="124" name="Player Spawn" type="event" x="384" y="448" width="16" height="16"/>
   <object id="173" name="Teleport to Back" type="event" x="384" y="464" width="16" height="16">
    <properties>
-    <property name="act10" value="transition_teleport map1.tmx,35,1,0.5"/>
-    <property name="cond10" value="is player_at"/>
-    <property name="cond20" value="is player_facing down"/>
+    <property name="act10" value="transition_teleport player,37707_town.tmx,35,1,0.5"/>
+    <property name="cond10" value="is char_at player"/>
+    <property name="cond20" value="is char_facing player,down"/>
    </properties>
   </object>
   <object id="174" name="Teleport to Tower" type="event" x="384" y="80" width="16" height="16">
    <properties>
-    <property name="act10" value="transition_teleport 37707_tower.tmx,12,21,0.5"/>
-    <property name="cond10" value="is player_at"/>
-    <property name="cond20" value="is player_facing up"/>
+    <property name="act10" value="transition_teleport player,37707_tower.tmx,12,21,0.5"/>
+    <property name="cond10" value="is char_at player"/>
+    <property name="cond20" value="is char_facing player,up"/>
    </properties>
   </object>
   <object id="181" name="Play Music" type="event" x="0" y="0" width="16" height="16">
@@ -164,79 +119,79 @@
   </object>
   <object id="182" name="Environment" type="event" x="16" y="0" width="16" height="16">
    <properties>
-    <property name="act10" value="set_variable environment:grass"/>
-    <property name="cond10" value="not variable_set environment:grass"/>
+    <property name="act10" value="set_environment grass"/>
+    <property name="cond10" value="not environment_is grass"/>
    </properties>
   </object>
   <object id="183" name="Random Battle 1" type="event" x="96" y="96" width="112" height="64">
    <properties>
     <property name="act10" value="random_encounter 37707_town"/>
     <property name="act20" value="play_map_animation grass,0.1,noloop,player"/>
-    <property name="cond10" value="is player_moved"/>
-    <property name="cond20" value="is player_at"/>
+    <property name="cond10" value="is char_moved player"/>
+    <property name="cond20" value="is char_at player"/>
    </properties>
   </object>
   <object id="184" name="Random Battle 2" type="event" x="576" y="128" width="128" height="64">
    <properties>
     <property name="act10" value="random_encounter 37707_town"/>
     <property name="act20" value="play_map_animation grass,0.1,noloop,player"/>
-    <property name="cond10" value="is player_moved"/>
-    <property name="cond20" value="is player_at"/>
+    <property name="cond10" value="is char_moved player"/>
+    <property name="cond20" value="is char_at player"/>
    </properties>
   </object>
   <object id="185" name="Give Tuxemon" type="event" x="368" y="400" width="16" height="16">
    <properties>
-    <property name="act10" value="dialog You got a Fruitera for testing purposes. This will be removed later!"/>
+    <property name="act10" value="translated_dialog 37707_town01"/>
     <property name="act20" value="add_monster fruitera,10"/>
-    <property name="cond10" value="is player_at"/>
-    <property name="cond20" value="is button_pressed K_RETURN"/>
+    <property name="cond10" value="is char_at player"/>
+    <property name="cond20" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="186" name="Villager Male" type="event" x="528" y="128" width="16" height="16">
    <properties>
     <property name="act10" value="create_npc 37707_male,33,8"/>
-    <property name="act20" value="npc_face 37707_male,down"/>
-    <property name="act30" value="npc_speed 37707_male,3"/>
-    <property name="act40" value="npc_wander 37707_male,3"/>
-    <property name="cond10" value="not npc_exists 37707_male"/>
+    <property name="act20" value="char_face 37707_male,down"/>
+    <property name="act30" value="char_speed 37707_male,3"/>
+    <property name="act40" value="char_wander 37707_male,3"/>
+    <property name="cond10" value="not char_exists 37707_male"/>
    </properties>
   </object>
   <object id="187" name="Villager Female" type="event" x="192" y="240" width="16" height="16">
    <properties>
     <property name="act10" value="create_npc 37707_female,12,15"/>
-    <property name="act20" value="npc_face 37707_female,down"/>
-    <property name="act30" value="npc_speed 37707_female,3"/>
-    <property name="act40" value="npc_wander 37707_female,3"/>
-    <property name="cond10" value="not npc_exists 37707_female"/>
+    <property name="act20" value="char_face 37707_female,down"/>
+    <property name="act30" value="char_speed 37707_female,3"/>
+    <property name="act40" value="char_wander 37707_female,3"/>
+    <property name="cond10" value="not char_exists 37707_female"/>
    </properties>
   </object>
   <object id="188" name="Sign Welcome" type="event" x="400" y="368" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog 37707_sign_welcome"/>
-    <property name="cond10" value="is player_facing_tile"/>
-    <property name="cond20" value="is button_pressed K_RETURN"/>
+    <property name="cond10" value="is char_facing_tile player"/>
+    <property name="cond20" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="189" name="Sign Tower" type="event" x="480" y="160" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog 37707_sign_tower"/>
-    <property name="cond10" value="is player_facing_tile"/>
-    <property name="cond20" value="is button_pressed K_RETURN"/>
+    <property name="cond10" value="is char_facing_tile player"/>
+    <property name="cond20" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="191" name="Sign Foreign" type="event" x="432" y="256" width="48" height="16">
    <properties>
     <property name="act10" value="translated_dialog 37707_sign_foreign"/>
-    <property name="cond10" value="is player_facing_tile"/>
-    <property name="cond20" value="is button_pressed K_RETURN"/>
+    <property name="cond10" value="is char_facing_tile player"/>
+    <property name="cond20" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="192" name="Sign Hidden" type="event" x="624" y="64" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog 37707_sign_hidden"/>
     <property name="act20" value="set_variable 37707_sign:read"/>
-    <property name="cond10" value="is player_facing_tile"/>
-    <property name="cond20" value="is button_pressed K_RETURN"/>
+    <property name="cond10" value="is char_facing_tile player"/>
+    <property name="cond20" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="193" name="Villager Female Talk 1" type="event" x="192" y="256" width="16" height="16">
@@ -294,78 +249,78 @@
   <object id="201" name="House" type="event" x="128" y="240" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog 37707_house"/>
-    <property name="cond10" value="is player_facing_tile"/>
-    <property name="cond20" value="is button_pressed K_RETURN"/>
+    <property name="cond10" value="is char_facing_tile player"/>
+    <property name="cond20" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="202" name="Mail" type="event" x="112" y="336" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog 37707_mail"/>
-    <property name="cond10" value="is player_facing_tile"/>
-    <property name="cond20" value="is button_pressed K_RETURN"/>
+    <property name="cond10" value="is char_facing_tile player"/>
+    <property name="cond20" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="203" name="Mail" type="event" x="208" y="336" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog 37707_mail"/>
-    <property name="cond10" value="is player_facing_tile"/>
-    <property name="cond20" value="is button_pressed K_RETURN"/>
+    <property name="cond10" value="is char_facing_tile player"/>
+    <property name="cond20" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="204" name="Mail" type="event" x="320" y="336" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog 37707_mail"/>
-    <property name="cond10" value="is player_facing_tile"/>
-    <property name="cond20" value="is button_pressed K_RETURN"/>
+    <property name="cond10" value="is char_facing_tile player"/>
+    <property name="cond20" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="205" name="Mail" type="event" x="528" y="304" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog 37707_mail"/>
-    <property name="cond10" value="is player_facing_tile"/>
-    <property name="cond20" value="is button_pressed K_RETURN"/>
+    <property name="cond10" value="is char_facing_tile player"/>
+    <property name="cond20" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="206" name="Mail" type="event" x="560" y="128" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog 37707_mail"/>
-    <property name="cond10" value="is player_facing_tile"/>
-    <property name="cond20" value="is button_pressed K_RETURN"/>
+    <property name="cond10" value="is char_facing_tile player"/>
+    <property name="cond20" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="207" name="House" type="event" x="240" y="240" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog 37707_house"/>
-    <property name="cond10" value="is player_facing_tile"/>
-    <property name="cond20" value="is button_pressed K_RETURN"/>
+    <property name="cond10" value="is char_facing_tile player"/>
+    <property name="cond20" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="208" name="House" type="event" x="176" y="336" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog 37707_house"/>
-    <property name="cond10" value="is player_facing_tile"/>
-    <property name="cond20" value="is button_pressed K_RETURN"/>
+    <property name="cond10" value="is char_facing_tile player"/>
+    <property name="cond20" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="209" name="House" type="event" x="288" y="336" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog 37707_house"/>
-    <property name="cond10" value="is player_facing_tile"/>
-    <property name="cond20" value="is button_pressed K_RETURN"/>
+    <property name="cond10" value="is char_facing_tile player"/>
+    <property name="cond20" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="210" name="House" type="event" x="608" y="112" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog 37707_house"/>
-    <property name="cond10" value="is player_facing_tile"/>
-    <property name="cond20" value="is button_pressed K_RETURN"/>
+    <property name="cond10" value="is char_facing_tile player"/>
+    <property name="cond20" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="211" name="Flower" type="event" x="384" y="176" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog 37707_flower"/>
-    <property name="cond10" value="is player_at"/>
-    <property name="cond20" value="is button_pressed K_RETURN"/>
+    <property name="cond10" value="is char_at player"/>
+    <property name="cond20" value="is button_pressed INTERACT"/>
    </properties>
   </object>
  </objectgroup>

@@ -1,0 +1,60 @@
+slug: dinoflop
+species: volte-face
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: boulder
+- level_learned: 1
+  technique: ram
+- level_learned: 4
+  technique: rock
+- level_learned: 7
+  technique: thunderball
+- level_learned: 13
+  technique: mudslide
+- level_learned: 16
+  technique: fume
+- level_learned: 19
+  technique: air_chain
+- level_learned: 25
+  technique: stampede
+- level_learned: 28
+  technique: clamp_on
+- level_learned: 31
+  technique: electroplate
+- level_learned: 37
+  technique: breathe_fire
+- level_learned: 40
+  technique: stonehenge
+evolutions: []
+history:
+- slug: dinoflop
+  stage: standalone
+  evolves_from: []
+  evolves_into: []
+terrains: []
+tags:
+- sharp
+- shielded
+shape: dragon
+stage: standalone
+types:
+- earth
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 166
+height: 120
+weight: 120
+sounds:
+  combat_call:
+    sfx: sound_bite_cartoon_style
+    volume: 1.5
+  faint_call:
+    sfx: sound_bite_cartoon_style_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.05

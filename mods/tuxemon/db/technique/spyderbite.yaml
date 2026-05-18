@@ -1,0 +1,35 @@
+accuracy: 0.0
+effects:
+- type: plague
+  parameters:
+  - spyderbite
+potency: 0.0
+power: 0.0
+range: special
+speed: normal
+slug: spyderbite
+sort: meta
+modifiers: []
+behaviors:
+  bypasses_selection: true
+target:
+  enemy_monster: false
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: notype
+tags:
+- notype
+tech_id: 0
+use_failure: spyderbite_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: null
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_bite
+  volume: 1.5

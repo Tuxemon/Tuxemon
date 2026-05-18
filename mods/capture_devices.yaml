@@ -1,0 +1,199 @@
+# The base multiplier applied to status effects during calculations.
+status_modifier: 1.0
+
+# The base multiplier applied to capture device effects during calculations.
+capdev_modifier: 1.0
+
+items:
+  # Example capture device configuration with custom modifiers.
+  example:
+    # Multiplier applied specifically to this capture device during calculations.
+    specific_capdev_modifier: 1.0
+
+    # Multiplier applied when the target has a "positive" status (e.g., diehard).
+    # This value boosts the capture rate for targets with beneficial or advantageous statuses.
+    positive_modifier: 1.0
+
+    # Multiplier applied when the target has a "negative" status (e.g., poisoned).
+    # This value reflects an increased capture rate for targets with detrimental statuses.
+    negative_modifier: 1.2
+
+    # Specific multipliers for named statuses. Overrides the general `positive_modifier` or
+    # `negative_modifier` when the target is affected by a specific status.
+    specific_status_modifiers:
+      # Custom multiplier for a named status like "poisoned."
+      name_status: 0.8
+
+    # Specific multipliers for named elements or types. Overrides the general modifiers if the
+    # target belongs to a specific element/type (e.g., "fire" or "ice").
+    specific_element_modifiers:
+      # Custom multiplier for a named element like "fire."
+      name_element: 1.0
+
+    # Multiplier applied for unspecified elements or types.
+    # This value acts as a malus, reducing effectiveness for elements not explicitly defined.
+    fallback_element_malus: 1.0
+
+    # Specific multipliers for named genders. Overrides general modifiers when the target's
+    # gender matches a specific value (e.g., "male" or "female").
+    specific_gender_modifiers:
+      # Custom multiplier for a named gender like "male."
+      name_gender: 1.0
+
+    # Multiplier applied for unspecified genders.
+    # Acts as a malus, reducing effectiveness for genders not explicitly defined.
+    fallback_gender_malus: 1.0
+
+    # Modifiers for specific variables take precedence over general modifiers when the 
+    # target variable matches any explicitly defined entry in the game configuration.
+    specific_variables_modifiers:
+      - key: daytime
+        value: false
+
+    # Default modifiers applied to variables not covered by `specific_variables_modifiers`.
+    # The `fallback_variables_bonus` enhances effectiveness for these unspecified variables, 
+    # while the `fallback_variables_malus` applies a penalty, reducing their impact.
+    fallback_variables_bonus: 1.5
+    fallback_variables_malus: 0.2
+
+    # Bounds for random multiplier calculations. These values are used in conjunction with
+    # `random.uniform(random_bounds[0], random_bounds[1])` to generate a random multiplier
+    # within the specified range. Useful for introducing variability in specific capture devices.
+    random_bounds: [0.0, 2.0]  # [lower_bound, upper_bound] for the random multiplier
+
+    # Indicates if the capture device is reusable (false means consumable)
+    capdev_persistent_on_failure: False
+    capdev_persistent_on_success: False
+
+    # `target_attribute`: Specifies the attribute of the monster to be modified
+    # during the capture process (e.g., level, health).
+    # `operation`: Defines the type of modification to perform on the attribute.
+    # Supported operations include:
+    # - `increment`: Adds the specified value to the current attribute.
+    # - `decrement`: Subtracts the specified value from the current attribute.
+    # - `set`: Replaces the current attribute value with the specified value.
+    # - `multiply`: Multiplies the current attribute value by the specified value.
+    # - `divide`: Divides the current attribute value by the specified value.
+    # `value`: Represents the numerical value used in the specified operation.
+    capdev_effects:
+      - target_attribute: level
+        operation: increment
+        value: 1
+
+  # Default configuration for a capture device with no custom status-specific modifiers.
+  tuxeball:
+    specific_capdev_modifier: 1.0
+
+  tuxeball_crusher:
+    specific_capdev_modifier: null
+
+  tuxeball_ancient:
+    specific_capdev_modifier: 99.0
+
+  tuxeball_noble:
+    specific_capdev_modifier: 1.25
+
+  tuxeball_lavish:
+    specific_capdev_modifier: 1.5
+
+  tuxeball_grand:
+    specific_capdev_modifier: 1.75
+
+  tuxeball_majestic:
+    specific_capdev_modifier: 2.0
+
+  tuxeball_earth:
+    specific_element_modifiers:
+      earth: 1.5
+    fallback_element_malus: 0.2
+
+  tuxeball_fire:
+    specific_element_modifiers:
+      fire: 1.5
+    fallback_element_malus: 0.2
+
+  tuxeball_metal:
+    specific_element_modifiers:
+      metal: 1.5
+    fallback_element_malus: 0.2
+
+  tuxeball_water:
+    specific_element_modifiers:
+      water: 1.5
+    fallback_element_malus: 0.2
+
+  tuxeball_wood:
+    specific_element_modifiers:
+      wood: 1.5
+    fallback_element_malus: 0.2
+
+  tuxeball_male:
+    specific_gender_modifiers:
+      male: 1.5
+    fallback_gender_malus: 0.2
+
+  tuxeball_female:
+    specific_gender_modifiers:
+      female: 1.5
+    fallback_gender_malus: 0.2
+
+  tuxeball_neuter:
+    specific_gender_modifiers:
+      neuter: 1.5
+    fallback_gender_malus: 0.2
+
+  tuxeball_gambler:
+    random_bounds: [0.0, 2.0]
+
+  tuxeball_candy:
+    capdev_effects:
+      - target_attribute: level
+        operation: increment
+        value: 1
+
+  tuxeball_hearty:
+    capdev_effects:
+      - target_attribute: taste_warm
+        operation: set
+        value: hearty
+
+  tuxeball_peppy:
+    capdev_effects:
+      - target_attribute: taste_warm
+        operation: set
+        value: peppy
+
+  tuxeball_refined:
+    capdev_effects:
+      - target_attribute: taste_warm
+        operation: set
+        value: refined
+
+  tuxeball_salty:
+    capdev_effects:
+      - target_attribute: taste_warm
+        operation: set
+        value: salty
+
+  tuxeball_zesty:
+    capdev_effects:
+      - target_attribute: taste_warm
+        operation: set
+        value: zesty
+
+  tuxeball_hardened:
+    capdev_persistent_on_failure: True
+
+  tuxeball_diurnal:
+    specific_variables_modifiers:
+      - key: daytime
+        value: "true"
+    fallback_variables_bonus: 1.5
+    fallback_variables_malus: 0.2
+
+  tuxeball_nocturnal:
+    specific_variables_modifiers:
+      - key: daytime
+        value: "false"
+    fallback_variables_bonus: 1.5
+    fallback_variables_malus: 0.2

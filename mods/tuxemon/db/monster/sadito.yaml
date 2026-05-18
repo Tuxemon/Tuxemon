@@ -1,0 +1,65 @@
+slug: sadito
+species: lamenting_emotion
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: buzz
+- level_learned: 1
+  technique: mind_vise
+- level_learned: 4
+  technique: blade
+- level_learned: 7
+  technique: strike
+- level_learned: 13
+  technique: wall_of_steel
+- level_learned: 19
+  technique: shuriken
+- level_learned: 25
+  technique: frostbite
+- level_learned: 28
+  technique: shrapnel
+evolutions: []
+history:
+- slug: sadito
+  stage: stage1
+  evolves_from:
+  - chromeye
+  evolves_into: []
+- slug: chromeye
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - angrito
+  - happito
+  - neutrito
+  - sadito
+terrains:
+- extraplanar
+- urban
+tags:
+- mental
+- machine
+- leadership
+- gadgets
+shape: blob
+stage: stage1
+types:
+- metal
+- cosmic
+gender_weights:
+  neuter: 1.0
+txmn_id: 178
+height: 90
+weight: 55
+sounds:
+  combat_call:
+    sfx: sound_retro_beep_05
+    volume: 1.5
+  faint_call:
+    sfx: sound_retro_beep_05_faint
+    volume: 1.5
+catch_rate: 70.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.05

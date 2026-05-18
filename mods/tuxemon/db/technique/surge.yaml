@@ -1,0 +1,39 @@
+tech_id: 19
+accuracy: 0.75
+effects:
+- type: remove
+  parameters:
+  - positive
+  - own_monster
+- type: damage
+speed: normal
+potency: 1
+power: 1.25
+range: ranged
+recharge: 2
+slug: surge
+sort: damage
+modifiers: []
+behaviors: {}
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: simple
+tags:
+- electricity
+types:
+- lightning
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: lightning_bolt_138
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_lightning2
+  volume: 1.5

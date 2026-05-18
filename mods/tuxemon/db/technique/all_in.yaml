@@ -1,0 +1,40 @@
+tech_id: 54
+accuracy: 0.8
+effects:
+- type: give
+  parameters:
+  - recover
+  - own_monster
+- type: damage
+speed: slow
+potency: 1
+power: 3
+range: touch
+recharge: 3
+slug: all_in
+sort: damage
+modifiers: []
+behaviors: {}
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: powerful
+tags:
+- leadership
+- fury
+types:
+- heroic
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: sparks_gold_alt
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_shine
+  volume: 1.5

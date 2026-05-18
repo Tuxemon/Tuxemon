@@ -1,0 +1,82 @@
+slug: medipup
+species: erythrocyte
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: barking
+- level_learned: 1
+  technique: ram
+- level_learned: 4
+  technique: revenge_stance
+- level_learned: 7
+  technique: canine
+- level_learned: 13
+  technique: hibernate
+- level_learned: 16
+  technique: mystic_blending
+- level_learned: 19
+  technique: take_cover
+- level_learned: 25
+  technique: life_surge
+- level_learned: 28
+  technique: sand_spray
+- level_learned: 31
+  technique: fluff_up
+- level_learned: 37
+  technique: all_in
+- level_learned: 40
+  technique: saber
+- level_learned: 49
+  technique: needle
+evolutions:
+- at_level: 24
+  monster_slug: doctsky
+history:
+- slug: medipup
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - doctsky
+- slug: doctsky
+  stage: stage1
+  evolves_from:
+  - medipup
+  evolves_into:
+  - askylpaws
+  - erythroskyte
+- slug: askylpaws
+  stage: stage2
+  evolves_from:
+  - doctsky
+  evolves_into: []
+- slug: erythroskyte
+  stage: stage2
+  evolves_from:
+  - doctsky
+  evolves_into: []
+terrains:
+- urban
+tags:
+- healing
+shape: varmint
+stage: basic
+types:
+- normal
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 281
+height: 30
+weight: 3
+sounds:
+  combat_call:
+    sfx: sound_cute_01
+    volume: 1.5
+  faint_call:
+    sfx: sound_cute_01_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.05

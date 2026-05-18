@@ -1,0 +1,18 @@
+monsters:
+- encounter_rate: 0.5
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 30
+  - 31
+  monster: dark_robo
+  variables: []
+- encounter_rate: 0.5
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 30
+  - 31
+  monster: xeon_2
+  variables: []
+slug: spyder_omnichannel

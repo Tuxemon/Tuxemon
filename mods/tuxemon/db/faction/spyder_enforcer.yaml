@@ -1,0 +1,86 @@
+# slug: Unique ID of the faction (example: "faction_enforcers")
+#       Must have a translation entry in base.po with msgid = slug.
+# kind: Type of faction (enum: gym, team, league, club, village, organization, elite, academy)
+#        Example: "organization"
+# alignment: Alignment of the faction (enum: heroic, villainous, rogue, neutral, chaotic, lawful)
+#        Example: "chaotic"
+# badge_id: Optional badge ID associated with the faction (example: "enforcer_badge")
+# leader_char: Optional slug of the faction leader NPC
+#       Must exist in the NPC database and also be listed in members with a reputation score.
+# ranks: List of rank steps based on reputation thresholds
+#   title: Rank title (example: "Rookie", "Agent")
+#   threshold: Minimum reputation required for this rank (example: 50)
+#   requirement: Optional additional requirements
+#       min_reputation: Minimum reputation required (example: 60)
+#       variables: Optional list of variables affecting requirements
+# members: List of NPC slugs belonging to this faction
+#        Each NPC slug must exist in the NPC database.
+# reputation: Mapping of NPC slugs to their reputation scores
+#        Every member must have a reputation entry.
+# relations: Relationships with other factions
+#        Keys: faction slugs; Values: relation status (enum: ally, rival, hostile, neutral, unknown)
+# public_reputation: General public reputation score of the faction (integer, default 0)
+
+slug: faction_enforcers
+kind: organization
+alignment: chaotic
+badge_id: enforcer_badge
+leader_char: null
+ranks:
+- title: Rookie
+  threshold: 0
+- title: Agent
+  threshold: 50
+  requirement:
+    min_reputation: 60
+- title: Boss
+  threshold: 100
+  requirement:
+    min_reputation: 120
+- title: Commander
+  threshold: 150
+  requirement:
+    min_reputation: 180
+members:
+- spyder_routeb_calypso
+- spyder_wayfarer1_bravo
+- spyder_wayfarer1_victor
+- spyder_scoop_turner
+- spyder_routee_aiolos
+- spyder_routee_calliope
+- spyder_route6_gunner
+- spyder_omnichannel_enforcer
+- spyder_nimrod_thatcher
+- spyder_nimrod_dirk
+- spyder_routeb_electra
+- spyder_dragonscave_lucille
+- spyder_routeb_nephthys
+- spyder_candy_henrik
+- spyder_dragonscave_lazybrute
+- spyder_dragonscave_concernedbrute
+- spyder_dragonscave_angrybrute
+- spyder_routeb_cytherea
+- spyder_routeb_sedna
+- spyder_nimrod_bowie
+reputation:
+  spyder_nimrod_bowie: 145
+  spyder_routeb_calypso: 135
+  spyder_routee_calliope: 99
+  spyder_wayfarer1_bravo: 95
+  spyder_nimrod_thatcher: 90
+  spyder_nimrod_dirk: 80
+  spyder_routeb_nephthys: 75
+  spyder_routeb_electra: 69
+  spyder_dragonscave_lucille: 62
+  spyder_wayfarer1_victor: 45
+  spyder_scoop_turner: 42
+  spyder_routee_aiolos: 40
+  spyder_route6_gunner: 40
+  spyder_omnichannel_enforcer: 38
+  spyder_candy_henrik: 35
+  spyder_routeb_sedna: 31
+  spyder_routeb_cytherea: 28
+  spyder_dragonscave_lazybrute: 18
+  spyder_dragonscave_concernedbrute: 17
+  spyder_dragonscave_angrybrute: 15
+relations: {}

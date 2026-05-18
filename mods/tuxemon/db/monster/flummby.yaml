@@ -1,0 +1,71 @@
+slug: flummby
+species: pastry
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: overfeed
+- level_learned: 1
+  technique: slice
+- level_learned: 4
+  technique: food_fight
+- level_learned: 7
+  technique: lick_lash
+- level_learned: 10
+  technique: piece_of_cake
+- level_learned: 13
+  technique: egg_smash
+- level_learned: 16
+  technique: potluck
+- level_learned: 19
+  technique: diet
+- level_learned: 25
+  technique: just_desserts
+- level_learned: 28
+  technique: gourmet
+- level_learned: 31
+  technique: oven
+- level_learned: 37
+  technique: heavenly_desserts
+evolutions:
+- monster_slug: flummack
+  at_level: 32
+  item:
+    lima_pie: 1.0
+history:
+- slug: flummby
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - flummack
+- slug: flummack
+  stage: stage1
+  evolves_from:
+  - flummby
+  evolves_into: []
+terrains:
+- urban
+- other
+tags:
+- food
+- soldier
+shape: sprite
+stage: basic
+types:
+- cosmic
+gender_weights:
+  neuter: 1.0
+txmn_id: 307
+height: 90
+weight: 50
+sounds:
+  combat_call:
+    sfx: sound_weird_09
+    volume: 1.5
+  faint_call:
+    sfx: sound_weird_09_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.05

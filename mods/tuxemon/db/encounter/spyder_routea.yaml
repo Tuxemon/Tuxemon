@@ -1,0 +1,62 @@
+monsters:
+- encounter_rate: 3.5
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 12
+  - 15
+  monster: shybulb
+  variables:
+    - key: daytime
+      value: "true"
+- encounter_rate: 3.5
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 12
+  - 15
+  monster: katapill
+  variables:
+    - key: daytime
+      value: "true"
+- encounter_rate: 1.5
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 12
+  - 15
+  monster: anoleaf
+  variables:
+    - key: daytime
+      value: "true"
+- encounter_rate: 3.5
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 14
+  - 18
+  monster: katapill
+  variables:
+    - key: daytime
+      value: "false"
+- encounter_rate: 1.5
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 14
+  - 18
+  monster: vamporm
+  variables:
+    - key: daytime
+      value: "false"
+- encounter_rate: 1.5
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 14
+  - 18
+  monster: anoleaf
+  variables:
+    - key: daytime
+      value: "false"
+slug: spyder_routea

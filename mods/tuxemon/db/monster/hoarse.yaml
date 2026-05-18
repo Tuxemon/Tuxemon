@@ -1,0 +1,60 @@
+slug: hoarse
+species: field_dweller
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: stampede
+- level_learned: 1
+  technique: wallow
+- level_learned: 4
+  technique: hibernate
+- level_learned: 10
+  technique: mudslide
+- level_learned: 19
+  technique: earthquake
+evolutions:
+- at_level: 30
+  monster_slug: equill
+history:
+- slug: hoarse
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - equill
+- slug: equill
+  stage: stage1
+  evolves_from:
+  - hoarse
+  evolves_into:
+  - hoarseshoo
+- slug: hoarseshoo
+  stage: stage2
+  evolves_from:
+  - equill
+  evolves_into: []
+terrains: []
+tags:
+- megafauna
+shape: landrace
+stage: basic
+types:
+- shadow
+- normal
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 309
+height: 130
+weight: 130
+sounds:
+  combat_call:
+    sfx: sound_troll_01
+    volume: 1.5
+  faint_call:
+    sfx: sound_troll_01_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.05

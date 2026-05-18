@@ -1,0 +1,96 @@
+slug: asudopt
+species: god_penguin
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: peck
+- level_learned: 1
+  technique: solar_synthesis
+- level_learned: 4
+  technique: wing_tip
+- level_learned: 10
+  technique: peregrine
+- level_learned: 13
+  technique: whirlwind
+- level_learned: 19
+  technique: flamethrower
+- level_learned: 25
+  technique: tornado
+- level_learned: 31
+  technique: energy_beam
+- level_learned: 40
+  technique: frostbite
+- level_learned: 55
+  technique: divinity_beam
+evolutions: []
+history:
+- slug: asudopt
+  stage: standalone
+  evolves_from: []
+  evolves_into: []
+terrains:
+- other
+tags:
+- amphibian
+- bird
+- bite
+- bomber
+- bug
+- calamity
+- celestial
+- claws
+- darkness
+- electricity
+- fists
+- flame
+- food
+- fury
+- gadgets
+- gaze
+- gemstone
+- ghost
+- ground
+- healing
+- ice
+- leadership
+- light
+- love
+- machine
+- megafauna
+- mental
+- plant
+- pseudopod
+- rock
+- shapeshifter
+- sharp
+- shielded
+- soldier
+- speed
+- steel
+- summoner
+- toxic
+- universal
+- weather
+- water
+shape: flier
+stage: standalone
+types:
+- frost
+- cosmic
+gender_weights:
+  neuter: 1.0
+txmn_id: 300
+height: 150
+weight: 30
+sounds:
+  combat_call:
+    sfx: sound_crow_caw
+    volume: 1.5
+  faint_call:
+    sfx: sound_crow_caw_faint
+    volume: 1.5
+catch_rate: 5.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.05

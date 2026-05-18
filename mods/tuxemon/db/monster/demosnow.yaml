@@ -1,0 +1,75 @@
+slug: demosnow
+species: tempted
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: ice_claw
+- level_learned: 1
+  technique: goad
+- level_learned: 4
+  technique: torch
+- level_learned: 7
+  technique: orbs
+- level_learned: 13
+  technique: muck
+- level_learned: 28
+  technique: chill_mist
+- level_learned: 34
+  technique: grinding
+- level_learned: 43
+  technique: tsunami
+- level_learned: 46
+  technique: snowstorm
+- level_learned: 52
+  technique: shadow_blast
+evolutions:
+- at_level: 32
+  monster_slug: lucifice
+history:
+- slug: demosnow
+  stage: stage1
+  evolves_from:
+  - waysprite
+  evolves_into:
+  - lucifice
+- slug: waysprite
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - angesnow
+  - demosnow
+- slug: lucifice
+  stage: stage2
+  evolves_from:
+  - demosnow
+  evolves_into: []
+terrains:
+- extraplanar
+tags:
+- ice
+- leadership
+- weather
+- darkness
+- flame
+shape: sprite
+stage: stage1
+types:
+- frost
+- shadow
+gender_weights:
+  neuter: 1.0
+txmn_id: 264
+height: 120
+weight: 35
+sounds:
+  combat_call:
+    sfx: sound_woosh_1
+    volume: 1.5
+  faint_call:
+    sfx: sound_woosh_1_faint
+    volume: 1.5
+catch_rate: 70.0
+lower_catch_resistance: 0.9
+upper_catch_resistance: 1.15

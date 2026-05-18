@@ -1,0 +1,188 @@
+- slug: spyder_searoutec_alpha
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: swimmer_red
+    combat_sheet: swimmer
+    slug: swimmer
+- slug: spyder_searoutec_river
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_searoutec_river1
+        post_battle_win: null
+        post_battle_lose: spyder_searoutec_river2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: swimmer_orange
+    combat_sheet: swimmer
+    slug: swimmer
+- slug: spyder_searoutec_nigel
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_searoutec_nigel1
+        post_battle_win: null
+        post_battle_lose: spyder_searoutec_nigel2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: dragonrider_blue
+    combat_sheet: dragonrider
+    slug: dragonrider
+- slug: spyder_searoutec_more
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_searoutec_more1
+        post_battle_win: null
+        post_battle_lose: spyder_searoutec_more2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: swimmer_green
+    combat_sheet: swimmer
+    slug: swimmer
+- slug: spyder_searoutec_rutherford
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_searoutec_rutherford1
+        post_battle_win: null
+        post_battle_lose: spyder_searoutec_rutherford2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: scientist
+    combat_sheet: scientist
+    slug: scientist
+- slug: spyder_searoutec_sandy
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_searoutec_sandy1
+        post_battle_win: null
+        post_battle_lose: spyder_searoutec_sandy2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: fisher
+    combat_sheet: fisher
+    slug: fisher
+- slug: spyder_searoutec_maurice
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_searoutec_maurice1
+        post_battle_win: null
+        post_battle_lose: spyder_searoutec_maurice2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: fisher_fiery
+    combat_sheet: fisher
+    slug: fisher
+- slug: spyder_searoutec_leek
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_searoutec_leek1
+        post_battle_win: null
+        post_battle_lose: spyder_searoutec_leek2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: swimmer
+    combat_sheet: swimmer
+    slug: swimmer
+- slug: spyder_searoutec_wade
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_searoutec_wade1
+        post_battle_win: null
+        post_battle_lose: spyder_searoutec_wade2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: swimmer_blue
+    combat_sheet: swimmer
+    slug: swimmer
+- slug: spyder_searoutec_stafford
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_searoutec_stafford1
+        post_battle_win: null
+        post_battle_lose: spyder_searoutec_stafford2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: beachcomber_copper
+    combat_sheet: yellowbelt
+    slug: beachcomber
+- slug: spyder_searoutec_gil
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_searoutec_gil1
+        post_battle_win: null
+        post_battle_lose: spyder_searoutec_gil2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: swimmer_blue
+    combat_sheet: swimmer
+    slug: swimmer
+- slug: spyder_searoutec_carstair
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_searoutec_carstair1
+        post_battle_win: null
+        post_battle_lose: spyder_searoutec_carstair2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: beachcomber_blue
+    combat_sheet: yellowbelt
+    slug: beachcomber
+- slug: spyder_searoutec_beech
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_searoutec_beech1
+        post_battle_win: null
+        post_battle_lose: spyder_searoutec_beech2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: swimmer_red
+    combat_sheet: swimmer
+    slug: swimmer
+- slug: spyder_searoutec_beta
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: swimmer_orange
+    combat_sheet: swimmer
+    slug: swimmer

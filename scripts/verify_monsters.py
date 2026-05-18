@@ -17,27 +17,28 @@ Checking is done with slugs.
 
 - Leif
 """
+
 import json
 from glob import glob
-from os.path import join, basename, normpath, exists
+from os.path import basename, exists, join, normpath
 
 # define the root folder used in the json files
-sprite_root = 'gfx'
+sprite_root = "gfx"
 
 # assume run from test folder
-resources_folder = normpath('../tuxemon/resources')
+resources_folder = normpath("../tuxemon/resources")
 
-db_folder = join(resources_folder, 'db')
-gfx_folder = join(resources_folder, 'gfx')
+db_folder = join(resources_folder, "db")
+gfx_folder = join(resources_folder, "gfx")
 
-sprites_folder = join(gfx_folder, 'sprites', 'battle')
-sprites_glob = join(sprites_folder, '*.*')
+sprites_folder = join(gfx_folder, "sprites", "battle")
+sprites_glob = join(sprites_folder, "*.*")
 
-technique_folder = join(db_folder, 'technique')
-technique_glob = join(technique_folder, '*.json')
+technique_folder = join(db_folder, "technique")
+technique_glob = join(technique_folder, "*.json")
 
-monster_folder = join(db_folder, 'monster')
-monster_glob = join(monster_folder, '*.json')
+monster_folder = join(db_folder, "monster")
+monster_glob = join(monster_folder, "*.json")
 
 
 # use monster-formatted sprite section
@@ -51,7 +52,7 @@ def get_slugs(pattern):
     for fn in glob(pattern):
         with open(fn) as _fp:
             data = json.load(_fp)
-        retval.add(data['slug'])
+        retval.add(data["slug"])
     return retval
 
 
@@ -70,23 +71,23 @@ errors = set()
 
 for fn in glob(monster_glob):
     filename = basename(fn)
-    print('verifying {}...'.format(filename))
+    print(f"verifying {filename}...")
 
     with open(fn) as fp:
         data = json.load(fp)
 
     # check that technique slugs exist
-    for tech in data['moveset']:
-        if tech['technique'] not in all_techniques:
-            print('\tcannot find {}'.format(tech['technique']))
+    for tech in data["moveset"]:
+        if tech["technique"] not in all_techniques:
+            print("\tcannot find {}".format(tech["technique"]))
             errors.add(filename)
 
     # check that sprites exist
-    sprites = normalize_sprites(data['sprites'])
+    sprites = normalize_sprites(data["sprites"])
     for fn in sprites:
         path = join(resources_folder, fn)
         if not exists(path):
-            print('\tcannot find {}'.format(path))
+            print(f"\tcannot find {path}")
             errors.add(filename)
 
 if errors:

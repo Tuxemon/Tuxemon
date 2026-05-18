@@ -1,0 +1,102 @@
+monsters:
+- encounter_rate: 2.5
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 3
+  - 6
+  monster: cardiling
+  variables:
+    - key: daytime
+      value: "true"
+- encounter_rate: 2.5
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 3
+  - 6
+  monster: aardorn
+  variables:
+    - key: daytime
+      value: "true"
+- encounter_rate: 2.5
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 3
+  - 6
+  monster: eyenemy
+  variables:
+    - key: daytime
+      value: "true"
+- encounter_rate: 1
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 4
+  - 7
+  monster: axolightl
+  variables:
+    - key: daytime
+      value: "true"
+- encounter_rate: 2.5
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 3
+  - 6
+  monster: cataspike
+  variables:
+    - key: daytime
+      value: "true"
+- encounter_rate: 2.5
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 3
+  - 6
+  monster: cardiling
+  variables:
+    - key: daytime
+      value: "false"
+- encounter_rate: 2.5
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 4
+  - 8
+  monster: aardorn
+  variables:
+    - key: daytime
+      value: "false"
+- encounter_rate: 2.5
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 4
+  - 8
+  monster: eyenemy
+  variables:
+    - key: daytime
+      value: "false"
+- encounter_rate: 1
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 5
+  - 8
+  monster: axolightl
+  variables:
+    - key: daytime
+      value: "false"
+- encounter_rate: 2.5
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 4
+  - 8
+  monster: cataspike
+  variables:
+    - key: daytime
+      value: "false"
+slug: spyder_route2

@@ -1,0 +1,41 @@
+tech_id: 262
+accuracy: 1.0
+effects:
+- type: cooldown_modifier
+  parameters:
+  - enemy_monster
+  - '2'
+  - melee
+  - special
+speed: extremely_fast
+potency: 0.0
+power: 0.0
+range: special
+recharge: 3
+slug: counterspell
+sort: damage
+modifiers: []
+behaviors: {}
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: special
+tags:
+- celestial
+- staff
+types:
+- cosmic
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: warp
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: null
+  volume: 1.5

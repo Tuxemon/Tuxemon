@@ -1,0 +1,217 @@
+events:
+  Allow Swim:
+    actions:
+    - update_tile_properties surfable,1
+    conditions:
+    - not tile_property_updated surfable,1
+    - is variable_set swimming:yes
+    - is current_state WorldState
+    type: event
+  Bond Up 1000 Steps:
+    actions:
+    - modify_monster_bond
+    - remove_step_tracker player,steps_bonding
+    - add_step_tracker player,steps_bonding,1000,0
+    - clear_variable start_bonding
+    conditions:
+    - is variable_set start_bonding:yes
+    - is step_tracker player,steps_bonding,0
+    - is has_item player,friendship_scroll
+    type: event
+  Cathedral:
+    actions:
+    - set_bill player,bill_cathedral,0,0.1,100,0.5
+    - set_variable cathedral_share:0.5
+    - format_variable cathedral_share,float
+    - set_variable cathedral_interest:0.1
+    - format_variable cathedral_interest,float
+    - set_variable cathedral_fee:100
+    - set_variable scoop_coeff:50
+    conditions:
+    - not variable_set cathedral_share
+    - not variable_set cathedral_interest
+    - not variable_set cathedral_fee
+    - not variable_set scoop_coeff
+    type: event
+  Cathedral Bill:
+    actions:
+    - set_bill player,bill_cathedral,0,0.1,100,0.5
+    conditions:
+    - not bill_exists player,bill_cathedral
+    type: event
+  Cheat Code ApexPlayer:
+    actions:
+    - get_party_monster
+    - remove_monster iid_slot_0
+    - add_monster rockat,100
+    - add_monster moloch,100
+    - add_monster arthrobolt,100
+    - add_monster eaglace,100
+    - add_monster agnigon,100
+    - char_plague spyderbite,inoculated
+    - set_variable cheat_apex:enabled
+    conditions:
+    - is check_char_parameter player,name,ApexPlayer
+    - is party_size player,equals,1
+    - not variable_set cheat_apex:enabled
+    - is current_state WorldState
+    type: event
+  Check Max Moves:
+    actions:
+    - translated_dialog new_tech_delete
+    - get_pending_moves chosen_tech
+    - remove_tech chosen_tech
+    conditions:
+    - is check_max_tech player
+    - is current_state MainCombatMenuState:WorldState
+    type: event
+  Choice Surf:
+    actions:
+    - translated_dialog itsswimmingtime
+    - translated_dialog_choice yes:no,swimming
+    conditions:
+    - is has_item player,surfboard
+    - is char_facing_tile player,surfable
+    - is button_pressed INTERACT
+    - not char_in player,surfable
+    type: event
+  Create Quarantine Kennel:
+    actions:
+    - create_kennel player,quarantine,true
+    conditions:
+    - not kennel player,quarantine,exist
+    type: event
+  Day Cycle Outside:
+    actions:
+    - set_layer
+    conditions:
+    - not time_is stage_of_day,equals,night
+    - not variable_set flashback:on
+    - not location_inside
+    - is check_world layer,0:0:128:128
+    type: event
+  Evolution all:
+    actions:
+    - evolution player
+    conditions:
+    - is check_evolution player
+    - is current_state WorldState
+    type: event
+  Forbid Swim:
+    actions:
+    - update_tile_properties surfable,0
+    conditions:
+    - not tile_property_updated surfable,0
+    - is variable_set swimming:no
+    - is current_state WorldState
+    type: event
+  Hide Quarantine Kennel:
+    actions:
+    - set_kennel_visible player,quarantine,false
+    conditions:
+    - not variable_set hospitalcure:yes
+    - is kennel player,quarantine,visible
+    type: event
+  Night Day Cycle Inside:
+    actions:
+    - set_layer
+    conditions:
+    - is time_is stage_of_day,equals,night
+    - not variable_set flashback:on
+    - is location_inside
+    - is check_world layer
+    type: event
+  Night Day Cycle Outside:
+    actions:
+    - set_layer 0:0:128:128
+    conditions:
+    - is time_is stage_of_day,equals,night
+    - not variable_set flashback:on
+    - not location_inside
+    - not check_world layer,0:0:128:128
+    type: event
+  Not surfable:
+    actions:
+    - set_template player,default
+    - set_variable swimming:no
+    conditions:
+    - not char_in player,surfable
+    - is char_sprite player,swimmer
+    type: event
+  Set Bonding Variable:
+    actions:
+    - add_step_tracker player,steps_bonding,1000,0
+    - set_variable start_bonding:yes
+    conditions:
+    - not variable_set start_bonding:yes
+    - is has_item player,friendship_scroll
+    type: event
+  Set Party Status:
+    actions:
+    - set_party_status player
+    conditions:
+    - is current_state MainCombatMenuState:WorldMenuState
+    - is party_size player,greater_than,0
+    type: event
+  Show Quarantine Kennel:
+    actions:
+    - set_kennel_visible player,quarantine,true
+    conditions:
+    - is variable_set hospitalcure:yes
+    - is kennel player,quarantine,hidden
+    type: event
+  Surfable:
+    actions:
+    - set_template player,swimmer
+    conditions:
+    - is char_in player,surfable
+    - not char_sprite player,swimmer
+    type: event
+  Swim Day Environment:
+    actions:
+    - set_environment ocean
+    conditions:
+    - is char_sprite player,swimmer
+    - not time_is stage_of_day,equals,night
+    - not environment_is ocean
+    type: event
+  Swim Encounters Day:
+    actions:
+    - random_encounter spyder_routec,0.25
+    conditions:
+    - is char_sprite player,swimmer
+    - is current_state WorldState
+    - is check_char_parameter player,moving,1
+    - is environment_is ocean
+    type: event
+  Swim Encounters Night:
+    actions:
+    - random_encounter spyder_routec,0.75
+    conditions:
+    - is char_sprite player,swimmer
+    - is current_state WorldState
+    - is check_char_parameter player,moving,1
+    - is environment_is night_ocean
+    type: event
+  Swim Night Environment:
+    actions:
+    - set_environment night_ocean
+    conditions:
+    - is char_sprite player,swimmer
+    - is time_is stage_of_day,equals,night
+    - not environment_is night_ocean
+    type: event
+  Teleport Faint:
+    actions:
+    - teleport_faint player,true
+    conditions:
+    - is char_defeated player
+    - not location_type clinic
+    - is current_state WorldState
+    type: event
+  Update Time Variables:
+    actions:
+    - update_time player
+    conditions:
+    - is current_state TeleporterState
+    type: event

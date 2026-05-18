@@ -1,0 +1,22 @@
+modifiers: []
+behaviors: {}
+category: positive
+effects:
+- type: charging
+icon: gfx/ui/icons/status/icon_charging.png
+on_positive_status: replaced
+on_tech_use: chargedup
+on_item_use: chargedup
+slug: charging
+sort: meta
+cond_id: 8
+use_failure: null
+use_success: combat_state_charging_get
+gain_cond: null
+visuals:
+  animation: null
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_pulse
+  volume: 1.5

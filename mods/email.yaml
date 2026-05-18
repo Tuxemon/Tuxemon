@@ -1,0 +1,16 @@
+emails:
+  # Each entry represents a single email the player can receive.
+  # Fields:
+  #   id:        Unique identifier for the email (used internally)
+  #   sender:    Who the email appears to come from
+  #   subject:   Title shown in the email list
+  #   body:      Full text shown when the email is opened
+  #   pc_tags:   Which PC types can display this email
+  #              (matches the tags passed to AccessPCAction)
+  #   maps:      Optional list of map slugs where this email is visible.
+  #              If omitted or null, the email appears on ALL maps.
+  - id: "example_id"
+    sender: "example_welcome_sender"
+    subject: "example_welcome_subject"
+    body: "example_welcome_body"
+    pc_tags: ["example"]

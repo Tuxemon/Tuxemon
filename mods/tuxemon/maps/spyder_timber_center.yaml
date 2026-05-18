@@ -1,0 +1,25 @@
+events:
+  Create Nurse:
+    actions:
+    - create_npc spyder_cathedral_nurse,5,4
+    - set_teleport_faint player,spyder_timber_center.tmx,6,7
+    - load_yaml spyder_cathedral
+    conditions:
+    - not char_exists spyder_cathedral_nurse
+    type: event
+  Go Outside:
+    actions:
+    - transition_teleport player,spyder_timber_town.tmx,8,7,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,down
+    type: event
+    x: 6
+    y: 10
+  Route Music:
+    actions:
+    - play_music music_cathedral_theme
+    conditions:
+    - not music_playing music_cathedral_theme
+    type: event

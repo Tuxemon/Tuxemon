@@ -1,0 +1,10 @@
+- monsters:
+  - encounter_rate: 3.5
+    exp_req_mod: 1
+    held_items: []
+    level_range:
+    - 5
+    - 6
+    monster: pairagrim
+    variables: []
+  slug: eclipse_park

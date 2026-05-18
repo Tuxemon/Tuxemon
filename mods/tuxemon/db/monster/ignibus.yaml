@@ -1,0 +1,74 @@
+slug: ignibus
+species: hot_rock
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: fire_ball
+- level_learned: 1
+  technique: boulder
+- level_learned: 4
+  technique: one_two
+- level_learned: 7
+  technique: fire_claw
+- level_learned: 13
+  technique: tinder
+evolutions:
+- monster_slug: eruptibus
+  item:
+    earth_booster: 0.5
+    tectonic_drill: 0.5
+- monster_slug: embazook
+  item:
+    metal_booster: 0.5
+    stovepipe: 0.5
+history:
+- slug: ignibus
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - eruptibus
+  - eruptibus
+  - embazook
+  - embazook
+- slug: embazook
+  stage: stage1
+  evolves_from:
+  - ignibus
+  - ignibus
+  evolves_into: []
+- slug: eruptibus
+  stage: stage1
+  evolves_from:
+  - ignibus
+  - ignibus
+  evolves_into: []
+terrains:
+- desert
+- mountains
+tags:
+- flame
+- rock
+- bite
+- bomber
+shape: polliwog
+stage: basic
+types:
+- fire
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 30
+height: 68
+weight: 27
+sounds:
+  combat_call:
+    sfx: sound_spell_fire_07
+    volume: 1.5
+  faint_call:
+    sfx: sound_spell_fire_07_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.25

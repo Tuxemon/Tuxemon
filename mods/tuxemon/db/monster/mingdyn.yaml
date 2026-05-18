@@ -1,0 +1,66 @@
+slug: mingdyn
+species: dragon
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: fire_ball
+- level_learned: 1
+  technique: sunburst
+- level_learned: 4
+  technique: salamander
+- level_learned: 7
+  technique: surge
+- level_learned: 13
+  technique: muddle
+- level_learned: 16
+  technique: kindling_flame
+- level_learned: 19
+  technique: fire_claw
+- level_learned: 25
+  technique: wall_fire
+- level_learned: 28
+  technique: gold_digger
+- level_learned: 31
+  technique: energy_claws
+- level_learned: 37
+  technique: arcane_eye
+- level_learned: 40
+  technique: supernova
+- level_learned: 55
+  technique: tornado
+evolutions: []
+history:
+- slug: mingdyn
+  stage: standalone
+  evolves_from: []
+  evolves_into: []
+terrains:
+- mountains
+tags:
+- flame
+- celestial
+- healing
+- calamity
+shape: dragon
+stage: standalone
+types:
+- fire
+- sky
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 239
+height: 274
+weight: 124
+sounds:
+  combat_call:
+    sfx: sound_roar_05
+    volume: 1.5
+  faint_call:
+    sfx: sound_roar_05_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.9
+upper_catch_resistance: 1.15

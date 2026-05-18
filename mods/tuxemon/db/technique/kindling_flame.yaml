@@ -1,0 +1,39 @@
+tech_id: 30
+accuracy: 0.8
+effects:
+- type: give
+  parameters:
+  - enraged
+  - own_monster
+- type: damage
+speed: normal
+potency: 1
+power: 2.25
+range: ranged
+recharge: 2
+slug: kindling_flame
+sort: damage
+modifiers: []
+behaviors: {}
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: exotic
+tags:
+- flame
+types:
+- fire
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: constantburn
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_flames1
+  volume: 1.5

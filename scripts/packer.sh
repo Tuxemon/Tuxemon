@@ -1,0 +1,2 @@
+#!/bin/bash
+TexturePacker --sheet packed.png --data packed.json --format json --max-size 4096 --size-constraints POT --trim-mode Trim --algorithm MaxRects --maxrects-heuristics Best --pack-mode Best --enable-rotation mods/

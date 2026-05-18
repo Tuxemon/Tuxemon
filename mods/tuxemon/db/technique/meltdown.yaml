@@ -1,0 +1,40 @@
+tech_id: 103
+accuracy: 0.7
+effects:
+- type: give
+  parameters:
+  - festering
+  - enemy_monster
+- type: damage
+speed: very_slow
+potency: 0.2
+power: 2.8
+range: reach
+recharge: 2
+slug: meltdown
+sort: damage
+modifiers: []
+behaviors: {}
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: powerful
+tags:
+- bomber
+- calamity
+types:
+- venom
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: meltdown
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_tornado
+  volume: 1.5

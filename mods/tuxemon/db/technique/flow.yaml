@@ -1,0 +1,37 @@
+tech_id: 9
+accuracy: 0.6
+effects:
+- type: splash
+  parameters:
+  - '2'
+speed: normal
+potency: 0.0
+power: 1.5
+range: melee
+recharge: 1
+slug: flow
+sort: damage
+modifiers: []
+behaviors: {}
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: basic
+tags:
+- water
+types:
+- water
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: waterspurt
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_bubbles
+  volume: 1.5

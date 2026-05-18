@@ -1,0 +1,40 @@
+tech_id: 131
+accuracy: 1
+effects:
+- type: switch
+  parameters:
+  - enemy_monster
+  - earth
+speed: normal
+potency: 1
+power: 0
+range: special
+recharge: 4
+slug: ants
+sort: damage
+modifiers: []
+behaviors:
+  bypasses_selection: true
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: exotic
+tags:
+- bug
+- shapeshifter
+types:
+- earth
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: slash_power
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_squeak
+  volume: 1.5

@@ -1,0 +1,42 @@
+tech_id: 25
+accuracy: 0.6
+effects:
+- type: give
+  parameters:
+  - exhausted
+  - enemy_monster
+- type: splash
+  parameters:
+  - '2'
+speed: normal
+potency: 1
+power: 3
+range: melee
+recharge: 3
+slug: snowstorm
+sort: damage
+modifiers: []
+behaviors: {}
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: powerful
+tags:
+- calamity
+- weather
+types:
+- frost
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: explosion_ice_112
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_tornado
+  volume: 1.5

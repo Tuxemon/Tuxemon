@@ -1,64 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="303">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="339">
  <properties>
+  <property name="east" value="citypark"/>
   <property name="edges" value="clamped"/>
+  <property name="map_type" value="town"/>
+  <property name="north" value="route3"/>
+  <property name="scenario" value="spyder"/>
+  <property name="slug" value="leather_town"/>
  </properties>
- <tileset firstgid="1" name="Basic_Buch_Tiles_Compiled" tilewidth="16" tileheight="16" tilecount="448" columns="32">
-  <image source="../gfx/tilesets/Basic_Buch_Tiles_Compiled.png" width="512" height="224"/>
- </tileset>
- <tileset firstgid="449" name="Set_Pieces_by_Kelvin_Shadewing" tilewidth="16" tileheight="16" tilecount="1440" columns="45">
-  <image source="../gfx/tilesets/Set_Pieces_by_Kelvin_Shadewing.png" width="720" height="512"/>
- </tileset>
- <tileset firstgid="1889" name="Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998" tilewidth="16" tileheight="16" tilecount="1440" columns="40">
-  <image source="../gfx/tilesets/Outdoor_Tiles_-_City_and_Country_-_by_ArMM1998.png" width="640" height="576"/>
- </tileset>
- <tileset firstgid="3329" name="Terrain_by_George" tilewidth="16" tileheight="16" tilecount="360" columns="15">
-  <image source="../gfx/tilesets/Terrain_by_George.png" width="240" height="384"/>
- </tileset>
- <tileset firstgid="3689" name="Car,_Black_by_Isaiah658" tilewidth="16" tileheight="16" tilecount="36" columns="6">
-  <image source="../gfx/tilesets/Car,_Black_by_Isaiah658.png" width="96" height="96"/>
- </tileset>
- <tileset firstgid="3725" name="Truck-red-all" tilewidth="16" tileheight="16" tilecount="36" columns="6">
-  <image source="../gfx/tilesets/Truck-red-all.png" width="96" height="96"/>
- </tileset>
- <tileset firstgid="3761" name="Superpowers_Tilesheet" tilewidth="16" tileheight="16" tilecount="1600" columns="40">
-  <image source="../gfx/tilesets/Superpowers_Tilesheet.png" width="640" height="640"/>
- </tileset>
- <tileset firstgid="5361" name="boxfont" tilewidth="16" tileheight="16" tilecount="156" columns="13">
-  <image source="../gfx/tilesets/boxfont.png" width="208" height="192"/>
- </tileset>
+ <tileset firstgid="1" source="../gfx/tilesets/core_city_and_country.tsx"/>
+ <tileset firstgid="1441" source="../gfx/tilesets/Superpowers_Tilesheet.tsx"/>
+ <tileset firstgid="3041" source="../gfx/tilesets/core_outdoor.tsx"/>
+ <tileset firstgid="5816" source="../gfx/tilesets/core_set pieces.tsx"/>
+ <tileset firstgid="7366" source="../gfx/tilesets/core_buildings.tsx"/>
+ <tileset firstgid="9716" source="../gfx/tilesets/core_outdoor_nature.tsx"/>
  <layer id="1" name="Layer 1" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHVVtuR00AQPL55OQgCuFAuBwyXBlUc8Hs5ID7vcCKSyQMkEQLdhbqqa2pnJetsjD+6dnZ3pqd3ViPp4erqw3fgEXj4D+01mnb/8Dxr9M3V+/qI97AFV8RbrJ1C9xrOO2iJ+Jjou0/Wj/3s/kAecUZtnGf6FDN3v2vqlHE20EO8B6T1C+xtAce69xtwLz2D/D6ZPumM4znqein6vqF+TQF+7+es3y55Jvzez6kv681L0lfr6z3q3wEtoLNqzN4dS9bVHxmX1y/2s+a89xEYgP4C9HlddH5fk61RPqUa1fYY733tvazacfT6vXj29547rDtazF0Ptfg8s2v6/DvI+OyuXd8AvxL6oCfTdx38avrimWr6XqNur4Cfk75fGDkXXsJ2vkxf1BPnzkHb5zV9e/h2wHPoYP1YL2oo8YtTY8lHsdoTP2OYpwVoO0dN3whf6hJ62MrhHM4Z10v+0kd+2fQjv3Nxr6Yv3i/jS/nE6do8b7Q1P1TfLfI3E75idJ4Bc+/jFnPX43Y8A3vS951XdqzfZsrv9WPPkkdc9KE9AtTn6Ke9qIX5Smvi5L40kZf2zRTTY6Sf+9b0iUf3rL7lGHvXORmn2JJW7YmXsc7pXEv0uX8pX9ynD+HrbktfxuW+S/RlPKV1rgmex+2o7x1itgk+Y13ftfj8ice5S5p8fwTfAPQA19kb4lFsnHuNpKU0nkKfNPkZTqmPvRb5PXes36H6/B3XIJeD7zzmInaAdHj+mO9+8tf6U/XxDpl3D3RAC3h+7h0Kj1+ib4scjtgDzJ/xqA5zGl0TfRUnXv/WsA5CC/uuAtVPPD18PRftEpTfff0M2h8R/ybBgHXmm9NHLvLIn3k8b8lmjK/HGGkVb/xX1LeH350GXBnYA3P6NpNP1OD6Mlv6+nAe91/CK57sOenAvwb+L+ua3M70/bYzSd+AtVPgqfXTv4Oei2OPc/83Xs9z2hv0Q7zPOD+nvkc8P1HPH1oML2M=
+   eAHtWEtOxTAM7AEQvzW/myDEBd4GuAACzgBcgFMAayRuAWskJA4BazawwZY60mBi074kbR9iYblJ+9yJx+Okb7bUNLM/Zsfri72mp7Vy+DeXm8balsxNhfOX1aaxtu/g2x2I1yt6j8WmYw/fGDk9lVypfYoB6/bKT861Bkrx/j5Hfe4RPuC0fsy8Th3fieQPXLNn3sfMn9dzOa9j4vO0uUj4Il0fyB5+KHY08F7O+bN6xlh5PxdcF2KX//i+7b2sa9Yycqee8/cq+VOerdXgnfdB1Y/HNeNTjlPWlfecs0+E71pw3Yg9tvge2rHOqd2KeT2i1HyED/p9Exw1dIL4qJtUvVh8vG7oF9x25ZNjRNdd4lt80IjWn+V3bHwftF+fyTXWjnWyjlNc4HnrrSZxH3FT/Ny15zXOn+YMv1WPZ2ycUrVo46b4ifABK+KwfktoF/UT9YM++FLrwxpq+Sng25C6st+bOtY178h3CWs2lQfwO0/+PG3wezhHwKJen+Gx1Qdi5OBDjMjn4NPvMuDj/oKe7/k+/YfxcY/TNfF3Cfc8/jYAPvSpLr5PLTA+cIi9r8s6bR9AP0h5nCUifFYLKQ0gJ1GcqGa8e4jr1YLmg2veXiN/iFMLn1cD+j6LicdD4eO9hutA9x2ueXsNDUT5w77rcRjNR3Gj39l7iOPVidc3fpvPOcve039wwOfVSe58bl336RlcP12vS5xvLOc1xs/EWY34NWJ+Ae1RulY=
   </data>
  </layer>
  <layer id="2" name="Layer 2" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtmEtOw0AMhqe82iLBFUCwYQGVuAYsuuIGHKOLitsgdQucgzMgXmXF+7Xht9RfWJaTyYsmEon0yzOOx/PFjcmIEPzrYi2Mz6EzyI+o1/sMrlvosUK+jfUwzqO0CgjfXUa+4WJapt97aWyM0jH0eVb47qFX6CqiEfjSYiT/Zs7aCafHRZ/wPUF9xPWgLrQCLUPif4CmkDyD1FneBfF/QZ/QB/QOvUF8R3RtOOZ+tPTH+BbA0cmha3AI3w1k1wXkkf31nuTQXIyx9xhTxkq9da28XB4fWTzr5SjqEz75Pflbenk8BuvjOvFvzepOXxkrfPLOpfF5+S0f515sER/79gVs0hfS73nykEesrNNz+vLkY6zUS/ez17fSL7F6Wh49515FrO3vpP5l7ybtoXnsOGlNET95Yzw2t2XScxtb5Xwa8LcbiuXUPBzLGhnH1pa5v9rBtweK5SCTtrLmr/liXLyvueyYMXVay6TndXJxb81jx4xpih2ontBjy3ec4b22a7LOs/Z11nxF4y67fu9m7eui+7brqqvAdh9nNKi6jNVmOgTbQYP5qn3aZmUbLs2PZ9AL4z1oF4rtuj+LGc2RL8b0H+7jLBnw7WnshbNkwLen1PWd8f9EpTYpsXin5nf+NOGbz0c6cvjmeV5JOpNMZtwnDl97XuGv19q2AtVX4Af7+vfy
+   eAHtWF1KxEAMzpPoo/ggCMqC4Iv4B95BwTPsqifwCh7E3dX7qOC73fUoJrTBbJifTKcdijQQOslkkq9fE7pbALdMLwBmqPeoJIsTgCXqUGSOuBaoywbfCrGtM/EdXQGkaIgLjS8Ua90LYeMcMoZ9rivje0X+6DnnKPXIYSJ3hDMkjI+eca5yj0hueK0xsD+Gr0JcqwR9bO7jwXFmjT4SWZNx1Dt/e+yXsRyTc2W+mStXLllT4vCtXTna+qz4fFjYz/XJnkR6kGMtVws+Vx7Gpa+uWIvvZr+OmmJPyZl+a/pPzzvNbkgkLoqTNq3bCvMVm+1QP1JtjUfaP5dt0QFUyIucb9/88uzqSlt7tUfi0Wt9JsdmvD48OvdpYXy6/vYuwA6qT0L80Rnisk85Q2znAXwh/ghX3/is9657TtrWHH3GSTx63Wdda26NSdrWHKXijkWhWc/zIUptLENzfYeRkyb6duNU98bTgTtnbK4Jl+TRnaWsl3iTom2595/WQ/vPqbnt4j+nzjnaw2PgE+D5A/UdNYbuyxATyzHupzMQeu+kZ+v+ROy9033FMaOFgZJ94/tNcu35rUL4x76xPMUxJoWBF/xOPs/8Vp5SLzX2G7FVhfD9ApwenXs=
   </data>
  </layer>
  <layer id="3" name="Layer 3" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer id="4" name="Above Player" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtlkkKAjEQRQsVvYreMngI52GreC2nrfOw8jdaUoRQQi+StrsaHkklRn+eIkVkjxkwA1UyMG+Qm4EpmIAxkPcfoR6CAeiDHpD7NjcDZuBt4FondwFncAJHcADmxwyYgWIb2NfI7cAWbMAaaIm7LX1fO1u2vWUOFytxZiHmqd3I7zXLJevU2bLPl95CdREyWoawgSd6gQe4g9unL7CeIezKVs1A1Q1oPUnov4R9aef4Nf84dprk2oBH7Q55ehLt/cqwx954LMOdYt+B3eF3SJh/H17nBb/m9dijn8OvU+Xxc/yqY+R8AfM2Wzk=
+   eAHtl0tOQjEUho9xAcwcmCgJK3IROvQ1hQnIS2QlPlmAAiPwuQmdqZvwI+QkpHAvpV64bdKTfDS97Wn//uS2vSIxQnagZIg360ZzrC5x4HBL5Ah8iHX9l497Ik/QhwEMYTZG1MfwDC/wCllFe1uqLWhCA+qgY7/tiLzDB+QVPfQ8wD3cwS2olm90/cBvjvpUyybL4iYnC2yu1r5IGy6hA1fQhRjRARsHhiLVAfTBpr9Ln9kzbXKmrOtccdGWZ06N9/QC6tCAJqRFCL7pXq1l2nr+03aw657tm4++6XF3Nmb65MAx+8kJnMIZnMMk4p1h6oPNbyXDbw+b+Vbtc+O5vlXXE/vn60DSnSRpL1G1SXnaHmr5WRD5Ai3T1qF3krLjO+mal6ZpUdu1oz6XPPVNy0V64jM7B0wPl9XtRs2+V6i6TN3ZOzM/4h+AxFJn
   </data>
  </layer>
- <layer id="7" name="Above Player" width="40" height="40">
+ <layer id="8" name="Above Player 2" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHt1MkJgDAURdEPbsQ4VKAW4dReenUqwa2vhCxCAuEKd6c+PYJmHAgggEAagbcx/6hbXepUaZbDVgZnvledapVTYVemOevQ8+xqU6taVJplVhBAILbAXJuf1Khi35v7IYAAAgjkEfiqPLusIoBAWQL8S8r6nrwNAgjkF/gBY5cRyg==
+   eAHt0NkJACAUA8EHNm6PXu2YLkSYwP6HqTICBAgQ+EHgtOo7rTTTSD/89pEAAQIECBAgQIAAAQIECBAgQIDAC4ELpOgGuQ==
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collisions">
-  <object id="188" type="collision" x="192" y="0" width="80" height="64"/>
-  <object id="189" type="collision" x="288" y="0" width="96" height="64"/>
-  <object id="190" type="collision" x="400" y="0" width="32" height="64"/>
-  <object id="191" type="collision" x="432" y="0" width="192" height="128"/>
-  <object id="192" type="collision" x="512" y="128" width="112" height="160"/>
-  <object id="193" type="collision" x="624" y="0" width="16" height="160"/>
+  <object id="188" type="collision" x="224" y="48" width="48" height="16"/>
+  <object id="189" type="collision" x="288" y="48" width="96" height="16"/>
+  <object id="190" type="collision" x="400" y="48" width="32" height="16"/>
+  <object id="191" type="collision" x="432" y="64" width="80" height="64"/>
+  <object id="192" type="collision" x="512" y="128" width="48" height="160"/>
   <object id="195" type="collision" x="416" y="512" width="80" height="48"/>
   <object id="197" type="collision" x="384" y="528" width="32" height="32"/>
   <object id="198" type="collision" x="320" y="512" width="48" height="48"/>
@@ -68,11 +54,8 @@
   <object id="202" type="collision" x="192" y="512" width="80" height="48"/>
   <object id="203" type="collision" x="176" y="544" width="16" height="16"/>
   <object id="204" type="collision" x="368" y="400" width="80" height="48"/>
-  <object id="206" type="collision" x="448" y="432" width="16" height="16"/>
-  <object id="207" type="collision" x="272" y="432" width="48" height="16"/>
-  <object id="208" type="collision" x="240" y="368" width="32" height="32"/>
-  <object id="209" type="collision" x="368" y="288" width="80" height="48"/>
-  <object id="210" type="collision" x="352" y="320" width="16" height="16"/>
+  <object id="209" type="collision" x="368" y="288" width="80" height="32"/>
+  <object id="210" type="collision" x="352" y="320" width="32" height="16"/>
   <object id="211" type="collision" x="448" y="304" width="32" height="32"/>
   <object id="212" type="collision" x="352" y="208" width="32" height="32"/>
   <object id="213" type="collision" x="384" y="192" width="16" height="48"/>
@@ -84,201 +67,174 @@
   <object id="219" type="collision" x="208" y="112" width="32" height="48"/>
   <object id="220" type="collision" x="240" y="112" width="16" height="32"/>
   <object id="221" type="collision" x="256" y="112" width="32" height="48"/>
-  <object id="222" type="collision" x="272" y="0" width="16" height="64"/>
+  <object id="222" type="collision" x="272" y="32" width="16" height="16"/>
   <object id="224" type="collision" x="64" y="144" width="80" height="48"/>
-  <object id="225" type="collision" x="0" y="96" width="32" height="512"/>
-  <object id="226" type="collision" x="16" y="608" width="64" height="32"/>
+  <object id="225" type="collision" x="0" y="96" width="32" height="384"/>
+  <object id="226" type="collision" x="64" y="608" width="16" height="32"/>
   <object id="227" type="collision" x="80" y="624" width="32" height="16"/>
   <object id="228" type="collision" x="112" y="608" width="32" height="32"/>
   <object id="229" type="collision" x="144" y="624" width="32" height="16"/>
   <object id="231" type="collision" x="176" y="608" width="192" height="32"/>
-  <object id="232" type="collision" x="368" y="624" width="256" height="16"/>
+  <object id="232" type="collision" x="368" y="624" width="208" height="16"/>
   <object id="233" type="collision" x="576" y="592" width="32" height="32"/>
-  <object id="234" type="collision" x="608" y="544" width="32" height="64"/>
-  <object id="235" type="collision" x="608" y="336" width="32" height="176"/>
+  <object id="234" type="collision" x="608" y="544" width="32" height="48"/>
+  <object id="235" type="collision" x="608" y="320" width="32" height="192"/>
   <object id="236" type="collision" x="576" y="480" width="16" height="16"/>
-  <object id="237" type="collision" x="592" y="336" width="16" height="16"/>
-  <object id="238" type="collision" x="528" y="336" width="16" height="16"/>
-  <object id="240" type="collision" x="560" y="288" width="16" height="32"/>
-  <object id="241" type="collision" x="576" y="320" width="16" height="16"/>
-  <object id="242" type="collision" x="608" y="304" width="16" height="16"/>
-  <object id="243" type="collision" x="32" y="304" width="32" height="16"/>
-  <object id="244" type="collision" x="80" y="304" width="32" height="16"/>
-  <object id="246" type="collision" x="80" y="384" width="32" height="16"/>
-  <object id="247" type="collision" x="32" y="384" width="32" height="16"/>
-  <object id="248" type="collision" x="32" y="512" width="80" height="32"/>
-  <object id="249" type="collision" x="80" y="432" width="32" height="80"/>
-  <object id="250" type="collision" x="112" y="432" width="48" height="32"/>
-  <object id="251" type="collision" x="176" y="432" width="48" height="32"/>
-  <object id="252" type="collision" x="224" y="320" width="48" height="16"/>
-  <object id="253" type="collision" x="192" y="208" width="32" height="224"/>
-  <object id="254" type="collision" x="224" y="208" width="48" height="96"/>
-  <object id="255" type="collision" x="224" y="304" width="16" height="16"/>
-  <object id="256" type="collision" x="144" y="112" width="32" height="128"/>
-  <object id="257" type="collision" x="176" y="208" width="16" height="32"/>
-  <object id="258" type="collision" x="48" y="112" width="96" height="32"/>
-  <object id="259" type="collision" x="48" y="64" width="32" height="48"/>
-  <object id="260" type="collision" x="0" y="64" width="48" height="32"/>
   <object id="261" type="collision" x="0" y="32" width="32" height="32"/>
   <object id="262" type="collision" x="16" y="0" width="64" height="32"/>
-  <object id="263" type="collision" x="160" y="0" width="32" height="32"/>
   <object id="264" type="collision" x="80" y="16" width="16" height="16"/>
-  <object id="265" type="collision-line" x="112" y="320">
-   <polyline points="0,0 0,64"/>
-  </object>
   <object id="266" type="collision" x="144" y="384" width="16" height="16"/>
   <object id="267" type="collision" x="288" y="176" width="16" height="16"/>
   <object id="280" type="collision" x="80" y="16" width="16" height="16"/>
   <object id="284" type="collision" x="464" y="400" width="16" height="48"/>
   <object id="285" type="collision" x="480" y="400" width="80" height="32"/>
   <object id="286" type="collision" x="496" y="432" width="64" height="16"/>
-  <object id="297" type="collision" x="384" y="0" width="16" height="64"/>
-  <object id="299" type="collision" x="32" y="480" width="32" height="32"/>
-  <object id="300" type="collision" x="32" y="544" width="32" height="64"/>
-  <object id="302" type="collision" x="128" y="256" width="48" height="16"/>
+  <object id="297" type="collision" x="384" y="32" width="16" height="16"/>
+  <object id="299" type="collision" x="0" y="480" width="64" height="32"/>
+  <object id="300" type="collision" x="0" y="544" width="64" height="64"/>
+  <object id="305" type="collision" x="192" y="144" width="16" height="16"/>
+  <object id="310" type="collision" x="400" y="320" width="48" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="6" name="Events">
   <object id="175" name="Teleport to City Park" type="event" x="624" y="512" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport spyder_citypark.tmx,0,12,0.3"/>
-    <property name="act2" value="player_face right"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing right"/>
+    <property name="act1" value="transition_teleport player,spyder_citypark.tmx,0,12,0.3"/>
+    <property name="act2" value="char_face player,right"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,right"/>
    </properties>
   </object>
   <object id="177" name="Teleport to City Park" type="event" x="624" y="528" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport spyder_citypark.tmx,0,13,0.3"/>
-    <property name="act2" value="player_face right"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing right"/>
+    <property name="act1" value="transition_teleport player,spyder_citypark.tmx,0,13,0.3"/>
+    <property name="act2" value="char_face player,right"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,right"/>
    </properties>
   </object>
-  <object id="178" name="Play Music" type="event" x="640" y="32" width="16" height="16" rotation="180">
+  <object id="179" name="Teleport to Route 3" type="event" x="144" y="0" width="16" height="16" rotation="180">
    <properties>
-    <property name="act1" value="play_music JRPG_town_loop.ogg"/>
-    <property name="cond1" value="not music_playing JRPG_town_loop.ogg"/>
+    <property name="act1" value="transition_teleport player,spyder_route3.tmx,9,39,0.3"/>
+    <property name="act2" value="char_face player,up"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
    </properties>
   </object>
-  <object id="179" name="Teleport to Route 3" type="event" x="160" y="16" width="16" height="16" rotation="180">
+  <object id="180" name="Teleport to Route 3" type="event" x="128" y="0" width="16" height="16" rotation="180">
    <properties>
-    <property name="act1" value="transition_teleport spyder_route3.tmx,9,39,0.3"/>
-    <property name="act2" value="player_face up"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
+    <property name="act1" value="transition_teleport player,spyder_route3.tmx,8,39,0.3"/>
+    <property name="act2" value="char_face player,up"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
    </properties>
   </object>
-  <object id="180" name="Teleport to Route 3" type="event" x="144" y="16" width="16" height="16" rotation="180">
+  <object id="181" name="Teleport to Route 3" type="event" x="112" y="0" width="16" height="16" rotation="180">
    <properties>
-    <property name="act1" value="transition_teleport spyder_route3.tmx,8,39,0.3"/>
-    <property name="act2" value="player_face up"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
+    <property name="act1" value="transition_teleport player,spyder_route3.tmx,7,39,0.3"/>
+    <property name="act2" value="char_face player,up"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
    </properties>
   </object>
-  <object id="181" name="Teleport to Route 3" type="event" x="128" y="16" width="16" height="16" rotation="180">
+  <object id="182" name="Teleport to Route 3" type="event" x="96" y="0" width="16" height="16" rotation="180">
    <properties>
-    <property name="act1" value="transition_teleport spyder_route3.tmx,7,39,0.3"/>
-    <property name="act2" value="player_face up"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
+    <property name="act1" value="transition_teleport player,spyder_route3.tmx,6,39,0.3"/>
+    <property name="act2" value="char_face player,up"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
    </properties>
   </object>
-  <object id="182" name="Teleport to Route 3" type="event" x="112" y="16" width="16" height="16" rotation="180">
+  <object id="183" name="Teleport to Route 3" type="event" x="80" y="0" width="16" height="16" rotation="180">
    <properties>
-    <property name="act1" value="transition_teleport spyder_route3.tmx,6,39,0.3"/>
-    <property name="act2" value="player_face up"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
-   </properties>
-  </object>
-  <object id="183" name="Teleport to Route 3" type="event" x="96" y="16" width="16" height="16" rotation="180">
-   <properties>
-    <property name="act1" value="transition_teleport spyder_route3.tmx,5,39,0.3"/>
-    <property name="act2" value="player_face up"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
+    <property name="act1" value="transition_teleport player,spyder_route3.tmx,5,39,0.3"/>
+    <property name="act2" value="char_face player,up"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
    </properties>
   </object>
   <object id="184" name="Teleport to Leather Mart" type="event" x="240" y="144" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport spyder_leather_scoop.tmx,5,10,0.3"/>
-    <property name="act2" value="player_face up"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
+    <property name="act1" value="transition_teleport player,spyder_leather_scoop.tmx,5,10,0.3"/>
+    <property name="act2" value="char_face player,up"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
    </properties>
   </object>
   <object id="185" name="Sign: Route 3" type="event" x="80" y="16" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog spyder_route3_sign"/>
-    <property name="cond1" value="is player_facing_tile"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="act1" value="translated_dialog here_to_north"/>
+    <property name="cond1" value="is char_facing_tile player"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="186" name="Sign: Open Air" type="event" x="144" y="384" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_leathercafe_sign"/>
-    <property name="cond1" value="is player_facing_tile"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond1" value="is char_facing_tile player"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="268" name="Teleport to Leather Museum" type="event" x="400" y="224" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport spyder_leather_museum.tmx,1,10,0.3"/>
-    <property name="act2" value="player_face up"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
+    <property name="act1" value="transition_teleport player,spyder_leather_museum.tmx,1,10,0.3"/>
+    <property name="act2" value="char_face player,up"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
    </properties>
   </object>
   <object id="269" name="Sign: Leather Town" type="event" x="576" y="480" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog spyder_leathertown_sign"/>
-    <property name="cond1" value="is player_facing_tile"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="act1" value="translated_dialog welcome_location_town"/>
+    <property name="cond1" value="is char_facing_tile player"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="270" name="Sign: Shaft 1" type="event" x="224" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_shaft1_sign"/>
-    <property name="cond1" value="is player_facing_tile"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond1" value="is char_facing_tile player"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="271" name="Sign: Leather CBD" type="event" x="288" y="176" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_leathercbd_sign"/>
-    <property name="cond1" value="is player_facing_tile"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond1" value="is char_facing_tile player"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
-  <object id="272" name="Make Scout" type="event" x="292.667" y="234" width="16" height="16">
+  <object id="272" name="Make Scout" type="event" x="304" y="224" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_maniac,18,15"/>
-    <property name="cond1" value="not npc_exists spyder_maniac"/>
+    <property name="act1" value="create_npc spyder_leather_filbur,18,15"/>
+    <property name="cond1" value="not char_exists spyder_leather_filbur"/>
    </properties>
   </object>
-  <object id="273" name="Scout Talk" type="event" x="308.667" y="218" width="16" height="16">
+  <object id="273" name="Scout Talk" type="event" x="304" y="208" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_leather_maniac"/>
-    <property name="behav1" value="talk spyder_maniac"/>
+    <property name="behav1" value="talk spyder_leather_filbur"/>
    </properties>
   </object>
   <object id="274" name="Make Barmaid" type="event" x="96" y="160" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_barmaid,6,10"/>
-    <property name="cond1" value="not npc_exists spyder_barmaid"/>
+    <property name="act1" value="create_npc spyder_leather_eula,6,10"/>
+    <property name="cond1" value="not char_exists spyder_leather_eula"/>
    </properties>
   </object>
   <object id="276" name="Heal Tuxemon" type="event" x="112" y="160" width="16" height="16">
    <properties>
-    <property name="act1" value="set_monster_health ,"/>
-    <property name="act2" value="set_monster_status ,"/>
+    <property name="act10" value="set_monster_health"/>
+    <property name="act11" value="set_monster_status"/>
     <property name="act20" value="translated_dialog okaythen"/>
-    <property name="act30" value="npc_face spyder_barmaid,up"/>
+    <property name="act21" value="lock_controls"/>
+    <property name="act30" value="char_face spyder_leather_eula,up"/>
     <property name="act40" value="wait 1"/>
-    <property name="act50" value="npc_face spyder_barmaid,down"/>
+    <property name="act45" value="play_sound coinecho"/>
+    <property name="act50" value="char_face spyder_leather_eula,down"/>
+    <property name="act51" value="unlock_controls"/>
     <property name="act60" value="translated_dialog okaythen2"/>
     <property name="act70" value="set_variable chooses:none"/>
+    <property name="act80" value="set_teleport_faint player,spyder_leather_town.tmx,4,14"/>
     <property name="cond1" value="is variable_set chooses:yes"/>
    </properties>
   </object>
@@ -287,32 +243,32 @@
     <property name="act1" value="translated_dialog spyder_cottoncafe_barmaid"/>
     <property name="act2" value="translated_dialog_choice yes:no,chooses"/>
     <property name="cond2" value="not variable_set chooses:yes"/>
-    <property name="cond4" value="is player_at"/>
-    <property name="cond5" value="is player_facing up"/>
-    <property name="cond6" value="is button_pressed K_RETURN"/>
+    <property name="cond4" value="is char_at player"/>
+    <property name="cond5" value="is char_facing player,up"/>
+    <property name="cond6" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="279" name="Sign: Shaft 2" type="event" x="336" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_shaft2_sign"/>
-    <property name="cond1" value="is player_facing_tile"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond1" value="is char_facing_tile player"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
   <object id="282" name="Teleport to Leather House 1" type="event" x="304" y="544" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport spyder_leather_house1.tmx,4,7,0.3"/>
-    <property name="act2" value="player_face up"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
+    <property name="act1" value="transition_teleport player,spyder_leather_house1.tmx,4,7,0.3"/>
+    <property name="act2" value="char_face player,up"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
    </properties>
   </object>
   <object id="283" name="Teleport to Leather House 2" type="event" x="480" y="432" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport spyder_leather_house2.tmx,2,7,0.3"/>
-    <property name="act2" value="player_face up"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
+    <property name="act1" value="transition_teleport player,spyder_leather_house2.tmx,2,7,0.3"/>
+    <property name="act2" value="char_face player,up"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
    </properties>
   </object>
   <object id="287" name="Play Music" type="event" x="0" y="0" width="16" height="16">
@@ -321,18 +277,25 @@
     <property name="cond1" value="not music_playing music_town_theme"/>
    </properties>
   </object>
+  <object id="281" name="Seen Leather" type="event" x="608" y="512" width="16" height="32">
+   <properties>
+    <property name="act1" value="add_tracker player,leather_town"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="not tracker player,leather_town"/>
+   </properties>
+  </object>
   <object id="288" name="Create Captain" type="event" x="240" y="304" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_captain,15,19"/>
-    <property name="act2" value="npc_face spyder_captain,right"/>
-    <property name="cond1" value="not npc_exists spyder_captain"/>
+    <property name="act2" value="char_face spyder_captain,right"/>
+    <property name="cond1" value="not char_exists spyder_captain"/>
     <property name="cond2" value="is variable_set captainreturns:yes"/>
    </properties>
   </object>
   <object id="289" name="Talk Captain - Flower" type="event" x="240" y="256" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_river_captain2"/>
-    <property name="act2" value="translated_dialog_choice paper:leather:flower,rivergoto"/>
+    <property name="act2" value="translated_dialog_choice paper_town:leather_town:flower_city,rivergoto"/>
     <property name="behav1" value="talk spyder_captain"/>
     <property name="cond1" value="not variable_set seentimber:yes"/>
    </properties>
@@ -340,31 +303,31 @@
   <object id="290" name="Destination - Flower" type="event" x="224" y="272" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable rivergoto:nothing"/>
-    <property name="act4" value="player_face up"/>
-    <property name="act5" value="transition_teleport spyder_flower_city.tmx,17,30,0.3"/>
-    <property name="cond1" value="is variable_set rivergoto:flower"/>
+    <property name="act4" value="char_face player,up"/>
+    <property name="act5" value="transition_teleport player,spyder_flower_city.tmx,17,30,0.3"/>
+    <property name="cond1" value="is variable_set rivergoto:flower_city"/>
    </properties>
   </object>
   <object id="291" name="Destination - Leather" type="event" x="208" y="288" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable rivergoto:nothing"/>
-    <property name="act2" value="transition_teleport spyder_leather_town.tmx,17,19,0.3"/>
-    <property name="act4" value="player_face right"/>
-    <property name="cond1" value="is variable_set rivergoto:leather"/>
+    <property name="act2" value="transition_teleport player,spyder_leather_town.tmx,17,19,0.3"/>
+    <property name="act4" value="char_face player,right"/>
+    <property name="cond1" value="is variable_set rivergoto:leather_town"/>
    </properties>
   </object>
   <object id="292" name="Destination - Paper" type="event" x="192" y="272" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable rivergoto:nothing"/>
-    <property name="act2" value="transition_teleport spyder_paper_town.tmx,4,13,0.3"/>
-    <property name="act4" value="player_face up"/>
-    <property name="cond1" value="is variable_set rivergoto:paper"/>
+    <property name="act2" value="transition_teleport player,spyder_paper_town.tmx,4,13,0.3"/>
+    <property name="act4" value="char_face player,up"/>
+    <property name="cond1" value="is variable_set rivergoto:paper_town"/>
    </properties>
   </object>
   <object id="293" name="Talk Captain - Timber" type="event" x="256" y="256" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_river_captain2"/>
-    <property name="act2" value="translated_dialog_choice paper:leather:flower:timber,rivergoto"/>
+    <property name="act2" value="translated_dialog_choice paper_town:leather_town:flower_city:timber_town,rivergoto"/>
     <property name="behav1" value="talk spyder_captain"/>
     <property name="cond1" value="not variable_set seencandy:yes"/>
     <property name="cond2" value="is variable_set seentimber:yes"/>
@@ -373,38 +336,218 @@
   <object id="294" name="Destination - Timber" type="event" x="176" y="288" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable rivergoto:nothing"/>
-    <property name="act4" value="player_face up"/>
-    <property name="cond1" value="is variable_set rivergoto:timber"/>
+    <property name="act2" value="transition_teleport player,spyder_timber_town.tmx,8,21,0.3"/>
+    <property name="act4" value="char_face player,up"/>
+    <property name="cond1" value="is variable_set rivergoto:timber_town"/>
    </properties>
   </object>
   <object id="295" name="Destination - Candy" type="event" x="160" y="272" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable rivergoto:nothing"/>
-    <property name="act2" value="transition_teleport spyder_candy_town.tmx,26,29,0.3"/>
-    <property name="act4" value="player_face down"/>
-    <property name="cond1" value="is variable_set rivergoto:candy"/>
+    <property name="act2" value="transition_teleport player,spyder_candy_port.tmx,37,13,0.3"/>
+    <property name="act4" value="char_face player,down"/>
+    <property name="cond1" value="is variable_set rivergoto:candy_port"/>
    </properties>
   </object>
   <object id="296" name="Talk Captain - Candy" type="event" x="272" y="256" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_river_captain2"/>
-    <property name="act2" value="translated_dialog_choice paper:leather:flower:timber:candy,rivergoto"/>
+    <property name="act2" value="translated_dialog_choice paper_town:leather_town:flower_city:timber_town:candy_port,rivergoto"/>
     <property name="behav1" value="talk spyder_captain"/>
     <property name="cond1" value="is variable_set seencandy:yes"/>
    </properties>
   </object>
   <object id="298" name="Teleport to Leather Centre" type="event" x="368" y="144" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport spyder_leather_center.tmx,7,12,0.3"/>
-    <property name="act2" value="player_face up"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
+    <property name="act1" value="transition_teleport player,spyder_leather_center.tmx,6,10,0.3"/>
+    <property name="act2" value="char_face player,up"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
    </properties>
   </object>
-  <object id="301" name="Environment" type="event" x="16" y="0" width="16" height="16">
+  <object id="301" name="Environment Day" type="event" x="16" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="set_variable environment:grass"/>
-    <property name="cond1" value="not variable_set environment:grass"/>
+    <property name="act1" value="set_environment grass"/>
+    <property name="cond1" value="not time_is stage_of_day,equals,night"/>
+    <property name="cond2" value="not environment_is grass"/>
+   </properties>
+  </object>
+  <object id="304" name="Environment Night" type="event" x="32" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_environment night_grass"/>
+    <property name="cond1" value="is time_is stage_of_day,equals,night"/>
+    <property name="cond2" value="not environment_is night_grass"/>
+   </properties>
+  </object>
+  <object id="306" name="Sign: Leather Scoop" type="event" x="192" y="144" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_multi_martsign"/>
+    <property name="cond1" value="is char_facing_tile player"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
+   </properties>
+  </object>
+  <object id="307" name="Teleport to Shaft2" type="event" x="384" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport player,spyder_leather_shaft2.tmx,4,9,0.3"/>
+    <property name="act2" value="char_face player,up"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
+   </properties>
+  </object>
+  <object id="308" name="Teleport to Shaft1" type="event" x="272" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport player,spyder_leather_shaft1.tmx,12,14,0.3"/>
+    <property name="act2" value="char_face player,up"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
+   </properties>
+  </object>
+  <object id="309" name="Teleport to Gym" type="event" x="384" y="320" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport player,spyder_leather_gym.tmx,1,10,0.3"/>
+    <property name="act2" value="char_face player,up"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
+   </properties>
+  </object>
+  <object id="312" name="Teleport to Routed 1" type="event" x="0" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport player,spyder_routed.tmx,39,4,0.3"/>
+    <property name="act2" value="char_face player,left"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,left"/>
+   </properties>
+  </object>
+  <object id="313" name="Teleport to Routed 2" type="event" x="0" y="80" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport player,spyder_routed.tmx,39,5,0.3"/>
+    <property name="act2" value="char_face player,left"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,left"/>
+   </properties>
+  </object>
+  <object id="314" name="Teleport to Routed 3" type="event" x="0" y="512" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport player,spyder_routed.tmx,39,32,0.3"/>
+    <property name="act2" value="char_face player,left"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,left"/>
+   </properties>
+  </object>
+  <object id="315" name="Teleport to Routed 4" type="event" x="0" y="528" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport player,spyder_routed.tmx,39,33,0.3"/>
+    <property name="act2" value="char_face player,left"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,left"/>
+   </properties>
+  </object>
+  <object id="322" name="Door locked" type="event" x="432" y="544" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_door_locked"/>
+    <property name="cond1" value="is char_facing_tile player"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
+   </properties>
+  </object>
+  <object id="323" name="Door locked" type="event" x="384" y="432" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_door_locked"/>
+    <property name="cond1" value="is char_facing_tile player"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
+   </properties>
+  </object>
+  <object id="324" name="Door locked" type="event" x="208" y="544" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_door_locked"/>
+    <property name="cond1" value="is char_facing_tile player"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
+   </properties>
+  </object>
+  <object id="326" name="Notes1" type="event" x="480" y="224" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_leather_note1"/>
+    <property name="cond1" value="is char_facing_tile player"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
+   </properties>
+  </object>
+  <object id="327" name="Notes2" type="event" x="480" y="208" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_leather_note2"/>
+    <property name="cond1" value="is char_facing_tile player"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
+   </properties>
+  </object>
+  <object id="328" name="Notes3" type="event" x="480" y="192" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_leather_note3"/>
+    <property name="cond1" value="is char_facing_tile player"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
+   </properties>
+  </object>
+  <object id="329" name="Notes4" type="event" x="480" y="176" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_leather_note4"/>
+    <property name="cond1" value="is char_facing_tile player"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
+   </properties>
+  </object>
+  <object id="334" name="Create Sarah" type="event" x="160" y="32" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_leathermuseum_visitor,10,2"/>
+    <property name="cond1" value="not char_exists spyder_leathermuseum_visitor"/>
+   </properties>
+  </object>
+  <object id="335" name="Talk Sarah" type="event" x="160" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_leather_sarah_greeting"/>
+    <property name="act2" value="translated_dialog_choice no:yes,sarah_flashback"/>
+    <property name="behav1" value="talk spyder_leathermuseum_visitor"/>
+    <property name="cond1" value="not variable_set sarah_flashback:yes"/>
+    <property name="cond2" value="not variable_set sarah_flashback:no"/>
+    <property name="cond3" value="not variable_set sarah_flashback:done"/>
+   </properties>
+  </object>
+  <object id="336" name="Flashback" type="event" x="176" y="16" width="16" height="16">
+   <properties>
+    <property name="act10" value="lock_controls"/>
+    <property name="act11" value="set_layer 102:51:0:128"/>
+    <property name="act12" value="translated_dialog spyder_leather_sarah_yes"/>
+    <property name="act13" value="pathfind spyder_leathermuseum_visitor,7,3"/>
+    <property name="act14" value="char_face spyder_leathermuseum_visitor,up"/>
+    <property name="act15" value="wait 1"/>
+    <property name="act16" value="create_npc spyder_route3_zoolander,7,0"/>
+    <property name="act17" value="pathfind spyder_route3_zoolander,7,2"/>
+    <property name="act18" value="translated_dialog spyder_leather_sarah1,,top"/>
+    <property name="act19" value="translated_dialog spyder_leather_sarah2"/>
+    <property name="act20" value="translated_dialog spyder_leather_sarah3,,top"/>
+    <property name="act21" value="translated_dialog spyder_leather_sarah4"/>
+    <property name="act22" value="translated_dialog spyder_leather_sarah5,,top"/>
+    <property name="act23" value="translated_dialog spyder_leather_sarah6"/>
+    <property name="act24" value="translated_dialog spyder_leather_sarah7,,top"/>
+    <property name="act25" value="pathfind spyder_route3_zoolander,7,0"/>
+    <property name="act26" value="remove_npc spyder_route3_zoolander"/>
+    <property name="act29" value="set_variable sarah_flashback:done"/>
+    <property name="act30" value="set_layer"/>
+    <property name="act31" value="unlock_controls"/>
+    <property name="act32" value="set_variable flashback:off"/>
+    <property name="act33" value="pathfind spyder_leathermuseum_visitor,10,2"/>
+    <property name="act34" value="char_face spyder_leathermuseum_visitor,down"/>
+    <property name="cond1" value="is variable_set sarah_flashback:yes"/>
+   </properties>
+  </object>
+  <object id="337" name="Talk Sarah Yes" type="event" x="192" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_leather_sarah_after"/>
+    <property name="behav1" value="talk spyder_leathermuseum_visitor"/>
+    <property name="cond1" value="is variable_set sarah_flashback:done"/>
+   </properties>
+  </object>
+  <object id="338" name="Talk Sarah No" type="event" x="192" y="32" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_leather_sarah_no"/>
+    <property name="act2" value="set_variable sarah_flashback:"/>
+    <property name="behav1" value="talk spyder_leathermuseum_visitor"/>
+    <property name="cond1" value="is variable_set sarah_flashback:no"/>
    </properties>
   </object>
  </objectgroup>

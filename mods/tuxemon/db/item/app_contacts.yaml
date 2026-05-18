@@ -1,0 +1,26 @@
+effects: []
+slug: app_contacts
+sort: utility
+sprite: gfx/items/app_contacts.png
+category: phone
+usable_in:
+- WorldState
+modifiers: []
+behaviors:
+  consumable: false
+  visible: false
+dynamic_menu:
+  position: 1
+  label_key: app_contacts
+  menu_type: phone
+  state: NuPhoneContacts
+use_failure: generic_failure
+use_item: combat_used_x
+use_success: generic_success
+visuals:
+  animation: null
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: null
+  volume: 0.0

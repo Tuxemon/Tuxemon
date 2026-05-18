@@ -1,0 +1,43 @@
+tech_id: 33
+accuracy: 0.8
+effects:
+- type: give
+  parameters:
+  - exhausted
+  - enemy_monster
+- type: splash
+  parameters:
+  - '2'
+speed: extremely_slow
+potency: 0.8
+power: 2.25
+range: ranged
+recharge: 3
+slug: avalanche
+sort: damage
+modifiers: []
+behaviors: {}
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: powerful
+tags:
+- calamity
+- ice
+- rock
+types:
+- earth
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: rockfall_193
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_crumble3
+  volume: 1.5

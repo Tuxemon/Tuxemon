@@ -1,0 +1,118 @@
+slug: vivipere
+species: potentia
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: stone_rot
+- level_learned: 1
+  technique: hammerhead
+- level_learned: 4
+  technique: quicksand
+- level_learned: 7
+  technique: spit_poison
+- level_learned: 13
+  technique: wallow
+evolutions:
+- monster_slug: vivicinder
+  tech: salamander
+- monster_slug: viviphyta
+  element: wood
+- monster_slug: viviteel
+  at_level: 24
+  gender: female
+- monster_slug: vivitrans
+  inside: true
+- monster_slug: vivitron
+  at_level: 26
+- monster_slug: vividactil
+  item:
+    petrified_dung: 0.333
+    shammer_fossil: 0.333
+    rhincus_fossil: 0.334
+- monster_slug: vivisource
+  at_level: 24
+  gender: male
+history:
+- slug: vivipere
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - vivicinder
+  - viviphyta
+  - viviteel
+  - vivitrans
+  - vivitron
+  - vividactil
+  - vividactil
+  - vividactil
+  - vivisource
+- slug: vivisource
+  stage: stage1
+  evolves_from:
+  - vivipere
+  evolves_into: []
+- slug: vividactil
+  stage: stage1
+  evolves_from:
+  - vivipere
+  - vivipere
+  - vivipere
+  evolves_into: []
+- slug: vivitron
+  stage: stage1
+  evolves_from:
+  - vivipere
+  evolves_into: []
+- slug: vivitrans
+  stage: stage1
+  evolves_from:
+  - vivipere
+  evolves_into: []
+- slug: viviteel
+  stage: stage1
+  evolves_from:
+  - vivipere
+  evolves_into: []
+- slug: viviphyta
+  stage: stage1
+  evolves_from:
+  - vivipere
+  evolves_into: []
+- slug: vivicinder
+  stage: stage1
+  evolves_from:
+  - vivipere
+  evolves_into: []
+terrains:
+- grassland
+- jungle
+- mountains
+- ruins
+- underground
+- woodland
+tags:
+- shapeshifter
+- toxic
+- bite
+shape: serpent
+stage: basic
+types:
+- normal
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 132
+height: 85
+weight: 8
+sounds:
+  combat_call:
+    sfx: sound_stones_04
+    volume: 1.5
+  faint_call:
+    sfx: sound_stones_04_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.25

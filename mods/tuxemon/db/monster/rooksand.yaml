@@ -1,0 +1,66 @@
+slug: rooksand
+species: sand_rock
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: boulder
+- level_learned: 1
+  technique: sand_spray
+- level_learned: 4
+  technique: mudslide
+- level_learned: 7
+  technique: stonehenge
+- level_learned: 13
+  technique: avalanche
+- level_learned: 19
+  technique: muck
+- level_learned: 22
+  technique: muddle
+- level_learned: 25
+  technique: lineage
+- level_learned: 31
+  technique: rocky_barrage
+- level_learned: 55
+  technique: energy_beam
+evolutions: []
+history:
+- slug: rooksand
+  stage: stage1
+  evolves_from:
+  - pawsand
+  evolves_into: []
+- slug: pawsand
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - knightsand
+  - bishosand
+  - rooksand
+terrains:
+- coastal
+- desert
+tags:
+- fists
+- ground
+- water
+shape: blob
+stage: stage1
+types:
+- earth
+gender_weights:
+  neuter: 1.0
+txmn_id: 375
+height: 300
+weight: 1000
+sounds:
+  combat_call:
+    sfx: sound_bugthing
+    volume: 1.5
+  faint_call:
+    sfx: sound_bugthing_faint
+    volume: 1.5
+catch_rate: 70.0
+lower_catch_resistance: 0.9
+upper_catch_resistance: 1.15

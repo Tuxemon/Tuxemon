@@ -1,0 +1,25 @@
+modifiers: []
+behaviors: {}
+category: positive
+effects:
+- type: statchange
+icon: gfx/ui/icons/status/icon_focused.png
+on_positive_status: replaced
+on_negative_status: removed
+slug: focused
+sort: meta
+stat_modifiers:
+  dodge:
+    value: 1.5
+    operation: '*'
+cond_id: 14
+use_failure: null
+use_success: combat_state_focused_get
+gain_cond: null
+visuals:
+  animation: null
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_pulse
+  volume: 1.5

@@ -1,0 +1,69 @@
+slug: vulpyre
+species: firefox
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: fire_ball
+- level_learned: 1
+  technique: fume
+- level_learned: 4
+  technique: fluff_up
+- level_learned: 7
+  technique: breathe_fire
+- level_learned: 13
+  technique: one_two
+- level_learned: 16
+  technique: torch
+- level_learned: 19
+  technique: lava
+- level_learned: 25
+  technique: all_in
+- level_learned: 28
+  technique: invictus
+- level_learned: 31
+  technique: give_all
+- level_learned: 37
+  technique: supernova
+- level_learned: 40
+  technique: flamethrower
+evolutions: []
+history:
+- slug: vulpyre
+  stage: stage1
+  evolves_from:
+  - foxfire
+  evolves_into: []
+- slug: foxfire
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - vulpyre
+terrains:
+- desert
+- grassland
+tags:
+- flame
+- calamity
+- claws
+shape: hunter
+stage: stage1
+types:
+- fire
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 150
+height: 100
+weight: 50
+sounds:
+  combat_call:
+    sfx: sound_spell_fire_07
+    volume: 1.5
+  faint_call:
+    sfx: sound_spell_fire_07_faint
+    volume: 1.5
+catch_rate: 70.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.05

@@ -1,0 +1,42 @@
+accuracy: 0.0
+conditions:
+- type: status
+  parameters:
+  - grabbed
+  operator: not
+- type: status
+  parameters:
+  - stuck
+  operator: not
+effects:
+- type: run
+speed: fast
+potency: 0.0
+power: 0.0
+range: special
+slug: menu_run
+sort: meta
+modifiers: []
+behaviors:
+  bypasses_selection: true
+target:
+  enemy_monster: false
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: notype
+tags:
+- notype
+tech_id: 0
+use_failure: combat_cannot_run_away
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: null
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_pulse
+  volume: 1.5

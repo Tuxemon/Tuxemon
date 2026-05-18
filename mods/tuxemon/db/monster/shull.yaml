@@ -1,0 +1,73 @@
+slug: shull
+species: myrmidon
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: gnaw
+- level_learned: 1
+  technique: energy_claws
+- level_learned: 4
+  technique: ants
+- level_learned: 10
+  technique: blood_nets
+- level_learned: 16
+  technique: sting
+- level_learned: 19
+  technique: energy_claws
+evolutions:
+- at_level: 20
+  monster_slug: myrmison
+  variables:
+  - key: daytime
+    value: 'false'
+history:
+- slug: shull
+  stage: stage1
+  evolves_from:
+  - scarlant
+  evolves_into:
+  - myrmison
+- slug: scarlant
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - shull
+- slug: myrmison
+  stage: stage2
+  evolves_from:
+  - shull
+  evolves_into: []
+terrains:
+- grassland
+- jungle
+- mountains
+- swamp
+- urban
+- woodland
+tags:
+- bug
+- bite
+- shielded
+shape: blob
+stage: stage1
+types:
+- earth
+- heroic
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 290
+height: 40
+weight: 55
+sounds:
+  combat_call:
+    sfx: sound_roar_05
+    volume: 1.5
+  faint_call:
+    sfx: sound_roar_05_faint
+    volume: 1.5
+catch_rate: 70.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.05

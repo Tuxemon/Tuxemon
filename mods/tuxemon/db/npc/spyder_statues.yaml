@@ -1,0 +1,55 @@
+- slug: spyder_statue_blue
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: statue_blue
+    combat_sheet: noclass
+    slug: noclass
+    is_static_prop: true
+- slug: spyder_statue_red
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: statue_red
+    combat_sheet: noclass
+    slug: noclass
+    is_static_prop: true
+- slug: spyder_statue_orange
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: statue_orange
+    combat_sheet: noclass
+    slug: noclass
+    is_static_prop: true
+- slug: spyder_statue_grey
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: statue_grey
+    combat_sheet: noclass
+    slug: noclass
+    is_static_prop: true
+- slug: spyder_statue_green
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: statue_green
+    combat_sheet: noclass
+    slug: noclass
+    is_static_prop: true

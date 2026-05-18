@@ -1,0 +1,40 @@
+tech_id: 50
+accuracy: 0.8
+effects:
+- type: give
+  parameters:
+  - lifeleech
+  - enemy_monster
+- type: damage
+speed: normal
+potency: 1
+power: 2.5
+range: melee
+recharge: 3
+slug: tonguespear
+sort: damage
+modifiers: []
+behaviors: {}
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: powerful
+tags:
+- bug
+- tongue
+types:
+- normal
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: lance_ice
+  flip_axes: xy
+  loop: 0
+sound:
+  sfx: sfx_squeak
+  volume: 1.5

@@ -1,0 +1,38 @@
+modifiers: []
+behaviors: {}
+category: positive
+effects:
+- type: statchange
+- type: chargedup
+icon: gfx/ui/icons/status/icon_chargedup.png
+on_positive_status: replaced
+on_tech_use: exhausted
+slug: chargedup
+sort: meta
+stat_modifiers:
+  armour:
+    value: 2
+    operation: '*'
+  dodge:
+    value: 2
+    operation: '*'
+  melee:
+    value: 2
+    operation: '*'
+  ranged:
+    value: 2
+    operation: '*'
+  speed:
+    value: 2
+    operation: '*'
+cond_id: 9
+use_failure: null
+use_success: combat_state_chargedup_get
+gain_cond: null
+visuals:
+  animation: null
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_pulse
+  volume: 1.5

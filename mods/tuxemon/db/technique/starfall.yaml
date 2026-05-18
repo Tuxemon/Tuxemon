@@ -1,0 +1,45 @@
+tech_id: 56
+accuracy: 0.8
+effects:
+- type: give
+  parameters:
+  - focused
+  - own_monster
+- type: remove
+  parameters:
+  - positive
+  - enemy_monster
+- type: damage
+speed: normal
+potency: 1
+power: 1.25
+range: ranged
+recharge: 2
+slug: starfall
+sort: damage
+modifiers: []
+behaviors: {}
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: simple
+tags:
+- darkness
+- celestial
+- weather
+types:
+- cosmic
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: lightning_bolt_138
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_shine
+  volume: 1.5

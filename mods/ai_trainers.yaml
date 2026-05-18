@@ -1,0 +1,20 @@
+trainers:
+  character_slug:  # Trainer slug representing a specific AI-controlled entity in the game.
+    monster_slug:  # Monster slug representing a specific monster associated with the trainer.
+      techniques:  # List of techniques the monster can use, along with their conditions.
+        - technique: "technique1_slug"  # Technique slug that the monster can perform.
+          condition:  # Conditions under which this technique can be used.
+            turn: 1  # Use this technique on turn 1. If omitted, the technique is not restricted to specific turns.
+            hp_below: 0.2  # Trigger this technique if the monster's HP falls below 20%. Optional condition.
+            hp_above: 0.5  # Trigger this technique if the monster's HP exceeds 50%. Optional condition.
+            always: true  # This condition overrides all other conditions and ensures the technique can always be used.
+            status_effects: ["poisoned"]  # Use this technique if the monster has the "poisoned" status effect. Optional.
+            opponent_types: ["fire"]  # Trigger this technique if the opponent's type is "fire". Optional condition.
+            opponent_slugs: ["opponent_slug"]  # Use this technique if the opponent's slug is "opponent_slug". Optional condition.
+            opponent_status: ["poisoned"]  # Use this technique if the the opponent has the "poisoned" status effect. Optional.
+            hp_range: [[0.8,1.0]]  # Execute the technique if the monster's HP is between 80% and 100%. Optional condition.
+
+        - technique: "technique2_slug"  # Another technique the monster can perform.
+          condition:  # Conditions for this technique.
+            always: true  # This technique will always be available for use, regardless of other conditions.
+

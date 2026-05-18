@@ -1,0 +1,40 @@
+tech_id: 151
+accuracy: 1
+effects:
+- type: switch
+  parameters:
+  - enemy_monster
+  - metal
+speed: normal
+potency: 1
+power: 0
+range: special
+recharge: 4
+slug: electroplate
+sort: damage
+modifiers: []
+behaviors:
+  bypasses_selection: true
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: exotic
+tags:
+- machine
+- shielded
+types:
+- metal
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: pound
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_machine_beep
+  volume: 1.5

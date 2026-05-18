@@ -1,0 +1,68 @@
+# slug: Unique identifier for the terrain (example: "underground", "swamp", "sea")
+#       The slug must correspond to a valid terrain defined in the database.
+# name: Human-readable name of the terrain condition (example: "terrain_underground")
+#       A translation entry with this msgid MUST exist in base.po, otherwise validation fails.
+# modifiers: List of modifiers applied to this terrain
+#   Each modifier can adjust attributes or behaviors (example: speed reduction in swamp terrain).
+#   Fields inside a modifier:
+#     attribute: Attribute being modified (example: "type")
+#     values: List of values associated with the modification (example: ["fire"])
+#     multiplier: Float multiplier applied to the attribute (range 0.0–2.0, example: 0.9)
+#     priority: Integer priority; higher values take precedence (example: 0)
+#     stacking: How this modifier stacks with others (example: "multiplicative")
+#     max_stacks: Maximum number of times this modifier can stack (example: None = unlimited)
+#     condition_name: Optional condition function name to determine applicability (example: None)
+#     source: Optional origin of the modifier (example: "item", "ability")
+#     turns_remaining: Optional number of turns before modifier expires (example: None)
+
+- modifiers: []
+  name: terrain_underground
+  slug: underground
+- modifiers: []
+  name: terrain_swamp
+  slug: swamp
+- modifiers: []
+  name: terrain_sea
+  slug: sea
+- modifiers: []
+  name: terrain_ruins
+  slug: ruins
+- modifiers: []
+  name: terrain_mountains
+  slug: mountains
+- modifiers: []
+  name: terrain_jungle
+  slug: jungle
+- modifiers: []
+  name: terrain_grassland
+  slug: grassland
+- modifiers: []
+  name: terrain_freshwater
+  slug: freshwater
+- modifiers: []
+  name: terrain_extraterrestrial
+  slug: extraterrestrial
+- modifiers: []
+  name: terrain_extraplanar
+  slug: extraplanar
+- modifiers: []
+  name: terrain_desert
+  slug: desert
+- modifiers: []
+  name: terrain_coastal
+  slug: coastal
+- modifiers: []
+  name: terrain_boreal_snow
+  slug: boreal_snow
+- modifiers: []
+  name: terrain_any
+  slug: any
+- modifiers: []
+  name: terrain_urban
+  slug: urban
+- modifiers: []
+  name: terrain_woodland
+  slug: woodland
+- modifiers: []
+  name: terrain_other
+  slug: other

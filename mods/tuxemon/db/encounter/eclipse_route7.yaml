@@ -1,0 +1,62 @@
+monsters:
+- encounter_rate: 3.5
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 15
+  - 20
+  monster: pairagrim
+  variables:
+    - key: daytime
+      value: "true"
+- encounter_rate: 3.5
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 15
+  - 20
+  monster: aardart
+  variables:
+    - key: daytime
+      value: "true"
+- encounter_rate: 3.5
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 15
+  - 20
+  monster: weavifly
+  variables:
+    - key: daytime
+      value: "true"
+- encounter_rate: 3.5
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 15
+  - 20
+  monster: pantherafira
+  variables:
+    - key: daytime
+      value: "false"
+- encounter_rate: 3.5
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 15
+  - 20
+  monster: flacono
+  variables:
+    - key: daytime
+      value: "false"
+- encounter_rate: 3.5
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 15
+  - 20
+  monster: slichen
+  variables:
+    - key: daytime
+      value: "false"
+slug: eclipse_route7

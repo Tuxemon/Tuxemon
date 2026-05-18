@@ -1,0 +1,26 @@
+monsters:
+- encounter_rate: 3
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 5
+  - 7
+  monster: lambert
+  variables: []
+- encounter_rate: 3
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 5
+  - 7
+  monster: katapill
+  variables: []
+- encounter_rate: 0.8
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 6
+  - 8
+  monster: nut
+  variables: []
+slug: taba_ba_passageway_3

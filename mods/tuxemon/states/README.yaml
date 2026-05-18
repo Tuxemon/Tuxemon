@@ -1,0 +1,14 @@
+description: >
+  Place custom state plugins in this folder.
+  Any state defined here will override the core state with the same name.
+
+how_to_use:
+  - Create a .py file defining a class that inherits from State.
+  - Set the class attribute "name" to the state's identifier.
+  - Implement lifecycle methods such as on_enter, on_exit, process_event, or draw.
+  - The engine will automatically load and override matching core states.
+
+example:
+  file: debug_state.py
+  class_name: DebugState
+  state_name: DebugState

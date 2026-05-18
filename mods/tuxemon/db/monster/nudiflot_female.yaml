@@ -1,0 +1,60 @@
+slug: nudiflot_female
+species: flopped
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: flood
+- level_learned: 1
+  technique: feint
+- level_learned: 4
+  technique: muck
+- level_learned: 7
+  technique: fiery
+- level_learned: 13
+  technique: suck_poison
+- level_learned: 19
+  technique: sleep_bomb
+- level_learned: 25
+  technique: bubble_trap
+- level_learned: 28
+  technique: energy_beam
+evolutions:
+- at_level: 18
+  monster_slug: nudimind
+history:
+- slug: nudiflot_female
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - nudimind
+- slug: nudimind
+  stage: stage1
+  evolves_from:
+  - nudiflot_female
+  evolves_into: []
+terrains: []
+tags:
+- freshwater
+- mental
+shape: polliwog
+stage: basic
+types:
+- water
+- cosmic
+gender_weights:
+  female: 1.0
+txmn_id: 54
+height: 29
+weight: 3
+sounds:
+  combat_call:
+    sfx: sound_splash_1
+    volume: 1.5
+  faint_call:
+    sfx: sound_splash_1_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.25

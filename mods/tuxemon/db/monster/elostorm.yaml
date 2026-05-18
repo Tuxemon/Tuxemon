@@ -1,0 +1,74 @@
+slug: elostorm
+species: cloudburst
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: goad
+- level_learned: 1
+  technique: biting_winds
+- level_learned: 4
+  technique: shapechange
+- level_learned: 7
+  technique: chill_mist
+- level_learned: 13
+  technique: fume
+- level_learned: 25
+  technique: altitude
+- level_learned: 28
+  technique: flood
+- level_learned: 31
+  technique: flow
+- level_learned: 43
+  technique: ten_thousand_feathers
+- level_learned: 46
+  technique: thunderclap
+- level_learned: 52
+  technique: one_million_talons
+evolutions: []
+history:
+- slug: elostorm
+  stage: stage2
+  evolves_from:
+  - elowind
+  evolves_into: []
+- slug: elofly
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - elowind
+- slug: elowind
+  stage: stage1
+  evolves_from:
+  - elofly
+  evolves_into:
+  - elostorm
+terrains:
+- grassland
+- jungle
+- woodland
+tags:
+- bird
+- weather
+shape: flier
+stage: stage2
+types:
+- normal
+- sky
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 41
+height: 144
+weight: 25
+sounds:
+  combat_call:
+    sfx: sound_woosh_2
+    volume: 1.5
+  faint_call:
+    sfx: sound_woosh_2_faint
+    volume: 1.5
+catch_rate: 35.0
+lower_catch_resistance: 0.85
+upper_catch_resistance: 1.1

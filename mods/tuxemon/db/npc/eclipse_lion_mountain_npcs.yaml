@@ -1,0 +1,180 @@
+- slug: eclipse_lionmountain_jacques
+  speech:
+    profile:
+      default:
+        pre_battle: eclipse_lionmountain_jacques1
+        post_battle_win: null
+        post_battle_lose: eclipse_lionmountain_jacques2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: miner_blue
+    combat_sheet: miner
+    slug: miner
+- slug: eclipse_lionmountain_adam
+  speech:
+    profile:
+      default:
+        pre_battle: eclipse_lionmountain_adam1
+        post_battle_win: null
+        post_battle_lose: eclipse_lionmountain_adam2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: miner_green
+    combat_sheet: miner
+    slug: miner
+- slug: eclipse_lionmountain_arlene
+  speech:
+    profile:
+      default:
+        pre_battle: eclipse_lionmountain_arlene1
+        post_battle_win: null
+        post_battle_lose: eclipse_lionmountain_arlene2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: miner_red
+    combat_sheet: miner
+    slug: miner
+- slug: eclipse_lionmountain_david
+  speech:
+    profile:
+      default:
+        pre_battle: eclipse_lionmountain_david1
+        post_battle_win: null
+        post_battle_lose: eclipse_lionmountain_david2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: miner_yellow
+    combat_sheet: miner
+    slug: miner
+- slug: eclipse_lionmountain_alexander
+  speech:
+    profile:
+      default:
+        pre_battle: eclipse_lionmountain_alexander1
+        post_battle_win: null
+        post_battle_lose: eclipse_lionmountain_alexander2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: miner
+    combat_sheet: miner
+    slug: miner
+- slug: eclipse_lionmountain_chhurim
+  speech:
+    profile:
+      default:
+        pre_battle: eclipse_lionmountain_chhurim1
+        post_battle_win: null
+        post_battle_lose: eclipse_lionmountain_chhurim2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: miner_blue
+    combat_sheet: miner
+    slug: miner
+- slug: eclipse_lionmountain_emilio
+  speech:
+    profile:
+      default:
+        pre_battle: eclipse_lionmountain_emilio1
+        post_battle_win: null
+        post_battle_lose: eclipse_lionmountain_emilio2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: miner_green
+    combat_sheet: miner
+    slug: miner
+- slug: eclipse_lionmountain_tom
+  speech:
+    profile:
+      default:
+        pre_battle: eclipse_lionmountain_tom1
+        post_battle_win: null
+        post_battle_lose: eclipse_lionmountain_tom2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: miner_red
+    combat_sheet: miner
+    slug: miner
+- slug: eclipse_lionmountain_conrad
+  speech:
+    profile:
+      default:
+        pre_battle: eclipse_lionmountain_conrad1
+        post_battle_win: null
+        post_battle_lose: eclipse_lionmountain_conrad2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: miner_yellow
+    combat_sheet: miner
+    slug: miner
+- slug: eclipse_lionmountain_kurt
+  speech:
+    profile:
+      default:
+        pre_battle: eclipse_lionmountain_kurt1
+        post_battle_win: null
+        post_battle_lose: eclipse_lionmountain_kurt2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: miner
+    combat_sheet: miner
+    slug: miner
+- slug: eclipse_lionmountain_scientist
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: scientist_fiery
+    combat_sheet: scientist
+    slug: scientist
+- slug: eclipse_lionmountain_enforcer
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: knight_green
+    combat_sheet: enforcer_agent
+    slug: enforcer_agent
+- slug: eclipse_lionmountain_nurse
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: nurse
+    combat_sheet: nurse
+    slug: nurse
+- slug: eclipse_lionmountain_snarlon
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: landrace
+    combat_sheet: sludgehog
+    slug: noclass

@@ -1,0 +1,10 @@
+slug: happy_guy
+speech:
+  profile:
+    default: {}
+combat: {}
+audio: {}
+template:
+  sprite_name: ceo
+  combat_sheet: adventurer
+  slug: ceo

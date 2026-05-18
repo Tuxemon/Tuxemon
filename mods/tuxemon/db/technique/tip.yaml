@@ -1,0 +1,39 @@
+tech_id: 110
+accuracy: 1
+effects:
+- type: give
+  parameters:
+  - festering
+  - enemy_monster
+- type: damage
+speed: normal
+potency: 0.9
+power: 2.2
+range: melee
+recharge: 3
+slug: tip
+sort: damage
+modifiers: []
+behaviors: {}
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: simple
+tags:
+- sharp
+types:
+- metal
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: green_circle
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_kick
+  volume: 1.5

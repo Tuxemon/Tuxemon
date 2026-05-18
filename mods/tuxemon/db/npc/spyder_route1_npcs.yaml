@@ -1,0 +1,10 @@
+- slug: spyder_route1_bjorn
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: beachcomber
+    combat_sheet: adventurer
+    slug: beachcomber

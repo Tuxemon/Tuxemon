@@ -1,0 +1,104 @@
+- slug: spyder_route5_cleo
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_route5_cleo1
+        post_battle_win: null
+        post_battle_lose: spyder_route5_cleo2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: catgirl_blonde
+    combat_sheet: catgirl
+    slug: catgirl
+- slug: spyder_route5_edith
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_route5_edith1
+        post_battle_win: null
+        post_battle_lose: spyder_route5_edith2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: picnicker
+    combat_sheet: picnicker
+    slug: picnicker
+- slug: spyder_route5_hunter
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_route5_hunter1
+        post_battle_win: null
+        post_battle_lose: spyder_route5_hunter2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: soldier
+    combat_sheet: soldier
+    slug: soldier
+- slug: spyder_route5_goliath
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_route5_goliath1
+        post_battle_win: null
+        post_battle_lose: spyder_route5_goliath2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: spyderrookie
+    combat_sheet: spyder_rookie
+    slug: spyder_rookie
+- slug: spyder_route5_sara
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_route5_sara1
+        post_battle_win: null
+        post_battle_lose: spyder_route5_sara2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: picnicker
+    combat_sheet: picnicker
+    slug: picnicker
+- slug: spyder_route5_tryphaena
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_route5_tryphaena1
+        post_battle_win: null
+        post_battle_lose: spyder_route5_tryphaena2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: florist_blue
+    combat_sheet: florist
+    slug: florist
+- slug: spyder_route5_lexia
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: granny_lapi
+    combat_sheet: adventurer
+    slug: granny
+- slug: spyder_route5_nurse
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: nurse_blue
+    combat_sheet: nurse
+    slug: nurse

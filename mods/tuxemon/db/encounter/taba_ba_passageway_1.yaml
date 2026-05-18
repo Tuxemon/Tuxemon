@@ -1,0 +1,26 @@
+monsters:
+- encounter_rate: 3.5
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 2
+  - 5
+  monster: chloragon
+  variables: []
+- encounter_rate: 3.5
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 3
+  - 6
+  monster: aardorn
+  variables: []
+- encounter_rate: 0.2
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 4
+  - 7
+  monster: nut
+  variables: []
+slug: taba_ba_passageway_1

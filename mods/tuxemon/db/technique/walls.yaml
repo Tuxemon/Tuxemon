@@ -1,0 +1,40 @@
+tech_id: 156
+accuracy: 0.8
+effects:
+- type: give
+  parameters:
+  - hardshell
+  - own_monster
+- type: damage
+speed: normal
+potency: 1.0
+power: 1
+range: touch
+recharge: 2
+slug: walls
+sort: damage
+modifiers: []
+behaviors: {}
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: simple
+tags:
+- summoner
+- shielded
+types:
+- earth
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: wall_wood
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_forcefield
+  volume: 1.5

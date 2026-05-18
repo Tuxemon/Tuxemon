@@ -1,0 +1,17 @@
+slug: npc_test
+speech:
+  profile:
+    default: {}
+combat: {}
+audio: {}
+template:
+  sprite_name: adventurer
+  combat_sheet: adventurer
+  slug: adventurer
+monsters:
+- name: Snowball
+  slug: bamboon
+  level: 5
+  money_mod: 10
+  exp_req_mod: 27
+  gender: male

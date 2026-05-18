@@ -1,0 +1,39 @@
+tech_id: 173
+accuracy: 1
+effects:
+- type: give
+  parameters:
+  - slow
+  - enemy_monster
+speed: extremely_fast
+potency: 1
+power: 0
+range: special
+recharge: 5
+slug: overfeed
+sort: damage
+modifiers: []
+behaviors:
+  bypasses_selection: true
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: condition_imposer
+tags:
+- food
+types:
+- normal
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: null
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_bounce
+  volume: 1.5

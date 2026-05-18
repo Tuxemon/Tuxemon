@@ -1,0 +1,30 @@
+conditions:
+- type: base
+  parameters:
+  - types
+  - sky
+  operator: not
+effects:
+- type: switch_type
+  parameters:
+  - sky
+slug: sky_berry
+sort: utility
+sprite: gfx/items/sky_berry.png
+category: elements
+cost: 450
+usable_in:
+- MainCombatMenuState
+modifiers: []
+behaviors:
+  resellable: true
+use_failure: generic_failure
+use_item: combat_used_x
+use_success: generic_success
+visuals:
+  animation: null
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: null
+  volume: 0.0

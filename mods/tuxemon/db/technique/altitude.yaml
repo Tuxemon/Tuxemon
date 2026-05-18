@@ -1,0 +1,46 @@
+tech_id: 180
+accuracy: 0.8
+conditions:
+- type: status
+  parameters:
+  - grabbed
+  operator: not
+- type: status
+  parameters:
+  - stuck
+  operator: not
+effects:
+- type: disappear
+  parameters:
+  - hawk
+speed: extremely_fast
+potency: 1
+power: 1
+range: melee
+recharge: 4
+slug: altitude
+sort: damage
+modifiers: []
+behaviors: {}
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: special
+tags:
+- bird
+types:
+- sky
+use_failure: altitude_fail
+use_success: altitude_success
+use_tech: combat_used_x
+visuals:
+  animation: null
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_tornado
+  volume: 1.5

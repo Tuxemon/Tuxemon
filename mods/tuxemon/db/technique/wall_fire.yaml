@@ -1,0 +1,44 @@
+tech_id: 165
+accuracy: 0.8
+effects:
+- type: give
+  parameters:
+  - elementalshield
+  - own_monster
+- type: give
+  parameters:
+  - burn
+  - enemy_monster
+- type: damage
+speed: very_slow
+potency: 0.8
+power: 1.9
+range: reach
+recharge: 3
+slug: wall_fire
+sort: damage
+modifiers: []
+behaviors: {}
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: simple
+tags:
+- summoner
+- shielded
+types:
+- fire
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: wall_fire
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_flames1
+  volume: 1.5

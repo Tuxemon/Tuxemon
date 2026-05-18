@@ -1,0 +1,64 @@
+slug: ambuwl
+species: restorative
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: peck
+- level_learned: 1
+  technique: mending
+- level_learned: 4
+  technique: mudslide
+- level_learned: 7
+  technique: egg_smash
+- level_learned: 13
+  technique: evasion
+- level_learned: 16
+  technique: lantern
+- level_learned: 19
+  technique: life_surge
+- level_learned: 25
+  technique: breath
+- level_learned: 28
+  technique: neutralize
+- level_learned: 31
+  technique: fledgling
+- level_learned: 37
+  technique: pouch
+- level_learned: 40
+  technique: earthquake
+evolutions: []
+history:
+- slug: ambuwl
+  stage: standalone
+  evolves_from: []
+  evolves_into: []
+terrains:
+- desert
+- woodland
+tags:
+- food
+- healing
+- light
+- bird
+shape: sprite
+stage: standalone
+types:
+- cosmic
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 249
+height: 98
+weight: 38
+sounds:
+  combat_call:
+    sfx: sound_weird_09
+    volume: 1.5
+  faint_call:
+    sfx: sound_weird_09_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.05

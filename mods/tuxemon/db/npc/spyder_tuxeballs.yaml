@@ -1,0 +1,55 @@
+- slug: spyder_tuxeball_green
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: tuxeball_green
+    combat_sheet: noclass
+    slug: noclass
+    is_static_prop: true
+- slug: spyder_tuxeball_red
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: tuxeball_red
+    combat_sheet: noclass
+    slug: noclass
+    is_static_prop: true
+- slug: spyder_tuxeball_violet
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: tuxeball_violet
+    combat_sheet: noclass
+    slug: noclass
+    is_static_prop: true
+- slug: spyder_tuxeball_yellow
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: tuxeball_yellow
+    combat_sheet: noclass
+    slug: noclass
+    is_static_prop: true
+- slug: spyder_tuxeball
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: tuxeball
+    combat_sheet: noclass
+    slug: noclass
+    is_static_prop: true

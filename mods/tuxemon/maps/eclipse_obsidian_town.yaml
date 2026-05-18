@@ -1,0 +1,84 @@
+events:
+  Event 15:
+    actions:
+    - char_stop player
+    - lock_controls
+    - set_layer 0:0:0:255
+    - play_sound japanese_temple_bell_small
+    - translated_dialog eclipse_event15_1,,top
+    - translated_dialog eclipse_event15_2,,top
+    - translated_dialog eclipse_event15_3,,top
+    - translated_dialog eclipse_event15_4,,top
+    - play_sound japanese_temple_bell_small
+    - set_layer
+    - set_variable eclipse_event15:yes
+    - unlock_controls
+    conditions:
+    - is variable_set eclipse_event14:yes
+    - not variable_set eclipse_event15:yes
+    type: event
+  Play Music:
+    actions:
+    - play_music music_town_theme
+    conditions:
+    - not music_playing music_town_theme
+    type: event
+  Teleport House:
+    actions:
+    - transition_teleport player,eclipse_obsidian_town_house.tmx,4,7,0.3
+    - char_face player,up
+    conditions:
+    - is char_at player
+    - is char_facing player,up
+    type: event
+    x: 12
+    y: 8
+  Teleport Mountain High 1:
+    actions:
+    - transition_teleport player,eclipse_lion_mountain_high.tmx,39,13,0.3
+    - char_face player,left
+    conditions:
+    - is char_at player
+    - is char_facing player,left
+    x: 0
+    y: 13
+    type: event
+  Teleport Mountain High 2:
+    actions:
+    - transition_teleport player,eclipse_lion_mountain_high.tmx,39,14,0.3
+    - char_face player,left
+    conditions:
+    - is char_at player
+    - is char_facing player,left
+    x: 0
+    y: 14
+    type: event
+  Town Sign:
+    actions:
+    - translated_dialog welcome_location_town
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed INTERACT
+    type: event
+    x: 9
+    y: 12
+  Tuxecenter:
+    actions:
+    - transition_teleport player,eclipse_obsidian_center.tmx,6,10,0.3
+    - char_face player,up
+    conditions:
+    - is char_at player
+    - is char_facing player,up
+    type: event
+    x: 16
+    y: 8
+#  Blind Shaft:
+#    actions:
+#    - transition_teleport player,eclipse_blind_shaft.tmx,6,10,0.3
+#    - char_face player,up
+#    conditions:
+#    - is char_at player
+#    - is char_facing player,up
+#    type: event
+#    x: 34
+#    y: 13

@@ -1,0 +1,816 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.11.1-99-gec89c545" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="50" height="50" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="228">
+ <properties>
+  <property name="edges" value="clamped"/>
+ </properties>
+ <tileset firstgid="1" source="../gfx/tilesets/core_outdoor.tsx"/>
+ <tileset firstgid="2776" source="../gfx/tilesets/core_buildings.tsx"/>
+ <layer id="1" name="Tile Layer 1" width="50" height="50">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1309,1309,0,0,0,1309,1309,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1309,1309,0,0,0,1309,1309,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1309,1309,0,0,0,1309,1309,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1309,1309,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1309,1309,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1309,1309,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1309,1309,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1309,1309,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1309,1309,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1309,1309,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1309,1309,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1309,1309,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1309,1309,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,113,113,0,0,0,0,0,0,0,0,0,0,0,0,113,113,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,113,113,0,0,0,113,113,113,113,113,113,113,0,0,0,0,113,113,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1309,1309,0,0,113,0,0,0,113,113,113,113,113,113,113,113,113,113,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1309,1309,1309,1309,0,113,0,0,113,113,113,113,113,113,113,113,113,113,113,113,113,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1309,1309,1309,1309,0,0,0,0,113,113,113,113,113,113,113,113,113,113,113,113,113,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1309,1309,1309,1309,0,0,0,113,113,113,113,113,3405,3406,3407,3408,3409,113,113,113,113,113,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1309,1309,0,0,0,0,113,113,113,113,113,3452,3453,3454,3455,3456,113,113,113,113,113,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,113,113,113,113,113,3499,3500,3501,3502,3503,113,113,113,113,113,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,113,113,113,113,113,3546,3547,3548,3549,3550,113,113,113,113,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,113,113,113,113,3593,3594,3595,3596,3597,113,113,113,113,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,113,113,113,113,113,113,113,113,113,113,113,113,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,113,113,113,113,113,113,113,113,113,113,113,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,113,113,0,0,0,0,113,113,113,113,113,113,113,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1309,1309,1309,113,113,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1309,1309,1309,113,113,113,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1309,1309,1309,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,113,113,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,113,113,113,113,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1309,1309,1309,1309,0,0,113,113,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1309,1309,1309,1309,1309,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1309,1309,1309,1309,1309,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1309,1309,1309,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1309,1309,1309,1309,1309,1309,1309,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1309,1309,1309,1309,1309,1309,1309,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1309,1309,0,0,0,0,0,1309,1309,1309,0,0,0,0,0,0,0,1309,1309,1309,1309,1309,1309,1309,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1309,1309,1309,1309,0,0,0,0,1309,1309,1309,0,0,0,0,0,0,0,1309,1309,1309,1309,1309,1309,1309,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1309,1309,1309,1309,0,0,0,0,1309,1309,1309,0,0,0,0,0,0,0,1309,1309,1309,1309,1309,1309,1309,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1309,1309,0,0,0,0,0,1309,1309,1309,0,0,0,0,0,0,0,1309,1309,1309,1309,1309,1309,1309,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1309,1309,1309,1309,1309,1309,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="2" name="Tile Layer 2" width="50" height="50" visible="0">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,81,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,82,80,0,0,0,0,0,0,0,0,0,81,0,0,0,0,0,82,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,80,0,0,81,82,0,45,0,80,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,45,44,0,7,79,0,0,44,7,81,0,80,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,82,0,0,0,0,0,0,0,82,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,79,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,44,79,7,0,0,0,0,0,0,0,0,0,81,44,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,82,0,0,0,0,0,0,0,0,45,7,82,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,45,81,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,80,0,0,0,0,0,0,0,0,0,79,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,0,0,0,0,264,0,0,82,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,81,44,0,79,227,0,0,81,80,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,44,0,0,0,0,80,0,45,0,0,0,44,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,44,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,82,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,82,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,79,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,79,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,359,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,359,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,359,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="4" name="Tile Layer 3" width="50" height="50">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="7" name="Tile Layer 4" width="50" height="50">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <objectgroup color="#ffff00" id="3" name="Events">
+  <object id="1" name="Teleport to Volcano Path" type="event" x="672" y="656" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport player,water_volcano_path.tmx,10,10,0.5"/>
+    <property name="cond1" value="is char_at player"/>
+   </properties>
+  </object>
+  <object id="2" name="Teleport to Volcano Path" type="event" x="672" y="640" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport player,water_volcano_path.tmx,10,10,0.5"/>
+    <property name="cond1" value="is char_at player"/>
+   </properties>
+  </object>
+  <object id="3" name="Teleport to Volcano Path" type="event" x="672" y="624" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport player,water_volcano_path.tmx,10,10,0.5"/>
+    <property name="cond1" value="is char_at player"/>
+   </properties>
+  </object>
+  <object id="24" name="Create Water Jemuar" type="event" x="80" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc water_jemuar,39,4"/>
+    <property name="cond1" value="not char_exists water_jemuar"/>
+    <property name="cond2" value="not variable_set after_gemuar:yes"/>
+   </properties>
+  </object>
+  <object id="5" name="Water Gemuar Battle" type="event" x="624" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog water_gemuar_before1"/>
+    <property name="act2" value="translated_dialog water_gemuar_before2"/>
+    <property name="act3" value="translated_dialog water_gemuar_before3"/>
+    <property name="act4" value="wild_encounter jemuar,60,3"/>
+    <property name="act5" value="set_variable after_gemuar:yes"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond3" value="not variable_set after_gemuar:yes"/>
+   </properties>
+  </object>
+  <object id="8" name="Heal Tuxemon" type="event" x="624" y="624" width="112" height="112">
+   <properties>
+    <property name="act1" value="set_monster_health"/>
+    <property name="act2" value="set_monster_status"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_moved player"/>
+   </properties>
+  </object>
+  <object id="9" name="Heal Tuxemon" type="event" x="464" y="656" width="48" height="64">
+   <properties>
+    <property name="act1" value="set_monster_health"/>
+    <property name="act2" value="set_monster_status"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_moved player"/>
+   </properties>
+  </object>
+  <object id="10" name="Heal Tuxemon" type="event" x="336" y="656" width="64" height="64">
+   <properties>
+    <property name="act1" value="set_monster_health"/>
+    <property name="act2" value="set_monster_status"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_moved player"/>
+   </properties>
+  </object>
+  <object id="11" name="Heal Tuxemon" type="event" x="160" y="704" width="80" height="80">
+   <properties>
+    <property name="act1" value="set_monster_health"/>
+    <property name="act2" value="set_monster_status"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_moved player"/>
+   </properties>
+  </object>
+  <object id="12" name="Heal Tuxemon" type="event" x="96" y="528" width="64" height="64">
+   <properties>
+    <property name="act1" value="set_monster_health"/>
+    <property name="act2" value="set_monster_status"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_moved player"/>
+   </properties>
+  </object>
+  <object id="13" name="Heal Tuxemon" type="event" x="320" y="528" width="80" height="64">
+   <properties>
+    <property name="act1" value="set_monster_health"/>
+    <property name="act2" value="set_monster_status"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_moved player"/>
+   </properties>
+  </object>
+  <object id="14" name="Heal Tuxemon" type="event" x="432" y="432" width="96" height="64">
+   <properties>
+    <property name="act1" value="set_monster_health"/>
+    <property name="act2" value="set_monster_status"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_moved player"/>
+   </properties>
+  </object>
+  <object id="15" name="Heal Tuxemon" type="event" x="384" y="272" width="64" height="80">
+   <properties>
+    <property name="act1" value="set_monster_health"/>
+    <property name="act2" value="set_monster_status"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_moved player"/>
+   </properties>
+  </object>
+  <object id="16" name="Heal Tuxemon" type="event" x="480" y="144" width="32" height="80">
+   <properties>
+    <property name="act1" value="set_monster_health"/>
+    <property name="act2" value="set_monster_status"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_moved player"/>
+   </properties>
+  </object>
+  <object id="17" name="Heal Tuxemon" type="event" x="736" y="160" width="32" height="64">
+   <properties>
+    <property name="act1" value="set_monster_health"/>
+    <property name="act2" value="set_monster_status"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_moved player"/>
+   </properties>
+  </object>
+  <object id="18" name="Heal Tuxemon" type="event" x="384" y="496" width="80" height="48">
+   <properties>
+    <property name="act1" value="set_monster_health"/>
+    <property name="act2" value="set_monster_status"/>
+    <property name="cond1" value="is char_at player"/>
+   </properties>
+  </object>
+  <object id="19" name="Heal Tuxemon" type="event" x="704" y="240" width="48" height="32">
+   <properties>
+    <property name="act1" value="set_monster_health"/>
+    <property name="act2" value="set_monster_status"/>
+    <property name="cond1" value="is char_at player"/>
+   </properties>
+  </object>
+  <object id="20" name="Heal Tuxemon" type="event" x="464" y="240" width="48" height="64">
+   <properties>
+    <property name="act1" value="set_monster_health"/>
+    <property name="act2" value="set_monster_status"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_moved player"/>
+   </properties>
+  </object>
+  <object id="21" name="Heal Tuxemon" type="event" x="496" y="256" width="240" height="192">
+   <properties>
+    <property name="act1" value="set_monster_health"/>
+    <property name="act2" value="set_monster_status"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_moved player"/>
+   </properties>
+  </object>
+  <object id="22" name="Heal Tuxemon" type="event" x="576" y="48" width="32" height="48">
+   <properties>
+    <property name="act1" value="set_monster_health"/>
+    <property name="act2" value="set_monster_status"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_moved player"/>
+   </properties>
+  </object>
+  <object id="23" name="The End" type="event" x="624" y="96" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog water_ending1"/>
+    <property name="act2" value="translated_dialog water_ending2"/>
+    <property name="act3" value="translated_dialog water_ending3"/>
+    <property name="act4" value="translated_dialog water_ending4"/>
+    <property name="act5" value="add_monster jemuar,55"/>
+    <property name="act6" value="set_variable game_over:yes"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is variable_set after_gemuar:yes"/>
+    <property name="cond3" value="not variable_set game_over:yes"/>
+   </properties>
+  </object>
+  <object id="38" name="TEMP TEST THINGY" type="event" x="512" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="add_monster agnite,65"/>
+    <property name="act2" value="set_monster_health add_monster,0.1"/>
+    <property name="act3" value="set_variable x1:yes"/>
+    <property name="cond1" value="not has_monster agnite"/>
+    <property name="cond3" value="not variable_set x1:yes"/>
+   </properties>
+  </object>
+  <object id="39" name="Heal Tuxemon" type="event" x="656" y="48" width="32" height="48">
+   <properties>
+    <property name="act1" value="set_monster_health"/>
+    <property name="act2" value="set_monster_status"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_moved player"/>
+   </properties>
+  </object>
+  <object id="47" name="Show Hints" type="event" x="752" y="656" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog water_hint1"/>
+    <property name="act2" value="translated_dialog water_hint2"/>
+    <property name="act3" value="translated_dialog water_hint3"/>
+    <property name="act4" value="translated_dialog water_hint4"/>
+    <property name="act5" value="translated_dialog water_hint5"/>
+    <property name="act6" value="set_variable shown_hints:yes"/>
+    <property name="cond1" value="not variable_set shown_hints:yes"/>
+   </properties>
+  </object>
+  <object id="48" name="Set Environment" type="event" x="752" y="736" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_environment water"/>
+    <property name="cond1" value="not environment_is water"/>
+   </properties>
+  </object>
+  <object id="49" name="Create NPC" type="event" x="624" y="400" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc water_maniac,39,25"/>
+    <property name="cond1" value="not char_exists water_maniac"/>
+   </properties>
+  </object>
+  <object id="50" name="Talk NPC" type="event" x="656" y="416" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog water_unusual1"/>
+    <property name="act2" value="translated_dialog water_unusual2"/>
+    <property name="act3" value="translated_dialog water_unusual3"/>
+    <property name="behav1" value="talk water_maniac"/>
+   </properties>
+  </object>
+  <object id="51" name="Random Encounter" type="event" x="0" y="0" width="384" height="480">
+   <properties>
+    <property name="act1" value="random_encounter default_encounter,10"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_moved player"/>
+   </properties>
+  </object>
+  <object id="52" name="Random Encounter" type="event" x="160" y="480" width="160" height="144">
+   <properties>
+    <property name="act1" value="random_encounter default_encounter,10"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_moved player"/>
+   </properties>
+  </object>
+  <object id="53" name="Random Encounter" type="event" x="512" y="608" width="112" height="192">
+   <properties>
+    <property name="act1" value="random_encounter default_encounter,10"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_moved player"/>
+   </properties>
+  </object>
+  <object id="54" name="Random Encounter" type="event" x="400" y="544" width="64" height="192">
+   <properties>
+    <property name="act1" value="random_encounter default_encounter,10"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_moved player"/>
+   </properties>
+  </object>
+  <object id="55" name="Random Encounter" type="event" x="240" y="624" width="96" height="160">
+   <properties>
+    <property name="act1" value="random_encounter default_encounter,10"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_moved player"/>
+   </properties>
+  </object>
+  <object id="56" name="Random Encounter" type="event" x="736" y="592" width="64" height="192">
+   <properties>
+    <property name="act1" value="random_encounter default_encounter,10"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_moved player"/>
+   </properties>
+  </object>
+  <object id="57" name="Random Encounter" type="event" x="624" y="736" width="112" height="64">
+   <properties>
+    <property name="act1" value="random_encounter default_encounter,10"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_moved player"/>
+   </properties>
+  </object>
+  <object id="58" name="Random Encounter" type="event" x="544" y="528" width="192" height="80">
+   <properties>
+    <property name="act1" value="random_encounter default_encounter,10"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_moved player"/>
+   </properties>
+  </object>
+  <object id="59" name="Random Encounter" type="event" x="528" y="448" width="192" height="80">
+   <properties>
+    <property name="act1" value="random_encounter default_encounter,10"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_moved player"/>
+   </properties>
+  </object>
+  <object id="60" name="Random Encounter" type="event" x="336" y="592" width="64" height="64">
+   <properties>
+    <property name="act1" value="random_encounter default_encounter,10"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_moved player"/>
+   </properties>
+  </object>
+  <object id="61" name="Random Encounter" type="event" x="384" y="352" width="112" height="80">
+   <properties>
+    <property name="act1" value="random_encounter default_encounter,10"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_moved player"/>
+   </properties>
+  </object>
+  <object id="62" name="Random Encounter" type="event" x="384" y="0" width="96" height="240">
+   <properties>
+    <property name="act1" value="random_encounter default_encounter,10"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_moved player"/>
+   </properties>
+  </object>
+  <object id="63" name="Random Encounter" type="event" x="688" y="32" width="96" height="112">
+   <properties>
+    <property name="act1" value="random_encounter default_encounter,10"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_moved player"/>
+   </properties>
+  </object>
+  <object id="64" name="Random Encounter" type="event" x="480" y="32" width="96" height="112">
+   <properties>
+    <property name="act1" value="random_encounter default_encounter,10"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_moved player"/>
+   </properties>
+  </object>
+  <object id="65" name="Random Encounter" type="event" x="512" y="144" width="192" height="112">
+   <properties>
+    <property name="act1" value="random_encounter default_encounter,10"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_moved player"/>
+   </properties>
+  </object>
+  <object id="66" name="Random Encounter" type="event" x="736" y="272" width="48" height="112">
+   <properties>
+    <property name="act1" value="random_encounter default_encounter,10"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_moved player"/>
+   </properties>
+  </object>
+  <object id="67" name="Random Encounter" type="event" x="0" y="496" width="96" height="160">
+   <properties>
+    <property name="act1" value="random_encounter default_encounter,10"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_moved player"/>
+   </properties>
+  </object>
+  <object id="68" name="LEVEL UP TUXEMON" type="event" x="768" y="464" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_monster_level ,15"/>
+    <property name="act20" value="set_variable level_65:yes"/>
+    <property name="cond1" value="not variable_set level_65:yes"/>
+   </properties>
+  </object>
+  <object id="69" name="Play Music" type="event" x="784" y="528" width="16" height="16">
+   <properties>
+    <property name="act1" value="play_music music_come_find_me"/>
+    <property name="cond1" value="not music_playing music_come_find_me"/>
+   </properties>
+  </object>
+  <object id="221" name="The End" type="event" x="608" y="80" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog water_ending1"/>
+    <property name="act2" value="translated_dialog water_ending2"/>
+    <property name="act3" value="translated_dialog water_ending3"/>
+    <property name="act4" value="translated_dialog water_ending4"/>
+    <property name="act5" value="add_monster jemuar,55"/>
+    <property name="act6" value="set_variable game_over:yes"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is variable_set after_gemuar:yes"/>
+    <property name="cond3" value="not variable_set game_over:yes"/>
+   </properties>
+  </object>
+  <object id="222" name="The End" type="event" x="592" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog water_ending1"/>
+    <property name="act2" value="translated_dialog water_ending2"/>
+    <property name="act3" value="translated_dialog water_ending3"/>
+    <property name="act4" value="translated_dialog water_ending4"/>
+    <property name="act5" value="add_monster jemuar,55"/>
+    <property name="act6" value="set_variable game_over:yes"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is variable_set after_gemuar:yes"/>
+    <property name="cond3" value="not variable_set game_over:yes"/>
+   </properties>
+  </object>
+  <object id="223" name="The End" type="event" x="608" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog water_ending1"/>
+    <property name="act2" value="translated_dialog water_ending2"/>
+    <property name="act3" value="translated_dialog water_ending3"/>
+    <property name="act4" value="translated_dialog water_ending4"/>
+    <property name="act5" value="add_monster jemuar,55"/>
+    <property name="act6" value="set_variable game_over:yes"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is variable_set after_gemuar:yes"/>
+    <property name="cond3" value="not variable_set game_over:yes"/>
+   </properties>
+  </object>
+  <object id="224" name="The End" type="event" x="624" y="32" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog water_ending1"/>
+    <property name="act2" value="translated_dialog water_ending2"/>
+    <property name="act3" value="translated_dialog water_ending3"/>
+    <property name="act4" value="translated_dialog water_ending4"/>
+    <property name="act5" value="add_monster jemuar,55"/>
+    <property name="act6" value="set_variable game_over:yes"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is variable_set after_gemuar:yes"/>
+    <property name="cond3" value="not variable_set game_over:yes"/>
+   </properties>
+  </object>
+  <object id="225" name="The End" type="event" x="640" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog water_ending1"/>
+    <property name="act2" value="translated_dialog water_ending2"/>
+    <property name="act3" value="translated_dialog water_ending3"/>
+    <property name="act4" value="translated_dialog water_ending4"/>
+    <property name="act5" value="add_monster jemuar,55"/>
+    <property name="act6" value="set_variable game_over:yes"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is variable_set after_gemuar:yes"/>
+    <property name="cond3" value="not variable_set game_over:yes"/>
+   </properties>
+  </object>
+  <object id="226" name="The End" type="event" x="656" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog water_ending1"/>
+    <property name="act2" value="translated_dialog water_ending2"/>
+    <property name="act3" value="translated_dialog water_ending3"/>
+    <property name="act4" value="translated_dialog water_ending4"/>
+    <property name="act5" value="add_monster jemuar,55"/>
+    <property name="act6" value="set_variable game_over:yes"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is variable_set after_gemuar:yes"/>
+    <property name="cond3" value="not variable_set game_over:yes"/>
+   </properties>
+  </object>
+  <object id="227" name="The End" type="event" x="640" y="80" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog water_ending1"/>
+    <property name="act2" value="translated_dialog water_ending2"/>
+    <property name="act3" value="translated_dialog water_ending3"/>
+    <property name="act4" value="translated_dialog water_ending4"/>
+    <property name="act5" value="add_monster jemuar,55"/>
+    <property name="act6" value="set_variable game_over:yes"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is variable_set after_gemuar:yes"/>
+    <property name="cond3" value="not variable_set game_over:yes"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup color="#ff0000" id="6" name="Collision">
+  <object id="70" type="collision" x="0" y="784" width="800" height="16"/>
+  <object id="72" type="collision" x="784" y="0" width="16" height="784"/>
+  <object id="73" type="collision" x="224" y="592" width="80" height="16"/>
+  <object id="74" type="collision" x="192" y="608" width="112" height="16"/>
+  <object id="75" type="collision" x="0" y="624" width="304" height="16"/>
+  <object id="76" type="collision" x="0" y="640" width="256" height="16"/>
+  <object id="77" type="collision" x="0" y="656" width="224" height="16"/>
+  <object id="78" type="collision" x="0" y="672" width="208" height="16"/>
+  <object id="79" type="collision" x="0" y="688" width="192" height="16"/>
+  <object id="80" type="collision" x="0" y="704" width="160" height="16"/>
+  <object id="81" type="collision" x="112" y="720" width="16" height="64"/>
+  <object id="82" type="collision" x="128" y="752" width="16" height="32"/>
+  <object id="83" type="collision" x="144" y="768" width="16" height="16"/>
+  <object id="84" type="collision" x="144" y="608" width="32" height="16"/>
+  <object id="85" type="collision" x="32" y="608" width="64" height="16"/>
+  <object id="87" type="collision" x="32" y="592" width="32" height="16"/>
+  <object id="88" type="collision" x="16" y="576" width="32" height="16"/>
+  <object id="89" type="collision" x="0" y="544" width="32" height="32"/>
+  <object id="90" type="collision" x="16" y="512" width="32" height="32"/>
+  <object id="91" type="collision" x="48" y="480" width="32" height="32"/>
+  <object id="92" type="collision" x="176" y="496" width="32" height="16"/>
+  <object id="93" type="collision" x="80" y="480" width="112" height="16"/>
+  <object id="94" type="collision" x="112" y="464" width="64" height="16"/>
+  <object id="95" type="collision" x="112" y="448" width="32" height="16"/>
+  <object id="96" type="collision" x="96" y="432" width="32" height="16"/>
+  <object id="97" type="collision" x="80" y="416" width="32" height="16"/>
+  <object id="98" type="collision" x="64" y="400" width="32" height="16"/>
+  <object id="99" type="collision" x="48" y="384" width="32" height="16"/>
+  <object id="100" type="collision" x="32" y="352" width="32" height="32"/>
+  <object id="101" type="collision" x="16" y="304" width="32" height="48"/>
+  <object id="102" type="collision" x="32" y="272" width="32" height="32"/>
+  <object id="103" type="collision" x="64" y="256" width="32" height="16"/>
+  <object id="104" type="collision" x="48" y="160" width="32" height="96"/>
+  <object id="105" type="collision" x="16" y="96" width="32" height="80"/>
+  <object id="106" type="collision" x="48" y="96" width="32" height="32"/>
+  <object id="107" type="collision" x="64" y="128" width="48" height="16"/>
+  <object id="108" type="collision" x="32" y="80" width="32" height="16"/>
+  <object id="109" type="collision" x="16" y="64" width="32" height="16"/>
+  <object id="110" type="collision" x="16" y="48" width="96" height="16"/>
+  <object id="111" type="collision" x="0" y="32" width="32" height="16"/>
+  <object id="112" type="collision" x="16" y="16" width="32" height="16"/>
+  <object id="113" type="collision" x="32" y="0" width="288" height="16"/>
+  <object id="114" type="collision" x="112" y="16" width="176" height="16"/>
+  <object id="115" type="collision" x="144" y="32" width="192" height="16"/>
+  <object id="116" type="collision" x="160" y="48" width="352" height="16"/>
+  <object id="117" type="collision" x="176" y="64" width="320" height="16"/>
+  <object id="118" type="collision" x="192" y="80" width="80" height="16"/>
+  <object id="119" type="collision" x="208" y="96" width="32" height="16"/>
+  <object id="120" type="collision" x="256" y="96" width="16" height="32"/>
+  <object id="121" type="collision" x="288" y="128" width="32" height="48"/>
+  <object id="122" type="collision" x="256" y="144" width="32" height="96"/>
+  <object id="123" type="collision" x="304" y="192" width="32" height="16"/>
+  <object id="124" type="collision" x="288" y="176" width="16" height="48"/>
+  <object id="125" type="collision" x="240" y="160" width="16" height="48"/>
+  <object id="126" type="collision" x="224" y="192" width="16" height="48"/>
+  <object id="127" type="collision" x="144" y="208" width="64" height="16"/>
+  <object id="128" type="collision" x="192" y="144" width="32" height="16"/>
+  <object id="129" type="collision" x="176" y="144" width="16" height="32"/>
+  <object id="130" type="collision" x="160" y="112" width="16" height="96"/>
+  <object id="131" type="collision" x="144" y="96" width="16" height="48"/>
+  <object id="132" type="collision" x="96" y="64" width="48" height="16"/>
+  <object id="133" type="collision" x="128" y="80" width="16" height="48"/>
+  <object id="134" type="collision" x="112" y="80" width="16" height="32"/>
+  <object id="135" type="collision" x="128" y="160" width="16" height="32"/>
+  <object id="136" type="collision" x="112" y="144" width="16" height="16"/>
+  <object id="137" type="collision" x="80" y="160" width="16" height="16"/>
+  <object id="138" type="collision" x="80" y="176" width="32" height="32"/>
+  <object id="139" type="collision" x="80" y="208" width="48" height="16"/>
+  <object id="140" type="collision" x="80" y="224" width="16" height="16"/>
+  <object id="141" type="collision" x="80" y="272" width="16" height="64"/>
+  <object id="142" type="collision" x="96" y="320" width="16" height="48"/>
+  <object id="143" type="collision" x="112" y="352" width="16" height="48"/>
+  <object id="144" type="collision" x="112" y="240" width="16" height="48"/>
+  <object id="145" type="collision" x="128" y="256" width="16" height="16"/>
+  <object id="146" type="collision" x="176" y="240" width="32" height="16"/>
+  <object id="147" type="collision" x="160" y="256" width="32" height="16"/>
+  <object id="148" type="collision" x="144" y="288" width="32" height="16"/>
+  <object id="149" type="collision" x="160" y="272" width="16" height="16"/>
+  <object id="150" type="collision" x="144" y="304" width="16" height="48"/>
+  <object id="151" type="collision" x="160" y="352" width="16" height="48"/>
+  <object id="152" type="collision" x="176" y="384" width="16" height="32"/>
+  <object id="153" type="collision" x="192" y="400" width="16" height="32"/>
+  <object id="154" type="collision" x="144" y="416" width="16" height="16"/>
+  <object id="155" type="collision" x="208" y="368" width="32" height="16"/>
+  <object id="156" type="collision" x="192" y="336" width="32" height="16"/>
+  <object id="157" type="collision" x="208" y="352" width="16" height="16"/>
+  <object id="158" type="collision" x="192" y="304" width="16" height="16"/>
+  <object id="159" type="collision" x="208" y="256" width="16" height="32"/>
+  <object id="160" type="collision" x="224" y="272" width="32" height="16"/>
+  <object id="161" type="collision" x="224" y="288" width="64" height="16"/>
+  <object id="162" type="collision" x="240" y="304" width="64" height="32"/>
+  <object id="163" type="collision" x="256" y="336" width="80" height="16"/>
+  <object id="164" type="collision" x="272" y="352" width="64" height="32"/>
+  <object id="165" type="collision" x="240" y="432" width="48" height="16"/>
+  <object id="166" type="collision" x="240" y="400" width="16" height="32"/>
+  <object id="167" type="collision" x="288" y="384" width="64" height="16"/>
+  <object id="168" type="collision" x="304" y="400" width="48" height="32"/>
+  <object id="169" type="collision" x="320" y="432" width="32" height="16"/>
+  <object id="170" type="collision" x="336" y="448" width="16" height="16"/>
+  <object id="171" type="collision" x="304" y="320" width="16" height="16"/>
+  <object id="172" type="collision" x="352" y="208" width="48" height="32"/>
+  <object id="173" type="collision" x="368" y="176" width="64" height="32"/>
+  <object id="174" type="collision" x="400" y="208" width="16" height="16"/>
+  <object id="175" type="collision" x="352" y="128" width="112" height="16"/>
+  <object id="176" type="collision" x="384" y="144" width="64" height="32"/>
+  <object id="177" type="collision" x="352" y="80" width="112" height="16"/>
+  <object id="178" type="collision" x="368" y="96" width="112" height="16"/>
+  <object id="179" type="collision" x="384" y="112" width="96" height="16"/>
+  <object id="180" type="collision" x="496" y="32" width="32" height="16"/>
+  <object id="181" type="collision" x="496" y="16" width="288" height="16"/>
+  <object id="182" type="collision" x="688" y="32" width="96" height="16"/>
+  <object id="183" type="collision" x="720" y="48" width="48" height="16"/>
+  <object id="184" type="collision" x="752" y="64" width="32" height="16"/>
+  <object id="185" type="collision" x="768" y="80" width="16" height="32"/>
+  <object id="186" type="collision" x="592" y="112" width="96" height="16"/>
+  <object id="187" type="collision" x="560" y="208" width="128" height="16"/>
+  <object id="188" type="collision" x="544" y="144" width="144" height="64"/>
+  <object id="189" type="collision" x="560" y="128" width="144" height="16"/>
+  <object id="190" type="collision" x="688" y="144" width="16" height="32"/>
+  <object id="191" type="collision" x="768" y="320" width="16" height="112"/>
+  <object id="192" type="collision" x="752" y="336" width="16" height="160"/>
+  <object id="193" type="collision" x="736" y="400" width="16" height="128"/>
+  <object id="194" type="collision" x="720" y="416" width="16" height="128"/>
+  <object id="195" type="collision" x="704" y="448" width="16" height="112"/>
+  <object id="196" type="collision" x="688" y="464" width="16" height="96"/>
+  <object id="197" type="collision" x="624" y="480" width="64" height="64"/>
+  <object id="198" type="collision" x="608" y="480" width="16" height="80"/>
+  <object id="199" type="collision" x="544" y="496" width="64" height="64"/>
+  <object id="200" type="collision" x="512" y="512" width="32" height="96"/>
+  <object id="201" type="collision" x="544" y="576" width="16" height="16"/>
+  <object id="202" type="collision" x="544" y="560" width="32" height="16"/>
+  <object id="203" type="collision" x="496" y="528" width="16" height="96"/>
+  <object id="204" type="collision" x="480" y="544" width="16" height="112"/>
+  <object id="205" type="collision" x="464" y="560" width="16" height="96"/>
+  <object id="206" type="collision" x="512" y="608" width="16" height="16"/>
+  <object id="207" type="collision" x="496" y="624" width="16" height="16"/>
+  <object id="208" type="collision" x="496" y="640" width="16" height="16"/>
+  <object id="209" type="collision" x="464" y="720" width="48" height="64"/>
+  <object id="210" type="collision" x="368" y="736" width="96" height="48"/>
+  <object id="211" type="collision" x="304" y="752" width="64" height="32"/>
+  <object id="212" type="collision" x="272" y="768" width="32" height="16"/>
+  <object id="213" type="collision" x="512" y="736" width="16" height="48"/>
+  <object id="214" type="collision" x="528" y="752" width="32" height="32"/>
+  <object id="215" type="collision" x="560" y="768" width="64" height="16"/>
+  <object id="216" type="collision" x="752" y="768" width="32" height="16"/>
+  <object id="217" type="collision" x="768" y="752" width="16" height="16"/>
+  <object id="218" type="collision" x="752" y="496" width="32" height="96"/>
+  <object id="219" type="collision" x="720" y="544" width="32" height="32"/>
+  <object id="220" type="collision" x="576" y="320" width="80" height="80"/>
+ </objectgroup>
+</map>

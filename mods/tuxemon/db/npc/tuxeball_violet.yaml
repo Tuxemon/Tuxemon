@@ -1,0 +1,11 @@
+slug: tuxeball_violet
+speech:
+  profile:
+    default: {}
+combat: {}
+audio: {}
+template:
+  sprite_name: tuxeball_violet
+  combat_sheet: noclass
+  slug: noclass
+  is_static_prop: true

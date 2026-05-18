@@ -1,0 +1,72 @@
+slug: legko
+species: lizard
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: sting
+- level_learned: 1
+  technique: blossom
+- level_learned: 4
+  technique: poison_courtship
+- level_learned: 7
+  technique: splinter
+- level_learned: 13
+  technique: boulder
+- level_learned: 28
+  technique: overgrowth
+- level_learned: 31
+  technique: peregrine
+- level_learned: 34
+  technique: spit_poison
+- level_learned: 43
+  technique: thunderball
+- level_learned: 46
+  technique: shadow_boxing
+- level_learned: 52
+  technique: invictus
+evolutions:
+- at_level: 36
+  monster_slug: moloch
+history:
+- slug: legko
+  stage: stage1
+  evolves_from:
+  - lambert
+  evolves_into:
+  - moloch
+- slug: lambert
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - legko
+- slug: moloch
+  stage: stage2
+  evolves_from:
+  - legko
+  evolves_into: []
+terrains: []
+tags:
+- bite
+- plant
+shape: serpent
+stage: stage1
+types:
+- wood
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 11
+height: 123
+weight: 52
+sounds:
+  combat_call:
+    sfx: sound_bug_03
+    volume: 1.5
+  faint_call:
+    sfx: sound_bug_03_faint
+    volume: 1.5
+catch_rate: 70.0
+lower_catch_resistance: 0.9
+upper_catch_resistance: 1.15

@@ -1,0 +1,39 @@
+tech_id: 186
+accuracy: 1
+effects:
+- type: give
+  parameters:
+  - flinching
+  - enemy_monster
+- type: damage
+speed: slow
+potency: 0.8
+power: 3
+range: melee
+recharge: 3
+slug: one_million_talons
+sort: damage
+modifiers: []
+behaviors: {}
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: powerful
+tags:
+- bird
+types:
+- sky
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: amethyst
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_kick
+  volume: 1.5

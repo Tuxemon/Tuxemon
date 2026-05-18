@@ -1,0 +1,337 @@
+random_names:
+  en_us: # English names
+    male:
+      - Finnick
+      - Alden
+      - Corbin
+      - Silas
+      - Dorian
+    female:
+      - Lyra
+      - Seren
+      - Elowen
+      - Talia
+      - Imara
+    neutral:
+      - Penguin
+      - Pulsar
+      - Pebble
+      - Zephyr
+      - Indigo
+      - Linus
+      - Ubuntu
+      - Fedora
+      - Solus
+      - Debian
+  cs_cz:  # Czech names
+    male:
+      - Finnick
+      - Alden
+      - Corbin
+      - Silas
+      - Dorian
+    female:
+      - Lyra
+      - Seren
+      - Elowen
+      - Talia
+      - Imara
+    neutral:
+      - Penguin
+      - Pulsar
+      - Pebble
+      - Zephyr
+      - Indigo
+      - Linus
+      - Ubuntu
+      - Fedora
+      - Solus
+      - Debian
+  de_de:  # German names
+    male:
+      - Finnick
+      - Alden
+      - Corbin
+      - Silas
+      - Dorian
+    female:
+      - Lyra
+      - Seren
+      - Elowen
+      - Talia
+      - Imara
+    neutral:
+      - Penguin
+      - Pulsar
+      - Pebble
+      - Zephyr
+      - Indigo
+      - Linus
+      - Ubuntu
+      - Fedora
+      - Solus
+      - Debian
+  eo:  # Esperanto names
+    male:
+      - Finnick
+      - Alden
+      - Corbin
+      - Silas
+      - Dorian
+    female:
+      - Lyra
+      - Seren
+      - Elowen
+      - Talia
+      - Imara
+    neutral:
+      - Penguin
+      - Pulsar
+      - Pebble
+      - Zephyr
+      - Indigo
+      - Linus
+      - Ubuntu
+      - Fedora
+      - Solus
+      - Debian
+  es_es:  # Spanish names
+    male:
+      - Finnick
+      - Alden
+      - Corbin
+      - Silas
+      - Dorian
+    female:
+      - Lyra
+      - Seren
+      - Elowen
+      - Talia
+      - Imara
+    neutral:
+      - Penguin
+      - Pulsar
+      - Pebble
+      - Zephyr
+      - Indigo
+      - Linus
+      - Ubuntu
+      - Fedora
+      - Solus
+      - Debian
+  es_mx:  # Spanish Mexican names
+    male:
+      - Finnick
+      - Alden
+      - Corbin
+      - Silas
+      - Dorian
+    female:
+      - Lyra
+      - Seren
+      - Elowen
+      - Talia
+      - Imara
+    neutral:
+      - Penguin
+      - Pulsar
+      - Pebble
+      - Zephyr
+      - Indigo
+      - Linus
+      - Ubuntu
+      - Fedora
+      - Solus
+      - Debian
+  fi:  # Finnish names
+    male:
+      - Finnick
+      - Alden
+      - Corbin
+      - Silas
+      - Dorian
+    female:
+      - Lyra
+      - Seren
+      - Elowen
+      - Talia
+      - Imara
+    neutral:
+      - Penguin
+      - Pulsar
+      - Pebble
+      - Zephyr
+      - Indigo
+      - Linus
+      - Ubuntu
+      - Fedora
+      - Solus
+      - Debian
+  fr_fr:  # French names
+    male:
+      - Finnick
+      - Alden
+      - Corbin
+      - Silas
+      - Dorian
+    female:
+      - Lyra
+      - Seren
+      - Elowen
+      - Talia
+      - Imara
+    neutral:
+      - Penguin
+      - Pulsar
+      - Pebble
+      - Zephyr
+      - Indigo
+      - Linus
+      - Ubuntu
+      - Fedora
+      - Solus
+      - Debian
+  it_it:  # Italian names
+    male:
+      - Finnick
+      - Alden
+      - Corbin
+      - Silas
+      - Dorian
+    female:
+      - Lyra
+      - Seren
+      - Elowen
+      - Talia
+      - Imara
+    neutral:
+      - Penguin
+      - Pulsar
+      - Pebble
+      - Zephyr
+      - Indigo
+      - Linus
+      - Ubuntu
+      - Fedora
+      - Solus
+      - Debian
+  ja:  # Japanese names
+    male:
+      - Finnick
+      - Alden
+      - Corbin
+      - Silas
+      - Dorian
+    female:
+      - Lyra
+      - Seren
+      - Elowen
+      - Talia
+      - Imara
+    neutral:
+      - Penguin
+      - Pulsar
+      - Pebble
+      - Zephyr
+      - Indigo
+      - Linus
+      - Ubuntu
+      - Fedora
+      - Solus
+      - Debian
+  nb_no:  # Norwegian Bokmål names
+    male:
+      - Finnick
+      - Alden
+      - Corbin
+      - Silas
+      - Dorian
+    female:
+      - Lyra
+      - Seren
+      - Elowen
+      - Talia
+      - Imara
+    neutral:
+      - Penguin
+      - Pulsar
+      - Pebble
+      - Zephyr
+      - Indigo
+      - Linus
+      - Ubuntu
+      - Fedora
+      - Solus
+      - Debian
+  pl:  # Polish names
+    male:
+      - Finnick
+      - Alden
+      - Corbin
+      - Silas
+      - Dorian
+    female:
+      - Lyra
+      - Seren
+      - Elowen
+      - Talia
+      - Imara
+    neutral:
+      - Penguin
+      - Pulsar
+      - Pebble
+      - Zephyr
+      - Indigo
+      - Linus
+      - Ubuntu
+      - Fedora
+      - Solus
+      - Debian
+  pt_br:  # Brazilian Portuguese names
+    male:
+      - Finnick
+      - Alden
+      - Corbin
+      - Silas
+      - Dorian
+    female:
+      - Lyra
+      - Seren
+      - Elowen
+      - Talia
+      - Imara
+    neutral:
+      - Penguin
+      - Pulsar
+      - Pebble
+      - Zephyr
+      - Indigo
+      - Linus
+      - Ubuntu
+      - Fedora
+      - Solus
+      - Debian
+  zh_cn:  # Simplified Chinese names
+    male:
+      - Finnick
+      - Alden
+      - Corbin
+      - Silas
+      - Dorian
+    female:
+      - Lyra
+      - Seren
+      - Elowen
+      - Talia
+      - Imara
+    neutral:
+      - Penguin
+      - Pulsar
+      - Pebble
+      - Zephyr
+      - Indigo
+      - Linus
+      - Ubuntu
+      - Fedora
+      - Solus
+      - Debian

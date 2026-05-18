@@ -1,0 +1,64 @@
+slug: pythwire
+species: power_socket
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: strike
+- level_learned: 1
+  technique: surge
+- level_learned: 4
+  technique: viper
+- level_learned: 7
+  technique: radiance
+- level_learned: 13
+  technique: constrict
+evolutions:
+- monster_slug: ouroboutlet
+  item:
+    fire_booster: 1.0
+- monster_slug: sockeserp
+  item:
+    metal_booster: 1.0
+history:
+- slug: pythwire
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - ouroboutlet
+  - sockeserp
+- slug: ouroboutlet
+  stage: stage1
+  evolves_from:
+  - pythwire
+  evolves_into: []
+- slug: sockeserp
+  stage: stage1
+  evolves_from:
+  - pythwire
+  evolves_into: []
+terrains:
+- urban
+tags:
+- electricity
+shape: serpent
+stage: basic
+types:
+- lightning
+- metal
+gender_weights:
+  neuter: 1.0
+txmn_id: 89
+height: 200
+weight: 4
+sounds:
+  combat_call:
+    sfx: sound_misc_07
+    volume: 1.5
+  faint_call:
+    sfx: sound_misc_07_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.25

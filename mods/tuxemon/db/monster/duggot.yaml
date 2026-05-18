@@ -1,0 +1,56 @@
+slug: duggot
+species: unwelcome_mouthful
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: sting
+- level_learned: 1
+  technique: solar_synthesis
+- level_learned: 4
+  technique: spit_poison
+- level_learned: 10
+  technique: poison_courtship
+evolutions:
+- monster_slug: breem
+  party_conditions:
+    monster_slugs:
+      tumbleworm: 1
+history:
+- slug: duggot
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - breem
+- slug: breem
+  stage: stage1
+  evolves_from:
+  - duggot
+  evolves_into: []
+terrains: []
+tags:
+- plant
+- toxic
+- bug
+shape: varmint
+stage: basic
+types:
+- wood
+- venom
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 343
+height: 12
+weight: 0.5
+sounds:
+  combat_call:
+    sfx: sound_spit_01
+    volume: 1.5
+  faint_call:
+    sfx: sound_spit_01_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.05

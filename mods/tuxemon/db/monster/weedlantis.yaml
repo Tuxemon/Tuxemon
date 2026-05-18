@@ -1,0 +1,71 @@
+slug: weedlantis
+species: reef
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: water_bullet
+- level_learned: 1
+  technique: solar_synthesis
+- level_learned: 4
+  technique: overgrowth
+- level_learned: 10
+  technique: flood
+- level_learned: 13
+  technique: stabilo
+- level_learned: 19
+  technique: nest
+- level_learned: 25
+  technique: water_blast
+- level_learned: 31
+  technique: blossom
+- level_learned: 37
+  technique: energy_field
+- level_learned: 40
+  technique: woodsmash
+- level_learned: 55
+  technique: energy_beam
+evolutions: []
+history:
+- slug: weedlantis
+  stage: stage1
+  evolves_from:
+  - weedsea
+  - weedsea
+  evolves_into: []
+- slug: weedsea
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - weedlantis
+  - weedlantis
+terrains:
+- coastal
+- sea
+tags:
+- plant
+- water
+- rock
+- calamity
+- leadership
+shape: dragon
+stage: stage1
+types:
+- water
+- wood
+gender_weights:
+  neuter: 1.0
+txmn_id: 353
+height: 185
+weight: 120
+sounds:
+  combat_call:
+    sfx: sound_frog
+    volume: 1.5
+  faint_call:
+    sfx: sound_frog_faint
+    volume: 1.5
+catch_rate: 70.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.05

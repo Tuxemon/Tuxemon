@@ -1,0 +1,61 @@
+slug: yamada
+species: samurai_ghost
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: phantasmal_force
+- level_learned: 1
+  technique: lineage
+- level_learned: 4
+  technique: saber
+- level_learned: 10
+  technique: riposte
+- level_learned: 16
+  technique: slice
+- level_learned: 25
+  technique: levitate
+- level_learned: 28
+  technique: petrify
+- level_learned: 34
+  technique: one_two
+- level_learned: 40
+  technique: give_all
+- level_learned: 55
+  technique: shadow_blast
+evolutions: []
+history:
+- slug: yamada
+  stage: standalone
+  evolves_from: []
+  evolves_into: []
+terrains:
+- extraplanar
+- ruins
+tags:
+- ghost
+- soldier
+- sharp
+- leadership
+- darkness
+shape: sprite
+stage: standalone
+types:
+- shadow
+- heroic
+gender_weights:
+  neuter: 1.0
+txmn_id: 363
+height: 150
+weight: 0.1
+sounds:
+  combat_call:
+    sfx: sound_weird_09
+    volume: 1.5
+  faint_call:
+    sfx: sound_weird_09_faint
+    volume: 1.5
+catch_rate: 50.0
+lower_catch_resistance: 0.9
+upper_catch_resistance: 1.15

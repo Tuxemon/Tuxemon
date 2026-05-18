@@ -1,0 +1,79 @@
+slug: slichen
+species: gel
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: solar_synthesis
+- level_learned: 1
+  technique: slime
+- level_learned: 4
+  technique: sylvan
+- level_learned: 7
+  technique: stonehenge
+- level_learned: 13
+  technique: clairaudience
+- level_learned: 16
+  technique: negation
+- level_learned: 19
+  technique: greenstone
+- level_learned: 28
+  technique: breath
+- level_learned: 31
+  technique: all_in
+- level_learned: 34
+  technique: surge
+- level_learned: 37
+  technique: mudslide
+- level_learned: 52
+  technique: earthquake
+- level_learned: 55
+  technique: thunderball
+evolutions:
+- at_level: 26
+  monster_slug: glombroc
+history:
+- slug: slichen
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - glombroc
+- slug: glombroc
+  stage: stage1
+  evolves_from:
+  - slichen
+  evolves_into:
+  - conglolem
+- slug: conglolem
+  stage: stage2
+  evolves_from:
+  - glombroc
+  evolves_into: []
+terrains:
+- swamp
+- underground
+tags:
+- plant
+- rock
+- ground
+- toxic
+shape: blob
+stage: basic
+types:
+- wood
+gender_weights:
+  neuter: 1.0
+txmn_id: 272
+height: 37
+weight: 1
+sounds:
+  combat_call:
+    sfx: sound_spit_02
+    volume: 1.5
+  faint_call:
+    sfx: sound_spit_02_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.25

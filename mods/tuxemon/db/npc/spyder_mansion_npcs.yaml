@@ -1,0 +1,326 @@
+- slug: spyder_top_jackson
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_top_jackson1
+        post_battle_win: null
+        post_battle_lose: spyder_top_jackson2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: rogue_copper
+    combat_sheet: rogue
+    slug: rogue
+- slug: spyder_top_mickey
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_top_mickey1
+        post_battle_win: null
+        post_battle_lose: spyder_top_mickey2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: scientist_fiery
+    combat_sheet: scientist
+    slug: scientist
+- slug: spyder_top_ricardo
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_top_ricardo1
+        post_battle_win: null
+        post_battle_lose: spyder_top_ricardo2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: rogue_red
+    combat_sheet: rogue
+    slug: rogue
+- slug: spyder_top_russell
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_top_russell1
+        post_battle_win: null
+        post_battle_lose: spyder_top_russell2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: magician_fiery
+    combat_sheet: mage
+    slug: mage
+- slug: spyder_top_penelope
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: barmaid_red
+    combat_sheet: barmaid
+    slug: barmaid
+- slug: spyder_top_maura
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: barmaid_blonde
+    combat_sheet: barmaid
+    slug: barmaid
+- slug: spyder_top_lenny
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: magician
+    combat_sheet: magician
+    slug: magician
+- slug: spyder_mansion_drinkingbuddya
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: rogue_green
+    combat_sheet: rogue
+    slug: rogue
+- slug: spyder_mansion_wayne
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: magician_black
+    combat_sheet: magician
+    slug: magician
+- slug: spyder_mansion_lyle
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_mansion_pirate1
+        post_battle_win: null
+        post_battle_lose: spyder_mansion_pirate2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: rogue_copper
+    combat_sheet: winger
+    slug: winger
+- slug: spyder_mansion_lucy
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_mansion_lucy1
+        post_battle_win: null
+        post_battle_lose: spyder_mansion_lucy2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: barmaid_red
+    combat_sheet: barmaid
+    slug: barmaid
+- slug: spyder_mansion_gillette
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_mansion_gillette1
+        post_battle_win: null
+        post_battle_lose: spyder_mansion_gillette2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: magician_brown
+    combat_sheet: magician
+    slug: magician
+- slug: spyder_mansion_drinkingbuddyb
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: warrior
+    combat_sheet: enforcer_rookie
+    slug: warrior
+- slug: spyder_mansion_lainey
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: barmaid
+    combat_sheet: barmaid
+    slug: barmaid
+- slug: spyder_mansion_rolo
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: riverboatcaptain
+    combat_sheet: enforcer_rookie
+    slug: riverboatcaptain
+- slug: spyder_mansion_tamara
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: picnicker
+    combat_sheet: picnicker
+    slug: picnicker
+- slug: spyder_mansion_reed
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: magician_fiery
+    combat_sheet: magician
+    slug: magician
+- slug: spyder_mansion_nurse
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: nurse_lapi
+    combat_sheet: nurse
+    slug: nurse
+- slug: spyder_basement_bobby
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_basement_bobby1
+        post_battle_win: null
+        post_battle_lose: spyder_basement_bobby2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: postboy
+    combat_sheet: rocker
+    slug: postboy
+- slug: spyder_basement_catholi
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_basement_catholi1
+        post_battle_win: null
+        post_battle_lose: spyder_basement_catholi2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: disciple
+    combat_sheet: healer
+    slug: healer
+- slug: spyder_basement_coralli
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_basement_coralli1
+        post_battle_win: null
+        post_battle_lose: spyder_basement_coralli2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: barmaid_blonde
+    combat_sheet: dancer
+    slug: dancer
+- slug: spyder_basement_josephine
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: disciple
+    combat_sheet: healer
+    slug: healer
+- slug: spyder_basement_roger
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_basement_roger1
+        post_battle_win: null
+        post_battle_lose: spyder_basement_roger2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: tennisplayer_lapi
+    combat_sheet: tennisplayer
+    slug: tennisplayer
+- slug: spyder_basement_josh
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: boss_orange
+    combat_sheet: baller
+    slug: baller
+- slug: spyder_basement_garret
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: rogue_green
+    combat_sheet: rogue
+    slug: rogue
+- slug: spyder_basement_flick
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: riverboatcaptain
+    combat_sheet: enforcer_rookie
+    slug: riverboatcaptain
+- slug: spyder_mansion_berry
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: box
+    combat_sheet: noclass
+    slug: noclass
+    is_static_prop: true
+- slug: spyder_mansion_grandtux
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: box
+    combat_sheet: noclass
+    slug: noclass
+    is_static_prop: true

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="12" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="44">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="12" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="44">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -234,6 +234,7 @@
    <properties>
     <property name="act11" value="add_monster capiti,4,spyder_cottoncafe_cayden,17,10"/>
     <property name="act12" value="add_monster tweesher,4,spyder_cottoncafe_cayden,17,10"/>
+    <property name="act13" value="set_variable cafebattle:no"/>
     <property name="act20" value="start_battle player,spyder_cottoncafe_cayden"/>
     <property name="act23" value="translated_dialog spyder_lostfight"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_cottoncafe_cayden"/>

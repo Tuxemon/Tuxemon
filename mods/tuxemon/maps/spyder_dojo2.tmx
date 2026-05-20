@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="24" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="41">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="24" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="41">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -162,7 +162,7 @@
     <property name="act15" value="add_tech iid_slot_1,sunburst"/>
     <property name="act16" value="add_monster coppi,20,spyder_dojo_yangchen,5,10"/>
     <property name="act17" value="add_tech iid_slot_2,oven"/>
-    <property name="act18" value="add_monster vigeuer,20,spyder_dojo_yangchen,5,10"/>
+    <property name="act18" value="add_monster vigueur,20,spyder_dojo_yangchen,5,10"/>
     <property name="act19" value="add_tech iid_slot_3,magma"/>
     <property name="act20" value="start_battle player,spyder_dojo_yangchen"/>
     <property name="act21" value="char_talk spyder_dojo_yangchen,post_battle_lose"/>
@@ -237,7 +237,7 @@
     <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
-  <object id="31" name="Talk Wan2" type="event" x="96" y="0" width="16" height="16">
+  <object id="31" name="Talk Wan2" type="event" x="80" y="0" width="16" height="16">
    <properties>
     <property name="act11" value="translated_dialog spyder_dojo_wan4"/>
     <property name="act12" value="add_monster galnec,20,spyder_dojo_wan,5,10"/>
@@ -253,6 +253,7 @@
     <property name="act33" value="set_monster_status"/>
     <property name="act34" value="lock_controls"/>
     <property name="act35" value="pathfind spyder_dojo_wan,9,9"/>
+    <property name="act36" value="remove_npc spyder_dojo_wan"/>
     <property name="act37" value="unlock_controls"/>
     <property name="behav1" value="talk spyder_dojo_wan"/>
     <property name="cond1" value="is variable_set wanintro:yes"/>
@@ -297,12 +298,6 @@
     <property name="act1" value="char_talk spyder_dojo_toph,post_battle_lose"/>
     <property name="behav1" value="talk spyder_dojo_toph"/>
     <property name="cond1" value="is battle_outcome player,won,spyder_dojo_toph"/>
-   </properties>
-  </object>
-  <object id="39" name="Remove Wan" type="event" x="336" y="144" width="16" height="16">
-   <properties>
-    <property name="act1" value="remove_npc spyder_dojo_wan"/>
-    <property name="cond1" value="is battle_outcome player,won,spyder_dojo_wan"/>
    </properties>
   </object>
   <object id="40" name="Play Music" type="event" x="0" y="0" width="16" height="16">

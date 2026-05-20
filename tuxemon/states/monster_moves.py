@@ -2,6 +2,7 @@
 # Copyright (c) 2014-2026 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+from collections.abc import Callable
 from typing import TYPE_CHECKING, Any, ClassVar
 
 from pygame_menu.locals import ALIGN_CENTER, ALIGN_LEFT, POSITION_EAST
@@ -17,7 +18,12 @@ from tuxemon.platform.const import buttons
 from tuxemon.platform.const.graphics import TECH_INFO
 from tuxemon.platform.const.sizes import ACCURACY_RANGE, POTENCY_RANGE
 from tuxemon.technique.technique import Technique
-from tuxemon.tools import fix_measure
+from tuxemon.tools import (
+    fix_measure,
+    open_dialog,
+    scale,
+    transform_resource_filename,
+)
 
 if TYPE_CHECKING:
     from tuxemon.base_client import BaseClient
@@ -35,10 +41,8 @@ class MonsterMovesState(PygameMenuState):
     info_label: Any | None = None
     bar_accuracy: ProgressBar | None = None
     bar_potency: ProgressBar | None = None
-    power_label: Any | None = None
-    range_icon_widget: Any | None = None
-    speed_icon_widget: Any | None = None
-    type_icon_widgets: list[Any] = []
+    _on_selection: Callable[[Technique], None] | None = None
+    _is_valid_entry: Callable[[Technique | None], bool] | None = None
 
     # -------------------------
     # Top section (static per monster)
@@ -56,6 +60,10 @@ class MonsterMovesState(PygameMenuState):
 
         menu._width = fxw(248 / 256)
 
+        self.minimal_font = transform_resource_filename(
+            "font", self.client.config.locale.minimal_font_file
+        )
+
         # Name (white, manual position)
         menu._auto_centering = False
         lab1: Any = menu.add.label(
@@ -68,13 +76,13 @@ class MonsterMovesState(PygameMenuState):
         )
         lab1.translate(fxw(79.4 / 256), fxh(-0.2 / 144))
 
-        # Move buttons (manual positions; uppercase names)
-        moveset: list[Technique] = monster.moves.get_moves()
-        output = sorted(moveset, key=lambda x: x.tech_id)
+        # Move buttons (newest is always last)
+        output: list[Technique] = monster.moves.get_moves()
 
+        step = 9 / 144 if len(output) >= 5 else 12 / 144
         _height = 4.8 / 144
         for tech in output:
-            _height += 12 / 144
+            _height += step
             menu.add.button(
                 title=tech.name.upper(),
                 action=None,
@@ -181,6 +189,7 @@ class MonsterMovesState(PygameMenuState):
 
         diff_accuracy = round((technique.accuracy / ACCURACY_RANGE[1]) * 100)
         diff_potency = round((technique.potency / POTENCY_RANGE[1]) * 100)
+        show_potency = diff_potency > 0
 
         # Find existing bars (by title) if present
         bar_accuracy: ProgressBar | None = None
@@ -200,7 +209,10 @@ class MonsterMovesState(PygameMenuState):
                 font_size=self.font_type.biggest,
                 width=fix_measure(width, 80 / 256),
                 align=ALIGN_LEFT,
+                progress_text_font=self.minimal_font,
                 float=True,
+                box_border_width=scale(1),
+                progress_text_font_hfactor=1.0,
             )
             self.bar_accuracy.translate(
                 fix_measure(width, 4 / 256), fix_measure(height, 74.8 / 144)
@@ -208,15 +220,22 @@ class MonsterMovesState(PygameMenuState):
         else:
             bar_accuracy.set_value(diff_accuracy)
 
-        # Potency (manual placement)
-        if bar_potency is None:
+        # Potency (manual placement) — omit entirely when potency is 0%
+        if not show_potency:
+            if bar_potency is not None:
+                menu.remove_widget(bar_potency)
+                self.bar_potency = None
+        elif bar_potency is None:
             self.bar_potency = menu.add.progress_bar(
                 T.translate("technique_potency"),
                 default=diff_potency,
                 font_size=self.font_type.biggest,
                 width=fix_measure(width, 80 / 256),
                 align=ALIGN_LEFT,
+                progress_text_font=self.minimal_font,
                 float=True,
+                progress_text_font_hfactor=1.0,
+                box_border_width=scale(1),
             )
             self.bar_potency.translate(
                 fix_measure(width, 4 / 256), fix_measure(height, 99.8 / 144)
@@ -226,13 +245,6 @@ class MonsterMovesState(PygameMenuState):
 
     # -------- icons (types, range, speed) ----------
     def _add_icons(self, menu: Menu, technique: Technique) -> None:
-        # Ensure attributes exist
-        if not hasattr(self, "type_icon_widgets"):
-            self.type_icon_widgets: list[Any] = []
-        if not hasattr(self, "range_icon_widget"):
-            self.range_icon_widget: Any | None = None
-        if not hasattr(self, "speed_icon_widget"):
-            self.speed_icon_widget: Any | None = None
 
         width, height = self.client.context.resolution
 
@@ -242,60 +254,54 @@ class MonsterMovesState(PygameMenuState):
         def fxh(r: float) -> int:
             return fix_measure(height, r)
 
-        # Clear previous type icons (remove from menu, not just hide)
-        for w in self.type_icon_widgets:
-            if w in menu.get_widgets():
-                menu.remove_widget(w)
-        self.type_icon_widgets.clear()
-
-        # Clear previous range icon
-        if (
-            self.range_icon_widget is not None
-            and self.range_icon_widget in menu.get_widgets()
-        ):
-            menu.remove_widget(self.range_icon_widget)
-        self.range_icon_widget = None
-
-        # Clear previous speed icon
-        if (
-            self.speed_icon_widget is not None
-            and self.speed_icon_widget in menu.get_widgets()
-        ):
-            menu.remove_widget(self.speed_icon_widget)
-        self.speed_icon_widget = None
-
-        # Type icons (manual placement; up to 2)
-        if technique.types.current:
-            x_positions = [
-                225 / 256,
-                213.4 / 256,
-            ]  # second slightly left of first
-            y_position = 73.8 / 144
-            for i, t in enumerate(technique.types.current[:2]):
+        # Type icons: two fixed slots (type_icon_0, type_icon_1)
+        x_positions = [225 / 256, 213.4 / 256]
+        y_position = 73.8 / 144
+        for i in range(2):
+            slot_id = f"type_icon_{i}"
+            existing = menu.get_widget(slot_id)
+            if i < len(technique.types.current):
+                t = technique.types.current[i]
                 path = f"gfx/ui/icons/element/{t.name.lower()}_type_small.png"
                 img = self._create_image(path)
                 img.scale(self.factor, self.factor)
-                icon = menu.add.image(img.copy(), float=True)
-                icon.translate(fxw(x_positions[i]), fxh(y_position))
-                self.type_icon_widgets.append(icon)
+                if existing is None:
+                    icon = menu.add.image(img.copy(), image_id=slot_id, float=True)
+                    icon.translate(fxw(x_positions[i]), fxh(y_position))
+                else:
+                    existing.set_image(img)
+                    existing.show()
+            else:
+                if existing is not None:
+                    existing.hide()
 
         # Range icon
+        existing_range = menu.get_widget("range_icon")
         if technique.range:
             path = f"gfx/ui/icons/range/{technique.range.name.lower()}.png"
             rimg = self._create_image(path)
             rimg.scale(self.factor, self.factor)
-            self.range_icon_widget = menu.add.image(rimg.copy(), float=True)
-            self.range_icon_widget.translate(fxw(4 / 256), fxh(86.8 / 144))
+            if existing_range is None:
+                w = menu.add.image(rimg.copy(), image_id="range_icon", float=True)
+                w.translate(fxw(4 / 256), fxh(86.8 / 144))
+            else:
+                existing_range.set_image(rimg)
+                existing_range.show()
+        elif existing_range is not None:
+            existing_range.hide()
 
         # Speed icon
         speed_label = SpeedLabel.from_numeric(technique.speed)
         speed_key = speed_label.value
-
         spath = f"gfx/ui/icons/speed/{speed_key}.png"
         simg = self._create_image(spath)
         simg.scale(self.factor, self.factor)
-        self.speed_icon_widget = menu.add.image(simg.copy(), float=True)
-        self.speed_icon_widget.translate(fxw(222 / 256), fxh(51.8 / 144))
+        existing_speed = menu.get_widget("speed_icon")
+        if existing_speed is None:
+            w = menu.add.image(simg.copy(), image_id="speed_icon", float=True)
+            w.translate(fxw(222 / 256), fxh(51.8 / 144))
+        else:
+            existing_speed.set_image(simg)
 
     # -------- power label ----------
     def _add_power_label(self, menu: Menu, technique: Technique) -> None:
@@ -303,24 +309,21 @@ class MonsterMovesState(PygameMenuState):
         power_percent = round(technique.power * 100)
         power_text = f"{T.translate('technique_power')} {power_percent}%"
 
-        # Remove old label if present
-        if (
-            hasattr(self, "power_label")
-            and self.power_label in menu.get_widgets()
-        ):
-            menu.remove_widget(self.power_label)
-
-        # Create fresh
-        self.power_label = menu.add.label(
-            title=power_text,
-            font_size=self.font_type.biggest,
-            align=ALIGN_LEFT,
-            float=True,
-        )
-        assert not isinstance(self.power_label, list)
-        self.power_label.translate(
-            fix_measure(width, 42 / 256), fix_measure(height, 87.8 / 144)
-        )
+        existing = menu.get_widget("power_label")
+        if existing is None:
+            label = menu.add.label(
+                title=power_text,
+                label_id="power_label",
+                font_size=self.font_type.biggest,
+                align=ALIGN_LEFT,
+                float=True,
+            )
+            assert not isinstance(label, list)
+            label.translate(
+                fix_measure(width, 42 / 256), fix_measure(height, 87.8 / 144)
+            )
+        else:
+            existing.set_title(power_text)
 
     # -------------------------
     # Lifecycle / plumbing
@@ -331,6 +334,8 @@ class MonsterMovesState(PygameMenuState):
         monster: Monster,
         source: str,
         monsters: list[Monster] | None,
+        on_selection: Callable[[Technique], None] | None = None,
+        is_valid_entry: Callable[[Technique | None], bool] | None = None,
         **kwargs: Any,
     ) -> None:
 
@@ -339,21 +344,65 @@ class MonsterMovesState(PygameMenuState):
         self._monster = monster
         self._source = source
         self._monsters = monsters
+        self._on_selection = on_selection
+        self._is_valid_entry = is_valid_entry
 
         super().__init__(client=client, height=height, width=width, **kwargs)
 
         theme = self._setup_theme(TECH_INFO)
         theme.scrollarea_position = POSITION_EAST
         theme.widget_alignment = ALIGN_CENTER
+        theme.widget_font_shadow = False
         self._menu_config["theme"] = theme
 
         self.add_menu_items(self.menu, monster)
         self.update_selected_widget()
         self.reset_theme()
+        if self.selected_widget:
+            self.add_menu_technique(self.menu, self.selected_widget.get_id())
+
+    def reset_theme(self) -> None:
+        super().reset_theme()
+        if self._menu is not None:
+            self._menu._theme.widget_font_shadow = False
 
     def process_event(self, event: PlayerInput) -> PlayerInput | None:
         param: dict[str, Any] = {"source": self._source}
         client = self.client
+
+        # Forget-mode: player must pick a technique to forget
+        if self._on_selection is not None:
+            if event.button == buttons.A and self.valid_press(event):
+                self.update_selected_widget()
+                if self.selected_widget:
+                    slug = self.selected_widget.get_id()
+                    technique = next(
+                        (
+                            t
+                            for t in self._monster.moves.get_moves()
+                            if t.slug == slug
+                        ),
+                        None,
+                    )
+                    if technique is None:
+                        return None
+                    if self._is_valid_entry is None or self._is_valid_entry(
+                        technique
+                    ):
+                        self._on_selection(technique)
+                    else:
+                        open_dialog(
+                            self.client,
+                            [T.translate("tech_cannot_forget")],
+                        )
+                return None
+
+            result = super().process_event(event)
+            self.update_selected_widget()
+            if self.selected_widget:
+                self.add_menu_technique(self.menu, self.selected_widget.get_id())
+            return result
+
 
         if self._source in [
             "WorldMenuState",
@@ -384,12 +433,12 @@ class MonsterMovesState(PygameMenuState):
 
             # Everything else → normal menu behavior
             else:
+                result = super().process_event(event)
                 self.update_selected_widget()
-                menu = self.menu.get_current()
                 if self.selected_widget:
                     self.add_menu_technique(
-                        menu, self.selected_widget.get_id()
+                        self.menu, self.selected_widget.get_id()
                     )
-                return super().process_event(event)
+                return result
 
         return None

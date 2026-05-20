@@ -35,9 +35,12 @@ events:
     - set_monster_health
     - set_monster_status
     - char_face spyder_cathedral_nurse,up
+    - lock_controls
     - wait 1
     - play_sound coinecho
+    - unlock_controls
     - char_face spyder_cathedral_nurse,down
+    - translated_dialog spyder_billing_cathedral2
     - translated_dialog spyder_billing_cathedral6
     conditions:
     - is variable_set billcathedral:proceed
@@ -79,7 +82,6 @@ events:
     type: event
   Heal Yes:
     actions:
-    - translated_dialog spyder_billing_cathedral2
     - set_variable billcathedral:proceed
     conditions:
     - is variable_set billcathedral:yes

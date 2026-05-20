@@ -1,20 +1,20 @@
 conditions:
+- type: has_tech
+  parameters:
+  - solar_synthesis
+  operator: not
 - type: base
   parameters:
   - tags
-  - water
+  - plant:light
   operator: is
-- type: has_tech
-  parameters:
-  - surf
-  operator: not
 effects:
 - type: learn_tm
   parameters:
-  - surf
-slug: tm_surf
+  - solar_synthesis
+slug: tm_solar_synthesis
 sort: utility
-sprite: gfx/items/tm_water.png
+sprite: gfx/items/tm_wood.png
 category: technique
 cost: 2500
 usable_in:

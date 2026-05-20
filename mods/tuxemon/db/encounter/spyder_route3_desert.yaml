@@ -1,61 +1,71 @@
 monsters:
-- encounter_rate: 3.5
+- encounter_rate: 3
   exp_req_mod: 3
   held_items: []
   level_range:
-  - 12
-  - 15
-  monster: shybulb
+  - 7
+  - 10
+  monster: pawsand
   variables:
     - key: daytime
       value: "true"
-- encounter_rate: 3.5
+- encounter_rate: 1
   exp_req_mod: 3
   held_items: []
   level_range:
-  - 12
-  - 15
-  monster: katapill
+  - 7
+  - 10
+  monster: seirein
   variables:
     - key: daytime
       value: "true"
-- encounter_rate: 1.5
+- encounter_rate: 3
   exp_req_mod: 3
   held_items: []
   level_range:
-  - 12
-  - 15
-  monster: anoleaf
+  - 8
+  - 11
+  monster: tumblequill
   variables:
     - key: daytime
       value: "true"
-- encounter_rate: 3.5
+- encounter_rate: 3
   exp_req_mod: 3
   held_items: []
   level_range:
-  - 14
-  - 18
-  monster: katapill
+  - 7
+  - 10
+  monster: baoby
   variables:
     - key: daytime
       value: "false"
-- encounter_rate: 1.5
+- encounter_rate: 3
   exp_req_mod: 3
   held_items: []
   level_range:
-  - 14
-  - 18
-  monster: vamporm
+  - 9
+  - 12
+  monster: imbrickcile
   variables:
     - key: daytime
       value: "false"
-- encounter_rate: 1.5
+- encounter_rate: 3
   exp_req_mod: 3
   held_items: []
   level_range:
-  - 14
-  - 18
-  monster: anoleaf
+  - 9
+  - 12
+  monster: selket
+  variables:
+    - key: daytime
+      value: "false"
+- encounter_rate: 3
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 9
+  - 12
+  monster: seirein
   variables:
     - key: daytime
       value: "false"
@@ -63,10 +73,10 @@ monsters:
   exp_req_mod: 3
   held_items: []
   level_range:
-  - 14
-  - 18
-  monster: wolffsky
+  - 9
+  - 12
+  monster: pawsand
   variables:
     - key: daytime
       value: "false"
-slug: spyder_routea
+slug: spyder_route3_desert

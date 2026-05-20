@@ -168,7 +168,7 @@ def _handle_win(
     combat_type: CombatType,
 ) -> str:
     """Handles the case where the human player won the battle."""
-    info = {"name": winner.name.upper()}
+    info = {"name": winner.name}
 
     if combat_type == CombatType.TRAINER:
         for loser in losers:
@@ -199,7 +199,7 @@ def _handle_win(
             return T.format("combat_victory", info)
     else:
         if winner.monsters[0].wild:
-            info["name"] = winner.monsters[0].name.upper()
+            info["name"] = winner.monsters[0].name
         return T.format("combat_victory", info)
 
 
@@ -212,7 +212,7 @@ def _handle_loss(
     combat_type: CombatType,
 ) -> str:
     """Handles the case where the human player lost the battle."""
-    info = {"name": loser.name.upper()}
+    info = {"name": loser.name}
 
     if combat_type == CombatType.TRAINER:
         if loser.is_player:

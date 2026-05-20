@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="504">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="511">
  <properties>
   <property name="east" value="route4"/>
   <property name="edges" value="clamped"/>
@@ -613,6 +613,52 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_flower_guard"/>
     <property name="behav1" value="talk spyder_nimrod_bowie"/>
+   </properties>
+  </object>
+  <object id="504" name="Create Rockitten" type="event" x="48" y="336" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_flower_rockitten,3,21"/>
+    <property name="act2" value="char_wander spyder_flower_rockitten,1,3,21,9,25"/>
+    <property name="cond1" value="not char_exists spyder_flower_rockitten"/>
+   </properties>
+  </object>
+  <object id="505" name="Create Conileaf" type="event" x="112" y="368" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_flower_conileaf,7,23"/>
+    <property name="act2" value="char_wander spyder_flower_conileaf,1,3,21,9,25"/>
+    <property name="cond1" value="not char_exists spyder_flower_conileaf"/>
+   </properties>
+  </object>
+  <object id="506" name="Talk Rockitten" type="event" x="64" y="384" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog rockitten"/>
+    <property name="behav1" value="talk spyder_flower_rockitten"/>
+   </properties>
+  </object>
+  <object id="507" name="Talk Conileaf" type="event" x="96" y="368" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog conileaf"/>
+    <property name="behav1" value="talk spyder_flower_conileaf"/>
+   </properties>
+  </object>
+  <object id="508" name="Create Fisher" type="event" x="64" y="480" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_flower_fisher,5,32"/>
+    <property name="cond1" value="not char_exists spyder_flower_fisher"/>
+   </properties>
+  </object>
+  <object id="509" name="Talk Fisher" type="event" x="64" y="496" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_flower_fisher2"/>
+    <property name="behav1" value="talk spyder_flower_fisher"/>
+    <property name="cond2" value="not has_item player,fishing_rod"/>
+   </properties>
+  </object>
+  <object id="510" name="Talk Fisher (No Rod)" type="event" x="80" y="496" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_flower_fisher1"/>
+    <property name="behav1" value="talk spyder_flower_fisher"/>
+    <property name="cond2" value="is has_item player,fishing_rod"/>
    </properties>
   </object>
  </objectgroup>

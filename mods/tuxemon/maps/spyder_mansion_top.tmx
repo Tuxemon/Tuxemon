@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="23" height="19" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="64">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="23" height="19" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="71">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
+  <property name="map_type" value="dungeon"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="mansion_top"/>
-  <property name="map_type" value="dungeon"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_indoor_floors.tsx"/>
  <tileset firstgid="3865" source="../gfx/tilesets/core_indoor_stairs.tsx"/>
@@ -84,7 +84,7 @@
     <property name="cond1" value="not music_playing music_jester_theme"/>
    </properties>
   </object>
-  <object id="29" name="Environment" type="event" x="16" y="0" width="16" height="16">
+  <object id="29" name="Environment" type="event" x="32" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_environment interior"/>
     <property name="cond1" value="not environment_is interior"/>
@@ -108,6 +108,7 @@
   <object id="33" name="Create Mickey" type="event" x="48" y="160" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_top_mickey,3,10"/>
+    <property name="act2" value="char_face spyder_top_mickey,right"/>
     <property name="cond1" value="not char_exists spyder_top_mickey"/>
    </properties>
   </object>
@@ -120,6 +121,7 @@
   <object id="35" name="Create Russell" type="event" x="112" y="208" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_top_russell,7,13"/>
+    <property name="act2" value="char_face spyder_top_russell,left"/>
     <property name="cond1" value="not char_exists spyder_top_russell"/>
    </properties>
   </object>
@@ -315,6 +317,12 @@
     <property name="act4" value="set_variable mansion_potion:yes"/>
     <property name="behav1" value="talk spyder_mansion_potion"/>
     <property name="cond1" value="not variable_set mansion_potion:yes"/>
+   </properties>
+  </object>
+  <object id="70" name="Encounters" type="event" x="64" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter spyder_mansion,0.6"/>
+    <property name="cond1" value="is check_char_parameter player,moving,1"/>
    </properties>
   </object>
  </objectgroup>

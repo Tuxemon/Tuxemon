@@ -51,8 +51,13 @@ class JournalChoice(PygameMenuState):
         thin_font = transform_resource_filename(
             "font", self.client.config.locale.thin_font_file
         )
-        featured = self.char.tuxepedia.get_caught_count()
-        stubs = self.char.tuxepedia.get_seen_count()
+        valid_slugs = {mon.slug for mon in monsters}
+        featured = sum(
+            1 for slug in valid_slugs if self.char.tuxepedia.is_caught(slug)
+        )
+        stubs = sum(
+            1 for slug in valid_slugs if self.char.tuxepedia.is_seen(slug)
+        )
         missing = total_monster - featured - stubs
 
         menu._auto_centering = False

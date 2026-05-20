@@ -759,6 +759,7 @@
     <property name="act2" value="translated_dialog spyder_route3_zoolander3"/>
     <property name="behav1" value="talk spyder_route3_zoolander"/>
     <property name="cond1" value="is battle_outcome player,won,spyder_route3_zoolander"/>
+   </properties>
   </object>
  </objectgroup>
 </map>

@@ -279,12 +279,12 @@
     <property name="act37" value="screen_transition 1"/>
     <property name="act38" value="wait 0.5"/>
     <property name="act39" value="unlock_controls"/>
-    <property name="act32" value="set_monster_health"/>
-    <property name="act33" value="set_monster_status"/>
-    <property name="act34" value="lock_controls"/>
-    <property name="act35" value="pathfind spyder_dojo_wan,9,9"/>
-    <property name="act36" value="remove_npc spyder_dojo_wan"/>
-    <property name="act37" value="unlock_controls"/>
+    <property name="act40" value="set_monster_health"/>
+    <property name="act50" value="set_monster_status"/>
+    <property name="act51" value="lock_controls"/>
+    <property name="act52" value="pathfind spyder_dojo_wan,9,9"/>
+    <property name="act53" value="remove_npc spyder_dojo_wan"/>
+    <property name="act54" value="unlock_controls"/>
     <property name="behav1" value="talk spyder_dojo_wan"/>
     <property name="cond1" value="is variable_set wanintro:yes"/>
     <property name="cond2" value="is battle_outcome player,won,spyder_dojo_iroh"/>

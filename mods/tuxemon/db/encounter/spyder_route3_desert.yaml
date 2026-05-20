@@ -79,4 +79,4 @@ monsters:
   variables:
     - key: daytime
       value: "false"
-slug: spyder_route3
+slug: spyder_route3_desert

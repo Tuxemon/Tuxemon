@@ -167,7 +167,7 @@
     <property name="act15" value="add_tech iid_slot_1,sunburst"/>
     <property name="act16" value="add_monster coppi,25,spyder_dojo_yangchen,5,10"/>
     <property name="act17" value="add_tech iid_slot_2,oven"/>
-    <property name="act18" value="add_monster vigeuer,25,spyder_dojo_yangchen,5,10"/>
+    <property name="act18" value="add_monster vigueur,25,spyder_dojo_yangchen,5,10"/>
     <property name="act19" value="add_tech iid_slot_3,magma"/>
     <property name="act20" value="start_battle player,spyder_dojo_yangchen"/>
     <property name="act21" value="char_talk spyder_dojo_yangchen,post_battle_lose"/>
@@ -262,7 +262,7 @@
     <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
-  <object id="31" name="Talk Wan2" type="event" x="96" y="0" width="16" height="16">
+  <object id="31" name="Talk Wan2" type="event" x="80" y="0" width="16" height="16">
    <properties>
     <property name="act11" value="translated_dialog spyder_dojo_wan4"/>
     <property name="act12" value="add_monster galnec,25,spyder_dojo_wan,5,10"/>
@@ -279,11 +279,12 @@
     <property name="act37" value="screen_transition 1"/>
     <property name="act38" value="wait 0.5"/>
     <property name="act39" value="unlock_controls"/>
-    <property name="act42" value="set_monster_health"/>
-    <property name="act43" value="set_monster_status"/>
-    <property name="act44" value="lock_controls"/>
-    <property name="act45" value="pathfind spyder_dojo_wan,9,9"/>
-    <property name="act47" value="unlock_controls"/>
+    <property name="act32" value="set_monster_health"/>
+    <property name="act33" value="set_monster_status"/>
+    <property name="act34" value="lock_controls"/>
+    <property name="act35" value="pathfind spyder_dojo_wan,9,9"/>
+    <property name="act36" value="remove_npc spyder_dojo_wan"/>
+    <property name="act37" value="unlock_controls"/>
     <property name="behav1" value="talk spyder_dojo_wan"/>
     <property name="cond1" value="is variable_set wanintro:yes"/>
     <property name="cond2" value="is battle_outcome player,won,spyder_dojo_iroh"/>
@@ -327,12 +328,6 @@
     <property name="act1" value="char_talk spyder_dojo_toph,post_battle_lose"/>
     <property name="behav1" value="talk spyder_dojo_toph"/>
     <property name="cond1" value="is battle_outcome player,won,spyder_dojo_toph"/>
-   </properties>
-  </object>
-  <object id="39" name="Remove Wan" type="event" x="336" y="144" width="16" height="16">
-   <properties>
-    <property name="act1" value="remove_npc spyder_dojo_wan"/>
-    <property name="cond1" value="is battle_outcome player,won,spyder_dojo_wan"/>
    </properties>
   </object>
   <object id="40" name="Play Music" type="event" x="0" y="0" width="16" height="16">

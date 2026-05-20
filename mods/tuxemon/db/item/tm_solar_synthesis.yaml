@@ -3,13 +3,18 @@ conditions:
   parameters:
   - solar_synthesis
   operator: not
+- type: base
+  parameters:
+  - tags
+  - plant:light
+  operator: is
 effects:
 - type: learn_tm
   parameters:
   - solar_synthesis
 slug: tm_solar_synthesis
 sort: utility
-sprite: gfx/items/tm_generic.png
+sprite: gfx/items/tm_wood.png
 category: technique
 cost: 2500
 usable_in:

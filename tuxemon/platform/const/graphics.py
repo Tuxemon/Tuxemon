@@ -40,6 +40,7 @@ GRAD_YELLOW: str = "gfx/ui/background/gradient_yellow.png"
 
 # Background Paths
 TUX_GENERIC: str = "gfx/ui/background/tux_generic.png"
+TUX_CHOICE: str = "gfx/ui/background/tux_choice.png"
 TUX_INFO: str = "gfx/ui/background/tux_info.png"
 TECH_INFO: str = "gfx/ui/background/tech_info.png"
 ITEM_MENU: str = "gfx/ui/item/item_menu_bg.png"
@@ -64,7 +65,7 @@ BG_PHONE_MAP: str = GRAD_BLUE
 BG_PHONE_RENAMING: str = GRAD_BLUE
 BG_START_SCREEN: str = GRAD_BLUE
 BG_JOURNAL: str = TUX_GENERIC
-BG_JOURNAL_CHOICE: str = TUX_GENERIC
+BG_JOURNAL_CHOICE: str = TUX_CHOICE
 BG_JOURNAL_INFO: str = TUX_INFO
 BG_MONSTER_INFO: str = TUX_INFO
 BG_ITEMS: str = ITEM_MENU

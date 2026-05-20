@@ -497,7 +497,7 @@ msgid "bivouac"
 msgstr "Bivouac"
 
 msgid "bivouac_description"
-msgstr "Rest as if you were at a proper healing centre. Consumed on use."
+msgstr "Rest as if you were at a proper healing center. Consumed on use."
 
 msgid "drone"
 msgstr "Drone"
@@ -1721,6 +1721,15 @@ msgstr ""
 msgid "cannot_use_tech_monster"
 msgstr "{name} can't be used."
 
+msgid "tech_cannot_forget"
+msgstr "This technique cannot be removed."
+
+msgid "tech_no_learn"
+msgstr "Decided not to learn {tech}."
+
+msgid "tech_replaced"
+msgstr "{old} replaced with {new}."
+
 msgid "combat_used_x"
 msgstr "{user} used {name}!"
 
@@ -1933,7 +1942,7 @@ msgid "combat_state_revenge_get"
 msgstr "When attacked,{target} will take revenge."
 
 msgid "combat_state_sniping_get"
-msgstr "{target} takes aim."
+msgstr "{target} backs away."
 
 msgid "combat_state_softened_get"
 msgstr "{target}'s armor softens."
@@ -1982,6 +1991,9 @@ msgstr "{target} flinches and may not act."
 
 msgid "combat_state_charmed_get"
 msgstr "{target} is charmed and might hesitate to act."
+
+msgid "combat_state_charmed_miss"
+msgstr "{user} is too smitten!"
 
 msgid "combat_state_wild_get"
 msgstr "{target} has gone wild."
@@ -4384,6 +4396,9 @@ msgstr "Pick"
 msgid "monster_menu_desc"
 msgstr "Description"
 
+msgid "monster_menu_type_suffix"
+msgstr "-Type"
+
 msgid "monster_menu_type"
 msgstr "Type(s)"
 
@@ -4391,7 +4406,10 @@ msgid "monster_menu_species"
 msgstr "Species"
 
 msgid "monster_menu_shape"
-msgstr "Body Type"
+msgstr "Body Shape"
+
+msgid "monster_menu_shape_short"
+msgstr "Shape"
 
 msgid "monster_menu_release"
 msgstr "Release"
@@ -4537,7 +4555,17 @@ msgstr "Battles: {tot} (W{won} D{draw} L{lost})"
 
 # Tuxepedia
 msgid "page_tuxepedia"
-msgstr "From id {a} to id {b}"
+msgstr "id {a}–{b}"
+
+msgid "journal_badge_featured"
+msgstr "featured"
+
+msgid "journal_badge_stubs"
+msgstr "stubs"
+
+msgid "journal_badge_missing"
+msgstr "missing"
+
 
 msgid "no_evolution"
 msgstr "No evolution"
@@ -11786,7 +11814,7 @@ msgstr ""
 
 msgid "spyder_billing_cathedral1"
 msgstr ""
-"Welcome to the Cathedral Centre!\n"
+"Welcome to the Cathedral Center!\n"
 " Would you like to heal your monsters?"
 
 msgid "spyder_billing_cathedral2"
@@ -11954,7 +11982,7 @@ msgstr "Welcome back! Look at you, growing up so fast."
 
 msgid "spyder_papertown_mom5"
 msgstr ""
-"You know, Granny Piper next door has opened up her Daycare Centre. \n"
+"You know, Granny Piper next door has opened up her Daycare Center. \n"
 " Well, not everyone can be an inventor, I guess. "
 
 msgid "spyder_papertown_mom6"
@@ -11965,7 +11993,7 @@ msgstr ""
 msgid "spyder_papertown_grannypiper1"
 msgstr ""
 "Oh hello ${{name}}, I didn't see you there among all this hustle and debris! \n"
-" I can't wait till the Daycare Centre is installed!"
+" I can't wait till the Daycare Center is installed!"
 
 msgid "spyder_papertown_grannypiper2"
 msgstr ""
@@ -11974,18 +12002,18 @@ msgstr ""
 
 msgid "spyder_papertown_grannypiper3"
 msgstr ""
-"Good morning! Oh, ${{name}}, it's you! You must have heard that my Daycare Centre is open.\n"
+"Good morning! Oh, ${{name}}, it's you! You must have heard that my Daycare Center is open.\n"
 " Do you want me to tell you how it works? Okay. You give me a tuxemon, and I look after it while you travel.\n"
 " When you return, pay me a small fee and I'll return it to you. ... Huh? What's in it for you?\n"
 " Well, tuxemon under my care grow up, increasing in levels."
 
 msgid "spyder_papertown_grannypiper4"
 msgstr ""
-"Hello ${{name}}. Would you like to put a tuxemon into my Daycare Centre?"
+"Hello ${{name}}. Would you like to put a tuxemon into my Daycare Center?"
 
 msgid "spyder_papertown_grannypiper8"
 msgstr ""
-"Place your tuxemon in the Daycare Centre! Give us a tuxemon, and we will look after it while you travel.\n"
+"Place your tuxemon in the Daycare Center! Give us a tuxemon, and we will look after it while you travel.\n"
 " When you return, pay a small fee and we'll return it. The longer tuxemon are in our care, the higher in level they will rise!"
 
 msgid "spyder_papertown_grannypiper9"
@@ -12624,7 +12652,7 @@ msgstr ""
 
 msgid "spyder_cotton_nurse1"
 msgstr ""
-"Welcome to the Cathedral Centre! \n"
+"Welcome to the Cathedral Center! \n"
 " Do you want to heal your Tuxemon?"
 
 msgid "spyder_wayfarer_shopkeeper"
@@ -16192,10 +16220,10 @@ msgid "spyder_multi_martsign"
 msgstr "Buy things here"
 
 msgid "spyder_papertown_daycare1"
-msgstr "Daycare Centre: Under construction."
+msgstr "Daycare Center: Under construction."
 
 msgid "spyder_papertown_daycare2"
-msgstr "Daycare Centre: Open now!"
+msgstr "Daycare Center: Open now!"
 
 msgid "spyder_papertown_sunnyside"
 msgstr ""
@@ -16822,8 +16850,7 @@ msgstr ""
 
 msgid "spyder_dojo_sokka1"
 msgstr ""
-"My tuxemon are all of the Metal type, \n"
-" but they each have a second element, or know a technique with two elements. \n"
+"My tuxemon are all of the Metal type, but they each have a second element, or know a technique with two elements. \n"
 " That makes their strengths and weaknesses more difficult to predict."
 
 msgid "spyder_dojo_sokka2"

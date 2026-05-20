@@ -59,6 +59,10 @@ class PhotogenesisEffect(CoreEffect):
         if not tech.hit:
             return TechEffectResult(name=tech.name)
 
+        if user.hp_ratio >= 1.0:
+            extra = ["combat_full_health"]
+            return TechEffectResult(name=tech.name, success=True, extras=extra)
+
         hour = session.time.get_time_variables().hour
         hp = user.shape.attributes.hp
         max_multiplier = hp / 2
@@ -77,10 +81,6 @@ class PhotogenesisEffect(CoreEffect):
         if heal == 0:
             return TechEffectResult(name=tech.name)
 
-        if user.hp_ratio < 1.0:
-            heal_amount = min(heal, user.missing_hp)
-            user.current_hp += heal_amount
-            return TechEffectResult(name=tech.name, success=True)
-
-        extra = ["combat_full_health"]
-        return TechEffectResult(name=tech.name, extras=extra)
+        heal_amount = min(heal, user.missing_hp)
+        user.current_hp += heal_amount
+        return TechEffectResult(name=tech.name, success=True)

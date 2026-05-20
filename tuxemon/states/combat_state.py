@@ -602,7 +602,7 @@ class CombatState(CombatAnimations):
         message += "\n" + T.format(method.use_tech, context)
         # swapping monster
         if method.slug == "swap":
-            params = {"name": target.name.upper()}
+            params = {"name": target.name}
             message = T.format("combat_call_tuxemon", params)
         # check statuses
         if status_result:
@@ -738,11 +738,11 @@ class CombatState(CombatAnimations):
                 success_header_text = T.translate("gotcha")
                 if len(user.monsters) >= PARTY_LIMIT:
                     success_text = T.format(
-                        "gotcha_kennel", {"name": target.name.upper()}
+                        "gotcha_kennel", {"name": target.name}
                     )
                 else:
                     success_text = T.format(
-                        "gotcha_team", {"name": target.name.upper()}
+                        "gotcha_team", {"name": target.name}
                     )
                 failure_text = ""
             else:
@@ -890,9 +890,9 @@ class CombatState(CombatAnimations):
         if winner in self.combat_session.monsters_in_play_right:
             if techniques:
                 tech_list = ", ".join(
-                    T.translate(tech).upper() for tech in techniques
+                    T.translate(tech) for tech in techniques
                 )
-                params = {"name": winner.name.upper(), "tech": tech_list}
+                params = {"name": winner.name, "tech": tech_list}
                 mex = T.format("tuxemon_new_tech", params)
                 self.text_anim.add_xp_message(mex)
 
@@ -926,7 +926,7 @@ class CombatState(CombatAnimations):
         ) in self.combat_session.field_monsters.get_all_monsters().items():
             for monster in party:
                 if monster.is_fainted:
-                    params = {"name": monster.name.upper()}
+                    params = {"name": monster.name}
                     msg = T.format("combat_fainted", params)
                     self.text_anim.add_text_animation(
                         partial(self.dialog.alert, msg, self.text_area),

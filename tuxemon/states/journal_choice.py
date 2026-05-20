@@ -15,7 +15,7 @@ from tuxemon.db import MonsterModel
 from tuxemon.locale.locale import T
 from tuxemon.menu.menu import PygameMenuState
 from tuxemon.platform.const.graphics import BG_JOURNAL_CHOICE, DIMGRAY_COLOR
-from tuxemon.tools import fix_measure, transform_resource_filename
+from tuxemon.tools import transform_resource_filename
 
 if TYPE_CHECKING:
     from tuxemon.base_client import BaseClient
@@ -48,48 +48,90 @@ class JournalChoice(PygameMenuState):
         minimal_font = transform_resource_filename(
             "font", self.client.config.locale.minimal_font_file
         )
-        featured = self.char.tuxepedia.get_caught_count()
-        stubs = self.char.tuxepedia.get_seen_count()
+        thin_font = transform_resource_filename(
+            "font", self.client.config.locale.thin_font_file
+        )
+        valid_slugs = {mon.slug for mon in monsters}
+        featured = sum(
+            1 for slug in valid_slugs if self.char.tuxepedia.is_caught(slug)
+        )
+        stubs = sum(
+            1 for slug in valid_slugs if self.char.tuxepedia.is_seen(slug)
+        )
         missing = total_monster - featured - stubs
 
         menu._auto_centering = False
-        badge_x = fix_measure(menu._width, 0.03)
-        badge_y = fix_measure(menu._height, 0.03)
-        line_gap = fix_measure(menu._height, 0.06)
+        scale_int = self.client.context.scaling.scale_int
 
-        badge_featured: Any = menu.add.label(
-            title=T.format("journal_badge_featured", {"n": str(featured)}),
+
+
+        featured_text = T.format("journal_badge_featured", {"n": ""}).rstrip()
+        stubs_text = T.format("journal_badge_stubs", {"n": ""}).rstrip()
+        missing_text = T.format("journal_badge_missing", {"n": ""}).rstrip()
+
+        badge_featured_lbl: Any = menu.add.label(
+            title=featured_text,
             font_size=self.font_type.biggest,
             font_name=minimal_font,
             float=True,
             float_origin_position=True,
             padding=0,
         )
-        badge_featured.translate(badge_x, badge_y)
+        badge_featured_lbl.translate(scale_int(3), scale_int(96))
 
-        badge_stubs: Any = menu.add.label(
-            title=T.format("journal_badge_stubs", {"n": str(stubs)}),
+        badge_featured_num: Any = menu.add.label(
+            title=str(featured),
+            font_size=self.font_type.biggest,
+            font_name=thin_font,
+            float=True,
+            float_origin_position=True,
+            padding=0,
+        )
+        badge_featured_num.translate(scale_int(10), scale_int(102))
+
+        badge_stubs_lbl: Any = menu.add.label(
+            title=stubs_text,
             font_size=self.font_type.biggest,
             font_name=minimal_font,
             float=True,
             float_origin_position=True,
             padding=0,
         )
-        badge_stubs.translate(badge_x, badge_y + line_gap)
+        badge_stubs_lbl.translate(scale_int(3), scale_int(112))
 
-        badge_missing: Any = menu.add.label(
-            title=T.format("journal_badge_missing", {"n": str(missing)}),
+        badge_stubs_num: Any = menu.add.label(
+            title=str(stubs),
+            font_size=self.font_type.biggest,
+            font_name=thin_font,
+            float=True,
+            float_origin_position=True,
+            padding=0,
+        )
+        badge_stubs_num.translate(scale_int(10), scale_int(118))
+
+        badge_missing_lbl: Any = menu.add.label(
+            title=missing_text,
             font_size=self.font_type.biggest,
             font_name=minimal_font,
             float=True,
             float_origin_position=True,
             padding=0,
         )
-        badge_missing.translate(badge_x, badge_y + line_gap * 2)
+        badge_missing_lbl.translate(scale_int(3), scale_int(128))
 
-        btn_x_offset = fix_measure(menu._width, 0.25) - self.client.context.scaling.scale_int(60)
-        btn_y_offset = fix_measure(menu._height, 0.01)
-        menu._column_max_width = [None, None]
+        badge_missing_num: Any = menu.add.label(
+            title=str(missing),
+            font_size=self.font_type.biggest,
+            font_name=thin_font,
+            float=True,
+            float_origin_position=True,
+            padding=0,
+        )
+        badge_missing_num.translate(scale_int(10), scale_int(134))
+
+        btn_x_offset = scale_int(44)
+        btn_y_offset = scale_int(8)
+        menu._column_max_width = [scale_int(115), scale_int(150)]
 
         for page in range(pages):
             start = page * MAX_PAGE

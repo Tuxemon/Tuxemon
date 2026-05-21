@@ -484,14 +484,14 @@ class TestProduceEgg:
         father.moves.get_moves.return_value = [mock_move]
         dc = self._ready_daycare(owner, mother, father)
         dc.produce_newborn()
-        self._egg.moves.replace_move.assert_called_once()
+        self._egg.moves.add_move.assert_called_once_with(mock_move)
 
     def test_no_move_inherited_if_father_has_none(self, owner, mother, father):
         owner.session = MagicMock()
         father.moves.get_moves.return_value = []
         dc = self._ready_daycare(owner, mother, father)
         dc.produce_newborn()
-        self._egg.moves.replace_move.assert_not_called()
+        self._egg.moves.add_move.assert_not_called()
 
 
 class TestDetermineSeed:

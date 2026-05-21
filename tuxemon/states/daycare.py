@@ -12,11 +12,14 @@ from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import PygameMenuState
 from tuxemon.platform.const.graphics import BG_MISSIONS
 from tuxemon.states.monster_menu import MonsterMenuState
+from tuxemon.states.monster_moves import MonsterMovesState
+from tuxemon.tools import open_dialog
 
 if TYPE_CHECKING:
     from tuxemon.base_client import BaseClient
     from tuxemon.entity.npc import NPC
     from tuxemon.monster.monster import Monster
+    from tuxemon.technique.technique import Technique
 
 
 class DaycareState(PygameMenuState):
@@ -78,8 +81,44 @@ class DaycareState(PygameMenuState):
 
     def collect_newborn(self) -> None:
         newborn = self.daycare.produce_newborn()
-        self.character.party.add_monster(newborn)
-        self.client.replace_state("DaycareState", character=self.character)
+
+        if len(newborn.moves.get_moves()) > newborn.max_moves:
+            # The other parent's move was appended after a full level-up
+            # moveset — ask the player which move to drop.
+            def _on_move_selected(technique: Technique) -> None:
+                newborn.moves.forget(technique)
+                self.character.party.add_monster(newborn)
+                self.client.pop_state()
+                self.client.replace_state(
+                    "DaycareState", character=self.character
+                )
+
+            def _is_valid(technique: Technique | None) -> bool:
+                return technique is not None and newborn.moves.can_forget(
+                    technique
+                )
+
+            def _push_move_menu() -> None:
+                state = self.client.push_state(
+                    MonsterMovesState(
+                        client=self.client,
+                        monster=newborn,
+                        source="DaycareState",
+                        monsters=None,
+                        on_selection=_on_move_selected,
+                        is_valid_entry=_is_valid,
+                    )
+                )
+                state.escape_key_exits = False
+
+            open_dialog(
+                self.client,
+                [T.translate("new_tech_delete")],
+                on_complete=_push_move_menu,
+            )
+        else:
+            self.character.party.add_monster(newborn)
+            self.client.replace_state("DaycareState", character=self.character)
 
     def initialize_items(self, menu: Menu) -> None:
         dc = self.daycare

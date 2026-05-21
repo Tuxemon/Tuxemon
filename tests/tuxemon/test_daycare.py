@@ -102,17 +102,17 @@ def father():
 
 class TestAddParent:
     @pytest.mark.parametrize(
-        "rank,expected",
+        "rank",
         [
-            pytest.param(2, True, id="rank_2_accepted"),
-            pytest.param(3, True, id="rank_3_accepted"),
-            pytest.param(1, False, id="rank_1_rejected"),
-            pytest.param(0, False, id="rank_0_rejected"),
+            pytest.param(0, id="rank_0_accepted"),
+            pytest.param(1, id="rank_1_accepted"),
+            pytest.param(2, id="rank_2_accepted"),
+            pytest.param(3, id="rank_3_accepted"),
         ],
     )
-    def test_evolution_rank_gate(self, daycare, rank, expected):
+    def test_any_rank_accepted_for_training(self, daycare, rank):
         m = make_monster(evolution_rank=rank)
-        assert daycare.add_parent(m) == expected
+        assert daycare.add_parent(m) is True
 
     def test_first_slot_accepted(self, daycare, mother):
         assert daycare.add_parent(mother) is True
@@ -232,20 +232,18 @@ class TestWithdrawParents:
 
 
 class TestCompatible:
-    def test_rank_1_incompatible(self, daycare):
-        m = make_monster(evolution_rank=1)
-        assert daycare._compatible(m) is False
-
-    def test_rank_2_compatible(self, daycare):
-        m = make_monster(evolution_rank=2)
+    @pytest.mark.parametrize(
+        "rank",
+        [
+            pytest.param(0, id="rank_0"),
+            pytest.param(1, id="rank_1"),
+            pytest.param(2, id="rank_2"),
+            pytest.param(3, id="rank_3"),
+        ],
+    )
+    def test_any_rank_compatible(self, daycare, rank):
+        m = make_monster(evolution_rank=rank)
         assert daycare._compatible(m) is True
-
-    def test_second_monster_always_compatible_if_evolved(
-        self, daycare, mother
-    ):
-        daycare.add_parent(mother)
-        m2 = make_monster(gender="male", evolution_rank=2)
-        assert daycare._compatible(m2) is True
 
 
 class TestGenderPairOk:
@@ -265,6 +263,21 @@ class TestGenderPairOk:
         a = make_monster(gender=g1)
         b = make_monster(gender=g2)
         assert daycare._gender_pair_ok(a, b) == expected
+
+    def test_unevolved_pair_cannot_breed(self, daycare):
+        a = make_monster(gender="female", evolution_rank=1)
+        b = make_monster(gender="male", evolution_rank=1)
+        assert daycare._gender_pair_ok(a, b) is False
+
+    def test_one_unevolved_cannot_breed(self, daycare):
+        a = make_monster(gender="female", evolution_rank=2)
+        b = make_monster(gender="male", evolution_rank=1)
+        assert daycare._gender_pair_ok(a, b) is False
+
+    def test_both_evolved_can_breed(self, daycare):
+        a = make_monster(gender="female", evolution_rank=2)
+        b = make_monster(gender="male", evolution_rank=2)
+        assert daycare._gender_pair_ok(a, b) is True
 
 
 class TestOnSteps:

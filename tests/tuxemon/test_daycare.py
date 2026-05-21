@@ -7,7 +7,7 @@ from unittest.mock import MagicMock, patch
 import pytest
 
 from tuxemon.entity.daycare import Daycare
-
+from tuxemon.monster.stats import IndividualValues
 
 def make_monster(
     gender: str = "female",
@@ -36,6 +36,7 @@ def make_monster(
     m.evolution_rank.return_value = evolution_rank
     m.moves.get_moves.return_value = moves or []
     m.instance_id = f"iid_{name}_{gender}"
+    m.individual_values = IndividualValues()
 
     base_stats_mock = MagicMock()
     base_stats_mock.sum.return_value = base_stats_sum

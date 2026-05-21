@@ -427,6 +427,12 @@ class TestOnSteps:
 
 
 class TestProduceEgg:
+    @pytest.fixture
+    def mother(self):
+        # Higher evolution rank ensures mother is always the seed, so father
+        # is always the "other" parent whose moves are inherited.
+        return make_monster(gender="female", name="Mom", evolution_rank=3)
+
     @pytest.fixture(autouse=True)
     def patch_spawn(self):
         self._egg = MagicMock()

@@ -128,18 +128,9 @@ class Daycare:
         """
         Basic eligibility to be stored in daycare.
 
-        - Must be at least evolved rank > 1
-        - Gender compatibility is NOT enforced here so that
-          incompatible pairs can still be trained together.
+        Gender compatibility is NOT enforced here so that
+        incompatible pairs can still be trained together.
         """
-        if monster.evolution_rank() <= 1:
-            return False
-
-        # first parent always allowed if evolved
-        if not self.parents:
-            return True
-
-        # second parent: only evolution rank check
         return True
 
     def _gender_pair_ok(self, a: Monster, b: Monster) -> bool:
@@ -147,6 +138,8 @@ class Daycare:
             a.gender != b.gender
             and a.gender in ("male", "female")
             and b.gender in ("male", "female")
+            and a.evolution_rank() > 1
+            and b.evolution_rank() > 1
         )
 
     def on_steps(self, steps: float) -> None:

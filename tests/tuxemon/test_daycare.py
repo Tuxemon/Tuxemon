@@ -9,6 +9,7 @@ import pytest
 from tuxemon.entity.daycare import Daycare
 from tuxemon.monster.stats import IndividualValues
 
+
 def make_monster(
     gender: str = "female",
     level: int = 20,

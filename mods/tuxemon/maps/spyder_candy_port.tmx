@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="23">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="23">
  <properties>
   <property name="east" value="routec"/>
   <property name="edges" value="clamped"/>
+  <property name="map_type" value="town"/>
   <property name="north" value="candy_town"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="candy_port"/>
-  <property name="map_type" value="town"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_outdoor.tsx"/>
  <tileset firstgid="2776" source="../gfx/tilesets/core_set pieces.tsx"/>
@@ -19,7 +19,7 @@
  </layer>
  <layer id="2" name="Tile Layer 2" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHtVTlOA0EQbGEbCAHhAxCQgsASMcKAhAjhCyRcj+EKOV7AW/iAwfADrhARUS27pFarx2vYFSSMVK7Z6p7qnvGsLZI9Fioii4COrbJIebyLEbAOZeJ5TOQFeAXegHeAMTLXk62+DX8dtmZXSX/uoLfdXn8fJZEK+lGM9vpSJiYxrwI1oA40AMbITWgW1NXzE/46bM2ukv60e/H90Zu8hhotYB3YADYBxsg8LzJ125+tqZ3dDsf93eHc7F60P+59BbU99qEdAIfAEXAM+JzUs/rmPb9Z3I+5PjhBjVPgDDgHLoB++T42n/P+xadcvGq/syx3fxey8ouI+5p7ifuntb6zlyJ6y1OzavbB90SZg+9ZFNOclK6xVePtz0/jeUYHPT4CT6ZX+qVikW41/ubSJ2Kbz3iklSbwnwJUAD9SsUiPNO9nn6P8QTX6RPkai3SvtYboErPPH9TXukUeP/GxnpxH3oNq/Tx+u78l3LtloBncv1Qs0iON+4w4yo+0aO2/9vcn0K6J3APkB8w7wCVwA1z32Mepa57OlRVcT2ZcvdqA1mKMz1xP/crkNOoiUwB5GvMZwI+sOPO5nkxd2XvwmTl2DedfBnpvHg==
+   eAHtVckuRFEQrehuLBE94AcInViLRiKW/IKN6WNMS8MX+BZ7euAPTEuxcirvnaRSqavHsFHJeee+U3VP1b15jUj3WCyJLAEa20WR4nSGCbCGMvEyJfIKvAHvwAfAHJn7yVbfgb+G7Zkp6ecuZtvL5/ssiJQwj2Iyn0uZmMW6DFSAKlADmCPXoVlQV88v+GvYnpmSftqz+PnoTV5HjwawAWwCWwBzZN4Xmbqdz/bUye7G4/nucW/2LDofz76K3h4H0A6BI+AYOAF8TepdfYe9vwd8H48JtKCfoscZcA5cAJdAO1Ef+TRRq+HvL1Pjp72/uGL0aj89+znLqCb1PfcT35/26+cso5pv0J5lcw7+TpQZ/J1FOa1J6ZpbM97+/jQ/THQw4xPwbGalXyoX6Vbj31z6RGzrmY+0wgz+pwAlwEcqF+mR5v3se1Tfq0afqF5zke61xhhdYvb1vfpat8hjEB/ryXXk3av2k8dvz7eM724FqAffXyoX6ZHGc0Yc1UdatPdf+/sbaFZEWgC5jXUHuAJugZucfZ661ulaWcH9ZObVqwloL+b4zv3Ur01NrSoyB5DnsV4AfHTLs577ydSVvQffWWP3cP0NPnN9lw==
   </data>
  </layer>
  <layer id="5" name="Tile Layer 3" width="40" height="20">

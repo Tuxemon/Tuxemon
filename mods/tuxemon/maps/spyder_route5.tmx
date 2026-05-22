@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="75">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="75">
  <properties>
   <property name="east" value="flower_city"/>
   <property name="edges" value="clamped"/>
+  <property name="map_type" value="route"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="route5"/>
   <property name="south" value="timber_town"/>
-  <property name="map_type" value="route"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_city_and_country.tsx"/>
  <tileset firstgid="1441" source="../gfx/tilesets/core_outdoor.tsx"/>
@@ -23,12 +23,17 @@
  </layer>
  <layer id="3" name="Path" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHNlstNQ0EMRQeQgLAOEgtoAbqBDqAb6IZfBdAEvz3UgI+SIyzLQUEEEUvDvPGbub6275vwsTfGe4yPNZpHmJwegtdjjOvpGDdrMO6Dg5wyz6fwYzebY9wuMe5iz3RjjIMY+zE8pz/7vsNjv7Ui/lvwyGtqh8nvOfZfxriYz1cxn5c1715jZONc9ev7Dgsc8iQfDH6YNUR3WOYH3vHWGLvNOAkffMW1fnDJfuLp67DAqfnAQ37WUJ6ZX42T8yMmNT0N/Ny3s1hXvz5zgbNYcs/v5Ccn1vLM/IjDuc7E7XpGXlUP5iqWsbs80eKy+st5mTMxdqJOXd87X+6hGNajy5OY9tc8Fumvq58xlp3l0GHxTp2Tx2Gs0cz2fugmfcPyzP21J5WHPVp2toddLzJ3n6tmjoKz9c78qs7zd5Cf0QtW83Bt3PotgZG/nawZfieon3Xr7j/qV3Pp1tRFnBnTr7/6Oded5Y6tfeK0+rNuVX/mgibAWHR3iS0O2NaNZ/3sW4QB75oj/MwNHJ/pL/j5vvW8cZ07XYGVzb3eVa6d7T38zIXz9X7xHfz8DVUf1ohz3btOV1mfaAyMbl/WH/ia/bVu+uFnTlkvuf7Eyu9WsQbfmsJFftZNnvJ7if1ZL5OogXu7O/i3PvCzVf0ZG34Y/DBz+us5x+K56s/7hXt7JwY2ifm//lfdm3Owr94vM2ar/WuMn86wsK+fh6R/wA==
+   eAHNltFNXDEQRU2QSNhvkPIBLSTdQAekG+gGSAekiRD4z9bAHG2OuLLmoUXZKGvJ6+exPXPmet6D9WqM39XXezSOajI9FNeP6rcnY9ztQYeNBhNNzp/FRrv7MMb9Fv177Tk5GONz9dPqntOetrf8sV+GDcHml/ukySnfY+2/rv7tz3hT49U0Z+2pejbOzXZtb/nCD3mSTzbvVc7kw9+XwzE+Nf1r2eDVr/rBknbiaet84WfOJ/nUVM7km+NkfsRE04vyn/d2WfPZrs1cYNaX7LmWfN6rnMlHHM51Tb/dnZHXXA/mqi/16PKkFm3eq5zJR/1lXubM2Y+lU3fvnS3vUB/q0eWZmpiHnMm3VBfG2HaUIeOqD2vWOXmc1XyuGfSUM/m8k5lD39uO3mF3F8nu81wz58Wn3sk313m+B/lsvcx5ODfurAs+8t1Zqpnj0rWrP/Sbc+nm6KL+nabwca47S43P95Q+1G2uP3OhJvCx9O3St37wrW7GUb8lH3Av5ahu5s/94j+/t543riNx/QZpk8kRe7fP/bLDlzl6Xt1cg8+/odaHGnGmW+vqKuuTGsNHty/rT6Yc1U0bfOaU9UJ+NmLl2i7m+FdT4zCqm5zy/ar9WS+8QzTrsvsO/41N/5soYzyXTjJhkzP5Midz+1cjDPrmGT6ZmPueHJ2+akRO/+t/1VVx0NTQ92Rj3e2vMd47QqGGL7adaSQ=
+  </data>
+ </layer>
+ <layer id="8" name="Tile Layer 5" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eAFjYBgFoyEwGgKjITAaAqMhMBoCxIbACS4GhpNAPFjBW6Db3g1i94HCTZRxsIYefd01mpaID+8HTMSrpbdKdlGIjZxQmt72D0X7AF6+CFs=
   </data>
  </layer>
  <layer id="5" name="Tile Layer 8" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHtVUkOgCAM7Nmz/3+PvkK9uz3BcpiENJUlgAFik2Zsi9MOkEDUr+0s7WY/hMST40vkXOE0EM3stVqsnlAdufYvtJ9cB11AWY+JwQG0/9Vydr3Vb+gCpujIweHrjx6h6ONLrcs5UvhycsXOIXsjjuWpdf1Xekr3Mfyu90rrr+XMOck8YmCtZ9niXD3uKTSVRu2uvt2BZSRa2Tf23/rYgQdckGRy
+   eAHtVUsKwkAMzcqFa73/LUR6Aj1FW9e2egQT6IMQpmPmJ1oMDGnCzMt7mU+Jtmt3lvbkMRmJM8cPk4uFlz3RlYdYdyCS+JtM67kxv6kSv1r9070Sfl6DLnjvutA8YMDrOTqXwk9jfOpb+HnPH3TBl3D0YpScP9Tw+hw9KftreeTUwxov1u5IdF7u8FzpHtvaiMHt173Wc+LeSf/0m11Ln66Tixk7f4If+1+F6odyws3mEcOv8U95X9YwWuZL3pdWvHRPY/vbqn4KrpcfNLX2wh013uno+V4PPEYef9tGB15DE3s+
   </data>
  </layer>
  <objectgroup color="#ff0000" id="6" name="Collisions">
@@ -449,7 +454,12 @@
     <property name="act1" value="translated_dialog spyder_generic_nurse"/>
     <property name="act2" value="set_monster_health"/>
     <property name="act3" value="set_monster_status"/>
-    <property name="act4" value="translated_dialog spyder_output_nurse5"/>
+    <property name="act4" value="char_stop player"/>
+    <property name="act5" value="lock_controls"/>
+    <property name="act6" value="screen_transition 1"/>
+    <property name="act7" value="wait 0.5"/>
+    <property name="act8" value="unlock_controls"/>
+    <property name="act90" value="translated_dialog spyder_output_nurse5"/>
     <property name="behav1" value="talk spyder_route5_nurse"/>
    </properties>
   </object>

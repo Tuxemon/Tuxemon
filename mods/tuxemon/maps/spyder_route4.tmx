@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="101">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="103">
  <properties>
   <property name="east" value="route3"/>
   <property name="edges" value="clamped"/>
@@ -438,8 +438,8 @@
     <property name="act02" value="lock_controls"/>
     <property name="act03" value="create_npc spyder_billie,0,4"/>
     <property name="act04" value="pathfind_to_char player,spyder_billie"/>
-    <property name="act05" value="char_face player,spyder_spyder_billie"/>
-    <property name="act06" value="char_face spyder_spyder_billie,player"/>
+    <property name="act05" value="char_face player,spyder_billie"/>
+    <property name="act06" value="char_face spyder_billie,player"/>
     <property name="act07" value="unlock_controls"/>
     <property name="act08" value="translated_dialog spyder_route4_billie1"/>
     <property name="act20" value="add_monster billie_choice,18,spyder_billie,5,10"/>
@@ -541,10 +541,31 @@
   <object id="100" name="Talk Nurse" type="event" x="224" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_generic_nurse"/>
-    <property name="act2" value="set_monster_health"/>
-    <property name="act3" value="set_monster_status"/>
-    <property name="act4" value="translated_dialog spyder_output_nurse2"/>
+    <property name="act11" value="char_stop player"/>
+    <property name="act12" value="lock_controls"/>
+    <property name="act13" value="screen_transition 1"/>
+    <property name="act14" value="wait 0.5"/>
+    <property name="act15" value="unlock_controls"/>
+    <property name="act20" value="set_monster_health"/>
+    <property name="act30" value="set_monster_status"/>
+    <property name="act40" value="translated_dialog spyder_output_nurse2"/>
     <property name="behav1" value="talk spyder_route4_nurse"/>
+   </properties>
+  </object>
+  <object id="101" name="Create Box" type="event" x="272" y="176" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_route4_tea,17,11"/>
+    <property name="cond1" value="not char_exists spyder_route4_tea"/>
+    <property name="cond2" value="not variable_set route4_tea:yes"/>
+   </properties>
+  </object>
+  <object id="102" name="Box" type="event" x="256" y="176" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog ancient_tea,,center,center,center"/>
+    <property name="act2" value="add_item mystery_tea"/>
+    <property name="act3" value="remove_npc spyder_route4_tea"/>
+    <property name="act4" value="set_variable route4_tea:yes"/>
+    <property name="behav1" value="talk spyder_route4_tea"/>
    </properties>
   </object>
  </objectgroup>

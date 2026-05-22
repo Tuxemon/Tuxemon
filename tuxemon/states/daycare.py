@@ -73,19 +73,14 @@ class DaycareState(PygameMenuState):
         self.client.replace_state("DaycareState", character=self.character)
 
     def withdraw_all(self) -> None:
-        def _finish() -> None:
-            self.daycare.withdraw_parents()
-            self.client.replace_state("DaycareState", character=self.character)
-
         if self.daycare.ready():
             newborn = self.daycare.produce_newborn()
-            self._handle_newborn(newborn, on_done=_finish)
-        else:
-            _finish()
+            self.character.party.add_monster(newborn)
+        self.daycare.withdraw_parents()
+        self.client.pop_state()
 
     def collect_newborn(self) -> None:
         newborn = self.daycare.produce_newborn()
-
         self.character.party.add_monster(newborn)
         self.client.pop_state()
 

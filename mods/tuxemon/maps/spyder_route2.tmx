@@ -354,6 +354,7 @@
     <property name="act75" value="pathfind spyder_billie,3,15"/>
     <property name="act80" value="remove_npc spyder_billie"/>
     <property name="act90" value="set_variable route2billie:yes"/>
+    <property name="act91" value="autosave"/>
     <property name="cond1" value="not variable_set route2billie:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>

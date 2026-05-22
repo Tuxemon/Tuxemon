@@ -55,7 +55,7 @@
     <property name="cond1" value="not char_exists spyder_cottontown_hacker"/>
    </properties>
   </object>
-  <object id="17" name="Create Barmaid - hidden away" type="event" x="0" y="64" width="16" height="16">
+  <object id="17" name="Create Barmaid - hidden away" type="event" x="16" y="64" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_cottontown_barmaid,2,3"/>
     <property name="cond1" value="not char_exists spyder_cottontown_barmaid"/>
@@ -130,7 +130,7 @@
   <object id="23" name="Create Goth (1st)" type="event" x="80" y="96" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_cottoncafe_cayden,2,6"/>
-    <property name="act2" value="char_wander spyder_cottoncafe_cayden,1,7,10,10"/>
+    <property name="act2" value="char_wander spyder_cottoncafe_cayden,,1,7,10,10"/>
     <property name="cond1" value="not char_exists spyder_cottoncafe_cayden"/>
    </properties>
   </object>
@@ -261,11 +261,17 @@
     <property name="cond1" value="not battle_outcome player,won,spyder_cottoncafe_cayden"/>
    </properties>
   </object>
-  <object id="44" name="Create Barmaid - accessible" type="event" x="16" y="64" width="16" height="16">
+  <object id="44" name="Create Barmaid - accessible" type="event" x="0" y="64" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_cottontown_barmaid,0,4"/>
     <property name="cond1" value="not char_exists spyder_cottontown_barmaid"/>
     <property name="cond2" value="is variable_set visitedcottoncafe:yes"/>
+   </properties>
+  </object>
+  <object id="45" name="Environment" type="event" x="16" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_environment interior"/>
+    <property name="cond2" value="not environment_is interior"/>
    </properties>
   </object>
  </objectgroup>

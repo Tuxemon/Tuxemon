@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="294">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="295">
  <properties>
   <property name="east" value="paper_town"/>
   <property name="edges" value="clamped"/>
+  <property name="map_type" value="route"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="routec"/>
-  <property name="map_type" value="route"/>
   <property name="west" value="candy_town"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_outdoor.tsx"/>
@@ -527,6 +527,14 @@
     <property name="act1" value="char_talk spyder_searoutec_more,post_battle_lose"/>
     <property name="behav1" value="talk spyder_searoutec_more"/>
     <property name="cond1" value="is battle_outcome player,won,spyder_searoutec_more"/>
+   </properties>
+  </object>
+  <object id="294" name="Autosave Dragon" type="event" x="192" y="384" width="16" height="16">
+   <properties>
+    <property name="act1" value="autosave"/>
+    <property name="act2" value="set_variable save2:yes"/>
+    <property name="cond1" value="not variable_set save2:yes"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
  </objectgroup>

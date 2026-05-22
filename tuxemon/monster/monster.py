@@ -683,6 +683,9 @@ class Monster:
         self.moves = old_monster.moves
         self.status = old_monster.status
         self.instance_id = old_monster.instance_id
+        self.individual_values = old_monster.individual_values
+        self.training_points = old_monster.training_points
+        self.custom_stats = old_monster.custom_stats
 
         if old_monster.gender in self.gender_weights:
             self.gender = old_monster.gender

@@ -62,7 +62,7 @@ class LifeGiftEffect(CoreEffect):
             linked.current_hp = max(0, linked.current_hp - damage)
             host.current_hp = min(host.hp, host.current_hp + damage)
             lifegift = True
-        if linked and linked.is_fainted:
+        if linked and linked.is_fainted and status.has_phase(EffectPhase.PERFORM_STATUS):
             host.status.clear_status(session)
 
         return StatusEffectResult(name=status.name, success=lifegift)

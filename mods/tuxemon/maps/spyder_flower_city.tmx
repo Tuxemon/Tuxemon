@@ -27,7 +27,7 @@
  </layer>
  <layer id="3" name="Layer 3" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtlstOFEEUhgsFUYJcNjwCCQZ0FEhEbmsDGh/BmCCDj+AlDho3rAVcgcICGNyxY6toYhQvICLE2ysAmmgU/DrkZIpKV7q66ekME07y5dT9/HWq0l1K7VrpBaXKQEyvS1m8jNmvH2hSmTT0w3XoA3NNidmAtlNg1r3x0uf5OO0RekZhBIbhIZjrS2xpN+vSng//Ej0vYAGewzO4WB890lBN9Ll+M3+h5ydswSZsQDqkvmx7buVXMevLrWwvyX2zj8j1VNTmykmV5L5dC5nXpPSFyV9SmvQ4kj+97SCW85Xny2dU5hL0Qg+YuXGNm68830HTbbgFN330ucZ13Ye5/6D6UzTNQhZmfPQFzZd+133IeFcflz4zf18alfoK3+A7/IAotk7O1uAzrMaYv8ompU5CFVRDDUSxfOWvHT0d0Ald0A26TfIvnYAn8BjGYQz0MV45KH9ybnK/xMs6Uhcv7UH+A1rewzt4C4vwBsx5pr4rbXtH6HFfx/i+KzmNFthB0zb8g78++ipSKnMCjkM57FVXvDXX+yUZeKC906QtjE9z7nMB3NDuhuv9ctGwkVJqE7agzrKP5fPBK61oY1zu1xLfxGX4CCvwCaKarm9ey5O+nq5Pb7eVj/DNOQqlUAbHIKrp+mxrhNGX4r17Fj3noBlaoBX8TD9fv36vzUWfbW4S7Z6+q5a7mUT8oBi/0ffHh7tMzMAg3IP7ELe5nK8t5hQd0zADWZiFYjXbt63Y9jsV4zuh2HJzuJ/DDBRaBkos75VC0Vlf4PoKJU8HUcd/ibLRKA==
+   eAHtlstOFEEUhgscUAnKuPERSCSOjBcSLoprohAfwZCgI4+AGkeNG9YorFBhAQzu2LlVMCEKcvUWUV4B0ETj7euYkykqXenqnp7JMOEkX+rSVef8dfqku5T6b4l2pWpATB9LX1pZU2h7I6WyGbgO16APTJ8S8wTamsAce+vlmdfGaSPoGYZH8BCGwPQvsWXeHMt8MdpX6JmDWXgJL6CrMXqkwWT0vX47v6PnG+zANmxBJqS+XEfe83zM+vKe7T2pN/uK/JO6Y/l+qXqlrLcoZwqTvyj+C90j+esNWZeFxo17f7Hy3NOsst1wGS6Bqds1ruTZ3F/o+DaabsFNGPDR5xrX9Rxh9T5D0zTkYMpHn6s/13O4+pN1cekz8/f5pFIb8AW+wiZEsU/k7CN8gPcx5q8+pdQROAoNkIQoVqz8daDnPFyATrgIuo3zLx2Dp/AEHsMo6Gu8flD+5L1JfUkrfmQsrcwHtctoWYK3sAgL8AbMfaa+K227V+hxX8d4v6s6hRb4i6Y/8Bt++eirS6vsYTgEB2G3usodudaXZOCBdk+TuTBthvc+E0C/Vhuu9eWiYSut1DbswHHLOVZbgz2ta2tc6muFb+IqrME6vIOoput7ruVJ96fr0+dt/Wq+OQcgATVQC1FN12fzEUZfmvvaafScgbNwDlrAz/T36/fcm3PRZ9tbinlP31VLbZYiflCMH+j76cMdNmbhLtyD+xC3ubxfW8wJHkzCFORgGirVbN+2SjvvRIz3hErLzf559jNQbhmostxXykVnY5nrK5c87UUd/wDfo9Eo
   </data>
  </layer>
  <layer id="4" name="Above Player" width="40" height="40">
@@ -77,7 +77,7 @@
   <object id="450" type="collision" x="224" y="208" width="32" height="48"/>
   <object id="451" type="collision" x="256" y="208" width="16" height="32"/>
   <object id="452" type="collision" x="272" y="208" width="32" height="48"/>
-  <object id="465" type="collision" x="32" y="96" width="16" height="16"/>
+  <object id="465" type="collision" x="32" y="128" width="16" height="16"/>
   <object id="469" type="collision" x="352" y="368" width="16" height="16"/>
   <object id="480" type="collision" x="384" y="608" width="16" height="32"/>
   <object id="493" type="collision" x="0" y="576" width="400" height="32"/>
@@ -198,7 +198,7 @@
     <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
   </object>
-  <object id="412" name="Sign: Route 5" type="event" x="32" y="96" width="16" height="16">
+  <object id="412" name="Sign: Route 5" type="event" x="32" y="128" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog here_to_west"/>
     <property name="cond1" value="is char_facing_tile player"/>
@@ -599,7 +599,6 @@
     <property name="act1" value="translated_dialog spyder_flower_sign"/>
     <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed INTERACT"/>
-    <property name="cond3" value="not battle_outcome_count player,won,spyder_nimrod_tru,1"/>
    </properties>
   </object>
   <object id="502" name="Create Enforcer" type="event" x="336" y="128" width="16" height="16">

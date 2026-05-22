@@ -134,11 +134,11 @@
   <object id="28" name="Talk Iroh" type="event" x="128" y="0" width="16" height="16">
    <properties>
     <property name="act11" value="char_talk spyder_dojo_iroh,pre_battle"/>
-    <property name="act12" value="add_monster cardiwing,20,spyder_dojo_iroh,5,10"/>
-    <property name="act13" value="add_monster djinnbo,20,spyder_dojo_iroh,5,10"/>
-    <property name="act14" value="add_monster flounce,20,spyder_dojo_iroh,5,10"/>
-    <property name="act15" value="add_monster volconey,20,spyder_dojo_iroh,5,10"/>
-    <property name="act16" value="add_monster prophetoise,20,spyder_dojo_iroh,5,10"/>
+    <property name="act12" value="add_monster cardiwing,25,spyder_dojo_iroh,5,10"/>
+    <property name="act13" value="add_monster djinnbo,25,spyder_dojo_iroh,5,10"/>
+    <property name="act14" value="add_monster flounce,25,spyder_dojo_iroh,5,10"/>
+    <property name="act15" value="add_monster volconey,25,spyder_dojo_iroh,5,10"/>
+    <property name="act16" value="add_monster prophetoise,25,spyder_dojo_iroh,5,10"/>
     <property name="act20" value="get_party_monster spyder_dojo_iroh"/>
     <property name="act21" value="add_tech iid_slot_0,peregrine"/>
     <property name="act22" value="add_tech iid_slot_1,shapechange"/>
@@ -147,6 +147,11 @@
     <property name="act25" value="add_tech iid_slot_4,demiurge"/>
     <property name="act30" value="start_battle player,spyder_dojo_iroh"/>
     <property name="act31" value="char_talk spyder_dojo_iroh,post_battle_lose"/>
+    <property name="act35" value="char_stop player"/>
+    <property name="act36" value="lock_controls"/>
+    <property name="act37" value="screen_transition 1"/>
+    <property name="act38" value="wait 0.5"/>
+    <property name="act39" value="unlock_controls"/>
     <property name="act40" value="set_monster_health"/>
     <property name="act50" value="set_monster_status"/>
     <property name="behav1" value="talk spyder_dojo_iroh"/>
@@ -156,18 +161,23 @@
   <object id="29" name="Talk Yangchen" type="event" x="144" y="0" width="16" height="16">
    <properties>
     <property name="act11" value="char_talk spyder_dojo_yangchen,pre_battle"/>
-    <property name="act12" value="add_monster duggot,20,spyder_dojo_yangchen,5,10"/>
+    <property name="act12" value="add_monster duggot,25,spyder_dojo_yangchen,5,10"/>
     <property name="act13" value="add_tech iid_slot_0,salamander"/>
-    <property name="act14" value="add_monster drashimi,20,spyder_dojo_yangchen,5,10"/>
+    <property name="act14" value="add_monster drashimi,25,spyder_dojo_yangchen,5,10"/>
     <property name="act15" value="add_tech iid_slot_1,sunburst"/>
-    <property name="act16" value="add_monster coppi,20,spyder_dojo_yangchen,5,10"/>
+    <property name="act16" value="add_monster coppi,25,spyder_dojo_yangchen,5,10"/>
     <property name="act17" value="add_tech iid_slot_2,oven"/>
-    <property name="act18" value="add_monster vigueur,20,spyder_dojo_yangchen,5,10"/>
+    <property name="act18" value="add_monster vigueur,25,spyder_dojo_yangchen,5,10"/>
     <property name="act19" value="add_tech iid_slot_3,magma"/>
     <property name="act20" value="start_battle player,spyder_dojo_yangchen"/>
     <property name="act21" value="char_talk spyder_dojo_yangchen,post_battle_lose"/>
-    <property name="act30" value="set_monster_health"/>
-    <property name="act40" value="set_monster_status"/>
+    <property name="act35" value="char_stop player"/>
+    <property name="act36" value="lock_controls"/>
+    <property name="act37" value="screen_transition 1"/>
+    <property name="act38" value="wait 0.5"/>
+    <property name="act39" value="unlock_controls"/>
+    <property name="act40" value="set_monster_health"/>
+    <property name="act50" value="set_monster_status"/>
     <property name="behav1" value="talk spyder_dojo_yangchen"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_dojo_yangchen"/>
    </properties>
@@ -175,15 +185,20 @@
   <object id="30" name="Talk Kataro" type="event" x="160" y="0" width="16" height="16">
    <properties>
     <property name="act11" value="char_talk spyder_dojo_kataro,pre_battle"/>
-    <property name="act12" value="add_monster hydrone,20,spyder_dojo_kataro,5,10"/>
-    <property name="act13" value="add_monster nudikill,20,spyder_dojo_kataro,5,10"/>
+    <property name="act12" value="add_monster hydrone,25,spyder_dojo_kataro,5,10"/>
+    <property name="act13" value="add_monster nudikill,25,spyder_dojo_kataro,5,10"/>
     <property name="act14" value="get_party_monster spyder_dojo_kataro"/>
     <property name="act15" value="add_tech iid_slot_0,panjandrum"/>
     <property name="act16" value="add_item wood_berry,1,spyder_dojo_kataro"/>
     <property name="act17" value="start_battle player,spyder_dojo_kataro"/>
     <property name="act18" value="char_talk spyder_dojo_kataro,post_battle_lose"/>
-    <property name="act20" value="set_monster_health"/>
-    <property name="act30" value="set_monster_status"/>
+    <property name="act35" value="char_stop player"/>
+    <property name="act36" value="lock_controls"/>
+    <property name="act37" value="screen_transition 1"/>
+    <property name="act38" value="wait 0.5"/>
+    <property name="act39" value="unlock_controls"/>
+    <property name="act40" value="set_monster_health"/>
+    <property name="act50" value="set_monster_status"/>
     <property name="behav1" value="talk spyder_dojo_kataro"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_dojo_kataro"/>
    </properties>
@@ -191,14 +206,19 @@
   <object id="19" name="Talk Sokka" type="event" x="176" y="0" width="16" height="16">
    <properties>
     <property name="act11" value="char_talk spyder_dojo_sokka,pre_battle"/>
-    <property name="act12" value="add_monster hydrone,20,spyder_dojo_sokka,5,10"/>
-    <property name="act13" value="add_monster pythwire,20,spyder_dojo_sokka,5,10"/>
-    <property name="act14" value="add_monster embazook,20,spyder_dojo_sokka,5,10"/>
-    <property name="act15" value="add_monster pigabyte,20,spyder_dojo_sokka,5,10"/>
+    <property name="act12" value="add_monster hydrone,25,spyder_dojo_sokka,5,10"/>
+    <property name="act13" value="add_monster pythwire,25,spyder_dojo_sokka,5,10"/>
+    <property name="act14" value="add_monster embazook,25,spyder_dojo_sokka,5,10"/>
+    <property name="act15" value="add_monster pigabyte,25,spyder_dojo_sokka,5,10"/>
     <property name="act16" value="start_battle player,spyder_dojo_sokka"/>
     <property name="act17" value="char_talk spyder_dojo_sokka,post_battle_lose"/>
-    <property name="act20" value="set_monster_health"/>
-    <property name="act30" value="set_monster_status"/>
+    <property name="act35" value="char_stop player"/>
+    <property name="act36" value="lock_controls"/>
+    <property name="act37" value="screen_transition 1"/>
+    <property name="act38" value="wait 0.5"/>
+    <property name="act39" value="unlock_controls"/>
+    <property name="act40" value="set_monster_health"/>
+    <property name="act50" value="set_monster_status"/>
     <property name="behav1" value="talk spyder_dojo_sokka"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_dojo_sokka"/>
    </properties>
@@ -206,16 +226,21 @@
   <object id="32" name="Talk Toph" type="event" x="192" y="0" width="16" height="16">
    <properties>
     <property name="act01" value="char_talk spyder_dojo_toph,pre_battle"/>
-    <property name="act02" value="add_monster rockat,20,spyder_dojo_toph,5,10"/>
-    <property name="act03" value="add_monster rhincus,20,spyder_dojo_toph,5,10"/>
-    <property name="act04" value="add_monster galnec,20,spyder_dojo_toph,5,10"/>
-    <property name="act05" value="add_monster sludgehog,20,spyder_dojo_toph,5,10"/>
-    <property name="act06" value="add_monster eruptibus,20,spyder_dojo_toph,5,10"/>
-    <property name="act07" value="add_monster vividactil,20,spyder_dojo_toph,5,10"/>
+    <property name="act02" value="add_monster rockat,25,spyder_dojo_toph,5,10"/>
+    <property name="act03" value="add_monster rhincus,25,spyder_dojo_toph,5,10"/>
+    <property name="act04" value="add_monster galnec,25,spyder_dojo_toph,5,10"/>
+    <property name="act05" value="add_monster sludgehog,25,spyder_dojo_toph,5,10"/>
+    <property name="act06" value="add_monster eruptibus,25,spyder_dojo_toph,5,10"/>
+    <property name="act07" value="add_monster vividactil,25,spyder_dojo_toph,5,10"/>
     <property name="act08" value="start_battle player,spyder_dojo_toph"/>
     <property name="act09" value="char_talk spyder_dojo_toph,post_battle_lose"/>
-    <property name="act20" value="set_monster_health"/>
-    <property name="act30" value="set_monster_status"/>
+    <property name="act35" value="char_stop player"/>
+    <property name="act36" value="lock_controls"/>
+    <property name="act37" value="screen_transition 1"/>
+    <property name="act38" value="wait 0.5"/>
+    <property name="act39" value="unlock_controls"/>
+    <property name="act40" value="set_monster_health"/>
+    <property name="act50" value="set_monster_status"/>
     <property name="behav1" value="talk spyder_dojo_toph"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_dojo_toph"/>
    </properties>
@@ -240,21 +265,26 @@
   <object id="31" name="Talk Wan2" type="event" x="80" y="0" width="16" height="16">
    <properties>
     <property name="act11" value="translated_dialog spyder_dojo_wan4"/>
-    <property name="act12" value="add_monster galnec,20,spyder_dojo_wan,5,10"/>
-    <property name="act13" value="add_monster embazook,20,spyder_dojo_wan,5,10"/>
-    <property name="act14" value="add_monster vigueur,20,spyder_dojo_wan,5,10"/>
-    <property name="act15" value="add_monster hydrone,20,spyder_dojo_wan,5,10"/>
-    <property name="act16" value="add_monster djinnbo,20,spyder_dojo_wan,5,10"/>
+    <property name="act12" value="add_monster galnec,25,spyder_dojo_wan,5,10"/>
+    <property name="act13" value="add_monster embazook,25,spyder_dojo_wan,5,10"/>
+    <property name="act14" value="add_monster vigueur,25,spyder_dojo_wan,5,10"/>
+    <property name="act15" value="add_monster hydrone,25,spyder_dojo_wan,5,10"/>
+    <property name="act16" value="add_monster djinnbo,25,spyder_dojo_wan,5,10"/>
     <property name="act20" value="get_party_monster spyder_dojo_wan"/>
     <property name="act21" value="add_tech iid_slot_2,magma"/>
     <property name="act22" value="add_tech iid_slot_4,shapechange"/>
     <property name="act30" value="start_battle player,spyder_dojo_wan"/>
-    <property name="act32" value="set_monster_health"/>
-    <property name="act33" value="set_monster_status"/>
-    <property name="act34" value="lock_controls"/>
-    <property name="act35" value="pathfind spyder_dojo_wan,9,9"/>
-    <property name="act36" value="remove_npc spyder_dojo_wan"/>
-    <property name="act37" value="unlock_controls"/>
+    <property name="act35" value="char_stop player"/>
+    <property name="act36" value="lock_controls"/>
+    <property name="act37" value="screen_transition 1"/>
+    <property name="act38" value="wait 0.5"/>
+    <property name="act39" value="unlock_controls"/>
+    <property name="act40" value="set_monster_health"/>
+    <property name="act50" value="set_monster_status"/>
+    <property name="act51" value="lock_controls"/>
+    <property name="act52" value="pathfind spyder_dojo_wan,9,9"/>
+    <property name="act53" value="remove_npc spyder_dojo_wan"/>
+    <property name="act54" value="unlock_controls"/>
     <property name="behav1" value="talk spyder_dojo_wan"/>
     <property name="cond1" value="is variable_set wanintro:yes"/>
     <property name="cond2" value="is battle_outcome player,won,spyder_dojo_iroh"/>

@@ -156,6 +156,10 @@ class Session(AbstractSession["BaseClient"]):
         """The slot index most recently saved or loaded."""
         return self._current_slot
 
+    @current_slot.setter
+    def current_slot(self, value: int | None) -> None:
+        self._current_slot = value
+
     def load_state(self, save_data: SaveData) -> None:
         """
         Loads the player, world, and other session-level states from a saved game model.

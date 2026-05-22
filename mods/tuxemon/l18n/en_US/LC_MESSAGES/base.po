@@ -121,25 +121,25 @@ msgid "ancient_tea"
 msgstr "Ancient Tea"
 
 msgid "ancient_tea_description"
-msgstr "Adds 1,500 to a monster's XP."
+msgstr "Adds 4,500 to a monster's XP."
 
 msgid "imperial_tea"
 msgstr "Imperial Tea"
 
 msgid "imperial_tea_description"
-msgstr "Adds 3,000 to a monster's XP."
+msgstr "Adds 10,000 to a monster's XP."
 
 msgid "mystery_tea"
 msgstr "Mystery Tea"
 
 msgid "mystery_tea_description"
-msgstr "Adds 500 to a monster's XP."
+msgstr "Adds 1,500 to a monster's XP."
 
 msgid "tea"
 msgstr "Tea"
 
 msgid "tea_description"
-msgstr "Adds 125 to a monster's XP."
+msgstr "Adds 500 to a monster's XP."
 
 msgid "revive"
 msgstr "Revive"
@@ -1136,13 +1136,12 @@ msgstr "TM: Avalanche"
 
 msgid "tm_avalanche_description"
 msgstr ""
-"Technique Manual that teaches a Water or Earth Tuxemon the Avalanche "
-"technique."
+"Technique Manual that teaches the Avalanche technique."
 
 msgid "tm_acid"
 msgstr "TM: Acid"
 
-msgid "tm_cavity_description"
+msgid "tm_acid_description"
 msgstr "Technique Manual that teaches the Acid technique."
 
 msgid "tm_frostbite"
@@ -1156,6 +1155,12 @@ msgstr "TM: Ubuntu"
 
 msgid "tm_ubuntu_description"
 msgstr "Technique Manual that teaches the Ubuntu technique."
+
+msgid "tm_leaf_barrage"
+msgstr "TM: Leaf Barrage"
+
+msgid "tm_leaf_barrage_description"
+msgstr "Technique Manual that teaches the Leaf Barrage technique."
 
 msgid "tm_ice_shield"
 msgstr "TM: Ice Shield"
@@ -1179,13 +1184,13 @@ msgid "tm_blossom"
 msgstr "TM: Blossom"
 
 msgid "tm_blossom_description"
-msgstr "Technique Manual that teaches a Wood Tuxemon the Blossom technique."
+msgstr "Technique Manual that teaches the Blossom technique."
 
 msgid "tm_surf"
 msgstr "TM: Surf"
 
 msgid "tm_surf_description"
-msgstr "Technique Manual that teaches a Water Tuxemon the Surf technique."
+msgstr "Technique Manual that teaches the Surf technique."
 
 msgid "tm_earth"
 msgstr "Technical Manual (Earth)"
@@ -1852,7 +1857,7 @@ msgid "combat_state_confused_get"
 msgstr "{target} is confused."
 
 msgid "combat_state_confused_tech"
-msgstr "{target} gets muddled and not {name}!"
+msgstr "{target} gets muddled and does not use {name}!"
 
 msgid "combat_state_gold"
 msgstr "{name} gets {gold}!"
@@ -6902,7 +6907,7 @@ msgid "picc_description"
 msgstr "It accompanies divers, providing much needed oxygen."
 
 msgid "picc"
-msgstr "Picc"
+msgstr "PiCC"
 
 msgid "pickoon_description"
 msgstr ""
@@ -9105,10 +9110,10 @@ msgid "tastes"
 msgstr "Tastes"
 
 msgid "taste_warm"
-msgstr "Taste Warm"
+msgstr "Warm Taste"
 
 msgid "taste_cold"
-msgstr "Taste Cold"
+msgstr "Cold Taste"
 
 msgid "taste_peppy"
 msgstr "Peppy"
@@ -9189,6 +9194,9 @@ msgstr "Bland"
 
 msgid "taste_bland_description"
 msgstr "A vague, chalky taste, like powdered mashed potatoes made with a sigh instead of water."
+
+msgid "taste_change_report"
+msgstr "{name}'s {type} changed from {old} to {new}!"
 
 # Factions
 msgid "faction_enforcers"
@@ -12498,7 +12506,7 @@ msgstr ""
 
 msgid "spyder_route3_boulder"
 msgstr ""
-"I need to find something in my bag that can help me push this boulder... Ah,"
+"I need to find something in my bag that can help me break this boulder... Ah,"
 " if only I had the right item..."
 
 msgid "spyder_route3_sign"
@@ -12526,6 +12534,10 @@ msgstr ""
 
 msgid "spyder_route3_zoolander2"
 msgstr "Ah, I dropped my sledgehammer!"
+
+msgid "spyder_route3_zoolander3"
+msgstr "Now, where did I put that sledgehammer? \n"
+" I'll need it if I'm to break through that boulder between here and the Inn."
 
 msgid "spyder_route3_qqq1"
 msgstr "Ah, the Enforcers weren't meant to let anyone out!"
@@ -12672,8 +12684,7 @@ msgid "spyder_wayfarer_maniac"
 msgstr ""
 "My tuxemon aren't sick! This is just an excuse to sell us medicine we don't need. \n"
 " When I was your age, we didn't have medicine. We swam in mountain streams and if you got a sniffle, well, tough! \n"
-" And anyway, I saw the Enforcers coming down Route 4 before anyone so much as sniffled, so how could \n"
-" ... \n"
+" And anyway, I saw the Enforcers coming down Route 4 before anyone so much as sniffled, so how could ... \n"
 " ah ah achoo! \n"
 " ... \n"
 " That doesn't mean anything. I have an itchy nose."

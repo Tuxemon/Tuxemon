@@ -137,6 +137,7 @@ class EvolutionTransition(State):
 
         self.evolved_sprite.image.blit(self.evolved_sprite_copy, (0, 0))
         self.evolved_sprite.image.blit(self.evolved_sprite_white, (0, 0))
+        self.evolved_sprite.image.set_alpha(255)   
 
         if self.elapsed_time > self.total_seconds and not self.dialog_opened:
             self.client.sound_manager.play("sound_confirm")
@@ -148,9 +149,10 @@ class EvolutionTransition(State):
         sprite_image = sprite.image
 
         if sprite_image is None or sprite_image.get_alpha() == 0:
-            sprite_image = (
-                self.evolved_sprite_copy
-            )  # fallback to visible image
+            if self.phase == 3:
+                sprite_image = self.evolved_sprite.image   
+            else:
+                sprite_image = self.evolved_sprite_copy    
 
         surface.blit(sprite_image, (self.x, self.y))
 

@@ -62,7 +62,7 @@ class LifeLeechEffect(CoreEffect):
             host.current_hp = max(0, host.current_hp - damage)
             linked.current_hp = min(linked.hp, linked.current_hp + damage)
             lifeleech = True
-        if linked and linked.is_fainted:
+        if linked and linked.is_fainted and status.has_phase(EffectPhase.PERFORM_STATUS):
             host.status.clear_status(session)
 
         return StatusEffectResult(name=status.name, success=lifeleech)

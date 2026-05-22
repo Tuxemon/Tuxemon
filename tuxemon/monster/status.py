@@ -112,9 +112,11 @@ class MonsterStatusHandler:
     def clear_status(self, session: Session) -> None:
         """Clears the current status effect for monsters in combat."""
         current_status = self.current_status
-        if current_status:
-            current_status.use(session, EffectPhase.ON_END)
-            self.status.clear()
+        if not current_status:
+            return
+
+        self.status.clear()
+        current_status.use(session, EffectPhase.ON_END)
 
     def apply_faint(self, session: Session, monster: Monster) -> None:
         self.clear_status(session)

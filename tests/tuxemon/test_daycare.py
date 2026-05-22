@@ -459,11 +459,19 @@ class TestProduceEgg:
         egg = dc.produce_newborn()
         assert egg is self._egg
 
-    def test_parents_cleared_after_egg(self, owner, mother, father):
+    def test_parents_remain_after_newborn(self, owner, mother, father):
         owner.session = MagicMock()
         dc = self._ready_daycare(owner, mother, father)
         dc.produce_newborn()
-        assert dc.parents == []
+        assert len(dc.parents) == 2
+
+    def test_parents_not_returned_to_party_after_newborn(
+        self, owner, mother, father
+    ):
+        owner.session = MagicMock()
+        dc = self._ready_daycare(owner, mother, father)
+        dc.produce_newborn()
+        owner.party.add_monster.assert_not_called()
 
     def test_progress_reset_after_egg(self, owner, mother, father):
         owner.session = MagicMock()

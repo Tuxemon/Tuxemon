@@ -2,7 +2,7 @@
 # Copyright (c) 2014-2026 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, ClassVar
+from typing import TYPE_CHECKING, Any, Callable, ClassVar
 
 from pygame_menu.locals import ALIGN_CENTER, POSITION_EAST
 from pygame_menu.menu import Menu
@@ -73,8 +73,15 @@ class DaycareState(PygameMenuState):
         self.client.replace_state("DaycareState", character=self.character)
 
     def withdraw_all(self) -> None:
-        self.daycare.withdraw_parents()
-        self.client.replace_state("DaycareState", character=self.character)
+        def _finish() -> None:
+            self.daycare.withdraw_parents()
+            self.client.replace_state("DaycareState", character=self.character)
+
+        if self.daycare.ready():
+            newborn = self.daycare.produce_newborn()
+            self._handle_newborn(newborn, on_done=_finish)
+        else:
+            _finish()
 
     def collect_newborn(self) -> None:
         newborn = self.daycare.produce_newborn()

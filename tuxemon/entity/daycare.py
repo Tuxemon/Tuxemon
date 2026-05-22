@@ -279,11 +279,6 @@ class Daycare:
         child.mother_iid = mother.instance_id
         child.father_iid = father.instance_id
 
-        # Return parents to party (or box if party is full) before clearing
-        for parent in self.parents:
-            self.owner.party.add_monster(parent)
-
-        self.parents.clear()
         self.progress_steps = 0
         self.halfway_notified = False
         self.ready_notified = False

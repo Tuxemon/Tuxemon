@@ -24,25 +24,29 @@ events:
     type: event
   Create Historian:
     actions:
-    - create_npc spyder_leathermuseum_historian,26,5,wander
+    - create_npc spyder_leathermuseum_historian,26,5
+    - char_wander spyder_leathermuseum_historian,0.8
     conditions:
     - not char_exists spyder_leathermuseum_historian
     type: event
   Create Miner:
     actions:
-    - create_npc spyder_leathermuseum_davie,23,9,wander
+    - create_npc spyder_leathermuseum_davie,23,9
+    - char_wander spyder_leathermuseum_miner,0.6
     conditions:
     - not char_exists spyder_leathermuseum_davie
     type: event
   Create Postboy:
     actions:
-    - create_npc spyder_leathermuseum_kasey,12,10,wander
+    - create_npc spyder_leathermuseum_kasey,12,10
+    - char_wander spyder_leathermuseum_kasey,0.3
     conditions:
     - not char_exists spyder_leathermuseum_kasey
     type: event
   Create Security:
     actions:
-    - create_npc spyder_leathermuseum_security,15,5,wander
+    - create_npc spyder_leathermuseum_security,15,5
+    - char_wander spyder_leathermuseum_security,1.0
     conditions:
     - not char_exists spyder_leathermuseum_security
     type: event
@@ -55,7 +59,8 @@ events:
     type: event
   Create Visitor:
     actions:
-    - create_npc spyder_leathermuseum_visitor,19,10,wander
+    - create_npc spyder_leathermuseum_visitor,19,10
+    - char_wander spyder_leathermuseum_visitor,0.5
     conditions:
     - not char_exists spyder_leathermuseum_visitor
     type: event
@@ -63,7 +68,7 @@ events:
     actions:
     - char_stop player
     - lock_controls
-    - pathfind player,1,10
+    - pathfind player,1,8
     - set_variable paymuseum:null
     - set_variable notpaidmuseum:yes
     - unlock_controls

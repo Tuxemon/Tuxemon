@@ -89,6 +89,7 @@ class LoadGameAction(EventAction):
         client.push_state("WorldState", session=session, map_name=map_path)
 
         session.load_state(save_data)
+        session.current_slot = slot
 
         if npc_state.tile_pos is None:
             logger.error("Save data missing tile position.")

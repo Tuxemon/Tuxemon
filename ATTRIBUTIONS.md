@@ -1758,6 +1758,8 @@ From the CC0 Superpowers Asset Packs.
 
 ### Technique Icons
 
+* Melee, Ranged, Reliable, Reach and Touch icons made by Sanglorian using [https://opengameart.org/content/boxy-bold-font-0 Boxy Bold font], CC0 on OGA.
+
 * ["icon_blinded.png"](https://wiki.tuxemon.org/File:Blind.png)
 [https://opengameart.org/content/rpg-ui-icons CC0 on OGA]
 

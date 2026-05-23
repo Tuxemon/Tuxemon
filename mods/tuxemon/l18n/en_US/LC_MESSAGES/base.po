@@ -121,25 +121,25 @@ msgid "ancient_tea"
 msgstr "Ancient Tea"
 
 msgid "ancient_tea_description"
-msgstr "Adds 1,500 to a monster's XP."
+msgstr "Adds 4,500 to a monster's XP."
 
 msgid "imperial_tea"
 msgstr "Imperial Tea"
 
 msgid "imperial_tea_description"
-msgstr "Adds 3,000 to a monster's XP."
+msgstr "Adds 10,000 to a monster's XP."
 
 msgid "mystery_tea"
 msgstr "Mystery Tea"
 
 msgid "mystery_tea_description"
-msgstr "Adds 500 to a monster's XP."
+msgstr "Adds 1,500 to a monster's XP."
 
 msgid "tea"
 msgstr "Tea"
 
 msgid "tea_description"
-msgstr "Adds 125 to a monster's XP."
+msgstr "Adds 500 to a monster's XP."
 
 msgid "revive"
 msgstr "Revive"
@@ -497,7 +497,7 @@ msgid "bivouac"
 msgstr "Bivouac"
 
 msgid "bivouac_description"
-msgstr "Rest as if you were at a proper healing centre. Consumed on use."
+msgstr "Rest as if you were at a proper healing center. Consumed on use."
 
 msgid "drone"
 msgstr "Drone"
@@ -1101,6 +1101,12 @@ msgstr "TM: All In"
 msgid "tm_all_in_description"
 msgstr "Technique Manual that teaches the All In technique."
 
+msgid "tm_solar_synthesis"
+msgstr "TM: Solar Synthesis"
+
+msgid "tm_solar_synthesis_description"
+msgstr "Technique Manual that teaches the Solar Synthesis technique."
+
 msgid "tm_blade"
 msgstr "TM: Blade"
 
@@ -1130,13 +1136,12 @@ msgstr "TM: Avalanche"
 
 msgid "tm_avalanche_description"
 msgstr ""
-"Technique Manual that teaches a Water or Earth Tuxemon the Avalanche "
-"technique."
+"Technique Manual that teaches the Avalanche technique."
 
 msgid "tm_acid"
 msgstr "TM: Acid"
 
-msgid "tm_cavity_description"
+msgid "tm_acid_description"
 msgstr "Technique Manual that teaches the Acid technique."
 
 msgid "tm_frostbite"
@@ -1150,6 +1155,12 @@ msgstr "TM: Ubuntu"
 
 msgid "tm_ubuntu_description"
 msgstr "Technique Manual that teaches the Ubuntu technique."
+
+msgid "tm_leaf_barrage"
+msgstr "TM: Leaf Barrage"
+
+msgid "tm_leaf_barrage_description"
+msgstr "Technique Manual that teaches the Leaf Barrage technique."
 
 msgid "tm_ice_shield"
 msgstr "TM: Ice Shield"
@@ -1173,13 +1184,13 @@ msgid "tm_blossom"
 msgstr "TM: Blossom"
 
 msgid "tm_blossom_description"
-msgstr "Technique Manual that teaches a Wood Tuxemon the Blossom technique."
+msgstr "Technique Manual that teaches the Blossom technique."
 
 msgid "tm_surf"
 msgstr "TM: Surf"
 
 msgid "tm_surf_description"
-msgstr "Technique Manual that teaches a Water Tuxemon the Surf technique."
+msgstr "Technique Manual that teaches the Surf technique."
 
 msgid "tm_earth"
 msgstr "Technical Manual (Earth)"
@@ -1715,6 +1726,15 @@ msgstr ""
 msgid "cannot_use_tech_monster"
 msgstr "{name} can't be used."
 
+msgid "tech_cannot_forget"
+msgstr "This technique cannot be removed."
+
+msgid "tech_no_learn"
+msgstr "Decided not to learn {tech}."
+
+msgid "tech_replaced"
+msgstr "{old} replaced with {new}."
+
 msgid "combat_used_x"
 msgstr "{user} used {name}!"
 
@@ -1837,7 +1857,7 @@ msgid "combat_state_confused_get"
 msgstr "{target} is confused."
 
 msgid "combat_state_confused_tech"
-msgstr "{target} gets muddled and not {name}!"
+msgstr "{target} gets muddled and does not use {name}!"
 
 msgid "combat_state_gold"
 msgstr "{name} gets {gold}!"
@@ -1879,7 +1899,7 @@ msgid "combat_state_festering_item"
 msgstr "The healing fails. The wound festers."
 
 msgid "combat_state_focused_get"
-msgstr "{target} becomes focused."
+msgstr "{target} is focused."
 
 msgid "combat_state_grabbed_get"
 msgstr "{target} is held tight."
@@ -1927,7 +1947,7 @@ msgid "combat_state_revenge_get"
 msgstr "When attacked,{target} will take revenge."
 
 msgid "combat_state_sniping_get"
-msgstr "{target} takes aim."
+msgstr "{target} backs away."
 
 msgid "combat_state_softened_get"
 msgstr "{target}'s armor softens."
@@ -1976,6 +1996,9 @@ msgstr "{target} flinches and may not act."
 
 msgid "combat_state_charmed_get"
 msgstr "{target} is charmed and might hesitate to act."
+
+msgid "combat_state_charmed_miss"
+msgstr "{user} is too smitten!"
 
 msgid "combat_state_wild_get"
 msgstr "{target} has gone wild."
@@ -4378,6 +4401,9 @@ msgstr "Pick"
 msgid "monster_menu_desc"
 msgstr "Description"
 
+msgid "monster_menu_type_suffix"
+msgstr "-Type"
+
 msgid "monster_menu_type"
 msgstr "Type(s)"
 
@@ -4385,7 +4411,10 @@ msgid "monster_menu_species"
 msgstr "Species"
 
 msgid "monster_menu_shape"
-msgstr "Body Type"
+msgstr "Body Shape"
+
+msgid "monster_menu_shape_short"
+msgstr "Shape"
 
 msgid "monster_menu_release"
 msgstr "Release"
@@ -4451,7 +4480,7 @@ msgstr ""
 "Which technique do you want to delete?"
 
 msgid "evolution_confirmation"
-msgstr "{name} is trying to evolve into {evolve}."
+msgstr "{name} is trying to evolve into {target}."
 
 msgid "allow_evolution"
 msgstr "Allow evolution?"
@@ -4531,7 +4560,17 @@ msgstr "Battles: {tot} (W{won} D{draw} L{lost})"
 
 # Tuxepedia
 msgid "page_tuxepedia"
-msgstr "From id {a} to id {b}"
+msgstr "id {a}–{b}"
+
+msgid "journal_badge_featured"
+msgstr "featured"
+
+msgid "journal_badge_stubs"
+msgstr "stubs"
+
+msgid "journal_badge_missing"
+msgstr "missing"
+
 
 msgid "no_evolution"
 msgstr "No evolution"
@@ -5101,7 +5140,7 @@ msgid "av8r_description"
 msgstr "If the sun is out, it can fly as far or as high as it likes."
 
 msgid "av8r"
-msgstr "Av8r"
+msgstr "AV8R"
 
 msgid "axolightl_description"
 msgstr ""
@@ -6651,7 +6690,7 @@ msgstr ""
 "pranks."
 
 msgid "mrmoswitch"
-msgstr "Mrmoswitch"
+msgstr "mRmOswitch"
 
 msgid "myrmison_description"
 msgstr ""
@@ -6868,7 +6907,7 @@ msgid "picc_description"
 msgstr "It accompanies divers, providing much needed oxygen."
 
 msgid "picc"
-msgstr "Picc"
+msgstr "PiCC"
 
 msgid "pickoon_description"
 msgstr ""
@@ -9071,10 +9110,10 @@ msgid "tastes"
 msgstr "Tastes"
 
 msgid "taste_warm"
-msgstr "Taste Warm"
+msgstr "Warm Taste"
 
 msgid "taste_cold"
-msgstr "Taste Cold"
+msgstr "Cold Taste"
 
 msgid "taste_peppy"
 msgstr "Peppy"
@@ -9155,6 +9194,9 @@ msgstr "Bland"
 
 msgid "taste_bland_description"
 msgstr "A vague, chalky taste, like powdered mashed potatoes made with a sigh instead of water."
+
+msgid "taste_change_report"
+msgstr "{name}'s {type} changed from {old} to {new}!"
 
 # Factions
 msgid "faction_enforcers"
@@ -11777,7 +11819,7 @@ msgstr ""
 
 msgid "spyder_billing_cathedral1"
 msgstr ""
-"Welcome to the Cathedral Centre!\n"
+"Welcome to the Cathedral Center!\n"
 " Would you like to heal your monsters?"
 
 msgid "spyder_billing_cathedral2"
@@ -11945,7 +11987,7 @@ msgstr "Welcome back! Look at you, growing up so fast."
 
 msgid "spyder_papertown_mom5"
 msgstr ""
-"You know, Granny Piper next door has opened up her Daycare Centre. \n"
+"You know, Granny Piper next door has opened up her Daycare Center. \n"
 " Well, not everyone can be an inventor, I guess. "
 
 msgid "spyder_papertown_mom6"
@@ -11956,7 +11998,7 @@ msgstr ""
 msgid "spyder_papertown_grannypiper1"
 msgstr ""
 "Oh hello ${{name}}, I didn't see you there among all this hustle and debris! \n"
-" I can't wait till the Daycare Centre is installed!"
+" I can't wait till the Daycare Center is installed!"
 
 msgid "spyder_papertown_grannypiper2"
 msgstr ""
@@ -11965,18 +12007,18 @@ msgstr ""
 
 msgid "spyder_papertown_grannypiper3"
 msgstr ""
-"Good morning! Oh, ${{name}}, it's you! You must have heard that my Daycare Centre is open.\n"
+"Good morning! Oh, ${{name}}, it's you! You must have heard that my Daycare Center is open.\n"
 " Do you want me to tell you how it works? Okay. You give me a tuxemon, and I look after it while you travel.\n"
 " When you return, pay me a small fee and I'll return it to you. ... Huh? What's in it for you?\n"
 " Well, tuxemon under my care grow up, increasing in levels."
 
 msgid "spyder_papertown_grannypiper4"
 msgstr ""
-"Hello ${{name}}. Would you like to put a tuxemon into my Daycare Centre?"
+"Hello ${{name}}. Would you like to put a tuxemon into my Daycare Center?"
 
 msgid "spyder_papertown_grannypiper8"
 msgstr ""
-"Place your tuxemon in the Daycare Centre! Give us a tuxemon, and we will look after it while you travel.\n"
+"Place your tuxemon in the Daycare Center! Give us a tuxemon, and we will look after it while you travel.\n"
 " When you return, pay a small fee and we'll return it. The longer tuxemon are in our care, the higher in level they will rise!"
 
 msgid "spyder_papertown_grannypiper9"
@@ -12464,7 +12506,7 @@ msgstr ""
 
 msgid "spyder_route3_boulder"
 msgstr ""
-"I need to find something in my bag that can help me push this boulder... Ah,"
+"I need to find something in my bag that can help me break this boulder... Ah,"
 " if only I had the right item..."
 
 msgid "spyder_route3_sign"
@@ -12492,6 +12534,10 @@ msgstr ""
 
 msgid "spyder_route3_zoolander2"
 msgstr "Ah, I dropped my sledgehammer!"
+
+msgid "spyder_route3_zoolander3"
+msgstr "Now, where did I put that sledgehammer? \n"
+" I'll need it if I'm to break through that boulder between here and the Inn."
 
 msgid "spyder_route3_qqq1"
 msgstr "Ah, the Enforcers weren't meant to let anyone out!"
@@ -12615,7 +12661,7 @@ msgstr ""
 
 msgid "spyder_cotton_nurse1"
 msgstr ""
-"Welcome to the Cathedral Centre! \n"
+"Welcome to the Cathedral Center! \n"
 " Do you want to heal your Tuxemon?"
 
 msgid "spyder_wayfarer_shopkeeper"
@@ -12638,8 +12684,7 @@ msgid "spyder_wayfarer_maniac"
 msgstr ""
 "My tuxemon aren't sick! This is just an excuse to sell us medicine we don't need. \n"
 " When I was your age, we didn't have medicine. We swam in mountain streams and if you got a sniffle, well, tough! \n"
-" And anyway, I saw the Enforcers coming down Route 4 before anyone so much as sniffled, so how could \n"
-" ... \n"
+" And anyway, I saw the Enforcers coming down Route 4 before anyone so much as sniffled, so how could ... \n"
 " ah ah achoo! \n"
 " ... \n"
 " That doesn't mean anything. I have an itchy nose."
@@ -12927,7 +12972,7 @@ msgid "spyder_routea_joe1"
 msgstr "I got my report card from school yesterday."
 
 msgid "spyder_routea_joe2"
-msgstr "'Needs improvement.'' Where have I heard that before?"
+msgstr "'Needs improvement.' Where have I heard that before?"
 
 msgid "spyder_routea_koan1"
 msgstr "Flower City is cold but I like where I'm living."
@@ -13185,6 +13230,13 @@ msgid "spyder_timber_firefighter_willtrade"
 msgstr ""
 "Hey, do you want a TIKOAL? I could really do with a CHILLIMP, if you've got "
 "one."
+
+msgid "spyder_flower_fisher1"
+msgstr "It's a slow pleasure, but there's nothing nicer than fishing by the water. \n"
+" Just select your Rod from the Bag while facing the river." 
+
+msgid "spyder_flower_fisher2"
+msgstr "Get yourself a Fishing Rod so you can enjoy the water as I do." 
 
 msgid "spyder_flower_mieke1"
 msgstr ""
@@ -14892,7 +14944,7 @@ msgstr ""
 "was missing!"
 
 msgid "spyder_mansion_drinkingbuddya2"
-msgstr "There you are old friend! Let's get you back to river."
+msgstr "There you are old friend! Let's get you back to the river."
 
 msgid "spyder_mansion_captain1"
 msgstr ""
@@ -15023,7 +15075,7 @@ msgstr ""
 
 msgid "spyder_top_barmaid"
 msgstr ""
-"The big corporations sell monsters\n"
+"The big corporations sell monsters"
 " that can only be morphed using their own proprietary technologies!"
 
 msgid "spyder_top_magician1"
@@ -16176,10 +16228,10 @@ msgid "spyder_multi_martsign"
 msgstr "Buy things here"
 
 msgid "spyder_papertown_daycare1"
-msgstr "Daycare Centre: Under construction."
+msgstr "Daycare Center: Under construction."
 
 msgid "spyder_papertown_daycare2"
-msgstr "Daycare Centre: Open now!"
+msgstr "Daycare Center: Open now!"
 
 msgid "spyder_papertown_sunnyside"
 msgstr ""
@@ -16806,8 +16858,7 @@ msgstr ""
 
 msgid "spyder_dojo_sokka1"
 msgstr ""
-"My tuxemon are all of the Metal type, \n"
-" but they each have a second element, or know a technique with two elements. \n"
+"My tuxemon are all of the Metal type, but they each have a second element, or know a technique with two elements. \n"
 " That makes their strengths and weaknesses more difficult to predict."
 
 msgid "spyder_dojo_sokka2"

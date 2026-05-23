@@ -15,7 +15,7 @@ from tuxemon.db import MonsterModel
 from tuxemon.locale.locale import T
 from tuxemon.menu.menu import PygameMenuState
 from tuxemon.platform.const.graphics import BG_JOURNAL_CHOICE, DIMGRAY_COLOR
-from tuxemon.tools import fix_measure
+from tuxemon.tools import transform_resource_filename
 
 if TYPE_CHECKING:
     from tuxemon.base_client import BaseClient
@@ -44,10 +44,94 @@ class JournalChoice(PygameMenuState):
         total_monster = len(monsters)
         pages = math.ceil(total_monster / MAX_PAGE)
 
-        column_width = fix_measure(menu._width, 0.40)
-        btn_x_offset = fix_measure(menu._width, 0.18)
-        btn_y_offset = fix_measure(menu._height, 0.01)
-        menu._column_max_width = [column_width, column_width]
+        # floating count badges
+        minimal_font = transform_resource_filename(
+            "font", self.client.config.locale.minimal_font_file
+        )
+        thin_font = transform_resource_filename(
+            "font", self.client.config.locale.thin_font_file
+        )
+        valid_slugs = {mon.slug for mon in monsters}
+        featured = sum(
+            1 for slug in valid_slugs if self.char.tuxepedia.is_caught(slug)
+        )
+        stubs = sum(
+            1 for slug in valid_slugs if self.char.tuxepedia.is_seen(slug)
+        )
+        missing = total_monster - featured - stubs
+
+        menu._auto_centering = False
+        scale_int = self.client.context.scaling.scale_int
+
+
+
+        featured_text = T.format("journal_badge_featured", {"n": ""}).rstrip()
+        stubs_text = T.format("journal_badge_stubs", {"n": ""}).rstrip()
+        missing_text = T.format("journal_badge_missing", {"n": ""}).rstrip()
+
+        badge_featured_lbl: Any = menu.add.label(
+            title=featured_text,
+            font_size=self.font_type.biggest,
+            font_name=minimal_font,
+            float=True,
+            float_origin_position=True,
+            padding=0,
+        )
+        badge_featured_lbl.translate(scale_int(3), scale_int(96))
+
+        badge_featured_num: Any = menu.add.label(
+            title=str(featured),
+            font_size=self.font_type.biggest,
+            font_name=thin_font,
+            float=True,
+            float_origin_position=True,
+            padding=0,
+        )
+        badge_featured_num.translate(scale_int(10), scale_int(102))
+
+        badge_stubs_lbl: Any = menu.add.label(
+            title=stubs_text,
+            font_size=self.font_type.biggest,
+            font_name=minimal_font,
+            float=True,
+            float_origin_position=True,
+            padding=0,
+        )
+        badge_stubs_lbl.translate(scale_int(3), scale_int(112))
+
+        badge_stubs_num: Any = menu.add.label(
+            title=str(stubs),
+            font_size=self.font_type.biggest,
+            font_name=thin_font,
+            float=True,
+            float_origin_position=True,
+            padding=0,
+        )
+        badge_stubs_num.translate(scale_int(10), scale_int(118))
+
+        badge_missing_lbl: Any = menu.add.label(
+            title=missing_text,
+            font_size=self.font_type.biggest,
+            font_name=minimal_font,
+            float=True,
+            float_origin_position=True,
+            padding=0,
+        )
+        badge_missing_lbl.translate(scale_int(3), scale_int(128))
+
+        badge_missing_num: Any = menu.add.label(
+            title=str(missing),
+            font_size=self.font_type.biggest,
+            font_name=thin_font,
+            float=True,
+            float_origin_position=True,
+            padding=0,
+        )
+        badge_missing_num.translate(scale_int(10), scale_int(134))
+
+        btn_x_offset = scale_int(44)
+        btn_y_offset = scale_int(8)
+        menu._column_max_width = [scale_int(115), scale_int(150)]
 
         for page in range(pages):
             start = page * MAX_PAGE
@@ -59,7 +143,7 @@ class JournalChoice(PygameMenuState):
                 and self.char.tuxepedia.is_registered(mon.slug)
             ]
             label = T.format(
-                "page_tuxepedia", {"a": str(start), "b": str(end)}
+                "page_tuxepedia", {"a": str(start+1), "b": str(end)}
             ).upper()
 
             if tuxepedia:
@@ -71,13 +155,13 @@ class JournalChoice(PygameMenuState):
                         monsters=monsters,
                         page=page,
                     ),
-                    font_size=self.font_type.small,
+                    font_size=self.font_type.biggest,
                 ).translate(btn_x_offset, btn_y_offset)
             else:
                 lab1: Any = menu.add.label(
                     label,
                     font_color=DIMGRAY_COLOR,
-                    font_size=self.font_type.small,
+                    font_size=self.font_type.biggest,
                 )
                 lab1.translate(btn_x_offset, btn_y_offset)
 
@@ -107,6 +191,7 @@ class JournalChoice(PygameMenuState):
         )
 
         theme = self._setup_theme(BG_JOURNAL_CHOICE)
+        theme.widget_font_shadow = False
         theme.scrollarea_position = POSITION_EAST
         theme.widget_alignment = ALIGN_LEFT
         self._menu_config["theme"] = theme

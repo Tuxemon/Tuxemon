@@ -123,7 +123,6 @@ class Evolution:
             return
 
         owner = self.monster.get_owner()
-        new_monster.transfer_properties_from(self.monster)
 
         for move in new_monster.moves.moveset:
             if move.learning_method == LearningMethod.EVOLUTION:

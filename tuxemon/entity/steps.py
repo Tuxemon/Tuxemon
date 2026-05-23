@@ -10,6 +10,7 @@ from tuxemon.monster.listener import monster_update_listener
 
 if TYPE_CHECKING:
     from tuxemon.entity.entity import Entity
+    from tuxemon.entity.npc import NPC
     from tuxemon.monster.monster import Monster
     from tuxemon.session import Session
     from tuxemon.step_tracker import StepTrackerManager
@@ -31,10 +32,14 @@ class StepManager:
     """
 
     def __init__(
-        self, session: Session, step_tracker_manager: StepTrackerManager
+        self,
+        session: Session,
+        step_tracker_manager: StepTrackerManager,
+        owner: NPC,
     ) -> None:
         self.session = session
         self.step_tracker = step_tracker_manager
+        self.owner = owner
         session.client.event_bus.subscribe(
             "entity_moved",
             self._on_entity_moved,
@@ -75,9 +80,7 @@ class StepManager:
         steps: float,
         **kwargs: Any,
     ) -> None:
-        from tuxemon.entity.npc import NPC
-
-        if not isinstance(entity, NPC):
+        if entity is not self.owner:
             return
 
         entity.steps += steps

@@ -10,7 +10,7 @@ battle_graphics:
     icon_empty: gfx/ui/icons/party/party_empty.png
     icon_faint: gfx/ui/icons/party/party_icon03.png
     icon_status: gfx/ui/icons/party/party_icon02.png
-  island_sheet: gfx/ui/island_sheet/paper_island_sheet.png
+  island_sheet: gfx/ui/island_sheet/cobble_island_sheet.png
 battle_music:
   battle:
     music: music_battle_loop

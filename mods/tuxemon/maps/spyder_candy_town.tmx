@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="449">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="452">
  <properties>
   <property name="east" value="routec"/>
   <property name="edges" value="clamped"/>
@@ -21,7 +21,7 @@
  </layer>
  <layer id="2" name="Tile Layer 4" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer id="3" name="Tile Layer 2" width="40" height="40">
@@ -79,6 +79,7 @@
   <object id="227" type="collision" x="48" y="384" width="48" height="16"/>
   <object id="234" type="collision" x="80" y="288" width="16" height="16"/>
   <object id="235" type="collision" x="32" y="288" width="32" height="16"/>
+  <object id="451" type="collision" x="32" y="0" width="64" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="6" name="Events">
   <object id="94" name="Play Music" type="event" x="0" y="0" width="16" height="16">
@@ -420,6 +421,23 @@
     <property name="cond2" value="not variable_set party_sick:yes"/>
     <property name="cond3" value="is party_infected player,spyderbite,some"/>
     <property name="cond4" value="not variable_set confiscation_done:yes"/>
+   </properties>
+  </object>
+  <object id="449" name="Create TM Leaf Barrage" type="event" x="224" y="448" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_candy_tmleafbarrage,14,28"/>
+    <property name="cond1" value="not char_exists spyder_candy_tmleafbarrage"/>
+    <property name="cond2" value="not variable_set candy_tmleafbarrage:yes"/>
+   </properties>
+  </object>
+  <object id="450" name="TM Leaf Barrage" type="event" x="224" y="384" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog tm_leaf_barrage,,center,center,center"/>
+    <property name="act2" value="add_item tm_leaf_barrage"/>
+    <property name="act3" value="remove_npc spyder_candy_tmleafbarrage"/>
+    <property name="act4" value="set_variable candy_tmleafbarrage:yes"/>
+    <property name="behav1" value="talk spyder_candy_tmleafbarrage"/>
+    <property name="cond1" value="not variable_set candy_tmleafbarrage:yes"/>
    </properties>
   </object>
  </objectgroup>

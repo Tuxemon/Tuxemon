@@ -206,11 +206,11 @@
   <object id="74" name="Create Dagger" type="event" x="32" y="352" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_routea_dagger,2,22"/>
-    <property name="act2" value="char_face spyder_routea_dagger,right"/>
+    <property name="act2" value="char_face spyder_routea_dagger,down"/>
     <property name="cond1" value="not char_exists spyder_routea_dagger"/>
    </properties>
   </object>
-  <object id="75" name="Talk Dagger" type="event" x="32" y="368" width="16" height="16">
+  <object id="75" name="Talk Dagger" type="event" x="32" y="368" width="16" height="48">
    <properties>
     <property name="act1" value="lock_controls"/>
     <property name="act2" value="pathfind_to_char player,spyder_routea_dagger"/>
@@ -235,20 +235,6 @@
     <property name="act7" value="start_battle player,spyder_routea_doris"/>
     <property name="act8" value="char_talk spyder_routea_doris,post_battle_lose"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_routea_doris"/>
-    <property name="cond2" value="is char_at player"/>
-    <property name="cond3" value="not char_defeated player"/>
-   </properties>
-  </object>
-  <object id="77" name="Talk Dagger" type="event" x="48" y="352" width="16" height="16">
-   <properties>
-    <property name="act1" value="lock_controls"/>
-    <property name="act2" value="pathfind_to_char player,spyder_routea_dagger"/>
-    <property name="act3" value="char_talk spyder_routea_dagger,pre_battle"/>
-    <property name="act4" value="unlock_controls"/>
-    <property name="act5" value="add_monster cardiwing,16,spyder_routea_dagger,5,10"/>
-    <property name="act6" value="start_battle player,spyder_routea_dagger"/>
-    <property name="act7" value="char_talk spyder_routea_dagger,post_battle_lose"/>
-    <property name="cond1" value="not battle_outcome player,won,spyder_routea_dagger"/>
     <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="not char_defeated player"/>
    </properties>
@@ -560,9 +546,14 @@
   <object id="129" name="Talk Nurse" type="event" x="64" y="432" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_generic_nurse"/>
-    <property name="act2" value="set_monster_health"/>
-    <property name="act3" value="set_monster_status"/>
-    <property name="act4" value="translated_dialog spyder_output_nurse4"/>
+    <property name="act11" value="char_stop player"/>
+    <property name="act12" value="lock_controls"/>
+    <property name="act13" value="screen_transition 1"/>
+    <property name="act14" value="wait 0.5"/>
+    <property name="act15" value="unlock_controls"/>
+    <property name="act20" value="set_monster_health"/>
+    <property name="act30" value="set_monster_status"/>
+    <property name="act40" value="translated_dialog spyder_output_nurse4"/>
     <property name="behav1" value="talk spyder_routea_nurse"/>
    </properties>
   </object>

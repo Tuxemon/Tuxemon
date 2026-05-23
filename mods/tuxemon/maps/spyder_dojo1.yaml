@@ -168,8 +168,8 @@ events:
     type: event
   Talk Student1 Money:
     actions:
-    - translated_dialog spyder_dojo_fu_student1
     - translated_dialog spyder_dojo_fu_student1b
+    - translated_dialog spyder_dojo_fu_student1
     - translated_dialog_choice yes:no,student1_yn
     behav:
     - talk spyder_dojo_fu_student1
@@ -214,8 +214,8 @@ events:
     type: event
   Talk Student2 Money:
     actions:
-    - translated_dialog spyder_dojo_fu_student1
     - translated_dialog spyder_dojo_fu_student1a
+    - translated_dialog spyder_dojo_fu_student1
     - translated_dialog_choice yes:no,student2_yn
     behav:
     - talk spyder_dojo_fu_student2

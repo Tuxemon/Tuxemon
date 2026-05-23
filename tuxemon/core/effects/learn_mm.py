@@ -67,7 +67,7 @@ class LearnMmEffect(CoreEffect):
                 return ItemEffectResult(name=item.name)
 
             tech = Technique.create(tech_slug)
-            learned = target.moves.learn(target, tech)
+            learned = target.moves.learn(target, tech, ignore_eligibility=True)
             if not learned:
                 return ItemEffectResult(name=item.name)
 

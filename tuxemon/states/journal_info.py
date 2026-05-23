@@ -14,9 +14,9 @@ from tuxemon.locale.locale import T
 from tuxemon.menu.menu import PygameMenuState
 from tuxemon.monster.sprite import MonsterSpriteHandler, SpriteLoader
 from tuxemon.platform.const import buttons
-from tuxemon.platform.const.graphics import BG_JOURNAL_INFO
+from tuxemon.platform.const.graphics import BG_JOURNAL_INFO, SEA_BLUE_COLOR
 from tuxemon.platform.const.sizes import U_CM, U_FT, U_KG, U_LB
-from tuxemon.tools import fix_measure
+from tuxemon.tools import transform_resource_filename
 
 if TYPE_CHECKING:
     from tuxemon.base_client import BaseClient
@@ -30,13 +30,25 @@ class JournalInfoState(PygameMenuState):
     name: ClassVar[str] = "JournalInfoState"
 
     def add_menu_items(self, menu: Menu, monster: MonsterModel) -> None:
-        def fxw(r: float) -> int:
-            return fix_measure(menu._width, r)
 
-        def fxh(r: float) -> int:
-            return fix_measure(menu._height, r)
 
-        menu._width = fxw(248 / 256)
+        minimal_font = transform_resource_filename(
+            "font", self.client.config.locale.minimal_font_file
+        )
+
+        thin_font = transform_resource_filename(
+            "font", self.client.config.locale.thin_font_file
+        )
+
+
+        orig_w = menu._width
+        orig_h = menu._height
+
+        def fxw(nominal_px: float) -> int:
+            return round(orig_w * nominal_px / 256)
+
+        def fxh(nominal_px: float) -> int:
+            return round(orig_h * nominal_px / 144)
 
         # evolutions
         evo = T.translate("no_evolution")
@@ -46,13 +58,12 @@ class JournalInfoState(PygameMenuState):
                 if len(monster.evolutions) == 1
                 else "yes_evolutions"
             )
-        # types
-        types = " ".join(map(lambda s: T.translate(s), monster.types))
+
         # weight and height
         unit = self.client.config.unit_measure
         if unit == "metric":
-            mon_weight = round(monster.weight, 1)
-            mon_height = round(monster.height, 1)
+            mon_weight = round(monster.weight)
+            mon_height = round(monster.height)
             unit_weight = U_KG
             unit_height = U_CM
         else:
@@ -62,88 +73,140 @@ class JournalInfoState(PygameMenuState):
             unit_height = U_FT
         # name
         menu._auto_centering = False
-        name = T.translate(monster.slug).upper()
+        name = T.translate(monster.slug)
         lab1: Any = menu.add.label(
             title=name,
             label_id="name",
             font_size=self.font_type.biggest,
             align=ALIGN_LEFT,
             float=True,
+            float_origin_position=True,
+            padding=0,
+            underline=True,
+            underline_color=SEA_BLUE_COLOR,
+            underline_offset=self.client.context.scaling.scale_int(1),
+            underline_width=self.client.context.scaling.scale_int(1),
         )
-        lab1.translate(fxw(126 / 256), fxh(19.8 / 144))
+        lab1.translate(fxw(119), fxh(8))
+
         # weight
-        _weight = f"{mon_weight} {unit_weight}"
+        _weight = f"{T.translate('weight')}: {mon_weight} {unit_weight}"
         lab2: Any = menu.add.label(
             title=_weight,
             label_id="weight",
-            font_size=self.font_type.small,
+            font_size=self.font_type.biggest,
+            font_name=minimal_font,
             align=ALIGN_LEFT,
             float=True,
+            float_origin_position=True,
+            padding=0,
         )
-        lab2.translate(fxw(158 / 256), fxh(39 / 144))
+        lab2.translate(fxw(119), fxh(32))
         # height
-        _height = f"{mon_height} {unit_height}"
+        _height = f"{T.translate('height')}: {mon_height} {unit_height}"
         lab3: Any = menu.add.label(
             title=_height,
             label_id="height",
-            font_size=self.font_type.small,
+            font_size=self.font_type.biggest,
+            font_name=minimal_font,
             align=ALIGN_LEFT,
             float=True,
+            float_origin_position=True,
+            padding=0,
         )
-        lab3.translate(fxw(126 / 256), fxh(39 / 144))
+        lab3.translate(fxw(119), fxh(39))
         # type
-        path1 = f"gfx/ui/icons/element/{monster.types[0]}_type_small.png"
-        type_image_1 = self._create_image(path1)
-        type_image_1.scale(self.factor, self.factor)
+        if self.is_visible:
+            path1 = f"gfx/ui/icons/element/{monster.types[0]}_type_small.png"
+            type_image_1 = self._create_image(path1)
+            type_image_1.scale(self.factor, self.factor)
+            if len(monster.types) > 1:
+                path2 = f"gfx/ui/icons/element/{monster.types[1]}_type_small.png"
+                type_image_2 = self._create_image(path2)
+                type_image_2.scale(self.factor, self.factor)
+                menu.add.image(
+                    type_image_1, float=True,
+                    float_origin_position=True, padding=0,
+                ).translate(fxw(119), fxh(45))
+                menu.add.image(
+                    type_image_2, float=True,
+                    float_origin_position=True, padding=0,
+                ).translate(fxw(150), fxh(53))
+            else:
+                menu.add.image(
+                    type_image_1, float=True,
+                    float_origin_position=True, padding=0,
+                ).translate(fxw(119), fxh(48))
+
+        menu_type_suffix = T.translate("monster_menu_type_suffix")
+
         if len(monster.types) > 1:
-            path2 = f"gfx/ui/icons/element/{monster.types[1]}_type_small.png"
-            type_image_2 = self._create_image(path2)
-            type_image_2.scale(self.factor, self.factor)
-            menu.add.image(type_image_1, float=True).translate(
-                fxw(11.4 / 256), fxh(47.8 / 144)
+
+            # FIRST TYPE
+            type1_text = self._safe_display(monster.types[0])
+
+            lab5a = menu.add.label(
+                title=f"{type1_text}{menu_type_suffix}",
+                label_id="type_loaded_1",
+                font_size=self.font_type.biggest,
+                font_name=minimal_font,
+                align=ALIGN_LEFT,
+                float=True,
+                float_origin_position=True,
+                padding=0,
             )
-            menu.add.image(type_image_2, float=True).translate(
-                fxw(25.4 / 256), fxh(47.8 / 144)
+
+            lab5a.translate(fxw(132), fxh(48))
+
+            type2_text = self._safe_display(monster.types[1])
+
+            lab5b = menu.add.label(
+                title=f"{type2_text}{menu_type_suffix}",
+                label_id="type_loaded_2",
+                font_size=self.font_type.biggest,
+                font_name=minimal_font,
+                align=ALIGN_LEFT,
+                float=True,
+                float_origin_position=True,
+                padding=0,
             )
+
+            lab5b.translate(fxw(164), fxh(57))
+
         else:
-            menu.add.image(type_image_1, float=True).translate(
-                fxw(11.4 / 256), fxh(47.8 / 144)
-            )
+                # FIRST TYPE
+                type1_text = self._safe_display(monster.types[0])
 
-        # Shift amount for two types
-        type_shift = (15 / 256) if len(monster.types) > 1 else 0
+                lab5a = menu.add.label(
+                    title=f"{type1_text}{menu_type_suffix}",
+                    label_id="type_loaded_1",
+                    font_size=self.font_type.biggest,
+                    font_name=minimal_font,
+                    align=ALIGN_LEFT,
+                    float=True,
+                    float_origin_position=True,
+                    padding=0,
+                )
 
-        types = self._safe_display(types)
-        lab5: Any = menu.add.label(
-            title=types,
-            label_id="type_loaded",
-            font_size=self.font_type.small,
-            align=ALIGN_LEFT,
-            float=True,
-        )
-        lab5.translate(fxw((141.4 / 256) + type_shift), fxh(56 / 144))
+                lab5a.translate(fxw(132), fxh(51))
 
-        _type = T.translate("monster_menu_type")
-        lab4: Any = menu.add.label(
-            title=_type,
-            label_id="type_label",
-            font_size=self.font_type.small,
-            align=ALIGN_LEFT,
-            float=True,
-        )
-        lab4.translate(fxw((141 / 256) + type_shift), fxh(49 / 144))
+
+
         # shape
-        menu_shape = T.translate("monster_menu_shape")
+        menu_shape = T.translate("monster_menu_shape_short")
         _shape = T.translate(monster.shape)
-        shape = f"{menu_shape}: {_shape}"
+        shape = f"{_shape} {menu_shape}"
         lab6: Any = menu.add.label(
             title=shape,
             label_id="shape",
-            font_size=self.font_type.small,
+            font_size=self.font_type.biggest,
             align=ALIGN_LEFT,
+            font_name=thin_font,
             float=True,
+            float_origin_position=True,
+            padding=0,
         )
-        lab6.translate(fxw(126 / 256), fxh(66 / 144))
+        lab6.translate(fxw(119), fxh(66))
         # species
         spec = T.translate(f"cat_{monster.species}")
         spec = self._safe_display(spec)
@@ -151,71 +214,75 @@ class JournalInfoState(PygameMenuState):
         lab7: Any = menu.add.label(
             title=species,
             label_id="species",
-            font_size=self.font_type.small,
+            font_size=self.font_type.biggest,
             align=ALIGN_LEFT,
+            font_name=thin_font,
             float=True,
+            float_origin_position=True,
+            padding=0,
         )
-        lab7.translate(fxw(126 / 256), fxh(29 / 144))
+        lab7.translate(fxw(119), fxh(21))
         # txmn_id
-        _txmn_id = f"ID: {monster.txmn_id}"
+        _txmn_id = f"{monster.txmn_id:03d}"
         lab8: Any = menu.add.label(
             title=_txmn_id,
             label_id="txmn_id",
-            font_size=self.font_type.small,
+            font_size=self.font_type.biggest,
+            font_name=minimal_font,
             align=ALIGN_LEFT,
             float=True,
+            float_origin_position=True,
+            padding=0,
         )
-        lab8.translate(fxw(124.6 / 256), fxh(10 / 144))
+        lab8.translate(fxw(14), fxh(68))
 
         # description
         desc = T.translate(f"{monster.slug}_description")
         desc = self._safe_display(desc)
+        desc_frame = menu.add.frame_v(
+            fxw(255),
+            fxh(57),
+            float=True,
+            float_origin_position=True,
+            frame_id="description_frame",
+            padding=0,
+        )
+        desc_frame._relax=True
+        desc_frame.translate(fxw(8), fxh(85))
         lab9: Any = menu.add.label(
             title=desc,
             label_id="description",
-            font_size=self.font_type.small,
+            font_size=self.font_type.biggest,
             wordwrap=True,
-            leading=35,
+            leading=50,
             align=ALIGN_LEFT,
-            float=True,
+            padding=0,
         )
-
-        lab9.translate(fxw(2 / 256), fxh(82 / 144))
-
-        # evolution
-        evo = self._safe_display(evo)
-        lab10: Any = menu.add.label(
-            title=evo,
-            label_id="evolution",
-            font_size=self.font_type.small,
-            wordwrap=True,
-            align=ALIGN_LEFT,
-            float=True,
-        )
-        lab10.translate(fxw(2 / 256), fxh(109 / 144))
+        desc_frame.pack(lab9)
 
         # evolution monsters
-        if self.is_visible:
-            f = menu.add.frame_h(
-                float=True,
-                width=fxw(243 / 256),
-                height=fxw(7 / 144),
-                frame_id="histories",
-            )
-            f.translate(fxw(5 / 256), fxh(115 / 144))
-            f._relax = True
-            slugs = [ele.monster_slug for ele in monster.evolutions]
-            elements = list(dict.fromkeys(slugs))
-            labels = [
-                menu.add.label(
-                    title=f"{T.translate(ele).upper()}",
-                    align=ALIGN_LEFT,
-                    font_size=self.font_type.smaller,
-                )
-                for ele in elements
-            ]
-            for elements in labels:
-                f.pack(elements)
+        slugs = [ele.monster_slug for ele in monster.evolutions]
+        elements = list(dict.fromkeys(slugs))
+
+        evolution_names = ", ".join(
+            T.translate(ele) for ele in elements
+        )
+
+        evolution_text = f"{evo}: {evolution_names}"
+
+        lab10: Any = menu.add.label(
+            title=self._safe_display(evolution_text),
+            label_id="evolution",
+            font_size=self.font_type.biggest,
+            wordwrap=True,
+            align=ALIGN_LEFT,
+            float=True,
+            float_origin_position=True,
+            padding=0,
+        )
+
+        lab10.translate(fxw(22), fxh(128))
+
         # image
         loader = SpriteLoader()
         sprites = monster.sprites
@@ -234,7 +301,7 @@ class JournalInfoState(PygameMenuState):
         new_image = self._create_image_from_surface(sprite.image)
         image_widget = menu.add.image(image_path=new_image.copy())
         image_widget.set_float(origin_position=True)
-        image_widget.translate(fxw(53.6 / 256), fxh(10 / 144))
+        image_widget.translate(fxw(45), fxh(6))
 
     def __init__(
         self,
@@ -260,6 +327,7 @@ class JournalInfoState(PygameMenuState):
         super().__init__(client=client, height=height, width=width, **kwargs)
 
         theme = self._setup_theme(BG_JOURNAL_INFO)
+        theme.widget_font_shadow = False
         theme.scrollarea_position = POSITION_EAST
         theme.widget_alignment = ALIGN_CENTER
         self._menu_config["theme"] = theme
@@ -280,9 +348,9 @@ class JournalInfoState(PygameMenuState):
             key=lambda x: x.txmn_id,
         )
 
-        # LEFT / RIGHT → cycle monsters (with repeat)
+        # LEFT / RIGHT / DOWN → cycle monsters (with repeat)
         if (
-            event.button in (buttons.RIGHT, buttons.LEFT)
+            event.button in (buttons.RIGHT, buttons.LEFT, buttons.DOWN, buttons.UP)
             and self.valid_press(event)
             and self.source in ("JournalInfoState", "JournalState")
         ):
@@ -292,7 +360,7 @@ class JournalInfoState(PygameMenuState):
             current_monster_index = monster_models.index(self._monster)
             new_index = (
                 (current_monster_index + 1) % len(monster_models)
-                if event.button == buttons.RIGHT
+                if event.button in (buttons.RIGHT, buttons.DOWN)
                 else (current_monster_index - 1) % len(monster_models)
             )
 

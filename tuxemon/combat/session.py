@@ -305,10 +305,10 @@ class CombatSession:
     def get_start_message(self) -> str:
         """Determines and returns the appropriate alert message for combat start."""
         if self.combat_type is CombatType.TRAINER:
-            params = {"name": self.right_player.name.upper()}
+            params = {"name": self.right_player.name}
             return T.format("combat_trainer_appeared", params)
         elif self.combat_type is CombatType.MONSTER:
-            params = {"name": self.right_player.monsters[0].name.upper()}
+            params = {"name": self.right_player.monsters[0].name}
             return T.format("combat_wild_appeared", params)
         elif self.combat_type is CombatType.HORDE:
             horde = self.right_player.party.party_size
@@ -318,9 +318,9 @@ class CombatSession:
 
     def get_message_swap(self, character: NPC, monster: Monster) -> str:
         """Determines and returns the appropriate alert message for combat start."""
-        params = {"target": monster.name.upper()}
+        params = {"target": monster.name}
         if self.combat_type in (CombatType.TRAINER, CombatType.MONSTER):
-            params["user"] = character.name.upper()
+            params["user"] = character.name
             return T.format("combat_swap", params)
         elif self.combat_type is CombatType.HORDE:
             return T.format("combat_horde_swap", params)

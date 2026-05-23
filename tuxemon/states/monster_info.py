@@ -424,6 +424,7 @@ class MonsterInfoState(PygameMenuState):
     ) -> None:
         MonsterModel.load_cache(db)
         self.monster_cache = MonsterModel.get_cache()
+        TasteModel.load_cache(db)
         self.taste_cache = TasteModel.get_cache()
 
         width, height = client.context.resolution

@@ -510,6 +510,5 @@
     <property name="cond2" value="not tracker player,dragonscave"/>
    </properties>
   </object>
-</objectgroup>
  </objectgroup>
 </map>

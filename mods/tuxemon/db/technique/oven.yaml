@@ -39,7 +39,7 @@ use_failure: oven_fail
 use_success: oven_success
 use_tech: combat_used_x
 visuals:
-  animation: null
+  animation: firelion_back
   flip_axes: ''
   loop: 0
 sound:

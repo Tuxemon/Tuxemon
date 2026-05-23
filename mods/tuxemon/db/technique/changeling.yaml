@@ -1,6 +1,10 @@
 tech_id: 183
 accuracy: 1
 effects:
+- type: switch
+  parameters:
+  - own_monster
+  - cosmic
 - type: give
   parameters:
   - recover
@@ -30,7 +34,7 @@ use_failure: combat_miss
 use_success: null
 use_tech: combat_used_x
 visuals:
-  animation: amethyst
+  animation: null
   flip_axes: ''
   loop: 0
 sound:

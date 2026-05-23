@@ -1137,3 +1137,21 @@
   frame_x: 64
   frame_y: 64
   duration: 0.1
+
+- file: technique
+  slug: starfall
+  frame_x: 64
+  frame_y: 64
+  duration: 0.1
+
+- file: technique
+  slug: purple_explosion
+  frame_x: 96
+  frame_y: 96
+  duration: 0.1
+
+- file: technique
+  slug: fire_charge
+  frame_x: 64
+  frame_y: 64
+  duration: 0.1

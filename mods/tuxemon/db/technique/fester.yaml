@@ -4,11 +4,7 @@ effects:
 - type: give
   parameters:
   - festering
-  - own_monster
-- type: give
-  parameters:
-  - festering
-  - enemy_monster
+  - own_team:enemy_team
 - type: damage
 speed: normal
 potency: 0.8

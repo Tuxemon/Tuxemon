@@ -34,38 +34,6 @@ _NOMINAL_H = 144
 # The menu title bar shifts float widget y positions down; compensate here.
 _TITLE_OFFSET_Y = 10
 
-# Spatial navigation table: key -> direction -> destination key (None = no move)
-_NAV: dict[str, dict[str, str | None]] = {
-    "leather_town": {"down": "citypark",    "left": "routed",      "right": "citypark",   "up": "route3"},
-    "cotton_town":  {"down": "route1",      "left": "route1",      "right": "route2",     "up": "route2"},
-    "paper_town":   {"down": "routec",      "left": "routec",      "right": "route1",     "up": "route1"},
-    "candy_town":   {"down": "routec",      "left": "route6",      "right": "routec",     "up": "route6"},
-    "timber_town":  {"down": "tunnel",      "left": "route5",      "right": "routee",     "up": "route5"},
-    "flower_city":  {"down": "routed",      "left": "route5",      "right": "route4",     "up": "mansion"},
-    "routec":       {"down": "dragonscave", "left": "candy_town",  "right": "paper_town", "up": "paper_town"},
-    "route1":       {"down": "paper_town",  "left": "paper_town",  "right": "cotton_town","up": "cotton_town"},
-    "dryadsgrove":  {"down": "cotton_town", "left": None,          "right": "cotton_town","up": "leather_town"},
-    "route2":       {"down": "cotton_town", "left": "cotton_town", "right": "citypark",   "up": "citypark"},
-    "citypark":     {"down": "route2",      "left": "leather_town","right": None,         "up": "leather_town"},
-    "mansion":      {"down": "flower_city", "left": "flower_city", "right": "flower_city","up": None},
-    "route3":       {"down": "leather_town","left": "route4",      "right": "leather_town","up": "route4"},
-    "route4":       {"down": None,          "left": "flower_city", "right": "route3",     "up": "flower_city"},
-    "route5":       {"down": "timber_town", "left": "timber_town", "right": "timber_town", "up": "leather_town"},
-    "tunnel":       {"down": "route6",      "left": "timber_town", "right": "route6",     "up": "timber_town"},
-    "route6":       {"down": "candy_town",  "left": "tunnel",      "right": "candy_town", "up": "tunnel"},
-    "routee":       {"down": "tunnel",      "left": "tunnel",      "right": None,         "up": "timber_town"},
-    "dragonscave":  {"down": None,          "left": "routec",      "right": "routec",     "up": "routec"},
-    "routed":       {"down": "leather_town","left": "flower_city", "right": "leather_town","up": "flower_city"},
-}
-
-# Core locations are always navigable; non-core require a tracker visit.
-_CORE: frozenset[str] = frozenset({
-    "leather_town", "cotton_town", "paper_town",
-    "candy_town",   "timber_town", "flower_city",
-    "route1", "route2", "route3", "route4", "route5", "route6",
-    "tunnel", "citypark",
-})
-
 _DIR_BUTTON = {
     buttons.UP:    "up",
     buttons.DOWN:  "down",
@@ -79,7 +47,8 @@ class NuPhoneMapConfig:
     map_path: str
     map_data: list[tuple[int, int, str]]
     map_groups: dict[str, list[str]] = field(default_factory=dict)
-
+    core: frozenset[str] = field(default_factory=frozenset)
+    nav: dict[str, dict[str, str | None]] = field(default_factory=dict)
 
 class Loader:
     _config_nuphone_map: NuPhoneMapConfig | None = None
@@ -99,11 +68,15 @@ class Loader:
 
             map_data = [(int(item[0]), int(item[1]), item[2]) for item in map_data]
             map_groups = raw_data.get("map_groups") or {}
+            core = frozenset(raw_data.get("core") or [])
+            nav = raw_data.get("nav") or {}
 
             cls._config_nuphone_map = NuPhoneMapConfig(
                 map_path=map_path,
                 map_data=map_data,
                 map_groups=map_groups,
+                core=core,
+                nav=nav,
             )
         return cls._config_nuphone_map
 
@@ -130,7 +103,7 @@ class NuPhoneMap(PygameMenuState):
     Pins for unvisited locations display as "???"; visited ones show their
     real name in the bottom-right corner when the cursor is on them.
     The player icon marks the player's current location.
-    Directional navigation follows the spatial table in _NAV.
+    Directional navigation follows the spatial table in the YAML nav data.
 
     If there are no trackers (locations), then it'll be not possible to consult
     the app. It'll appear a pop up with: "GPS tracker not updating."
@@ -165,7 +138,7 @@ class NuPhoneMap(PygameMenuState):
 
         for x, y, key in data.map_data:
             is_here = current_location == key
-            is_selectable = key in _CORE or key in known
+            is_selectable = key in data.core or key in known
             display_name = T.translate(key) if key in known else "???"
 
             if is_here:
@@ -243,7 +216,7 @@ class NuPhoneMap(PygameMenuState):
         if current_key is None:
             return super().process_event(event)
 
-        nav = _NAV.get(current_key, {})
+        nav = data.nav.get(current_key, {})
         target_key = nav.get(direction)
         if target_key is None:
             return None  # consume event, no move

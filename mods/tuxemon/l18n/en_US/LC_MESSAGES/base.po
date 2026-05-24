@@ -1702,6 +1702,9 @@ msgstr " "
 msgid "combat_miss"
 msgstr "It missed..."
 
+msgid "combat_splash_partial"
+msgstr "A partial hit! Reduced damage was dealt."
+
 msgid "spyderbite_miss"
 msgstr "And the technique was lost."
 

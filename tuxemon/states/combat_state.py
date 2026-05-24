@@ -348,6 +348,7 @@ class CombatState(CombatAnimations):
         if not self.combat_session.action_queue.is_empty():
             action = self.combat_session.action_queue.pop()
             self.perform_action(action.user, action.method, action.target)
+            self.combat_session.action_queue.sort()
             self.task(self.check_party_hp, interval=1)
             self.task(self.animate_party_status, interval=3)
             self.notifier.trigger_xp_and_wait_for_input(self.text_area)
@@ -952,7 +953,6 @@ class CombatState(CombatAnimations):
             monster_party
         ) in self.combat_session.field_monsters.get_all_monsters().values():
             for monster in monster_party:
-                monster.get_combat_stats()
                 self.animate_hp(monster)
                 self.apply_status_effects(monster)
                 if monster.is_fainted:
@@ -1209,9 +1209,7 @@ class CombatState(CombatAnimations):
         owner = monster.get_owner()
         track = get_battle_outcome_music(self.session, env, owner)
         if track:
-            music_name, volume = track
-            self.client.current_music.play(music_name)
-            self.client.current_music.set_volume(volume)
+            self.client.current_music.play(track)
 
     def _on_play_animation_combat(
         self,

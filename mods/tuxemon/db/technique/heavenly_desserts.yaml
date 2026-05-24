@@ -1,11 +1,11 @@
 tech_id: 233
 accuracy: 0.9
 effects:
+- type: damage
 - type: give
   parameters:
   - recover
   - own_monster
-- type: damage
 speed: normal
 potency: 1.0
 power: 3.0

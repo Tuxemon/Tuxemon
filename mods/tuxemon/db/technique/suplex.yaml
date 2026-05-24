@@ -1,6 +1,7 @@
 tech_id: 184
 accuracy: 0.95
 effects:
+- type: damage
 - type: give
   parameters:
   - diehard
@@ -9,7 +10,6 @@ effects:
   parameters:
   - exhausted
   - enemy_monster
-- type: damage
 speed: fast
 potency: 0.5
 power: 2

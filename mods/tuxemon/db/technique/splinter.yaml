@@ -1,11 +1,11 @@
 tech_id: 41
 accuracy: 0.8
 effects:
+- type: damage
 - type: give
   parameters:
   - blinded
   - enemy_monster
-- type: damage
 speed: normal
 potency: 0.2
 power: 1.25

@@ -606,11 +606,13 @@ class Monster:
             self._levelup_start_level = old_level
 
         self.experience_handler.set_level(new_level)
+        old_max_hp = self.hp
         self.set_stats()
 
         if new_level > old_level:
             self._levelup_end_stats = self.base_stats.copy()
             self._levelup_end_level = new_level
+            self.current_hp += self.hp - old_max_hp
 
         level_delta = new_level - old_level
 

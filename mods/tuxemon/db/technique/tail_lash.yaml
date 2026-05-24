@@ -1,11 +1,11 @@
 tech_id: 201
 accuracy: 1
 effects:
+- type: damage
 - type: give
   parameters:
   - flinching
   - enemy_monster
-- type: damage
 speed: normal
 potency: 0.2
 power: 1.2

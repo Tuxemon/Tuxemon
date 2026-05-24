@@ -1,6 +1,7 @@
 tech_id: 230
 accuracy: 0.7
 effects:
+- type: damage
 - type: give
   parameters:
   - revenge
@@ -9,7 +10,6 @@ effects:
   parameters:
   - poison
   - enemy_monster
-- type: damage
 speed: normal
 potency: 1.0
 power: 2.0

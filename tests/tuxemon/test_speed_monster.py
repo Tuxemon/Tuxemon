@@ -14,9 +14,9 @@ from tuxemon.technique.technique import Technique
 @pytest.fixture
 def make_monster():
     def _make(speed, dodge):
+        from tuxemon.monster.stats import BasicStats
         m = MagicMock(spec=Monster)
-        m.speed = speed
-        m.dodge = dodge
+        m.get_combat_stats.return_value = BasicStats(speed=int(speed), dodge=int(dodge))
         return m
 
     return _make
@@ -87,12 +87,12 @@ def test_speed_modifier_bounds(
 
     if speed >= 0 and dodge >= 0 and tech_speed >= 0:
         max_expected = (
-            monster.speed
+            speed
             * (
                 combat_config.base_speed_bonus
                 + technique.speed * combat_config.speed_factor
             )
-            + monster.dodge * combat_config.dodge_modifier
+            + dodge * combat_config.dodge_modifier
             + combat_config.speed_offset
         )
         assert max(results) <= max_expected, (
@@ -195,23 +195,23 @@ def test_fast_vs_normal_technique(
     assert sum(r_fast) / len(r_fast) > sum(r_norm) / len(r_norm)
 
 
-def test_random_offset_with_large_speed_offset(
-    monster=MagicMock(spec=Monster), technique=MagicMock(spec=Technique)
-):
-    monster.speed = 10.0
-    monster.dodge = 0.0
-    technique.speed = 1
+def test_random_offset_with_large_speed_offset(make_monster, make_technique):
+    from tuxemon.monster.stats import BasicStats
+
+    monster = MagicMock(spec=Monster)
+    monster.get_combat_stats.return_value = BasicStats(speed=10, dodge=0)
+    technique = make_technique(1)
     config_combat.speed_offset = 1000
     results = run_speed(monster, technique, n=1000)
     assert all(r >= 1 for r in results)
 
 
-def test_min_speed_modifier_reset(
-    monster=MagicMock(spec=Monster), technique=MagicMock(spec=Technique)
-):
-    monster.speed = 0
-    monster.dodge = 0
-    technique.speed = 0
+def test_min_speed_modifier_reset(make_monster, make_technique):
+    from tuxemon.monster.stats import BasicStats
+
+    monster = MagicMock(spec=Monster)
+    monster.get_combat_stats.return_value = BasicStats(speed=0, dodge=0)
+    technique = make_technique(0)
     config_combat.min_speed_modifier = 0
     result = speed_monster(monster, technique)
     assert result >= 1

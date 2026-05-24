@@ -1,6 +1,7 @@
 tech_id: 100
 accuracy: 0.85
 effects:
+- type: damage
 - type: give
   parameters:
   - slow
@@ -9,7 +10,6 @@ effects:
   parameters:
   - confused
   - enemy_monster
-- type: damage
 speed: slow
 potency: 0.8
 power: 2.2

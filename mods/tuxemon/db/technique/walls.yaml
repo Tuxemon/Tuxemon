@@ -1,11 +1,11 @@
 tech_id: 156
 accuracy: 0.8
 effects:
+- type: damage
 - type: give
   parameters:
   - hardshell
   - own_monster
-- type: damage
 speed: normal
 potency: 1.0
 power: 1

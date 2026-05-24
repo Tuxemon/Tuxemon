@@ -9,6 +9,7 @@ from tuxemon.db import Acquisition, EvolutionStage
 from tuxemon.element import ElementTypesHandler
 from tuxemon.event import get_event_bus
 from tuxemon.monster.monster import Monster, decode_monsters, encode_monsters
+from tuxemon.monster.stats import IndividualValues
 from tuxemon.taste import Taste
 
 if TYPE_CHECKING:
@@ -45,6 +46,7 @@ class Daycare:
         self.last_training_exp: int = 0
         self.last_training_cost: int = 0
         self.training_initialized: bool = False
+        self._pending_exp: float = 0.0  # fractional EXP accumulator
 
     @property
     def is_empty(self) -> bool:
@@ -106,6 +108,7 @@ class Daycare:
         self.last_training_exp = 0
         self.last_training_cost = 0
         self.training_initialized = True
+        self._pending_exp = 0.0
 
         return True
 
@@ -118,6 +121,7 @@ class Daycare:
         self.ready_notified = False
         self.training_steps_start = None
         self.training_initialized = False
+        self._pending_exp = 0.0
 
         for m in withdrawn:
             self.owner.party.add_monster(m)
@@ -128,18 +132,9 @@ class Daycare:
         """
         Basic eligibility to be stored in daycare.
 
-        - Must be at least evolved rank > 1
-        - Gender compatibility is NOT enforced here so that
-          incompatible pairs can still be trained together.
+        Gender compatibility is NOT enforced here so that
+        incompatible pairs can still be trained together.
         """
-        if monster.evolution_rank() <= 1:
-            return False
-
-        # first parent always allowed if evolved
-        if not self.parents:
-            return True
-
-        # second parent: only evolution rank check
         return True
 
     def _gender_pair_ok(self, a: Monster, b: Monster) -> bool:
@@ -147,6 +142,8 @@ class Daycare:
             a.gender != b.gender
             and a.gender in ("male", "female")
             and b.gender in ("male", "female")
+            and a.evolution_rank() > 1
+            and b.evolution_rank() > 1
         )
 
     def on_steps(self, steps: float) -> None:
@@ -154,16 +151,24 @@ class Daycare:
         if len(self.parents) == 1 or (
             len(self.parents) == 2 and not self._gender_pair_ok(*self.parents)
         ):
-            gained_exp = int(steps * self.training_exp_rate)
-            gained_cost = int(gained_exp * self.training_cost_rate)
+            # Accumulate fractional EXP so sub-1 rates (e.g. 0.25/step) work
+            # correctly rather than being truncated to 0 on every step.
+            self._pending_exp += steps * self.training_exp_rate
+            gained_exp = int(self._pending_exp)
 
             if gained_exp <= 0:
                 return
 
+            self._pending_exp -= gained_exp
+            gained_cost = int(gained_exp * self.training_cost_rate)
+
+
             # Check funds BEFORE applying EXP
             money = self.owner.money_controller.money_manager.get_money()
             if gained_cost > money:
-                # Not enough money → training blocked
+                # Not enough money → training blocked; keep pending EXP for
+                # the next step so we retry as soon as funds are available.
+                self._pending_exp += gained_exp
                 return
 
             # Deduct money
@@ -247,12 +252,23 @@ class Daycare:
         child.birthdate = self.owner.session.time.get_month_day()
         child.set_acquisition(Acquisition.BRED)
 
-        # Inherit a random move from father
-        father_moves = father.moves.get_moves()
-        if father_moves:
-            random_move = random.choice(father_moves)
-            replace_index = random.randrange(0, 2)
-            child.moves.replace_move(replace_index, random_move)
+        # Inherit IVs: take the higher value from either parent per stat
+        inherited_ivs = IndividualValues(
+            **{
+                stat: max(
+                    getattr(mother.individual_values, stat),
+                    getattr(father.individual_values, stat),
+                )
+                for stat in IndividualValues.names()
+            }
+        )
+        child.individual_values = inherited_ivs
+
+        # Inherit a random move from the non-seed parent
+        other_moves = other.moves.get_moves()
+        if other_moves:
+            random_move = random.choice(other_moves)
+            child.moves.add_move(random_move)
 
         # Inherit tastes
         warm, cold = self._determine_tastes(mother, father)
@@ -263,8 +279,6 @@ class Daycare:
         child.mother_iid = mother.instance_id
         child.father_iid = father.instance_id
 
-        # Reset breeding progress but keep training accounting separate
-        self.parents.clear()
         self.progress_steps = 0
         self.halfway_notified = False
         self.ready_notified = False
@@ -385,6 +399,7 @@ class Daycare:
             "last_training_exp": self.last_training_exp,
             "last_training_cost": self.last_training_cost,
             "training_initialized": self.training_initialized,
+            "pending_exp": self._pending_exp,
         }
 
     def load_state(self, data: dict[str, Any]) -> None:
@@ -400,3 +415,4 @@ class Daycare:
         self.last_training_exp = data.get("last_training_exp", 0)
         self.last_training_cost = data.get("last_training_cost", 0)
         self.training_initialized = data.get("training_initialized", False)
+        self._pending_exp = data.get("pending_exp", 0.0)

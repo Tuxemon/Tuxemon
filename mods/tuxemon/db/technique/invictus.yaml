@@ -1,6 +1,7 @@
 tech_id: 63
 accuracy: 0.75
 effects:
+- type: damage
 - type: give
   parameters:
   - enraged
@@ -9,7 +10,6 @@ effects:
   parameters:
   - grabbed
   - enemy_monster
-- type: damage
 speed: slow
 potency: 1
 power: 1.25

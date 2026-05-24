@@ -95,54 +95,73 @@ def simple_damage_calculate(
     user_combat_stats = user.get_combat_stats()
     target_combat_stats = target.get_combat_stats()
 
+    logger.debug(
+        f"--- Damage calculation: {user.name} uses {technique.name} on {target.name} ---"
+    )
+
     user_strength: float = 0
     user_stat = range_map_entry.user_stat
     if user_stat.stat == "level":
+        raw_user_stat = user.level
         user_strength += (COEFF_DAMAGE + user.level) * user_stat.weight
     else:
+        raw_user_stat = getattr(user_combat_stats, user_stat.stat, 0)
         user_strength += (
-            getattr(user_combat_stats, user_stat.stat, 0)
-            * (COEFF_DAMAGE + user.level)
-            * user_stat.weight
+            raw_user_stat * (COEFF_DAMAGE + user.level) * user_stat.weight
         )
-    logger.debug(f"User strength: {user_strength}")
+    logger.debug(
+        f"  User: {user.name} Lv{user.level} | {user_stat.stat}={raw_user_stat} "
+        f"| user_strength = ({COEFF_DAMAGE}+{user.level}) * {raw_user_stat} * {user_stat.weight} = {user_strength}"
+    )
 
     target_resist: float = 0
     target_stat = range_map_entry.target_stat
     if target_stat.stat == "resist":
+        raw_target_stat = 1
         target_resist += 1 * target_stat.weight
     else:
-        target_resist += (
-            getattr(target_combat_stats, target_stat.stat, 0) * target_stat.weight
-        )
-    logger.debug(f"Target resistance: {target_resist}")
+        raw_target_stat = getattr(target_combat_stats, target_stat.stat, 0)
+        target_resist += raw_target_stat * target_stat.weight
+    logger.debug(
+        f"  Target: {target.name} | {target_stat.stat}={raw_target_stat} "
+        f"| target_resist = {raw_target_stat} * {target_stat.weight} = {target_resist}"
+    )
 
     target_resist = max(1, target_resist)
-    logger.debug(
-        f"Target resistance (after preventing division by zero): {target_resist}"
-    )
+    logger.debug(f"  target_resist (floor 1): {target_resist}")
 
     mult = simple_damage_multiplier(
         (technique.types.current), (target.types.current), additional_factors
     )
-    logger.debug(f"Damage multiplier: {mult}")
+    logger.debug(
+        f"  Types: {[t.slug for t in technique.types.current]} vs "
+        f"{[t.slug for t in target.types.current]} | multiplier={mult}"
+    )
 
     move_strength = technique.power * mult
-    logger.debug(f"Move strength: {move_strength}")
+    logger.debug(
+        f"  move_strength = power({technique.power}) * mult({mult}) = {move_strength}"
+    )
 
     damage = int(user_strength * move_strength / target_resist)
-    logger.debug(f"Final damage: {damage}")
+    logger.debug(
+        f"  damage = int({user_strength} * {move_strength} / {target_resist}) = {damage}"
+    )
+
     user_statuses = [s.slug for s in user.status.get_statuses()]
     target_statuses = [s.slug for s in target.status.get_statuses()]
+
     status_part = ""
     if user_statuses:
         status_part += f" user_status={user_statuses}"
     if target_statuses:
         status_part += f" target_status={target_statuses}"
+
     logger.info(
-        f"[COMBAT] {user.name} Lv{user.level} -[{technique.name}]-> {target.name}"
-        f" | range={technique.range} power={technique.power} mult={mult:.2f}"
-        f" user_str={user_strength} target_res={target_resist}{status_part} => {damage} dmg"
+        f"[COMBAT] {user.name} Lv{user.level} -[{technique.name}]-> {target.name} | "
+        f"range={technique.range} power={technique.power} mult={mult:.2f} "
+        f"user_str={user_strength:.1f} target_res={target_resist:.1f}"
+        f"{status_part} => {damage} dmg"
     )
     return damage, mult
 

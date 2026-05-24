@@ -1209,9 +1209,7 @@ class CombatState(CombatAnimations):
         owner = monster.get_owner()
         track = get_battle_outcome_music(self.session, env, owner)
         if track:
-            music_name, volume = track
-            self.client.current_music.play(music_name)
-            self.client.current_music.set_volume(volume)
+            self.client.current_music.play(track)
 
     def _on_play_animation_combat(
         self,

@@ -176,7 +176,13 @@ class ActionQueue:
             for action in self._action_queue
         }
 
-        self._action_queue.sort(key=lambda a: key_cache[id(a)], reverse=True)
+        self._action_queue.sort(
+            key=lambda a: (
+                -key_cache[id(a)].primary_order,
+                key_cache[id(a)].speed,
+                key_cache[id(a)].tie_breaker,
+            )
+        )
 
         # Tie-breaker logging
         for a, b in zip(self._action_queue, self._action_queue[1:]):

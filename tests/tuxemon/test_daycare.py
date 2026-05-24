@@ -7,6 +7,7 @@ from unittest.mock import MagicMock, patch
 import pytest
 
 from tuxemon.entity.daycare import Daycare
+from tuxemon.monster.stats import IndividualValues
 
 
 def make_monster(
@@ -36,6 +37,7 @@ def make_monster(
     m.evolution_rank.return_value = evolution_rank
     m.moves.get_moves.return_value = moves or []
     m.instance_id = f"iid_{name}_{gender}"
+    m.individual_values = IndividualValues()
 
     base_stats_mock = MagicMock()
     base_stats_mock.sum.return_value = base_stats_sum
@@ -102,17 +104,17 @@ def father():
 
 class TestAddParent:
     @pytest.mark.parametrize(
-        "rank,expected",
+        "rank",
         [
-            pytest.param(2, True, id="rank_2_accepted"),
-            pytest.param(3, True, id="rank_3_accepted"),
-            pytest.param(1, False, id="rank_1_rejected"),
-            pytest.param(0, False, id="rank_0_rejected"),
+            pytest.param(0, id="rank_0_accepted"),
+            pytest.param(1, id="rank_1_accepted"),
+            pytest.param(2, id="rank_2_accepted"),
+            pytest.param(3, id="rank_3_accepted"),
         ],
     )
-    def test_evolution_rank_gate(self, daycare, rank, expected):
+    def test_any_rank_accepted_for_training(self, daycare, rank):
         m = make_monster(evolution_rank=rank)
-        assert daycare.add_parent(m) == expected
+        assert daycare.add_parent(m) is True
 
     def test_first_slot_accepted(self, daycare, mother):
         assert daycare.add_parent(mother) is True
@@ -232,20 +234,18 @@ class TestWithdrawParents:
 
 
 class TestCompatible:
-    def test_rank_1_incompatible(self, daycare):
-        m = make_monster(evolution_rank=1)
-        assert daycare._compatible(m) is False
-
-    def test_rank_2_compatible(self, daycare):
-        m = make_monster(evolution_rank=2)
+    @pytest.mark.parametrize(
+        "rank",
+        [
+            pytest.param(0, id="rank_0"),
+            pytest.param(1, id="rank_1"),
+            pytest.param(2, id="rank_2"),
+            pytest.param(3, id="rank_3"),
+        ],
+    )
+    def test_any_rank_compatible(self, daycare, rank):
+        m = make_monster(evolution_rank=rank)
         assert daycare._compatible(m) is True
-
-    def test_second_monster_always_compatible_if_evolved(
-        self, daycare, mother
-    ):
-        daycare.add_parent(mother)
-        m2 = make_monster(gender="male", evolution_rank=2)
-        assert daycare._compatible(m2) is True
 
 
 class TestGenderPairOk:
@@ -265,6 +265,21 @@ class TestGenderPairOk:
         a = make_monster(gender=g1)
         b = make_monster(gender=g2)
         assert daycare._gender_pair_ok(a, b) == expected
+
+    def test_unevolved_pair_cannot_breed(self, daycare):
+        a = make_monster(gender="female", evolution_rank=1)
+        b = make_monster(gender="male", evolution_rank=1)
+        assert daycare._gender_pair_ok(a, b) is False
+
+    def test_one_unevolved_cannot_breed(self, daycare):
+        a = make_monster(gender="female", evolution_rank=2)
+        b = make_monster(gender="male", evolution_rank=1)
+        assert daycare._gender_pair_ok(a, b) is False
+
+    def test_both_evolved_can_breed(self, daycare):
+        a = make_monster(gender="female", evolution_rank=2)
+        b = make_monster(gender="male", evolution_rank=2)
+        assert daycare._gender_pair_ok(a, b) is True
 
 
 class TestOnSteps:
@@ -413,6 +428,12 @@ class TestOnSteps:
 
 
 class TestProduceEgg:
+    @pytest.fixture
+    def mother(self):
+        # Higher evolution rank ensures mother is always the seed, so father
+        # is always the "other" parent whose moves are inherited.
+        return make_monster(gender="female", name="Mom", evolution_rank=3)
+
     @pytest.fixture(autouse=True)
     def patch_spawn(self):
         self._egg = MagicMock()
@@ -439,11 +460,19 @@ class TestProduceEgg:
         egg = dc.produce_newborn()
         assert egg is self._egg
 
-    def test_parents_cleared_after_egg(self, owner, mother, father):
+    def test_parents_remain_after_newborn(self, owner, mother, father):
         owner.session = MagicMock()
         dc = self._ready_daycare(owner, mother, father)
         dc.produce_newborn()
-        assert dc.parents == []
+        assert len(dc.parents) == 2
+
+    def test_parents_not_returned_to_party_after_newborn(
+        self, owner, mother, father
+    ):
+        owner.session = MagicMock()
+        dc = self._ready_daycare(owner, mother, father)
+        dc.produce_newborn()
+        owner.party.add_monster.assert_not_called()
 
     def test_progress_reset_after_egg(self, owner, mother, father):
         owner.session = MagicMock()
@@ -470,14 +499,14 @@ class TestProduceEgg:
         father.moves.get_moves.return_value = [mock_move]
         dc = self._ready_daycare(owner, mother, father)
         dc.produce_newborn()
-        self._egg.moves.replace_move.assert_called_once()
+        self._egg.moves.add_move.assert_called_once_with(mock_move)
 
     def test_no_move_inherited_if_father_has_none(self, owner, mother, father):
         owner.session = MagicMock()
         father.moves.get_moves.return_value = []
         dc = self._ready_daycare(owner, mother, father)
         dc.produce_newborn()
-        self._egg.moves.replace_move.assert_not_called()
+        self._egg.moves.add_move.assert_not_called()
 
 
 class TestDetermineSeed:

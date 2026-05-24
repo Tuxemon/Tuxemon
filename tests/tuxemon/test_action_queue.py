@@ -192,8 +192,8 @@ def test_sort_by_speed(queue):
     queue.enqueue(a_slow, 1)
     queue.enqueue(a_fast, 1)
     queue.sort()
-    assert queue.queue[0] == a_fast
-    assert queue.queue[1] == a_slow
+    assert queue.queue[-1] == a_fast
+    assert queue.queue[0] == a_slow
 
 
 def test_meta_ignores_speed(queue):
@@ -229,4 +229,4 @@ def test_pending_moves_then_sorts(queue, monster, monster2, technique):
     queue.enqueue(a_fast, 2)
     queue.from_pending_to_action(2)
     queue.sort()
-    assert queue.queue[0] == a_fast
+    assert queue.queue[-1] == a_fast

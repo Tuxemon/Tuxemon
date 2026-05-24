@@ -27,7 +27,7 @@
  </layer>
  <layer id="3" name="Tile Layer 3" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHV1ckyA0Ecx/F2sVfZDpQD3oByVMp2IG+BM0koYjuoXDyDSOxl3x5DRBIO9u0JuBJ7+U7RZUzNX0SlIv5VH53p6e75TWcylLKvmlylam1U06fLboxxvi9HqX6Bh/6CcqUKUYRilECqOcbPw9pK4xuLpDOf/T7Wk8rPuQbyNKIJzWiB9fr6WFonkX53mfK64EQ3uiDNN/I5yeOCGz3ohVQ6p7WVxtv1+8uUCmASU5iGVEa+SfJMYRozmIX1+vpYWsfoH2eeDxPwIwBrGd93iDy7CCOCKAZNz6l1Tph1IohiD/uQSufUrR7nyFNqm3lB7CCEXfy0Rr/J98g6T3jGC17xm7pl3h1iuMcDfvL7+M21pDnWfZPGpUN/XWY6pPiawbx/Ot9YCnPq60utOa3OV0++Ed5hwxjCIAbggXm8/rxVqryb2MA61qDPJbM151vgHbGIJSxjBauwqyvyXOIC5ziD3Ti7PmnfdP8278sgjDLnOyDLIY5wjBOcosHy/y2L43z2NQ/Guy+HNlvY5/erJPb3mmw3H/na+V470Jmmz98dtxbDfWK3mLLRFRlKVaIKqSr9nEmtOcdf5DNfP97nVvatDY4E9k+672T1x8v8388na5+kdd4AQu+w+w==
+   eAHV1ckyA0Ecx/F2QUQV4UA54A0oR6USHMhb4EwsZXdQuXgGkdjLvj0GYj3YtyfgSuzlO0WXMTX/LCoV8a/66ExPd89vOpOhlH1V5ihVZaOCPl12Y4zz3Q6legS99OeVKJUPFwpQCKlmGD8LayuN97ikM9/9AdaTKsg5N3k8qEUd6mG9vj6W1kmkv6NY+dvhQxtaIc038vnI044OdKILUumc1lYab9cfLFYqhHFMIFoZ+cbJM4FJTGEa1uvr42hrjTIvgDEEEYK1jO87TKYd7GIP++g3PafWObuss4d9HOAQUumcutXjvE6lNpm3hW2EsYN4azhKvmfWecEr3vCO39Q98x4QwSOeEM/v4zfXkuZY900alw791ZnpkOJnBvP+6XwjKcypry+15rQ6Xw35hniHDWIA/ehDL8zj9eeNIuVfxxpWsQJ9LpmtOd8c74h5LGARS1iGXd2Q5xpXuMQF7MbZ9Un7pvs3eV9uwShzviOyHOMEpzjDOdyW/29ZHOeyr04Y7z4Hbbawz59XSezvLdnuvvI18b02oyVNn78Hbi2Cx8RuMWWjSzOUKkM5UlX6OZNac46/yGe+fqzPDexbI7wJ7J9038nqj5X5v59P1j5J63wA8IewRQ==
   </data>
  </layer>
  <layer id="4" name="Tile Layer 4" width="40" height="20">
@@ -37,7 +37,7 @@
  </layer>
  <layer id="5" name="Above Player" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHt1LsSwUAUxvHTistQMRp5AD1JaF1fBNEr3Hq8BB3egVfzL02sKreTmf1mfpPZLTZnvmRWJPl0neTPNJ3otEXKqKCKGkzptUT68OAjQBbxmMdHgAGG0JQF8yyxQog1onEb0Z1irDf8g6/Srzd7aaaofaXZSZ5nX/neN/x75jlbnHePuMPGmGCKGeYwZdsU2WGPA47QkFNd5IwLtKTzdd/dmeuBp6L5tPRk57AN2AZsA3Eb+ADPUBr/
+   eAHt1DkKwlAUheHbGge0Umx0AfZm0NZxI069RRx6dQ2CduoedGv+pSTPIJiEW7wDH4EX8nI5GUTST8dJf0/Tjk5TpIgSyqjAlG5DxIUHHwHyiMc8PgL00IemzJhnjgWWWCGadi26InLOqb/4nX9fWfMOPgtxL9ayjKmvLO9n905u4MLzvuLbMflqvWcHfINDjDDGBFOYEtZFNthihz005FAVOeIELWl9/O9uzHXHQ9F8Wnqyc9gGbAO2gX8beAMhuBu1
   </data>
  </layer>
  <objectgroup color="#ff0000" id="6" name="Collisions">

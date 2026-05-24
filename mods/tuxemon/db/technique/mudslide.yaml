@@ -1,11 +1,11 @@
 tech_id: 89
 accuracy: 0.8
 effects:
+- type: damage
 - type: give
   parameters:
   - softened
   - enemy_monster
-- type: damage
 speed: extremely_slow
 potency: 1
 power: 2.25

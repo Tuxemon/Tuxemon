@@ -1,11 +1,11 @@
 tech_id: 81
 accuracy: 0.75
 effects:
+- type: damage
 - type: give
   parameters:
   - chargedup
   - enemy_monster
-- type: damage
 speed: extremely_slow
 potency: 1
 power: 3

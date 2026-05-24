@@ -1101,6 +1101,12 @@ msgstr "TM: All In"
 msgid "tm_all_in_description"
 msgstr "Technique Manual that teaches the All In technique."
 
+msgid "tm_leaf_barrage"
+msgstr "TM: Leaf Barrage"
+
+msgid "tm_all_in_description"
+msgstr "Technique Manual that teaches the Leaf Barrage technique."
+
 msgid "tm_solar_synthesis"
 msgstr "TM: Solar Synthesis"
 
@@ -4570,7 +4576,6 @@ msgstr "stubs"
 
 msgid "journal_badge_missing"
 msgstr "missing"
-
 
 msgid "no_evolution"
 msgstr "No evolution"

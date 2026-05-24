@@ -1,11 +1,11 @@
 tech_id: 188
 accuracy: 0.9
 effects:
+- type: damage
 - type: give
   parameters:
   - charging
   - own_monster
-- type: damage
 speed: normal
 potency: 1
 power: 3

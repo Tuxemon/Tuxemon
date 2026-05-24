@@ -1,11 +1,11 @@
 tech_id: 240
 accuracy: 0.9
 effects:
+- type: damage
 - type: give
   parameters:
   - confused
   - enemy_monster
-- type: damage
 speed: normal
 potency: 0.9
 power: 2.0

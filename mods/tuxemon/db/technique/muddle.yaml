@@ -1,11 +1,11 @@
 tech_id: 43
 accuracy: 1
 effects:
+- type: damage
 - type: give
   parameters:
   - focused
   - own_team:enemy_team
-- type: damage
 speed: normal
 potency: 1
 power: 1

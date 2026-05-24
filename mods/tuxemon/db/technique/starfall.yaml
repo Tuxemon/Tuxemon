@@ -1,15 +1,15 @@
 tech_id: 56
 accuracy: 0.8
 effects:
-- type: give
-  parameters:
-  - focused
-  - own_monster
 - type: remove
   parameters:
   - positive
   - enemy_monster
 - type: damage
+- type: give
+  parameters:
+  - focused
+  - own_monster
 speed: normal
 potency: 1
 power: 1.25

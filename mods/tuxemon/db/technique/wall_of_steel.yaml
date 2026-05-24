@@ -1,11 +1,11 @@
 tech_id: 62
 accuracy: 0.75
 effects:
+- type: damage
 - type: give
   parameters:
   - hardshell
   - own_monster
-- type: damage
 speed: normal
 potency: 1
 power: 1.25

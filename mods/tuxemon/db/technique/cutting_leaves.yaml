@@ -1,11 +1,11 @@
 tech_id: 224
 accuracy: 0.95
 effects:
+- type: damage
 - type: give
   parameters:
   - grabbed
   - enemy_monster
-- type: damage
 speed: slow
 potency: 0.5
 power: 3.0

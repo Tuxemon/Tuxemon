@@ -54,21 +54,21 @@ class Battle:
 
         return battle
 
-def get_state(self) -> Mapping[str, Any]:
-    save_data = {}
+    def get_state(self) -> Mapping[str, Any]:
+        save_data = {}
 
-    for attr in SIMPLE_PERSISTANCE_ATTRIBUTES:
-        value = getattr(self, attr)
-        if not value:
-            continue
+        for attr in SIMPLE_PERSISTANCE_ATTRIBUTES:
+            value = getattr(self, attr)
+            if not value:
+                continue
 
-        if attr == "outcome":
-            save_data[attr] = value.value
-        else:
-            save_data[attr] = value
+            if attr == "outcome":
+                save_data[attr] = value.value
+            else:
+                save_data[attr] = value
 
-    save_data["instance_id"] = self.instance_id.hex
-    return save_data
+        save_data["instance_id"] = self.instance_id.hex
+        return save_data
 
     def set_state(self, save_data: Mapping[str, Any]) -> None:
         """Updates the battle state from saved data."""

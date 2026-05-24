@@ -20,6 +20,8 @@ def _mock_monster(speed: int = 0, dodge: int = 0, melee: int = 0) -> MagicMock:
     m = MagicMock(spec=Monster)
     m._combat_stats = BasicStats(speed=speed, dodge=dodge, melee=melee)
     m.get_combat_stats.side_effect = lambda: m._combat_stats
+    m.status = MagicMock()
+    m.status.get_statuses.return_value = []
     return m
 
 
@@ -76,9 +78,8 @@ def _make_sorted_queue(monsters_techs: list[tuple[MagicMock, MagicMock]]) -> Act
 def test_mid_turn_speed_boost_reorders_remaining():
     """
     Scenario: Speed 100 > Speed 90 > Speed 80.
-    Speed 100 acts first (popped first from queue end after descending sort).
-    Speed 100's action gives Speed 80 a +25 boost (now effectively 105).
-    After re-sort, Speed 80+25 should go before Speed 90.
+    Speed 100 acts first (highest speed score, popped first).
+    Remaining: m90 and m80. Boost m90 to 200; after re-sort m90 should go first.
     """
     m100 = _mock_monster(speed=100)
     m90  = _mock_monster(speed=90)
@@ -87,24 +88,18 @@ def test_mid_turn_speed_boost_reorders_remaining():
 
     q = _make_sorted_queue([(m100, tech), (m90, tech), (m80, tech)])
 
-    # Confirm initial order: queue is sorted descending; pop() gives lowest = m80 last
-    # The queue (descending) is [m100, m90, m80]; pop() → m80, then m90, then m100.
-    # We want to confirm m100 is consumed first by checking the remaining queue contains
-    # m90 and m80 after the first pop.
     first = q.pop()
-    assert first.user is m80  # slowest pops first from descending-sorted list
+    assert first.user is m100  # fastest goes first
 
-    # Speed 100 acting gave Speed 80 a boost — but m80 is already consumed.
-    # What matters for the scenario is: remaining = [m100, m90], m90 pops next,
-    # m100 pops last. Now boost m90 so it becomes 200, re-sort, and m90 should pop last.
+    # Boost m90 to speed 200; it should now resolve before m80.
     m90._combat_stats = BasicStats(speed=200)
     q.sort()
 
     second = q.pop()
     third  = q.pop()
-    # After boosting m90 to 200 (fastest), it should be the LAST to pop (highest key)
-    assert second.user is m100
-    assert third.user is m90
+
+    assert second.user is m90   # boosted to fastest among remaining
+    assert third.user is m80
 
 
 def test_no_boost_order_is_stable():

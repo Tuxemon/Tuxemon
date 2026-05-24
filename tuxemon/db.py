@@ -634,7 +634,6 @@ class SoundProperties(BaseModel):
 
 class MusicProperties(BaseModel):
     music: str | None = Field(..., description="Music to play")
-    volume: float = Field(..., ge=0.0, description="Playback volume")
 
     @field_validator("music")
     def music_exists(cls, v: str | None) -> str | None:

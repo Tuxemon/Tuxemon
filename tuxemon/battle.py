@@ -67,8 +67,8 @@ class Battle:
             else:
                 save_data[attr] = value
 
-    save_data["instance_id"] = self.instance_id.hex
-    return save_data
+        save_data["instance_id"] = self.instance_id.hex
+        return save_data
 
     def set_state(self, save_data: Mapping[str, Any]) -> None:
         """Updates the battle state from saved data."""

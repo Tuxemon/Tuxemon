@@ -44,7 +44,13 @@ class Battle:
 
         for key in SIMPLE_PERSISTANCE_ATTRIBUTES:
             if key in save_data:
-                setattr(battle, key, save_data[key])
+                if key == "outcome":
+                    try:
+                        setattr(battle, key, OutputBattle(save_data[key]))
+                    except ValueError:
+                        logger.error(f"Invalid outcome value: {save_data[key]!r}")
+                else:
+                    setattr(battle, key, save_data[key])
 
         return battle
 
@@ -68,6 +74,11 @@ class Battle:
         for key, value in save_data.items():
             if key == "instance_id" and value:
                 self.instance_id = UUID(value)
+            elif key == "outcome":
+                try:
+                    self.outcome = OutputBattle(value)
+                except ValueError:
+                    logger.error(f"Invalid outcome value: {value!r}")
             elif key in SIMPLE_PERSISTANCE_ATTRIBUTES:
                 setattr(self, key, value)
 

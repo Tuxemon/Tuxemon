@@ -4,7 +4,7 @@ import time
 
 import pytest
 
-from tuxemon.battle import Battle
+from tuxemon.battle import Battle, decode_battle, encode_battle
 from tuxemon.db import OutputBattle
 from tuxemon.entity.battle import BattlesHandler
 from tuxemon.save_system.save_state import NPCState
@@ -178,3 +178,39 @@ def test_battle_outcome_summary_with_turns(handler):
     assert summary["lost"] == 1
     assert summary["draw"] == 0
     assert summary["average_turns"] == 3
+
+def test_get_state_serializes_enum():
+    battle = Battle()
+    battle.outcome = OutputBattle.WON
+
+    state = battle.get_state()
+
+    assert state["outcome"] == OutputBattle.WON.value
+    assert not isinstance(state["outcome"], OutputBattle)
+
+
+def test_battle_round_trip_enum():
+    battle = Battle()
+    battle.outcome = OutputBattle.LOST
+
+    encoded = battle.get_state()
+    decoded = Battle.from_save_data(encoded)
+
+    assert decoded.outcome == OutputBattle.LOST
+
+
+def test_from_save_data_invalid_enum():
+    battle = Battle.from_save_data({"outcome": "not_a_valid_enum"})
+
+    # Should fall back to constructor default (DRAW)
+    assert battle.outcome == OutputBattle.DRAW
+
+
+def test_encode_decode_with_enum_object():
+    battle = Battle()
+    battle.outcome = OutputBattle.WON
+
+    encoded = encode_battle([battle])
+    decoded = decode_battle(encoded)
+
+    assert decoded[0].outcome == OutputBattle.WON

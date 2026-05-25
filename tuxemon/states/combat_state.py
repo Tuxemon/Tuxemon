@@ -793,6 +793,8 @@ class CombatState(CombatAnimations):
         )
 
     def _handle_status(self, status: Status, target: Monster) -> None:
+        if not target.status.has_status(status.slug):
+            return
         action_time = 0.0
         result = self.combat_session.apply_status(
             self.session, status, target, EffectPhase.PERFORM_STATUS

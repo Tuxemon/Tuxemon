@@ -18,6 +18,7 @@ from tuxemon.tools import open_dialog
 
 if TYPE_CHECKING:
     from tuxemon.base_client import BaseClient
+    from tuxemon.entity.npc import NPC
     from tuxemon.platform.events import PlayerInput
     from tuxemon.sprite import Sprite
 
@@ -44,9 +45,11 @@ class EvolutionTransition(State):
         original: str,
         evolved: str,
         is_devolution: bool = False,
+        character: NPC | None = None,
         **kwargs: Any,
     ) -> None:
         self.is_devolution = is_devolution
+        self.character = character
         super().__init__(client=client, **kwargs)
         self.original_monster = self._get_monster(original)
         self.evolved_monster = self._get_monster(evolved)
@@ -212,6 +215,16 @@ class EvolutionTransition(State):
             else:
                 self.client.current_music.unpause()
                 self.client.pop_state()
+                if self.character is not None:
+                    journal = MonsterModel.lookup(self.evolved, db)
+                    if journal is not None:
+                        self.client.push_state(
+                            "JournalInfoState",
+                            character=self.character,
+                            monster=journal,
+                            source=self.name,
+                            reveal=True,
+                        )
         return None
 
     def _get_phase_3_sprite(self) -> Sprite:

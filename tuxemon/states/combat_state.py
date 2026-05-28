@@ -51,9 +51,11 @@ from tuxemon.combat.machine import CombatMachine, CombatPhase
 from tuxemon.combat.reward_system import RewardSystem
 from tuxemon.combat.utils import get_battle_outcome_music, track_battles
 from tuxemon.database.rules import config_combat
+from tuxemon.database.runtime import db
 from tuxemon.db import (
     EffectPhase,
     ItemCategory,
+    MonsterModel,
     OutputBattle,
 )
 from tuxemon.entity.npc import NPC
@@ -152,6 +154,7 @@ class CombatState(CombatAnimations):
         self.text_anim = TextAnimationManager()
         self._decision_queue: deque[Monster] = deque()
         self._captured_mon: Monster | None = None
+        self._captured_mon_is_new: bool = False
         # player => home areas on screen
         super().__init__(client=client, teams=context.teams, **kwargs)
         self.combat_session = self.client.combat_session
@@ -1006,7 +1009,6 @@ class CombatState(CombatAnimations):
     def end_combat(self) -> None:
         """End the combat."""
         self.event_bus.publish("clean_combat")
-        new_entry = self.combat_session.get_variable("new_tuxepedia")
         self.combat_session.reset()
         self.unregister_event_handlers()
         self.client.current_music.stop()
@@ -1014,10 +1016,19 @@ class CombatState(CombatAnimations):
         self.clear_combat_states()
         self.phase = None
 
-        if new_entry and self._captured_mon:
+        if self._captured_mon_is_new and self._captured_mon:
             self.client.remove_state_by_name("CombatState")
-            params = {"monster": self._captured_mon, "source": self.name}
-            self.client.push_state("MonsterInfoState", **params)
+            journal = MonsterModel.lookup(self._captured_mon.slug, db)
+            if journal is not None:
+                self.client.push_state(
+                    "JournalInfoState",
+                    character=self.session.player,
+                    monster=journal,
+                    source=self.name,
+                    reveal=True,
+                )
+            else:
+                self.client.push_state("FadeOutTransition", caller=self)
         else:
             self.client.push_state("FadeOutTransition", caller=self)
 
@@ -1181,6 +1192,9 @@ class CombatState(CombatAnimations):
         if is_captured:
             owner = monster.get_owner()
             self._captured_mon = monster
+            self._captured_mon_is_new = bool(
+                self.combat_session.get_variable("new_tuxepedia")
+            )
 
             if owner:
                 self.combat_session.field_monsters.remove_npc(owner)

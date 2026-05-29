@@ -415,6 +415,12 @@ msgstr ""
 "Thick, mucosal secretion harvested from the scent glands of apex predators "
 "at the peak of their territorial cycle."
 
+msgid "repellent"
+msgstr "Repellent"
+
+msgid "repellent_description"
+msgstr "Deter wild encounters with this stinky spray."
+
 msgid "fishing_rod"
 msgstr "Fishing Rod"
 

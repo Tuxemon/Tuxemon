@@ -17,7 +17,7 @@ slug: restoration
 sort: potion
 sprite: gfx/items/apple.png
 category: potion
-cost: 700
+cost: 400
 usable_in:
 - MainCombatMenuState
 - WorldState

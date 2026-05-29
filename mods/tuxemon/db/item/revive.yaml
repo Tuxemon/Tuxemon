@@ -18,7 +18,7 @@ slug: revive
 sort: potion
 sprite: gfx/items/revive.png
 category: potion
-cost: 1500
+cost: 1000
 usable_in:
 - MainCombatMenuState
 - WorldState

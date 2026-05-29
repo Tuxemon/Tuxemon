@@ -103,6 +103,21 @@
   slug: spyder_leather_scoop
 - background: gfx/ui/item/item_menu_bg.png
   items:
+  - cost: 1000
+    slug: stovepipe
+    price: 2000
+  - cost: 1000
+    slug: tectonic_drill
+    price: 2000
+  monsters: 
+  - cost: 2000
+    slug: ignibus
+    price: 4000
+    level: 10
+  resale_multiplier: 0.5
+  slug: spyder_leather_tech
+- background: gfx/ui/item/item_menu_bg.png
+  items:
   - cost: 50
     slug: repellent
     price: 100
@@ -142,6 +157,21 @@
   monsters: []
   resale_multiplier: 0.5
   slug: spyder_flower_scoop
+- background: gfx/ui/item/item_menu_bg.png
+  items:
+  - cost: 1000
+    slug: flintstone
+    price: 2000
+  - cost: 1000
+    slug: thunderstone
+    price: 2000
+  monsters: 
+  - cost: 2000
+    slug: grintot
+    price: 4000
+    level: 10
+  resale_multiplier: 0.5
+  slug: spyder_flower_tech
 - background: gfx/ui/item/item_menu_bg.png
   items: []
   monsters:
@@ -231,6 +261,21 @@
   slug: spyder_timber_scoop
 - background: gfx/ui/item/item_menu_bg.png
   items:
+  - cost: 1000
+    slug: sweet_sand
+    price: 2000
+  - cost: 1000
+    slug: sea_girdle
+    price: 2000
+  monsters: 
+  - cost: 2000
+    slug: dollfin
+    price: 4000
+    level: 10
+  resale_multiplier: 0.5
+  slug: spyder_timber_tech
+- background: gfx/ui/item/item_menu_bg.png
+  items:
   - cost: 50
     slug: mega_potion
     price: 200
@@ -263,10 +308,10 @@
   slug: spyder_candy_scoop
 - background: gfx/ui/item/item_menu_bg.png
   items:
-  - cost: 400
+  - cost: 1000
     slug: peace_lily
     price: 2000
-  - cost: 400
+  - cost: 1000
     slug: lucky_bamboo
     price: 2000
   - cost: 400
@@ -285,6 +330,10 @@
     inventory: 1
     slug: tm_acid
     price: 2000
-  monsters: []
+  monsters: 
+  - cost: 2000
+    slug: budaye
+    price: 4000
+    level: 10
   resale_multiplier: 0.5
   slug: spyder_candy_tech

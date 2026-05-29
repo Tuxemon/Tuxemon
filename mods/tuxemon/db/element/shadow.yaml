@@ -28,7 +28,7 @@ types:
 - against: metal
   multiplier: 1
 - against: normal
-  multiplier: 1
+  multiplier: 0.5
 - against: shadow
   multiplier: 1
 - against: sky

@@ -363,8 +363,9 @@
     <property name="act2" value="wild_encounter blasdoor,40,3"/>
     <property name="act3" value="set_variable datascreen3:yes"/>
     <property name="act4" value="remove_npc spyder_datacenter_s3"/>
-    <property name="cond1" value="is variable_set tallest:snarlon"/>
-    <property name="cond2" value="is variable_set tallest:snarlon"/>
+    <property name="cond1" value="is variable_set tallest"/>
+    <property name="cond2" value="not variable_set tallest:snarlon"/>
+    <property name="cond3" value="not variable_set datascreen3:yes"/>
    </properties>
   </object>
   <object id="104" name="PC7 Yes" type="event" x="112" y="192" width="16" height="16">
@@ -373,6 +374,7 @@
     <property name="act2" value="set_variable datascreen3:yes"/>
     <property name="act3" value="remove_npc spyder_datacenter_s3"/>
     <property name="cond1" value="is variable_set tallest:snarlon"/>
+    <property name="cond2" value="not variable_set datascreen3:yes"/>
    </properties>
   </object>
   <object id="105" name="PC8 No" type="event" x="240" y="192" width="16" height="16">
@@ -381,8 +383,9 @@
     <property name="act2" value="wild_encounter blasdoor,40,3"/>
     <property name="act3" value="set_variable datascreen4:yes"/>
     <property name="act4" value="remove_npc spyder_datacenter_s4"/>
-    <property name="cond1" value="is variable_set smallest:squink"/>
-    <property name="cond2" value="is variable_set smallest:possessun"/>
+    <property name="cond1" value="is variable_set smallest"/>
+    <property name="cond2" value="not variable_set smallest:ignibus"/>
+    <property name="cond3" value="not variable_set datascreen4:yes"/>
    </properties>
   </object>
   <object id="106" name="PC8 Yes" type="event" x="224" y="192" width="16" height="16">
@@ -391,6 +394,7 @@
     <property name="act2" value="set_variable datascreen4:yes"/>
     <property name="act3" value="remove_npc spyder_datacenter_s4"/>
     <property name="cond1" value="is variable_set smallest:ignibus"/>
+    <property name="cond2" value="not variable_set datascreen4:yes"/>
    </properties>
   </object>
   <object id="107" name="PC10 No" type="event" x="288" y="272" width="16" height="16">
@@ -399,8 +403,9 @@
     <property name="act2" value="wild_encounter blasdoor,40,3"/>
     <property name="act3" value="set_variable datascreen2:yes"/>
     <property name="act4" value="remove_npc spyder_datacenter_s2"/>
-    <property name="cond1" value="is variable_set binary193:statursus"/>
-    <property name="cond2" value="is variable_set binary193:exclawvate"/>
+    <property name="cond1" value="is variable_set binary193"/>
+    <property name="cond2" value="not variable_set binary193:baobaraffe"/>
+    <property name="cond3" value="not variable_set datascreen2:yes"/>
    </properties>
   </object>
   <object id="108" name="PC10 Yes" type="event" x="272" y="272" width="16" height="16">
@@ -409,6 +414,7 @@
     <property name="act2" value="set_variable datascreen2:yes"/>
     <property name="act3" value="remove_npc spyder_datacenter_s2"/>
     <property name="cond1" value="is variable_set binary193:baobaraffe"/>
+    <property name="cond2" value="not variable_set datascreen2:yes"/>
    </properties>
   </object>
   <object id="109" name="PC9 No" type="event" x="192" y="272" width="16" height="16">
@@ -417,8 +423,9 @@
     <property name="act2" value="wild_encounter blasdoor,40,3"/>
     <property name="act3" value="set_variable datascreen1:yes"/>
     <property name="act4" value="remove_npc spyder_datacenter_s1"/>
-    <property name="cond1" value="is variable_set heaviest:apeoro"/>
-    <property name="cond2" value="is variable_set heaviest:mauai"/>
+    <property name="cond1" value="is variable_set heaviest"/>
+    <property name="cond2" value="not variable_set heaviest:jemuar"/>
+    <property name="cond3" value="not variable_set datascreen1:yes"/>
    </properties>
   </object>
   <object id="110" name="PC9 Yes" type="event" x="176" y="272" width="16" height="16">
@@ -427,6 +434,7 @@
     <property name="act2" value="set_variable datascreen1:yes"/>
     <property name="act3" value="remove_npc spyder_datacenter_s1"/>
     <property name="cond1" value="is variable_set heaviest:jemuar"/>
+    <property name="cond2" value="not variable_set datascreen1:yes"/>
    </properties>
   </object>
   <object id="111" name="PC5 No" type="event" x="192" y="112" width="16" height="16">
@@ -435,8 +443,9 @@
     <property name="act2" value="wild_encounter blasdoor,40,3"/>
     <property name="act3" value="set_variable datascreen6:yes"/>
     <property name="act4" value="remove_npc spyder_datacenter_s6"/>
-    <property name="cond1" value="is variable_set binary144:rhincus"/>
-    <property name="cond2" value="is variable_set binary144:drokoro"/>
+    <property name="cond1" value="is variable_set binary144"/>
+    <property name="cond2" value="not variable_set binary144:shammer"/>
+    <property name="cond3" value="not variable_set datascreen6:yes"/>
    </properties>
   </object>
   <object id="112" name="PC5 Yes" type="event" x="176" y="112" width="16" height="16">
@@ -445,6 +454,7 @@
     <property name="act2" value="set_variable datascreen6:yes"/>
     <property name="act3" value="remove_npc spyder_datacenter_s6"/>
     <property name="cond1" value="is variable_set binary144:shammer"/>
+    <property name="cond2" value="not variable_set datascreen6:yes"/>
    </properties>
   </object>
   <object id="113" name="PC6 No" type="event" x="288" y="112" width="16" height="16">
@@ -453,8 +463,9 @@
     <property name="act2" value="wild_encounter blasdoor,40,3"/>
     <property name="act3" value="set_variable datascreen7:yes"/>
     <property name="act4" value="remove_npc spyder_datacenter_s7"/>
-    <property name="cond1" value="is variable_set binary77:ruption"/>
-    <property name="cond2" value="is variable_set binary77:narcileaf"/>
+    <property name="cond1" value="is variable_set binary77"/>
+    <property name="cond2" value="not variable_set binary77:shybulb"/>
+    <property name="cond3" value="not variable_set datascreen7:yes"/>
    </properties>
   </object>
   <object id="114" name="PC6 Yes" type="event" x="272" y="112" width="16" height="16">
@@ -463,6 +474,7 @@
     <property name="act2" value="set_variable datascreen7:yes"/>
     <property name="act3" value="remove_npc spyder_datacenter_s7"/>
     <property name="cond1" value="is variable_set binary77:shybulb"/>
+    <property name="cond2" value="not variable_set datascreen7:yes"/>
    </properties>
   </object>
   <object id="115" name="PC4 No" type="event" x="80" y="112" width="16" height="16">
@@ -471,8 +483,9 @@
     <property name="act2" value="wild_encounter blasdoor,40,3"/>
     <property name="act3" value="set_variable datascreen5:yes"/>
     <property name="act4" value="remove_npc spyder_datacenter_s5"/>
-    <property name="cond1" value="is variable_set lightest:furnursus"/>
-    <property name="cond2" value="is variable_set lightest:woodoor"/>
+    <property name="cond1" value="is variable_set lightest"/>
+    <property name="cond2" value="not variable_set lightest:snokari"/>
+    <property name="cond3" value="not variable_set datascreen5:yes"/>
    </properties>
   </object>
   <object id="116" name="PC4 Yes" type="event" x="64" y="112" width="16" height="16">
@@ -481,6 +494,7 @@
     <property name="act2" value="set_variable datascreen5:yes"/>
     <property name="act3" value="remove_npc spyder_datacenter_s5"/>
     <property name="cond1" value="is variable_set lightest:snokari"/>
+    <property name="cond2" value="not variable_set datascreen5:yes"/>
    </properties>
   </object>
   <object id="117" name="Billie" type="event" x="144" y="32" width="16" height="16">

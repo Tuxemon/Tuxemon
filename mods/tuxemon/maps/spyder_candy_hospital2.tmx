@@ -145,12 +145,13 @@
    <properties>
     <property name="act01" value="lock_controls"/>
     <property name="act02" value="pathfind_to_char player,spyder_hospital1_luzia"/>
-    <property name="act03" value="char_talk spyder_hospital1_luzia,pre_battle"/>
-    <property name="act04" value="unlock_controls"/>
-    <property name="act05" value="add_monster galnec,36,spyder_hospital1_luzia,5,10"/>
-    <property name="act06" value="add_monster exclawvate,36,spyder_hospital1_luzia,5,10"/>
-    <property name="act07" value="start_battle player,spyder_hospital1_luzia"/>
-    <property name="act08" value="char_talk spyder_hospital1_luzia,post_battle_lose"/>
+    <property name="act03" value="char_face player,spyder_hospital1_luzia"/>
+    <property name="act04" value="char_talk spyder_hospital1_luzia,pre_battle"/>
+    <property name="act05" value="unlock_controls"/>
+    <property name="act06" value="add_monster galnec,41,spyder_hospital1_luzia,5,10"/>
+    <property name="act07" value="add_monster exclawvate,41,spyder_hospital1_luzia,5,10"/>
+    <property name="act08" value="start_battle player,spyder_hospital1_luzia"/>
+    <property name="act09" value="char_talk spyder_hospital1_luzia,post_battle_lose"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_hospital1_luzia"/>
     <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="not char_defeated player"/>
@@ -166,12 +167,13 @@
    <properties>
     <property name="act01" value="lock_controls"/>
     <property name="act02" value="pathfind_to_char player,spyder_hospital1_zekar"/>
-    <property name="act03" value="char_talk spyder_hospital1_zekar,pre_battle"/>
-    <property name="act04" value="unlock_controls"/>
-    <property name="act05" value="add_monster selket,32,spyder_hospital1_zekar,5,10"/>
-    <property name="act06" value="add_monster taupypus,32,spyder_hospital1_zekar,5,10"/>
-    <property name="act07" value="start_battle player,spyder_hospital1_zekar"/>
-    <property name="act08" value="char_talk spyder_hospital1_zekar,post_battle_lose"/>
+    <property name="act03" value="char_face player,spyder_hospital1_zekar"/>
+    <property name="act04" value="char_talk spyder_hospital1_zekar,pre_battle"/>
+    <property name="act05" value="unlock_controls"/>
+    <property name="act06" value="add_monster selket,37,spyder_hospital1_zekar,5,10"/>
+    <property name="act07" value="add_monster taupypus,37,spyder_hospital1_zekar,5,10"/>
+    <property name="act08" value="start_battle player,spyder_hospital1_zekar"/>
+    <property name="act09" value="char_talk spyder_hospital1_zekar,post_battle_lose"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_hospital1_zekar"/>
     <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="not char_defeated player"/>
@@ -201,12 +203,13 @@
    <properties>
     <property name="act01" value="lock_controls"/>
     <property name="act02" value="pathfind_to_char player,spyder_hospital1_rakez"/>
-    <property name="act03" value="char_talk spyder_hospital1_rakez,pre_battle"/>
-    <property name="act04" value="unlock_controls"/>
-    <property name="act05" value="add_monster pipis,30,spyder_hospital1_rakez,5,10"/>
-    <property name="act06" value="add_monster strella,30,spyder_hospital1_rakez,5,10"/>
-    <property name="act07" value="start_battle player,spyder_hospital1_rakez"/>
-    <property name="act08" value="char_talk spyder_hospital1_rakez,post_battle_lose"/>
+    <property name="act03" value="char_face player,spyder_hospital1_rakez"/>
+    <property name="act04" value="char_talk spyder_hospital1_rakez,pre_battle"/>
+    <property name="act05" value="unlock_controls"/>
+    <property name="act06" value="add_monster pipis,35,spyder_hospital1_rakez,5,10"/>
+    <property name="act07" value="add_monster strella,35,spyder_hospital1_rakez,5,10"/>
+    <property name="act08" value="start_battle player,spyder_hospital1_rakez"/>
+    <property name="act09" value="char_talk spyder_hospital1_rakez,post_battle_lose"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_hospital1_rakez"/>
     <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="not char_defeated player"/>
@@ -223,12 +226,13 @@
    <properties>
     <property name="act01" value="lock_controls"/>
     <property name="act02" value="pathfind_to_char player,spyder_hospital1_rhizome"/>
-    <property name="act03" value="char_talk spyder_hospital1_rhizome,pre_battle"/>
-    <property name="act04" value="unlock_controls"/>
-    <property name="act05" value="add_monster flacono,33,spyder_hospital1_rhizome,5,10"/>
-    <property name="act06" value="add_monster fancair,33,spyder_hospital1_rhizome,5,10"/>
-    <property name="act07" value="start_battle player,spyder_hospital1_rhizome"/>
-    <property name="act08" value="char_talk spyder_hospital1_rhizome,post_battle_lose"/>
+    <property name="act03" value="char_face player,spyder_hospital1_rhizome"/>
+    <property name="act04" value="char_talk spyder_hospital1_rhizome,pre_battle"/>
+    <property name="act05" value="unlock_controls"/>
+    <property name="act06" value="add_monster flacono,38,spyder_hospital1_rhizome,5,10"/>
+    <property name="act07" value="add_monster fancair,38,spyder_hospital1_rhizome,5,10"/>
+    <property name="act08" value="start_battle player,spyder_hospital1_rhizome"/>
+    <property name="act09" value="char_talk spyder_hospital1_rhizome,post_battle_lose"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_hospital1_rhizome"/>
     <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="not char_defeated player"/>

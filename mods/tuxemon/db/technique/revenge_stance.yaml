@@ -4,7 +4,7 @@ effects:
 - type: give
   parameters:
   - revenge
-  - enemy_monster
+  - own_monster
 speed: extremely_fast
 potency: 1
 power: 0

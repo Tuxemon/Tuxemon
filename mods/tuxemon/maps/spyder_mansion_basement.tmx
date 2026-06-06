@@ -148,12 +148,13 @@
    <properties>
     <property name="act1" value="lock_controls"/>
     <property name="act2" value="pathfind_to_char player,spyder_basement_coralli"/>
-    <property name="act3" value="char_talk spyder_basement_coralli,pre_battle"/>
-    <property name="act4" value="unlock_controls"/>
-    <property name="act5" value="add_monster tumbleworm,22,spyder_basement_coralli,5,10"/>
-    <property name="act6" value="add_monster elofly,22,spyder_basement_coralli,5,10"/>
-    <property name="act7" value="start_battle player,spyder_basement_coralli"/>
-    <property name="act8" value="char_talk spyder_basement_coralli,post_battle_lose"/>
+    <property name="act3" value="char_face player,spyder_basement_coralli"/>
+    <property name="act4" value="char_talk spyder_basement_coralli,pre_battle"/>
+    <property name="act5" value="unlock_controls"/>
+    <property name="act6" value="add_monster tumbleworm,22,spyder_basement_coralli,5,10"/>
+    <property name="act7" value="add_monster elofly,22,spyder_basement_coralli,5,10"/>
+    <property name="act8" value="start_battle player,spyder_basement_coralli"/>
+    <property name="act9" value="char_talk spyder_basement_coralli,post_battle_lose"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_basement_coralli"/>
     <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="not char_defeated player"/>
@@ -163,11 +164,12 @@
    <properties>
     <property name="act1" value="lock_controls"/>
     <property name="act2" value="pathfind_to_char player,spyder_basement_bobby"/>
-    <property name="act3" value="char_talk spyder_basement_bobby,pre_battle"/>
-    <property name="act4" value="unlock_controls"/>
-    <property name="act5" value="add_monster capiti,26,spyder_basement_bobby,5,10"/>
-    <property name="act6" value="start_battle player,spyder_basement_bobby"/>
-    <property name="act7" value="char_talk spyder_basement_bobby,post_battle_lose"/>
+    <property name="act3" value="char_face player,spyder_basement_bobby"/>
+    <property name="act4" value="char_talk spyder_basement_bobby,pre_battle"/>
+    <property name="act5" value="unlock_controls"/>
+    <property name="act6" value="add_monster capiti,26,spyder_basement_bobby,5,10"/>
+    <property name="act7" value="start_battle player,spyder_basement_bobby"/>
+    <property name="act8" value="char_talk spyder_basement_bobby,post_battle_lose"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_basement_bobby"/>
     <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="not char_defeated player"/>
@@ -177,11 +179,12 @@
    <properties>
     <property name="act1" value="lock_controls"/>
     <property name="act2" value="pathfind_to_char player,spyder_basement_roger"/>
-    <property name="act3" value="char_talk spyder_basement_roger,pre_battle"/>
-    <property name="act4" value="unlock_controls"/>
-    <property name="act5" value="add_monster polyrock,22,spyder_basement_roger,5,10"/>
-    <property name="act6" value="start_battle player,spyder_basement_roger"/>
-    <property name="act7" value="char_talk spyder_basement_roger,post_battle_lose"/>
+    <property name="act3" value="char_face player,spyder_basement_roger"/>
+    <property name="act4" value="char_talk spyder_basement_roger,pre_battle"/>
+    <property name="act5" value="unlock_controls"/>
+    <property name="act6" value="add_monster polyrock,22,spyder_basement_roger,5,10"/>
+    <property name="act7" value="start_battle player,spyder_basement_roger"/>
+    <property name="act8" value="char_talk spyder_basement_roger,post_battle_lose"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_basement_roger"/>
     <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="not char_defeated player"/>
@@ -191,12 +194,13 @@
    <properties>
     <property name="act1" value="lock_controls"/>
     <property name="act2" value="pathfind_to_char player,spyder_basement_catholi"/>
-    <property name="act3" value="char_talk spyder_basement_catholi,pre_battle"/>
-    <property name="act4" value="unlock_controls"/>
-    <property name="act5" value="add_monster foofle,20,spyder_basement_catholi,5,10"/>
-    <property name="act6" value="add_monster rosarin,24,spyder_basement_catholi,5,10"/>
-    <property name="act7" value="start_battle player,spyder_basement_catholi"/>
-    <property name="act8" value="char_talk spyder_basement_catholi,post_battle_lose"/>
+    <property name="act3" value="char_face player,spyder_basement_catholi"/>
+    <property name="act4" value="char_talk spyder_basement_catholi,pre_battle"/>
+    <property name="act5" value="unlock_controls"/>
+    <property name="act6" value="add_monster foofle,20,spyder_basement_catholi,5,10"/>
+    <property name="act7" value="add_monster rosarin,24,spyder_basement_catholi,5,10"/>
+    <property name="act8" value="start_battle player,spyder_basement_catholi"/>
+    <property name="act9" value="char_talk spyder_basement_catholi,post_battle_lose"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_basement_catholi"/>
     <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="not char_defeated player"/>

@@ -429,6 +429,7 @@ class MapRenderer(AbstractRenderer):
         self.cinema_y_ratio: float | None = None
         self.map_animations = AnimationManager()
         self.bubble_manager = BubbleManager(context=context)
+        self.layer_image: bool = False
 
     @property
     def label(self) -> str:
@@ -443,7 +444,7 @@ class MapRenderer(AbstractRenderer):
         self._prepare_map_rendering(current_map)
         screen_surfaces = self._get_and_position_surfaces(current_map)
         self._draw_map_and_sprites(surface, screen_surfaces, current_map)
-        if self.layer_color:
+        if self.layer_color or self.layer_image:
             self._apply_effects(surface)
         self._apply_cinema_bars(surface)
         if CONFIG.collision_map:
@@ -708,4 +709,5 @@ def npc_to_pgrect(
 ) -> Rect:
     """Returns a Rect (in screen-coords) version of an NPC's bounding box."""
     pos = get_pos_from_tilepos(current_map, context, npc.position)
+    return Rect(pos, context.tile_size)
     return Rect(pos, context.tile_size)

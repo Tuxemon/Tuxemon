@@ -67,10 +67,10 @@
   <object id="45" name="Talk Looten" type="event" x="80" y="464" width="16" height="16">
    <properties>
     <property name="act10" value="char_talk spyder_greenwash_looten,pre_battle"/>
-    <property name="act11" value="add_monster bearloch,30,spyder_greenwash_looten,5,10"/>
-    <property name="act12" value="add_monster rocktot,30,spyder_greenwash_looten,5,10"/>
-    <property name="act13" value="add_monster foxko,30,spyder_greenwash_looten,5,10"/>
-    <property name="act14" value="add_monster agnsher,30,spyder_greenwash_looten,5,10"/>
+    <property name="act11" value="add_monster bearloch,35,spyder_greenwash_looten,5,10"/>
+    <property name="act12" value="add_monster rocktot,35,spyder_greenwash_looten,5,10"/>
+    <property name="act13" value="add_monster foxko,35,spyder_greenwash_looten,5,10"/>
+    <property name="act14" value="add_monster agnsher,35,spyder_greenwash_looten,5,10"/>
     <property name="act20" value="start_battle player,spyder_greenwash_looten"/>
     <property name="act21" value="char_talk spyder_greenwash_looten,post_battle_lose"/>
     <property name="act22" value="translated_dialog spyder_greenwash_looten3"/>
@@ -134,9 +134,9 @@
     <property name="act03" value="char_face player,spyder_greenwash_chip"/>
     <property name="act04" value="char_talk spyder_greenwash_chip,pre_battle"/>
     <property name="act05" value="unlock_controls"/>
-    <property name="act06" value="add_monster av8r,22,spyder_greenwash_chip,5,10"/>
-    <property name="act07" value="add_monster criniotherme,22,spyder_greenwash_chip,5,10"/>
-    <property name="act08" value="add_monster tikorch,22,spyder_greenwash_chip,5,10"/>
+    <property name="act06" value="add_monster av8r,27,spyder_greenwash_chip,5,10"/>
+    <property name="act07" value="add_monster criniotherme,27,spyder_greenwash_chip,5,10"/>
+    <property name="act08" value="add_monster tikorch,27,spyder_greenwash_chip,5,10"/>
     <property name="act09" value="start_battle player,spyder_greenwash_chip"/>
     <property name="act10" value="char_talk spyder_greenwash_chip,post_battle_lose"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_greenwash_chip"/>
@@ -151,8 +151,8 @@
     <property name="act3" value="char_face player,spyder_greenwash_clarence"/>
     <property name="act4" value="char_talk spyder_greenwash_clarence,pre_battle"/>
     <property name="act5" value="unlock_controls"/>
-    <property name="act6" value="add_monster pigabyte,25,spyder_greenwash_clarence,5,10"/>
-    <property name="act7" value="add_monster cochini,23,spyder_greenwash_clarence,5,10"/>
+    <property name="act6" value="add_monster pigabyte,30,spyder_greenwash_clarence,5,10"/>
+    <property name="act7" value="add_monster cochini,28,spyder_greenwash_clarence,5,10"/>
     <property name="act8" value="start_battle player,spyder_greenwash_clarence"/>
     <property name="act9" value="char_talk spyder_greenwash_clarence,post_battle_lose"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_greenwash_clarence"/>
@@ -180,7 +180,7 @@
     <property name="act03" value="char_face player,spyder_greenwash_broer"/>
     <property name="act04" value="char_talk spyder_greenwash_broer,pre_battle"/>
     <property name="act05" value="unlock_controls"/>
-    <property name="act06" value="add_monster coleorus,26,spyder_greenwash_broer,5,10"/>
+    <property name="act06" value="add_monster coleorus,31,spyder_greenwash_broer,5,10"/>
     <property name="act07" value="start_battle player,spyder_greenwash_broer"/>
     <property name="act08" value="char_talk spyder_greenwash_broer,post_battle_lose"/>
     <property name="act09" value="add_item potion"/>
@@ -204,7 +204,7 @@
     <property name="act3" value="char_face player,spyder_greenwash_lewie"/>
     <property name="act4" value="char_talk spyder_greenwash_lewie,pre_battle"/>
     <property name="act5" value="unlock_controls"/>
-    <property name="act6" value="add_monster agnite,26,spyder_greenwash_lewie,5,10"/>
+    <property name="act6" value="add_monster agnite,31,spyder_greenwash_lewie,5,10"/>
     <property name="act7" value="start_battle player,spyder_greenwash_lewie"/>
     <property name="act8" value="char_talk spyder_greenwash_lewie,post_battle_lose"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_greenwash_lewie"/>
@@ -226,8 +226,8 @@
     <property name="act3" value="char_face player,spyder_greenwash_morehouse"/>
     <property name="act4" value="char_talk spyder_greenwash_morehouse,pre_battle"/>
     <property name="act5" value="unlock_controls"/>
-    <property name="act6" value="add_monster eyenemy,20,spyder_greenwash_morehouse,5,10"/>
-    <property name="act7" value="add_monster eyesore,20,spyder_greenwash_morehouse,5,10"/>
+    <property name="act6" value="add_monster eyenemy,25,spyder_greenwash_morehouse,5,10"/>
+    <property name="act7" value="add_monster eyesore,25,spyder_greenwash_morehouse,5,10"/>
     <property name="act8" value="start_battle player,spyder_greenwash_morehouse"/>
     <property name="act9" value="char_talk spyder_greenwash_morehouse,post_battle_lose"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_greenwash_morehouse"/>

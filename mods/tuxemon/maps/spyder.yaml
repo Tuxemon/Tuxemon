@@ -130,6 +130,50 @@ events:
     - not location_inside
     - not check_world layer,0:0:128:128
     type: event
+  Push Into Water Down:
+    actions:
+    - char_move player,down
+    conditions:
+    - is variable_set swimming:yes
+    - is tile_property_updated surfable,1
+    - not char_in player,surfable
+    - is char_facing player,down
+    - is char_facing_tile player,surfable
+    - is current_state WorldState
+    type: event
+  Push Into Water Left:
+    actions:
+    - char_move player,left
+    conditions:
+    - is variable_set swimming:yes
+    - is tile_property_updated surfable,1
+    - not char_in player,surfable
+    - is char_facing player,left
+    - is char_facing_tile player,surfable
+    - is current_state WorldState
+    type: event
+  Push Into Water Right:
+    actions:
+    - char_move player,right
+    conditions:
+    - is variable_set swimming:yes
+    - is tile_property_updated surfable,1
+    - not char_in player,surfable
+    - is char_facing player,right
+    - is char_facing_tile player,surfable
+    - is current_state WorldState
+    type: event
+  Push Into Water Up:
+    actions:
+    - char_move player,up
+    conditions:
+    - is variable_set swimming:yes
+    - is tile_property_updated surfable,1
+    - not char_in player,surfable
+    - is char_facing player,up
+    - is char_facing_tile player,surfable
+    - is current_state WorldState
+    type: event
   Not surfable:
     actions:
     - set_template player,default

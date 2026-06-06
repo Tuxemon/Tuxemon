@@ -129,7 +129,7 @@
     <property name="act3" value="char_face player,spyder_greenwash_aissa"/>
     <property name="act4" value="char_talk spyder_greenwash_aissa,pre_battle"/>
     <property name="act5" value="unlock_controls"/>
-    <property name="act6" value="add_monster cateye,22,spyder_greenwash_aissa,5,10"/>
+    <property name="act6" value="add_monster cateye,27,spyder_greenwash_aissa,5,10"/>
     <property name="act7" value="start_battle player,spyder_greenwash_aissa"/>
     <property name="act8" value="char_talk spyder_greenwash_aissa,post_battle_lose"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_greenwash_aissa"/>
@@ -144,8 +144,8 @@
     <property name="act3" value="char_face player,spyder_greenwash_dippel"/>
     <property name="act4" value="char_talk spyder_greenwash_dippel,pre_battle"/>
     <property name="act5" value="unlock_controls"/>
-    <property name="act6" value="add_monster criniotherme,22,spyder_greenwash_dippel,5,10"/>
-    <property name="act7" value="add_monster tikorch,22,spyder_greenwash_dippel,5,10"/>
+    <property name="act6" value="add_monster criniotherme,27,spyder_greenwash_dippel,5,10"/>
+    <property name="act7" value="add_monster tikorch,27,spyder_greenwash_dippel,5,10"/>
     <property name="act8" value="start_battle player,spyder_greenwash_dippel"/>
     <property name="act9" value="char_talk spyder_greenwash_dippel,post_battle_lose"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_greenwash_dippel"/>
@@ -160,7 +160,7 @@
     <property name="act3" value="char_face player,spyder_greenwash_moreau"/>
     <property name="act4" value="char_talk spyder_greenwash_moreau,pre_battle"/>
     <property name="act5" value="unlock_controls"/>
-    <property name="act6" value="add_monster sclairus,26,spyder_greenwash_moreau,5,10"/>
+    <property name="act6" value="add_monster sclairus,31,spyder_greenwash_moreau,5,10"/>
     <property name="act7" value="start_battle player,spyder_greenwash_moreau"/>
     <property name="act8" value="char_talk spyder_greenwash_moreau,post_battle_lose"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_greenwash_moreau"/>
@@ -182,7 +182,7 @@
     <property name="act3" value="char_face player,spyder_greenwash_dempsey"/>
     <property name="act4" value="char_talk spyder_greenwash_dempsey,pre_battle"/>
     <property name="act5" value="unlock_controls"/>
-    <property name="act6" value="add_monster masknake,25,spyder_greenwash_dempsey,5,10"/>
+    <property name="act6" value="add_monster masknake,30,spyder_greenwash_dempsey,5,10"/>
     <property name="act7" value="start_battle player,spyder_greenwash_dempsey"/>
     <property name="act8" value="char_talk spyder_greenwash_dempsey,post_battle_lose"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_greenwash_dempsey"/>
@@ -204,7 +204,7 @@
     <property name="act3" value="char_face player,spyder_greenwash_heidenstam"/>
     <property name="act4" value="char_talk spyder_greenwash_heidenstam,pre_battle"/>
     <property name="act5" value="unlock_controls"/>
-    <property name="act6" value="add_monster foofle,10,spyder_greenwash_heidenstam,5,10"/>
+    <property name="act6" value="add_monster foofle,15,spyder_greenwash_heidenstam,5,10"/>
     <property name="act7" value="start_battle player,spyder_greenwash_heidenstam"/>
     <property name="act8" value="char_talk spyder_greenwash_heidenstam,post_battle_lose"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_greenwash_heidenstam"/>
@@ -264,7 +264,7 @@
   <object id="118" name="Talk Got Rhincus" type="event" x="176" y="240" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_greenwash_fossilisator4"/>
-    <property name="act2" value="add_monster rhincus,30"/>
+    <property name="act2" value="add_monster rhincus,35"/>
     <property name="act3" value="translated_dialog rhincus,,center,center,center"/>
     <property name="act4" value="add_item rhincus_fossil,-1"/>
     <property name="act5" value="set_variable got_rhincus:yes"/>
@@ -275,7 +275,7 @@
   <object id="119" name="Talk Got Shammer" type="event" x="192" y="240" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_greenwash_fossilisator6"/>
-    <property name="act2" value="add_monster shammer,30"/>
+    <property name="act2" value="add_monster shammer,35"/>
     <property name="act3" value="translated_dialog shammer,,center,center,center"/>
     <property name="act4" value="add_item shammer_fossil,-1"/>
     <property name="act5" value="set_variable got_shammer:yes"/>
@@ -299,9 +299,9 @@
   <object id="121" name="Talk Got Both" type="event" x="144" y="256" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_greenwash_fossilisator9"/>
-    <property name="act2" value="add_monster shammer,30"/>
+    <property name="act2" value="add_monster shammer,35"/>
     <property name="act3" value="translated_dialog shammer,,center,center,center"/>
-    <property name="act4" value="add_monster rhincus,30"/>
+    <property name="act4" value="add_monster rhincus,35"/>
     <property name="act5" value="translated_dialog rhincus,,center,center,center"/>
     <property name="act6" value="add_item shammer_fossil,-1"/>
     <property name="act7" value="add_item rhincus_fossil,-1"/>

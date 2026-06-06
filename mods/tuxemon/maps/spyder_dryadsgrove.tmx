@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="286">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="288">
  <properties>
   <property name="east" value="cotton_town"/>
   <property name="edges" value="clamped"/>
@@ -668,13 +668,14 @@
    <properties>
     <property name="act01" value="lock_controls"/>
     <property name="act02" value="pathfind_to_char player,spyder_dryadsgrove_aquemini"/>
-    <property name="act03" value="char_talk spyder_dryadsgrove_aquemini,pre_battle"/>
-    <property name="act04" value="unlock_controls"/>
-    <property name="act05" value="add_monster vivitrans,50,spyder_dryadsgrove_aquemini,5,10"/>
-    <property name="act06" value="add_monster nudimind,50,spyder_dryadsgrove_aquemini,5,10"/>
-    <property name="act07" value="add_monster noctalo,50,spyder_dryadsgrove_aquemini,5,10"/>
-    <property name="act08" value="start_battle player,spyder_dryadsgrove_aquemini"/>
-    <property name="act09" value="char_talk spyder_dryadsgrove_aquemini,post_battle_lose"/>
+    <property name="act03" value="char_face player,spyder_dryadsgrove_aquemini"/>
+    <property name="act04" value="char_talk spyder_dryadsgrove_aquemini,pre_battle"/>
+    <property name="act05" value="unlock_controls"/>
+    <property name="act06" value="add_monster vivitrans,50,spyder_dryadsgrove_aquemini,5,10"/>
+    <property name="act07" value="add_monster nudimind,50,spyder_dryadsgrove_aquemini,5,10"/>
+    <property name="act08" value="add_monster noctalo,50,spyder_dryadsgrove_aquemini,5,10"/>
+    <property name="act09" value="start_battle player,spyder_dryadsgrove_aquemini"/>
+    <property name="act10" value="char_talk spyder_dryadsgrove_aquemini,post_battle_lose"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_dryadsgrove_aquemini"/>
     <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="not char_defeated player"/>
@@ -684,13 +685,14 @@
    <properties>
     <property name="act01" value="lock_controls"/>
     <property name="act02" value="pathfind_to_char player,spyder_dryadsgrove_ignatia"/>
-    <property name="act03" value="char_talk spyder_dryadsgrove_ignatia,pre_battle"/>
-    <property name="act04" value="unlock_controls"/>
-    <property name="act05" value="add_monster vivicinder,50,spyder_dryadsgrove_ignatia,5,10"/>
-    <property name="act06" value="add_monster masknake,50,spyder_dryadsgrove_ignatia,5,10"/>
-    <property name="act07" value="add_monster criniotherme,50,spyder_dryadsgrove_ignatia,5,10"/>
-    <property name="act08" value="start_battle player,spyder_dryadsgrove_ignatia"/>
-    <property name="act09" value="char_talk spyder_dryadsgrove_ignatia,post_battle_lose"/>
+    <property name="act03" value="char_face player,spyder_dryadsgrove_ignatia"/>
+    <property name="act04" value="char_talk spyder_dryadsgrove_ignatia,pre_battle"/>
+    <property name="act05" value="unlock_controls"/>
+    <property name="act06" value="add_monster vivicinder,50,spyder_dryadsgrove_ignatia,5,10"/>
+    <property name="act07" value="add_monster masknake,50,spyder_dryadsgrove_ignatia,5,10"/>
+    <property name="act08" value="add_monster criniotherme,50,spyder_dryadsgrove_ignatia,5,10"/>
+    <property name="act09" value="start_battle player,spyder_dryadsgrove_ignatia"/>
+    <property name="act10" value="char_talk spyder_dryadsgrove_ignatia,post_battle_lose"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_dryadsgrove_ignatia"/>
     <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="not char_defeated player"/>
@@ -700,13 +702,14 @@
    <properties>
     <property name="act01" value="lock_controls"/>
     <property name="act02" value="pathfind_to_char player,spyder_dryadsgrove_petra"/>
-    <property name="act03" value="char_talk spyder_dryadsgrove_petra,pre_battle"/>
-    <property name="act04" value="unlock_controls"/>
-    <property name="act05" value="add_monster vivitron,50,spyder_dryadsgrove_petra,5,10"/>
-    <property name="act06" value="add_monster sumchon,50,spyder_dryadsgrove_petra,5,10"/>
-    <property name="act07" value="add_monster exapode,50,spyder_dryadsgrove_petra,5,10"/>
-    <property name="act08" value="start_battle player,spyder_dryadsgrove_petra"/>
-    <property name="act09" value="char_talk spyder_dryadsgrove_petra,post_battle_lose"/>
+    <property name="act03" value="char_face player,spyder_dryadsgrove_petra"/>
+    <property name="act04" value="char_talk spyder_dryadsgrove_petra,pre_battle"/>
+    <property name="act05" value="unlock_controls"/>
+    <property name="act06" value="add_monster vivitron,50,spyder_dryadsgrove_petra,5,10"/>
+    <property name="act07" value="add_monster sumchon,50,spyder_dryadsgrove_petra,5,10"/>
+    <property name="act08" value="add_monster exapode,50,spyder_dryadsgrove_petra,5,10"/>
+    <property name="act09" value="start_battle player,spyder_dryadsgrove_petra"/>
+    <property name="act10" value="char_talk spyder_dryadsgrove_petra,post_battle_lose"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_dryadsgrove_petra"/>
     <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="not char_defeated player"/>
@@ -735,13 +738,14 @@
    <properties>
     <property name="act01" value="lock_controls"/>
     <property name="act02" value="pathfind_to_char player,spyder_dryadsgrove_ferris"/>
-    <property name="act03" value="char_talk spyder_dryadsgrove_ferris,pre_battle"/>
-    <property name="act04" value="unlock_controls"/>
-    <property name="act05" value="add_monster viviteel,50,spyder_dryadsgrove_ferris,5,10"/>
-    <property name="act06" value="add_monster allagon,50,spyder_dryadsgrove_ferris,5,10"/>
-    <property name="act07" value="add_monster araignee,50,spyder_dryadsgrove_ferris,5,10"/>
-    <property name="act08" value="start_battle player,spyder_dryadsgrove_ferris"/>
-    <property name="act09" value="char_talk spyder_dryadsgrove_ferris,post_battle_lose"/>
+    <property name="act03" value="char_face player,spyder_dryadsgrove_ferris"/>
+    <property name="act04" value="char_talk spyder_dryadsgrove_ferris,pre_battle"/>
+    <property name="act05" value="unlock_controls"/>
+    <property name="act06" value="add_monster viviteel,50,spyder_dryadsgrove_ferris,5,10"/>
+    <property name="act07" value="add_monster allagon,50,spyder_dryadsgrove_ferris,5,10"/>
+    <property name="act08" value="add_monster araignee,50,spyder_dryadsgrove_ferris,5,10"/>
+    <property name="act09" value="start_battle player,spyder_dryadsgrove_ferris"/>
+    <property name="act10" value="char_talk spyder_dryadsgrove_ferris,post_battle_lose"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_dryadsgrove_ferris"/>
     <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="not char_defeated player"/>
@@ -786,7 +790,8 @@
   </object>
   <object id="265" name="Create Boy" type="event" x="400" y="480" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_dryadsgrove_boy,25,30,wander"/>
+    <property name="act1" value="create_npc spyder_dryadsgrove_boy,25,30"/>
+    <property name="act2" value="char_wander spyder_dryadsgrove_boy,0.6"/>
     <property name="cond1" value="not char_exists spyder_dryadsgrove_boy"/>
    </properties>
   </object>
@@ -911,6 +916,24 @@
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_moved player"/>
+   </properties>
+  </object>
+  <object id="286" name="Swim Encounters Day" type="event" x="208" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter spyder_routec,0.15"/>
+    <property name="cond1" value="is char_sprite player,swimmer"/>
+    <property name="cond2" value="is current_state WorldState"/>
+    <property name="cond3" value="is check_char_parameter player,moving,1"/>
+    <property name="cond4" value="is environment_is ocean"/>
+   </properties>
+  </object>
+  <object id="287" name="Swim Encounters Night" type="event" x="224" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter spyder_routec,0.25"/>
+    <property name="cond1" value="is char_sprite player,swimmer"/>
+    <property name="cond2" value="is current_state WorldState"/>
+    <property name="cond3" value="is check_char_parameter player,moving,1"/>
+    <property name="cond4" value="is environment_is night_ocean"/>
    </properties>
   </object>
  </objectgroup>

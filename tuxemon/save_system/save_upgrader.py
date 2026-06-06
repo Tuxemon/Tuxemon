@@ -58,7 +58,7 @@ SAVE_VERSION = 3
 
 # "evolution_registry": ("npc_state", "world_state"),
 FIELD_MIGRATION_MAP: dict[str, tuple[str, str]] = {}
-MONSTER_RENAMES: dict[str, str] = {"axylightl": "axolightl"}  # old: new
+MONSTER_RENAMES: dict[str, str] = {"axylightl": "axolightl", "gladiatorbug": "dynastor"}  # old: new
 TECHNIQUE_RENAMES: dict[str, str] = {"venom": "caustic_spray"}  # old: new
 
 

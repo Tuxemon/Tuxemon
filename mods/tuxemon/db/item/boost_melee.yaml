@@ -1,10 +1,10 @@
 conditions: []
 effects:
-- type: buff
-  parameters:
-  - melee
-  - '0.2'
+- type: statchange
 slug: boost_melee
+stat_modifiers:
+  melee:
+    step: 2
 sort: utility
 sprite: gfx/items/boost_melee.png
 category: stats

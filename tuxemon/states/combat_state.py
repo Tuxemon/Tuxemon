@@ -1009,6 +1009,8 @@ class CombatState(CombatAnimations):
     def end_combat(self) -> None:
         """End the combat."""
         self.event_bus.publish("clean_combat")
+        for player in self.combat_session.players:
+            player.battle_last_used_item_slug = None
         self.combat_session.reset()
         self.unregister_event_handlers()
         self.client.current_music.stop()

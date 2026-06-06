@@ -499,8 +499,12 @@ class Monster:
         levels_earned = self.experience_handler.give_experience(amount)
 
         if levels_earned > 0:
+            saved_xp = self.experience_handler.total_experience
             new_level = self.level  # XP handler already updated it
             self.set_level(new_level, old_level)
+            # set_level resets total_experience to the level floor; restore the
+            # actual accumulated value so the remainder past the new level is kept
+            self.experience_handler.set_total_experience(saved_xp)
 
         return levels_earned
 
@@ -678,6 +682,9 @@ class Monster:
     def transfer_properties_from(self, old_monster: Monster) -> None:
         """Copies essential state and identity properties from the pre-evolved monster."""
         self.experience_handler.set_level(old_monster.level)
+        self.experience_handler.set_total_experience(
+            old_monster.experience_handler.total_experience
+        )
         self.taste_cold = old_monster.taste_cold
         self.taste_warm = old_monster.taste_warm
         self.set_stats()

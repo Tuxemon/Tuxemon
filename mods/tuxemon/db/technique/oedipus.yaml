@@ -4,7 +4,7 @@ effects:
 - type: damage
 - type: give
   parameters:
-  - slow
+  - revenge
   - own_monster
 - type: give
   parameters:
@@ -35,7 +35,7 @@ use_failure: combat_miss
 use_success: null
 use_tech: combat_used_x
 visuals:
-  animation: skull_fire
+  animation: null
   flip_axes: ''
   loop: 0
 sound:

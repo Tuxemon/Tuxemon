@@ -53,7 +53,7 @@ class NoddingOffEffect(CoreEffect):
             skip = Technique.create(status.on_tech_use)
             tech = [skip]
 
-        if status.has_phase(EffectPhase.PERFORM_TECH) and status.turn > 1 and self.wake_up(status):
+        if status.has_phase(EffectPhase.PERFORM_TECH) and status.nr_turn > 1 and self.wake_up(status):
             params = {"target": host.name.upper()}
             extra = [T.format("combat_state_dozing_end", params)]
             host.status.clear_status(session)

@@ -1006,6 +1006,8 @@ class CombatState(CombatAnimations):
     def end_combat(self) -> None:
         """End the combat."""
         self.event_bus.publish("clean_combat")
+        for player in self.combat_session.players:
+            player.battle_last_used_item_slug = None
         new_entry = self.combat_session.get_variable("new_tuxepedia")
         self.combat_session.reset()
         self.unregister_event_handlers()

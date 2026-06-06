@@ -1,4 +1,22 @@
 events:
+  Swim Encounters Day:
+    actions:
+    - random_encounter spyder_routec,0.15
+    conditions:
+    - is char_sprite player,swimmer
+    - is current_state WorldState
+    - is check_char_parameter player,moving,1
+    - is environment_is ocean
+    type: event
+  Swim Encounters Night:
+    actions:
+    - random_encounter spyder_routec,0.25
+    conditions:
+    - is char_sprite player,swimmer
+    - is current_state WorldState
+    - is check_char_parameter player,moving,1
+    - is environment_is night_ocean
+    type: event
   Play Music:
     actions:
     - play_music music_town_theme
@@ -7,8 +25,8 @@ events:
     type: event
   Create Captain:
     actions:
-    - create_npc spyder_captain,37,8
-    - char_face spyder_captain,left
+    - create_npc spyder_captain,37,13
+    - char_face spyder_captain,up
     conditions:
     - not char_exists spyder_captain
     - is variable_set captainreturns:yes
@@ -22,7 +40,7 @@ events:
   Destination - Candy:
     actions:
     - set_variable rivergoto:nothing
-    - transition_teleport player,spyder_candy_port.tmx,37,13,0.3
+    - transition_teleport player,spyder_candy_port.tmx,37,12,0.3
     - char_face player,down
     conditions:
     - is variable_set rivergoto:candy_port

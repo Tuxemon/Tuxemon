@@ -110,7 +110,8 @@
     <property name="act02" value="lock_controls"/>
     <property name="act03" value="create_npc spyder_billie,10,9"/>
     <property name="act04" value="pathfind_to_char player,spyder_billie,down"/>
-    <property name="act05" value="unlock_controls"/>
+    <property name="act05" value="char_face player,spyder_billie"/>
+    <property name="act06" value="unlock_controls"/>
     <property name="act08" value="translated_dialog spyder_dojo_billie1"/>
     <property name="act20" value="add_monster billie_choice,34,spyder_billie,5,10"/>
     <property name="act21" value="set_monster_attribute add_monster,gender,male"/>

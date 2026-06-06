@@ -143,7 +143,8 @@
     <property name="act02" value="lock_controls"/>
     <property name="act03" value="create_npc spyder_billie,16,11"/>
     <property name="act04" value="pathfind_to_char player,spyder_billie"/>
-    <property name="act05" value="unlock_controls"/>
+    <property name="act05" value="char_face player,spyder_billie"/>
+    <property name="act06" value="unlock_controls"/>
     <property name="act08" value="translated_dialog spyder_routea_billie1"/>
     <property name="act20" value="add_monster billie_choice,20,spyder_billie,5,10"/>
     <property name="act21" value="set_monster_attribute add_monster,gender,male"/>
@@ -192,12 +193,13 @@
    <properties>
     <property name="act1" value="lock_controls"/>
     <property name="act2" value="pathfind_to_char player,spyder_routea_doris"/>
-    <property name="act3" value="char_talk spyder_routea_doris,pre_battle"/>
-    <property name="act4" value="unlock_controls"/>
-    <property name="act5" value="add_monster shybulb,12,spyder_routea_doris,5,10"/>
-    <property name="act6" value="add_monster trapsnap,14,spyder_routea_doris,5,10"/>
-    <property name="act7" value="start_battle player,spyder_routea_doris"/>
-    <property name="act8" value="char_talk spyder_routea_doris,post_battle_lose"/>
+    <property name="act3" value="char_face player,spyder_routea_doris"/>
+    <property name="act4" value="char_talk spyder_routea_doris,pre_battle"/>
+    <property name="act5" value="unlock_controls"/>
+    <property name="act6" value="add_monster shybulb,12,spyder_routea_doris,5,10"/>
+    <property name="act7" value="add_monster trapsnap,14,spyder_routea_doris,5,10"/>
+    <property name="act8" value="start_battle player,spyder_routea_doris"/>
+    <property name="act9" value="char_talk spyder_routea_doris,post_battle_lose"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_routea_doris"/>
     <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="not char_defeated player"/>
@@ -214,11 +216,12 @@
    <properties>
     <property name="act1" value="lock_controls"/>
     <property name="act2" value="pathfind_to_char player,spyder_routea_dagger"/>
-    <property name="act3" value="char_talk spyder_routea_dagger,pre_battle"/>
-    <property name="act4" value="unlock_controls"/>
-    <property name="act5" value="add_monster cardiwing,16,spyder_routea_dagger,5,10"/>
-    <property name="act6" value="start_battle player,spyder_routea_dagger"/>
-    <property name="act7" value="char_talk spyder_routea_dagger,post_battle_lose"/>
+    <property name="act3" value="char_face player,spyder_routea_dagger"/>
+    <property name="act4" value="char_talk spyder_routea_dagger,pre_battle"/>
+    <property name="act5" value="unlock_controls"/>
+    <property name="act6" value="add_monster cardiwing,16,spyder_routea_dagger,5,10"/>
+    <property name="act7" value="start_battle player,spyder_routea_dagger"/>
+    <property name="act8" value="char_talk spyder_routea_dagger,post_battle_lose"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_routea_dagger"/>
     <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="not char_defeated player"/>
@@ -228,12 +231,13 @@
    <properties>
     <property name="act1" value="lock_controls"/>
     <property name="act2" value="pathfind_to_char player,spyder_routea_doris"/>
-    <property name="act3" value="char_talk spyder_routea_doris,pre_battle"/>
-    <property name="act4" value="unlock_controls"/>
-    <property name="act5" value="add_monster shybulb,12,spyder_routea_doris,5,10"/>
-    <property name="act6" value="add_monster trapsnap,14,spyder_routea_doris,5,10"/>
-    <property name="act7" value="start_battle player,spyder_routea_doris"/>
-    <property name="act8" value="char_talk spyder_routea_doris,post_battle_lose"/>
+    <property name="act3" value="char_face player,spyder_routea_doris"/>
+    <property name="act4" value="char_talk spyder_routea_doris,pre_battle"/>
+    <property name="act5" value="unlock_controls"/>
+    <property name="act6" value="add_monster shybulb,12,spyder_routea_doris,5,10"/>
+    <property name="act7" value="add_monster trapsnap,14,spyder_routea_doris,5,10"/>
+    <property name="act8" value="start_battle player,spyder_routea_doris"/>
+    <property name="act9" value="char_talk spyder_routea_doris,post_battle_lose"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_routea_doris"/>
     <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="not char_defeated player"/>
@@ -250,12 +254,13 @@
    <properties>
     <property name="act1" value="lock_controls"/>
     <property name="act2" value="pathfind_to_char player,spyder_routea_koan"/>
-    <property name="act3" value="char_talk spyder_routea_koan,pre_battle"/>
-    <property name="act4" value="unlock_controls"/>
-    <property name="act5" value="add_monster shybulb,12,spyder_routea_koan,5,10"/>
-    <property name="act6" value="add_monster budaye,12,spyder_routea_koan,5,10"/>
-    <property name="act7" value="start_battle player,spyder_routea_koan"/>
-    <property name="act8" value="char_talk spyder_routea_koan,post_battle_lose"/>
+    <property name="act3" value="char_face player,spyder_routea_koan"/>
+    <property name="act4" value="char_talk spyder_routea_koan,pre_battle"/>
+    <property name="act5" value="unlock_controls"/>
+    <property name="act6" value="add_monster shybulb,12,spyder_routea_koan,5,10"/>
+    <property name="act7" value="add_monster budaye,12,spyder_routea_koan,5,10"/>
+    <property name="act8" value="start_battle player,spyder_routea_koan"/>
+    <property name="act9" value="char_talk spyder_routea_koan,post_battle_lose"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_routea_koan"/>
     <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="not char_defeated player"/>
@@ -271,12 +276,13 @@
    <properties>
     <property name="act1" value="lock_controls"/>
     <property name="act2" value="pathfind_to_char player,spyder_routea_lexi"/>
-    <property name="act3" value="char_talk spyder_routea_lexi,pre_battle"/>
-    <property name="act4" value="unlock_controls"/>
-    <property name="act5" value="add_monster vamporm,14,spyder_routea_lexi,5,10"/>
-    <property name="act6" value="add_monster katapill,14,spyder_routea_lexi,5,10"/>
-    <property name="act7" value="start_battle player,spyder_routea_lexi"/>
-    <property name="act8" value="char_talk spyder_routea_lexi,post_battle_lose"/>
+    <property name="act3" value="char_face player,spyder_routea_lexi"/>
+    <property name="act4" value="char_talk spyder_routea_lexi,pre_battle"/>
+    <property name="act5" value="unlock_controls"/>
+    <property name="act6" value="add_monster vamporm,14,spyder_routea_lexi,5,10"/>
+    <property name="act7" value="add_monster katapill,14,spyder_routea_lexi,5,10"/>
+    <property name="act8" value="start_battle player,spyder_routea_lexi"/>
+    <property name="act9" value="char_talk spyder_routea_lexi,post_battle_lose"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_routea_lexi"/>
     <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="not char_defeated player"/>
@@ -293,12 +299,13 @@
    <properties>
     <property name="act1" value="lock_controls"/>
     <property name="act2" value="pathfind_to_char player,spyder_routea_lotu"/>
-    <property name="act3" value="char_talk spyder_routea_lotu,pre_battle"/>
-    <property name="act4" value="unlock_controls"/>
-    <property name="act5" value="add_monster narcileaf,14,spyder_routea_lotu,5,10"/>
-    <property name="act6" value="add_monster tarpeur,14,spyder_routea_lotu,5,10"/>
-    <property name="act7" value="start_battle player,spyder_routea_lotu"/>
-    <property name="act8" value="char_talk spyder_routea_lotu,post_battle_lose"/>
+    <property name="act3" value="char_face player,spyder_routea_lotu"/>
+    <property name="act4" value="char_talk spyder_routea_lotu,pre_battle"/>
+    <property name="act5" value="unlock_controls"/>
+    <property name="act6" value="add_monster narcileaf,14,spyder_routea_lotu,5,10"/>
+    <property name="act7" value="add_monster tarpeur,14,spyder_routea_lotu,5,10"/>
+    <property name="act8" value="start_battle player,spyder_routea_lotu"/>
+    <property name="act9" value="char_talk spyder_routea_lotu,post_battle_lose"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_routea_lotu"/>
     <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="not char_defeated player"/>
@@ -308,12 +315,13 @@
    <properties>
     <property name="act1" value="lock_controls"/>
     <property name="act2" value="pathfind_to_char player,spyder_routea_connie"/>
-    <property name="act3" value="char_talk spyder_routea_connie,pre_battle"/>
-    <property name="act4" value="unlock_controls"/>
-    <property name="act5" value="add_monster sharpfin,14,spyder_routea_connie,5,10"/>
-    <property name="act6" value="add_monster bigfin,14,spyder_routea_connie,5,10"/>
-    <property name="act7" value="start_battle player,spyder_routea_connie"/>
-    <property name="act8" value="char_talk spyder_routea_connie,post_battle_lose"/>
+    <property name="act3" value="char_face player,spyder_routea_connie"/>
+    <property name="act4" value="char_talk spyder_routea_connie,pre_battle"/>
+    <property name="act5" value="unlock_controls"/>
+    <property name="act6" value="add_monster sharpfin,14,spyder_routea_connie,5,10"/>
+    <property name="act7" value="add_monster bigfin,14,spyder_routea_connie,5,10"/>
+    <property name="act8" value="start_battle player,spyder_routea_connie"/>
+    <property name="act9" value="char_talk spyder_routea_connie,post_battle_lose"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_routea_connie"/>
     <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="not char_defeated player"/>
@@ -336,11 +344,12 @@
    <properties>
     <property name="act1" value="lock_controls"/>
     <property name="act2" value="pathfind_to_char player,spyder_routea_joe"/>
-    <property name="act3" value="char_talk spyder_routea_joe,pre_battle"/>
-    <property name="act4" value="unlock_controls"/>
-    <property name="act5" value="add_monster katapill,16,spyder_routea_joe,5,10"/>
-    <property name="act6" value="start_battle player,spyder_routea_joe"/>
-    <property name="act7" value="char_talk spyder_routea_joe,post_battle_lose"/>
+    <property name="act3" value="char_face player,spyder_routea_joe"/>
+    <property name="act4" value="char_talk spyder_routea_joe,pre_battle"/>
+    <property name="act5" value="unlock_controls"/>
+    <property name="act6" value="add_monster katapill,16,spyder_routea_joe,5,10"/>
+    <property name="act7" value="start_battle player,spyder_routea_joe"/>
+    <property name="act8" value="char_talk spyder_routea_joe,post_battle_lose"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_routea_joe"/>
     <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="not char_defeated player"/>
@@ -356,11 +365,12 @@
    <properties>
     <property name="act1" value="lock_controls"/>
     <property name="act2" value="pathfind_to_char player,spyder_routea_rosy"/>
-    <property name="act3" value="char_talk spyder_routea_rosy,pre_battle"/>
-    <property name="act4" value="unlock_controls"/>
-    <property name="act5" value="add_monster shammer,16,spyder_routea_rosy,5,10"/>
-    <property name="act6" value="start_battle player,spyder_routea_rosy"/>
-    <property name="act7" value="char_talk spyder_routea_rosy,post_battle_lose"/>
+    <property name="act3" value="char_face player,spyder_routea_rosy"/>
+    <property name="act4" value="char_talk spyder_routea_rosy,pre_battle"/>
+    <property name="act5" value="unlock_controls"/>
+    <property name="act6" value="add_monster shammer,16,spyder_routea_rosy,5,10"/>
+    <property name="act7" value="start_battle player,spyder_routea_rosy"/>
+    <property name="act8" value="char_talk spyder_routea_rosy,post_battle_lose"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_routea_rosy"/>
     <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="not char_defeated player"/>

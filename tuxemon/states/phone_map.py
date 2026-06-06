@@ -92,6 +92,12 @@ class NuPhoneMap(PygameMenuState):
                     if self.client.map_manager.map_slug == key:
                         underline = True
                         selectable = False
+                        player_icon = self._create_image("gfx/ui/menu/player.png")
+                        player_icon.scale(self.factor, self.factor)
+                        menu.add.image(player_icon.copy(), float=True).translate(
+                            fix_measure(menu._width, x),
+                            fix_measure(menu._height, y),
+                        )
 
                     lab: Any = menu.add.label(
                         title=T.translate(key),

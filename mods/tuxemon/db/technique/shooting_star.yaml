@@ -35,7 +35,7 @@ use_failure: shooting_star_fail
 use_success: null
 use_tech: combat_used_x
 visuals:
-  animation: blue_circle
+  animation: starfall
   flip_axes: ''
   loop: 0
 sound:

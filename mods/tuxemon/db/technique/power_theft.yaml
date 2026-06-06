@@ -11,7 +11,7 @@ effects:
   - enemy_monster
 speed: normal
 potency: 0.5
-power: 2.5
+power: 1.0
 range: touch
 recharge: 1
 slug: power_theft

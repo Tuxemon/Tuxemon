@@ -118,6 +118,10 @@ class NPC(Entity):
         self.bag = BagHandler(item_boxes=self.item_boxes, owner=self)
         self.evolution_registry = EvolutionRegistry()
         self.steps: float = 0.0
+        # Slug of last item used outside battle; persists across battles.
+        self.last_used_item_slug: str | None = None
+        # Slug of last item used inside battle; cleared when battle ends.
+        self.battle_last_used_item_slug: str | None = None
         self.dialogue: DialogueProfile | None = None
         self.sprite_controller = SpriteController(self)
         self.daycare = Daycare(owner=self)

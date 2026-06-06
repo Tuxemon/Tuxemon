@@ -88,14 +88,15 @@
    <properties>
     <property name="act01" value="lock_controls"/>
     <property name="act02" value="pathfind_to_char player,spyder_routeb_electra"/>
-    <property name="act03" value="char_talk spyder_routeb_electra,pre_battle"/>
-    <property name="act04" value="unlock_controls"/>
-    <property name="act05" value="add_monster dracune,35,spyder_routeb_electra,5,10"/>
-    <property name="act06" value="add_monster pantherafira,45,spyder_routeb_electra,5,10"/>
-    <property name="act07" value="add_monster tumbleworm,40,spyder_routeb_electra,5,10"/>
-    <property name="act08" value="start_battle player,spyder_routeb_electra"/>
-    <property name="act09" value="char_talk spyder_routeb_electra,post_battle_lose"/>
-    <property name="act10" value="set_variable routebelectra:yes"/>
+    <property name="act03" value="char_face player,spyder_routeb_electra"/>
+    <property name="act04" value="char_talk spyder_routeb_electra,pre_battle"/>
+    <property name="act05" value="unlock_controls"/>
+    <property name="act06" value="add_monster dracune,35,spyder_routeb_electra,5,10"/>
+    <property name="act07" value="add_monster pantherafira,45,spyder_routeb_electra,5,10"/>
+    <property name="act08" value="add_monster tumbleworm,40,spyder_routeb_electra,5,10"/>
+    <property name="act09" value="start_battle player,spyder_routeb_electra"/>
+    <property name="act10" value="char_talk spyder_routeb_electra,post_battle_lose"/>
+    <property name="act11" value="set_variable routebelectra:yes"/>
     <property name="cond1" value="not variable_set routebelectra:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
@@ -111,13 +112,14 @@
    <properties>
     <property name="act01" value="lock_controls"/>
     <property name="act02" value="pathfind_to_char player,spyder_routeb_cytherea"/>
-    <property name="act03" value="char_talk spyder_routeb_cytherea,pre_battle"/>
-    <property name="act04" value="unlock_controls"/>
-    <property name="act05" value="add_monster fluttaflap,35,spyder_routeb_cytherea,5,10"/>
-    <property name="act06" value="add_monster criniotherme,35,spyder_routeb_cytherea,5,10"/>
-    <property name="act07" value="add_monster tumblebee,40,spyder_routeb_cytherea,5,10"/>
-    <property name="act08" value="start_battle player,spyder_routeb_cytherea"/>
-    <property name="act09" value="char_talk spyder_routeb_cytherea,post_battle_lose"/>
+    <property name="act03" value="char_face player,spyder_routeb_cytherea"/>
+    <property name="act04" value="char_talk spyder_routeb_cytherea,pre_battle"/>
+    <property name="act05" value="unlock_controls"/>
+    <property name="act06" value="add_monster fluttaflap,35,spyder_routeb_cytherea,5,10"/>
+    <property name="act07" value="add_monster criniotherme,35,spyder_routeb_cytherea,5,10"/>
+    <property name="act08" value="add_monster tumblebee,40,spyder_routeb_cytherea,5,10"/>
+    <property name="act09" value="start_battle player,spyder_routeb_cytherea"/>
+    <property name="act10" value="char_talk spyder_routeb_cytherea,post_battle_lose"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_routeb_cytherea"/>
     <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="not char_defeated player"/>
@@ -133,12 +135,13 @@
    <properties>
     <property name="act1" value="lock_controls"/>
     <property name="act2" value="pathfind_to_char player,spyder_routeb_nephthys"/>
-    <property name="act3" value="char_talk spyder_routeb_nephthys,pre_battle"/>
-    <property name="act4" value="unlock_controls"/>
-    <property name="act5" value="add_monster conifrost,45,spyder_routeb_nephthys,5,10"/>
-    <property name="act6" value="add_monster djinnbo,45,spyder_routeb_nephthys,5,10"/>
-    <property name="act7" value="start_battle player,spyder_routeb_nephthys"/>
-    <property name="act8" value="char_talk spyder_routeb_nephthys,post_battle_lose"/>
+    <property name="act3" value="char_face player,spyder_routeb_nephthys"/>
+    <property name="act4" value="char_talk spyder_routeb_nephthys,pre_battle"/>
+    <property name="act5" value="unlock_controls"/>
+    <property name="act6" value="add_monster conifrost,45,spyder_routeb_nephthys,5,10"/>
+    <property name="act7" value="add_monster djinnbo,45,spyder_routeb_nephthys,5,10"/>
+    <property name="act8" value="start_battle player,spyder_routeb_nephthys"/>
+    <property name="act9" value="char_talk spyder_routeb_nephthys,post_battle_lose"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_routeb_nephthys"/>
     <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="not char_defeated player"/>
@@ -154,11 +157,12 @@
    <properties>
     <property name="act1" value="lock_controls"/>
     <property name="act2" value="pathfind_to_char player,spyder_routeb_sedna"/>
-    <property name="act3" value="char_talk spyder_routeb_sedna,pre_battle"/>
-    <property name="act4" value="unlock_controls"/>
-    <property name="act5" value="add_monster squabbit,40,spyder_routeb_sedna,5,10"/>
-    <property name="act6" value="start_battle player,spyder_routeb_sedna"/>
-    <property name="act7" value="char_talk spyder_routeb_sedna,post_battle_lose"/>
+    <property name="act3" value="char_face player,spyder_routeb_sedna"/>
+    <property name="act4" value="char_talk spyder_routeb_sedna,pre_battle"/>
+    <property name="act5" value="unlock_controls"/>
+    <property name="act6" value="add_monster squabbit,40,spyder_routeb_sedna,5,10"/>
+    <property name="act7" value="start_battle player,spyder_routeb_sedna"/>
+    <property name="act8" value="char_talk spyder_routeb_sedna,post_battle_lose"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_routeb_sedna"/>
     <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="not char_defeated player"/>
@@ -175,13 +179,14 @@
    <properties>
     <property name="act01" value="lock_controls"/>
     <property name="act02" value="pathfind_to_char player,spyder_routeb_calypso"/>
-    <property name="act03" value="char_talk spyder_routeb_calypso,pre_battle"/>
-    <property name="act04" value="unlock_controls"/>
-    <property name="act05" value="add_monster ruption,40,spyder_routeb_calypso,5,10"/>
-    <property name="act06" value="add_monster puparmor,35,spyder_routeb_calypso,5,10"/>
-    <property name="act07" value="add_monster sumchon,40,spyder_routeb_calypso,5,10"/>
-    <property name="act08" value="start_battle player,spyder_routeb_calypso"/>
-    <property name="act09" value="char_talk spyder_routeb_calypso,post_battle_lose"/>
+    <property name="act03" value="char_face player,spyder_routeb_calypso"/>
+    <property name="act04" value="char_talk spyder_routeb_calypso,pre_battle"/>
+    <property name="act05" value="unlock_controls"/>
+    <property name="act06" value="add_monster ruption,40,spyder_routeb_calypso,5,10"/>
+    <property name="act07" value="add_monster puparmor,35,spyder_routeb_calypso,5,10"/>
+    <property name="act08" value="add_monster sumchon,40,spyder_routeb_calypso,5,10"/>
+    <property name="act09" value="start_battle player,spyder_routeb_calypso"/>
+    <property name="act10" value="char_talk spyder_routeb_calypso,post_battle_lose"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_routeb_calypso"/>
     <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="not char_defeated player"/>

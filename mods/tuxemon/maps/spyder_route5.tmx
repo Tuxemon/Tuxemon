@@ -239,7 +239,7 @@
   <object id="48" name="Talk Sara" type="event" x="352" y="128" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_route5_sara,pre_battle"/>
-    <property name="act2" value="add_monster capiti,20,spyder_route5_sara,5,10"/>
+    <property name="act2" value="add_monster capiti,25,spyder_route5_sara,5,10"/>
     <property name="act3" value="start_battle player,spyder_route5_sara"/>
     <property name="act4" value="char_talk spyder_route5_sara,post_battle_lose"/>
     <property name="behav1" value="talk spyder_route5_sara"/>
@@ -251,7 +251,7 @@
     <property name="act10" value="char_stop player"/>
     <property name="act30" value="pathfind spyder_route5_goliath,36,9"/>
     <property name="act40" value="char_talk spyder_route5_goliath,pre_battle"/>
-    <property name="act44" value="add_monster spighter,35,spyder_route5_goliath,5,10"/>
+    <property name="act44" value="add_monster spighter,40,spyder_route5_goliath,5,10"/>
     <property name="act45" value="start_battle player,spyder_route5_goliath"/>
     <property name="act46" value="char_talk spyder_route5_goliath,post_battle_lose"/>
     <property name="act50" value="pathfind spyder_route5_goliath,35,4"/>
@@ -277,7 +277,7 @@
   <object id="54" name="Talk Edith" type="event" x="320" y="224" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_route5_edith,pre_battle"/>
-    <property name="act2" value="add_monster aardart,20,spyder_route5_edith,5,10"/>
+    <property name="act2" value="add_monster aardart,25,spyder_route5_edith,5,10"/>
     <property name="act3" value="start_battle player,spyder_route5_edith"/>
     <property name="act4" value="char_talk spyder_route5_edith,post_battle_lose"/>
     <property name="behav1" value="talk spyder_route5_edith"/>
@@ -293,9 +293,9 @@
   <object id="56" name="Talk Hunter" type="event" x="96" y="144" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_route5_hunter,pre_battle"/>
-    <property name="act2" value="add_monster elowind,18,spyder_route5_hunter,5,10"/>
-    <property name="act3" value="add_monster elofly,16,spyder_route5_hunter,5,10"/>
-    <property name="act4" value="add_monster elofly,16,spyder_route5_hunter,5,10"/>
+    <property name="act2" value="add_monster elowind,23,spyder_route5_hunter,5,10"/>
+    <property name="act3" value="add_monster elofly,21,spyder_route5_hunter,5,10"/>
+    <property name="act4" value="add_monster elofly,21,spyder_route5_hunter,5,10"/>
     <property name="act5" value="start_battle player,spyder_route5_hunter"/>
     <property name="act6" value="char_talk spyder_route5_hunter,post_battle_lose"/>
     <property name="behav1" value="talk spyder_route5_hunter"/>
@@ -311,8 +311,8 @@
   <object id="58" name="Talk Cleo" type="event" x="336" y="80" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_route5_cleo,pre_battle"/>
-    <property name="act2" value="add_monster memnomnom,20,spyder_route5_cleo,5,10"/>
-    <property name="act3" value="add_monster memnomnom,20,spyder_route5_cleo,5,10"/>
+    <property name="act2" value="add_monster memnomnom,25,spyder_route5_cleo,5,10"/>
+    <property name="act3" value="add_monster memnomnom,25,spyder_route5_cleo,5,10"/>
     <property name="act4" value="start_battle player,spyder_route5_cleo"/>
     <property name="act5" value="char_talk spyder_route5_cleo,post_battle_lose"/>
     <property name="behav1" value="talk spyder_route5_cleo"/>
@@ -328,8 +328,8 @@
   <object id="60" name="Talk Tryphaena" type="event" x="272" y="80" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_route5_tryphaena,pre_battle"/>
-    <property name="act2" value="add_monster miaownolith,24,spyder_route5_tryphaena,5,10"/>
-    <property name="act3" value="add_monster criniotherme,22,spyder_route5_tryphaena,5,10"/>
+    <property name="act2" value="add_monster miaownolith,29,spyder_route5_tryphaena,5,10"/>
+    <property name="act3" value="add_monster criniotherme,27,spyder_route5_tryphaena,5,10"/>
     <property name="act4" value="start_battle player,spyder_route5_tryphaena"/>
     <property name="act5" value="char_talk spyder_route5_tryphaena,post_battle_lose"/>
     <property name="behav1" value="talk spyder_route5_tryphaena"/>
@@ -354,11 +354,12 @@
    <properties>
     <property name="act1" value="lock_controls"/>
     <property name="act2" value="pathfind_to_char player,spyder_route5_sara"/>
-    <property name="act3" value="char_talk spyder_route5_sara,pre_battle"/>
-    <property name="act4" value="unlock_controls"/>
-    <property name="act5" value="add_monster capiti,20,spyder_route5_sara,5,10"/>
-    <property name="act6" value="start_battle player,spyder_route5_sara"/>
-    <property name="act7" value="char_talk spyder_route5_sara,post_battle_lose"/>
+    <property name="act3" value="char_face player,spyder_route5_sara"/>
+    <property name="act4" value="char_talk spyder_route5_sara,pre_battle"/>
+    <property name="act5" value="unlock_controls"/>
+    <property name="act6" value="add_monster capiti,25,spyder_route5_sara,5,10"/>
+    <property name="act7" value="start_battle player,spyder_route5_sara"/>
+    <property name="act8" value="char_talk spyder_route5_sara,post_battle_lose"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_route5_sara"/>
     <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="not char_defeated player"/>
@@ -368,12 +369,13 @@
    <properties>
     <property name="act1" value="lock_controls"/>
     <property name="act2" value="pathfind_to_char player,spyder_route5_cleo"/>
-    <property name="act3" value="char_talk spyder_route5_cleo,pre_battle"/>
-    <property name="act4" value="unlock_controls"/>
-    <property name="act5" value="add_monster memnomnom,20,spyder_route5_cleo,5,10"/>
-    <property name="act6" value="add_monster memnomnom,20,spyder_route5_cleo,5,10"/>
-    <property name="act7" value="start_battle player,spyder_route5_cleo"/>
-    <property name="act8" value="char_talk spyder_route5_cleo,post_battle_lose"/>
+    <property name="act3" value="char_face player,spyder_route5_cleo"/>
+    <property name="act4" value="char_talk spyder_route5_cleo,pre_battle"/>
+    <property name="act5" value="unlock_controls"/>
+    <property name="act6" value="add_monster memnomnom,25,spyder_route5_cleo,5,10"/>
+    <property name="act7" value="add_monster memnomnom,25,spyder_route5_cleo,5,10"/>
+    <property name="act8" value="start_battle player,spyder_route5_cleo"/>
+    <property name="act9" value="char_talk spyder_route5_cleo,post_battle_lose"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_route5_cleo"/>
     <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="not char_defeated player"/>
@@ -383,12 +385,13 @@
    <properties>
     <property name="act1" value="lock_controls"/>
     <property name="act2" value="pathfind_to_char player,spyder_route5_tryphaena"/>
-    <property name="act3" value="char_talk spyder_route5_tryphaena,pre_battle"/>
-    <property name="act4" value="unlock_controls"/>
-    <property name="act5" value="add_monster miaownolith,24,spyder_route5_tryphaena,5,10"/>
-    <property name="act6" value="add_monster criniotherme,22,spyder_route5_tryphaena,5,10"/>
-    <property name="act7" value="start_battle player,spyder_route5_tryphaena"/>
-    <property name="act8" value="char_talk spyder_route5_tryphaena,post_battle_lose"/>
+    <property name="act3" value="char_face player,spyder_route5_tryphaena"/>
+    <property name="act4" value="char_talk spyder_route5_tryphaena,pre_battle"/>
+    <property name="act5" value="unlock_controls"/>
+    <property name="act6" value="add_monster miaownolith,29,spyder_route5_tryphaena,5,10"/>
+    <property name="act7" value="add_monster criniotherme,27,spyder_route5_tryphaena,5,10"/>
+    <property name="act8" value="start_battle player,spyder_route5_tryphaena"/>
+    <property name="act9" value="char_talk spyder_route5_tryphaena,post_battle_lose"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_route5_tryphaena"/>
     <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="not char_defeated player"/>
@@ -398,11 +401,12 @@
    <properties>
     <property name="act1" value="lock_controls"/>
     <property name="act2" value="pathfind_to_char player,spyder_route5_edith"/>
-    <property name="act3" value="char_talk spyder_route5_edith,pre_battle"/>
-    <property name="act4" value="unlock_controls"/>
-    <property name="act5" value="add_monster aardart,20,spyder_route5_edith,5,10"/>
-    <property name="act6" value="start_battle player,spyder_route5_edith"/>
-    <property name="act7" value="char_talk spyder_route5_edith,post_battle_lose"/>
+    <property name="act3" value="char_face player,spyder_route5_edith"/>
+    <property name="act4" value="char_talk spyder_route5_edith,pre_battle"/>
+    <property name="act5" value="unlock_controls"/>
+    <property name="act6" value="add_monster aardart,25,spyder_route5_edith,5,10"/>
+    <property name="act7" value="start_battle player,spyder_route5_edith"/>
+    <property name="act8" value="char_talk spyder_route5_edith,post_battle_lose"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_route5_edith"/>
     <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="not char_defeated player"/>

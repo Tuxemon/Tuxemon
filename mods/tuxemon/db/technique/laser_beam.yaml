@@ -28,7 +28,6 @@ tags:
 - electricity
 types:
 - lightning
-- metal
 use_failure: combat_miss
 use_success: null
 use_tech: combat_used_x

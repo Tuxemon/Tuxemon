@@ -228,12 +228,13 @@
    <properties>
     <property name="act1" value="lock_controls"/>
     <property name="act2" value="pathfind_to_char player,spyder_mansion_gillette"/>
-    <property name="act3" value="char_talk spyder_mansion_gillette,pre_battle"/>
-    <property name="act4" value="unlock_controls"/>
-    <property name="act5" value="add_monster djinnbo,22,spyder_mansion_gillette,5,10"/>
-    <property name="act6" value="add_monster ghosteeth,22,spyder_mansion_gillette,5,10"/>
-    <property name="act7" value="start_battle player,spyder_mansion_gillette"/>
-    <property name="act8" value="char_talk spyder_mansion_gillette,post_battle_lose"/>
+    <property name="act3" value="char_face player,spyder_mansion_gillette"/>
+    <property name="act4" value="char_talk spyder_mansion_gillette,pre_battle"/>
+    <property name="act5" value="unlock_controls"/>
+    <property name="act6" value="add_monster djinnbo,22,spyder_mansion_gillette,5,10"/>
+    <property name="act7" value="add_monster ghosteeth,22,spyder_mansion_gillette,5,10"/>
+    <property name="act8" value="start_battle player,spyder_mansion_gillette"/>
+    <property name="act9" value="char_talk spyder_mansion_gillette,post_battle_lose"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_mansion_gillette"/>
     <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="not char_defeated player"/>
@@ -243,12 +244,13 @@
    <properties>
     <property name="act1" value="lock_controls"/>
     <property name="act2" value="pathfind_to_char player,spyder_mansion_lucy"/>
-    <property name="act3" value="char_talk spyder_mansion_lucy,pre_battle"/>
-    <property name="act4" value="unlock_controls"/>
-    <property name="act5" value="add_monster elofly,15,spyder_mansion_lucy,5,10"/>
-    <property name="act6" value="add_monster budaye,15,spyder_mansion_lucy,5,10"/>
-    <property name="act7" value="start_battle player,spyder_mansion_lucy"/>
-    <property name="act8" value="char_talk spyder_mansion_lucy,post_battle_lose"/>
+    <property name="act3" value="char_face player,spyder_mansion_lucy"/>
+    <property name="act4" value="char_talk spyder_mansion_lucy,pre_battle"/>
+    <property name="act5" value="unlock_controls"/>
+    <property name="act6" value="add_monster elofly,15,spyder_mansion_lucy,5,10"/>
+    <property name="act7" value="add_monster budaye,15,spyder_mansion_lucy,5,10"/>
+    <property name="act8" value="start_battle player,spyder_mansion_lucy"/>
+    <property name="act9" value="char_talk spyder_mansion_lucy,post_battle_lose"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_mansion_lucy"/>
     <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="not char_defeated player"/>
@@ -258,12 +260,13 @@
    <properties>
     <property name="act1" value="lock_controls"/>
     <property name="act2" value="pathfind_to_char player,spyder_mansion_lyle"/>
-    <property name="act3" value="char_talk spyder_mansion_lyle,pre_battle"/>
-    <property name="act4" value="unlock_controls"/>
-    <property name="act5" value="add_monster foofle,20,spyder_mansion_lyle,5,10"/>
-    <property name="act6" value="add_monster shybulb,20,spyder_mansion_lyle,5,10"/>
-    <property name="act7" value="start_battle player,spyder_mansion_lyle"/>
-    <property name="act8" value="char_talk spyder_mansion_lyle,post_battle_lose"/>
+    <property name="act3" value="char_face player,spyder_mansion_lyle"/>
+    <property name="act4" value="char_talk spyder_mansion_lyle,pre_battle"/>
+    <property name="act5" value="unlock_controls"/>
+    <property name="act6" value="add_monster foofle,20,spyder_mansion_lyle,5,10"/>
+    <property name="act7" value="add_monster shybulb,20,spyder_mansion_lyle,5,10"/>
+    <property name="act8" value="start_battle player,spyder_mansion_lyle"/>
+    <property name="act9" value="char_talk spyder_mansion_lyle,post_battle_lose"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_mansion_lyle"/>
     <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="not char_defeated player"/>

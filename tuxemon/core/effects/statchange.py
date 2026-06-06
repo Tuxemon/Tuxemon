@@ -84,7 +84,7 @@ class StatChangeEffect(CoreEffect):
         host = status.host
 
         if status.has_phase(
-            EffectPhase.PERFORM_STATUS
+            EffectPhase.ON_START
         ) and not status.is_already_applied(self.name):
             apply_stat_modifiers(host, status, status.stat_modifiers)
             status.mark_applied(self.name)

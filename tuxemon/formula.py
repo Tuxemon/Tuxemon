@@ -148,13 +148,23 @@ def simple_damage_calculate(
         f"  damage = int({user_strength} * {move_strength} / {target_resist}) = {damage}"
     )
 
+    user_statuses = [s.slug for s in user.status.get_statuses()]
+    target_statuses = [s.slug for s in target.status.get_statuses()]
+
+    status_part = ""
+    if user_statuses:
+        status_part += f" user_status={user_statuses}"
+    if target_statuses:
+        status_part += f" target_status={target_statuses}"
+
     logger.info(
         f"[COMBAT] {user.name} Lv{user.level} -[{technique.name}]-> {target.name} | "
         f"range={technique.range} power={technique.power} mult={mult:.2f} "
-        f"user_str={user_strength:.1f} target_res={target_resist:.1f} => {damage} dmg"
+        f"user_str={user_strength:.1f} target_res={target_resist:.1f}"
+        f"{status_part} => {damage} dmg"
     )
-
     return damage, mult
+
 
 
 def simple_heal(

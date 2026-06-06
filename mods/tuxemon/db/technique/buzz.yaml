@@ -10,7 +10,7 @@ speed: normal
 potency: 0.5
 power: 1.2
 range: melee
-recharge: 1
+recharge: 2
 slug: buzz
 sort: damage
 modifiers: []

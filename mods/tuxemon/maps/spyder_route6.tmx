@@ -221,16 +221,17 @@
   </object>
   <object id="191" name="Create Frances" type="event" x="512" y="128" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_route6_frances,32,8,wander"/>
+    <property name="act1" value="create_npc spyder_route6_frances,32,8"/>
+    <property name="act2" value="char_wander spyder_route6_frances,0.8"/>
     <property name="cond1" value="not char_exists spyder_route6_frances"/>
    </properties>
   </object>
   <object id="192" name="Talk Frances" type="event" x="512" y="112" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_route6_frances,pre_battle"/>
-    <property name="act2" value="add_monster narcileaf,30,spyder_route6_frances,5,10"/>
-    <property name="act3" value="add_monster shybulb,30,spyder_route6_frances,5,10"/>
-    <property name="act4" value="add_monster shybulb,30,spyder_route6_frances,5,10"/>
+    <property name="act2" value="add_monster narcileaf,35,spyder_route6_frances,5,10"/>
+    <property name="act3" value="add_monster shybulb,35,spyder_route6_frances,5,10"/>
+    <property name="act4" value="add_monster shybulb,35,spyder_route6_frances,5,10"/>
     <property name="act5" value="start_battle player,spyder_route6_frances"/>
     <property name="act6" value="char_talk spyder_route6_frances,post_battle_lose"/>
     <property name="behav1" value="talk spyder_route6_frances"/>
@@ -246,8 +247,8 @@
   <object id="194" name="Talk Ping" type="event" x="400" y="80" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_route6_ping,pre_battle"/>
-    <property name="act2" value="add_monster foofle,30,spyder_route6_ping,5,10"/>
-    <property name="act3" value="add_monster foofle,30,spyder_route6_ping,5,10"/>
+    <property name="act2" value="add_monster foofle,35,spyder_route6_ping,5,10"/>
+    <property name="act3" value="add_monster foofle,35,spyder_route6_ping,5,10"/>
     <property name="act4" value="start_battle player,spyder_route6_ping"/>
     <property name="act5" value="char_talk spyder_route6_ping,post_battle_lose"/>
     <property name="behav1" value="talk spyder_route6_ping"/>
@@ -264,8 +265,8 @@
   <object id="196" name="Talk Richard" type="event" x="416" y="144" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_route6_richard,pre_battle"/>
-    <property name="act2" value="add_monster hydrone,30,spyder_route6_richard,5,10"/>
-    <property name="act3" value="add_monster pigabyte,30,spyder_route6_richard,5,10"/>
+    <property name="act2" value="add_monster hydrone,35,spyder_route6_richard,5,10"/>
+    <property name="act3" value="add_monster pigabyte,35,spyder_route6_richard,5,10"/>
     <property name="act4" value="start_battle player,spyder_route6_richard"/>
     <property name="act5" value="char_talk spyder_route6_richard,post_battle_lose"/>
     <property name="behav1" value="talk spyder_route6_richard"/>
@@ -282,8 +283,8 @@
   <object id="198" name="Talk Blair" type="event" x="560" y="112" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_route6_blair,pre_battle"/>
-    <property name="act2" value="add_monster grintrock,30,spyder_route6_blair,5,10"/>
-    <property name="act3" value="add_monster grinflare,30,spyder_route6_blair,5,10"/>
+    <property name="act2" value="add_monster grintrock,35,spyder_route6_blair,5,10"/>
+    <property name="act3" value="add_monster grinflare,35,spyder_route6_blair,5,10"/>
     <property name="act4" value="start_battle player,spyder_route6_blair"/>
     <property name="act5" value="char_talk spyder_route6_blair,post_battle_lose"/>
     <property name="behav1" value="talk spyder_route6_blair"/>
@@ -300,8 +301,8 @@
   <object id="200" name="Talk Maxwell" type="event" x="160" y="96" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_route6_maxwell,pre_battle"/>
-    <property name="act2" value="add_monster propellercat,30,spyder_route6_maxwell,5,10"/>
-    <property name="act3" value="add_monster birdling,30,spyder_route6_maxwell,5,10"/>
+    <property name="act2" value="add_monster propellercat,35,spyder_route6_maxwell,5,10"/>
+    <property name="act3" value="add_monster birdling,35,spyder_route6_maxwell,5,10"/>
     <property name="act4" value="start_battle player,spyder_route6_maxwell"/>
     <property name="act5" value="char_talk spyder_route6_maxwell,post_battle_lose"/>
     <property name="behav1" value="talk spyder_route6_maxwell"/>
@@ -318,8 +319,8 @@
   <object id="202" name="Talk Orion" type="event" x="352" y="96" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_route6_orion,pre_battle"/>
-    <property name="act2" value="add_monster spighter,20,spyder_route6_orion,5,10"/>
-    <property name="act3" value="add_monster zunna,30,spyder_route6_orion,5,10"/>
+    <property name="act2" value="add_monster spighter,25,spyder_route6_orion,5,10"/>
+    <property name="act3" value="add_monster zunna,35,spyder_route6_orion,5,10"/>
     <property name="act4" value="start_battle player,spyder_route6_orion"/>
     <property name="act5" value="char_talk spyder_route6_orion,post_battle_lose"/>
     <property name="behav1" value="talk spyder_route6_orion"/>
@@ -336,7 +337,7 @@
   <object id="204" name="Talk Mungo" type="event" x="528" y="64" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_route6_mungo,pre_battle"/>
-    <property name="act2" value="add_monster noctula,20,spyder_route6_mungo,5,10"/>
+    <property name="act2" value="add_monster noctula,25,spyder_route6_mungo,5,10"/>
     <property name="act3" value="start_battle player,spyder_route6_mungo"/>
     <property name="act4" value="char_talk spyder_route6_mungo,post_battle_lose"/>
     <property name="behav1" value="talk spyder_route6_mungo"/>
@@ -353,7 +354,7 @@
   <object id="206" name="Talk Rigel" type="event" x="448" y="240" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_route6_rigel,pre_battle"/>
-    <property name="act2" value="add_monster ignibus,30,spyder_route6_rigel,5,10"/>
+    <property name="act2" value="add_monster ignibus,35,spyder_route6_rigel,5,10"/>
     <property name="act3" value="start_battle player,spyder_route6_rigel"/>
     <property name="act4" value="char_talk spyder_route6_rigel,post_battle_lose"/>
     <property name="behav1" value="talk spyder_route6_rigel"/>
@@ -371,8 +372,8 @@
   <object id="208" name="Talk Gunner" type="event" x="464" y="272" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_route6_gunner,pre_battle"/>
-    <property name="act2" value="add_monster enduros,20,spyder_route6_gunner,5,10"/>
-    <property name="act3" value="add_monster viviteel,20,spyder_route6_gunner,5,10"/>
+    <property name="act2" value="add_monster enduros,25,spyder_route6_gunner,5,10"/>
+    <property name="act3" value="add_monster viviteel,25,spyder_route6_gunner,5,10"/>
     <property name="act4" value="start_battle player,spyder_route6_gunner"/>
     <property name="act5" value="char_talk spyder_route6_gunner,post_battle_lose"/>
     <property name="act9" value="pathfind spyder_route6_gunner,28,17"/>
@@ -414,12 +415,13 @@
    <properties>
     <property name="act1" value="lock_controls"/>
     <property name="act2" value="pathfind_to_char player,spyder_route6_maxwell"/>
-    <property name="act3" value="char_talk spyder_route6_maxwell,pre_battle"/>
-    <property name="act4" value="unlock_controls"/>
-    <property name="act5" value="add_monster propellercat,30,spyder_route6_maxwell,5,10"/>
-    <property name="act6" value="add_monster birdling,30,spyder_route6_maxwell,5,10"/>
-    <property name="act7" value="start_battle player,spyder_route6_maxwell"/>
-    <property name="act8" value="char_talk spyder_route6_maxwell,post_battle_lose"/>
+    <property name="act3" value="char_face player,spyder_route6_maxwell"/>
+    <property name="act4" value="char_talk spyder_route6_maxwell,pre_battle"/>
+    <property name="act5" value="unlock_controls"/>
+    <property name="act6" value="add_monster propellercat,35,spyder_route6_maxwell,5,10"/>
+    <property name="act7" value="add_monster birdling,35,spyder_route6_maxwell,5,10"/>
+    <property name="act8" value="start_battle player,spyder_route6_maxwell"/>
+    <property name="act9" value="char_talk spyder_route6_maxwell,post_battle_lose"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_route6_maxwell"/>
     <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="not char_defeated player"/>
@@ -429,12 +431,13 @@
    <properties>
     <property name="act1" value="lock_controls"/>
     <property name="act2" value="pathfind_to_char player,spyder_route6_orion"/>
-    <property name="act3" value="char_talk spyder_route6_orion,pre_battle"/>
-    <property name="act4" value="unlock_controls"/>
-    <property name="act5" value="add_monster spighter,20,spyder_route6_orion,5,10"/>
-    <property name="act6" value="add_monster zunna,30,spyder_route6_orion,5,10"/>
-    <property name="act7" value="start_battle player,spyder_route6_orion"/>
-    <property name="act8" value="char_talk spyder_route6_orion,post_battle_lose"/>
+    <property name="act3" value="char_face player,spyder_route6_orion"/>
+    <property name="act4" value="char_talk spyder_route6_orion,pre_battle"/>
+    <property name="act5" value="unlock_controls"/>
+    <property name="act6" value="add_monster spighter,25,spyder_route6_orion,5,10"/>
+    <property name="act7" value="add_monster zunna,35,spyder_route6_orion,5,10"/>
+    <property name="act8" value="start_battle player,spyder_route6_orion"/>
+    <property name="act9" value="char_talk spyder_route6_orion,post_battle_lose"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_route6_orion"/>
     <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="not char_defeated player"/>
@@ -444,13 +447,14 @@
    <properties>
     <property name="act1" value="lock_controls"/>
     <property name="act2" value="pathfind_to_char player,spyder_route6_richard"/>
-    <property name="act3" value="char_talk spyder_route6_richard,pre_battle"/>
-    <property name="act4" value="unlock_controls"/>
-    <property name="act5" value="add_monster hydrone,30,spyder_route6_richard,5,10"/>
-    <property name="act6" value="add_monster pigabyte,30,spyder_route6_richard,5,10"/>
-    <property name="act7" value="start_battle player,spyder_route6_richard"/>
-    <property name="act8" value="char_talk spyder_route6_richard,post_battle_lose"/>
-    <property name="act9" value="autosave"/>
+    <property name="act3" value="char_face player,spyder_route6_richard"/>
+    <property name="act4" value="char_talk spyder_route6_richard,pre_battle"/>
+    <property name="act5" value="unlock_controls"/>
+    <property name="act6" value="add_monster hydrone,35,spyder_route6_richard,5,10"/>
+    <property name="act7" value="add_monster pigabyte,35,spyder_route6_richard,5,10"/>
+    <property name="act8" value="start_battle player,spyder_route6_richard"/>
+    <property name="act9" value="char_talk spyder_route6_richard,post_battle_lose"/>
+    <property name="act10" value="autosave"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_route6_richard"/>
     <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="not char_defeated player"/>
@@ -460,12 +464,13 @@
    <properties>
     <property name="act1" value="lock_controls"/>
     <property name="act2" value="pathfind_to_char player,spyder_route6_blair"/>
-    <property name="act3" value="char_talk spyder_route6_blair,pre_battle"/>
-    <property name="act4" value="unlock_controls"/>
-    <property name="act5" value="add_monster grintrock,30,spyder_route6_blair,5,10"/>
-    <property name="act6" value="add_monster grinflare,30,spyder_route6_blair,5,10"/>
-    <property name="act7" value="start_battle player,spyder_route6_blair"/>
-    <property name="act8" value="char_talk spyder_route6_blair,post_battle_lose"/>
+    <property name="act3" value="char_face player,spyder_route6_blair"/>
+    <property name="act4" value="char_talk spyder_route6_blair,pre_battle"/>
+    <property name="act5" value="unlock_controls"/>
+    <property name="act6" value="add_monster grintrock,35,spyder_route6_blair,5,10"/>
+    <property name="act7" value="add_monster grinflare,35,spyder_route6_blair,5,10"/>
+    <property name="act8" value="start_battle player,spyder_route6_blair"/>
+    <property name="act9" value="char_talk spyder_route6_blair,post_battle_lose"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_route6_blair"/>
     <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="not char_defeated player"/>
@@ -475,11 +480,12 @@
    <properties>
     <property name="act1" value="lock_controls"/>
     <property name="act2" value="pathfind_to_char player,spyder_route6_mungo"/>
-    <property name="act3" value="char_talk spyder_route6_mungo,pre_battle"/>
-    <property name="act4" value="unlock_controls"/>
-    <property name="act5" value="add_monster noctula,20,spyder_route6_mungo,5,10"/>
-    <property name="act6" value="start_battle player,spyder_route6_mungo"/>
-    <property name="act7" value="char_talk spyder_route6_mungo,post_battle_lose"/>
+    <property name="act3" value="char_face player,spyder_route6_mungo"/>
+    <property name="act4" value="char_talk spyder_route6_mungo,pre_battle"/>
+    <property name="act5" value="unlock_controls"/>
+    <property name="act6" value="add_monster noctula,25,spyder_route6_mungo,5,10"/>
+    <property name="act7" value="start_battle player,spyder_route6_mungo"/>
+    <property name="act8" value="char_talk spyder_route6_mungo,post_battle_lose"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_route6_mungo"/>
     <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="not char_defeated player"/>
@@ -491,15 +497,16 @@
     <property name="act02" value="lock_controls"/>
     <property name="act03" value="create_npc spyder_billie,0,14"/>
     <property name="act04" value="pathfind_to_char player,spyder_billie"/>
-    <property name="act05" value="unlock_controls"/>
+    <property name="act05" value="char_face player,spyder_billie"/>
+    <property name="act06" value="unlock_controls"/>
     <property name="act08" value="translated_dialog spyder_route6_billie1"/>
-    <property name="act20" value="add_monster billie_choice,35,spyder_billie,5,10"/>
+    <property name="act20" value="add_monster billie_choice,40,spyder_billie,5,10"/>
     <property name="act21" value="set_monster_attribute add_monster,gender,male"/>
-    <property name="act22" value="add_monster eyesore,35,spyder_billie,5,10"/>
+    <property name="act22" value="add_monster eyesore,40,spyder_billie,5,10"/>
     <property name="act23" value="set_monster_attribute add_monster,gender,female"/>
-    <property name="act24" value="add_monster cardiwing,35,spyder_billie,5,10"/>
+    <property name="act24" value="add_monster cardiwing,40,spyder_billie,5,10"/>
     <property name="act25" value="set_monster_attribute add_monster,gender,female"/>
-    <property name="act26" value="add_monster viviphyta,35,spyder_billie,5,10"/>
+    <property name="act26" value="add_monster viviphyta,40,spyder_billie,5,10"/>
     <property name="act27" value="set_monster_attribute add_monster,gender,male"/>
     <property name="act30" value="start_battle player,spyder_billie"/>
     <property name="act71" value="translated_dialog spyder_route6_billie2"/>
@@ -536,13 +543,13 @@
     <property name="act06" value="char_face spyder_billie,down"/>
     <property name="act07" value="char_face player,up"/>
     <property name="act10" value="translated_dialog spyder_route6_billie1"/>
-    <property name="act20" value="add_monster billie_choice,35,spyder_billie,5,10"/>
+    <property name="act20" value="add_monster billie_choice,40,spyder_billie,5,10"/>
     <property name="act21" value="set_monster_attribute add_monster,gender,male"/>
-    <property name="act22" value="add_monster eyesore,35,spyder_billie,5,10"/>
+    <property name="act22" value="add_monster eyesore,40,spyder_billie,5,10"/>
     <property name="act23" value="set_monster_attribute add_monster,gender,female"/>
-    <property name="act24" value="add_monster cardiwing,35,spyder_billie,5,10"/>
+    <property name="act24" value="add_monster cardiwing,40,spyder_billie,5,10"/>
     <property name="act25" value="set_monster_attribute add_monster,gender,female"/>
-    <property name="act26" value="add_monster viviphyta,35,spyder_billie,5,10"/>
+    <property name="act26" value="add_monster viviphyta,40,spyder_billie,5,10"/>
     <property name="act27" value="set_monster_attribute add_monster,gender,male"/>
     <property name="act30" value="start_battle player,spyder_billie"/>
     <property name="act71" value="translated_dialog spyder_route6_billie2"/>

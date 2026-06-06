@@ -2,10 +2,7 @@ tech_id: 26
 accuracy: 0.85
 effects:
 - type: damage
-- type: prop_healing
-  parameters:
-  - own_monster
-  - '0.2'
+- type: healing
 healing_power: 2.0
 speed: normal
 potency: 1
@@ -26,7 +23,7 @@ target:
 category: simple
 tags:
 - bug
-- Plant
+- plant
 - healing
 types:
 - wood

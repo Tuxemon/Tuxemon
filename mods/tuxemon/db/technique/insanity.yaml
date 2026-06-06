@@ -4,7 +4,7 @@ effects:
 - type: give
   parameters:
   - diehard
-  - enemy_monster
+  - own_monster
 speed: normal
 potency: 1
 power: 0

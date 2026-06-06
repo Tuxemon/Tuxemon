@@ -71,6 +71,7 @@ class ItemMenuState(Menu[Item]):
         self.current_page = 0
         self.total_pages = 0
         self.inventory = self.filter_controller.get_filtered_inventory()
+        self._cursor_positioned = False
 
         # this is the area where the item description is displayed
         rect = self.client.context.rect.copy()
@@ -261,6 +262,19 @@ class ItemMenuState(Menu[Item]):
         else:
             self.total_pages = 1
 
+        # On the first open, seek the page that holds the last-used item.
+        seek_slug: str | None = None
+        if not self._cursor_positioned:
+            if self.source == "MainCombatMenuState":
+                seek_slug = self.char.battle_last_used_item_slug
+            else:
+                seek_slug = self.char.last_used_item_slug
+            if seek_slug and self.page_size:
+                inv_slugs = [item.slug for item in self.inventory]
+                if seek_slug in inv_slugs:
+                    item_global_index = inv_slugs.index(seek_slug)
+                    self.current_page = item_global_index // self.page_size
+
         # Clamp current page
         self.current_page = max(
             0, min(self.current_page, self.total_pages - 1)
@@ -276,20 +290,39 @@ class ItemMenuState(Menu[Item]):
             self.total_pages = 1
             self.current_page = 0
             self.update_page_number_display(0)
+            self._cursor_positioned = True
             return
 
-        for obj in self.sorter.sort(page_items):
+        sorted_items = self.sorter.sort(page_items)
+
+        for obj in sorted_items:
             enable = self.is_valid_entry(obj)
             menu_item = self.create_menu_item(obj, is_enabled=enable)
             self.add(menu_item)
 
         if self.menu_items:
-            self.selected_index = min(
-                self.selected_index, len(self.menu_items) - 1
-            )
+            if seek_slug:
+                target_index = next(
+                    (
+                        i
+                        for i, obj in enumerate(sorted_items)
+                        if obj.slug == seek_slug
+                    ),
+                    None,
+                )
+                self.selected_index = (
+                    target_index
+                    if target_index is not None
+                    else min(self.selected_index, len(self.menu_items) - 1)
+                )
+            else:
+                self.selected_index = min(
+                    self.selected_index, len(self.menu_items) - 1
+                )
         else:
             self.selected_index = -1
 
+        self._cursor_positioned = True
         self.update_page_number_display(len(self.inventory))
         self.on_menu_selection_change()
 

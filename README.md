@@ -3,7 +3,7 @@ Tuxemon
 
 Tuxemon is a free, open source monster-fighting RPG. It's in constant
 development and improving all the time! Contributors of all skill and
-level are welcome to join.
+level are welcome to join. 
 
 ![Python 3.10](https://img.shields.io/badge/python-3.10-blue.svg)
 ![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)

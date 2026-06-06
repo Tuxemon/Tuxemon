@@ -106,6 +106,35 @@ class ControlState(PygameMenuState):
             font_size=self.font_type.small,
         )
 
+        _native_w, _native_h = 256, 144
+        _current_w = self.client.config.resolution[0]
+        _current_scale = max(1, min(5, _current_w // _native_w))
+        _size_default = _current_scale - 1
+
+        def on_change_screen_size(value: Any, scale: int) -> None:
+            new_w = _native_w * scale
+            new_h = _native_h * scale
+            self.client.config.update_attribute(
+                "display", "resolution_x", new_w, save=False
+            )
+            self.client.config.update_attribute(
+                "display", "resolution_y", new_h
+            )
+
+        screen_sizes: list[tuple[Any, ...]] = [
+            (f"{_native_w * i}x{_native_h * i}", i) for i in range(1, 6)
+        ]
+        menu.add.selector(
+            title=T.translate("menu_screen_size").upper(),
+            items=screen_sizes,
+            selector_id="screen_size",
+            default=_size_default,
+            style="fancy",
+            onchange=on_change_screen_size,
+            font_size=self.font_type.small,
+        )
+
+
         if not self.main_menu:
 
             def toggle_mute() -> None:

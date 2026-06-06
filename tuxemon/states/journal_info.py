@@ -15,7 +15,7 @@ from tuxemon.menu.menu import PygameMenuState
 from tuxemon.monster.sprite import MonsterSpriteHandler, SpriteLoader
 from tuxemon.platform.const import buttons
 from tuxemon.platform.const.graphics import BG_JOURNAL_INFO, SEA_BLUE_COLOR
-from tuxemon.platform.const.sizes import U_CM, U_FT, U_KG, U_LB
+from tuxemon.platform.const.sizes import U_CM, U_FT, U_KG, U_LB, U_M, U_T
 from tuxemon.tools import transform_resource_filename
 
 if TYPE_CHECKING:
@@ -62,10 +62,18 @@ class JournalInfoState(PygameMenuState):
         # weight and height
         unit = self.client.config.unit_measure
         if unit == "metric":
-            mon_weight = round(monster.weight)
-            mon_height = round(monster.height)
-            unit_weight = U_KG
-            unit_height = U_CM
+            if monster.weight >= 1000:
+                mon_weight = f"{monster.weight / 1000:.1f}"
+                unit_weight = U_T
+            else:
+                mon_weight = round(monster.weight)
+                unit_weight = U_KG
+            if monster.height >= 100:
+                mon_height = f"{monster.height / 100:.1f}"
+                unit_height = U_M
+            else:
+                mon_height = round(monster.height)
+                unit_height = U_CM
         else:
             mon_weight = formula.convert_lbs(monster.weight)
             mon_height = formula.convert_ft(monster.height)
@@ -256,9 +264,12 @@ class JournalInfoState(PygameMenuState):
             wordwrap=True,
             leading=50,
             align=ALIGN_LEFT,
+            float=True,
+            float_origin_position=True,
             padding=0,
         )
-        desc_frame.pack(lab9)
+
+        lab9.translate(fxw(8), fxh(85))
 
         # evolution monsters
         slugs = [ele.monster_slug for ele in monster.evolutions]

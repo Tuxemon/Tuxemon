@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="14" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="51">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="14" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="51">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -119,12 +119,13 @@
    <properties>
     <property name="act1" value="lock_controls"/>
     <property name="act2" value="pathfind_to_char player,spyder_omnichannel_strauss"/>
-    <property name="act3" value="char_talk spyder_omnichannel_strauss,pre_battle"/>
-    <property name="act4" value="unlock_controls"/>
-    <property name="act5" value="add_monster budaye,36,spyder_omnichannel_strauss,5,10"/>
-    <property name="act6" value="add_monster frondly,40,spyder_omnichannel_strauss,5,10"/>
-    <property name="act7" value="start_battle player,spyder_omnichannel_strauss"/>
-    <property name="act8" value="char_talk spyder_omnichannel_strauss,post_battle_lose"/>
+    <property name="act3" value="char_face player,spyder_omnichannel_strauss"/>
+    <property name="act4" value="char_talk spyder_omnichannel_strauss,pre_battle"/>
+    <property name="act5" value="unlock_controls"/>
+    <property name="act6" value="add_monster budaye,41,spyder_omnichannel_strauss,5,10"/>
+    <property name="act7" value="add_monster frondly,45,spyder_omnichannel_strauss,5,10"/>
+    <property name="act8" value="start_battle player,spyder_omnichannel_strauss"/>
+    <property name="act9" value="char_talk spyder_omnichannel_strauss,post_battle_lose"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_omnichannel_strauss"/>
     <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="not char_defeated player"/>
@@ -134,12 +135,13 @@
    <properties>
     <property name="act1" value="lock_controls"/>
     <property name="act2" value="pathfind_to_char player,spyder_omnichannel_carnegie"/>
-    <property name="act3" value="char_talk spyder_omnichannel_carnegie,pre_battle"/>
-    <property name="act4" value="unlock_controls"/>
-    <property name="act5" value="add_monster elofly,38,spyder_omnichannel_carnegie,5,10"/>
-    <property name="act6" value="add_monster elostorm,38,spyder_omnichannel_carnegie,5,10"/>
-    <property name="act7" value="start_battle player,spyder_omnichannel_carnegie"/>
-    <property name="act8" value="char_talk spyder_omnichannel_carnegie,post_battle_lose"/>
+    <property name="act3" value="char_face player,spyder_omnichannel_carnegie"/>
+    <property name="act4" value="char_talk spyder_omnichannel_carnegie,pre_battle"/>
+    <property name="act5" value="unlock_controls"/>
+    <property name="act6" value="add_monster elofly,43,spyder_omnichannel_carnegie,5,10"/>
+    <property name="act7" value="add_monster elostorm,43,spyder_omnichannel_carnegie,5,10"/>
+    <property name="act8" value="start_battle player,spyder_omnichannel_carnegie"/>
+    <property name="act9" value="char_talk spyder_omnichannel_carnegie,post_battle_lose"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_omnichannel_carnegie"/>
     <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="not char_defeated player"/>
@@ -149,12 +151,13 @@
    <properties>
     <property name="act1" value="lock_controls"/>
     <property name="act2" value="pathfind_to_char player,spyder_omnichannel_byrne"/>
-    <property name="act3" value="char_talk spyder_omnichannel_byrne,pre_battle"/>
-    <property name="act4" value="unlock_controls"/>
-    <property name="act5" value="add_monster rockat,36,spyder_omnichannel_byrne,5,10"/>
-    <property name="act6" value="add_monster jemuar,40,spyder_omnichannel_byrne,5,10"/>
-    <property name="act7" value="start_battle player,spyder_omnichannel_byrne"/>
-    <property name="act8" value="char_talk spyder_omnichannel_byrne,post_battle_lose"/>
+    <property name="act3" value="char_face player,spyder_omnichannel_byrne"/>
+    <property name="act4" value="char_talk spyder_omnichannel_byrne,pre_battle"/>
+    <property name="act5" value="unlock_controls"/>
+    <property name="act6" value="add_monster rockat,41,spyder_omnichannel_byrne,5,10"/>
+    <property name="act7" value="add_monster jemuar,45,spyder_omnichannel_byrne,5,10"/>
+    <property name="act8" value="start_battle player,spyder_omnichannel_byrne"/>
+    <property name="act9" value="char_talk spyder_omnichannel_byrne,post_battle_lose"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_omnichannel_byrne"/>
     <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="not char_defeated player"/>
@@ -174,7 +177,7 @@
   </object>
   <object id="50" name="Threats" type="event" x="0" y="32" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter spyder_omnichannel,0.6"/>
+    <property name="act1" value="random_encounter spyder_omnichannel,0.25"/>
     <property name="cond1" value="is variable_set omnichannel1wall:yes"/>
     <property name="cond2" value="is check_char_parameter player,moving,1"/>
    </properties>

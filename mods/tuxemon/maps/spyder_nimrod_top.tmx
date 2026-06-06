@@ -93,7 +93,7 @@
   <object id="31" name="Talk Maverick" type="event" x="128" y="144" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_nimrod_maverick,pre_battle"/>
-    <property name="act2" value="add_monster av8r,25,spyder_nimrod_maverick,5,10"/>
+    <property name="act2" value="add_monster av8r,30,spyder_nimrod_maverick,5,10"/>
     <property name="act3" value="start_battle player,spyder_nimrod_maverick"/>
     <property name="act4" value="char_talk spyder_nimrod_maverick,post_battle_lose"/>
     <property name="behav1" value="talk spyder_nimrod_maverick"/>
@@ -110,8 +110,8 @@
   <object id="33" name="Talk Justice" type="event" x="224" y="272" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_nimrod_justice,pre_battle"/>
-    <property name="act2" value="add_monster ghosteeth,16,spyder_nimrod_justice,5,10"/>
-    <property name="act3" value="add_monster ghosteeth,16,spyder_nimrod_justice,5,10"/>
+    <property name="act2" value="add_monster ghosteeth,21,spyder_nimrod_justice,5,10"/>
+    <property name="act3" value="add_monster ghosteeth,21,spyder_nimrod_justice,5,10"/>
     <property name="act4" value="start_battle player,spyder_nimrod_justice"/>
     <property name="act5" value="char_talk spyder_nimrod_justice,post_battle_lose"/>
     <property name="behav1" value="talk spyder_nimrod_justice"/>
@@ -127,7 +127,7 @@
   <object id="35" name="Talk Zircon" type="event" x="176" y="144" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_nimrod_zircon,pre_battle"/>
-    <property name="act2" value="add_monster dark_robo,25,spyder_nimrod_zircon,5,10"/>
+    <property name="act2" value="add_monster dark_robo,30,spyder_nimrod_zircon,5,10"/>
     <property name="act3" value="start_battle player,spyder_nimrod_zircon"/>
     <property name="act4" value="char_talk spyder_nimrod_zircon,post_battle_lose"/>
     <property name="behav1" value="talk spyder_nimrod_zircon"/>
@@ -144,12 +144,13 @@
    <properties>
     <property name="act1" value="lock_controls"/>
     <property name="act2" value="pathfind_to_char player,spyder_nimrod_justice"/>
-    <property name="act3" value="char_talk spyder_nimrod_justice,pre_battle"/>
-    <property name="act4" value="unlock_controls"/>
-    <property name="act5" value="add_monster ghosteeth,16,spyder_nimrod_justice,5,10"/>
-    <property name="act6" value="add_monster ghosteeth,16,spyder_nimrod_justice,5,10"/>
-    <property name="act7" value="start_battle player,spyder_nimrod_justice"/>
-    <property name="act8" value="char_talk spyder_nimrod_justice,post_battle_lose"/>
+    <property name="act3" value="char_face player,spyder_nimrod_justice"/>
+    <property name="act4" value="char_talk spyder_nimrod_justice,pre_battle"/>
+    <property name="act5" value="unlock_controls"/>
+    <property name="act6" value="add_monster ghosteeth,21,spyder_nimrod_justice,5,10"/>
+    <property name="act7" value="add_monster ghosteeth,21,spyder_nimrod_justice,5,10"/>
+    <property name="act8" value="start_battle player,spyder_nimrod_justice"/>
+    <property name="act9" value="char_talk spyder_nimrod_justice,post_battle_lose"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_nimrod_justice"/>
     <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="not char_defeated player"/>
@@ -159,11 +160,12 @@
    <properties>
     <property name="act1" value="lock_controls"/>
     <property name="act2" value="pathfind_to_char player,spyder_nimrod_zircon"/>
-    <property name="act3" value="char_talk spyder_nimrod_zircon,pre_battle"/>
-    <property name="act4" value="unlock_controls"/>
-    <property name="act5" value="add_monster dark_robo,25,spyder_nimrod_zircon,5,10"/>
-    <property name="act6" value="start_battle player,spyder_nimrod_zircon"/>
-    <property name="act7" value="char_talk spyder_nimrod_zircon,post_battle_lose"/>
+    <property name="act3" value="char_face player,spyder_nimrod_zircon"/>
+    <property name="act4" value="char_talk spyder_nimrod_zircon,pre_battle"/>
+    <property name="act5" value="unlock_controls"/>
+    <property name="act6" value="add_monster dark_robo,30,spyder_nimrod_zircon,5,10"/>
+    <property name="act7" value="start_battle player,spyder_nimrod_zircon"/>
+    <property name="act8" value="char_talk spyder_nimrod_zircon,post_battle_lose"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_nimrod_zircon"/>
     <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="not char_defeated player"/>
@@ -173,11 +175,12 @@
    <properties>
     <property name="act1" value="lock_controls"/>
     <property name="act2" value="pathfind_to_char player,spyder_nimrod_maverick"/>
-    <property name="act3" value="char_talk spyder_nimrod_maverick,pre_battle"/>
-    <property name="act4" value="unlock_controls"/>
-    <property name="act5" value="add_monster av8r,25,spyder_nimrod_maverick,5,10"/>
-    <property name="act6" value="start_battle player,spyder_nimrod_maverick"/>
-    <property name="act7" value="char_talk spyder_nimrod_maverick,post_battle_lose"/>
+    <property name="act3" value="char_face player,spyder_nimrod_maverick"/>
+    <property name="act4" value="char_talk spyder_nimrod_maverick,pre_battle"/>
+    <property name="act5" value="unlock_controls"/>
+    <property name="act6" value="add_monster av8r,30,spyder_nimrod_maverick,5,10"/>
+    <property name="act7" value="start_battle player,spyder_nimrod_maverick"/>
+    <property name="act8" value="char_talk spyder_nimrod_maverick,post_battle_lose"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_nimrod_maverick"/>
     <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="not char_defeated player"/>
@@ -194,13 +197,14 @@
    <properties>
     <property name="act01" value="lock_controls"/>
     <property name="act02" value="pathfind_to_char player,spyder_nimrod_mace"/>
-    <property name="act03" value="char_talk spyder_nimrod_mace,pre_battle"/>
-    <property name="act04" value="unlock_controls"/>
-    <property name="act05" value="add_monster embazook,20,spyder_nimrod_mace,5,10"/>
-    <property name="act06" value="add_monster av8r,20,spyder_nimrod_mace,5,10"/>
-    <property name="act07" value="add_monster komodraw,25,spyder_nimrod_mace,5,10"/>
-    <property name="act08" value="start_battle player,spyder_nimrod_mace"/>
-    <property name="act09" value="char_talk spyder_nimrod_mace,post_battle_lose"/>
+    <property name="act03" value="char_face player,spyder_nimrod_mace"/>
+    <property name="act04" value="char_talk spyder_nimrod_mace,pre_battle"/>
+    <property name="act05" value="unlock_controls"/>
+    <property name="act06" value="add_monster embazook,25,spyder_nimrod_mace,5,10"/>
+    <property name="act07" value="add_monster av8r,25,spyder_nimrod_mace,5,10"/>
+    <property name="act08" value="add_monster komodraw,30,spyder_nimrod_mace,5,10"/>
+    <property name="act09" value="start_battle player,spyder_nimrod_mace"/>
+    <property name="act10" value="char_talk spyder_nimrod_mace,post_battle_lose"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_nimrod_mace"/>
     <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="not char_defeated player"/>
@@ -209,9 +213,9 @@
   <object id="46" name="Talk Mace" type="event" x="240" y="192" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_nimrod_mace,pre_battle"/>
-    <property name="act2" value="add_monster embazook,20,spyder_nimrod_mace,5,10"/>
-    <property name="act3" value="add_monster av8r,20,spyder_nimrod_mace,5,10"/>
-    <property name="act4" value="add_monster komodraw,25,spyder_nimrod_mace,5,10"/>
+    <property name="act2" value="add_monster embazook,25,spyder_nimrod_mace,5,10"/>
+    <property name="act3" value="add_monster av8r,25,spyder_nimrod_mace,5,10"/>
+    <property name="act4" value="add_monster komodraw,30,spyder_nimrod_mace,5,10"/>
     <property name="act5" value="start_battle player,spyder_nimrod_mace"/>
     <property name="act6" value="char_talk spyder_nimrod_mace,post_battle_lose"/>
     <property name="behav1" value="talk spyder_nimrod_mace"/>

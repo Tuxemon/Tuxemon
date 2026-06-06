@@ -139,10 +139,6 @@
     <property name="act01" value="char_stop player"/>
     <property name="act03" value="pathfind spyder_dante,29,25"/>
     <property name="act04" value="translated_dialog spyder_timber_dante2"/>
-    <property name="act05" value="add_item app_contacts"/>
-    <property name="act06" value="translated_dialog app_contacts,,center,center,center"/>
-    <property name="act07" value="add_contacts player,spyder_papertown_mom,family,100"/>
-    <property name="act08" value="add_contacts player,spyder_dante,friend,80"/>
     <property name="act09" value="pathfind spyder_dante,24,31"/>
     <property name="act10" value="set_variable timberdantewarn:yes"/>
     <property name="cond1" value="is char_at player"/>
@@ -252,7 +248,7 @@
   <object id="350" name="Destination - Candy" type="event" x="64" y="272" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable rivergoto:nothing"/>
-    <property name="act2" value="transition_teleport player,spyder_candy_port.tmx,37,13,0.3"/>
+    <property name="act2" value="transition_teleport player,spyder_candy_port.tmx,37,12,0.3"/>
     <property name="act4" value="char_face player,down"/>
     <property name="cond1" value="is variable_set rivergoto:candy_port"/>
    </properties>

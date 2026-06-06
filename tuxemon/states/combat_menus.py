@@ -339,6 +339,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
 
             # enqueue the item
             self.combat_session.enqueue_action(self.character, item, target)
+            self.character.battle_last_used_item_slug = item.slug
 
             # close all the open menus
             self.client.remove_state_by_name("MainCombatMenuState")

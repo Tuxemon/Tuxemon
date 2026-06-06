@@ -578,6 +578,7 @@ class CombatSession:
             if status_result.statuses:
                 chosen = random.choice(status_result.statuses)
                 user.status.apply_status(session, chosen)
+                get_event_bus().publish("status_applied")
 
         return result, status_result
 

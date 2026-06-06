@@ -28,7 +28,7 @@ use_failure: combat_miss
 use_success: null
 use_tech: combat_used_x
 visuals:
-  animation: slash_power
+  animation: slash_200
   flip_axes: x
   loop: 0
 sound:

@@ -1,5 +1,5 @@
 tech_id: 230
-accuracy: 0.7
+accuracy: 0.8
 effects:
 - type: damage
 - type: give
@@ -30,7 +30,6 @@ category: exotic
 tags:
 - food
 types:
-- heroic
 - cosmic
 use_failure: combat_miss
 use_success: null

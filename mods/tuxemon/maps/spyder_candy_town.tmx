@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="452">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="454">
  <properties>
   <property name="east" value="routec"/>
   <property name="edges" value="clamped"/>
@@ -322,9 +322,11 @@
   <object id="222" name="Talk Eliane 1" type="event" x="96" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_candy_eliane1"/>
-    <property name="act2" value="set_random_variable elianeoutput,cureall:restoration:potion:tea"/>
+    <property name="act2" value="set_random_variable elianeoutput,cureall:restoration:potion:tea:refreshing_slice:antidote_grapes:cure_festering"/>
     <property name="act3" value="random_integer luckgiveegg,1,10"/>
+    <property name="act4" value="set_variable elianetalkedtoday:yes"/>
     <property name="behav1" value="talk spyder_candy_eliane"/>
+    <property name="cond0" value="is button_pressed INTERACT"/>
     <property name="cond1" value="is cooldown_days 1,elianeflower"/>
    </properties>
   </object>
@@ -332,7 +334,8 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_candy_eliane2"/>
     <property name="behav1" value="talk spyder_candy_eliane"/>
-    <property name="cond1" value="not cooldown_days 1,elianeflower"/>
+    <property name="cond0" value="is button_pressed INTERACT"/>
+    <property name="cond1" value="is variable_set elianetalkedtoday:yes"/>
    </properties>
   </object>
   <object id="194" name="Get cureall" type="event" x="144" y="48" width="16" height="16">
@@ -341,6 +344,7 @@
     <property name="act2" value="translated_dialog cureall,,center,center,center"/>
     <property name="act3" value="add_item elianeoutput"/>
     <property name="act4" value="set_variable elianeoutput:none"/>
+    <property name="act5" value="set_variable elianetalkedtoday:no"/>
     <property name="cond1" value="is variable_set elianeoutput:cureall"/>
    </properties>
   </object>
@@ -350,6 +354,7 @@
     <property name="act2" value="translated_dialog restoration,,center,center,center"/>
     <property name="act3" value="add_item elianeoutput"/>
     <property name="act4" value="set_variable elianeoutput:none"/>
+    <property name="act5" value="set_variable elianetalkedtoday:no"/>
     <property name="cond1" value="is variable_set elianeoutput:restoration"/>
    </properties>
   </object>
@@ -359,6 +364,7 @@
     <property name="act2" value="translated_dialog potion,,center,center,center"/>
     <property name="act3" value="add_item elianeoutput"/>
     <property name="act4" value="set_variable elianeoutput:none"/>
+    <property name="act5" value="set_variable elianetalkedtoday:no"/>
     <property name="cond1" value="is variable_set elianeoutput:potion"/>
    </properties>
   </object>
@@ -368,7 +374,38 @@
     <property name="act2" value="translated_dialog tea,,center,center,center"/>
     <property name="act3" value="add_item elianeoutput"/>
     <property name="act4" value="set_variable elianeoutput:none"/>
+    <property name="act5" value="set_variable elianetalkedtoday:no"/>
     <property name="cond1" value="is variable_set elianeoutput:tea"/>
+   </properties>
+  </object>
+  <object id="500" name="Get refreshing_slice" type="event" x="80" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_candy_eliane3"/>
+    <property name="act2" value="translated_dialog refreshing_slice,,center,center,center"/>
+    <property name="act3" value="add_item elianeoutput"/>
+    <property name="act4" value="set_variable elianeoutput:none"/>
+    <property name="act5" value="set_variable elianetalkedtoday:no"/>
+    <property name="cond1" value="is variable_set elianeoutput:refreshing_slice"/>
+   </properties>
+  </object>
+  <object id="501" name="Get antidote_grapes" type="event" x="64" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_candy_eliane3"/>
+    <property name="act2" value="translated_dialog antidote_grapes,,center,center,center"/>
+    <property name="act3" value="add_item elianeoutput"/>
+    <property name="act4" value="set_variable elianeoutput:none"/>
+    <property name="act5" value="set_variable elianetalkedtoday:no"/>
+    <property name="cond1" value="is variable_set elianeoutput:antidote_grapes"/>
+   </properties>
+  </object>
+  <object id="502" name="Get cure_festering" type="event" x="48" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_candy_eliane3"/>
+    <property name="act2" value="translated_dialog cure_festering,,center,center,center"/>
+    <property name="act3" value="add_item elianeoutput"/>
+    <property name="act4" value="set_variable elianeoutput:none"/>
+    <property name="act5" value="set_variable elianetalkedtoday:no"/>
+    <property name="cond1" value="is variable_set elianeoutput:cure_festering"/>
    </properties>
   </object>
   <object id="443" name="Teleport to Candy Port" type="event" x="176" y="624" width="16" height="16">
@@ -423,14 +460,32 @@
     <property name="cond4" value="not variable_set confiscation_done:yes"/>
    </properties>
   </object>
-  <object id="449" name="Create TM Leaf Barrage" type="event" x="224" y="448" width="16" height="16">
+  <object id="449" name="Swim Encounters Day" type="event" x="32" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter spyder_routec,0.15"/>
+    <property name="cond1" value="is char_sprite player,swimmer"/>
+    <property name="cond2" value="is current_state WorldState"/>
+    <property name="cond3" value="is check_char_parameter player,moving,1"/>
+    <property name="cond4" value="is environment_is ocean"/>
+   </properties>
+  </object>
+  <object id="450" name="Swim Encounters Night" type="event" x="48" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter spyder_routec,0.25"/>
+    <property name="cond1" value="is char_sprite player,swimmer"/>
+    <property name="cond2" value="is current_state WorldState"/>
+    <property name="cond3" value="is check_char_parameter player,moving,1"/>
+    <property name="cond4" value="is environment_is night_ocean"/>
+   </properties>
+  </object>
+  <object id="452" name="Create TM Leaf Barrage" type="event" x="224" y="448" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_candy_tmleafbarrage,14,28"/>
     <property name="cond1" value="not char_exists spyder_candy_tmleafbarrage"/>
     <property name="cond2" value="not variable_set candy_tmleafbarrage:yes"/>
    </properties>
   </object>
-  <object id="450" name="TM Leaf Barrage" type="event" x="224" y="384" width="16" height="16">
+  <object id="453" name="TM Leaf Barrage" type="event" x="224" y="384" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog tm_leaf_barrage,,center,center,center"/>
     <property name="act2" value="add_item tm_leaf_barrage"/>

@@ -5,7 +5,7 @@ effects:
 - type: prop_healing
   parameters:
   - own_monster
-  - '0.2'
+  - '0.1'
 healing_power: 0.1
 speed: fast
 potency: 0.0

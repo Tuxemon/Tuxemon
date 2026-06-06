@@ -2,9 +2,12 @@
 # Copyright (c) 2014-2026 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import logging
 import random
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
+
+logger = logging.getLogger(__name__)
 
 from tuxemon.core.core_effect import CoreEffect, TechEffectResult
 from tuxemon.db import BlockedReason
@@ -59,6 +62,7 @@ class GiveEffect(CoreEffect):
             return TechEffectResult(name=tech.name)
 
         immune_info = []
+        protected_info = []
         successful_targets = []
         extras = []
         monsters = session.client.combat_session.get_target_monsters(
@@ -72,8 +76,15 @@ class GiveEffect(CoreEffect):
             result = monster.status.apply_status(session, status)
             if result.applied:
                 successful_targets.append(monster)
+                logger.info(
+                    f"[COMBAT] give {self.condition} -> {monster.name} (via {tech.name})"
+                )
             elif result.blocked_reason == BlockedReason.IMMUNE_BY_ITEM:
                 immune_info.append(f"{monster.name} ({result.blocked_by})")
+            elif result.blocked_by and result.blocked_reason not in (
+                BlockedReason.IMMUNE_BY_ITEM,
+            ):
+                protected_info.append((monster.name, result.blocked_by, status.name))
 
         if immune_info:
             immune_names = ", ".join(immune_info)
@@ -85,6 +96,14 @@ class GiveEffect(CoreEffect):
             params = {"target": immune_names, "method": status.name}
             extract_text = T.format(key, params)
             extras = [extract_text]
+
+        for monster_name, protecting_status, condition_name in protected_info:
+            params = {
+                "method": protecting_status,
+                "target": monster_name,
+                "condition": condition_name,
+            }
+            extras.append(T.format("combat_state_prevented", params))
 
         if successful_targets:
             event_bus = session.client.event_bus

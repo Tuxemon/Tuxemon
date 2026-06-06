@@ -1,10 +1,10 @@
 conditions: []
 effects:
-- type: buff
-  parameters:
-  - speed
-  - '0.2'
+- type: statchange
 slug: boost_speed
+stat_modifiers:
+  speed:
+    step: 2
 sort: utility
 sprite: gfx/items/boost_speed.png
 category: stats

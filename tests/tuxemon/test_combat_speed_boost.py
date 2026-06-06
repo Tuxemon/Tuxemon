@@ -97,6 +97,7 @@ def test_mid_turn_speed_boost_reorders_remaining():
 
     second = q.pop()
     third  = q.pop()
+
     assert second.user is m90   # boosted to fastest among remaining
     assert third.user is m80
 

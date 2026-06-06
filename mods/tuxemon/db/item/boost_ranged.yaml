@@ -1,10 +1,10 @@
 conditions: []
 effects:
-- type: buff
-  parameters:
-  - ranged
-  - '0.2'
+- type: statchange
 slug: boost_ranged
+stat_modifiers:
+  armour:
+    step: 2
 sort: utility
 sprite: gfx/items/boost_ranged.png
 category: stats

@@ -111,7 +111,7 @@ def test_object_id_duplicate(loaded_data):
             object_id = obj.attrib.get("id")
             if object_id and _is_valid_integer(object_id):
                 if object_id in seen:
-                    pytest.fail(f"ID '{object_id}' is a duplicate")
+                    pytest.fail(f"ID '{object_id}' is a duplicate in {path}")
                 seen.add(object_id)
 
 

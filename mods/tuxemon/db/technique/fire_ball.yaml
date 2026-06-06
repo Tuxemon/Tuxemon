@@ -28,9 +28,9 @@ use_failure: combat_miss
 use_success: null
 use_tech: combat_used_x
 visuals:
-  animation: fireball_114
+  animation: fire_big_dark_96
   flip_axes: x
   loop: 0
 sound:
-  sfx: sfx_flames1
+  sfx: sfx_flames2
   volume: 1.5

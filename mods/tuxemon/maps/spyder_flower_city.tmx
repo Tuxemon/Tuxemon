@@ -457,7 +457,7 @@
   <object id="464" name="Destination - Candy" type="event" x="112" y="496" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable rivergoto:nothing"/>
-    <property name="act2" value="transition_teleport player,spyder_candy_port.tmx,37,13,0.3"/>
+    <property name="act2" value="transition_teleport player,spyder_candy_port.tmx,37,12,0.3"/>
     <property name="act4" value="char_face player,down"/>
     <property name="cond1" value="is variable_set rivergoto:candy_port"/>
    </properties>

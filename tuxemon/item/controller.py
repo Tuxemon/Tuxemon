@@ -75,6 +75,7 @@ class ItemController:
                     self.session.client.push_state(monster_menu)
                 else:
                     result = self.item.use(self.session, self.char, None)
+                    self.char.last_used_item_slug = self.item.slug
                     self.session.client.remove_state_by_name("ItemMenuState")
                     self.session.client.remove_state_by_name("WorldMenuState")
                     self._show_item_result(result)
@@ -111,6 +112,7 @@ class ItemController:
 
             monster = menu_item.game_object
             result = self.item.use(self.session, self.char, monster)
+            self.char.last_used_item_slug = self.item.slug
             self.session.client.remove_state_by_name("MonsterMenuState")
             self.session.client.remove_state_by_name("ItemMenuState")
             self.session.client.remove_state_by_name("WorldMenuState")

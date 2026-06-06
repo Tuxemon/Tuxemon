@@ -345,31 +345,31 @@ msgid "boost_armour"
 msgstr "Boost Armor"
 
 msgid "boost_armour_description"
-msgstr "For the rest of the combat, increase Armor by 20%."
+msgstr "For the rest of the combat, increase Armor by two stages."
 
 msgid "boost_dodge"
 msgstr "Boost Dodge"
 
 msgid "boost_dodge_description"
-msgstr "For the rest of the combat, increase Dodge by 20%."
+msgstr "For the rest of the combat, increase Dodge by two stages."
 
 msgid "boost_melee"
 msgstr "Boost Melee"
 
 msgid "boost_melee_description"
-msgstr "For the rest of the combat, increase Melee by 20%."
+msgstr "For the rest of the combat, increase Melee by two stages."
 
 msgid "boost_ranged"
 msgstr "Boost Ranged"
 
 msgid "boost_ranged_description"
-msgstr "For the rest of the combat, increase Ranged by 20%."
+msgstr "For the rest of the combat, increase Ranged by two stages."
 
 msgid "boost_speed"
 msgstr "Boost Speed"
 
 msgid "boost_speed_description"
-msgstr "For the rest of the combat, increase Speed by 20%."
+msgstr "For the rest of the combat, increase Speed by two stages."
 
 msgid "raise_armour"
 msgstr "Raise Armor"
@@ -2029,6 +2029,9 @@ msgstr "{target} is turning ranged attacks back on the attacker."
 
 msgid "combat_state_immune"
 msgstr "{target} is immune to {method}"
+
+msgid "combat_state_prevented"
+msgstr "{method} prevents {target} from gaining {condition}"
 
 msgid "combat_state_immune_multiple"
 msgstr "{target} are immune to {method}"
@@ -4867,6 +4870,9 @@ msgstr "Northern"
 msgid "menu_hemisphere_south"
 msgstr "Southern"
 
+msgid "menu_screen_size"
+msgstr "Screen Size (EXPERIMENTAL)"
+
 msgid "options_new_input_key0"
 msgstr "Press a key to set your new input key"
 
@@ -6120,14 +6126,14 @@ msgstr "It smiles because it knows how everyone it meets is going to die."
 msgid "ghosteeth"
 msgstr "Ghosteeth"
 
-msgid "gladiatorbug_description"
+msgid "dynastor_description"
 msgstr ""
-"GLADIATORBUG is a massive insectoid tuxemon with a deep, armored exoskeleton"
+"DYNASTOR is a massive insectoid tuxemon with a deep, armored exoskeleton"
 " and distinctive wings running along its back. Its mandibles can crush "
 "steel. "
 
-msgid "gladiatorbug"
-msgstr "Gladiatorbug"
+msgid "dynastor"
+msgstr "Dynastor"
 
 msgid "gliffary_description"
 msgstr ""
@@ -11819,8 +11825,7 @@ msgstr "Cathedral Bill"
 
 msgid "spyder_pay_cathedral"
 msgstr ""
-"SCAN TO PAY. You can scan the QR code and make payment to the Cathedral by "
-"using the Bank App."
+"SCAN TO PAY. You can scan the QR code and make payment to the Cathedral."
 
 msgid "spyder_billing_cathedral1"
 msgstr ""
@@ -13132,8 +13137,6 @@ msgstr ""
 
 msgid "spyder_candy_eliane1"
 msgstr ""
-"Welcome to my market garden.\n"
-" I grow plants.\n"
 " Would you like me to harvest some crops for you?"
 
 msgid "spyder_candy_eliane2"
@@ -13981,7 +13984,6 @@ msgstr ""
 "Hey buddy! \n"
 " Are you planning to break into these HQ? Cool! \n"
 " Make sure you're well prepared before you do, because it's difficult to get out once you're inside! \n"
-" You'll need to call your mom to let her know you're safe. Use this app!"
 
 msgid "spyder_scoop_lanth1"
 msgstr "Look how happy the tuxemon are, living so close to one another!"
@@ -14446,8 +14448,8 @@ msgstr ""
 
 msgid "spyder_omnichannel_dempsey1"
 msgstr ""
-"Did you know that some cultures use the same word for 'crisis' and "
-"'opportunity'?"
+"It's every man, woman and child for themselves!\n
+" Especially the children, they'll make a tasty snack for the dragons."
 
 msgid "spyder_omnichannel_bettger1"
 msgstr "This is going to play havoc on Omnichannel's stock price."
@@ -16710,8 +16712,8 @@ msgstr ""
 
 msgid "spyder_dojo_fu3a"
 msgstr ""
-"I'm sorry, but I see you don't have any tuxemon that have evolved yet. This "
-"potion won't be of much use to you at the moment."
+"I'm sorry, but I see you don't have any tuxemon that have evolved yet.\n"
+" This potion won't be of much use to you at the moment."
 
 msgid "spyder_dojo_fu3b"
 msgstr ""
@@ -16760,8 +16762,7 @@ msgstr "Do you have a tuxemon that has evolved once? \n"
 
 msgid "spyder_dojo_fu_nochoice"
 msgstr ""
-"I'm ready to assist you, but please, choose the tuxemon that will undergo "
-"the reversal process."
+"I'm ready to assist you, but please, choose the tuxemon that will undergo the reversal process."
 
 msgid "spyder_dojo_zhu3"
 msgstr ""
@@ -16782,13 +16783,12 @@ msgstr "Not enough to cover the cost of the Re-Learner Potion."
 
 msgid "spyder_dojo_xiang3b"
 msgstr ""
-"The Re-Learner Potion has taken effect, your tuxemon's forgotten technique "
-"has been restored."
+"The Re-Learner Potion has taken effect, your tuxemon's forgotten technique has been restored."
 
 msgid "spyder_dojo_xiang3c"
 msgstr ""
-"Unfortunately, the Re-Learner Potion had an unexpected side effect, and your"
-" tuxemon has now forgotten one of its current techniques."
+"Unfortunately, the Re-Learner Potion had an unexpected side effect,\n"
+" and your tuxemon has now forgotten one of its current techniques."
 
 msgid "spyder_dojo_xiang3d"
 msgstr ""
@@ -16943,8 +16943,7 @@ msgstr ""
 
 msgid "spyder_dojo_ares1"
 msgstr ""
-"My tuxemon have great Melee or Ranged stats, or both, so their attacks hit "
-"hard."
+"My tuxemon have great Melee or Ranged stats, or both, so their attacks hit hard."
 
 msgid "spyder_dojo_ares2"
 msgstr ""
@@ -16967,8 +16966,7 @@ msgstr ""
 
 msgid "spyder_dojo_hephastus1"
 msgstr ""
-"My team all have excellent Armor, so melee attacks just bounce off of their"
-" thick hides."
+"My team all have excellent Armor, so melee attacks just bounce off of their thick hides."
 
 msgid "spyder_dojo_hephastus2"
 msgstr ""
@@ -16978,8 +16976,8 @@ msgstr ""
 
 msgid "spyder_dojo_hermes1"
 msgstr ""
-"My team are lightning-quick, with high Speed. By the time you get around to "
-"attacking, we'll have already defeated you."
+"My team are lightning-quick, with high Speed.\n"
+" By the time you get around to attacking, we'll have already defeated you."
 
 msgid "spyder_dojo_hermes2"
 msgstr ""

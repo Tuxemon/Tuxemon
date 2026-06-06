@@ -1730,7 +1730,7 @@ From the CC0 Superpowers Asset Packs.
 From the CC0 gems by Winternaut on Open Game Art.
 
 * ["Frost Type - Small"](https://wiki.tuxemon.org/File:Frost-12px.png)
-From CC BY 3.0 sprites [https://opengameart.org/content/rock-rush-tiles-sprites-hud-backgrounds on Open Game Art] by EvidentlyCube. 
+Adapted by Sanglorian from CC0 sprites [https://opengameart.org/content/rpg-ui-icons on Open Game Art] by OwlishMedia. 
 
 * ["Heroic Type - Small"](https://wiki.tuxemon.org/File:Heroic-12px.png)
 From CC BY 3.0 military icons [https://opengameart.org/content/140-military-icons-set-fixed on Open Game Art] by AngryMeteor.com.

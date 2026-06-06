@@ -5,7 +5,7 @@ effects:
 - type: give
   parameters:
   - recover
-  - own_monster
+  - enemy_monster
 speed: normal
 potency: 1.0
 power: 3.0

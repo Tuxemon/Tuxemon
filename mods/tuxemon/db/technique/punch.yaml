@@ -27,7 +27,7 @@ use_failure: combat_miss
 use_success: null
 use_tech: combat_used_x
 visuals:
-  animation: amethyst
+  animation: pound
   flip_axes: ''
   loop: 0
 sound:

@@ -10,48 +10,12 @@ events:
     - not variable_set race_choice
     type: event
 
-  Gender:
+  Appearance:
     actions:
-    - change_bg gradient_blue,choice_gender,image
-    - translated_dialog_choice gender_male:gender_female:gender_nonbinary,gender_choice
+    - change_bg gradient_blue
+    - choice_npc white_male:black_male:white_female:black_female:gender_enby:gender_whatever,race_choice
     conditions:
     - is variable_set scenario_choice
-    - not variable_set gender_choice
-    - not variable_set race_choice
-    type: event
-
-  Gender Male:
-    actions:
-    - set_char_attribute player,gender,male
-    - change_bg gradient_blue,choice_gender,image
-    - translated_dialog_choice black_male:white_male,race_choice
-    conditions:
-    - is variable_set scenario_choice
-    - is variable_set gender_choice:gender_male
-    - not variable_set race_choice
-    type: event
-
-
-  Gender Female:
-    actions:
-    - set_char_attribute player,gender,female
-    - change_bg gradient_blue,choice_gender,image
-    - translated_dialog_choice black_female:white_female,race_choice
-    conditions:
-    - is variable_set scenario_choice
-    - is variable_set gender_choice:gender_female
-    - not variable_set race_choice
-    type: event
-
-
-  Gender Nonbinary:
-    actions:
-    - set_char_attribute player,gender,nonbinary
-    - change_bg gradient_blue,choice_gender,image
-    - translated_dialog_choice gender_enby:gender_whatever,race_choice
-    conditions:
-    - is variable_set scenario_choice
-    - is variable_set gender_choice:gender_nonbinary
     - not variable_set race_choice
     type: event
 
@@ -60,38 +24,56 @@ events:
   Black Female:
     actions:
     - set_template player,brownheroine_brown,heroineblack
+    - set_char_attribute player,gender,female
+    - set_variable gender_choice:gender_female
     conditions:
     - is variable_set race_choice:black_female
+    - not variable_set gender_choice
     type: event
   Black Male:
     actions:
     - set_template player,adventurerblack,adventurerblack
+    - set_char_attribute player,gender,male
+    - set_variable gender_choice:gender_male
     conditions:
     - is variable_set race_choice:black_male
+    - not variable_set gender_choice
     type: event
   Gender Enby:
     actions:
     - set_template player,enbyasian,enbyasian
+    - set_char_attribute player,gender,nonbinary
+    - set_variable gender_choice:gender_nonbinary
     conditions:
     - is variable_set race_choice:gender_enby
+    - not variable_set gender_choice
     type: event
   Whatever Penguin:
     actions:
     - set_template player,penguin,penguin
+    - set_char_attribute player,gender,nonbinary
+    - set_variable gender_choice:gender_nonbinary
     conditions:
     - is variable_set race_choice:gender_whatever
+    - not variable_set gender_choice
     type: event
   White Female:
     actions:
     - set_template player,heroine,heroine
+    - set_char_attribute player,gender,female
+    - set_variable gender_choice:gender_female
     conditions:
     - is variable_set race_choice:white_female
+    - not variable_set gender_choice
     type: event
   White Male:
     actions:
     - set_template player,adventurer,adventurer
+    - set_char_attribute player,gender,male
+    - set_variable gender_choice:gender_male
     conditions:
     - is variable_set race_choice:white_male
+    - not variable_set gender_choice
     type: event
 
 

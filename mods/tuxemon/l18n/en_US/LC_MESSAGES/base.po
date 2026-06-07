@@ -9037,6 +9037,16 @@ msgstr "Female"
 msgid "gender_nonbinary"
 msgstr "Non-binary"
 
+# Player pronoun choice (shown after appearance selection)
+msgid "pronoun_he"
+msgstr "He/Him"
+
+msgid "pronoun_she"
+msgstr "She/Her"
+
+msgid "pronoun_they"
+msgstr "They/Them"
+
 # Player additional gender, since very few ID as 'neuter'
 msgid "gender_enby"
 msgstr "Nonbinary"

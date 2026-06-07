@@ -1669,6 +1669,9 @@ msgstr "E-Pay"
 msgid "no_money_operation"
 msgstr "{operation} not possible!"
 
+msgid "menu_select"
+msgstr "Select"
+
 msgid "select_number"
 msgstr "Select number"
 

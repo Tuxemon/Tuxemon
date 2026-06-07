@@ -13,7 +13,7 @@ events:
   Appearance:
     actions:
     - change_bg gradient_blue
-    - choice_npc white_male:black_male:white_female:black_female:gender_enby:gender_whatever,race_choice
+    - choice_npc white_male:black_male:white_female:black_female:gender_enby:gender_whatever,race_choice,menu_select
     conditions:
     - is variable_set scenario_choice
     - not variable_set race_choice

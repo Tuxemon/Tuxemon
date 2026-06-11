@@ -85,6 +85,14 @@ if TYPE_CHECKING:
 
 logger = logging.getLogger(__name__)
 
+# When several monsters enter the battlefield at once (battle start, or a
+# multi-monster replacement after a double KO), their releases are staggered
+# by this many seconds each instead of all playing on the same frame. This
+# spaces out the send-out animations and combat calls so they play one after
+# the other rather than on top of each other.
+MONSTER_ENTRY_STAGGER = 0.7
+
+
 EVENT_HANDLERS: dict[str, str] = {
     "monster_disappeared": "_on_monster_disappeared",
     "monster_appeared": "_on_monster_appeared",
@@ -152,6 +160,9 @@ class CombatState(CombatAnimations):
         self.text_anim = TextAnimationManager()
         self._decision_queue: deque[Monster] = deque()
         self._captured_mon: Monster | None = None
+        # Counts monsters entering within the current fill batch so their
+        # send-out animations can be staggered (see MONSTER_ENTRY_STAGGER).
+        self._entry_index = 0
         # player => home areas on screen
         super().__init__(client=client, teams=context.teams, **kwargs)
         self.combat_session = self.client.combat_session
@@ -256,8 +267,13 @@ class CombatState(CombatAnimations):
         elif phase == CombatPhase.HOUSEKEEPING:
             new_turn = c_session.next_turn()
             c_session.action_queue.set_current_turn(new_turn)
+            # reset the stagger counter so this batch of releases starts fresh
+            self._entry_index = 0
             # fill all battlefield positions, but on round 1, don't ask
             c_session.fill_battlefield_positions(ask=new_turn > 1)
+            # confine the stagger to this synchronous batch so a later lone
+            # entry (e.g. a voluntary swap) isn't delayed by a stale count
+            self._entry_index = 0
             c_session.track_enemy_monsters(self.session)
 
         elif phase == CombatPhase.DECISION:
@@ -433,7 +449,24 @@ class CombatState(CombatAnimations):
         if not sprite:
             raise ValueError(f"Sprite not found for item {capture_device}")
 
-        # Animate release and update HUD
+        # Stagger releases when several monsters enter together so their
+        # send-out animations and combat calls play one after the other.
+        delay = self._entry_index * MONSTER_ENTRY_STAGGER
+        self._entry_index += 1
+
+        release = partial(self._release_monster, player, monster, sprite)
+        if delay > 0:
+            self.task(release, interval=delay)
+        else:
+            release()
+
+    def _release_monster(
+        self,
+        player: NPC,
+        monster: Monster,
+        sprite: Sprite,
+    ) -> None:
+        """Animate a monster's release, reveal its HUD and announce a swap."""
         self.animate_monster_release(player, monster, sprite)
         self.update_hud(player, True, True)
 

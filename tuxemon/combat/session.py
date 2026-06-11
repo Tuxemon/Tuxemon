@@ -478,7 +478,12 @@ class CombatSession:
         Parameters:
             ask: If True, human players will be prompted to choose a monster.
         """
-        for player in self.active_players:
+        # Opponents (AI players) are filled before the human player so their
+        # monsters are sent out and call first when the staggered releases play.
+        ordered_players = sorted(
+            self.active_players, key=lambda p: p.is_player
+        )
+        for player in ordered_players:
             max_positions = self.get_max_positions(player)
 
             # Handle sprite positioning for double battles

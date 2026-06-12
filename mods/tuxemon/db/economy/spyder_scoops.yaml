@@ -75,7 +75,6 @@
     slug: memnomnom
     price: 4000
     level: 10
-  monsters: []
   resale_multiplier: 0.5
   slug: spyder_cotton_tech
 - background: gfx/ui/item/item_menu_bg.png

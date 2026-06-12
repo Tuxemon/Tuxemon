@@ -7,6 +7,14 @@ events:
     conditions:
     - not char_exists spyder_shopassistant
     type: event
+  Create Tech Shop:
+    actions:
+    - create_npc spyder_wayfarer1_norm,1,4
+    - char_face spyder_wayfarer1_norm,right
+    - set_economy spyder_wayfarer1_norm,spyder_flower_tech
+    conditions:
+    - not char_exists spyder_wayfarer1_norm
+    type: event
   Flashback:
     actions:
     - lock_controls
@@ -80,6 +88,17 @@ events:
     type: event
     x: 1
     y: 7
+  Open Tech:
+    actions:
+    - char_face spyder_wayfarer1_norm,right
+    - translated_dialog spyder_scoop_welcome
+    - open_shop spyder_wayfarer1_norm,both_item
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed INTERACT
+    type: event
+    x: 2
+    y: 4
   Route Music:
     actions:
     - play_music music_cathedral_theme

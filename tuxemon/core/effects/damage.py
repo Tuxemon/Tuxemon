@@ -49,6 +49,8 @@ class DamageEffect(CoreEffect):
             targets = session.client.combat_session.get_targets(
                 tech, user, target
             )
+            if len(targets) > 1:
+                damage = int(damage * 0.75)
 
         if targets:
             for monster in targets:

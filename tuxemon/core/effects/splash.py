@@ -52,6 +52,9 @@ class SplashEffect(CoreEffect):
         if not tech.hit:
             damage //= self.divisor
 
+        if len(targets) > 1:
+            damage = int(damage * 0.75)
+
         if targets:
             for monster in targets:
                 monster.current_hp = max(0, monster.current_hp - damage)

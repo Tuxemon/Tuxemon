@@ -575,6 +575,7 @@ class CombatSession:
     def apply_technique(
         self, session: Session, tech: Technique, user: Monster, target: Monster
     ) -> tuple[TechEffectResult, StatusEffectResult | None]:
+        pre_status = user.status.current_status
         result = tech.use(session, user, target)
         logger.debug(
             f"{user.name} used {tech.slug} on {target.name} > success={result.success}"
@@ -582,7 +583,11 @@ class CombatSession:
 
         status_result = None
         status = user.status.current_status
-        if status:
+        # Only run the PERFORM_TECH phase on a status the user already had
+        # before this technique executed. Otherwise a technique that grants a
+        # status to its own user (e.g. Life Surge granting "chargedup") would
+        # have that status consumed by this same action's PERFORM_TECH hook.
+        if status and status is pre_status:
             status_result = status.use(session, EffectPhase.PERFORM_TECH)
             if status_result.statuses:
                 chosen = random.choice(status_result.statuses)

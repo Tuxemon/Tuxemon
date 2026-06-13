@@ -29,16 +29,18 @@ class HealingEffect(CoreEffect):
     technique of equal power.
 
     **Parameters**
-      - ``objective``: Which targets to heal. When omitted, the technique's
-        own target block is used (the same targets the other effects hit).
-        Otherwise it may be any single target type, letting the heal target
-        differently from the rest of the technique:
-          - ``own_monster``: the monster using the technique
-          - ``own_team``: the user's active team
-          - ``own_trainer``: the user's whole party
-          - ``enemy_monster``: the targeted monster
-          - ``enemy_team``: the target's active team
-          - ``enemy_trainer``: the target's whole party
+
+    - ``objective``: Which targets to heal. When omitted, the technique's
+      own target block is used (the same targets the other effects hit).
+      Otherwise it may be any single target type, letting the heal target
+      differently from the rest of the technique:
+
+      - ``own_monster``: the monster using the technique
+      - ``own_team``: the user's active team
+      - ``own_trainer``: the user's whole party
+      - ``enemy_monster``: the targeted monster
+      - ``enemy_team``: the target's active team
+      - ``enemy_trainer``: the target's whole party
 
     **Example**
 
@@ -52,7 +54,9 @@ class HealingEffect(CoreEffect):
 
     Heal the user regardless of the technique's target block (e.g. a move
     that damages an enemy but heals the caster):
+
     .. code-block:: json
+
         "effects": [
             "healing own_monster"
         ]

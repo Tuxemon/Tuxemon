@@ -341,6 +341,15 @@ class CombatSession:
         self._prize = 0
 
     # Random tech hit
+    #
+    # Accuracy is rolled once per monster per round: initialize_hit_chances()
+    # stores a single random value per monster, and get_tech_hit() only reads
+    # that cached value (it does not re-roll). This means every effect of a
+    # technique that compares `tech.accuracy >= get_tech_hit(user)` shares the
+    # same hit/miss result, so the accuracy check is effectively performed once
+    # per technique even when it has both damage and healing effects. The only
+    # deliberate exception is multiattack, which calls set_tech_hit() to re-roll
+    # for each of its repeated hits.
     def set_tech_hit(
         self, monster: Monster, value: float | None = None
     ) -> None:

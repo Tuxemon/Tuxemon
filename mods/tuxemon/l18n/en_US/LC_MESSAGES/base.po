@@ -1706,7 +1706,10 @@ msgid "spyderbite_miss"
 msgstr "And the technique was lost."
 
 msgid "combat_full_health"
-msgstr "But it's already at full health."
+msgstr "But {name} is already at full health."
+
+msgid "combat_state_healed"
+msgstr "{name}'s health was restored."
 
 msgid "combat_forfeit"
 msgstr ""

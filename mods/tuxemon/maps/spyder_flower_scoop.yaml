@@ -92,13 +92,29 @@ events:
     actions:
     - char_face spyder_wayfarer1_norm,right
     - translated_dialog spyder_scoop_welcome
-    - open_shop spyder_wayfarer1_norm,both_item
+    - translated_dialog_choice menu_item:menu_monster,techchoice
     conditions:
     - is char_facing_tile player
     - is button_pressed INTERACT
+    - not variable_set techchoice:menu_item
+    - not variable_set techchoice:menu_monster
     type: event
     x: 2
     y: 4
+  Tech Buy Items:
+    actions:
+    - open_shop spyder_wayfarer1_norm,both_item
+    - clear_variable techchoice
+    conditions:
+    - is variable_set techchoice:menu_item
+    type: event
+  Tech Buy Monsters:
+    actions:
+    - open_shop spyder_wayfarer1_norm,buy_monster
+    - clear_variable techchoice
+    conditions:
+    - is variable_set techchoice:menu_monster
+    type: event
   Route Music:
     actions:
     - play_music music_cathedral_theme

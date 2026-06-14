@@ -11,7 +11,6 @@ REGION_KEYS: list[str] = [
     "push_direction",
     "push_strength",
     "speed_modifier",
-    "ledge_direction",
     "hop",
 ]
 

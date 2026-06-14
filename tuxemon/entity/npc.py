@@ -24,17 +24,19 @@ from tuxemon.entity.sheet import CombatSheet
 from tuxemon.entity.steps import StepManager
 from tuxemon.game_variables import GameVariablesManager, PlayerVariablesManager
 from tuxemon.locale.locale import T
+from tuxemon.map.map import tile_distance
 from tuxemon.map.view import SpriteController
 from tuxemon.mission.controller import MissionController
 from tuxemon.mission.manager import MissionManager
 from tuxemon.money.controller import MoneyController
 from tuxemon.monster.evolution_registry import EvolutionRegistry
 from tuxemon.monster.monster import Monster
-from tuxemon.map.map import tile_distance
 from tuxemon.platform.const.sizes import (
     HOP_HEIGHT_PIXELS,
     MONTH_KEYS,
     PLAYER_NPC,
+)
+from tuxemon.platform.const.sizes import (
     TILE_SIZE as NATIVE_TILE_SIZE,
 )
 from tuxemon.relationship import (

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+import math
 from collections.abc import Sequence
 from typing import TYPE_CHECKING
 from uuid import UUID
@@ -29,7 +30,13 @@ from tuxemon.mission.manager import MissionManager
 from tuxemon.money.controller import MoneyController
 from tuxemon.monster.evolution_registry import EvolutionRegistry
 from tuxemon.monster.monster import Monster
-from tuxemon.platform.const.sizes import MONTH_KEYS, PLAYER_NPC
+from tuxemon.map.map import tile_distance
+from tuxemon.platform.const.sizes import (
+    HOP_HEIGHT_PIXELS,
+    MONTH_KEYS,
+    PLAYER_NPC,
+    TILE_SIZE as NATIVE_TILE_SIZE,
+)
 from tuxemon.relationship import (
     Relationships,
     decode_relationships,
@@ -198,6 +205,23 @@ class NPC(Entity):
     def items(self) -> list[Item]:
         """Returns the list of items in the bag."""
         return self.bag.items
+
+    @property
+    def hop_y_offset_tiles(self) -> float:
+        """Y offset in tile units to apply during a ledge hop (positive = upward arc)."""
+        exec = self.path_controller.exec
+        if not exec.is_hop:
+            return 0.0
+        arc_origin = exec.hop_arc_origin or exec.origin
+        arc_target = exec.hop_arc_target or exec.target
+        if arc_origin is None or arc_target is None:
+            return 0.0
+        expected = tile_distance(arc_origin, arc_target)
+        if expected == 0:
+            return 0.0
+        traveled = tile_distance(self.body.position, arc_origin)
+        progress = min(1.0, traveled / expected)
+        return math.sin(math.pi * progress) * HOP_HEIGHT_PIXELS / NATIVE_TILE_SIZE[1]
 
     @property
     def path(self) -> list[tuple[int, int]]:

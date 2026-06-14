@@ -21,6 +21,7 @@ class RegionKey(str, Enum):
     DEFAULT = "default"
     SLIDE = "slide"
     PUSH_TILE = "push_tile"
+    LEDGE = "ledge"
 
 
 @dataclass(frozen=True)
@@ -65,6 +66,12 @@ class RegionProperties:
         default=None,
         metadata={
             "description": "Multiplier for movement speed within this region."
+        },
+    )
+    hop: bool = field(
+        default=False,
+        metadata={
+            "description": "Whether crossing this tile triggers a ledge-hop arc."
         },
     )
 
@@ -130,6 +137,7 @@ class DefaultTileStrategy(RegionPropertiesStrategy):
             key=parsed_data.get("key"),
             push_effect=None,
             speed_modifier=parsed_data.get("speed_modifier"),
+            hop=parsed_data.get("hop", False),
         )
 
 
@@ -183,6 +191,34 @@ class PushTileStrategy(RegionPropertiesStrategy):
         )
 
 
+@register_region_strategy(RegionKey.LEDGE)
+class LedgeTileStrategy(RegionPropertiesStrategy):
+    """
+    Handles ledge tiles: passable in one direction only, triggering a hop.
+    Map property: key=ledge, ledge_direction=<direction>
+    The hop direction becomes the sole exit; all other directions can enter.
+    """
+
+    @classmethod
+    def create(cls, parsed_data: dict[str, Any]) -> RegionProperties:
+        ledge_dir = parsed_data.get("ledge_direction")
+        if ledge_dir is None:
+            raise ValueError(
+                "'ledge' key requires 'ledge_direction' to be set."
+            )
+        all_dirs = list(Direction)
+        exit_from = [ledge_dir]
+        enter_from = [d for d in all_dirs if d != ledge_dir]
+        return RegionProperties(
+            enter_from=enter_from,
+            exit_from=exit_from,
+            endure=[],
+            key=RegionKey.LEDGE.value,
+            push_effect=None,
+            speed_modifier=parsed_data.get("speed_modifier"),
+        )
+
+
 def _parse_raw_properties(
     properties: Mapping[str, str | None],
 ) -> dict[str, Any] | None:
@@ -201,6 +237,8 @@ def _parse_raw_properties(
         "push_direction": None,
         "push_strength": 0,
         "speed_modifier": None,
+        "ledge_direction": None,
+        "hop": False,
     }
 
     for key, value in properties.items():
@@ -233,6 +271,10 @@ def _parse_raw_properties(
                     raise ValueError(
                         f"Invalid speed_modifier '{value}': must be a number."
                     )
+        elif k == "ledge_direction":
+            parsed_data["ledge_direction"] = direction_to_single(value)
+        elif k == "hop":
+            parsed_data["hop"] = str(value).lower() in ("true", "1", "yes")
         else:
             logger.debug(f"Unknown region property key '{k}' ignored.")
 

@@ -11,7 +11,11 @@ REGION_KEYS: list[str] = [
     "push_direction",
     "push_strength",
     "speed_modifier",
+    "ledge_direction",
+    "hop",
 ]
+
+HOP_HEIGHT_PIXELS: int = 6
 # Surface Keys (tilesets)
 SURFACE_KEYS: list[str] = ["surfable", "walkable", "climbable"]
 

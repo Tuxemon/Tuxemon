@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="12" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="73">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="12" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="75">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -156,6 +156,18 @@
    <properties>
     <property name="act1" value="remove_collision screen"/>
     <property name="cond1" value="is has_item player,aardant"/>
+   </properties>
+  </object>
+  <object id="73" name="Enable No-Monster Blackout" type="event" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable blackout_no_monsters:true"/>
+    <property name="cond1" value="not variable_set blackout_no_monsters:true"/>
+   </properties>
+  </object>
+  <object id="74" name="Default" type="event" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="teleport_faint player,true"/>
+    <property name="cond1" value="is char_defeated player"/>
    </properties>
   </object>
  </objectgroup>

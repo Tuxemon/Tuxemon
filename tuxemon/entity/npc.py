@@ -216,11 +216,16 @@ class NPC(Entity):
         sheet = a.combat_sheet or self.template.combat_sheet
         fw = a.combat_frame_width or self.template.combat_frame_width
         fh = a.combat_frame_height or self.template.combat_frame_height
+        back_fh = (
+            a.combat_back_frame_height
+            or self.template.combat_back_frame_height
+        )
 
         return CombatSheet(
             file_path=f"gfx/sprites/player/{sheet}.png",
             frame_w=fw,
             frame_h=fh,
+            back_frame_h=back_fh,
         )
 
     def get_state(self, session: Session) -> NPCState:

@@ -681,6 +681,10 @@ class CombatAnimations(Menu[None], ABC):
             self.update_hud(opponent, True, True)
 
         player_pos = layout.get_combatant_pos("player", front_island.rect)
+        # Bring the trainer on lower so the (taller) back sprite sits on the
+        # island rather than floating above it. 64 is a nominal value, scaled
+        # to the current display.
+        player_pos["bottom"] += self.scale_int(64)
         player_surface = player.combat_sheet.back()
         player_surface = graphics.scale_surface(player_surface, self.factor)
         player_back = self.load_surface(player_surface, **player_pos)

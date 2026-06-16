@@ -70,11 +70,12 @@ class RuntimeAppearance:
             combat_frame_height=data.get(
                 "combat_frame_height", template.combat_frame_height
             ),
-        )
             combat_back_frame_height=data.get(
                 "combat_back_frame_height",
                 template.combat_back_frame_height,
             ),
+        )
+
 
 class AppearanceManager:
     """

@@ -218,7 +218,7 @@ def calculate_time_based_multiplier(
         hour += 24
     if peak_hour < start:
         peak_hour += 24
-    if (end or hour or peak_hour) > 47:
+    if end > 47 or hour > 47 or peak_hour > 47:
         return 0.0
 
     if start <= hour < end:

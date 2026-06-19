@@ -455,7 +455,7 @@ def calculate_status_modifier(item: Item, target: Monster) -> float:
             )
             status_modifier *= specific_modifier
 
-        if status.category:
+        elif status.category:
             category_modifier = (
                 negative_modifier
                 if status.category == "negative"

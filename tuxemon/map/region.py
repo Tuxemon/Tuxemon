@@ -67,6 +67,12 @@ class RegionProperties:
             "description": "Multiplier for movement speed within this region."
         },
     )
+    hop: bool = field(
+        default=False,
+        metadata={
+            "description": "Whether crossing this tile triggers a ledge-hop arc."
+        },
+    )
 
     def with_overrides(self, **kwargs: Any) -> RegionProperties:
         return replace(self, **kwargs)
@@ -130,6 +136,7 @@ class DefaultTileStrategy(RegionPropertiesStrategy):
             key=parsed_data.get("key"),
             push_effect=None,
             speed_modifier=parsed_data.get("speed_modifier"),
+            hop=parsed_data.get("hop", False),
         )
 
 
@@ -201,6 +208,7 @@ def _parse_raw_properties(
         "push_direction": None,
         "push_strength": 0,
         "speed_modifier": None,
+        "hop": False,
     }
 
     for key, value in properties.items():
@@ -233,6 +241,8 @@ def _parse_raw_properties(
                     raise ValueError(
                         f"Invalid speed_modifier '{value}': must be a number."
                     )
+        elif k == "hop":
+            parsed_data["hop"] = str(value).lower() in ("true", "1", "yes")
         else:
             logger.debug(f"Unknown region property key '{k}' ignored.")
 

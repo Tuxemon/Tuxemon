@@ -1,5 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0
 # Copyright (c) 2014-2026 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+from __future__ import annotations
+
 from dataclasses import dataclass
 from unittest.mock import Mock, patch
 
@@ -14,6 +16,7 @@ class DummyTemplate:
     combat_sheet: str = "combat_default"
     combat_frame_width: int = 32
     combat_frame_height: int = 32
+    combat_back_frame_height: int | None = None
     is_static_prop: bool = False
 
 
@@ -58,6 +61,7 @@ def test_to_dict_roundtrip():
         "color": None,
         "combat_frame_width": None,
         "combat_frame_height": None,
+        "combat_back_frame_height": None,
     }
 
 

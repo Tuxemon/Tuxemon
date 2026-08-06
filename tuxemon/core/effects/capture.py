@@ -80,6 +80,12 @@ class CaptureEffect(CoreEffect):
         self.session.player.tuxepedia.register_caught(target.slug)
         target.capture_device = item.slug
         target.wild = False
+        current_status = target.status.current_status
+        if (
+            current_status
+            and not current_status.behaviors.persists_after_combat
+        ):
+            target.status.clear_status(self.session)
         target.set_acquisition(Acquisition.CAPTURED)
         self.session.player.party.add_monster(
             target, len(self.session.player.monsters)

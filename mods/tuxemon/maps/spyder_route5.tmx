@@ -467,5 +467,12 @@
     <property name="behav1" value="talk spyder_route5_nurse"/>
    </properties>
   </object>
+   <object id="4217" name="Track route5" type="event" x="0" y="0" width="640" height="320">
+   <properties>
+    <property name="act1" value="add_tracker player,route5"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="not tracker player,route5"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

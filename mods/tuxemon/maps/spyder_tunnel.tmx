@@ -267,5 +267,12 @@
     <property name="behav1" value="talk spyder_tunnelb_nurse"/>
    </properties>
   </object>
- </objectgroup>
+   <object id="10969" name="Track tunnel" type="event" x="0" y="0" width="320" height="640">
+   <properties>
+    <property name="act1" value="add_tracker player,tunnel"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="not tracker player,tunnel"/>
+   </properties>
+  </object>
+</objectgroup>
 </map>

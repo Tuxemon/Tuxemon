@@ -72,7 +72,7 @@ def build_combat_sheet(base: str, folder: Path) -> bool:
             back = back.crop((0, 0, frame_w, frame_h))
 
     else:
-        print(f" [!] Back sprite missing, using transparent placeholder")
+        print(" [!] Back sprite missing, using transparent placeholder")
         back = Image.new("RGBA", (frame_w, frame_h), (0, 0, 0, 0))
 
     # Create sheet: 1 row × 2 columns

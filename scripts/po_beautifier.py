@@ -41,7 +41,7 @@ def beautify_po_file(filepath: Path, remove_obsolete_entries: bool = True):
             po_temp = pofile(filepath.as_posix(), encoding="utf-8")
             po.clear()
             po.extend(po_temp)
-            print(f"Obsolete entries removed, if any.")
+            print("Obsolete entries removed, if any.")
 
         po.save(filepath.as_posix())
         print(f"Successfully beautified {filepath}")

@@ -19,29 +19,35 @@
 
 - background: gfx/ui/item/item_menu_bg.png
   items:
-  - cost: 5
+  - cost: 50
     slug: potion
-    price: 20
-  - cost: 20
-    slug: revive
     price: 100
-  - cost: 10
+  - cost: 50
     slug: tuxeball
-    price: 50
+    price: 100
+  - cost: 200
+    slug: restoration
+    price: 400
   monsters: []
   resale_multiplier: 0.5
   slug: spyder_paper_scoop
 - background: gfx/ui/item/item_menu_bg.png
   items:
-  - cost: 5
-    slug: potion
-    price: 20
-  - cost: 20
-    slug: revive
+  - cost: 50
+    slug: repellent
     price: 100
-  - cost: 10
+  - cost: 50
+    slug: potion
+    price: 100
+  - cost: 50
     slug: tuxeball
-    price: 50
+    price: 100
+  - cost: 200
+    slug: restoration
+    price: 400
+  - cost: 300
+    slug: escape_key
+    price: 600
   monsters: []
   resale_multiplier: 0.5
   slug: spyder_cotton_scoop
@@ -64,52 +70,107 @@
     inventory: 1
     slug: tm_blossom
     price: 1000
-  monsters: []
+  monsters:
+  - cost: 2000
+    slug: memnomnom
+    price: 4000
+    level: 10
   resale_multiplier: 0.5
   slug: spyder_cotton_tech
 - background: gfx/ui/item/item_menu_bg.png
   items:
-  - cost: 10
-    slug: super_potion
-    price: 50
-  - cost: 20
-    slug: revive
-    price: 100
   - cost: 50
-    slug: cureall
-    price: 250
-  - cost: 30
-    slug: tuxeball_noble
-    price: 150
-  - cost: 40
+    slug: repellent
+    price: 100
+  - cost: 500
+    slug: revive
+    price: 1000
+  - cost: 150
+    slug: super_potion
+    price: 300
+  - cost: 150
     slug: tuxeball_lavish
-    price: 200
+    price: 300
+  - cost: 200
+    slug: restoration
+    price: 400
+  - cost: 300
+    slug: escape_key
+    price: 600
   monsters: []
   resale_multiplier: 0.5
   slug: spyder_leather_scoop
 - background: gfx/ui/item/item_menu_bg.png
   items:
-  - cost: 10
-    slug: super_potion
-    price: 50
+  - cost: 1000
+    slug: stovepipe
+    price: 2000
+  - cost: 1000
+    slug: tectonic_drill
+    price: 2000
+  monsters: 
+  - cost: 2000
+    slug: ignibus
+    price: 4000
+    level: 10
+  resale_multiplier: 0.5
+  slug: spyder_leather_tech
+- background: gfx/ui/item/item_menu_bg.png
+  items:
   - cost: 50
-    slug: mega_potion
-    price: 200
-  - cost: 20
-    slug: revive
+    slug: repellent
     price: 100
-  - cost: 50
-    slug: cureall
-    price: 250
-  - cost: 40
+  - cost: 500
+    slug: revive
+    price: 1000
+  - cost: 150
+    slug: super_potion
+    price: 300
+  - cost: 150
     slug: tuxeball_lavish
-    price: 200
-  - cost: 50
-    slug: tuxeball_grand
-    price: 250
+    price: 300
+  - cost: 300
+    slug: tuxeball_majestic
+    price: 600
+  - cost: 200
+    slug: restoration
+    price: 400
+  - cost: 750
+    slug: cureall
+    price: 1500
+  - cost: 300
+    slug: escape_key
+    price: 600
+  - cost: 150
+    slug: tuxeball_diurnal
+    price: 300
+    variables:
+      - key: daytime
+        value: "true"
+  - cost: 150
+    slug: tuxeball_nocturnal
+    price: 300
+    variables:
+      - key: daytime
+        value: "false"
   monsters: []
   resale_multiplier: 0.5
   slug: spyder_flower_scoop
+- background: gfx/ui/item/item_menu_bg.png
+  items:
+  - cost: 1000
+    slug: flintstone
+    price: 2000
+  - cost: 1000
+    slug: thunderstone
+    price: 2000
+  monsters: 
+  - cost: 2000
+    slug: grintot
+    price: 4000
+    level: 10
+  resale_multiplier: 0.5
+  slug: spyder_flower_tech
 - background: gfx/ui/item/item_menu_bg.png
   items: []
   monsters:
@@ -137,39 +198,81 @@
   slug: spyder_flower_petshop
 - background: gfx/ui/item/item_menu_bg.png
   items:
-  - cost: 10
-    slug: super_potion
-    price: 50
   - cost: 50
-    slug: mega_potion
-    price: 200
-  - cost: 20
-    slug: revive
+    slug: repellent
     price: 100
-  - cost: 50
-    slug: cureall
-    price: 250
-  - cost: 50
-    slug: tuxeball_grand
-    price: 250
-  - cost: 80
+  - cost: 500
+    slug: revive
+    price: 1000
+  - cost: 150
+    slug: super_potion
+    price: 300
+  - cost: 150
+    slug: tuxeball_lavish
+    price: 300
+  - cost: 300
     slug: tuxeball_majestic
+    price: 600
+  - cost: 200
+    slug: restoration
     price: 400
-  - cost: 60
-    slug: tuxeball_diurnal
-    price: 300
-    variables:
-      - key: daytime
-        value: "true"
-  - cost: 60
-    slug: tuxeball_nocturnal
-    price: 300
-    variables:
-      - key: daytime
-        value: "false"
+  - cost: 750
+    slug: cureall
+    price: 1500
+  - cost: 300
+    slug: escape_key
+    price: 600
+  - cost: 275
+    slug: boost_armour
+    price: 550
+  - cost: 275
+    slug: boost_dodge
+    price: 550
+  - cost: 275
+    slug: boost_melee
+    price: 550
+  - cost: 275
+    slug: boost_ranged
+    price: 550
+  - cost: 275
+    slug: boost_speed
+    price: 550
+  - cost: 5000
+    slug: raise_hp
+    price: 10000
+  - cost: 5000
+    slug: raise_armour
+    price: 10000
+  - cost: 5000
+    slug: raise_dodge
+    price: 10000
+  - cost: 5000
+    slug: raise_melee
+    price: 10000
+  - cost: 5000
+    slug: raise_ranged
+    price: 10000
+  - cost: 5000
+    slug: raise_speed
+    price: 10000
   monsters: []
   resale_multiplier: 0.5
   slug: spyder_timber_scoop
+- background: gfx/ui/item/item_menu_bg.png
+  items:
+  - cost: 1000
+    slug: sweet_sand
+    price: 2000
+  - cost: 1000
+    slug: sea_girdle
+    price: 2000
+  monsters: 
+  - cost: 2000
+    slug: dollfin
+    price: 4000
+    level: 10
+  resale_multiplier: 0.5
+  slug: spyder_timber_tech
 - background: gfx/ui/item/item_menu_bg.png
   items:
   - cost: 50
@@ -204,10 +307,10 @@
   slug: spyder_candy_scoop
 - background: gfx/ui/item/item_menu_bg.png
   items:
-  - cost: 400
+  - cost: 1000
     slug: peace_lily
     price: 2000
-  - cost: 400
+  - cost: 1000
     slug: lucky_bamboo
     price: 2000
   - cost: 400
@@ -226,6 +329,10 @@
     inventory: 1
     slug: tm_acid
     price: 2000
-  monsters: []
+  monsters: 
+  - cost: 2000
+    slug: budaye
+    price: 4000
+    level: 10
   resale_multiplier: 0.5
   slug: spyder_candy_tech

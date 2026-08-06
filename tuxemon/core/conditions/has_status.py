@@ -33,4 +33,4 @@ class HasStatusCondition(CoreCondition):
     name = "has_status"
 
     def test_with_monster(self, session: Session, target: Monster) -> bool:
-        return bool(target.status)
+        return target.status.status_exists()

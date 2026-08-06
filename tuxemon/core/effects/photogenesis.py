@@ -7,6 +7,7 @@ from typing import TYPE_CHECKING
 
 from tuxemon import formula
 from tuxemon.core.core_effect import CoreEffect, TechEffectResult
+from tuxemon.locale.locale import T
 
 if TYPE_CHECKING:
     from tuxemon.monster.monster import Monster
@@ -60,7 +61,7 @@ class PhotogenesisEffect(CoreEffect):
             return TechEffectResult(name=tech.name)
 
         if user.hp_ratio >= 1.0:
-            extra = ["combat_full_health"]
+            extra = [T.format("combat_full_health", {"name": user.name})]
             return TechEffectResult(name=tech.name, success=True, extras=extra)
 
         hour = session.time.get_time_variables().hour
@@ -83,4 +84,5 @@ class PhotogenesisEffect(CoreEffect):
 
         heal_amount = min(heal, user.missing_hp)
         user.current_hp += heal_amount
-        return TechEffectResult(name=tech.name, success=True)
+        extra = [T.format("combat_state_healed", {"name": user.name})]
+        return TechEffectResult(name=tech.name, success=True, extras=extra)

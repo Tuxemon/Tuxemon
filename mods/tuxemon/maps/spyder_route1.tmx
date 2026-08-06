@@ -250,6 +250,13 @@
     <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
+   <object id="12519" name="Track route1" type="event" x="0" y="0" width="640" height="320">
+   <properties>
+    <property name="act1" value="add_tracker player,route1"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="not tracker player,route1"/>
+   </properties>
+  </object>
   <object id="212" name="Swim Encounters Day" type="event" x="80" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="random_encounter spyder_routec,0.15"/>

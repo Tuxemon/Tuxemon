@@ -3,6 +3,8 @@ accuracy: 0.9
 effects:
 - type: damage
 - type: healing
+  parameters:
+  - own_monster
 healing_power: 1.5
 speed: normal
 potency: 0.0

@@ -7,7 +7,7 @@ effects:
   - own_monster
 - type: splash
   parameters:
-  - '2'
+  - '8'
 speed: normal
 potency: 1
 power: 2

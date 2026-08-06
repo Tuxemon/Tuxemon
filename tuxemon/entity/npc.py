@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+import math
 from collections.abc import Sequence
 from typing import TYPE_CHECKING
 from uuid import UUID
@@ -23,13 +24,21 @@ from tuxemon.entity.sheet import CombatSheet
 from tuxemon.entity.steps import StepManager
 from tuxemon.game_variables import GameVariablesManager, PlayerVariablesManager
 from tuxemon.locale.locale import T
+from tuxemon.map.map import tile_distance
 from tuxemon.map.view import SpriteController
 from tuxemon.mission.controller import MissionController
 from tuxemon.mission.manager import MissionManager
 from tuxemon.money.controller import MoneyController
 from tuxemon.monster.evolution_registry import EvolutionRegistry
 from tuxemon.monster.monster import Monster
-from tuxemon.platform.const.sizes import MONTH_KEYS, PLAYER_NPC
+from tuxemon.platform.const.sizes import (
+    HOP_HEIGHT_PIXELS,
+    MONTH_KEYS,
+    PLAYER_NPC,
+)
+from tuxemon.platform.const.sizes import (
+    TILE_SIZE as NATIVE_TILE_SIZE,
+)
 from tuxemon.relationship import (
     Relationships,
     decode_relationships,
@@ -200,6 +209,23 @@ class NPC(Entity):
         return self.bag.items
 
     @property
+    def hop_y_offset_tiles(self) -> float:
+        """Y offset in tile units to apply during a ledge hop (positive = upward arc)."""
+        exec = self.path_controller.exec
+        if not exec.is_hop:
+            return 0.0
+        arc_origin = exec.hop_arc_origin or exec.origin
+        arc_target = exec.hop_arc_target or exec.target
+        if arc_origin is None or arc_target is None:
+            return 0.0
+        expected = tile_distance(arc_origin, arc_target)
+        if expected == 0:
+            return 0.0
+        traveled = tile_distance(self.body.position, arc_origin)
+        progress = min(1.0, traveled / expected)
+        return math.sin(math.pi * progress) * HOP_HEIGHT_PIXELS / NATIVE_TILE_SIZE[1]
+
+    @property
     def path(self) -> list[tuple[int, int]]:
         """Returns the current movement path assigned to the NPC."""
         return self.path_controller.path.to_list()
@@ -216,11 +242,16 @@ class NPC(Entity):
         sheet = a.combat_sheet or self.template.combat_sheet
         fw = a.combat_frame_width or self.template.combat_frame_width
         fh = a.combat_frame_height or self.template.combat_frame_height
+        back_fh = (
+            a.combat_back_frame_height
+            or self.template.combat_back_frame_height
+        )
 
         return CombatSheet(
             file_path=f"gfx/sprites/player/{sheet}.png",
             frame_w=fw,
             frame_h=fh,
+            back_frame_h=back_fh,
         )
 
     def get_state(self, session: Session) -> NPCState:

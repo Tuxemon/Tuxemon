@@ -7,7 +7,7 @@ effects:
   - enemy_monster
 - type: splash
   parameters:
-  - '2'
+  - '8'
 speed: normal
 potency: 0.5
 power: 2.25

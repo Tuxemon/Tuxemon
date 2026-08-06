@@ -1,9 +1,13 @@
-conditions: []
-effects:
-- type: change_stat
+conditions:
+- type: has_tp_room
   parameters:
   - ranged
-  - '0.05'
+  operator: is
+effects:
+- type: give_tp
+  parameters:
+  - ranged
+  - '50'
 slug: raise_ranged
 sort: utility
 sprite: gfx/items/raise_ranged.png

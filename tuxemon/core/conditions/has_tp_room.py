@@ -26,7 +26,7 @@ class HasTpRoomCondition(CoreCondition):
     items (e.g. the ``raise_*`` items) ineligible for use on that monster.
 
     **Parameters**
-    
+
     - ``statistic``: The statistic to check (e.g. ``hp``, ``armour``, ``speed``).
 
     **Returns**

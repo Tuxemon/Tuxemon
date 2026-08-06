@@ -918,6 +918,13 @@
     <property name="cond2" value="is char_moved player"/>
    </properties>
   </object>
+   <object id="13319" name="Track dryadsgrove" type="event" x="0" y="0" width="640" height="640">
+   <properties>
+    <property name="act1" value="add_tracker player,dryadsgrove"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="not tracker player,dryadsgrove"/>
+   </properties>
+  </object>
   <object id="286" name="Swim Encounters Day" type="event" x="208" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="random_encounter spyder_routec,0.15"/>

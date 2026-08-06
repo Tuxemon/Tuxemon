@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <tileset version="1.10" tiledversion="git" name="core_outdoor" tilewidth="16" tileheight="16" tilecount="2775" columns="37">
  <image source="core_outdoor.png" width="592" height="1200"/>
  <tile id="0">
@@ -264,6 +264,7 @@
  <tile id="72">
   <properties>
    <property name="endure" value="left"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right"/>
    <property name="exit_from" value="left"/>
   </properties>
@@ -271,6 +272,7 @@
  <tile id="73">
   <properties>
    <property name="endure" value="right"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left"/>
    <property name="exit_from" value="right"/>
   </properties>
@@ -338,6 +340,7 @@
  <tile id="106">
   <properties>
    <property name="endure" value="up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="down"/>
    <property name="exit_from" value="up"/>
   </properties>
@@ -345,6 +348,7 @@
  <tile id="107">
   <properties>
    <property name="endure" value="up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="down"/>
    <property name="exit_from" value="up"/>
   </properties>
@@ -352,6 +356,7 @@
  <tile id="108">
   <properties>
    <property name="endure" value="up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="down"/>
    <property name="exit_from" value="up"/>
   </properties>
@@ -359,6 +364,7 @@
  <tile id="109">
   <properties>
    <property name="endure" value="left"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right"/>
    <property name="exit_from" value="left"/>
   </properties>
@@ -366,6 +372,7 @@
  <tile id="110">
   <properties>
    <property name="endure" value="right"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left"/>
    <property name="exit_from" value="right"/>
   </properties>
@@ -373,6 +380,7 @@
  <tile id="114">
   <properties>
    <property name="endure" value="left"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right"/>
    <property name="exit_from" value="left"/>
   </properties>
@@ -380,6 +388,7 @@
  <tile id="115">
   <properties>
    <property name="endure" value="right"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left"/>
    <property name="exit_from" value="right"/>
   </properties>
@@ -387,6 +396,7 @@
  <tile id="122">
   <properties>
    <property name="endure" value="left"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right"/>
    <property name="exit_from" value="left"/>
   </properties>
@@ -394,6 +404,7 @@
  <tile id="123">
   <properties>
    <property name="endure" value="right"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left"/>
    <property name="exit_from" value="right"/>
   </properties>
@@ -401,6 +412,7 @@
  <tile id="130">
   <properties>
    <property name="endure" value="left"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right"/>
    <property name="exit_from" value="left"/>
   </properties>
@@ -408,6 +420,7 @@
  <tile id="131">
   <properties>
    <property name="endure" value="right"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left"/>
    <property name="exit_from" value="right"/>
   </properties>
@@ -415,6 +428,7 @@
  <tile id="138">
   <properties>
    <property name="endure" value="left"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right"/>
    <property name="exit_from" value="left"/>
   </properties>
@@ -422,6 +436,7 @@
  <tile id="139">
   <properties>
    <property name="endure" value="right"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left"/>
    <property name="exit_from" value="right"/>
   </properties>
@@ -429,6 +444,7 @@
  <tile id="143">
   <properties>
    <property name="endure" value="down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="up"/>
    <property name="exit_from" value="down"/>
   </properties>
@@ -436,6 +452,7 @@
  <tile id="144">
   <properties>
    <property name="endure" value="down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="up"/>
    <property name="exit_from" value="down"/>
   </properties>
@@ -443,6 +460,7 @@
  <tile id="145">
   <properties>
    <property name="endure" value="down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="up"/>
    <property name="exit_from" value="down"/>
   </properties>
@@ -450,6 +468,7 @@
  <tile id="146">
   <properties>
    <property name="endure" value="left"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right"/>
    <property name="exit_from" value="left"/>
   </properties>
@@ -457,6 +476,7 @@
  <tile id="147">
   <properties>
    <property name="endure" value="right"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left"/>
    <property name="exit_from" value="right"/>
   </properties>
@@ -464,6 +484,7 @@
  <tile id="148">
   <properties>
    <property name="endure" value="up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="down"/>
    <property name="exit_from" value="up"/>
   </properties>
@@ -471,6 +492,7 @@
  <tile id="149">
   <properties>
    <property name="endure" value="up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="down"/>
    <property name="exit_from" value="up"/>
   </properties>
@@ -478,6 +500,7 @@
  <tile id="150">
   <properties>
    <property name="endure" value="up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="down"/>
    <property name="exit_from" value="up"/>
   </properties>
@@ -485,6 +508,7 @@
  <tile id="151">
   <properties>
    <property name="endure" value="left"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right"/>
    <property name="exit_from" value="left"/>
   </properties>
@@ -492,6 +516,7 @@
  <tile id="152">
   <properties>
    <property name="endure" value="right"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left"/>
    <property name="exit_from" value="right"/>
   </properties>
@@ -499,6 +524,7 @@
  <tile id="156">
   <properties>
    <property name="endure" value="up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="down"/>
    <property name="exit_from" value="up"/>
   </properties>
@@ -506,6 +532,7 @@
  <tile id="157">
   <properties>
    <property name="endure" value="up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="down"/>
    <property name="exit_from" value="up"/>
   </properties>
@@ -513,6 +540,7 @@
  <tile id="158">
   <properties>
    <property name="endure" value="up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="down"/>
    <property name="exit_from" value="up"/>
   </properties>
@@ -520,6 +548,7 @@
  <tile id="159">
   <properties>
    <property name="endure" value="left"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right"/>
    <property name="exit_from" value="left"/>
   </properties>
@@ -527,6 +556,7 @@
  <tile id="160">
   <properties>
    <property name="endure" value="right"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left"/>
    <property name="exit_from" value="right"/>
   </properties>
@@ -534,6 +564,7 @@
  <tile id="164">
   <properties>
    <property name="endure" value="up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="down"/>
    <property name="exit_from" value="up"/>
   </properties>
@@ -541,6 +572,7 @@
  <tile id="165">
   <properties>
    <property name="endure" value="up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="down"/>
    <property name="exit_from" value="up"/>
   </properties>
@@ -548,6 +580,7 @@
  <tile id="166">
   <properties>
    <property name="endure" value="up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="down"/>
    <property name="exit_from" value="up"/>
   </properties>
@@ -555,6 +588,7 @@
  <tile id="167">
   <properties>
    <property name="endure" value="left"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right"/>
    <property name="exit_from" value="left"/>
   </properties>
@@ -562,6 +596,7 @@
  <tile id="168">
   <properties>
    <property name="endure" value="right"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left"/>
    <property name="exit_from" value="right"/>
   </properties>
@@ -569,6 +604,7 @@
  <tile id="172">
   <properties>
    <property name="endure" value="up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="down"/>
    <property name="exit_from" value="up"/>
   </properties>
@@ -576,6 +612,7 @@
  <tile id="173">
   <properties>
    <property name="endure" value="up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="down"/>
    <property name="exit_from" value="up"/>
   </properties>
@@ -583,6 +620,7 @@
  <tile id="174">
   <properties>
    <property name="endure" value="up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="down"/>
    <property name="exit_from" value="up"/>
   </properties>
@@ -590,6 +628,7 @@
  <tile id="175">
   <properties>
    <property name="endure" value="left"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right"/>
    <property name="exit_from" value="left"/>
   </properties>
@@ -597,6 +636,7 @@
  <tile id="176">
   <properties>
    <property name="endure" value="right"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left"/>
    <property name="exit_from" value="right"/>
   </properties>
@@ -604,6 +644,7 @@
  <tile id="180">
   <properties>
    <property name="endure" value="left,up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right,down"/>
    <property name="exit_from" value="left,up"/>
   </properties>
@@ -611,6 +652,7 @@
  <tile id="181">
   <properties>
    <property name="endure" value="right,up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left,down"/>
    <property name="exit_from" value="right,up"/>
   </properties>
@@ -618,6 +660,7 @@
  <tile id="185">
   <properties>
    <property name="endure" value="down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="up"/>
    <property name="exit_from" value="down"/>
   </properties>
@@ -625,6 +668,7 @@
  <tile id="186">
   <properties>
    <property name="endure" value="down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="up"/>
    <property name="exit_from" value="down"/>
   </properties>
@@ -632,6 +676,7 @@
  <tile id="187">
   <properties>
    <property name="endure" value="down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="up"/>
    <property name="exit_from" value="down"/>
   </properties>
@@ -639,6 +684,7 @@
  <tile id="188">
   <properties>
    <property name="endure" value="left"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right"/>
    <property name="exit_from" value="left"/>
   </properties>
@@ -646,6 +692,7 @@
  <tile id="189">
   <properties>
    <property name="endure" value="right"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left"/>
    <property name="exit_from" value="right"/>
   </properties>
@@ -653,6 +700,7 @@
  <tile id="193">
   <properties>
    <property name="endure" value="down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="up"/>
    <property name="exit_from" value="down"/>
   </properties>
@@ -660,6 +708,7 @@
  <tile id="194">
   <properties>
    <property name="endure" value="down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="up"/>
    <property name="exit_from" value="down"/>
   </properties>
@@ -667,6 +716,7 @@
  <tile id="195">
   <properties>
    <property name="endure" value="down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="up"/>
    <property name="exit_from" value="down"/>
   </properties>
@@ -674,6 +724,7 @@
  <tile id="196">
   <properties>
    <property name="endure" value="left"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right"/>
    <property name="exit_from" value="left"/>
   </properties>
@@ -681,6 +732,7 @@
  <tile id="197">
   <properties>
    <property name="endure" value="right"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left"/>
    <property name="exit_from" value="right"/>
   </properties>
@@ -688,6 +740,7 @@
  <tile id="201">
   <properties>
    <property name="endure" value="down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="up"/>
    <property name="exit_from" value="down"/>
   </properties>
@@ -695,6 +748,7 @@
  <tile id="202">
   <properties>
    <property name="endure" value="down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="up"/>
    <property name="exit_from" value="down"/>
   </properties>
@@ -702,6 +756,7 @@
  <tile id="203">
   <properties>
    <property name="endure" value="down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="up"/>
    <property name="exit_from" value="down"/>
   </properties>
@@ -709,6 +764,7 @@
  <tile id="204">
   <properties>
    <property name="endure" value="left"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right"/>
    <property name="exit_from" value="left"/>
   </properties>
@@ -716,6 +772,7 @@
  <tile id="205">
   <properties>
    <property name="endure" value="right"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left"/>
    <property name="exit_from" value="right"/>
   </properties>
@@ -723,6 +780,7 @@
  <tile id="209">
   <properties>
    <property name="endure" value="down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="up"/>
    <property name="exit_from" value="down"/>
   </properties>
@@ -730,6 +788,7 @@
  <tile id="210">
   <properties>
    <property name="endure" value="down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="up"/>
    <property name="exit_from" value="down"/>
   </properties>
@@ -737,6 +796,7 @@
  <tile id="211">
   <properties>
    <property name="endure" value="down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="up"/>
    <property name="exit_from" value="down"/>
   </properties>
@@ -744,6 +804,7 @@
  <tile id="212">
   <properties>
    <property name="endure" value="left"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right"/>
    <property name="exit_from" value="left"/>
   </properties>
@@ -751,6 +812,7 @@
  <tile id="213">
   <properties>
    <property name="endure" value="right"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left"/>
    <property name="exit_from" value="right"/>
   </properties>
@@ -758,6 +820,7 @@
  <tile id="217">
   <properties>
    <property name="endure" value="left,down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right,up"/>
    <property name="exit_from" value="left,down"/>
   </properties>
@@ -765,6 +828,7 @@
  <tile id="218">
   <properties>
    <property name="endure" value="right,down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left,up"/>
    <property name="exit_from" value="right,down"/>
   </properties>
@@ -772,6 +836,7 @@
  <tile id="222">
   <properties>
    <property name="endure" value="left,up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right,down"/>
    <property name="exit_from" value="left,up"/>
   </properties>
@@ -779,6 +844,7 @@
  <tile id="223">
   <properties>
    <property name="endure" value="right,up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left,down"/>
    <property name="exit_from" value="right,up"/>
   </properties>
@@ -798,6 +864,7 @@
  <tile id="230">
   <properties>
    <property name="endure" value="left,up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right,down"/>
    <property name="exit_from" value="left,up"/>
   </properties>
@@ -805,6 +872,7 @@
  <tile id="231">
   <properties>
    <property name="endure" value="right,up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left,down"/>
    <property name="exit_from" value="right,up"/>
   </properties>
@@ -824,6 +892,7 @@
  <tile id="238">
   <properties>
    <property name="endure" value="left,up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right,down"/>
    <property name="exit_from" value="left,up"/>
   </properties>
@@ -831,6 +900,7 @@
  <tile id="239">
   <properties>
    <property name="endure" value="right,up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left,down"/>
    <property name="exit_from" value="right,up"/>
   </properties>
@@ -850,6 +920,7 @@
  <tile id="246">
   <properties>
    <property name="endure" value="left,up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right,down"/>
    <property name="exit_from" value="left,up"/>
   </properties>
@@ -857,6 +928,7 @@
  <tile id="247">
   <properties>
    <property name="endure" value="right,up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left,down"/>
    <property name="exit_from" value="right,up"/>
   </properties>
@@ -876,6 +948,7 @@
  <tile id="257">
   <properties>
    <property name="endure" value="left"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right"/>
    <property name="exit_from" value="left"/>
   </properties>
@@ -883,6 +956,7 @@
  <tile id="258">
   <properties>
    <property name="endure" value="right"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left"/>
    <property name="exit_from" value="right"/>
   </properties>
@@ -890,6 +964,7 @@
  <tile id="259">
   <properties>
    <property name="endure" value="left,down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right,up"/>
    <property name="exit_from" value="left,down"/>
   </properties>
@@ -897,6 +972,7 @@
  <tile id="260">
   <properties>
    <property name="endure" value="right,down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left,up"/>
    <property name="exit_from" value="right,down"/>
   </properties>
@@ -916,6 +992,7 @@
  <tile id="267">
   <properties>
    <property name="endure" value="left,down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right,up"/>
    <property name="exit_from" value="left,down"/>
   </properties>
@@ -923,6 +1000,7 @@
  <tile id="268">
   <properties>
    <property name="endure" value="right,down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left,up"/>
    <property name="exit_from" value="right,down"/>
   </properties>
@@ -942,6 +1020,7 @@
  <tile id="275">
   <properties>
    <property name="endure" value="left,down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right,up"/>
    <property name="exit_from" value="left,down"/>
   </properties>
@@ -949,6 +1028,7 @@
  <tile id="276">
   <properties>
    <property name="endure" value="right,down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left,up"/>
    <property name="exit_from" value="right,down"/>
   </properties>
@@ -968,6 +1048,7 @@
  <tile id="283">
   <properties>
    <property name="endure" value="left,down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right,up"/>
    <property name="exit_from" value="left,down"/>
   </properties>
@@ -975,6 +1056,7 @@
  <tile id="284">
   <properties>
    <property name="endure" value="right,down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left,up"/>
    <property name="exit_from" value="right,down"/>
   </properties>
@@ -994,6 +1076,7 @@
  <tile id="291">
   <properties>
    <property name="endure" value="up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="down"/>
    <property name="exit_from" value="up"/>
   </properties>
@@ -1001,6 +1084,7 @@
  <tile id="292">
   <properties>
    <property name="endure" value="up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="down"/>
    <property name="exit_from" value="up"/>
   </properties>
@@ -1008,6 +1092,7 @@
  <tile id="293">
   <properties>
    <property name="endure" value="up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="down"/>
    <property name="exit_from" value="up"/>
   </properties>
@@ -1015,6 +1100,7 @@
  <tile id="294">
   <properties>
    <property name="endure" value="left"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right"/>
    <property name="exit_from" value="left"/>
   </properties>
@@ -1022,6 +1108,7 @@
  <tile id="295">
   <properties>
    <property name="endure" value="right"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left"/>
    <property name="exit_from" value="right"/>
   </properties>
@@ -1125,6 +1212,7 @@
  <tile id="328">
   <properties>
    <property name="endure" value="down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="up"/>
    <property name="exit_from" value="down"/>
   </properties>
@@ -1132,6 +1220,7 @@
  <tile id="329">
   <properties>
    <property name="endure" value="down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="up"/>
    <property name="exit_from" value="down"/>
   </properties>
@@ -1139,6 +1228,7 @@
  <tile id="330">
   <properties>
    <property name="endure" value="down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="up"/>
    <property name="exit_from" value="down"/>
   </properties>
@@ -1146,6 +1236,7 @@
  <tile id="331">
   <properties>
    <property name="endure" value="left"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right"/>
    <property name="exit_from" value="left"/>
   </properties>
@@ -1153,6 +1244,7 @@
  <tile id="332">
   <properties>
    <property name="endure" value="right"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left"/>
    <property name="exit_from" value="right"/>
   </properties>
@@ -1252,6 +1344,7 @@
  <tile id="365">
   <properties>
    <property name="endure" value="left,up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right,down"/>
    <property name="exit_from" value="left,up"/>
   </properties>
@@ -1259,6 +1352,7 @@
  <tile id="366">
   <properties>
    <property name="endure" value="right,up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left,down"/>
    <property name="exit_from" value="right,up"/>
   </properties>
@@ -1281,6 +1375,7 @@
  <tile id="373">
   <properties>
    <property name="endure" value="left"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right"/>
    <property name="exit_from" value="left"/>
   </properties>
@@ -1288,6 +1383,7 @@
  <tile id="374">
   <properties>
    <property name="endure" value="right"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left"/>
    <property name="exit_from" value="right"/>
   </properties>
@@ -1310,6 +1406,7 @@
  <tile id="381">
   <properties>
    <property name="endure" value="left"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right"/>
    <property name="exit_from" value="left"/>
   </properties>
@@ -1317,6 +1414,7 @@
  <tile id="382">
   <properties>
    <property name="endure" value="right"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left"/>
    <property name="exit_from" value="right"/>
   </properties>
@@ -1339,6 +1437,7 @@
  <tile id="389">
   <properties>
    <property name="endure" value="left"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right"/>
    <property name="exit_from" value="left"/>
   </properties>
@@ -1346,6 +1445,7 @@
  <tile id="390">
   <properties>
    <property name="endure" value="right"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left"/>
    <property name="exit_from" value="right"/>
   </properties>
@@ -1368,6 +1468,7 @@
  <tile id="397">
   <properties>
    <property name="endure" value="left"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right"/>
    <property name="exit_from" value="left"/>
   </properties>
@@ -1375,6 +1476,7 @@
  <tile id="398">
   <properties>
    <property name="endure" value="right"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left"/>
    <property name="exit_from" value="right"/>
   </properties>
@@ -1382,6 +1484,7 @@
  <tile id="402">
   <properties>
    <property name="endure" value="left,down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right,up"/>
    <property name="exit_from" value="left,down"/>
   </properties>
@@ -1389,6 +1492,7 @@
  <tile id="403">
   <properties>
    <property name="endure" value="right,down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left,up"/>
    <property name="exit_from" value="right,down"/>
   </properties>
@@ -1396,6 +1500,7 @@
  <tile id="407">
   <properties>
    <property name="endure" value="up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="down"/>
    <property name="exit_from" value="up"/>
   </properties>
@@ -1403,6 +1508,7 @@
  <tile id="408">
   <properties>
    <property name="endure" value="up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="down"/>
    <property name="exit_from" value="up"/>
   </properties>
@@ -1410,6 +1516,7 @@
  <tile id="409">
   <properties>
    <property name="endure" value="up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="down"/>
    <property name="exit_from" value="up"/>
   </properties>
@@ -1417,6 +1524,7 @@
  <tile id="410">
   <properties>
    <property name="endure" value="left"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right"/>
    <property name="exit_from" value="left"/>
   </properties>
@@ -1424,6 +1532,7 @@
  <tile id="411">
   <properties>
    <property name="endure" value="right"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left"/>
    <property name="exit_from" value="right"/>
   </properties>
@@ -1431,6 +1540,7 @@
  <tile id="415">
   <properties>
    <property name="endure" value="up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="down"/>
    <property name="exit_from" value="up"/>
   </properties>
@@ -1438,6 +1548,7 @@
  <tile id="416">
   <properties>
    <property name="endure" value="up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="down"/>
    <property name="exit_from" value="up"/>
   </properties>
@@ -1445,6 +1556,7 @@
  <tile id="417">
   <properties>
    <property name="endure" value="up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="down"/>
    <property name="exit_from" value="up"/>
   </properties>
@@ -1452,6 +1564,7 @@
  <tile id="418">
   <properties>
    <property name="endure" value="left"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right"/>
    <property name="exit_from" value="left"/>
   </properties>
@@ -1459,6 +1572,7 @@
  <tile id="419">
   <properties>
    <property name="endure" value="right"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left"/>
    <property name="exit_from" value="right"/>
   </properties>
@@ -1466,6 +1580,7 @@
  <tile id="423">
   <properties>
    <property name="endure" value="up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="down"/>
    <property name="exit_from" value="up"/>
   </properties>
@@ -1473,6 +1588,7 @@
  <tile id="424">
   <properties>
    <property name="endure" value="up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="down"/>
    <property name="exit_from" value="up"/>
   </properties>
@@ -1480,6 +1596,7 @@
  <tile id="425">
   <properties>
    <property name="endure" value="up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="down"/>
    <property name="exit_from" value="up"/>
   </properties>
@@ -1487,6 +1604,7 @@
  <tile id="426">
   <properties>
    <property name="endure" value="left"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right"/>
    <property name="exit_from" value="left"/>
   </properties>
@@ -1494,6 +1612,7 @@
  <tile id="427">
   <properties>
    <property name="endure" value="right"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left"/>
    <property name="exit_from" value="right"/>
   </properties>
@@ -1501,6 +1620,7 @@
  <tile id="431">
   <properties>
    <property name="endure" value="up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="down"/>
    <property name="exit_from" value="up"/>
   </properties>
@@ -1508,6 +1628,7 @@
  <tile id="432">
   <properties>
    <property name="endure" value="up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="down"/>
    <property name="exit_from" value="up"/>
   </properties>
@@ -1515,6 +1636,7 @@
  <tile id="433">
   <properties>
    <property name="endure" value="up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="down"/>
    <property name="exit_from" value="up"/>
   </properties>
@@ -1522,6 +1644,7 @@
  <tile id="434">
   <properties>
    <property name="endure" value="left"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right"/>
    <property name="exit_from" value="left"/>
   </properties>
@@ -1529,6 +1652,7 @@
  <tile id="435">
   <properties>
    <property name="endure" value="right"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left"/>
    <property name="exit_from" value="right"/>
   </properties>
@@ -1536,6 +1660,7 @@
  <tile id="442">
   <properties>
    <property name="endure" value="left"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right"/>
    <property name="exit_from" value="left"/>
   </properties>
@@ -1543,6 +1668,7 @@
  <tile id="443">
   <properties>
    <property name="endure" value="right"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left"/>
    <property name="exit_from" value="right"/>
   </properties>
@@ -1550,6 +1676,7 @@
  <tile id="444">
   <properties>
    <property name="endure" value="down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="up"/>
    <property name="exit_from" value="down"/>
   </properties>
@@ -1557,6 +1684,7 @@
  <tile id="445">
   <properties>
    <property name="endure" value="down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="up"/>
    <property name="exit_from" value="down"/>
   </properties>
@@ -1564,6 +1692,7 @@
  <tile id="446">
   <properties>
    <property name="endure" value="down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="up"/>
    <property name="exit_from" value="down"/>
   </properties>
@@ -1571,6 +1700,7 @@
  <tile id="447">
   <properties>
    <property name="endure" value="left"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right"/>
    <property name="exit_from" value="left"/>
   </properties>
@@ -1578,6 +1708,7 @@
  <tile id="448">
   <properties>
    <property name="endure" value="right"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left"/>
    <property name="exit_from" value="right"/>
   </properties>
@@ -1585,6 +1716,7 @@
  <tile id="452">
   <properties>
    <property name="endure" value="down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="up"/>
    <property name="exit_from" value="down"/>
   </properties>
@@ -1592,6 +1724,7 @@
  <tile id="453">
   <properties>
    <property name="endure" value="down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="up"/>
    <property name="exit_from" value="down"/>
   </properties>
@@ -1599,6 +1732,7 @@
  <tile id="454">
   <properties>
    <property name="endure" value="down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="up"/>
    <property name="exit_from" value="down"/>
   </properties>
@@ -1606,6 +1740,7 @@
  <tile id="455">
   <properties>
    <property name="endure" value="left"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right"/>
    <property name="exit_from" value="left"/>
   </properties>
@@ -1613,6 +1748,7 @@
  <tile id="456">
   <properties>
    <property name="endure" value="right"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left"/>
    <property name="exit_from" value="right"/>
   </properties>
@@ -1620,6 +1756,7 @@
  <tile id="460">
   <properties>
    <property name="endure" value="down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="up"/>
    <property name="exit_from" value="down"/>
   </properties>
@@ -1627,6 +1764,7 @@
  <tile id="461">
   <properties>
    <property name="endure" value="down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="up"/>
    <property name="exit_from" value="down"/>
   </properties>
@@ -1634,6 +1772,7 @@
  <tile id="462">
   <properties>
    <property name="endure" value="down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="up"/>
    <property name="exit_from" value="down"/>
   </properties>
@@ -1641,6 +1780,7 @@
  <tile id="463">
   <properties>
    <property name="endure" value="left"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right"/>
    <property name="exit_from" value="left"/>
   </properties>
@@ -1648,6 +1788,7 @@
  <tile id="464">
   <properties>
    <property name="endure" value="right"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left"/>
    <property name="exit_from" value="right"/>
   </properties>
@@ -1655,6 +1796,7 @@
  <tile id="468">
   <properties>
    <property name="endure" value="down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="up"/>
    <property name="exit_from" value="down"/>
   </properties>
@@ -1662,6 +1804,7 @@
  <tile id="469">
   <properties>
    <property name="endure" value="down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="up"/>
    <property name="exit_from" value="down"/>
   </properties>
@@ -1669,6 +1812,7 @@
  <tile id="470">
   <properties>
    <property name="endure" value="down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="up"/>
    <property name="exit_from" value="down"/>
   </properties>
@@ -1676,6 +1820,7 @@
  <tile id="471">
   <properties>
    <property name="endure" value="left"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right"/>
    <property name="exit_from" value="left"/>
   </properties>
@@ -1683,6 +1828,7 @@
  <tile id="472">
   <properties>
    <property name="endure" value="right"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left"/>
    <property name="exit_from" value="right"/>
   </properties>
@@ -1690,6 +1836,7 @@
  <tile id="476">
   <properties>
    <property name="endure" value="up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="down"/>
    <property name="exit_from" value="up"/>
   </properties>
@@ -1697,6 +1844,7 @@
  <tile id="477">
   <properties>
    <property name="endure" value="up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="down"/>
    <property name="exit_from" value="up"/>
   </properties>
@@ -1704,6 +1852,7 @@
  <tile id="478">
   <properties>
    <property name="endure" value="up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="down"/>
    <property name="exit_from" value="up"/>
   </properties>
@@ -1711,6 +1860,7 @@
  <tile id="479">
   <properties>
    <property name="endure" value="left"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right"/>
    <property name="exit_from" value="left"/>
   </properties>
@@ -1718,6 +1868,7 @@
  <tile id="480">
   <properties>
    <property name="endure" value="right"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left"/>
    <property name="exit_from" value="right"/>
   </properties>
@@ -1725,6 +1876,7 @@
  <tile id="481">
   <properties>
    <property name="endure" value="left,up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right,down"/>
    <property name="exit_from" value="left,up"/>
   </properties>
@@ -1732,6 +1884,7 @@
  <tile id="482">
   <properties>
    <property name="endure" value="right,up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left,down"/>
    <property name="exit_from" value="right,up"/>
   </properties>
@@ -1751,6 +1904,7 @@
  <tile id="489">
   <properties>
    <property name="endure" value="left,up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right,down"/>
    <property name="exit_from" value="left,up"/>
   </properties>
@@ -1758,6 +1912,7 @@
  <tile id="490">
   <properties>
    <property name="endure" value="right,up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left,down"/>
    <property name="exit_from" value="right,up"/>
   </properties>
@@ -1777,6 +1932,7 @@
  <tile id="497">
   <properties>
    <property name="endure" value="left,up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right,down"/>
    <property name="exit_from" value="left,up"/>
   </properties>
@@ -1784,6 +1940,7 @@
  <tile id="498">
   <properties>
    <property name="endure" value="right,up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left,down"/>
    <property name="exit_from" value="right,up"/>
   </properties>
@@ -1803,6 +1960,7 @@
  <tile id="505">
   <properties>
    <property name="endure" value="left,up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right,down"/>
    <property name="exit_from" value="left,up"/>
   </properties>
@@ -1810,6 +1968,7 @@
  <tile id="506">
   <properties>
    <property name="endure" value="right,up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left,down"/>
    <property name="exit_from" value="right,up"/>
   </properties>
@@ -1829,6 +1988,7 @@
  <tile id="513">
   <properties>
    <property name="endure" value="down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="up"/>
    <property name="exit_from" value="down"/>
   </properties>
@@ -1836,6 +1996,7 @@
  <tile id="514">
   <properties>
    <property name="endure" value="down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="up"/>
    <property name="exit_from" value="down"/>
   </properties>
@@ -1843,6 +2004,7 @@
  <tile id="515">
   <properties>
    <property name="endure" value="down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="up"/>
    <property name="exit_from" value="down"/>
   </properties>
@@ -1850,6 +2012,7 @@
  <tile id="516">
   <properties>
    <property name="endure" value="left"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right"/>
    <property name="exit_from" value="left"/>
   </properties>
@@ -1857,6 +2020,7 @@
  <tile id="517">
   <properties>
    <property name="endure" value="right"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left"/>
    <property name="exit_from" value="right"/>
   </properties>
@@ -1864,6 +2028,7 @@
  <tile id="518">
   <properties>
    <property name="endure" value="left,down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right,up"/>
    <property name="exit_from" value="left,down"/>
   </properties>
@@ -1871,6 +2036,7 @@
  <tile id="519">
   <properties>
    <property name="endure" value="right,down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left,up"/>
    <property name="exit_from" value="right,down"/>
   </properties>
@@ -1890,6 +2056,7 @@
  <tile id="526">
   <properties>
    <property name="endure" value="left,down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right,up"/>
    <property name="exit_from" value="left,down"/>
   </properties>
@@ -1897,6 +2064,7 @@
  <tile id="527">
   <properties>
    <property name="endure" value="right,down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left,up"/>
    <property name="exit_from" value="right,down"/>
   </properties>
@@ -1916,6 +2084,7 @@
  <tile id="534">
   <properties>
    <property name="endure" value="left,down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right,up"/>
    <property name="exit_from" value="left,down"/>
   </properties>
@@ -1923,6 +2092,7 @@
  <tile id="535">
   <properties>
    <property name="endure" value="right,down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left,up"/>
    <property name="exit_from" value="right,down"/>
   </properties>
@@ -1942,6 +2112,7 @@
  <tile id="542">
   <properties>
    <property name="endure" value="left,down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right,up"/>
    <property name="exit_from" value="left,down"/>
   </properties>
@@ -1949,6 +2120,7 @@
  <tile id="543">
   <properties>
    <property name="endure" value="right,down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left,up"/>
    <property name="exit_from" value="right,down"/>
   </properties>
@@ -1968,6 +2140,7 @@
  <tile id="550">
   <properties>
    <property name="endure" value="left,up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right,down"/>
    <property name="exit_from" value="left,up"/>
   </properties>
@@ -1975,6 +2148,7 @@
  <tile id="551">
   <properties>
    <property name="endure" value="right,up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left,down"/>
    <property name="exit_from" value="right,up"/>
   </properties>
@@ -2054,6 +2228,7 @@
  <tile id="587">
   <properties>
    <property name="endure" value="left,down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right,up"/>
    <property name="exit_from" value="left,down"/>
   </properties>
@@ -2061,6 +2236,7 @@
  <tile id="588">
   <properties>
    <property name="endure" value="right,down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left,up"/>
    <property name="exit_from" value="right,down"/>
   </properties>
@@ -2129,6 +2305,7 @@
  <tile id="627">
   <properties>
    <property name="endure" value="left"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right"/>
    <property name="exit_from" value="left"/>
   </properties>
@@ -2136,6 +2313,7 @@
  <tile id="628">
   <properties>
    <property name="endure" value="right"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left"/>
    <property name="exit_from" value="right"/>
   </properties>
@@ -2173,6 +2351,7 @@
  <tile id="661">
   <properties>
    <property name="endure" value="up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="down"/>
    <property name="exit_from" value="up"/>
   </properties>
@@ -2180,6 +2359,7 @@
  <tile id="662">
   <properties>
    <property name="endure" value="up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="down"/>
    <property name="exit_from" value="up"/>
   </properties>
@@ -2187,6 +2367,7 @@
  <tile id="663">
   <properties>
    <property name="endure" value="up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="down"/>
    <property name="exit_from" value="up"/>
   </properties>
@@ -2194,6 +2375,7 @@
  <tile id="664">
   <properties>
    <property name="endure" value="left"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right"/>
    <property name="exit_from" value="left"/>
   </properties>
@@ -2201,6 +2383,7 @@
  <tile id="665">
   <properties>
    <property name="endure" value="right"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left"/>
    <property name="exit_from" value="right"/>
   </properties>
@@ -2208,6 +2391,7 @@
  <tile id="669">
   <properties>
    <property name="endure" value="left"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right"/>
    <property name="exit_from" value="left"/>
   </properties>
@@ -2215,6 +2399,7 @@
  <tile id="670">
   <properties>
    <property name="endure" value="right"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left"/>
    <property name="exit_from" value="right"/>
   </properties>
@@ -2222,6 +2407,7 @@
  <tile id="677">
   <properties>
    <property name="endure" value="left"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right"/>
    <property name="exit_from" value="left"/>
   </properties>
@@ -2229,6 +2415,7 @@
  <tile id="678">
   <properties>
    <property name="endure" value="right"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left"/>
    <property name="exit_from" value="right"/>
   </properties>
@@ -2236,6 +2423,7 @@
  <tile id="698">
   <properties>
    <property name="endure" value="down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="up"/>
    <property name="exit_from" value="down"/>
   </properties>
@@ -2243,6 +2431,7 @@
  <tile id="699">
   <properties>
    <property name="endure" value="down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="up"/>
    <property name="exit_from" value="down"/>
   </properties>
@@ -2250,6 +2439,7 @@
  <tile id="700">
   <properties>
    <property name="endure" value="down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="up"/>
    <property name="exit_from" value="down"/>
   </properties>
@@ -2257,6 +2447,7 @@
  <tile id="701">
   <properties>
    <property name="endure" value="left"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right"/>
    <property name="exit_from" value="left"/>
   </properties>
@@ -2264,6 +2455,7 @@
  <tile id="702">
   <properties>
    <property name="endure" value="right"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left"/>
    <property name="exit_from" value="right"/>
   </properties>
@@ -2271,6 +2463,7 @@
  <tile id="703">
   <properties>
    <property name="endure" value="up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="down"/>
    <property name="exit_from" value="up"/>
   </properties>
@@ -2278,6 +2471,7 @@
  <tile id="704">
   <properties>
    <property name="endure" value="up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="down"/>
    <property name="exit_from" value="up"/>
   </properties>
@@ -2285,6 +2479,7 @@
  <tile id="705">
   <properties>
    <property name="endure" value="up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="down"/>
    <property name="exit_from" value="up"/>
   </properties>
@@ -2292,6 +2487,7 @@
  <tile id="706">
   <properties>
    <property name="endure" value="left"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right"/>
    <property name="exit_from" value="left"/>
   </properties>
@@ -2299,6 +2495,7 @@
  <tile id="707">
   <properties>
    <property name="endure" value="right"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left"/>
    <property name="exit_from" value="right"/>
   </properties>
@@ -2306,6 +2503,7 @@
  <tile id="711">
   <properties>
    <property name="endure" value="up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="down"/>
    <property name="exit_from" value="up"/>
   </properties>
@@ -2313,6 +2511,7 @@
  <tile id="712">
   <properties>
    <property name="endure" value="up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="down"/>
    <property name="exit_from" value="up"/>
   </properties>
@@ -2320,6 +2519,7 @@
  <tile id="713">
   <properties>
    <property name="endure" value="up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="down"/>
    <property name="exit_from" value="up"/>
   </properties>
@@ -2327,6 +2527,7 @@
  <tile id="714">
   <properties>
    <property name="endure" value="left"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right"/>
    <property name="exit_from" value="left"/>
   </properties>
@@ -2334,6 +2535,7 @@
  <tile id="715">
   <properties>
    <property name="endure" value="right"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left"/>
    <property name="exit_from" value="right"/>
   </properties>
@@ -2341,6 +2543,7 @@
  <tile id="735">
   <properties>
    <property name="endure" value="left,up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right,down"/>
    <property name="exit_from" value="left,up"/>
   </properties>
@@ -2348,6 +2551,7 @@
  <tile id="736">
   <properties>
    <property name="endure" value="right,up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left,down"/>
    <property name="exit_from" value="right,up"/>
   </properties>
@@ -2355,6 +2559,7 @@
  <tile id="740">
   <properties>
    <property name="endure" value="down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="up"/>
    <property name="exit_from" value="down"/>
   </properties>
@@ -2362,6 +2567,7 @@
  <tile id="741">
   <properties>
    <property name="endure" value="down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="up"/>
    <property name="exit_from" value="down"/>
   </properties>
@@ -2369,6 +2575,7 @@
  <tile id="742">
   <properties>
    <property name="endure" value="down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="up"/>
    <property name="exit_from" value="down"/>
   </properties>
@@ -2376,6 +2583,7 @@
  <tile id="743">
   <properties>
    <property name="endure" value="left"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right"/>
    <property name="exit_from" value="left"/>
   </properties>
@@ -2383,6 +2591,7 @@
  <tile id="744">
   <properties>
    <property name="endure" value="right"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left"/>
    <property name="exit_from" value="right"/>
   </properties>
@@ -2390,6 +2599,7 @@
  <tile id="748">
   <properties>
    <property name="endure" value="down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="up"/>
    <property name="exit_from" value="down"/>
   </properties>
@@ -2397,6 +2607,7 @@
  <tile id="749">
   <properties>
    <property name="endure" value="down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="up"/>
    <property name="exit_from" value="down"/>
   </properties>
@@ -2404,6 +2615,7 @@
  <tile id="750">
   <properties>
    <property name="endure" value="down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="up"/>
    <property name="exit_from" value="down"/>
   </properties>
@@ -2411,6 +2623,7 @@
  <tile id="751">
   <properties>
    <property name="endure" value="left"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right"/>
    <property name="exit_from" value="left"/>
   </properties>
@@ -2418,6 +2631,7 @@
  <tile id="752">
   <properties>
    <property name="endure" value="right"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left"/>
    <property name="exit_from" value="right"/>
   </properties>
@@ -2425,6 +2639,7 @@
  <tile id="772">
   <properties>
    <property name="endure" value="left,down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right,up"/>
    <property name="exit_from" value="left,down"/>
   </properties>
@@ -2432,6 +2647,7 @@
  <tile id="773">
   <properties>
    <property name="endure" value="right,down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left,up"/>
    <property name="exit_from" value="right,down"/>
   </properties>
@@ -2439,6 +2655,7 @@
  <tile id="777">
   <properties>
    <property name="endure" value="left,up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right,down"/>
    <property name="exit_from" value="left,up"/>
   </properties>
@@ -2446,6 +2663,7 @@
  <tile id="778">
   <properties>
    <property name="endure" value="right,up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left,down"/>
    <property name="exit_from" value="right,up"/>
   </properties>
@@ -2465,6 +2683,7 @@
  <tile id="785">
   <properties>
    <property name="endure" value="left,up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right,down"/>
    <property name="exit_from" value="left,up"/>
   </properties>
@@ -2472,6 +2691,7 @@
  <tile id="786">
   <properties>
    <property name="endure" value="right,up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left,down"/>
    <property name="exit_from" value="right,up"/>
   </properties>
@@ -2491,6 +2711,7 @@
  <tile id="812">
   <properties>
    <property name="endure" value="left"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right"/>
    <property name="exit_from" value="left"/>
   </properties>
@@ -2498,6 +2719,7 @@
  <tile id="813">
   <properties>
    <property name="endure" value="right"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left"/>
    <property name="exit_from" value="right"/>
   </properties>
@@ -2505,6 +2727,7 @@
  <tile id="814">
   <properties>
    <property name="endure" value="left,down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right,up"/>
    <property name="exit_from" value="left,down"/>
   </properties>
@@ -2512,6 +2735,7 @@
  <tile id="815">
   <properties>
    <property name="endure" value="right,down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left,up"/>
    <property name="exit_from" value="right,down"/>
   </properties>
@@ -2531,6 +2755,7 @@
  <tile id="822">
   <properties>
    <property name="endure" value="left,down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right,up"/>
    <property name="exit_from" value="left,down"/>
   </properties>
@@ -2538,6 +2763,7 @@
  <tile id="823">
   <properties>
    <property name="endure" value="right,down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left,up"/>
    <property name="exit_from" value="right,down"/>
   </properties>
@@ -2557,6 +2783,7 @@
  <tile id="846">
   <properties>
    <property name="endure" value="up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="down"/>
    <property name="exit_from" value="up"/>
   </properties>
@@ -2564,6 +2791,7 @@
  <tile id="847">
   <properties>
    <property name="endure" value="up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="down"/>
    <property name="exit_from" value="up"/>
   </properties>
@@ -2571,6 +2799,7 @@
  <tile id="848">
   <properties>
    <property name="endure" value="up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="down"/>
    <property name="exit_from" value="up"/>
   </properties>
@@ -2578,6 +2807,7 @@
  <tile id="849">
   <properties>
    <property name="endure" value="left"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right"/>
    <property name="exit_from" value="left"/>
   </properties>
@@ -2585,6 +2815,7 @@
  <tile id="850">
   <properties>
    <property name="endure" value="right"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left"/>
    <property name="exit_from" value="right"/>
   </properties>
@@ -2640,6 +2871,7 @@
  <tile id="883">
   <properties>
    <property name="endure" value="down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="up"/>
    <property name="exit_from" value="down"/>
   </properties>
@@ -2647,6 +2879,7 @@
  <tile id="884">
   <properties>
    <property name="endure" value="down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="up"/>
    <property name="exit_from" value="down"/>
   </properties>
@@ -2654,6 +2887,7 @@
  <tile id="885">
   <properties>
    <property name="endure" value="down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="up"/>
    <property name="exit_from" value="down"/>
   </properties>
@@ -2661,6 +2895,7 @@
  <tile id="886">
   <properties>
    <property name="endure" value="left"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right"/>
    <property name="exit_from" value="left"/>
   </properties>
@@ -2668,6 +2903,7 @@
  <tile id="887">
   <properties>
    <property name="endure" value="right"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left"/>
    <property name="exit_from" value="right"/>
   </properties>
@@ -2721,6 +2957,7 @@
  <tile id="920">
   <properties>
    <property name="endure" value="left,up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right,down"/>
    <property name="exit_from" value="left,up"/>
   </properties>
@@ -2728,6 +2965,7 @@
  <tile id="921">
   <properties>
    <property name="endure" value="right,up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left,down"/>
    <property name="exit_from" value="right,up"/>
   </properties>
@@ -2750,6 +2988,7 @@
  <tile id="928">
   <properties>
    <property name="endure" value="left"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right"/>
    <property name="exit_from" value="left"/>
   </properties>
@@ -2757,6 +2996,7 @@
  <tile id="929">
   <properties>
    <property name="endure" value="right"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left"/>
    <property name="exit_from" value="right"/>
   </properties>
@@ -2779,6 +3019,7 @@
  <tile id="936">
   <properties>
    <property name="endure" value="left"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right"/>
    <property name="exit_from" value="left"/>
   </properties>
@@ -2786,6 +3027,7 @@
  <tile id="937">
   <properties>
    <property name="endure" value="right"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left"/>
    <property name="exit_from" value="right"/>
   </properties>
@@ -2843,6 +3085,7 @@
  <tile id="957">
   <properties>
    <property name="endure" value="left,down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right,up"/>
    <property name="exit_from" value="left,down"/>
   </properties>
@@ -2850,6 +3093,7 @@
  <tile id="958">
   <properties>
    <property name="endure" value="right,down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left,up"/>
    <property name="exit_from" value="right,down"/>
   </properties>
@@ -2857,6 +3101,7 @@
  <tile id="962">
   <properties>
    <property name="endure" value="up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="down"/>
    <property name="exit_from" value="up"/>
   </properties>
@@ -2864,6 +3109,7 @@
  <tile id="963">
   <properties>
    <property name="endure" value="up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="down"/>
    <property name="exit_from" value="up"/>
   </properties>
@@ -2871,6 +3117,7 @@
  <tile id="964">
   <properties>
    <property name="endure" value="up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="down"/>
    <property name="exit_from" value="up"/>
   </properties>
@@ -2878,6 +3125,7 @@
  <tile id="965">
   <properties>
    <property name="endure" value="left"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right"/>
    <property name="exit_from" value="left"/>
   </properties>
@@ -2885,6 +3133,7 @@
  <tile id="966">
   <properties>
    <property name="endure" value="right"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left"/>
    <property name="exit_from" value="right"/>
   </properties>
@@ -2892,6 +3141,7 @@
  <tile id="970">
   <properties>
    <property name="endure" value="up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="down"/>
    <property name="exit_from" value="up"/>
   </properties>
@@ -2899,6 +3149,7 @@
  <tile id="971">
   <properties>
    <property name="endure" value="up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="down"/>
    <property name="exit_from" value="up"/>
   </properties>
@@ -2906,6 +3157,7 @@
  <tile id="972">
   <properties>
    <property name="endure" value="up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="down"/>
    <property name="exit_from" value="up"/>
   </properties>
@@ -2913,6 +3165,7 @@
  <tile id="973">
   <properties>
    <property name="endure" value="left"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right"/>
    <property name="exit_from" value="left"/>
   </properties>
@@ -2920,6 +3173,7 @@
  <tile id="974">
   <properties>
    <property name="endure" value="right"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left"/>
    <property name="exit_from" value="right"/>
   </properties>
@@ -2963,6 +3217,7 @@
  <tile id="997">
   <properties>
    <property name="endure" value="left"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right"/>
    <property name="exit_from" value="left"/>
   </properties>
@@ -2970,6 +3225,7 @@
  <tile id="998">
   <properties>
    <property name="endure" value="right"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left"/>
    <property name="exit_from" value="right"/>
   </properties>
@@ -2977,6 +3233,7 @@
  <tile id="999">
   <properties>
    <property name="endure" value="down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="up"/>
    <property name="exit_from" value="down"/>
   </properties>
@@ -2984,6 +3241,7 @@
  <tile id="1000">
   <properties>
    <property name="endure" value="down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="up"/>
    <property name="exit_from" value="down"/>
   </properties>
@@ -2991,6 +3249,7 @@
  <tile id="1001">
   <properties>
    <property name="endure" value="down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="up"/>
    <property name="exit_from" value="down"/>
   </properties>
@@ -2998,6 +3257,7 @@
  <tile id="1002">
   <properties>
    <property name="endure" value="left"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right"/>
    <property name="exit_from" value="left"/>
   </properties>
@@ -3005,6 +3265,7 @@
  <tile id="1003">
   <properties>
    <property name="endure" value="right"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left"/>
    <property name="exit_from" value="right"/>
   </properties>
@@ -3012,6 +3273,7 @@
  <tile id="1007">
   <properties>
    <property name="endure" value="down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="up"/>
    <property name="exit_from" value="down"/>
   </properties>
@@ -3019,6 +3281,7 @@
  <tile id="1008">
   <properties>
    <property name="endure" value="down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="up"/>
    <property name="exit_from" value="down"/>
   </properties>
@@ -3026,6 +3289,7 @@
  <tile id="1009">
   <properties>
    <property name="endure" value="down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="up"/>
    <property name="exit_from" value="down"/>
   </properties>
@@ -3033,6 +3297,7 @@
  <tile id="1010">
   <properties>
    <property name="endure" value="left"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right"/>
    <property name="exit_from" value="left"/>
   </properties>
@@ -3040,6 +3305,7 @@
  <tile id="1011">
   <properties>
    <property name="endure" value="right"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left"/>
    <property name="exit_from" value="right"/>
   </properties>
@@ -3071,6 +3337,7 @@
  <tile id="1031">
   <properties>
    <property name="endure" value="up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="down"/>
    <property name="exit_from" value="up"/>
   </properties>
@@ -3078,6 +3345,7 @@
  <tile id="1032">
   <properties>
    <property name="endure" value="up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="down"/>
    <property name="exit_from" value="up"/>
   </properties>
@@ -3085,6 +3353,7 @@
  <tile id="1033">
   <properties>
    <property name="endure" value="up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="down"/>
    <property name="exit_from" value="up"/>
   </properties>
@@ -3092,6 +3361,7 @@
  <tile id="1034">
   <properties>
    <property name="endure" value="left"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right"/>
    <property name="exit_from" value="left"/>
   </properties>
@@ -3099,6 +3369,7 @@
  <tile id="1035">
   <properties>
    <property name="endure" value="right"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left"/>
    <property name="exit_from" value="right"/>
   </properties>
@@ -3106,6 +3377,7 @@
  <tile id="1036">
   <properties>
    <property name="endure" value="left,up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right,down"/>
    <property name="exit_from" value="left,up"/>
   </properties>
@@ -3113,6 +3385,7 @@
  <tile id="1037">
   <properties>
    <property name="endure" value="right,up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left,down"/>
    <property name="exit_from" value="right,up"/>
   </properties>
@@ -3132,6 +3405,7 @@
  <tile id="1044">
   <properties>
    <property name="endure" value="left,up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right,down"/>
    <property name="exit_from" value="left,up"/>
   </properties>
@@ -3139,6 +3413,7 @@
  <tile id="1045">
   <properties>
    <property name="endure" value="right,up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left,down"/>
    <property name="exit_from" value="right,up"/>
   </properties>
@@ -3194,6 +3469,7 @@
  <tile id="1068">
   <properties>
    <property name="endure" value="down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="up"/>
    <property name="exit_from" value="down"/>
   </properties>
@@ -3201,6 +3477,7 @@
  <tile id="1069">
   <properties>
    <property name="endure" value="down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="up"/>
    <property name="exit_from" value="down"/>
   </properties>
@@ -3208,6 +3485,7 @@
  <tile id="1070">
   <properties>
    <property name="endure" value="down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="up"/>
    <property name="exit_from" value="down"/>
   </properties>
@@ -3215,6 +3493,7 @@
  <tile id="1071">
   <properties>
    <property name="endure" value="left"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right"/>
    <property name="exit_from" value="left"/>
   </properties>
@@ -3222,6 +3501,7 @@
  <tile id="1072">
   <properties>
    <property name="endure" value="right"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left"/>
    <property name="exit_from" value="right"/>
   </properties>
@@ -3229,6 +3509,7 @@
  <tile id="1073">
   <properties>
    <property name="endure" value="left,down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right,up"/>
    <property name="exit_from" value="left,down"/>
   </properties>
@@ -3236,6 +3517,7 @@
  <tile id="1074">
   <properties>
    <property name="endure" value="right,down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left,up"/>
    <property name="exit_from" value="right,down"/>
   </properties>
@@ -3255,6 +3537,7 @@
  <tile id="1081">
   <properties>
    <property name="endure" value="left,down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right,up"/>
    <property name="exit_from" value="left,down"/>
   </properties>
@@ -3262,6 +3545,7 @@
  <tile id="1082">
   <properties>
    <property name="endure" value="right,down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left,up"/>
    <property name="exit_from" value="right,down"/>
   </properties>
@@ -3347,6 +3631,7 @@
  <tile id="1105">
   <properties>
    <property name="endure" value="left,up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right,down"/>
    <property name="exit_from" value="left,up"/>
   </properties>
@@ -3354,6 +3639,7 @@
  <tile id="1106">
   <properties>
    <property name="endure" value="right,up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left,down"/>
    <property name="exit_from" value="right,up"/>
   </properties>
@@ -3431,6 +3717,7 @@
  <tile id="1142">
   <properties>
    <property name="endure" value="left,down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right,up"/>
    <property name="exit_from" value="left,down"/>
   </properties>
@@ -3438,6 +3725,7 @@
  <tile id="1143">
   <properties>
    <property name="endure" value="right,down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left,up"/>
    <property name="exit_from" value="right,down"/>
   </properties>
@@ -3548,6 +3836,7 @@
  <tile id="1224">
   <properties>
    <property name="endure" value="left"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right"/>
    <property name="exit_from" value="left"/>
   </properties>
@@ -3555,6 +3844,7 @@
  <tile id="1225">
   <properties>
    <property name="endure" value="right"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left"/>
    <property name="exit_from" value="right"/>
   </properties>
@@ -3598,6 +3888,7 @@
  <tile id="1258">
   <properties>
    <property name="endure" value="up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="down"/>
    <property name="exit_from" value="up"/>
   </properties>
@@ -3605,6 +3896,7 @@
  <tile id="1259">
   <properties>
    <property name="endure" value="up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="down"/>
    <property name="exit_from" value="up"/>
   </properties>
@@ -3612,6 +3904,7 @@
  <tile id="1260">
   <properties>
    <property name="endure" value="up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="down"/>
    <property name="exit_from" value="up"/>
   </properties>
@@ -3619,6 +3912,7 @@
  <tile id="1261">
   <properties>
    <property name="endure" value="left"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right"/>
    <property name="exit_from" value="left"/>
   </properties>
@@ -3626,6 +3920,7 @@
  <tile id="1262">
   <properties>
    <property name="endure" value="right"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left"/>
    <property name="exit_from" value="right"/>
   </properties>
@@ -3723,6 +4018,7 @@
  <tile id="1295">
   <properties>
    <property name="endure" value="down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="up"/>
    <property name="exit_from" value="down"/>
   </properties>
@@ -3730,6 +4026,7 @@
  <tile id="1296">
   <properties>
    <property name="endure" value="down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="up"/>
    <property name="exit_from" value="down"/>
   </properties>
@@ -3737,6 +4034,7 @@
  <tile id="1297">
   <properties>
    <property name="endure" value="down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="up"/>
    <property name="exit_from" value="down"/>
   </properties>
@@ -3744,6 +4042,7 @@
  <tile id="1298">
   <properties>
    <property name="endure" value="left"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right"/>
    <property name="exit_from" value="left"/>
   </properties>
@@ -3751,6 +4050,7 @@
  <tile id="1299">
   <properties>
    <property name="endure" value="right"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left"/>
    <property name="exit_from" value="right"/>
   </properties>
@@ -3770,6 +4070,7 @@
  <tile id="1334">
   <properties>
    <property name="endure" value="left,up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right,down"/>
    <property name="exit_from" value="left,up"/>
   </properties>
@@ -3777,6 +4078,7 @@
  <tile id="1335">
   <properties>
    <property name="endure" value="right,up"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left,down"/>
    <property name="exit_from" value="right,up"/>
   </properties>
@@ -3897,6 +4199,7 @@
  <tile id="1371">
   <properties>
    <property name="endure" value="left,down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="right,up"/>
    <property name="exit_from" value="left,down"/>
   </properties>
@@ -3904,6 +4207,7 @@
  <tile id="1372">
   <properties>
    <property name="endure" value="right,down"/>
+   <property name="hop" type="bool" value="true"/>
    <property name="enter_from" value="left,up"/>
    <property name="exit_from" value="right,down"/>
   </properties>

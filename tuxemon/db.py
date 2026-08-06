@@ -2020,6 +2020,15 @@ class NpcTemplateModel(TemplateModel):
     )
     combat_frame_width: int = 64
     combat_frame_height: int = 64
+    combat_back_frame_height: int | None = Field(
+        None,
+        description=(
+            "Optional explicit height of the back frame. The back fills the "
+            "full sheet height and the front is top-aligned within its "
+            "column, so a taller back is normally auto-detected from the PNG "
+            "and this only needs setting to enforce a specific height."
+        ),
+    )
     combat_rows: int = 1
     combat_columns: int = 2
 

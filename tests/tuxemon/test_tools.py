@@ -176,6 +176,15 @@ def test_literal_types():
     [
         pytest.param((int | str, "param"), 123, 123, id="union_int"),
         pytest.param((int | str, "param"), "abc", "abc", id="union_str"),
+        # a float-literal string must stay a float when float is allowed,
+        # instead of being truncated to int (e.g. heal "0.5" -> 0.5, not 0)
+        pytest.param(
+            (int | float, "param"), "0.5", 0.5, id="union_float_str"
+        ),
+        pytest.param((int | float, "param"), "5", 5, id="union_int_str"),
+        pytest.param(
+            (int | float, "param"), "2.0", 2.0, id="union_float_whole"
+        ),
     ],
 )
 def test_union_types_valid(typeinfo, value, expected):

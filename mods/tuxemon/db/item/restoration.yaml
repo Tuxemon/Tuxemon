@@ -3,11 +3,6 @@ conditions:
   operator: is
 - type: current_hp
   parameters:
-  - <
-  - '1.0'
-  operator: is
-- type: current_hp
-  parameters:
   - '>'
   - '0'
   operator: is
@@ -17,7 +12,7 @@ slug: restoration
 sort: potion
 sprite: gfx/items/apple.png
 category: potion
-cost: 700
+cost: 400
 usable_in:
 - MainCombatMenuState
 - WorldState

@@ -375,37 +375,37 @@ msgid "raise_armour"
 msgstr "Raise Armor"
 
 msgid "raise_armour_description"
-msgstr "Learn the hardness of the diamond. Increase Armor by 5%."
+msgstr "Learn the hardness of the diamond. Train Armor."
 
 msgid "raise_dodge"
 msgstr "Raise Dodge"
 
 msgid "raise_dodge_description"
-msgstr "Learn the iridescence of the opal. Increase Dodge by 5%."
+msgstr "Learn the iridescence of the opal. Train Dodge."
 
 msgid "raise_hp"
 msgstr "Raise HP"
 
 msgid "raise_hp_description"
-msgstr "Learn the bulk and abundance of quartz. Increase HP by 5%."
+msgstr "Learn the bulk and abundance of quartz. Train HP."
 
 msgid "raise_melee"
 msgstr "Raise Melee"
 
 msgid "raise_melee_description"
-msgstr "Learn the anger of the ruby. Increase Melee by 5%."
+msgstr "Learn the anger of the ruby. Train Melee."
 
 msgid "raise_ranged"
 msgstr "Raise Ranged"
 
 msgid "raise_ranged_description"
-msgstr "Learn the aim of the emerald. Increase Ranged by 5%."
+msgstr "Learn the aim of the emerald. Train Ranged."
 
 msgid "raise_speed"
 msgstr "Raise Speed"
 
 msgid "raise_speed_description"
-msgstr "Learn the reflexes of the spinel. Increase Speed by 5%."
+msgstr "Learn the reflexes of the spinel. Train Speed."
 
 msgid "alpha_seep"
 msgstr "Alpha Seep"
@@ -414,6 +414,12 @@ msgid "alpha_seep_description"
 msgstr ""
 "Thick, mucosal secretion harvested from the scent glands of apex predators "
 "at the peak of their territorial cycle."
+
+msgid "repellent"
+msgstr "Repellent"
+
+msgid "repellent_description"
+msgstr "Deter wild encounters with this stinky spray."
 
 msgid "fishing_rod"
 msgstr "Fishing Rod"
@@ -1669,6 +1675,9 @@ msgstr "E-Pay"
 msgid "no_money_operation"
 msgstr "{operation} not possible!"
 
+msgid "menu_select"
+msgstr "Select"
+
 msgid "select_number"
 msgstr "Select number"
 
@@ -1702,11 +1711,17 @@ msgstr " "
 msgid "combat_miss"
 msgstr "It missed..."
 
+msgid "combat_splash_partial"
+msgstr "A partial hit! Reduced damage was dealt."
+
 msgid "spyderbite_miss"
 msgstr "And the technique was lost."
 
 msgid "combat_full_health"
-msgstr "But it's already at full health."
+msgstr "But {name} is already at full health."
+
+msgid "combat_state_healed"
+msgstr "{name}'s health was restored."
 
 msgid "combat_forfeit"
 msgstr ""
@@ -4170,7 +4185,7 @@ msgid "lion_mountain"
 msgstr "Lion Mountain"
 
 msgid "candy_town"
-msgstr "Candy"
+msgstr "Candy Town"
 
 msgid "candy_port"
 msgstr "Candy Port"
@@ -4182,22 +4197,28 @@ msgid "citypark"
 msgstr "City Park"
 
 msgid "cotton_town"
-msgstr "Cotton"
+msgstr "Cotton Town"
 
 msgid "diamond_hill"
 msgstr "Diamond Hill"
 
+msgid "dragonscave"
+msgstr "Dragon's Cave"
+
 msgid "dryadsgrove"
 msgstr "Dryad's Grove"
 
+msgid "mansion"
+msgstr "Mansion"
+
 msgid "flower_city"
-msgstr "Flower"
+msgstr "Flower City"
 
 msgid "leather_town"
-msgstr "Leather"
+msgstr "Leather Town"
 
 msgid "paper_town"
-msgstr "Paper"
+msgstr "Paper Town"
 
 msgid "route1"
 msgstr "Route 1"
@@ -4269,10 +4290,13 @@ msgid "taba_ba_passageway_2"
 msgstr "Taba Battle Area - Passageway 2"
 
 msgid "timber_town"
-msgstr "Timber"
+msgstr "Timber Town"
 
 msgid "tunnel"
 msgstr "Tunnel"
+
+msgid "tunnel_below"
+msgstr "Tunnel (Below)"
 
 msgid "park"
 msgstr "Pepper Park"
@@ -9033,6 +9057,16 @@ msgstr "Female"
 
 msgid "gender_nonbinary"
 msgstr "Non-binary"
+
+# Player pronoun choice (shown after appearance selection)
+msgid "pronoun_he"
+msgstr "He/Him"
+
+msgid "pronoun_she"
+msgstr "She/Her"
+
+msgid "pronoun_they"
+msgstr "They/Them"
 
 # Player additional gender, since very few ID as 'neuter'
 msgid "gender_enby"

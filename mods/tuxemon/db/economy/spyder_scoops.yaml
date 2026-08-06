@@ -20,20 +20,6 @@
 - background: gfx/ui/item/item_menu_bg.png
   items:
   - cost: 50
-    slug: potion
-    price: 100
-  - cost: 50
-    slug: tuxeball
-    price: 100
-  - cost: 200
-    slug: restoration
-    price: 400
-  monsters: []
-  resale_multiplier: 0.5
-  slug: spyder_paper_scoop
-- background: gfx/ui/item/item_menu_bg.png
-  items:
-  - cost: 50
     slug: repellent
     price: 100
   - cost: 50
@@ -275,28 +261,28 @@
   slug: spyder_timber_tech
 - background: gfx/ui/item/item_menu_bg.png
   items:
-  - cost: 50
+  - cost: 250
     slug: mega_potion
-    price: 200
-  - cost: 100
-    slug: imperial_potion
     price: 500
-  - cost: 20
+  - cost: 500
+    slug: imperial_potion
+    price: 1000
+  - cost: 500
     slug: revive
-    price: 100
-  - cost: 50
+    price: 1000
+  - cost: 750
     slug: cureall
-    price: 250
-  - cost: 80
+    price: 1500
+  - cost: 300
     slug: tuxeball_majestic
-    price: 400
-  - cost: 60
+    price: 600
+  - cost: 150
     slug: tuxeball_diurnal
     price: 300
     variables:
       - key: daytime
         value: "true"
-  - cost: 60
+  - cost: 150
     slug: tuxeball_nocturnal
     price: 300
     variables:

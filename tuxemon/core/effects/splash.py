@@ -49,8 +49,10 @@ class SplashEffect(CoreEffect):
         damage, mult = formula.simple_damage_calculate(tech, user, target)
         targets = session.client.combat_session.get_targets(tech, user, target)
 
+        partial_hit = False
         if not tech.hit:
             damage //= self.divisor
+            partial_hit = True
 
         if targets:
             for monster in targets:
@@ -61,10 +63,12 @@ class SplashEffect(CoreEffect):
                         user, monster, damage
                     )
 
+        extras = ["combat_splash_partial"] if partial_hit and damage else []
         return TechEffectResult(
             name=tech.name,
             success=bool(damage),
             damage=damage,
             should_tackle=bool(damage),
             element_multiplier=mult,
+            extras=extras,
         )

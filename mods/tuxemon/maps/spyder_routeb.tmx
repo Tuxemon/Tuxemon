@@ -262,5 +262,12 @@
     <property name="cond1" value="is battle_outcome player,won,spyder_routeb_calypso"/>
    </properties>
   </object>
- </objectgroup>
+   <object id="4327" name="Track routeb" type="event" x="0" y="0" width="320" height="640">
+   <properties>
+    <property name="act1" value="add_tracker player,routeb"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="not tracker player,routeb"/>
+   </properties>
+  </object>
+</objectgroup>
 </map>

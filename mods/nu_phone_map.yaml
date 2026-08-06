@@ -1,8 +1,176 @@
 map_path: "gfx/ui/background/spyder_map.png"
 map_data:
-  - [0.20, 0.42, "leather_town"]
-  - [0.20, 0.52, "cotton_town"]
-  - [0.20, 0.62, "paper_town"]
-  - [-0.15, 0.62, "candy_town"]
-  - [-0.15, 0.42, "timber_town"]
-  - [-0.15, 0.32, "flower_city"]
+  - [155, 74,  "leather_town"]
+  - [155, 88,  "cotton_town"]
+  - [155, 103, "paper_town"]
+  - [114, 103, "candy_town"]
+  - [106, 72,  "timber_town"]
+  - [123, 58,  "flower_city"]
+  - [143, 104, "routec"]
+  - [155, 97,  "route1"]
+  - [137, 88,  "dryadsgrove"]
+  - [172, 88,  "route2"]
+  - [172, 74,  "citypark"]
+  - [123, 40,  "mansion"]
+  - [155, 58,  "route3"]
+  - [139, 58,  "route4"]
+  - [108, 59,  "route5"]
+  - [108, 81,  "tunnel"]
+  - [114, 89,  "route6"]
+  - [130, 79,  "routee"]
+  - [143, 117, "dragonscave"]
+  - [130, 79,  "routed"]
+
+map_groups:
+  leather_town:
+    - spyder_leather_town
+    - spyder_leather_center
+    - spyder_leather_gym
+    - spyder_leather_house1
+    - spyder_leather_house2
+    - spyder_leather_museum
+    - spyder_leather_scoop
+    - spyder_leather_shaft1
+    - spyder_leather_shaft2
+  cotton_town:
+    - spyder_cotton_town
+    - spyder_cotton_artshop
+    - spyder_cotton_cafe
+    - spyder_cotton_house1
+    - spyder_cotton_house2
+    - spyder_cotton_scoop
+    - spyder_cotton_tunnel
+    - spyder_healing_center
+    - spyder_omnichannel1
+    - spyder_omnichannel2
+    - spyder_omnichannel3
+    - spyder_omnichannel4
+    - spyder_radiotower
+    - spyder_greenwash
+    - spyder_greenwash_greenhouse
+    - spyder_greenwash_level2
+    - spyder_greenwash_level3
+  paper_town:
+    - spyder_paper_town
+    - spyder_paper_daycare
+    - spyder_paper_manor
+    - spyder_paper_rival_bedroom
+    - spyder_paper_rival_downstairs
+    - spyder_paper_rival_office
+    - spyder_paper_scoop
+    - spyder_brideswood
+    - spyder_downstairs
+    - spyder_bedroom
+  candy_town:
+    - spyder_candy_town
+    - spyder_candy_cafe
+    - spyder_candy_center
+    - spyder_candy_hospital1
+    - spyder_candy_hospital2
+    - spyder_candy_hospital3
+    - spyder_candy_house1
+    - spyder_candy_house2
+    - spyder_candy_house3
+    - spyder_candy_inn1
+    - spyder_candy_inn2
+    - spyder_candy_port
+    - spyder_candy_scoop
+  timber_town:
+    - spyder_timber_town
+    - spyder_timber_cafe
+    - spyder_timber_center
+    - spyder_timber_house
+    - spyder_timber_scoop
+    - spyder_timber_walledgarden1
+    - spyder_timber_walledgarden2
+    - spyder_scoop1
+    - spyder_scoop2
+    - spyder_scoop3
+    - spyder_scoop4
+  flower_city:
+    - spyder_flower_city
+    - spyder_flower_center
+    - spyder_flower_house1
+    - spyder_flower_house2
+    - spyder_flower_petshop
+    - spyder_flower_scoop
+    - spyder_dojo1
+    - spyder_dojo2
+    - spyder_dojo3
+    - spyder_dojo4
+    - spyder_nimrod_bottom
+    - spyder_nimrod_middle
+    - spyder_nimrod_room
+    - spyder_nimrod_top
+  dryadsgrove:
+    - spyder_dryadsgrove
+  mansion:
+    - spyder_mansion
+    - spyder_mansion_basement
+    - spyder_mansion_top
+    - spyder_routea
+  route1:
+    - spyder_route1
+  route2:
+    - spyder_route2
+  route3:
+    - spyder_route3
+  route4:
+    - spyder_route4
+  route5:
+    - spyder_route5
+  route6:
+    - spyder_route6
+  routec:
+    - spyder_routec
+  routee:
+    - spyder_routee
+    - spyder_routeb
+  routed:
+    - spyder_routed
+  tunnel:
+    - spyder_tunnel
+    - spyder_tunnel_below
+  citypark:
+    - spyder_citypark
+    - spyder_citypark_house1
+  dragonscave:
+    - spyder_dragonscave
+
+core:
+  - leather_town
+  - cotton_town
+  - paper_town
+  - candy_town
+  - timber_town
+  - flower_city
+  - route1
+  - route2
+  - route3
+  - route4
+  - route5
+  - route6
+  - tunnel
+  - citypark
+
+nav:
+  leather_town: {down: citypark,    left: routed,      right: citypark,    up: route3}
+  cotton_town:  {down: route1,      left: route1,      right: route2,      up: route2}
+  paper_town:   {down: routec,      left: routec,      right: route1,      up: route1}
+  candy_town:   {down: routec,      left: route6,      right: routec,      up: route6}
+  timber_town:  {down: tunnel,      left: route5,      right: routee,      up: route5}
+  flower_city:  {down: routed,      left: route5,      right: route4,      up: mansion}
+  routec:       {down: dragonscave, left: candy_town,  right: paper_town,  up: paper_town}
+  route1:       {down: paper_town,  left: paper_town,  right: cotton_town, up: cotton_town}
+  dryadsgrove:  {down: cotton_town, left: null,        right: cotton_town, up: leather_town}
+  route2:       {down: cotton_town, left: cotton_town, right: citypark,    up: citypark}
+  citypark:     {down: route2,      left: leather_town,right: null,        up: leather_town}
+  mansion:      {down: flower_city, left: flower_city, right: flower_city, up: null}
+  route3:       {down: leather_town,left: route4,      right: leather_town,up: route4}
+  route4:       {down: null,        left: flower_city, right: route3,      up: flower_city}
+  route5:       {down: timber_town, left: timber_town, right: timber_town, up: leather_town}
+  tunnel:       {down: route6,      left: timber_town, right: route6,      up: timber_town}
+  route6:       {down: candy_town,  left: tunnel,      right: candy_town,  up: tunnel}
+  routee:       {down: tunnel,      left: tunnel,      right: null,        up: timber_town}
+  dragonscave:  {down: null,        left: routec,      right: routec,      up: routec}
+  routed:       {down: leather_town,left: flower_city, right: leather_town,up: flower_city}

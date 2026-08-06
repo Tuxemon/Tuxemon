@@ -363,5 +363,12 @@
     <property name="behav1" value="talk spyder_mansion_nurse"/>
    </properties>
   </object>
+   <object id="12055" name="Track mansion" type="event" x="0" y="0" width="288" height="288">
+   <properties>
+    <property name="act1" value="add_tracker player,mansion"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="not tracker player,mansion"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

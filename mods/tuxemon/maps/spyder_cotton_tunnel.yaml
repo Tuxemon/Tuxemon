@@ -222,8 +222,8 @@ events:
     - pathfind_to_char player,spyder_cottontunnel_carlos
     - char_talk spyder_cottontunnel_carlos,pre_battle
     - unlock_controls
-    - add_monster agnidon,35,spyder_cottontunnel_carlos,5,10
-    - add_monster legko,35,spyder_cottontunnel_carlos,5,10
+    - add_monster agnidon,40,spyder_cottontunnel_carlos,5,10
+    - add_monster legko,40,spyder_cottontunnel_carlos,5,10
     - start_battle player,spyder_cottontunnel_carlos
     - char_talk spyder_cottontunnel_carlos,post_battle_lose
     conditions:
@@ -267,7 +267,7 @@ events:
     - is char_facing player,up
     type: event
     x: 35
-    y: 3
+    y: 2
   Teleport to Dragon's Cave:
     actions:
     - transition_teleport player,spyder_dragonscave.tmx,16,5,0.3
@@ -288,4 +288,4 @@ events:
     - is char_facing player,up
     type: event
     x: 31
-    y: 3
+    y: 2

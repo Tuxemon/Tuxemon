@@ -67,6 +67,13 @@ class WorldSurfaces:
 
 sprite_cache: dict[str, Surface] = {}
 
+# Drop shadow shown beneath the player during a ledge hop. It is drawn at the
+# position the player *would* occupy if moving linearly (no arc), so the gap
+# between sprite and shadow makes the hop read clearly.
+DROP_SHADOW_PATH = "sprites/drop_shadow.png"
+_drop_shadow_cache: Surface | None = None
+_drop_shadow_loaded = False
+
 
 def load_and_scale_with_cache(file_path: str) -> Surface:
     """
@@ -79,6 +86,26 @@ def load_and_scale_with_cache(file_path: str) -> Surface:
             logger.error(f"Failed to load sprite: {file_path} - {e}")
             raise
     return sprite_cache[file_path]
+
+
+def load_drop_shadow() -> Surface | None:
+    """
+    Load the ledge-hop drop shadow, returning None if the asset is missing.
+    The result (including a failed load) is cached so a missing asset does not
+    spam the log or hit the filesystem every frame.
+    """
+    global _drop_shadow_cache, _drop_shadow_loaded
+    if not _drop_shadow_loaded:
+        _drop_shadow_loaded = True
+        try:
+            _drop_shadow_cache = load_and_scale(DROP_SHADOW_PATH)
+        except Exception as e:
+            logger.warning(
+                f"Drop shadow asset '{DROP_SHADOW_PATH}' not found; "
+                f"ledge hops will render without a shadow ({e})."
+            )
+            _drop_shadow_cache = None
+    return _drop_shadow_cache
 
 
 class SpriteController:
@@ -429,6 +456,7 @@ class MapRenderer(AbstractRenderer):
         self.cinema_y_ratio: float | None = None
         self.map_animations = AnimationManager()
         self.bubble_manager = BubbleManager(context=context)
+        self.layer_image: bool = False
 
     @property
     def label(self) -> str:
@@ -443,7 +471,7 @@ class MapRenderer(AbstractRenderer):
         self._prepare_map_rendering(current_map)
         screen_surfaces = self._get_and_position_surfaces(current_map)
         self._draw_map_and_sprites(surface, screen_surfaces, current_map)
-        if self.layer_color:
+        if self.layer_color or self.layer_image:
             self._apply_effects(surface)
         self._apply_cinema_bars(surface)
         if CONFIG.collision_map:
@@ -559,7 +587,24 @@ class MapRenderer(AbstractRenderer):
             )
 
         pixel_x, pixel_y = npc.position
-        return [WorldSurfaces(frame, Vector2(pixel_x, pixel_y), layer)]
+        hop_offset = npc.hop_y_offset_tiles
+
+        surfaces: list[WorldSurfaces] = []
+
+        # During a ledge hop, draw a stationary drop shadow at the position the
+        # player would occupy if moving linearly (no arc). Listed first so it
+        # renders beneath the player sprite, which rises away from it.
+        if hop_offset > 0.0:
+            shadow = load_drop_shadow()
+            if shadow is not None:
+                surfaces.append(
+                    WorldSurfaces(shadow, Vector2(pixel_x, pixel_y), layer)
+                )
+
+        surfaces.append(
+            WorldSurfaces(frame, Vector2(pixel_x, pixel_y - hop_offset), layer)
+        )
+        return surfaces
 
 
 class BubbleManager:
@@ -708,4 +753,5 @@ def npc_to_pgrect(
 ) -> Rect:
     """Returns a Rect (in screen-coords) version of an NPC's bounding box."""
     pos = get_pos_from_tilepos(current_map, context, npc.position)
+    return Rect(pos, context.tile_size)
     return Rect(pos, context.tile_size)

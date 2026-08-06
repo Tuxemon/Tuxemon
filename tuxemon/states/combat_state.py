@@ -85,6 +85,14 @@ if TYPE_CHECKING:
 
 logger = logging.getLogger(__name__)
 
+# When several monsters enter the battlefield at once (battle start, or a
+# multi-monster replacement after a double KO), their releases are staggered
+# by this many seconds each instead of all playing on the same frame. This
+# spaces out the send-out animations and combat calls so they play one after
+# the other rather than on top of each other.
+MONSTER_ENTRY_STAGGER = 0.7
+
+
 EVENT_HANDLERS: dict[str, str] = {
     "monster_disappeared": "_on_monster_disappeared",
     "monster_appeared": "_on_monster_appeared",
@@ -152,6 +160,9 @@ class CombatState(CombatAnimations):
         self.text_anim = TextAnimationManager()
         self._decision_queue: deque[Monster] = deque()
         self._captured_mon: Monster | None = None
+        # Counts monsters entering within the current fill batch so their
+        # send-out animations can be staggered (see MONSTER_ENTRY_STAGGER).
+        self._entry_index = 0
         # player => home areas on screen
         super().__init__(client=client, teams=context.teams, **kwargs)
         self.combat_session = self.client.combat_session
@@ -256,8 +267,13 @@ class CombatState(CombatAnimations):
         elif phase == CombatPhase.HOUSEKEEPING:
             new_turn = c_session.next_turn()
             c_session.action_queue.set_current_turn(new_turn)
+            # reset the stagger counter so this batch of releases starts fresh
+            self._entry_index = 0
             # fill all battlefield positions, but on round 1, don't ask
             c_session.fill_battlefield_positions(ask=new_turn > 1)
+            # confine the stagger to this synchronous batch so a later lone
+            # entry (e.g. a voluntary swap) isn't delayed by a stale count
+            self._entry_index = 0
             c_session.track_enemy_monsters(self.session)
 
         elif phase == CombatPhase.DECISION:
@@ -348,6 +364,7 @@ class CombatState(CombatAnimations):
         if not self.combat_session.action_queue.is_empty():
             action = self.combat_session.action_queue.pop()
             self.perform_action(action.user, action.method, action.target)
+            self.combat_session.action_queue.sort()
             self.task(self.check_party_hp, interval=1)
             self.task(self.animate_party_status, interval=3)
             self.notifier.trigger_xp_and_wait_for_input(self.text_area)
@@ -432,7 +449,24 @@ class CombatState(CombatAnimations):
         if not sprite:
             raise ValueError(f"Sprite not found for item {capture_device}")
 
-        # Animate release and update HUD
+        # Stagger releases when several monsters enter together so their
+        # send-out animations and combat calls play one after the other.
+        delay = self._entry_index * MONSTER_ENTRY_STAGGER
+        self._entry_index += 1
+
+        release = partial(self._release_monster, player, monster, sprite)
+        if delay > 0:
+            self.task(release, interval=delay)
+        else:
+            release()
+
+    def _release_monster(
+        self,
+        player: NPC,
+        monster: Monster,
+        sprite: Sprite,
+    ) -> None:
+        """Animate a monster's release, reveal its HUD and announce a swap."""
         self.animate_monster_release(player, monster, sprite)
         self.update_hud(player, True, True)
 
@@ -601,7 +635,7 @@ class CombatState(CombatAnimations):
         message += "\n" + T.format(method.use_tech, context)
         # swapping monster
         if method.slug == "swap":
-            params = {"name": target.name.upper()}
+            params = {"name": target.name}
             message = T.format("combat_call_tuxemon", params)
         # check statuses
         if status_result:
@@ -661,14 +695,6 @@ class CombatState(CombatAnimations):
                 user, target, result_tech.damage
             )
 
-            plague = user.plague.get_most_severe_plague_slug()
-            if plague:
-                m = user.plague.get_suppressed_symptom_message(
-                    user.name, plague
-                )
-                if m:
-                    message += "\n" + m
-
             if method.range != "special":
                 element_damage_key = config_combat.multiplier_map.get(
                     result_tech.element_multiplier
@@ -679,6 +705,15 @@ class CombatState(CombatAnimations):
                     action_time += self.text_anim.compute_text_anim_time(
                         message
                     )
+
+            plague = user.plague.get_most_severe_plague_slug()
+            if plague:
+                m = user.plague.get_suppressed_symptom_message(
+                    user.name, plague
+                )
+                if m:
+                    message += "\n" + m
+
 
         self.text_anim.add_text_animation(
             partial(self.dialog.alert, message, self.text_area), action_time
@@ -736,11 +771,11 @@ class CombatState(CombatAnimations):
                 success_header_text = T.translate("gotcha")
                 if len(user.monsters) >= PARTY_LIMIT:
                     success_text = T.format(
-                        "gotcha_kennel", {"name": target.name.upper()}
+                        "gotcha_kennel", {"name": target.name}
                     )
                 else:
                     success_text = T.format(
-                        "gotcha_team", {"name": target.name.upper()}
+                        "gotcha_team", {"name": target.name}
                     )
                 failure_text = ""
             else:
@@ -791,6 +826,8 @@ class CombatState(CombatAnimations):
         )
 
     def _handle_status(self, status: Status, target: Monster) -> None:
+        if not target.status.has_status(status.slug):
+            return
         action_time = 0.0
         result = self.combat_session.apply_status(
             self.session, status, target, EffectPhase.PERFORM_STATUS
@@ -888,9 +925,9 @@ class CombatState(CombatAnimations):
         if winner in self.combat_session.monsters_in_play_right:
             if techniques:
                 tech_list = ", ".join(
-                    T.translate(tech).upper() for tech in techniques
+                    T.translate(tech) for tech in techniques
                 )
-                params = {"name": winner.name.upper(), "tech": tech_list}
+                params = {"name": winner.name, "tech": tech_list}
                 mex = T.format("tuxemon_new_tech", params)
                 self.text_anim.add_xp_message(mex)
 
@@ -924,7 +961,7 @@ class CombatState(CombatAnimations):
         ) in self.combat_session.field_monsters.get_all_monsters().items():
             for monster in party:
                 if monster.is_fainted:
-                    params = {"name": monster.name.upper()}
+                    params = {"name": monster.name}
                     msg = T.format("combat_fainted", params)
                     self.text_anim.add_text_animation(
                         partial(self.dialog.alert, msg, self.text_area),
@@ -951,7 +988,6 @@ class CombatState(CombatAnimations):
             monster_party
         ) in self.combat_session.field_monsters.get_all_monsters().values():
             for monster in monster_party:
-                monster.get_combat_stats()
                 self.animate_hp(monster)
                 self.apply_status_effects(monster)
                 if monster.is_fainted:
@@ -1005,6 +1041,8 @@ class CombatState(CombatAnimations):
     def end_combat(self) -> None:
         """End the combat."""
         self.event_bus.publish("clean_combat")
+        for player in self.combat_session.players:
+            player.battle_last_used_item_slug = None
         new_entry = self.combat_session.get_variable("new_tuxepedia")
         self.combat_session.reset()
         self.unregister_event_handlers()
@@ -1208,9 +1246,7 @@ class CombatState(CombatAnimations):
         owner = monster.get_owner()
         track = get_battle_outcome_music(self.session, env, owner)
         if track:
-            music_name, volume = track
-            self.client.current_music.play(music_name)
-            self.client.current_music.set_volume(volume)
+            self.client.current_music.play(track)
 
     def _on_play_animation_combat(
         self,

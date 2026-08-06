@@ -1,11 +1,11 @@
 tech_id: 42
 accuracy: 0.8
 effects:
+- type: damage
 - type: give
   parameters:
   - grabbed
   - enemy_monster
-- type: damage
 speed: normal
 potency: 1
 power: 1.25
@@ -31,7 +31,7 @@ use_failure: combat_miss
 use_success: null
 use_tech: combat_used_x
 visuals:
-  animation: snake_right
+  animation: stickyweb
   flip_axes: x
   loop: 0
 sound:

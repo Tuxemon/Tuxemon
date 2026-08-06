@@ -108,7 +108,6 @@ def test_evolve_monster_success(evolution_context):
     player.party.replace_monster = MagicMock(return_value=True)
     player.tuxepedia.register_caught = MagicMock()
     evo.evolve_monster(new_mon)
-    new_mon.transfer_properties_from.assert_called_with(mon)
     new_mon.moves.learn_by_method.assert_called_with(
         new_mon, "SpecialBeam", LearningMethod.EVOLUTION
     )

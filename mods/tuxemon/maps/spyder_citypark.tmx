@@ -474,11 +474,12 @@
    <properties>
     <property name="act1" value="lock_controls"/>
     <property name="act2" value="pathfind_to_char player,spyder_citypark_bobette"/>
-    <property name="act3" value="char_talk spyder_citypark_bobette,pre_battle"/>
-    <property name="act4" value="unlock_controls"/>
-    <property name="act5" value="add_monster aardorn,10,spyder_citypark_bobette,5,10"/>
-    <property name="act6" value="start_battle player,spyder_citypark_bobette"/>
-    <property name="act7" value="char_talk spyder_citypark_bobette,post_battle_lose"/>
+    <property name="act3" value="char_face player,spyder_citypark_bobette"/>
+    <property name="act4" value="char_talk spyder_citypark_bobette,pre_battle"/>
+    <property name="act5" value="unlock_controls"/>
+    <property name="act6" value="add_monster aardorn,10,spyder_citypark_bobette,5,10"/>
+    <property name="act7" value="start_battle player,spyder_citypark_bobette"/>
+    <property name="act8" value="char_talk spyder_citypark_bobette,post_battle_lose"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_citypark_bobette"/>
     <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="not char_defeated player"/>
@@ -581,9 +582,14 @@
   <object id="292" name="Talk Nurse" type="event" x="128" y="480" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_generic_nurse"/>
-    <property name="act2" value="set_monster_health"/>
-    <property name="act3" value="set_monster_status"/>
-    <property name="act4" value="translated_dialog spyder_output_nurse1"/>
+    <property name="act11" value="char_stop player"/>
+    <property name="act12" value="lock_controls"/>
+    <property name="act13" value="screen_transition 1"/>
+    <property name="act14" value="wait 0.5"/>
+    <property name="act15" value="unlock_controls"/>
+    <property name="act20" value="set_monster_health"/>
+    <property name="act30" value="set_monster_status"/>
+    <property name="act40" value="translated_dialog spyder_output_nurse1"/>
     <property name="behav1" value="talk spyder_citypark_nurse"/>
    </properties>
   </object>
@@ -606,6 +612,13 @@
     <property name="act1" value="char_talk spyder_citypark_edith,post_battle_lose"/>
     <property name="behav1" value="talk spyder_citypark_edith"/>
     <property name="cond1" value="is battle_outcome player,won,spyder_citypark_edith"/>
+   </properties>
+  </object>
+   <object id="8277" name="Track citypark" type="event" x="0" y="0" width="640" height="640">
+   <properties>
+    <property name="act1" value="add_tracker player,citypark"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="not tracker player,citypark"/>
    </properties>
   </object>
  </objectgroup>

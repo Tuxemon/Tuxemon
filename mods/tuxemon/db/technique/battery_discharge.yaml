@@ -2,10 +2,9 @@ tech_id: 83
 accuracy: 0.8
 effects:
 - type: damage
-- type: prop_healing
+- type: healing
   parameters:
   - own_monster
-  - '0.2'
 healing_power: 3.0
 speed: normal
 potency: 0.0

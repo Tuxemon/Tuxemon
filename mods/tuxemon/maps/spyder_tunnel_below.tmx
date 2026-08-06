@@ -141,11 +141,12 @@
    <properties>
     <property name="act1" value="lock_controls"/>
     <property name="act2" value="pathfind_to_char player,spyder_tunnelb_meitner"/>
-    <property name="act3" value="char_talk spyder_tunnelb_meitner,pre_battle"/>
-    <property name="act4" value="unlock_controls"/>
-    <property name="act5" value="add_monster masknake,22,spyder_tunnelb_meitner,5,10"/>
-    <property name="act6" value="start_battle player,spyder_tunnelb_meitner"/>
-    <property name="act7" value="char_talk spyder_tunnelb_meitner,post_battle_lose"/>
+    <property name="act3" value="char_face player,spyder_tunnelb_meitner"/>
+    <property name="act4" value="char_talk spyder_tunnelb_meitner,pre_battle"/>
+    <property name="act5" value="unlock_controls"/>
+    <property name="act6" value="add_monster masknake,27,spyder_tunnelb_meitner,5,10"/>
+    <property name="act7" value="start_battle player,spyder_tunnelb_meitner"/>
+    <property name="act8" value="char_talk spyder_tunnelb_meitner,post_battle_lose"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_tunnelb_meitner"/>
     <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="not char_defeated player"/>
@@ -155,14 +156,15 @@
    <properties>
     <property name="act01" value="lock_controls"/>
     <property name="act02" value="pathfind_to_char player,spyder_tunnelb_lute"/>
-    <property name="act03" value="char_talk spyder_tunnelb_lute,pre_battle"/>
-    <property name="act04" value="unlock_controls"/>
-    <property name="act05" value="add_monster noctula,16,spyder_tunnelb_lute,5,10"/>
-    <property name="act06" value="add_monster noctalo,18,spyder_tunnelb_lute,5,10"/>
-    <property name="act07" value="add_monster pipis,16,spyder_tunnelb_lute,5,10"/>
-    <property name="act08" value="add_monster strella,20,spyder_tunnelb_lute,5,10"/>
-    <property name="act09" value="start_battle player,spyder_tunnelb_lute"/>
-    <property name="act10" value="char_talk spyder_tunnelb_lute,post_battle_lose"/>
+    <property name="act03" value="char_face player,spyder_tunnelb_lute"/>
+    <property name="act04" value="char_talk spyder_tunnelb_lute,pre_battle"/>
+    <property name="act05" value="unlock_controls"/>
+    <property name="act06" value="add_monster noctula,21,spyder_tunnelb_lute,5,10"/>
+    <property name="act07" value="add_monster noctalo,23,spyder_tunnelb_lute,5,10"/>
+    <property name="act08" value="add_monster pipis,21,spyder_tunnelb_lute,5,10"/>
+    <property name="act09" value="add_monster strella,25,spyder_tunnelb_lute,5,10"/>
+    <property name="act10" value="start_battle player,spyder_tunnelb_lute"/>
+    <property name="act11" value="char_talk spyder_tunnelb_lute,post_battle_lose"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_tunnelb_lute"/>
     <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="not char_defeated player"/>
@@ -172,13 +174,14 @@
    <properties>
     <property name="act01" value="lock_controls"/>
     <property name="act02" value="pathfind_to_char player,spyder_tunnelb_beryll"/>
-    <property name="act03" value="char_talk spyder_tunnelb_beryll,pre_battle"/>
-    <property name="act04" value="unlock_controls"/>
-    <property name="act05" value="add_monster rockat,20,spyder_tunnelb_beryll,5,10"/>
-    <property name="act06" value="add_monster ignibus,20,spyder_tunnelb_beryll,5,10"/>
-    <property name="act07" value="add_monster grintot,20,spyder_tunnelb_beryll,5,10"/>
-    <property name="act08" value="start_battle player,spyder_tunnelb_beryll"/>
-    <property name="act09" value="char_talk spyder_tunnelb_beryll,post_battle_lose"/>
+    <property name="act03" value="char_face player,spyder_tunnelb_beryll"/>
+    <property name="act04" value="char_talk spyder_tunnelb_beryll,pre_battle"/>
+    <property name="act05" value="unlock_controls"/>
+    <property name="act06" value="add_monster rockat,25,spyder_tunnelb_beryll,5,10"/>
+    <property name="act07" value="add_monster ignibus,25,spyder_tunnelb_beryll,5,10"/>
+    <property name="act08" value="add_monster grintot,25,spyder_tunnelb_beryll,5,10"/>
+    <property name="act09" value="start_battle player,spyder_tunnelb_beryll"/>
+    <property name="act10" value="char_talk spyder_tunnelb_beryll,post_battle_lose"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_tunnelb_beryll"/>
     <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="not char_defeated player"/>
@@ -243,5 +246,12 @@
     <property name="cond1" value="is battle_outcome player,won,spyder_tunnelb_meitner"/>
    </properties>
   </object>
- </objectgroup>
+   <object id="1442" name="Track tunnel_below" type="event" x="0" y="0" width="320" height="640">
+   <properties>
+    <property name="act1" value="add_tracker player,tunnel_below"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="not tracker player,tunnel_below"/>
+   </properties>
+  </object>
+</objectgroup>
 </map>

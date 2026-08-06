@@ -46,6 +46,28 @@ class PaginatedMenuState(PopUpMenu[None]):
     def __init__(self, client: BaseClient, **kwargs: Any):
         super().__init__(client=client, **kwargs)
 
+    def reload_items(self) -> None:
+        super().reload_items()
+        self._align_page_to_selection()
+
+    def _align_page_to_selection(self) -> None:
+        """
+        Open on the page that contains the requested selection.
+        The menu can be opened with a ``selected_index`` taken from the
+        current save slot, which may live on a later page. Without aligning
+        the page, the selection would point off the visible page, leaving the
+        cursor on nothing and crashing on the first cursor move. Setting the
+        page and snapping guarantees a valid, visible selection.
+        """
+        page_size = self.menu_items.page_size
+        if not page_size:
+            return
+
+        self.menu_items.set_page(self.selected_index // page_size)
+        self.selected_index = self.menu_items.snap_selection(
+            self.selected_index
+        )
+
     def _snap_selection_to_page(self) -> None:
         """Delegate snapping to VisualSpriteList."""
         self.selected_index = self.menu_items.snap_selection(

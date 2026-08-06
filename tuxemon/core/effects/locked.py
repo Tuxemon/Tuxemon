@@ -67,8 +67,8 @@ class LockedMoveEffect(CoreEffect):
             user.locked_move = None
 
             if random.random() < self.confuse_chance:
-                status = Status.create("confused", target, target.steps)
-                result = target.status.apply_status(session, status)
+                status = Status.create("confused", user, user.steps)
+                result = user.status.apply_status(session, status)
                 if result.applied:
                     event_bus = session.client.event_bus
                     event_bus.publish("status_applied")

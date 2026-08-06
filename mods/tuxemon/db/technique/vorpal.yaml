@@ -1,11 +1,11 @@
 tech_id: 155
 accuracy: 0.95
 effects:
+- type: damage
 - type: give
   parameters:
   - revenge
   - enemy_monster
-- type: damage
 speed: fast
 potency: 1
 power: 3

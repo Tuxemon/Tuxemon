@@ -148,7 +148,7 @@ class RewardCalculator:
         rewards_data.messages.append(
             T.format(
                 "combat_gain_exp",
-                {"name": winner.name.upper(), "xp": entry.experience},
+                {"name": winner.name, "xp": entry.experience},
             )
         )
 

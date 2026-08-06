@@ -1,15 +1,11 @@
 tech_id: 78
 accuracy: 1
 effects:
-- type: give
-  parameters:
-  - poison
-  - own_monster
+- type: damage
 - type: give
   parameters:
   - festering
-  - enemy_monster
-- type: damage
+  - own_team:enemy_team
 speed: normal
 potency: 0.8
 power: 2.25

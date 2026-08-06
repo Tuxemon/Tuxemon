@@ -4,14 +4,14 @@ effects:
 - type: move_type
   parameters:
   - enemy_monster
+- type: damage
 - type: give
   parameters:
   - softened
   - enemy_monster
-- type: damage
 speed: normal
 potency: 0.5
-power: 2.5
+power: 1.0
 range: touch
 recharge: 1
 slug: power_theft

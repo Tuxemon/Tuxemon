@@ -286,6 +286,7 @@ are licensed under CC BY.
 adapted by ultidonki from ansimuz's GothicVania Town assets, originally released into the Public Domain.
 ultidonki's changes (brightening some of the colors, reducing some of the noisy textures to be more flat/use less colors, and changing the perspective) released under CC0 license, version 1.0 or higher.
 is licensed under [Public Domain](https://creativecommons.org/publicdomain/zero/1.0/)
+* ["Fishing Splash"](https://opengameart.org/content/splash-effect-32x32) by Jesse McCarthy under CC BY, adapted for 16px by Sanglorian.
 
 ## CORES
 
@@ -1730,7 +1731,7 @@ From the CC0 Superpowers Asset Packs.
 From the CC0 gems by Winternaut on Open Game Art.
 
 * ["Frost Type - Small"](https://wiki.tuxemon.org/File:Frost-12px.png)
-From CC BY 3.0 sprites [https://opengameart.org/content/rock-rush-tiles-sprites-hud-backgrounds on Open Game Art] by EvidentlyCube. 
+Adapted by Sanglorian from CC0 sprites [https://opengameart.org/content/rpg-ui-icons on Open Game Art] by OwlishMedia. 
 
 * ["Heroic Type - Small"](https://wiki.tuxemon.org/File:Heroic-12px.png)
 From CC BY 3.0 military icons [https://opengameart.org/content/140-military-icons-set-fixed on Open Game Art] by AngryMeteor.com.
@@ -1757,6 +1758,8 @@ From the CC0 Superpowers Asset Packs.
 From the CC0 Superpowers Asset Packs. 
 
 ### Technique Icons
+
+* Melee, Ranged, Reliable, Reach and Touch icons made by Sanglorian using [https://opengameart.org/content/boxy-bold-font-0 Boxy Bold font], CC0 on OGA.
 
 * ["icon_blinded.png"](https://wiki.tuxemon.org/File:Blind.png)
 [https://opengameart.org/content/rpg-ui-icons CC0 on OGA]

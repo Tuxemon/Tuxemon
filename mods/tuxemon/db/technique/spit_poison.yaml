@@ -1,11 +1,11 @@
 tech_id: 2
 accuracy: 0.8
 effects:
+- type: damage
 - type: give
   parameters:
   - poison
   - enemy_monster
-- type: damage
 speed: normal
 potency: 0.2
 power: 1.25
@@ -32,7 +32,7 @@ use_failure: combat_miss
 use_success: null
 use_tech: combat_used_x
 visuals:
-  animation: null
+  animation: purple_explosion
   flip_axes: ''
   loop: 0
 sound:

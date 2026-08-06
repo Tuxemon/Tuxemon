@@ -80,7 +80,7 @@ def battlefield(session: Session, monster: Monster) -> None:
 
 def get_battle_outcome_music(
     session: Session, default_music: BattleMusicModel, owner: NPC
-) -> tuple[str, float] | None:
+) -> str | None:
     """
     Return the appropriate music track based on outcome and participants.
     Player-centric: only trigger music if a player is involved.
@@ -98,10 +98,7 @@ def get_battle_outcome_music(
         and active_music.defeat_music
         and active_music.defeat_music.music
     ):
-        return (
-            active_music.defeat_music.music,
-            active_music.defeat_music.volume,
-        )
+        return active_music.defeat_music.music
 
     # If the defeated was not a player → victory music
     if (
@@ -109,10 +106,7 @@ def get_battle_outcome_music(
         and active_music.victory_music
         and active_music.victory_music.music
     ):
-        return (
-            active_music.victory_music.music,
-            active_music.victory_music.volume,
-        )
+        return active_music.victory_music.music
 
     return None
 
@@ -168,7 +162,7 @@ def _handle_win(
     combat_type: CombatType,
 ) -> str:
     """Handles the case where the human player won the battle."""
-    info = {"name": winner.name.upper()}
+    info = {"name": winner.name}
 
     if combat_type == CombatType.TRAINER:
         for loser in losers:
@@ -199,7 +193,7 @@ def _handle_win(
             return T.format("combat_victory", info)
     else:
         if winner.monsters[0].wild:
-            info["name"] = winner.monsters[0].name.upper()
+            info["name"] = winner.monsters[0].name
         return T.format("combat_victory", info)
 
 
@@ -212,7 +206,7 @@ def _handle_loss(
     combat_type: CombatType,
 ) -> str:
     """Handles the case where the human player lost the battle."""
-    info = {"name": loser.name.upper()}
+    info = {"name": loser.name}
 
     if combat_type == CombatType.TRAINER:
         if loser.is_player:

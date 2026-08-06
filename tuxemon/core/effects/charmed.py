@@ -8,6 +8,7 @@ from typing import TYPE_CHECKING
 
 from tuxemon.core.core_effect import CoreEffect, StatusEffectResult
 from tuxemon.db import EffectPhase
+from tuxemon.locale.locale import T
 from tuxemon.technique.technique import Technique
 
 if TYPE_CHECKING:
@@ -60,4 +61,17 @@ class CharmedEffect(CoreEffect):
                 ]
             ):
                 session.client.combat_session.set_tech_hit(user, 1.1)
+
+
+        if status.has_phase(EffectPhase.PERFORM_TECH):
+            user = status.host
+            hit = session.client.combat_session.get_tech_hit(user)
+            if hit > 1.0:
+                params = {"user": user.name}
+                return StatusEffectResult(
+                    name=status.name,
+                    success=True,
+                    extras=[T.format("combat_state_charmed_miss", params)],
+                )
+
         return StatusEffectResult(name=status.name, success=True)

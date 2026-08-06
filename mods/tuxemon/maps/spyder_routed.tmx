@@ -124,5 +124,12 @@
     <property name="cond2" value="is char_facing player,right"/>
    </properties>
   </object>
- </objectgroup>
+   <object id="2777" name="Track routed" type="event" x="0" y="0" width="640" height="640">
+   <properties>
+    <property name="act1" value="add_tracker player,routed"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="not tracker player,routed"/>
+   </properties>
+  </object>
+</objectgroup>
 </map>

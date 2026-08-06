@@ -1,11 +1,11 @@
 tech_id: 12
 accuracy: 1
 effects:
+- type: damage
 - type: give
   parameters:
   - flinching
   - enemy_monster
-- type: damage
 speed: normal
 potency: 0.1
 power: 2.25
@@ -31,7 +31,7 @@ use_failure: combat_miss
 use_success: null
 use_tech: combat_used_x
 visuals:
-  animation: pound
+  animation: rollingball
   flip_axes: ''
   loop: 0
 sound:

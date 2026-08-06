@@ -147,8 +147,7 @@ class TextArea(Sprite):
 
     @text.setter
     def text(self, value: str) -> None:
-        if value == self._text:
-            return
+
         self._text = value
 
         if not self._text:

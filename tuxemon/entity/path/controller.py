@@ -8,6 +8,7 @@ from typing import TYPE_CHECKING
 from tuxemon.db import Direction, FacingMode
 from tuxemon.entity.path.commands import (
     ContinueCommand,
+    HopCommand,
     MovementCommand,
     PushCommand,
     RepathCommand,
@@ -155,6 +156,21 @@ class PathController:
 
         target = self.path.next()
         assert target is not None
+
+        # If the destination is a ledge tile, start the hop arc now (during the
+        # approach step) so the player visibly rises before reaching the ledge.
+        if not self.exec.is_hop:
+            dest_tile = self._map_manager.collision_map.get(target)
+            if dest_tile and dest_tile.hop:
+                ledge_dir = (
+                    dest_tile.endure[0]
+                    if len(dest_tile.endure) == 1
+                    else self.owner.facing
+                )
+                self.exec.is_hop = True
+                self.exec.hop_arc_origin = self.owner.tile_pos
+                self.exec.hop_arc_target = get_next_tile_pos(target, ledge_dir)
+
         move_dir = get_direction(self.owner.tile_pos, target)
         if self.owner.facing_mode == FacingMode.FOLLOW_MOVEMENT:
             direction = self.animation_policy.compute_facing(
@@ -219,7 +235,24 @@ class PathController:
         if self.owner.mover.has_reached_next_tile(origin, target):
             self.owner.complete_tile_entry(target)
             self.path.consume()
+
+            # Preserve hop arc state if the player hasn't yet reached the arc's
+            # final destination (e.g. arriving at the ledge tile mid-arc).
+            continuing_hop = (
+                self.exec.is_hop
+                and self.exec.hop_arc_target is not None
+                and target != self.exec.hop_arc_target
+            )
+            saved_arc_origin = self.exec.hop_arc_origin
+            saved_arc_target = self.exec.hop_arc_target
+
             self.exec.reset()
+
+            if continuing_hop:
+                self.exec.is_hop = True
+                self.exec.hop_arc_origin = saved_arc_origin
+                self.exec.hop_arc_target = saved_arc_target
+
             tile = self._map_manager.collision_map.get(self.owner.tile_pos)
             commands = self.tile_effects.get_effects(
                 tile,
@@ -362,3 +395,5 @@ class PathController:
                 self.start_path(cmd.destination)
         elif isinstance(cmd, StopMovementCommand):
             self.owner.stop_moving()
+        elif isinstance(cmd, HopCommand):
+            self.exec.is_hop = True

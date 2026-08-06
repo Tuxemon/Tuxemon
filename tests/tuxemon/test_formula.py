@@ -19,7 +19,7 @@ from tuxemon.formula import (
     simple_heal,
 )
 from tuxemon.monster.monster import Monster
-from tuxemon.monster.stats import CustomStatBoosts
+from tuxemon.monster.stats import BasicStats, CustomStatBoosts
 from tuxemon.platform.const.sizes import COEFF_DAMAGE
 from tuxemon.technique.stats import (
     TechniqueBaseStats,
@@ -250,8 +250,8 @@ def dmg_env():
 def test_valid_melee_damage(dmg_env):
     tech, user, target = dmg_env
     tech.range = "melee"
-    user.melee = 30
-    target.armour = 20
+    user.get_combat_stats.return_value = BasicStats(melee=30)
+    target.get_combat_stats.return_value = BasicStats(armour=20)
     dmg, mult = simple_damage_calculate(tech, user, target)
     assert isinstance(dmg, int)
     assert dmg > 0
@@ -261,8 +261,8 @@ def test_valid_melee_damage(dmg_env):
 def test_valid_touch_damage(dmg_env):
     tech, user, target = dmg_env
     tech.range = "touch"
-    user.melee = 25
-    target.dodge = 10
+    user.get_combat_stats.return_value = BasicStats(melee=25)
+    target.get_combat_stats.return_value = BasicStats(dodge=10)
     dmg, mult = simple_damage_calculate(tech, user, target)
     assert dmg > 0
     assert mult > 0.0
@@ -271,8 +271,8 @@ def test_valid_touch_damage(dmg_env):
 def test_additional_factors_applied(dmg_env):
     tech, user, target = dmg_env
     tech.range = "ranged"
-    user.ranged = 40
-    target.dodge = 15
+    user.get_combat_stats.return_value = BasicStats(ranged=40)
+    target.get_combat_stats.return_value = BasicStats(dodge=15)
     factors = {"weather_bonus": 0.2}
     dmg, mult = simple_damage_calculate(
         tech, user, target, additional_factors=factors

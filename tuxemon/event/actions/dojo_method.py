@@ -130,6 +130,7 @@ class DojoMethodAction(EventAction):
 
     def devolve(self, slug: str) -> None:
         devolution = Monster.spawn_base(slug, self.monster.level)
+        devolution.transfer_properties_from(self.monster)
         self.monster.evolution_handler.evolve_monster(devolution)
         logger.info(f"{self.monster.name}'s devolved!")
         self.client.sound_manager.play("sound_confirm")

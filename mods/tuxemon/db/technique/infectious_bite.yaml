@@ -1,11 +1,11 @@
 tech_id: 218
 accuracy: 0.95
 effects:
+- type: damage
 - type: give
   parameters:
   - festering
   - enemy_monster
-- type: damage
 speed: fast
 potency: 0.3
 power: 1.0
@@ -27,7 +27,6 @@ tags:
 - bite
 types:
 - venom
-- wood
 use_failure: combat_miss
 use_success: null
 use_tech: combat_used_x

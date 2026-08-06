@@ -1,11 +1,11 @@
 tech_id: 48
 accuracy: 0.8
 effects:
+- type: damage
 - type: give
   parameters:
   - recover
   - own_monster
-- type: damage
 speed: normal
 potency: 1
 power: 1.25

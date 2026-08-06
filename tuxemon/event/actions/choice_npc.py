@@ -26,19 +26,23 @@ class ChoiceNpcAction(EventAction):
     Script usage:
         .. code-block::
 
-            choice_npc <choices>,<variable>
+            choice_npc <choices>,<variable>[,label]
 
     Script parameters:
         choices: List of possible choices
             (item slugs eg: maple:billie),
             separated by a colon ":".
         variable: Variable to store the result of the choice.
+        label: Optional translation key. When given, every option is
+            labelled with this text instead of its own name (useful when
+            the sprite alone identifies the choice, e.g. "Select").
     """
 
     name = "choice_npc"
 
     choices: str
     variable: str
+    label: str | None = None
 
     def start(self, session: Session) -> None:
         def _set_variable(var_value: str, player: NPC) -> None:
@@ -58,7 +62,7 @@ class ChoiceNpcAction(EventAction):
         options = create_choice_options(actions)
 
         for opt in options:
-            opt.display_text = T.translate(opt.key)
+            opt.display_text = T.translate(self.label or opt.key)
 
         session.client.push_state("ChoiceNpc", menu=MenuOptions(options))
 

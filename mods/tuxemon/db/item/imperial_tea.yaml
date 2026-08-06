@@ -2,7 +2,7 @@ conditions: []
 effects:
 - type: gain_xp
   parameters:
-  - '3000'
+  - '10000'
 slug: imperial_tea
 sort: potion
 sprite: gfx/items/imperial_tea.png

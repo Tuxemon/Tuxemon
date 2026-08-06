@@ -36,6 +36,13 @@ source = "https://github.com/Tuxemon/Tuxemon"
 [project.gui-scripts]
 tuxemon = "tuxemon.__main__:main"
 
+[project.optional-dependencies]
+test = [
+    "pytest",
+    "pytest-mock",
+    "pytest-cov",
+]
+
 [tool.setuptools]
 include-package-data = true
 
@@ -120,7 +127,7 @@ testpaths = ["tests"]
 python_files = "test_*.py"
 python_classes = "Test*"
 python_functions = "test_*"
-addopts = "-v --tb=short"
+addopts = "-v --tb=short --cov=tuxemon --cov-report=term-missing"
 
 markers = [
     "unit: Unit tests (no external dependencies)",

@@ -18,12 +18,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install pytest
-          pip install pytest-mock
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-
-      - name: Install as library
-        run: pip install -e .
+          pip install -e .[test]
 
       - name: Run import torture test
         run: python scripts/test_imports.py

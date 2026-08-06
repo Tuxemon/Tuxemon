@@ -83,6 +83,5 @@ class StepHealingEffect(CoreEffect):
                     done = True
                     extra.append(T.format("combat_state_healed", params))
                 elif monster.hp_ratio == 1.0:
-                    extra = ["combat_full_health"]
                     extra.append(T.format("combat_full_health", params))
         return TechEffectResult(name=tech.name, success=done, extras=extra)

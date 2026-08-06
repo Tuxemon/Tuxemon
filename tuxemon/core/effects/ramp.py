@@ -43,7 +43,8 @@ class RampEffect(CoreEffect):
         self, session: Session, tech: Technique, user: Monster, target: Monster
     ) -> TechEffectResult:
         user.ramp_counter += 1
+        base_power = tech.base_stats.power + tech.custom_boosts.power
         tech.power = int(
-            tech.power * (self.multiplier ** (user.ramp_counter - 1))
+            base_power * (self.multiplier ** (user.ramp_counter - 1))
         )
         return TechEffectResult(name=tech.name, success=True)

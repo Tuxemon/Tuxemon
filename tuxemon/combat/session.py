@@ -341,6 +341,15 @@ class CombatSession:
         self._prize = 0
 
     # Random tech hit
+    #
+    # Accuracy is rolled once per monster per round: initialize_hit_chances()
+    # stores a single random value per monster, and get_tech_hit() only reads
+    # that cached value (it does not re-roll). This means every effect of a
+    # technique that compares `tech.accuracy >= get_tech_hit(user)` shares the
+    # same hit/miss result, so the accuracy check is effectively performed once
+    # per technique even when it has both damage and healing effects. The only
+    # deliberate exception is multiattack, which calls set_tech_hit() to re-roll
+    # for each of its repeated hits.
     def set_tech_hit(
         self, monster: Monster, value: float | None = None
     ) -> None:
@@ -478,7 +487,12 @@ class CombatSession:
         Parameters:
             ask: If True, human players will be prompted to choose a monster.
         """
-        for player in self.active_players:
+        # Opponents (AI players) are filled before the human player so their
+        # monsters are sent out and call first when the staggered releases play.
+        ordered_players = sorted(
+            self.active_players, key=lambda p: p.is_player
+        )
+        for player in ordered_players:
             max_positions = self.get_max_positions(player)
 
             # Handle sprite positioning for double battles
@@ -566,6 +580,7 @@ class CombatSession:
     def apply_technique(
         self, session: Session, tech: Technique, user: Monster, target: Monster
     ) -> tuple[TechEffectResult, StatusEffectResult | None]:
+        pre_status = user.status.current_status
         result = tech.use(session, user, target)
         logger.debug(
             f"{user.name} used {tech.slug} on {target.name} > success={result.success}"
@@ -573,7 +588,11 @@ class CombatSession:
 
         status_result = None
         status = user.status.current_status
-        if status:
+        # Only run the PERFORM_TECH phase on a status the user already had
+        # before this technique executed. Otherwise a technique that grants a
+        # status to its own user (e.g. Life Surge granting "chargedup") would
+        # have that status consumed by this same action's PERFORM_TECH hook.
+        if status and status is pre_status:
             status_result = status.use(session, EffectPhase.PERFORM_TECH)
             if status_result.statuses:
                 chosen = random.choice(status_result.statuses)

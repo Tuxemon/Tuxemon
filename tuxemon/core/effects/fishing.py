@@ -12,7 +12,8 @@ from tuxemon.constants import paths
 from tuxemon.core.core_effect import CoreEffect, ItemEffectResult
 from tuxemon.database.runtime import db
 from tuxemon.database.yaml_utils import load_yaml
-from tuxemon.db import MonsterModel
+from tuxemon.db import LoopMode, MonsterModel
+from tuxemon.map.map import get_next_tile_pos
 
 if TYPE_CHECKING:
     from tuxemon.item.item import Item
@@ -20,6 +21,8 @@ if TYPE_CHECKING:
 
 logger = logging.getLogger(__name__)
 
+#: Slug of the splash animation played over the faced water tile while fishing.
+SPLASH_SLUG = "splash_small"
 
 @dataclass
 class ActionConfig:
@@ -120,7 +123,31 @@ class FishingEffect(CoreEffect):
         self.stage = FishingStage.CAST
         self._elapsed = 0.0
         self._duration = self._fish.cast_time
+        self._play_splash(session)
         return ItemEffectResult(name=item.name, success=True)
+
+    def _play_splash(self, session: Session) -> None:
+        """Play the splash animation once over the water tile the player faces.
+        The splash is drawn below the player's sprite layer so the player's
+        head (we look down at the world) stays in front of the splash.
+        """
+        character = session.client.get_npc("player")
+        if character is None:
+            logger.error("Player not found; cannot play fishing splash.")
+            return
+
+        facing_tile = get_next_tile_pos(character.tile_pos, character.facing)
+        map_animations = session.client.map_renderer.map_animations
+        map_animations.setup_and_play(
+            slug=SPLASH_SLUG,
+            duration=0.15,
+            loop=LoopMode.NO_LOOP,
+            position=facing_tile,
+            layer=1,
+        )
+        # setup_and_play does not reset visibility, so make sure a previous
+        # splash isn't left hidden when it is replayed.
+        map_animations.show(SPLASH_SLUG)
 
     def update(self, session: Session, dt: float) -> None:
         session.client.push_state("SinkState")
@@ -140,6 +167,9 @@ class FishingEffect(CoreEffect):
             self.stage = FishingStage.BITE
             self._elapsed = 0.0
             self._duration = self._fish.bite_time
+            # A fish bites: splash again over the faced water tile.
+            if self._pending_encounter:
+                self._play_splash(session)
 
         elif (
             self.stage == FishingStage.BITE and self._elapsed >= self._duration

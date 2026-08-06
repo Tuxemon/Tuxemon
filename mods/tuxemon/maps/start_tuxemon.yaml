@@ -10,53 +10,18 @@ events:
     - not variable_set race_choice
     type: event
 
-  Gender:
+  Appearance:
     actions:
-    - change_bg gradient_blue,choice_gender,image
-    - translated_dialog_choice gender_male:gender_female:gender_nonbinary,gender_choice
+    - change_bg gradient_blue
+    - choice_npc white_male:black_male:white_female:black_female:gender_enby:gender_whatever,race_choice,menu_select
     conditions:
     - is variable_set scenario_choice
-    - not variable_set gender_choice
-    - not variable_set race_choice
-    type: event
-
-  Gender Male:
-    actions:
-    - set_char_attribute player,gender,male
-    - change_bg gradient_blue,choice_gender,image
-    - translated_dialog_choice black_male:white_male,race_choice
-    conditions:
-    - is variable_set scenario_choice
-    - is variable_set gender_choice:gender_male
-    - not variable_set race_choice
-    type: event
-
-
-  Gender Female:
-    actions:
-    - set_char_attribute player,gender,female
-    - change_bg gradient_blue,choice_gender,image
-    - translated_dialog_choice black_female:white_female,race_choice
-    conditions:
-    - is variable_set scenario_choice
-    - is variable_set gender_choice:gender_female
-    - not variable_set race_choice
-    type: event
-
-
-  Gender Nonbinary:
-    actions:
-    - set_char_attribute player,gender,nonbinary
-    - change_bg gradient_blue,choice_gender,image
-    - translated_dialog_choice gender_enby:gender_whatever,race_choice
-    conditions:
-    - is variable_set scenario_choice
-    - is variable_set gender_choice:gender_nonbinary
     - not variable_set race_choice
     type: event
 
 
 
+  # Visual appearance only — applies the chosen sprite.
   Black Female:
     actions:
     - set_template player,brownheroine_brown,heroineblack
@@ -92,6 +57,43 @@ events:
     - set_template player,adventurer,adventurer
     conditions:
     - is variable_set race_choice:white_male
+    type: event
+
+
+
+  # Pronouns / gender — separate screen, shown after the appearance pick.
+  Pronouns:
+    actions:
+    - change_bg gradient_blue
+    - translated_dialog_choice pronoun_he:pronoun_she:pronoun_they,pronoun_choice
+    conditions:
+    - is variable_set race_choice
+    - not variable_set gender_choice
+    type: event
+
+  Pronoun He:
+    actions:
+    - set_char_attribute player,gender,male
+    - set_variable gender_choice:gender_male
+    conditions:
+    - is variable_set pronoun_choice:pronoun_he
+    - not variable_set gender_choice
+    type: event
+  Pronoun She:
+    actions:
+    - set_char_attribute player,gender,female
+    - set_variable gender_choice:gender_female
+    conditions:
+    - is variable_set pronoun_choice:pronoun_she
+    - not variable_set gender_choice
+    type: event
+  Pronoun They:
+    actions:
+    - set_char_attribute player,gender,nonbinary
+    - set_variable gender_choice:gender_nonbinary
+    conditions:
+    - is variable_set pronoun_choice:pronoun_they
+    - not variable_set gender_choice
     type: event
 
 

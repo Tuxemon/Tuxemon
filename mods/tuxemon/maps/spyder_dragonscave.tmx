@@ -497,5 +497,12 @@
     <property name="cond1" value="is battle_outcome player,won,spyder_dragonscave_lessa"/>
    </properties>
   </object>
+   <object id="1442" name="Track dragonscave" type="event" x="0" y="0" width="320" height="640">
+   <properties>
+    <property name="act1" value="add_tracker player,dragonscave"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="not tracker player,dragonscave"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

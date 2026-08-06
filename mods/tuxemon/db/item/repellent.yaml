@@ -1,23 +1,18 @@
-conditions:
-- type: has_tp_room
-  parameters:
-  - dodge
-  operator: is
+conditions: []
 effects:
-- type: give_tp
+- type: repellent
   parameters:
-  - dodge
-  - '50'
-slug: raise_dodge
+  - '100'
+slug: repellent
 sort: utility
-sprite: gfx/items/raise_dodge.png
-category: stats
-cost: 10000
+sprite: gfx/items/box.png
+category: none
+cost: 100
 usable_in:
 - WorldState
 modifiers: []
 behaviors:
-  resellable: true
+  requires_monster_menu: false
 use_failure: generic_failure
 use_item: combat_used_x
 use_success: generic_success

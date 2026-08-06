@@ -562,5 +562,12 @@
     <property name="cond1" value="is battle_outcome player,won,spyder_route2_graf"/>
    </properties>
   </object>
+   <object id="4327" name="Track route2" type="event" x="0" y="0" width="640" height="320">
+   <properties>
+    <property name="act1" value="add_tracker player,route2"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="not tracker player,route2"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

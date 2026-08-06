@@ -924,6 +924,14 @@ class VisualSpriteList(RelativeGroup[_MenuElement]):
         if not (event.pressed and event.button in self._allowed_input()):
             return index
 
+        # The incoming index may point outside the visible page (e.g. it was
+        # restored from a save slot that lives on another page). Advancing from
+        # an off-page index would make _advance_input() raise ValueError via
+        # visible.index(), which is not caught below, so snap onto the page
+        # first.
+        if index not in self._visible_indices():
+            return self.snap_selection(index)
+
         sprites = self.sprites()
         last_enabled = index
 

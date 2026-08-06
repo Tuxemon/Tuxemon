@@ -44,20 +44,30 @@ class Battle:
 
         for key in SIMPLE_PERSISTANCE_ATTRIBUTES:
             if key in save_data:
-                setattr(battle, key, save_data[key])
+                if key == "outcome":
+                    try:
+                        setattr(battle, key, OutputBattle(save_data[key]))
+                    except ValueError:
+                        logger.error(f"Invalid outcome value: {save_data[key]!r}")
+                else:
+                    setattr(battle, key, save_data[key])
 
         return battle
 
     def get_state(self) -> Mapping[str, Any]:
-        """Returns a dictionary representing the current battle state."""
-        save_data = {
-            attr: getattr(self, attr)
-            for attr in SIMPLE_PERSISTANCE_ATTRIBUTES
-            if getattr(self, attr)
-        }
+        save_data = {}
+
+        for attr in SIMPLE_PERSISTANCE_ATTRIBUTES:
+            value = getattr(self, attr)
+            if not value:
+                continue
+
+            if attr == "outcome":
+                save_data[attr] = value.value
+            else:
+                save_data[attr] = value
 
         save_data["instance_id"] = self.instance_id.hex
-
         return save_data
 
     def set_state(self, save_data: Mapping[str, Any]) -> None:
@@ -68,6 +78,11 @@ class Battle:
         for key, value in save_data.items():
             if key == "instance_id" and value:
                 self.instance_id = UUID(value)
+            elif key == "outcome":
+                try:
+                    self.outcome = OutputBattle(value)
+                except ValueError:
+                    logger.error(f"Invalid outcome value: {value!r}")
             elif key in SIMPLE_PERSISTANCE_ATTRIBUTES:
                 setattr(self, key, value)
 

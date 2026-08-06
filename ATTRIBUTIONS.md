@@ -286,6 +286,7 @@ are licensed under CC BY.
 adapted by ultidonki from ansimuz's GothicVania Town assets, originally released into the Public Domain.
 ultidonki's changes (brightening some of the colors, reducing some of the noisy textures to be more flat/use less colors, and changing the perspective) released under CC0 license, version 1.0 or higher.
 is licensed under [Public Domain](https://creativecommons.org/publicdomain/zero/1.0/)
+* ["Fishing Splash"](https://opengameart.org/content/splash-effect-32x32) by Jesse McCarthy under CC BY, adapted for 16px by Sanglorian.
 
 ## CORES
 

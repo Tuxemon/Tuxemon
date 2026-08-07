@@ -107,6 +107,8 @@ Manual installation is recommended.
 sudo pacman -S python python-pip python-pillow python-pygame python-pydantic git
 git clone https://github.com/Tuxemon/Tuxemon.git
 cd Tuxemon
+python -m venv venv
+source venv/bin/activate
 python -m pip install -U -r requirements.txt
 python run_tuxemon.py
 ```

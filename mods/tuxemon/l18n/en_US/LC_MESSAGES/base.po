@@ -9640,7 +9640,7 @@ msgstr ""
 "It's a statue of a former Tuxemon master. The name is weathered away..."
 
 msgid "famous_statue2"
-msgstr "It says: For our beloved friends and heroes of all, the wywen"
+msgstr "It says: For our beloved friends and heroes of all, the Wyven"
 
 msgid "cotton_town_fountain"
 msgstr "It's a fountain. A lot of coins are at the bottom."

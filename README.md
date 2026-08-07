@@ -14,6 +14,8 @@ level are welcome to join.
 [![Reddit](https://img.shields.io/reddit/subreddit-subscribers/Tuxemon?style=social)](https://www.reddit.com/r/tuxemon)
 [![YouTube](https://img.shields.io/youtube/channel/subscribers/UC6BJ6H7dB2Dpb8wzcYhDU3w?style=social)](https://www.youtube.com/channel/UC6BJ6H7dB2Dpb8wzcYhDU3w)
 
+[![Test](https://github.com/Tuxemon/Tuxemon/actions/workflows/test.yml/badge.svg?branch=development)](https://github.com/Tuxemon/Tuxemon/actions/workflows/test.yml)
+
 ![screenshot](https://www.tuxemon.org/images/featurette-01.png)
 
 
@@ -58,6 +60,10 @@ Complete Mods documentation:
 
 - [docs/mods.md](docs/mods.md)
 
+
+**Fedora Linux**
+
+See [docs/installation.md#fedora-linux](docs/installation.md#fedora-linux).
 
 Controls
 --------

@@ -246,7 +246,7 @@ msgid "generic_failure"
 msgstr "¡Falló!"
 
 msgid "attempting_capture"
-msgstr "Intentando capturar..."
+msgstr "Intentando capturar…"
 
 msgid "gotcha"
 msgstr "¡Atrapado!"
@@ -667,31 +667,31 @@ msgstr ""
 "Al nacer es abandonado en un hormiguero para que se abra camino devorando a "
 "sus ocupantes."
 
-msgid "aardorn"
-msgstr "Aardorn"
+msgid "aardart"
+msgstr "Aardart"
 
 msgid "agnidon_description"
 msgstr ""
 "Prefiere andar sobre cuatro patas, pero puede erguirse para abrir puertas, "
 "empujar árboles o sostener cosas."
 
-msgid "agnidon"
-msgstr "Agnidon"
+msgid "aardorn"
+msgstr "Aardorn"
 
 msgid "agnigon_description"
 msgstr ""
 "Se dice que es un 'dragón falso', porque parece un dragón, pero en realidad "
 "evolucionó a partir de una línea diferente de antiguos reptiles."
 
-msgid "agnigon"
-msgstr "Agnigon"
+msgid "agnidon"
+msgstr "Agnidon"
 
 msgid "agnite_description"
 msgstr ""
 "Es juguetón, pero debe enseñársele temprano a mantener su fuego a raya."
 
-msgid "agnite"
-msgstr "Agnite"
+msgid "agnigon"
+msgstr "Agnigon"
 
 msgid "allagon_description"
 msgstr ""
@@ -699,15 +699,15 @@ msgstr ""
 "dejaron atrás sus antepasados, y reaccionarán con violencia para "
 "recuperarlas."
 
-msgid "allagon"
-msgstr "Allagon"
+msgid "agnite"
+msgstr "Agnite"
 
 msgid "anoleaf_description"
 msgstr ""
 "Considera a las plantas que crecen cerca de él sus hermanos y hermanas."
 
-msgid "anoleaf"
-msgstr "Anoleaf"
+msgid "allagon"
+msgstr "Allagon"
 
 msgid "axolightl_description"
 msgstr ""
@@ -721,136 +721,136 @@ msgid "bamboon_description"
 msgstr ""
 "Lucha con su vara de bambú, que también usa para mantener el equilibrio."
 
-msgid "bamboon"
-msgstr "Bamboon"
+msgid "axylightl"
+msgstr "Axylightl"
 
 msgid "bigfin_description"
 msgstr ""
 "Tiene un ecosistema entero en su espalda, así que intenta no sumergirse."
 
-msgid "bigfin"
-msgstr "Bigfin"
+msgid "bamboon"
+msgstr "Bamboon"
 
 msgid "bolt_description"
 msgstr ""
 
-msgid "bolt"
-msgstr "Bolt"
+msgid "bigfin"
+msgstr "Bigfin"
 
 msgid "cairfrey_description"
 msgstr ""
 "Un alegre elemento de mobiliario que se despertó una mañana y decidió "
 "explorar."
 
-msgid "cairfrey"
-msgstr "Cairfrey"
+msgid "bolt"
+msgstr "Bolt"
 
 msgid "capiti_description"
 msgstr ""
 "Parece un bebé, pero se han encuntrado especímenes de cientos de años."
 
-msgid "capiti"
-msgstr "Capiti"
+msgid "cairfrey"
+msgstr "Cairfrey"
 
 msgid "cardiling_description"
 msgstr "Uno no se espera que respire fuego, hasta que lo hace."
 
-msgid "cardiling"
-msgstr "Cardiling"
+msgid "capiti"
+msgstr "Capiti"
 
 msgid "cardinale_description"
 msgstr ""
 "Odia firmemente a lis depredadores, y les declara la guerra a ellos y sus "
 "pequeños en cuanto puede."
 
-msgid "cardinale"
-msgstr "Cardinale"
+msgid "cardiling"
+msgstr "Cardiling"
 
 msgid "cardiwing_description"
 msgstr ""
 "Su canto es notable, pero pocos se atreverían a mantener a un pájaro cantor "
 "explosivo."
 
-msgid "cardiwing"
-msgstr "Cardiwing"
+msgid "cardinale"
+msgstr "Cardinale"
 
 msgid "chillimp_description"
 msgstr ""
 "Se rumorea que vive en lo alto de montañas heladas, pero nunca se le ha "
 "sacado una fotografía clara."
 
-msgid "chillimp"
-msgstr "Chillimp"
+msgid "cardiwing"
+msgstr "Cardiwing"
 
 msgid "chloragon_description"
 msgstr ""
 "Eclosiona de un huevo antiguo plantado en suelo fértil.Cuando se acaben los "
 "huevos, no habrá más CHLORAGON."
 
-msgid "chloragon"
-msgstr "Chloragon"
+msgid "chillimp"
+msgstr "Chillimp"
 
 msgid "conifrost_description"
 msgstr "Si estornuda, provoca una avalancha. Tiene moqueo permanente."
 
-msgid "conifrost"
-msgstr "Conifrost"
+msgid "chloragon"
+msgstr "Chloragon"
 
 msgid "corvix_description"
 msgstr "Arma sus alas con fragmentos de hueso de sus víctimas."
 
-msgid "corvix"
-msgstr "Corvix"
+msgid "conifrost"
+msgstr "Conifrost"
 
 msgid "dandylion_description"
 msgstr ""
 "Da a luz a una camada en toda su vida. Después vaga por el mundo en su "
 "busca."
 
-msgid "dandylion"
-msgstr "Dandylion"
+msgid "corvix"
+msgstr "Corvix"
 
 msgid "djinnbo_description"
 msgstr ""
 "Existe la creencia errónea de que es un humano que murió en un incendio. En "
 "realidad, los que murieron fueron sus parientes."
 
-msgid "djinnbo"
-msgstr "Djinnbo"
+msgid "dandylion"
+msgstr "Dandylion"
 
 msgid "dollfin_description"
 msgstr "Cada uno sigue a un barco a todas partes, explorando el mundo."
 
-msgid "dollfin"
-msgstr "Dollfin"
+msgid "djinnbo"
+msgstr "Djinnbo"
 
 msgid "dracune_description"
 msgstr ""
 "Se encuentra inmóvil durante el día, pero puede menearse y morder de noche."
 
-msgid "dracune"
-msgstr "Dracune"
+msgid "dollfin"
+msgstr "Dollfin"
 
 msgid "dragarbor_description"
 msgstr ""
 "Cuando siente acercarse el fin de sus días, viaja a un cementerio y se "
 "planta a sí mismo. La flor de su cola crece por siempre."
 
-msgid "dragarbor"
-msgstr "Dragarbor"
+msgid "dracune"
+msgstr "Dracune"
 
 msgid "dune_pincher_description"
 msgstr ""
 
-msgid "dune_pincher"
-msgstr "Dune Pincher"
+msgid "dragarbor"
+msgstr "Dragarbor"
 
 msgid "eaglace_description"
 msgstr ""
 "Cuando alza el vuelo, se forman nubes. Cuando agita sus alas, cae granizo."
 
-msgid "eaglace"
-msgstr "Eaglace"
+msgid "dune_pincher"
+msgstr "Dune Pincher"
 
 msgid "eruptibus_description"
 msgstr "Los herreros trabajan con él, calentando metales en su caldera."
@@ -877,47 +877,50 @@ msgstr ""
 "Hubo un tiempo en el que los FERRICRAN estaban cubiertos de escamas "
 "adamantinas, y tenían alas de mithril."
 
-msgid "ferricran"
-msgstr "Ferricran"
+msgid "falcono"
+msgstr "Falcono"
 
 msgid "firomenis_description"
 msgstr "<<MISSING>>"
 
-msgid "firomenis"
-msgstr "Firomenis"
+msgid "ferricran"
+msgstr "Ferricran"
 
 msgid "fluttaflap_description"
 msgstr ""
 "Se alimenta de impurezas, así que purifica la sangre de aquellos a los que "
 "muerde."
 
-msgid "fluttaflap"
-msgstr "Fluttaflap"
+msgid "firomenis"
+msgstr "Firomenis"
 
 msgid "fruitera_description"
 msgstr ""
 "FRUITERA tiene hambre de fruta y lleva todo lo que puede. Cuando se "
 "sorprende, deja caer todas sus frutas, las recoge de nuevo y luego huye."
 
-msgid "fruitera"
-msgstr "Fruitera"
+msgid "fluttaflap"
+msgstr "Fluttaflap"
 
 msgid "gectile_description"
 msgstr "Es tan rápido y ligero que puede caminar sobre las hojas."
 
-msgid "gectile"
-msgstr "Gectile"
+msgid "fruitera"
+msgstr "Fruitera"
 
 msgid "heronquak_description"
 msgstr ""
 "El cristal de su pecho es confundido con un diamante por los cazadores "
 "furtivos. Se funde al ser extraído del cuerpo de un HERONQUAK."
 
+msgid "gectile"
+msgstr "Gectile"
+
 msgid "heronquak"
 msgstr "Heronquak"
 
 msgid "hydrone_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "hydrone"
 msgstr "Hydrone"
@@ -935,13 +938,16 @@ msgstr ""
 "Es colocado en su fruto por su padre, quien luego lo envía a vagar por el "
 "mundo."
 
-msgid "lambert"
-msgstr "Lambert"
+msgid "katacoon"
+msgstr "Katacoon"
 
 msgid "legko_description"
 msgstr ""
 "Durante mucho tiempo se pensó que no tenía piernas, pero de hecho sus hojas "
 "son extremidades vestigiales."
+
+msgid "lambert"
+msgstr "Lambert"
 
 msgid "legko"
 msgstr "Legko"
@@ -1002,8 +1008,14 @@ msgstr "Nudiflot"
 msgid "nudiflot_male"
 msgstr "Nudiflot"
 
-msgid "nut_description"
-msgstr ""
+msgid "nudiflot_male_description"
+msgstr "Come y almacena el veneno de las criaturas marinas de las que se alimenta."
+
+msgid "nudiflot_female"
+msgstr "Nudiflot (♀)"
+
+msgid "nudiflot_male"
+msgstr "Nudiflot (♂)"
 
 msgid "nut"
 msgstr "Nut"
@@ -1076,11 +1088,12 @@ msgid "snowrilla_description"
 msgstr ""
 "Le encanta jugar al pilla-pilla con esquiadores en pendientes solitarias."
 
+
 msgid "snowrilla"
 msgstr "Snowrilla"
 
 msgid "spycozeus_description"
-msgstr ""
+msgstr "<<MISSING>>"
 
 msgid "spycozeus"
 msgstr "Spycozeus"
@@ -1107,8 +1120,17 @@ msgstr ""
 "Se dice que tuvo que inventarse a sí mismo porque no se había diseñado una "
 "evolución."
 
-msgid "tigrock"
-msgstr "Tigrock"
+msgid "sumchon"
+msgstr "Sumchon"
+
+msgid "swap"
+msgstr "Swap"
+
+msgid "template_description"
+msgstr "Descripción aquí"
+
+msgid "template"
+msgstr "Nombre de Plantilla"
 
 msgid "tumbleworm_description"
 msgstr ""
@@ -1485,7 +1507,7 @@ msgstr ""
 "derrotado aún!"
 
 msgid "karrianna_dialog2"
-msgstr "Bueno... Eres el primer entrenador al que me he enfrentado..."
+msgstr "Bueno… Eres el primer entrenador al que me he enfrentado…"
 
 msgid "xero_hideout1"
 msgstr "Instituto Xero para la Investigación y Desarrollo de Tuxemon."

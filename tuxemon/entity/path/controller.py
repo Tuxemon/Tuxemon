@@ -155,23 +155,18 @@ class PathController:
             return
 
         target = self.path.next()
-        assert target is not None
+        if target is None:
+            return
 
         # If the destination is a ledge tile, start the hop arc now (during the
         # approach step) so the player visibly rises before reaching the ledge.
         if not self.exec.is_hop:
-            dest_tile = self._map_manager.collision_map.get(target)
-            if dest_tile and dest_tile.hop:
-                ledge_dir = (
-                    dest_tile.endure[0]
-                    if len(dest_tile.endure) == 1
-                    else self.owner.facing
-                )
+            is_hop, arc_origin, arc_target = self._evaluate_ledge(target)
+            if is_hop:
                 self.exec.is_hop = True
-                self.exec.hop_arc_origin = self.owner.tile_pos
-                self.exec.hop_arc_target = get_next_tile_pos(target, ledge_dir)
+                self.exec.hop_arc_origin = arc_origin
+                self.exec.hop_arc_target = arc_target
 
-        move_dir = get_direction(self.owner.tile_pos, target)
         if self.owner.facing_mode == FacingMode.FOLLOW_MOVEMENT:
             direction = self.animation_policy.compute_facing(
                 self.owner, target
@@ -185,37 +180,61 @@ class PathController:
                 target,
                 self.owner.ignore_collisions,
             ):
-                # Surfanim suffers from significant clock drift, causing
-                # timing inconsistencies. Even after completing one animation
-                # cycle, the timing can become inaccurate. This drift results
-                # in walking steps misaligning with tile positions, with
-                # certain frames lasting only a single game frame.
-                # Using `play` to initiate each tile transition helps reset
-                # the surfanim timer, keeping walking animation frames in sync.
-                # However, occasional desynchronization still occurs.
-                # To fully resolve this issue, the game will eventually need
-                # a dedicated global clock—not reliant on wall time—to eliminate
-                # visual glitches and ensure frame accuracy.
-                self.animation_policy.on_step(self.owner, move_dir)
-                self.exec.origin = self.owner.tile_pos
-                self.exec.target = target
-                self.owner.mover.move(move_dir)
-                self.owner.begin_tile_exit()
+                self._execute_step(target)
             else:
-                commands = self.reroute_policy.on_obstruction(
-                    self.owner,
-                    self._npc_manager,
-                    self.pathfinding,
-                    target,
-                )
-                for cmd in commands:
-                    self.execute_command(cmd)
+                self._handle_obstruction(target)
         except Exception as e:
             logger.error(
                 f"Error in next_waypoint for {self.owner.slug}: {e}",
                 exc_info=True,
             )
             self.cancel_path()
+
+    def _execute_step(self, target: tuple[int, int]) -> None:
+        """
+        Executes a single tile step.
+
+        Notes on animation timing:
+        Surfanim has clock drift issues that cause walking frames to desync from
+        tile transitions. Triggering the animation on each step helps reset the
+        timer and keeps movement visually aligned, even though occasional drift
+        still happens. A proper fix will require a global game clock instead of
+        wall time.
+        """
+        move_dir = get_direction(self.owner.tile_pos, target)
+        self.animation_policy.on_step(self.owner, move_dir)
+        self.exec.origin = self.owner.tile_pos
+        self.exec.target = target
+        self.owner.mover.move(move_dir)
+        self.owner.begin_tile_exit()
+
+    def _handle_obstruction(self, target: tuple[int, int]) -> None:
+        commands = self.reroute_policy.on_obstruction(
+            self.owner,
+            self._npc_manager,
+            self.pathfinding,
+            target,
+        )
+        for cmd in commands:
+            self.execute_command(cmd)
+
+    def _evaluate_ledge(
+        self, target: tuple[int, int]
+    ) -> tuple[bool, tuple[int, int] | None, tuple[int, int] | None]:
+        """Evaluates if the target tile triggers a hop/ledge arc."""
+        dest_tile = self._map_manager.collision_map.get(target)
+        if dest_tile and dest_tile.hop:
+            ledge_dir = (
+                dest_tile.endure[0]
+                if len(dest_tile.endure) == 1
+                else self.owner.facing
+            )
+            return (
+                True,
+                self.owner.tile_pos,
+                get_next_tile_pos(target, ledge_dir),
+            )
+        return False, None, None
 
     def check_waypoint(self) -> None:
         """

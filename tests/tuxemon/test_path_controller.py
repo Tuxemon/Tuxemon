@@ -522,3 +522,57 @@ def test_retry_path_after_cooldown(
         pc.process_movement()
 
     assert len(pc.path) <= expected_len
+
+
+def test_evaluate_ledge_triggers_hop(
+    mk_npc_with_mocks, pathfinder, map_manager, npc_manager
+):
+    npc = mk_npc_with_mocks()
+    npc.tile_pos = (5, 5)
+    npc.facing = Direction.DOWN
+
+    # Mock a tile that has a hop property
+    mock_tile = MagicMock()
+    mock_tile.hop = True
+    mock_tile.endure = [Direction.DOWN]
+    map_manager.collision_map.get.return_value = mock_tile
+
+    pc = PathController(npc, pathfinder, map_manager, npc_manager)
+    is_hop, origin, target = pc._evaluate_ledge((5, 6))
+
+    assert is_hop is True
+    assert origin == (5, 5)
+    assert target == (5, 7)  # Based on direction or end tile logic
+
+
+def test_evaluate_ledge_no_hop(
+    mk_npc_with_mocks, pathfinder, map_manager, npc_manager
+):
+    npc = mk_npc_with_mocks()
+
+    # Mock a normal tile with no hop
+    mock_tile = MagicMock()
+    mock_tile.hop = False
+    map_manager.collision_map.get.return_value = mock_tile
+
+    pc = PathController(npc, pathfinder, map_manager, npc_manager)
+    is_hop, origin, target = pc._evaluate_ledge((5, 6))
+
+    assert is_hop is False
+    assert origin is None
+    assert target is None
+
+
+def test_execute_step_triggers_mover_and_animation(
+    mk_npc_with_mocks, pathfinder, map_manager, npc_manager
+):
+    npc = mk_npc_with_mocks()
+    npc.tile_pos = (2, 2)
+    pc = PathController(npc, pathfinder, map_manager, npc_manager)
+
+    pc._execute_step((2, 3))
+
+    assert pc.exec.origin == (2, 2)
+    assert pc.exec.target == (2, 3)
+    npc.mover.move.assert_called_once_with(Direction.DOWN)
+    npc.sprite_controller.play_animation.assert_called()

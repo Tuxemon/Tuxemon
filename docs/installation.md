@@ -27,7 +27,8 @@ py -3 run_tuxemon.py
 
 ### Windows Binary
 
-Windows binaries are currently **non‑functional**.  
+Windows binaries are currently **non‑functional**.
+
 Use the source installation instead.
 
 ---
@@ -115,9 +116,9 @@ python run_tuxemon.py
 
 ## Android (Experimental)
 
-- Build using scripts in the `buildconfig/` directory.  
-- Copy the `mods` folder to `Internal Storage/Tuxemon`.  
-- Grant the app filesystem permissions.
+* Build using scripts in the `buildconfig/` directory.
+* Copy the `mods` folder to `Internal Storage/Tuxemon`.
+* Grant the app filesystem permissions.
 
 Android support is experimental and may require manual setup.
 
@@ -154,16 +155,39 @@ uv run python run_tuxemon.py
 
 ---
 
+## Developer Setup
+
+If you are contributing code, running tests, or performing style checks, install the optional development or test dependencies:
+
+```shell
+# Install test dependencies
+pip install -e .[test]
+
+# Install full development environment (tests, linters, type checkers)
+pip install -e .[dev]
+```
+
+Alternatively, use the Makefile targets:
+
+* `make test-setup`: Installs test dependencies.
+* `make dev-setup`: Installs development dependencies.
+* `make test`: Runs tests via tox.
+* `make format`: Automatically formats and fixes code.
+* `make lint`: Runs linters.
+* `make type`: Runs static type checking.
+
+---
+
 ## Notes
 
-- Running from source is the most reliable method across all platforms.  
-- Build scripts in `buildconfig/` are intended for use inside a VM or container.  
-- For scripting, debugging, and developer tools, refer to the **CLI Interface** document.
+* Running from source is the most reliable method across all platforms.
+* Build scripts in `buildconfig/` are intended for use inside a VM or container.
+* For scripting, debugging, and developer tools, refer to the **CLI Interface** document.
 
 ---
 
 ## External Resources
 
-- Official Website: [https://www.tuxemon.org](https://www.tuxemon.org)  
-- Documentation: [https://tuxemon.readthedocs.io/en/latest/](https://tuxemon.readthedocs.io/en/latest/)  
-- Source Code: [https://github.com/Tuxemon/Tuxemon](https://github.com/Tuxemon/Tuxemon)  
+* Official Website: [https://www.tuxemon.org](https://www.tuxemon.org)
+* Documentation: [https://tuxemon.readthedocs.io/en/latest/](https://tuxemon.readthedocs.io/en/latest/)
+* Source Code: [https://github.com/Tuxemon/Tuxemon](https://github.com/Tuxemon/Tuxemon)

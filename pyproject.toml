@@ -42,6 +42,12 @@ test = [
     "pytest-mock",
     "pytest-cov",
 ]
+dev = [
+    "tuxemon[test]",
+    "mypy",
+    "ruff",
+    "tox",
+]
 
 [tool.setuptools]
 include-package-data = true

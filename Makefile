@@ -1,23 +1,27 @@
-# Default target to run when `make` is called by itself
-.PHONY: default
+.PHONY: default setup test-setup dev-setup run test format lint type
+
 default: run
 
-# Install dependencies
-.PHONY: setup
 setup:
 	pip install -U -r ./requirements.txt
 
-# Run the game
-.PHONY: run
+test-setup:
+	pip install -e .[test]
+
+dev-setup:
+	pip install -e .[dev]
+
 run:
 	python ./run_tuxemon.py
 
-# Run tests
-.PHONY: test
 test:
 	tox -e py3
 
-# Format code
-.PHONY: format
 format:
 	tox -e fmt
+
+lint:
+	tox -e lint
+
+type:
+	tox -e type

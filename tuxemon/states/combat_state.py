@@ -1120,9 +1120,7 @@ class CombatState(CombatAnimations):
         self.ai_manager.clear_ai()
 
     def _on_status_applied(self) -> None:
-        self.status_icons.update_icons_for_monsters(
-            self.combat_session.active_monsters,
-        )
+        self.refresh_status_icons()
 
     def _on_update_party_hud(self) -> None:
         self.animate_update_party_hud()

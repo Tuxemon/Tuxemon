@@ -48,6 +48,12 @@ logger = logging.getLogger(__name__)
 
 HUD_LAYER = 100
 
+# Timings of the HUD slide-in played when a monster is sent out. Status icons
+# sit at the HUD's resting position, so they are only shown once the HUD has
+# finished travelling there.
+HUD_SLIDE_DELAY = 1.3
+HUD_SLIDE_DURATION = 2.0
+
 
 def toggle_visible(sprite: Sprite) -> None:
     sprite.toggle_visible()
@@ -105,6 +111,12 @@ class CombatAnimations(Menu[None], ABC):
         """Call this whenever HP or EXP changes."""
         current_graphics = self.env.get_battle_graphics()
         self.bars.draw_bars(self.hud_manager.hud_map, current_graphics)
+
+    def refresh_status_icons(self) -> None:
+        """Rebuild the condition icons of every monster on the battlefield."""
+        self.status_icons.update_icons_for_monsters(
+            self.combat_session.active_monsters
+        )
 
     def show_combat_dialog(
         self, dialog_box: GraphicBox, text_area: TextArea
@@ -465,8 +477,16 @@ class CombatAnimations(Menu[None], ABC):
                 if is_player
                 else {"right": hud_rect.right}
             )
-            animate_func = partial(self.animate, duration=2.0, delay=1.3)
-            animate_func(hud.rect, **target_pos)
+            animate_func = partial(
+                self.animate,
+                duration=HUD_SLIDE_DURATION,
+                delay=HUD_SLIDE_DELAY,
+            )
+            slide = animate_func(hud.rect, **target_pos)
+            # A monster can arrive already carrying a condition, so show its
+            # icons as soon as the HUD reaches its resting place rather than
+            # waiting for the next status to be applied.
+            slide.schedule(self.refresh_status_icons, ScheduleType.ON_FINISH)
 
             self.animate_hp(monster)
             if hud.player:
@@ -476,6 +496,7 @@ class CombatAnimations(Menu[None], ABC):
                 hud.rect.left = hud_rect.left
             else:
                 hud.rect.right = hud_rect.right
+            self.refresh_status_icons()
 
     def _load_sprite(
         self, sprite_type: str, position: dict[str, int]

@@ -1049,6 +1049,8 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 
 * ["Flute"](https://wiki.tuxemon.org/File:Flute_.png) Adapted by Sanglorian from the Superpowers Asset Packs.
 
+* ["Elixir of Life"](https://wiki.tuxemon.org/File:P_Blue02_-_24x24.png) Adapted by Sanglorian from Henrique Lazarini. 
+
 * ["Horseshoe"](https://wiki.tuxemon.org/File:Horseshoe.png) Adapted by Sanglorian from the Superpowers Asset Packs.
 
 * ["Marble"](https://wiki.tuxemon.org/File:Pixel_icons_by_oceansdream23.png) [http://opengameart.org/content/various-inventory-24-pixel-icon-set CC BY 3.0 on OGA, from OceansDream]

@@ -1464,6 +1464,12 @@ msgstr "Die"
 msgid "die_description"
 msgstr "Confused? Roll the die and do whatever it says!"
 
+msgid "elixir_of_life"
+msgstr "Elixir of Life"
+
+msgid "elixir_of_life_description"
+msgstr "Holding this item keeps a monster in juvenile form indefinitely, increasing its Armor and Dodge stats."
+
 msgid "feather"
 msgstr "Feather"
 

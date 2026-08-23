@@ -957,11 +957,12 @@ class CombatState(CombatAnimations):
         * Animation to remove monster is handled here
         TODO: check for faint status, not HP
         """
-        for (
-            _,
-            party,
-        ) in self.combat_session.field_monsters.get_all_monsters().items():
-            for monster in party:
+        all_monsters = self.combat_session.field_monsters.get_all_monsters()
+        for party in list(all_monsters.values()):
+            # iterate a copy: animate_monster_faint removes the monster from
+            # this same list, so mutating while iterating would skip the next
+            # monster (e.g. both targets of a spread technique fainting)
+            for monster in list(party):
                 if monster.is_fainted:
                     params = {"name": monster.name}
                     msg = T.format("combat_fainted", params)
@@ -986,10 +987,11 @@ class CombatState(CombatAnimations):
 
         * Monsters will be removed from play here
         """
-        for (
-            monster_party
-        ) in self.combat_session.field_monsters.get_all_monsters().values():
-            for monster in monster_party:
+        all_monsters = self.combat_session.field_monsters.get_all_monsters()
+        for monster_party in list(all_monsters.values()):
+            # iterate a copy: status effects applied below can remove a monster
+            # from this list, which would otherwise skip the following monster
+            for monster in list(monster_party):
                 self.animate_hp(monster)
                 self.apply_status_effects(monster)
                 if monster.is_fainted:

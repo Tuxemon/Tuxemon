@@ -40,7 +40,7 @@ class StatusIconManager:
 
     def create_icon_cache(self, active_monsters: Sequence[Monster]) -> None:
         for monster in active_monsters:
-            ui = self._tracker._monster_ui.get(monster)
+            ui = self._tracker.get_ui(monster)
             if not ui:
                 logger.warning(f"No UI found for monster '{monster}'")
                 continue
@@ -98,7 +98,7 @@ class StatusIconManager:
 
     def remove_monster_icons(self, monster: Monster) -> None:
         """Remove all icons associated with a specific monster."""
-        ui = self._tracker._monster_ui.get(monster)
+        ui = self._tracker.get_ui(monster)
         if ui:
             for icon in ui.status_icons:
                 icon.kill()
@@ -106,7 +106,7 @@ class StatusIconManager:
 
     def get_icons_for_monster(self, monster: Monster) -> list[Sprite]:
         """Retrieve the list of icons for a specific monster."""
-        ui = self._tracker._monster_ui.get(monster)
+        ui = self._tracker.get_ui(monster)
         return ui.status_icons if ui else []
 
     def animate_icons(
@@ -126,7 +126,7 @@ class StatusIconManager:
     ) -> tuple[float, float]:
         owner = monster.get_owner()
         layout_data = self._layouts.get(owner, {})
-        ui = self._tracker._monster_ui.get(monster)
+        ui = self._tracker.get_ui(monster)
         is_double = ui.is_double if ui else False
         key = f"monster_status_icon_slot_{index}" if is_double else "monster_status_icon"
         rects = layout_data.get(key, [])

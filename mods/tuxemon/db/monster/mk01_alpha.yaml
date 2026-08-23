@@ -10,14 +10,14 @@ moveset:
   technique: wall_of_steel
 - level_learned: 4
   technique: shrapnel
-- level_learned: 7
-  technique: beam
 - level_learned: 13
   technique: blade
 - level_learned: 16
   technique: acid
 - level_learned: 19
   technique: platinum
+- level_learned: 22
+  technique: beam
 - level_learned: 25
   technique: crystal
 - level_learned: 28

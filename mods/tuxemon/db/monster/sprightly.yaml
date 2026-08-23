@@ -17,7 +17,7 @@ moveset:
 - level_learned: 19
   technique: nest
 evolutions:
-- at_level: 32
+- at_level: 20
   monster_slug: uprout
 history:
 - slug: sprightly

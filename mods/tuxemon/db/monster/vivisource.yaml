@@ -14,12 +14,12 @@ moveset:
   technique: spit_poison
 - level_learned: 13
   technique: wallow
-- level_learned: 16
-  technique: flood
-- level_learned: 19
+- level_learned: 24
   technique: chill_mist
 - level_learned: 25
   technique: water_blast
+- level_learned: 28
+  technique: flood
 - level_learned: 31
   technique: depth_charge
 evolutions: []

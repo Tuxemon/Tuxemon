@@ -12,10 +12,10 @@ moveset:
   technique: energy_claws
 - level_learned: 7
   technique: negation
-- level_learned: 10
-  technique: gust
 - level_learned: 16
   technique: fledgling
+- level_learned: 19
+  technique: gust
 - level_learned: 22
   technique: fluff_up
 - level_learned: 25

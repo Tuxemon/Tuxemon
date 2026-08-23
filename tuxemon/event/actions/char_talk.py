@@ -76,8 +76,8 @@ class CharTalkAction(EventAction):
             self.stop()
             return
 
-        text = TextFormatter.replace_text(session, line, T)
-        open_dialog(client=session.client, text=[T.translate(text)])
+        pages = TextFormatter(session, T).paginate_translation(line)
+        open_dialog(client=session.client, text=pages)
 
     def update(self, session: Session, dt: float) -> None:
         if "DialogState" not in session.client.active_state_names:

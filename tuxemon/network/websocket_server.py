@@ -130,7 +130,13 @@ class WebsocketServerWrapper:
                 )
                 await server.wait_closed()
 
-        self.loop.run_until_complete(start())
+        try:
+            self.loop.run_until_complete(start())
+        except OSError as e:
+            logger.warning(
+                f"WebSocket server could not bind on {host}:{port}: {e}. "
+                "Multiplayer networking will be unavailable."
+            )
 
     async def _handler(self, websocket: ServerConnection) -> None:
         cuuid = None

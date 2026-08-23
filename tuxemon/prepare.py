@@ -60,14 +60,7 @@ def pygame_init() -> DisplayContext:
 
     scaling = make_default_scaling(CONFIG, NATIVE_RESOLUTION)
 
-    # Fullscreen flags
     fullscreen = pg.FULLSCREEN if CONFIG.fullscreen else 0
-
-    from tuxemon.platform import platform
-
-    if platform.is_android():
-        fullscreen = pg.FULLSCREEN
-
     flags = pg.HWSURFACE | pg.DOUBLEBUF | fullscreen
 
     if CONFIG.vsync:

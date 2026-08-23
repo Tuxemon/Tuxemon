@@ -8,7 +8,13 @@ import sys
 from collections.abc import Iterable, Sequence
 from typing import TYPE_CHECKING
 
-from prompt_toolkit import PromptSession
+try:
+    from prompt_toolkit import PromptSession
+
+    _PROMPT_TOOLKIT_AVAILABLE = True
+except ImportError:
+    PromptSession = None  # type: ignore[assignment,misc]
+    _PROMPT_TOOLKIT_AVAILABLE = False
 
 from tuxemon.cli.clicommand import CLICommand
 from tuxemon.cli.context import InvokeContext
@@ -79,6 +85,10 @@ class CommandProcessor:
         """
         Repeatedly get input from user, parse it, and run the commands.
         """
+        if not _PROMPT_TOOLKIT_AVAILABLE:
+            logger.warning("prompt_toolkit not available; CLI disabled")
+            return
+
         ctx = InvokeContext(
             processor=self,
             session=self.session,

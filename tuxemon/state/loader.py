@@ -2,7 +2,11 @@
 # Copyright (c) 2014-2026 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import importlib
+import inspect
 import logging
+import pkgutil
+import traceback
 from pathlib import Path
 from typing import TYPE_CHECKING
 
@@ -87,7 +91,7 @@ class StateLoader:
         ]
 
         core_pm = self._build_plugin_manager(
-            folders=[state_folder],
+            folders=plugin_folders,
             include=core_includes,
             exclude=["State"],
         )
@@ -102,6 +106,54 @@ class StateLoader:
         for plugin in core_pm.get_all_plugins(interface=State):
             repository.add_state(plugin.plugin_object)
 
+        # APK/zip fallback: .py files may not exist on the filesystem
+        # (e.g. android p4a bundles only .pyc in __pycache__).
+        # Use pkgutil to enumerate the package via Python's import machinery.
+        if not repository.all_states():
+            logger.warning(
+                "No states registered via filesystem scan; "
+                "falling back to pkgutil package discovery"
+            )
+            self._pkgutil_register_states(repository)
+
         # Mods override core
         for plugin in mod_pm.get_all_plugins(interface=State):
             repository.add_state(plugin.plugin_object)
+
+    def _pkgutil_register_states(self, repository: StateRepository) -> None:
+        """
+        Import all sub-modules of base_package via pkgutil and register any
+        State subclasses found.  Works in APK/zip environments where .py
+        source files are not accessible as regular filesystem entries.
+        """
+        try:
+            pkg = importlib.import_module(self.base_package)
+        except ImportError as e:
+            logger.error(
+                f"pkgutil fallback: cannot import {self.base_package}: {e}"
+            )
+            return
+
+        for mod_info in pkgutil.iter_modules(pkg.__path__):
+            full_name = f"{self.base_package}.{mod_info.name}"
+            try:
+                mod = importlib.import_module(full_name)
+            except Exception as e:
+                logger.error(
+                    f"pkgutil fallback: failed to import {full_name}: {e}\n"
+                    f"{traceback.format_exc()}"
+                )
+                continue
+
+            for _, cls in inspect.getmembers(mod, predicate=inspect.isclass):
+                if (
+                    issubclass(cls, State)
+                    and cls is not State
+                    and cls.__module__ == full_name
+                    and hasattr(cls, "name")
+                ):
+                    repository.add_state(cls)
+                    logger.debug(f"pkgutil registered state: {cls.__name__}")
+
+        count = len(repository.all_states())
+        logger.info(f"pkgutil fallback registered {count} states")

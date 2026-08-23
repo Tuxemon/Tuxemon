@@ -3,7 +3,7 @@ effects:
 - type: statchange
 slug: boost_ranged
 stat_modifiers:
-  armour:
+  ranged:
     step: 2
 sort: utility
 sprite: gfx/items/boost_ranged.png

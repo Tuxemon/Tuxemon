@@ -36,6 +36,7 @@ from tuxemon.monster.stats import (
     CustomStatBoosts,
     IndividualValues,
     StatCalculator,
+    TemporaryStatBoosts,
     TrainingPoints,
     compare_stats,
     randomize_ivs,
@@ -160,6 +161,7 @@ class Monster:
         self.bond_handler = BondHandler()
 
         self.base_stats: BasicStats = BasicStats()
+        self.temporary_stat_boosts = TemporaryStatBoosts()
         self.training_points = TrainingPoints()
         self.custom_stats = CustomStatBoosts()
         self.individual_values = randomize_ivs()
@@ -571,17 +573,9 @@ class Monster:
 
     def get_combat_stats(self) -> BasicStats:
         """Calculates effective stats for the current combat turn."""
-        combined_temporary_boosts = BasicStats()
-
-        for status in self.status.get_statuses():
-            combined_temporary_boosts += status.temporary_stat_boosts
-
-        held_item = self.item_handler.held_item
-        if held_item:
-            combined_temporary_boosts += held_item.temporary_stat_boosts
-
-        for move in self.moves.get_moves():
-            combined_temporary_boosts += move.temporary_stat_boosts
+        combined_temporary_boosts = self.temporary_stat_boosts.total(
+            self.base_stats
+        )
 
         calculator = StatCalculator(
             base_stats=self.base_stats,
@@ -597,12 +591,7 @@ class Monster:
         return calculator.calculate(temporary_boosts=combined_temporary_boosts)
 
     def clear_all_temporary_boosts(self) -> None:
-        for status in self.status.get_statuses():
-            status.temporary_stat_boosts = BasicStats()
-        for move in self.moves.get_moves():
-            move.temporary_stat_boosts = BasicStats()
-        if self.item_handler.held_item:
-            self.item_handler.held_item.temporary_stat_boosts = BasicStats()
+        self.temporary_stat_boosts.clear()
 
     def set_level(self, new_level: int, old_level: int) -> int:
         if new_level > old_level and self._levelup_start_stats is None:
@@ -691,6 +680,7 @@ class Monster:
         self.current_hp = min(old_monster.current_hp, self.hp)
         self.moves = old_monster.moves
         self.status = old_monster.status
+        self.temporary_stat_boosts = old_monster.temporary_stat_boosts
         self.instance_id = old_monster.instance_id
         self.individual_values = old_monster.individual_values
         self.training_points = old_monster.training_points

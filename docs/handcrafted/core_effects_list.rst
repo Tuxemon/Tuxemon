@@ -1,5 +1,6 @@
 .. autoscriptinfoclass:: tuxemon.core.effects.appear.AppearEffect
 .. autoscriptinfoclass:: tuxemon.core.effects.bivouac.BivouacEffect
+.. autoscriptinfoclass:: tuxemon.core.effects.bond.BondEffect
 .. autoscriptinfoclass:: tuxemon.core.effects.buff.BuffEffect
 .. autoscriptinfoclass:: tuxemon.core.effects.burnt.BurntEffect
 .. autoscriptinfoclass:: tuxemon.core.effects.button_lock.ButtonLockEffect

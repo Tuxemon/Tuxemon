@@ -867,6 +867,13 @@ msgstr ""
 "Sky feather cutlets rubbed in starpepper mix. Light, crispy, and boldly "
 "seasoned."
 
+msgid "heart_biscuit"
+msgstr "Heart Biscuit"
+
+msgid "heart_biscuit_description"
+msgstr ""
+"A biscuit that splits in equal halves. It warms the hearts of those who share it."
+
 msgid "potato_fries"
 msgstr "Potato Fries"
 

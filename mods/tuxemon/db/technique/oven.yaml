@@ -13,9 +13,9 @@ effects:
 - type: disappear
   parameters:
   - fire_ball
-speed: extremely_fast
+speed: normal
 potency: 1
-power: 1
+power: 0
 range: melee
 recharge: 4
 slug: oven

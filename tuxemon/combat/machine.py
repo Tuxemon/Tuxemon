@@ -64,11 +64,30 @@ class CombatMachine:
                     "Only one player remaining — transitioning to RAN_AWAY."
                 )
                 return CombatPhase.RAN_AWAY
-            active_set = set(self.session.active_monsters)
-            queued_users = {
-                a.user for a in self.session.action_queue.queue
-            } & active_set
-            if active_set and queued_users >= active_set:
+            # A monster may have zero, one or more than one action. Charging,
+            # locked and disappeared monsters skip the decision phase because
+            # the effect that put them in that state already scheduled their
+            # action on the pending queue, so they count as decided without
+            # appearing in the queue. Pending actions are deliberately not
+            # counted on their own: a monster that used foresight in an
+            # earlier round still picks a new action even though it has
+            # another one coming, and must not be treated as decided.
+            queue = self.session.action_queue.queue
+            active = set(self.session.active_monsters)
+            committed = {m for m in active if self.session.skips_decision(m)}
+            committed |= active & {action.user for action in queue}
+            # An action whose user is the trainer rather than a monster
+            # (e.g. throwing a tuxeball or using another item) consumes one
+            # of that trainer's monsters' turns, even though no monster
+            # appears as the action's user. Count each such action as
+            # covering one of the trainer's undecided monsters.
+            for player in self.session.active_players:
+                npc_actions = sum(1 for a in queue if a.user == player)
+                if npc_actions:
+                    monsters = self.session.field_monsters.get_monsters(player)
+                    uncovered = [m for m in monsters if m not in committed]
+                    committed.update(uncovered[:npc_actions])
+            if active and active <= committed:
                 logger.debug(
                     "All monsters have actions — transitioning to PRE_ACTION."
                 )

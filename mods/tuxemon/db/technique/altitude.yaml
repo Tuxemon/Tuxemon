@@ -13,7 +13,7 @@ effects:
 - type: disappear
   parameters:
   - hawk
-speed: extremely_fast
+speed: normal
 potency: 1
 power: 1
 range: melee

@@ -49,5 +49,5 @@ class DisappearEffect(CoreEffect):
         land_technique = Technique.create(self.attack)
         land_action = EnqueuedAction(user, land_technique, target)
         turn = combat_session.turn
-        combat_session.action_queue.add_pending(land_action, turn)
+        combat_session.action_queue.add_pending(land_action, turn + 1)
         return TechEffectResult(name=tech.name, success=True)

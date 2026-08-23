@@ -773,6 +773,10 @@ class Monster:
         self.types.reset_to_default()
         self.moves.reset_current_stats()
         self.out_of_range = False
+        self.is_charging = False
+        self.charged_technique = None
+        self.locked_turns_left = 0
+        self.locked_move = None
         self.moves.full_recharge_moves()
 
         if not self.status.is_fainted:

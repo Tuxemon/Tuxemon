@@ -45,6 +45,9 @@ class StatusEffectResult(EffectResult):
 class CoreEffect:
     name: ClassVar[str]
 
+    # When a monster disappears, effects targeting them are normally skipped. But if a disappeared monster targets a second disappeared monster, "appear" should trigger even though there is no monster there. 
+    runs_on_out_of_range_target: ClassVar[bool] = False
+
     def __post_init__(self) -> None:
         cast_dataclass_parameters(self)
 

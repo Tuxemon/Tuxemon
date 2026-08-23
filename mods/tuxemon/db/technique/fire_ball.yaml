@@ -1,6 +1,7 @@
 tech_id: 4
 accuracy: 0.9
 effects:
+- type: appear
 - type: damage
 speed: normal
 potency: 0.0

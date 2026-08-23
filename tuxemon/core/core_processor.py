@@ -96,11 +96,18 @@ class EffectProcessor:
         if not self.effects:
             return meta_result
 
+        out_of_range = bool(target and target.out_of_range)
+
         for effect in self.effects:
             if isinstance(effect, CoreEffect):
                 # Technique with target
                 if user and target:
-                    if effect.should_run_tech(session, source, user, target):
+                    if out_of_range and not effect.runs_on_out_of_range_target:
+                        logger.debug(
+                            f"Tech effect {effect.name} skipped, "
+                            "target is out of range"
+                        )
+                    elif effect.should_run_tech(session, source, user, target):
                         result = effect.apply_tech_target(
                             session, source, user, target
                         )

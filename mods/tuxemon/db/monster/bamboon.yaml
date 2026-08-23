@@ -8,6 +8,9 @@ moveset:
   technique: stick
 - level_learned: 1
   technique: clamp_on
+- level_learned: 1
+  technique: staff_smash
+  learning_method: evolution
 - level_learned: 7
   technique: mending
 - level_learned: 10

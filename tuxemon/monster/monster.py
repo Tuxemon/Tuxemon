@@ -689,7 +689,7 @@ class Monster:
         self.taste_warm = old_monster.taste_warm
         self.set_stats()
         self.current_hp = min(old_monster.current_hp, self.hp)
-        self.moves = old_monster.moves
+        self.moves.transfer_learned_moves_from(old_monster.moves)
         self.status = old_monster.status
         self.instance_id = old_monster.instance_id
         self.individual_values = old_monster.individual_values

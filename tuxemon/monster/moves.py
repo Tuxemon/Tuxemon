@@ -40,6 +40,21 @@ class MonsterMovesHandler:
         """Sets the raw moveset data from the database."""
         self.moveset = list(moveset)
 
+    def transfer_learned_moves_from(self, other: MonsterMovesHandler) -> None:
+        """
+        Adopts the techniques already learned by another handler, keeping
+        this handler's own moveset.
+        Used when a monster evolves or devolves: the new form remembers the
+        moves it knew, but every later lookup (level up, eligibility, forget)
+        must go against the new form's database rows, not the old form's.
+        Parameters:
+            other: The handler of the monster being replaced.
+        """
+        self.moves = list(other.moves)
+        self.pending_moves = {
+            iid: list(slugs) for iid, slugs in other.pending_moves.items()
+        }
+
     def add_move(self, technique: Technique) -> None:
         """
         Adds a technique to this tuxemon's moveset.

@@ -7,7 +7,7 @@ moveset:
 - level_learned: 1
   technique: gnaw
 - level_learned: 1
-  technique: energy_claws
+  technique: clamp_on
 - level_learned: 4
   technique: ants
 - level_learned: 10

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="14" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="40">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="14" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="40">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -105,18 +105,18 @@
     <property name="act11" value="lock_controls"/>
     <property name="act12" value="create_npc spyder_dante,3,18"/>
     <property name="act13" value="create_npc spyder_billie,2,18"/>
-    <property name="act14" value="char_face spyder_dante,up"/>
-    <property name="act15" value="char_face spyder_billie,up"/>
-    <property name="act20" value="translated_dialog spyder_omnichannel_billie1"/>
-    <property name="act21" value="pathfind spyder_billie,7,15"/>
-    <property name="act22" value="char_face spyder_billie,up"/>
+    <property name="act14" value="pathfind_to_char player,spyder_billie,left"/>
+    <property name="act19" value="translated_dialog spyder_omnichannel_billie1"/>
+    <property name="act20" value="pathfind spyder_billie,7,15"/>
+    <property name="act21" value="char_face spyder_billie,up"/>
+    <property name="act22" value="pathfind_to_char player,spyder_dante,right"/>
     <property name="act23" value="translated_dialog spyder_omnichannel_dante1"/>
     <property name="act24" value="pathfind spyder_dante,11,15"/>
     <property name="act25" value="char_face spyder_dante,up"/>
     <property name="act40" value="translated_dialog spyder_omnichannel_beaverbrook1"/>
     <property name="act50" value="pathfind player,9,13"/>
-    <property name="act60" value="add_monster mk01_alpha,55,spyder_omnichannel_beaverbrook,5,10"/>
-    <property name="act61" value="add_monster mk01_beta,55,spyder_omnichannel_beaverbrook,5,10"/>
+    <property name="act60" value="add_monster mk01_gamma,55,spyder_omnichannel_beaverbrook,5,10"/>
+    <property name="act61" value="add_monster mk01_omega,55,spyder_omnichannel_beaverbrook,5,10"/>
     <property name="act62" value="start_battle player,spyder_omnichannel_beaverbrook"/>
     <property name="act70" value="pathfind spyder_dante,9,14"/>
     <property name="act71" value="char_face spyder_dante,up"/>

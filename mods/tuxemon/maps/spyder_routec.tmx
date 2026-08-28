@@ -53,7 +53,7 @@
   <object id="201" name="Create River" type="event" x="80" y="112" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_searoutec_river,5,7"/>
-    <property name="act2" value="char_wander spyder_searoutec_river,0.7"/>
+    <property name="act2" value="char_wander spyder_searoutec_river,0.8,4,4"/>
     <property name="cond1" value="not char_exists spyder_searoutec_river"/>
    </properties>
   </object>
@@ -106,9 +106,10 @@
     <property name="cond1" value="not battle_outcome player,won,spyder_searoutec_gil"/>
    </properties>
   </object>
-  <object id="207" name="Create Leek" type="event" x="480" y="160" width="16" height="16">
+  <object id="207" name="Create Leek" type="event" x="416" y="160" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_searoutec_leek,30,10,wander"/>
+    <property name="act1" value="create_npc spyder_searoutec_leek,26,10,wander"/>
+    <property name="act2" value="char_wander spyder_searoutec_leek,1.0,4,4"/>
     <property name="cond1" value="not char_exists spyder_searoutec_leek"/>
    </properties>
   </object>
@@ -125,7 +126,7 @@
   <object id="209" name="Create Beech" type="event" x="128" y="192" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_searoutec_beech,8,14"/>
-    <property name="act2" value="char_wander spyder_searoutec_beech,0.9"/>
+    <property name="act2" value="char_wander spyder_searoutec_beech,1.1,4,4"/>
     <property name="cond1" value="not char_exists spyder_searoutec_beech"/>
    </properties>
   </object>
@@ -347,10 +348,10 @@
     <property name="behav1" value="talk spyder_searoutec_alpha"/>
    </properties>
   </object>
-  <object id="258" name="Create Swimmer" type="event" x="240" y="480" width="16" height="16">
+  <object id="258" name="Create Swimmer" type="event" x="208" y="448" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_searoutec_beta,15,30"/>
-    <property name="act2" value="char_wander spyder_searoutec_beta,0.7"/>
+    <property name="act2" value="char_wander spyder_searoutec_beta,0.9,4,4"/>
     <property name="cond1" value="not char_exists spyder_searoutec_beta"/>
    </properties>
   </object>

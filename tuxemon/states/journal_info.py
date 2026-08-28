@@ -248,7 +248,7 @@ class JournalInfoState(PygameMenuState):
         desc = T.translate(f"{monster.slug}_description")
         desc = self._safe_display(desc)
         desc_frame = menu.add.frame_v(
-            fxw(255),
+            fxw(243),
             fxh(57),
             float=True,
             float_origin_position=True,
@@ -262,14 +262,16 @@ class JournalInfoState(PygameMenuState):
             label_id="description",
             font_size=self.font_type.biggest,
             wordwrap=True,
-            leading=50,
+            leading=fxh(10),
             align=ALIGN_LEFT,
-            float=True,
-            float_origin_position=True,
             padding=0,
         )
 
-        lab9.translate(fxw(8), fxh(85))
+        # Pack the label into the frame so its wordwrap width is bounded by the
+        # frame instead of the full menu width. Starting at x=8 with a width of
+        # 243 nominal px, the text ends at x=251 -- 2px inside the background
+        # panel's right-hand border (which sits at x=253).
+        desc_frame.pack(lab9, align=ALIGN_LEFT)
 
         # evolution monsters
         slugs = [ele.monster_slug for ele in monster.evolutions]

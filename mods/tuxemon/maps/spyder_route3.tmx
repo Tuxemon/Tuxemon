@@ -457,7 +457,7 @@
    <properties>
     <property name="act1" value="char_talk spyder_route3_twig,pre_battle"/>
     <property name="act2" value="add_monster aardorn,11,spyder_route3_twig,5,10"/>
-    <property name="act3" value="add_monster foofle,11,spyder_route3_twig,5,10"/>
+    <property name="act3" value="add_monster tumblequill,11,spyder_route3_twig,5,10"/>
     <property name="act4" value="start_battle player,spyder_route3_twig"/>
     <property name="act5" value="char_talk spyder_route3_twig,post_battle_lose"/>
     <property name="behav1" value="talk spyder_route3_twig"/>
@@ -482,7 +482,7 @@
    <properties>
     <property name="act1" value="char_talk spyder_route3_surat,pre_battle"/>
     <property name="act2" value="add_monster rockat,12,spyder_route3_surat,5,10"/>
-    <property name="act3" value="add_monster foofle,12,spyder_route3_surat,5,10"/>
+    <property name="act3" value="add_monster grintot,12,spyder_route3_surat,5,10"/>
     <property name="act4" value="start_battle player,spyder_route3_surat"/>
     <property name="act5" value="char_talk spyder_route3_surat,post_battle_lose"/>
     <property name="behav1" value="talk spyder_route3_surat"/>
@@ -571,7 +571,7 @@
     <property name="act4" value="char_talk spyder_route3_twig,pre_battle"/>
     <property name="act5" value="unlock_controls"/>
     <property name="act6" value="add_monster aardorn,11,spyder_route3_twig,5,10"/>
-    <property name="act7" value="add_monster foofle,11,spyder_route3_twig,5,10"/>
+    <property name="act7" value="add_monster tumblequill,11,spyder_route3_twig,5,10"/>
     <property name="act8" value="start_battle player,spyder_route3_twig"/>
     <property name="act9" value="char_talk spyder_route3_twig,post_battle_lose"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_route3_twig"/>
@@ -711,49 +711,49 @@
   </object>
   <object id="714" name="encounter 3" type="event" x="32" y="160" width="608" height="304">
    <properties>
-    <property name="act1" value="random_encounter spyder_route3_desert,0.3"/>
+    <property name="act1" value="random_encounter spyder_route3_desert,3"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_moved player"/>
    </properties>
   </object>
   <object id="715" name="encounter 3" type="event" x="64" y="128" width="128" height="32">
    <properties>
-    <property name="act1" value="random_encounter spyder_route3_desert,0.3"/>
+    <property name="act1" value="random_encounter spyder_route3_desert,3"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_moved player"/>
    </properties>
   </object>
   <object id="716" name="encounter 3" type="event" x="176" y="80" width="48" height="32">
    <properties>
-    <property name="act1" value="random_encounter spyder_route3_desert,0.3"/>
+    <property name="act1" value="random_encounter spyder_route3_desert,3"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_moved player"/>
    </properties>
   </object>
   <object id="717" name="encounter 3" type="event" x="256" y="80" width="176" height="80">
    <properties>
-    <property name="act1" value="random_encounter spyder_route3_desert,0.3"/>
+    <property name="act1" value="random_encounter spyder_route3_desert,3"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_moved player"/>
    </properties>
   </object>
   <object id="718" name="encounter 3" type="event" x="432" y="128" width="208" height="32">
    <properties>
-    <property name="act1" value="random_encounter spyder_route3_desert,0.3"/>
+    <property name="act1" value="random_encounter spyder_route3_desert,3"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_moved player"/>
    </properties>
   </object>
   <object id="719" name="encounter 3" type="event" x="256" y="464" width="384" height="176">
    <properties>
-    <property name="act1" value="random_encounter spyder_route3_desert,0.3"/>
+    <property name="act1" value="random_encounter spyder_route3_desert,3"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_moved player"/>
    </properties>
   </object>
   <object id="720" name="encounter 3" type="event" x="32" y="464" width="48" height="128">
    <properties>
-    <property name="act1" value="random_encounter spyder_route3_desert,0.3"/>
+    <property name="act1" value="random_encounter spyder_route3_desert,3"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_moved player"/>
    </properties>

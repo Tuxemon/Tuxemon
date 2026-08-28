@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="602">
+<map version="1.10" tiledversion="1.12.1" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="607">
  <properties>
   <property name="east" value="route2"/>
   <property name="edges" value="clamped"/>
@@ -140,6 +140,7 @@
     <property name="act50" value="pathfind spyder_cottontown_hacker,25,29"/>
     <property name="act60" value="remove_npc spyder_cottontown_hacker"/>
     <property name="act70" value="set_variable spokencottonhacker:yes"/>
+    <property name="cond3" value="is variable_set momthanked:yes"/>
     <property name="act80" value="unlock_controls"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="not variable_set spokencottonhacker:yes"/>
@@ -371,31 +372,6 @@
     <property name="cond2" value="not environment_is night_grass"/>
    </properties>
   </object>
-  <object id="587" name="Nu Phone Mom" type="event" x="496" y="272" width="16" height="16">
-   <properties>
-    <property name="act11" value="char_stop player"/>
-    <property name="act12" value="lock_controls"/>
-    <property name="act13" value="create_npc spyder_papertown_mom,22,18"/>
-    <property name="act14" value="pathfind spyder_papertown_mom,31,18"/>
-    <property name="act15" value="unlock_controls"/>
-    <property name="act16" value="char_face spyder_papertown_mom,player"/>
-    <property name="act17" value="char_face player,spyder_papertown_mom"/>
-    <property name="act20" value="translated_dialog spyder_cottontown_mom"/>
-    <property name="act25" value="add_item nu_phone"/>
-    <property name="act26" value="translated_dialog nu_phone,,center,center,center"/>
-    <property name="act35" value="add_item app_map"/>
-    <property name="act36" value="translated_dialog app_map,,center,center,center"/>
-    <property name="act40" value="pathfind spyder_papertown_mom,22,18"/>
-    <property name="act41" value="set_variable spokenmomcotton:yes"/>
-    <property name="act42" value="remove_npc spyder_papertown_mom"/>
-    <property name="act50" value="add_tracker player,cotton_town"/>
-    <property name="act51" value="add_tracker player,paper_town"/>
-    <property name="cond1" value="not variable_set spokenmomcotton:yes"/>
-    <property name="cond2" value="is char_at player"/>
-    <property name="cond3" value="not has_item player,nu_phone"/>
-    <property name="cond5" value="not has_item player,app_map"/>
-   </properties>
-  </object>
   <object id="583" name="Create Statue Blue" type="event" x="64" y="144" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_statue_blue,4,9"/>
@@ -533,6 +509,41 @@
     <property name="act1" value="transition_teleport player,spyder_test_map.tmx,2,2,0.3"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_facing player,left"/>
+   </properties>
+  </object>
+  <object id="602" name="Create Statue Blue - after" type="event" x="128" y="176" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_statue_blue,8,11"/>
+    <property name="cond1" value="not char_exists spyder_statue_blue"/>
+    <property name="cond2" value="is battle_outcome player,won,spyder_dragonscave_benden"/>
+   </properties>
+  </object>
+  <object id="603" name="Create Statue Orange - tipped" type="event" x="64" y="96" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_statue_orange_tipped,4,6"/>
+    <property name="cond1" value="not char_exists spyder_statue_orange"/>
+    <property name="cond2" value="is battle_outcome player,won,spyder_dragonscave_benden"/>
+   </properties>
+  </object>
+  <object id="604" name="Create Hillary" type="event" x="496" y="272" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_cottoncafe_hillary,31,17"/>
+    <property name="act2" value="char_face spyder_cottoncafe_hillary,down"/>
+    <property name="cond1" value="not char_exists spyder_cottoncafe_hillary"/>
+    <property name="cond2" value="not variable_set momthanked:yes"/>
+   </properties>
+  </object>
+  <object id="605" name="Remove Hillary" type="event" x="496" y="272" width="16" height="16">
+   <properties>
+    <property name="act1" value="remove_npc spyder_cottoncafe_hillary"/>
+    <property name="cond1" value="is char_exists spyder_cottoncafe_hillary"/>
+    <property name="cond2" value="is variable_set momthanked:yes"/>
+   </properties>
+  </object>
+  <object id="606" name="Talk Hillary" type="event" x="496" y="256" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_cottontown_hillary"/>
+    <property name="behav1" value="talk spyder_cottoncafe_hillary"/>
    </properties>
   </object>
  </objectgroup>

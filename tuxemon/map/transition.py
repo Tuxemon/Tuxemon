@@ -51,6 +51,20 @@ class MapTransition:
         self._update_map_state(map_data)
         self._reset_events(map_data)
         self._update_boundaries()
+        self._clear_overlay()
+
+    def _clear_overlay(self) -> None:
+        """Reset the world overlay so it does not persist across maps.
+
+        Each map re-asserts its own overlay (e.g. the torchlight in a
+        dungeon or the night tint outdoors) through its events, so the
+        previous map's overlay must not bleed through.
+        """
+        try:
+            renderer = self.event_engine.session.client.map_renderer
+        except ValueError:
+            return
+        renderer.clear_overlay()
 
     def validate_coordinates(self, x: int, y: int) -> None:
         if not self.boundary.is_within_boundaries((x, y)):

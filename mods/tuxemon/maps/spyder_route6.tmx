@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="244">
+<map version="1.10" tiledversion="1.12.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="248">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="map_type" value="route"/>
@@ -18,7 +18,7 @@
  </layer>
  <layer id="2" name="Tile Layer 2" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHNlT1ORDEMhENLRUENnAa4FXsWTrPcAg4AJVDiKT7JGuXHoXkbyZo4mbEnIW85X7f2FnG+UPwMX18Rl4p+b+2g4T7I/d4Osjf8++ETPMofffEB7twfmhXSK+PrTc7Gc/fjvcbK+jc0q7Hacz/u97e100/EdwS1XKP1l/jmGcx7PDhVdD+3qY9qPFy1033EXQQ1XSM/eBKH3Hnod3B1xp6/Xn08ZfTa5D39aG11xqo/1c/elHttcu3Nxnt8O5xlhOh3/KHZxd4b5ywjpMdzvLuniMf0/tirIOefcWd3gB6c1WHvo/jbJT7nR9vDmT/0YE+vNfyPMOvyO3R+5jGf+avoVQf/I6SXUP4Yzmc948yf691vNc/9NN/Rzd6413G/1dz9/Ve3quN+qzl1eXvkO3q4aIWsgdVzO0+18AZqzXmjPHM119D/Wuf/AS82cc0=
+   eAHNlT1OQzEQhE1LRZEacpqQW5GjIE6T3CI5AJRAyU7xSauRf2leLK3Ga8/sjo1fOD+Wcok43yl+hq+viHtFv7ey0XAf5H5vG9lr/v3wCW7lj774AFfuD80I6ZXx4yln7bn78V5t5fw31Ksx2nM/7ve3lNNPxHcEtVyj9bf45hnMazw4s+h+dqmPauwfyukl4jmCmq6RHzyJQ+489Cs4OmPNX60+njJ6bfKavrU2OuOsP9XP3pR7bXLt9cY1vh3O0kL0K/7QrGLtjXOWFtLjGO/uNeKQ3h97M8j5e9zeHaAHe3XYu9lv17vl8IScP6/5vOcPPehacvy3EJ4wv0PnZx7znr8Zvergv4X0Esofw/msZ+z5c737nc1zP81XdL037nXc72zu/v6rG9Vxv7M5dXl75Ct6uGiFrIGz53aeauEN1JrzWnnmaq6h/7XO/wMNk3J9
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="40" height="20">
@@ -132,13 +132,6 @@
     <property name="cond2" value="is char_facing player,down"/>
    </properties>
   </object>
-  <object id="175" name="Create Log" type="event" x="208" y="208" width="16" height="16">
-   <properties>
-    <property name="act1" value="create_npc spyder_log,13,13"/>
-    <property name="cond1" value="not char_exists spyder_log"/>
-    <property name="cond2" value="not variable_set spyder_log:remove_entity"/>
-   </properties>
-  </object>
   <object id="179" name="encounter 3" type="event" x="224" y="112" width="16" height="16">
    <properties>
     <property name="act1" value="random_encounter spyder_route6,11"/>
@@ -247,8 +240,8 @@
   <object id="194" name="Talk Ping" type="event" x="400" y="80" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_route6_ping,pre_battle"/>
-    <property name="act2" value="add_monster foofle,35,spyder_route6_ping,5,10"/>
-    <property name="act3" value="add_monster foofle,35,spyder_route6_ping,5,10"/>
+    <property name="act2" value="add_monster tumblequill,35,spyder_route6_ping,5,10"/>
+    <property name="act3" value="add_monster tumbledillo,35,spyder_route6_ping,5,10"/>
     <property name="act4" value="start_battle player,spyder_route6_ping"/>
     <property name="act5" value="char_talk spyder_route6_ping,post_battle_lose"/>
     <property name="behav1" value="talk spyder_route6_ping"/>
@@ -446,6 +439,7 @@
   <object id="215" name="Talk Richard" type="event" x="432" y="160" width="96" height="16">
    <properties>
     <property name="act1" value="lock_controls"/>
+    <property name="act10" value="autosave"/>
     <property name="act2" value="pathfind_to_char player,spyder_route6_richard"/>
     <property name="act3" value="char_face player,spyder_route6_richard"/>
     <property name="act4" value="char_talk spyder_route6_richard,pre_battle"/>
@@ -454,7 +448,6 @@
     <property name="act7" value="add_monster pigabyte,35,spyder_route6_richard,5,10"/>
     <property name="act8" value="start_battle player,spyder_route6_richard"/>
     <property name="act9" value="char_talk spyder_route6_richard,post_battle_lose"/>
-    <property name="act10" value="autosave"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_route6_richard"/>
     <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="not char_defeated player"/>
@@ -607,6 +600,45 @@
     <property name="act1" value="char_talk spyder_route6_blair,post_battle_lose"/>
     <property name="behav1" value="talk spyder_route6_blair"/>
     <property name="cond1" value="is battle_outcome player,won,spyder_route6_blair"/>
+   </properties>
+  </object>
+  <object id="243" name="Swim Encounters Day" type="event" x="80" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter spyder_water_late,0.15"/>
+    <property name="cond1" value="is char_sprite player,swimmer"/>
+    <property name="cond2" value="is current_state WorldState"/>
+    <property name="cond3" value="is check_char_parameter player,moving,1"/>
+    <property name="cond4" value="is environment_is ocean"/>
+   </properties>
+  </object>
+  <object id="244" name="Swim Encounters Night" type="event" x="96" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter spyder_water_late,0.25"/>
+    <property name="cond1" value="is char_sprite player,swimmer"/>
+    <property name="cond2" value="is current_state WorldState"/>
+    <property name="cond3" value="is check_char_parameter player,moving,1"/>
+    <property name="cond4" value="is environment_is night_ocean"/>
+   </properties>
+  </object>
+  <object id="246" name="Create Mom" type="event" x="160" y="176" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_papertown_mom,10,11"/>
+    <property name="cond1" value="not char_exists spyder_papertown_mom"/>
+    <property name="cond2" value="not variable_set route6mom:yes"/>
+   </properties>
+  </object>
+  <object id="247" name="Talk Mom" type="event" x="176" y="192" width="16" height="16">
+   <properties>
+    <property name="act01" value="translated_dialog spyder_route6_mom1"/>
+    <property name="act02" value="add_item xp_feeder"/>
+    <property name="act03" value="translated_dialog xp_feeder,,center,center,center"/>
+    <property name="act04" value="add_item xp_transmitter"/>
+    <property name="act05" value="translated_dialog xp_transmitter,,center,center,center"/>
+    <property name="act11" value="pathfind spyder_papertown_mom,4,13"/>
+    <property name="act12" value="remove_npc spyder_papertown_mom"/>
+    <property name="act14" value="set_variable route6mom:yes"/>
+    <property name="behav1" value="talk spyder_papertown_mom"/>
+    <property name="cond1" value="not variable_set route6mom:yes"/>
    </properties>
   </object>
    <object id="4217" name="Track route6" type="event" x="0" y="0" width="640" height="320">

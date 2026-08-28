@@ -755,7 +755,7 @@ class Monster:
         save_data["training_points"] = self.training_points.to_dict()
         save_data["individual_values"] = self.individual_values.to_dict()
         save_data["modifiers"] = self.custom_stats.to_dict()
-        save_data["bond_dict"] = self.bond_handler.get_state()
+        save_data.update(self.bond_handler.get_state())
         save_data["flair_slugs"] = list(self.flair_slugs)
         save_data["flairs"] = {
             category: flair.get_state()

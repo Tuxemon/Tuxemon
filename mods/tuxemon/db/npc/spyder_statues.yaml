@@ -31,6 +31,17 @@
     combat_sheet: noclass
     slug: noclass
     is_static_prop: true
+- slug: spyder_statue_orange_tipped
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: statue_orange_tipped
+    combat_sheet: noclass
+    slug: noclass
+    is_static_prop: true
 - slug: spyder_statue_grey
   speech:
     profile:

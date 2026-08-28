@@ -110,8 +110,8 @@
   audio: {}
   template:
     sprite_name: knight
-    combat_sheet: enforcer_agent
-    slug: enforcer_agent
+    combat_sheet: enforcer_pair
+    slug: enforcer_pair
 - slug: spyder_dragonscave_mal
   speech:
     profile:
@@ -138,8 +138,8 @@
   audio: {}
   template:
     sprite_name: spyderrookie
-    combat_sheet: spyder_rookie
-    slug: spyder_rookie
+    combat_sheet: lord_rookie
+    slug: lord_rookie
 - slug: spyder_dragonscave_tomas
   speech:
     profile:

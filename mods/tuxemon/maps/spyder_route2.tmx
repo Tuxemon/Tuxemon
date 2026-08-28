@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="2" nextobjectid="214">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="2" nextobjectid="4330">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="map_type" value="route"/>
@@ -19,7 +19,7 @@
  </layer>
  <layer id="2" name="Layer 2" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHtVctNQzEQNBJwhiI4kHRACRySdEALkQIdUACUQS1ICDpBooHsRBllWI39bL0TEitZ3rfez3i89ivlX/4yA4uzUjha+7gVP/ovw9YrjO/17/W7OS8FuZcmYBG2Xoyrgb2YUlXTfeBr5d501l2H32W1ymlBfS5O5qoG/naRG/kfTY1efCjAfW6P1UZiawDBnwpr0DZSI8cyx8gMjlqSa7Tw5TvherhVi2uba2q/Z5xtlhF82TfnmvuNs3UY2T/Mj/fG3eOM70p4wN13ovfDrasN2HL/6XrW+S5y1vN8CWyvgg+xzwHmu+eS5kLHb/IHnI7HSpg1fwa2rxjspTch6kd0G1wxkj/gHOExp1sl3rB+J5geRM+x/M69Arvjz/kxh844NrwFrffgPZw+JrCxZ7Uu3wzHn/opHtWB7WninVL/rLv/ptYlvswf8KpfzotvxbY25+pinA0Yec8O74M4EV/mD3jxr2vJKG/sAc4Tx30oTXyOP2CeO1r7m9o/YsmB4w+Y544WvpE14NgDUnwysg==
+   eAHtVdtJBEEQHEH91iD88C4DQ/Dj7jIwhYPTDAxAwzAWQTQTwQTsWiyuLHrnwX4JNgzT01vTXVPz2FL+7S8rsDopha22jmvBEb+OWK9xfi++F3d1Wgpyr5MJq4j1ctwMrCUpNRu6DX613LvOutvAnc9WOX5QzNkxPOtBv0PkRv77pEYvPxTgOvc/1UbmzhGEfmqswdhIDZ/LHCM9NKqZ16jx8zuRneFaLX7bXdL73WNv3Ub4OdZzLR1jbzOOPD/Mj/cmu8fO78J0wP130/vh33wMbn7+HKNjvovsdT+fgtuz8XsMMp89l1SLiE/9wDPTUaBN9z24fUTjWXoRob7EbyYSAPUDzxEdJcXkbkw3BG+E0534PpdjPyuIZ/plOObQHtuGt6D2HrwG6K3BjWdW6/LNyPRTnPJRH9weGu+U4t3P/ptal/xcP/BVnOfFWLltk33N5mQxcOQ9m94HAZGf6we++NfVbFQ3ngH2je2eSpNfph84L2219bXWj7nUINMPnJe2Gr+Rb+DxDVHUMrI=
   </data>
  </layer>
  <layer id="3" name="Layer 3" width="40" height="20">
@@ -336,13 +336,14 @@
   <object id="156" name="Billie encounter" type="event" x="16" y="128" width="16" height="32">
    <properties>
     <property name="act01" value="char_stop player"/>
-    <property name="act02" value="lock_controls"/>
-    <property name="act03" value="create_npc spyder_billie,3,15"/>
-    <property name="act04" value="pathfind spyder_billie,1,10"/>
-    <property name="act05" value="unlock_controls"/>
-    <property name="act06" value="char_face player,down"/>
-    <property name="act07" value="char_face spyder_billie,up"/>
-    <property name="act08" value="translated_dialog spyder_route2_billie1"/>
+    <property name="act02" value="set_variable route2billiefought:no"/>
+    <property name="act03" value="lock_controls"/>
+    <property name="act04" value="create_npc spyder_billie,3,15"/>
+    <property name="act05" value="pathfind spyder_billie,1,10"/>
+    <property name="act06" value="unlock_controls"/>
+    <property name="act07" value="char_face player,down"/>
+    <property name="act08" value="char_face spyder_billie,up"/>
+    <property name="act09" value="translated_dialog spyder_route2_billie1"/>
     <property name="act20" value="add_monster billie_choice,6,spyder_billie,5,10"/>
     <property name="act21" value="set_monster_attribute add_monster,gender,male"/>
     <property name="act22" value="add_monster eyenemy,6,spyder_billie,5,10"/>
@@ -350,13 +351,28 @@
     <property name="act24" value="add_monster cardiling,3,spyder_billie,5,10"/>
     <property name="act25" value="set_monster_attribute add_monster,gender,female"/>
     <property name="act30" value="start_battle player,spyder_billie"/>
-    <property name="act71" value="translated_dialog spyder_route2_billie2"/>
-    <property name="act75" value="pathfind spyder_billie,3,15"/>
-    <property name="act80" value="remove_npc spyder_billie"/>
-    <property name="act90" value="set_variable route2billie:yes"/>
-    <property name="act91" value="autosave"/>
+    <property name="act31" value="set_variable route2billiefought:yes"/>
     <property name="cond1" value="not variable_set route2billie:yes"/>
-    <property name="cond2" value="is char_at player"/>
+    <property name="cond2" value="not char_exists spyder_billie"/>
+    <property name="cond3" value="is char_at player"/>
+    <property name="cond4" value="not char_defeated player"/>
+   </properties>
+  </object>
+  <object id="4328" name="Billie encounter - Win" type="event" x="16" y="128" width="16" height="16">
+   <properties>
+    <property name="act01" value="set_variable route2billie:yes"/>
+    <property name="act02" value="set_variable route2billiefought:no"/>
+    <property name="act03" value="char_stop player"/>
+    <property name="act04" value="lock_controls"/>
+    <property name="act10" value="translated_dialog spyder_route2_billie2"/>
+    <property name="act20" value="pathfind spyder_billie,3,15"/>
+    <property name="act30" value="remove_npc spyder_billie"/>
+    <property name="act40" value="unlock_controls"/>
+    <property name="act50" value="autosave"/>
+    <property name="cond1" value="is variable_set route2billiefought:yes"/>
+    <property name="cond2" value="is variable_set battle_last_result:won"/>
+    <property name="cond3" value="is char_exists spyder_billie"/>
+    <property name="cond4" value="not variable_set route2billie:yes"/>
    </properties>
   </object>
   <object id="157" name="Sign: Route 2" type="event" x="16" y="112" width="16" height="16">
@@ -562,7 +578,7 @@
     <property name="cond1" value="is battle_outcome player,won,spyder_route2_graf"/>
    </properties>
   </object>
-   <object id="4327" name="Track route2" type="event" x="0" y="0" width="640" height="320">
+  <object id="4327" name="Track route2" type="event" x="0" y="0" width="640" height="320">
    <properties>
     <property name="act1" value="add_tracker player,route2"/>
     <property name="cond1" value="is char_at player"/>

@@ -107,6 +107,7 @@
     <property name="act1" value="random_encounter spyder_omnichannel,0.25"/>
     <property name="cond1" value="is variable_set omnichannel1wall:yes"/>
     <property name="cond2" value="is check_char_parameter player,moving,1"/>
+    <property name="cond3" value="not battle_outcome player,won,spyder_omnichannel_beaverbrook"/>
    </properties>
   </object>
   <object id="41" name="No Pass 2" type="event" x="192" y="16" width="16" height="16">

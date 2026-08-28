@@ -116,7 +116,7 @@ events:
     type: event
   Encounters:
     actions:
-    - random_encounter spyder_cotton_tunnel,0.6
+    - random_encounter spyder_cotton_tunnel,0.3
     conditions:
     - is check_char_parameter player,moving,1
     type: event

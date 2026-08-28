@@ -215,7 +215,7 @@
     <property name="act3" value="translated_dialog p_monsters_eyes,,center,center,center"/>
     <property name="act4" value="set_variable bought_monsters_eyes:yes"/>
     <property name="act5" value="modify_money player,-1000"/>
-    <property name="act6" value="remove_noc p_one"/>
+    <property name="act6" value="remove_npc p_one"/>
     <property name="cond1" value="is variable_set barmaid_monsters:yes"/>
     <property name="cond2" value="not variable_set bought_monsters_eyes:yes"/>
    </properties>
@@ -227,7 +227,7 @@
     <property name="act3" value="translated_dialog p_starry_night,,center,center,center"/>
     <property name="act4" value="set_variable bought_starry:yes"/>
     <property name="act5" value="modify_money player,-1000"/>
-    <property name="act6" value="remove_noc p_two"/>
+    <property name="act6" value="remove_npc p_two"/>
     <property name="cond1" value="is variable_set barmaid_starry:yes"/>
     <property name="cond2" value="not variable_set bought_starry:yes"/>
    </properties>
@@ -239,7 +239,7 @@
     <property name="act3" value="translated_dialog p_trepidation,,center,center,center"/>
     <property name="act4" value="set_variable bought_trepidation:yes"/>
     <property name="act5" value="modify_money player,-1000"/>
-    <property name="act6" value="remove_noc p_three"/>
+    <property name="act6" value="remove_npc p_three"/>
     <property name="cond1" value="is variable_set barmaid_trepidation:yes"/>
     <property name="cond2" value="not variable_set bought_trepidation:yes"/>
    </properties>

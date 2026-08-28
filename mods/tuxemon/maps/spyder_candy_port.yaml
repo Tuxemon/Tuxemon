@@ -85,6 +85,16 @@ events:
     - talk spyder_captain
     conditions:
     - is variable_set seencandy:yes
+    - is party_size player,greater_than,0
+    type: event
+  Talk Captain - No Monsters:
+    actions:
+    - translated_dialog spyder_river_captain_nomonsters
+    behav:
+    - talk spyder_captain
+    conditions:
+    - is variable_set seencandy:yes
+    - is party_size player,equals,0
     type: event
   Talk Monk:
     actions:

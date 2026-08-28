@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="14" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="49">
+<map version="1.10" tiledversion="1.12.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="21" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="64">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -14,24 +14,30 @@
  <tileset firstgid="3499" name="Tilesets_16x16" tilewidth="16" tileheight="16" tilecount="1760" columns="40">
   <image source="../gfx/tilesets/Tilesets_16x16.png" width="640" height="704"/>
  </tileset>
- <layer id="1" name="Tile Layer 1" width="14" height="21">
+ <tileset firstgid="5259" source="../gfx/tilesets/core_indoor_floors.tsx"/>
+ <tileset firstgid="9123" source="../gfx/tilesets/core_indoor_walls.tsx"/>
+ <tileset firstgid="12987" source="../gfx/tilesets/core_city_and_country.tsx"/>
+ <tileset firstgid="14427" name="Interiors_16x16" tilewidth="16" tileheight="16" tilecount="2592" columns="16">
+  <image source="../gfx/tilesets/Interiors_16x16.png" width="256" height="2592"/>
+ </tileset>
+ <layer id="1" name="Tile Layer 1" width="21" height="21">
   <data encoding="base64" compression="zlib">
-   eAG7y8vAcJdE/ACoPpSPdBwB1RMOpEnBo/qwh9douIyGy3DNRwB6i3sc
+   eAG7y8vAcJdE/ACoPkILB+ZjYAglA0cA9WwBmokNg+RAZoaTiEH6fCWx41EzR8OTlPQESi+41FOSlqhtJi7zQOLkupMWZoLcgguQ685RM7GH6EgPTwDTKaXs
   </data>
  </layer>
- <layer id="2" name="Tile Layer 2" width="14" height="21">
+ <layer id="2" name="Tile Layer 2" width="21" height="21">
   <data encoding="base64" compression="zlib">
-   eAG9U8EJAkEMHBT8yJ5V2IJP7cQGtA1tQxvwqZ34Ff3YheCsODCGZffuYyAkIZkkm2QB4JaGMSEfmnTAEBaurzxMgSO5RSf24XQm5tIDdw04z1HTWzjNc8f80rN03MJ8qqVZ5jjpWTpubT7hlmNgRfa47Iu24iU3xGzJL+Z0irb7XJ/P3AKi/ev9v3UfAQ/ynu/zPTy5C1FpD4kz6b7z9D10NqfSHlQjWZzq1KRqeP4YH288+0v/I7611Evpf8Sbq/XivbVuzGNdb+HeArY4Iw==
+   eAHVVMENwjAMtEDig1KmYAWesAkLwBqwBizAEzbhi+DDFkjYEledTnJL6ItIlu0755LUaczMbqXOro1P6hkTr6mxbzR7lmzpw9Ts6DZE8yRnPLveZaBmtp8Mbw/UEWRzM5yl0PednxVxeJ67II5x1uEYPY9axOF57pq4wLE2dDRfjs1WbqwRtZpjfuBYG5jmG9fbur28lofm4DIcPPv5jDMzzcFmOPh/8veR2cNtT/2MPj7dMPguAevyxfvTfPqO/oVvqGd8l7q0wOFuFdIA96vH3nhfqqXvifKa4w1jXL9t7RnwhrEm/yv6bbmuJs7+yxoNrR2i+QZQ4kVZ
   </data>
  </layer>
- <layer id="3" name="Tile Layer 3" width="14" height="21">
+ <layer id="3" name="Tile Layer 3" width="21" height="21">
   <data encoding="base64" compression="zlib">
-   eAGlkzlOg0EMRs0iKJK07BSElrVCHCDJIaCEK7CEK7BegeUwQM3SJdQsggJoeZ80I/2y/AcRLD15xvY3nkVjZlarmd1VzO7hAR5B1qiaNeEWIptH90ztC7zCW9JtUL8JT0n3Tvwj5bTOOroBcoMwBMOpLvf4TvMR/KjLjaMdS0zgI5tBM+t0i9QuJJZKdNFa/43pbrdg2/VU/Jo93rh95n662zYcOJ3iHTTdEp3u9hTOnE7xTzRfJbrcV77itMVcr/Fcn7q1PnW99uJzO/TYhT3YD/rpPSI7JH4Ex3DiaqrM9R6RnRO/gEu4cjV15nqPbP5/5PhvPvof0ugskzAF04U+eb3ofyinsyzDCqwGuqz3XmdpQBNaf9D5dYrzH0tjJ98=
+   eAHFlDlOQzEQQIdFUCQRHTsF0LJToIg6SZUTQAlXYL0C6xVYDgPULB1QkyAogAqJN8IW0cg/sRERI73v7/me50XWFxEpFESucyI3cAt3oFHKi5ThCkLxufCTbXzX7CTOJzw1qMOzc67gWoVH53wh/+q+aV11UZ/f0fiumSLODuo6oQu6ncMNlw/X76HtNd/8mFA7gLffMUgbilF8YwnOaTxTjpkMZ2ie/8rpHViDdbNWzV+w78uEvfs96B3YgV3j1Pw9vodfOPUOHMGxcWr+Dd97hrNv2a+qeZsz3uaj476Ot8G51AZn3G5aj9pgbZuwBduBdeqdSo09avbhAA5NfZ6+3qnUOKHmFM7g3NRP0Nc7FRP2HxZT02pM1j9Mz24IhmEkcn1+rqx/mJ7dLMzBfKLTu22rZ1eCMlT+yGnniO1/Aa7gK4c=
   </data>
  </layer>
- <layer id="4" name="Above Player" width="14" height="21">
+ <layer id="4" name="Above Player" width="21" height="21">
   <data encoding="base64" compression="zlib">
-   eAFjYBgFoyEwGgKjITC4QgAABJgAAQ==
+   eAFjYBgFoyEwGgKjITAaAqMhMDxDAAAG5AAB
   </data>
  </layer>
  <objectgroup color="#ff0000" id="3" name="Collisions">
@@ -48,9 +54,20 @@
   <object id="43" type="collision" x="96" y="272" width="80" height="32"/>
   <object id="44" type="collision" x="96" y="304" width="16" height="32"/>
   <object id="45" type="collision" x="160" y="256" width="16" height="16"/>
-  <object id="46" type="collision" x="208" y="32" width="16" height="304"/>
+  <object id="46" type="collision" x="208" y="32" width="16" height="144"/>
   <object id="47" type="collision" x="160" y="208" width="48" height="32"/>
   <object id="48" type="collision" x="160" y="96" width="48" height="32"/>
+  <object id="53" type="collision" x="256" y="112" width="32" height="32">
+   <properties>
+    <property name="key" value="screen"/>
+   </properties>
+  </object>
+  <object id="54" type="collision" x="208" y="208" width="16" height="128"/>
+  <object id="55" type="collision" x="224" y="112" width="32" height="32"/>
+  <object id="56" type="collision" x="288" y="112" width="32" height="32"/>
+  <object id="57" type="collision" x="224" y="208" width="96" height="32"/>
+  <object id="58" type="collision" x="320" y="0" width="16" height="336"/>
+  <object id="59" type="collision" x="224" y="0" width="96" height="32"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="4" name="Events">
   <object id="6" name="Teleport to Omnichannel 3" type="event" x="16" y="144" width="16" height="16">
@@ -214,7 +231,7 @@
   <object id="41" name="PC" type="event" x="16" y="272" width="32" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_omnichannel2_pc"/>
-    <property name="act2" value="set_variable omnichannel1wall:yes"/>
+    <property name="act2" value="set_variable omnichannel-ready-wall:yes"/>
     <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed INTERACT"/>
    </properties>
@@ -224,6 +241,62 @@
     <property name="act1" value="random_encounter spyder_omnichannel,0.25"/>
     <property name="cond1" value="is variable_set omnichannel1wall:yes"/>
     <property name="cond2" value="is check_char_parameter player,moving,1"/>
+    <property name="cond3" value="not battle_outcome player,won,spyder_omnichannel_beaverbrook"/>
+   </properties>
+  </object>
+  <object id="50" name="Create Screen" type="event" x="256" y="128" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_screen,16,8"/>
+    <property name="cond1" value="not char_exists spyder_screen"/>
+    <property name="cond2" value="not variable_set omnichannel2wall:yes"/>
+   </properties>
+  </object>
+  <object id="51" name="Remove Screen" type="event" x="288" y="112" width="16" height="16">
+   <properties>
+    <property name="act1" value="remove_collision screen"/>
+    <property name="act2" value="remove_npc spyder_screen"/>
+    <property name="cond1" value="is variable_set omnichannel2wall:yes"/>
+   </properties>
+  </object>
+  <object id="52" name="Pass1" type="event" x="288" y="128" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_omnichannel1_screen"/>
+    <property name="cond1" value="is char_facing_tile player"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
+    <property name="cond3" value="not variable_set omnichannel-ready-wall:yes"/>
+   </properties>
+  </object>
+  <object id="60" name="Pass2" type="event" x="288" y="128" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable omnichannel2wall:yes"/>
+    <property name="cond1" value="is char_facing_tile player"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
+    <property name="cond3" value="is variable_set omnichannel-ready-wall:yes"/>
+   </properties>
+  </object>
+  <object id="61" name="Create Wu" type="event" x="288" y="160" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_omnichannel_wu,18,10"/>
+    <property name="act2" value="char_face spyder_omnichannel_wu,left"/>
+    <property name="cond1" value="not char_exists spyder_omnichannel_wu"/>
+   </properties>
+  </object>
+  <object id="62" name="Talk Wu No" type="event" x="272" y="160" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_omnichannel_wu1"/>
+    <property name="behav1" value="talk spyder_omnichannel_wu"/>
+    <property name="cond1" value="is char_facing_tile player"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
+    <property name="cond3" value="not variable_set omnichannel-ready-wall:yes"/>
+   </properties>
+  </object>
+  <object id="63" name="Talk Wu Yes" type="event" x="272" y="160" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_omnichannel_wu2"/>
+    <property name="behav1" value="talk spyder_omnichannel_wu"/>
+    <property name="cond1" value="is char_facing_tile player"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
+    <property name="cond3" value="is variable_set omnichannel-ready-wall:yes"/>
    </properties>
   </object>
  </objectgroup>

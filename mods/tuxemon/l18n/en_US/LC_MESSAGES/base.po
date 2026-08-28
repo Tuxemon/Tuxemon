@@ -145,7 +145,7 @@ msgid "revive"
 msgstr "Revive"
 
 msgid "revive_description"
-msgstr "Revives knocked out Tuxemon and restores 20 HP."
+msgstr "Revives knocked out Tuxemon and restores half HP."
 
 msgid "tuxeball"
 msgstr "Tuxeball"
@@ -211,15 +211,14 @@ msgid "tuxeball_candy"
 msgstr "Candy Tuxeball"
 
 msgid "tuxeball_candy_description"
-msgstr "Captures Tuxemon and increases its level (+1) upon capture."
+msgstr "Captures Tuxemon and increases its level by one upon capture."
 
 msgid "tuxeball_lavish"
 msgstr "Lavish Tuxeball"
 
 msgid "tuxeball_lavish_description"
 msgstr ""
-"The ultimate capture tool, boasting a significantly higher capture rate than"
-" the Noble Tuxeball."
+"Boasts a significantly higher capture rate than the Noble Tuxeball."
 
 msgid "tuxeball_ancient"
 msgstr "Ancient Tuxeball"
@@ -297,24 +296,21 @@ msgstr "Grand Tuxeball"
 
 msgid "tuxeball_grand_description"
 msgstr ""
-"Offers an even higher capture rate than the Lavish Tuxeball, increasing the "
-"chances of a successful catch."
+"Offers an even higher capture rate than the Lavish Tuxeball."
 
 msgid "tuxeball_majestic"
 msgstr "Majestic Tuxeball"
 
 msgid "tuxeball_majestic_description"
 msgstr ""
-"Boasts the highest capture rate of all, making it the ultimate choice for "
-"catching even the most elusive tuxemon."
+"The ultimate choice for catching even the most elusive tuxemon."
 
 msgid "tuxeball_noble"
 msgstr "Noble Tuxeball"
 
 msgid "tuxeball_noble_description"
 msgstr ""
-"A moderate upgrade to the standard Tuxeball, offering a reliable capture "
-"rate."
+"A moderate upgrade to the standard Tuxeball."
 
 msgid "tuxeball_diurnal"
 msgstr "Diurnal Tuxeball"
@@ -1273,7 +1269,7 @@ msgid "aardant"
 msgstr "Aardant"
 
 msgid "aardant_description"
-msgstr ""
+msgstr "An innocuous application of Fusion technology."
 
 # Boosters
 msgid "greenwash_badge"
@@ -11850,6 +11846,10 @@ msgid "xero_skip_question"
 msgstr "Do you want to skip the intro?"
 
 # DIALOG TRANSLATIONS ##
+
+msgid "heal_before_leave"
+msgstr "You should heal your monsters before heading off."
+
 # spyder intros
 msgid "spyder_cathedral"
 msgstr "Cathedral"
@@ -12039,6 +12039,15 @@ msgstr ""
 "Congratulations! You took down the corporations! \n"
 " Of course, now lots of people don't have a job ... but you did the right thing. I think."
 
+msgid "spyder_papertown_momquest"
+msgstr ""
+"Sweetie, if you're going into the big wide world, would you bring me back some tuxeballs from the Cotton Mart? \n"
+" There's Ziggurats loose in my workshop and they're chewing through the cables."
+
+msgid "spyder_papertown_momthanks"
+msgstr ""
+"Thanks dearie. But I invented a zapper that works just as well. You can keep the tuxeballs!"
+
 msgid "spyder_papertown_grannypiper1"
 msgstr ""
 "Oh hello ${{name}}, I didn't see you there among all this hustle and debris! \n"
@@ -12177,10 +12186,7 @@ msgstr "The Cafe is located on the other side of these houses."
 
 msgid "spyder_cottontown_mom"
 msgstr ""
-"Well hello stranger! What are you doing going into a Cafe? \n"
-" You know caffeine is bad for you. I'm kidding! \n"
-" You're a grown up of 12 years old, you can do whatever you like! ... No alcohol .... \n"
-" But you should call home more often. I want someone to tell about my inventions. \n"
+" But do call home more often. I want someone to tell about my inventions. \n"
 " ... Oh, I forget, you haven't got a phone yet. Here's one I invented. I call it the Nu Phone! \n"
 " You can install all sorts of apps on it. It already has the Map App, so you'll never get lost!"
 
@@ -12216,7 +12222,7 @@ msgstr ""
 msgid "spyder_cottontown_hacker2"
 msgstr ""
 "Right, right!\n"
-" There's a data center along the river to the north-east of Timber Town.\n"
+" There's a data center along the river to the south-east of Timber Town.\n"
 " If Omnichannel's done anything to the computer network, they would have done it there."
 
 msgid "spyder_pc_alert"
@@ -12396,6 +12402,9 @@ msgstr "Don't look at me. I'm just here for the free canapes and heals."
 
 msgid "spyder_cotton_cafeflorist1"
 msgstr "Shhh, it's about to begin."
+
+msgid "spyder_cottontown_hillary"
+msgstr "We're just preparing for something exciting. Come back very soon!"
 
 msgid "spyder_cotton_cafeflorist2"
 msgstr ""
@@ -12906,11 +12915,6 @@ msgstr ""
 "I'm glad I could share that with you. It's been a burden to carry this "
 "secret."
 
-msgid "spyder_barmaid_cafe1"
-msgstr ""
-"Are you okay?\n"
-" I guess all your tuxemon were infected, so the Enforcers took them to the Hospital!"
-
 msgid "spyder_barmaid_cafe2"
 msgstr "You can use the PC to get out some non-infected tuxemon."
 
@@ -12936,15 +12940,29 @@ msgstr ""
 " ... Uh ... I mean, good job keeping your tuxemon free from disease.\n"
 " You may go."
 
+msgid "spyder_henrik_blocker"
+msgstr "I can't let you go into the wilds if you don't have any monsters.\n"
+" It's for your own good."
+
 msgid "spyder_enforcer_candy3"
 msgstr ""
-"Ha! I mean, oh dear, your tuxemon are infected and must be quarantined.\n"
+"Ha! I mean, oh dear, you have infected tuxemon that must be quarantined.\n"
 " Hand them over now ..."
 
 msgid "spyder_enforcer_candy4"
 msgstr ""
 "Don't you even think of trying to steal your tuxemon back from the Hospital.\n"
 " The scanners are set up to reject all known tuxemon and human DNA!"
+
+msgid "spyder_dante_candy"
+msgstr "Oh man, they took your monsters too?\n"
+" I've been thinking about that.\n"
+" They don't exactly keep the fusebox under lock and key.\n"
+" Meet me in the hospital lobby and I'll tell you what I've got planned."
+
+msgid "spyder_hospital_dante1"
+msgstr "Okay, I've switched the lights off.\n"
+" This is your best shot to get your monsters back."
 
 msgid "spyder_route4_billie1"
 msgstr "I've got all the latest gear and the best tuxemon. What have you got?"
@@ -13984,7 +14002,13 @@ msgid "spyder_route5_tryphaena2"
 msgstr "Well, might makes right."
 
 msgid "spyder_timber_mom1"
-msgstr "Hey bojo, your BOARD doesn't work on water. Unless you've got power."
+msgstr "Surprised to see me? You'll never guess how I got here. \n"
+" I surfed! And I've got a board for you too, but I won't be handing it over while monsters are in quarantine. \n"
+" I don't want you making the sea journey without a full team." 
+
+msgid "spyder_timber_mom2"
+msgstr "Great job, sweetie! Here's a Surfboard. Now you've got no excuses not to visit me. \n"
+" Paper Town is just a short trip east across the sea." 
 
 msgid "spyder_outsidewalled_rogue1"
 msgstr "Welcome to the Walled Garden. Gold Pass, please."
@@ -14004,11 +14028,6 @@ msgid "spyder_outsidewalled_midas1"
 msgstr ""
 "Welcome one and all to the Public Garden. \n"
 " Lovers of tuxemon and the sport of tuxemon battling are our honored guests."
-
-msgid "spyder_timber_mom2"
-msgstr ""
-"What I mean to say is, here's a Surfboard! Ride it onto the river and see "
-"what happens!"
 
 msgid "spyder_timber_dante1"
 msgstr "Hey buddy! Cool to see you again. "
@@ -14152,8 +14171,8 @@ msgstr "What am I doing here, for that matter?"
 
 msgid "spyder_scoop_haf1"
 msgstr ""
-"I chased the people who stole the Restraints into this room. But then the "
-"sick tuxemon got in, and now we're all stuck!"
+"I chased the people who stole the Restraints into this room. But then the sick tuxemon got in, and now we're all stuck!\n"
+" If you can make a way through to the exit, I'll be able to round up any loose monsters."
 
 msgid "spyder_scoop_weaver1"
 msgstr ""
@@ -14226,6 +14245,12 @@ msgstr ""
 
 msgid "spyder_tunnelb_greta2"
 msgstr "Oh no, I need more!"
+
+msgid "spyder_landrace_hmph"
+msgstr "Harrumph!"
+
+msgid "spyder_landrace_explanation"
+msgstr "Ever since Scoop HQ went into lockdown, this Sludgehog has been acting out."
 
 msgid "spyder_tunnelb_tommy1"
 msgstr "Have you seen my sandwich?"
@@ -14309,6 +14334,9 @@ msgstr ""
 
 msgid "spyder_route6_gunner2"
 msgstr "You're not a Greenwash employee? I've heard that one before!"
+
+msgid "spyder_route6_mom1"
+msgstr "My latest inventions make training up your team a little less painful."
 
 msgid "spyder_flower_guard"
 msgstr ""
@@ -14520,6 +14548,15 @@ msgstr "Dempsey"
 msgid "spyder_omnichannel_bettger"
 msgstr "Bettger"
 
+msgid "spyder_omnichannel_wu1"
+msgstr "None of your business what goes on beyond this barrier. \n The ... experiments ... require constant supervision. If anything should go wrong ..."
+
+msgid "spyder_omnichannel_wu2"
+msgstr "What have you done? They're loose! \n Awesome killing machines the match for any man or 'mon."
+
+msgid "spyder_omnichannel_wu"
+msgstr "Wu"
+
 msgid "spyder_omnichannel2_pc"
 msgstr "You have lowered the protective screens on all floors."
 
@@ -14682,7 +14719,7 @@ msgstr "I am the last and most powerful of the dragonriders."
 msgid "spyder_dragonscave_benden2"
 msgstr ""
 "You have proven yourself a worthy opponent for Drokoro. \n"
-" I will show you to the sacred inner chamber - after I heal you."
+" I will heal you. Then, proceed to the sacred inner chamber."
 
 msgid "spyder_dragonscave_mal1"
 msgstr "You have gotten in our way too many times!"
@@ -14725,6 +14762,30 @@ msgstr "1° Floor"
 msgid "2floor"
 msgstr "2° Floor"
 
+msgid "red"
+msgstr "Red"
+
+msgid "orange"
+msgstr "Orange"
+
+msgid "yellow"
+msgstr "Yellow"
+
+msgid "green"
+msgstr "Green"
+
+msgid "blue"
+msgstr "Blue"
+
+msgid "indigo"
+msgstr "Indigo"
+
+msgid "violet"
+msgstr "Violet"
+
+msgid "black"
+msgstr "Black"
+
 msgid "spyder_hospital1_aurora"
 msgstr "Aurora"
 
@@ -14761,6 +14822,16 @@ msgstr "Rakez"
 msgid "spyder_hospital1_rhizome"
 msgstr "Rhizome"
 
+msgid "spyder_hospital_passcode_color"
+msgstr "Access to Level 2 restricted. Enter pass code. \n"
+" Color?"
+
+msgid "spyder_hospital_passcode_number"
+msgstr "And number?"
+
+msgid "spyder_hospital_passcode_rejected"
+msgstr "Pass code rejected."
+
 msgid "spyder_hospital_pc_message1"
 msgstr ""
 "E-mail from Researcher 1\n"
@@ -14784,11 +14855,17 @@ msgstr ""
 " 'Researcher 2, I'm not sure I agree with your approach. We need to be more careful and methodical in our research.\n"
 " Your simulations are promising, but we can't rush into conclusions.'"
 
+msgid "spyder_hospital_pc_message_rivalry1b"
+msgstr "And on the monitor, a sticky note: 'Remember Blue.'"
+
 msgid "spyder_hospital_pc_message_rivalry2"
 msgstr ""
 "E-mail from Researcher 2\n"
 " 'Researcher 1, you're always so cautious and slow. We need to take risks and push the boundaries of what's possible.\n"
 " Our research is too important to be held back by your fear of failure.'"
+
+msgid "spyder_hospital_pc_message_rivalry2b"
+msgstr "And on a torn-off piece of paper, 'Binary thinking: 10 to two.'"
 
 msgid "spyder_hospital_pc_message4"
 msgstr ""
@@ -14916,21 +14993,27 @@ msgstr ""
 msgid "spyder_hospital2_nurse1"
 msgstr ""
 "Quarantines have their use, especially for people who don't have tuxemon to heal them,\n"
-" but Spyder have used this one very cynically."
+" but Spyder have used this one very cynically.\n"
+" So I don't mind slipping you one of your monsters back."
 
 msgid "spyder_hospital1_scientist1"
 msgstr ""
-"We didn't want these tuxemon to be seized, but while they're here we're "
-"going to look after them."
+"We didn't want these tuxemon to be seized, but while they're here we're going to look after them.\n"
+" Here, I snuck one of your monsters out. It should be healed of the disease, too."
 
 msgid "spyder_hospital1_scientist2"
-msgstr "Let's make the most of the situation."
+msgstr "Let's make the most of the situation.\n"
+" Here's a monster of yours, out of quarantine.\n"
+" Don't tell anyone I fetched it for you."
 
 msgid "spyder_hospital2_scientist2"
 msgstr "Psst! Look familiar?"
 
 msgid "spyder_hospital2_scientist1"
 msgstr "We have a cure, but we keep running into the Cathedral's DRM system."
+
+msgid "spyder_hospital_good_luck"
+msgstr "Good luck!"
 
 msgid "spyder_omnichannel_zoolander1"
 msgstr "You really are a diamond in the rough, aren't you?"
@@ -14958,6 +15041,10 @@ msgid "spyder_hospital_cure1"
 msgstr ""
 "It's the cure to the Spyder Bite infection! \n"
 " With this, you can cure your own and others' tuxemon."
+
+msgid "spyder_hospital_cure2"
+msgstr ""
+"Your monsters are returned to you."
 
 msgid "spyder_searoutec_nigel3"
 msgstr ""
@@ -14995,6 +15082,9 @@ msgstr ""
 
 msgid "spyder_river_captain2"
 msgstr "Ahoy there! Where would you like to go?"
+
+msgid "spyder_river_captain_nomonsters"
+msgstr "Sorry skipper, I can't take you if you have no monsters to protect yourself."
 
 msgid "spyder_mansion_magician1"
 msgstr ""
@@ -15379,8 +15469,6 @@ msgstr ""
 "Great job, ${{name}}. Looks like Omnichannel let their AI out just to spite us.\n"
 " You know, you're making quite a habit of saving the region.\n"
 " You should take a break for a change.\n"
-" I hear there's a new walking trail that has opened up behind the old Mansion outside Flower City.\n"
-" Might be worth checking out.\n"
 " Me? I'm going to be a little busy over the next while.\n"
 " Let's just say they've finally let me into an exclusive club.\n"
 " Come on, you're not going to make me give up all my perks, are you?"
@@ -16658,7 +16746,7 @@ msgstr "Leather Town Business District"
 msgid "spyder_leatherhouse1_radio_morning"
 msgstr "An R&B song is playing. It's called \"Possessuns, Part I\"."
 
-msgid "spyder_leatherhouse1_radio"
+msgid "spyder_leatherhouse1_radio_afternoon"
 msgstr "An R&B song is playing. It's called \"Possessuns, Part II\"."
 
 msgid "spyder_leatherhouse1_radio_dusk"
@@ -17171,7 +17259,7 @@ msgid "spyder_walled_vanderbilt2"
 msgstr "What's your justification?"
 
 msgid "spyder_walled_ford1"
-msgstr "Did you hear about the big earthquake in ocean?"
+msgstr "Did you hear about the big earthquake in the ocean?"
 
 msgid "spyder_walled_ford2"
 msgstr "There was a tsunami alert!"
@@ -17354,7 +17442,7 @@ msgstr "Heidenstam"
 
 msgid "spyder_greenwash_fossilisator1"
 msgstr ""
-"Hello there, I suppose you are here to see my finest invention - the De-Fossilator.\n"
+"Hello there, I suppose you are here to see my finest invention - the De-Fossilator?\n"
 " ... No? You're here to investigate why the Greenwash staff went on strike\n"
 " and got locked out by the Enforcers?"
 
@@ -17381,6 +17469,30 @@ msgstr "Ah, I see you have two ancient fossils. Shall I de-fossilate both?"
 
 msgid "spyder_greenwash_fossilisator9"
 msgstr "It worked! The fossils turned into a Shammer and a Rhincus!"
+
+msgid "spyder_greenwash_fossilisator10"
+msgstr "Ah, I see you have some petrified dung. Shall I de-fossilate it?"
+
+msgid "spyder_greenwash_fossilisator11"
+msgstr "It worked! The petrified dung turned into a Coproblight!"
+
+msgid "spyder_greenwash_fossilisator12"
+msgstr "Ah, I see you have some petrified dung and a toothed bird fossil. Shall I de-fossilate both?"
+
+msgid "spyder_greenwash_fossilisator13"
+msgstr "It worked! They turned into a Coproblight and a Rhincus!"
+
+msgid "spyder_greenwash_fossilisator14"
+msgstr "Ah, I see you have some petrified dung and an ancient dog fossil. Shall I de-fossilate both?"
+
+msgid "spyder_greenwash_fossilisator15"
+msgstr "It worked! They turned into a Coproblight and a Shammer!"
+
+msgid "spyder_greenwash_fossilisator16"
+msgstr "Ah, I see you have three ancient fossils. Shall I de-fossilate all of them?"
+
+msgid "spyder_greenwash_fossilisator17"
+msgstr "It worked! They turned into a Coproblight, a Rhincus, and a Shammer!"
 
 msgid "spyder_greenwash_looten1"
 msgstr "Prepare to face the power of my fusion tuxemon!"

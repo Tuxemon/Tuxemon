@@ -77,6 +77,9 @@ class EventEngine:
         self.triggered_global_events = set()
         self._behavior_cache = {}
         self.set_current_map(new_map)
+        # A suspension must never outlive a map change (e.g. the no-monster
+        # blackout suspends the engine for the duration of the teleport fade).
+        self.resume()
 
     def suspend(self) -> None:
         """

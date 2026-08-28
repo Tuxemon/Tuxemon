@@ -11,7 +11,7 @@ from tuxemon.combat.combat_context import (
     CombatContext,
     CombatType,
 )
-from tuxemon.combat.utils import check_battle_legal
+from tuxemon.combat.utils import blackout_if_unfit, check_battle_legal
 from tuxemon.event.eventaction import EventAction
 from tuxemon.session import Session
 
@@ -56,6 +56,7 @@ class StartBattleAction(EventAction):
             check_battle_legal(character1) and check_battle_legal(character2)
         ):
             logger.warning("Battle is not legal, won't start")
+            blackout_if_unfit(session, character1, character2)
             self.stop()
             return
 

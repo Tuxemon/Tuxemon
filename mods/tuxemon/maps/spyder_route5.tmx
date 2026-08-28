@@ -476,8 +476,8 @@
   <object id="76" name="Talk Patra (Double Battle w Cleo)" type="event" x="320" y="64" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_route5_cleo,pre_battle"/>
-    <property name="act2" value="add_monster memnomnom,20,spyder_route5_cleo,5,10"/>
-    <property name="act3" value="add_monster memnomnom,20,spyder_route5_cleo,5,10"/>
+    <property name="act2" value="add_monster memnomnom,25,spyder_route5_cleo,5,10"/>
+    <property name="act3" value="add_monster memnomnom,25,spyder_route5_cleo,5,10"/>
     <property name="act4" value="start_double_battle player,spyder_route5_cleo"/>
     <property name="act5" value="char_talk spyder_route5_cleo,post_battle_lose"/>
     <property name="behav1" value="talk spyder_route5_patra"/>

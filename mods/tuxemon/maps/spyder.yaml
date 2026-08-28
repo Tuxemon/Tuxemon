@@ -119,7 +119,7 @@ events:
     - is time_is stage_of_day,equals,night
     - not variable_set flashback:on
     - is location_inside
-    - is check_world layer
+    - is check_world layer,0:0:128:128
     type: event
   Night Day Cycle Outside:
     actions:
@@ -230,11 +230,24 @@ events:
   Teleport Faint:
     actions:
     - teleport_faint player,true
+    - translated_dialog heal_before_leave
     conditions:
     - is char_defeated player
     - not location_type clinic
     - is current_state WorldState
     type: event
+  Cannot Leave Fainted:
+    actions:
+    - translated_dialog heal_before_leave
+    - char_face player,up
+    conditions:
+    - is char_at player
+    - is char_facing player,down
+    - is char_defeated player
+    - is location_type clinic
+    type: event
+    x: 6
+    y: 10
   Update Time Variables:
     actions:
     - update_time player

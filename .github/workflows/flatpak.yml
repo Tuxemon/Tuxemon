@@ -29,10 +29,21 @@ jobs:
         if_true: 'stable'
         if_false: 'development'
 
+    # The manifest tracks the development branch, which is what nightly
+    # bundles should ship. A tagged release has to build that tag instead.
+    - name: Build releases from the tag instead of development
+      if: ${{ inputs.IS_RELEASE }}
+      run: |
+        sed -i "s|^\( *\)branch: development$|\1tag: ${{ github.ref_name }}|" \
+          buildconfig/flatpak/org.tuxemon.Tuxemon.yaml
+
     - name: Show Flatpak manifest
       run:  |
         ls -R buildconfig/flatpak/
         cat buildconfig/flatpak/org.tuxemon.Tuxemon.yaml
+        echo "Game source revision this bundle will contain:"
+        git ls-remote https://github.com/Tuxemon/Tuxemon.git \
+          "${{ inputs.IS_RELEASE && github.ref_name || 'development' }}"
 
     - name: Build package
       uses: flatpak/flatpak-github-actions/flatpak-builder@v6

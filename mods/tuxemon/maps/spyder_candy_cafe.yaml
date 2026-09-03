@@ -80,6 +80,86 @@ events:
     conditions:
     - is variable_set chooses:yes
     type: event
+  Lovelace Appears:
+    actions:
+    - create_npc spyder_candycafe_lovelace,7,3
+    - char_face spyder_candycafe_lovelace,down
+    conditions:
+    - not char_exists spyder_candycafe_lovelace
+    type: event
+  Lovelace Gives Feeder:
+    actions:
+    - set_variable invention_given:xp_feeder
+    - add_item xp_feeder
+    conditions:
+    - is variable_set invention_choice:xp_feeder
+    - not variable_set invention_given
+    type: event
+  Lovelace Gives Transmitter:
+    actions:
+    - set_variable invention_given:xp_transmitter
+    - add_item xp_transmitter
+    conditions:
+    - is variable_set invention_choice:xp_transmitter
+    - not variable_set invention_given
+    type: event
+  Lovelace Offers Feeder Swap:
+    actions:
+    - translated_dialog spyder_candycafe_lovelace_swap_transmitter
+    - translated_dialog_choice yes:no,invention_swap_feeder
+    behav:
+    - talk spyder_candycafe_lovelace
+    conditions:
+    - is variable_set invention_given
+    - is has_item player,xp_transmitter
+    type: event
+  Lovelace Offers Invention:
+    actions:
+    - translated_dialog spyder_candycafe_lovelace_intro
+    - translated_dialog_choice xp_transmitter:xp_feeder,invention_choice
+    behav:
+    - talk spyder_candycafe_lovelace
+    conditions:
+    - not variable_set invention_given
+    type: event
+  Lovelace Offers Transmitter Swap:
+    actions:
+    - translated_dialog spyder_candycafe_lovelace_swap_feeder
+    - translated_dialog_choice yes:no,invention_swap_transmitter
+    behav:
+    - talk spyder_candycafe_lovelace
+    conditions:
+    - is variable_set invention_given
+    - is has_item player,xp_feeder
+    type: event
+  Lovelace Swaps To Feeder:
+    actions:
+    - set_variable invention_swap_feeder:none
+    - add_item xp_transmitter,-1
+    - add_item xp_feeder
+    conditions:
+    - is variable_set invention_swap_feeder:yes
+    - is has_item player,xp_transmitter
+    type: event
+  Lovelace Swaps To Transmitter:
+    actions:
+    - set_variable invention_swap_transmitter:none
+    - add_item xp_feeder,-1
+    - add_item xp_transmitter
+    conditions:
+    - is variable_set invention_swap_transmitter:yes
+    - is has_item player,xp_feeder
+    type: event
+  Lovelace While Equipped:
+    actions:
+    - translated_dialog spyder_candycafe_lovelace_equipped
+    behav:
+    - talk spyder_candycafe_lovelace
+    conditions:
+    - is variable_set invention_given
+    - not has_item player,xp_transmitter
+    - not has_item player,xp_feeder
+    type: event
   Play Music:
     actions:
     - play_music music_home

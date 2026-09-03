@@ -1045,6 +1045,8 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 
 * ["Die"](https://wiki.tuxemon.org/File:Die.png) Adapted by Sanglorian from the Superpowers Asset Packs.
 
+* ["Good Penny"](https://wiki.tuxemon.org/File:Coin_.png) Adapted by Sanglorian from the Superpowers Asset Packs.
+
 * ["Feather"](https://wiki.tuxemon.org/File:Feather_.png) Adapted by Sanglorian from the Superpowers Asset Packs.
 
 * ["Flute"](https://wiki.tuxemon.org/File:Flute_.png) Adapted by Sanglorian from the Superpowers Asset Packs.

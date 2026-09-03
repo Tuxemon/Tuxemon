@@ -7,13 +7,21 @@ from dataclasses import dataclass, field
 from typing import TYPE_CHECKING
 
 from tuxemon.combat.combat_context import CombatType
-from tuxemon.combat.experience_strategies import calculate_experience
+from tuxemon.combat.experience_strategies import (
+    ExperienceAward,
+    calculate_experience,
+)
+from tuxemon.combat.money_strategies import calculate_money, get_money_method
 from tuxemon.database.rules import config_monster
 from tuxemon.locale.locale import T
 from tuxemon.monster.stats import BasicStats
 
 if TYPE_CHECKING:
+    from collections.abc import Iterable
+
     from tuxemon.combat.damage_tracker import DamageTracker
+    from tuxemon.combat.money_strategies import MoneyMethod
+    from tuxemon.entity.npc import NPC
     from tuxemon.monster.monster import Monster
     from tuxemon.session import Session
 
@@ -23,7 +31,6 @@ logger = logging.getLogger(__name__)
 @dataclass
 class RewardDataEntry:
     winner: Monster
-    money: int
     experience: int
     levels_gained: int = 0
     bond_milestones_crossed: set[int] = field(default_factory=set)
@@ -72,6 +79,13 @@ class RewardSystem:
         # Handle non-participants
         self.calculator.calculate_non_participant_rewards(loser, winners)
 
+        # The purse is calculated exactly once per defeat. How the
+        # participants affect it is up to the campaign's money method.
+        if self.combat_type == CombatType.TRAINER:
+            rewards_data.prize = self.calculator.calculate_prize(
+                loser, winners, get_money_method(self.session)
+            )
+
         # Handle winners
         for winner in winners:
             if winner.owner and winner.owner.is_player:
@@ -83,9 +97,6 @@ class RewardSystem:
                 self.calculator.update_moves_and_messages(
                     winner, entry, rewards_data
                 )
-
-                if self.combat_type == CombatType.TRAINER:
-                    rewards_data.prize += entry.money
 
                 rewards_data.update = True
 
@@ -102,18 +113,45 @@ class RewardCalculator:
     def calculate_non_participant_rewards(
         self, loser: Monster, winners: set[Monster]
     ) -> None:
-        """Distribute experience to non-participating monsters in the party."""
-        first_winner = next(iter(winners))
-        _, awarded_exp = calculate_experience(
-            loser, first_winner, self.damage_map
-        )
+        """Distribute experience to non-participating monsters in the party.
 
-        owner = first_winner.owner
-        if owner:
-            all_monsters = set(owner.party.alive)
-            non_participants = all_monsters - winners
+        The reward method is resolved per winner, so the payout must not
+        depend on which winner happens to come first out of the set. Every
+        owning party is credited, with the best payout any of its winners
+        earned.
+        """
+        awards: dict[NPC, ExperienceAward] = {}
+        for winner in winners:
+            owner = winner.owner
+            if owner is None:
+                continue
+            award = calculate_experience(loser, winner, self.damage_map)
+            previous = awards.get(owner)
+            if previous is None or (award.non_participant, award.holder) > (
+                previous.non_participant,
+                previous.holder,
+            ):
+                awards[owner] = award
+
+        for owner, award in awards.items():
+            non_participants = set(owner.party.alive) - winners
             for non_participant in non_participants:
-                non_participant.give_experience(awarded_exp)
+                non_participant.give_experience(
+                    award.holder
+                    if non_participant in award.holders
+                    else award.non_participant
+                )
+
+    def calculate_prize(
+        self,
+        loser: Monster,
+        participants: Iterable[Monster],
+        method: MoneyMethod,
+    ) -> int:
+        """
+        Calculate the purse paid out for defeating the loser.
+        """
+        return calculate_money(loser, participants, method)
 
     def calculate_winner_entry(
         self, loser: Monster, winner: Monster
@@ -121,14 +159,15 @@ class RewardCalculator:
         """
         Calculate rewards for a single winning monster against a defeated loser.
         """
-        awarded_exp, _ = calculate_experience(loser, winner, self.damage_map)
-        awarded_money = calculate_money(loser, winner)
+        award = calculate_experience(loser, winner, self.damage_map)
+        awarded_exp = (
+            award.holder if winner in award.holders else award.participant
+        )
         calculate_tps(winner, loser)
         levels = winner.give_experience(awarded_exp)
         crossed = winner.bond_handler.apply_bond_modifier("win_battle")
         return RewardDataEntry(
             winner=winner,
-            money=awarded_money,
             experience=awarded_exp,
             levels_gained=levels,
             bond_milestones_crossed=crossed,
@@ -175,28 +214,6 @@ class HordeRewardCalculator(RewardCalculator):
     ) -> RewardDataEntry:
         entry = super().calculate_winner_entry(loser, winner)
         return entry
-
-
-def calculate_money(loser: Monster, winner: Monster) -> int:
-    """
-    Calculate battle reward money.
-    - Base money = loser.level * loser.money_modifier
-    - Winner's held item can boost rewards (e.g. Amulet Coin).
-    - Loser's held item can increase or reduce payout (e.g. Rich Charm).
-    - Final payout = base_money * winner_multiplier * loser_multiplier
-    """
-    base_money = int(loser.level * loser.money_modifier)
-
-    winner_multiplier = 1.0
-    loser_multiplier = 1.0
-
-    if winner.held_item and winner.held_item.money_multiplier:
-        winner_multiplier = winner.held_item.money_multiplier
-
-    if loser.held_item and loser.held_item.money_multiplier:
-        loser_multiplier = loser.held_item.money_multiplier
-
-    return int(base_money * winner_multiplier * loser_multiplier)
 
 
 def calculate_tps(

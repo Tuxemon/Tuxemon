@@ -7,13 +7,17 @@ from dataclasses import dataclass, field
 from typing import TYPE_CHECKING
 
 from tuxemon.combat.combat_context import CombatType
-from tuxemon.combat.experience_strategies import calculate_experience
+from tuxemon.combat.experience_strategies import (
+    ExperienceAward,
+    calculate_experience,
+)
 from tuxemon.database.rules import config_monster
 from tuxemon.locale.locale import T
 from tuxemon.monster.stats import BasicStats
 
 if TYPE_CHECKING:
     from tuxemon.combat.damage_tracker import DamageTracker
+    from tuxemon.entity.npc import NPC
     from tuxemon.monster.monster import Monster
     from tuxemon.session import Session
 
@@ -102,18 +106,34 @@ class RewardCalculator:
     def calculate_non_participant_rewards(
         self, loser: Monster, winners: set[Monster]
     ) -> None:
-        """Distribute experience to non-participating monsters in the party."""
-        first_winner = next(iter(winners))
-        _, awarded_exp = calculate_experience(
-            loser, first_winner, self.damage_map
-        )
+        """Distribute experience to non-participating monsters in the party.
 
-        owner = first_winner.owner
-        if owner:
-            all_monsters = set(owner.party.alive)
-            non_participants = all_monsters - winners
+        The reward method is resolved per winner, so the payout must not
+        depend on which winner happens to come first out of the set. Every
+        owning party is credited, with the best payout any of its winners
+        earned.
+        """
+        awards: dict[NPC, ExperienceAward] = {}
+        for winner in winners:
+            owner = winner.owner
+            if owner is None:
+                continue
+            award = calculate_experience(loser, winner, self.damage_map)
+            previous = awards.get(owner)
+            if previous is None or (award.non_participant, award.holder) > (
+                previous.non_participant,
+                previous.holder,
+            ):
+                awards[owner] = award
+
+        for owner, award in awards.items():
+            non_participants = set(owner.party.alive) - winners
             for non_participant in non_participants:
-                non_participant.give_experience(awarded_exp)
+                non_participant.give_experience(
+                    award.holder
+                    if non_participant in award.holders
+                    else award.non_participant
+                )
 
     def calculate_winner_entry(
         self, loser: Monster, winner: Monster
@@ -121,7 +141,10 @@ class RewardCalculator:
         """
         Calculate rewards for a single winning monster against a defeated loser.
         """
-        awarded_exp, _ = calculate_experience(loser, winner, self.damage_map)
+        award = calculate_experience(loser, winner, self.damage_map)
+        awarded_exp = (
+            award.holder if winner in award.holders else award.participant
+        )
         awarded_money = calculate_money(loser, winner)
         calculate_tps(winner, loser)
         levels = winner.give_experience(awarded_exp)

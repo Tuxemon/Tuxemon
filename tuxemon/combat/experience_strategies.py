@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
-from typing import TYPE_CHECKING, ClassVar
+from typing import TYPE_CHECKING, ClassVar, NamedTuple
 
 from tuxemon.database.rules import config_monster
 from tuxemon.db import EvolutionStage, ExperienceMethod
@@ -11,6 +11,70 @@ from tuxemon.db import EvolutionStage, ExperienceMethod
 if TYPE_CHECKING:
     from tuxemon.combat.damage_tracker import DamageTracker
     from tuxemon.monster.monster import Monster
+
+
+class ExperienceAward(NamedTuple):
+    """
+    How one strategy divides the pot.
+
+    ``participant`` and ``non_participant`` are paid to everyone in those
+    roles. ``holder`` overrides both for the monsters named in ``holders``,
+    which is how an item can pay its wearer a share aimed at it specifically
+    rather than one shared by everyone standing in the same place.
+    """
+
+    participant: int = 0
+    non_participant: int = 0
+    holder: int = 0
+    holders: frozenset[Monster] = frozenset()
+
+
+#: Methods that govern how the *whole* pot is divided, so every ally in the
+#: fight must use them or the reserved share is never actually reserved.
+#: Order is the tie-break when several are held at once, and is fixed so the
+#: outcome never depends on set iteration order. Transmitter wins: it is the
+#: only method that pays the bench, so preferring it keeps that payout rather
+#: than silently dropping it.
+PARTY_SCOPED_METHODS: tuple[ExperienceMethod, ...] = (
+    ExperienceMethod.XP_TRANSMITTER,
+    ExperienceMethod.XP_FEEDER,
+)
+
+
+def holds_method(monster: Monster, method: ExperienceMethod) -> bool:
+    """Whether the monster holds an item granting the given reward method."""
+    item = monster.held_item
+    return item is not None and item.reward_method == method
+
+
+def resolve_experience_method(
+    winner: Monster, participants: set[Monster]
+) -> ExperienceMethod:
+    """
+    Pick the reward method governing this winner's share.
+
+    A party-scoped item held by any ally governs every ally, so the share
+    it reserves is taken from the pot instead of being paid on top of it.
+    The wearer is honoured wherever it stands: the whole living party is
+    scanned, so an item worn by a monster sitting the battle out still
+    counts. Otherwise the winner's own held item decides.
+    """
+    allies = {
+        monster
+        for monster in participants
+        if monster.owner is not None and monster.owner is winner.owner
+    }
+    if winner.owner is not None:
+        allies.update(winner.owner.party.alive)
+    allies.add(winner)
+
+    for method in PARTY_SCOPED_METHODS:
+        if any(holds_method(monster, method) for monster in allies):
+            return method
+
+    if winner.held_item:
+        return winner.held_item.reward_method
+    return ExperienceMethod.DEFAULT
 
 
 class ExperienceStrategy(ABC):
@@ -23,8 +87,14 @@ class ExperienceStrategy(ABC):
         winner: Monster,
         damages: DamageTracker,
         exp_multiplier: float,
-    ) -> tuple[int, int]:
-        """Return (participant_exp, non_participant_exp)."""
+    ) -> ExperienceAward | tuple[int, int]:
+        """
+        Return how the pot is divided.
+
+        Either a plain ``(participant_exp, non_participant_exp)`` pair, or an
+        :class:`ExperienceAward` when the strategy also needs to pay a share
+        aimed at specific item holders.
+        """
 
 
 class DefaultExperienceStrategy(ExperienceStrategy):
@@ -100,7 +170,7 @@ class FeederExperienceStrategy(ExperienceStrategy):
         winner: Monster,
         damages: DamageTracker,
         exp_multiplier: float,
-    ) -> tuple[int, int]:
+    ) -> ExperienceAward:
         total_exp = round(
             calculate_experience_base(
                 loser.total_experience, loser.level, loser.experience_modifier
@@ -108,18 +178,32 @@ class FeederExperienceStrategy(ExperienceStrategy):
             * exp_multiplier
         )
         participants = damages.get_attackers(loser)
-        item_holder_exp = total_exp // 2
-        participant_exp = (
-            (total_exp - item_holder_exp) // len(participants)
-            if participants
-            else 0
+        pool = (
+            set(winner.owner.party.alive) | participants
+            if winner.owner
+            else participants
         )
-        if (
-            winner.held_item
-            and winner.held_item.reward_method == ExperienceMethod.XP_FEEDER
-        ):
-            participant_exp = item_holder_exp
-        return participant_exp, 0
+        holders = frozenset(
+            monster
+            for monster in pool
+            if holds_method(monster, ExperienceMethod.XP_FEEDER)
+        )
+        others = participants - holders
+
+        if not holders:
+            return ExperienceAward(total_exp // (len(participants) or 1))
+        if not others:
+            # Nobody to reserve the other half for; don't burn it.
+            return ExperienceAward(
+                holder=total_exp // len(holders), holders=holders
+            )
+
+        holder_exp = total_exp // 2
+        return ExperienceAward(
+            participant=(total_exp - holder_exp) // len(others),
+            holder=holder_exp // len(holders),
+            holders=holders,
+        )
 
 
 class TransmitterExperienceStrategy(ExperienceStrategy):
@@ -148,11 +232,19 @@ class TransmitterExperienceStrategy(ExperienceStrategy):
         participants = damages.get_attackers(loser)
         if not winner.owner:
             return 0, 0
+        num_participants = len(participants) or 1
         all_monsters = set(winner.owner.party.alive)
         non_participants = all_monsters - participants
-        participant_exp = total_exp // 2 // (len(participants) or 1)
-        non_participant_exp = total_exp // 2 // (len(non_participants) or 1)
-        return participant_exp, non_participant_exp
+
+        if not non_participants:
+            # Nobody on the bench to transmit to; don't burn the half.
+            return total_exp // num_participants, 0
+
+        participant_exp = total_exp // 2
+        return (
+            participant_exp // num_participants,
+            (total_exp - participant_exp) // len(non_participants),
+        )
 
 
 class OverkillExperienceStrategy(ExperienceStrategy):
@@ -350,18 +442,19 @@ STRATEGY_MAP = {
 
 def calculate_experience(
     loser: Monster, winner: Monster, damages: DamageTracker
-) -> tuple[int, int]:
+) -> ExperienceAward:
     """Main entry point for XP calculation."""
     if winner.level >= config_monster.level_range[1]:
-        return 0, 0
+        return ExperienceAward()
     exp_multiplier = winner.get_experience_multiplier()
-    method = (
-        winner.held_item.reward_method
-        if winner.held_item
-        else ExperienceMethod.DEFAULT
-    )
+    method = resolve_experience_method(winner, damages.get_attackers(loser))
     strategy = STRATEGY_MAP.get(method, STRATEGY_MAP[ExperienceMethod.DEFAULT])
-    return strategy.calculate(loser, winner, damages, exp_multiplier)
+    award = strategy.calculate(loser, winner, damages, exp_multiplier)
+    return (
+        award
+        if isinstance(award, ExperienceAward)
+        else ExperienceAward(*award)
+    )
 
 
 def calculate_experience_base(

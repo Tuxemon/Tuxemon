@@ -11955,6 +11955,27 @@ msgstr ""
 "I'm sorry, you are not a Gold member. This offer is for Gold members only.\n"
 "Please go home now."
 
+msgid "spyder_candycafe_lovelace_intro"
+msgstr ""
+"Hey, I recognize you! I'm in town to collaborate with your Mom. See, I'm an inventor too.\n"
+" Say, want to test one of my new inventions? There's two you can choose from.\n"
+" The XP Transmitter shares XP with all your monsters, whether or not they participated in a particular battle.\n"
+" The XP Feeder shares XP with the monster holding it, whether or not it participated in a particular battle.\n"
+" So, which would you like?"
+
+msgid "spyder_candycafe_lovelace_swap_transmitter"
+msgstr ""
+"Say, how are you finding the XP Transmitter? Want to swap for the XP Feeder?"
+
+msgid "spyder_candycafe_lovelace_swap_feeder"
+msgstr ""
+"Say, how are you finding the XP Feeder? Want to swap for the XP Transmitter?"
+
+msgid "spyder_candycafe_lovelace_equipped"
+msgstr ""
+"How are you liking my invention? If you ever stop using it, bring it back "
+"here and I'll swap it for the other."
+
 msgid "spyder_preintro00"
 msgstr ""
 "Alright, let's get this over with. This is the tenth take. Can we please "
@@ -15893,6 +15914,9 @@ msgstr "Shirley"
 
 msgid "spyder_papermart_rafael"
 msgstr "Rafael"
+
+msgid "spyder_candycafe_lovelace"
+msgstr "Lovelace"
 
 msgid "spyder_flower_monk"
 msgstr "Bao"

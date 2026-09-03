@@ -120,7 +120,7 @@ def test_reward_system_basic(setup_combat):
     assert rewards.prize == calculate_money(loser, winner)
     assert (
         rewards.winners[0].experience
-        == calculate_experience(loser, winner, damage_tracker)[0]
+        == calculate_experience(loser, winner, damage_tracker).participant
     )
     assert rewards.update
 
@@ -156,29 +156,29 @@ def test_calculate_money_with_item_multiplier(setup_combat, multiplier):
         ),
         pytest.param(
             DummyItem(ExperienceMethod.XP_TRANSMITTER, 2.0),
+            # No bench to transmit to, so the reserved half is not withheld.
             lambda l, w, d: (
                 calculate_experience_base(
                     l.total_experience, l.level, l.experience_modifier
                 )
-                // 2
                 // len(d.get_attackers(l))
             ),
-            id="xp_transmitter",
+            id="xp_transmitter_no_bench",
         ),
     ],
 )
 def test_calculate_experience_methods(setup_combat, item, expected_func):
     loser, winner, damage_tracker, _, _, _, _ = setup_combat
     type(winner).held_item = PropertyMock(return_value=item)
-    exp, _ = calculate_experience(loser, winner, damage_tracker)
+    exp = calculate_experience(loser, winner, damage_tracker).participant
     assert exp == expected_func(loser, winner, damage_tracker)
 
 
 def test_calculate_experience_max_level_returns_zero(setup_combat):
     loser, winner, damage_tracker, _, _, _, _ = setup_combat
     winner.level = config_monster.level_range[1]
-    exp = calculate_experience(loser, winner, damage_tracker)
-    assert exp == (0, 0)
+    award = calculate_experience(loser, winner, damage_tracker)
+    assert (award.participant, award.non_participant) == (0, 0)
 
 
 def test_award_rewards_distribution_to_party(setup_combat):
@@ -199,6 +199,165 @@ def test_award_rewards_distribution_to_party(setup_combat):
 
     for m in mock_monsters:
         m.give_experience.assert_called()
+
+
+def _transmitter_setup():
+    """Two attackers on one loser, plus a bench monster per owning party."""
+    loser = monster_mock(level=5, hp=0, fainted=True)
+
+    winner_a = monster_mock(level=5, hp=50)
+    winner_b = monster_mock(level=5, hp=50)
+    bench_a = monster_mock(level=5, hp=50)
+    bench_b = monster_mock(level=5, hp=50)
+
+    winner_a.owner.party.alive = [winner_a, bench_a]
+    winner_b.owner.party.alive = [winner_b, bench_b]
+
+    damage_tracker = DamageTracker()
+    damage_tracker.log_damage(winner_a, loser, 10, 1)
+    damage_tracker.log_damage(winner_b, loser, 10, 1)
+
+    calculator = TrainerRewardCalculator(damage_tracker)
+    return loser, winner_a, winner_b, bench_a, bench_b, calculator
+
+
+def test_non_participant_rewards_credit_every_owning_party():
+    loser, winner_a, winner_b, bench_a, bench_b, calculator = (
+        _transmitter_setup()
+    )
+    winner_a.held_item = DummyItem(ExperienceMethod.XP_TRANSMITTER, 1.0)
+    winner_b.held_item = DummyItem(ExperienceMethod.XP_TRANSMITTER, 1.0)
+
+    calculator.calculate_non_participant_rewards(loser, {winner_a, winner_b})
+
+    bench_a.give_experience.assert_called_once_with(150)
+    bench_b.give_experience.assert_called_once_with(150)
+
+
+def test_non_participant_rewards_independent_of_winner_order():
+    """One transmitter holder among the winners is enough for its party."""
+    loser, winner_a, winner_b, bench_a, _, calculator = _transmitter_setup()
+    winner_b.owner = winner_a.owner
+    winner_a.owner.party.alive = [winner_a, winner_b, bench_a]
+
+    winner_a.held_item = DummyItem(ExperienceMethod.XP_TRANSMITTER, 1.0)
+    winner_b.held_item = None  # DEFAULT: pays non-participants nothing
+
+    calculator.calculate_non_participant_rewards(loser, {winner_a, winner_b})
+
+    bench_a.give_experience.assert_called_once_with(150)
+
+
+def test_transmitter_conserves_the_pot():
+    """Participants plus bench receive the whole pot, never more or less."""
+    loser, winner_a, winner_b, bench_a, _, calculator = _transmitter_setup()
+    winner_b.owner = winner_a.owner
+    winner_a.owner.party.alive = [winner_a, winner_b, bench_a]
+    winner_a.held_item = DummyItem(ExperienceMethod.XP_TRANSMITTER, 1.0)
+    winner_b.held_item = None
+
+    total = calculate_experience_base(
+        loser.total_experience, loser.level, loser.experience_modifier
+    )
+    award_a = calculate_experience(loser, winner_a, calculator.damage_map)
+    share_a, bench_share = award_a.participant, award_a.non_participant
+    share_b = calculate_experience(
+        loser, winner_b, calculator.damage_map
+    ).participant
+
+    assert share_a == share_b == total // 2 // 2
+    assert bench_share == total // 2
+    assert share_a + share_b + bench_share == total
+
+
+def test_feeder_reserves_its_half_from_the_pot():
+    """The holder's half comes out of the pot, not on top of it.
+
+    Needs three attackers: with two, an even split of the whole pot
+    coincides with an even split of the unreserved half.
+    """
+    loser, winner_a, winner_b, bench_a, _, calculator = _transmitter_setup()
+    winner_c = monster_mock(level=5, hp=50)
+    owner = winner_a.owner
+    for mon in (winner_b, winner_c):
+        mon.owner = owner
+    owner.party.alive = [winner_a, winner_b, winner_c, bench_a]
+    calculator.damage_map.log_damage(winner_c, loser, 10, 1)
+
+    winner_a.held_item = DummyItem(ExperienceMethod.XP_FEEDER, 1.0)
+    winner_b.held_item = None
+    winner_c.held_item = None
+
+    total = calculate_experience_base(
+        loser.total_experience, loser.level, loser.experience_modifier
+    )
+    holder_share = calculate_experience(
+        loser, winner_a, calculator.damage_map
+    ).holder
+    shares = [
+        calculate_experience(loser, mon, calculator.damage_map).participant
+        for mon in (winner_b, winner_c)
+    ]
+
+    assert holder_share == total // 2
+    assert shares == [(total - total // 2) // 2] * 2
+    assert holder_share + sum(shares) == total
+
+
+def test_transmitter_works_from_the_bench():
+    """A wearer that never fought still transmits, and shares the bench half."""
+    loser, fighter, other, bench_a, _, calculator = _transmitter_setup()
+    owner = fighter.owner
+    wearer = monster_mock(level=5, hp=50)
+    wearer.owner = owner
+    owner.party.alive = [fighter, wearer, bench_a]
+
+    # only the fighter attacked; strip the second attacker from the map
+    calculator.damage_map.remove_monster(other)
+
+    fighter.held_item = None
+    bench_a.held_item = None
+    wearer.held_item = DummyItem(ExperienceMethod.XP_TRANSMITTER, 1.0)
+
+    total = calculate_experience_base(
+        loser.total_experience, loser.level, loser.experience_modifier
+    )
+    award = calculate_experience(loser, fighter, calculator.damage_map)
+    fighter_share, bench_share = award.participant, award.non_participant
+
+    assert fighter_share == total // 2
+    assert bench_share == (total - total // 2) // 2
+    assert fighter_share + bench_share * 2 == total
+
+
+def test_feeder_works_from_the_bench():
+    """A benched wearer still takes its half; other bench mons get nothing."""
+    loser, fighter, other, bench_a, _, calculator = _transmitter_setup()
+    owner = fighter.owner
+    wearer = monster_mock(level=5, hp=50)
+    wearer.owner = owner
+    owner.party.alive = [fighter, wearer, bench_a]
+    calculator.damage_map.remove_monster(other)
+
+    fighter.held_item = None
+    bench_a.held_item = None
+    wearer.held_item = DummyItem(ExperienceMethod.XP_FEEDER, 1.0)
+
+    total = calculate_experience_base(
+        loser.total_experience, loser.level, loser.experience_modifier
+    )
+    system = RewardSystem(MagicMock(), CombatType.TRAINER, calculator)
+    system.award_rewards(loser)
+
+    def paid(monster):
+        return sum(
+            call.args[0] for call in monster.give_experience.call_args_list
+        )
+
+    assert paid(wearer) == total // 2
+    assert paid(fighter) == total - total // 2
+    assert paid(bench_a) == 0
+    assert paid(wearer) + paid(fighter) + paid(bench_a) == total
 
 
 def test_award_rewards_no_winners(setup_combat):

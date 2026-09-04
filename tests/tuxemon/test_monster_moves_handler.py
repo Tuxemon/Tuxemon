@@ -135,13 +135,20 @@ def test_update_moves(handler, monster):
         ),
     ]
 
+    levels = {"technique1": 1, "technique2": 2, "technique3": 3}
+
     with (
         patch("tuxemon.technique.technique.Technique.create") as mock_create,
-        patch.object(MonsterMovesHandler, "is_eligible", return_value=True),
+        patch.object(
+            MonsterMovesHandler,
+            "is_eligible",
+            side_effect=lambda m, slug, method=None: levels[slug] <= m.level,
+        ),
     ):
         mock_create.side_effect = lambda slug: MagicMock(slug=slug)
 
         handler.set_moveset(moveset)
+        monster.level = 2
         handler.set_moves(monster, 2)
 
         monster.level = 3
@@ -149,6 +156,8 @@ def test_update_moves(handler, monster):
 
         assert [t.slug for t in new] == ["technique3"]
 
+        # the level up is reported once: the monster now knows technique3
+        assert handler.update_moves(monster, 1) == []
 
 @pytest.mark.parametrize(
     "method",

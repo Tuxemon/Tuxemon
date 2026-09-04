@@ -77,7 +77,14 @@ class MonsterMovesState(PygameMenuState):
         lab1.translate(fxw(79.4 / 256), fxh(-0.2 / 144))
 
         # Move buttons (newest is always last)
-        output: list[Technique] = monster.moves.get_moves()
+        # Button IDs are the technique slugs, and pygame-menu rejects
+        # duplicated widget IDs, so show each slug only once.
+        output: list[Technique] = []
+        seen: set[str] = set()
+        for tech in monster.moves.get_moves():
+            if tech.slug not in seen:
+                seen.add(tech.slug)
+                output.append(tech)
 
         step = 9 / 144 if len(output) >= 5 else 12 / 144
         _height = 4.8 / 144

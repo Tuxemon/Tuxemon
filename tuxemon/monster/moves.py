@@ -43,7 +43,15 @@ class MonsterMovesHandler:
     def add_move(self, technique: Technique) -> None:
         """
         Adds a technique to this tuxemon's moveset.
+
+        Techniques the monster already knows are skipped, as duplicates
+        would show up twice in the moves menus.
         """
+        if self.has_move(technique.slug):
+            logger.debug(
+                f"Technique '{technique.slug}' already known — not added again."
+            )
+            return
         self.moves.append(technique)
 
     def apply_item_techniques(self, monster: Monster, item: Item) -> None:
@@ -85,6 +93,12 @@ class MonsterMovesHandler:
         if max_moves is None:
             max_moves = monster.max_moves
 
+        if self.has_move(technique.slug):
+            logger.debug(
+                f"Monster '{monster.slug}' already knows '{technique.slug}' — skipping."
+            )
+            return False
+
         if not ignore_eligibility and not self.can_learn(
             monster, technique, max_moves, method
         ):
@@ -108,6 +122,11 @@ class MonsterMovesHandler:
     ) -> bool:
         if max_moves is None:
             max_moves = monster.max_moves
+        if self.has_move(technique.slug):
+            logger.debug(
+                f"Move '{technique.slug}' not learnable: already known."
+            )
+            return False
         if not self.is_technique_eligible(monster, technique, method):
             return False
         return True

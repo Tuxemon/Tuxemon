@@ -28,6 +28,8 @@ class RewardDataEntry:
     levels_gained: int = 0
     bond_milestones_crossed: set[int] = field(default_factory=set)
     total_experience: int = 0
+    moves: list[str] = field(default_factory=list)
+    """Techniques this specific monster learned by levelling up."""
 
 
 @dataclass
@@ -124,7 +126,15 @@ class RewardCalculator:
         awarded_exp, _ = calculate_experience(loser, winner, self.damage_map)
         awarded_money = calculate_money(loser, winner)
         calculate_tps(winner, loser)
+        known_moves = {move.slug for move in winner.moves.get_moves()}
         levels = winner.give_experience(awarded_exp)
+        # techniques already known are skipped when levelling up, so only
+        # report the ones the monster didn't have before
+        new_moves = [
+            move.slug
+            for move in winner.moves.get_moves()
+            if move.slug not in known_moves
+        ]
         crossed = winner.bond_handler.apply_bond_modifier("win_battle")
         return RewardDataEntry(
             winner=winner,
@@ -133,17 +143,15 @@ class RewardCalculator:
             levels_gained=levels,
             bond_milestones_crossed=crossed,
             total_experience=winner.total_experience,
+            moves=new_moves,
         )
 
     def update_moves_and_messages(
         self, winner: Monster, entry: RewardDataEntry, rewards_data: RewardData
     ) -> None:
         """Update moves and add messages for a winner."""
-        new_moves = winner.moves.preview_moves_learned(
-            winner, entry.levels_gained
-        )
-        if new_moves:
-            rewards_data.moves.extend(new_moves)
+        if entry.moves:
+            rewards_data.moves.extend(entry.moves)
 
         rewards_data.messages.append(
             T.format(

@@ -93,6 +93,84 @@ msgstr "Wood Berry"
 msgid "wood_berry_description"
 msgstr "It changes monster type to Wood."
 
+msgid "cosmic_pellet"
+msgstr "Cosmic Pellet"
+
+msgid "cosmic_pellet_description"
+msgstr "When held, it increases the power of Cosmic techniques."
+
+msgid "earth_pellet"
+msgstr "Earth Pellet"
+
+msgid "earth_pellet_description"
+msgstr "When held, it increases the power of Earth techniques."
+
+msgid "fire_pellet"
+msgstr "Fire Pellet"
+
+msgid "fire_pellet_description"
+msgstr "When held, it increases the power of Fire techniques."
+
+msgid "frost_pellet"
+msgstr "Frost Pellet"
+
+msgid "frost_pellet_description"
+msgstr "When held, it increases the power of Frost techniques."
+
+msgid "heroic_pellet"
+msgstr "Heroic Pellet"
+
+msgid "heroic_pellet_description"
+msgstr "When held, it increases the power of Heroic techniques."
+
+msgid "lightning_pellet"
+msgstr "Lightning Pellet"
+
+msgid "lightning_pellet_description"
+msgstr "When held, it increases the power of Lightning techniques."
+
+msgid "metal_pellet"
+msgstr "Metal Pellet"
+
+msgid "metal_pellet_description"
+msgstr "When held, it increases the power of Metal techniques."
+
+msgid "normal_pellet"
+msgstr "Normal Pellet"
+
+msgid "normal_pellet_description"
+msgstr "When held, it increases the power of Normal techniques."
+
+msgid "shadow_pellet"
+msgstr "Shadow Pellet"
+
+msgid "shadow_pellet_description"
+msgstr "When held, it increases the power of Shadow techniques."
+
+msgid "sky_pellet"
+msgstr "Sky Pellet"
+
+msgid "sky_pellet_description"
+msgstr "When held, it increases the power of Sky techniques."
+
+msgid "venom_pellet"
+msgstr "Venom Pellet"
+
+msgid "venom_pellet_description"
+msgstr "When held, it increases the power of Venom techniques."
+
+msgid "water_pellet"
+msgstr "Water Pellet"
+
+msgid "water_pellet_description"
+msgstr "When held, it increases the power of Water techniques."
+
+msgid "wood_pellet"
+msgstr "Wood Pellet"
+
+msgid "wood_pellet_description"
+msgstr "When held, it increases the power of Wood techniques."
+
 msgid "potion"
 msgstr "Potion"
 
@@ -1520,6 +1598,97 @@ msgid "xp_feeder_description"
 msgstr ""
 "A tuxemon that holds this item receives half of all XP gained by your party, regardless of whether it participated in battle.\n"
 " The remainder of the XP is split between monsters that did participate."
+
+# Elemental Mantles (held items)
+msgid "cosmic_mantle"
+msgstr "Cosmic Mantle"
+
+msgid "cosmic_mantle_description"
+msgstr ""
+"Gain Cosmic resistance."
+
+msgid "earth_mantle"
+msgstr "Earth Mantle"
+
+msgid "earth_mantle_description"
+msgstr ""
+"Gain Earth resistance."
+
+msgid "fire_mantle"
+msgstr "Fire Mantle"
+
+msgid "fire_mantle_description"
+msgstr ""
+"Gain Fire resistance."
+
+msgid "frost_mantle"
+msgstr "Frost Mantle"
+
+msgid "frost_mantle_description"
+msgstr ""
+"Gain Frost resistance."
+
+msgid "heroic_mantle"
+msgstr "Heroic Mantle"
+
+msgid "heroic_mantle_description"
+msgstr ""
+"Gain Heroic resistance."
+
+msgid "lightning_mantle"
+msgstr "Lightning Mantle"
+
+msgid "lightning_mantle_description"
+msgstr ""
+"Gain Lightning resistance."
+
+msgid "metal_mantle"
+msgstr "Metal Mantle"
+
+msgid "metal_mantle_description"
+msgstr ""
+"Gain Metal resistance."
+
+msgid "normal_mantle"
+msgstr "Normal Mantle"
+
+msgid "normal_mantle_description"
+msgstr ""
+"Gain Normal resistance."
+
+msgid "shadow_mantle"
+msgstr "Shadow Mantle"
+
+msgid "shadow_mantle_description"
+msgstr ""
+"Gain Shadow resistance."
+
+msgid "sky_mantle"
+msgstr "Sky Mantle"
+
+msgid "sky_mantle_description"
+msgstr ""
+"Gain Sky resistance."
+
+msgid "venom_mantle"
+msgstr "Venom Mantle"
+
+msgid "venom_mantle_description"
+msgstr ""
+"Gain Venom resistance."
+
+msgid "water_mantle"
+msgstr "Water Mantle"
+
+msgid "water_mantle_description"
+msgstr "Gain Water resistance."
+
+msgid "wood_mantle"
+msgstr "Wood Mantle"
+
+msgid "wood_mantle_description"
+msgstr "Gain Wood resistance."
+
 
 # Map Types:
 msgid "no_type"
@@ -13273,6 +13442,10 @@ msgstr ""
 "Hey, do you want a TIKOAL? I could really do with a CHILLIMP, if you've got "
 "one."
 
+msgid "spyder_timber_berryseller"
+msgstr "They're going to add a vending machine to this corner, but in the meantime you'll have to buy from me. \n"
+" We're selling element berries. Pop one of these and you'll change type."
+
 msgid "spyder_flower_fisher1"
 msgstr "It's a slow pleasure, but there's nothing nicer than fishing by the water. \n"
 " Just select your Rod from the Bag while facing the river." 
@@ -13435,6 +13608,10 @@ msgstr ""
 " And you did it in that particular way? \n"
 " I see. Hmmm, I don't really like the look of that morph. \n"
 " If I give you another Vivipere, can you bring it back if it ever morphs into something different?"
+
+msgid "spyder_flower_mantleseller"
+msgstr "They're going to add a vending machine to this corner, but in the meantime you'll have to buy from me. \n"
+" We're selling element mantles. Wearing one gives resistance to that element."
 
 msgid "spyder_route1_beachcomber"
 msgstr ""
@@ -16150,6 +16327,9 @@ msgstr "Reed"
 msgid "spyder_timbercafe_grady"
 msgstr "Grady"
 
+msgid "spyder_timberscoop_bram"
+msgstr "Bram"
+
 msgid "spyder_mansion_wayne"
 msgstr "Wayne"
 
@@ -16188,6 +16368,9 @@ msgstr "Denzel"
 
 msgid "spyder_flowerpetshop_titus"
 msgstr "Titus"
+
+msgid "spyder_flowerscoop_orla"
+msgstr "Orla"
 
 msgid "spyder_cottonhouse2_davis"
 msgstr "Davis"

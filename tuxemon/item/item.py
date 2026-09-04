@@ -27,6 +27,7 @@ from tuxemon.monster.stats import BasicStats
 from tuxemon.user_config import CONFIG
 
 if TYPE_CHECKING:
+    from tuxemon.element import Element
     from tuxemon.entity.npc import NPC
     from tuxemon.monster.monster import Monster
     from tuxemon.session import Session
@@ -53,11 +54,13 @@ class Item:
         self.behaviors = db_data.behaviors
         self.usable_in = db_data.usable_in
         self.immunity_to_status = db_data.immunity_to_status
+        self.element_resistances = db_data.element_resistances
         self.menu_actions_data = db_data.menu_actions
         self.granted_techniques = db_data.granted_techniques
         self.granted_statuses = db_data.granted_statuses
         self.break_into_item = db_data.break_into_item
         self.stat_modifiers = db_data.stat_modifiers
+        self.element_modifiers = db_data.element_modifiers
 
         self.core_assets = get_assets()
         self.conditions = self.core_assets.parse_conditions(db_data.conditions)
@@ -127,6 +130,32 @@ class Item:
             "all" in self.immunity_to_status
             or status in self.immunity_to_status
         )
+
+    def get_element_modifier(self, elements: Sequence[Element]) -> float:
+        """
+        Returns the power multiplier this item grants to the given elements.
+
+        The modifier applies at most once, even for a multi-element technique
+        the item covers twice over: the strongest matching entry wins. Nothing
+        clamps this value downstream, so compounding one modifier per matching
+        element would let a dual-element technique reach 1.44x off two 1.2x
+        entries. Returns 1.0 when the item modifies none of them.
+
+        Parameters:
+            elements: The elements of the technique being used.
+
+        Returns:
+            The multiplier to apply to the technique's power.
+        """
+        if not self.element_modifiers:
+            return 1.0
+
+        matches = [
+            self.element_modifiers[element.slug]
+            for element in elements
+            if element.slug in self.element_modifiers
+        ]
+        return max(matches) if matches else 1.0
 
     def repair(self, amount: int = -1) -> None:
         """Repairs the item if allowed, reducing or resetting its wear level."""

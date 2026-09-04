@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="13" height="11" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="39">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="13" height="11" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="43">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -113,6 +113,21 @@
     <property name="act1" value="open_shop spyder_wayfarer1_norm,buy_monster"/>
     <property name="act2" value="clear_variable techchoice"/>
     <property name="cond1" value="is variable_set techchoice:menu_monster"/>
+   </properties>
+  </object>
+  <object id="41" name="Create Berry Seller" type="event" x="192" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_timberscoop_bram,12,4"/>
+    <property name="act2" value="char_face spyder_timberscoop_bram,left"/>
+    <property name="act3" value="set_economy spyder_timberscoop_bram,spyder_timber_berry"/>
+    <property name="cond1" value="not char_exists spyder_timberscoop_bram"/>
+   </properties>
+  </object>
+  <object id="42" name="Open Berry Shop" type="event" x="192" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_timber_berryseller"/>
+    <property name="act3" value="open_shop spyder_timberscoop_bram,buy_item"/>
+    <property name="behav1" value="talk spyder_timberscoop_bram"/>
    </properties>
   </object>
  </objectgroup>

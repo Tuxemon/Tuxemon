@@ -158,6 +158,50 @@
   resale_multiplier: 0.5
   slug: spyder_flower_tech
 - background: gfx/ui/item/item_menu_bg.png
+  items:
+  - cost: 1000
+    slug: cosmic_mantle
+    price: 2000
+  - cost: 1000
+    slug: earth_mantle
+    price: 2000
+  - cost: 1000
+    slug: fire_mantle
+    price: 2000
+  - cost: 1000
+    slug: frost_mantle
+    price: 2000
+  - cost: 1000
+    slug: heroic_mantle
+    price: 2000
+  - cost: 1000
+    slug: lightning_mantle
+    price: 2000
+  - cost: 1000
+    slug: metal_mantle
+    price: 2000
+  - cost: 1000
+    slug: normal_mantle
+    price: 2000
+  - cost: 1000
+    slug: shadow_mantle
+    price: 2000
+  - cost: 1000
+    slug: sky_mantle
+    price: 2000
+  - cost: 1000
+    slug: venom_mantle
+    price: 2000
+  - cost: 1000
+    slug: water_mantle
+    price: 2000
+  - cost: 1000
+    slug: wood_mantle
+    price: 2000
+  monsters: []
+  resale_multiplier: 0.5
+  slug: spyder_flower_mantle
+- background: gfx/ui/item/item_menu_bg.png
   items: []
   monsters:
   - cost: 50
@@ -259,6 +303,50 @@
     level: 10
   resale_multiplier: 0.5
   slug: spyder_timber_tech
+- background: gfx/ui/item/item_menu_bg.png
+  items:
+  - cost: 450
+    slug: cosmic_berry
+    price: 900
+  - cost: 450
+    slug: earth_berry
+    price: 900
+  - cost: 450
+    slug: fire_berry
+    price: 900
+  - cost: 450
+    slug: frost_berry
+    price: 900
+  - cost: 450
+    slug: heroic_berry
+    price: 900
+  - cost: 450
+    slug: lightning_berry
+    price: 900
+  - cost: 450
+    slug: metal_berry
+    price: 900
+  - cost: 450
+    slug: normal_berry
+    price: 900
+  - cost: 450
+    slug: shadow_berry
+    price: 900
+  - cost: 450
+    slug: sky_berry
+    price: 900
+  - cost: 450
+    slug: venom_berry
+    price: 900
+  - cost: 450
+    slug: water_berry
+    price: 900
+  - cost: 450
+    slug: wood_berry
+    price: 900
+  monsters: []
+  resale_multiplier: 0.5
+  slug: spyder_timber_berry
 - background: gfx/ui/item/item_menu_bg.png
   items:
   - cost: 250

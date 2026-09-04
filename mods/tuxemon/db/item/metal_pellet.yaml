@@ -1,0 +1,26 @@
+effects: []
+slug: metal_pellet
+sort: utility
+sprite: gfx/items/pellet_metal.png
+category: elements
+cost: 2000
+rarity: uncommon
+usable_in:
+- ''
+modifiers: []
+behaviors:
+  consumable: false
+  holdable: true
+  resellable: true
+element_modifiers:
+  metal: 1.2
+use_failure: generic_failure
+use_item: combat_used_x
+use_success: generic_success
+visuals:
+  animation: null
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: null
+  volume: 0.0

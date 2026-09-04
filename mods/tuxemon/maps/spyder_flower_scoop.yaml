@@ -15,6 +15,14 @@ events:
     conditions:
     - not char_exists spyder_wayfarer1_norm
     type: event
+  Create Mantle Seller:
+    actions:
+    - create_npc spyder_flowerscoop_orla,12,4
+    - char_face spyder_flowerscoop_orla,left
+    - set_economy spyder_flowerscoop_orla,spyder_flower_mantle
+    conditions:
+    - not char_exists spyder_flowerscoop_orla
+    type: event
   Flashback:
     actions:
     - lock_controls
@@ -65,6 +73,13 @@ events:
     - char_face spyder_shopassistant,right
     conditions:
     - is variable_set ocaptain:yes
+    type: event
+  Open Mantle Shop:
+    actions:
+    - translated_dialog spyder_flower_mantleseller
+    - open_shop spyder_flowerscoop_orla,buy_item
+    behav:
+    - talk spyder_flowerscoop_orla
     type: event
   Open Shop 1:
     actions:

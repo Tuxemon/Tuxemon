@@ -896,9 +896,15 @@ class CombatState(CombatAnimations):
             self.text_anim.add_xp_message(message)
 
         if rewards.update:
-            # HUD + XP animation only for the active monster
-            main_winner = rewards.winners[0].winner
-            self.update_hud_and_level_up(main_winner, rewards.moves)
+            # Announce new techniques for the monster that actually learned
+            # them, which isn't necessarily the one currently on the field.
+            for data in rewards.winners:
+                if data.moves:
+                    self.announce_new_techniques(data.winner, data.moves)
+
+            # HUD + XP animation only for the active monsters
+            for data in rewards.winners:
+                self.update_hud_and_level_up(data.winner)
 
             # Level-up summaries for ALL monsters that leveled up
             for data in rewards.winners:
@@ -918,21 +924,22 @@ class CombatState(CombatAnimations):
                         interval=4.5,
                     )
 
-    def update_hud_and_level_up(
+    def announce_new_techniques(
         self, winner: Monster, techniques: list[str]
     ) -> None:
         """
-        Update the HUD and handle visual level up cues (XP bar and messages).
+        Queue the message announcing the techniques a monster just learned.
+        """
+        tech_list = ", ".join(T.translate(tech) for tech in techniques)
+        params = {"name": winner.name, "tech": tech_list}
+        mex = T.format("tuxemon_new_tech", params)
+        self.text_anim.add_xp_message(mex)
+
+    def update_hud_and_level_up(self, winner: Monster) -> None:
+        """
+        Update the HUD and handle visual level up cues (XP bar).
         """
         if winner in self.combat_session.monsters_in_play_right:
-            if techniques:
-                tech_list = ", ".join(
-                    T.translate(tech) for tech in techniques
-                )
-                params = {"name": winner.name, "tech": tech_list}
-                mex = T.format("tuxemon_new_tech", params)
-                self.text_anim.add_xp_message(mex)
-
             owner = winner.get_owner()
             if owner.is_player:
                 # XP bar animation

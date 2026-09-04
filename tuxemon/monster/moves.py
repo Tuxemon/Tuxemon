@@ -282,7 +282,10 @@ class MonsterMovesHandler:
         for tech in techniques:
             technique = Technique.create(tech)
 
-            if self.can_learn(monster, technique, method=method):
+            # deliberately not can_learn(): this is a forward-looking preview
+            # of what the moveset schedules, so the already-known guard that
+            # can_learn() applies would make it empty after the level-up
+            if self.is_technique_eligible(monster, technique, method):
                 learnable.append(tech)
 
         return learnable

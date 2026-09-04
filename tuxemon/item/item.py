@@ -53,6 +53,7 @@ class Item:
         self.behaviors = db_data.behaviors
         self.usable_in = db_data.usable_in
         self.immunity_to_status = db_data.immunity_to_status
+        self.element_resistances = db_data.element_resistances
         self.menu_actions_data = db_data.menu_actions
         self.granted_techniques = db_data.granted_techniques
         self.granted_statuses = db_data.granted_statuses

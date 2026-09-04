@@ -951,6 +951,12 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 
 * ["Earthmover Key"](https://wiki.tuxemon.org/index.php?title=Earthmover_Key) by Catch Challenger is licensed under CC-BY 4.0.
 
+* ["Moco Berry"](https://wiki.tuxemon.org/File:Moco_berry.png) by Catch Challenger is licensed under CC-BY 4.0.
+
+* ["Mocochinchi"](https://wiki.tuxemon.org/File:Mocochinchi.png) by Catch Challenger is licensed under CC-BY 4.0.
+
+* ["Alban nut"](https://wiki.tuxemon.org/File:Alban_nut.png) by Catch Challenger is licensed under CC-BY 4.0.
+
 * ["Hatchet"](https://wiki.tuxemon.org/index.php?title=File:Hatchet.png) [https://opengameart.org/content/icons-items-1 CC0 on OGA]
 
 * ["Fishing Rod"](https://wiki.tuxemon.org/index.php?title=Fishing_Rod) and ["Neptune"](https://wiki.tuxemon.org/File:Super-fishing-rod.png) by Catch Challenger are licensed under CC-BY 4.0. "Poseidon" adapted by JaskRendix from "Neptune". 

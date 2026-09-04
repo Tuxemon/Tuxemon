@@ -479,7 +479,7 @@ def test_held_item_conditions(
 
     if held_item_slug is not None:
         item = MagicMock(slug=held_item_slug, granted_statuses=[])
-        mon.equip_item(item)
+        mon.equip_item(local_session, item)
 
     evo = MonsterEvolutionItemModel(
         monster_slug="rockat",
@@ -786,7 +786,7 @@ def test_deny_pending_evolution_calls_registry_and_resets_flags(
 
 
 def test_get_eligible_evolution_slug_requires_item_but_not_used(
-    evolution_context,
+    evolution_context, monkeypatch
 ):
     mon, player, evo = evolution_context
 
@@ -801,12 +801,16 @@ def test_get_eligible_evolution_slug_requires_item_but_not_used(
     registry.get_blocked.return_value = []
     player.evolution_registry = registry
 
-    type(mon).held_item = PropertyMock(return_value=None)
+    monkeypatch.setattr(
+        type(mon), "held_item", PropertyMock(return_value=None)
+    )
     slug = evo.get_eligible_evolution_slug(context={"use_item": False})
     assert slug is None
 
 
-def test_get_eligible_evolution_slug_held_item_blocks(evolution_context):
+def test_get_eligible_evolution_slug_held_item_blocks(
+    evolution_context, monkeypatch
+):
     mon, player, evo = evolution_context
 
     evolution_item = MonsterEvolutionItemModel(monster_slug="rockat")
@@ -821,12 +825,14 @@ def test_get_eligible_evolution_slug_held_item_blocks(evolution_context):
 
     blocker = MagicMock()
     blocker.behaviors.block_evolution = True
-    type(mon).held_item = PropertyMock(return_value=blocker)
+    monkeypatch.setattr(
+        type(mon), "held_item", PropertyMock(return_value=blocker)
+    )
     slug = evo.get_eligible_evolution_slug()
     assert slug is None
 
 
-def test_get_eligible_evolution_slug_blocked(evolution_context):
+def test_get_eligible_evolution_slug_blocked(evolution_context, monkeypatch):
     mon, player, evo = evolution_context
 
     evolution_item = MonsterEvolutionItemModel(monster_slug="rockat")
@@ -839,12 +845,14 @@ def test_get_eligible_evolution_slug_blocked(evolution_context):
     registry.get_blocked.return_value = ["rockat"]
     player.evolution_registry = registry
 
-    type(mon).held_item = PropertyMock(return_value=None)
+    monkeypatch.setattr(
+        type(mon), "held_item", PropertyMock(return_value=None)
+    )
     slug = evo.get_eligible_evolution_slug()
     assert slug is None
 
 
-def test_get_eligible_evolution_slug(evolution_context):
+def test_get_eligible_evolution_slug(evolution_context, monkeypatch):
     mon, player, evo = evolution_context
 
     evolution_item = MonsterEvolutionItemModel.model_construct(
@@ -859,6 +867,8 @@ def test_get_eligible_evolution_slug(evolution_context):
     registry.get_blocked.return_value = []
     player.evolution_registry = registry
 
-    type(mon).held_item = PropertyMock(return_value=None)
+    monkeypatch.setattr(
+        type(mon), "held_item", PropertyMock(return_value=None)
+    )
     slug = evo.get_eligible_evolution_slug()
     assert slug == "rockat"

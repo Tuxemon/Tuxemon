@@ -99,7 +99,7 @@ class RandomHordeAction(EventAction):
 
             if result.held_item is not None:
                 item = Item.create(result.held_item)
-                output = current_monster.equip_item(item)
+                output = current_monster.equip_item(session, item)
                 if not output:
                     self.stop()
                     return

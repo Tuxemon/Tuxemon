@@ -1,0 +1,34 @@
+conditions: []
+hold_conditions: []
+hold_use_conditions:
+- type: current_hp
+  parameters:
+  - <=
+  - '0.25'
+  operator: is
+hold_uses_per_battle: 1
+effects:
+- type: statchange
+stat_modifiers:
+  melee:
+    step: 1
+slug: alban_nut
+sort: utility
+sprite: gfx/items/alban_nut.png
+category: none
+usable_in:
+- ''
+modifiers: []
+behaviors:
+  consumable: true
+  holdable: true
+use_failure: generic_failure
+use_item: combat_used_x
+use_success: held_item_melee_rose
+visuals:
+  animation: null
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: null
+  volume: 0.0

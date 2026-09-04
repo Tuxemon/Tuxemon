@@ -93,6 +93,24 @@ msgstr "Wood Berry"
 msgid "wood_berry_description"
 msgstr "It changes monster type to Wood."
 
+msgid "moco_berry"
+msgstr "Moco Berry"
+
+msgid "moco_berry_description"
+msgstr "When the holder is poisoned, they pop the Moco Berry to heal a little."
+
+msgid "mocochinchi"
+msgstr "Mocochinchi"
+
+msgid "mocochinchi_description"
+msgstr "When the holder is bloodied in combat, they pop the Mocochinchi to heal a little."
+
+msgid "alban_nut"
+msgstr "Alban Nut"
+
+msgid "alban_nut_description"
+msgstr "When the holder is badly damaged in combat, they pop the Alban Nut to grow stronger."
+
 msgid "potion"
 msgstr "Potion"
 
@@ -2050,6 +2068,18 @@ msgstr "{method} prevents {target} from gaining {condition}"
 
 msgid "combat_state_immune_multiple"
 msgstr "{target} are immune to {method}"
+
+msgid "combat_state_stat_rose"
+msgstr "{target}'s {stat} rose."
+
+msgid "combat_state_stat_rose_greatly"
+msgstr "{target}'s {stat} rose greatly."
+
+msgid "combat_state_stat_fell"
+msgstr "{target}'s {stat} fell."
+
+msgid "combat_state_stat_fell_greatly"
+msgstr "{target}'s {stat} fell greatly."
 
 msgid "combat_multiattack"
 msgstr "Hit {hit_count} time(s)!"
@@ -4496,6 +4526,19 @@ msgstr "Sort by Name"
 
 msgid "sort_by_id"
 msgstr "Sort by ID"
+
+# Held item notifications
+msgid "held_item_not_holdable"
+msgstr "{item} can't be held."
+
+msgid "held_item_unsuitable"
+msgstr "{name} can't hold {item}."
+
+msgid "held_item_healed"
+msgstr "{target}'s health was restored."
+
+msgid "held_item_melee_rose"
+msgstr "{target}'s Melee rose."
 
 # Release notifications
 msgid "cant_release"

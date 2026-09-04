@@ -1,0 +1,33 @@
+conditions: []
+hold_conditions: []
+hold_use_conditions:
+- type: status
+  parameters:
+  - poison
+  operator: is
+hold_uses_per_battle: 1
+effects:
+- type: heal
+  parameters:
+  - '0.25'
+  - percentage
+slug: moco_berry
+sort: utility
+sprite: gfx/items/moco_berry.png
+category: none
+usable_in:
+- ''
+modifiers: []
+behaviors:
+  consumable: true
+  holdable: true
+use_failure: generic_failure
+use_item: combat_used_x
+use_success: held_item_healed
+visuals:
+  animation: null
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: null
+  volume: 0.0

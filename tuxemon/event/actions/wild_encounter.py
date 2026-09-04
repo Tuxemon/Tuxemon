@@ -72,7 +72,7 @@ class WildEncounterAction(EventAction):
             current_monster.money_modifier = self.money
         if self.held_item is not None:
             item = Item.create(self.held_item)
-            output = current_monster.equip_item(item)
+            output = current_monster.equip_item(session, item)
             if not output:
                 self.stop()
                 return

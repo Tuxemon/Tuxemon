@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import logging
+import random
+from collections.abc import Sequence
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
@@ -13,8 +15,12 @@ from tuxemon.core.core_effect import (
     TechEffectResult,
 )
 from tuxemon.db import EffectPhase
-from tuxemon.monster.stat_utils import apply_stat_modifiers
-from tuxemon.monster.stats import BasicStats
+from tuxemon.locale.locale import T
+from tuxemon.monster.stat_utils import (
+    StageChange,
+    apply_stat_modifiers,
+    get_source_key,
+)
 
 if TYPE_CHECKING:
     from tuxemon.item.item import Item
@@ -24,6 +30,46 @@ if TYPE_CHECKING:
     from tuxemon.technique.technique import Technique
 
 logger = logging.getLogger(__name__)
+
+GREAT_CHANGE = 2
+
+
+def stage_change_message_key(steps: int) -> str:
+    """
+    The message describing a stage change of this size.
+
+    Two stages or more is the difference between "rose" and "rose
+    greatly", matching the step a single Boost item grants.
+    """
+    if steps > 0:
+        return (
+            "combat_state_stat_rose_greatly"
+            if steps >= GREAT_CHANGE
+            else "combat_state_stat_rose"
+        )
+    return (
+        "combat_state_stat_fell_greatly"
+        if steps <= -GREAT_CHANGE
+        else "combat_state_stat_fell"
+    )
+
+
+def describe_stage_changes(
+    monster: Monster, stage_changes: Sequence[StageChange]
+) -> list[str]:
+    """Tells the player which of a monster's stats moved, and how far."""
+    messages = []
+    for change in stage_changes:
+        if not change.steps:
+            continue
+        params = {
+            "target": monster.name,
+            "stat": T.translate(change.stat),
+        }
+        messages.append(
+            T.format(stage_change_message_key(change.steps), params)
+        )
+    return messages
 
 
 @dataclass
@@ -90,24 +136,42 @@ class StatChangeEffect(CoreEffect):
             apply_stat_modifiers(host, status, status.stat_modifiers)
             status.mark_applied(self.name)
         elif status.has_phase(EffectPhase.ON_END):
-            status.temporary_stat_boosts = BasicStats()
+            host.temporary_stat_boosts.withdraw(get_source_key(status))
 
         return StatusEffectResult(name=status.name, success=True)
 
     def apply_tech_target(
         self, session: Session, tech: Technique, user: Monster, target: Monster
     ) -> TechEffectResult:
-        if self.objectives:
-            monsters = session.client.combat_session.get_target_monsters(
-                self.objectives.split(":"), user, target
-            )
-            for monster in monsters:
-                apply_stat_modifiers(monster, tech, tech.stat_modifiers)
+        if not self.objectives:
+            return TechEffectResult(name=tech.name)
 
-        return TechEffectResult(name=tech.name, success=True)
+        # Rolled the same way "give" rolls for a status, so a stat change
+        # delivered by a technique is as reliable as that technique is, and
+        # misses alongside its damage rather than landing regardless.
+        potency = random.random()
+        hit = session.client.combat_session.get_tech_hit(user)
+        if tech.potency < potency or tech.accuracy < hit:
+            return TechEffectResult(name=tech.name)
+
+        monsters = session.client.combat_session.get_target_monsters(
+            self.objectives.split(":"), user, target
+        )
+        extras = []
+        for monster in monsters:
+            stage_changes = apply_stat_modifiers(
+                monster, tech, tech.stat_modifiers
+            )
+            extras.extend(describe_stage_changes(monster, stage_changes))
+
+        return TechEffectResult(name=tech.name, success=True, extras=extras)
 
     def apply_item_target(
         self, session: Session, item: Item, target: Monster
     ) -> ItemEffectResult:
-        apply_stat_modifiers(target, item, item.stat_modifiers)
-        return ItemEffectResult(name=item.name, success=True)
+        stage_changes = apply_stat_modifiers(target, item, item.stat_modifiers)
+        return ItemEffectResult(
+            name=item.name,
+            success=True,
+            extras=describe_stage_changes(target, stage_changes),
+        )

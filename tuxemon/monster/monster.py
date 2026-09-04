@@ -26,7 +26,12 @@ from tuxemon.locale.locale import T
 from tuxemon.monster.bond import BondHandler
 from tuxemon.monster.evolution import Evolution
 from tuxemon.monster.experience import MonsterExperience
-from tuxemon.monster.held_item import MonsterItemHandler
+from tuxemon.monster.held_item import (
+    NOT_HOLDABLE,
+    UNSUITABLE_HOLDER,
+    EquipResult,
+    MonsterItemHandler,
+)
 from tuxemon.monster.moves import MonsterMovesHandler
 from tuxemon.monster.plague import MonsterPlagueHandler
 from tuxemon.monster.renderer import SoundConfig, SpriteConfig
@@ -36,6 +41,7 @@ from tuxemon.monster.stats import (
     CustomStatBoosts,
     IndividualValues,
     StatCalculator,
+    TemporaryStatBoosts,
     TrainingPoints,
     compare_stats,
     randomize_ivs,
@@ -160,6 +166,7 @@ class Monster:
         self.bond_handler = BondHandler()
 
         self.base_stats: BasicStats = BasicStats()
+        self.temporary_stat_boosts = TemporaryStatBoosts()
         self.training_points = TrainingPoints()
         self.custom_stats = CustomStatBoosts()
         self.individual_values = randomize_ivs()
@@ -257,7 +264,7 @@ class Monster:
             elif key == "held_item" and value:
                 item = monster.item_handler.decode_item(value)
                 if item:
-                    monster.equip_item(item)
+                    monster.restore_item(item)
             elif key == "training_points" and value:
                 monster.training_points = TrainingPoints.from_dict(value)
                 monster.training_points.validate()
@@ -433,12 +440,75 @@ class Monster:
         """Returns True if the monster was acquired via the specified method."""
         return self.acquisition == method
 
-    def equip_item(self, item: Item) -> bool:
-        result = self.item_handler.set_item(item)
-        if result:
-            self.moves.apply_item_techniques(self, item)
-            self.status.apply_item_statuses(self, item)
-        return result
+    def can_equip(self, session: Session, item: Item) -> EquipResult:
+        """
+        Check the give-time gate without changing anything.
+
+        An item may be held when it is flagged holdable and when the monster
+        satisfies the item's ``hold_conditions``. A refusal carries a
+        translated reason so callers can tell the player why.
+        """
+        if not item.behaviors.holdable:
+            return EquipResult.refused(NOT_HOLDABLE, self.name, item.name)
+
+        if not item.validate_holder(session, self):
+            return EquipResult.refused(UNSUITABLE_HOLDER, self.name, item.name)
+
+        return EquipResult.accepted()
+
+    def equip_item(self, session: Session, item: Item) -> EquipResult:
+        """
+        Give this monster an item to hold, if the give-time gate allows it.
+
+        Callers must honour the result: on a refusal the item was not taken,
+        so it still belongs wherever it came from.
+        """
+        result = self.can_equip(session, item)
+        if not result:
+            logger.info(f"{self.name} can't hold {item.name}: {result.reason}")
+            return result
+
+        if not self.item_handler.set_item(item):
+            return EquipResult.refused(NOT_HOLDABLE, self.name, item.name)
+
+        self.moves.apply_item_techniques(self, item)
+        self.status.apply_item_statuses(self, item)
+        return EquipResult.accepted()
+
+    def restore_item(self, item: Item) -> bool:
+        """
+        Re-attach a held item loaded from a save.
+
+        Give-time conditions are deliberately *not* re-evaluated here. They
+        were checked when the item was equipped, and the monster's state may
+        legitimately have drifted since (it levelled up, evolved, was cured);
+        re-checking would silently strip an item the player earned.
+        """
+        if not self.item_handler.set_item(item):
+            logger.warning(
+                f"{self.name} lost the held item {item.name} on load: "
+                "the item is no longer holdable"
+            )
+            return False
+
+        self.moves.apply_item_techniques(self, item)
+        self.status.apply_item_statuses(self, item)
+        return True
+
+    def consume_held_item(self) -> Item | None:
+        """
+        Uses up the held item: it leaves the monster and isn't given back.
+
+        The boost the item just applied stays behind on its own: temporary
+        boosts are recorded against the monster, not the source that
+        applied them (see ``TemporaryStatBoosts``), and only a source that
+        ends of its own accord withdraws its contribution. Combat drops
+        them along with every other temporary boost when the battle ends.
+        """
+        if self.held_item is None:
+            return None
+
+        return self.unequip_item()
 
     def unequip_item(self) -> Item | None:
         item = self.item_handler.take_item()
@@ -448,14 +518,36 @@ class Monster:
             return item
         return None
 
-    def swap_items(self, other: Monster) -> None:
-        item_a = self.unequip_item()
-        item_b = other.unequip_item()
+    def swap_items(self, session: Session, other: Monster) -> EquipResult:
+        """
+        Exchange held items with another monster.
 
-        if item_a:
-            other.equip_item(item_a)
-        if item_b:
-            self.equip_item(item_b)
+        Both halves of the swap are gated, and both are checked before
+        anything moves: a swap either happens completely or not at all, so a
+        refusal can't strand an item in nobody's hands.
+        """
+        item_a = self.held_item
+        item_b = other.held_item
+
+        if item_a is not None:
+            result = other.can_equip(session, item_a)
+            if not result:
+                return result
+
+        if item_b is not None:
+            result = self.can_equip(session, item_b)
+            if not result:
+                return result
+
+        self.unequip_item()
+        other.unequip_item()
+
+        if item_a is not None:
+            other.equip_item(session, item_a)
+        if item_b is not None:
+            self.equip_item(session, item_b)
+
+        return EquipResult.accepted()
 
     def get_experience_multiplier(self) -> float:
         """
@@ -571,17 +663,9 @@ class Monster:
 
     def get_combat_stats(self) -> BasicStats:
         """Calculates effective stats for the current combat turn."""
-        combined_temporary_boosts = BasicStats()
-
-        for status in self.status.get_statuses():
-            combined_temporary_boosts += status.temporary_stat_boosts
-
-        held_item = self.item_handler.held_item
-        if held_item:
-            combined_temporary_boosts += held_item.temporary_stat_boosts
-
-        for move in self.moves.get_moves():
-            combined_temporary_boosts += move.temporary_stat_boosts
+        combined_temporary_boosts = self.temporary_stat_boosts.total(
+            self.base_stats
+        )
 
         calculator = StatCalculator(
             base_stats=self.base_stats,
@@ -597,12 +681,7 @@ class Monster:
         return calculator.calculate(temporary_boosts=combined_temporary_boosts)
 
     def clear_all_temporary_boosts(self) -> None:
-        for status in self.status.get_statuses():
-            status.temporary_stat_boosts = BasicStats()
-        for move in self.moves.get_moves():
-            move.temporary_stat_boosts = BasicStats()
-        if self.item_handler.held_item:
-            self.item_handler.held_item.temporary_stat_boosts = BasicStats()
+        self.temporary_stat_boosts.clear()
 
     def set_level(self, new_level: int, old_level: int) -> int:
         if new_level > old_level and self._levelup_start_stats is None:
@@ -691,6 +770,7 @@ class Monster:
         self.current_hp = min(old_monster.current_hp, self.hp)
         self.moves = old_monster.moves
         self.status = old_monster.status
+        self.temporary_stat_boosts = old_monster.temporary_stat_boosts
         self.instance_id = old_monster.instance_id
         self.individual_values = old_monster.individual_values
         self.training_points = old_monster.training_points

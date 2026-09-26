@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="123">
+<map version="1.10" tiledversion="1.12.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="123">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
+  <property name="map_type" value="dungeon"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="datacenter"/>
-  <property name="map_type" value="dungeon"/>
  </properties>
  <tileset firstgid="1" name="Interiors_16x16" tilewidth="16" tileheight="16" tilecount="2592" columns="16">
   <image source="../gfx/tilesets/Interiors_16x16.png" width="256" height="2592"/>
@@ -357,7 +357,7 @@
   </object>
   <object id="102" name="Wild" type="event" x="304" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter spyder_datacenter,0.6"/>
+    <property name="act1" value="random_encounter spyder_datacenter,0.3"/>
     <property name="cond1" value="not variable_set kernelquest:done"/>
     <property name="cond2" value="is check_char_parameter player,moving,1"/>
    </properties>
@@ -506,12 +506,12 @@
    <properties>
     <property name="act01" value="char_stop player"/>
     <property name="act02" value="lock_controls"/>
-    <property name="act03" value="create_npc spyder_billie,11,14"/>
-    <property name="act04" value="pathfind spyder_billie,1,10"/>
+    <property name="act03" value="create_npc spyder_billie,8,8"/>
+    <property name="act04" value="pathfind spyder_billie,8,5"/>
     <property name="act05" value="char_face spyder_billie,player"/>
     <property name="act06" value="char_face player,right"/>
     <property name="act07" value="translated_dialog spyder_datacenter_billie1"/>
-    <property name="act75" value="pathfind spyder_billie,11,14"/>
+    <property name="act75" value="pathfind spyder_billie,8,8"/>
     <property name="act80" value="remove_npc spyder_billie"/>
     <property name="act90" value="set_variable datacenterbillie:yes"/>
     <property name="act99" value="unlock_controls"/>

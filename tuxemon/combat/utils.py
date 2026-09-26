@@ -54,6 +54,52 @@ def check_battle_legal(character: NPC) -> bool:
     return True
 
 
+def blackout_if_unfit(session: Session, *characters: NPC) -> bool:
+    """
+    Black out a human player who cannot legally battle, if opted in.
+    When a battle would start but the participating player has no monsters
+    fit to fight, and the ``blackout_no_monsters`` game variable is set to
+    ``"true"`` (enabled by specific maps, e.g. the Spyder Hospital), send the
+    player to their faint-teleport point and heal them, exactly as if they had
+    lost the battle. The remaining actions of the triggering map event are
+    cancelled so any follow-up (e.g. a trainer's post-battle dialog) is skipped.
+
+    The teleport itself is an asynchronous screen transition, so the event
+    engine is suspended until the destination map loads. Without this, the
+    trainer event would re-trigger every frame during the fade (the player is
+    still standing on the trigger tile), replaying the pre-battle dialog and
+    re-locking controls, leaving the player stuck behind an orphaned dialog
+    once the map changes. The engine resumes automatically in
+    ``EventEngine.reset()`` when the new map is loaded.
+
+    Parameters:
+        session: Session.
+        characters: The characters that would take part in the battle.
+    Returns:
+        True if a blackout was triggered, False otherwise.
+    """
+    player = next((char for char in characters if char.is_player), None)
+    if player is None or check_battle_legal(player):
+        return False
+
+    if player.game_variables.get("blackout_no_monsters") != "true":
+        return False
+
+    if player.teleport_faint.is_default():
+        logger.error(
+            "blackout_no_monsters is set but teleport_faint is not, "
+            "use 'set_teleport_faint'. Skipping blackout."
+        )
+        return False
+
+    logger.info(f"{player.name} has no monsters fit to battle, blacking out.")
+    event_engine = session.client.event_engine
+    event_engine.execute_action("teleport_faint", ["player", "true"])
+    event_engine.suspend()
+    event_engine.cancel_all_events()
+    return True
+
+
 def check_repellent(character: NPC) -> bool:
     """
     Checks if the repellent is still active.

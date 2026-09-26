@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="296">
+<map version="1.10" tiledversion="1.12.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="298">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="map_type" value="route"/>
@@ -25,7 +25,7 @@
  </layer>
  <layer id="3" name="Tile Layer 3" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtlr+KFEEQhysycD0zT+EEEwXRRDAR5TgMNTffUF/BVEQTfQX3HXwFQ/+gJr6CjyAqWD+cD4uieqfnZtYDsaGpnppfVX3TO9U7Zv/2eLgye+Tzb4w3Z8yo12tfONtLn736rJv6XNTrteTv1Wcd8f/t8Xbg7Wmzdz7f+zzu+Orv5a7GLee64flvz+CDLb/bc6+VV3x6fvgupbOAGjBss/ndnnsN39m9P3zyiREuamzjinri5lrqaf9uBj72Dy7qoK+sYtAvZakjPp27+n1hi/uBTr5tE53sNp3uTRn7rj/v88IQV8XvHUzJuCxfrAybbM/vGmPzmvi5Np9/MPIe5fxZD1f2Ez/XxvMFtrh/Ob/0q3Aewdfyc//1KVZmPWvUrbxwsX9RX53nylP5ifsS+HrWxN3xd63KCxec6MXxwPfvcOin7Oecx4/9Gfh61oq7t7LNZZ+qF/Pq/wQuOKkjvsd+/8rK1vd9Zn/Mo3vPXK/x0e2nkfl50P6OMPP8G6+zUb2cFy44iRHfK9f7c639+dbZn/McDjWx6Ct7lPikeTLUy3nhgpN84tN5/jTlwp/zwIUlT2UrvlZeuODUf7SG9HxPaN8Z0Y9PFi5svJfXFZ/6g3pRDxec3BNH/p7QvZYfLix5Kpv56I+qHlxwkk8c8XtizA8XFn1lMx/9UdWDC07yia/qp5YfrqN0HpEv2ruFRv1R1YMLTvKIQ/1bnX/yt/qD+KmWejkvXHCSV3r1b3X+8Z2GVpb9i74pa/VHlRcuOMkpPvVTdf5VfXbg+S82Zj6PqYGlP6q8cMFJjPjUT9X5V/UZcZXN/ZA19EfMy5kGF5zEio9++nbO7LvPHz6jH+2YHeNTvPqDejEfXHByL35vX903u+bzus/ob/3PfvBacfTwxbwxFi44472l1tv49A1aTWrDBSf+JS186s84Kq7okxYuOGP82Fr91jOep9+bmMhSrdUvcMGJJQfXJ23hxMLH9UnbvD/wtWzW7/o670+LC3/W7/q69/nh69Uvpet9fvh69UvpfgHnVoQf
+   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
   </data>
  </layer>
  <layer id="4" name="Above Player" width="40" height="40">
@@ -58,7 +58,7 @@
   <object id="269" type="collision" x="528" y="48" width="48" height="16"/>
   <object id="272" type="collision" x="16" y="192" width="16" height="16"/>
   <object id="287" type="collision" x="592" y="48" width="16" height="16"/>
-  <object id="288" type="collision" x="576" y="32" width="16" height="16"/>
+  <object id="288" type="collision" x="576" y="48" width="16" height="16"/>
   <object id="290" type="collision" x="112" y="416" width="16" height="32"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="6" name="Events">
@@ -565,7 +565,7 @@
     <property name="behav1" value="talk spyder_citypark_cd2"/>
    </properties>
   </object>
-  <object id="289" name="Teleport to Maniac House" type="event" x="576" y="48" width="16" height="16">
+  <object id="289" name="Teleport to Maniac House" type="event" x="560" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport player,spyder_citypark_house1.tmx,6,7,0.3"/>
     <property name="act2" value="char_face player,up"/>
@@ -612,6 +612,24 @@
     <property name="act1" value="char_talk spyder_citypark_edith,post_battle_lose"/>
     <property name="behav1" value="talk spyder_citypark_edith"/>
     <property name="cond1" value="is battle_outcome player,won,spyder_citypark_edith"/>
+   </properties>
+  </object>
+  <object id="296" name="Swim Encounters Day" type="event" x="48" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter spyder_water_early,0.15"/>
+    <property name="cond1" value="is char_sprite player,swimmer"/>
+    <property name="cond2" value="is current_state WorldState"/>
+    <property name="cond3" value="is check_char_parameter player,moving,1"/>
+    <property name="cond4" value="is environment_is ocean"/>
+   </properties>
+  </object>
+  <object id="297" name="Swim Encounters Night" type="event" x="64" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter spyder_water_early,0.25"/>
+    <property name="cond1" value="is char_sprite player,swimmer"/>
+    <property name="cond2" value="is current_state WorldState"/>
+    <property name="cond3" value="is check_char_parameter player,moving,1"/>
+    <property name="cond4" value="is environment_is night_ocean"/>
    </properties>
   </object>
    <object id="8277" name="Track citypark" type="event" x="0" y="0" width="640" height="640">

@@ -49,9 +49,7 @@ class SetLayerAction(EventAction):
         renderer = session.client.map_renderer
 
         if not self.rgb or self.rgb.lower() == "none":
-            renderer.layer_color = None
-            renderer.layer_image = False
-            renderer.layer.fill((0, 0, 0, 0))
+            renderer.clear_overlay()
             return
 
         if self.rgb.endswith(".png"):

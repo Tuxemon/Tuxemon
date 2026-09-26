@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="118">
+<map version="1.10" tiledversion="1.12.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="120">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -16,12 +16,12 @@
  </layer>
  <layer id="2" name="Tile Layer 2" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eAFjYBhc4AXj4HIPPVyjxkcPW0btGA2B0RAYKSGwgpmBoRGKVwJpUgGyfpA5QwFYjpajQyGaBsSNo2ljQIJ9UFtqNVpeDHj8AAAGxQaK
+   eAFjYBhc4AUj5e5pYKfcDGQTqG3eG6D7FkPxEiq7Fdndo+zREBgNgZEZAiuYGRgaoXglkCYVIOsHmTMUgCXfUHDlqBsHIgRG08ZAhPrgttNqtLwY8AgCAGyDClY=
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eAFjYBgYsIKZgaERCwa5BiS+EojpAXC5o4lO9tPDj0PNjgYs6QJbWkEWo1d6GexhiSs9I4cVOns0rQ/2WB1132gIDN4QwFVej5bJgzfOhprLkNMYofoKVgcSUjfUwmA4uhcAWTceeg==
+   eAFjYBgYsIKZgaERCwa5BiS+EoiJBSCzyAXY3NFEgXnkumNUHyIEGoDhjy1t4BMjJb0gbBp+LGzpGV+4geRG0/vwSwejPhoNAXqFAK7yerRMplcMDH97kNMYofoKVgcSUjf8Q23w+xAATk0eoQ==
   </data>
  </layer>
  <layer id="7" name="Tile Layer 4" width="20" height="40">
@@ -31,7 +31,7 @@
  </layer>
  <layer id="4" name="Above Player" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eAHFlIttAzEMQw/IQk2maTpN22mSbZKNYqIhjiAo2f0ANeA4/uiJkuw7H7bt/A99W2jf0fU2YujaaxFjZ9PtVTzoeBn9aP005l3reGnvp/HCLvFuptf138d+qkfFS2dX1mZxVTlMMcHfX/NmefK8YY7aV/pWcuJnupxX+ZmtV/rgK93nFKeu3Yed62Y9Kl/p/Gyty8XM1vcvQ/Pn6O+jXwv9blPNyWLef8N0FpioSZVjaPKmOv1NJJbbIy9sHovzvL5JP1kc1QZvjN/LpI3+sMc7x/OJh9hpo36wTm3uZ1WD8siCBl1n7sGE3lQ36tM9rrk28roRtq6BPF/vONxznsbKnKeR9j46T/OdOFjze6dM52GP8Va8isnY3N+KxsSkjlTHVabWDLzEYj7UH98HRn0jztM5OMjBx7Pj7Sd/9IOY1R7rOmc+cQ4tsbxeaq9+vgj7b2Ltu/u/VZ6eYx702wei+7yNeDW3u9d5HlAXffOsYWK6X82L75GjI5h6H9wvfa6wlNv997vgZx8jjOKM
+   eAHFlAFOAzEMBE/iQ8BrKK8BXgO/aX+ER7C61crJpaUSkdKkcTxeO8mdHrbt9A99W2irukB9VA6z9jLIceYzs414rxXnsfqT9eeaH7UZL23n4h0x00e1RF9ng+mac34puxg+jni+55o5vFtalxNx7807qlPWjf+c1UjfNbXR3lnNb6kdPiN9xMr73OWYa5fyk14fZ9p93+r8nrzP0sx35K3610D/qi6xdB5/YSYLJmcyqjEas7luauatY7mduX9fM5fk5V3q9CfffXhj+r512hQPm+6d9ovrPHKXT65LW8ZZ1eA8sdDg66o9TPR25yZ9btNaahNvNuKbGsTL9RlHtuR5rqp5N8o/x+R5vTsOa3nvnJk8bMp3xBsxlVvGW9HYMaWjO8dVpp8ZvI6leng8vQ9GfyPJ8/9wqMH7b+ftd/EUh5zdn3X/r3qyj9ax8rzc3+P8EPbfjrVb99kqz/epDv7tg5gxz5Wv13aPelwHzsXfvM6wY2Zcr0vaxPERpt+HjKuYKyznzuZ5F3LvN9Vc4nM=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collisions">
@@ -64,16 +64,6 @@
   <object id="34" type="collision" x="128" y="496" width="16" height="32"/>
   <object id="35" type="collision" x="64" y="496" width="32" height="48"/>
   <object id="36" type="collision" x="80" y="480" width="16" height="16"/>
-  <object id="37" type="collision" x="192" y="32" width="96" height="16">
-   <properties>
-    <property name="key" value="drokoro"/>
-   </properties>
-  </object>
-  <object id="38" type="collision" x="208" y="48" width="64" height="32">
-   <properties>
-    <property name="key" value="drokoro"/>
-   </properties>
-  </object>
   <object id="40" type="collision" x="288" y="304" width="16" height="16"/>
   <object id="41" type="collision" x="160" y="400" width="144" height="32"/>
   <object id="42" type="collision" x="176" y="384" width="128" height="16"/>
@@ -91,9 +81,11 @@
   <object id="84" type="collision" x="160" y="16" width="96" height="16"/>
   <object id="85" type="collision" x="256" y="0" width="16" height="16"/>
   <object id="86" type="collision" x="272" y="16" width="32" height="16"/>
-  <object id="115" type="collision" x="64" y="32" width="96" height="32"/>
-  <object id="116" type="collision" x="96" y="80" width="64" height="64"/>
+  <object id="115" type="collision" x="64" y="32" width="80" height="32"/>
+  <object id="116" type="collision" x="96" y="80" width="48" height="64"/>
   <object id="117" type="collision" x="160" y="112" width="144" height="32"/>
+  <object id="118" type="collision" x="144" y="96" width="16" height="48"/>
+  <object id="119" type="collision" x="144" y="32" width="16" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="6" name="Events">
   <object id="56" name="Teleport to Sea Route" type="event" x="192" y="624" width="32" height="16">
@@ -207,7 +199,7 @@
     <property name="cond1" value="not battle_outcome player,won,spyder_dragonscave_benden"/>
    </properties>
   </object>
-  <object id="74" name="Get Drokoro" type="event" x="208" y="48" width="64" height="32">
+  <object id="74" name="Get Drokoro" type="event" x="224" y="32" width="64" height="32">
    <properties>
     <property name="act1" value="translated_dialog spyder_dragonscave_drokoro1"/>
     <property name="act2" value="wild_encounter drokoro,50,3,,cave"/>
@@ -218,57 +210,47 @@
     <property name="cond3" value="not variable_set dragonscavedrokoro:yes"/>
    </properties>
   </object>
-  <object id="75" name="Get Drokoro" type="event" x="192" y="32" width="96" height="16">
+  <object id="76" name="Create Mal" type="event" x="192" y="96" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog spyder_dragonscave_drokoro1"/>
-    <property name="act2" value="wild_encounter drokoro,50,3,,cave"/>
-    <property name="act3" value="set_variable dragonscavedrokoro:yes"/>
-    <property name="act4" value="remove_npc spyder_drokoro"/>
-    <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed INTERACT"/>
-    <property name="cond3" value="not variable_set dragonscavedrokoro:yes"/>
-   </properties>
-  </object>
-  <object id="76" name="Create Mal" type="event" x="112" y="160" width="16" height="16">
-   <properties>
-    <property name="act1" value="create_npc spyder_dragonscave_mal,7,10"/>
-    <property name="act2" value="char_face spyder_dragonscave_mal,right"/>
+    <property name="act1" value="create_npc spyder_dragonscave_mal,12,6"/>
     <property name="cond1" value="not char_exists spyder_dragonscave_mal"/>
     <property name="cond2" value="not variable_set dragonscavemal:yes"/>
    </properties>
   </object>
-  <object id="78" name="Create Ray" type="event" x="288" y="144" width="16" height="16">
+  <object id="78" name="Create Ray" type="event" x="288" y="80" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_dragonscave_ray,18,9"/>
+    <property name="act1" value="create_npc spyder_dragonscave_ray,18,3"/>
     <property name="cond1" value="not char_exists spyder_dragonscave_ray"/>
     <property name="cond2" value="not battle_outcome player,won,spyder_dragonscave_ray"/>
    </properties>
   </object>
-  <object id="80" name="Create Lucille" type="event" x="64" y="64" width="16" height="16">
+  <object id="80" name="Create Lucille" type="event" x="160" y="32" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_dragonscave_lucille,4,4"/>
+    <property name="act1" value="create_npc spyder_dragonscave_lucille,10,2"/>
     <property name="cond1" value="not char_exists spyder_dragonscave_lucille"/>
     <property name="cond2" value="not battle_outcome player,won,spyder_dragonscave_lucille"/>
    </properties>
   </object>
-  <object id="82" name="Create Tru" type="event" x="160" y="96" width="16" height="16">
+  <object id="82" name="Create Tru" type="event" x="288" y="96" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_nimrod_tru,10,6"/>
+    <property name="act1" value="create_npc spyder_nimrod_tru,18,6"/>
     <property name="act2" value="char_face spyder_nimrod_tru,up"/>
     <property name="cond1" value="not char_exists spyder_nimrod_tru"/>
-    <property name="cond2" value="not battle_outcome_count player,won,spyder_nimrod_tru,2"/>
+    <property name="cond2" value="not battle_outcome player,won,spyder_dragonscave_ray"/>
    </properties>
   </object>
-  <object id="88" name="Benden Defeated" type="event" x="112" y="224" width="16" height="16">
+  <object id="88" name="Benden Defeated" type="event" x="160" y="48" width="16" height="48">
    <properties>
-    <property name="act1" value="pathfind spyder_dragonscave_benden,18,13"/>
-    <property name="act2" value="pathfind player,17,13"/>
+    <property name="act1" value="char_face spyder_dragonscave_ray,left"/>
+    <property name="act2" value="char_face spyder_nimrod_tru,left"/>
     <property name="act3" value="translated_dialog spyder_dragonscave_mallory3"/>
     <property name="act4" value="char_face spyder_dragonscave_benden,right"/>
     <property name="act5" value="translated_dialog spyder_dragonscave_benden4"/>
     <property name="act6" value="set_variable dragonscavebenden2:yes"/>
     <property name="cond1" value="is battle_outcome player,won,spyder_dragonscave_benden"/>
     <property name="cond2" value="not variable_set dragonscavebenden2:yes"/>
+    <property name="cond3" value="is char_at player"/>
+    <property name="cond4" value="not char_defeated player"/>
    </properties>
   </object>
   <object id="90" name="Teleport to Cotton Tunnel" type="event" x="256" y="16" width="16" height="16">
@@ -374,75 +356,62 @@
     <property name="act09" value="char_talk spyder_dragonscave_benden,post_battle_lose"/>
     <property name="act10" value="set_monster_health"/>
     <property name="act11" value="set_monster_status"/>
+    <property name="act12" value="char_stop player"/>
+    <property name="act13" value="screen_transition 1"/>
+    <property name="act14" value="wait 0.5"/>
+    <property name="act15" value="unlock_controls"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_dragonscave_benden"/>
     <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="not char_defeated player"/>
    </properties>
   </object>
-  <object id="98" name="Talk Ray" type="event" x="272" y="176" width="32" height="16">
+  <object id="98" name="Talk Ray and Tru" type="event" x="256" y="80" width="16" height="32">
    <properties>
     <property name="act1" value="lock_controls"/>
     <property name="act2" value="pathfind_to_char player,spyder_dragonscave_ray"/>
-    <property name="act3" value="char_face player,spyder_dragonscave_ray"/>
-    <property name="act4" value="char_talk spyder_dragonscave_ray,pre_battle"/>
-    <property name="act5" value="unlock_controls"/>
-    <property name="act6" value="add_monster ghosteeth,45,spyder_dragonscave_ray,5,10"/>
-    <property name="act7" value="start_battle player,spyder_dragonscave_ray"/>
-    <property name="act8" value="char_talk spyder_dragonscave_ray,post_battle_lose"/>
+    <property name="act30" value="char_face player,spyder_dragonscave_ray"/>
+    <property name="act40" value="char_talk spyder_dragonscave_ray,pre_battle"/>
+    <property name="act41" value="pathfind_to_char player,spyder_nimrod_tru"/>
+    <property name="act42" value="char_face player,spyder_nimrod_tru"/>
+    <property name="act43" value="translated_dialog spyder_dragonscave_tru1"/>
+    <property name="act50" value="unlock_controls"/>
+    <property name="act60" value="add_monster ghosteeth,45,spyder_dragonscave_ray,5,10"/>
+    <property name="act61" value="add_monster embazook,45,spyder_dragonscave_ray,5,10"/>
+    <property name="act62" value="add_monster arthrobolt,45,spyder_dragonscave_ray,5,10"/>
+    <property name="act63" value="add_monster hydrone,45,spyder_dragonscave_ray,5,10"/>
+    <property name="act70" value="start_double_battle player,spyder_dragonscave_ray"/>
+    <property name="act80" value="char_talk spyder_dragonscave_ray,post_battle_lose"/>
+    <property name="act81" value="translated_dialog spyder_dragonscave_tru2"/>
+    <property name="act82" value="pathfind spyder_dragonscave_ray,18,5"/>
+    <property name="act83" value="pathfind spyder_nimrod_tru,18,6"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_dragonscave_ray"/>
     <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="not char_defeated player"/>
    </properties>
   </object>
-  <object id="99" name="Talk Tru" type="event" x="160" y="64" width="16" height="16">
-   <properties>
-    <property name="act01" value="lock_controls"/>
-    <property name="act02" value="pathfind_to_char player,spyder_nimrod_tru"/>
-    <property name="act03" value="char_face player,spyder_nimrod_tru"/>
-    <property name="act04" value="translated_dialog spyder_dragonscave_tru1"/>
-    <property name="act05" value="unlock_controls"/>
-    <property name="act06" value="add_monster embazook,45,spyder_nimrod_tru,5,10"/>
-    <property name="act07" value="add_monster arthrobolt,45,spyder_nimrod_tru,5,10"/>
-    <property name="act08" value="add_monster hydrone,45,spyder_nimrod_tru,5,10"/>
-    <property name="act09" value="start_battle player,spyder_nimrod_tru"/>
-    <property name="act10" value="translated_dialog spyder_dragonscave_tru2"/>
-    <property name="cond1" value="is battle_outcome_count player,won,spyder_nimrod_tru,1"/>
-    <property name="cond2" value="not battle_outcome_count player,won,spyder_nimrod_tru,2"/>
-    <property name="cond3" value="is char_at player"/>
-    <property name="cond4" value="not char_defeated player"/>
-   </properties>
-  </object>
-  <object id="100" name="Talk Lucille" type="event" x="64" y="112" width="32" height="16">
+  <object id="100" name="Talk Lucille and Mal" type="event" x="176" y="48" width="16" height="48">
    <properties>
     <property name="act1" value="lock_controls"/>
     <property name="act2" value="pathfind_to_char player,spyder_dragonscave_lucille"/>
     <property name="act3" value="char_face player,spyder_dragonscave_lucille"/>
-    <property name="act4" value="char_talk spyder_dragonscave_lucille,pre_battle"/>
-    <property name="act5" value="unlock_controls"/>
-    <property name="act6" value="add_monster coleorus,45,spyder_dragonscave_lucille,5,10"/>
-    <property name="act7" value="start_battle player,spyder_dragonscave_lucille"/>
-    <property name="act8" value="char_talk spyder_dragonscave_lucille,post_battle_lose"/>
+    <property name="act30" value="char_talk spyder_dragonscave_lucille,pre_battle"/>
+    <property name="act31" value="pathfind_to_char player,spyder_dragonscave_mal"/>
+    <property name="act32" value="char_face player,spyder_dragonscave_mal"/>
+    <property name="act40" value="char_talk spyder_dragonscave_mal,pre_battle"/>
+    <property name="act50" value="unlock_controls"/>
+    <property name="act60" value="add_monster coleorus,45,spyder_dragonscave_lucille,5,10"/>
+    <property name="act61" value="add_monster djinnbo,45,spyder_dragonscave_lucille,5,10"/>
+    <property name="act70" value="start_double_battle player,spyder_dragonscave_lucille"/>
+    <property name="act80" value="char_talk spyder_dragonscave_lucille,post_battle_lose"/>
+    <property name="act81" value="char_talk spyder_dragonscave_mal,post_battle_lose"/>
+    <property name="act90" value="set_variable dragonscavemal:yes"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_dragonscave_lucille"/>
     <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="not char_defeated player"/>
+    <property name="cond4" value="is variable_set dragonscavebenden2:yes"/>
    </properties>
   </object>
-  <object id="101" name="Talk Mal" type="event" x="176" y="144" width="16" height="32">
-   <properties>
-    <property name="act1" value="lock_controls"/>
-    <property name="act2" value="pathfind_to_char player,spyder_dragonscave_mal"/>
-    <property name="act3" value="char_face player,spyder_dragonscave_mal"/>
-    <property name="act4" value="char_talk spyder_dragonscave_mal,pre_battle"/>
-    <property name="act5" value="unlock_controls"/>
-    <property name="act6" value="add_monster djinnbo,45,spyder_dragonscave_mal,5,10"/>
-    <property name="act7" value="start_battle player,spyder_dragonscave_mal"/>
-    <property name="act8" value="char_talk spyder_dragonscave_mal,post_battle_lose"/>
-    <property name="act9" value="set_variable dragonscavemal:yes"/>
-    <property name="cond1" value="not variable_set dragonscavemal:yes"/>
-    <property name="cond2" value="is char_at player"/>
-   </properties>
-  </object>
-  <object id="103" name="Create Drokoro" type="event" x="192" y="64" width="16" height="16">
+  <object id="103" name="Create Drokoro" type="event" x="224" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_drokoro,12,4"/>
     <property name="cond1" value="not char_exists spyder_drokoro"/>
@@ -457,7 +426,7 @@
   </object>
   <object id="89" name="Encounters" type="event" x="16" y="208" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter spyder_dragonscave,0.6"/>
+    <property name="act1" value="random_encounter spyder_dragonscave,0.3"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_dragonscave_benden"/>
     <property name="cond2" value="is check_char_parameter player,moving,1"/>
    </properties>

@@ -112,7 +112,7 @@ class InputMenu(Menu[InputMenuObj]):
             font=self.font,
             font_color=self.font_color,
             prompt_text=prompt,
-            initial_input_string=self.input_controller.current_string,
+            initial_input_string=self._display_string(),
             area_rect=self.rect,
         )
         self.sprites.add(self.input_display.sprites)
@@ -172,6 +172,7 @@ class InputMenu(Menu[InputMenuObj]):
         )
 
         if self.random:
+            yield self._create_empty_item()
             yield MenuItem(
                 self.shadow_text(T.translate("random").upper()),
                 None,
@@ -223,11 +224,17 @@ class InputMenu(Menu[InputMenuObj]):
         else:
             self.input_display.update_input_string(T.translate("alert_text"))
 
+    def _display_string(self) -> str:
+        """Return the input string padded with underscores to fill remaining slots."""
+        s = self.input_controller.current_string
+        limit = self.input_controller.char_limit
+        if limit <= 20:
+            return s + "_" * self.input_controller.remaining_chars
+        return s
+
     def update_text_area(self) -> None:
         """Update the text area to reflect the current input string."""
-        self.input_display.update_input_string(
-            self.input_controller.current_string
-        )
+        self.input_display.update_input_string(self._display_string())
 
     def update_char_counter(self) -> None:
         """Update the character count display."""

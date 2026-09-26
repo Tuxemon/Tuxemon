@@ -29,7 +29,9 @@ def user():
 
 @pytest.fixture
 def target():
-    return Mock()
+    t = Mock()
+    t.out_of_range = False
+    return t
 
 
 @pytest.fixture

@@ -270,6 +270,10 @@ class CombatState(CombatAnimations):
         elif phase == CombatPhase.HOUSEKEEPING:
             new_turn = c_session.next_turn()
             c_session.action_queue.set_current_turn(new_turn)
+            # drop scheduled actions that can no longer happen before working
+            # out which monsters were left without one
+            c_session.action_queue.autoclean_pending()
+            c_session.restore_stranded_monsters()
             # reset the stagger counter so this batch of releases starts fresh
             self._entry_index = 0
             # fill all battlefield positions, but on round 1, don't ask
@@ -288,6 +292,9 @@ class CombatState(CombatAnimations):
                 self.process_player_decisions()
 
         elif phase == CombatPhase.ACTION:
+            if c_session.action_queue.pending:
+                c_session.action_queue.autoclean_pending()
+                c_session.action_queue.from_pending_to_action(c_session.turn)
             c_session.action_queue.sort()
 
         elif phase == CombatPhase.POST_ACTION:
@@ -544,10 +551,7 @@ class CombatState(CombatAnimations):
             )
             monster.moves.recharge_moves()
 
-            if monster.locked_turns_left > 0:
-                continue
-
-            if monster.is_charging:
+            if self.combat_session.skips_decision(monster):
                 continue
 
             if char in self.combat_session.human_players:

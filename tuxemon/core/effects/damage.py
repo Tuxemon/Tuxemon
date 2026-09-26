@@ -9,10 +9,14 @@ from tuxemon import formula
 from tuxemon.core.core_effect import CoreEffect, TechEffectResult
 
 if TYPE_CHECKING:
+    from collections.abc import Sequence
+
     from tuxemon.monster.monster import Monster
     from tuxemon.session import Session
     from tuxemon.technique.technique import Technique
 
+# damage each enemy takes when more than one of them is hit at once
+MULTI_TARGET_MODIFIER = 0.75
 
 @dataclass
 class DamageEffect(CoreEffect):
@@ -40,29 +44,31 @@ class DamageEffect(CoreEffect):
         damage = 0
         mult = 1.0
         targets: list[Monster] = []
+        enemy_side: Sequence[Monster] = []
 
         hit = session.client.combat_session.get_tech_hit(user)
         tech.hit = tech.accuracy >= hit
 
-        if tech.hit and not target.out_of_range:
+        if tech.hit:
             targets = session.client.combat_session.get_targets(
                 tech, user, target
             )
             enemy_side = session.client.combat_session.get_own_monsters(target)
-            if sum(1 for m in targets if m in enemy_side) > 1:
-                damage = int(damage * 0.75)
 
-        if targets:
-            for monster in targets:
-                dmg, m = formula.simple_damage_calculate(tech, user, monster)
-                monster.current_hp = max(0, monster.current_hp - dmg)
-                if monster == target:
-                    damage, mult = dmg, m
-                else:
-                    # to avoid double registration in the self._damage_map
-                    session.client.combat_session.enqueue_damage(
-                        user, monster, dmg
-                    )
+        spread = sum(1 for m in targets if m in enemy_side) > 1
+
+        for monster in targets:
+            dmg, m = formula.simple_damage_calculate(tech, user, monster)
+            if spread and monster in enemy_side:
+                dmg = int(dmg * MULTI_TARGET_MODIFIER)
+            monster.current_hp = max(0, monster.current_hp - dmg)
+            if monster == target:
+                damage, mult = dmg, m
+            else:
+                # to avoid double registration in the self._damage_map
+                session.client.combat_session.enqueue_damage(
+                    user, monster, dmg
+                )
 
         return TechEffectResult(
             name=tech.name,

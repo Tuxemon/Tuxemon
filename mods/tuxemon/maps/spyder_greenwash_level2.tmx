@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="16" height="32" tilewidth="16" tileheight="16" infinite="0" nextlayerid="13" nextobjectid="138">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="16" height="32" tilewidth="16" tileheight="16" infinite="0" nextlayerid="13" nextobjectid="146">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -222,9 +222,17 @@
   <object id="113" name="Talk Fossilisator First" type="event" x="112" y="240" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_greenwash_fossilisator1"/>
+    <property name="act2" value="set_variable trigger_fossilisator:yes"/>
     <property name="act3" value="set_variable intro_fossilisator:yes"/>
     <property name="behav1" value="talk spyder_greenwash_selby"/>
     <property name="cond1" value="not variable_set intro_fossilisator:yes"/>
+   </properties>
+  </object>
+  <object id="1130" name="Talk Fossilisator Second" type="event" x="112" y="240" width="16" height="16">
+   <properties>
+    <property name="act2" value="set_variable trigger_fossilisator:yes"/>
+    <property name="behav1" value="talk spyder_greenwash_selby"/>
+    <property name="cond1" value="is variable_set intro_fossilisator:yes"/>
    </properties>
   </object>
   <object id="115" name="Talk Fossilisator Rhincus" type="event" x="128" y="240" width="16" height="16">
@@ -232,11 +240,12 @@
     <property name="act1" value="translated_dialog spyder_greenwash_fossilisator2"/>
     <property name="act2" value="translated_dialog spyder_greenwash_fossilisator3"/>
     <property name="act3" value="translated_dialog_choice yes:no,rhincus_choice"/>
-    <property name="behav1" value="talk spyder_greenwash_selby"/>
-    <property name="cond1" value="is variable_set intro_fossilisator:yes"/>
+    <property name="act4" value="set_variable trigger_fossilator:no"/>
+    <property name="cond1" value="is variable_set trigger_fossilisator:yes"/>
     <property name="cond2" value="is has_item player,rhincus_fossil"/>
     <property name="cond3" value="not has_item player,shammer_fossil"/>
-    <property name="cond4" value="not variable_set got_rhincus:yes"/>
+    <property name="cond4" value="not has_item player,petrified_dung"/>
+    <property name="cond5" value="not variable_set got_rhincus:yes"/>
    </properties>
   </object>
   <object id="116" name="Talk Fossilisator Shammer" type="event" x="144" y="240" width="16" height="16">
@@ -244,21 +253,133 @@
     <property name="act1" value="translated_dialog spyder_greenwash_fossilisator2"/>
     <property name="act2" value="translated_dialog spyder_greenwash_fossilisator5"/>
     <property name="act3" value="translated_dialog_choice yes:no,shammer_choice"/>
-    <property name="behav1" value="talk spyder_greenwash_selby"/>
-    <property name="cond1" value="is variable_set intro_fossilisator:yes"/>
+    <property name="act4" value="set_variable trigger_fossilator:no"/>
+    <property name="cond1" value="is variable_set trigger_fossilisator:yes"/>
     <property name="cond2" value="is has_item player,shammer_fossil"/>
     <property name="cond3" value="not has_item player,rhincus_fossil"/>
-    <property name="cond4" value="not variable_set got_shammer:yes"/>
+    <property name="cond4" value="not has_item player,petrified_dung"/>
+    <property name="cond5" value="not variable_set got_shammer:yes"/>
    </properties>
   </object>
   <object id="117" name="Talk Fossilisator Nothing" type="event" x="160" y="240" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_greenwash_fossilisator2"/>
     <property name="act2" value="translated_dialog spyder_greenwash_fossilisator7"/>
-    <property name="behav1" value="talk spyder_greenwash_selby"/>
+    <property name="act4" value="set_variable trigger_fossilator:no"/>
     <property name="cond1" value="not has_item player,rhincus_fossil"/>
     <property name="cond2" value="not has_item player,shammer_fossil"/>
-    <property name="cond3" value="is variable_set intro_fossilisator:yes"/>
+    <property name="cond3" value="not has_item player,petrified_dung"/>
+    <property name="cond4" value="is variable_set trigger_fossilisator:yes"/>
+   </properties>
+  </object>
+  <object id="138" name="Talk Fossilisator Petrified Dung" type="event" x="176" y="240" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_greenwash_fossilisator2"/>
+    <property name="act2" value="translated_dialog spyder_greenwash_fossilisator10"/>
+    <property name="act3" value="translated_dialog_choice yes:no,coproblight_choice"/>
+    <property name="act4" value="set_variable trigger_fossilator:no"/>
+    <property name="cond1" value="is variable_set trigger_fossilisator:yes"/>
+    <property name="cond2" value="is has_item player,petrified_dung"/>
+    <property name="cond3" value="not has_item player,rhincus_fossil"/>
+    <property name="cond4" value="not has_item player,shammer_fossil"/>
+    <property name="cond5" value="not variable_set got_coproblight:yes"/>
+   </properties>
+  </object>
+  <object id="139" name="Talk Got Coproblight" type="event" x="192" y="256" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_greenwash_fossilisator11"/>
+    <property name="act2" value="add_monster coproblight,35"/>
+    <property name="act3" value="translated_dialog coproblight,,center,center,center"/>
+    <property name="act4" value="add_item petrified_dung,-1"/>
+    <property name="act5" value="set_variable got_coproblight:yes"/>
+    <property name="cond1" value="is variable_set coproblight_choice:yes"/>
+    <property name="cond2" value="not variable_set got_coproblight:yes"/>
+   </properties>
+  </object>
+  <object id="140" name="Talk Fossilisator PD+Rhincus" type="event" x="208" y="240" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_greenwash_fossilisator2"/>
+    <property name="act2" value="translated_dialog spyder_greenwash_fossilisator12"/>
+    <property name="act3" value="translated_dialog_choice yes:no,pd_rhincus_choice"/>
+    <property name="act4" value="set_variable trigger_fossilator:no"/>
+    <property name="cond1" value="is variable_set trigger_fossilisator:yes"/>
+    <property name="cond2" value="is has_item player,petrified_dung"/>
+    <property name="cond3" value="is has_item player,rhincus_fossil"/>
+    <property name="cond4" value="not has_item player,shammer_fossil"/>
+    <property name="cond5" value="not variable_set got_pd_rhincus:yes"/>
+   </properties>
+  </object>
+  <object id="141" name="Talk Got PD+Rhincus" type="event" x="208" y="256" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_greenwash_fossilisator13"/>
+    <property name="act2" value="add_monster coproblight,35"/>
+    <property name="act3" value="translated_dialog coproblight,,center,center,center"/>
+    <property name="act4" value="add_monster rhincus,35"/>
+    <property name="act5" value="translated_dialog rhincus,,center,center,center"/>
+    <property name="act6" value="add_item petrified_dung,-1"/>
+    <property name="act7" value="add_item rhincus_fossil,-1"/>
+    <property name="act8" value="set_variable got_pd_rhincus:yes"/>
+    <property name="cond1" value="is variable_set pd_rhincus_choice:yes"/>
+    <property name="cond2" value="not variable_set got_pd_rhincus:yes"/>
+   </properties>
+  </object>
+  <object id="142" name="Talk Fossilisator PD+Shammer" type="event" x="224" y="240" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_greenwash_fossilisator2"/>
+    <property name="act2" value="translated_dialog spyder_greenwash_fossilisator14"/>
+    <property name="act3" value="translated_dialog_choice yes:no,pd_shammer_choice"/>
+    <property name="act4" value="set_variable trigger_fossilator:no"/>
+    <property name="cond1" value="is variable_set trigger_fossilisator:yes"/>
+    <property name="cond2" value="is has_item player,petrified_dung"/>
+    <property name="cond3" value="is has_item player,shammer_fossil"/>
+    <property name="cond4" value="not has_item player,rhincus_fossil"/>
+    <property name="cond5" value="not variable_set got_pd_shammer:yes"/>
+   </properties>
+  </object>
+  <object id="143" name="Talk Got PD+Shammer" type="event" x="224" y="256" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_greenwash_fossilisator15"/>
+    <property name="act2" value="add_monster coproblight,35"/>
+    <property name="act3" value="translated_dialog coproblight,,center,center,center"/>
+    <property name="act4" value="add_monster shammer,35"/>
+    <property name="act5" value="translated_dialog shammer,,center,center,center"/>
+    <property name="act6" value="add_item petrified_dung,-1"/>
+    <property name="act7" value="add_item shammer_fossil,-1"/>
+    <property name="act8" value="set_variable got_pd_shammer:yes"/>
+    <property name="act9" value="set_mission player"/>
+    <property name="cond1" value="is variable_set pd_shammer_choice:yes"/>
+    <property name="cond2" value="not variable_set got_pd_shammer:yes"/>
+   </properties>
+  </object>
+  <object id="144" name="Talk Fossilisator All Three" type="event" x="240" y="240" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_greenwash_fossilisator2"/>
+    <property name="act2" value="translated_dialog spyder_greenwash_fossilisator16"/>
+    <property name="act3" value="translated_dialog_choice yes:no,all_three_choice"/>
+    <property name="act4" value="set_variable trigger_fossilator:no"/>
+    <property name="cond1" value="is variable_set trigger_fossilisator:yes"/>
+    <property name="cond2" value="is has_item player,petrified_dung"/>
+    <property name="cond3" value="is has_item player,rhincus_fossil"/>
+    <property name="cond4" value="is has_item player,shammer_fossil"/>
+    <property name="cond5" value="not variable_set got_all_three:yes"/>
+   </properties>
+  </object>
+  <object id="145" name="Talk Got All Three" type="event" x="240" y="256" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_greenwash_fossilisator17"/>
+    <property name="act2" value="add_monster coproblight,35"/>
+    <property name="act3" value="translated_dialog coproblight,,center,center,center"/>
+    <property name="act4" value="add_monster rhincus,35"/>
+    <property name="act5" value="translated_dialog rhincus,,center,center,center"/>
+    <property name="act6" value="add_monster shammer,35"/>
+    <property name="act7" value="translated_dialog shammer,,center,center,center"/>
+    <property name="act8" value="add_item petrified_dung,-1"/>
+    <property name="act9" value="add_item rhincus_fossil,-1"/>
+    <property name="act10" value="add_item shammer_fossil,-1"/>
+    <property name="act11" value="set_variable got_all_three:yes"/>
+    <property name="act12" value="set_mission player"/>
+    <property name="cond1" value="is variable_set all_three_choice:yes"/>
+    <property name="cond2" value="not variable_set got_all_three:yes"/>
    </properties>
   </object>
   <object id="118" name="Talk Got Rhincus" type="event" x="176" y="240" width="16" height="16">
@@ -289,11 +410,12 @@
     <property name="act1" value="translated_dialog spyder_greenwash_fossilisator2"/>
     <property name="act2" value="translated_dialog spyder_greenwash_fossilisator8"/>
     <property name="act3" value="translated_dialog_choice yes:no,both_fossils"/>
-    <property name="behav1" value="talk spyder_greenwash_selby"/>
-    <property name="cond1" value="is variable_set intro_fossilisator:yes"/>
+    <property name="act4" value="set_variable trigger_fossilator:no"/>
+    <property name="cond1" value="is variable_set trigger_fossilisator:yes"/>
     <property name="cond2" value="is has_item player,shammer_fossil"/>
     <property name="cond3" value="is has_item player,rhincus_fossil"/>
-    <property name="cond4" value="not variable_set got_both_fossils:yes"/>
+    <property name="cond4" value="not has_item player,petrified_dung"/>
+    <property name="cond5" value="not variable_set got_both_fossils:yes"/>
    </properties>
   </object>
   <object id="121" name="Talk Got Both" type="event" x="144" y="256" width="16" height="16">

@@ -9,10 +9,11 @@ from typing import TYPE_CHECKING, final
 
 from tuxemon.boxes import BoxMetadata
 from tuxemon.event.eventaction import EventAction
-from tuxemon.platform.const.sizes import MAX_KENNEL
+from tuxemon.platform.const.sizes import KENNEL, MAX_KENNEL
 
 if TYPE_CHECKING:
     from tuxemon.entity.npc import NPC
+    from tuxemon.monster.monster import Monster
     from tuxemon.session import Session
 
 logger = logging.getLogger(__name__)
@@ -104,7 +105,22 @@ class QuarantineAction(EventAction):
             ):
                 logger.info(f"{monster} has been inoculated and released")
             else:
-                logger.warning(f"Failed to release {monster} to party")
+                # The party is full, so the monster cannot be returned to
+                # it. Move it to the normal kennel instead of leaving it in
+                # the quarantine box.
+                self._release_to_kennel(character, monster)
+
+    def _release_to_kennel(self, character: NPC, monster: Monster) -> None:
+        """Moves a monster from the quarantine box to the normal kennel."""
+        boxes = character.monster_boxes
+
+        if not boxes.has_box(KENNEL, "monster"):
+            boxes.create_box(KENNEL)
+
+        boxes.move_monster(self.name, KENNEL, monster)
+        logger.info(
+            f"{monster} released to '{KENNEL}' because the party is full"
+        )
 
     def start(self, session: Session) -> None:
         character = session.client.get_npc(self.npc_slug)

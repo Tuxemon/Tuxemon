@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="117">
+<map version="1.10" tiledversion="1.12.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="124">
  <properties>
-  <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
   <property name="map_type" value="dungeon"/>
   <property name="scenario" value="spyder"/>
@@ -86,6 +85,7 @@
    <properties>
     <property name="act10" value="transition_teleport player,spyder_candy_center.tmx,13,5,0.3"/>
     <property name="act20" value="set_variable choice_floor:null"/>
+    <property name="act30" value="set_layer"/>
     <property name="cond1" value="is variable_set choice_floor:0floor"/>
    </properties>
   </object>
@@ -94,6 +94,12 @@
     <property name="act10" value="transition_teleport player,spyder_candy_hospital1.tmx,11,15,0.3"/>
     <property name="act20" value="set_variable choice_floor:null"/>
     <property name="cond1" value="is variable_set choice_floor:1floor"/>
+   </properties>
+  </object>
+  <object id="117" name="Torchlight" type="event" x="32" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_layer gfx/ui/overlay/torchlight.png"/>
+    <property name="cond1" value="not variable_set screendown:yes"/>
    </properties>
   </object>
   <object id="89" name="Route Music" type="event" x="0" y="0" width="16" height="16">
@@ -112,7 +118,10 @@
   <object id="92" name="Talk Scientist" type="event" x="0" y="256" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_hospital1_scientist1"/>
+    <property name="act2" value="set_variable quarantine_lesley:yes"/>
+    <property name="act3" value="quarantine player,spyderbite,out,1"/>
     <property name="behav1" value="talk spyder_hospital1_lesley"/>
+    <property name="cond1" value="not variable_set quarantine_lesley:yes"/>
    </properties>
   </object>
   <object id="93" name="Environment" type="event" x="16" y="0" width="16" height="16">
@@ -124,6 +133,7 @@
   <object id="95" name="3rd floor1" type="event" x="272" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport player,spyder_candy_hospital3.tmx,5,18,0.3"/>
+    <property name="act2" value="set_layer"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_facing player,up"/>
    </properties>
@@ -131,17 +141,19 @@
   <object id="96" name="3rd floor2" type="event" x="288" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport player,spyder_candy_hospital3.tmx,6,18,0.3"/>
+    <property name="act2" value="set_layer"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_facing player,up"/>
    </properties>
   </object>
-  <object id="97" name="Create Luzia" type="event" x="176" y="32" width="16" height="16">
+  <object id="97" name="Create Luzia" type="event" x="224" y="32" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_hospital1_luzia,11,2"/>
+    <property name="act1" value="create_npc spyder_hospital1_luzia,14,2"/>
+    <property name="act2" value="char_face spyder_hospital1_luzia,left"/>
     <property name="cond1" value="not char_exists spyder_hospital1_luzia"/>
    </properties>
   </object>
-  <object id="98" name="Talk Luzia" type="event" x="176" y="80" width="16" height="16">
+  <object id="98" name="Talk Luzia" type="event" x="176" y="32" width="48" height="16">
    <properties>
     <property name="act01" value="lock_controls"/>
     <property name="act02" value="pathfind_to_char player,spyder_hospital1_luzia"/>
@@ -163,7 +175,7 @@
     <property name="cond1" value="not char_exists spyder_hospital1_zekar"/>
    </properties>
   </object>
-  <object id="100" name="Talk Zekar" type="event" x="32" y="224" width="16" height="16">
+  <object id="100" name="Talk Zekar" type="event" x="32" y="144" width="16" height="48">
    <properties>
     <property name="act01" value="lock_controls"/>
     <property name="act02" value="pathfind_to_char player,spyder_hospital1_zekar"/>
@@ -192,14 +204,14 @@
     <property name="behav1" value="talk spyder_hospital1_rea"/>
    </properties>
   </object>
-  <object id="103" name="Create Rakez" type="event" x="80" y="80" width="16" height="16">
+  <object id="103" name="Create Rakez" type="event" x="112" y="80" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_hospital1_rakez,5,5"/>
+    <property name="act1" value="create_npc spyder_hospital1_rakez,7,5"/>
     <property name="act2" value="char_face spyder_hospital1_rakez,left"/>
     <property name="cond1" value="not char_exists spyder_hospital1_rakez"/>
    </properties>
   </object>
-  <object id="104" name="Talk Rakez" type="event" x="16" y="80" width="16" height="16">
+  <object id="104" name="Talk Rakez" type="event" x="64" y="80" width="48" height="16">
    <properties>
     <property name="act01" value="lock_controls"/>
     <property name="act02" value="pathfind_to_char player,spyder_hospital1_rakez"/>
@@ -215,14 +227,14 @@
     <property name="cond3" value="not char_defeated player"/>
    </properties>
   </object>
-  <object id="105" name="Create Rhizome" type="event" x="256" y="32" width="16" height="16">
+  <object id="105" name="Create Rhizome" type="event" x="80" y="128" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_hospital1_rhizome,16,2"/>
+    <property name="act1" value="create_npc spyder_hospital1_rhizome,5,8"/>
     <property name="act2" value="char_face spyder_hospital1_rhizome,left"/>
     <property name="cond1" value="not char_exists spyder_hospital1_rhizome"/>
    </properties>
   </object>
-  <object id="106" name="Talk Rhizome" type="event" x="256" y="48" width="16" height="48">
+  <object id="106" name="Talk Rhizome" type="event" x="80" y="144" width="16" height="48">
    <properties>
     <property name="act01" value="lock_controls"/>
     <property name="act02" value="pathfind_to_char player,spyder_hospital1_rhizome"/>
@@ -240,9 +252,8 @@
   </object>
   <object id="107" name="Create Scientist" type="event" x="64" y="208" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_hospital1_trafford,1,17"/>
+    <property name="act1" value="create_npc spyder_hospital1_trafford,4,13"/>
     <property name="cond1" value="not char_exists spyder_hospital1_trafford"/>
-    <property name="cond2" value="not variable_set quarantine_qua2:yes"/>
    </properties>
   </object>
   <object id="108" name="Talk Scientist" type="event" x="48" y="192" width="16" height="16">
@@ -254,19 +265,13 @@
     <property name="cond1" value="not variable_set quarantine_qua2:yes"/>
    </properties>
   </object>
-  <object id="109" name="Create Nurse" type="event" x="224" y="144" width="16" height="16">
+  <object id="109" name="Create Nurse" type="event" x="240" y="128" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_hospital1_melanie,1,17"/>
+    <property name="act1" value="create_npc spyder_hospital1_melanie,14,9"/>
     <property name="cond1" value="not char_exists spyder_hospital1_melanie"/>
    </properties>
   </object>
-  <object id="110" name="Talk Nurse" type="event" x="224" y="112" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog spyder_hospital2_nurse1"/>
-    <property name="behav1" value="talk spyder_hospital1_melanie"/>
-   </properties>
-  </object>
-  <object id="111" name="Post Talk Zekar" type="event" x="48" y="224" width="16" height="16">
+  <object id="111" name="Post Talk Zekar" type="event" x="48" y="112" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_hospital1_zekar,post_battle_lose"/>
     <property name="behav1" value="talk spyder_hospital1_zekar"/>
@@ -280,7 +285,7 @@
     <property name="cond1" value="is battle_outcome player,won,spyder_hospital1_rakez"/>
    </properties>
   </object>
-  <object id="113" name="Post Talk Luzia" type="event" x="176" y="96" width="16" height="16">
+  <object id="113" name="Post Talk Luzia" type="event" x="224" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_hospital1_luzia,post_battle_lose"/>
     <property name="behav1" value="talk spyder_hospital1_luzia"/>
@@ -313,6 +318,48 @@
     <property name="act4" value="translated_dialog spyder_hospital_pc_message8"/>
     <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed INTERACT"/>
+   </properties>
+  </object>
+  <object id="118" name="Enable No-Monster Blackout" type="event" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable blackout_no_monsters:true"/>
+    <property name="cond1" value="not variable_set blackout_no_monsters:true"/>
+   </properties>
+  </object>
+  <object id="119" name="Default" type="event" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="teleport_faint player,true"/>
+    <property name="cond1" value="is char_defeated player"/>
+   </properties>
+  </object>
+  <object id="120" name="Talk Nurse" type="event" x="208" y="128" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_hospital2_nurse1"/>
+    <property name="act3" value="set_variable quarantine_melanie:yes"/>
+    <property name="act4" value="quarantine player,spyderbite,out,1"/>
+    <property name="behav1" value="talk spyder_hospital1_melanie"/>
+    <property name="cond1" value="not variable_set quarantine_melanie:yes"/>
+   </properties>
+  </object>
+  <object id="121" name="Talk After Lesley" type="event" x="0" y="256" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_hospital_good_luck"/>
+    <property name="behav1" value="talk spyder_hospital1_lesley"/>
+    <property name="cond1" value="is variable_set quarantine_lesley:yes"/>
+   </properties>
+  </object>
+  <object id="122" name="Talk After Trafford" type="event" x="48" y="192" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_hospital_good_luck"/>
+    <property name="behav1" value="talk spyder_hospital1_trafford"/>
+    <property name="cond1" value="is variable_set quarantine_qua2:yes"/>
+   </properties>
+  </object>
+  <object id="123" name="Talk After Melanie" type="event" x="208" y="128" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_hospital_good_luck"/>
+    <property name="behav1" value="talk spyder_hospital1_melanie"/>
+    <property name="cond1" value="is variable_set quarantine_melanie:yes"/>
    </properties>
   </object>
  </objectgroup>

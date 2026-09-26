@@ -23,6 +23,7 @@ random_names:
       - Fedora
       - Solus
       - Debian
+      - Red
   cs_cz:  # Czech names
     male:
       - Finnick
@@ -47,6 +48,7 @@ random_names:
       - Fedora
       - Solus
       - Debian
+      - Red
   de_de:  # German names
     male:
       - Finnick
@@ -71,6 +73,7 @@ random_names:
       - Fedora
       - Solus
       - Debian
+      - Red
   eo:  # Esperanto names
     male:
       - Finnick
@@ -95,6 +98,7 @@ random_names:
       - Fedora
       - Solus
       - Debian
+      - Red
   es_es:  # Spanish names
     male:
       - Finnick
@@ -119,6 +123,7 @@ random_names:
       - Fedora
       - Solus
       - Debian
+      - Red
   es_mx:  # Spanish Mexican names
     male:
       - Finnick
@@ -143,6 +148,7 @@ random_names:
       - Fedora
       - Solus
       - Debian
+      - Red
   fi:  # Finnish names
     male:
       - Finnick
@@ -167,6 +173,7 @@ random_names:
       - Fedora
       - Solus
       - Debian
+      - Red
   fr_fr:  # French names
     male:
       - Finnick
@@ -191,6 +198,7 @@ random_names:
       - Fedora
       - Solus
       - Debian
+      - Red
   it_it:  # Italian names
     male:
       - Finnick
@@ -215,6 +223,7 @@ random_names:
       - Fedora
       - Solus
       - Debian
+      - Red
   ja:  # Japanese names
     male:
       - Finnick
@@ -239,6 +248,7 @@ random_names:
       - Fedora
       - Solus
       - Debian
+      - Red
   nb_no:  # Norwegian Bokmål names
     male:
       - Finnick
@@ -263,6 +273,7 @@ random_names:
       - Fedora
       - Solus
       - Debian
+      - Red
   pl:  # Polish names
     male:
       - Finnick
@@ -287,6 +298,7 @@ random_names:
       - Fedora
       - Solus
       - Debian
+      - Red
   pt_br:  # Brazilian Portuguese names
     male:
       - Finnick
@@ -311,6 +323,7 @@ random_names:
       - Fedora
       - Solus
       - Debian
+      - Red
   zh_cn:  # Simplified Chinese names
     male:
       - Finnick
@@ -335,3 +348,4 @@ random_names:
       - Fedora
       - Solus
       - Debian
+      - Red

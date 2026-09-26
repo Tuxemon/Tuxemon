@@ -73,6 +73,10 @@ class TestReset:
         event_engine.reset()
         assert event_engine.triggered_global_events == set()
 
+    def test_resumes_suspended_engine(self, event_engine):
+        event_engine.suspend()
+        event_engine.reset()
+        assert event_engine._suspended is False
 
 class TestStartEvent:
     def test_event_added_to_running(self, event_engine):

@@ -180,6 +180,7 @@
     <property name="act1" value="random_encounter spyder_omnichannel,0.25"/>
     <property name="cond1" value="is variable_set omnichannel1wall:yes"/>
     <property name="cond2" value="is check_char_parameter player,moving,1"/>
+    <property name="cond3" value="not battle_outcome player,won,spyder_omnichannel_beaverbrook"/>
    </properties>
   </object>
  </objectgroup>

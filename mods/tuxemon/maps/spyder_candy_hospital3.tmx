@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="12" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="73">
+<map version="1.10" tiledversion="1.12.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="12" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="77">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -72,9 +72,11 @@
     <property name="act1" value="char_stop player"/>
     <property name="act2" value="translated_dialog spyder_hospital_warning2"/>
     <property name="act3" value="pathfind player,5,14"/>
+    <property name="act4" value="set_variable screendown:yes"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is has_item player,aardant"/>
     <property name="cond3" value="not variable_set hospitalcure:yes"/>
+    <property name="cond4" value="not variable_set screendown:yes"/>
    </properties>
   </object>
   <object id="44" name="Stop!" type="event" x="96" y="240" width="16" height="16">
@@ -125,9 +127,52 @@
   <object id="62" name="The cure!" type="event" x="80" y="96" width="32" height="16">
    <properties>
     <property name="act20" value="translated_dialog spyder_hospital_cure1"/>
+    <property name="act21" value="translated_dialog spyder_hospital_cure2"/>
     <property name="act30" value="set_variable hospitalcure:yes"/>
-    <property name="act40" value="create_npc spyder_billie,4,12"/>
-    <property name="act45" value="pathfind spyder_billie,5,8"/>
+    <property name="act61" value="lock_controls"/>
+    <property name="act62" value="char_plague spyderbite,inoculated"/>
+    <property name="act63" value="quarantine player,spyderbite,out"/>
+    <property name="act64" value="set_monster_health"/>
+    <property name="act65" value="set_monster_status"/>
+    <property name="act66" value="screen_transition 1"/>
+    <property name="act67" value="wait 0.5"/>
+    <property name="act68" value="unlock_controls"/>
+    <property name="cond1" value="is char_facing_tile player"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
+    <property name="cond3" value="not variable_set hospitalcure:yes"/>
+   </properties>
+  </object>
+  <object id="66" name="Create Screen1" type="event" x="80" y="192" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_screen,5,14"/>
+    <property name="cond1" value="not char_exists spyder_screen"/>
+    <property name="cond2" value="not variable_set screendown:yes"/>
+   </properties>
+  </object>
+  <object id="67" name="Remove Screen" type="event" x="0" y="208" width="16" height="16">
+   <properties>
+    <property name="act1" value="remove_collision screen"/>
+    <property name="act2" value="remove_npc spyder_screen"/>
+    <property name="cond1" value="is variable_set screendown:yes"/>
+   </properties>
+  </object>
+  <object id="74" name="Enable No-Monster Blackout" type="event" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable blackout_no_monsters:true"/>
+    <property name="cond1" value="not variable_set blackout_no_monsters:true"/>
+   </properties>
+  </object>
+  <object id="75" name="Default" type="event" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="teleport_faint player,true"/>
+    <property name="cond1" value="is char_defeated player"/>
+   </properties>
+  </object>
+  <object id="76" name="Billie confronts" type="event" x="0" y="176" width="192" height="16">
+   <properties>
+    <property name="act30" value="lock_controls"/>
+    <property name="act40" value="create_npc spyder_billie,5,17"/>
+    <property name="act45" value="pathfind_to_char player,spyder_billie"/>
     <property name="act50" value="translated_dialog spyder_hospital_billie1"/>
     <property name="act51" value="add_monster billie_choice,45,spyder_billie,5,10"/>
     <property name="act52" value="set_monster_attribute add_monster,gender,male"/>
@@ -137,25 +182,13 @@
     <property name="act56" value="set_monster_attribute add_monster,gender,female"/>
     <property name="act57" value="add_monster viviphyta,45,spyder_billie,5,10"/>
     <property name="act58" value="set_monster_attribute add_monster,gender,male"/>
+    <property name="act59" value="unlock_controls"/>
     <property name="act60" value="start_battle player,spyder_billie"/>
     <property name="act61" value="translated_dialog spyder_hospital_billie2"/>
-    <property name="act62" value="char_plague spyderbite,inoculated"/>
-    <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed INTERACT"/>
-    <property name="cond3" value="not variable_set hospitalcure:yes"/>
-   </properties>
-  </object>
-  <object id="66" name="Create Screen1" type="event" x="80" y="224" width="16" height="16">
-   <properties>
-    <property name="act1" value="create_npc spyder_screen,5,14"/>
-    <property name="cond1" value="not char_exists spyder_screen"/>
-    <property name="cond2" value="not has_item player,aardant"/>
-   </properties>
-  </object>
-  <object id="67" name="Remove Screen" type="event" x="0" y="208" width="16" height="16">
-   <properties>
-    <property name="act1" value="remove_collision screen"/>
-    <property name="cond1" value="is has_item player,aardant"/>
+    <property name="act62" value="set_variable hospitalbillie:yes"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is variable_set hospitalcure:yes"/>
+    <property name="cond3" value="not variable_set hospitalbillie:yes"/>
    </properties>
   </object>
  </objectgroup>

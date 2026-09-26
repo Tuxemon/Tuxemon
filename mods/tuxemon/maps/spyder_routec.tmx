@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="297">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="299">
  <properties>
   <property name="east" value="paper_town"/>
   <property name="edges" value="clamped"/>
@@ -561,6 +561,22 @@
     <property name="act2" value="set_variable save2:yes"/>
     <property name="cond1" value="not variable_set save2:yes"/>
     <property name="cond2" value="is char_at player"/>
+   </properties>
+  </object>
+  <object id="297" name="Create Box" type="event" x="160" y="256" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_searoutec_tm_altitude,10,16"/>
+    <property name="cond1" value="not char_exists spyder_searoutec_tm_altitude"/>
+    <property name="cond2" value="not variable_set routec_tm_altitude:yes"/>
+   </properties>
+  </object>
+  <object id="298" name="Box" type="event" x="144" y="256" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog tm_altitude,,center,center,center"/>
+    <property name="act2" value="add_item tm_altitude"/>
+    <property name="act3" value="remove_npc spyder_searoutec_tm_altitude"/>
+    <property name="act4" value="set_variable routec_tm_altitude:yes"/>
+    <property name="behav1" value="talk spyder_searoutec_tm_altitude"/>
    </properties>
   </object>
    <object id="2777" name="Track routec" type="event" x="0" y="0" width="640" height="640">

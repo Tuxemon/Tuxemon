@@ -1200,6 +1200,12 @@ msgstr "TM: Surf"
 msgid "tm_surf_description"
 msgstr "Technique Manual that teaches the Surf technique."
 
+msgid "tm_altitude"
+msgstr "TM: Altitude"
+
+msgid "tm_altitude_description"
+msgstr "Technique Manual that teaches the Altitude technique."
+
 msgid "tm_earth"
 msgstr "Technical Manual (Earth)"
 

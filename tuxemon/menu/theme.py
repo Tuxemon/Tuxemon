@@ -103,7 +103,7 @@ def get_theme(scaling: ScalingStrategy) -> Theme:
         widget_selection_effect=TuxemonArrowSelection(scale_factor),
         border_color=tuxemon_border,
         scrollarea_position=SCROLLAREA_POSITION_NONE,
-        widget_padding=(10, 20),
+        widget_padding=(scaling.scale_int(2), scaling.scale_int(4)),
         title_close_button=False,
         title_bar_style=MENUBAR_STYLE_ADAPTIVE,
         widget_font_shadow=True,

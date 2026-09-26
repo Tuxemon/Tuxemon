@@ -1,7 +1,7 @@
 effects: []
 slug: app_radio
 sort: utility
-sprite: gfx/items/app_contacts.png
+sprite: gfx/items/app_radio.png
 category: phone
 usable_in:
 - WorldState

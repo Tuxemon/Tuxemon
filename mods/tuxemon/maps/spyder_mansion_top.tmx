@@ -325,7 +325,7 @@
   </object>
   <object id="70" name="Encounters" type="event" x="64" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter spyder_mansion,0.6"/>
+    <property name="act1" value="random_encounter spyder_mansion,0.3"/>
     <property name="cond1" value="is check_char_parameter player,moving,1"/>
    </properties>
   </object>

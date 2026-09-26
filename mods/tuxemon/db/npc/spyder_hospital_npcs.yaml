@@ -168,6 +168,16 @@
     sprite_name: scientist_brown
     combat_sheet: scientist
     slug: scientist
+- slug: spyder_hospital1_darling
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: scientist
+    combat_sheet: scientist
+    slug: scientist
 - slug: spyder_hospital1_lesley
   speech:
     profile:

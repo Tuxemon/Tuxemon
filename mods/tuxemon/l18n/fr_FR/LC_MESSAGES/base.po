@@ -4423,7 +4423,7 @@ msgstr ""
 " Nous essayons aussi de nous protéger les uns les autres. Typiquement, et contrairement à la Cathédrale, nous soignons les Tuxemon gratuitement ! \n"
 " Voulez-vous que je les guérisse tous maintenant ?"
 
-msgid "spyder_leatherhouse1_radio"
+msgid "spyder_leatherhouse1_radio_afternoon"
 msgstr "Une chanson de R&B est jouée. Elle s'appelle \"Possessuns, partie 2\"."
 
 msgid "spyder_opal_plaque"

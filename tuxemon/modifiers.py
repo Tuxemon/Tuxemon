@@ -18,7 +18,7 @@ logger = logging.getLogger(__name__)
 
 
 def handle_type(modifier: Modifier, monster: Monster) -> float | None:
-    if any(t.name in modifier.values for t in monster.types.current):
+    if any(t.slug in modifier.values for t in monster.types.current):
         return modifier.multiplier
     return None
 

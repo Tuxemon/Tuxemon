@@ -169,7 +169,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
         forfeit = Technique.create("menu_forfeit")
         self.client.remove_state_by_name("MainCombatMenuState")
         self.combat_session.enqueue_action(
-            self.party[0], forfeit, self.opponents[0]
+            self.monster, forfeit, self.opponents[0]
         )
 
     def run(self) -> None:
@@ -189,7 +189,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             return
         self.client.remove_state_by_name("MainCombatMenuState")
         self.combat_session.enqueue_action(
-            self.party[0], run, self.opponents[0]
+            self.monster, run, self.opponents[0]
         )
 
     def can_swap_any(self, character: NPC) -> bool:

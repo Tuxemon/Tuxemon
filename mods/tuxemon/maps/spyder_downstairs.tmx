@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="9" height="7" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="59">
+<map version="1.10" tiledversion="1.12.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="9" height="7" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="61">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -66,6 +66,15 @@
     <property name="act1" value="create_npc spyder_papertown_mom,5,5"/>
     <property name="act3" value="char_wander spyder_papertown_mom,,1,2,7,5"/>
     <property name="cond1" value="not char_exists spyder_papertown_mom"/>
+    <property name="cond2" value="is party_size player,less_than,1"/>
+   </properties>
+  </object>
+  <object id="59" name="Create Homemaker After Mart" type="event" x="64" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_papertown_mom,5,5"/>
+    <property name="act3" value="char_wander spyder_papertown_mom,,1,2,7,5"/>
+    <property name="cond1" value="not char_exists spyder_papertown_mom"/>
+    <property name="cond2" value="is variable_set visitcottonmart:yes"/>
    </properties>
   </object>
   <object id="42" name="Talk mom1" type="event" x="128" y="16" width="16" height="16">
@@ -118,6 +127,25 @@
     <property name="behav1" value="talk spyder_papertown_mom"/>
     <property name="cond1" value="is party_size player,greater_than,0"/>
     <property name="cond2" value="is variable_set spokenmom:yes"/>
+    <property name="cond3" value="not battle_outcome player,won,spyder_route3_zoolander"/>
+    <property name="cond4" value="is variable_set momthanked:yes"/>
+   </properties>
+  </object>
+  <object id="60" name="Talk mom thanks" type="event" x="112" y="96" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_papertown_momthanks"/>
+    <property name="act2" value="set_variable momthanked:yes"/>
+    <property name="act20" value="translated_dialog spyder_cottontown_mom"/>
+    <property name="act25" value="add_item nu_phone"/>
+    <property name="act26" value="translated_dialog nu_phone,,center,center,center"/>
+    <property name="act35" value="add_item app_map"/>
+    <property name="act36" value="translated_dialog app_map,,center,center,center"/>
+    <property name="act41" value="set_variable spokenmomcotton:yes"/>
+    <property name="act50" value="add_tracker player,cotton_town"/>
+    <property name="act51" value="add_tracker player,paper_town"/>
+    <property name="behav1" value="talk spyder_papertown_mom"/>
+    <property name="cond1" value="is variable_set visitcottonmart:yes"/>
+    <property name="cond2" value="not variable_set momthanked:yes"/>
     <property name="cond3" value="not battle_outcome player,won,spyder_route3_zoolander"/>
    </properties>
   </object>

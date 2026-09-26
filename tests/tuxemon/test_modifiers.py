@@ -14,13 +14,13 @@ from tuxemon.monster.monster import Monster
 @pytest.fixture
 def elements():
     fire = MagicMock(spec=Element)
-    fire.name = "fire"
+    fire.slug = "fire"
     water = MagicMock(spec=Element)
-    water.name = "water"
+    water.slug = "water"
     grass = MagicMock(spec=Element)
-    grass.name = "grass"
+    grass.slug = "grass"
     normal = MagicMock(spec=Element)
-    normal.name = "normal"
+    normal.slug = "normal"
     return fire, water, grass, normal
 
 

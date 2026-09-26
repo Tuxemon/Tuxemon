@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="390">
+<map version="1.10" tiledversion="1.12.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="392">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="map_type" value="town"/>
@@ -20,12 +20,12 @@
  </layer>
  <layer id="2" name="Tile Layer 2" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtmEtuwjAQhketWtpuoI9dkVAvUG7Ao8tegBsUjhH1wRLO0gcCbsAlENB2W87AP1IsjSCJQmKZgXqkT0PGjv3njyPZEG3GtLJZy1L5uyBaApOzjLGLexpEwfq8UbX1Pq6uOxH6omqu9OzTPKMEsUltCbdZbTIaOEt4EtNmdcKMg7GW0xOiAtCkyzwOa7qHtqpSfYsjCuYhM2SjW0vWru/8mIKzkAKyFt+8Du/ANg483xK9gFfwBrpAU7xDzwf4BF9gADTFHHoW4Bv8gF/gIibY16aJYpmoBC7BFbgGLoL33GmiBj110ABN8AB8eAe8A96B/+DAGHvvkWCobC/O+/CyQNtZgfXxOmGNnDXqa0PbU+ihRn3y/bZwlpHrMe/vvOvZrD/pYR9e9kI/4+qyDz+f7MfXpj3v+5DnQHMetJldnC0fI/7P428pLu627B83jq/bdeAm5Z7b7qyHN5pLH1fkGISD
+   eAHtmMtNAzEQhkcgCHDheSMSogHoAAJHGqADoIxVeByhFl4idMCRBhAJcIUa+AatJWuzOJtdyxjwSJ8ma3s9f/74MI7IcDytDY/VGXmfE/kAk+vs8RPvdESyYt2yseKaUM9HJfrKxkLp+U11eg6xrjnHa16njAbNNlrEzHktWHMz1TI9JdKCmHSZr6OaNtC2Gam+wYRk/ZxnstEdS45d3+ykZDM5LXIsviUdyYFxHOiuihzDCZzCGcQUl+i5gmu4gVuIKfroGcALvMIbhIgH+toqMd8WWYBFWIJlCBHac1eJLfRsQwd2YBdSJAeSA8mB/+DAPb13z+Iusl5c+/C2RWx3BdWn50Q1ag6p71ELjgjVdwgHoBpD6hsh7Wu6+Pvuc5exz2PTz03Ps9Fne3iBj+e5n9+N22vUd3udPpv5pr+HfQ8090GfOcTdcq/k/zzX2Vkfc71rrzTnz4GVij23v4p/c6eQPn4C+6OFUw==
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer id="7" name="Tile Layer 5" width="40" height="40">
@@ -77,7 +77,6 @@
   <object id="296" type="collision" x="592" y="512" width="48" height="32"/>
   <object id="297" type="collision" x="608" y="480" width="32" height="32"/>
   <object id="298" type="collision" x="624" y="464" width="16" height="16"/>
-  <object id="299" type="collision" x="592" y="448" width="16" height="16"/>
   <object id="301" type="collision" x="608" y="432" width="32" height="32"/>
   <object id="302" type="collision" x="592" y="400" width="48" height="32"/>
   <object id="303" type="collision" x="608" y="368" width="32" height="32"/>
@@ -352,26 +351,6 @@
     <property name="cond2" value="is char_facing player,up"/>
    </properties>
   </object>
-  <object id="369" name="Surfboard" type="event" x="272" y="320" width="16" height="16">
-   <properties>
-    <property name="act01" value="char_stop player"/>
-    <property name="act02" value="lock_controls"/>
-    <property name="act03" value="create_npc spyder_papertown_mom,26,23"/>
-    <property name="act04" value="pathfind spyder_papertown_mom,17,21"/>
-    <property name="act05" value="unlock_controls"/>
-    <property name="act06" value="char_face player,down"/>
-    <property name="act07" value="char_face spyder_papertown_mom,up"/>
-    <property name="act08" value="translated_dialog spyder_timber_mom1"/>
-    <property name="act09" value="add_item surfboard"/>
-    <property name="act10" value="translated_dialog surfboard,,center,center,center"/>
-    <property name="act11" value="translated_dialog spyder_timber_mom2"/>
-    <property name="act12" value="pathfind spyder_papertown_mom,26,23"/>
-    <property name="act13" value="remove_npc spyder_papertown_mom"/>
-    <property name="act14" value="set_variable timbermom:yes"/>
-    <property name="cond1" value="not variable_set timbermom:yes"/>
-    <property name="cond2" value="is battle_outcome player,won,spyder_scoop_arachne"/>
-   </properties>
-  </object>
   <object id="376" name="Teleport to Walled Garden" type="event" x="512" y="112" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport player,spyder_timber_walledgarden1.tmx,8,11,0.3"/>
@@ -457,6 +436,24 @@
    <properties>
     <property name="act1" value="play_music music_18_nighttide_waltz"/>
     <property name="cond1" value="not music_playing music_18_nighttide_waltz"/>
+   </properties>
+  </object>
+  <object id="390" name="Swim Encounters Day" type="event" x="112" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter spyder_water_mid,0.15"/>
+    <property name="cond1" value="is char_sprite player,swimmer"/>
+    <property name="cond2" value="is current_state WorldState"/>
+    <property name="cond3" value="is check_char_parameter player,moving,1"/>
+    <property name="cond4" value="is environment_is ocean"/>
+   </properties>
+  </object>
+  <object id="391" name="Swim Encounters Night" type="event" x="128" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter spyder_water_mid,0.25"/>
+    <property name="cond1" value="is char_sprite player,swimmer"/>
+    <property name="cond2" value="is current_state WorldState"/>
+    <property name="cond3" value="is check_char_parameter player,moving,1"/>
+    <property name="cond4" value="is environment_is night_ocean"/>
    </properties>
   </object>
  </objectgroup>

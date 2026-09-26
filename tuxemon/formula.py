@@ -355,9 +355,7 @@ def shake_check(
     current_hp_multiplier = config_capture.shake_current_hp_multiplier
     hp_divisor = config_capture.shake_hp_divisor
 
-    # Calculate catch_check using Generation III-IV formula
-    # Reference: http://bulbapedia.bulbagarden.net/wiki/Catch_rate#Capture_method_.28Generation_VI.29
-    # Approximate capture rate is catch_check / 255
+    # Calculate catch_check
     catch_check = (
         (hp_multiplier * target.hp - current_hp_multiplier * target.current_hp)
         * target.catch_rate

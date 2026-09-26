@@ -447,7 +447,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                 # --- Draw type icons ---
                 if technique.types.current:
                     for i, t in enumerate(technique.types.current[:2]):
-                        path = f"gfx/ui/icons/element/{t.name.lower()}_type_small.png"
+                        path = f"gfx/ui/icons/element/{t.slug}_type_small.png"
                         try:
                             icon_surface = load_and_scale(path, self.factor)
                             spr = Sprite()

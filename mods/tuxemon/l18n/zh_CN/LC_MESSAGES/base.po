@@ -3319,7 +3319,7 @@ msgstr ""
 msgid "spyder_route5_granny"
 msgstr "这个公园在宁德市的建设下,将花城的暴发户挡在了门外,显得更有人情味. "
 
-# msgid "spyder_leatherhouse1_radio"
+# msgid "spyder_leatherhouse1_radio_afternoon"
 # msgstr "An R&B song is playing. It's called \"Possessuns, Part II\". "
 msgid "spyder_leatherhouse2_tv"
 msgstr "一个绿色的小怪物正在把一艘船从沼泽地里抬出来."
@@ -6387,7 +6387,7 @@ msgstr "露天咖啡馆和市场"
 msgid "spyder_leathercbd_sign"
 msgstr "皮革城商业区"
 
-msgid "spyder_leatherhouse1_radio"
+msgid "spyder_leatherhouse1_radio_afternoon"
 msgstr "正在播放一首R&B歌曲.它被称为 \"Possessuns, Part II\"."
 
 msgid "spyder_flower_dojo_sign"

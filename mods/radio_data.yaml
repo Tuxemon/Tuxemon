@@ -107,6 +107,13 @@ station_route_rhythms:
     - conditions:
         map_slugs: ["spyder_leather_house1"]
         variables:
+          stage_of_day: "afternoon"
+      dialogue:
+        - "spyder_leatherhouse1_radio_afternoon"
+
+    - conditions:
+        map_slugs: ["spyder_leather_house1"]
+        variables:
           stage_of_day: "dusk"
       dialogue:
         - "spyder_leatherhouse1_radio_dusk"

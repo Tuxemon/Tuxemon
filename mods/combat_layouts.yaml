@@ -21,17 +21,21 @@ LAYOUT_COORDINATES:
     home1: [-30, 62, 96, 70] 
     # Position of the HUD showing name, level, etc. (left side)
     hud: [145, 45, 110, 50] # fixed HUD for single monster
-    # HUD position for the first monster in a 2 vs 2 setup
-    hud0: [145, 38, 110, 50]
+    # HUD position for the first monster in a 2 vs 2 setup.
+    # It rests 2 nominal px from the right edge of the screen: the panel is
+    # 102 px wide and the screen is 256, so x = 256 - 2 - 102.
+    hud0: [152, 38, 110, 50]
     monster_status_icon: [160, 76, 9, 9]         # status icon for single battle
-    monster_status_icon_slot_0: [159, 74, 9, 9] # status icon for first monster in 2 vs 2 setup
-    # HUD position for the second monster in a 2 vs 2 setup 
-    hud1: [129, 58, 110, 50]
-    monster_status_icon_slot_1: [143, 94, 9, 9] # status icon for second monster in 2 vs 2 setup
+    monster_status_icon_slot_0: [166, 74, 9, 9] # status icon for first monster in 2 vs 2 setup
+    # HUD position for the second monster in a 2 vs 2 setup,
+    # keeping its -16 nominal px stagger from the first
+    hud1: [136, 58, 110, 50]
+    monster_status_icon_slot_1: [150, 94, 9, 9] # status icon for second monster in 2 vs 2 setup
     # Tuxeball icon strip (left side, shows number of available monsters)
     party: [145, 57, 110, 50] # placed just below the HUD region
     # Monster box image position for single monster
-    monster_box_home: [48, 108, 2, 2] 
+    # Centred on the island, which settles at home's centerx (32 + 96/2 = 80)
+    monster_box_home: [80, 108, 2, 2]
     # Monster box image for first monster in a 2 vs 2 setup
     monster_box_home0: [110, 108, 2, 2]
     # Monster box image for second monster in a 2 vs 2 setup
@@ -53,7 +57,7 @@ LAYOUT_COORDINATES:
     home1: [170, 18, 96, 70]
     hud: [18, 0, 85, 30]
     hud0: [18, -4, 85, 30]
-    monster_status_icon: [9, 11, 9, 9]
+    monster_status_icon: [13, 13, 9, 9]  # aligned with the hp bar, as the slots below
     monster_status_icon_slot_0: [14, 12, 9, 9]
     hud1: [34, 17, 85, 30]
     monster_status_icon_slot_1: [30, 33, 9, 9]

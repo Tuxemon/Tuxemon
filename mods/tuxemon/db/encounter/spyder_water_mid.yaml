@@ -1,0 +1,62 @@
+monsters:
+- encounter_rate: 3.5
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 12
+  - 14
+  monster: rhinocarpe
+  variables:
+    - key: daytime
+      value: "true"
+- encounter_rate: 3.5
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 12
+  - 15
+  monster: urcheedle
+  variables:
+    - key: daytime
+      value: "true"
+- encounter_rate: 3.5
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 12
+  - 15
+  monster: drashimi
+  variables:
+    - key: daytime
+      value: "true"
+- encounter_rate: 3.5
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 12
+  - 14
+  monster: rhinocarpe
+  variables:
+    - key: daytime
+      value: "false"
+- encounter_rate: 3.5
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 12
+  - 15
+  monster: urcheedle
+  variables:
+    - key: daytime
+      value: "false"
+- encounter_rate: 3.5
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 12
+  - 15
+  monster: drashimi
+  variables:
+    - key: daytime
+      value: "false"
+slug: spyder_water_mid

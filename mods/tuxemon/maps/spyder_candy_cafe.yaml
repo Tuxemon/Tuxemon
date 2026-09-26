@@ -1,4 +1,58 @@
 events:
+  create shady guy:
+    actions:
+    - create_npc shady_guy,1,8
+    - char_face shady_guy,right
+    conditions:
+    - not char_exists shady_guy
+    type: event
+  Rename Player:
+    actions:
+    - rename_player player,random
+    - translated_dialog shady_rename
+    - char_face shady_guy,right
+    - set_variable shady:no
+    conditions:
+    - is variable_set shady:yes
+    type: event
+  Whats Up:
+    actions:
+    - char_face shady_guy,player
+    - translated_dialog shady_guy_dialog
+    - translated_dialog_choice yes:no,shady
+    behav:
+    - talk shady_guy
+    conditions:
+    - not variable_set shady:yes
+    type: event
+  create happy guy:
+    actions:
+    - create_npc happy_guy,6,8
+    - char_face happy_guy,left
+    conditions:
+    - not char_exists happy_guy
+    - is party_size player,greater_than,0
+    type: event
+  Rename Monster:
+    actions:
+    - get_player_monster rename
+    - rename_monster rename
+    - translated_dialog happy_rename
+    - char_face happy_guy,left
+    - set_variable happy:no
+    conditions:
+    - is variable_set happy:yes
+    type: event
+  Howdy:
+    actions:
+    - char_face happy_guy,player
+    - translated_dialog happy_guy_dialog
+    - translated_dialog_choice yes:no,happy
+    behav:
+    - talk happy_guy
+    conditions:
+    - not variable_set happy:yes
+    type: event
   Box Empty:
     actions:
     - translated_dialog spyder_barmaid_cafe3
@@ -9,7 +63,7 @@ events:
     - remove_npc spyder_candycafe_nora
     conditions:
     - is has_kennel player,Kennel,less_than,1
-    - is variable_set cafe_confiscation:yes
+    - is variable_set confiscation_done:yes
     - not variable_set cafe_done:yes
     type: event
   Box Not Empty:
@@ -22,7 +76,7 @@ events:
     - remove_npc spyder_candycafe_nora
     conditions:
     - is has_kennel player,Kennel,greater_or_equal,1
-    - is variable_set cafe_confiscation:yes
+    - is variable_set confiscation_done:yes
     - not variable_set cafe_done:yes
     type: event
   Create Owner:
@@ -86,23 +140,6 @@ events:
     conditions:
     - not music_playing music_home
     type: event
-  Quarantine:
-    actions:
-    - quarantine player,spyderbite,in
-    - char_face player,right
-    - char_stop player
-    - lock_controls
-    - create_npc spyder_candycafe_nora,6,3
-    - char_face spyder_candycafe_nora,left
-    - translated_dialog spyder_barmaid_cafe1
-    - set_variable cafe_confiscation:yes
-    conditions:
-    - is variable_set confiscation_done:yes
-    - not variable_set cafe_confiscation:yes
-    - is char_at player
-    type: event
-    x: 5
-    y: 3
   Talk Barmaid:
     actions:
     - translated_dialog spyder_cottoncafe_barmaid

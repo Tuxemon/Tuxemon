@@ -71,9 +71,15 @@
   - cost: 500
     slug: revive
     price: 1000
+  - cost: 50
+    slug: potion
+    price: 100
   - cost: 150
     slug: super_potion
     price: 300
+  - cost: 50
+    slug: tuxeball
+    price: 100
   - cost: 150
     slug: tuxeball_lavish
     price: 300

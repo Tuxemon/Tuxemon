@@ -232,8 +232,8 @@
   </object>
   <object id="40" name="battle cayden" type="event" x="16" y="176" width="16" height="16">
    <properties>
-    <property name="act11" value="add_monster capiti,4,spyder_cottoncafe_cayden,17,10"/>
-    <property name="act12" value="add_monster tweesher,4,spyder_cottoncafe_cayden,17,10"/>
+    <property name="act11" value="add_monster capiti,4,spyder_cottoncafe_cayden,5,10"/>
+    <property name="act12" value="add_monster tweesher,4,spyder_cottoncafe_cayden,5,10"/>
     <property name="act13" value="set_variable cafebattle:no"/>
     <property name="act20" value="start_battle player,spyder_cottoncafe_cayden"/>
     <property name="act23" value="translated_dialog spyder_lostfight"/>

@@ -54,7 +54,7 @@ class RenamePlayerAction(EventAction):
             prompt=T.translate("input_name"),
             callback=partial(self.set_player_name, character),
             escape_key_exits=False,
-            initial=session.player.name,
+            initial="",
             char_limit=PLAYER_NAME_LIMIT,
             random=bool(self.random),
         )

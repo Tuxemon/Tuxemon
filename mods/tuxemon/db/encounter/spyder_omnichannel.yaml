@@ -15,4 +15,28 @@ monsters:
   - 31
   monster: xeon_2
   variables: []
+- encounter_rate: 0.5
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 30
+  - 31
+  monster: mk01_proto
+  variables: []
+- encounter_rate: 0.5
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 30
+  - 31
+  monster: mk01_alpha
+  variables: []
+- encounter_rate: 0.5
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 30
+  - 31
+  monster: mk01_beta
+  variables: []
 slug: spyder_omnichannel

@@ -449,6 +449,47 @@ class CombatSession:
         for monster in self.active_monsters:
             self.set_tech_hit(monster)
 
+    def skips_decision(self, monster: Monster) -> bool:
+        """
+        Whether the monster sits out the decision phase this round.
+
+        Charging, locked and disappeared monsters don't choose an action: the
+        effect that put them in that state already scheduled one on the
+        pending queue. A monster that used foresight is deliberately not
+        included, because it picks a new action even though it has another
+        one coming.
+        """
+        return (
+            monster.is_charging
+            or monster.locked_turns_left > 0
+            or monster.out_of_range
+        )
+
+    def restore_stranded_monsters(self) -> None:
+        """
+        Charging, locked and disappeared monsters skip the decision phase
+        because the effect that put them in that state scheduled their action
+        on the pending queue. If that action is dropped (its target fainted,
+        or the turn it was due for has passed), the monster would neither act
+        nor ever be asked to choose, so its state is cleared and it takes part
+        in the next decision phase.
+        """
+        for monster in self.active_monsters:
+            if self.action_queue.has_pending_for(monster):
+                continue
+            if monster.out_of_range:
+                logger.debug(f"{monster.name} has no way back, restoring it")
+                monster.out_of_range = False
+                self.event_bus.publish("monster_appeared", user=monster)
+            if monster.is_charging:
+                logger.debug(f"{monster.name} lost its charged move")
+                monster.is_charging = False
+                monster.charged_technique = None
+            if monster.locked_turns_left > 0:
+                logger.debug(f"{monster.name} lost its locked move")
+                monster.locked_turns_left = 0
+                monster.locked_move = None
+
     def check_decisions(self, session: Session) -> None:
         for player in list(self.active_players):
             monsters = self.field_monsters.get_monsters(player)

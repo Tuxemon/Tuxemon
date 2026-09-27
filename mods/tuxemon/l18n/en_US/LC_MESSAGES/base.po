@@ -2069,6 +2069,18 @@ msgstr "{condition} cancels {target}'s {method}"
 msgid "combat_state_immune_multiple"
 msgstr "{target} are immune to {method}"
 
+msgid "combat_state_stat_rose"
+msgstr "{target}'s {stat} rose."
+
+msgid "combat_state_stat_rose_greatly"
+msgstr "{target}'s {stat} rose greatly."
+
+msgid "combat_state_stat_fell"
+msgstr "{target}'s {stat} fell."
+
+msgid "combat_state_stat_fell_greatly"
+msgstr "{target}'s {stat} fell greatly."
+
 msgid "combat_multiattack"
 msgstr "Hit {hit_count} time(s)!"
 

@@ -4,9 +4,11 @@ from __future__ import annotations
 
 import logging
 import random
+from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 from tuxemon.db import StatModel
+from tuxemon.monster.stats import NONLINEAR_TABLE, stage_multiplier
 from tuxemon.tools import ops_dict
 
 if TYPE_CHECKING:
@@ -17,28 +19,56 @@ if TYPE_CHECKING:
 
 logger = logging.getLogger(__name__)
 
-NONLINEAR_TABLE = {
-    -6: 2 / 8,
-    -5: 2 / 7,
-    -4: 2 / 6,
-    -3: 2 / 5,
-    -2: 2 / 4,
-    -1: 2 / 3,
-    0: 1.0,
-    1: 3 / 2,
-    2: 4 / 2,
-    3: 5 / 2,
-    4: 6 / 2,
-    5: 7 / 2,
-    6: 8 / 2,
-}
+__all__ = [
+    "NONLINEAR_TABLE",
+    "StageChange",
+    "apply_stat_modifiers",
+    "get_source_key",
+    "stage_multiplier",
+]
+
+
+@dataclass(frozen=True)
+class StageChange:
+    """
+    A stage a modifier actually moved, for reporting back to the player.
+
+    ``steps`` is what the step limit allowed, not what was asked for, so a
+    stat already at the cap reports nothing rather than a change nobody
+    would see.
+    """
+
+    stat: str
+    steps: int
+
+
+def get_source_key(source: Item | Technique | Status) -> str:
+    """
+    Identifies the object responsible for a temporary boost.
+
+    Boosts are stored on the affected monster, so they need a key telling
+    apart the sources that applied them. Two uses of the same item (or two
+    hits of the same technique) share a key and therefore stack their
+    stages, the way repeated applications always have.
+    """
+    slug = getattr(source, "slug", type(source).__name__)
+    return f"{type(source).__name__.lower()}:{slug}"
 
 
 def apply_stat_modifiers(
     host: Monster,
     source: Item | Technique | Status,
     stat_modifiers: dict[str, StatModel],
-) -> None:
+) -> list[StageChange]:
+    """
+    Applies a source's stat modifiers to a monster.
+
+    Returns the stages that actually moved, in the order they were
+    applied, so the caller can tell the player what changed. Value-based
+    modifiers move no stage and so report nothing.
+    """
+    source_key = get_source_key(source)
+    stage_changes: list[StageChange] = []
 
     for stat_slug, stat_model in stat_modifiers.items():
         if not stat_model:
@@ -66,7 +96,8 @@ def apply_stat_modifiers(
             continue
 
         # Base stat
-        if stat_slug == "current_hp":
+        is_current_hp = stat_slug == "current_hp"
+        if is_current_hp:
             base = host.current_hp
         else:
             base = getattr(host.base_stats, stat_slug)
@@ -90,71 +121,76 @@ def apply_stat_modifiers(
                 -max_step_limit, min(max_step_limit, actual_step)
             )
 
-            old_stage = getattr(
-                source.temporary_stat_boosts, f"{stat_slug}_stage", 0
+            # Runtime health has no stage to accumulate: the step lands
+            # on the current value once, there and then.
+            if is_current_hp:
+                multiplier = stage_multiplier(
+                    actual_step, scaling_mode, max_step_limit
+                )
+                _set_current_hp(host, round(base * multiplier))
+                continue
+
+            old_stage = host.temporary_stat_boosts.get_stage(stat_slug)
+            new_stage = host.temporary_stat_boosts.add_stage(
+                source_key,
+                stat_slug,
+                actual_step,
+                scaling_mode,
+                max_step_limit,
             )
 
-            new_stage = max(
-                -max_step_limit, min(max_step_limit, old_stage + actual_step)
-            )
-
+            # The boost itself is derived from the stage on read, so that
+            # every source raising this stat shares one stage.
             logger.debug(
-                f"[StatChange] Old stage={old_stage}, new stage={new_stage}"
+                f"[StatChange] Step {actual_step:+d} on '{stat_slug}' "
+                f"→ stage {new_stage} (mode={scaling_mode})"
             )
 
-            setattr(
-                source.temporary_stat_boosts, f"{stat_slug}_stage", new_stage
-            )
-
-            if scaling_mode == "linear":
-                multiplier = 1 + (new_stage / max_step_limit)
-            else:
-                multiplier = NONLINEAR_TABLE[int(new_stage)]
-
-            logger.debug(
-                f"[StatChange] Scaling mode={scaling_mode}, multiplier={multiplier}"
-            )
-
-            new_value = int(base * multiplier)
-            boost_value = new_value - base
+            if new_stage != old_stage:
+                stage_changes.append(
+                    StageChange(stat_slug, new_stage - old_stage)
+                )
+            continue
 
         # VALUE-BASED LOGIC
-        else:
-            applied_value = (
-                random.randint(
-                    int(raw_value - max_dev), int(raw_value + max_dev)
-                )
-                if max_dev
-                else raw_value
-            )
+        applied_value = (
+            random.randint(int(raw_value - max_dev), int(raw_value + max_dev))
+            if max_dev
+            else raw_value
+        )
 
-            logger.debug(
-                f"[StatChange] Value-based: raw={raw_value}, deviation={max_dev}, "
-                f"applied={applied_value}, op={stat_model.operation}"
-            )
+        logger.debug(
+            f"[StatChange] Value-based: raw={raw_value}, deviation={max_dev}, "
+            f"applied={applied_value}, op={stat_model.operation}"
+        )
 
-            op_func = ops_dict.get(stat_model.operation, lambda a, b: a)
-            new_value = round(op_func(base, applied_value))
-            boost_value = new_value - base
+        op_func = ops_dict.get(stat_model.operation, lambda a, b: a)
+        new_value = round(op_func(base, applied_value))
+
+        if is_current_hp:
+            _set_current_hp(host, new_value)
+            continue
 
         # Clamp non-HP stats
-        if stat_slug != "current_hp" and new_value <= 0:
+        if new_value <= 0:
             logger.debug(
                 f"[StatChange] Clamping '{stat_slug}' to minimum value 1 "
                 f"(computed {new_value})"
             )
             new_value = 1
-            boost_value = 1 - base
 
-        # Apply result
-        if stat_slug == "current_hp":
-            clamped_hp = max(0, min(new_value, host.hp))
-            logger.debug(
-                f"[StatChange] HP change: {host.current_hp} → {clamped_hp}"
-            )
-            host.current_hp = clamped_hp
-        else:
-            logger.debug(
-                f"[StatChange] Final boost for '{stat_slug}' = {boost_value}"
-            )
-            setattr(source.temporary_stat_boosts, stat_slug, int(boost_value))
+        boost_value = new_value - base
+        logger.debug(
+            f"[StatChange] Final boost for '{stat_slug}' = {boost_value}"
+        )
+        host.temporary_stat_boosts.add_flat(
+            source_key, stat_slug, int(boost_value)
+        )
+
+    return stage_changes
+
+
+def _set_current_hp(host: Monster, value: int) -> None:
+    clamped_hp = max(0, min(value, host.hp))
+    logger.debug(f"[StatChange] HP change: {host.current_hp} → {clamped_hp}")
+    host.current_hp = clamped_hp

@@ -1,8 +1,8 @@
 effects:
 - type: food_preference
   parameters:
-  - taste_salty
-  - taste_mild
+  - salty
+  - mild
 slug: mashed_potatoes
 sort: utility
 sprite: gfx/items/box.png

@@ -82,6 +82,17 @@ def monster_mock(
 
     return m
 
+def learns_on_level_up(monster, slugs):
+    """Make give_experience add these techniques, the way a level up does."""
+    known: list[MagicMock] = []
+    monster.moves.get_moves = MagicMock(return_value=known)
+
+    def give_experience(awarded_exp):
+        known.extend(MagicMock(slug=slug) for slug in slugs)
+        return 1
+
+    monster.give_experience = MagicMock(side_effect=give_experience)
+
 
 @pytest.fixture
 def setup_combat():
@@ -226,10 +237,10 @@ def test_award_rewards_moves_updates(setup_combat):
         combat_type,
     ) = setup_combat
 
-    winner.moves.preview_moves_learned.return_value = ["Fireball"]
+    learns_on_level_up(winner, ["Fireball"])
 
     second_winner = monster_mock(level=5, hp=50)
-    second_winner.moves.preview_moves_learned.return_value = ["Ram"]
+    learns_on_level_up(second_winner, ["Ram"])
     second_winner.owner = winner.owner
 
     damage_tracker.log_damage(second_winner, loser, 5, 1)

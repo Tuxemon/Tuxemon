@@ -687,6 +687,20 @@ class Monster:
         )
         self.taste_cold = old_monster.taste_cold
         self.taste_warm = old_monster.taste_warm
+        # the item is adopted before the stats are calculated, because stat
+        # calculation reads the held item's temporary boosts, and because it
+        # mirrors the equip-then-set_stats order of Monster.from_save.
+        # item_handler.set_item is used rather than equip_item: the techniques
+        # and statuses the item granted travel with the moves and status
+        # handlers below, so re-applying them here would bump max_moves above
+        # the value the same monster has after a save/reload.
+        if old_monster.item_handler.has_item():
+            if not self.item_handler.transfer_item_from(
+                old_monster.item_handler
+            ):
+                logger.error(
+                    f"{old_monster.name} couldn't pass its held item on to {self.name}."
+                )
         self.set_stats()
         self.current_hp = min(old_monster.current_hp, self.hp)
         self.moves = old_monster.moves

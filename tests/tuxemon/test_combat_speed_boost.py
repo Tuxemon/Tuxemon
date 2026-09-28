@@ -8,11 +8,25 @@ simple_damage_calculate() and speed_monster() instead of raw base stats.
 """
 from unittest.mock import MagicMock
 
+import pytest
+
 from tuxemon.combat.action_queue import ActionQueue, EnqueuedAction
+from tuxemon.element import ElementTypesHandler
 from tuxemon.formula import simple_damage_calculate, speed_monster
 from tuxemon.monster.monster import Monster
 from tuxemon.monster.stats import BasicStats
 from tuxemon.technique.technique import Technique
+
+
+@pytest.fixture(autouse=True)
+def clear_multiplier_cache():
+    """
+    The multiplier cache is keyed by element slug pair, so the mocked
+    lookup_multiplier below leaks across modules unless it is cleared.
+    """
+    ElementTypesHandler.clear_cache()
+    yield
+    ElementTypesHandler.clear_cache()
 
 
 def _mock_monster(speed: int = 0, dodge: int = 0, melee: int = 0) -> MagicMock:
@@ -22,6 +36,7 @@ def _mock_monster(speed: int = 0, dodge: int = 0, melee: int = 0) -> MagicMock:
     m.get_combat_stats.side_effect = lambda: m._combat_stats
     m.status = MagicMock()
     m.status.get_statuses.return_value = []
+    m.held_item = None
     return m
 
 
@@ -134,6 +149,7 @@ def test_damage_uses_boosted_melee():
 
     target = MagicMock()
     target.types.current = [fire]
+    target.held_item = None
     target.get_combat_stats.return_value = BasicStats(armour=10)
 
     user = _mock_monster(melee=30)
@@ -166,6 +182,7 @@ def test_damage_uses_boosted_target_armour():
 
     target = MagicMock()
     target.types.current = [fire]
+    target.held_item = None
     target._combat_stats = BasicStats(armour=10)
     target.get_combat_stats.side_effect = lambda: target._combat_stats
 

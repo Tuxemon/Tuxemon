@@ -1,14 +1,11 @@
 babel
-cbor
 websockets
 pillow
 packaging
-pygame-ce==2.5.7
 pyscroll>=2.31
 pytmx==3.32
 requests
 natsort
 PyYAML>=6.0.2
-prompt_toolkit
-pygame-menu-ce==4.5.2
+pygame-menu-ce>=4.5.2
 pydantic>=2.10.6

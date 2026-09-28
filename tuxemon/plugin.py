@@ -262,13 +262,16 @@ class PluginManager:
         """
         Load a module using the configured loader, with error handling.
         """
+        import traceback
+
         try:
             module = self.loader.load_plugin(module_name)
             self._loaded_modules[module_name] = module
             return module
-        except ImportError as e:
+        except Exception as e:
             logger.error(
-                f"Skipping module '{module_name}' due to import error: {e}"
+                f"Skipping module '{module_name}' due to error: {e}\n"
+                f"{traceback.format_exc()}"
             )
             return None
 

@@ -16,6 +16,6 @@ def get_git_hash() -> str:
     except subprocess.CalledProcessError:
         logging.warning("Git command failed. Git hash not available.")
         return "N/A"
-    except FileNotFoundError:
+    except OSError:
         logging.warning("Git not found. Git hash not available.")
         return "N/A"

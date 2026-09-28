@@ -1049,9 +1049,13 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 
 * ["Die"](https://wiki.tuxemon.org/File:Die.png) Adapted by Sanglorian from the Superpowers Asset Packs.
 
+* ["Good Penny"](https://wiki.tuxemon.org/File:Coin_.png) Adapted by Sanglorian from the Superpowers Asset Packs.
+
 * ["Feather"](https://wiki.tuxemon.org/File:Feather_.png) Adapted by Sanglorian from the Superpowers Asset Packs.
 
 * ["Flute"](https://wiki.tuxemon.org/File:Flute_.png) Adapted by Sanglorian from the Superpowers Asset Packs.
+
+* ["Elixir of Life"](https://wiki.tuxemon.org/File:P_Blue02_-_24x24.png) Adapted by Sanglorian from Henrique Lazarini. 
 
 * ["Horseshoe"](https://wiki.tuxemon.org/File:Horseshoe.png) Adapted by Sanglorian from the Superpowers Asset Packs.
 

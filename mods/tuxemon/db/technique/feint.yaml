@@ -6,10 +6,12 @@ effects:
   - positive
   - enemy_monster
 - type: damage
-- type: give
+- type: statchange
   parameters:
-  - focused
   - own_monster
+stat_modifiers:
+  dodge:
+    step: 1
 speed: normal
 potency: 1
 power: 1

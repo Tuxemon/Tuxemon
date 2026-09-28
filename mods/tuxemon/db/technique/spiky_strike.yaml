@@ -22,7 +22,6 @@ category: basic
 tags:
 - sharp
 types:
-- earth
 - wood
 use_failure: combat_miss
 use_success: null

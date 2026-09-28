@@ -30,6 +30,9 @@ class MusicPlayerState:
         self.previous_song: str | None = None
         self.cache: dict[str, str] = {}
 
+        self.muted: bool = False
+        self._user_volume = CONFIG.music_volume
+
     def load(
         self, filename: str, volume: float, loop: int, fade_ms: int
     ) -> None:
@@ -47,21 +50,35 @@ class MusicPlayerState:
         volume: float = CONFIG.music_volume,
         loop: int = MUSIC_LOOP,
         fade_ms: int = MUSIC_FADEIN,
+        *,
+        fade_previous: bool = False,
     ) -> None:
         if self.is_playing_same_song(song):
             return
+
+        if fade_previous and self.current_song and self.is_playing():
+            try:
+                platform.mixer.music.fadeout(MUSIC_FADEOUT)
+            except Exception as e:
+                logger.error(f"Error during fadeout: {e}")
+
         self.previous_song = self.current_song
-        self.status = MusicStatus.PLAYING
         self.current_song = song
-        self.load(song, volume, loop, fade_ms)
+        self.status = MusicStatus.PLAYING
+
+        self._user_volume = volume
+
+        physical_volume = 0.0 if self.muted else self._user_volume
+
+        self.load(song, physical_volume, loop, fade_ms)
 
     def get_path(self, filename: str) -> str:
         if filename in self.cache:
             return self.cache[filename]
-        else:
-            path = fetch_asset("music", db.get_entry("music", filename))
-            self.cache[filename] = path
-            return path
+
+        path = fetch_asset("music", db.get_entry("music", filename))
+        self.cache[filename] = path
+        return path
 
     def pause(self) -> None:
         if self.status == MusicStatus.PLAYING:
@@ -103,10 +120,18 @@ class MusicPlayerState:
         return self.status == MusicStatus.PLAYING and self.current_song == song
 
     def set_volume(self, volume: float) -> None:
-        if self.status == MusicStatus.PLAYING:
-            platform.mixer.music.set_volume(volume)
-        else:
-            logger.warning("Music is not playing, set volume not applied.")
+        volume = max(0.0, min(1.0, volume))
+
+        # UI mute button sets volume=0 → treat as mute
+        if volume == 0.0:
+            self.mute()
+            return
+
+        # Otherwise it's a real volume change
+        self._user_volume = volume
+
+        if not self.muted and self.status == MusicStatus.PLAYING:
+            platform.mixer.music.set_volume(self._user_volume)
 
     def decrease_volume(self, amount: float = 0.1) -> None:
         if self.status == MusicStatus.PLAYING:
@@ -128,12 +153,22 @@ class MusicPlayerState:
                 "Music is not playing, volume adjustment not applied."
             )
 
-    def get_volume(self) -> float | None:
-        if self.status == MusicStatus.PLAYING:
-            return float(platform.mixer.music.get_volume())
+    def get_volume(self) -> float:
+        return 0.0 if self.muted else self._user_volume
+
+    def mute(self) -> None:
+        self.muted = True
+        platform.mixer.music.set_volume(0.0)
+
+    def unmute(self) -> None:
+        self.muted = False
+        platform.mixer.music.set_volume(self._user_volume)
+
+    def toggle_mute(self) -> None:
+        if self.muted:
+            self.unmute()
         else:
-            logger.warning("Music is not playing, cannot get volume.")
-            return None
+            self.mute()
 
     def __repr__(self) -> str:
         return f"MusicPlayerState(status={self.status}, current_song={self.current_song}, previous_song={self.previous_song})"
@@ -163,14 +198,15 @@ class SoundWrapper(SoundProtocol):
 class SoundManager:
     def __init__(self) -> None:
         self.sounds: dict[str, SoundProtocol] = {}
+        self._user_volume: float = CONFIG.sound_volume
+        self.muted: bool = False
 
     def get_sound_filename(self, slug: str) -> Path | None:
-        if slug is None or slug == "":
+        if not slug:
             return None
 
         filename = db.get_entry("sounds", slug)
         filename = transform_resource_filename("sounds", filename)
-
         path = Path(filename)
 
         if not path.exists():
@@ -182,11 +218,8 @@ class SoundManager:
 
         return path
 
-    def load_sound(
-        self, slug: str, value: float = CONFIG.sound_volume
-    ) -> SoundProtocol:
+    def load_sound(self, slug: str) -> SoundProtocol:
         if slug in self.sounds:
-            logger.debug(f"Sound '{slug}' loaded from cache.")
             return self.sounds[slug]
 
         filename = self.get_sound_filename(slug)
@@ -195,26 +228,59 @@ class SoundManager:
 
         try:
             sound = pygame.mixer.Sound(filename)
-            sound.set_volume(value)
-            self.sounds[slug] = SoundWrapper(sound)
-            logger.debug(f"Sound '{slug}' loaded and cached successfully.")
-            return self.sounds[slug]
+
+            # Apply physical volume based on mute state
+            physical_volume = 0.0 if self.muted else self._user_volume
+            sound.set_volume(physical_volume)
+
+            wrapper = SoundWrapper(sound)
+            self.sounds[slug] = wrapper
+            return wrapper
+
         except (MemoryError, pygame.error) as e:
             logger.error(f"Failed to load sound '{slug}': {e}")
             return SoundWrapper()
 
-    def play_sound(
-        self, slug: str, value: float = CONFIG.sound_volume
-    ) -> None:
-        sound = self.load_sound(slug, value)
+    def play(self, slug: str) -> None:
+        sound = self.load_sound(slug)
         sound.play()
+
+    def set_volume(self, volume: float) -> None:
+        volume = max(0.0, min(1.0, volume))
+
+        if volume == 0.0:
+            self.mute()
+            return
+
+        self._user_volume = volume
+
+        if not self.muted:
+            for wrapper in self.sounds.values():
+                wrapper.set_volume(self._user_volume)
+
+    def get_volume(self) -> float:
+        return 0.0 if self.muted else self._user_volume
+
+    def mute(self) -> None:
+        self.muted = True
+        for wrapper in self.sounds.values():
+            wrapper.set_volume(0.0)
+
+    def unmute(self) -> None:
+        self.muted = False
+        for wrapper in self.sounds.values():
+            wrapper.set_volume(self._user_volume)
+
+    def toggle_mute(self) -> None:
+        if self.muted:
+            self.unmute()
+        else:
+            self.mute()
 
     def unload_sound(self, slug: str) -> None:
         if slug in self.sounds:
             del self.sounds[slug]
             logger.debug(f"Unloaded sound '{slug}' from cache.")
-        else:
-            logger.debug(f"Attempted to unload non-existent sound '{slug}'.")
 
     def unload_all_sounds(self) -> None:
         self.sounds.clear()

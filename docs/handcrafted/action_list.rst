@@ -10,10 +10,10 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.add_tracker.AddTrackerAction
 .. autoscriptinfoclass:: tuxemon.event.actions.adjust_bill_penalty.AdjustBillPenaltyAction
 .. autoscriptinfoclass:: tuxemon.event.actions.afk_threshold.AFKThresholdAction
+.. autoscriptinfoclass:: tuxemon.event.actions.autosave.AutosaveAction
 .. autoscriptinfoclass:: tuxemon.event.actions.boundary_move.BoundaryMoveAction
 .. autoscriptinfoclass:: tuxemon.event.actions.boundary_resize.BoundaryResizeAction
 .. autoscriptinfoclass:: tuxemon.event.actions.boundary_set.BoundarySetAction
-.. autoscriptinfoclass:: tuxemon.event.actions.breeding.BreedingAction
 .. autoscriptinfoclass:: tuxemon.event.actions.call_event.CallEventAction
 .. autoscriptinfoclass:: tuxemon.event.actions.camera_manage.CameraManageAction
 .. autoscriptinfoclass:: tuxemon.event.actions.camera_mode.CameraModeAction
@@ -50,6 +50,7 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.crafting_station.CraftingStationAction
 .. autoscriptinfoclass:: tuxemon.event.actions.create_kennel.CreateKennelAction
 .. autoscriptinfoclass:: tuxemon.event.actions.create_npc.CreateNpcAction
+.. autoscriptinfoclass:: tuxemon.event.actions.daycare.DaycareAction
 .. autoscriptinfoclass:: tuxemon.event.actions.dojo_method.DojoMethodAction
 .. autoscriptinfoclass:: tuxemon.event.actions.evolution.EvolutionAction
 .. autoscriptinfoclass:: tuxemon.event.actions.fade_in.FadeInAction
@@ -154,7 +155,6 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.set_variable.SetVariableAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_weather.SetWeatherAction
 .. autoscriptinfoclass:: tuxemon.event.actions.show_monster.ShowMonsterAction
-.. autoscriptinfoclass:: tuxemon.event.actions.spawn_monster.SpawnMonsterAction
 .. autoscriptinfoclass:: tuxemon.event.actions.start_battle.StartBattleAction
 .. autoscriptinfoclass:: tuxemon.event.actions.start_cinema_mode.StartCinemaModeAction
 .. autoscriptinfoclass:: tuxemon.event.actions.start_double_battle.StartDoubleBattleAction

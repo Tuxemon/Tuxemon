@@ -72,7 +72,6 @@ cp "$ROOT_FOLDER/CONTRIBUTING.md" .
 cp "$ROOT_FOLDER/CONTRIBUTORS.md" .
 cp "$ROOT_FOLDER/ATTRIBUTIONS.md" .
 cp "$ROOT_FOLDER/README.md" .
-cp "$ROOT_FOLDER/SPYDER_README.md" .
 
 # Clean up .pyc files
 find . -name "*.pyc" -delete

@@ -6,10 +6,10 @@ from typing import TYPE_CHECKING, Any, ClassVar
 
 from pygame_menu.locals import ALIGN_CENTER, POSITION_EAST
 
-from tuxemon.animation import Animation, ScheduleType
 from tuxemon.locale.locale import T
 from tuxemon.menu.menu import PygameMenuState
 from tuxemon.menu.theme import get_theme
+from tuxemon.menu.transitions import PopInClamped
 from tuxemon.platform.platform_pygame.events import KeyBindingRules
 
 if TYPE_CHECKING:
@@ -28,7 +28,7 @@ class SetKeyState(PygameMenuState):
     def __init__(self, client: BaseClient, value: str, **kwargs: Any) -> None:
         self.value = value
 
-        super().__init__(client=client, **kwargs)
+        super().__init__(client=client, transition=PopInClamped(), **kwargs)
 
         theme = get_theme(self.client.context.scaling)
         theme.scrollarea_position = POSITION_EAST
@@ -67,16 +67,3 @@ class SetKeyState(PygameMenuState):
             return None
 
         return None
-
-    def update_animation_size(self) -> None:
-        widgets_size = self.menu.get_size(widget=True)
-        self.menu.resize(
-            max(1, int(widgets_size[0] * self.animation_size)),
-            max(1, int(widgets_size[1] * self.animation_size)),
-        )
-
-    def animate_open(self) -> Animation:
-        self.animation_size = 0.0
-        ani = self.animate(self, animation_size=1.0, duration=0.2)
-        ani.schedule(self.update_animation_size, ScheduleType.ON_UPDATE)
-        return ani

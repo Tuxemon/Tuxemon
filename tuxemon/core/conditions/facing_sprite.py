@@ -45,7 +45,7 @@ class FacingSpriteCondition(CoreCondition):
         facing_directions = {
             get_direction(player.tile_pos, npc.tile_pos)
             for coords in tiles
-            if (npc := session.get_npc_pos(coords))
+            if (npc := session.client.get_npc_pos(coords))
             and npc.appearance_manager.state.sprite_name == self.sprite
         }
 

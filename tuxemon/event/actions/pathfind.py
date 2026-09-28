@@ -32,7 +32,7 @@ class PathfindAction(EventAction):
     tile_pos_y: int
 
     def start(self, session: Session) -> None:
-        self.moving_entity = session.get_npc(self.npc_slug)
+        self.moving_entity = session.client.get_npc(self.npc_slug)
         assert self.moving_entity
         destination = (self.tile_pos_x, self.tile_pos_y)
         self.moving_entity.pathfind(destination)

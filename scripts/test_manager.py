@@ -1,4 +1,3 @@
-from pprint import pprint
 
 from tuxemon.mod_manager import Manager
 

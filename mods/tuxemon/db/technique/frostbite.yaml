@@ -5,9 +5,6 @@ effects:
   parameters:
   - poison
   - enemy_monster
-- type: splash
-  parameters:
-  - '2'
 speed: normal
 potency: 0.5
 power: 3

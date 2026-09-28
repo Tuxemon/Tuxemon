@@ -6,8 +6,9 @@ import logging
 import tempfile
 from collections.abc import Callable, Iterable
 from dataclasses import dataclass
-from functools import partial
-from typing import TYPE_CHECKING, Any, ClassVar, Generic, TypedDict, TypeVar
+from enum import IntFlag
+from functools import cached_property, partial
+from typing import TYPE_CHECKING, Any, ClassVar, Generic, TypeVar
 
 from pygame import SRCALPHA, image
 from pygame.font import Font
@@ -34,7 +35,9 @@ from tuxemon.menu.input_handler import (
     PygameMenuInputHandler,
 )
 from tuxemon.menu.interface import MenuItem
+from tuxemon.menu.layout_engine import MenuLayoutEngine
 from tuxemon.menu.theme import get_sound_engine, get_theme
+from tuxemon.menu.transitions import EaseOut, MenuTransition
 from tuxemon.platform.const.graphics import (
     BACKGROUND_COLOR,
     FONT_COLOR,
@@ -90,19 +93,6 @@ class FontSettings:
         )
 
 
-T = TypeVar("T", covariant=True)
-
-
-class MenuConfig(TypedDict):
-    width: int
-    height: int
-    theme: Theme | None
-    sound_engine: Sound | None
-    menu_kwargs: dict[str, Any]
-    columns: int | None
-    rows: int | None
-
-
 class PygameMenuState(State):
     name: ClassVar[str] = "PygameMenuState"
     transparent = True
@@ -117,9 +107,15 @@ class PygameMenuState(State):
         sound_engine: Sound | None = None,
         font_settings: FontSettings | None = None,
         menu_kwargs: dict[str, Any] | None = None,
+        transition: MenuTransition | None = None,
+        easing: Callable[[float], float] | None = None,
         **state_kwargs: Any,
     ) -> None:
         super().__init__(client=client, **state_kwargs)
+
+        self.transition = transition
+        self.easing = easing or EaseOut()
+        self.animation_progress = 0.0
 
         self.font_settings = font_settings
         self.font_type = font_settings or FontSettings.from_context(
@@ -330,11 +326,62 @@ class PygameMenuState(State):
 
         self._menu._theme = theme
 
+    def _update_transition(self) -> None:
+        if not self.transition:
+            return
+
+        eased = self.easing(self.animation_progress)
+        self.transition.apply(self.menu, eased, self.client.context)
+
     def animate_open(self) -> Animation | None:
-        return None
+        if not self.transition:
+            return None
+
+        self.animation_progress = 0.0
+        ani = self.animate(self, animation_progress=1.0, duration=0.20)
+        ani.schedule(self._update_transition, ScheduleType.ON_UPDATE)
+        return ani
 
     def animate_close(self) -> Animation | None:
-        return None
+        if not self.transition:
+            return None
+
+        ani = self.animate(self, animation_progress=0.0, duration=0.15)
+        ani.schedule(self._update_transition, ScheduleType.ON_UPDATE)
+        return ani
+
+
+class LayoutFlag(IntFlag):
+    NONE = 0
+    ITEMS = 1 << 0
+    FONT = 1 << 1
+    BORDER = 1 << 2
+    CURSOR = 1 << 3
+    POSITION = 1 << 4
+
+
+T = TypeVar("T")
+
+BORDER_PADDING = (18, 19)
+ALLOWED_KWARGS = {
+    "rect",
+    "columns",
+    "background_filename",
+    "background_color",
+    "font_color",
+    "font_shadow_color",
+    "unavailable_color",
+    "unavailable_color_shop",
+    "menu_select_sound_filename",
+    "font_filename",
+    "borders_filename",
+    "cursor_filename",
+    "cursor_move_duration",
+    "shrink_to_items",
+    "escape_key_exits",
+    "animate_contents",
+    "touch_aware",
+}
 
 
 class Menu(Generic[T], State):
@@ -385,29 +432,50 @@ class Menu(Generic[T], State):
 
         self.rect = self.rect.copy()  # do not remove!
         self.selected_index = selected_index
-        # state: closed, opening, normal, disabled, closing
-        self.state_controller = MenuController()
-        self._show_contents: bool = False
-        self._needs_refresh: bool = False
-        self._layout_passes: int = 0
-        self._anchors: list[tuple[str, int | tuple[int, int]]] = []
-        self.__dict__.update(kwargs)
 
-        # holds sprites representing menu items
+        # Core controllers
+        self.state_controller = MenuController()
+        self.layout_engine = MenuLayoutEngine()
+
+        # State tracking
+        self._show_contents = False
+        # Prevent layout recalculation during animations
+        self._layout_locked = False
+        self._layout_flags = LayoutFlag.NONE
+        self._anchors: list[tuple[str, int | tuple[int, int]]] = []
+
+        for key, value in kwargs.items():
+            if key in ALLOWED_KWARGS:
+                setattr(self, key, value)
+            else:
+                raise TypeError(f"Unexpected Menu argument: {key!r}")
+
+        # Sprite groups
         self.create_new_menu_items_group()
+
+        # Resources
+        self.setup_resources()
+
+        # Input
+        self._input_handler = MenuInputHandler(self)
+
+        # Cursor controller
+        self.cursor_controller = self._setup_cursor_controller()
 
         # callbacks
         self.on_close_callback: Callable[[], None] | None = None
         self.on_menu_selection_change_callback: Callable[[], None] | None = (
             None
         )
+        self.on_selection_callback: Callable[[MenuItem[T]], None] | None = None
 
-        self.font_filename = fetch_asset("font", self.font_filename)
-        self.font = self.set_font()  # load default font
-        self.load_graphics()  # load default graphics
-        self.reload_sounds()  # load default sounds
-        self._input_handler = MenuInputHandler(self)
-        self._text_renderer = TextRenderer(
+    @property
+    def dialog(self) -> AlertManager:
+        return self.client.alert_manager
+
+    @cached_property
+    def text_renderer(self) -> TextRenderer:
+        return TextRenderer(
             scaling=self.client.context.scaling,
             font=self.font,
             font_filename=self.font_filename,
@@ -415,7 +483,15 @@ class Menu(Generic[T], State):
             font_shadow_color=self.font_shadow_color,
         )
 
-        self.cursor_controller: MenuCursorController[T] = MenuCursorController(
+    def setup_resources(self) -> None:
+        """Centralized asset loading."""
+        self.font_filename = fetch_asset("font", self.font_filename)
+        self.set_font()
+        self.load_graphics()
+        self.reload_sounds()
+
+    def _setup_cursor_controller(self) -> MenuCursorController[T]:
+        return MenuCursorController(
             cursor_filename=self.cursor_filename,
             menu_sprites=self.menu_sprites,
             get_selected_item=self.get_selected_item,
@@ -425,9 +501,11 @@ class Menu(Generic[T], State):
             remove_animations=self.remove_animations_of,
         )
 
-    @property
-    def dialog(self) -> AlertManager:
-        return self.client.alert_manager
+    def ensure_layout(self) -> None:
+        """Trigger layout calculation only if flags are dirty."""
+        if self._layout_flags != LayoutFlag.NONE:
+            self.layout_engine.compute(self, mutate=True)
+            self._layout_flags = LayoutFlag.NONE
 
     def create_new_menu_items_group(self) -> None:
         """
@@ -459,12 +537,19 @@ class Menu(Generic[T], State):
         del self.menu_sprites
         del self.cursor_controller
 
+    def lock_layout(self) -> None:
+        self._layout_locked = True
+
+    def unlock_layout(self) -> None:
+        self._layout_locked = False
+
     def invalidate_layout(self, reason: str = "") -> None:
-        self._needs_refresh = True
+        if not self._layout_locked:
+            self._layout_flags |= LayoutFlag.ITEMS
         logger.debug(reason)
 
     def validate_layout(self, reason: str = "") -> None:
-        self._needs_refresh = False
+        self._layout_flags = LayoutFlag.NONE
         logger.debug(reason)
 
     def initialize_items(self) -> Iterable[MenuItem[T]] | None:
@@ -491,18 +576,12 @@ class Menu(Generic[T], State):
         """
         return True
 
-    def reload_items(self) -> None:
-        """
-        Empty all items in the menu and re-add them.
-        Only works if initialize_items is used.
-        """
-        self.invalidate_layout("items changed")
-        items = self.initialize_items()
+    def _load_items(self) -> Iterable[MenuItem[T]] | None:
+        """Return freshly initialized items or None if unchanged."""
+        return self.initialize_items()
 
-        if items is None:
-            # No change requested
-            return
-
+    def _populate_items(self, items: Iterable[MenuItem[T]]) -> None:
+        """Replace menu_items with new items and validate them."""
         self.menu_items.empty()
 
         for item in items:
@@ -512,38 +591,35 @@ class Menu(Generic[T], State):
 
         self.menu_items.arrange_menu_items()
 
+    def _recover_selection(self, previous_index: int) -> None:
+        """Pick the closest enabled item to the previous index."""
         selected_item = self.get_selected_item()
         if selected_item and selected_item.enabled:
             return
 
-        # Choose new cursor position. We can't use the prev position, so we
-        # will use the closest valid option.
-        score = None
-        prev_index = self.selected_index
+        best_score = None
         for index, item in enumerate(self.menu_items):
             if item.enabled:
-                new_score = abs(prev_index - index)
-                if score is None or new_score < score:
+                score = abs(previous_index - index)
+                if best_score is None or score < best_score:
                     self.selected_index = index
-                    score = new_score
+                    best_score = score
 
-    def build_item(
-        self: Menu[Callable[[], object]],
-        label: str,
-        callback: Callable[[], object],
-        icon: Surface | None = None,
-    ) -> None:
+    def reload_items(self) -> None:
         """
-        Create a menu item and add it to the menu.
+        Empty all items in the menu and re-add them.
+        Only works if initialize_items is used.
+        """
+        self.invalidate_layout("items changed")
 
-        Parameters:
-            label: Some text.
-            callback: Callback to use when selected.
-            icon: Image of the item (not used yet).
-        """
-        image = self.shadow_text(label)
-        item = MenuItem(image, label, None, callback)
-        self.add(item)
+        items = self._load_items()
+        if items is None:
+            return
+
+        previous_index = self.selected_index
+
+        self._populate_items(items)
+        self._recover_selection(previous_index)
 
     def add(self, menu_item: MenuItem[T]) -> None:
         """
@@ -562,24 +638,18 @@ class Menu(Generic[T], State):
 
     def fit_border(self) -> None:
         """Resize the window border to fit the contents of the menu."""
-        # get bounding box of menu items and the cursor
         center = self.rect.center
         rect1 = self.menu_items.calc_bounding_rect()
         rect2 = self.menu_sprites.calc_bounding_rect()
         rect1 = rect1.union(rect2)
 
-        # expand the bounding box by the border and some padding
-        # TODO: do not hardcode these values
-        # border is 12, padding is the rest
-        rect1.width += self.client.context.scaling.scale_int(18)
-        rect1.height += self.client.context.scaling.scale_int(19)
+        pad_x, pad_y = BORDER_PADDING
+        rect1.width += self.client.context.scaling.scale_int(pad_x)
+        rect1.height += self.client.context.scaling.scale_int(pad_y)
         rect1.topleft = 0, 0
 
-        # set our rect and adjust the centers to match
         self.rect = rect1
         self.rect.center = center
-
-        # move the bounding box taking account the anchors
         self.position_rect()
 
     def reload_sounds(self) -> None:
@@ -591,12 +661,17 @@ class Menu(Generic[T], State):
     def shadow_text(
         self,
         text: str,
-        bg: ColorLike = font_shadow_color,
+        bg: ColorLike | None = None,
         fg: ColorLike | None = None,
         offset: tuple[float, float] = (0.5, 0.5),
     ) -> Surface:
         """Renders text with a drop shadow using the configured text renderer."""
-        return self._text_renderer.shadow_text(text, bg, fg, offset)
+        return self.text_renderer.shadow_text(
+            text,
+            bg or self.font_shadow_color,
+            fg,
+            offset,
+        )
 
     def load_graphics(self) -> None:
         """
@@ -636,15 +711,12 @@ class Menu(Generic[T], State):
         """Hide the cursor that indicates the selected object."""
         self.cursor_controller.hide_cursor()
 
-    def refresh_layout(self) -> None:
-        """Fit border to contents and hide/show cursor."""
-        self._layout_passes += 1
-        logger.debug(
-            f"[{self.name}] layout pass #{self._layout_passes} (needs_refresh={self._needs_refresh})"
-        )
-        self.arrange_items()
-        self.update_cursor_visibility()
-        self.update_border()
+    def refresh_layout(self, *, mutate: bool = True) -> Rect:
+        """
+        Compute layout. If mutate=False, return the computed rect
+        without modifying menu state.
+        """
+        return self.layout_engine.compute(self, mutate=mutate)
 
     def arrange_items(self) -> None:
         self.menu_items.expand = not self.shrink_to_items
@@ -668,9 +740,7 @@ class Menu(Generic[T], State):
         Parameters:
             surface: Surface to draw on.
         """
-        if self._needs_refresh:
-            self.refresh_layout()
-            self.validate_layout("refresh layout")
+        self.ensure_layout()
 
         if not self.transparent:
             self.window.draw(surface, self.rect)
@@ -811,7 +881,7 @@ class Menu(Generic[T], State):
 
             self.state_controller.open()
             self.reload_items()
-            self.refresh_layout()
+            self.layout_engine.compute(self, mutate=True)
 
             ani = self.animate_open()
             if ani:
@@ -836,6 +906,8 @@ class Menu(Generic[T], State):
     def close(self) -> None:
         if self.state_controller.is_interactive():
             self.state_controller.close()
+            self._show_contents = False
+            self.set_transparent(True)
             ani = self.animate_close()
             self.on_close()
             if ani:
@@ -888,6 +960,13 @@ class Menu(Generic[T], State):
         menu_rect.bottomright = inner.bottomright
         return menu_rect
 
+    def compute_layout_rect(self) -> Rect:
+        """
+        Pure layout computation: returns the rect the menu *would* have
+        after layout, without mutating any state.
+        """
+        return self.layout_engine.compute(self, mutate=False)
+
     def calc_final_rect(self) -> Rect:
         """
         Calculate the area in the game window where menu is shown.
@@ -901,11 +980,7 @@ class Menu(Generic[T], State):
         Returns:
             Rectangle with the size of the menu.
         """
-        original = self.rect.copy()  # store the original rect
-        self.refresh_layout()  # arrange the menu
-        rect = self.rect.copy()  # store the final rect
-        self.rect = original  # set the original back
-        return rect
+        return self.compute_layout_rect()
 
     def on_open(self) -> None:
         """Hook is called after opening animation has finished."""
@@ -924,14 +999,11 @@ class Menu(Generic[T], State):
 
         Override in subclass, if you want to.
         """
-        if selected_item.enabled:
-            if selected_item.game_object is None:
-                raise ValueError("Selected menu item has no game object")
-            if not callable(selected_item.game_object):
-                raise ValueError(
-                    "Selected menu item's game object is not callable"
-                )
-            selected_item.game_object()
+        if self.on_selection_callback:
+            self.on_selection_callback(selected_item)
+            return
+
+        selected_item.trigger()
 
     def on_menu_selection_change(self) -> None:
         """
@@ -999,26 +1071,26 @@ class PopUpMenu(Menu[T]):
         return initial_rect
 
     def animate_open(self) -> Animation:
-        # anchor the center of the popup
         final_rect = self.calc_final_rect()
         self.anchor("center", self.client.context.rect.center)
 
-        # set rect to a small size for the initial values of the animation
         self.rect = self._calculate_initial_rect(final_rect)
 
-        # if this statement were removed, then the menu would
-        # refresh and the size animation would be lost
+        self.lock_layout()
         self.validate_layout("animate_open")
 
-        # create animation to open window with
         ani = self.animate(
             self.rect,
             height=final_rect.height,
             width=final_rect.width,
             duration=self.ANIMATION_DURATION,
         )
+
         ani.schedule(
             lambda: setattr(self.rect, "center", final_rect.center),
             ScheduleType.ON_UPDATE,
         )
+
+        ani.schedule(self.unlock_layout, ScheduleType.ON_FINISH)
+
         return ani

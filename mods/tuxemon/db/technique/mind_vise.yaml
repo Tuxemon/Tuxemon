@@ -1,11 +1,11 @@
 tech_id: 185
 accuracy: 1
 effects:
+- type: damage
 - type: give
   parameters:
   - stuck
   - enemy_monster
-- type: damage
 speed: normal
 potency: 1
 power: 1

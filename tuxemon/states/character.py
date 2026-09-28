@@ -2,7 +2,6 @@
 # Copyright (c) 2014-2026 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-from collections.abc import Callable
 from typing import TYPE_CHECKING, Any, ClassVar
 
 from pygame_menu.locals import ALIGN_CENTER, ALIGN_LEFT, POSITION_EAST
@@ -25,17 +24,6 @@ from tuxemon.tuxepedia.reporter import TuxepediaReporter
 if TYPE_CHECKING:
     from tuxemon.base_client import BaseClient
     from tuxemon.platform.events import PlayerInput
-
-lookup_cache: dict[str, MonsterModel] = {}
-
-
-def _lookup_monsters() -> None:
-    global lookup_cache
-    lookup_cache = {
-        mon_name: result
-        for mon_name in db.database["monster"]
-        if (result := MonsterModel.lookup(mon_name, db)).txmn_id > 0
-    }
 
 
 class CharacterState(PygameMenuState):
@@ -67,7 +55,7 @@ class CharacterState(PygameMenuState):
         )
 
         # tuxepedia data
-        filters = list(lookup_cache.values())
+        filters = list(self.cache.values())
         reporter = TuxepediaReporter(self.char.tuxepedia.data)
         completeness = reporter.get_completeness_report(len(filters))
         percentage = round(completeness["registered_percent"] * 100, 1)
@@ -197,7 +185,7 @@ class CharacterState(PygameMenuState):
         )
         lab8.translate(fxw(0.45), fxh(0.10))
         # image
-        surface = self.char.combat_sheet().front()
+        surface = self.char.combat_sheet.front()
         scaled = scale_surface(surface, self.factor)
         new_image = self._create_image_from_surface(scaled)
         image_widget = menu.add.image(image_path=new_image.copy())
@@ -210,8 +198,8 @@ class CharacterState(PygameMenuState):
         character: NPC,
         **kwargs: Any,
     ) -> None:
-        if not lookup_cache:
-            _lookup_monsters()
+        MonsterModel.load_cache(db)
+        self.cache = MonsterModel.get_cache()
 
         width, height = client.context.resolution
         self.char = character

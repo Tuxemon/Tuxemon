@@ -18,7 +18,7 @@ slug: super_potion
 sort: potion
 sprite: gfx/items/super_potion.png
 category: potion
-cost: 100
+cost: 300
 usable_in:
 - MainCombatMenuState
 - WorldState

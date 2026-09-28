@@ -39,7 +39,7 @@ class SetRoutingPolicyAction(EventAction):
     policy_name: str | None = None
 
     def start(self, session: Session) -> None:
-        trainer = session.get_npc(self.npc_slug)
+        trainer = session.client.get_npc(self.npc_slug)
         if not trainer:
             raise ValueError(f"NPC '{self.npc_slug}' not found")
 

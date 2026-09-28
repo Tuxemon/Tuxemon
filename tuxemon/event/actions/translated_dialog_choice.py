@@ -46,7 +46,7 @@ class TranslatedDialogChoiceAction(EventAction):
 
         # perform text substitutions
         choices = TextFormatter.replace_text(session, self.choices, T)
-        player = session.get_npc("player")
+        player = session.client.get_npc("player")
         assert player
 
         # make menu options for each string between the colons

@@ -45,7 +45,7 @@ class CharPlagueAction(EventAction):
 
     def start(self, session: Session) -> None:
         target = self.character or "player"
-        character = session.get_npc(target)
+        character = session.client.get_npc(target)
 
         if character is None:
             logger.error(f"{self.character} not found")

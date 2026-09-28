@@ -1,5 +1,5 @@
 tech_id: 5
-accuracy: 0.85
+accuracy: 1
 effects:
 - type: damage
 speed: normal
@@ -18,7 +18,7 @@ target:
   own_monster: false
   own_team: false
   own_trainer: false
-category: animal
+category: basic
 tags:
 - fury
 types:

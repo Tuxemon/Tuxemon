@@ -61,7 +61,12 @@ class ModifyMonsterBondAction(EventAction):
 
         if self.variable is None:
             for mon in player.monsters:
-                mon.bond_handler.change_bond(amount_bond)
+                floor = mon.bond_handler.get_effective_min_bond(mon.stage)
+                crossed = mon.bond_handler.change_bond(amount_bond, floor)
+                if crossed:
+                    logger.debug(
+                        f"{mon.name} crossed bond milestones: {crossed}"
+                    )
         else:
             monster_id = get_valid_uuid(player.game_variables, self.variable)
             if monster_id is None:
@@ -76,4 +81,11 @@ class ModifyMonsterBondAction(EventAction):
                 self.stop()
                 return
             else:
-                monster.bond_handler.change_bond(amount_bond)
+                floor = monster.bond_handler.get_effective_min_bond(
+                    monster.stage
+                )
+                crossed = monster.bond_handler.change_bond(amount_bond, floor)
+                if crossed:
+                    logger.debug(
+                        f"{monster.name} crossed bond milestones: {crossed}"
+                    )

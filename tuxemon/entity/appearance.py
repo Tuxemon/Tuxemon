@@ -28,6 +28,7 @@ class RuntimeAppearance:
 
     combat_frame_width: int | None = None
     combat_frame_height: int | None = None
+    combat_back_frame_height: int | None = None
 
     def to_dict(self) -> dict[str, Any]:
         return {
@@ -39,6 +40,7 @@ class RuntimeAppearance:
             "color": self.color,
             "combat_frame_width": self.combat_frame_width,
             "combat_frame_height": self.combat_frame_height,
+            "combat_back_frame_height": self.combat_back_frame_height,
         }
 
     @classmethod
@@ -48,6 +50,7 @@ class RuntimeAppearance:
             combat_sheet=template.combat_sheet,
             combat_frame_width=template.combat_frame_width,
             combat_frame_height=template.combat_frame_height,
+            combat_back_frame_height=template.combat_back_frame_height,
         )
 
     @classmethod
@@ -66,6 +69,10 @@ class RuntimeAppearance:
             ),
             combat_frame_height=data.get(
                 "combat_frame_height", template.combat_frame_height
+            ),
+            combat_back_frame_height=data.get(
+                "combat_back_frame_height",
+                template.combat_back_frame_height,
             ),
         )
 
@@ -141,6 +148,7 @@ class AppearanceManager:
         self.state.palette = new.palette
         self.state.combat_frame_width = new.combat_frame_width
         self.state.combat_frame_height = new.combat_frame_height
+        self.state.combat_back_frame_height = new.combat_back_frame_height
 
         self.owner.sprite_controller.update_appearance(self.state)
 

@@ -36,7 +36,7 @@ class SetPartyAttributeAction(EventAction):
     value: str
 
     def start(self, session: Session) -> None:
-        character = session.get_npc(self.character)
+        character = session.client.get_npc(self.character)
         assert character
         for monster in character.monsters:
             CommonAction.set_entity_attribute(

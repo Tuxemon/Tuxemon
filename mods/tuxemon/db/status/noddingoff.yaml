@@ -6,6 +6,8 @@ effects:
   parameters:
   - '0.5'
 icon: gfx/ui/icons/status/icon_noddingoff.png
+on_positive_status: replaced
+on_negative_status: replaced
 on_tech_use: empty
 slug: noddingoff
 sort: meta

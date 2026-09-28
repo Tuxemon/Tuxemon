@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from typing import final
 
 from tuxemon.constants.asset_loader import fetch_asset
-from tuxemon.entity.player import Player
+from tuxemon.entity.npc import NPC
 from tuxemon.event.eventaction import EventAction
 from tuxemon.platform.const.sizes import PLAYER_NPC
 from tuxemon.save_system.save_manager import SaveManager
@@ -24,9 +24,14 @@ class LoadGameAction(EventAction):
     """
     Loads a game from a specific save slot.
 
-    The `index` parameter refers to the UI slot index (0-2).
-    Slot resolution is handled by `resolve_save_index()`, which converts
-    the UI index (0-based) into a save slot number (1-based).
+    The `index` parameter normally refers to the UI slot index (0-2).
+    When `is_raw_slot` is False (default), the index is interpreted as a
+    UI-facing slot and converted to an actual save slot number using
+    `resolve_save_index()`.
+
+    When `is_raw_slot` is True, the index is treated as a *raw* save slot
+    number and used directly. This is primarily intended for internal or
+    system-driven loads (e.g., autosave recovery).
 
     Script usage:
         .. code-block::
@@ -34,15 +39,19 @@ class LoadGameAction(EventAction):
             load_game <index>
 
     Script parameters:
-        index: UI slot index (0-2). Must always be provided.
+        index: UI slot index (0-2) unless `is_raw_slot=True`.
+        is_raw_slot: If True, bypasses UI-to-slot conversion.
     """
 
     name = "load_game"
     index: int
+    is_raw_slot: bool = False
 
     def start(self, session: Session) -> None:
         client = session.client
-        slot = resolve_save_index(self.index)
+        slot = (
+            self.index if self.is_raw_slot else resolve_save_index(self.index)
+        )
 
         client.map_loader.clear_cache()
         logger.info("Loading!")
@@ -69,7 +78,7 @@ class LoadGameAction(EventAction):
 
         slug = npc_state.player_slug or PLAYER_NPC
         npc_state.player_slug = slug
-        Player.create(session, slug=slug)
+        NPC.create_player(session, slug=slug)
 
         if npc_state.current_map is None:
             logger.error("Save data missing current map.")
@@ -80,6 +89,7 @@ class LoadGameAction(EventAction):
         client.push_state("WorldState", session=session, map_name=map_path)
 
         session.load_state(save_data)
+        session.current_slot = slot
 
         if npc_state.tile_pos is None:
             logger.error("Save data missing tile position.")

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="123">
+<map version="1.10" tiledversion="1.12.1" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="123">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
+  <property name="map_type" value="dungeon"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="datacenter"/>
-  <property name="map_type" value="dungeon"/>
  </properties>
  <tileset firstgid="1" name="Interiors_16x16" tilewidth="16" tileheight="16" tilecount="2592" columns="16">
   <image source="../gfx/tilesets/Interiors_16x16.png" width="256" height="2592"/>
@@ -183,15 +183,16 @@
    <properties>
     <property name="act01" value="lock_controls"/>
     <property name="act02" value="pathfind_to_char player,spyder_datacenter_fermi"/>
-    <property name="act03" value="char_talk spyder_datacenter_fermi,pre_battle"/>
-    <property name="act04" value="unlock_controls"/>
-    <property name="act05" value="add_monster chromeye,35,spyder_datacenter_fermi,5,10"/>
-    <property name="act06" value="add_monster angrito,35,spyder_datacenter_fermi,5,10"/>
-    <property name="act07" value="add_monster sadito,35,spyder_datacenter_fermi,5,10"/>
-    <property name="act08" value="add_monster happito,35,spyder_datacenter_fermi,5,10"/>
-    <property name="act09" value="add_monster neutrito,35,spyder_datacenter_fermi,5,10"/>
-    <property name="act10" value="start_battle player,spyder_datacenter_fermi"/>
-    <property name="act11" value="char_talk spyder_datacenter_fermi,post_battle_lose"/>
+    <property name="act03" value="char_face player,spyder_datacenter_fermi"/>
+    <property name="act04" value="char_talk spyder_datacenter_fermi,pre_battle"/>
+    <property name="act05" value="unlock_controls"/>
+    <property name="act06" value="add_monster chromeye,35,spyder_datacenter_fermi,5,10"/>
+    <property name="act07" value="add_monster angrito,35,spyder_datacenter_fermi,5,10"/>
+    <property name="act08" value="add_monster sadito,35,spyder_datacenter_fermi,5,10"/>
+    <property name="act09" value="add_monster happito,35,spyder_datacenter_fermi,5,10"/>
+    <property name="act10" value="add_monster neutrito,35,spyder_datacenter_fermi,5,10"/>
+    <property name="act11" value="start_battle player,spyder_datacenter_fermi"/>
+    <property name="act12" value="char_talk spyder_datacenter_fermi,post_battle_lose"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_datacenter_fermi"/>
     <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="not char_defeated player"/>
@@ -208,12 +209,13 @@
    <properties>
     <property name="act01" value="lock_controls"/>
     <property name="act02" value="pathfind_to_char player,spyder_datacenter_onnes"/>
-    <property name="act03" value="char_talk spyder_datacenter_onnes,pre_battle"/>
-    <property name="act04" value="unlock_controls"/>
-    <property name="act05" value="add_monster ouroboutlet,45,spyder_datacenter_onnes,5,10"/>
-    <property name="act06" value="add_monster angrito,40,spyder_datacenter_onnes,5,10"/>
-    <property name="act07" value="start_battle player,spyder_datacenter_onnes"/>
-    <property name="act08" value="char_talk spyder_datacenter_onnes,post_battle_lose"/>
+    <property name="act03" value="char_face player,spyder_datacenter_onnes"/>
+    <property name="act04" value="char_talk spyder_datacenter_onnes,pre_battle"/>
+    <property name="act05" value="unlock_controls"/>
+    <property name="act06" value="add_monster ouroboutlet,45,spyder_datacenter_onnes,5,10"/>
+    <property name="act07" value="add_monster angrito,40,spyder_datacenter_onnes,5,10"/>
+    <property name="act08" value="start_battle player,spyder_datacenter_onnes"/>
+    <property name="act09" value="char_talk spyder_datacenter_onnes,post_battle_lose"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_datacenter_onnes"/>
     <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="not char_defeated player"/>
@@ -230,12 +232,13 @@
    <properties>
     <property name="act01" value="lock_controls"/>
     <property name="act02" value="pathfind_to_char player,spyder_datacenter_bayliss"/>
-    <property name="act03" value="char_talk spyder_datacenter_bayliss,pre_battle"/>
-    <property name="act04" value="unlock_controls"/>
-    <property name="act05" value="add_monster sockeserp,45,spyder_datacenter_bayliss,5,10"/>
-    <property name="act06" value="add_monster sadito,40,spyder_datacenter_bayliss,5,10"/>
-    <property name="act07" value="start_battle player,spyder_datacenter_bayliss"/>
-    <property name="act08" value="char_talk spyder_datacenter_bayliss,post_battle_lose"/>
+    <property name="act03" value="char_face player,spyder_datacenter_bayliss"/>
+    <property name="act04" value="char_talk spyder_datacenter_bayliss,pre_battle"/>
+    <property name="act05" value="unlock_controls"/>
+    <property name="act06" value="add_monster sockeserp,45,spyder_datacenter_bayliss,5,10"/>
+    <property name="act07" value="add_monster sadito,40,spyder_datacenter_bayliss,5,10"/>
+    <property name="act08" value="start_battle player,spyder_datacenter_bayliss"/>
+    <property name="act09" value="char_talk spyder_datacenter_bayliss,post_battle_lose"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_datacenter_bayliss"/>
     <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="not char_defeated player"/>
@@ -252,12 +255,13 @@
    <properties>
     <property name="act01" value="lock_controls"/>
     <property name="act02" value="pathfind_to_char player,spyder_datacenter_chomsky"/>
-    <property name="act03" value="char_talk spyder_datacenter_chomsky,pre_battle"/>
-    <property name="act04" value="unlock_controls"/>
-    <property name="act05" value="add_monster fancair,45,spyder_datacenter_chomsky,5,10"/>
-    <property name="act06" value="add_monster happito,40,spyder_datacenter_chomsky,5,10"/>
-    <property name="act07" value="start_battle player,spyder_datacenter_chomsky"/>
-    <property name="act08" value="char_talk spyder_datacenter_chomsky,post_battle_lose"/>
+    <property name="act03" value="char_face player,spyder_datacenter_chomsky"/>
+    <property name="act04" value="char_talk spyder_datacenter_chomsky,pre_battle"/>
+    <property name="act05" value="unlock_controls"/>
+    <property name="act06" value="add_monster fancair,45,spyder_datacenter_chomsky,5,10"/>
+    <property name="act07" value="add_monster happito,40,spyder_datacenter_chomsky,5,10"/>
+    <property name="act08" value="start_battle player,spyder_datacenter_chomsky"/>
+    <property name="act09" value="char_talk spyder_datacenter_chomsky,post_battle_lose"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_datacenter_chomsky"/>
     <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="not char_defeated player"/>
@@ -274,12 +278,13 @@
    <properties>
     <property name="act01" value="lock_controls"/>
     <property name="act02" value="pathfind_to_char player,spyder_datacenter_lagrange"/>
-    <property name="act03" value="char_talk spyder_datacenter_lagrange,pre_battle"/>
-    <property name="act04" value="unlock_controls"/>
-    <property name="act05" value="add_monster windeye,45,spyder_datacenter_lagrange,5,10"/>
-    <property name="act06" value="add_monster neutrito,45,spyder_datacenter_lagrange,5,10"/>
-    <property name="act07" value="start_battle player,spyder_datacenter_lagrange"/>
-    <property name="act08" value="char_talk spyder_datacenter_lagrange,post_battle_lose"/>
+    <property name="act03" value="char_face player,spyder_datacenter_lagrange"/>
+    <property name="act04" value="char_talk spyder_datacenter_lagrange,pre_battle"/>
+    <property name="act05" value="unlock_controls"/>
+    <property name="act06" value="add_monster windeye,45,spyder_datacenter_lagrange,5,10"/>
+    <property name="act07" value="add_monster neutrito,45,spyder_datacenter_lagrange,5,10"/>
+    <property name="act08" value="start_battle player,spyder_datacenter_lagrange"/>
+    <property name="act09" value="char_talk spyder_datacenter_lagrange,post_battle_lose"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_datacenter_lagrange"/>
     <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="not char_defeated player"/>
@@ -352,7 +357,7 @@
   </object>
   <object id="102" name="Wild" type="event" x="304" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter spyder_datacenter,0.6"/>
+    <property name="act1" value="random_encounter spyder_datacenter,0.3"/>
     <property name="cond1" value="not variable_set kernelquest:done"/>
     <property name="cond2" value="is check_char_parameter player,moving,1"/>
    </properties>
@@ -363,8 +368,9 @@
     <property name="act2" value="wild_encounter blasdoor,40,3"/>
     <property name="act3" value="set_variable datascreen3:yes"/>
     <property name="act4" value="remove_npc spyder_datacenter_s3"/>
-    <property name="cond1" value="is variable_set tallest:snarlon"/>
-    <property name="cond2" value="is variable_set tallest:snarlon"/>
+    <property name="cond1" value="is variable_set tallest"/>
+    <property name="cond2" value="not variable_set tallest:snarlon"/>
+    <property name="cond3" value="not variable_set datascreen3:yes"/>
    </properties>
   </object>
   <object id="104" name="PC7 Yes" type="event" x="112" y="192" width="16" height="16">
@@ -373,6 +379,7 @@
     <property name="act2" value="set_variable datascreen3:yes"/>
     <property name="act3" value="remove_npc spyder_datacenter_s3"/>
     <property name="cond1" value="is variable_set tallest:snarlon"/>
+    <property name="cond2" value="not variable_set datascreen3:yes"/>
    </properties>
   </object>
   <object id="105" name="PC8 No" type="event" x="240" y="192" width="16" height="16">
@@ -381,8 +388,9 @@
     <property name="act2" value="wild_encounter blasdoor,40,3"/>
     <property name="act3" value="set_variable datascreen4:yes"/>
     <property name="act4" value="remove_npc spyder_datacenter_s4"/>
-    <property name="cond1" value="is variable_set smallest:squink"/>
-    <property name="cond2" value="is variable_set smallest:possessun"/>
+    <property name="cond1" value="is variable_set smallest"/>
+    <property name="cond2" value="not variable_set smallest:ignibus"/>
+    <property name="cond3" value="not variable_set datascreen4:yes"/>
    </properties>
   </object>
   <object id="106" name="PC8 Yes" type="event" x="224" y="192" width="16" height="16">
@@ -391,6 +399,7 @@
     <property name="act2" value="set_variable datascreen4:yes"/>
     <property name="act3" value="remove_npc spyder_datacenter_s4"/>
     <property name="cond1" value="is variable_set smallest:ignibus"/>
+    <property name="cond2" value="not variable_set datascreen4:yes"/>
    </properties>
   </object>
   <object id="107" name="PC10 No" type="event" x="288" y="272" width="16" height="16">
@@ -399,8 +408,9 @@
     <property name="act2" value="wild_encounter blasdoor,40,3"/>
     <property name="act3" value="set_variable datascreen2:yes"/>
     <property name="act4" value="remove_npc spyder_datacenter_s2"/>
-    <property name="cond1" value="is variable_set binary193:statursus"/>
-    <property name="cond2" value="is variable_set binary193:exclawvate"/>
+    <property name="cond1" value="is variable_set binary193"/>
+    <property name="cond2" value="not variable_set binary193:baobaraffe"/>
+    <property name="cond3" value="not variable_set datascreen2:yes"/>
    </properties>
   </object>
   <object id="108" name="PC10 Yes" type="event" x="272" y="272" width="16" height="16">
@@ -409,6 +419,7 @@
     <property name="act2" value="set_variable datascreen2:yes"/>
     <property name="act3" value="remove_npc spyder_datacenter_s2"/>
     <property name="cond1" value="is variable_set binary193:baobaraffe"/>
+    <property name="cond2" value="not variable_set datascreen2:yes"/>
    </properties>
   </object>
   <object id="109" name="PC9 No" type="event" x="192" y="272" width="16" height="16">
@@ -417,8 +428,9 @@
     <property name="act2" value="wild_encounter blasdoor,40,3"/>
     <property name="act3" value="set_variable datascreen1:yes"/>
     <property name="act4" value="remove_npc spyder_datacenter_s1"/>
-    <property name="cond1" value="is variable_set heaviest:apeoro"/>
-    <property name="cond2" value="is variable_set heaviest:mauai"/>
+    <property name="cond1" value="is variable_set heaviest"/>
+    <property name="cond2" value="not variable_set heaviest:jemuar"/>
+    <property name="cond3" value="not variable_set datascreen1:yes"/>
    </properties>
   </object>
   <object id="110" name="PC9 Yes" type="event" x="176" y="272" width="16" height="16">
@@ -427,6 +439,7 @@
     <property name="act2" value="set_variable datascreen1:yes"/>
     <property name="act3" value="remove_npc spyder_datacenter_s1"/>
     <property name="cond1" value="is variable_set heaviest:jemuar"/>
+    <property name="cond2" value="not variable_set datascreen1:yes"/>
    </properties>
   </object>
   <object id="111" name="PC5 No" type="event" x="192" y="112" width="16" height="16">
@@ -435,8 +448,9 @@
     <property name="act2" value="wild_encounter blasdoor,40,3"/>
     <property name="act3" value="set_variable datascreen6:yes"/>
     <property name="act4" value="remove_npc spyder_datacenter_s6"/>
-    <property name="cond1" value="is variable_set binary144:rhincus"/>
-    <property name="cond2" value="is variable_set binary144:drokoro"/>
+    <property name="cond1" value="is variable_set binary144"/>
+    <property name="cond2" value="not variable_set binary144:shammer"/>
+    <property name="cond3" value="not variable_set datascreen6:yes"/>
    </properties>
   </object>
   <object id="112" name="PC5 Yes" type="event" x="176" y="112" width="16" height="16">
@@ -445,6 +459,7 @@
     <property name="act2" value="set_variable datascreen6:yes"/>
     <property name="act3" value="remove_npc spyder_datacenter_s6"/>
     <property name="cond1" value="is variable_set binary144:shammer"/>
+    <property name="cond2" value="not variable_set datascreen6:yes"/>
    </properties>
   </object>
   <object id="113" name="PC6 No" type="event" x="288" y="112" width="16" height="16">
@@ -453,8 +468,9 @@
     <property name="act2" value="wild_encounter blasdoor,40,3"/>
     <property name="act3" value="set_variable datascreen7:yes"/>
     <property name="act4" value="remove_npc spyder_datacenter_s7"/>
-    <property name="cond1" value="is variable_set binary77:ruption"/>
-    <property name="cond2" value="is variable_set binary77:narcileaf"/>
+    <property name="cond1" value="is variable_set binary77"/>
+    <property name="cond2" value="not variable_set binary77:shybulb"/>
+    <property name="cond3" value="not variable_set datascreen7:yes"/>
    </properties>
   </object>
   <object id="114" name="PC6 Yes" type="event" x="272" y="112" width="16" height="16">
@@ -463,6 +479,7 @@
     <property name="act2" value="set_variable datascreen7:yes"/>
     <property name="act3" value="remove_npc spyder_datacenter_s7"/>
     <property name="cond1" value="is variable_set binary77:shybulb"/>
+    <property name="cond2" value="not variable_set datascreen7:yes"/>
    </properties>
   </object>
   <object id="115" name="PC4 No" type="event" x="80" y="112" width="16" height="16">
@@ -471,8 +488,9 @@
     <property name="act2" value="wild_encounter blasdoor,40,3"/>
     <property name="act3" value="set_variable datascreen5:yes"/>
     <property name="act4" value="remove_npc spyder_datacenter_s5"/>
-    <property name="cond1" value="is variable_set lightest:furnursus"/>
-    <property name="cond2" value="is variable_set lightest:woodoor"/>
+    <property name="cond1" value="is variable_set lightest"/>
+    <property name="cond2" value="not variable_set lightest:snokari"/>
+    <property name="cond3" value="not variable_set datascreen5:yes"/>
    </properties>
   </object>
   <object id="116" name="PC4 Yes" type="event" x="64" y="112" width="16" height="16">
@@ -481,18 +499,19 @@
     <property name="act2" value="set_variable datascreen5:yes"/>
     <property name="act3" value="remove_npc spyder_datacenter_s5"/>
     <property name="cond1" value="is variable_set lightest:snokari"/>
+    <property name="cond2" value="not variable_set datascreen5:yes"/>
    </properties>
   </object>
   <object id="117" name="Billie" type="event" x="144" y="32" width="16" height="16">
    <properties>
     <property name="act01" value="char_stop player"/>
     <property name="act02" value="lock_controls"/>
-    <property name="act03" value="create_npc spyder_billie,11,14"/>
-    <property name="act04" value="pathfind spyder_billie,1,10"/>
+    <property name="act03" value="create_npc spyder_billie,8,8"/>
+    <property name="act04" value="pathfind spyder_billie,8,5"/>
     <property name="act05" value="char_face spyder_billie,player"/>
     <property name="act06" value="char_face player,right"/>
     <property name="act07" value="translated_dialog spyder_datacenter_billie1"/>
-    <property name="act75" value="pathfind spyder_billie,11,14"/>
+    <property name="act75" value="pathfind spyder_billie,8,8"/>
     <property name="act80" value="remove_npc spyder_billie"/>
     <property name="act90" value="set_variable datacenterbillie:yes"/>
     <property name="act99" value="unlock_controls"/>

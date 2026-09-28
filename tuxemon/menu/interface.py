@@ -190,21 +190,6 @@ class MenuItem(Generic[T], Sprite):
     A MenuItem is a visual component used to represent an option in a menu.
     It can display an image, label, and description, and is associated with
     a callable game object or behavior that is triggered when selected.
-
-    Inherits from:
-        Sprite: Provides rendering, animation, and position management.
-
-    Type Parameters:
-        T: The type of the game object or callable associated with this item.
-
-    Parameters:
-        image: The visual surface to represent the item.
-        label: A short label or name for the menu item.
-        description: A longer description or tooltip text.
-        game_object: A callable or linked object triggered on selection.
-        enabled: Whether the menu item is interactable. Defaults to True.
-        position: Initial (x, y) position of the item.
-            If None, position must be set later. Defaults to None.
     """
 
     def __init__(
@@ -217,17 +202,31 @@ class MenuItem(Generic[T], Sprite):
         position: tuple[int, int] | None = None,
     ):
         super().__init__(image=image)
+
         self.label = label
         self.description = description
         self.game_object = game_object
+
         self._enabled = enabled
         self._in_focus = False
+
         self.metadata: dict[str, Any] = {}
 
         if position is not None:
             self.set_position(*position)
 
         self.update_image()
+
+    def trigger(self) -> None:
+        """Triggers the associated action for this menu item."""
+        if not self._enabled:
+            return
+
+        action = self.game_object
+
+        # Legacy callable
+        if callable(action):
+            action()
 
     def update_image(self, source: Surface | None = None) -> None:
         """
@@ -239,12 +238,10 @@ class MenuItem(Generic[T], Sprite):
             return
 
         if self._in_focus:
-            # Add visual effect for focus here
-            pass
+            pass  # Add highlight, tint, outline, etc.
 
         if not self._enabled:
-            # Add visual effect for not enabled here
-            pass
+            pass  # Add dimming, greyscale, alpha reduction, etc.
 
     @property
     def enabled(self) -> bool:
@@ -254,6 +251,7 @@ class MenuItem(Generic[T], Sprite):
     def enabled(self, value: bool) -> None:
         if self._enabled != value:
             self._enabled = value
+            self.update_image()
 
     @property
     def in_focus(self) -> bool:
@@ -261,7 +259,9 @@ class MenuItem(Generic[T], Sprite):
 
     @in_focus.setter
     def in_focus(self, value: bool) -> None:
-        self._in_focus = bool(value)
+        if self._in_focus != value:
+            self._in_focus = value
+            self.update_image()
 
     def __repr__(self) -> str:
         return (

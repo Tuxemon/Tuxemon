@@ -33,7 +33,7 @@ class SetCharAttributeAction(EventAction):
     value: str
 
     def start(self, session: Session) -> None:
-        character = session.get_npc(self.character)
+        character = session.client.get_npc(self.character)
         assert character
         CommonAction.set_entity_attribute(
             character, self.attribute, self.value

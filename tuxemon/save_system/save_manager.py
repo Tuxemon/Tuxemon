@@ -11,9 +11,10 @@ from pygame.font import Font
 from pygame.rect import Rect
 from pygame.surface import Surface
 
+from tuxemon.locale.locale import T
 from tuxemon.save_system import save
 from tuxemon.save_system.save import get_save_path
-from tuxemon.save_system.save_slots import ui_to_save_index
+from tuxemon.save_system.save_slots import AUTOSAVE_SLOT, ui_to_save_index
 from tuxemon.ui.save_slot_renderer import (
     render_empty_slot,
     render_slot_text,
@@ -60,18 +61,29 @@ class SaveManager:
         session.save_state(index=slot, slot=slot)
 
     @staticmethod
-    def all_slots(max_slots: int) -> list[int]:
-        return [ui_to_save_index(i) for i in range(max_slots)]
+    def has_autosave() -> bool:
+        """Helper to specifically check for the autosave slot."""
+        return SaveManager.exists(AUTOSAVE_SLOT)
 
     @staticmethod
-    def slot_from_ui(ui_index: int) -> int:
-        return ui_to_save_index(ui_index)
+    def all_slots(max_slots: int, include_autosave: bool = False) -> list[int]:
+        slots = [ui_to_save_index(i) for i in range(max_slots)]
+        return ([AUTOSAVE_SLOT] + slots) if include_autosave else slots
+
+    @staticmethod
+    def slot_from_ui(ui_index: int, includes_autosave: bool = False) -> int:
+        return ui_index if includes_autosave else ui_to_save_index(ui_index)
 
     @staticmethod
     def render_empty(
-        rect: Rect, scaling: ScalingStrategy, font: Font
+        rect: Rect, slot: int, scaling: ScalingStrategy, font: Font
     ) -> Surface:
-        return render_empty_slot(rect, scaling=scaling, font=font)
+        return render_empty_slot(
+            rect,
+            scaling=scaling,
+            font=font,
+            slot=slot,
+        )
 
     @staticmethod
     def render_slot(
@@ -81,24 +93,27 @@ class SaveManager:
         save_data = SaveManager.load(slot)
 
         if not save_data:
-            logger.critical(f"Save data missing for slot {slot}")
-            raise RuntimeError(
-                f"Critical error: Save data missing for slot {slot}"
-            )
+            raise RuntimeError(f"Save data missing for slot {slot}")
 
         thumb = render_thumbnail(save_data, rect)
         slot_image.blit(thumb, (rect.width * 0.20, 0))
 
+        slot_label = (
+            T.translate("menu_autosave")
+            if slot == AUTOSAVE_SLOT
+            else f"{T.translate('slot')} {slot}"
+        )
+
         text_rect = Rect(
             0, rect.height // 2 - 10, rect.width, rect.height // 2
         )
+
         render_slot_text(
             slot_image,
             text_rect,
-            slot,
+            slot_label,
             save_data,
             scaling=scaling,
             font=font,
         )
-
         return slot_image

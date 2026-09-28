@@ -5,7 +5,6 @@ from __future__ import annotations
 import logging
 from typing import TYPE_CHECKING, Any, ClassVar
 
-import pygame
 from pygame.surface import Surface
 
 from tuxemon.database.runtime import db
@@ -19,6 +18,7 @@ from tuxemon.tools import open_dialog
 
 if TYPE_CHECKING:
     from tuxemon.base_client import BaseClient
+    from tuxemon.entity.npc import NPC
     from tuxemon.platform.events import PlayerInput
     from tuxemon.sprite import Sprite
 
@@ -45,9 +45,11 @@ class EvolutionTransition(State):
         original: str,
         evolved: str,
         is_devolution: bool = False,
+        character: NPC | None = None,
         **kwargs: Any,
     ) -> None:
         self.is_devolution = is_devolution
+        self.character = character
         super().__init__(client=client, **kwargs)
         self.original_monster = self._get_monster(original)
         self.evolved_monster = self._get_monster(evolved)
@@ -138,9 +140,10 @@ class EvolutionTransition(State):
 
         self.evolved_sprite.image.blit(self.evolved_sprite_copy, (0, 0))
         self.evolved_sprite.image.blit(self.evolved_sprite_white, (0, 0))
+        self.evolved_sprite.image.set_alpha(255)
 
         if self.elapsed_time > self.total_seconds and not self.dialog_opened:
-            self.client.sound_manager.play_sound("sound_confirm")
+            self.client.sound_manager.play("sound_confirm")
             self.on_animation_complete()
 
     def draw(self, surface: Surface) -> None:
@@ -149,9 +152,10 @@ class EvolutionTransition(State):
         sprite_image = sprite.image
 
         if sprite_image is None or sprite_image.get_alpha() == 0:
-            sprite_image = (
-                self.evolved_sprite_copy
-            )  # fallback to visible image
+            if self.phase == 3:
+                sprite_image = self.evolved_sprite.image
+            else:
+                sprite_image = self.evolved_sprite_copy
 
         surface.blit(sprite_image, (self.x, self.y))
 
@@ -211,6 +215,16 @@ class EvolutionTransition(State):
             else:
                 self.client.current_music.unpause()
                 self.client.pop_state()
+                if self.character is not None:
+                    journal = MonsterModel.lookup(self.evolved, db)
+                    if journal is not None:
+                        self.client.push_state(
+                            "JournalInfoState",
+                            character=self.character,
+                            monster=journal,
+                            source=self.name,
+                            reveal=True,
+                        )
         return None
 
     def _get_phase_3_sprite(self) -> Sprite:

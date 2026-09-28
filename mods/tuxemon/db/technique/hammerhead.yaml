@@ -18,7 +18,7 @@ target:
   own_monster: false
   own_team: false
   own_trainer: false
-category: animal
+category: basic
 tags:
 - rock
 types:
@@ -27,7 +27,7 @@ use_failure: combat_miss
 use_success: null
 use_tech: combat_used_x
 visuals:
-  animation: slash_power
+  animation: null
   flip_axes: x
   loop: 0
 sound:

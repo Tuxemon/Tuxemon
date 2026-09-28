@@ -8,6 +8,7 @@ from typing import TYPE_CHECKING
 
 from tuxemon.core.core_effect import CoreEffect, TechEffectResult
 from tuxemon.formula import simple_heal
+from tuxemon.locale.locale import T
 
 if TYPE_CHECKING:
     from tuxemon.monster.monster import Monster
@@ -75,10 +76,12 @@ class StepHealingEffect(CoreEffect):
                 )
                 tech.healing_power = new_power
                 heal = simple_heal(tech, monster)
+                params = {"name": monster.name}
                 if monster.hp_ratio < 1.0:
                     heal_amount = min(heal, monster.missing_hp)
                     monster.current_hp += heal_amount
                     done = True
+                    extra.append(T.format("combat_state_healed", params))
                 elif monster.hp_ratio == 1.0:
-                    extra = ["combat_full_health"]
+                    extra.append(T.format("combat_full_health", params))
         return TechEffectResult(name=tech.name, success=done, extras=extra)

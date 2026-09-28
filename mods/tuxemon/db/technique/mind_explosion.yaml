@@ -1,6 +1,7 @@
 tech_id: 225
 accuracy: 1.0
 effects:
+- type: damage
 - type: give
   parameters:
   - exhausted
@@ -9,7 +10,6 @@ effects:
   parameters:
   - confused
   - enemy_monster
-- type: damage
 speed: normal
 potency: 0.5
 power: 3.0

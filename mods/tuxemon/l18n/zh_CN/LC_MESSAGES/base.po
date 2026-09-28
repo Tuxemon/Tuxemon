@@ -3319,7 +3319,7 @@ msgstr ""
 msgid "spyder_route5_granny"
 msgstr "这个公园在宁德市的建设下,将花城的暴发户挡在了门外,显得更有人情味. "
 
-# msgid "spyder_leatherhouse1_radio"
+# msgid "spyder_leatherhouse1_radio_afternoon"
 # msgstr "An R&B song is playing. It's called \"Possessuns, Part II\". "
 msgid "spyder_leatherhouse2_tv"
 msgstr "一个绿色的小怪物正在把一艘船从沼泽地里抬出来."
@@ -5708,12 +5708,6 @@ msgstr ""
 "哈哈,傻瓜们--你们永远找不到我. \n"
 " 这是在全能公司首席执行官的信纸上."
 
-msgid "cotton_breeder0"
-msgstr ""
-"大家好,欢迎来到日托所,我在这里饲养了精灵.\n"
-"我经营这个地方是因为我非常喜欢精灵!\n"
-"如果你愿意,我可以为你繁殖两只小狐狸.请告诉我,好吗?"
-
 msgid "spyder_greenwash_guard"
 msgstr "好吧,这里没什么可看的."
 
@@ -6393,7 +6387,7 @@ msgstr "露天咖啡馆和市场"
 msgid "spyder_leathercbd_sign"
 msgstr "皮革城商业区"
 
-msgid "spyder_leatherhouse1_radio"
+msgid "spyder_leatherhouse1_radio_afternoon"
 msgstr "正在播放一首R&B歌曲.它被称为 \"Possessuns, Part II\"."
 
 msgid "spyder_flower_dojo_sign"
@@ -6405,53 +6399,8 @@ msgstr "欢迎来到Wayfarer Inn! "
 msgid "spyder_cottonhouse1_tvwatch"
 msgstr "这是最新的真人秀节目：人们和他们的精灵在一个偏远的岛屿上完成挑战."
 
-msgid "cotton_breeder1"
-msgstr "你想把你的两只精灵留给我,让它们繁殖吗?"
-
-msgid "cotton_breeder2a_1"
-msgstr "好吧,哪位精灵将成为母亲?"
-
-msgid "cotton_breeder2a_2"
-msgstr "很好,那父亲呢?"
-
-msgid "cotton_breeder3"
-msgstr "好吧,你确定这是你要的那两个?"
-
-msgid "cotton_breeder4a"
-msgstr "很好!以后再来报到,我会让你知道情况如何."
-
-msgid "cotton_breeder_rejected"
-msgstr "哦,好吧.你再想一想,再来找我."
-
-msgid "cotton_breeder5"
-msgstr "嘿,${{name}},来看看你的精灵?"
-
-msgid "cotton_breeder6a"
-msgstr "他们还在逐渐熟悉,就像这样.你为什么不晚点再来?"
-
-msgid "cotton_breeder6b"
-msgstr ""
-"进展非常顺利!它们几乎是不可分割的!\n"
-"现在应该用不了多久,他们就要生孩子了."
-
-msgid "cotton_breeder6c"
-msgstr "祝贺你!他们已经有了一个孩子!给你,好好养育它."
-
-msgid "cotton_breeder_continue"
-msgstr ""
-"在他们准备好接受另一个精灵之前,还需要一段时间,但如果你愿意,我可以保留这两\n"
-"只,并再次为他们配种."
-
-msgid "cotton_breeder7a"
-msgstr "很好!你花点时间照顾孩子,我来照顾父母.以后再来看看他们吧."
-
 msgid "taba_greeting1"
 msgstr "招待员Jaime: 嗨,${{name}}!听说你得到了一只精灵,恭喜你!如果你想壮大你的队伍,你就需要精灵球."
-
-msgid "cotton_breeder7b"
-msgstr ""
-"好主意,在宝宝成长的这个重要阶段,新家庭应该保持在一起.\n"
-"你们现在回来吧,听到了吗?"
 
 msgid "taba_greeting2a"
 msgstr ""

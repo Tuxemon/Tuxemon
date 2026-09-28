@@ -43,12 +43,12 @@ class CraftingStationAction(EventAction):
 
         if self.client.current_state.name == "CraftMenuState":
             logger.error(
-                f"The state 'CraftMenuState' is already active. No action taken."
+                "The state 'CraftMenuState' is already active. No action taken."
             )
             self.stop()
             return
 
-        character = session.get_npc(self.character_slug)
+        character = session.client.get_npc(self.character_slug)
         if character is None:
             logger.error(
                 f"Character '{self.character_slug}' not found for CraftMenuState."

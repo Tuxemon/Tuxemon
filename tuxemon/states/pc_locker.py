@@ -13,13 +13,12 @@ from pygame_menu.locals import ALIGN_CENTER, POSITION_EAST
 from pygame_menu.menu import Menu
 from pygame_menu.widgets.selection.highlight import HighlightSelection
 
-from tuxemon.animation import ScheduleType
 from tuxemon.item.filter import ItemFilter
 from tuxemon.item.item import Item
 from tuxemon.locale.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import PygameMenuState
-from tuxemon.menu.quantity import QuantityMenu
+from tuxemon.menu.transitions import SlideRight
 from tuxemon.platform.const.graphics import BG_PC_LOCKER
 from tuxemon.state.state import State
 from tuxemon.states.item_menu import ItemMenuState
@@ -29,7 +28,6 @@ from tuxemon.ui.menu_options import MenuOptions, create_choice_options
 logger = logging.getLogger(__name__)
 
 if TYPE_CHECKING:
-    from tuxemon.animation import Animation
     from tuxemon.base_client import BaseClient
     from tuxemon.entity.npc import NPC
     from tuxemon.item.item import Item
@@ -126,8 +124,8 @@ class ItemTakeState(PygameMenuState):
     ) -> None:
         self.box_name = box_name
         self.char = character
-        self.box = self.char.item_boxes.get_items(self.box_name)
-
+        self.item_boxes = self.char.item_boxes
+        self.box = self.item_boxes.get_items(self.box_name)
         width, height = client.context.resolution
 
         columns = 3
@@ -200,14 +198,11 @@ class ItemTakeState(PygameMenuState):
             callback: Callable[[int], None], max_quantity: int
         ) -> Callable[[], None]:
             def inner() -> None:
-                self.client.state_manager.push_state(
-                    QuantityMenu(
-                        client=self.client,
-                        callback=callback,
-                        max_quantity=max_quantity,
-                        quantity=1,
-                        shrink_to_items=True,
-                    )
+                self.client.push_state(
+                    "NumberPickerState",
+                    min_value=1,
+                    max_value=max_quantity,
+                    callback=callback,
                 )
 
             return inner
@@ -232,8 +227,6 @@ class ItemTakeState(PygameMenuState):
         )
 
     def add_menu_items(self, menu: Menu, items: Sequence[Item]) -> None:
-        self.item_boxes = self.char.item_boxes
-        self.box = self.item_boxes.get_items(self.box_name)
         handler = ItemActionHandler(
             self.client, self.char, self.box_name, self.name
         )
@@ -274,9 +267,10 @@ class ItemBoxState(PygameMenuState):
     ) -> None:
         width, height = client.context.resolution
 
-        super().__init__(client=client, height=height, **kwargs)
+        super().__init__(
+            client=client, height=height, transition=SlideRight(), **kwargs
+        )
 
-        self.animation_offset = 0
         self.char = character
 
         menu_items_map = self.get_menu_items_map()
@@ -317,27 +311,6 @@ class ItemBoxState(PygameMenuState):
     def change_state(self, state: str, **kwargs: Any) -> partial[State]:
         return partial(self.client.replace_state, state, **kwargs)
 
-    def update_animation_position(self) -> None:
-        self.menu.translate(-self.animation_offset, 0)
-
-    def animate_open(self) -> Animation:
-        """Animate the menu sliding in."""
-
-        width = self.menu.get_width(border=True)
-        self.animation_offset = 0
-
-        ani = self.animate(self, animation_offset=width, duration=0.50)
-        ani.schedule(self.update_animation_position, ScheduleType.ON_UPDATE)
-
-        return ani
-
-    def animate_close(self) -> Animation:
-        """Animate the menu sliding out."""
-        ani = self.animate(self, animation_offset=0, duration=0.50)
-        ani.schedule(self.update_animation_position, ScheduleType.ON_UPDATE)
-
-        return ani
-
 
 class ItemStorageState(ItemBoxState):
     """Menu to choose a box, which you can then take an item from."""
@@ -351,8 +324,7 @@ class ItemStorageState(ItemBoxState):
         item_boxes = self.char.item_boxes
         menu_items_map = []
         for box_name, items in item_boxes.item_boxes.items():
-            metadata = item_boxes.metadata_manager.get(box_name, "item")
-            if metadata is None or not metadata.is_hidden:
+            if not item_boxes.is_box_hidden(box_name, "item"):
                 if not items:
                     menu_callback = partial(
                         open_dialog,
@@ -380,9 +352,8 @@ class ItemDropOffState(ItemBoxState):
     def get_menu_items_map(self) -> Sequence[tuple[str, MenuGameObj]]:
         item_boxes = self.char.item_boxes
         menu_items_map = []
-        for box_name, items in item_boxes.item_boxes.items():
-            metadata = item_boxes.metadata_manager.get(box_name, "item")
-            if metadata is None or not metadata.is_hidden:
+        for box_name in item_boxes.item_boxes:
+            if not item_boxes.is_box_hidden(box_name, "item"):
                 menu_callback = self.change_state(
                     "ItemDropOff", box_name=box_name, character=self.char
                 )
@@ -430,13 +401,7 @@ class ItemDropOff(ItemMenuState):
             item_boxes = self.char.item_boxes
             box = item_boxes.get_items(self.box_name)
 
-            new_item = Item.create(itm.slug)
-            new_item.set_quantity(quantity)
-
-            def find_item_in_box(slug: str, items: list[Item]) -> Item | None:
-                return next((i for i in items if i.slug == slug), None)
-
-            retrieve = find_item_in_box(itm.slug, box) if box else None
+            retrieve = next((i for i in box if i.slug == itm.slug), None)
             stored = (
                 item_boxes.get_items_by_iid(retrieve.instance_id)
                 if retrieve
@@ -446,16 +411,15 @@ class ItemDropOff(ItemMenuState):
             if stored:
                 stored.increase_quantity(quantity)
             else:
+                new_item = Item.create(itm.slug)
+                new_item.set_quantity(quantity)
                 item_boxes.add_item(self.box_name, new_item)
 
             self.char.bag.remove_item(itm, quantity)
 
         self.client.push_state(
-            QuantityMenu(
-                client=self.client,
-                callback=partial(deposit, game_object),
-                max_quantity=game_object.quantity,
-                quantity=1,
-                shrink_to_items=True,
-            )
+            "NumberPickerState",
+            min_value=1,
+            max_value=game_object.quantity,
+            callback=partial(deposit, game_object),
         )

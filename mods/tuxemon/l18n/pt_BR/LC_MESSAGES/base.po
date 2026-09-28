@@ -2854,9 +2854,6 @@ msgstr ""
 "Que? Você tem uma pintura. Oooh - você me deixaria comprá-lo? Eu tenho "
 "${{currency}}2.000."
 
-msgid "cotton_breeder5"
-msgstr "Hey ${{name}}, vem verificar o seu Tuxemon?"
-
 msgid "taba_greeting2b"
 msgstr ""
 "Ah! Vejo que você já tem algumas. Você tem uma boa cabeça em seus ombros "

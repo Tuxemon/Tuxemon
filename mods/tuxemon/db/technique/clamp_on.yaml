@@ -17,8 +17,7 @@ recharge: 3
 slug: clamp_on
 sort: damage
 modifiers: []
-behaviors:
-  bypasses_selection: true
+behaviors: {}
 target:
   enemy_monster: true
   enemy_team: false

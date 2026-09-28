@@ -5,7 +5,7 @@ from unittest.mock import MagicMock, patch
 import pytest
 
 from tuxemon.entity.entity import Body, Mover
-from tuxemon.entity.player import Player
+from tuxemon.entity.npc import NPC
 from tuxemon.event.eventaction import ActionManager
 from tuxemon.event.eventbehavior import BehaviorManager
 from tuxemon.event.eventbus import EventBus
@@ -29,7 +29,7 @@ def mockPlayer(self):
 
 @pytest.fixture
 def patched_player_init():
-    with patch.object(Player, "__init__", mockPlayer):
+    with patch.object(NPC, "__init__", mockPlayer):
         yield
 
 
@@ -39,7 +39,14 @@ def engine(patched_player_init):
     evaluator = ConditionEvaluator(MagicMock(), MagicMock())
     behavior = BehaviorManager()
     eng = EventEngine(local_session, action, evaluator, behavior)
-    local_session.set_player(Player())
+    player = NPC()
+    local_session.set_player(player)
+    mock_client = MagicMock()
+    mock_client.get_npc.side_effect = lambda slug: (
+        player if slug == "player" else None
+    )
+    mock_client.get_npc_pos.return_value = None
+    local_session.set_client(mock_client)
     return eng
 
 

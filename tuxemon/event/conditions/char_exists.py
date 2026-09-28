@@ -27,4 +27,4 @@ class CharExistsCondition(EventCondition):
     character: str
 
     def test(self, session: Session) -> bool:
-        return session.get_npc(self.character) is not None
+        return session.client.get_npc(self.character) is not None

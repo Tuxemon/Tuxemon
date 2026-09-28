@@ -30,7 +30,7 @@ def step_tracker_manager():
 
 @pytest.fixture
 def manager(session, step_tracker_manager):
-    return StepManager(session, step_tracker_manager)
+    return StepManager(session, step_tracker_manager, MagicMock())
 
 
 def test_handle_steps_zero(manager, mock_event_bus):

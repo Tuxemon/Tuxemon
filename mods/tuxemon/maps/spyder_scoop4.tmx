@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="12" height="22" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="63">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="12" height="22" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="63">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -88,8 +88,8 @@
   <object id="31" name="Talk Orba" type="event" x="48" y="192" width="16" height="16">
    <properties>
     <property name="act1" value="char_talk spyder_scoop_orba,pre_battle"/>
-    <property name="act2" value="add_monster abesnaki,30,spyder_scoop_orba,5,10"/>
-    <property name="act3" value="add_monster spighter,30,spyder_scoop_orba,5,10"/>
+    <property name="act2" value="add_monster abesnaki,35,spyder_scoop_orba,5,10"/>
+    <property name="act3" value="add_monster spighter,35,spyder_scoop_orba,5,10"/>
     <property name="act4" value="start_battle player,spyder_scoop_orba"/>
     <property name="act5" value="translated_dialog spyder_scoop_orba2"/>
     <property name="behav1" value="talk spyder_scoop_orba"/>
@@ -115,9 +115,9 @@
     <property name="cond2" value="not variable_set scooplandrace:yes"/>
    </properties>
   </object>
-  <object id="36" name="Create Arachne" type="event" x="176" y="64" width="16" height="16">
+  <object id="36" name="Create Arachne" type="event" x="176" y="80" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_scoop_arachne,11,4"/>
+    <property name="act1" value="create_npc spyder_scoop_arachne,11,5"/>
     <property name="act2" value="char_face spyder_scoop_arachne,left"/>
     <property name="cond1" value="not char_exists spyder_scoop_arachne"/>
     <property name="cond2" value="not variable_set scooplandrace:yes"/>
@@ -131,9 +131,9 @@
     <property name="cond2" value="not variable_set scooplandrace:yes"/>
    </properties>
   </object>
-  <object id="38" name="Create Landrace" type="event" x="160" y="128" width="16" height="16">
+  <object id="38" name="Create Landrace" type="event" x="160" y="64" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_scoop_landrace,10,8"/>
+    <property name="act1" value="create_npc spyder_scoop_landrace,10,4"/>
     <property name="cond1" value="not char_exists spyder_scoop_landrace"/>
     <property name="cond2" value="not variable_set scooplandrace:yes"/>
    </properties>
@@ -145,7 +145,7 @@
     <property name="act4" value="translated_dialog spyder_scoop_landrace2"/>
     <property name="act6" value="set_variable scooplandrace:yes"/>
     <property name="act61" value="remove_npc spyder_scoop_landrace"/>
-    <property name="act71" value="pathfind spyder_scoop_weaver,11,3"/>
+    <property name="act71" value="pathfind spyder_scoop_weaver,10,3"/>
     <property name="act81" value="remove_npc spyder_scoop_weaver"/>
     <property name="act89" value="pathfind spyder_scoop_arachne,10,4"/>
     <property name="act90" value="char_face spyder_scoop_arachne,down"/>
@@ -159,7 +159,8 @@
   </object>
   <object id="40" name="Create LapinouA" type="event" x="32" y="64" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_scoop_lapinoua,2,4,wander"/>
+    <property name="act1" value="create_npc spyder_scoop_lapinoua,2,4"/>
+    <property name="act2" value="char_wander spyder_scoop_lapinoua,0.9"/>
     <property name="cond1" value="not char_exists spyder_scoop_lapinoua"/>
     <property name="cond2" value="not variable_set scooplapinoua:yes"/>
    </properties>
@@ -177,7 +178,8 @@
   </object>
   <object id="42" name="Create LapinouB" type="event" x="160" y="256" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_scoop_lapinoub,2,4,wander"/>
+    <property name="act1" value="create_npc spyder_scoop_lapinoub,2,4"/>
+    <property name="act2" value="char_wander spyder_scoop_lapinoub,0.7"/>
     <property name="cond1" value="not char_exists spyder_scoop_lapinoub"/>
     <property name="cond2" value="not variable_set scooplapinoub:yes"/>
    </properties>
@@ -195,7 +197,8 @@
   </object>
   <object id="44" name="Create LapinouC" type="event" x="32" y="256" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_scoop_lapinouc,2,16,wander"/>
+    <property name="act1" value="create_npc spyder_scoop_lapinouc,2,16"/>
+    <property name="act2" value="char_wander spyder_scoop_lapinouc,0.8"/>
     <property name="cond1" value="not char_exists spyder_scoop_lapinouc"/>
     <property name="cond2" value="not variable_set scooplapinouc:yes"/>
    </properties>
@@ -231,7 +234,8 @@
   </object>
   <object id="48" name="Create CochiniB" type="event" x="32" y="304" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_scoop_cochinib,2,19,wander"/>
+    <property name="act1" value="create_npc spyder_scoop_cochinib,2,19"/>
+    <property name="act2" value="char_wander spyder_scoop_cochinib,1.1"/>
     <property name="cond1" value="not char_exists spyder_scoop_cochinib"/>
     <property name="cond2" value="not variable_set scoopcochinib:yes"/>
    </properties>
@@ -271,32 +275,35 @@
     <property name="cond1" value="not environment_is interior"/>
    </properties>
   </object>
-  <object id="56" name="Talk Arachne 1" type="event" x="144" y="80" width="16" height="16">
+  <object id="56" name="Talk Arachne 1" type="event" x="128" y="80" width="48" height="16">
    <properties>
     <property name="act01" value="lock_controls"/>
     <property name="act02" value="pathfind_to_char player,spyder_scoop_arachne"/>
-    <property name="act03" value="translated_dialog spyder_scoop_arachne1"/>
-    <property name="act04" value="unlock_controls"/>
-    <property name="act05" value="add_monster cardiwing,35,spyder_scoop_arachne,5,10"/>
-    <property name="act06" value="add_monster spighter,35,spyder_scoop_arachne,5,10"/>
-    <property name="act07" value="add_monster abesnaki,35,spyder_scoop_arachne,5,10"/>
-    <property name="act08" value="start_battle player,spyder_scoop_arachne"/>
-    <property name="act09" value="translated_dialog spyder_scoop_arachne2"/>
+    <property name="act03" value="char_face player,spyder_scoop_arachne"/>
+    <property name="act04" value="translated_dialog spyder_scoop_arachne1"/>
+    <property name="act05" value="unlock_controls"/>
+    <property name="act06" value="add_monster cardiwing,40,spyder_scoop_arachne,5,10"/>
+    <property name="act07" value="add_monster spighter,40,spyder_scoop_arachne,5,10"/>
+    <property name="act08" value="add_monster abesnaki,40,spyder_scoop_arachne,5,10"/>
+    <property name="act09" value="start_battle player,spyder_scoop_arachne"/>
+    <property name="act10" value="translated_dialog spyder_scoop_arachne2"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_scoop_arachne"/>
     <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="not char_defeated player"/>
+    <property name="cond4" value="not variable_set scooplandrace:yes"/>
    </properties>
   </object>
   <object id="57" name="Talk Weaver" type="event" x="112" y="112" width="16" height="32">
    <properties>
     <property name="act01" value="lock_controls"/>
     <property name="act02" value="pathfind_to_char player,spyder_scoop_weaver"/>
-    <property name="act03" value="char_talk spyder_scoop_weaver,pre_battle"/>
-    <property name="act04" value="unlock_controls"/>
-    <property name="act05" value="add_monster cardiling,30,spyder_scoop_weaver,5,10"/>
-    <property name="act06" value="add_monster spighter,30,spyder_scoop_weaver,5,10"/>
-    <property name="act07" value="start_battle player,spyder_scoop_weaver"/>
-    <property name="act08" value="translated_dialog spyder_scoop_weaver2"/>
+    <property name="act03" value="char_face player,spyder_scoop_weaver"/>
+    <property name="act04" value="char_talk spyder_scoop_weaver,pre_battle"/>
+    <property name="act05" value="unlock_controls"/>
+    <property name="act06" value="add_monster cardiling,35,spyder_scoop_weaver,5,10"/>
+    <property name="act07" value="add_monster spighter,35,spyder_scoop_weaver,5,10"/>
+    <property name="act08" value="start_battle player,spyder_scoop_weaver"/>
+    <property name="act09" value="translated_dialog spyder_scoop_weaver2"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_scoop_weaver"/>
     <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="not char_defeated player"/>
@@ -320,9 +327,9 @@
   <object id="61" name="Talk Arachne" type="event" x="160" y="160" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_scoop_arachne1"/>
-    <property name="act2" value="add_monster cardiwing,35,spyder_scoop_arachne,5,10"/>
-    <property name="act3" value="add_monster spighter,35,spyder_scoop_arachne,5,10"/>
-    <property name="act4" value="add_monster abesnaki,35,spyder_scoop_arachne,5,10"/>
+    <property name="act2" value="add_monster cardiwing,40,spyder_scoop_arachne,5,10"/>
+    <property name="act3" value="add_monster spighter,40,spyder_scoop_arachne,5,10"/>
+    <property name="act4" value="add_monster abesnaki,40,spyder_scoop_arachne,5,10"/>
     <property name="act5" value="start_battle player,spyder_scoop_arachne"/>
     <property name="act6" value="translated_dialog spyder_scoop_arachne2"/>
     <property name="behav1" value="talk spyder_scoop_arachne"/>
@@ -333,16 +340,18 @@
    <properties>
     <property name="act01" value="lock_controls"/>
     <property name="act02" value="pathfind_to_char player,spyder_scoop_arachne"/>
-    <property name="act03" value="translated_dialog spyder_scoop_arachne1"/>
-    <property name="act04" value="unlock_controls"/>
-    <property name="act05" value="add_monster cardiwing,35,spyder_scoop_arachne,5,10"/>
-    <property name="act06" value="add_monster spighter,35,spyder_scoop_arachne,5,10"/>
-    <property name="act07" value="add_monster abesnaki,35,spyder_scoop_arachne,5,10"/>
-    <property name="act08" value="start_battle player,spyder_scoop_arachne"/>
-    <property name="act09" value="translated_dialog spyder_scoop_arachne2"/>
+    <property name="act03" value="char_face player,spyder_scoop_arachne"/>
+    <property name="act04" value="translated_dialog spyder_scoop_arachne1"/>
+    <property name="act05" value="unlock_controls"/>
+    <property name="act06" value="add_monster cardiwing,40,spyder_scoop_arachne,5,10"/>
+    <property name="act07" value="add_monster spighter,40,spyder_scoop_arachne,5,10"/>
+    <property name="act08" value="add_monster abesnaki,40,spyder_scoop_arachne,5,10"/>
+    <property name="act09" value="start_battle player,spyder_scoop_arachne"/>
+    <property name="act10" value="translated_dialog spyder_scoop_arachne2"/>
     <property name="cond1" value="not battle_outcome player,won,spyder_scoop_arachne"/>
     <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="not char_defeated player"/>
+    <property name="cond4" value="not variable_set scooplandrace:yes"/>
    </properties>
   </object>
  </objectgroup>

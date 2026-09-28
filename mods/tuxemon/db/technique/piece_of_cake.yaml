@@ -6,6 +6,8 @@ effects:
   - charging
   - own_monster
 - type: healing
+  parameters:
+  - own_monster
 healing_power: 0.5
 speed: fast
 potency: 1.0
@@ -15,8 +17,7 @@ recharge: 2
 slug: piece_of_cake
 sort: damage
 modifiers: []
-behaviors:
-  bypasses_selection: true
+behaviors: {}
 target:
   enemy_monster: false
   enemy_team: false

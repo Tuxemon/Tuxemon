@@ -2,7 +2,6 @@
 # Copyright (c) 2014-2026 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from unittest.mock import MagicMock
 
-import pygame
 import pytest
 
 from tuxemon.menu.cursor import (

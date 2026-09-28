@@ -43,7 +43,7 @@ class EvolutionAction(EventAction):
     def start(self, session: Session) -> None:
         self.session = session
         self.client = session.client
-        character = session.get_npc(self.npc_slug)
+        character = session.client.get_npc(self.npc_slug)
 
         if character is None:
             logger.error(f"{self.npc_slug} not found")
@@ -90,6 +90,7 @@ class EvolutionAction(EventAction):
             return
 
         evolved = Monster.spawn_base(evolution, monster.level)
+        evolved.transfer_properties_from(monster)
         monster.evolution_handler.evolve_monster(evolved)
         self.client.push_state(
             "EvolutionTransition", original=monster.slug, evolved=evolved.slug
@@ -116,6 +117,7 @@ class EvolutionAction(EventAction):
             registry.add_pending(monster.instance_id, slug)
 
         evolved = Monster.spawn_base(slug, monster.level)
+        evolved.transfer_properties_from(monster)
 
         self.client.push_state(
             "EvolutionState",

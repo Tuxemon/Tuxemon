@@ -7,7 +7,6 @@ import pytest
 from tuxemon.boundary import BoundaryChecker
 from tuxemon.client import LocalPygameClient
 from tuxemon.db import Direction
-from tuxemon.entity.npc import NPC
 from tuxemon.map.collision_manager import CollisionManager
 from tuxemon.map.manager import MapManager
 from tuxemon.map.map import dirs2
@@ -116,6 +115,7 @@ def test_is_tile_traversable_ignore_npc(client, pathfinder):
 
 
 def test_get_exits_with_tile_data(client, pathfinder):
+    client.collision_manager.is_tile_occupied.return_value = False
     position = (1, 1)
     collision_map = {
         position: RegionProperties([], ["down", "right"], [], None, None),
@@ -163,6 +163,7 @@ def test_get_exits_blocked_position(client, pathfinder):
 
 
 def test_get_exits_with_skip_nodes(client, pathfinder):
+    client.collision_manager.is_tile_occupied.return_value = False
     position = (1, 1)
     collision_map = {
         position: RegionProperties([], ["down"], [], None, None),
@@ -231,6 +232,7 @@ def test_pathfind_skips_blocked_tile(client, pathfinder):
 
 
 def test_get_exits_respects_facing(client, pathfinder):
+    client.collision_manager.is_tile_occupied.return_value = False
     position = (1, 1)
     collision_map = {
         position: RegionProperties([], ["up"], [], None, None),

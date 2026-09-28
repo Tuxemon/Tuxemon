@@ -2212,21 +2212,10 @@ msgstr ""
 "Merci. Je t'aime aussi.\n"
 "Bon, passons au sujet du jour."
 
-msgid "cotton_breeder7a"
-msgstr ""
-"Excitant ! Prenez votre temps avec le bébé, et je m'occupe des parents. "
-"Revenez dans quelque temps pour veiller sur eux."
-
 msgid "spyder_nimrod2_plaque"
 msgstr ""
 "Les Tuxemon sont de puissantes armes qui combattent avec les humains depuis aussi longtemps que ceux-ci mènent des guerres.\n"
 " Des dessins dans les grottes préhistoriques montrent que déjà ils entrainaient les Rockats à dents de sabre à dévorer des Wolffsky sauvages."
-
-msgid "cotton_breeder_continue"
-msgstr ""
-"Ça va prendre un peu de temps avant qu'ils se décident à s'y remettre, mais "
-"si vous le souhaitez, laissez-les-moi et je veillerai à ce qu'ils ne chôment"
-" pas."
 
 msgid "spyder_ruby_plaque"
 msgstr ""
@@ -2249,20 +2238,6 @@ msgstr ""
 " Notre sponsor Nimrod est en train de développer une technologie robotisée qui pourrait mener des guerres sans la moindre effusion de sang.\n"
 " En attendant, engagez-vous dans les Nimrod Enforcers pour un bon salaire, une formation gratuite et de belles aventures."
 
-msgid "cotton_breeder0"
-msgstr ""
-"Bonjour, bienvenue à la Crèche, j'élève des Tuxemon ici.\n"
-"Je travaille ici parce que j'aime tellement les Tuxemon !\n"
-"Si vous voulez, je peux faire reproduire deux de vos Tuxemon. Il suffit de demander, d'accord ?"
-
-msgid "cotton_breeder4a"
-msgstr "Super ! Revenez plus tard pour voir comme ça s'est passé."
-
-msgid "cotton_breeder6a"
-msgstr ""
-"Ils ont à peine commencé à faire connaissance. Laissez leur encore un peu de"
-" temps, hein ?"
-
 msgid "cardiling!"
 msgstr "Cardiling obtenu !"
 
@@ -2278,9 +2253,6 @@ msgstr ""
 
 msgid "spyder_flower_mieke_nobudaye"
 msgstr "Non, pas grave - je peux voir que tu n'as même pas de Budaye."
-
-msgid "cotton_breeder5"
-msgstr "Hé ${{name}}, de retour pour soigner vos Tuxemon ?"
 
 msgid "spyder_dragonscave_lazybrute"
 msgstr "Brute Indolente"
@@ -2446,38 +2418,6 @@ msgstr "Papier-Toublanc"
 
 msgid "cotton"
 msgstr "Cotonville"
-
-msgid "cotton_breeder1"
-msgstr ""
-"Voulez-vous me laisser deux de vos Tuxemon pour que je les fasse s'accoupler"
-" ?"
-
-msgid "cotton_breeder2a_1"
-msgstr "Alors, quel Tuxemon sera la maman ?"
-
-msgid "cotton_breeder3"
-msgstr "Bon, êtes-vous sûr de vraiment vouloir ces deux-là ?"
-
-msgid "cotton_breeder2a_2"
-msgstr "Bien, et concernant le père ?"
-
-msgid "cotton_breeder_rejected"
-msgstr ""
-"Comme vous voulez. Mais pensez-y, et revenez me voir pour que je m'en "
-"occupe."
-
-msgid "cotton_breeder6b"
-msgstr ""
-"Ça se passe très bien ! Ils sont comme inséparables !\n"
-"Ça n'est plus qu'une question de temps avant que la famille s'agrandisse."
-
-msgid "cotton_breeder6c"
-msgstr "Félicitations ! Ils ont eu un enfant ! Le voici ; élevez-le bien."
-
-msgid "cotton_breeder7b"
-msgstr ""
-"Oui, c'est préférable de ne pas séparer cette petite famille, surtout à un âge aussi précoce.\n"
-"Vous reviendrez bientôt, hein ?"
 
 msgid "taba_greeting1"
 msgstr ""
@@ -4483,7 +4423,7 @@ msgstr ""
 " Nous essayons aussi de nous protéger les uns les autres. Typiquement, et contrairement à la Cathédrale, nous soignons les Tuxemon gratuitement ! \n"
 " Voulez-vous que je les guérisse tous maintenant ?"
 
-msgid "spyder_leatherhouse1_radio"
+msgid "spyder_leatherhouse1_radio_afternoon"
 msgstr "Une chanson de R&B est jouée. Elle s'appelle \"Possessuns, partie 2\"."
 
 msgid "spyder_opal_plaque"

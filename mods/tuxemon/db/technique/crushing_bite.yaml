@@ -1,11 +1,11 @@
 tech_id: 216
 accuracy: 0.9
 effects:
+- type: damage
 - type: give
   parameters:
   - stuck
   - enemy_monster
-- type: damage
 speed: very_slow
 potency: 0.2
 power: 1.8

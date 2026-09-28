@@ -34,7 +34,7 @@ use_failure: combat_miss
 use_success: null
 use_tech: combat_used_x
 visuals:
-  animation: lance_ice
+  animation: horn
   flip_axes: xy
   loop: 0
 sound:

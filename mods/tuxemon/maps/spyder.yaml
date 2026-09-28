@@ -119,7 +119,7 @@ events:
     - is time_is stage_of_day,equals,night
     - not variable_set flashback:on
     - is location_inside
-    - is check_world layer
+    - is check_world layer,0:0:128:128
     type: event
   Night Day Cycle Outside:
     actions:
@@ -129,6 +129,50 @@ events:
     - not variable_set flashback:on
     - not location_inside
     - not check_world layer,0:0:128:128
+    type: event
+  Push Into Water Down:
+    actions:
+    - char_move player,down
+    conditions:
+    - is variable_set swimming:yes
+    - is tile_property_updated surfable,1
+    - not char_in player,surfable
+    - is char_facing player,down
+    - is char_facing_tile player,surfable
+    - is current_state WorldState
+    type: event
+  Push Into Water Left:
+    actions:
+    - char_move player,left
+    conditions:
+    - is variable_set swimming:yes
+    - is tile_property_updated surfable,1
+    - not char_in player,surfable
+    - is char_facing player,left
+    - is char_facing_tile player,surfable
+    - is current_state WorldState
+    type: event
+  Push Into Water Right:
+    actions:
+    - char_move player,right
+    conditions:
+    - is variable_set swimming:yes
+    - is tile_property_updated surfable,1
+    - not char_in player,surfable
+    - is char_facing player,right
+    - is char_facing_tile player,surfable
+    - is current_state WorldState
+    type: event
+  Push Into Water Up:
+    actions:
+    - char_move player,up
+    conditions:
+    - is variable_set swimming:yes
+    - is tile_property_updated surfable,1
+    - not char_in player,surfable
+    - is char_facing player,up
+    - is char_facing_tile player,surfable
+    - is current_state WorldState
     type: event
   Not surfable:
     actions:
@@ -175,24 +219,6 @@ events:
     - not time_is stage_of_day,equals,night
     - not environment_is ocean
     type: event
-  Swim Encounters Day:
-    actions:
-    - random_encounter spyder_routec,0.25
-    conditions:
-    - is char_sprite player,swimmer
-    - is current_state WorldState
-    - is check_char_parameter player,moving,1
-    - is environment_is ocean
-    type: event
-  Swim Encounters Night:
-    actions:
-    - random_encounter spyder_routec,0.75
-    conditions:
-    - is char_sprite player,swimmer
-    - is current_state WorldState
-    - is check_char_parameter player,moving,1
-    - is environment_is night_ocean
-    type: event
   Swim Night Environment:
     actions:
     - set_environment night_ocean
@@ -204,11 +230,24 @@ events:
   Teleport Faint:
     actions:
     - teleport_faint player,true
+    - translated_dialog heal_before_leave
     conditions:
     - is char_defeated player
     - not location_type clinic
     - is current_state WorldState
     type: event
+  Cannot Leave Fainted:
+    actions:
+    - translated_dialog heal_before_leave
+    - char_face player,up
+    conditions:
+    - is char_at player
+    - is char_facing player,down
+    - is char_defeated player
+    - is location_type clinic
+    type: event
+    x: 6
+    y: 10
   Update Time Variables:
     actions:
     - update_time player

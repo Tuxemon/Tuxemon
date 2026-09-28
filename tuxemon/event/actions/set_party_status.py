@@ -31,7 +31,7 @@ class SetPartyStatusAction(EventAction):
     character: str
 
     def start(self, session: Session) -> None:
-        char = session.get_npc(self.character)
+        char = session.client.get_npc(self.character)
         if char is None:
             logger.error(f"{self.character} not found")
             self.stop()

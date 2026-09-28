@@ -15,20 +15,20 @@ def elements():
     metal = ElementModel(
         slug="metal", icon="gfx/ui/icons/element/metal_type.png", types=[]
     )
-    aether = ElementModel(
-        slug="aether", icon="gfx/ui/icons/element/aether_type.png", types=[]
+    normal = ElementModel(
+        slug="normal", icon="gfx/ui/icons/element/normal_type.png", types=[]
     )
 
     db.database["element"] = {
         "fire": fire,
         "metal": metal,
-        "aether": aether,
+        "normal": normal,
     }
 
     return {
         "fire": Element.get("fire"),
         "metal": Element.get("metal"),
-        "aether": Element.get("aether"),
+        "normal": Element.get("normal"),
     }
 
 
@@ -101,10 +101,10 @@ def test_primary_type(handler):
             id="dual_vs_dual",
         ),
         pytest.param(
-            ["fire", "aether"],
+            ["fire", "normal"],
             ["metal"],
             lambda e: e["fire"].lookup_multiplier("metal"),
-            id="aether_ignored_fire_vs_metal",
+            id="normal_ignored_fire_vs_metal",
         ),
     ],
 )
@@ -134,16 +134,16 @@ def test_calculate_affinity_score(elements, attackers, defenders, expected_fn):
             id="dual_defenders_fire_attacker",
         ),
         pytest.param(
-            ["aether", "fire"],
+            ["normal", "fire"],
             "metal",
             lambda e: e["fire"].lookup_multiplier("metal"),
-            id="aether_ignored_fire_vs_metal",
+            id="normal_ignored_fire_vs_metal",
         ),
         pytest.param(
             ["fire", "metal"],
-            "aether",
+            "normal",
             lambda e: 1.0,
-            id="aether_neutral",
+            id="normal_neutral",
         ),
     ],
 )
@@ -175,32 +175,32 @@ def test_primary_raises_on_empty():
         _ = handler.primary
 
 
-def test_affinity_aether_user(elements):
-    atk = [elements["aether"]]
+def test_affinity_normal_user(elements):
+    atk = [elements["normal"]]
     dfn = [elements["fire"]]
     score = ElementTypesHandler.calculate_affinity_score(atk, dfn)
     assert score == 1.0
 
 
-def test_affinity_aether_target(elements):
+def test_affinity_normal_target(elements):
     atk = [elements["fire"]]
-    dfn = [elements["aether"]]
+    dfn = [elements["normal"]]
     score = ElementTypesHandler.calculate_affinity_score(atk, dfn)
     assert score == 1.0
 
 
-def test_resistance_aether_defender(elements):
-    dfn = [elements["aether"]]
+def test_resistance_normal_defender(elements):
+    dfn = [elements["normal"]]
     score = ElementTypesHandler.calculate_resistance_multiplier_for_types(
         dfn, "fire"
     )
     assert score == 1.0
 
 
-def test_resistance_aether_attacker(elements):
+def test_resistance_normal_attacker(elements):
     dfn = [elements["fire"]]
     score = ElementTypesHandler.calculate_resistance_multiplier_for_types(
-        dfn, "aether"
+        dfn, "normal"
     )
     assert score == 1.0
 
@@ -221,7 +221,7 @@ def test_element_cache_clears(elements):
 def test_multiplier_cache_reuse(elements):
     ElementTypesHandler.clear_cache()
 
-    score1 = ElementTypesHandler.calculate_affinity_score(
+    ElementTypesHandler.calculate_affinity_score(
         [elements["fire"]], [elements["metal"]]
     )
     assert ("fire", "metal") in ElementTypesHandler._multiplier_cache
@@ -254,7 +254,7 @@ def test_element_name_empty_slug(monkeypatch):
 
 def test_reset_to_default_mixed_slugs(elements):
     handler = ElementTypesHandler(["fire", "metal"])
-    handler.set_types(["aether"])
+    handler.set_types(["normal"])
     handler.reset_to_default()
     assert handler.get_type_slugs() == ["fire", "metal"]
 
@@ -266,8 +266,8 @@ def test_ordering_preserved_in_current(elements):
 
 def test_ordering_preserved_after_set_types(elements):
     handler = ElementTypesHandler(["metal", "fire"])
-    handler.set_types(["aether", "fire"])
-    assert handler.get_type_slugs() == ["aether", "fire"]
+    handler.set_types(["normal", "fire"])
+    assert handler.get_type_slugs() == ["normal", "fire"]
 
 
 def test_ordering_preserved_after_reset(elements):
@@ -277,30 +277,30 @@ def test_ordering_preserved_after_reset(elements):
     assert handler.get_type_slugs() == ["fire", "metal"]
 
 
-def test_affinity_multi_type_with_aether(elements):
+def test_affinity_multi_type_with_normal(elements):
     Element.clear_cache()
     elements = {
         "fire": Element.get("fire"),
         "metal": Element.get("metal"),
-        "aether": Element.get("aether"),
+        "normal": Element.get("normal"),
     }
 
-    atk = [elements["aether"], elements["fire"]]
+    atk = [elements["normal"], elements["fire"]]
     dfn = [elements["metal"]]
     score = ElementTypesHandler.calculate_affinity_score(atk, dfn)
 
     assert score == 1.0
 
 
-def test_resistance_multi_type_with_aether(elements):
+def test_resistance_multi_type_with_normal(elements):
     Element.clear_cache()
     elements = {
         "fire": Element.get("fire"),
         "metal": Element.get("metal"),
-        "aether": Element.get("aether"),
+        "normal": Element.get("normal"),
     }
 
-    dfn = [elements["aether"], elements["fire"]]
+    dfn = [elements["normal"], elements["fire"]]
     score = ElementTypesHandler.calculate_resistance_multiplier_for_types(
         dfn, "metal"
     )
@@ -308,8 +308,8 @@ def test_resistance_multi_type_with_aether(elements):
     assert score == 1.0
 
 
-def test_affinity_aether_in_middle(elements):
-    atk = [elements["fire"], elements["aether"], elements["metal"]]
+def test_affinity_normal_in_middle(elements):
+    atk = [elements["fire"], elements["normal"], elements["metal"]]
     dfn = [elements["fire"]]
     score = ElementTypesHandler.calculate_affinity_score(atk, dfn)
     expected = elements["fire"].lookup_multiplier("fire") * elements[
@@ -318,8 +318,8 @@ def test_affinity_aether_in_middle(elements):
     assert score == expected
 
 
-def test_resistance_aether_in_middle(elements):
-    dfn = [elements["fire"], elements["aether"], elements["metal"]]
+def test_resistance_normal_in_middle(elements):
+    dfn = [elements["fire"], elements["normal"], elements["metal"]]
     score = ElementTypesHandler.calculate_resistance_multiplier_for_types(
         dfn, "fire"
     )

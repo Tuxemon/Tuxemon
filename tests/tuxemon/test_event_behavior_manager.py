@@ -155,7 +155,6 @@ class TestExpandBehavior:
         self, patch_behavior_plugins, dummy_event
     ):
         call_count = {"n": 0}
-        outer_self = self
 
         class CountingBehavior(EventBehavior):
             name = "counting"

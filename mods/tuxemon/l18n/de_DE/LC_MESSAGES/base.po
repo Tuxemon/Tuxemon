@@ -3768,9 +3768,6 @@ msgstr ""
 "Seit sie unsere Finanzierung gekürzt haben, mussten wir die Kunstwerke verkaufen, anstatt sie nur auszustellen.\n"
 "Der Eintrag ist ${{currency}}50. Er fließt in die jährliche Dividende des Unternehmens."
 
-msgid "cotton_breeder5"
-msgstr "Hey ${{name}}, komm, um deinen Tuxemon zu überprüfen?"
-
 msgid "taba_greeting1"
 msgstr ""
 "Greeter Jaime: Hallo ${{name}}! Ich habe gehört, dass Sie ein Tuxemon haben,"

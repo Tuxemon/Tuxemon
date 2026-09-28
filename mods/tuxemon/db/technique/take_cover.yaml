@@ -13,8 +13,7 @@ recharge: 1
 slug: take_cover
 sort: damage
 modifiers: []
-behaviors:
-  bypasses_selection: true
+behaviors: {}
 target:
   enemy_monster: false
   enemy_team: false

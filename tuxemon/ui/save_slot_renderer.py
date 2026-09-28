@@ -44,14 +44,21 @@ def render_thumbnail(save_data: SaveData, rect: Rect) -> Surface:
 
 
 def render_empty_slot(
-    rect: Rect, scaling: ScalingStrategy, font: Font
+    rect: Rect, scaling: ScalingStrategy, font: Font, slot: int
 ) -> Surface:
     """Render the 'empty slot' UI block."""
     slot_image = Surface(rect.size, SRCALPHA)
     text_rect = rect.move(0, rect.height // 2 - 10)
+
+    label = (
+        T.translate("menu_no_autosave")
+        if slot == 0
+        else T.translate("empty_slot")
+    )
+
     draw_text(
         slot_image,
-        T.translate("empty_slot"),
+        label,
         text_rect,
         scaling=scaling,
         font=font,
@@ -62,7 +69,7 @@ def render_empty_slot(
 def render_slot_text(
     slot_image: Surface,
     rect: Rect,
-    slot: int,
+    slot_label: str,
     save_data: SaveData,
     scaling: ScalingStrategy,
     font: Font,
@@ -70,7 +77,7 @@ def render_slot_text(
     """Draw slot number, player name, and time."""
     draw_text(
         slot_image,
-        f"{T.translate('slot')} {slot}",
+        slot_label,
         rect,
         scaling=scaling,
         font=font,

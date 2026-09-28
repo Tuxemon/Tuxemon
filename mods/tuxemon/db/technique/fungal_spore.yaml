@@ -1,11 +1,11 @@
 tech_id: 239
 accuracy: 1.0
 effects:
+- type: damage
 - type: give
   parameters:
   - lifeleech
   - enemy_monster
-- type: damage
 speed: normal
 potency: 0.25
 power: 1.4

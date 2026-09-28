@@ -10,13 +10,13 @@ from typing import TYPE_CHECKING, Any, ClassVar
 from pygame_menu.locals import ALIGN_CENTER, POSITION_EAST
 from pygame_menu.widgets.selection.highlight import HighlightSelection
 
-from tuxemon.animation import Animation, ScheduleType
 from tuxemon.database.runtime import db
 from tuxemon.db import NpcModel
 from tuxemon.entity.sheet import get_combat_sheet
 from tuxemon.graphics import scale_surface
 from tuxemon.menu.menu import PygameMenuState
 from tuxemon.menu.theme import get_theme
+from tuxemon.menu.transitions import PopInClamped
 from tuxemon.ui.menu_options import MenuOptions
 
 if TYPE_CHECKING:
@@ -27,9 +27,6 @@ if TYPE_CHECKING:
 class MenuNpcConfig:
     max_elements: int = 12
     max_height_percentage: float = 0.8
-    animation_duration: float = 0.2
-    animation_start_size: float = 0.0
-    animation_end_size: float = 1.0
     number_widgets: int = 3
     number_columns: int = 4
     scale_sprite: float = 0.4
@@ -62,6 +59,9 @@ class ChoiceNpc(PygameMenuState):
             client=client,
             columns=self.config.number_columns,
             rows=rows,
+            transition=PopInClamped(
+                max_height_percentage=self.config.max_height_percentage
+            ),
             **kwargs,
         )
 
@@ -77,7 +77,6 @@ class ChoiceNpc(PygameMenuState):
                 option.display_text, option.key, option.action
             )
 
-        self.animation_size = self.config.animation_start_size
         self.escape_key_exits = escape_key_exits
 
     def add_npc_menu_item(
@@ -103,36 +102,3 @@ class ChoiceNpc(PygameMenuState):
             selection_effect=HighlightSelection(),
         )
         self.menu.add.vertical_fill(self.config.vertical_fill)
-
-    def update_animation_size(self) -> None:
-        width, height = self.client.context.resolution
-        widgets_size = self.menu.get_size(widget=True)
-
-        _width = widgets_size[0]
-        _height = widgets_size[1]
-
-        if _width >= width:
-            _width = width
-        if _height >= height:
-            _height = int(height * self.config.max_height_percentage)
-
-        self.menu.resize(
-            max(1, int(_width * self.animation_size)),
-            max(1, int(_height * self.animation_size)),
-        )
-
-    def animate_open(self) -> Animation:
-        """
-        Animate the menu popping in.
-
-        Returns:
-            Popping in animation.
-        """
-        ani = self.animate(
-            self,
-            animation_size=self.config.animation_end_size,
-            duration=self.config.animation_duration,
-        )
-        ani.schedule(self.update_animation_size, ScheduleType.ON_UPDATE)
-
-        return ani

@@ -5,6 +5,7 @@ import pytest
 from pygame.rect import Rect
 from pygame.surface import Surface
 
+from tuxemon.menu.grid_index_model import GridIndexModel
 from tuxemon.platform.const import buttons
 from tuxemon.sprite import (
     MenuSpriteGroup,
@@ -969,3 +970,404 @@ def test_not_visible_page2_snaps_to_first_visible_even_if_disabled():
 def test_not_visible_page2_large_old_index_snaps_to_first_visible():
     lst = make_list_snap([True, True, True, True, True, True], 2, 2)
     assert lst.snap_selection(10) == 4
+
+
+def test_advance_ragged_tb_mid_grid():
+    parent = RelativeGroup(parent=lambda: Rect(0, 0, 300, 300))
+    parent.update_rect_from_parent()
+    v = VisualSpriteList(parent=parent)
+    v.columns = 3
+    for _ in range(7):
+        v.add(FakeSprite())
+
+    visible = list(v._visible_indices())
+    assert v._advance_ragged_tb(0, 1, visible) == 3
+
+
+def test_advance_single_column_wraps():
+    parent = RelativeGroup(parent=lambda: Rect(0, 0, 300, 300))
+    parent.update_rect_from_parent()
+    v = VisualSpriteList(parent=parent)
+    v.columns = 1
+    for _ in range(5):
+        v.add(FakeSprite())
+
+    visible = list(v._visible_indices())
+    assert v._advance_single_column(4, 1, visible) == 0  # bottom → top
+    assert v._advance_single_column(0, -1, visible) == 4  # top → bottom
+
+
+def test_arrange_respects_explicit_line_spacing_over_expand():
+    parent = RelativeGroup(parent=lambda: Rect(0, 0, 200, 200))
+    parent.update_rect_from_parent()
+    v = VisualSpriteList(parent=parent)
+    v.expand = True
+    v.line_spacing = 30  # explicit → must win
+    v.columns = 1
+    for _ in range(4):
+        v.add(FakeSprite(w=20, h=20))
+
+    v.arrange_menu_items()
+    ys = [s.rect.y for s in v.sprites()]
+    diffs = [b - a for a, b in zip(ys, ys[1:])]
+    assert all(d == 30 for d in diffs), (
+        f"expected spacing 30 everywhere, got {diffs}"
+    )
+
+
+def test_arrange_repeated_sprites_call_stable():
+    parent = RelativeGroup(parent=lambda: Rect(0, 0, 200, 200))
+    parent.update_rect_from_parent()
+    v = VisualSpriteList(parent=parent)
+    v.columns = 2
+    for _ in range(4):
+        v.add(FakeSprite(w=20, h=20))
+
+    v.arrange_menu_items()
+    pos_a = [s.rect.topleft for s in v.sprites()]
+    v.arrange_menu_items()
+    pos_b = [s.rect.topleft for s in v.sprites()]
+    assert pos_a == pos_b
+
+
+def test_columns_setter_triggers_needs_arrange():
+    parent = RelativeGroup(parent=lambda: Rect(0, 0, 300, 300))
+    parent.update_rect_from_parent()
+    v = VisualSpriteList(parent=parent)
+    for _ in range(4):
+        v.add(FakeSprite())
+
+    v.arrange_menu_items()
+    assert v._needs_arrange is False
+
+    v.columns = 2
+    assert v._needs_arrange is True
+
+
+def test_columns_setter_changes_layout():
+    parent = RelativeGroup(parent=lambda: Rect(0, 0, 200, 200))
+    parent.update_rect_from_parent()
+    v = VisualSpriteList(parent=parent)
+    v.columns = 1
+    for _ in range(4):
+        v.add(FakeSprite(w=20, h=20))
+
+    v.arrange_menu_items()
+    single_col_ys = [s.rect.y for s in v.sprites()]
+
+    v.columns = 2
+    v.arrange_menu_items()
+    two_col_ys = [s.rect.y for s in v.sprites()]
+
+    assert single_col_ys != two_col_ys
+
+
+def test_visible_indices_page_size_larger_than_count():
+    lst = make_list(3)
+    lst.page_size = 10
+    lst.current_page = 0
+    assert list(lst._visible_indices()) == [0, 1, 2]
+
+
+def test_cursor_safe_page_switching_via_snap():
+    parent = RelativeGroup(parent=lambda: Rect(0, 0, 300, 300))
+    parent.update_rect_from_parent()
+    lst = VisualSpriteList(parent=parent)
+    lst.columns = 3
+    lst.page_size = 6
+    for _ in range(12):
+        lst.add(FakeSprite())
+
+    lst.current_page = 0
+    lst.arrange_menu_items()
+
+    lst.next_page()
+    snapped = lst.snap_selection(2)
+
+    assert snapped in list(lst._visible_indices())
+
+
+def test_selection_persistence_via_snap():
+    parent = RelativeGroup(parent=lambda: Rect(0, 0, 300, 300))
+    parent.update_rect_from_parent()
+    lst = VisualSpriteList(parent=parent)
+    lst.columns = 3
+    lst.page_size = 6
+    for _ in range(10):
+        lst.add(FakeSprite())
+
+    lst.current_page = 0
+    lst.arrange_menu_items()
+    selected = 7  # on page 1
+
+    lst.clear_items()
+    for _ in range(10):
+        lst.add(FakeSprite())
+    lst.arrange_menu_items()
+
+    snapped = lst.snap_selection(selected)
+    assert snapped in list(lst._visible_indices())
+
+
+def test_advance_ragged_tb_boundary_raises():
+    parent = RelativeGroup(parent=lambda: Rect(0, 0, 300, 300))
+    parent.update_rect_from_parent()
+    v = VisualSpriteList(parent=parent)
+    v.columns = 3
+    for _ in range(7):
+        v.add(FakeSprite())
+
+    visible = list(v._visible_indices())
+
+    with pytest.raises(IndexError):
+        v._advance_ragged_tb(0, -1, visible)
+
+    model = GridIndexModel(
+        count=len(visible),
+        columns=3,
+        rectangular=False,
+        orientation="horizontal",
+    )
+    last_tb = max(model.lr_to_tb(i) for i in range(len(visible)))
+    last_lr = model.tb_to_lr(last_tb)
+    with pytest.raises(IndexError):
+        v._advance_ragged_tb(last_lr, 1, visible)
+
+
+def test_advance_ragged_lr_wraps_not_raises():
+    parent = RelativeGroup(parent=lambda: Rect(0, 0, 300, 300))
+    parent.update_rect_from_parent()
+    v = VisualSpriteList(parent=parent)
+    v.columns = 3
+    for _ in range(7):
+        v.add(FakeSprite())
+
+    visible = list(v._visible_indices())
+    # LR 6 is the lone item in row 2; move_lr wraps: (6+1) % 7 = 0
+    result = v._advance_ragged_lr(6, "lr", 1, visible)
+    assert result == 0
+
+
+def test_advance_ragged_lr_valid_move():
+    parent = RelativeGroup(parent=lambda: Rect(0, 0, 300, 300))
+    parent.update_rect_from_parent()
+    v = VisualSpriteList(parent=parent)
+    v.columns = 3
+    for _ in range(7):
+        v.add(FakeSprite())
+
+    visible = list(v._visible_indices())
+    assert v._advance_ragged_lr(0, "lr", 1, visible) == 1
+
+
+def test_advance_rectangular_wraps_at_end():
+    parent = RelativeGroup(parent=lambda: Rect(0, 0, 300, 300))
+    parent.update_rect_from_parent()
+    v = VisualSpriteList(parent=parent)
+    v.columns = 3
+    v.rectangular = True
+    for _ in range(7):
+        v.add(FakeSprite())
+
+    visible = list(v._visible_indices())
+    result = v._advance_rectangular(6, "tb", 1, visible)
+    assert result == 0
+
+
+def make_list_movement(enabled_flags, columns=3, orientation="horizontal"):
+    parent = RelativeGroup(parent=lambda: Rect(0, 0, 300, 300))
+    parent.update_rect_from_parent()
+    v = VisualSpriteList(parent=parent)
+    v.columns = columns
+    v.orientation = orientation
+    for flag in enabled_flags:
+        v.add(FakeSprite(enabled=flag))
+    v.arrange_menu_items()
+    return v
+
+
+def make_event(button):
+    class E:
+        pressed = True
+
+    E.button = button
+    return E
+
+
+def test_movement_skips_single_disabled_item():
+    v = make_list_movement([True, False, True, True, True, True])
+    e = make_event(buttons.RIGHT)
+    # From 0, right → 1 (disabled) → skip → 2
+    assert v.determine_cursor_movement(0, e) == 2
+
+
+def test_movement_skips_multiple_consecutive_disabled():
+    v = make_list_movement([True, False, False, False, True, True])
+    e = make_event(buttons.RIGHT)
+    # From 0 → 1,2,3 all disabled → land on 4
+    assert v.determine_cursor_movement(0, e) == 4
+
+
+def test_movement_all_disabled_returns_original():
+    v = make_list_movement([False, False, False, False, False, False])
+    e = make_event(buttons.RIGHT)
+    assert v.determine_cursor_movement(2, e) == 2
+
+
+def test_movement_no_press_returns_original():
+    v = make_list_movement([True, True, True])
+
+    class E:
+        pressed = False
+        button = buttons.RIGHT
+
+    assert v.determine_cursor_movement(1, E) == 1
+
+
+def test_movement_empty_list_returns_zero():
+    parent = RelativeGroup(parent=lambda: Rect(0, 0, 300, 300))
+    parent.update_rect_from_parent()
+    v = VisualSpriteList(parent=parent)
+
+    class E:
+        pressed = True
+        button = buttons.RIGHT
+
+    assert v.determine_cursor_movement(0, E) == 0
+
+
+def test_movement_does_not_land_on_disabled():
+    flags = [True, False, True, False, True, True, False, True, True]
+    v = make_list_movement(flags, columns=3)
+
+    sprites = v.sprites()
+    for start in range(len(v)):
+        if not sprites[start].enabled:
+            continue
+        for button in (buttons.LEFT, buttons.RIGHT, buttons.UP, buttons.DOWN):
+            e = make_event(button)
+            result = v.determine_cursor_movement(start, e)
+            assert sprites[result].enabled, (
+                f"cursor landed on disabled item {result} "
+                f"(start={start}, button={button})"
+            )
+
+
+def test_movement_with_pagination_stays_on_page():
+    parent = RelativeGroup(parent=lambda: Rect(0, 0, 300, 300))
+    parent.update_rect_from_parent()
+    v = VisualSpriteList(parent=parent)
+    v.columns = 3
+    v.page_size = 6
+    for _ in range(12):
+        v.add(FakeSprite())
+    v.current_page = 0
+    v.arrange_menu_items()
+
+    visible = set(v._visible_indices())
+    for button in (buttons.LEFT, buttons.RIGHT, buttons.UP, buttons.DOWN):
+        e = make_event(button)
+        for start in list(visible):
+            result = v.determine_cursor_movement(start, e)
+            assert result in visible, (
+                f"cursor left page: start={start}, button={button}, result={result}"
+            )
+
+
+def test_movement_vertical_orientation_does_not_land_on_disabled():
+    flags = [True, False, True, True, False, True]
+    v = make_list_movement(flags, columns=2, orientation="vertical")
+
+    sprites = v.sprites()
+    for start in range(len(v)):
+        if not sprites[start].enabled:
+            continue
+        for button in (buttons.LEFT, buttons.RIGHT, buttons.UP, buttons.DOWN):
+            e = make_event(button)
+            result = v.determine_cursor_movement(start, e)
+            assert sprites[result].enabled, (
+                f"vertical: cursor landed on disabled {result} "
+                f"(start={start}, button={button})"
+            )
+
+
+def test_movement_boundary_up_from_tb_zero():
+    """
+    The only hard boundary in ragged TB movement is moving UP
+    from the item at TB index 0. Every other move wraps across columns.
+
+    Grid (3 cols, 7 items):
+        0  1  2
+        3  4  5
+        6  _  _
+    TB order: 0,3,6,1,4,2,5
+    TB index 0 = LR index 0. Moving UP → new_tb = -1 → IndexError.
+    """
+    v = make_list_movement([True] * 7, columns=3)
+    e = make_event(buttons.UP)
+    # LR 0 is at TB 0 → moving up raises → cursor stays at 0
+    assert v.determine_cursor_movement(0, e) == 0
+
+
+def test_movement_tb_wraps_across_columns():
+    """
+    TB movement wraps across columns — DOWN from the last item in a
+    column continues at the top of the next column, not a boundary.
+
+    Grid (3 cols, 7 items):
+        0  1  2
+        3  4  5
+        6  _  _
+    DOWN from 6 (col 0 row 2, TB 2) → TB 3 → LR 1.
+    """
+    v = make_list_movement([True] * 7, columns=3)
+    e = make_event(buttons.DOWN)
+    assert v.determine_cursor_movement(6, e) == 1
+
+
+@pytest.mark.parametrize(
+    "flags, start, button, expected",
+    [
+        pytest.param(
+            [True, True, True, True, True, True],
+            0,
+            buttons.RIGHT,
+            1,
+            id="simple-right",
+        ),
+        pytest.param(
+            [True, True, True, True, True, True],
+            2,
+            buttons.DOWN,
+            5,
+            id="simple-down",
+        ),
+        pytest.param(
+            [True, False, True, True, True, True],
+            0,
+            buttons.RIGHT,
+            2,
+            id="skip-one-disabled",
+        ),
+        pytest.param(
+            [True, True, True, True, True, True],
+            0,
+            buttons.UP,
+            0,
+            id="boundary-up-tb-zero-stays",
+        ),
+        pytest.param(
+            [True] * 7,
+            6,
+            buttons.DOWN,
+            1,
+            id="down-from-last-ragged-wraps-to-col1",
+        ),
+    ],
+)
+def test_determine_cursor_movement_parametrized(
+    flags, start, button, expected
+):
+    v = make_list_movement(flags, columns=3)
+    e = make_event(button)
+    assert v.determine_cursor_movement(start, e) == expected

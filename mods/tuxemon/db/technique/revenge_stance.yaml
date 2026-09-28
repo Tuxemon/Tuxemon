@@ -4,7 +4,7 @@ effects:
 - type: give
   parameters:
   - revenge
-  - enemy_monster
+  - own_monster
 speed: extremely_fast
 potency: 1
 power: 0
@@ -13,8 +13,7 @@ recharge: 1
 slug: revenge_stance
 sort: damage
 modifiers: []
-behaviors:
-  bypasses_selection: true
+behaviors: {}
 target:
   enemy_monster: false
   enemy_team: false

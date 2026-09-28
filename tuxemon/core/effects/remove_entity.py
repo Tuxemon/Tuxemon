@@ -41,7 +41,7 @@ class RemoveEntityEffect(CoreEffect):
         tiles = get_coords(player.tile_pos, client.map_manager.map_size)
 
         for coords in tiles:
-            npc = session.get_npc_pos(coords)
+            npc = session.client.get_npc_pos(coords)
             if npc:
                 facing = get_direction(player.tile_pos, npc.tile_pos)
                 if player.facing == facing:

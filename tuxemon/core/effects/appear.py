@@ -31,6 +31,8 @@ class AppearEffect(CoreEffect):
     """
 
     name = "appear"
+    # this effect brings the *user* back onto the battlefield, even if the target has disappeared.
+    runs_on_out_of_range_target = True
 
     def apply_tech_target(
         self, session: Session, tech: Technique, user: Monster, target: Monster

@@ -4,10 +4,8 @@ from unittest.mock import MagicMock
 
 import pytest
 
-from tuxemon.event.actions.random_monster import (
-    RandomMonsterAction,
-    lookup_cache,
-)
+from tuxemon.db import MonsterModel
+from tuxemon.event.actions.random_monster import RandomMonsterAction
 from tuxemon.event.eventaction import ActionManager
 from tuxemon.event.eventbehavior import BehaviorManager
 from tuxemon.event.eventengine import EventEngine
@@ -44,9 +42,18 @@ def engine():
     return engine
 
 
-def test_random_monster_basic(engine):
-    lookup_cache.clear()
-    lookup_cache.update(
+@pytest.fixture
+def set_monster_cache():
+    def _set(data):
+        MonsterModel._lookup_cache.clear()
+        MonsterModel._lookup_cache.update(data)
+
+    yield _set
+    MonsterModel._lookup_cache.clear()
+
+
+def test_random_monster_basic(engine, set_monster_cache):
+    set_monster_cache(
         {
             "a": make_mock_monster("a"),
             "b": make_mock_monster("b"),
@@ -61,9 +68,8 @@ def test_random_monster_basic(engine):
     assert slug in {"a", "b"}
 
 
-def test_excludes_monsters_that_would_evolve(engine):
-    lookup_cache.clear()
-    lookup_cache.update(
+def test_excludes_monsters_that_would_evolve(engine, set_monster_cache):
+    set_monster_cache(
         {
             "evo": make_mock_monster("evo", evolves=True),
             "ok": make_mock_monster("ok"),
@@ -77,9 +83,8 @@ def test_excludes_monsters_that_would_evolve(engine):
     assert slug == "ok"
 
 
-def test_excludes_underleveled_forms(engine):
-    lookup_cache.clear()
-    lookup_cache.update(
+def test_excludes_underleveled_forms(engine, set_monster_cache):
+    set_monster_cache(
         {
             "bad": make_mock_monster("bad", underleveled=True),
             "ok": make_mock_monster("ok"),
@@ -93,9 +98,8 @@ def test_excludes_underleveled_forms(engine):
     assert slug == "ok"
 
 
-def test_excludes_non_random_monsters(engine):
-    lookup_cache.clear()
-    lookup_cache.update(
+def test_excludes_non_random_monsters(engine, set_monster_cache):
+    set_monster_cache(
         {
             "bad": make_mock_monster("bad", randomly=False),
             "ok": make_mock_monster("ok"),
@@ -109,9 +113,8 @@ def test_excludes_non_random_monsters(engine):
     assert slug == "ok"
 
 
-def test_no_valid_monsters_logs_error(engine, caplog):
-    lookup_cache.clear()
-    lookup_cache.update(
+def test_no_valid_monsters_logs_error(engine, set_monster_cache, caplog):
+    set_monster_cache(
         {
             "bad": make_mock_monster("bad", randomly=False),
         }

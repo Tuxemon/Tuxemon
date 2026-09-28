@@ -1,11 +1,11 @@
 tech_id: 34
 accuracy: 1
 effects:
+- type: damage
 - type: give
   parameters:
   - exhausted
   - own_monster
-- type: damage
 speed: normal
 potency: 1
 power: 3

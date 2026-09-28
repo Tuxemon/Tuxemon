@@ -198,7 +198,6 @@ def test_fade_out_call_order(monkeypatch, transition, mock_world):
     color = (0, 0, 0, 255)
     character = mock_world.player
     transition.fade_out(1.0, color, character)
-    mm = mock_world.client.movement_manager
     filtered = [
         c
         for c in mock_world.mock_calls
@@ -254,9 +253,7 @@ def test_fade_and_teleport_call_order(monkeypatch, transition, mock_world):
     mock_world.task.assert_called_with(teleport, interval=1.0)
     chained = mock_world.task.return_value.chain
     chained.assert_called()
-    task_call_index = next(
-        i for i, c in enumerate(mock_world.mock_calls) if c[0] == "task"
-    )
+    next(i for i, c in enumerate(mock_world.mock_calls) if c[0] == "task")
     chain_call_index = next(
         i
         for i, c in enumerate(mock_world.task.return_value.mock_calls)

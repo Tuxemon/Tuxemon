@@ -52,7 +52,7 @@ types:
 gender_weights:
   neuter: 1.0
 txmn_id: 251
-height: 2040
+height: 204
 weight: 204
 sounds:
   combat_call:

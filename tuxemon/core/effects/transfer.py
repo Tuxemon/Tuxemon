@@ -6,6 +6,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 from tuxemon.core.core_effect import CoreEffect, TechEffectResult
+from tuxemon.status.status import Status
 
 if TYPE_CHECKING:
     from tuxemon.monster.monster import Monster
@@ -61,7 +62,8 @@ class TransferEffect(CoreEffect):
                 else (target, user)
             )
             if source.status.has_status(self.condition):
-                dest.status = source.status
                 source.status.clear_status(session)
+                new_status = Status.create(self.condition, dest, dest.steps)
+                dest.status.add_status(new_status)
                 done = True
         return TechEffectResult(name=tech.name, success=done)

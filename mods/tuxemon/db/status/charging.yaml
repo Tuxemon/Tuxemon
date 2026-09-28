@@ -4,7 +4,6 @@ category: positive
 effects:
 - type: charging
 icon: gfx/ui/icons/status/icon_charging.png
-on_positive_status: replaced
 on_tech_use: chargedup
 on_item_use: chargedup
 slug: charging

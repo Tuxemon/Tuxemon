@@ -379,8 +379,14 @@ def cast_value(
                 try:
                     return int(value)
                 except ValueError:
-                    # allow "3.0" → 3
-                    if isinstance(value, str) and "." in value:
+                    # allow "3.0" → 3, but only when float isn't also a
+                    # valid target. Otherwise a value like "0.5" would be
+                    # truncated to 0 instead of kept as the float 0.5.
+                    if (
+                        isinstance(value, str)
+                        and "." in value
+                        and float not in constructors_to_try
+                    ):
                         return int(float(value))
             if float in constructors_to_try:
                 return float(value)

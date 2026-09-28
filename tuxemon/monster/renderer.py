@@ -21,8 +21,6 @@ logger = logging.getLogger(__name__)
 
 from dataclasses import dataclass
 
-from tuxemon.db import SoundProperties
-
 
 @dataclass
 class SoundConfig:

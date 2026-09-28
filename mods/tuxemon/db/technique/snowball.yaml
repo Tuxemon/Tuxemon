@@ -1,11 +1,11 @@
 tech_id: 267
 accuracy: 0.9
 effects:
+- type: damage
 - type: give
   parameters:
   - slow
   - enemy_monster
-- type: damage
 speed: fast
 potency: 0.25
 power: 1

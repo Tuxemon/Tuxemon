@@ -7,6 +7,7 @@ from typing import TYPE_CHECKING
 
 from tuxemon.entity.path.commands import (
     ContinueCommand,
+    HopCommand,
     MovementCommand,
     PushCommand,
     SpeedCommand,
@@ -59,6 +60,8 @@ class TileEffectProcessor:
                 direction = owner.facing
             else:
                 direction = tile.endure[0]
+            if tile.hop:
+                commands.append(HopCommand())
             commands.append(ContinueCommand(direction))
 
         return commands

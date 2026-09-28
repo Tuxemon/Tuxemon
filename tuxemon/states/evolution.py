@@ -104,6 +104,7 @@ class EvolutionState(PygameMenuState):
                 registry, self.target.slug
             )
 
+        is_new_entry = not self.char.tuxepedia.is_caught(self.target.slug)
         self.monster.evolution_handler.evolve_monster(self.target)
         self.monster.waiting_to_evolve = False
 
@@ -113,6 +114,7 @@ class EvolutionState(PygameMenuState):
             original=self.monster.slug,
             evolved=self.target.slug,
             is_devolution=self.is_devolution,
+            character=self.char if is_new_entry else None,
         )
 
     def _deny(self) -> None:

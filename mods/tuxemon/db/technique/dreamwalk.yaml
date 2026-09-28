@@ -11,7 +11,7 @@ speed: normal
 potency: 0.0
 power: 2.8
 range: reliable
-recharge: 4
+recharge: 2
 slug: dreamwalk
 sort: damage
 modifiers: []

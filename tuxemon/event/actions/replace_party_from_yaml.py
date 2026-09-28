@@ -71,7 +71,7 @@ class ReplacePartyFromYamlAction(EventAction):
 
     def start(self, session: Session) -> None:
 
-        character = session.get_npc(self.character)
+        character = session.client.get_npc(self.character)
         if character is None:
             logger.error("'wild_encounter' not found")
             self.stop()
@@ -116,6 +116,13 @@ class ReplacePartyFromYamlAction(EventAction):
                 monster.money_modifier = float(entry["money_modifier"])
 
             new_monsters.append(monster)
+
+        if not new_monsters:
+            logger.error(
+                f"No valid monsters built for set '{self.set_name}', party unchanged."
+            )
+            self.stop()
+            return
 
         character.party.replace_party(new_monsters, False)
         logger.info(

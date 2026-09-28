@@ -10,7 +10,7 @@ effects:
 speed: fast
 potency: 0.0
 power: 0.0
-range: ranged
+range: special
 recharge: 5
 slug: sockpuppet
 sort: damage

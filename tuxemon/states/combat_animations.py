@@ -48,6 +48,12 @@ logger = logging.getLogger(__name__)
 
 HUD_LAYER = 100
 
+# Timings of the HUD slide-in played when a monster is sent out. Status icons
+# sit at the HUD's resting position, so they are only shown once the HUD has
+# finished travelling there.
+HUD_SLIDE_DELAY = 1.3
+HUD_SLIDE_DURATION = 2.0
+
 
 def toggle_visible(sprite: Sprite) -> None:
     sprite.toggle_visible()
@@ -90,6 +96,7 @@ class CombatAnimations(Menu[None], ABC):
         )
         self.background_sprite: Sprite | None = None
         self.monsters_just_leveled_up: dict[str, bool] = {}
+        self.monsters_leftover_xp: dict[str, float] = {}
         env = self.client.environment_manager.get_active_environment()
         if env is None:
             raise RuntimeError(
@@ -104,6 +111,12 @@ class CombatAnimations(Menu[None], ABC):
         """Call this whenever HP or EXP changes."""
         current_graphics = self.env.get_battle_graphics()
         self.bars.draw_bars(self.hud_manager.hud_map, current_graphics)
+
+    def refresh_status_icons(self) -> None:
+        """Rebuild the condition icons of every monster on the battlefield."""
+        self.status_icons.update_icons_for_monsters(
+            self.combat_session.active_monsters
+        )
 
     def show_combat_dialog(
         self, dialog_box: GraphicBox, text_area: TextArea
@@ -312,23 +325,17 @@ class CombatAnimations(Menu[None], ABC):
             self.animations.add(ani)
             return ani
 
+        # Level-up case
         if self.monsters_just_leveled_up.get(monster.slug, False):
-
-            def fill_to_max() -> Animation:
-                ani = register(
-                    self.animate(
-                        exp_bar, value=1.0, duration=0.3, transition="linear"
-                    )
-                )
-                ani.schedule(self.refresh_ui, ScheduleType.ON_FINISH)
-                return ani
+            # leftover percent is already correct in the model
+            leftover = value_for_new_level
 
             def animate_new_level_progress() -> Animation:
-                exp_bar.value = 0.0
+                # do NOT reset exp_bar.value to 0
                 ani = register(
                     self.animate(
                         exp_bar,
-                        value=value_for_new_level,
+                        value=leftover,
                         duration=0.7,
                         transition="linear",
                         delay=0.5,
@@ -337,9 +344,25 @@ class CombatAnimations(Menu[None], ABC):
                 ani.schedule(self.refresh_ui, ScheduleType.ON_FINISH)
                 return ani
 
+            # optional: keep the fill-to-max animation
+            def fill_to_max() -> Animation:
+                ani = register(
+                    self.animate(
+                        exp_bar,
+                        value=1.0,
+                        duration=0.3,
+                        transition="linear",
+                    )
+                )
+                ani.schedule(self.refresh_ui, ScheduleType.ON_FINISH)
+                return ani
+
+            # chain both animations
             self.chain_animations(fill_to_max, animate_new_level_progress)
             self.monsters_just_leveled_up[monster.slug] = False
+
         else:
+            # normal XP gain
             ani = register(
                 self.animate(
                     exp_bar,
@@ -403,7 +426,9 @@ class CombatAnimations(Menu[None], ABC):
             label_data=label_data,
         )
 
-    def check_hud(self, monster: Monster, filename: str) -> Sprite:
+    def check_hud(
+        self, monster: Monster, filename: str, layer: int = HUD_LAYER
+    ) -> Sprite:
         """
         Checks whether exists or not a hud, it returns a sprite.
         To avoid building over an existing one.
@@ -411,10 +436,13 @@ class CombatAnimations(Menu[None], ABC):
         Parameters:
             monster: Monster who needs to update the hud.
             filename: Filename of the hud.
+            layer: Layer the hud is drawn on.
         """
         sprite = self.hud_manager.get_hud(monster)
         if sprite is None:
-            sprite = self.load_sprite(filename, layer=HUD_LAYER)
+            sprite = self.load_sprite(filename, layer=layer)
+        elif self.sprites.get_layer_of_sprite(sprite) != layer:
+            self.sprites.change_layer(sprite, layer)
 
         return sprite
 
@@ -430,13 +458,14 @@ class CombatAnimations(Menu[None], ABC):
         _, h_align = self.combat_zone.get_zone(hud_rect)
         is_player = h_align is HorizontalAlignment.RIGHT
 
-        hud_graphics = (
-            self.env.get_battle_graphics().hud.hud_player
-            if is_player
-            else self.env.get_battle_graphics().hud.hud_opponent
-        )
+        hud_model = self.env.get_battle_graphics().hud
+        if self.combat_session.is_double:
+            hud_graphics = hud_model.double_player if is_player else hud_model.double_opponent
+        else:
+            hud_graphics = hud_model.hud_player if is_player else hud_model.hud_opponent
 
-        hud = self.check_hud(monster, hud_graphics)
+        layer = self.hud_manager.get_hud_layer(monster, HUD_LAYER)
+        hud = self.check_hud(monster, hud_graphics, layer)
         hud.base_image = hud.image.copy()
         hud.player = is_player
         self.hud_manager.assign_hud(monster, hud)
@@ -454,8 +483,16 @@ class CombatAnimations(Menu[None], ABC):
                 if is_player
                 else {"right": hud_rect.right}
             )
-            animate_func = partial(self.animate, duration=2.0, delay=1.3)
-            animate_func(hud.rect, **target_pos)
+            animate_func = partial(
+                self.animate,
+                duration=HUD_SLIDE_DURATION,
+                delay=HUD_SLIDE_DELAY,
+            )
+            slide = animate_func(hud.rect, **target_pos)
+            # A monster can arrive already carrying a condition, so show its
+            # icons as soon as the HUD reaches its resting place rather than
+            # waiting for the next status to be applied.
+            slide.schedule(self.refresh_status_icons, ScheduleType.ON_FINISH)
 
             self.animate_hp(monster)
             if hud.player:
@@ -465,6 +502,7 @@ class CombatAnimations(Menu[None], ABC):
                 hud.rect.left = hud_rect.left
             else:
                 hud.rect.right = hud_rect.right
+            self.refresh_status_icons()
 
     def _load_sprite(
         self, sprite_type: str, position: dict[str, int]
@@ -497,7 +535,15 @@ class CombatAnimations(Menu[None], ABC):
 
         return tray, party_layout.centerx, party_layout.offset
 
-    def animate_party_hud_right(self, home: Rect) -> tuple[Sprite, int, int]:
+    def animate_party_hud_right(
+        self, home: Rect
+    ) -> tuple[Sprite | None, int, int]:
+        if self.combat_session.is_double:
+            return (
+                None,
+                home.left + self.scale_int(13),
+                self.scale_int(8),
+            )
         hud_data = self.env.data.get_battle_graphics().hud
         party_layout = self.env.get_party_layout("player", home, HUD_LAYER)
 
@@ -653,7 +699,7 @@ class CombatAnimations(Menu[None], ABC):
         # Spawn Entities
         if self.combat_session.is_trainer_battle:
             enemy_pos = layout.get_combatant_pos("enemy", back_island.rect)
-            enemy_surface = opponent.combat_sheet().front()
+            enemy_surface = opponent.combat_sheet.front()
             enemy_surface = graphics.scale_surface(enemy_surface, self.factor)
             enemy = self.load_surface(enemy_surface, **enemy_pos)
             self.sprite_map.add_sprite(opponent, enemy)
@@ -670,7 +716,11 @@ class CombatAnimations(Menu[None], ABC):
             self.update_hud(opponent, True, True)
 
         player_pos = layout.get_combatant_pos("player", front_island.rect)
-        player_surface = player.combat_sheet().back()
+        # Bring the trainer on lower so the (taller) back sprite sits on the
+        # island rather than floating above it. 64 is a nominal value, scaled
+        # to the current display.
+        player_pos["bottom"] += self.scale_int(64)
+        player_surface = player.combat_sheet.back()
         player_surface = graphics.scale_surface(player_surface, self.factor)
         player_back = self.load_surface(player_surface, **player_pos)
 
@@ -939,9 +989,11 @@ class CombatAnimations(Menu[None], ABC):
 
         # Assign and Build HUDs
         # If there is only 1 monster, we use the ID "hud".
-        # If there are multiple, we use "hud0", "hud1", etc.
-        is_multi = len(monsters) > 1
-
-        for i, monster in enumerate(monsters):
-            hud_id = f"hud{i}" if is_multi else "hud"
+        # If there are multiple, we use "hud0", "hud1", etc. The slot comes
+        # from the layout manager rather than the order of this list, which
+        # is ordered by entry time: a monster entering after its ally would
+        # otherwise get the HUD (and the status icons anchored to it) of the
+        # slot it isn't standing in.
+        for monster in monsters:
+            hud_id = self.hud_manager.get_hud_key(monster)
             self.build_hud(monster, hud_id, animate)

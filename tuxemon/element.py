@@ -127,9 +127,7 @@ class ElementTypesHandler:
         multiplier = 1.0
         for _user in user_types:
             for _target in target_types:
-                if _target and not (
-                    _user.slug == "aether" or _target.slug == "aether"
-                ):
+                if _target:
                     key = (_user.slug, _target.slug)
                     if key not in cls._multiplier_cache:
                         cls._multiplier_cache[key] = _user.lookup_multiplier(
@@ -149,8 +147,6 @@ class ElementTypesHandler:
         """
         multiplier = 1.0
         for defending_type in defending_types:
-            if defending_type.slug == "aether" or attacking_slug == "aether":
-                continue
             key = (defending_type.slug, attacking_slug)
             if key not in cls._multiplier_cache:
                 cls._multiplier_cache[key] = defending_type.lookup_multiplier(

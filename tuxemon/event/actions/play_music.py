@@ -62,4 +62,10 @@ class PlayMusicAction(EventAction):
                 )
 
         # Keep track of what song we're currently playing
-        client.current_music.play(self.filename, volume, loop, fade_ms)
+        client.current_music.play(
+            self.filename,
+            volume,
+            loop,
+            fade_ms,
+            fade_previous=True,
+        )

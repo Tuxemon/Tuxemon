@@ -7,7 +7,7 @@ import random
 from typing import TYPE_CHECKING
 
 from tuxemon.constants.asset_loader import fetch_asset
-from tuxemon.entity.player import Player
+from tuxemon.entity.npc import NPC
 from tuxemon.locale.locale import T
 
 if TYPE_CHECKING:
@@ -51,7 +51,7 @@ class GameLauncher:
         map_path = fetch_asset("maps", meta.starting_map)
         player_slug = random.choice(meta.starting_players)
 
-        Player.create(session, slug=player_slug)
+        NPC.create_player(session, slug=player_slug)
 
         self.client.push_state(
             "WorldState", session=session, map_name=map_path

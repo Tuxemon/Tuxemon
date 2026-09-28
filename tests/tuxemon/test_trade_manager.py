@@ -6,7 +6,6 @@ from uuid import uuid4
 
 import pytest
 
-from tuxemon.db import SeenStatus
 from tuxemon.trade_manager import TradeManager, TradeRecord, TradeResult
 
 

@@ -34,7 +34,7 @@ class CharAtPositionCondition(EventCondition):
     tile_pos_y: int
 
     def test(self, session: Session) -> bool:
-        character = session.get_npc(self.character)
+        character = session.client.get_npc(self.character)
         if character is None:
             logger.error(f"{self.character} not found")
             return False

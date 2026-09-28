@@ -1,11 +1,11 @@
 tech_id: 39
 accuracy: 0.8
 effects:
+- type: damage
 - type: give
   parameters:
   - enraged
   - enemy_monster
-- type: damage
 speed: very_fast
 potency: 0.8
 power: 1.75

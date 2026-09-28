@@ -27,16 +27,22 @@ class RoutingPolicyRegistry:
 
     @classmethod
     def get(cls, name: str) -> RoutingPolicy:
+        if not cls._policies:
+            cls.load_from_file()
         if name not in cls._policies:
             raise KeyError(f"Routing policy '{name}' not found.")
         return RoutingPolicy.from_registry(name)
 
     @classmethod
     def get_raw(cls, name: str) -> dict[str, Any]:
+        if not cls._policies:
+            cls.load_from_file()
         return cls._policies[name]
 
     @classmethod
     def has(cls, name: str) -> bool:
+        if not cls._policies:
+            cls.load_from_file()
         return name in cls._policies
 
 
@@ -90,11 +96,11 @@ class RoutingPolicy:
     def get_locker(self) -> str:
         return self.locker_override or LOCKER
 
-    def to_dict(self) -> str:
+    def serialize(self) -> str:
         return self.name
 
     @classmethod
-    def from_dict(cls, data: NPCState) -> str:
+    def deserialize(cls, data: NPCState) -> str:
         name = data.routing_policy
 
         if not isinstance(name, str) or not name:
@@ -110,6 +116,3 @@ class RoutingPolicy:
             return "default"
 
         return name
-
-
-RoutingPolicyRegistry.load_from_file()

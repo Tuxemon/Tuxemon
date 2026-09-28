@@ -17,7 +17,7 @@ from typing import (
 
 from pygame import SRCALPHA
 from pygame.rect import FRect, Rect
-from pygame.sprite import DirtySprite, Group, LayeredUpdates
+from pygame.sprite import DirtySprite, LayeredUpdates
 from pygame.sprite import Sprite as PySprite
 from pygame.surface import Surface
 from pygame.transform import rotate, rotozoom, scale
@@ -907,65 +907,137 @@ class VisualSpriteList(RelativeGroup[_MenuElement]):
     def _allowed_input(self) -> Container[int]:
         return set(self._2d_movement_dict)
 
+    def determine_cursor_movement(self, index: int, event: PlayerInput) -> int:
+        """
+        Move the cursor within the visible page, skipping disabled items.
+
+        Differences from MenuSpriteGroup:
+        - Movement is bounded to the current page (no cross-page jumps).
+        - Disabled items are skipped by advancing again from the new position,
+        not by re-advancing from the original position.
+        - A boundary IndexError leaves the cursor on the last valid enabled item
+        found during the walk, or on the original index if none was found.
+        """
+        if not len(self):
+            return 0
+
+        if not (event.pressed and event.button in self._allowed_input()):
+            return index
+
+        # The incoming index may point outside the visible page (e.g. it was
+        # restored from a save slot that lives on another page). Advancing from
+        # an off-page index would make _advance_input() raise ValueError via
+        # visible.index(), which is not caught below, so snap onto the page
+        # first.
+        if index not in self._visible_indices():
+            return self.snap_selection(index)
+
+        sprites = self.sprites()
+        last_enabled = index
+
+        candidate = index
+        while True:
+            try:
+                candidate = self._advance_input(candidate, event.button)
+            except IndexError:
+                # Hit the grid boundary — stay at the last enabled position found
+                return last_enabled
+
+            if sprites[candidate].enabled:
+                return candidate
+
+            # Candidate is disabled — record nothing, keep walking
+            # Guard against a full cycle with no enabled item
+            if candidate == index:
+                return last_enabled
+
     def _advance_input(self, index: int, button: int) -> int:
         index_type, incr = self._2d_movement_dict[button]
 
-        # Orientation swap: keep LR/TB semantics consistent
+        # Orientation swap: vertical layout swaps LR↔TB semantics
         if self.orientation == "vertical":
             index_type = "tb" if index_type == "lr" else "lr"
 
         visible = list(self._visible_indices())
         local_index = visible.index(index)
 
-        # Page-local model (real items only)
+        if self.rectangular:
+            new_local = self._advance_rectangular(
+                local_index, index_type, incr, visible
+            )
+        elif self.columns == 1 and index_type == "tb":
+            new_local = self._advance_single_column(local_index, incr, visible)
+        elif index_type == "tb":
+            new_local = self._advance_ragged_tb(local_index, incr, visible)
+        else:
+            new_local = self._advance_ragged_lr(
+                local_index, index_type, incr, visible
+            )
+
+        return visible[new_local]
+
+    def _advance_rectangular(
+        self, local_index: int, index_type: str, incr: int, visible: list[int]
+    ) -> int:
+        """Move within a fully padded rectangular virtual grid, wrapping at edges."""
+        rows = ceil(len(visible) / self.columns)
+        rect_model = GridIndexModel(
+            count=rows * self.columns,
+            columns=self.columns,
+            rectangular=True,
+            orientation=self.orientation,
+        )
+        new_virtual = rect_model.move_rectangular(
+            local_index, index_type, incr
+        )
+        return new_virtual % len(visible)
+
+    def _advance_single_column(
+        self, local_index: int, incr: int, visible: list[int]
+    ) -> int:
+        """Simple wrapping movement for single-column lists."""
+        return (local_index + incr) % len(visible)
+
+    def _advance_ragged_tb(
+        self, local_index: int, incr: int, visible: list[int]
+    ) -> int:
         page_model = GridIndexModel(
             count=len(visible),
             columns=self.columns,
-            rectangular=self.rectangular,
+            rectangular=False,
             orientation=self.orientation,
         )
+        tb = page_model.lr_to_tb(local_index)
+        new_tb = tb + incr
 
-        if self.rectangular:
-            # Build a fully rectangular virtual grid
-            rows = ceil(len(visible) / self.columns)
-            rect_count = rows * self.columns
+        # Validate by round-tripping: if tb_to_lr gives a different column
+        # than expected, or the result is out of range, the cell doesn't exist
+        if new_tb < 0:
+            raise IndexError
 
-            rect_model = GridIndexModel(
-                count=rect_count,
-                columns=self.columns,
-                rectangular=True,
-                orientation=self.orientation,
-            )
+        new_lr = page_model.tb_to_lr(new_tb)
 
-            # Move in the virtual rectangle
-            new_virtual = rect_model.move_rectangular(
-                local_index, index_type, incr
-            )
+        # Verify the round-trip is consistent — invalid cells map to wrong columns
+        if new_lr >= len(visible):
+            raise IndexError
+        if page_model.lr_to_tb(new_lr) != new_tb:
+            raise IndexError
 
-            # Map back into real items (wrap)
-            return visible[new_virtual % len(visible)]
+        return new_lr
 
-        # Special case: 1-column ragged lists behave like simple vertical menus
-        if not self.rectangular and self.columns == 1 and index_type == "tb":
-            new_index = (local_index + incr) % len(visible)
-            return visible[new_index]
-
-        # Ragged TB movement: treat TB as linear over visible items, no wrap
-        if index_type == "tb":
-            tb = page_model.lr_to_tb(local_index)
-            new_tb = tb + incr
-
-            # No wrap in ragged mode
-            if not (0 <= new_tb < len(visible)):
-                raise IndexError
-
-            new_local = page_model.tb_to_lr(new_tb)
-            return visible[new_local]
-
-        # General LR movement in ragged mode
+    def _advance_ragged_lr(
+        self, local_index: int, index_type: str, incr: int, visible: list[int]
+    ) -> int:
+        """
+        LR movement in a ragged grid.
+        Validates the destination cell exists — raises IndexError if not.
+        """
+        page_model = GridIndexModel(
+            count=len(visible),
+            columns=self.columns,
+            rectangular=False,
+            orientation=self.orientation,
+        )
         new_local = page_model.move(local_index, index_type, incr)
-
-        # Validate ragged cell (raises IndexError if invalid)
         page_model.lr_to_rowcol(new_local)
-
-        return visible[new_local]
+        return new_local

@@ -1,5 +1,5 @@
 tech_id: 19
-accuracy: 0.75
+accuracy: 1.00
 effects:
 - type: remove
   parameters:

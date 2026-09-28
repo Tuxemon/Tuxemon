@@ -1,10 +1,12 @@
 tech_id: 52
-accuracy: 1
+accuracy: 0.8
 effects:
-- type: damage
+- type: multiattack
+  parameters:
+  - '2'
 speed: normal
 potency: 0.0
-power: 3
+power: 2
 range: touch
 recharge: 2
 slug: one_two

@@ -42,7 +42,7 @@ class SetFacingModeAction(EventAction):
     mode: str
 
     def start(self, session: Session) -> None:
-        npc = session.get_npc(self.npc_slug)
+        npc = session.client.get_npc(self.npc_slug)
         if not npc:
             self.stop()
             return

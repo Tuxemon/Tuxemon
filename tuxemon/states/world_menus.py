@@ -8,15 +8,14 @@ from typing import TYPE_CHECKING, Any, ClassVar
 
 from pygame_menu.menu import Menu
 
-from tuxemon.animation import ScheduleType
 from tuxemon.menu.menu import PygameMenuState
+from tuxemon.menu.transitions import SlideRight
 from tuxemon.platform.const import buttons
 from tuxemon.platform.const.graphics import DIMGRAY_COLOR
 from tuxemon.platform.events import PlayerInput
 from tuxemon.states.monster_menu import MonsterMenuHandler
 
 if TYPE_CHECKING:
-    from tuxemon.animation import Animation
     from tuxemon.base_client import BaseClient
     from tuxemon.entity.npc import NPC
     from tuxemon.world.manager import MenuItem, WorldMenuManager
@@ -71,7 +70,11 @@ class WorldMenuState(PygameMenuState):
         """Initialize menu state and build menu separately."""
         self.char = character
         width, height = client.context.resolution
-        super().__init__(client=client, height=height, **kwargs)
+
+        super().__init__(
+            client=client, height=height, transition=SlideRight(), **kwargs
+        )
+
         self.menu_manager = menu_manager
         self.menu_manager.set_menu_renderer(self)
         self.update_menu_from_manager()
@@ -85,21 +88,6 @@ class WorldMenuState(PygameMenuState):
 
     def open_monster_menu(self) -> None:
         self.handler.open_monster_menu()
-
-    def update_animation_position(self) -> None:
-        self.menu.translate(-self.animation_offset, 0)
-
-    def animate_open(self) -> Animation:
-        width = self.menu.get_width(border=True)
-        self.animation_offset = 0
-        ani = self.animate(self, animation_offset=width, duration=0.50)
-        ani.schedule(self.update_animation_position, ScheduleType.ON_UPDATE)
-        return ani
-
-    def animate_close(self) -> Animation:
-        ani = self.animate(self, animation_offset=0, duration=0.50)
-        ani.schedule(self.update_animation_position, ScheduleType.ON_UPDATE)
-        return ani
 
     def process_event(self, event: PlayerInput) -> PlayerInput | None:
         if (

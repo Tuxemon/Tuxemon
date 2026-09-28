@@ -22,6 +22,7 @@ from tuxemon.monster.monster import Monster
 from tuxemon.monster.renderer import MonsterRenderer
 from tuxemon.platform.const.graphics import BG_MONSTERS, TRANSPARENT_COLOR
 from tuxemon.platform.const.sizes import PARTY_LIMIT
+from tuxemon.session import local_session
 from tuxemon.sprite import Sprite
 from tuxemon.tools import open_choice_dialog, open_dialog
 from tuxemon.ui.graphic_box import GraphicBox
@@ -64,11 +65,13 @@ class MonsterMenuState(Menu[Monster | None]):
         *,
         on_selection: Callable[[MenuItem[Monster | None]], None] | None = None,
         is_valid_entry: Callable[[Monster | None], bool] | None = None,
+        on_selection_change: Callable[[MonsterMenuState], None] | None = None,
         **kwargs: Any,
     ):
         super().__init__(client=client, **kwargs)
         self._external_on_selection = on_selection
         self._external_is_valid_entry = is_valid_entry
+        self._external_on_selection_change = on_selection_change
         self.monster_filter = monster_filter or MonsterFilter()
         self.monsters = self.monster_filter.get_filtered_monsters(monsters)
 
@@ -162,6 +165,9 @@ class MonsterMenuState(Menu[Monster | None]):
             self.monster_sprite_displays.append(sprite_display)
 
     def on_menu_selection_change(self) -> None:
+        if self._external_on_selection_change:
+            self._external_on_selection_change(self)
+
         monster: Monster | None = None
         try:
             monster = self.monsters[self.selected_index]
@@ -248,14 +254,22 @@ class MonsterMenuHandler:
         self.client.remove_state_by_name("ChoiceState")
         items_filtered = ItemFilter(self.party.owner.bag.items)
         items_filtered.add_filter(lambda item: item.behaviors.holdable)
-
-        menu = self.client.push_state(
-            ItemMenuState(
-                self.client, self.party.owner, self.name, items_filtered
-            )
+        # the picker skips the validation the item menu does for a used item,
+        # so an item this monster fails the conditions for is left out here
+        items_filtered.add_filter(
+            lambda item: item.validate_monster(local_session, monster)
         )
-        menu.on_menu_selection = lambda menu_item: self._equip_from_picker(  # type: ignore[method-assign]
-            monster, menu_item
+
+        self.client.push_state(
+            ItemMenuState(
+                self.client,
+                character=self.party.owner,
+                source=self.name,
+                item_filter=items_filtered,
+                on_selection=lambda menu_item: self._equip_from_picker(
+                    monster, menu_item
+                ),
+            )
         )
 
     def _equip_from_picker(
@@ -414,16 +428,9 @@ class MonsterMenuHandler:
                 on_selection=lambda item: self.handle_selection(
                     item, self.monster_menu
                 ),
+                on_selection_change=self.monster_menu_hook,
             )
         )
-
-        original_on_change = self.monster_menu.on_menu_selection_change
-
-        def wrapped_on_change() -> None:
-            self.monster_menu_hook(self.monster_menu)
-            original_on_change()
-
-        self.monster_menu.on_menu_selection_change = wrapped_on_change  # type: ignore[method-assign]
 
     def open_sort_submenu(self, monster_menu: MonsterMenuState) -> None:
         """Opens a submenu with sorting options."""

@@ -32,7 +32,7 @@ class CharInBoundaryCondition(EventCondition):
     boundary_name: str
 
     def test(self, session: Session) -> bool:
-        character = session.get_npc(self.character_name)
+        character = session.client.get_npc(self.character_name)
         if character is None:
             logger.error(f"Character '{self.character_name}' not found.")
             return False

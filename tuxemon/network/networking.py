@@ -178,7 +178,7 @@ def populate_client(
     game.event_engine.execute_action(
         "create_npc", [char_name, tile_pos_x, tile_pos_y]
     )
-    char = local_session.get_npc(char_name)
+    char = local_session.client.get_npc(char_name)
     if char is None:
         raise RuntimeError(f"Failed to create or retrieve NPC for {char_name}")
 

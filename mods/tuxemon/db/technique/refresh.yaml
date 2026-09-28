@@ -6,6 +6,8 @@ effects:
   - recover
   - own_monster
 - type: healing
+  parameters:
+  - own_monster
 healing_power: 3.0
 speed: normal
 potency: 1
@@ -15,8 +17,7 @@ recharge: 3
 slug: refresh
 sort: damage
 modifiers: []
-behaviors:
-  bypasses_selection: true
+behaviors: {}
 target:
   enemy_monster: false
   enemy_team: false

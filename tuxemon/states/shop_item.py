@@ -12,7 +12,6 @@ from tuxemon.item.shop_utils import (
     generate_label,
 )
 from tuxemon.menu.interface import MenuItem
-from tuxemon.menu.quantity import QuantityAndCostMenu, QuantityAndPriceMenu
 from tuxemon.states.shop_base import ShopMenuState
 
 if TYPE_CHECKING:
@@ -63,8 +62,7 @@ class ShopItemMenuState(ShopMenuState[Item]):
                 )
                 qty = self.client.shop_manager.get_quantity(key)
                 label, _, price = generate_label(item, self.economy, qty)
-                unavailable = price > self.buyer_manager.get_money()
-                self._add_menu_item(item, label, {"price": price}, unavailable)
+                self._add_menu_item(item, label, {"price": price})
             elif self.seller.is_player:
                 label, _, cost = generate_label(
                     item, self.economy, qty=None, seller_mode=True
@@ -146,6 +144,9 @@ class ShopItemBuyMenuState(ShopItemMenuState):
 
         def buy_item(quantity: int) -> None:
             price = self.economy.calculate_price(item, quantity)
+            if price.final_price > self.buyer_manager.get_money():
+                return
+
             self.transaction_manager.buy_item(
                 self.buyer, item, quantity, label, price.final_price
             )
@@ -161,14 +162,15 @@ class ShopItemBuyMenuState(ShopItemMenuState):
         )
 
         self.client.state_manager.push_state(
-            QuantityAndPriceMenu(
-                client=self.client,
-                callback=partial(buy_item),
-                max_quantity=max_quantity,
-                quantity=1,
-                shrink_to_items=True,
-                price=price,
-            )
+            "QuantityPickerState",
+            client=self.client,
+            min_value=1,
+            max_value=max_quantity,
+            start_value=1,
+            step=1,
+            callback=partial(buy_item),
+            price=price,
+            wallet_money=self.buyer_manager.get_money(),
         )
 
 
@@ -208,12 +210,13 @@ class ShopItemSellMenuState(ShopItemMenuState):
                 self.on_menu_selection_change()
 
         self.client.state_manager.push_state(
-            QuantityAndCostMenu(
-                client=self.client,
-                callback=partial(sell_item),
-                max_quantity=item.quantity,
-                quantity=1,
-                shrink_to_items=True,
-                cost=cost,
-            )
+            "QuantityPickerState",
+            client=self.client,
+            min_value=1,
+            max_value=item.quantity,
+            start_value=1,
+            step=1,
+            callback=partial(sell_item),
+            cost=cost,
+            wallet_money=self.seller_manager.get_money(),
         )

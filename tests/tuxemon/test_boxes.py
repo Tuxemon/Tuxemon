@@ -137,7 +137,7 @@ def test_move_monster(boxes, monster1):
 def test_merge_boxes(boxes, monster1, monster2):
     boxes.add_monster("box1", monster1)
     boxes.add_monster("box1", monster2)
-    boxes.merge_boxes("box1", "box2")
+    boxes.merge_and_remove_boxes("box1", "box2")
 
     assert boxes.get_monsters("box1") == []
     assert boxes.get_monsters("box2") == [monster1, monster2]
@@ -376,3 +376,60 @@ def test_is_box_full_respects_metadata_capacity(boxes, monster1):
 
     policy = RoutingPolicy("default", max_box_capacity=10)
     assert boxes.is_box_full("box1", "monster", policy)
+
+
+def test_store_party_in_box_success(boxes, monster1, monster2):
+    party = [monster1, monster2]
+    result = boxes.store_party_in_box("box1", party)
+    assert result is True
+    assert monster1 in boxes.get_monsters("box1")
+    assert monster2 in boxes.get_monsters("box1")
+    assert len(party) == 2
+
+
+def test_store_party_in_box_creates_box_if_missing(boxes, monster1):
+    assert not boxes.has_box("box1", "monster")
+    boxes.store_party_in_box("box1", [monster1])
+    assert boxes.has_box("box1", "monster")
+
+
+def test_store_party_in_box_creates_metadata(boxes, monster1):
+    boxes.store_party_in_box("box1", [monster1], max_size=5)
+    meta = boxes.metadata_manager.get("box1", "monster")
+    assert meta is not None
+    assert meta.max_capacity == 5
+
+
+def test_store_party_in_box_fails_if_not_enough_space(
+    boxes, monster1, monster2
+):
+    boxes.create_box("box1", BoxMetadata(max_capacity=1, is_hidden=False))
+    boxes.add_monster("box1", monster1)
+    result = boxes.store_party_in_box("box1", [monster2], max_size=1)
+    assert result is False
+    assert monster2 not in boxes.get_monsters("box1")
+
+
+def test_store_party_in_box_does_not_clear_party_on_failure(
+    boxes, monster1, monster2
+):
+    boxes.create_box("box1", BoxMetadata(max_capacity=1, is_hidden=False))
+    boxes.add_monster("box1", monster1)
+    party = [monster2]
+    boxes.store_party_in_box("box1", party, max_size=1)
+    assert len(party) == 1
+
+
+def test_store_party_in_box_existing_box_accumulates(
+    boxes, monster1, monster2
+):
+    boxes.create_box("box1", BoxMetadata(max_capacity=5, is_hidden=False))
+    boxes.add_monster("box1", monster1)
+    boxes.store_party_in_box("box1", [monster2], max_size=5)
+    assert boxes.get_box_size("box1", "monster") == 2
+
+
+def test_store_party_in_box_empty_party(boxes):
+    result = boxes.store_party_in_box("box1", [])
+    assert result is True
+    assert boxes.get_box_size("box1", "monster") == 0

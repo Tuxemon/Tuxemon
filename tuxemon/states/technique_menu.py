@@ -2,7 +2,7 @@
 # Copyright (c) 2014-2026 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-from collections.abc import Generator
+from collections.abc import Callable, Generator
 from typing import TYPE_CHECKING, Any, ClassVar
 
 from pygame.rect import Rect
@@ -44,11 +44,15 @@ class TechniqueMenuState(Menu[Technique]):
         techniques: list[Technique],
         tech_filter: TechFilter | None = None,
         tech_sorter: TechSorter | None = None,
+        on_selection: Callable[[MenuItem[Technique]], None] | None = None,
+        is_valid_entry: Callable[[Technique | None], bool] | None = None,
         **kwargs: Any,
     ) -> None:
         self.char = character
         self.tech_filter = tech_filter or TechFilter(techniques)
         self.tech_sorter = tech_sorter or TechSorter()
+        self._external_on_selection = on_selection
+        self._external_is_valid_entry = is_valid_entry
 
         super().__init__(client=client, **kwargs)
 
@@ -90,6 +94,9 @@ class TechniqueMenuState(Menu[Technique]):
         Parameters:
             menu_technique: Selected menu technique.
         """
+        if self._external_on_selection:
+            return self._external_on_selection(menu_technique)
+
         tech = menu_technique.game_object
 
         if not any(
@@ -156,6 +163,8 @@ class TechniqueMenuState(Menu[Technique]):
         """
         Used to determine if a given technique should be selectable.
         """
+        if self._external_is_valid_entry:
+            return self._external_is_valid_entry(technique)
         return technique is not None
 
     def create_technique_menu_item(

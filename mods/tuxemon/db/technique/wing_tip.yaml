@@ -1,5 +1,5 @@
 tech_id: 69
-accuracy: 0.8
+accuracy: 1
 effects:
 - type: damage
 speed: fast

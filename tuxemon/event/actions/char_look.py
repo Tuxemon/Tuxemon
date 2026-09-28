@@ -46,7 +46,7 @@ class CharLookAction(EventAction):
     directions: str | None = None
 
     def start(self, session: Session) -> None:
-        character = session.get_npc(self.character)
+        character = session.client.get_npc(self.character)
         world = session.client.get_state_by_name(WorldState)
 
         if not character:

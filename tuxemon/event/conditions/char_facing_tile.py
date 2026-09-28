@@ -36,7 +36,7 @@ class CharFacingTileCondition(EventCondition):
     value: str | None = None
 
     def test(self, session: Session) -> bool:
-        character = session.get_npc(self.character)
+        character = session.client.get_npc(self.character)
         if character is None:
             logger.error(f"{self.character} not found")
             return False
@@ -57,8 +57,8 @@ class CharFacingTileCondition(EventCondition):
         # check if the NPC is facing a specific set of tiles
         if self.value:
             if self.value in SURFACE_KEYS:
-                label = client.collision_manager.get_all_tile_properties(
-                    client.map_manager.surface_map, self.value
+                label = client.terrain_manager.get_all_tile_properties(
+                    self.value
                 )
             else:
                 label = client.collision_manager.check_collision_zones(

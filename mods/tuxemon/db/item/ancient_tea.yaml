@@ -2,7 +2,7 @@ conditions: []
 effects:
 - type: gain_xp
   parameters:
-  - '1500'
+  - '4500'
 slug: ancient_tea
 sort: potion
 sprite: gfx/items/ancient_tea.png

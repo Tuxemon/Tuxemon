@@ -63,7 +63,7 @@ class OpenShopAction(EventAction):
                 f"{', '.join(sorted(valid_menus))}"
             )
 
-        character = session.get_npc(self.npc_slug)
+        character = session.client.get_npc(self.npc_slug)
         if character is None:
             logger.error(f"NPC '{self.npc_slug}' not found.")
             self.stop()

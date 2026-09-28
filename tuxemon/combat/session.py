@@ -305,10 +305,10 @@ class CombatSession:
     def get_start_message(self) -> str:
         """Determines and returns the appropriate alert message for combat start."""
         if self.combat_type is CombatType.TRAINER:
-            params = {"name": self.right_player.name.upper()}
+            params = {"name": self.right_player.name}
             return T.format("combat_trainer_appeared", params)
         elif self.combat_type is CombatType.MONSTER:
-            params = {"name": self.right_player.monsters[0].name.upper()}
+            params = {"name": self.right_player.monsters[0].name}
             return T.format("combat_wild_appeared", params)
         elif self.combat_type is CombatType.HORDE:
             horde = self.right_player.party.party_size
@@ -318,9 +318,9 @@ class CombatSession:
 
     def get_message_swap(self, character: NPC, monster: Monster) -> str:
         """Determines and returns the appropriate alert message for combat start."""
-        params = {"target": monster.name.upper()}
+        params = {"target": monster.name}
         if self.combat_type in (CombatType.TRAINER, CombatType.MONSTER):
-            params["user"] = character.name.upper()
+            params["user"] = character.name
             return T.format("combat_swap", params)
         elif self.combat_type is CombatType.HORDE:
             return T.format("combat_horde_swap", params)
@@ -341,6 +341,15 @@ class CombatSession:
         self._prize = 0
 
     # Random tech hit
+    #
+    # Accuracy is rolled once per monster per round: initialize_hit_chances()
+    # stores a single random value per monster, and get_tech_hit() only reads
+    # that cached value (it does not re-roll). This means every effect of a
+    # technique that compares `tech.accuracy >= get_tech_hit(user)` shares the
+    # same hit/miss result, so the accuracy check is effectively performed once
+    # per technique even when it has both damage and healing effects. The only
+    # deliberate exception is multiattack, which calls set_tech_hit() to re-roll
+    # for each of its repeated hits.
     def set_tech_hit(
         self, monster: Monster, value: float | None = None
     ) -> None:
@@ -439,6 +448,47 @@ class CombatSession:
         for monster in self.active_monsters:
             self.set_tech_hit(monster)
 
+    def skips_decision(self, monster: Monster) -> bool:
+        """
+        Whether the monster sits out the decision phase this round.
+
+        Charging, locked and disappeared monsters don't choose an action: the
+        effect that put them in that state already scheduled one on the
+        pending queue. A monster that used foresight is deliberately not
+        included, because it picks a new action even though it has another
+        one coming.
+        """
+        return (
+            monster.is_charging
+            or monster.locked_turns_left > 0
+            or monster.out_of_range
+        )
+
+    def restore_stranded_monsters(self) -> None:
+        """
+        Charging, locked and disappeared monsters skip the decision phase
+        because the effect that put them in that state scheduled their action
+        on the pending queue. If that action is dropped (its target fainted,
+        or the turn it was due for has passed), the monster would neither act
+        nor ever be asked to choose, so its state is cleared and it takes part
+        in the next decision phase.
+        """
+        for monster in self.active_monsters:
+            if self.action_queue.has_pending_for(monster):
+                continue
+            if monster.out_of_range:
+                logger.debug(f"{monster.name} has no way back, restoring it")
+                monster.out_of_range = False
+                self.event_bus.publish("monster_appeared", user=monster)
+            if monster.is_charging:
+                logger.debug(f"{monster.name} lost its charged move")
+                monster.is_charging = False
+                monster.charged_technique = None
+            if monster.locked_turns_left > 0:
+                logger.debug(f"{monster.name} lost its locked move")
+                monster.locked_turns_left = 0
+                monster.locked_move = None
+
     def check_decisions(self, session: Session) -> None:
         for player in list(self.active_players):
             monsters = self.field_monsters.get_monsters(player)
@@ -478,7 +528,12 @@ class CombatSession:
         Parameters:
             ask: If True, human players will be prompted to choose a monster.
         """
-        for player in self.active_players:
+        # Opponents (AI players) are filled before the human player so their
+        # monsters are sent out and call first when the staggered releases play.
+        ordered_players = sorted(
+            self.active_players, key=lambda p: p.is_player
+        )
+        for player in ordered_players:
             max_positions = self.get_max_positions(player)
 
             # Handle sprite positioning for double battles
@@ -566,6 +621,7 @@ class CombatSession:
     def apply_technique(
         self, session: Session, tech: Technique, user: Monster, target: Monster
     ) -> tuple[TechEffectResult, StatusEffectResult | None]:
+        pre_status = user.status.current_status
         result = tech.use(session, user, target)
         logger.debug(
             f"{user.name} used {tech.slug} on {target.name} > success={result.success}"
@@ -573,11 +629,16 @@ class CombatSession:
 
         status_result = None
         status = user.status.current_status
-        if status:
+        # Only run the PERFORM_TECH phase on a status the user already had
+        # before this technique executed. Otherwise a technique that grants a
+        # status to its own user (e.g. Life Surge granting "chargedup") would
+        # have that status consumed by this same action's PERFORM_TECH hook.
+        if status and status is pre_status:
             status_result = status.use(session, EffectPhase.PERFORM_TECH)
             if status_result.statuses:
                 chosen = random.choice(status_result.statuses)
                 user.status.apply_status(session, chosen)
+                get_event_bus().publish("status_applied")
 
         return result, status_result
 

@@ -1,11 +1,11 @@
 tech_id: 20
 accuracy: 0.95
 effects:
+- type: damage
 - type: give
   parameters:
   - exhausted
   - enemy_monster
-- type: damage
 speed: normal
 potency: 0.75
 power: 1.25

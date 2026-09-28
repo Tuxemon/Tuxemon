@@ -707,7 +707,7 @@ msgstr ""
 "Considera a las plantas que crecen cerca de él sus hermanos y hermanas."
 
 msgid "allagon"
-msgstr "Allagaon"
+msgstr "Allagon"
 
 msgid "axolightl_description"
 msgstr ""
@@ -916,9 +916,6 @@ msgstr ""
 msgid "gectile"
 msgstr "Gectile"
 
-msgid "hydrone_description"
-msgstr ""
-
 msgid "heronquak"
 msgstr "Heronquak"
 
@@ -951,9 +948,6 @@ msgstr ""
 
 msgid "lambert"
 msgstr "Lambert"
-
-msgid "magmaturtle_description"
-msgstr "<<MISSING>>"
 
 msgid "legko"
 msgstr "Legko"
@@ -1014,8 +1008,14 @@ msgstr "Nudiflot"
 msgid "nudiflot_male"
 msgstr "Nudiflot"
 
-msgid "nut_description"
-msgstr ""
+msgid "nudiflot_male_description"
+msgstr "Come y almacena el veneno de las criaturas marinas de las que se alimenta."
+
+msgid "nudiflot_female"
+msgstr "Nudiflot (♀)"
+
+msgid "nudiflot_male"
+msgstr "Nudiflot (♂)"
 
 msgid "nudiflot_male_description"
 msgstr "Come y almacena el veneno de las criaturas marinas de las que se alimenta."
@@ -1100,11 +1100,6 @@ msgid "snowrilla_description"
 msgstr ""
 "Le encanta jugar al pilla-pilla con esquiadores en pendientes solitarias."
 
-msgid "sludgehog"
-msgstr "Sludgehog"
-
-msgid "spycozeus_description"
-msgstr ""
 
 msgid "snowrilla"
 msgstr "Snowrilla"

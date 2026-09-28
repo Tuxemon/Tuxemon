@@ -25,10 +25,33 @@ starting_bond: 25
 # Allowed bond range (0 = no bond, 100 = maximum bond)
 bond_range: [0, 100]
 
+# Minimum bond floor per evolution stage; bond cannot drop below this after evolving
+bond_stage_floors:
+    basic: 0
+    standalone: 0
+    stage1: 20
+    stage2: 40
+
+# Starting bond value per acquisition method
+bond_acquisition:
+    unknown: 25
+    captured: 25
+    traded: 10
+    bred: 40
+    gifted: 30
+    purchased: 20
+    rescued: 35
+    created: 25
+
+# Bond values at which milestone rewards or events are triggered
+bond_milestones: [25, 50, 75, 100]
+
 # Bond changes triggered by specific events
 bond_modifiers:
-  # Bond penalty when the monster faints in battle
-  fainted: -10
+    # Bond penalty when the monster faints in battle
+    fainted: -10
+    # Bond gain when the monster wins a battle
+    win_battle: 3
 
 # Allowed range for Individual Values (IVs)
 iv_range: [0, 15]
@@ -67,19 +90,20 @@ bond_strings:
 
 # Defines opposite taste relationships as a dictionary of lists.
 # Each taste maps to a list of its opposite(s), allowing for future extensibility.
+# Tastes are referenced by slug, the same identifiers monsters store.
 opposite_tastes:
-  taste_peppy: [taste_mild]
-  taste_mild: [taste_peppy]
-  taste_salty: [taste_sweet]
-  taste_sweet: [taste_salty]
-  taste_hearty: [taste_soft]
-  taste_soft: [taste_hearty]
-  taste_zesty: [taste_flakey]
-  taste_flakey: [taste_zesty]
-  taste_refined: [taste_dry]
-  taste_dry: [taste_refined]
-  taste_savory: [taste_bland]
-  taste_bland: [taste_savory]
+  peppy: [mild]
+  mild: [peppy]
+  salty: [sweet]
+  sweet: [salty]
+  hearty: [soft]
+  soft: [hearty]
+  zesty: [flakey]
+  flakey: [zesty]
+  refined: [dry]
+  dry: [refined]
+  savory: [bland]
+  bland: [savory]
 
 # Defines bond adjustment values based on taste preference match level.
 # These values influence bond growth or decay depending on how well a monster's taste aligns with a given item.

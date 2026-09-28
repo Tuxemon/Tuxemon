@@ -35,7 +35,7 @@ class CheckEvolutionCondition(EventCondition):
 
     def test(self, session: Session) -> bool:
         target_name = self.character
-        target_character = session.get_npc(target_name)
+        target_character = session.client.get_npc(target_name)
         if not target_character:
             return False
 

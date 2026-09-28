@@ -43,7 +43,7 @@ class ClearKennelAction(EventAction):
     transfer: str | None = None
 
     def start(self, session: Session) -> None:
-        character = session.get_npc(self.npc_slug)
+        character = session.client.get_npc(self.npc_slug)
         if character is None:
             logger.error(f"{self.npc_slug} not found")
             self.stop()
@@ -61,8 +61,9 @@ class ClearKennelAction(EventAction):
                 if transfer is None:
                     character.monster_boxes.remove_box(kennel)
                 else:
-                    character.monster_boxes.merge_boxes(kennel, transfer)
-                    character.monster_boxes.remove_box(kennel)
+                    character.monster_boxes.merge_and_remove_boxes(
+                        kennel, transfer
+                    )
             else:
                 self.stop()
                 return

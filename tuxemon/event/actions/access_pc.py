@@ -58,7 +58,7 @@ class AccessPCAction(EventAction):
         self.session = session
         self.client = session.client
 
-        character = self.session.get_npc(self.character_slug)
+        character = self.session.client.get_npc(self.character_slug)
         if not character:
             self.stop()
             return

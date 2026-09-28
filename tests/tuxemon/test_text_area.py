@@ -1,6 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
 # Copyright (c) 2014-2026 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
-import pygame
 import pytest
 from pygame import SRCALPHA
 from pygame.color import Color
@@ -133,11 +132,11 @@ def test_next_raises_stopiteration_when_not_animated(text_area):
         next(text_area)
 
 
-def test_text_setter_same_value_does_not_restart_animation(text_area):
+def test_text_setter_same_value_restarts_animation(text_area):
     text_area.text = "abc"
     text_area.drawing_text = False
     text_area.text = "abc"
-    assert text_area.drawing_text is False
+    assert text_area.drawing_text is True
 
 
 def test_empty_string(stress_text_area):

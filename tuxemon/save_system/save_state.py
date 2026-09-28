@@ -64,6 +64,7 @@ class NPCState(BaseModel):
     )
     monster_box_metadata: Mapping[str, Any] = Field(default_factory=dict)
     item_box_metadata: Mapping[str, Any] = Field(default_factory=dict)
+    daycare: dict[str, Any] = Field(default_factory=dict)
     teleport_faint: Mapping[str, Any] = Field(default_factory=dict)
     tracker: Mapping[str, Any] = Field(default_factory=dict)
     step_tracker: Mapping[str, Any] = Field(default_factory=dict)

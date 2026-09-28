@@ -32,7 +32,7 @@ history:
   evolves_into:
   - bugnin
   - sumchon
-  - gladiatorbug
+  - dynastor
 - slug: bugnin
   stage: stage2
   evolves_from:
@@ -43,7 +43,7 @@ history:
   evolves_from:
   - katacoon
   evolves_into: []
-- slug: gladiatorbug
+- slug: dynastor
   stage: stage2
   evolves_from:
   - katacoon

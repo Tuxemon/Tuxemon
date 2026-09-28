@@ -10,8 +10,18 @@
   audio: {}
   template:
     sprite_name: catgirl_blonde
-    combat_sheet: catgirl
+    combat_sheet: little_pair
     slug: catgirl
+- slug: spyder_route5_patra
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: snugglepot
+    combat_sheet: snugglepot
+    slug: snugglepot
 - slug: spyder_route5_edith
   speech:
     profile:
@@ -80,8 +90,18 @@
   audio: {}
   template:
     sprite_name: florist_blue
-    combat_sheet: florist
+    combat_sheet: dynamic_dynasts
     slug: florist
+- slug: spyder_route5_marc
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: cooldude
+    combat_sheet: cooldude
+    slug: cooldude
 - slug: spyder_route5_lexia
   speech:
     profile:

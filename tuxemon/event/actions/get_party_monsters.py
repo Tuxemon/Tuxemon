@@ -30,7 +30,7 @@ class GetPartyMonsterAction(EventAction):
     def start(self, session: Session) -> None:
         player = session.player
         self.npc_slug = self.npc_slug or "player"
-        trainer = session.get_npc(self.npc_slug)
+        trainer = session.client.get_npc(self.npc_slug)
         if not trainer:
             raise ValueError(f"NPC '{self.npc_slug}' not found")
 

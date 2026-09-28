@@ -45,7 +45,7 @@ class OpenJournalAction(EventAction):
 
         if self.client.current_state.name == "JournalInfoState":
             logger.error(
-                f"The state 'JournalInfoState' is already active. No action taken."
+                "The state 'JournalInfoState' is already active. No action taken."
             )
             self.stop()
             return

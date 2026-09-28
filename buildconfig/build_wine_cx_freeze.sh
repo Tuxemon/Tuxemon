@@ -53,7 +53,6 @@ cp ../../CONTRIBUTING.md .
 cp ../../CONTRIBUTORS.md .
 cp ../../ATTRIBUTIONS.md .
 cp ../../README.md .
-cp ../../SPYDER_README.md .
 cd ../../
 
 # Create dist directory

@@ -1,13 +1,13 @@
 tech_id: 85
-accuracy: 0.8
+accuracy: 1
 effects:
+- type: damage
 - type: give
   parameters:
   - poison
   - enemy_monster
-- type: damage
 speed: normal
-potency: 0.8
+potency: 0.2
 power: 1.25
 range: reach
 recharge: 2

@@ -1,8 +1,13 @@
 tech_id: 251
 accuracy: 0.95
 effects:
-- type: damage
-speed: normal
+- type: cooldown_modifier
+  parameters:
+  - enemy_monster
+  - '2'
+  - ranged
+  - special
+speed: extremely_fast
 potency: 1
 power: 0
 range: special

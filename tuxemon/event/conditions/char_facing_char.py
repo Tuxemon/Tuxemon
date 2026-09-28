@@ -36,8 +36,8 @@ class CharFacingCharCondition(EventCondition):
         client = session.client
         npc_location = None
 
-        character1 = session.get_npc(self.character1)
-        character2 = session.get_npc(self.character2)
+        character1 = session.client.get_npc(self.character1)
+        character2 = session.client.get_npc(self.character2)
         if character2 is None or character1 is None:
             return False
 

@@ -286,6 +286,7 @@ are licensed under CC BY.
 adapted by ultidonki from ansimuz's GothicVania Town assets, originally released into the Public Domain.
 ultidonki's changes (brightening some of the colors, reducing some of the noisy textures to be more flat/use less colors, and changing the perspective) released under CC0 license, version 1.0 or higher.
 is licensed under [Public Domain](https://creativecommons.org/publicdomain/zero/1.0/)
+* ["Fishing Splash"](https://opengameart.org/content/splash-effect-32x32) by Jesse McCarthy under CC BY, adapted for 16px by Sanglorian.
 
 ## CORES
 
@@ -942,6 +943,8 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 
 * ["Map App"](https://wiki.tuxemon.org/File:Iridescent_item_5.png) modified by Sanglorian from original sprites by Ocean. [http://opengameart.org/content/oceans-icons CC BY 3.0]
 
+* ["Radio App"](https://wiki.tuxemon.org/index.php?title=File:Pixel_icons_by_oceansdream33.png) by Ocean. [http://opengameart.org/content/oceans-icons CC BY 3.0]
+
 * ["Spyder Pass"](https://wiki.tuxemon.org/File:Item5.png) adapted by Sanglorian from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
 * ["Bivouac"](https://wiki.tuxemon.org/File:Pixel_icons_by_oceansdream4.png) [http://opengameart.org/content/various-inventory-24-pixel-icon-set CC BY 3.0 on OGA, from OceansDream]
@@ -1044,9 +1047,13 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 
 * ["Die"](https://wiki.tuxemon.org/File:Die.png) Adapted by Sanglorian from the Superpowers Asset Packs.
 
+* ["Good Penny"](https://wiki.tuxemon.org/File:Coin_.png) Adapted by Sanglorian from the Superpowers Asset Packs.
+
 * ["Feather"](https://wiki.tuxemon.org/File:Feather_.png) Adapted by Sanglorian from the Superpowers Asset Packs.
 
 * ["Flute"](https://wiki.tuxemon.org/File:Flute_.png) Adapted by Sanglorian from the Superpowers Asset Packs.
+
+* ["Elixir of Life"](https://wiki.tuxemon.org/File:P_Blue02_-_24x24.png) Adapted by Sanglorian from Henrique Lazarini. 
 
 * ["Horseshoe"](https://wiki.tuxemon.org/File:Horseshoe.png) Adapted by Sanglorian from the Superpowers Asset Packs.
 
@@ -1730,7 +1737,7 @@ From the CC0 Superpowers Asset Packs.
 From the CC0 gems by Winternaut on Open Game Art.
 
 * ["Frost Type - Small"](https://wiki.tuxemon.org/File:Frost-12px.png)
-From CC BY 3.0 sprites [https://opengameart.org/content/rock-rush-tiles-sprites-hud-backgrounds on Open Game Art] by EvidentlyCube. 
+Adapted by Sanglorian from CC0 sprites [https://opengameart.org/content/rpg-ui-icons on Open Game Art] by OwlishMedia. 
 
 * ["Heroic Type - Small"](https://wiki.tuxemon.org/File:Heroic-12px.png)
 From CC BY 3.0 military icons [https://opengameart.org/content/140-military-icons-set-fixed on Open Game Art] by AngryMeteor.com.
@@ -1757,6 +1764,8 @@ From the CC0 Superpowers Asset Packs.
 From the CC0 Superpowers Asset Packs. 
 
 ### Technique Icons
+
+* Melee, Ranged, Reliable, Reach and Touch icons made by Sanglorian using [https://opengameart.org/content/boxy-bold-font-0 Boxy Bold font], CC0 on OGA.
 
 * ["icon_blinded.png"](https://wiki.tuxemon.org/File:Blind.png)
 [https://opengameart.org/content/rpg-ui-icons CC0 on OGA]
@@ -2072,6 +2081,8 @@ licensed under [SIL Open Font License, 1.1](http://scripts.sil.org/OFL)
 [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/)
 
 * ["Source Han Serif"](https://github.com/adobe-fonts/source-han-serif) by Adobe is licensed under [SIL Open Font License, 1.1](http://scripts.sil.org/OFL)
+
+* ["Arbata Compact"](https://lettercore.itch.io/arbata-compact) by Lettercore is licensed under CC BY 4.0.
 
 Music
 ------

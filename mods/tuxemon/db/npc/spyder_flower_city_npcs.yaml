@@ -138,3 +138,33 @@
     sprite_name: shopkeeper
     combat_sheet: adventurer
     slug: shopkeeper
+- slug: spyder_flower_rockitten
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: rockitten
+    combat_sheet: shopassistant
+    slug: shopassistant
+- slug: spyder_flower_conileaf
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: conileaf
+    combat_sheet: shopassistant
+    slug: shopassistant
+- slug: spyder_flower_fisher
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: fisher_fiery
+    combat_sheet: fisher_red
+    slug: fisher

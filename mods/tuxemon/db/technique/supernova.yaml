@@ -1,11 +1,11 @@
 tech_id: 81
 accuracy: 0.75
 effects:
+- type: damage
 - type: give
   parameters:
   - chargedup
   - enemy_monster
-- type: damage
 speed: extremely_slow
 potency: 1
 power: 3
@@ -32,7 +32,7 @@ use_failure: combat_miss
 use_success: null
 use_tech: combat_used_x
 visuals:
-  animation: fireball_114
+  animation: fire_big_dark_96
   flip_axes: x
   loop: 0
 sound:

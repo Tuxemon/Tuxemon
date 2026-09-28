@@ -1,11 +1,11 @@
 tech_id: 54
 accuracy: 0.8
 effects:
+- type: damage
 - type: give
   parameters:
   - recover
   - own_monster
-- type: damage
 speed: slow
 potency: 1
 power: 3

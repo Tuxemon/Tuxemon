@@ -88,16 +88,17 @@ class CreateNpcAction(EventAction):
         npc.dialogue = merge_dialogue(npc_details.speech.profile, None)
 
 
-lookup_cache: dict[str, NpcModel] = {}
-
-
 def load_party(slug: str) -> NpcModel:
-    if slug in lookup_cache:
-        return lookup_cache[slug]
-    else:
-        npc_details = NpcModel.lookup(slug, db)
-        lookup_cache[slug] = npc_details
-        return npc_details
+    NpcModel.load_cache(db)
+    cache = NpcModel.get_cache()
+
+    try:
+        return cache[slug]
+    except KeyError:
+        # fallback to direct lookup (should not happen if DB is consistent)
+        npc = NpcModel.lookup(slug, db)
+        cache[slug] = npc
+        return npc
 
 
 def load_party_monsters(

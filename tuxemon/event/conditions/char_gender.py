@@ -35,7 +35,7 @@ class CharGenderCondition(EventCondition):
         char_slug = self.character
         expected_gender = self.gender.strip().lower()
 
-        character = session.get_npc(char_slug)
+        character = session.client.get_npc(char_slug)
         if character is None:
             logger.error(f"{char_slug} not found")
             return False

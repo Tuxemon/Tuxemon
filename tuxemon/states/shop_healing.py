@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+from collections.abc import Callable
 from functools import partial
 from typing import TYPE_CHECKING, Any, ClassVar, Literal
 
@@ -13,10 +14,10 @@ from tuxemon.constants import paths
 from tuxemon.database.yaml_utils import load_yaml
 from tuxemon.locale.locale import T
 from tuxemon.menu.interface import MenuItem
-from tuxemon.menu.quantity import QuantityAndCostMenu
 from tuxemon.monster.monster import Monster
 from tuxemon.monster.renderer import MonsterRenderer
 from tuxemon.session import local_session
+from tuxemon.states.quantity import QuantityPickerState
 from tuxemon.states.shop_base import ShopMenuState
 
 if TYPE_CHECKING:
@@ -38,26 +39,26 @@ class HealingShopConfig(BaseModel):
     allow_fainted_monsters: bool = Field(default=True)
 
 
-class HealingCostMenu(QuantityAndCostMenu):
-    name: ClassVar[str] = "HealingCostMenu"
+class HealingCostPicker(QuantityPickerState):
+    name: ClassVar[str] = "HealingCostPicker"
 
     def __init__(
         self,
         client: BaseClient,
         healer_state: ShopHealingMenuState,
         monster: Monster,
-        *args: Any,
+        callback: Callable[[int], None],
         **kwargs: Any,
     ):
-        super().__init__(client, *args, **kwargs)
         self._healer_state = healer_state
         self._monster = monster
+        super().__init__(client=client, callback=callback, **kwargs)
 
-    def calculate_total(self, _: int) -> int:
+    def _compute_total(self) -> int:
         cost_per_hp = self._healer_state._get_healing_cost_per_hp(
             self._monster
         )
-        total = cost_per_hp * self.quantity
+        total = cost_per_hp * self.current_value
         if self._monster.current_hp == 0:
             total += self._healer_state.config.revive_cost
         return total
@@ -186,7 +187,7 @@ class ShopHealingMenuState(ShopMenuState[Monster]):
         monster = menu_monster.game_object
         params = self._get_selection_menu_params(menu_monster)
 
-        menu = HealingCostMenu(
+        menu = HealingCostPicker(
             client=self.client,
             healer_state=self,
             monster=monster,

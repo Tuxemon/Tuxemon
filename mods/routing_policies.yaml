@@ -32,9 +32,19 @@
 default:
   force_to_box: false     # If true, all monsters go directly to the box instead of the party.
   kennel_override: null   # Optional: override the default box name (KENNEL). Use null to disable.
+  locker_override: null
+  max_party_size: null
+  allow_party_addition: true
+  auto_release_if_box_full: false
+  auto_discard_if_box_full: false
+  overflow_kennel: null
+  overflow_locker: null
+  max_box_capacity: null
+  nickname_rules: {}
   kennel_name_rules:
     prefix: "_"
     suffix: ""
+  locker_name_rules: {}
 
 example_policy:
   # ── Routing Behavior ───────────────────────

@@ -1,6 +1,10 @@
 tech_id: 183
 accuracy: 1
 effects:
+- type: switch
+  parameters:
+  - own_monster
+  - cosmic
 - type: give
   parameters:
   - recover
@@ -15,10 +19,10 @@ sort: damage
 modifiers: []
 behaviors: {}
 target:
-  enemy_monster: true
+  enemy_monster: false
   enemy_team: false
   enemy_trainer: false
-  own_monster: false
+  own_monster: true
   own_team: false
   own_trainer: false
 category: condition_imposer
@@ -30,7 +34,7 @@ use_failure: combat_miss
 use_success: null
 use_tech: combat_used_x
 visuals:
-  animation: amethyst
+  animation: null
   flip_axes: ''
   loop: 0
 sound:

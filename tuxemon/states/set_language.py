@@ -8,10 +8,10 @@ from typing import TYPE_CHECKING, Any, ClassVar
 from pygame_menu.locals import ALIGN_CENTER, POSITION_EAST
 from pygame_menu.menu import Menu
 
-from tuxemon.animation import Animation, ScheduleType
 from tuxemon.locale.locale import T
 from tuxemon.menu.menu import PygameMenuState
 from tuxemon.menu.theme import get_theme
+from tuxemon.menu.transitions import PopInClamped
 from tuxemon.session import local_session
 
 if TYPE_CHECKING:
@@ -31,7 +31,11 @@ class SetLanguage(PygameMenuState):
     ) -> None:
         self.main_menu = main_menu
 
-        super().__init__(client=client, **kwargs)
+        super().__init__(
+            client=client,
+            transition=PopInClamped(),
+            **kwargs,
+        )
 
         theme = get_theme(self.client.context.scaling)
         theme.scrollarea_position = POSITION_EAST
@@ -66,16 +70,3 @@ class SetLanguage(PygameMenuState):
                     action=partial(self.change_language, language),
                     font_size=self.font_type.small,
                 )
-
-    def update_animation_size(self) -> None:
-        widgets_size = self.menu.get_size(widget=True)
-        self.menu.resize(
-            max(1, int(widgets_size[0] * self.animation_size)),
-            max(1, int(widgets_size[1] * self.animation_size)),
-        )
-
-    def animate_open(self) -> Animation:
-        self.animation_size = 0.0
-        ani = self.animate(self, animation_size=1.0, duration=0.2)
-        ani.schedule(self.update_animation_size, ScheduleType.ON_UPDATE)
-        return ani

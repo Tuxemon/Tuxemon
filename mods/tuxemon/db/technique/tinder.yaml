@@ -13,8 +13,7 @@ recharge: 1
 slug: tinder
 sort: damage
 modifiers: []
-behaviors:
-  bypasses_selection: true
+behaviors: {}
 target:
   enemy_monster: true
   enemy_team: false
@@ -32,7 +31,7 @@ use_failure: combat_miss
 use_success: null
 use_tech: combat_used_x
 visuals:
-  animation: null
+  animation: fire_charge
   flip_axes: ''
   loop: 0
 sound:

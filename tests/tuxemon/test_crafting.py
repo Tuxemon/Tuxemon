@@ -54,7 +54,7 @@ def mock_item_create():
     item_mock.slug = "potion"
     item_mock.quantity = 1
 
-    with patch("tuxemon.item.item.Item.create", return_value=item_mock) as p:
+    with patch("tuxemon.item.item.Item.create", return_value=item_mock):
         yield item_mock
 
 

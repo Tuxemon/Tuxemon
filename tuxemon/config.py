@@ -64,6 +64,7 @@ class GameConfig(BaseModel):
     font_file: str = "PressStart2P.ttf"
     language_font: str = "PressStart2P.ttf"
     thin_font_file: str = "Pizel.ttf"
+    minimal_font_file: str = "Minimal3x5.ttf"
 
 
 class GameplayConfig(BaseModel):
@@ -472,6 +473,9 @@ class LocaleConfig:
     def thin_font_file(self) -> str:
         return self._model.thin_font_file
 
+    @property
+    def minimal_font_file(self) -> str:
+        return self._model.minimal_font_file
 
 class InputConfig:
     """Reactive input configuration wrapper with cached keymap."""

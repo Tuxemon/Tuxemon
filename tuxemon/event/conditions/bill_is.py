@@ -43,7 +43,7 @@ class BillIsCondition(EventCondition):
 
     def test(self, session: Session) -> bool:
         player = session.player
-        character = session.get_npc(self.character)
+        character = session.client.get_npc(self.character)
         if character is None:
             logger.error(f"Character '{self.character}' not found")
             return False

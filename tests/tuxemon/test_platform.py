@@ -4,7 +4,7 @@ import sys
 import types
 from pathlib import Path
 
-from tuxemon.platform import ASSET_ROOT, DummyMixer, Platform, PlatformError
+from tuxemon.platform import ASSET_ROOT, DummyMixer, Platform
 
 
 def fake_module(name, **attrs):

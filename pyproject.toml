@@ -36,6 +36,19 @@ source = "https://github.com/Tuxemon/Tuxemon"
 [project.gui-scripts]
 tuxemon = "tuxemon.__main__:main"
 
+[project.optional-dependencies]
+test = [
+    "pytest",
+    "pytest-mock",
+    "pytest-cov",
+]
+dev = [
+    "tuxemon[test]",
+    "mypy",
+    "ruff",
+    "tox",
+]
+
 [tool.setuptools]
 include-package-data = true
 
@@ -106,6 +119,7 @@ select = [
     "W",    # pycodestyle warnings
     "UP",   # pyupgrade
     "I",    # import sorting
+    "F",    # enables F401 and all Pyflakes rules
 ]
 
 [tool.ruff.lint.isort]
@@ -119,7 +133,7 @@ testpaths = ["tests"]
 python_files = "test_*.py"
 python_classes = "Test*"
 python_functions = "test_*"
-addopts = "-v --tb=short"
+addopts = "-v --tb=short --cov=tuxemon --cov-report=term-missing"
 
 markers = [
     "unit: Unit tests (no external dependencies)",

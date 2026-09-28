@@ -33,8 +33,8 @@ class CharFaceCharAction(EventAction):
     persistent: bool = True
 
     def start(self, session: Session) -> None:
-        self.npc = session.get_npc(self.character)
-        self.target_char = session.get_npc(self.target)
+        self.npc = session.client.get_npc(self.character)
+        self.target_char = session.client.get_npc(self.target)
 
     def update(self, session: Session, dt: float) -> None:
         if not self.npc or not self.target_char:

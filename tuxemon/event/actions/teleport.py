@@ -43,7 +43,7 @@ class TeleportAction(EventAction):
     def start(self, session: Session) -> None:
         teleport_queue = session.client.teleporter.teleport_queue
 
-        char = session.get_npc(self.character)
+        char = session.client.get_npc(self.character)
         if char is None:
             logger.error(
                 f"TeleportAction: Character '{self.character}' not found."

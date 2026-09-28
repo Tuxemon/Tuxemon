@@ -42,7 +42,7 @@ class HasItemCondition(EventCondition):
         def op(itm_qty: int, op: str, qty: int) -> bool:
             return compare(op, itm_qty, qty)
 
-        npc = session.get_npc(self.character)
+        npc = session.client.get_npc(self.character)
         if npc is None:
             logger.error(f"{self.character} doesn't exist.")
             return False

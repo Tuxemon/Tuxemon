@@ -11,7 +11,7 @@ from tuxemon.combat.combat_context import (
     CombatContext,
     CombatType,
 )
-from tuxemon.combat.utils import check_battle_legal
+from tuxemon.combat.utils import blackout_if_unfit, check_battle_legal
 from tuxemon.event.eventaction import EventAction
 from tuxemon.session import Session
 
@@ -43,8 +43,8 @@ class StartBattleAction(EventAction):
     def start(self, session: Session) -> None:
         self.character2 = self.character2 or "player"
 
-        character1 = session.get_npc(self.character1)
-        character2 = session.get_npc(self.character2)
+        character1 = session.client.get_npc(self.character1)
+        character2 = session.client.get_npc(self.character2)
 
         if not character1 or not character2:
             _char = self.character1 if not character1 else self.character2
@@ -56,6 +56,7 @@ class StartBattleAction(EventAction):
             check_battle_legal(character1) and check_battle_legal(character2)
         ):
             logger.warning("Battle is not legal, won't start")
+            blackout_if_unfit(session, character1, character2)
             self.stop()
             return
 
@@ -86,7 +87,7 @@ class StartBattleAction(EventAction):
         sound = env.get_battle_music().battle
         if sound.music:
             filename = sound.music if not self.music else self.music
-            session.client.current_music.play(filename, sound.volume)
+            session.client.current_music.play(filename)
 
     def update(self, session: Session, dt: float) -> None:
         if "CombatState" not in session.client.active_state_names:

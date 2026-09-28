@@ -12,9 +12,9 @@ from tuxemon.technique.technique import Technique
 
 @pytest.fixture
 def monster():
+    from tuxemon.monster.stats import BasicStats
     m = MagicMock(spec=Monster)
-    m.speed = 10.0
-    m.dodge = 5.0
+    m.get_combat_stats.return_value = BasicStats(speed=10, dodge=5)
     return m
 
 

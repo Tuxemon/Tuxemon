@@ -3,7 +3,7 @@ Tuxemon
 
 Tuxemon is a free, open source monster-fighting RPG. It's in constant
 development and improving all the time! Contributors of all skill and
-level are welcome to join.
+level are welcome to join. 
 
 ![Python 3.10](https://img.shields.io/badge/python-3.10-blue.svg)
 ![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)
@@ -14,7 +14,7 @@ level are welcome to join.
 [![Reddit](https://img.shields.io/reddit/subreddit-subscribers/Tuxemon?style=social)](https://www.reddit.com/r/tuxemon)
 [![YouTube](https://img.shields.io/youtube/channel/subscribers/UC6BJ6H7dB2Dpb8wzcYhDU3w?style=social)](https://www.youtube.com/channel/UC6BJ6H7dB2Dpb8wzcYhDU3w)
 
-[![Build Status](https://travis-ci.org/Tuxemon/Tuxemon.svg?branch=development)](https://travis-ci.org/Tuxemon/Tuxemon)
+[![Test](https://github.com/Tuxemon/Tuxemon/actions/workflows/test.yml/badge.svg?branch=development)](https://github.com/Tuxemon/Tuxemon/actions/workflows/test.yml)
 
 ![screenshot](https://www.tuxemon.org/images/featurette-01.png)
 
@@ -33,172 +33,37 @@ Features
 - Python code can be modified without a compiler
 - CLI interface for live game debugging
 - Runs on Windows, Linux, OS X, and some support on Android
-- 183 monsters with sprites
-- 98 techniques to use in battle
-- 221 NPC sprites
-- 18 items
+- 393 monsters and 18 threats with sprites
+- 274 techniques to use in battle
+- 208 NPC sprites
+- 223 items
+
+
+Documentation
+--------
+
+- [Save System Architecture](docs/save_system.md)
 
 
 Installation
 ------------
 
-If you want to try the game, it's recommended to download and try the
-development branch first. The master branch should be stable, but is
-often out of date.
+Complete Installation documentation:
+
+- [docs/installation.md](docs/installation.md)
 
 
-### Windows Source
+Mods
+------------
 
-Requires Python 3.10+ and git.
+Complete Mods documentation:
 
-Install the latest version of Python 3 from
-[here](https://www.python.org/downloads/)
-and the latest version of Git from [here](https://git-scm.com/downloads)
-
-Run:
-```shell
-git clone https://github.com/Tuxemon/Tuxemon.git
-cd Tuxemon
-py -3 -m pip install -U -r requirements.txt
-py -3 run_tuxemon.py
-```
-
-### Windows Binary
-
-NOTICE: Windows binaries currently do not work (see https://github.com/Tuxemon/Tuxemon/issues/1229)
-
-In the meantime please use the windows source instructions above to run Tuxemon directly from source.
+- [docs/mods.md](docs/mods.md)
 
 
-### Flatpak
+**Fedora Linux**
 
-Check the [web page](https://flathub.org/apps/details/org.tuxemon.Tuxemon) for a complete explanation.
-
-Before installing Tuxemon, make sure you have all the Flatpak [requirements](https://www.flatpak.org/setup/) installed.
-
-*Command line install:*
-```shell
-flatpak install flathub org.tuxemon.Tuxemon
-flatpak run org.tuxemon.Tuxemon
-```
-*Using Discover (Graphical Software Manager)*
-
-1. Install Discover using your system's package manager. 
-2. Once installed, open Discover and search for 'Tuxemon', select the Tuxemon entry and press install.
-
-*Flatpak Nightly Builds*
-
-1. Download Tuxemon.flatpak file from the [Release Latest Build (Development) Section](https://github.com/Tuxemon/Tuxemon/releases/tag/latest).
-2. Using your terminal, navigate to the directory where the Tuxemon.flatpak file was downloaded to.
-3. Run the following commands:
-
-```shell
-
-flatpak install Tuxemon.flatpak
-
-flatpak run org.tuxemon.Tuxemon
-
-```
-Depending on your desktop environment, you may also be able to launch via your start menu.
-
-
-### Debian/Ubuntu with virtual environment
-
-This is the recommended way to run because it will not modify the
-system.
-```shell
-sudo apt install git python3-venv
-git clone https://github.com/Tuxemon/Tuxemon.git
-python3 -m venv venv
-source venv/bin/activate
-cd Tuxemon
-python3 -m pip install -U -r requirements.txt
-python3 run_tuxemon.py
-```
-
-### Debian/Ubuntu
-
-*Not recommended* because it will change system-installed packages
-```shell
-sudo apt install python3 python3-pygame python3-pip python3-imaging git
-git clone https://github.com/Tuxemon/Tuxemon.git
-cd Tuxemon
-sudo pip3 install -U -r requirements.txt
-python3 run_tuxemon.py
-```
-
-*Debian/Ubuntu optional rumble support*
-
-```shell
-sudo apt install build-essential
-git clone https://github.com/zear/libShake.git
-cd libShake/
-make BACKEND=LINUX; sudo make install BACKEND=LINUX
-```
-
-### Fedora Linux
-
-```shell
-sudo dnf install SDL2*-devel freetype-devel libjpeg-devel portmidi-devel python3-devel
-git clone https://github.com/Tuxemon/Tuxemon.git
-python3 -m venv venv
-source venv/bin/activate
-cd Tuxemon
-python3 -m pip install -U -r requirements.txt
-python3 run_tuxemon.py
-```
-
-### Arch Linux
-
-An [AUR package](https://aur.archlinux.org/packages/tuxemon-git/) is available however manual installation is recommended.
-
-```shell
-sudo pacman -S python python-pip python-pillow python-pygame python-pydantic git
-git clone https://github.com/Tuxemon/Tuxemon.git
-cd Tuxemon
-python -m pip install -U -r requirements.txt
-python run_tuxemon.py
-```
-
-
-### Smartphones
-
-Android builds are highly experimental. You will have to build Tuxemon yourself
-using the script located in the buildconfig folder.
-After this you will need to manually install the mods folder via the following instructions.
-Connect your device to your computer and make a folder called
-"Tuxemon" in "Internal Storage", then copy the mods folder.  Tuxemon
-will also need file system permissions, which you can set in your phone's
-settings.
-
-Caveat Emptor
-
-### Mac OS X (Yosemite)
-
-```shell
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-brew tap Homebrew/python
-brew update
-brew install python
-brew install sdl sdl_image sdl_ttf portmidi git
-brew install sdl_mixer --with-libvorbis
-sudo pip install git+https://github.com/pygame/pygame.git
-sudo pip install -U -r requirements.txt
-git clone https://github.com/Tuxemon/Tuxemon.git
-ulimit -n 10000; python run_tuxemon.py
-```
-
-### macOS Sequoia with [uv](https://github.com/astral-sh/uv)
-
-```shell
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-brew update
-brew install uv python git sdl sdl2_image sdl2_ttf sdl2_mixer portmidi libvorbis
-git clone https://github.com/Tuxemon/Tuxemon.git
-cd Tuxemon
-uv sync
-uv run python run_tuxemon.py
-```
+See [docs/installation.md#fedora-linux](docs/installation.md#fedora-linux).
 
 **Fedora Linux**
 
@@ -240,82 +105,9 @@ Use *Tiled* map editor: https://www.mapeditor.org/
 CLI Interface
 --------------
 
-The CLI interface is a very convenient way to debug and develop your
-maps. After you enable the CLI interface, you can use the terminal to
-enter commands.  You could, for example, give yourself potions to
-battle, or add a monster directly to your party.  It's also possible to
-change game variables directly.  In fact, any action or condition that
-is usable in the map can be used with the CLI interface.
+Complete CLI documentation:
 
-### Setting up
-
-You can enable cli by changing `cli_enabled` to `True` in the
-`tuxemon.yaml` file:
-
-```
-[game]
-cli_enabled = True
-```
-
-### Commands
-
-- `help [command_name]` — Lists all commands, or specific information on a command.
-- `action <action_name> [params]` — Execute EventAction.  Uses same syntax as the map script.
-- `test <condition_name> [params]` — Test EventCondition.  Uses same syntax as the map script.
-- `random_encounter` — Sets you in a wild tuxemon battle, similar to walking in tall grass.
-- `trainer_battle <npc_slug>` — Sets you in a trainer battle with specified npc.
-- `quit` — Quits the game.
-- `whereami` — Prints out the map filename.
-- `shell` — Starts the Python shell, that you can use to modify the game directly. For advanced users.
-
-### CLI Examples
-
-Get Commands
-
-```
-> help
-Available Options
-=================
-action  help  quit  random_encounter  shell  test  trainer_battle  whereami
-
-Enter 'help [command]' for more info.
-```
-
-Get help on an action
-
-```
-> help action teleport
-
-    Teleport the player to a particular map and tile coordinates.
-
-    Script usage:
-        .. code-block::
-
-            teleport <map_name>,<x>,<y>
-
-    Script parameters:
-        map_name: Name of the map to teleport to.
-        x: X coordinate of the map to teleport to.
-        y: Y coordinate of the map to teleport to.
-```
-
-Test and give an item
-```
-> test has_item player,potion
-False
-> action add_item potion,1
-> test has_item player,potion
-True
-```
-
-**NOTE!**  The CLI interface is new and the error messages are not very
-helpful. In general, you should be using the commands when the game is
-playing, and you are on the world map.
-
-
-Check out the
-[scripting reference](https://tuxemon.readthedocs.io/en/latest/handcrafted/scripting.html) 
-for all the available actions and conditions for use with `action` and `test`!
+- [docs/cli.md](docs/cli.md)
 
 
 Building

@@ -14,8 +14,6 @@ from tuxemon.session import Session
 
 logger = logging.getLogger(__name__)
 
-lookup_cache: dict[str, MonsterModel] = {}
-
 
 @final
 @dataclass
@@ -51,16 +49,16 @@ class RandomMonsterAction(EventAction):
     money: float | None = None
 
     def start(self, session: Session) -> None:
-        if not lookup_cache:
-            _lookup_monsters()
+        MonsterModel.load_cache(db)
+        cache = MonsterModel.get_cache()
 
         filters = [
             monster.slug
-            for monster in lookup_cache.values()
+            for monster in cache.values()
             if monster.txmn_id > 0
             and monster.randomly
             and not monster.can_evolve_at_level(self.monster_level)
-            and not monster.is_underleveled_for_form(self.monster_level)
+            and not monster.is_underleveled_for_form(self.monster_level, db)
         ]
 
         if not filters:
@@ -81,12 +79,3 @@ class RandomMonsterAction(EventAction):
             ],
             True,
         )
-
-
-def _lookup_monsters() -> None:
-    global lookup_cache
-    lookup_cache = {
-        mon_name: result
-        for mon_name in db.database["monster"]
-        if (result := MonsterModel.lookup(mon_name, db)).txmn_id > 0
-    }

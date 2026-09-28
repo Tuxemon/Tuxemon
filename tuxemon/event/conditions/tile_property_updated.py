@@ -33,6 +33,6 @@ class TilePropertyUpdatedCondition(EventCondition):
     moverate: float
 
     def test(self, session: Session) -> bool:
-        return session.client.collision_manager.all_tiles_modified(
+        return session.client.terrain_manager.all_tiles_modified(
             self.label, self.moverate
         )

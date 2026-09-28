@@ -18,8 +18,7 @@ from tuxemon.db import (
     StatsComparison,
     StatType,
 )
-from tuxemon.entity.npc import PartyHandler
-from tuxemon.entity.player import Player
+from tuxemon.entity.npc import NPC, PartyHandler
 from tuxemon.game_variables import GameVariablesManager
 from tuxemon.monster.evolution import Evolution
 from tuxemon.monster.monster import Monster
@@ -85,8 +84,8 @@ def evolution_context(monkeypatch):
         self.party._monsters = [member1, member2]
         self.tuxepedia = MagicMock()
 
-    with patch.object(Player, "__init__", mock_player_init):
-        local_session.set_player(Player())
+    with patch.object(NPC, "__init__", mock_player_init):
+        local_session.set_player(NPC())
         player = local_session.player
         mon.set_owner(player)
 
@@ -109,7 +108,6 @@ def test_evolve_monster_success(evolution_context):
     player.party.replace_monster = MagicMock(return_value=True)
     player.tuxepedia.register_caught = MagicMock()
     evo.evolve_monster(new_mon)
-    new_mon.transfer_properties_from.assert_called_with(mon)
     new_mon.moves.learn_by_method.assert_called_with(
         new_mon, "SpecialBeam", LearningMethod.EVOLUTION
     )

@@ -3,7 +3,6 @@
 from pathlib import Path
 from unittest.mock import patch
 
-import pygame
 import pytest
 from pygame.font import Font
 from pygame.rect import Rect

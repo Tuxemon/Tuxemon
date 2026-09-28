@@ -14,19 +14,19 @@ from tuxemon.monster.monster import Monster
 @pytest.fixture
 def elements():
     fire = MagicMock(spec=Element)
-    fire.name = "fire"
+    fire.slug = "fire"
     water = MagicMock(spec=Element)
-    water.name = "water"
+    water.slug = "water"
     grass = MagicMock(spec=Element)
-    grass.name = "grass"
-    aether = MagicMock(spec=Element)
-    aether.name = "aether"
-    return fire, water, grass, aether
+    grass.slug = "grass"
+    normal = MagicMock(spec=Element)
+    normal.slug = "normal"
+    return fire, water, grass, normal
 
 
 @pytest.fixture
 def monster(elements):
-    fire, water, grass, aether = elements
+    fire, water, grass, normal = elements
     m = MagicMock(spec=Monster)
     m.types = MagicMock(spec=ElementTypesHandler)
     m.types.current = []

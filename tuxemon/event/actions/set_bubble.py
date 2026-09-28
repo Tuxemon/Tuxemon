@@ -39,7 +39,7 @@ class SetBubbleAction(EventAction):
 
     def start(self, session: Session) -> None:
         client = session.client
-        npc = session.get_npc(self.npc_slug)
+        npc = session.client.get_npc(self.npc_slug)
 
         if npc is None:
             raise ValueError(f"NPC '{self.npc_slug}' not found.")

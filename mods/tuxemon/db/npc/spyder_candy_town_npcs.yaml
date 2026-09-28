@@ -168,3 +168,14 @@
     sprite_name: monk_green
     combat_sheet: monk
     slug: monk
+- slug: spyder_candy_tmleafbarrage
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: box
+    combat_sheet: noclass
+    slug: noclass
+    is_static_prop: true

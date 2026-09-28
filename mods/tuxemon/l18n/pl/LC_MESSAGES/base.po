@@ -2443,11 +2443,6 @@ msgstr "Zjada i magazynuje truciznę stworzeń morskich, którymi się żywi."
 msgid "web"
 msgstr "Sieć"
 
-msgid "cotton_breeder7b"
-msgstr ""
-"Dobry pomysł, nowa rodzina powinna być trzymana razem na tym ważnym etapie rozwoju dziecka.\n"
-"Wracajcie teraz, słyszeliście?"
-
 msgid "nudiflot_female_description"
 msgstr "Zjada i magazynuje truciznę stworzeń morskich, którymi się żywi."
 

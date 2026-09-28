@@ -52,3 +52,9 @@
   slug: grass_red
   frame_x: 16
   frame_y: 16
+  
+- file: tileset
+  slug: splash_small
+  frame_x: 16
+  frame_y: 16
+  duration: 0.15

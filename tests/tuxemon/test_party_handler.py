@@ -48,6 +48,9 @@ class FakeBoxes:
         self.received.append((monster, kennel))
         return True
 
+    def remove_from_box(self, box_type, box_id, obj):
+        self.received = [(m, k) for m, k in self.received if m is not obj]
+
 
 class FakeNPC:
     pass

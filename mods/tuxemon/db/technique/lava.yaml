@@ -1,11 +1,11 @@
 tech_id: 134
 accuracy: 0.8
 effects:
+- type: damage
 - type: give
   parameters:
   - burn
   - own_team:enemy_team
-- type: damage
 speed: very_slow
 potency: 1
 power: 2.9
@@ -16,7 +16,7 @@ sort: damage
 modifiers: []
 behaviors: {}
 target:
-  enemy_monster: true
+  enemy_monster: false
   enemy_team: true
   enemy_trainer: false
   own_monster: false

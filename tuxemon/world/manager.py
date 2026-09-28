@@ -10,6 +10,8 @@ from typing import TYPE_CHECKING, Any
 
 from tuxemon.item.filter import ItemFilter
 from tuxemon.locale.locale import T
+from tuxemon.save_system.save_slots import save_index_to_ui
+from tuxemon.session import local_session
 from tuxemon.world.menu_flags import MenuFlags
 
 if TYPE_CHECKING:
@@ -238,10 +240,18 @@ class WorldMenuManager:
             )
 
         if self.menu_flags.is_enabled("menu_save"):
-            current_menu.append(self._menu_item("menu_save", "SaveMenuState"))
+            slot = local_session.current_slot
+            idx = save_index_to_ui(slot) if slot else 0
+            current_menu.append(
+                self._menu_item("menu_save", "SaveMenuState", selected_index=idx)
+            )
 
         if self.menu_flags.is_enabled("menu_load"):
-            current_menu.append(self._menu_item("menu_load", "LoadMenuState"))
+            slot = local_session.current_slot
+            idx = save_index_to_ui(slot) if slot else 0
+            current_menu.append(
+                self._menu_item("menu_load", "LoadMenuState", selected_index=idx)
+            )
 
         current_menu.append(self._menu_item("menu_options", "ControlState"))
 

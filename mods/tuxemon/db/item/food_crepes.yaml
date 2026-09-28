@@ -1,8 +1,8 @@
 effects:
 - type: food_preference
   parameters:
-  - taste_refined
-  - taste_flakey
+  - refined
+  - flakey
 slug: crepes
 sort: utility
 sprite: gfx/items/box.png

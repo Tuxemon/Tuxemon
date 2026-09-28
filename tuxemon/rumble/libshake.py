@@ -2,7 +2,7 @@
 # Copyright (c) 2014-2026 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 import logging
 from abc import ABC, abstractmethod
-from ctypes import *
+from ctypes import Structure, Union, c_int, cdll, pointer
 from threading import Lock
 from typing import Any
 

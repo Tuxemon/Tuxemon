@@ -6,6 +6,8 @@ effects:
   - sniping
   - own_monster
 - type: healing
+  parameters:
+  - own_monster
 speed: normal
 potency: 0.9
 power: 0.0

@@ -44,8 +44,8 @@ class StartDoubleBattleAction(EventAction):
     def start(self, session: Session) -> None:
         self.character2 = self.character2 or "player"
 
-        character1 = session.get_npc(self.character1)
-        character2 = session.get_npc(self.character2)
+        character1 = session.client.get_npc(self.character1)
+        character2 = session.client.get_npc(self.character2)
 
         if not character1 or not character2:
             _char = self.character1 if not character1 else self.character2
@@ -95,7 +95,7 @@ class StartDoubleBattleAction(EventAction):
         sound = env.get_battle_music().battle
         if sound.music:
             filename = sound.music if not self.music else self.music
-            session.client.current_music.play(filename, sound.volume)
+            session.client.current_music.play(filename)
 
     def update(self, session: Session, dt: float) -> None:
         if "CombatState" not in session.client.active_state_names:

@@ -1,8 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0
 # Copyright (c) 2014-2026 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
-import random
 
-import pygame
 import pytest
 from pygame.surface import Surface
 
@@ -141,7 +139,7 @@ def test_nineslice_clipping_no_crash():
     img = Surface((30, 30))
     layout = NineSliceLayout(img)
     # draw into a non-multiple-of-tile-size rect
-    surf = Surface((37, 37))
+    Surface((37, 37))
     # Should not crash
     for tile in layout.tiles.values():
         assert tile is not None

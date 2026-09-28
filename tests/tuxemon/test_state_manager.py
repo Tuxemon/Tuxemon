@@ -384,7 +384,7 @@ def test_push_pop_parametrized(state_manager, register_state, first, second):
 
 
 def test_active_states_order(state_manager, register_state):
-    states = perform_ops(
+    perform_ops(
         state_manager,
         register_state,
         ["push:a", "push:b", "push:c", "update"],
@@ -476,9 +476,9 @@ def test_peek_next_queued_state(state_manager, register_state):
 
 
 def test_remove_state_by_name_middle(state_manager, register_state):
-    a = register_state("a")
+    register_state("a")
     b = register_state("b")
-    c = register_state("c")
+    register_state("c")
 
     state_manager.push_state("a")
     state_manager.push_state("b")
@@ -517,7 +517,7 @@ def test_resume_only_once(state_manager, register_state):
 
 
 def test_resume_after_replace(state_manager, register_state):
-    a = register_state("a")
+    register_state("a")
     b = register_state("b")
 
     state_manager.push_state("a")

@@ -33,8 +33,11 @@ events:
     type: event
   Resting in Bed:
     actions:
+    - char_stop player
+    - lock_controls
     - screen_transition 1
     - wait 0.5
+    - unlock_controls
     - translated_dialog spyder_papertown_restinbed
     - set_monster_health
     - set_monster_status

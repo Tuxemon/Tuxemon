@@ -1,13 +1,8 @@
 conditions:
 - type: base
   parameters:
-  - types
+  - tags
   - water
-  operator: is
-- type: base
-  parameters:
-  - shape
-  - piscine:polliwog:leviathan
   operator: is
 - type: has_tech
   parameters:

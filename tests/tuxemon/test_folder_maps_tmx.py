@@ -9,7 +9,7 @@ from typing import Any
 import pytest
 
 from tuxemon.constants.asset_loader import fetch_asset
-from tuxemon.database.runtime import db  # initializes asset loader
+from tuxemon.database.runtime import db  # noqa: F401  # side‑effect import
 from tuxemon.map.manager import MAP_TYPES
 from tuxemon.platform.const.sizes import REGION_KEYS
 from tuxemon.script.parser import parse_action_string
@@ -111,7 +111,7 @@ def test_object_id_duplicate(loaded_data):
             object_id = obj.attrib.get("id")
             if object_id and _is_valid_integer(object_id):
                 if object_id in seen:
-                    pytest.fail(f"ID '{object_id}' is a duplicate")
+                    pytest.fail(f"ID '{object_id}' is a duplicate in {path}")
                 seen.add(object_id)
 
 

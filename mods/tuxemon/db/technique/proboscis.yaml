@@ -1,13 +1,10 @@
 tech_id: 47
-accuracy: 0.8
+accuracy: 1.0
 effects:
 - type: give
   parameters:
   - lifeleech
   - enemy_monster
-- type: splash
-  parameters:
-  - '2'
 speed: normal
 potency: 0.5
 power: 1

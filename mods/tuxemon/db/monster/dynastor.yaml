@@ -1,4 +1,4 @@
-slug: gladiatorbug
+slug: dynastor
 species: bustuarius
 moveset:
 - level_learned: 1
@@ -28,7 +28,7 @@ moveset:
   technique: magnetic_body
 evolutions: []
 history:
-- slug: gladiatorbug
+- slug: dynastor
   stage: stage2
   evolves_from:
   - katacoon
@@ -45,7 +45,7 @@ history:
   evolves_into:
   - bugnin
   - sumchon
-  - gladiatorbug
+  - dynastor
 terrains:
 - urban
 - woodland

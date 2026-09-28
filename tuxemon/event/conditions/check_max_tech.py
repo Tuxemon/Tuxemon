@@ -45,7 +45,7 @@ class CheckMaxTechCondition(EventCondition):
     number: int | None = None
 
     def test(self, session: Session) -> bool:
-        target_character = session.get_npc(self.character)
+        target_character = session.client.get_npc(self.character)
         if target_character is None:
             logger.error(f"Character '{self.character}' not found.")
             return False

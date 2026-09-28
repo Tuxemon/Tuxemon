@@ -175,10 +175,14 @@ def test_sort_by_speed(queue):
     fast.speed = 20
     fast.dodge = 0
     fast.is_fainted = False
+    fast.get_combat_stats.return_value.speed = 20
+    fast.get_combat_stats.return_value.dodge = 0
     slow = MagicMock(spec=Monster)
     slow.speed = 5
     slow.dodge = 0
     slow.is_fainted = False
+    slow.get_combat_stats.return_value.speed = 5
+    slow.get_combat_stats.return_value.dodge = 0
     tech = MagicMock(spec=Technique)
     tech.sort = "damage"
     tech.priority = 0
@@ -188,8 +192,8 @@ def test_sort_by_speed(queue):
     queue.enqueue(a_slow, 1)
     queue.enqueue(a_fast, 1)
     queue.sort()
-    assert queue.queue[0] == a_fast
-    assert queue.queue[1] == a_slow
+    assert queue.queue[-1] == a_fast
+    assert queue.queue[0] == a_slow
 
 
 def test_meta_ignores_speed(queue):
@@ -209,10 +213,14 @@ def test_pending_moves_then_sorts(queue, monster, monster2, technique):
     slow.speed = 1
     slow.dodge = 0
     slow.is_fainted = False
+    slow.get_combat_stats.return_value.speed = 1
+    slow.get_combat_stats.return_value.dodge = 0
     fast = MagicMock(spec=Monster)
     fast.speed = 20
     fast.dodge = 0
     fast.is_fainted = False
+    fast.get_combat_stats.return_value.speed = 20
+    fast.get_combat_stats.return_value.dodge = 0
     technique.sort = "damage"
     technique.speed = 0
     a_slow = EnqueuedAction(slow, technique, fast)
@@ -221,4 +229,4 @@ def test_pending_moves_then_sorts(queue, monster, monster2, technique):
     queue.enqueue(a_fast, 2)
     queue.from_pending_to_action(2)
     queue.sort()
-    assert queue.queue[0] == a_fast
+    assert queue.queue[-1] == a_fast

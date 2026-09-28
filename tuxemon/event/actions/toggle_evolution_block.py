@@ -41,7 +41,7 @@ class ToggleEvolutionBlockAction(EventAction):
 
     def start(self, session: Session) -> None:
         self.session = session
-        character = session.get_npc(self.npc_slug)
+        character = session.client.get_npc(self.npc_slug)
 
         if character is None:
             logger.error(f"Character '{self.npc_slug}' not found.")

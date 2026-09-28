@@ -36,7 +36,7 @@ class ModifyFactionReputationAction(EventAction):
     amount: int
 
     def start(self, session: Session) -> None:
-        char = session.get_npc(self.character)
+        char = session.client.get_npc(self.character)
         if not char:
             logger.error(f"[Reputation] NPC '{self.character}' not found.")
             self.stop()

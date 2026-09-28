@@ -130,7 +130,7 @@ class AIConfigLoader:
             }
 
             if "default" not in rules:
-                raise ValueError(f"'default' is missing")
+                raise ValueError("'default' is missing")
 
             cls._ai_opponent = AIOpponent(rules=rules)
         return cls._ai_opponent

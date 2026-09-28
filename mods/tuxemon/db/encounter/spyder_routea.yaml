@@ -59,4 +59,14 @@ monsters:
   variables:
     - key: daytime
       value: "false"
+- encounter_rate: 1
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 14
+  - 18
+  monster: wolffsky
+  variables:
+    - key: daytime
+      value: "false"
 slug: spyder_routea

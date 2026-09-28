@@ -6,7 +6,6 @@ import pytest
 
 from tuxemon.db import PlagueType
 from tuxemon.monster.plague import (
-    CureData,
     InoculationResult,
     MonsterPlagueHandler,
     PlagueData,

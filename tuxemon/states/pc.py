@@ -9,10 +9,10 @@ from typing import TYPE_CHECKING, Any, ClassVar
 
 from pygame_menu.menu import Menu
 
-from tuxemon.animation import Animation, ScheduleType
 from tuxemon.computer import PCMenuBuilder
 from tuxemon.locale.locale import T
 from tuxemon.menu.menu import PygameMenuState
+from tuxemon.menu.transitions import PopInClamped
 from tuxemon.platform.const.sizes import KENNEL, LOCKER
 
 if TYPE_CHECKING:
@@ -50,7 +50,9 @@ class PCState(PygameMenuState):
         **kwargs: Any,
     ) -> None:
         self.tag_list = tag_list
-        super().__init__(client=client, **kwargs)
+
+        super().__init__(client=client, transition=PopInClamped(), **kwargs)
+
         self.escape_key_exits = False
 
         char = character
@@ -70,17 +72,3 @@ class PCState(PygameMenuState):
 
         menu_items = self.menu_builder.build_menu_items()
         add_menu_items(self.menu, menu_items)
-
-    def update_animation_size(self) -> None:
-        widgets_size = self.menu.get_size(widget=True)
-        self.menu.resize(
-            max(1, int(widgets_size[0] * self.animation_size)),
-            max(1, int(widgets_size[1] * self.animation_size)),
-        )
-
-    def animate_open(self) -> Animation:
-        """Animate the menu popping in."""
-        self.animation_size = 0.0
-        ani = self.animate(self, animation_size=1.0, duration=0.2)
-        ani.schedule(self.update_animation_size, ScheduleType.ON_UPDATE)
-        return ani

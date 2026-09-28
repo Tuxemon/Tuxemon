@@ -1,13 +1,13 @@
 tech_id: 156
-accuracy: 0.8
+accuracy: 1.0
 effects:
+- type: damage
 - type: give
   parameters:
   - hardshell
   - own_monster
-- type: damage
 speed: normal
-potency: 1.0
+potency: 0.9
 power: 1
 range: touch
 recharge: 2

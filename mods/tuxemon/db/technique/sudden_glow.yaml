@@ -1,15 +1,19 @@
 tech_id: 67
 accuracy: 1
 effects:
-- type: give
+- type: statchange
   parameters:
-  - focused
-  - enemy_monster
+  - own_monster
 - type: give
   parameters:
   - recover
   - own_monster
 - type: healing
+stat_modifiers:
+  ranged:
+    step: -1
+  dodge:
+    step: -1
 healing_power: 2.0
 speed: normal
 potency: 1
@@ -19,8 +23,7 @@ recharge: 2
 slug: sudden_glow
 sort: damage
 modifiers: []
-behaviors:
-  bypasses_selection: true
+behaviors: {}
 target:
   enemy_monster: false
   enemy_team: false

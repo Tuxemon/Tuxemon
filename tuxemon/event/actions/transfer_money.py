@@ -37,8 +37,8 @@ class TransferMoneyAction(EventAction):
     slug2: str
 
     def start(self, session: Session) -> None:
-        character1 = session.get_npc(self.slug1)
-        character2 = session.get_npc(self.slug2)
+        character1 = session.client.get_npc(self.slug1)
+        character2 = session.client.get_npc(self.slug2)
 
         if not character1 or not character2:
             _char = self.slug1 if not character1 else self.slug2

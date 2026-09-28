@@ -2,7 +2,7 @@
 # Copyright (c) 2014-2026 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from tuxemon.compat.rect import ReadOnlyRect
 
-Rect: type[ReadOnlyRect]
+__all__ = ["Rect", "ReadOnlyRect"]
 
 try:
     from pygame.rect import Rect

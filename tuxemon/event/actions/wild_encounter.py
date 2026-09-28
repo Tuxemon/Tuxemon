@@ -81,7 +81,7 @@ class WildEncounterAction(EventAction):
         event_engine = session.client.event_engine
         event_engine.execute_action("create_npc", [self.name, 0, 0], True)
 
-        npc = session.get_npc(self.name)
+        npc = session.client.get_npc(self.name)
         if npc is None:
             logger.error(f"{self.name} not found")
             self.stop()
@@ -115,7 +115,7 @@ class WildEncounterAction(EventAction):
 
         sound = env.get_battle_music().battle
         if sound.music:
-            session.client.current_music.play(sound.music, sound.volume)
+            session.client.current_music.play(sound.music)
 
     def update(self, session: Session, dt: float) -> None:
         client = session.client

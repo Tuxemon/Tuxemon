@@ -7,9 +7,10 @@ from dataclasses import dataclass
 from typing import final
 
 from tuxemon.event.eventaction import EventAction
+from tuxemon.locale.locale import T
 from tuxemon.session import Session
 from tuxemon.taste import Taste
-from tuxemon.tools import get_valid_uuid
+from tuxemon.tools import get_valid_uuid, open_dialog
 
 logger = logging.getLogger(__name__)
 
@@ -71,11 +72,11 @@ class ChangeTasteAction(EventAction):
                 f"Invalid taste type '{self.type_taste}'. Must be 'warm' or 'cold'."
             )
 
-        current_taste = getattr(monster, f"taste_{self.type_taste}")
+        old_taste = getattr(monster, f"taste_{self.type_taste}")
         if self.new_taste == "random":
             new_taste = Taste.get_random_taste_excluding(
                 self.type_taste,
-                exclude_slugs=[current_taste, "tasteless"],
+                exclude_slugs=[old_taste, "tasteless"],
                 use_rarity=True,
             )
 
@@ -107,3 +108,18 @@ class ChangeTasteAction(EventAction):
         logger.info(
             f"{monster.name}'s {self.type_taste} taste changed to {new_taste}."
         )
+
+        message = T.format(
+            "taste_change_report",
+            {
+                "name": monster.name,
+                "type": T.translate(f"taste_{self.type_taste}"),
+                "old": T.translate(old_taste),
+                "new": T.translate(new_taste),
+            },
+        )
+        open_dialog(session.client, [message])
+
+    def update(self, session: Session, dt: float) -> None:
+        if "DialogState" not in session.client.active_state_names:
+            self.stop()

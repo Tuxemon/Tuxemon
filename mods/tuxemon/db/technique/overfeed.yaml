@@ -1,10 +1,12 @@
 tech_id: 173
 accuracy: 1
 effects:
-- type: give
+- type: statchange
   parameters:
-  - slow
   - enemy_monster
+stat_modifiers:
+  speed:
+    step: -2
 speed: extremely_fast
 potency: 1
 power: 0
@@ -13,8 +15,7 @@ recharge: 5
 slug: overfeed
 sort: damage
 modifiers: []
-behaviors:
-  bypasses_selection: true
+behaviors: {}
 target:
   enemy_monster: true
   enemy_team: false
@@ -31,7 +32,7 @@ use_failure: combat_miss
 use_success: null
 use_tech: combat_used_x
 visuals:
-  animation: null
+  animation: cakechomp
   flip_axes: ''
   loop: 0
 sound:

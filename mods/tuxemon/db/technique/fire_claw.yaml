@@ -1,11 +1,11 @@
 tech_id: 3
 accuracy: 0.75
 effects:
+- type: damage
 - type: give
   parameters:
   - burn
   - enemy_monster
-- type: damage
 speed: normal
 potency: 0.2
 power: 1.75
@@ -32,7 +32,7 @@ use_failure: combat_miss
 use_success: null
 use_tech: combat_used_x
 visuals:
-  animation: slash_power
+  animation: slash_double_188
   flip_axes: x
   loop: 0
 sound:

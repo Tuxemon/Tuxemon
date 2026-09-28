@@ -38,7 +38,7 @@ class ChangeFactionMembershipAction(EventAction):
         if self.status not in {"join", "leave"}:
             raise ValueError(f"{self.status} must be 'join' or 'leave'")
 
-        char = session.get_npc(self.character)
+        char = session.client.get_npc(self.character)
         if not char:
             logger.error(f"[Membership] NPC '{self.character}' not found.")
             self.stop()

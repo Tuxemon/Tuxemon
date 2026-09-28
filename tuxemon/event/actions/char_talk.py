@@ -59,7 +59,7 @@ class CharTalkAction(EventAction):
     location: str | None = None
 
     def start(self, session: Session) -> None:
-        character = session.get_npc(self.character)
+        character = session.client.get_npc(self.character)
         if character is None:
             logger.error(f"{self.character} not found")
             self.stop()
@@ -76,8 +76,8 @@ class CharTalkAction(EventAction):
             self.stop()
             return
 
-        text = TextFormatter.replace_text(session, line, T)
-        open_dialog(client=session.client, text=[T.translate(text)])
+        pages = TextFormatter(session, T).paginate_translation(line)
+        open_dialog(client=session.client, text=pages)
 
     def update(self, session: Session, dt: float) -> None:
         if "DialogState" not in session.client.active_state_names:

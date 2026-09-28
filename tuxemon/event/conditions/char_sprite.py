@@ -32,7 +32,7 @@ class CharSpriteCondition(EventCondition):
     sprite: str
 
     def test(self, session: Session) -> bool:
-        target = session.get_npc(self.character)
+        target = session.client.get_npc(self.character)
         if not target:
             return False
 

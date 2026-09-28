@@ -26,7 +26,7 @@ class WildEffect(CoreEffect):
 
     **Parameters**
 
-    - ``chance``: The probability of avoiding the penalty (float between 0 and 1).
+    - ``chance``: The probability of getting the penalty (float between 0 and 1).
     - ``divisor``: The divisor used to calculate self-inflicted damage
       (e.g. 8 for one-eighth of max HP).
 
@@ -49,7 +49,7 @@ class WildEffect(CoreEffect):
         tech: list[Technique] = []
         if (
             status.has_phase(EffectPhase.PRE_CHECKING)
-            and random.random() > self.chance
+            and random.random() < self.chance
         ):
             user = status.host
             empty = status.on_tech_use

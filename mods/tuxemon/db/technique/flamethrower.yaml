@@ -1,11 +1,11 @@
 tech_id: 73
 accuracy: 0.8
 effects:
+- type: damage
 - type: give
   parameters:
   - burn
   - enemy_monster
-- type: damage
 speed: normal
 potency: 0.5
 power: 2.25

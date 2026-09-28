@@ -47,7 +47,7 @@ class SetKennelVisibleAction(EventAction):
     visible: str | None = None
 
     def start(self, session: Session) -> None:
-        character = session.get_npc(self.npc_slug)
+        character = session.client.get_npc(self.npc_slug)
         if character is None:
             logger.error(f"{self.npc_slug} not found")
             self.stop()

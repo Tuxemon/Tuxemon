@@ -1,11 +1,11 @@
 tech_id: 18
 accuracy: 1
 effects:
+- type: damage
 - type: give
   parameters:
   - blinded
   - enemy_monster
-- type: damage
 speed: normal
 potency: 0.75
 power: 1.25
@@ -31,7 +31,7 @@ use_failure: combat_miss
 use_success: null
 use_tech: combat_used_x
 visuals:
-  animation: crystal
+  animation: beam
   flip_axes: ''
   loop: 0
 sound:

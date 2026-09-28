@@ -42,7 +42,7 @@ class RenamePlayerAction(EventAction):
         char.name = name
 
     def start(self, session: Session) -> None:
-        character = session.get_npc(self.character)
+        character = session.client.get_npc(self.character)
 
         if character is None:
             logger.error(f"{self.character} not found")
@@ -54,7 +54,7 @@ class RenamePlayerAction(EventAction):
             prompt=T.translate("input_name"),
             callback=partial(self.set_player_name, character),
             escape_key_exits=False,
-            initial=session.player.name,
+            initial="",
             char_limit=PLAYER_NAME_LIMIT,
             random=bool(self.random),
         )

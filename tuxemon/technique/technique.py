@@ -21,7 +21,6 @@ from tuxemon.db import (
 from tuxemon.element import ElementTypesHandler
 from tuxemon.locale.locale import T
 from tuxemon.modifiers import ModifiersHandler
-from tuxemon.monster.stats import BasicStats
 from tuxemon.technique.cooldown import Cooldown
 from tuxemon.technique.stats import (
     TechniqueBaseStats,
@@ -101,7 +100,6 @@ class Technique:
         self.successes = successes
         self.failures = failures
         self.hit: bool = False
-        self.temporary_stat_boosts = BasicStats()
 
     @classmethod
     def create(cls, slug: str) -> Technique:
@@ -245,6 +243,12 @@ class Technique:
             rule.type == effect_type and param_value in rule.parameters
             for rule in self.effect_defs
         )
+
+    def targets_enemy(self) -> bool:
+        """Returns True if this technique needs the player to select a specific enemy target."""
+        if self.target.get("enemy_monster"):
+            return True
+        return any("enemy_monster" in e.parameters for e in self.effect_defs)
 
     def use(
         self, session: Session, user: Monster, target: Monster

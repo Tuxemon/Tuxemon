@@ -7,7 +7,6 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING, final
 
 from tuxemon.event.eventaction import EventAction
-from tuxemon.states.world_state import WorldState
 
 if TYPE_CHECKING:
     from tuxemon.session import Session
@@ -30,19 +29,23 @@ class QuitWorldAction(EventAction):
     name = "quit_world"
 
     def start(self, session: Session) -> None:
-        session.client.camera_manager.reset()
-        session.client.npc_manager.clear_npcs()
-        session.client.current_music.stop()
-        session.client.event_engine.reset()
-        session.client.map_manager.clear_events()
-        session.client.map_manager.clear_inits()
-        session.client.map_manager.clear_map()
-        session.client.map_loader.clear_cache()
-        session.client.replace_state("StartState")
-        try:
-            old_world = session.client.get_state_by_name(WorldState)
-            session.client.pop_state(old_world)
-        except ValueError:
-            pass
+        client = session.client
+
+        client.current_music.stop()
+        client.camera_manager.reset()
+
+        client.npc_manager.clear_npcs()
+        client.event_engine.reset()
+        client.map_manager.clear_events()
+        client.map_manager.clear_inits()
+        client.map_manager.clear_map()
+        client.map_loader.clear_cache()
+
+        for state_name in client.active_state_names:
+            client.remove_state_by_name(state_name)
+
         session.reset(reset_client=False)
         session.reset_time()
+
+        client.push_state("BackgroundState")
+        client.push_state("StartState")

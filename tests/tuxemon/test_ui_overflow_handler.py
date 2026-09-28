@@ -3,11 +3,9 @@
 from pathlib import Path
 from unittest.mock import Mock
 
-import pygame
 import pytest
 from pygame.font import Font
 from pygame.rect import Rect
-from pygame.surface import Surface
 
 from tuxemon.constants.paths import mods_folder
 from tuxemon.platform.const.graphics import FONT_SIZE

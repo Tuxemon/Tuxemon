@@ -55,7 +55,7 @@ class SetTemplateAction(EventAction):
     combat_sheet: str | None = None
 
     def start(self, session: Session) -> None:
-        target = session.get_npc(self.character)
+        target = session.client.get_npc(self.character)
         if not target:
             logger.error(f"NPC {self.character} not found")
             self.stop()

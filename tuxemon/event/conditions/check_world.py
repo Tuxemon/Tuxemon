@@ -51,7 +51,7 @@ class CheckWorldCondition(EventCondition):
         if self.param == "bubble":
             if self.value is None:
                 return False
-            char = session.get_npc(self.value)
+            char = session.client.get_npc(self.value)
             if char is None:
                 logger.error(f"{self.value} not found")
                 return False

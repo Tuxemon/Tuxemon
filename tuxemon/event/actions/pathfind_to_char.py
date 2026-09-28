@@ -46,9 +46,9 @@ class PathfindToCharAction(EventAction):
 
     def start(self, session: Session) -> None:
         client = session.client
-        target_entity = session.get_npc(self.target_entity)
+        target_entity = session.client.get_npc(self.target_entity)
         assert target_entity
-        self.moving_entity = session.get_npc(self.entity)
+        self.moving_entity = session.client.get_npc(self.entity)
         assert self.moving_entity
 
         distance = max(1, self.distance or 1)
@@ -74,7 +74,7 @@ class PathfindToCharAction(EventAction):
                 f"Skipped: Moving entity {self.moving_entity.slug} is already at desired destination {final_destination}."
             )
             direction = get_direction(
-                self.moving_entity.tile_pos, final_destination
+                self.moving_entity.tile_pos, target_entity.tile_pos
             )
             self.moving_entity.set_facing(direction)
             self.stop()

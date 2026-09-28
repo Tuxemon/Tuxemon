@@ -33,13 +33,14 @@ class ReroutePolicy:
         pathfinding: tuple[int, int] | None,
         target: tuple[int, int],
     ) -> list[MovementCommand]:
+
         commands: list[MovementCommand] = []
 
         if pathfinding:
-            npc = npc_manager.get_entity_pos(pathfinding)
+            obstacle = npc_manager.get_entity_pos(target)
 
-            if npc:
-                # Short cooldown, immediate repath
+            if obstacle:
+                # Immediate repath around dynamic obstruction (e.g., player)
                 commands.append(
                     RepathCommand(
                         destination=pathfinding,
@@ -49,7 +50,7 @@ class ReroutePolicy:
                 )
                 return commands
 
-            # Longer cooldown, stop moving; path is left as-is
+            # Static obstruction → delayed repath + stop
             commands.append(
                 RepathCommand(
                     destination=pathfinding,
@@ -67,7 +68,8 @@ class ReroutePolicy:
 
 class GhostReroutePolicy(ReroutePolicy):
     """
-    Ghosts ignore walls. They only wait if the *destination* is occupied.
+    Ghosts ignore walls and NPCs blocking the next tile.
+    They only wait if the *final destination* is occupied.
     """
 
     def on_obstruction(
@@ -80,8 +82,8 @@ class GhostReroutePolicy(ReroutePolicy):
 
         commands: list[MovementCommand] = []
 
-        # If the destination is occupied by an NPC → wait
         if pathfinding:
+            # Ghosts only care about the FINAL destination
             npc = npc_manager.get_entity_pos(pathfinding)
             if npc:
                 commands.append(
@@ -94,7 +96,7 @@ class GhostReroutePolicy(ReroutePolicy):
                 commands.append(StopMovementCommand())
                 return commands
 
-        # Otherwise: ghosts phase through walls → force movement
+        # Otherwise ghosts phase through anything
         direction = get_direction(owner.tile_pos, target)
         commands.append(ContinueCommand(direction))
         return commands

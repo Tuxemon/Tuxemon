@@ -634,7 +634,6 @@ class SoundProperties(BaseModel):
 
 class MusicProperties(BaseModel):
     music: str | None = Field(..., description="Music to play")
-    volume: float = Field(..., ge=0.0, description="Playback volume")
 
     @field_validator("music")
     def music_exists(cls, v: str | None) -> str | None:
@@ -698,6 +697,7 @@ class DynamicMenuEntry(BaseModel):
 
 class ItemModel(DataModel, BaseLookupModel):
     table_name: ClassVar[str] = "item"
+    _lookup_cache: ClassVar[dict[str, ItemModel]] = {}
     model_config = ConfigDict(title="Item")
     slug: str = Field(..., description="The slug of the item")
     use_item: str = Field(
@@ -802,6 +802,21 @@ class ItemModel(DataModel, BaseLookupModel):
             return cast(ItemModel, db.lookup(slug, table=cls.table_name))
         except EntryNotFoundError:
             raise RuntimeError(f"Item {slug} not found")
+
+    @classmethod
+    def load_cache(cls, db: ModData) -> None:
+        """Populate the internal cache if it hasn't been populated yet."""
+        if not cls._lookup_cache:
+            cls._lookup_cache = {
+                tech_name: result
+                for tech_name in db.database[cls.table_name]
+                if (result := cls.lookup(tech_name, db))
+            }
+
+    @classmethod
+    def get_cache(cls) -> dict[str, ItemModel]:
+        """Returns the current cache."""
+        return cls._lookup_cache
 
     @field_validator("use_item", "use_success", "use_failure")
     def translation_exists(cls, v: str) -> str:
@@ -1214,6 +1229,7 @@ class MonsterSoundsModel(BaseModel):
 
 class MonsterModel(DataModel, BaseLookupModel, validate_assignment=True):
     table_name: ClassVar[str] = "monster"
+    _lookup_cache: ClassVar[dict[str, MonsterModel]] = {}
     slug: str = Field(..., description="The slug of the monster")
     species: str = Field(..., description="The species of monster")
     txmn_id: int = Field(..., description="The id of the monster")
@@ -1290,17 +1306,51 @@ class MonsterModel(DataModel, BaseLookupModel, validate_assignment=True):
         except EntryNotFoundError:
             raise RuntimeError(f"Monster {slug} not found")
 
+    @classmethod
+    def load_cache(cls, db: ModData) -> None:
+        """Populates the internal cache if it hasn't been populated yet."""
+        if not cls._lookup_cache:
+            cls._lookup_cache = {
+                mon_name: result
+                for mon_name in db.database[cls.table_name]
+                if (result := cls.lookup(mon_name, db)).txmn_id > 0
+            }
+
+    @classmethod
+    def get_cache(cls) -> dict[str, MonsterModel]:
+        """Returns the current cache."""
+        return cls._lookup_cache
+
     def can_evolve_at_level(self, level: int) -> bool:
         return any(
             evo.at_level is not None and evo.at_level <= level
             for evo in self.evolutions
         )
 
-    def is_underleveled_for_form(self, level: int) -> bool:
-        return any(
-            hist.at_level is not None and hist.at_level > level
-            for hist in self.evolutions
+    def is_underleveled_for_form(self, level: int, db: ModData) -> bool:
+        """
+        Checks if this monster's current form is only possible at a
+        higher level than the one provided by checking its ancestors.
+        """
+        current_history = next(
+            (h for h in self.history if h.slug == self.slug), None
         )
+
+        if not current_history or not current_history.evolves_from:
+            return False
+
+        for parent_slug in current_history.evolves_from:
+            try:
+                parent_mon = MonsterModel.lookup(parent_slug, db)
+            except RuntimeError:
+                continue  # Skip if parent data is missing
+
+            for evo in parent_mon.evolutions:
+                if evo.monster_slug == self.slug:
+                    if evo.at_level is not None and level < evo.at_level:
+                        return True
+
+        return False
 
     @field_validator("sprites")
     def set_default_sprites(
@@ -1540,6 +1590,7 @@ class ResponseStatus(str, Enum):
     REPLACED = "replaced"
     REMOVED = "removed"
     STACKED = "stacked"
+    BLOCKED = "blocked"
 
 
 class BlockedReason(str, Enum):
@@ -1587,6 +1638,7 @@ class TargetModel(BaseModel):
 
 class TechniqueModel(DataModel, BaseLookupModel):
     table_name: ClassVar[str] = "technique"
+    _lookup_cache: ClassVar[dict[str, TechniqueModel]] = {}
     slug: str = Field(..., description="The slug of the technique")
     sort: TechSort = Field(..., description="The sort of technique this is")
     behaviors: TechBehaviors
@@ -1710,6 +1762,21 @@ class TechniqueModel(DataModel, BaseLookupModel):
         except EntryNotFoundError:
             raise RuntimeError(f"Technique {slug} not found")
 
+    @classmethod
+    def load_cache(cls, db: ModData) -> None:
+        """Populate the internal cache if it hasn't been populated yet."""
+        if not cls._lookup_cache:
+            cls._lookup_cache = {
+                tech_name: result
+                for tech_name in db.database[cls.table_name]
+                if (result := cls.lookup(tech_name, db))
+            }
+
+    @classmethod
+    def get_cache(cls) -> dict[str, TechniqueModel]:
+        """Returns the current cache."""
+        return cls._lookup_cache
+
     @field_validator("use_tech", "use_success", "use_failure")
     def translation_exists(cls, v: str | None) -> str | None:
         if not v or has.translation(v):
@@ -1792,11 +1859,13 @@ class StatusModel(DataModel, BaseLookupModel):
     )
     on_positive_status: ResponseStatus | None = Field(
         None,
-        description="Determines the response when a positive status is applied",
+        description="How this status reacts when a positive status is applied "
+        "on top of it. Unset means it remains and blocks the incoming status.",
     )
     on_negative_status: ResponseStatus | None = Field(
         None,
-        description="Determines the response when a negative status is applied",
+        description="How this status reacts when a negative status is applied "
+        "on top of it. Unset means it remains and blocks the incoming status.",
     )
     on_tech_use: str | None = Field(
         None,
@@ -1954,6 +2023,15 @@ class NpcTemplateModel(TemplateModel):
     )
     combat_frame_width: int = 64
     combat_frame_height: int = 64
+    combat_back_frame_height: int | None = Field(
+        None,
+        description=(
+            "Optional explicit height of the back frame. The back fills the "
+            "full sheet height and the front is top-aligned within its "
+            "column, so a taller back is normally auto-detected from the PNG "
+            "and this only needs setting to enforce a specific height."
+        ),
+    )
     combat_rows: int = 1
     combat_columns: int = 2
 
@@ -2068,6 +2146,7 @@ class NpcAudioModel(BaseModel):
 
 class NpcModel(DataModel, BaseLookupModel):
     table_name: ClassVar[str] = "npc"
+    _lookup_cache: ClassVar[dict[str, NpcModel]] = {}
     slug: str = Field(..., description="Slug of the name of the NPC")
     birthdate: tuple[int, int] | None = Field(
         None, description="The NPC's birthday represented as (month, day)."
@@ -2101,6 +2180,21 @@ class NpcModel(DataModel, BaseLookupModel):
         except EntryNotFoundError:
             raise RuntimeError(f"NPC {slug} not found")
 
+    @classmethod
+    def load_cache(cls, db: ModData) -> None:
+        """Populate the internal cache if it hasn't been populated yet."""
+        if not cls._lookup_cache:
+            cls._lookup_cache = {
+                npc_slug: result
+                for npc_slug in db.database[cls.table_name]
+                if (result := cls.lookup(npc_slug, db))
+            }
+
+    @classmethod
+    def get_cache(cls) -> dict[str, NpcModel]:
+        """Returns the current cache."""
+        return cls._lookup_cache
+
 
 class BattleHudModel(BaseModel):
     hud_player: str = Field(
@@ -2108,6 +2202,14 @@ class BattleHudModel(BaseModel):
     )
     hud_opponent: str = Field(
         ..., description="Sprite used for hud opponent background"
+    )
+    double_player: str = Field(
+        "gfx/ui/combat/double_player.png",
+        description="Sprite used for hud player background in double battles",
+    )
+    double_opponent: str = Field(
+        "gfx/ui/combat/double_opponent.png",
+        description="Sprite used for hud opponent background in double battles",
     )
     tray_player: str = Field(
         ..., description="Sprite used for tray player background"
@@ -2170,6 +2272,8 @@ class BattleHudModel(BaseModel):
         "hud_opponent",
         "tray_player",
         "tray_opponent",
+        "double_player",
+        "double_opponent",
     )
     def file_exists(cls, v: str) -> str:
         if has.file(v):
@@ -2638,6 +2742,7 @@ class EncounterModel(DataModel, BaseLookupModel):
 
 class DialogueModel(DataModel, BaseLookupModel):
     table_name: ClassVar[str] = "dialogue"
+    _lookup_cache: ClassVar[dict[str, DialogueModel]] = {}
     slug: str = Field(
         ..., description="Slug to uniquely identify this dialogue"
     )
@@ -2655,6 +2760,21 @@ class DialogueModel(DataModel, BaseLookupModel):
             return cast(DialogueModel, db.lookup(slug, table=cls.table_name))
         except EntryNotFoundError:
             raise RuntimeError(f"Dialogue {slug} not found")
+
+    @classmethod
+    def load_cache(cls, db: ModData) -> None:
+        """Populate the internal cache if it hasn't been populated yet."""
+        if not cls._lookup_cache:
+            cls._lookup_cache = {
+                slug: result
+                for slug in db.database[cls.table_name]
+                if (result := cls.lookup(slug, db))
+            }
+
+    @classmethod
+    def get_cache(cls) -> dict[str, DialogueModel]:
+        """Returns the current cache."""
+        return cls._lookup_cache
 
     @field_validator("border_slug")
     def file_exists(cls, v: str) -> str:
@@ -2716,6 +2836,7 @@ class ElementModel(DataModel, BaseLookupModel):
 
 class TasteModel(DataModel, BaseLookupModel):
     table_name: ClassVar[str] = "taste"
+    _lookup_cache: ClassVar[dict[str, TasteModel]] = {}
     slug: str = Field(..., description="Slug of the taste")
     name: str = Field(..., description="Name of the taste")
     taste_type: Literal["warm", "cold"] = Field(
@@ -2738,6 +2859,21 @@ class TasteModel(DataModel, BaseLookupModel):
             return cast(TasteModel, db.lookup(slug, table=cls.table_name))
         except EntryNotFoundError:
             raise RuntimeError(f"Taste {slug} not found")
+
+    @classmethod
+    def load_cache(cls, db: ModData) -> None:
+        """Populate the internal cache if it hasn't been populated yet."""
+        if not cls._lookup_cache:
+            cls._lookup_cache = {
+                taste_name: result
+                for taste_name in db.database[cls.table_name]
+                if (result := cls.lookup(taste_name, db)).slug
+            }
+
+    @classmethod
+    def get_cache(cls) -> dict[str, TasteModel]:
+        """Returns the current cache."""
+        return cls._lookup_cache
 
     @field_validator("name")
     def translation_exists_taste(cls, v: str) -> str:

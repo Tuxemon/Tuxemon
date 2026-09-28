@@ -30,7 +30,7 @@ evolutions:
     comparison: greater_than
     target_stat: dodge
 - at_level: 12
-  monster_slug: gladiatorbug
+  monster_slug: dynastor
   stats:
     stat_type: speed
     comparison: equals
@@ -43,7 +43,7 @@ history:
   evolves_into:
   - bugnin
   - sumchon
-  - gladiatorbug
+  - dynastor
 - slug: katapill
   stage: basic
   evolves_from: []
@@ -59,7 +59,7 @@ history:
   evolves_from:
   - katacoon
   evolves_into: []
-- slug: gladiatorbug
+- slug: dynastor
   stage: stage2
   evolves_from:
   - katacoon

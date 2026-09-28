@@ -40,7 +40,7 @@ class FactionReputationCondition(EventCondition):
     threshold: int
 
     def test(self, session: Session) -> bool:
-        char = session.get_npc(self.character)
+        char = session.client.get_npc(self.character)
         if not char:
             logger.error(
                 f"[Condition] Character '{self.character}' not found."

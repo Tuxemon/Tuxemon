@@ -34,16 +34,14 @@ class CharInCondition(EventCondition):
 
     def test(self, session: Session) -> bool:
         client = session.client
-        character = session.get_npc(self.character)
+        character = session.client.get_npc(self.character)
         if character is None:
             logger.error(f"{self.character} not found")
             return False
 
         tiles = []
         if self.value in SURFACE_KEYS:
-            tiles = client.collision_manager.get_all_tile_properties(
-                client.map_manager.surface_map, self.value
-            )
+            tiles = client.terrain_manager.get_all_tile_properties(self.value)
         else:
             tiles = client.collision_manager.check_collision_zones(
                 client.map_manager.collision_map, self.value

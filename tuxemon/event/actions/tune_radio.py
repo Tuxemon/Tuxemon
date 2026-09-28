@@ -64,7 +64,7 @@ class TuneRadioAction(EventAction):
             self.stop()
             return
 
-        character = self.session.get_npc(self.character_slug)
+        character = self.session.client.get_npc(self.character_slug)
         if character is None:
             logger.error(
                 f"Character '{self.character_slug}' not found for radio tuning."

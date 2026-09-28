@@ -56,7 +56,7 @@ class WithdrawMonsterAction(EventAction):
 
         player.monster_boxes.remove_from_box("monster", None, monster)
 
-        character = session.get_npc(self.character)
+        character = session.client.get_npc(self.character)
         if character is None:
             logger.error(f"{self.character} not found")
             self.stop()

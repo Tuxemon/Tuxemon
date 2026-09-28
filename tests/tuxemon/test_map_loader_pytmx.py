@@ -60,7 +60,6 @@ def test_result_properties_correct(result):
         enter_from=[Direction.UP],
         exit_from=[Direction.DOWN],
         endure=[Direction.LEFT],
-        entity=None,
         key=None,
     )
 

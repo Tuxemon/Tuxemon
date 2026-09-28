@@ -17,9 +17,6 @@ if TYPE_CHECKING:
     from tuxemon.session import Session
 
 
-lookup_cache: dict[str, TechniqueModel] = {}
-
-
 @dataclass
 class LearnMmEffect(CoreEffect):
     """
@@ -49,11 +46,19 @@ class LearnMmEffect(CoreEffect):
     def apply_item_target(
         self, session: Session, item: Item, target: Monster
     ) -> ItemEffectResult:
-        if not lookup_cache:
-            _lookup_techniques(self.element)
+        TechniqueModel.load_cache(db)
+        cache = TechniqueModel.get_cache()
+
+        # Filter AFTER cache load
+        filtered = {
+            slug: tech
+            for slug, tech in cache.items()
+            if tech.category != TechCategory.reserved
+            and self.element in tech.types
+        }
 
         known_moves = [tech.slug for tech in target.moves.get_moves()]
-        available = list(set(lookup_cache.keys()) - set(known_moves))
+        available = list(set(filtered.keys()) - set(known_moves))
 
         if available:
             tech_slug = random.choice(available)
@@ -62,21 +67,10 @@ class LearnMmEffect(CoreEffect):
                 return ItemEffectResult(name=item.name)
 
             tech = Technique.create(tech_slug)
-            learned = target.moves.learn(target, tech)
+            learned = target.moves.learn(target, tech, ignore_eligibility=True)
             if not learned:
                 return ItemEffectResult(name=item.name)
 
             return ItemEffectResult(name=item.name, success=True)
 
         return ItemEffectResult(name=item.name)
-
-
-def _lookup_techniques(element: str) -> None:
-    global lookup_cache
-    lookup_cache = {
-        tech_name: result
-        for tech_name in db.database["technique"]
-        if (result := TechniqueModel.lookup(tech_name, db)).category
-        != TechCategory.reserved
-        and element in result.types
-    }

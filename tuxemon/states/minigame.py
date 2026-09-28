@@ -21,17 +21,6 @@ from tuxemon.tools import fix_measure, open_dialog
 if TYPE_CHECKING:
     from tuxemon.base_client import BaseClient
 
-lookup_cache: dict[str, MonsterModel] = {}
-
-
-def _lookup_monsters() -> None:
-    global lookup_cache
-    lookup_cache = {
-        mon_name: result
-        for mon_name in db.database["monster"]
-        if (result := MonsterModel.lookup(mon_name, db)).txmn_id > 0
-    }
-
 
 class MinigameState(PygameMenuState):
     """Minigame where player guesses a monster using image or description."""
@@ -46,8 +35,8 @@ class MinigameState(PygameMenuState):
         score: int = 0,
         **kwargs: Any,
     ) -> None:
-        if not lookup_cache:
-            _lookup_monsters()
+        MonsterModel.load_cache(db)
+        self.cache = MonsterModel.get_cache()
 
         width, height = client.context.resolution
         self.difficulty = difficulty
@@ -74,7 +63,7 @@ class MinigameState(PygameMenuState):
             underline=True,
         )
 
-        data = list(lookup_cache.values())
+        data = list(self.cache.values())
         tuxemon = random.choice(data)
         self.tuxemon = tuxemon
 

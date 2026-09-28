@@ -161,13 +161,16 @@ class MainParkMenuState(PopUpMenu[MenuGameObj]):
             items_filtered.set_filter_combat_targets(
                 self.session, self.player.monsters, self.opponents
             )
-            menu = self.client.push_state(
+            self.client.push_state(
                 ItemMenuState(
-                    self.client, self.player, self.name, items_filtered
+                    self.client,
+                    character=self.player,
+                    source=self.name,
+                    item_filter=items_filtered,
+                    on_selection=choose_target,
+                    is_valid_entry=validate,
                 )
             )
-            menu.is_valid_entry = validate  # type: ignore[method-assign]
-            menu.on_menu_selection = choose_target  # type: ignore[method-assign]
 
         def validate(item: Item | None) -> bool:
             """Validates if the selected item from the sub-menu is allowed."""

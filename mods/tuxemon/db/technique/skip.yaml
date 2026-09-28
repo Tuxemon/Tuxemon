@@ -7,8 +7,7 @@ slug: skip
 speed: normal
 sort: meta
 modifiers: []
-behaviors:
-  bypasses_selection: true
+behaviors: {}
 target:
   enemy_monster: false
   enemy_team: false

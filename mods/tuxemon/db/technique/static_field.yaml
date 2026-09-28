@@ -17,13 +17,12 @@ recharge: 3
 slug: static_field
 sort: damage
 modifiers: []
-behaviors:
-  bypasses_selection: true
+behaviors: {}
 target:
-  enemy_monster: false
+  enemy_monster: true
   enemy_team: false
   enemy_trainer: false
-  own_monster: true
+  own_monster: false
   own_team: false
   own_trainer: false
 category: powerful

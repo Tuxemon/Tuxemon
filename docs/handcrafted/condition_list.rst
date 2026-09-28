@@ -37,7 +37,6 @@
 .. autoscriptinfoclass:: tuxemon.event.conditions.has_item.HasItemCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.has_kennel.HasKennelCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.has_monster.HasMonsterCondition
-.. autoscriptinfoclass:: tuxemon.event.conditions.has_party_breeder.HasPartyBreederCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.has_tech.HasTechCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.has_tuxepedia.HasTuxepediaCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.kennel.KennelCondition

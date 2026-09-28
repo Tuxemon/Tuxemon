@@ -38,10 +38,16 @@ class StopMovementCommand:
     pass
 
 
+@dataclass
+class HopCommand:
+    pass
+
+
 MovementCommand = (
     PushCommand
     | SpeedCommand
     | ContinueCommand
     | RepathCommand
     | StopMovementCommand
+    | HopCommand
 )

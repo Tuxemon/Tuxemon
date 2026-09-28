@@ -23,9 +23,6 @@ from tuxemon.session import Session
 
 logger = logging.getLogger(__name__)
 
-lookup_cache_mon: dict[str, MonsterModel] = {}
-lookup_cache_npc: dict[str, NpcModel] = {}
-
 
 @final
 @dataclass
@@ -51,6 +48,12 @@ class RandomBattleAction(EventAction):
     max_level: int
 
     def start(self, session: Session) -> None:
+        MonsterModel.load_cache(db)
+        self.monster_cache = MonsterModel.get_cache()
+
+        NpcModel.load_cache(db)
+        self.npc_cache = NpcModel.get_cache()
+
         self._validate_parameters()
         self._prepare_opponent(session)
         self._start_battle(session)
@@ -66,12 +69,16 @@ class RandomBattleAction(EventAction):
             )
 
     def _prepare_opponent(self, session: Session) -> None:
-        if not lookup_cache_npc or not lookup_cache_mon:
-            _lookup()
+
+        lookup_cache_npc = {
+            slug: npc
+            for slug, npc in self.npc_cache.items()
+            if not npc.monsters
+        }
 
         if not lookup_cache_npc:
             raise ValueError("No valid NPCs found to start a random battle.")
-        if not lookup_cache_mon:
+        if not self.monster_cache:
             raise ValueError(
                 "No valid monsters found to start a random battle."
             )
@@ -82,13 +89,13 @@ class RandomBattleAction(EventAction):
         )
 
     def _start_battle(self, session: Session) -> None:
-        npc = session.get_npc(self.opponent.slug)
+        npc = session.client.get_npc(self.opponent.slug)
         if npc is None:
             logger.error(f"{self.opponent.slug} not found after creation.")
             self.stop()
             return
 
-        monster_filters = list(lookup_cache_mon.values())
+        monster_filters = list(self.monster_cache.values())
 
         if self.nr_txmns > len(monster_filters):
             logger.error(
@@ -128,7 +135,7 @@ class RandomBattleAction(EventAction):
         session.client.push_state("CombatState", context=context)
         sound = env.get_battle_music().battle
         if sound.music:
-            session.client.current_music.play(sound.music, sound.volume)
+            session.client.current_music.play(sound.music)
 
     def update(self, session: Session, dt: float) -> None:
         client = session.client
@@ -141,20 +148,3 @@ class RandomBattleAction(EventAction):
     def cleanup(self, session: Session) -> None:
         if self.opponent:
             session.client.npc_manager.remove_npc(self.opponent.slug)
-
-
-def _lookup() -> None:
-    global lookup_cache_mon, lookup_cache_npc
-
-    lookup_cache_mon = {
-        mon_slug: mon_model
-        for mon_slug in db.database["monster"]
-        if (mon_model := MonsterModel.lookup(mon_slug, db)).txmn_id > 0
-        and mon_model.randomly
-    }
-
-    lookup_cache_npc = {
-        npc_slug: npc_model
-        for npc_slug in db.database["npc"]
-        if not (npc_model := NpcModel.lookup(npc_slug, db)).monsters
-    }

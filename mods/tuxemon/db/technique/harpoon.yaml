@@ -1,12 +1,12 @@
 tech_id: 247
 accuracy: 0.85
 effects:
+- type: damage
 - type: give
   parameters:
   - harpooned
   - enemy_monster
-- type: damage
-speed: slow
+speed: normal
 potency: 0.9
 power: 2.8
 range: ranged
@@ -28,7 +28,6 @@ tags:
 - water
 - gadgets
 types:
-- frost
 - metal
 use_failure: combat_miss
 use_success: null

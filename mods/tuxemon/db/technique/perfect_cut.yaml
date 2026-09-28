@@ -1,10 +1,10 @@
 tech_id: 61
-accuracy: 0.8
+accuracy: 1.0
 effects:
 - type: damage
 speed: normal
 potency: 0.0
-power: 2
+power: 1.6
 range: reliable
 recharge: 2
 slug: perfect_cut

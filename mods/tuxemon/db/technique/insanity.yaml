@@ -4,7 +4,7 @@ effects:
 - type: give
   parameters:
   - diehard
-  - enemy_monster
+  - own_monster
 speed: normal
 potency: 1
 power: 0
@@ -13,13 +13,12 @@ recharge: 2
 slug: insanity
 sort: damage
 modifiers: []
-behaviors:
-  bypasses_selection: true
+behaviors: {}
 target:
-  enemy_monster: true
+  enemy_monster: false
   enemy_team: false
   enemy_trainer: false
-  own_monster: false
+  own_monster: true
   own_team: false
   own_trainer: false
 category: condition_imposer

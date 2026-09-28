@@ -1,11 +1,11 @@
 tech_id: 246
 accuracy: 0.95
 effects:
+- type: damage
 - type: give
   parameters:
   - harpooned
   - enemy_monster
-- type: damage
 speed: normal
 potency: 0.25
 power: 1

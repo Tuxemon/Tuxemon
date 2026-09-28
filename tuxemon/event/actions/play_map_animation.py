@@ -42,7 +42,7 @@ class PlayMapAnimationAction(EventAction):
     character: str
 
     def start(self, session: Session) -> None:
-        character = session.get_npc(self.character)
+        character = session.client.get_npc(self.character)
 
         if character is None:
             logger.error(f"Character '{self.character}' not found")

@@ -12,13 +12,13 @@ effects:
 - type: restore
 - type: heal
   parameters:
-  - '20'
-  - fixed
+  - '0.5'
+  - percentage
 slug: revive
 sort: potion
 sprite: gfx/items/revive.png
 category: potion
-cost: 1500
+cost: 1000
 usable_in:
 - MainCombatMenuState
 - WorldState

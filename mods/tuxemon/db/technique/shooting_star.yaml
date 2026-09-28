@@ -15,8 +15,7 @@ recharge: 2
 slug: shooting_star
 sort: damage
 modifiers: []
-behaviors:
-  bypasses_selection: true
+behaviors: {}
 target:
   enemy_monster: false
   enemy_team: false
@@ -35,7 +34,7 @@ use_failure: shooting_star_fail
 use_success: null
 use_tech: combat_used_x
 visuals:
-  animation: blue_circle
+  animation: starfall
   flip_axes: ''
   loop: 0
 sound:

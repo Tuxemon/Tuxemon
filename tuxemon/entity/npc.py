@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+import math
 from collections.abc import Sequence
 from typing import TYPE_CHECKING
 from uuid import UUID
@@ -14,6 +15,7 @@ from tuxemon.entity.appearance import AppearanceManager
 from tuxemon.entity.bag import BagHandler
 from tuxemon.entity.battle import BattlesHandler
 from tuxemon.entity.behavior.base import BehaviorPolicy
+from tuxemon.entity.daycare import Daycare
 from tuxemon.entity.entity import Entity
 from tuxemon.entity.party import PartyHandler
 from tuxemon.entity.path.controller import PathController
@@ -22,13 +24,21 @@ from tuxemon.entity.sheet import CombatSheet
 from tuxemon.entity.steps import StepManager
 from tuxemon.game_variables import GameVariablesManager, PlayerVariablesManager
 from tuxemon.locale.locale import T
+from tuxemon.map.map import tile_distance
 from tuxemon.map.view import SpriteController
 from tuxemon.mission.controller import MissionController
 from tuxemon.mission.manager import MissionManager
 from tuxemon.money.controller import MoneyController
 from tuxemon.monster.evolution_registry import EvolutionRegistry
 from tuxemon.monster.monster import Monster
-from tuxemon.platform.const.sizes import MONTH_KEYS, PLAYER_NPC
+from tuxemon.platform.const.sizes import (
+    HOP_HEIGHT_PIXELS,
+    MONTH_KEYS,
+    PLAYER_NPC,
+)
+from tuxemon.platform.const.sizes import (
+    TILE_SIZE as NATIVE_TILE_SIZE,
+)
 from tuxemon.relationship import (
     Relationships,
     decode_relationships,
@@ -106,7 +116,7 @@ class NPC(Entity):
         self.teleport_faint = TeleportFaint()
         self.tracker = TrackingData()
         self.step_tracker = StepTrackerManager()
-        self.step_manager = StepManager(session, self.step_tracker)
+        self.step_manager = StepManager(session, self.step_tracker, self)
         self.unlocked_letters: set[str] = set()
         # Variables for long-term item and monster storage
         # Keeping these separate so other code can safely
@@ -117,8 +127,13 @@ class NPC(Entity):
         self.bag = BagHandler(item_boxes=self.item_boxes, owner=self)
         self.evolution_registry = EvolutionRegistry()
         self.steps: float = 0.0
+        # Slug of last item used outside battle; persists across battles.
+        self.last_used_item_slug: str | None = None
+        # Slug of last item used inside battle; cleared when battle ends.
+        self.battle_last_used_item_slug: str | None = None
         self.dialogue: DialogueProfile | None = None
         self.sprite_controller = SpriteController(self)
+        self.daycare = Daycare(owner=self)
 
         # PathController manages all path/pathfinding state & logic.
         self.path_controller = PathController(
@@ -132,6 +147,13 @@ class NPC(Entity):
     def create(cls, session: Session, npc_slug: str) -> NPC:
         npc_data = NpcModel.lookup(npc_slug, db)
         return cls(npc_slug, npc_data, session)
+
+    @classmethod
+    def create_player(cls, session: Session, slug: str) -> NPC:
+        npc = cls.create(session, slug)
+        if not session.has_player():
+            session.set_player(npc)
+        return npc
 
     @classmethod
     def from_save(cls, session: Session, save_data: NPCState) -> NPC:
@@ -187,6 +209,23 @@ class NPC(Entity):
         return self.bag.items
 
     @property
+    def hop_y_offset_tiles(self) -> float:
+        """Y offset in tile units to apply during a ledge hop (positive = upward arc)."""
+        exec = self.path_controller.exec
+        if not exec.is_hop:
+            return 0.0
+        arc_origin = exec.hop_arc_origin or exec.origin
+        arc_target = exec.hop_arc_target or exec.target
+        if arc_origin is None or arc_target is None:
+            return 0.0
+        expected = tile_distance(arc_origin, arc_target)
+        if expected == 0:
+            return 0.0
+        traveled = tile_distance(self.body.position, arc_origin)
+        progress = min(1.0, traveled / expected)
+        return math.sin(math.pi * progress) * HOP_HEIGHT_PIXELS / NATIVE_TILE_SIZE[1]
+
+    @property
     def path(self) -> list[tuple[int, int]]:
         """Returns the current movement path assigned to the NPC."""
         return self.path_controller.path.to_list()
@@ -196,17 +235,23 @@ class NPC(Entity):
         """Returns the NPC's current movement destination tile, if any."""
         return self.path_controller.move_destination
 
+    @property
     def combat_sheet(self) -> CombatSheet:
         a = self.appearance_manager.state
 
         sheet = a.combat_sheet or self.template.combat_sheet
         fw = a.combat_frame_width or self.template.combat_frame_width
         fh = a.combat_frame_height or self.template.combat_frame_height
+        back_fh = (
+            a.combat_back_frame_height
+            or self.template.combat_back_frame_height
+        )
 
         return CombatSheet(
             file_path=f"gfx/sprites/player/{sheet}.png",
             frame_w=fw,
             frame_h=fh,
+            back_frame_h=back_fh,
         )
 
     def get_state(self, session: Session) -> NPCState:
@@ -242,6 +287,7 @@ class NPC(Entity):
         base.player_steps = self.steps
         base.monster_boxes = monster_boxes_state["monster_boxes"]
         base.monster_box_metadata = monster_boxes_state["monster_box_metadata"]
+        base.daycare = self.daycare.get_state()
         base.item_boxes = item_boxes_state["item_boxes"]
         base.item_box_metadata = item_boxes_state["item_box_metadata"]
         base.teleport_faint = self.teleport_faint.to_dict()
@@ -249,7 +295,7 @@ class NPC(Entity):
         base.step_tracker = encode_steps(self.step_tracker)
         base.unlocked_letters = encode_cipher(self.unlocked_letters)
         base.evolution_registry = self.evolution_registry.encode_registry()
-        base.routing_policy = self.party.routing_policy.to_dict()
+        base.routing_policy = self.party.routing_policy.serialize()
 
         return base
 
@@ -283,12 +329,13 @@ class NPC(Entity):
         self.evolution_registry.decode_registry(save_data.evolution_registry)
         self.monster_boxes.load(self, save_data)
         self.item_boxes.load(save_data)
+        self.daycare.load_state(save_data.daycare)
 
         self.teleport_faint = TeleportFaint.from_dict(save_data)
 
         self.tracker = decode_tracking(save_data.tracker)
         self.step_tracker = decode_steps(save_data.step_tracker)
-        self.party.routing_policy_name = RoutingPolicy.from_dict(save_data)
+        self.party.routing_policy_name = RoutingPolicy.deserialize(save_data)
 
         if save_data.appearance:
             self.appearance_manager.load_state(save_data.appearance)

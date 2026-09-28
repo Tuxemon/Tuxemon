@@ -13,13 +13,12 @@ recharge: 3
 slug: fluff_up
 sort: damage
 modifiers: []
-behaviors:
-  bypasses_selection: true
+behaviors: {}
 target:
-  enemy_monster: true
+  enemy_monster: false
   enemy_team: false
   enemy_trainer: false
-  own_monster: false
+  own_monster: true
   own_team: false
   own_trainer: false
 category: condition_imposer

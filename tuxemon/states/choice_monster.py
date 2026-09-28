@@ -7,15 +7,17 @@ from collections.abc import Callable
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Any, ClassVar
 
+from pygame_menu.baseimage import BaseImage
 from pygame_menu.locals import ALIGN_CENTER, POSITION_EAST
+from pygame_menu.widgets.core.widget import Widget
 from pygame_menu.widgets.selection.highlight import HighlightSelection
 
-from tuxemon.animation import Animation, ScheduleType
 from tuxemon.database.runtime import db
 from tuxemon.db import MonsterModel
 from tuxemon.locale.locale import T
 from tuxemon.menu.menu import PygameMenuState
 from tuxemon.menu.theme import get_theme
+from tuxemon.menu.transitions import PopInClamped
 from tuxemon.monster.sprite import MonsterSpriteHandler, SpriteLoader
 from tuxemon.session import local_session
 from tuxemon.ui.menu_options import MenuOptions
@@ -28,13 +30,15 @@ if TYPE_CHECKING:
 class MenuMonsterConfig:
     max_elements: int = 15
     max_height_percentage: float = 0.8
-    animation_duration: float = 0.2
     animation_start_size: float = 0.0
-    animation_end_size: float = 1.0
     number_widgets: int = 4
     number_columns: int = 5
-    scale_sprite: float = 0.4
+    # The animated 24x24 "menu" (face) sprite is shown at nominal pixel scale
+    # (the game's scaling factor), not magnified beyond that.
+    scale_sprite: float = 1.0
     vertical_fill: int = 20
+    # Seconds each face animation frame is shown before alternating.
+    frame_duration: float = 0.25
 
 
 class ChoiceMonster(PygameMenuState):
@@ -62,6 +66,9 @@ class ChoiceMonster(PygameMenuState):
             client=client,
             columns=self.config.number_columns,
             rows=rows,
+            transition=PopInClamped(
+                max_height_percentage=self.config.max_height_percentage
+            ),
             **kwargs,
         )
 
@@ -72,6 +79,12 @@ class ChoiceMonster(PygameMenuState):
 
         self._menu_config["theme"] = theme
 
+        # Animated face sprites: each entry pairs an image widget with its two
+        # pre-rendered frames, alternated on a shared timer in update().
+        self._face_widgets: list[tuple[Widget, list[BaseImage]]] = []
+        self._face_frame = 0
+        self._face_timer = 0.0
+
         for option in menu.get_menu():
             self.add_monster_menu_item(
                 option.display_text, option.key, option.action
@@ -79,6 +92,22 @@ class ChoiceMonster(PygameMenuState):
 
         self.animation_size = self.config.animation_start_size
         self.escape_key_exits = escape_key_exits
+
+    def update(self, dt: float) -> None:
+        super().update(dt)
+        if not self._face_widgets:
+            return
+        self._face_timer += dt
+        if self._face_timer < self.config.frame_duration:
+            return
+        self._face_timer = 0.0
+        self._face_frame ^= 1
+        for widget, frames in self._face_widgets:
+            widget.set_image(frames[self._face_frame])
+        # set_image alone only repaints on the next forced redraw (e.g. a
+        # selection change), so force the menu to rebuild its cached surface
+        # and the faces animate every frame.
+        self.menu.force_surface_update()
 
     def add_monster_menu_item(
         self,
@@ -100,11 +129,18 @@ class ChoiceMonster(PygameMenuState):
         )
         if handler is None:
             return
-        sprite = handler.get_sprite(
-            "front", scale=self.factor * self.config.scale_sprite
+        # Render the animated "menu" (face) sprite at native scale, rather than the
+        # shrunk-down 64x64 front sprite. Both frames are pre-rendered once and
+        # alternated by update().
+        frames = handler.load_sprites(
+            scale=self.factor * self.config.scale_sprite
         )
-        image = self._create_image_from_surface(sprite.image)
-        self.menu.add.image(image, align=ALIGN_CENTER)
+        face_frames = [
+            self._create_image_from_surface(frames["menu01"]),
+            self._create_image_from_surface(frames["menu02"]),
+        ]
+        widget = self.menu.add.image(face_frames[0], align=ALIGN_CENTER)
+        self._face_widgets.append((widget, face_frames))
 
         self.menu.add.button(
             T.translate(name),
@@ -136,31 +172,3 @@ class ChoiceMonster(PygameMenuState):
             source=self.name,
         )
         action.execute_action("clear_tuxepedia", [monster.slug], True)
-
-    def update_animation_size(self) -> None:
-        width, height = self.client.context.resolution
-        widgets_size = self.menu.get_size(widget=True)
-
-        _width = widgets_size[0]
-        _height = widgets_size[1]
-
-        if _width >= width:
-            _width = width
-        if _height >= height:
-            _height = int(height * self.config.max_height_percentage)
-
-        self.menu.resize(
-            max(1, int(_width * self.animation_size)),
-            max(1, int(_height * self.animation_size)),
-        )
-
-    def animate_open(self) -> Animation:
-        """Animate the menu popping in."""
-        ani = self.animate(
-            self,
-            animation_size=self.config.animation_end_size,
-            duration=self.config.animation_duration,
-        )
-        ani.schedule(self.update_animation_size, ScheduleType.ON_UPDATE)
-
-        return ani

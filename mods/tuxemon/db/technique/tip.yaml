@@ -1,11 +1,11 @@
 tech_id: 110
 accuracy: 1
 effects:
+- type: damage
 - type: give
   parameters:
   - festering
   - enemy_monster
-- type: damage
 speed: normal
 potency: 0.9
 power: 2.2

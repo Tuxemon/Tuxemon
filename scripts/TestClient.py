@@ -3,7 +3,6 @@ dont_extract = True  # Switching to false will make the download function
 #                    # extract the downloaded package to the mods folder
 
 import os
-import readline
 
 from tuxemon.mod_manager import Manager
 

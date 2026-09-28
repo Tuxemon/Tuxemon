@@ -4,6 +4,7 @@ import pytest
 
 from tuxemon.save_system.save_slots import (
     resolve_save_index,
+    save_index_to_ui,
     ui_to_save_index,
 )
 
@@ -35,3 +36,32 @@ def test_resolve_save_index_none():
 )
 def test_ui_to_save_index(ui_index, expected):
     assert ui_to_save_index(ui_index) == expected
+
+
+@pytest.mark.parametrize(
+    "save_index, expected",
+    [
+        pytest.param(1, 0, id="slot1->ui0"),
+        pytest.param(2, 1, id="slot2->ui1"),
+        pytest.param(3, 2, id="slot3->ui2"),
+    ],
+)
+def test_save_index_to_ui(save_index, expected):
+    assert save_index_to_ui(save_index) == expected
+
+
+def test_save_index_to_ui_autosave():
+    assert save_index_to_ui(0) == -1
+
+
+@pytest.mark.parametrize(
+    "ui_index",
+    [
+        pytest.param(0, id="roundtrip-ui0"),
+        pytest.param(1, id="roundtrip-ui1"),
+        pytest.param(2, id="roundtrip-ui2"),
+    ],
+)
+def test_ui_round_trip(ui_index):
+    save_index = ui_to_save_index(ui_index)
+    assert save_index_to_ui(save_index) == ui_index

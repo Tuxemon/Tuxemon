@@ -26,6 +26,7 @@
 - slug: earthnymph
 - slug: enforcer_agent
 - slug: enforcer_boss
+- slug: enforcer_pair
 - slug: enforcer_rookie
 - slug: farmer
 - slug: fashionista
@@ -44,6 +45,7 @@
 - slug: homemaker
 - slug: knight
 - slug: knightlord
+- slug: lord_rookie
 - slug: mage
 - slug: magician
 - slug: maniac

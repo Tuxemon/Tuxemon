@@ -160,3 +160,13 @@ events:
     width: 1
     x: 2
     y: 2
+  Environment:
+    actions:
+    - set_environment interior
+    conditions:
+    - not environment_is interior
+    height: 1
+    type: event
+    width: 1
+    x: 3
+    y: 3

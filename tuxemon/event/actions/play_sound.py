@@ -41,7 +41,8 @@ class PlaySoundAction(EventAction):
 
     def start(self, session: Session) -> None:
         client = session.client
-        sound_volume = client.config.sound_volume
+        sound_manager = client.sound_manager
+        user_volume = client.config.sound_volume
 
         if self.volume is not None:
             lower, upper = SOUND_RANGE
@@ -49,10 +50,12 @@ class PlaySoundAction(EventAction):
                 raise ValueError(
                     f"Volume must be between {lower} and {upper}",
                 )
-        volume = (
-            self.volume * sound_volume
+
+        effective_volume = (
+            self.volume * user_volume
             if self.volume is not None
-            else sound_volume
+            else user_volume
         )
 
-        client.sound_manager.play_sound(self.filename, volume)
+        sound_manager.set_volume(effective_volume)
+        sound_manager.play(self.filename)

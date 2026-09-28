@@ -35,6 +35,6 @@ class UpdateTilePropertiesAction(EventAction):
     moverate: float
 
     def start(self, session: Session) -> None:
-        session.client.collision_manager.update_tile_property(
+        session.client.terrain_manager.update_tile_property(
             self.label, self.moverate
         )

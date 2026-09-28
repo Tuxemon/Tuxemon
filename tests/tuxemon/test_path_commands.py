@@ -219,6 +219,7 @@ def test_tile_effect_continue_generates_command(mk_controller):
     tile.push_effect = None
     tile.speed_modifier = None
     tile.endure = [Direction.UP]
+    tile.hop = None
 
     commands = pc.tile_effects.get_effects(tile, pc.owner, pc.path)
     assert isinstance(commands[0], ContinueCommand)

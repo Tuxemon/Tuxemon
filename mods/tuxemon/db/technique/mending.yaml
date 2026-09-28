@@ -2,6 +2,8 @@ tech_id: 169
 accuracy: 1
 effects:
 - type: healing
+  parameters:
+  - own_monster
 healing_power: 2.0
 speed: extremely_fast
 potency: 1
@@ -11,8 +13,7 @@ recharge: 1
 slug: mending
 sort: damage
 modifiers: []
-behaviors:
-  bypasses_selection: true
+behaviors: {}
 target:
   enemy_monster: false
   enemy_team: false

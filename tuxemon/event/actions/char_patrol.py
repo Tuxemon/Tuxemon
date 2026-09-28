@@ -59,7 +59,7 @@ class CharPatrolAction(EventAction):
 
         npc_name = self.raw_parameters[0]
         move_list = self.raw_parameters[1:]
-        npc = session.get_npc(npc_name)
+        npc = session.client.get_npc(npc_name)
 
         if not npc:
             logger.error(f"NPC '{npc_name}' not found")

@@ -56,4 +56,4 @@ class RepellentEffect(CoreEffect):
         logger.info(
             f"Applied repellent from '{item.name}' to '{player.name}' for {self.steps} steps."
         )
-        return ItemEffectResult(success=True)
+        return ItemEffectResult(name=item.name, success=True)

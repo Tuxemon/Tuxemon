@@ -2,7 +2,6 @@
 # Copyright (c) 2014-2026 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 import json
 
-import pygame
 import pytest
 
 from tuxemon.platform.events import PlayerInput

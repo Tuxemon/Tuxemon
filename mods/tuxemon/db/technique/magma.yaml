@@ -12,7 +12,7 @@ sort: damage
 modifiers: []
 behaviors: {}
 target:
-  enemy_monster: true
+  enemy_monster: false
   enemy_team: true
   enemy_trainer: false
   own_monster: false

@@ -31,5 +31,5 @@ visuals:
   flip_axes: x
   loop: 0
 sound:
-  sfx: sfx_flames1
+  sfx: sfx_flames2
   volume: 1.5

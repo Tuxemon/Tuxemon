@@ -6,7 +6,7 @@ speed: normal
 potency: 0.0
 power: 2.9
 range: melee
-recharge: 2
+recharge: 3
 slug: woodsmash
 sort: damage
 modifiers: []

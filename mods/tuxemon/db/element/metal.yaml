@@ -1,9 +1,9 @@
-# slug: Unique identifier for the element type (example: "aether", "fire", "water")
+# slug: Unique identifier for the element type (example: "normal", "fire", "water")
 #       Must have:
 #          - A translation entry in base.po with msgid = slug
 #          - A sound file "sound_<slug>_call" in the sounds database
 #          - A sound file "sound_<slug>_faint" in the sounds database
-# icon: Path to the icon file for the element (example: "gfx/ui/icons/element/aether_type.png")
+# icon: Path to the icon file for the element (example: "gfx/ui/icons/element/normal_type.png")
 #       The file MUST exist in the filesystem and match ELEMENT_SIZE dimensions.
 # types: List of type interactions for this element
 #   against: Name of the opposing element type (example: "fire")
@@ -13,8 +13,6 @@
 slug: metal
 icon: gfx/ui/icons/element/metal_type.png
 types:
-- against: aether
-  multiplier: 1
 - against: earth
   multiplier: 2
 - against: fire

@@ -10,6 +10,11 @@ effects:
   - noddingoff
   - enemy_monster
 - type: healing
+  parameters:
+  - own_monster
+- type: healing
+  parameters:
+  - enemy_monster
 healing_power: 1.0
 speed: normal
 potency: 0.8
@@ -19,8 +24,7 @@ recharge: 1
 slug: potluck
 sort: damage
 modifiers: []
-behaviors:
-  bypasses_selection: true
+behaviors: {}
 target:
   enemy_monster: true
   enemy_team: false

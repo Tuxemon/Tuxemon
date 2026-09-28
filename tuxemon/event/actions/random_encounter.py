@@ -63,7 +63,7 @@ class RandomEncounterAction(EventAction):
             return
 
         if check_repellent(player):
-            logger.info(f"Repellent active, skipping encounter.")
+            logger.info("Repellent active, skipping encounter.")
             self.stop()
             return
 
@@ -99,7 +99,7 @@ class RandomEncounterAction(EventAction):
             "create_npc", ["wild_encounter", 0, 0], True
         )
 
-        npc = session.get_npc("wild_encounter")
+        npc = session.client.get_npc("wild_encounter")
         if npc is None:
             logger.error("'wild_encounter' not found")
             self.stop()
@@ -134,7 +134,7 @@ class RandomEncounterAction(EventAction):
 
         sound = env.get_battle_music().battle
         if sound.music:
-            session.client.current_music.play(sound.music, sound.volume)
+            session.client.current_music.play(sound.music)
 
     def update(self, session: Session, dt: float) -> None:
         client = session.client

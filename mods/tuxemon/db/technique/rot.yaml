@@ -13,8 +13,7 @@ recharge: 2
 slug: rot
 sort: damage
 modifiers: []
-behaviors:
-  bypasses_selection: true
+behaviors: {}
 target:
   enemy_monster: true
   enemy_team: false

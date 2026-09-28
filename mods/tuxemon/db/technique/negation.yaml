@@ -13,8 +13,7 @@ recharge: 2
 slug: negation
 sort: damage
 modifiers: []
-behaviors:
-  bypasses_selection: true
+behaviors: {}
 target:
   enemy_monster: true
   enemy_team: false
@@ -33,7 +32,7 @@ use_failure: combat_miss
 use_success: null
 use_tech: combat_used_x
 visuals:
-  animation: skull_fire
+  animation: null
   flip_axes: ''
   loop: 0
 sound:

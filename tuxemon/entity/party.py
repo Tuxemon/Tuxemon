@@ -162,21 +162,12 @@ class PartyHandler:
 
     def should_send_to_box(self, policy: RoutingPolicy | None = None) -> bool:
         policy = policy or self.routing_policy
-
-        is_unlimited = (
-            policy.max_party_size is not None and policy.max_party_size == -1
-        )
-        party_limit = (
-            policy.max_party_size
-            if policy.max_party_size is not None
-            else self._party_limit
-        )
-
-        return (
-            policy.should_force_to_box()
-            or not policy.allow_party_addition
-            or (not is_unlimited and self.party_size >= party_limit)
-        )
+        if policy.should_force_to_box() or not policy.allow_party_addition:
+            return True
+        if policy.max_party_size == -1:
+            return False
+        limit = policy.max_party_size or self._party_limit
+        return self.party_size >= limit
 
     def send_monster_to_box(
         self, monster: Monster, kennel: str | None = None
@@ -230,12 +221,12 @@ class PartyHandler:
             return False
 
         self.remove_monster(monster)
-        monster.owner = None
         return True
 
     def remove_monster(self, monster: Monster) -> None:
         if monster in self._monsters:
             self._monsters.remove(monster)
+            monster.owner = None
 
     def switch_monsters(self, index_1: int, index_2: int) -> None:
         self._validate_index(index_1)
@@ -254,6 +245,7 @@ class PartyHandler:
         if old_monster not in self._monsters:
             return False
         index = self._monsters.index(old_monster)
+        old_monster.owner = None
         self._monsters[index] = new_monster
         self._assign_owner(new_monster)
         return True
@@ -306,14 +298,18 @@ class PartyHandler:
         return True
 
     def transfer_monster_to_party(
-        self, monster: Monster, slot: int | None = None
+        self,
+        monster: Monster,
+        slot: int | None = None,
+        source_kennel: str | None = None,
     ) -> bool:
         if self.should_send_to_box():
             logger.warning(
                 f"Cannot transfer monster '{monster}' to party: policy or limit prevents it."
             )
-            return False
+            return False  # monster stays in box, nothing mutated yet
 
+        self._monster_boxes.remove_from_box("monster", source_kennel, monster)
         self.insert_monster_to_party(monster, slot)
         logger.info(f"Monster '{monster}' transferred from box to party.")
         return True
@@ -322,6 +318,8 @@ class PartyHandler:
         return encode_monsters(self._monsters)
 
     def decode_party(self, json_data: NPCState | None) -> None:
+        # Bypasses add_monster intentionally: save/load restores state directly
+        # without applying routing policy, nickname rules, or capacity checks.
         self.clear_party()
         if not json_data or not json_data.monsters:
             return

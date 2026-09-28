@@ -105,31 +105,17 @@ def calc_dialog_rect(
 class DialogueStyleCache:
     """
     Handles lookup and caching of DialogueModel styles.
-
-    Usage:
-        style_cache = DialogueStyleCache()
-        style = style_cache.get("default")
     """
 
     def __init__(self) -> None:
-        self._cache: dict[str, DialogueModel] = {}
+        DialogueModel.load_cache(db)
+        self._cache = DialogueModel.get_cache()
 
     def get(self, style_key: str) -> DialogueModel:
-        """
-        Retrieves a DialogueModel by key, caching the result.
-
-        Raises:
-            RuntimeError if style is not found in the DB.
-        """
-        if style_key in self._cache:
-            return self._cache[style_key]
-
+        """Retrieve the DialogueModel for the given style key from cache."""
         try:
-            style = DialogueModel.lookup(style_key, db)
-            self._cache[style_key] = style
-            return style
+            return self._cache[style_key]
         except KeyError:
-            logger.warning(f"Dialogue style '{style_key}' not found in DB.")
             raise RuntimeError(f"Dialogue style '{style_key}' not found")
 
     def clear(self) -> None:
@@ -137,7 +123,7 @@ class DialogueStyleCache:
         self._cache.clear()
 
     def preload(self, keys: list[str]) -> None:
-        """Preloads multiple styles into cache, useful during scene setup."""
+        """Preloads multiple styles into cache."""
         for key in keys:
             if key not in self._cache:
                 try:

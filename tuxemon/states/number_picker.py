@@ -102,8 +102,8 @@ class NumberPickerState(PygameMenuState):
             self.value_label.set_title(str(self.current_value))
 
     def _confirm(self) -> None:
+        self.client.pop_state(self)
         self.callback(self.current_value)
-        self.client.pop_state()
 
     def process_event(self, event: PlayerInput) -> PlayerInput | None:
         # RIGHT increment
@@ -116,14 +116,14 @@ class NumberPickerState(PygameMenuState):
             self._decrement()
             return None
 
-        # A confirm (pressed only, not held)
+        # A confirm
         if event.button == buttons.A and event.pressed:
             self._confirm()
             return None
 
-        # B cancel (pressed only)
+        # B cancel
         if event.button == buttons.B and event.pressed:
-            self.client.pop_state()
+            self.client.pop_state(self)
             return None
 
         return event

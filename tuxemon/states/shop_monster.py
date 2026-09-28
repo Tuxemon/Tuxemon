@@ -11,7 +11,6 @@ from tuxemon.item.shop_utils import (
     generate_label,
 )
 from tuxemon.menu.interface import MenuItem
-from tuxemon.menu.quantity import QuantityAndCostMenu, QuantityAndPriceMenu
 from tuxemon.monster.monster import Monster
 from tuxemon.monster.renderer import MonsterRenderer
 from tuxemon.states.shop_base import ShopMenuState
@@ -65,10 +64,7 @@ class ShopMonsterMenuState(ShopMenuState[Monster]):
                 )
                 qty = self.client.shop_manager.get_quantity(key)
                 label, _, price = generate_label(monster, self.economy, qty)
-                unavailable = price > self.buyer_manager.get_money()
-                self._add_menu_item(
-                    monster, label, {"price": price}, unavailable
-                )
+                self._add_menu_item(monster, label, {"price": price})
             elif self.seller.is_player:
                 label, _, cost = generate_label(
                     monster, self.economy, qty=None, seller_mode=True
@@ -150,6 +146,9 @@ class ShopMonsterBuyMenuState(ShopMonsterMenuState):
 
         def buy_monster(quantity: int) -> None:
             price = self.economy.calculate_price(monster, quantity)
+            if price.final_price > self.buyer_manager.get_money():
+                return
+
             self.transaction_manager.buy_monster(
                 self.buyer, monster, quantity, label, price.final_price
             )
@@ -165,14 +164,15 @@ class ShopMonsterBuyMenuState(ShopMonsterMenuState):
         )
 
         self.client.state_manager.push_state(
-            QuantityAndPriceMenu(
-                client=self.client,
-                callback=partial(buy_monster),
-                max_quantity=max_quantity,
-                quantity=1,
-                shrink_to_items=True,
-                price=price,
-            )
+            "QuantityPickerState",
+            client=self.client,
+            min_value=1,
+            max_value=max_quantity,
+            start_value=1,
+            step=1,
+            callback=partial(buy_monster),
+            price=price,
+            wallet_money=self.buyer_manager.get_money(),
         )
 
 
@@ -212,12 +212,13 @@ class ShopMonsterSellMenuState(ShopMonsterMenuState):
                 self.on_menu_selection_change()
 
         self.client.state_manager.push_state(
-            QuantityAndCostMenu(
-                client=self.client,
-                callback=partial(sell_monster),
-                max_quantity=1,
-                quantity=1,
-                shrink_to_items=True,
-                cost=cost,
-            )
+            "QuantityPickerState",
+            client=self.client,
+            min_value=1,
+            max_value=1,
+            start_value=1,
+            step=1,
+            callback=partial(sell_monster),
+            cost=cost,
+            wallet_money=self.seller_manager.get_money(),
         )

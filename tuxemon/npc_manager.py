@@ -256,6 +256,5 @@ class NPCManager:
     ) -> None:
         npc.set_current_map(map_name)
         npc.cancel_path()
-        npc.set_position((x, y))
-        npc.on_tile_changed()
+        npc.complete_tile_entry((x, y))
         self.add_npc(npc)

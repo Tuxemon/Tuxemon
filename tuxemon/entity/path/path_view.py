@@ -113,6 +113,9 @@ class PathExecutionState:
 
     origin: tuple[int, int] | None = None
     target: tuple[int, int] | None = None
+    is_hop: bool = False
+    hop_arc_origin: tuple[int, int] | None = None
+    hop_arc_target: tuple[int, int] | None = None
 
     @property
     def in_progress(self) -> bool:
@@ -121,3 +124,6 @@ class PathExecutionState:
     def reset(self) -> None:
         self.origin = None
         self.target = None
+        self.is_hop = False
+        self.hop_arc_origin = None
+        self.hop_arc_target = None

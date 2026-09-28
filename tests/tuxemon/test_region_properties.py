@@ -21,10 +21,9 @@ def test_empty_properties():
         pytest.param(
             {"enter_from": "up, left"},
             RegionProperties(
-                enter_from=[Direction.LEFT, Direction.UP],
+                enter_from=[Direction.UP, Direction.LEFT],
                 exit_from=[],
                 endure=[],
-                entity=None,
                 key=None,
             ),
             id="enter_from_basic",
@@ -35,7 +34,6 @@ def test_empty_properties():
                 enter_from=[Direction.UP, Direction.LEFT, Direction.RIGHT],
                 exit_from=[Direction.DOWN],
                 endure=[],
-                entity=None,
                 key=None,
             ),
             id="exit_from_basic",
@@ -48,10 +46,9 @@ def test_empty_properties():
                 "key": "door",
             },
             RegionProperties(
-                enter_from=[Direction.LEFT, Direction.UP],
+                enter_from=[Direction.UP, Direction.LEFT],
                 exit_from=[Direction.DOWN, Direction.RIGHT],
                 endure=[Direction.LEFT],
-                entity=None,
                 key="door",
             ),
             id="all_fields",
@@ -62,7 +59,6 @@ def test_empty_properties():
                 enter_from=list(Direction),
                 exit_from=list(Direction),
                 endure=list(Direction),
-                entity=None,
                 key="slide",
             ),
             id="key_only_defaults",
@@ -73,7 +69,6 @@ def test_empty_properties():
                 enter_from=[],
                 exit_from=[],
                 endure=[],
-                entity=None,
                 key=None,
             ),
             id="enter_from_none",
@@ -81,10 +76,9 @@ def test_empty_properties():
         pytest.param(
             {"enter_from": "up, up, left"},
             RegionProperties(
-                enter_from=[Direction.LEFT, Direction.UP],
+                enter_from=[Direction.UP, Direction.LEFT],
                 exit_from=[],
                 endure=[],
-                entity=None,
                 key=None,
             ),
             id="dedupe_values",
@@ -92,10 +86,9 @@ def test_empty_properties():
         pytest.param(
             {"enter_from": "Up, Left"},
             RegionProperties(
-                enter_from=[Direction.LEFT, Direction.UP],
+                enter_from=[Direction.UP, Direction.LEFT],
                 exit_from=[],
                 endure=[],
-                entity=None,
                 key=None,
             ),
             id="case_insensitive",
@@ -103,10 +96,9 @@ def test_empty_properties():
         pytest.param(
             {"enter_from": " up , left "},
             RegionProperties(
-                enter_from=[Direction.LEFT, Direction.UP],
+                enter_from=[Direction.UP, Direction.LEFT],
                 exit_from=[],
                 endure=[],
-                entity=None,
                 key=None,
             ),
             id="strip_whitespace",
@@ -117,7 +109,6 @@ def test_empty_properties():
                 enter_from=[],
                 exit_from=[],
                 endure=[Direction.LEFT],
-                entity=None,
                 key=None,
             ),
             id="endure_only",
@@ -125,10 +116,9 @@ def test_empty_properties():
         pytest.param(
             {"Enter_from": "up, left"},
             RegionProperties(
-                enter_from=[Direction.LEFT, Direction.UP],
+                enter_from=[Direction.UP, Direction.LEFT],
                 exit_from=[],
                 endure=[],
-                entity=None,
                 key=None,
             ),
             id="case_insensitive_key",
@@ -139,7 +129,6 @@ def test_empty_properties():
                 enter_from=[Direction.UP, Direction.DOWN],
                 exit_from=[Direction.LEFT, Direction.RIGHT],
                 endure=[],
-                entity=None,
                 key=None,
             ),
             id="exit_from_multiple",
@@ -206,10 +195,9 @@ def test_extract_region_properties_mixed_valid_invalid_keys():
         "key": "door",
     }
     expected = RegionProperties(
-        enter_from=[Direction.LEFT, Direction.UP],
+        enter_from=[Direction.UP, Direction.LEFT],
         exit_from=[],
         endure=[],
-        entity=None,
         key="door",
     )
     assert extract_region_properties(properties) == expected
@@ -225,7 +213,6 @@ def test_push_tile_valid():
         enter_from=list(Direction),
         exit_from=list(Direction),
         endure=[],
-        entity=None,
         key="push_tile",
         push_effect=PushEffect(Direction.RIGHT, 2),
         speed_modifier=None,
@@ -244,7 +231,6 @@ def test_push_tile_with_speed_modifier():
         enter_from=list(Direction),
         exit_from=list(Direction),
         endure=[],
-        entity=None,
         key="push_tile",
         push_effect=PushEffect(Direction.DOWN, 4),
         speed_modifier=0.75,
@@ -262,7 +248,6 @@ def test_push_strength_as_int():
         enter_from=list(Direction),
         exit_from=list(Direction),
         endure=[],
-        entity=None,
         key="push_tile",
         push_effect=PushEffect(Direction.UP, 3),
         speed_modifier=None,
@@ -276,7 +261,6 @@ def test_slide_with_speed_modifier():
         enter_from=list(Direction),
         exit_from=list(Direction),
         endure=list(Direction),
-        entity=None,
         key="slide",
         push_effect=None,
         speed_modifier=1.5,
@@ -290,7 +274,6 @@ def test_slide_with_unknown_keys():
         enter_from=list(Direction),
         exit_from=list(Direction),
         endure=list(Direction),
-        entity=None,
         key="slide",
         push_effect=None,
         speed_modifier=1.2,

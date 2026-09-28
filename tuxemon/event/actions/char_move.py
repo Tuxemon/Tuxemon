@@ -54,7 +54,7 @@ class CharMoveAction(EventAction):
             return
 
         character_name = self.raw_parameters[0]
-        self.character = session.get_npc(character_name)
+        self.character = session.client.get_npc(character_name)
 
         if self.character is None:
             logger.error(f"Character '{character_name}' not found")

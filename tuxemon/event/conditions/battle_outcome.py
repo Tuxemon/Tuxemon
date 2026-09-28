@@ -44,7 +44,7 @@ class BattleOutcomeCondition(EventCondition):
             logger.error(f"Invalid outcome '{self.outcome}'")
             return False
 
-        character = session.get_npc(self.fighter)
+        character = session.client.get_npc(self.fighter)
         if character is None:
             logger.error(f"Character '{self.fighter}' not found")
             return False

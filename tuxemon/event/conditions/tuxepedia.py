@@ -12,8 +12,6 @@ from tuxemon.session import Session
 from tuxemon.tools import compare
 from tuxemon.tuxepedia.reporter import TuxepediaReporter
 
-lookup_cache: dict[str, MonsterModel] = {}
-
 
 @dataclass
 class TuxepediaCondition(EventCondition):
@@ -39,15 +37,15 @@ class TuxepediaCondition(EventCondition):
     total: int | None = None
 
     def test(self, session: Session) -> bool:
-        if not lookup_cache:
-            _lookup_monsters()
+        MonsterModel.load_cache(db)
+        cache = MonsterModel.get_cache()
 
         player = session.player
 
         if self.total:
             total = self.total
         else:
-            total = len(lookup_cache)
+            total = len(cache)
 
         reporter = TuxepediaReporter(player.tuxepedia.data)
         completeness = reporter.get_completeness_report(total)
@@ -59,12 +57,3 @@ class TuxepediaCondition(EventCondition):
             )
 
         return compare(self.operator, float(registered), self.percentage)
-
-
-def _lookup_monsters() -> None:
-    global lookup_cache
-    lookup_cache = {
-        mon_name: result
-        for mon_name in db.database["monster"]
-        if (result := MonsterModel.lookup(mon_name, db)).txmn_id > 0
-    }

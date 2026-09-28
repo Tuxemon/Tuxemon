@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+from collections.abc import Callable
 from functools import partial
 from typing import TYPE_CHECKING, Any, ClassVar, Literal
 
@@ -14,9 +15,9 @@ from tuxemon.database.rules import config_monster
 from tuxemon.database.yaml_utils import load_yaml
 from tuxemon.locale.locale import T
 from tuxemon.menu.interface import MenuItem
-from tuxemon.menu.quantity import QuantityAndCostMenu
 from tuxemon.monster.monster import Monster
 from tuxemon.monster.renderer import MonsterRenderer
+from tuxemon.states.quantity import QuantityPickerState
 from tuxemon.states.shop_base import ShopMenuState
 
 if TYPE_CHECKING:
@@ -34,24 +35,24 @@ class TrainingShopConfig(BaseModel):
     polynomial_exponent: float | None = Field(default=1.5)
 
 
-class TrainingCostMenu(QuantityAndCostMenu):
-    name: ClassVar[str] = "TrainingCostMenu"
+class TrainingCostPicker(QuantityPickerState):
+    name: ClassVar[str] = "TrainingCostPicker"
 
     def __init__(
         self,
         client: BaseClient,
         trainer_state: ShopTrainingMenuState,
         monster: Monster,
-        *args: Any,
+        callback: Callable[[int], None],
         **kwargs: Any,
     ):
-        super().__init__(client, *args, **kwargs)
         self._trainer_state = trainer_state
         self._monster = monster
+        super().__init__(client=client, callback=callback, **kwargs)
 
-    def calculate_total(self, _: int) -> int:
+    def _compute_total(self) -> int:
         return self._trainer_state._calculate_total_training_cost(
-            self._monster, self.quantity
+            self._monster, self.current_value
         )
 
 
@@ -190,7 +191,7 @@ class ShopTrainingMenuState(ShopMenuState[Monster]):
         monster = menu_monster.game_object
         params = self._get_selection_menu_params(menu_monster)
 
-        menu = TrainingCostMenu(
+        menu = TrainingCostPicker(
             client=self.client,
             trainer_state=self,
             monster=monster,

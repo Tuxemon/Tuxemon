@@ -49,10 +49,13 @@ class TransitionEngine:
             outcome = ResponseStatus.REPLACED
 
         # Map outcome to reason
+        # ALREADY_PRESENT is reserved for re-applying the very same status
+        # (handled above), so a different status being absorbed by the
+        # current one is reported as having had no effect.
         reason_map = {
             ResponseStatus.REPLACED: BlockedReason.REPLACED,
             ResponseStatus.REMOVED: BlockedReason.REMOVED,
-            ResponseStatus.STACKED: BlockedReason.ALREADY_PRESENT,
+            ResponseStatus.STACKED: BlockedReason.NO_EFFECT,
         }
 
         return TransitionResult(

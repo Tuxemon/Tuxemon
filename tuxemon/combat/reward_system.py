@@ -11,12 +11,16 @@ from tuxemon.combat.experience_strategies import (
     ExperienceAward,
     calculate_experience,
 )
+from tuxemon.combat.money_strategies import calculate_money, get_money_method
 from tuxemon.database.rules import config_monster
 from tuxemon.locale.locale import T
 from tuxemon.monster.stats import BasicStats
 
 if TYPE_CHECKING:
+    from collections.abc import Iterable
+
     from tuxemon.combat.damage_tracker import DamageTracker
+    from tuxemon.combat.money_strategies import MoneyMethod
     from tuxemon.entity.npc import NPC
     from tuxemon.monster.monster import Monster
     from tuxemon.session import Session
@@ -27,7 +31,6 @@ logger = logging.getLogger(__name__)
 @dataclass
 class RewardDataEntry:
     winner: Monster
-    money: int
     experience: int
     levels_gained: int = 0
     bond_milestones_crossed: set[int] = field(default_factory=set)
@@ -80,6 +83,13 @@ class RewardSystem:
         # Handle non-participants
         self.calculator.calculate_non_participant_rewards(loser, winners)
 
+        # The purse is calculated exactly once per defeat. How the
+        # participants affect it is up to the campaign's money method.
+        if self.combat_type == CombatType.TRAINER:
+            rewards_data.prize = self.calculator.calculate_prize(
+                loser, winners, get_money_method(self.session)
+            )
+
         # Handle winners
         for winner in winners:
             if winner.owner and winner.owner.is_player:
@@ -91,9 +101,6 @@ class RewardSystem:
                 self.calculator.update_moves_and_messages(
                     winner, entry, rewards_data
                 )
-
-                if self.combat_type == CombatType.TRAINER:
-                    rewards_data.prize += entry.money
 
                 rewards_data.update = True
 
@@ -139,6 +146,17 @@ class RewardCalculator:
                     else award.non_participant
                 )
 
+    def calculate_prize(
+        self,
+        loser: Monster,
+        participants: Iterable[Monster],
+        method: MoneyMethod,
+    ) -> int:
+        """
+        Calculate the purse paid out for defeating the loser.
+        """
+        return calculate_money(loser, participants, method)
+
     def calculate_winner_entry(
         self, loser: Monster, winner: Monster
     ) -> RewardDataEntry:
@@ -149,7 +167,7 @@ class RewardCalculator:
         awarded_exp = (
             award.holder if winner in award.holders else award.participant
         )
-        awarded_money = calculate_money(loser, winner)
+
         calculate_tps(winner, loser)
         known_moves = {move.slug for move in winner.moves.get_moves()}
         levels = winner.give_experience(awarded_exp)
@@ -163,7 +181,6 @@ class RewardCalculator:
         crossed = winner.bond_handler.apply_bond_modifier("win_battle")
         return RewardDataEntry(
             winner=winner,
-            money=awarded_money,
             experience=awarded_exp,
             levels_gained=levels,
             bond_milestones_crossed=crossed,
@@ -208,28 +225,6 @@ class HordeRewardCalculator(RewardCalculator):
     ) -> RewardDataEntry:
         entry = super().calculate_winner_entry(loser, winner)
         return entry
-
-
-def calculate_money(loser: Monster, winner: Monster) -> int:
-    """
-    Calculate battle reward money.
-    - Base money = loser.level * loser.money_modifier
-    - Winner's held item can boost rewards (e.g. Amulet Coin).
-    - Loser's held item can increase or reduce payout (e.g. Rich Charm).
-    - Final payout = base_money * winner_multiplier * loser_multiplier
-    """
-    base_money = int(loser.level * loser.money_modifier)
-
-    winner_multiplier = 1.0
-    loser_multiplier = 1.0
-
-    if winner.held_item and winner.held_item.money_multiplier:
-        winner_multiplier = winner.held_item.money_multiplier
-
-    if loser.held_item and loser.held_item.money_multiplier:
-        loser_multiplier = loser.held_item.money_multiplier
-
-    return int(base_money * winner_multiplier * loser_multiplier)
 
 
 def calculate_tps(

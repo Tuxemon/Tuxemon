@@ -1,8 +1,8 @@
 effects:
 - type: food_preference
   parameters:
-  - taste_salty
-  - taste_soft
+  - salty
+  - soft
 slug: pretzels
 sort: utility
 sprite: gfx/items/box.png

@@ -5,7 +5,12 @@ from unittest.mock import MagicMock, patch
 import pytest
 
 from tuxemon.core.asset import init_assets
-from tuxemon.db import CategoryStatus, EffectPhase, ResponseStatus
+from tuxemon.db import (
+    BlockedReason,
+    CategoryStatus,
+    EffectPhase,
+    ResponseStatus,
+)
 from tuxemon.monster.monster import Monster
 from tuxemon.monster.status import MonsterStatusHandler
 
@@ -246,7 +251,7 @@ def test_has_status_param(monster, slug, expected):
 
 
 @pytest.mark.parametrize(
-    "current_category, transition, expect_applied, expect_empty",
+    "new_category, transition, expect_applied, expect_empty",
     [
         pytest.param(
             CategoryStatus.POSITIVE,
@@ -288,21 +293,24 @@ def test_has_status_param(monster, slug, expected):
 def test_apply_status_transitions(
     session,
     monster,
-    current_category,
+    new_category,
     transition,
     expect_applied,
     expect_empty,
 ):
-    status1 = MagicMock(category=current_category)
+    """The status already applied decides how it reacts to the incoming one."""
+    status1 = MagicMock(slug="old")
     status1.host = monster
+    status1.on_positive_status = None
+    status1.on_negative_status = None
 
-    status2 = MagicMock()
+    status2 = MagicMock(slug="new", category=new_category)
     status2.host = monster
 
-    if current_category == CategoryStatus.POSITIVE:
-        status2.on_positive_status = transition
-    elif current_category == CategoryStatus.NEGATIVE:
-        status2.on_negative_status = transition
+    if new_category == CategoryStatus.POSITIVE:
+        status1.on_positive_status = transition
+    elif new_category == CategoryStatus.NEGATIVE:
+        status1.on_negative_status = transition
 
     monster.held_item = MagicMock()
     monster.held_item.is_immune.return_value = False
@@ -312,3 +320,26 @@ def test_apply_status_transitions(
 
     assert result.applied == expect_applied
     assert (handler.status == []) == expect_empty
+
+
+def test_sticky_status_blocks_incoming(session, monster):
+    """An unset response keeps the current status and refuses the new one."""
+    status1 = MagicMock(slug="exhausted")
+    status1.name = "Exhausted"
+    status1.host = monster
+    status1.on_positive_status = None
+    status1.on_negative_status = None
+
+    status2 = MagicMock(slug="recover", category=CategoryStatus.POSITIVE)
+    status2.host = monster
+
+    monster.held_item = MagicMock()
+    monster.held_item.is_immune.return_value = False
+
+    handler = MonsterStatusHandler([status1])
+    result = handler.apply_status(session, status2)
+
+    assert result.applied is False
+    assert result.blocked_reason == BlockedReason.NO_EFFECT
+    assert result.blocked_by == status1.name
+    assert handler.status == [status1]

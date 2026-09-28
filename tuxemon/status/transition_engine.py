@@ -21,6 +21,12 @@ class TransitionResult:
 class TransitionEngine:
     """
     Determines how a new status interacts with the current one.
+
+    The status currently on the monster is responsible for the reaction: its
+    ``on_positive_status`` / ``on_negative_status`` fields are read
+    according to the category of the incoming status. A field left unset
+    means the current status is sticky for that category, so the incoming
+    status is blocked.
     """
 
     def resolve(self, current: Status | None, new: Status) -> TransitionResult:
@@ -40,11 +46,13 @@ class TransitionEngine:
                 replaced_status=current,
             )
 
-        # Category-based transitions
-        if current.category == CategoryStatus.POSITIVE:
-            outcome = new.on_positive_status or ResponseStatus.REPLACED
-        elif current.category == CategoryStatus.NEGATIVE:
-            outcome = new.on_negative_status or ResponseStatus.REPLACED
+        # Category-based transitions: the status already on the monster
+        # decides how it reacts to the category of the incoming status.
+        # Uncategorised statuses (eg faint) are bookkeeping and always land.
+        if new.category == CategoryStatus.POSITIVE:
+            outcome = current.on_positive_status or ResponseStatus.BLOCKED
+        elif new.category == CategoryStatus.NEGATIVE:
+            outcome = current.on_negative_status or ResponseStatus.BLOCKED
         else:
             outcome = ResponseStatus.REPLACED
 
@@ -55,7 +63,8 @@ class TransitionEngine:
         reason_map = {
             ResponseStatus.REPLACED: BlockedReason.REPLACED,
             ResponseStatus.REMOVED: BlockedReason.REMOVED,
-            ResponseStatus.STACKED: BlockedReason.NO_EFFECT,
+            ResponseStatus.STACKED: BlockedReason.ALREADY_PRESENT,
+            ResponseStatus.BLOCKED: BlockedReason.NO_EFFECT,
         }
 
         return TransitionResult(

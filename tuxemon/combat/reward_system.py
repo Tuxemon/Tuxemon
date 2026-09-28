@@ -168,7 +168,6 @@ class RewardCalculator:
             award.holder if winner in award.holders else award.participant
         )
 
-        awarded_money = calculate_money(loser, winner)
         calculate_tps(winner, loser)
         known_moves = {move.slug for move in winner.moves.get_moves()}
         levels = winner.give_experience(awarded_exp)

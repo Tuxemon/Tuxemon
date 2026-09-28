@@ -36,6 +36,7 @@ done in a particular way to fit our project goals. In some cases we will ask
 for changes before merging something. Asking the team first will reduce your
 effort involved with a merge.
 
+
 ## How do I contribute artistic content?
 Artistic content is defined as image files, sound files, and maps files. This
 includes sprites, tilesets, battle backgrounds, window decorations, fonts,

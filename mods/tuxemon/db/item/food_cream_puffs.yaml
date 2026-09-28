@@ -1,8 +1,8 @@
 effects:
 - type: food_preference
   parameters:
-  - taste_refined
-  - taste_sweet
+  - refined
+  - sweet
 slug: cream_puffs
 sort: utility
 sprite: gfx/items/box.png

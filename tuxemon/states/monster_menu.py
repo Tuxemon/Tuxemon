@@ -254,6 +254,11 @@ class MonsterMenuHandler:
         self.client.remove_state_by_name("ChoiceState")
         items_filtered = ItemFilter(self.party.owner.bag.items)
         items_filtered.add_filter(lambda item: item.behaviors.holdable)
+        # the picker skips the validation the item menu does for a used item,
+        # so an item this monster fails the conditions for is left out here
+        items_filtered.add_filter(
+            lambda item: item.validate_monster(local_session, monster)
+        )
 
         self.client.push_state(
             ItemMenuState(

@@ -65,6 +65,30 @@ class MonsterItemHandler:
             logger.error(f"{item.name} can't be held")
             return False
 
+    def transfer_item_from(self, other: MonsterItemHandler) -> bool:
+        """
+        Adopts the item held by another handler, without taking it away.
+        Used when a monster evolves or devolves. The new form is built and
+        populated *before* the player is asked to confirm, and the old monster
+        is the one that survives if they decline, so the item is copied across
+        rather than moved: taking it would destroy the item of anyone who says
+        no.
+        The same Item instance is shared, not duplicated. An item is uniquely
+        owned by the monster holding it (it leaves the bag when equipped), and
+        exactly one of the two monsters is ever kept, so sharing preserves the
+        item's identity and per-instance state (instance_id, wear, stock,
+        temporary stat boosts) instead of stranding it on the discarded form.
+        Parameters:
+            other: The handler of the monster being replaced.
+        Returns:
+            True if an item was adopted, False if there was nothing to adopt
+            or the item could not be held.
+        """
+        item = other.held_item
+        if item is None:
+            return False
+        return self.set_item(item)
+
     def take_item(self) -> Item | None:
         item = self._item
         self._item = None

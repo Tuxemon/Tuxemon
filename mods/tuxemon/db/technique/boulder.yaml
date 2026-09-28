@@ -1,10 +1,12 @@
 tech_id: 11
 accuracy: 1
 effects:
-- type: give
+- type: statchange
   parameters:
-  - hardshell
   - own_monster
+stat_modifiers:
+  armour:
+    step: 1
 speed: normal
 potency: 1
 power: 0

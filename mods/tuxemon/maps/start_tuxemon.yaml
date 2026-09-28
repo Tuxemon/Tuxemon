@@ -101,6 +101,9 @@ events:
   Spyder:
     actions:
     - change_bg gradient_blue
+    # A defeated monster's bounty is paid once, however many monsters
+    # joined the fight and whether or not they survived it.
+    - set_variable method_money:conserved
     - transition_teleport player,spyder_bedroom.tmx,4,4,0.3
     conditions:
     - is variable_set scenario_choice:spyder_campaign

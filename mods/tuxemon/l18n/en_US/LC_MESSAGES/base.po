@@ -1511,6 +1511,13 @@ msgstr ""
 "Play a soothing tune and stay sharp! With this flute, nodding off and dozing"
 " are no match for you."
 
+msgid "good_penny"
+msgstr "Good Penny"
+
+msgid "good_penny_description"
+msgstr ""
+"Trainer doubles their winnings from any monster the holder helped defeat."
+
 msgid "horseshoe"
 msgstr "Horseshoe"
 

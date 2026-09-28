@@ -8,6 +8,9 @@ moveset:
   technique: bullet
 - level_learned: 1
   technique: frighten
+- level_learned: 1
+  technique: chameleon
+  learning_method: evolution
 - level_learned: 4
   technique: buzz
 - level_learned: 7

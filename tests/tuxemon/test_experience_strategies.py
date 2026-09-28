@@ -80,9 +80,10 @@ def test_feeder_strategy_with_item(setup_combat):
     winner.held_item = MagicMock()
     winner.held_item.reward_method = ExperienceMethod.XP_FEEDER
     strat = FeederExperienceStrategy()
-    exp, non = strat.calculate(loser, winner, damages, 1.0)
-    assert exp >= 0
-    assert non == 0
+    award = strat.calculate(loser, winner, damages, 1.0)
+    assert winner in award.holders
+    assert award.holder >= 0
+    assert award.non_participant == 0
 
 
 def test_transmitter_strategy_with_owner(setup_combat):
@@ -99,16 +100,16 @@ def test_transmitter_strategy_with_owner(setup_combat):
 def test_calculate_experience_default(setup_combat):
     loser, winner, _, damages = setup_combat
     winner.held_item = None
-    exp, non = calculate_experience(loser, winner, damages)
-    assert exp > 0
-    assert non == 0
+    award = calculate_experience(loser, winner, damages)
+    assert award.participant > 0
+    assert award.non_participant == 0
 
 
 def test_calculate_experience_max_level(setup_combat):
     loser, winner, _, damages = setup_combat
     winner.level = config_monster.level_range[1]
-    exp, non = calculate_experience(loser, winner, damages)
-    assert (exp, non) == (0, 0)
+    award = calculate_experience(loser, winner, damages)
+    assert (award.participant, award.non_participant) == (0, 0)
 
 
 def test_calculate_experience_base():
@@ -161,9 +162,10 @@ def test_feeder_strategy_multi_attacker_item_holder(setup_combat):
     winner.held_item.reward_method = ExperienceMethod.XP_FEEDER
     ally.held_item = None
     strat = FeederExperienceStrategy()
-    exp_winner, _ = strat.calculate(loser, winner, damages, 1.0)
-    exp_ally, _ = strat.calculate(loser, ally, damages, 1.0)
-    assert exp_winner >= exp_ally
+    award = strat.calculate(loser, winner, damages, 1.0)
+    assert winner in award.holders
+    assert ally not in award.holders
+    assert award.holder >= award.participant
 
 
 def test_feeder_strategy_multi_attacker_no_item(setup_combat):
@@ -171,10 +173,9 @@ def test_feeder_strategy_multi_attacker_no_item(setup_combat):
     winner.held_item = None
     ally.held_item = None
     strat = FeederExperienceStrategy()
-    exp_winner, _ = strat.calculate(loser, winner, damages, 1.0)
-    exp_ally, _ = strat.calculate(loser, ally, damages, 1.0)
-    assert exp_winner > 0
-    assert exp_ally > 0
+    award = strat.calculate(loser, winner, damages, 1.0)
+    assert not award.holders
+    assert award.participant > 0
 
 
 def test_bond_experience_strategy(setup_combat):

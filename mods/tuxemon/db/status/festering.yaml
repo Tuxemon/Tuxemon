@@ -4,6 +4,7 @@ category: negative
 effects:
 - type: festering
 icon: gfx/ui/icons/status/icon_festering.png
+on_positive_status: removed
 on_negative_status: replaced
 slug: festering
 sort: meta

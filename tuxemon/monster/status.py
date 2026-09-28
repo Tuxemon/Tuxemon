@@ -98,9 +98,12 @@ class MonsterStatusHandler:
                 blocked_reason=result.reason,
             )
 
+        # BLOCKED (and any unrecognised outcome): the current status is
+        # sticky, so it stays put and the new status never lands.
+
         return StatusApplyResult(
             applied=False,
-            blocked_by=None,
+            blocked_by=current_status.name if current_status else None,
             blocked_reason=result.reason,
         )
 

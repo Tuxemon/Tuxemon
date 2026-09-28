@@ -279,15 +279,27 @@ class MonsterMenuHandler:
         if not item:
             return
 
-        monster.equip_item(item)
-        self.party.owner.bag.remove_item(item)
+        result = monster.equip_item(local_session, item)
         self.client.remove_state_by_name("ItemMenuState")
+
+        if not result:
+            if result.reason:
+                open_dialog(self.client, [result.reason], dialog_speed="max")
+            return
+
+        self.party.owner.bag.remove_item(item)
         self.monster_menu.refresh_menu_items()
 
     def swap_items(self, mon_a: Monster, mon_b: Monster) -> None:
         """Swaps held items between two monsters."""
-        mon_a.swap_items(mon_b)
+        result = mon_a.swap_items(local_session, mon_b)
         self.client.remove_state_by_name("ChoiceState")
+
+        if not result:
+            if result.reason:
+                open_dialog(self.client, [result.reason], dialog_speed="max")
+            return
+
         self.monster_menu.refresh_menu_items()
 
     def open_swap_picker(self, monster: Monster) -> None:

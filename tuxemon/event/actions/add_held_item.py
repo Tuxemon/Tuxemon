@@ -58,7 +58,7 @@ class AddHeldItemAction(EventAction):
             return
 
         item = Item.create(self.item)
-        output = monster.equip_item(item)
+        output = monster.equip_item(session, item)
         if not output:
             self.stop()
             return

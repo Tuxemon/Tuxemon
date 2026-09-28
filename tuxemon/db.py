@@ -736,6 +736,34 @@ class ItemModel(DataModel, BaseLookupModel):
     conditions: Sequence[LogicCondition] = Field(
         default_factory=list, description="Conditions that must be met"
     )
+    hold_conditions: Sequence[LogicCondition] = Field(
+        default_factory=list,
+        description=(
+            "Give-time conditions: what a monster must be in order to hold "
+            "this item at all (e.g. species, evolution stage). Checked when "
+            "the item is equipped, not when it fires, and never re-checked: "
+            "a monster that later stops matching keeps what it is holding."
+        ),
+    )
+    hold_use_conditions: Sequence[LogicCondition] = Field(
+        default_factory=list,
+        description=(
+            "Use-time conditions: what must be true for a held item's effects "
+            "to fire on a given turn (e.g. HP threshold, status present). "
+            "Checked every turn, not when the item is equipped."
+        ),
+    )
+    hold_uses_per_battle: int = Field(
+        0,
+        description=(
+            "How many times a held item may fire in one battle. 0 means no "
+            "limit. A held item that isn't consumable is never used up, so "
+            "this is what stops a gated item firing every turn it qualifies. "
+            "A spent item stays equipped, keeping any stat boost it applied, "
+            "and its budget refills for the next battle."
+        ),
+        ge=0,
+    )
     effects: Sequence[ParameterizableRule] = Field(
         ..., description="Effects this item will have"
     )

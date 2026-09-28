@@ -1,9 +1,8 @@
 effects:
-- type: food_preference
+- type: bond
   parameters:
-  - hearty
-  - flakey
-slug: pie
+  - '5'
+slug: heart_biscuit
 sort: utility
 sprite: gfx/items/box.png
 category: food

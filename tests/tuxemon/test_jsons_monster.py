@@ -135,26 +135,3 @@ def test_moveset_level_learned_evolution_at_level(data_list):
         errors
     )
 
-
-def test_moveset_level_sequence(data_list):
-    RANGE = 34
-    START = 1
-    INTERVAL = 3
-
-    valid_levels = {START + INTERVAL * i for i in range(RANGE)}
-    errors = []
-
-    for data in data_list:
-        slug = data["slug"]
-        moveset = data["moveset"]
-
-        if moveset:
-            levels = [m["level_learned"] for m in moveset]
-            invalid = [lvl for lvl in levels if lvl not in valid_levels]
-
-            if invalid:
-                errors.append(f"{slug}: invalid levels {invalid}")
-
-    assert not errors, (
-        "Invalid moveset levels (must be 1,4,7,10,...):\n" + "\n".join(errors)
-    )

@@ -1,8 +1,8 @@
 effects:
 - type: food_preference
   parameters:
-  - taste_refined
-  - taste_mild
+  - refined
+  - mild
 slug: mille_feuille
 sort: utility
 sprite: gfx/items/box.png

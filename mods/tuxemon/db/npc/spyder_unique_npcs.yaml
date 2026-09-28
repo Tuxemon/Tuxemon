@@ -68,3 +68,13 @@
     sprite_name: shopassistant
     combat_sheet: shopassistant
     slug: shopassistant
+- slug: spyder_candycafe_lovelace
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: scientist
+    combat_sheet: scientist
+    slug: scientist

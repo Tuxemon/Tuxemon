@@ -90,19 +90,20 @@ bond_strings:
 
 # Defines opposite taste relationships as a dictionary of lists.
 # Each taste maps to a list of its opposite(s), allowing for future extensibility.
+# Tastes are referenced by slug, the same identifiers monsters store.
 opposite_tastes:
-  taste_peppy: [taste_mild]
-  taste_mild: [taste_peppy]
-  taste_salty: [taste_sweet]
-  taste_sweet: [taste_salty]
-  taste_hearty: [taste_soft]
-  taste_soft: [taste_hearty]
-  taste_zesty: [taste_flakey]
-  taste_flakey: [taste_zesty]
-  taste_refined: [taste_dry]
-  taste_dry: [taste_refined]
-  taste_savory: [taste_bland]
-  taste_bland: [taste_savory]
+  peppy: [mild]
+  mild: [peppy]
+  salty: [sweet]
+  sweet: [salty]
+  hearty: [soft]
+  soft: [hearty]
+  zesty: [flakey]
+  flakey: [zesty]
+  refined: [dry]
+  dry: [refined]
+  savory: [bland]
+  bland: [savory]
 
 # Defines bond adjustment values based on taste preference match level.
 # These values influence bond growth or decay depending on how well a monster's taste aligns with a given item.

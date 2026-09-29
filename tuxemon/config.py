@@ -477,6 +477,7 @@ class LocaleConfig:
     def minimal_font_file(self) -> str:
         return self._model.minimal_font_file
 
+
 class InputConfig:
     """Reactive input configuration wrapper with cached keymap."""
 

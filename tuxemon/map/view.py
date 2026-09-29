@@ -438,7 +438,6 @@ class NullRenderer(AbstractRenderer):
     def draw(self, surface: Surface, current_map: AbstractMap | None) -> None:
         surface.fill(BLACK_COLOR)
 
-
     def clear_overlay(self) -> None:
         pass
 

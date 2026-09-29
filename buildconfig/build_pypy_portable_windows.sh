@@ -57,9 +57,9 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
-wine64 pypy/pypy.exe -m pip install -r "$ROOT_FOLDER/requirements.txt"
+wine64 pypy/pypy.exe -m pip install "$ROOT_FOLDER"
 if [ $? -ne 0 ]; then
-  echo "Error: Failed to install requirements."
+  echo "Error: Failed to install project dependencies."
   exit 1
 fi
 

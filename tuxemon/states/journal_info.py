@@ -31,7 +31,6 @@ class JournalInfoState(PygameMenuState):
 
     def add_menu_items(self, menu: Menu, monster: MonsterModel) -> None:
 
-
         minimal_font = transform_resource_filename(
             "font", self.client.config.locale.minimal_font_file
         )
@@ -39,7 +38,6 @@ class JournalInfoState(PygameMenuState):
         thin_font = transform_resource_filename(
             "font", self.client.config.locale.thin_font_file
         )
-
 
         orig_w = menu._width
         orig_h = menu._height
@@ -129,27 +127,34 @@ class JournalInfoState(PygameMenuState):
             type_image_1 = self._create_image(path1)
             type_image_1.scale(self.factor, self.factor)
             if len(monster.types) > 1:
-                path2 = f"gfx/ui/icons/element/{monster.types[1]}_type_small.png"
+                path2 = (
+                    f"gfx/ui/icons/element/{monster.types[1]}_type_small.png"
+                )
                 type_image_2 = self._create_image(path2)
                 type_image_2.scale(self.factor, self.factor)
                 menu.add.image(
-                    type_image_1, float=True,
-                    float_origin_position=True, padding=0,
+                    type_image_1,
+                    float=True,
+                    float_origin_position=True,
+                    padding=0,
                 ).translate(fxw(119), fxh(45))
                 menu.add.image(
-                    type_image_2, float=True,
-                    float_origin_position=True, padding=0,
+                    type_image_2,
+                    float=True,
+                    float_origin_position=True,
+                    padding=0,
                 ).translate(fxw(150), fxh(53))
             else:
                 menu.add.image(
-                    type_image_1, float=True,
-                    float_origin_position=True, padding=0,
+                    type_image_1,
+                    float=True,
+                    float_origin_position=True,
+                    padding=0,
                 ).translate(fxw(119), fxh(48))
 
         menu_type_suffix = T.translate("monster_menu_type_suffix")
 
         if len(monster.types) > 1:
-
             # FIRST TYPE
             type1_text = self._safe_display(monster.types[0])
 
@@ -182,23 +187,21 @@ class JournalInfoState(PygameMenuState):
             lab5b.translate(fxw(164), fxh(57))
 
         else:
-                # FIRST TYPE
-                type1_text = self._safe_display(monster.types[0])
+            # FIRST TYPE
+            type1_text = self._safe_display(monster.types[0])
 
-                lab5a = menu.add.label(
-                    title=f"{type1_text}{menu_type_suffix}",
-                    label_id="type_loaded_1",
-                    font_size=self.font_type.biggest,
-                    font_name=minimal_font,
-                    align=ALIGN_LEFT,
-                    float=True,
-                    float_origin_position=True,
-                    padding=0,
-                )
+            lab5a = menu.add.label(
+                title=f"{type1_text}{menu_type_suffix}",
+                label_id="type_loaded_1",
+                font_size=self.font_type.biggest,
+                font_name=minimal_font,
+                align=ALIGN_LEFT,
+                float=True,
+                float_origin_position=True,
+                padding=0,
+            )
 
-                lab5a.translate(fxw(132), fxh(51))
-
-
+            lab5a.translate(fxw(132), fxh(51))
 
         # shape
         menu_shape = T.translate("monster_menu_shape_short")
@@ -255,7 +258,7 @@ class JournalInfoState(PygameMenuState):
             frame_id="description_frame",
             padding=0,
         )
-        desc_frame._relax=True
+        desc_frame._relax = True
         desc_frame.translate(fxw(8), fxh(85))
         lab9: Any = menu.add.label(
             title=desc,
@@ -277,9 +280,7 @@ class JournalInfoState(PygameMenuState):
         slugs = [ele.monster_slug for ele in monster.evolutions]
         elements = list(dict.fromkeys(slugs))
 
-        evolution_names = ", ".join(
-            T.translate(ele) for ele in elements
-        )
+        evolution_names = ", ".join(T.translate(ele) for ele in elements)
 
         evolution_text = f"{evo}: {evolution_names}"
 
@@ -363,7 +364,8 @@ class JournalInfoState(PygameMenuState):
 
         # LEFT / RIGHT / DOWN → cycle monsters (with repeat)
         if (
-            event.button in (buttons.RIGHT, buttons.LEFT, buttons.DOWN, buttons.UP)
+            event.button
+            in (buttons.RIGHT, buttons.LEFT, buttons.DOWN, buttons.UP)
             and self.valid_press(event)
             and self.source in ("JournalInfoState", "JournalState")
         ):

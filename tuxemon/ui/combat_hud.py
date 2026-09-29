@@ -19,6 +19,7 @@ logger = logging.getLogger(__name__)
 
 SLOTS_PER_SIDE = 2
 
+
 class Side(Enum):
     PLAYER = "player"
     OPPONENT = "opponent"

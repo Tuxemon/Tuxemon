@@ -166,7 +166,6 @@ def simple_damage_calculate(
     return damage, mult
 
 
-
 def simple_heal(
     technique: Technique,
     monster: Monster,

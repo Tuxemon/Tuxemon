@@ -66,7 +66,9 @@ class GetPendingMovesAction(EventAction):
         if technique.instance_id == new_tech.instance_id:
             msg = T.format("tech_no_learn", {"tech": new_tech.name})
         else:
-            msg = T.format("tech_replaced", {"old": technique.name, "new": new_tech.name})
+            msg = T.format(
+                "tech_replaced", {"old": technique.name, "new": new_tech.name}
+            )
 
         client = self.session.client
         open_dialog(client, [msg], on_complete=client.pop_state)

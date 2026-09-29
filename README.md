@@ -61,10 +61,6 @@ Complete Mods documentation:
 - [docs/mods.md](docs/mods.md)
 
 
-**Fedora Linux**
-
-See [docs/installation.md#fedora-linux](docs/installation.md#fedora-linux).
-
 Controls
 --------
 

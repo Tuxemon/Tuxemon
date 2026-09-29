@@ -60,9 +60,9 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
-pypy/bin/pypy -m pip install -r "$ROOT_FOLDER/requirements.txt"
+pypy/bin/pypy -m pip install "$ROOT_FOLDER"
 if [ $? -ne 0 ]; then
-  echo "Error: Failed to install requirements."
+  echo "Error: Failed to install project dependencies."
   exit 1
 fi
 

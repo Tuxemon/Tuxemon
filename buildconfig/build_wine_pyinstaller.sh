@@ -2,8 +2,7 @@
 set -euo pipefail
 # debian 10
 "$(dirname "$0")/setup_wine_debian10.sh"
-wine python -m pip install -U setuptools wheel pyinstaller
-wine python -m pip install -U -r requirements.txt
+wine python -m pip install -U setuptools wheel
 find . -name "*pyc" -delete
 wine pyinstaller buildconfig/pyinstaller/tuxemon.spec
 cd dist/tuxemon

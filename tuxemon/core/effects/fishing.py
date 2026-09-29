@@ -24,6 +24,7 @@ logger = logging.getLogger(__name__)
 #: Slug of the splash animation played over the faced water tile while fishing.
 SPLASH_SLUG = "splash_small"
 
+
 @dataclass
 class ActionConfig:
     trigger: float = 0.0

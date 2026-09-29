@@ -9,8 +9,6 @@ wine pyinstaller buildconfig/pyinstaller/tuxemon.spec
 cd dist/tuxemon
 cp ../../LICENSE .
 cp ../../CONTRIBUTING.md .
-cp ../../CREDITS.md .
 cp ../../README.md .
-cp ../../SPYDER_README.md .
 cd ..
 zip -r tuxemon-windows-development.zip tuxemon

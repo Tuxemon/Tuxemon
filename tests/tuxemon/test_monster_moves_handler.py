@@ -159,6 +159,7 @@ def test_update_moves(handler, monster):
         # the level up is reported once: the monster now knows technique3
         assert handler.update_moves(monster, 1) == []
 
+
 @pytest.mark.parametrize(
     "method",
     [

@@ -8,7 +8,7 @@ This document contains only the installation instructions.
 
 This guide describes how to install and run Tuxemon on various platforms, including Windows, Linux distributions, macOS, and experimental Android builds.
 
-Tuxemon is developed in Python and can be run directly from source or through platform‑specific packaging systems.
+Tuxemon is developed in Python and can be run directly from source or through platform-specific packaging systems.
 
 ---
 
@@ -21,13 +21,13 @@ Requires **Python 3.10+** and **Git**.
 ```shell
 git clone https://github.com/Tuxemon/Tuxemon.git
 cd Tuxemon
-py -3 -m pip install -U -r requirements.txt
+py -3 -m pip install -U .
 py -3 run_tuxemon.py
 ```
 
 ### Windows Binary
 
-Windows binaries are currently **non‑functional**.
+Windows binaries are currently **non-functional**.
 
 Use the source installation instead.
 
@@ -61,17 +61,17 @@ git clone https://github.com/Tuxemon/Tuxemon.git
 python3 -m venv venv
 source venv/bin/activate
 cd Tuxemon
-python3 -m pip install -U -r requirements.txt
+python3 -m pip install -U .
 python3 run_tuxemon.py
 ```
 
-### System‑Wide Install (Not Recommended)
+### System-Wide Install (Not Recommended)
 
 ```shell
-sudo apt install python3 python3-pygame python3-pip python3-imaging git
+sudo apt install python3 python3-pip git
 git clone https://github.com/Tuxemon/Tuxemon.git
 cd Tuxemon
-sudo pip3 install -U -r requirements.txt
+sudo pip3 install -U .
 python3 run_tuxemon.py
 ```
 
@@ -81,7 +81,8 @@ python3 run_tuxemon.py
 sudo apt install build-essential
 git clone https://github.com/zear/libShake.git
 cd libShake/
-make BACKEND=LINUX; sudo make install BACKEND=LINUX
+make BACKEND=LINUX
+sudo make install BACKEND=LINUX
 ```
 
 ---
@@ -94,7 +95,7 @@ git clone https://github.com/Tuxemon/Tuxemon.git
 python3 -m venv venv
 source venv/bin/activate
 cd Tuxemon
-python3 -m pip install -U -r requirements.txt
+python3 -m pip install -U .
 python3 run_tuxemon.py
 ```
 
@@ -105,12 +106,12 @@ python3 run_tuxemon.py
 Manual installation is recommended.
 
 ```shell
-sudo pacman -S python python-pip python-pillow python-pygame python-pydantic git
+sudo pacman -S python python-pip git
 git clone https://github.com/Tuxemon/Tuxemon.git
 cd Tuxemon
 python -m venv venv
 source venv/bin/activate
-python -m pip install -U -r requirements.txt
+python -m pip install -U .
 python run_tuxemon.py
 ```
 
@@ -138,7 +139,7 @@ brew install python
 brew install sdl sdl_image sdl_ttf portmidi git
 brew install sdl_mixer --with-libvorbis
 sudo pip install git+https://github.com/pygame/pygame.git
-sudo pip install -U -r requirements.txt
+sudo pip install -U .
 git clone https://github.com/Tuxemon/Tuxemon.git
 ulimit -n 10000; python run_tuxemon.py
 ```

@@ -15,19 +15,35 @@ maintainers = [
     {name = "Tuxemon Community"}
 ]
 classifiers = [
-        "Intended Audience :: End Users/Desktop",
-        "Development Status :: 3 - Alpha",
-        "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
-        "Programming Language :: Python :: 3.10",
-        "Programming Language :: Python :: 3.11",
-        "Programming Language :: Python :: 3.12",
-        "Programming Language :: Python :: 3.13",
-        "Programming Language :: Python :: 3.14",
-        "Topic :: Games/Entertainment",
-        "Topic :: Games/Entertainment :: Role-Playing"
+    "Intended Audience :: End Users/Desktop",
+    "Development Status :: 3 - Alpha",
+    "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Games/Entertainment",
+    "Topic :: Games/Entertainment :: Role-Playing"
 ]
 requires-python = ">=3.10"
-dynamic = ["dependencies"]
+
+dependencies = [
+    "babel",
+    "cbor",
+    "websockets",
+    "pillow",
+    "packaging",
+    "pygame-ce==2.5.7",
+    "pyscroll>=2.31",
+    "pytmx==3.32",
+    "requests",
+    "natsort",
+    "PyYAML>=6.0.2",
+    "prompt_toolkit",
+    "pygame-menu-ce==4.5.2",
+    "pydantic>=2.10.6",
+]
 
 [project.urls]
 homepage = "https://www.tuxemon.org"
@@ -55,9 +71,6 @@ include-package-data = true
 [tool.setuptools.packages.find]
 where = ["."]
 include = ["tuxemon*"]
-
-[tool.setuptools.dynamic]
-dependencies = {file = "requirements.txt"}
 
 [tool.mypy]
 enable_error_code = "ignore-without-code"
@@ -116,10 +129,10 @@ target-version = "py310"
 
 [tool.ruff.lint]
 select = [
-    "W",    # pycodestyle warnings
-    "UP",   # pyupgrade
-    "I",    # import sorting
-    "F",    # enables F401 and all Pyflakes rules
+    "W",  # pycodestyle warnings
+    "UP", # pyupgrade
+    "I",  # import sorting
+    "F",  # enables F401 and all Pyflakes rules
 ]
 
 [tool.ruff.lint.isort]

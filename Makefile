@@ -3,7 +3,7 @@
 default: run
 
 setup:
-	pip install -U -r ./requirements.txt
+	pip install -U .
 
 test-setup:
 	pip install -e .[test]

@@ -1,0 +1,120 @@
+events:
+  Environment:
+    actions:
+    - set_environment interior
+    conditions:
+    - not environment_is interior
+    type: event
+  Update Time Variables:
+    actions:
+    - update_time player
+    conditions:
+    - is current_state WorldState
+    type: event
+  Create Maple:
+    actions:
+    - create_npc professor,1,1
+    conditions:
+    - not char_exists professor
+    type: event
+  Start Maple:
+    actions:
+    - start_battle player,professor
+    conditions:
+    - is char_exists professor
+    - is party_size player,greater_than,0
+    - is party_size professor,greater_than,0
+    - not char_defeated player
+    - not char_defeated professor
+    type: event
+  Post Win:
+    actions:
+    - quit_world
+    conditions:
+    - is battle_outcome player,won,professor
+    - is current_state WorldState
+    type: event
+  Post Lose:
+    actions:
+    - quit_world
+    conditions:
+    - is battle_outcome player,lost,professor
+    - is current_state WorldState
+    type: event
+  Post Draw:
+    actions:
+    - quit_world
+    conditions:
+    - is battle_outcome player,draw,professor
+    - is current_state WorldState
+    type: event
+  Difficulty beginner:
+    actions:
+    - random_monster 10
+    - random_monster 10,professor
+    - set_variable monsters:full
+    conditions:
+    - is variable_set difficulty:beginner
+    - is char_exists professor
+    - not variable_set monsters:full
+    type: event
+  Difficulty easy:
+    actions:
+    - random_monster 15
+    - random_monster 15
+    - random_monster 15,professor
+    - random_monster 15,professor
+    - set_variable monsters:full
+    conditions:
+    - is variable_set difficulty:easy
+    - is char_exists professor
+    - not variable_set monsters:full
+    type: event
+  Difficulty normal:
+    actions:
+    - random_monster 20
+    - random_monster 20
+    - random_monster 20
+    - random_monster 20,professor
+    - random_monster 20,professor
+    - random_monster 20,professor
+    - set_variable monsters:full
+    conditions:
+    - is variable_set difficulty:normal
+    - is char_exists professor
+    - not variable_set monsters:full
+    type: event
+  Difficulty hard:
+    actions:
+    - random_monster 25
+    - random_monster 25
+    - random_monster 25
+    - random_monster 25
+    - random_monster 25,professor
+    - random_monster 25,professor
+    - random_monster 25,professor
+    - random_monster 25,professor
+    - set_variable monsters:full
+    conditions:
+    - is variable_set difficulty:hard
+    - is char_exists professor
+    - not variable_set monsters:full
+    type: event
+  Difficulty expert:
+    actions:
+    - random_monster 30
+    - random_monster 30
+    - random_monster 30
+    - random_monster 30
+    - random_monster 30
+    - random_monster 30,professor
+    - random_monster 30,professor
+    - random_monster 30,professor
+    - random_monster 30,professor
+    - random_monster 30,professor
+    - set_variable monsters:full
+    conditions:
+    - is variable_set difficulty:expert
+    - is char_exists professor
+    - not variable_set monsters:full
+    type: event

@@ -1,0 +1,59 @@
+slug: zunna
+species: slurpy
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: constrict
+- level_learned: 1
+  technique: goad
+- level_learned: 4
+  technique: strike
+- level_learned: 7
+  technique: perfect_cut
+- level_learned: 13
+  technique: roll
+- level_learned: 16
+  technique: muddle
+- level_learned: 19
+  technique: sleep_bomb
+- level_learned: 25
+  technique: shrapnel
+- level_learned: 28
+  technique: crystal
+- level_learned: 31
+  technique: battery_discharge
+- level_learned: 37
+  technique: clamp_on
+- level_learned: 40
+  technique: sunburst
+evolutions: []
+history:
+- slug: zunna
+  stage: standalone
+  evolves_from: []
+  evolves_into: []
+terrains: []
+tags:
+- food
+shape: blob
+stage: standalone
+types:
+- normal
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 131
+height: 90
+weight: 2
+sounds:
+  combat_call:
+    sfx: sound_eat_01
+    volume: 1.5
+  faint_call:
+    sfx: sound_eat_01_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.05

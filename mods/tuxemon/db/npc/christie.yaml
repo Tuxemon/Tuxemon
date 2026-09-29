@@ -1,0 +1,10 @@
+slug: christie
+speech:
+  profile:
+    default: {}
+combat: {}
+audio: {}
+template:
+  sprite_name: christie
+  combat_sheet: heroine
+  slug: heroine

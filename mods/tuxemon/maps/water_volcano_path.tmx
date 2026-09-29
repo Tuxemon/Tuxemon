@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.11.1-99-gec89c545" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="67">
+ <properties>
+  <property name="edges" value="clamped"/>
+ </properties>
+ <tileset firstgid="1" source="../gfx/tilesets/core_outdoor.tsx"/>
+ <tileset firstgid="2776" source="../gfx/tilesets/oceanset_outside.tsx"/>
+ <layer id="1" name="Tile Layer 1" width="20" height="20">
+  <data encoding="csv">
+92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,
+92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,92,
+92,92,92,92,92,92,92,137,137,137,137,137,137,92,92,92,92,92,92,92,
+92,92,92,92,92,137,137,137,137,137,137,137,137,137,137,137,92,92,92,92,
+92,92,92,137,137,137,137,137,137,684,684,684,137,137,137,137,137,92,92,92,
+92,92,92,137,137,137,137,137,906,1269,1269,1269,905,137,137,137,137,137,92,92,
+92,92,137,137,137,137,137,720,1269,1269,1269,1269,1269,722,137,137,137,137,92,92,
+92,92,137,137,137,137,137,720,1269,1269,1269,1269,1269,722,137,137,137,137,92,92,
+92,92,137,137,137,137,137,137,869,1269,1269,1269,868,137,137,137,137,137,92,92,
+92,92,92,137,137,137,137,137,137,758,758,758,137,137,137,137,137,137,92,92,
+92,92,92,137,137,137,137,137,137,137,137,137,137,137,137,137,137,92,92,92,
+92,92,92,92,137,137,137,137,137,137,137,137,137,137,137,137,92,92,92,92,
+92,92,92,92,137,137,137,137,137,137,137,137,137,137,137,137,92,92,92,92,
+92,92,92,92,137,137,137,137,137,137,137,137,137,137,137,137,92,92,92,92,
+92,92,92,92,137,137,137,137,137,137,137,137,137,137,137,137,92,92,92,92,
+92,92,92,92,137,137,137,137,137,137,137,137,137,137,137,137,92,92,92,92,
+92,92,92,137,137,137,137,137,137,137,137,137,137,137,137,137,137,92,92,92,
+92,92,92,137,137,137,137,137,137,137,137,137,137,137,137,137,137,92,92,92,
+92,92,137,137,137,137,137,137,137,137,137,137,137,137,137,137,137,137,92,92,
+92,137,137,137,137,137,137,137,137,137,137,137,137,137,137,137,137,137,137,92
+</data>
+ </layer>
+ <layer id="2" name="Tile Layer 2" width="20" height="20">
+  <data encoding="csv">
+0,0,0,0,0,0,0,3744,3745,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,3760,3761,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,3776,3777,0,0,0,0,0,0,0,3730,3731,3732,0,
+0,0,3730,3731,3732,0,0,0,141,142,142,142,143,0,3278,0,3746,3747,3748,0,
+0,0,3746,3747,3748,0,0,141,291,0,0,0,290,143,0,0,3762,3763,3764,0,
+0,0,3762,3763,3764,0,141,291,0,0,0,0,0,290,143,0,3778,3779,3780,0,
+0,0,3778,3779,3780,0,178,0,0,0,0,0,0,0,180,0,0,0,0,0,
+0,0,0,1247,1247,1247,178,0,0,0,0,0,0,0,180,0,0,0,0,0,
+0,0,3279,1247,1247,1247,1247,254,0,0,0,0,0,253,217,0,0,3453,0,0,
+0,0,0,1247,1247,1247,1247,215,254,0,0,0,253,217,0,0,3453,3469,0,0,
+0,0,0,3587,3588,3589,3590,0,215,216,216,216,217,1247,1247,0,3469,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,1247,1247,1247,1247,1247,0,0,0,0,
+0,0,0,0,3453,0,0,0,0,0,1247,1247,1247,1247,3744,3745,0,0,0,0,
+0,0,0,0,3453,0,0,0,0,0,1247,1247,1247,1247,3760,3761,0,0,0,0,
+0,0,0,0,3469,3729,0,0,0,0,1247,1247,1247,1247,3776,3777,0,0,0,0,
+0,0,0,0,3744,3745,0,0,0,0,0,1247,1247,1247,1247,3279,0,0,0,0,
+0,0,0,0,3760,3761,0,0,0,0,0,0,0,3804,3805,3806,3807,0,0,0,
+0,0,0,0,3776,3777,0,0,0,0,0,0,0,3820,3821,3822,3823,0,0,0,
+0,0,3326,0,0,0,0,0,0,0,0,0,0,3836,3837,3838,3839,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,3852,3853,3854,3855,0,0,0
+</data>
+ </layer>
+ <layer id="5" name="Tile Layer 3" width="20" height="20">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="6" name="Tile Layer 4" width="20" height="20">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <objectgroup color="#ffff00" id="3" name="Events">
+  <object id="1" name="Teleport to Volcano Village" type="event" x="16" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport player,water_volcano_village.tmx,0,0,0.5"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
+   </properties>
+  </object>
+  <object id="2" name="Teleport to Volcano Village" type="event" x="32" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport player,water_volcano_village.tmx,1,0,0.5"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
+   </properties>
+  </object>
+  <object id="3" name="Teleport to Volcano Village" type="event" x="48" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport player,water_volcano_village.tmx,2,0,0.5"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
+   </properties>
+  </object>
+  <object id="4" name="Teleport to Volcano Village" type="event" x="64" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport player,water_volcano_village.tmx,3,0,0.5"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
+   </properties>
+  </object>
+  <object id="5" name="Teleport to Volcano Village" type="event" x="80" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport player,water_volcano_village.tmx,4,0,0.5"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
+   </properties>
+  </object>
+  <object id="6" name="Teleport to Volcano Village" type="event" x="96" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport player,water_volcano_village.tmx,5,0,0.5"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
+   </properties>
+  </object>
+  <object id="7" name="Teleport to Volcano Village" type="event" x="112" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport player,water_volcano_village.tmx,6,0,0.5"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
+   </properties>
+  </object>
+  <object id="8" name="Teleport to Volcano Village" type="event" x="128" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport player,water_volcano_village.tmx,7,0,0.5"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
+   </properties>
+  </object>
+  <object id="9" name="Teleport to Volcano Village" type="event" x="144" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport player,water_volcano_village.tmx,8,0,0.5"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
+   </properties>
+  </object>
+  <object id="10" name="Teleport to Volcano Village" type="event" x="160" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport player,water_volcano_village.tmx,9,0,0.5"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
+   </properties>
+  </object>
+  <object id="11" name="Teleport to Volcano Village" type="event" x="176" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport player,water_volcano_village.tmx,20,0,0.5"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
+   </properties>
+  </object>
+  <object id="12" name="Teleport to Volcano Village" type="event" x="192" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport player,water_volcano_village.tmx,10,0,0.5"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
+   </properties>
+  </object>
+  <object id="26" name="Teleport to Underwater Cave" type="event" x="128" y="128" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport player,water_underwater.tmx,42,42,0.5"/>
+    <property name="cond1" value="is char_at player"/>
+   </properties>
+  </object>
+  <object id="27" name="Teleport to Underwater Cave" type="event" x="144" y="144" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport player,water_underwater.tmx,42,42,0.5"/>
+    <property name="cond1" value="is char_at player"/>
+   </properties>
+  </object>
+  <object id="28" name="Teleport to Underwater Cave" type="event" x="160" y="144" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport player,water_underwater.tmx,42,42,0.5"/>
+    <property name="cond1" value="is char_at player"/>
+   </properties>
+  </object>
+  <object id="29" name="Teleport to Underwater Cave" type="event" x="176" y="144" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport player,water_underwater.tmx,42,42,0.5"/>
+    <property name="cond1" value="is char_at player"/>
+   </properties>
+  </object>
+  <object id="30" name="Teleport to Underwater Cave" type="event" x="192" y="128" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport player,water_underwater.tmx,42,42,0.5"/>
+    <property name="cond1" value="is char_at player"/>
+   </properties>
+  </object>
+  <object id="31" name="Teleport to Underwater Cave" type="event" x="208" y="112" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport player,water_underwater.tmx,42,42,0.5"/>
+    <property name="cond1" value="is char_at player"/>
+   </properties>
+  </object>
+  <object id="32" name="Teleport to Underwater Cave" type="event" x="208" y="96" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport player,water_underwater.tmx,42,42,0.5"/>
+    <property name="cond1" value="is char_at player"/>
+   </properties>
+  </object>
+  <object id="33" name="Teleport to Underwater Cave" type="event" x="192" y="80" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport player,water_underwater.tmx,42,42,0.5"/>
+    <property name="cond1" value="is char_at player"/>
+   </properties>
+  </object>
+  <object id="34" name="Teleport to Underwater Cave" type="event" x="176" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport player,water_underwater.tmx,42,42,0.5"/>
+    <property name="cond1" value="is char_at player"/>
+   </properties>
+  </object>
+  <object id="35" name="Teleport to Underwater Cave" type="event" x="160" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport player,water_underwater.tmx,42,42,0.5"/>
+    <property name="cond1" value="is char_at player"/>
+   </properties>
+  </object>
+  <object id="36" name="Teleport to Underwater Cave" type="event" x="144" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport player,water_underwater.tmx,42,42,0.5"/>
+    <property name="cond1" value="is char_at player"/>
+   </properties>
+  </object>
+  <object id="37" name="Teleport to Underwater Cave" type="event" x="128" y="80" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport player,water_underwater.tmx,42,42,0.5"/>
+    <property name="cond1" value="is char_at player"/>
+   </properties>
+  </object>
+  <object id="38" name="Teleport to Underwater Cave" type="event" x="112" y="96" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport player,water_underwater.tmx,42,42,0.5"/>
+    <property name="cond1" value="is char_at player"/>
+   </properties>
+  </object>
+  <object id="39" name="Teleport to Underwater Cave" type="event" x="112" y="112" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport player,water_underwater.tmx,42,42,0.5"/>
+    <property name="cond1" value="is char_at player"/>
+   </properties>
+  </object>
+  <object id="46" name="Create Old Guy 3" type="event" x="112" y="224" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc water_maniac,8,15"/>
+    <property name="cond1" value="not char_exists water_maniac"/>
+   </properties>
+  </object>
+  <object id="47" name="Talk Old Guy 3" type="event" x="128" y="240" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog water_volcano_oldman1"/>
+    <property name="act20" value="translated_dialog water_volcano_oldman2"/>
+    <property name="act30" value="translated_dialog water_volcano_oldman3"/>
+    <property name="behav1" value="talk water_maniac"/>
+   </properties>
+  </object>
+  <object id="48" name="Play Music" type="event" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="play_music music_fields_loop"/>
+    <property name="cond1" value="not music_playing music_fields_loop"/>
+   </properties>
+  </object>
+  <object id="49" name="Set Environment" type="event" x="32" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_environment sand"/>
+    <property name="cond1" value="not environment_is sand"/>
+   </properties>
+  </object>
+  <object id="50" name="Random Encounter" type="event" x="176" y="176" width="48" height="80">
+   <properties>
+    <property name="act1" value="random_encounter default_encounter,10"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_moved player"/>
+   </properties>
+  </object>
+  <object id="51" name="Random Encounter" type="event" x="48" y="112" width="48" height="48">
+   <properties>
+    <property name="act1" value="random_encounter default_encounter,10"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_moved player"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup color="#ff0000" id="4" name="Collisions">
+  <object id="53" type="collision" x="208" y="256" width="64" height="64"/>
+  <object id="54" type="collision" x="64" y="256" width="32" height="32"/>
+  <object id="55" type="collision" x="64" y="192" width="16" height="48"/>
+  <object id="56" type="collision" x="224" y="192" width="32" height="48"/>
+  <object id="57" type="collision" x="272" y="128" width="16" height="32"/>
+  <object id="58" type="collision" x="256" y="144" width="16" height="32"/>
+  <object id="59" type="collision" x="272" y="64" width="16" height="32"/>
+  <object id="60" type="collision" x="112" y="16" width="32" height="32"/>
+  <object id="61" type="collision" x="48" y="80" width="16" height="32"/>
+  <object id="62" type="collision" x="32" y="128" width="16" height="16"/>
+  <object id="63" type="collision" x="48" y="160" width="64" height="16"/>
+  <object id="64" type="collision" x="224" y="48" width="16" height="16"/>
+  <object id="65" type="collision" x="240" y="240" width="16" height="16"/>
+  <object id="66" type="collision" x="32" y="288" width="16" height="16"/>
+ </objectgroup>
+</map>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="23">
+ <properties>
+  <property name="east" value="routec"/>
+  <property name="edges" value="clamped"/>
+  <property name="map_type" value="town"/>
+  <property name="north" value="candy_town"/>
+  <property name="scenario" value="spyder"/>
+  <property name="slug" value="candy_port"/>
+ </properties>
+ <tileset firstgid="1" source="../gfx/tilesets/core_outdoor.tsx"/>
+ <tileset firstgid="2776" source="../gfx/tilesets/core_set pieces.tsx"/>
+ <tileset firstgid="4326" source="../gfx/tilesets/core_city_and_country.tsx"/>
+ <tileset firstgid="5766" source="../gfx/tilesets/core_outdoor_water.tsx"/>
+ <layer id="1" name="Tile Layer 1" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eAHtlMENwjAMRU2BCyzCECAxAAzBBj0xDLALsBRn/KV+YUU/TZFK6aEHy9G3Yz/ZaSszqzI2d71u7OL+6nYLGmN9+tjn5GBtbJvAEu/1yZPWin1yfJgb2MbAl/Ivnes4Uj6ygXks8zs4Cw1zAxs51X5XM7Oz5/zK1l6f3yHeX26/nCHjfLe4O4ThP5HycW5xhuS7e/5jQHs2fNwtfLpfsv3Lq/lFzi5cW38ju8aQz3PqczGlU9v7j07ND/FS31jjtTCDQeM59bmY0qOGMy0ygZ09Yv63Wls+YqXacQ+RiXW71GCu6lWKqTtKYx3lVX5XjfVUPmJKVxrrKK/ylabuTtrnO5lmMc2i7zfwBjzQE9Q=
+  </data>
+ </layer>
+ <layer id="2" name="Tile Layer 2" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eAHtVckuRFEQrehuLBE94AcInViLRiKW/IKN6WNMS8MX+BZ7euAPTEuxcirvnaRSqavHsFHJeee+U3VP1b15jUj3WCyJLAEa20WR4nSGCbCGMvEyJfIKvAHvwAfAHJn7yVbfgb+G7Zkp6ecuZtvL5/ssiJQwj2Iyn0uZmMW6DFSAKlADmCPXoVlQV88v+GvYnpmSftqz+PnoTV5HjwawAWwCWwBzZN4Xmbqdz/bUye7G4/nucW/2LDofz76K3h4H0A6BI+AYOAF8TepdfYe9vwd8H48JtKCfoscZcA5cAJdAO1Ef+TRRq+HvL1Pjp72/uGL0aj89+znLqCb1PfcT35/26+cso5pv0J5lcw7+TpQZ/J1FOa1J6ZpbM97+/jQ/THQw4xPwbGalXyoX6Vbj31z6RGzrmY+0wgz+pwAlwEcqF+mR5v3se1Tfq0afqF5zke61xhhdYvb1vfpat8hjEB/ryXXk3av2k8dvz7eM724FqAffXyoX6ZHGc0Yc1UdatPdf+/sbaFZEWgC5jXUHuAJugZucfZ661ulaWcH9ZObVqwloL+b4zv3Ur01NrSoyB5DnsV4AfHTLs577ydSVvQffWWP3cP0NPnN9lw==
+  </data>
+ </layer>
+ <layer id="5" name="Tile Layer 3" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eAHt0KEBAAAIw7AZzuP/d/CoHZDqqiQiQIAAAQK9wE7/OgkQIECAwBc4D6kAUw==
+  </data>
+ </layer>
+ <layer id="6" name="Above Player" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eAFjYBgFoyEwGgKjITD4QoBFkIEBhtFdBxMH0cgAlziymlH2aAiMhsBoCIyGwGgIjIbAwIYAAMjiAL4=
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" id="3" name="Collisions">
+  <object id="1" type="collision" x="320" y="64" width="32" height="16"/>
+  <object id="2" type="collision" x="368" y="64" width="32" height="16"/>
+  <object id="6" type="collision" x="144" y="0" width="32" height="128"/>
+  <object id="7" type="collision" x="352" y="48" width="16" height="16"/>
+  <object id="10" type="collision" x="608" y="0" width="32" height="160"/>
+ </objectgroup>
+</map>

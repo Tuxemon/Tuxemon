@@ -1,0 +1,313 @@
+events:
+  Event 14:
+    actions:
+    - char_stop player
+    - lock_controls
+    - set_layer 0:0:0:255
+    - play_sound japanese_temple_bell_small
+    - translated_dialog eclipse_event14_1,,top
+    - translated_dialog eclipse_event14_2,,top
+    - translated_dialog eclipse_event14_3,,top
+    - play_sound japanese_temple_bell_small
+    - set_layer
+    - set_variable eclipse_event14:yes
+    - unlock_controls
+    conditions:
+    - is variable_set eclipse_event11:yes
+    - is variable_set eclipse_event12:yes
+    - is variable_set eclipse_event13:yes
+    - not variable_set eclipse_event14:yes
+    type: event
+  Create Alexander:
+    actions:
+    - create_npc eclipse_lionmountain_alexander,1,29
+    - char_face eclipse_lionmountain_alexander,right
+    conditions:
+    - not char_exists eclipse_lionmountain_alexander
+    type: event
+  Create Arlene:
+    actions:
+    - create_npc eclipse_lionmountain_arlene,5,16
+    - char_face eclipse_lionmountain_arlene,right
+    conditions:
+    - not char_exists eclipse_lionmountain_arlene
+    type: event
+  Create Conrad:
+    actions:
+    - create_npc eclipse_lionmountain_conrad,26,26
+    conditions:
+    - not char_exists eclipse_lionmountain_conrad
+    type: event
+  Create David:
+    actions:
+    - create_npc eclipse_lionmountain_david,1,10
+    - char_face eclipse_lionmountain_david,right
+    conditions:
+    - not char_exists eclipse_lionmountain_david
+    type: event
+  Create Kurt:
+    actions:
+    - create_npc eclipse_lionmountain_kurt,29,37
+    - char_face eclipse_lionmountain_kurt,left
+    conditions:
+    - not char_exists eclipse_lionmountain_kurt
+    type: event
+  Create Snarlon:
+    actions:
+    - create_npc eclipse_lionmountain_snarlon,4,5
+    - char_face eclipse_lionmountain_snarlon,right
+    conditions:
+    - not char_exists eclipse_lionmountain_snarlon
+    - not variable_set snarlonmountain:yes
+    - is time_is hour,equals,0
+    type: event
+  Encounters:
+    actions:
+    - random_encounter eclipse_lion_mountain
+    - play_map_animation grass_blue,0.1,noloop,player
+    conditions:
+    - is char_moved player
+    - is char_at player
+    height: 2
+    width: 6
+    x: 8
+    y: 36
+    type: event
+  Environment Day:
+    actions:
+    - set_environment snow
+    conditions:
+    - not time_is stage_of_day,equals,night
+    - not environment_is snow
+    x: 1
+    y: 0
+    type: event
+  Environment Night:
+    actions:
+    - set_environment night_snow
+    conditions:
+    - is time_is stage_of_day,equals,night
+    - not environment_is night_snow
+    x: 2
+    y: 0
+    type: event
+  Play Music:
+    actions:
+    - play_music music_adventure_begins
+    conditions:
+    - not music_playing music_adventure_begins
+    type: event
+  Post Talk Alexander:
+    actions:
+    - char_talk eclipse_lionmountain_alexander,post_battle_lose
+    behav:
+    - talk eclipse_lionmountain_alexander
+    conditions:
+    - is battle_outcome player,won,eclipse_lionmountain_alexander
+    type: event
+  Post Talk Arlene:
+    actions:
+    - char_talk eclipse_lionmountain_arlene,post_battle_lose
+    behav:
+    - talk eclipse_lionmountain_arlene
+    conditions:
+    - is battle_outcome player,won,eclipse_lionmountain_arlene
+    type: event
+  Post Talk Conrad:
+    actions:
+    - char_talk eclipse_lionmountain_conrad,post_battle_lose
+    behav:
+    - talk eclipse_lionmountain_conrad
+    conditions:
+    - is battle_outcome player,won,eclipse_lionmountain_conrad
+    type: event
+  Post Talk David:
+    actions:
+    - char_talk eclipse_lionmountain_david,post_battle_lose
+    behav:
+    - talk eclipse_lionmountain_david
+    conditions:
+    - is battle_outcome player,won,eclipse_lionmountain_david
+    type: event
+  Post Talk Kurt:
+    actions:
+    - char_talk eclipse_lionmountain_kurt,post_battle_lose
+    behav:
+    - talk eclipse_lionmountain_kurt
+    conditions:
+    - is battle_outcome player,won,eclipse_lionmountain_kurt
+    type: event
+  Talk Alexander:
+    actions:
+    - lock_controls
+    - pathfind_to_char player,eclipse_lionmountain_alexander
+    - char_talk eclipse_lionmountain_alexander,pre_battle
+    - unlock_controls
+    - add_monster weavifly,50,eclipse_lionmountain_alexander,5,10
+    - add_monster bumbulus,50,eclipse_lionmountain_alexander,5,10
+    - add_monster nimbulex,55,eclipse_lionmountain_alexander,5,10
+    - start_battle player,eclipse_lionmountain_alexander
+    - char_talk eclipse_lionmountain_alexander,post_battle_lose
+    conditions:
+    - not battle_outcome player,won,eclipse_lionmountain_alexander
+    - is char_at player
+    - not char_defeated player
+    x: 3
+    y: 29
+    type: event
+  Talk Arlene:
+    actions:
+    - lock_controls
+    - pathfind_to_char player,eclipse_lionmountain_arlene
+    - char_talk eclipse_lionmountain_arlene,pre_battle
+    - unlock_controls
+    - add_monster tadcool,45,eclipse_lionmountain_arlene,5,10
+    - add_monster fribbit,55,eclipse_lionmountain_arlene,5,10
+    - add_monster fribbit,55,eclipse_lionmountain_arlene,5,10
+    - start_battle player,eclipse_lionmountain_arlene
+    - char_talk eclipse_lionmountain_arlene,post_battle_lose
+    conditions:
+    - not battle_outcome player,won,eclipse_lionmountain_arlene
+    - is char_at player
+    - not char_defeated player
+    x: 11
+    y: 16
+    type: event
+  Talk Conrad:
+    actions:
+    - lock_controls
+    - pathfind_to_char player,eclipse_lionmountain_conrad
+    - char_talk eclipse_lionmountain_conrad,pre_battle
+    - unlock_controls
+    - add_monster cardinale,50,eclipse_lionmountain_conrad,5,10
+    - add_monster snaki,50,eclipse_lionmountain_conrad,5,10
+    - add_monster slichen,50,eclipse_lionmountain_conrad,5,10
+    - start_battle player,eclipse_lionmountain_conrad
+    - char_talk eclipse_lionmountain_conrad,post_battle_lose
+    conditions:
+    - not battle_outcome player,won,eclipse_lionmountain_conrad
+    - is char_at player
+    - not char_defeated player
+    x: 26
+    y: 31
+    type: event
+  Talk David:
+    actions:
+    - lock_controls
+    - pathfind_to_char player,eclipse_lionmountain_david
+    - char_talk eclipse_lionmountain_david,pre_battle
+    - unlock_controls
+    - add_monster polyrock,55,eclipse_lionmountain_david,5,10
+    - add_monster slichen,50,eclipse_lionmountain_david,5,10
+    - add_monster glombroc,55,eclipse_lionmountain_david,5,10
+    - start_battle player,eclipse_lionmountain_david
+    - char_talk eclipse_lionmountain_david,post_battle_lose
+    conditions:
+    - not battle_outcome player,won,eclipse_lionmountain_david
+    - is char_at player
+    - not char_defeated player
+    x: 4
+    y: 10
+    type: event
+  Talk Kurt:
+    actions:
+    - lock_controls
+    - pathfind_to_char player,eclipse_lionmountain_kurt
+    - char_talk eclipse_lionmountain_kurt,pre_battle
+    - unlock_controls
+    - add_monster rosarin,50,eclipse_lionmountain_kurt,5,10
+    - add_monster anu,50,eclipse_lionmountain_kurt,5,10
+    - add_monster cardinale,50,eclipse_lionmountain_kurt,5,10
+    - start_battle player,eclipse_lionmountain_kurt
+    - char_talk eclipse_lionmountain_kurt,post_battle_lose
+    conditions:
+    - not battle_outcome player,won,eclipse_lionmountain_kurt
+    - is char_at player
+    - not char_defeated player
+    x: 26
+    y: 37
+    type: event
+  Talk Snarlon:
+    actions:
+    - translated_dialog eclipse_lionmountain_snarlon1
+    - wild_encounter snarlon,60,3,,night_snowplain
+    - translated_dialog eclipse_lionmountain_snarlon2
+    - set_variable snarlonmountain:yes
+    - remove_npc eclipse_lionmountain_snarlon
+    behav:
+    - talk eclipse_lionmountain_snarlon
+    conditions:
+    - not variable_set snarlonmountain:yes
+    x: 2
+    y: 3
+    type: event
+  Teleport Obsidian Town 2:
+    actions:
+    - transition_teleport player,eclipse_obsidian_town.tmx,0,13,0.3
+    - char_face player,right
+    conditions:
+    - is char_at player
+    - is char_facing player,right
+    x: 39
+    y: 13
+    type: event
+  Teleport Obsidian Town 2:
+    actions:
+    - transition_teleport player,eclipse_obsidian_town.tmx,0,14,0.3
+    - char_face player,right
+    conditions:
+    - is char_at player
+    - is char_facing player,right
+    x: 39
+    y: 14
+    type: event
+  Teleport Mountain Middle 1:
+    actions:
+    - transition_teleport player,eclipse_lion_mountain_middle.tmx,2,0,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,down
+    x: 2
+    y: 39
+    type: event
+  Teleport Mountain Middle 2:
+    actions:
+    - transition_teleport player,eclipse_lion_mountain_middle.tmx,19,0,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,down
+    x: 19
+    y: 39
+    type: event
+  Teleport Mountain Middle 3:
+    actions:
+    - transition_teleport player,eclipse_lion_mountain_middle.tmx,23,0,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,down
+    x: 23
+    y: 39
+    type: event
+  Teleport Mountain Middle 4:
+    actions:
+    - transition_teleport player,eclipse_lion_mountain_middle.tmx,6,0,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,down
+    x: 6
+    y: 39
+    type: event
+  Teleport Mountain Middle 5:
+    actions:
+    - transition_teleport player,eclipse_lion_mountain_middle.tmx,7,0,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,down
+    x: 7
+    y: 39
+    type: event

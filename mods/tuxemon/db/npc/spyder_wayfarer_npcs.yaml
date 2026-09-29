@@ -1,0 +1,176 @@
+- slug: spyder_wayfarer1_bismuth
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_wayfarer1_bismuth1
+        post_battle_win: null
+        post_battle_lose: spyder_wayfarer1_bismuth2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: scientist_black
+    combat_sheet: scientist
+    slug: scientist
+- slug: spyder_wayfarer1_victor
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_wayfarer1_victor1
+        post_battle_win: null
+        post_battle_lose: spyder_wayfarer1_victor2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: knight
+    combat_sheet: enforcer_rookie
+    slug: enforcer_rookie
+- slug: spyder_wayfarer1_ratcher
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_wayfarer1_ratcher1
+        post_battle_win: null
+        post_battle_lose: spyder_wayfarer1_ratcher2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: nurse
+    combat_sheet: nurse
+    slug: nurse
+- slug: spyder_wayfarer1_nightshade
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_wayfarer1_nightshade1
+        post_battle_win: null
+        post_battle_lose: spyder_wayfarer1_nightshade2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: nurse_blue
+    combat_sheet: nurse
+    slug: nurse
+- slug: spyder_wayfarer1_morton
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_wayfarer1_morton1
+        post_battle_win: null
+        post_battle_lose: spyder_wayfarer1_morton2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: beachcomber_fiery
+    combat_sheet: yellowbelt
+    slug: yellowbelt
+- slug: spyder_wayfarer1_jessie
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_wayfarer1_jessie1
+        post_battle_win: null
+        post_battle_lose: spyder_wayfarer1_jessie2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: nurse_red
+    combat_sheet: nurse
+    slug: nurse
+- slug: spyder_wayfarer1_morningstar
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_wayfarer1_morningstar1
+        post_battle_win: null
+        post_battle_lose: spyder_wayfarer1_morningstar2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: nurse_lapi
+    combat_sheet: nurse
+    slug: nurse
+- slug: spyder_wayfarer1_james
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_wayfarer1_james1
+        post_battle_win: null
+        post_battle_lose: spyder_wayfarer1_james2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: scientist
+    combat_sheet: scientist
+    slug: scientist
+- slug: spyder_wayfarer1_bravo
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_wayfarer1_bravo1
+        post_battle_win: null
+        post_battle_lose: spyder_wayfarer1_bravo2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: knight
+    combat_sheet: enforcer_agent
+    slug: enforcer_agent
+- slug: spyder_wayfarer2_gae
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: granny
+    combat_sheet: adventurer
+    slug: granny
+- slug: spyder_wayfarer1_addy
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: nurse_green
+    combat_sheet: nurse
+    slug: nurse
+- slug: spyder_wayfarer1_wes
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: maniac_violet
+    combat_sheet: adventurer
+    slug: maniac
+- slug: spyder_wayfarer2_kim
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: maniac
+    combat_sheet: adventurer
+    slug: maniac
+- slug: spyder_wayfarer1_norm
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: shopkeeper_brown
+    combat_sheet: adventurer
+    slug: shopkeeper

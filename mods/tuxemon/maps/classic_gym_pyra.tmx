@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.12.1-8-g449813058" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="55">
+ <properties>
+  <property name="edges" value="clamped"/>
+  <property name="inside" type="bool" value="true"/>
+  <property name="map_type" value="notype"/>
+  <property name="slug" value="classic_gym_pyra"/>
+ </properties>
+ <tileset firstgid="1" source="../gfx/tilesets/core_indoor_floors.tsx"/>
+ <tileset firstgid="3865" source="../gfx/tilesets/core_indoor_walls.tsx"/>
+ <tileset firstgid="7729" source="../gfx/tilesets/core_set pieces.tsx"/>
+ <layer id="1" name="Layer 1" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJwr5WdgKKMSLgfixUC8hEp4KRBfBOJLVMKXgfgQwygexaN4FI9iamAAQUErrA==
+  </data>
+ </layer>
+ <layer id="2" name="Layer 2" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMAogwI2JgcEdiD2YCKsFAChqANw=
+  </data>
+ </layer>
+ <layer id="3" name="Layer 3" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMApIBwAGQAAB
+  </data>
+ </layer>
+ <layer id="5" name="Above Player" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMApIBwAGQAAB
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" id="4" name="Collisions">
+  <object id="13" type="collision" x="0" y="32" width="320" height="16"/>
+ </objectgroup>
+ <objectgroup color="#ffff00" id="6" name="Events">
+  <object id="15" name="Play Music" type="event" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="play_music music_cathedral_theme"/>
+    <property name="cond1" value="not music_playing music_cathedral_theme"/>
+   </properties>
+  </object>
+  <object id="14" name="Create Gym Leader" type="event" x="160" y="80" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc classic_gym_leader_pyra,10,5"/>
+    <property name="cond1" value="not char_exists classic_gym_leader_pyra"/>
+   </properties>
+  </object>
+  <object id="17" name="Talk Gym Leader" type="event" x="160" y="96" width="16" height="16">
+   <properties>
+    <property name="act11" value="char_talk classic_gym_leader_pyra,pre_battle"/>
+    <property name="act12" value="add_monster hydrone,20,classic_gym_leader_pyra,5,10"/>
+    <property name="act13" value="add_monster nudikill,20,classic_gym_leader_pyra,5,10"/>
+    <property name="act17" value="start_battle player,classic_gym_leader_pyra"/>
+    <property name="act18" value="char_talk classic_gym_leader_pyra,post_battle_lose"/>
+    <property name="behav1" value="talk classic_gym_leader_pyra"/>
+    <property name="cond1" value="not battle_outcome player,won,classic_gym_leader_pyra"/>
+   </properties>
+  </object>
+  <object id="16" name="Environment" type="event" x="16" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_environment interior"/>
+    <property name="cond1" value="not environment_is interior"/>
+   </properties>
+  </object>
+  <object id="54" name="Teleport to City" type="event" x="160" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport player,classic_steamshore_city.tmx,23,15,0.3"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

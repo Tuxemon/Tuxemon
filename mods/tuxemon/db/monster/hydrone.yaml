@@ -1,0 +1,63 @@
+slug: hydrone
+species: short_circuit
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: slice
+- level_learned: 1
+  technique: lightning_spheres
+- level_learned: 4
+  technique: crystal
+- level_learned: 7
+  technique: muddle
+- level_learned: 13
+  technique: radiance
+- level_learned: 16
+  technique: perfect_cut
+- level_learned: 19
+  technique: peregrine
+- level_learned: 25
+  technique: time_crisis
+- level_learned: 28
+  technique: viper
+- level_learned: 31
+  technique: shrapnel
+- level_learned: 37
+  technique: electrical_storm
+- level_learned: 40
+  technique: lineage
+evolutions: []
+history:
+- slug: hydrone
+  stage: standalone
+  evolves_from: []
+  evolves_into: []
+terrains: []
+tags:
+- machine
+- water
+- gadgets
+- electricity
+shape: humanoid
+stage: standalone
+types:
+- metal
+- water
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 112
+height: 155
+weight: 200
+sounds:
+  combat_call:
+    sfx: sound_steel_clang
+    volume: 1.5
+  faint_call:
+    sfx: sound_steel_clang_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.05

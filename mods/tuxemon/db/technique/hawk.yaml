@@ -1,0 +1,36 @@
+tech_id: 111
+accuracy: 1
+effects:
+- type: appear
+- type: damage
+speed: normal
+potency: 0.0
+power: 1.5
+range: touch
+recharge: 1
+slug: hawk
+sort: damage
+modifiers: []
+behaviors: {}
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: special
+tags:
+- bird
+types:
+- sky
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: slash_power
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_tornado
+  volume: 1.5

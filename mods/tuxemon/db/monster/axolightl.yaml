@@ -1,0 +1,70 @@
+slug: axolightl
+species: inchoate
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: starfall
+- level_learned: 1
+  technique: midnight_mantle
+- level_learned: 4
+  technique: spit_poison
+- level_learned: 7
+  technique: frostbite
+- level_learned: 13
+  technique: snowstorm
+- level_learned: 16
+  technique: torch
+- level_learned: 19
+  technique: flood
+- level_learned: 25
+  technique: ice_shield
+- level_learned: 28
+  technique: goad
+- level_learned: 31
+  technique: grinding
+- level_learned: 37
+  technique: proboscis
+- level_learned: 40
+  technique: geyser
+evolutions:
+- at_level: 32
+  monster_slug: ampystoma
+history:
+- slug: axolightl
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - ampystoma
+- slug: ampystoma
+  stage: stage1
+  evolves_from:
+  - axolightl
+  evolves_into: []
+terrains:
+- freshwater
+- swamp
+tags:
+- light
+- amphibian
+shape: polliwog
+stage: basic
+types:
+- water
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 101
+height: 80
+weight: 15
+sounds:
+  combat_call:
+    sfx: sound_spit_01
+    volume: 1.5
+  faint_call:
+    sfx: sound_spit_01_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.05

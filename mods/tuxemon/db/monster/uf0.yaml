@@ -1,0 +1,64 @@
+slug: uf0
+species: space_cutie
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: lightning_spheres
+- level_learned: 1
+  technique: petrify
+- level_learned: 4
+  technique: shrapnel
+- level_learned: 7
+  technique: beam
+- level_learned: 13
+  technique: time_crisis
+- level_learned: 16
+  technique: platinum
+- level_learned: 19
+  technique: lineage
+- level_learned: 25
+  technique: rust_bomb
+- level_learned: 28
+  technique: perfect_cut
+- level_learned: 31
+  technique: meltdown
+- level_learned: 37
+  technique: insanity
+- level_learned: 40
+  technique: radiance
+evolutions: []
+history:
+- slug: uf0
+  stage: standalone
+  evolves_from: []
+  evolves_into: []
+terrains:
+- extraterrestrial
+tags:
+- steel
+- gadgets
+- shielded
+- summoner
+- shapeshifter
+shape: grub
+stage: standalone
+types:
+- metal
+- cosmic
+gender_weights:
+  neuter: 1.0
+txmn_id: 267
+height: 80
+weight: 7
+sounds:
+  combat_call:
+    sfx: sound_glitch_call
+    volume: 1.5
+  faint_call:
+    sfx: sound_glitch_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.05

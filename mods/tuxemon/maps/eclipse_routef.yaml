@@ -1,0 +1,21 @@
+events:
+  Teleport to Leather:
+    actions:
+    - transition_teleport player,eclipse_routeg.tmx,24,39,0.3
+    - char_face player,left
+    conditions:
+    - is char_at player
+    - is char_facing player,left
+    x: 0
+    y: 8
+    type: event
+  Teleport to Route:
+    actions:
+    - transition_teleport player,eclipse_routeg.tmx,27,39,0.3
+    - char_face player,up
+    conditions:
+    - is char_at player
+    - is char_facing player,up
+    x: 27
+    y: 0
+    type: event

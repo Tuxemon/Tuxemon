@@ -1,0 +1,55 @@
+events:
+  Event 8:
+    actions:
+    - char_stop player
+    - lock_controls
+    - set_layer 0:0:0:255
+    - play_sound japanese_temple_bell_small
+    - translated_dialog eclipse_event8_1,,top
+    - translated_dialog eclipse_event8_2,,top
+    - play_sound japanese_temple_bell_small
+    - set_layer
+    - set_variable eclipse_event8:yes
+    - unlock_controls
+    conditions:
+    - not variable_set eclipse_event8:yes
+    type: event
+  Create NPCs:
+    actions:
+    - create_npc eclipse_crystal_granny,8,3,wander
+    conditions:
+    - not char_exists eclipse_crystal_granny
+    type: event
+  Go Outside:
+    actions:
+    - transition_teleport player,eclipse_crystal_town.tmx,37,18,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,down
+    type: event
+    x: 4
+    y: 7
+  Play Music:
+    actions:
+    - play_music music_home
+    conditions:
+    - not music_playing music_home
+    type: event
+  Talk NPCs:
+    actions:
+    - translated_dialog eclipse_crystal_grannypiper
+    behav:
+    - talk eclipse_crystal_granny
+    type: event
+  Watch TV:
+    actions:
+    - translated_dialog eclipse_crystal_tvwatch
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed INTERACT
+    height: 1
+    type: event
+    width: 2
+    x: 1
+    y: 5

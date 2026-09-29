@@ -1,0 +1,117 @@
+events:
+  Default Template:
+    actions:
+    - set_layer
+    - set_template player,default
+    conditions:
+    - is char_sprite player,invisible
+    - is variable_set billie_grandma:done
+    type: event
+  Flashback:
+    actions:
+    - translated_dialog spyder_rivaldownstairs_package
+    - translated_dialog spyder_billie_flashback_trigger
+    - translated_dialog_choice no:yes,billie_grandma
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed INTERACT
+    - not variable_set billie_grandma
+    type: event
+    x: 8
+    y: 9
+  Flashback Yes:
+    actions:
+    - transition_teleport player,spyder_paper_daycare.tmx,0,3
+    - set_variable flashback:on
+    conditions:
+    - is variable_set billie_grandma:yes
+    type: event
+  Go Bedroom:
+    actions:
+    - transition_teleport player,spyder_paper_rival_bedroom.tmx,0,3,0.3
+    - char_face player,right
+    conditions:
+    - is char_at player
+    - is char_facing player,right
+    type: event
+    x: 3
+    y: 3
+  Go Office:
+    actions:
+    - transition_teleport player,spyder_paper_rival_office.tmx,6,3,0.3
+    - char_face player,left
+    conditions:
+    - is char_at player
+    - is char_facing player,left
+    type: event
+    x: 0
+    y: 3
+  Go Outside:
+    actions:
+    - transition_teleport player,spyder_paper_town.tmx,32,6,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,down
+    type: event
+    x: 0
+    y: 11
+    width: 3
+  Package:
+    actions:
+    - translated_dialog spyder_rivaldownstairs_package
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed INTERACT
+    - is variable_set billie_grandma
+    type: event
+    x: 8
+    y: 9
+  Route Music:
+    actions:
+    - play_music music_home
+    conditions:
+    - not music_playing music_home
+    type: event
+  TV:
+    actions:
+    - translated_dialog spyder_rivaldownstairs_tv
+    - translated_dialog spyder_billie_tv_flashback_trigger
+    - translated_dialog_choice no:yes,billie_tv
+    - set_variable flashback:on
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed INTERACT
+    height: 1
+    type: event
+    width: 2
+    x: 4
+    y: 7
+  TV Yes:
+    actions:
+    - lock_controls
+    - set_template player,invisible
+    - char_position player,6,8
+    - char_face player,left
+    - set_layer 102:51:0:128
+    - create_npc spyder_billie,4,8
+    - char_face spyder_billie,up
+    - wait 1
+    - translated_dialog spyder_billie_tv_flashback1,,top
+    - translated_dialog spyder_billie_tv_flashback2
+    - translated_dialog spyder_billie_tv_flashback3,,top
+    - translated_dialog spyder_billie_tv_flashback4
+    - translated_dialog spyder_billie_tv_flashback5,,top
+    - translated_dialog spyder_billie_tv_flashback6
+    - translated_dialog spyder_billie_tv_flashback7,,top
+    - translated_dialog spyder_billie_tv_flashback8
+    - wait 1
+    - remove_npc spyder_billie
+    - set_layer
+    - unlock_controls
+    - set_template player,default
+    - set_variable flashback:off
+    - clear_variable billie_tv
+    conditions:
+    - is variable_set billie_tv:yes
+    type: event

@@ -1,0 +1,42 @@
+monsters:
+- encounter_rate: 3.5
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 35
+  - 40
+  monster: dinoflop
+  variables:
+    - key: daytime
+      value: "false"
+- encounter_rate: 3.5
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 30
+  - 35
+  monster: furnursus
+  variables:
+    - key: daytime
+      value: "false"
+- encounter_rate: 3.5
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 25
+  - 35
+  monster: boltnu
+  variables:
+    - key: daytime
+      value: "true"
+- encounter_rate: 3.5
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 30
+  - 35
+  monster: metesaur
+  variables:
+    - key: daytime
+      value: "true"
+slug: spyder_cotton_tunnel

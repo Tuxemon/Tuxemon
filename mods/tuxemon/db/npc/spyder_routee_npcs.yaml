@@ -1,0 +1,28 @@
+- slug: spyder_routee_calliope
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_routee_calliope1
+        post_battle_win: null
+        post_battle_lose: spyder_routee_calliope2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: knight_red
+    combat_sheet: enforcer_agent
+    slug: enforcer_agent
+- slug: spyder_routee_aiolos
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_routee_aiolos1
+        post_battle_win: null
+        post_battle_lose: spyder_routee_aiolos2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: knight_green
+    combat_sheet: enforcer_rookie
+    slug: enforcer_rookie

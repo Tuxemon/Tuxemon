@@ -1,10 +1,10 @@
 #!/bin/bash
 
-# Try and fix anything we can fix automatically.
-# find . -name "*.py" | egrep -v '^./tests/' | grep -v './.env/' | xargs autopep8 --in-place --aggressive --aggressive --max-line-length 100 --jobs=-1 | tee autopep8.log
+# Run Ruff linting
+ruff check tuxemon tests | tee ruff.log
 
-# Pep8 and PyFlakes
-flake8 . | tee flake8.log
+# Run Ruff formatting check (optional, but recommended)
+ruff format --check tuxemon tests | tee ruff-format.log
 
-# Check for less obvious things.
-pylint --output-format=parseable --reports=y core | tee pylint.log
+# Run Pylint for deeper static analysis
+pylint --output-format=parseable --reports=y tuxemon | tee pylint.log

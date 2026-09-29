@@ -1,0 +1,72 @@
+slug: beenstalker
+species: scarytale
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: solar_synthesis
+- level_learned: 1
+  technique: leaf_stab
+- level_learned: 4
+  technique: sylvan
+- level_learned: 7
+  technique: pseudopod
+- level_learned: 13
+  technique: invictus
+- level_learned: 25
+  technique: fester
+- level_learned: 28
+  technique: one_two
+- level_learned: 31
+  technique: fluff_up
+- level_learned: 40
+  technique: shadow_blast
+evolutions:
+- at_level: 32
+  monster_slug: wendigger
+history:
+- slug: beenstalker
+  stage: stage1
+  evolves_from:
+  - turnipper
+  evolves_into:
+  - wendigger
+- slug: turnipper
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - beenstalker
+- slug: wendigger
+  stage: stage2
+  evolves_from:
+  - beenstalker
+  evolves_into: []
+terrains:
+- grassland
+- woodland
+tags:
+- plant
+- ground
+- bite
+- ice
+shape: hunter
+stage: stage1
+types:
+- wood
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 199
+height: 98
+weight: 41
+sounds:
+  combat_call:
+    sfx: sound_ice
+    volume: 1.5
+  faint_call:
+    sfx: sound_ice_faint
+    volume: 1.5
+catch_rate: 70.0
+lower_catch_resistance: 0.9
+upper_catch_resistance: 1.15

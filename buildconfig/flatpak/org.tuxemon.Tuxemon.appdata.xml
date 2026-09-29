@@ -7,10 +7,7 @@
   <summary>Tuxemon</summary>
 
   <description>
-    <p>Features:</p>
-    <ul>
-      <li></li>
-    </ul>
+    <p>Open source monster-fighting RPG.</p>
   </description>
 
   <launchable type="desktop-id">org.tuxemon.Tuxemon.desktop</launchable>

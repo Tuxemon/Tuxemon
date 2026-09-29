@@ -1,0 +1,65 @@
+slug: ruption
+species: bonfire
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: fire_ball
+- level_learned: 1
+  technique: refresh
+- level_learned: 4
+  technique: fire_shield
+- level_learned: 7
+  technique: one_two
+- level_learned: 13
+  technique: tinder
+- level_learned: 16
+  technique: kindling_flame
+- level_learned: 19
+  technique: arcane_eye
+- level_learned: 25
+  technique: fire_claw
+- level_learned: 28
+  technique: magma
+- level_learned: 31
+  technique: berserk
+- level_learned: 37
+  technique: fume
+- level_learned: 40
+  technique: flamethrower
+evolutions: []
+history:
+- slug: ruption
+  stage: stage1
+  evolves_from:
+  - embra
+  evolves_into: []
+- slug: embra
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - ruption
+terrains: []
+tags:
+- flame
+shape: brute
+stage: stage1
+types:
+- fire
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 76
+height: 169
+weight: 16
+sounds:
+  combat_call:
+    sfx: sound_foom_0
+    volume: 1.5
+  faint_call:
+    sfx: sound_foom_0_faint
+    volume: 1.5
+catch_rate: 70.0
+lower_catch_resistance: 0.9
+upper_catch_resistance: 1.15

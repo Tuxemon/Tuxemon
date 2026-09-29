@@ -1,0 +1,52 @@
+monsters:
+- encounter_rate: 5
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 15
+  - 25
+  monster: cochini
+  variables:
+    - key: daytime
+      value: "true"
+- encounter_rate: 5
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 15
+  - 25
+  monster: cateye
+  variables:
+    - key: daytime
+      value: "true"
+- encounter_rate: 5
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 15
+  - 25
+  monster: sclairus
+  variables:
+    - key: daytime
+      value: "true"
+- encounter_rate: 5
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 20
+  - 25
+  monster: bursa
+  variables:
+    - key: daytime
+      value: "false"
+- encounter_rate: 5
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 20
+  - 25
+  monster: nut
+  variables:
+    - key: daytime
+      value: "false"
+slug: spyder_greenwash

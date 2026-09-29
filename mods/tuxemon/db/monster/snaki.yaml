@@ -1,0 +1,62 @@
+slug: snaki
+species: false_serpent
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: water_bullet
+- level_learned: 1
+  technique: gnaw
+- level_learned: 4
+  technique: goad
+- level_learned: 7
+  technique: flood
+- level_learned: 13
+  technique: midnight_mantle
+- level_learned: 25
+  technique: water_blast
+- level_learned: 28
+  technique: viper
+- level_learned: 31
+  technique: electric_multibite
+- level_learned: 40
+  technique: tsunami
+evolutions:
+- at_level: 18
+  monster_slug: snokari
+history:
+- slug: snaki
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - snokari
+- slug: snokari
+  stage: stage1
+  evolves_from:
+  - snaki
+  evolves_into: []
+terrains: []
+tags:
+- toxic
+- bite
+shape: serpent
+stage: basic
+types:
+- normal
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 227
+height: 70
+weight: 15
+sounds:
+  combat_call:
+    sfx: sound_spit_01
+    volume: 1.5
+  faint_call:
+    sfx: sound_spit_01_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.9
+upper_catch_resistance: 1.15

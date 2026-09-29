@@ -1,0 +1,64 @@
+slug: tetrchimp
+species: chip
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: strike
+- level_learned: 1
+  technique: tail_lash
+- level_learned: 4
+  technique: constrict
+- level_learned: 7
+  technique: terror
+- level_learned: 10
+  technique: insanity
+- level_learned: 13
+  technique: bubble_trap
+- level_learned: 19
+  technique: sleep_bomb
+- level_learned: 25
+  technique: shrapnel
+- level_learned: 28
+  technique: wall_of_steel
+evolutions:
+- at_level: 18
+  monster_slug: apeoro
+history:
+- slug: tetrchimp
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - apeoro
+- slug: apeoro
+  stage: stage1
+  evolves_from:
+  - tetrchimp
+  evolves_into: []
+terrains: []
+tags:
+- mental
+- gadgets
+- tail
+shape: humanoid
+stage: basic
+types:
+- lightning
+- cosmic
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 196
+height: 45
+weight: 4
+sounds:
+  combat_call:
+    sfx: sound_whistle
+    volume: 1.5
+  faint_call:
+    sfx: sound_whistle_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.9
+upper_catch_resistance: 1.15

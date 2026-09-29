@@ -1,0 +1,162 @@
+monsters:
+- encounter_rate: 0.5
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 18
+  - 35
+  monster: legko
+  variables: []
+- encounter_rate: 0.5
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 36
+  - 50
+  monster: moloch
+  variables: []
+- encounter_rate: 0.5
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 18
+  - 35
+  monster: heronquak
+  variables: []
+- encounter_rate: 0.5
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 36
+  - 50
+  monster: eaglace
+  variables: []
+- encounter_rate: 0.5
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 18
+  - 35
+  monster: sapragon
+  variables: []
+- encounter_rate: 0.5
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 36
+  - 50
+  monster: dragarbor
+  variables: []
+- encounter_rate: 0.5
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 18
+  - 35
+  monster: gectile
+  variables: []
+- encounter_rate: 0.5
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 36
+  - 50
+  monster: velocitile
+  variables: []
+- encounter_rate: 0.5
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 18
+  - 35
+  monster: allagon
+  variables: []
+- encounter_rate: 0.5
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 10
+  - 30
+  monster: aardart
+  variables: []
+- encounter_rate: 0.5
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 18
+  - 35
+  monster: agnidon
+  variables: []
+- encounter_rate: 0.5
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 36
+  - 50
+  monster: agnigon
+  variables: []
+- encounter_rate: 0.5
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 18
+  - 35
+  monster: cardiwing
+  variables: []
+- encounter_rate: 0.5
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 36
+  - 50
+  monster: cardinale
+  variables: []
+- encounter_rate: 0.5
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 10
+  - 30
+  monster: corvix
+  variables: []
+- encounter_rate: 0.5
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 18
+  - 35
+  monster: dracune
+  variables: []
+- encounter_rate: 0.5
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 36
+  - 50
+  monster: fluttaflap
+  variables: []
+- encounter_rate: 0.5
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 10
+  - 30
+  monster: noctalo
+  variables: []
+- encounter_rate: 0.5
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 10
+  - 30
+  monster: possessun
+  variables: []
+- encounter_rate: 0.5
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 10
+  - 30
+  monster: sharpfin
+  variables: []
+slug: rare_txmn

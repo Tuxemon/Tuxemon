@@ -2,9 +2,21 @@
 
 block_cipher = None
 
+from pathlib import Path
+
+
+
+SPECDIR = Path(__file__).resolve().parent
+
+ROOTDIR = (SPECDIR / ".." / "..").resolve()
+
+
+
 a = Analysis(
-    ["../../run_tuxemon.py"],
-    pathex=["Z:\\home\\travis\\Tuxemon"],
+    [str(ROOTDIR / "run_tuxemon.py")],
+
+    pathex=[str(ROOTDIR)],
+
     binaries=[],
     datas=[],
     hiddenimports=[],

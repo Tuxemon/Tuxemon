@@ -1,0 +1,34 @@
+monsters:
+- encounter_rate: 0.5
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 1
+  - 100
+  monster: f7u1t3ra
+  variables: []
+- encounter_rate: 0.5
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 1
+  - 100
+  monster: d0llf1n
+  variables: []
+- encounter_rate: 0.5
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 1
+  - 100
+  monster: l3gk0
+  variables: []
+- encounter_rate: 0.5
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 13
+  - 37
+  monster: r0ck1tt3n
+  variables: []
+slug: 37707_town_missing

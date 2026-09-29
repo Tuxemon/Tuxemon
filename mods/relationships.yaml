@@ -1,0 +1,31 @@
+# Defines the min/max bounds for relationship strength
+strength_range:
+  min: 0
+  max: 100
+
+# Maps numeric thresholds to relationship tiers
+tiers:
+  0: HATED
+  20: INDIFFERENT
+  40: ACQUAINTANCE
+  70: FRIEND
+  90: BEST_FRIEND
+
+# Profiles define modifiers for different relationship types
+profiles:
+  default:
+    # Multiplier for positive strength changes (e.g., giving a gift)
+    strength_increase_mod: 1.0 
+    # Multiplier for negative strength changes (e.g., stealing)
+    strength_decrease_mod: 1.0
+    decay_rate_mod: 1.0
+    
+  family:
+    strength_increase_mod: 1.2 
+    strength_decrease_mod: 0.7 
+    decay_rate_mod: 0.5
+    
+  rival:
+    strength_increase_mod: 0.8
+    strength_decrease_mod: 1.5
+    decay_rate_mod: 1.5

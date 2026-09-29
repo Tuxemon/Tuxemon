@@ -1,0 +1,42 @@
+tech_id: 11
+accuracy: 1
+effects:
+- type: statchange
+  parameters:
+  - own_monster
+stat_modifiers:
+  armour:
+    step: 1
+speed: normal
+potency: 1
+power: 0
+range: special
+recharge: 2
+slug: boulder
+sort: damage
+modifiers: []
+behaviors: {}
+target:
+  enemy_monster: false
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: true
+  own_team: false
+  own_trainer: false
+category: condition_imposer
+tags:
+- rock
+- bug
+- shielded
+types:
+- earth
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: shield_rock
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_crumble1
+  volume: 1.5

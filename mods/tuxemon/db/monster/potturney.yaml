@@ -1,0 +1,65 @@
+slug: potturney
+species: pottery
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: bullet
+- level_learned: 1
+  technique: muddle
+- level_learned: 4
+  technique: wall_of_steel
+- level_learned: 7
+  technique: lineage
+- level_learned: 13
+  technique: ruby
+- level_learned: 16
+  technique: terror
+- level_learned: 19
+  technique: crystal
+- level_learned: 25
+  technique: phantasmal_force
+- level_learned: 28
+  technique: perfect_cut
+- level_learned: 31
+  technique: shrapnel
+- level_learned: 40
+  technique: shadow_blast
+evolutions: []
+history:
+- slug: potturney
+  stage: stage1
+  evolves_from:
+  - potturmeist
+  evolves_into: []
+- slug: potturmeist
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - potturney
+terrains: []
+tags:
+- ghost
+- shielded
+- shapeshifter
+shape: blob
+stage: stage1
+types:
+- earth
+- shadow
+gender_weights:
+  neuter: 1.0
+txmn_id: 258
+height: 45
+weight: 6
+sounds:
+  combat_call:
+    sfx: sound_misc_07
+    volume: 1.5
+  faint_call:
+    sfx: sound_misc_07_faint
+    volume: 1.5
+catch_rate: 70.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.05

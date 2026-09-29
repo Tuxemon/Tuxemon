@@ -1,0 +1,10 @@
+slug: loch
+speech:
+  profile:
+    default: {}
+combat: {}
+audio: {}
+template:
+  sprite_name: disciple
+  combat_sheet: disciple
+  slug: disciple

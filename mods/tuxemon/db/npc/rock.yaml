@@ -1,0 +1,11 @@
+slug: rock
+speech:
+  profile:
+    default: {}
+combat: {}
+audio: {}
+template:
+  sprite_name: boulder
+  combat_sheet: noclass
+  slug: noclass
+  is_static_prop: true

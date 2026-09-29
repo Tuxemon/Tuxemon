@@ -1,0 +1,72 @@
+slug: fuzzlet
+species: toy
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: stampede
+- level_learned: 1
+  technique: sand_spray
+- level_learned: 4
+  technique: surge
+- level_learned: 7
+  technique: ruby
+- level_learned: 13
+  technique: icicle_spear
+- level_learned: 16
+  technique: crystal
+- level_learned: 19
+  technique: stonehenge
+- level_learned: 25
+  technique: thunderclap
+- level_learned: 28
+  technique: electroplate
+- level_learned: 31
+  technique: tsunami
+- level_learned: 37
+  technique: greenstone
+- level_learned: 40
+  technique: pit
+evolutions:
+- monster_slug: fuzzina
+  bond:
+    comparison: greater_than
+    value: 80
+history:
+- slug: fuzzlet
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - fuzzina
+- slug: fuzzina
+  stage: stage1
+  evolves_from:
+  - fuzzlet
+  evolves_into: []
+terrains: []
+tags:
+- ghost
+- love
+- healing
+- soldier
+shape: blob
+stage: basic
+types:
+- cosmic
+- normal
+gender_weights:
+  neuter: 1.0
+txmn_id: 236
+height: 33
+weight: 0.5
+sounds:
+  combat_call:
+    sfx: sound_weird_09
+    volume: 1.5
+  faint_call:
+    sfx: sound_weird_09_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.9
+upper_catch_resistance: 1.15

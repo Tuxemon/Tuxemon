@@ -1,0 +1,110 @@
+- slug: spyder_grannypiper
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: granny_yellow
+    combat_sheet: adventurer
+    slug: granny
+- slug: spyder_conileaffrolicking
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: conileaf
+    combat_sheet: adventurer
+    slug: noclass
+- slug: spyder_rockittenfrolicking
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: rockitten
+    combat_sheet: adventurer
+    slug: noclass
+- slug: spyder_papermart_harith
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: beachcomber_copper
+    combat_sheet: adventurer
+    slug: beachcomber
+- slug: spyder_papermart_miles
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: tennisplayer_green
+    combat_sheet: tennisplayer
+    slug: tennisplayer
+- slug: spyder_papermart_shirley
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: picnicker
+    combat_sheet: picnicker
+    slug: picnicker
+- slug: spyder_papermart_rafael
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: tennisplayer_lapi
+    combat_sheet: tennisplayer
+    slug: tennisplayer
+- slug: spyder_papertown_mom
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: homemaker
+    combat_sheet: adventurer
+    slug: homemaker
+- slug: spyder_papertown_silver
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: florist
+    combat_sheet: florist
+    slug: florist
+- slug: spyder_papermanor_princeton
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: maniac_yellow
+    combat_sheet: adventurer
+    slug: maniac
+- slug: spyder_shopassistant
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: shopkeeper
+    combat_sheet: adventurer
+    slug: shopkeeper

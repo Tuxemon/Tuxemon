@@ -1,0 +1,70 @@
+- slug: spyder_routeb_electra
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_routeb_electra1
+        post_battle_win: null
+        post_battle_lose: spyder_routeb_electra2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: knight_green
+    combat_sheet: enforcer_agent
+    slug: enforcer_agent
+- slug: spyder_routeb_cytherea
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_routeb_cytherea1
+        post_battle_win: null
+        post_battle_lose: spyder_routeb_cytherea2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: knight
+    combat_sheet: enforcer_rookie
+    slug: enforcer_rookie
+- slug: spyder_routeb_nephthys
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_routeb_nephthys1
+        post_battle_win: null
+        post_battle_lose: spyder_routeb_nephthys2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: knight_red
+    combat_sheet: enforcer_agent
+    slug: enforcer_agent
+- slug: spyder_routeb_sedna
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_routeb_sedna1
+        post_battle_win: null
+        post_battle_lose: spyder_routeb_sedna2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: knight_red
+    combat_sheet: enforcer_rookie
+    slug: enforcer_rookie
+- slug: spyder_routeb_calypso
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_routeb_calypso1
+        post_battle_win: null
+        post_battle_lose: spyder_routeb_calypso2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: knight_yellow
+    combat_sheet: enforcer_boss
+    slug: enforcer_boss

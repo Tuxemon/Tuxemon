@@ -1,0 +1,74 @@
+slug: regalance
+species: terracotta
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: rock
+- level_learned: 1
+  technique: mending
+- level_learned: 4
+  technique: strike
+- level_learned: 7
+  technique: stampede
+- level_learned: 13
+  technique: icicle_spear
+- level_learned: 16
+  technique: muck
+- level_learned: 19
+  technique: shadow_boxing
+- level_learned: 25
+  technique: stonehenge
+- level_learned: 28
+  technique: saber
+- level_learned: 31
+  technique: undertaker
+- level_learned: 37
+  technique: shuriken
+- level_learned: 43
+  technique: earthquake
+- level_learned: 55
+  technique: rocky_barrage
+evolutions: []
+history:
+- slug: regalance
+  stage: stage1
+  evolves_from:
+  - claymorior
+  evolves_into: []
+- slug: claymorior
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - regalance
+terrains:
+- ruins
+- urban
+tags:
+- soldier
+- sharp
+- ground
+- rock
+- gadgets
+- leadership
+- gemstone
+shape: humanoid
+stage: stage1
+types:
+- earth
+gender_weights:
+  neuter: 1.0
+txmn_id: 318
+height: 182
+weight: 137
+sounds:
+  combat_call:
+    sfx: sound_grunt_03
+    volume: 1.5
+  faint_call:
+    sfx: sound_grunt_03_faint
+    volume: 1.5
+catch_rate: 70.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.05

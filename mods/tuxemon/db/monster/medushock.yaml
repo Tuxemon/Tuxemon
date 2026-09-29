@@ -1,0 +1,63 @@
+slug: medushock
+species: jellyfish
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: lightning_spheres
+- level_learned: 1
+  technique: rot
+- level_learned: 4
+  technique: flood
+- level_learned: 7
+  technique: surge
+- level_learned: 13
+  technique: fire_shield
+- level_learned: 16
+  technique: energy_claws
+- level_learned: 19
+  technique: one_two
+- level_learned: 25
+  technique: thunderclap
+- level_learned: 28
+  technique: give_all
+- level_learned: 31
+  technique: salamander
+- level_learned: 37
+  technique: shadow_boxing
+- level_learned: 40
+  technique: electrical_storm
+evolutions: []
+history:
+- slug: medushock
+  stage: standalone
+  evolves_from: []
+  evolves_into: []
+terrains:
+- freshwater
+tags:
+- electricity
+- toxic
+- sharp
+shape: polliwog
+stage: standalone
+types:
+- lightning
+- venom
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 345
+height: 133
+weight: 3
+sounds:
+  combat_call:
+    sfx: sound_retro_beep_06
+    volume: 1.5
+  faint_call:
+    sfx: sound_retro_beep_06_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.9
+upper_catch_resistance: 1.15

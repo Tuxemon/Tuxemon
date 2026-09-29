@@ -1,0 +1,23 @@
+modifiers: []
+behaviors: {}
+category: positive
+effects:
+- type: recover
+  parameters:
+  - '16'
+icon: gfx/ui/icons/status/icon_recover.png
+on_positive_status: replaced
+on_negative_status: replaced
+slug: recover
+sort: meta
+cond_id: 15
+use_failure: null
+use_success: combat_state_recover_end
+gain_cond: combat_state_recover_get
+visuals:
+  animation: null
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_bite
+  volume: 1.5

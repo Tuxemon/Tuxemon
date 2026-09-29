@@ -1,0 +1,62 @@
+slug: fancair
+species: deadly_fan
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: whirlwind
+- level_learned: 1
+  technique: slice
+- level_learned: 4
+  technique: bullet
+- level_learned: 7
+  technique: muddle
+- level_learned: 13
+  technique: wall_of_steel
+- level_learned: 19
+  technique: bubble_trap
+- level_learned: 28
+  technique: constrict
+evolutions:
+- at_level: 24
+  monster_slug: windeye
+history:
+- slug: fancair
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - windeye
+- slug: windeye
+  stage: stage1
+  evolves_from:
+  - fancair
+  evolves_into: []
+terrains: []
+tags:
+- machine
+- weather
+- electricity
+- steel
+- sharp
+shape: sprite
+stage: basic
+types:
+- lightning
+- sky
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 179
+height: 45
+weight: 18
+sounds:
+  combat_call:
+    sfx: sound_game_shot_light_gun
+    volume: 1.5
+  faint_call:
+    sfx: sound_game_shot_light_gun_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.05

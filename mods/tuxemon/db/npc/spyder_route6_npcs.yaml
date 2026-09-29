@@ -1,0 +1,126 @@
+- slug: spyder_route6_frances
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_route6_frances1
+        post_battle_win: null
+        post_battle_lose: spyder_route6_frances2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: florist_brown
+    combat_sheet: florist
+    slug: florist
+- slug: spyder_route6_orion
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_route6_orion1
+        post_battle_win: null
+        post_battle_lose: spyder_route6_orion2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: spyder_route6_ping
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_route6_ping1
+        post_battle_win: null
+        post_battle_lose: spyder_route6_ping2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: picnicker
+    combat_sheet: picnicker
+    slug: picnicker
+- slug: spyder_route6_rigel
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_route6_rigel1
+        post_battle_win: null
+        post_battle_lose: spyder_route6_rigel2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: scientist_fiery
+    combat_sheet: scientist
+    slug: scientist
+- slug: spyder_route6_richard
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_route6_richard1
+        post_battle_win: null
+        post_battle_lose: spyder_route6_richard2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: magician_grey
+    combat_sheet: magician
+    slug: magician
+- slug: spyder_route6_blair
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_route6_blair1
+        post_battle_win: null
+        post_battle_lose: spyder_route6_blair2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: miner_yellow
+    combat_sheet: miner
+    slug: miner
+- slug: spyder_route6_gunner
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_route6_gunner1
+        post_battle_win: null
+        post_battle_lose: spyder_route6_gunner2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: knight
+    combat_sheet: enforcer_rookie
+    slug: enforcer_rookie
+- slug: spyder_route6_mungo
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_route6_mungo1
+        post_battle_win: null
+        post_battle_lose: spyder_route6_mungo2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: scientist_brown
+    combat_sheet: scientist
+    slug: scientist
+- slug: spyder_route6_maxwell
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_route6_maxwell1
+        post_battle_win: null
+        post_battle_lose: spyder_route6_maxwell2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor_blue
+    combat_sheet: professor
+    slug: professor

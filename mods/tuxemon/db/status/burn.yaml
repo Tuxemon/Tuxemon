@@ -1,0 +1,38 @@
+modifiers:
+- attribute: type
+  values:
+  - fire
+  multiplier: 0.0
+  source: fire immunity
+- attribute: type
+  values:
+  - frost
+  multiplier: 2.0
+  source: fire extra damage
+behaviors:
+  persists_after_combat: true
+category: negative
+effects:
+- type: burnt
+  parameters:
+  - '8'
+  - weakest
+icon: gfx/ui/icons/status/icon_burn.png
+on_positive_status: replaced
+on_negative_status: replaced
+step_effect_value: 1.0
+step_effect_type: flat_damage
+step_interval: 10
+slug: burn
+sort: meta
+cond_id: 22
+use_failure: generic_failure
+use_success: combat_state_burn_end
+gain_cond: combat_state_burn_get
+visuals:
+  animation: null
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_pulse
+  volume: 1.5

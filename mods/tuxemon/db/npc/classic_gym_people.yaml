@@ -1,0 +1,194 @@
+- slug: classic_gym_leader_granite
+  speech:
+    profile:
+      default:
+        pre_battle: classic_gym_leader_granite_pre
+        post_battle_win: null
+        post_battle_lose: classic_gym_leader_granite_post
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: monk
+    combat_sheet: monk
+    slug: monk
+
+- slug: classic_gym_leader_pyra
+  speech:
+    profile:
+      default:
+        pre_battle: classic_gym_leader_pyra_pre
+        post_battle_win: null
+        post_battle_lose: classic_gym_leader_pyra_post
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: monk
+    combat_sheet: monk
+    slug: monk
+
+- slug: classic_gym_leader_astra
+  speech:
+    profile:
+      default:
+        pre_battle: classic_gym_leader_astra_pre
+        post_battle_win: null
+        post_battle_lose: classic_gym_leader_astra_post
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: monk
+    combat_sheet: monk
+    slug: monk
+
+- slug: classic_gym_leader_bravion
+  speech:
+    profile:
+      default:
+        pre_battle: classic_gym_leader_bravion_pre
+        post_battle_win: null
+        post_battle_lose: classic_gym_leader_bravion_post
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: monk
+    combat_sheet: monk
+    slug: monk
+
+- slug: classic_gym_leader_voltessa
+  speech:
+    profile:
+      default:
+        pre_battle: classic_gym_leader_voltessa_pre
+        post_battle_win: null
+        post_battle_lose: classic_gym_leader_voltessa_post
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: monk
+    combat_sheet: monk
+    slug: monk
+
+- slug: classic_gym_leader_orion
+  speech:
+    profile:
+      default:
+        pre_battle: classic_gym_leader_orion_pre
+        post_battle_win: null
+        post_battle_lose: classic_gym_leader_orion_post
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: monk
+    combat_sheet: monk
+    slug: monk
+
+- slug: classic_gym_leader_ferrum
+  speech:
+    profile:
+      default:
+        pre_battle: classic_gym_leader_ferrum_pre
+        post_battle_win: null
+        post_battle_lose: classic_gym_leader_ferrum_post
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: monk
+    combat_sheet: monk
+    slug: monk
+
+- slug: classic_gym_leader_mila
+  speech:
+    profile:
+      default:
+        pre_battle: classic_gym_leader_mila_pre
+        post_battle_win: null
+        post_battle_lose: classic_gym_leader_mila_post
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: monk
+    combat_sheet: monk
+    slug: monk
+
+- slug: classic_gym_leader_shade
+  speech:
+    profile:
+      default:
+        pre_battle: classic_gym_leader_shade_pre
+        post_battle_win: null
+        post_battle_lose: classic_gym_leader_shade_post
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: monk
+    combat_sheet: monk
+    slug: monk
+
+- slug: classic_gym_leader_zephra
+  speech:
+    profile:
+      default:
+        pre_battle: classic_gym_leader_zephra_pre
+        post_battle_win: null
+        post_battle_lose: classic_gym_leader_zephra_post
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: monk
+    combat_sheet: monk
+    slug: monk
+
+- slug: classic_gym_leader_vyre
+  speech:
+    profile:
+      default:
+        pre_battle: classic_gym_leader_vyre_pre
+        post_battle_win: null
+        post_battle_lose: classic_gym_leader_vyre_post
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: monk
+    combat_sheet: monk
+    slug: monk
+
+- slug: classic_gym_leader_marin
+  speech:
+    profile:
+      default:
+        pre_battle: classic_gym_leader_marin_pre
+        post_battle_win: null
+        post_battle_lose: classic_gym_leader_marin_post
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: monk
+    combat_sheet: monk
+    slug: monk
+
+- slug: classic_gym_leader_sylva
+  speech:
+    profile:
+      default:
+        pre_battle: classic_gym_leader_sylva_pre
+        post_battle_win: null
+        post_battle_lose: classic_gym_leader_sylva_post
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: monk
+    combat_sheet: monk
+    slug: monk

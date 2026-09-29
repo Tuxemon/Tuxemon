@@ -1,0 +1,63 @@
+slug: primordia
+species: microbe
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: wallow
+- level_learned: 1
+  technique: acid
+- level_learned: 4
+  technique: bubble_trap
+- level_learned: 7
+  technique: power_theft
+- level_learned: 10
+  technique: amnesia
+- level_learned: 13
+  technique: breathe_fire
+- level_learned: 19
+  technique: water_blast
+- level_learned: 22
+  technique: external_power
+- level_learned: 28
+  technique: firestorm
+- level_learned: 34
+  technique: snowstorm
+- level_learned: 40
+  technique: shooting_star
+evolutions: []
+history:
+- slug: primordia
+  stage: standalone
+  evolves_from: []
+  evolves_into: []
+terrains:
+- coastal
+- extraterrestrial
+- other
+tags:
+- water
+- pseudopod
+- flame
+- amphibian
+shape: blob
+stage: standalone
+types:
+- fire
+- frost
+gender_weights:
+  neuter: 1.0
+txmn_id: 386
+height: 1
+weight: 0.1
+sounds:
+  combat_call:
+    sfx: sound_roar_05
+    volume: 1.5
+  faint_call:
+    sfx: sound_roar_05_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.9
+upper_catch_resistance: 1.15

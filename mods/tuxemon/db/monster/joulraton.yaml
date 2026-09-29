@@ -1,0 +1,62 @@
+slug: joulraton
+species: amped
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: buzz
+- level_learned: 1
+  technique: pseudopod
+- level_learned: 4
+  technique: bubble_trap
+- level_learned: 7
+  technique: all_in
+- level_learned: 13
+  technique: surge
+- level_learned: 16
+  technique: give_all
+- level_learned: 19
+  technique: magma
+- level_learned: 25
+  technique: lava
+- level_learned: 28
+  technique: sunburst
+- level_learned: 31
+  technique: conjurer
+- level_learned: 37
+  technique: supernova
+- level_learned: 40
+  technique: flamethrower
+- level_learned: 55
+  technique: electrical_storm
+evolutions: []
+history:
+- slug: joulraton
+  stage: standalone
+  evolves_from: []
+  evolves_into: []
+terrains: []
+tags:
+- electricity
+- food
+shape: varmint
+stage: standalone
+types:
+- lightning
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 244
+height: 30
+weight: 2.5
+sounds:
+  combat_call:
+    sfx: sound_terminal_03
+    volume: 1.5
+  faint_call:
+    sfx: sound_terminal_03_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.05

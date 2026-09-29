@@ -1,0 +1,312 @@
+events:
+  Event 13:
+    actions:
+    - char_stop player
+    - lock_controls
+    - set_layer 0:0:0:255
+    - play_sound japanese_temple_bell_small
+    - translated_dialog eclipse_event13_1,,top
+    - translated_dialog eclipse_event13_2,,top
+    - translated_dialog eclipse_event13_3,,top
+    - play_sound japanese_temple_bell_small
+    - set_layer
+    - set_variable eclipse_event13:yes
+    - unlock_controls
+    conditions:
+    - is variable_set eclipse_event11:yes
+    - is variable_set eclipse_event12:yes
+    - not variable_set eclipse_event13:yes
+    type: event
+  Create Adam:
+    actions:
+    - create_npc eclipse_lionmountain_adam,2,17
+    conditions:
+    - not char_exists eclipse_lionmountain_adam
+    type: event
+  Create Chhurim:
+    actions:
+    - create_npc eclipse_lionmountain_chhurim,33,16
+    conditions:
+    - not char_exists eclipse_lionmountain_chhurim
+    type: event
+  Create Enforcer:
+    actions:
+    - create_npc eclipse_lionmountain_enforcer,36,13
+    conditions:
+    - not char_exists eclipse_lionmountain_enforcer
+    type: event
+  Create Jacques:
+    actions:
+    - create_npc eclipse_lionmountain_jacques,3,27
+    conditions:
+    - not char_exists eclipse_lionmountain_jacques
+    type: event
+  Create Scientist:
+    actions:
+    - create_npc eclipse_lionmountain_scientist,12,31
+    - char_face eclipse_lionmountain_scientist,left
+    conditions:
+    - not char_exists eclipse_lionmountain_scientist
+    type: event
+  Create Tom:
+    actions:
+    - create_npc eclipse_lionmountain_tom,31,33
+    - char_face eclipse_lionmountain_tom,up
+    conditions:
+    - not char_exists eclipse_lionmountain_tom
+    type: event
+  Encounters:
+    actions:
+    - random_encounter eclipse_lion_mountain
+    - play_map_animation grass_blue,0.1,noloop,player
+    conditions:
+    - is char_moved player
+    - is char_at player
+    height: 2
+    width: 10
+    x: 8
+    y: 2
+    type: event
+  Environment Day:
+    actions:
+    - set_environment snow
+    conditions:
+    - not time_is stage_of_day,equals,night
+    - not environment_is snow
+    x: 0
+    y: 1
+    type: event
+  Environment Night:
+    actions:
+    - set_environment night_snow
+    conditions:
+    - is time_is stage_of_day,equals,night
+    - not environment_is night_snow
+    x: 0
+    y: 2
+    type: event
+  Play Music:
+    actions:
+    - play_music music_adventure_begins
+    conditions:
+    - not music_playing music_adventure_begins
+    type: event
+  Post Talk Adam:
+    actions:
+    - char_talk eclipse_lionmountain_adam,post_battle_lose
+    behav:
+    - talk eclipse_lionmountain_adam
+    conditions:
+    - is battle_outcome player,won,eclipse_lionmountain_adam
+    type: event
+  Post Talk Chhurim:
+    actions:
+    - char_talk eclipse_lionmountain_chhurim,post_battle_lose
+    behav:
+    - talk eclipse_lionmountain_chhurim
+    conditions:
+    - is battle_outcome player,won,eclipse_lionmountain_chhurim
+    type: event
+  Post Talk Jacques:
+    actions:
+    - char_talk eclipse_lionmountain_jacques,post_battle_lose
+    behav:
+    - talk eclipse_lionmountain_jacques
+    conditions:
+    - is battle_outcome player,won,eclipse_lionmountain_jacques
+    type: event
+  Post Talk Tom:
+    actions:
+    - char_talk eclipse_lionmountain_tom,post_battle_lose
+    behav:
+    - talk eclipse_lionmountain_tom
+    conditions:
+    - is battle_outcome player,won,eclipse_lionmountain_tom
+    type: event
+  Talk Adam:
+    actions:
+    - lock_controls
+    - pathfind_to_char player,eclipse_lionmountain_adam
+    - char_talk eclipse_lionmountain_adam,pre_battle
+    - unlock_controls
+    - add_monster tikoal,50,eclipse_lionmountain_adam,5,10
+    - add_monster tikorch,55,eclipse_lionmountain_adam,5,10
+    - add_monster loliferno,55,eclipse_lionmountain_adam,5,10
+    - start_battle player,eclipse_lionmountain_adam
+    - char_talk eclipse_lionmountain_adam,post_battle_lose
+    conditions:
+    - not battle_outcome player,won,eclipse_lionmountain_adam
+    - is char_at player
+    - not char_defeated player
+    x: 2
+    y: 22
+    type: event
+  Talk Chhurim:
+    actions:
+    - lock_controls
+    - pathfind_to_char player,eclipse_lionmountain_chhurim
+    - char_talk eclipse_lionmountain_chhurim,pre_battle
+    - unlock_controls
+    - add_monster fribbit,50,eclipse_lionmountain_chhurim,5,10
+    - add_monster propellercat,50,eclipse_lionmountain_chhurim,5,10
+    - add_monster agnigon,50,eclipse_lionmountain_chhurim,5,10
+    - start_battle player,eclipse_lionmountain_chhurim
+    - char_talk eclipse_lionmountain_chhurim,post_battle_lose
+    conditions:
+    - not battle_outcome player,won,eclipse_lionmountain_chhurim
+    - is char_at player
+    - not char_defeated player
+    x: 33
+    y: 13
+    type: event
+  Talk Enforcer:
+    actions:
+    - translated_dialog eclipse_lionmountain_enforcer1
+    - translated_dialog eclipse_lionmountain_enforcer2
+    - translated_dialog eclipse_lionmountain_enforcer3
+    - translated_dialog eclipse_lionmountain_enforcer4
+    - set_variable lionmountainenforcer:yes
+    - add_monster chromeye,15
+    - open_journal chromeye
+    behav:
+    - talk eclipse_lionmountain_enforcer
+    conditions:
+    - not variable_set lionmountainenforcer:yes
+    type: event
+  Talk Enforcer 2:
+    actions:
+    - translated_dialog eclipse_lionmountain_enforcer4
+    behav:
+    - talk eclipse_lionmountain_enforcer
+    conditions:
+    - is variable_set lionmountainenforcer:yes
+    type: event
+  Talk Jacques:
+    actions:
+    - lock_controls
+    - pathfind_to_char player,eclipse_lionmountain_jacques
+    - char_talk eclipse_lionmountain_jacques,pre_battle
+    - unlock_controls
+    - add_monster jemuar,60,eclipse_lionmountain_jacques,5,10
+    - add_monster heronquak,55,eclipse_lionmountain_jacques,5,10
+    - start_battle player,eclipse_lionmountain_jacques
+    - char_talk eclipse_lionmountain_jacques,post_battle_lose
+    conditions:
+    - not battle_outcome player,won,eclipse_lionmountain_jacques
+    - is char_at player
+    - not char_defeated player
+    x: 3
+    y: 32
+    type: event
+  Talk Scientist:
+    actions:
+    - translated_dialog eclipse_lionmountain_scientist1
+    behav:
+    - talk eclipse_lionmountain_scientist
+    type: event
+  Talk Tom:
+    actions:
+    - lock_controls
+    - pathfind_to_char player,eclipse_lionmountain_tom
+    - char_talk eclipse_lionmountain_tom,pre_battle
+    - unlock_controls
+    - add_monster vivicinder,50,eclipse_lionmountain_tom,5,10
+    - start_battle player,eclipse_lionmountain_tom
+    - char_talk eclipse_lionmountain_tom,post_battle_lose
+    conditions:
+    - not battle_outcome player,won,eclipse_lionmountain_tom
+    - is char_at player
+    - not char_defeated player
+    x: 31
+    y: 28
+    type: event
+  Teleport Mountain High 1:
+    actions:
+    - transition_teleport player,eclipse_lion_mountain_high.tmx,2,39,0.3
+    - char_face player,up
+    conditions:
+    - is char_at player
+    - is char_facing player,up
+    x: 2
+    y: 0
+    type: event
+  Teleport Mountain High 2:
+    actions:
+    - transition_teleport player,eclipse_lion_mountain_high.tmx,19,39,0.3
+    - char_face player,up
+    conditions:
+    - is char_at player
+    - is char_facing player,up
+    x: 19
+    y: 0
+    type: event
+  Teleport Mountain High 3:
+    actions:
+    - transition_teleport player,eclipse_lion_mountain_high.tmx,23,39,0.3
+    - char_face player,up
+    conditions:
+    - is char_at player
+    - is char_facing player,up
+    x: 23
+    y: 0
+    type: event
+  Teleport Mountain High 4:
+    actions:
+    - transition_teleport player,eclipse_lion_mountain_high.tmx,6,39,0.3
+    - char_face player,up
+    conditions:
+    - is char_at player
+    - is char_facing player,up
+    x: 6
+    y: 0
+    type: event
+  Teleport Mountain High 5:
+    actions:
+    - transition_teleport player,eclipse_lion_mountain_high.tmx,7,39,0.3
+    - char_face player,up
+    conditions:
+    - is char_at player
+    - is char_facing player,up
+    x: 7
+    y: 0
+    type: event
+  Teleport Mountain Low 1:
+    actions:
+    - transition_teleport player,eclipse_lion_mountain_low.tmx,34,0,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,down
+    x: 34
+    y: 39
+    type: event
+  Teleport Mountain Low 2a:
+    actions:
+    - transition_teleport player,eclipse_lion_mountain_low.tmx,11,0,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,down
+    x: 11
+    y: 39
+    type: event
+  Teleport Mountain Low 2b:
+    actions:
+    - transition_teleport player,eclipse_lion_mountain_low.tmx,12,0,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,down
+    x: 12
+    y: 39
+    type: event
+  Teleport Mountain Low 3a:
+    actions:
+    - transition_teleport player,eclipse_lion_mountain_low.tmx,1,0,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,down
+    x: 1
+    y: 39
+    type: event

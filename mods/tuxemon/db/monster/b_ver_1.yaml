@@ -1,0 +1,63 @@
+slug: b_ver_1
+species: gnawer
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: beam
+- level_learned: 1
+  technique: levitate
+- level_learned: 4
+  technique: strike
+- level_learned: 7
+  technique: radiance
+- level_learned: 13
+  technique: battery_discharge
+- level_learned: 16
+  technique: wall_of_steel
+- level_learned: 19
+  technique: glower
+- level_learned: 25
+  technique: shrapnel
+evolutions: []
+history:
+- slug: b_ver_1
+  stage: stage1
+  evolves_from:
+  - botbot
+  evolves_into: []
+- slug: botbot
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - av8r
+  - picc
+  - mrmoswitch
+  - k9
+  - b_ver_1
+terrains:
+- urban
+tags:
+- machine
+- bite
+shape: varmint
+stage: stage1
+types:
+- metal
+- wood
+gender_weights:
+  neuter: 1.0
+txmn_id: 130
+height: 100
+weight: 50
+sounds:
+  combat_call:
+    sfx: sound_bite_cartoon_style
+    volume: 1.5
+  faint_call:
+    sfx: sound_bite_cartoon_style_faint
+    volume: 1.5
+catch_rate: 70.0
+lower_catch_resistance: 0.9
+upper_catch_resistance: 1.15

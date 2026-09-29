@@ -1,0 +1,277 @@
+events:
+  create shady guy:
+    actions:
+    - create_npc shady_guy,1,8
+    - char_face shady_guy,right
+    conditions:
+    - not char_exists shady_guy
+    type: event
+  Rename Player:
+    actions:
+    - rename_player player,random
+    - translated_dialog shady_rename
+    - char_face shady_guy,right
+    - set_variable shady:no
+    conditions:
+    - is variable_set shady:yes
+    type: event
+  Whats Up:
+    actions:
+    - char_face shady_guy,player
+    - translated_dialog shady_guy_dialog
+    - translated_dialog_choice yes:no,shady
+    behav:
+    - talk shady_guy
+    conditions:
+    - not variable_set shady:yes
+    type: event
+  create happy guy:
+    actions:
+    - create_npc happy_guy,6,8
+    - char_face happy_guy,left
+    conditions:
+    - not char_exists happy_guy
+    - is party_size player,greater_than,0
+    type: event
+  Rename Monster:
+    actions:
+    - get_player_monster rename
+    - rename_monster rename
+    - translated_dialog happy_rename
+    - char_face happy_guy,left
+    - set_variable happy:no
+    conditions:
+    - is variable_set happy:yes
+    type: event
+  Howdy:
+    actions:
+    - char_face happy_guy,player
+    - translated_dialog happy_guy_dialog
+    - translated_dialog_choice yes:no,happy
+    behav:
+    - talk happy_guy
+    conditions:
+    - not variable_set happy:yes
+    type: event
+  Box Empty:
+    actions:
+    - translated_dialog spyder_barmaid_cafe3
+    - add_monster nudiflot_male,25
+    - set_variable cafe_done:yes
+    - unlock_controls
+    - pathfind spyder_candycafe_nora,8,10
+    - remove_npc spyder_candycafe_nora
+    conditions:
+    - is has_kennel player,Kennel,less_than,1
+    - is variable_set confiscation_done:yes
+    - not variable_set cafe_done:yes
+    type: event
+  Box Not Empty:
+    actions:
+    - translated_dialog spyder_barmaid_cafe2
+    - translated_dialog spyder_barmaid_cafe2a
+    - set_variable cafe_done:yes
+    - unlock_controls
+    - pathfind spyder_candycafe_nora,8,10
+    - remove_npc spyder_candycafe_nora
+    conditions:
+    - is has_kennel player,Kennel,greater_or_equal,1
+    - is variable_set confiscation_done:yes
+    - not variable_set cafe_done:yes
+    type: event
+  Create Owner:
+    actions:
+    - create_npc spyder_cottontown_barmaid,1,4
+    conditions:
+    - not char_exists spyder_cottontown_barmaid
+    type: event
+  Create Soldier:
+    actions:
+    - create_npc spyder_greenwash_guard,3,7
+    conditions:
+    - not char_exists spyder_greenwash_guard
+    type: event
+  Default Template:
+    actions:
+    - set_layer
+    - set_template player,default
+    conditions:
+    - is char_sprite player,invisible
+    - is variable_set incident_greenwash:done
+    type: event
+  Flashback Yes:
+    actions:
+    - transition_teleport player,spyder_greenwash_level3.tmx,13,2
+    - set_variable flashback:on
+    conditions:
+    - is variable_set incident_greenwash:yes
+    type: event
+  Go Outside:
+    actions:
+    - transition_teleport player,spyder_candy_town.tmx,4,19,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,down
+    - is party_size player,greater_than,0
+    type: event
+    x: 8
+    y: 11
+  Heal Tuxemon:
+    actions:
+    - set_monster_health
+    - set_monster_status
+    - translated_dialog okaythen
+    - lock_controls
+    - char_face spyder_cottontown_barmaid,up
+    - wait 1
+    - play_sound coinecho
+    - char_face spyder_cottontown_barmaid,down
+    - unlock_controls
+    - translated_dialog okaythen2
+    - set_variable chooses:none
+    - set_teleport_faint player,spyder_candy_cafe.tmx,1,10
+    conditions:
+    - is variable_set chooses:yes
+    type: event
+  Lovelace Appears:
+    actions:
+    - create_npc spyder_candycafe_lovelace,7,3
+    - char_face spyder_candycafe_lovelace,down
+    conditions:
+    - not char_exists spyder_candycafe_lovelace
+    type: event
+  Lovelace Gives Feeder:
+    actions:
+    - set_variable invention_given:xp_feeder
+    - add_item xp_feeder
+    conditions:
+    - is variable_set invention_choice:xp_feeder
+    - not variable_set invention_given
+    type: event
+  Lovelace Gives Transmitter:
+    actions:
+    - set_variable invention_given:xp_transmitter
+    - add_item xp_transmitter
+    conditions:
+    - is variable_set invention_choice:xp_transmitter
+    - not variable_set invention_given
+    type: event
+  Lovelace Offers Feeder Swap:
+    actions:
+    - translated_dialog spyder_candycafe_lovelace_swap_transmitter
+    - translated_dialog_choice yes:no,invention_swap_feeder
+    behav:
+    - talk spyder_candycafe_lovelace
+    conditions:
+    - is variable_set invention_given
+    - is has_item player,xp_transmitter
+    type: event
+  Lovelace Offers Invention:
+    actions:
+    - translated_dialog spyder_candycafe_lovelace_intro
+    - translated_dialog_choice xp_transmitter:xp_feeder,invention_choice
+    behav:
+    - talk spyder_candycafe_lovelace
+    conditions:
+    - not variable_set invention_given
+    type: event
+  Lovelace Offers Transmitter Swap:
+    actions:
+    - translated_dialog spyder_candycafe_lovelace_swap_feeder
+    - translated_dialog_choice yes:no,invention_swap_transmitter
+    behav:
+    - talk spyder_candycafe_lovelace
+    conditions:
+    - is variable_set invention_given
+    - is has_item player,xp_feeder
+    type: event
+  Lovelace Swaps To Feeder:
+    actions:
+    - set_variable invention_swap_feeder:none
+    - add_item xp_transmitter,-1
+    - add_item xp_feeder
+    conditions:
+    - is variable_set invention_swap_feeder:yes
+    - is has_item player,xp_transmitter
+    type: event
+  Lovelace Swaps To Transmitter:
+    actions:
+    - set_variable invention_swap_transmitter:none
+    - add_item xp_feeder,-1
+    - add_item xp_transmitter
+    conditions:
+    - is variable_set invention_swap_transmitter:yes
+    - is has_item player,xp_feeder
+    type: event
+  Lovelace While Equipped:
+    actions:
+    - translated_dialog spyder_candycafe_lovelace_equipped
+    behav:
+    - talk spyder_candycafe_lovelace
+    conditions:
+    - is variable_set invention_given
+    - not has_item player,xp_transmitter
+    - not has_item player,xp_feeder
+    type: event
+  Play Music:
+    actions:
+    - play_music music_home
+    conditions:
+    - not music_playing music_home
+    type: event
+  Talk Barmaid:
+    actions:
+    - translated_dialog spyder_cottoncafe_barmaid
+    - translated_dialog_choice yes:no,chooses
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed INTERACT
+    type: event
+    x: 1
+    y: 5
+  Talk Soldier 1:
+    actions:
+    - translated_dialog spyder_candy_cafe_trigger
+    - translated_dialog_choice no:yes,incident_greenwash
+    behav:
+    - talk spyder_greenwash_guard
+    conditions:
+    - not variable_set incident_greenwash
+    type: event
+  Talk Soldier No:
+    actions:
+    - translated_dialog spyder_candy_cafe_trigger_no
+    behav:
+    - talk spyder_greenwash_guard
+    conditions:
+    - is variable_set incident_greenwash:no
+    type: event
+  Talk Soldier Yes:
+    actions:
+    - translated_dialog spyder_candy_cafe_trigger_after
+    behav:
+    - talk spyder_greenwash_guard
+    conditions:
+    - is variable_set incident_greenwash:done
+    type: event
+  Use Computer:
+    actions:
+    - access_pc player
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed INTERACT
+    - not variable_set kernelquest:yes
+    type: event
+    x: 10
+    y: 3
+  Use Computer Kernel:
+    actions:
+    - translated_dialog spyder_pc_alert
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed INTERACT
+    - is variable_set kernelquest:yes
+    type: event
+    x: 10
+    y: 3

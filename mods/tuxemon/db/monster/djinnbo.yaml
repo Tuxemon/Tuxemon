@@ -1,0 +1,65 @@
+slug: djinnbo
+species: vengeance
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: petrify
+- level_learned: 1
+  technique: fire_ball
+- level_learned: 4
+  technique: fire_claw
+- level_learned: 7
+  technique: saber
+- level_learned: 13
+  technique: nest
+- level_learned: 16
+  technique: tinder
+- level_learned: 19
+  technique: lava
+- level_learned: 25
+  technique: give_all
+- level_learned: 28
+  technique: magma
+- level_learned: 31
+  technique: wall_fire
+- level_learned: 37
+  technique: flamethrower
+- level_learned: 40
+  technique: thunderclap
+- level_learned: 40
+  technique: shadow_blast
+evolutions: []
+history:
+- slug: djinnbo
+  stage: standalone
+  evolves_from: []
+  evolves_into: []
+terrains:
+- extraplanar
+- ruins
+tags:
+- flame
+- ghost
+- fury
+shape: humanoid
+stage: standalone
+types:
+- fire
+- shadow
+gender_weights:
+  neuter: 1.0
+txmn_id: 108
+height: 160
+weight: 0.1
+sounds:
+  combat_call:
+    sfx: sound_ghost_1
+    volume: 1.5
+  faint_call:
+    sfx: sound_ghost_1_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.9
+upper_catch_resistance: 1.15

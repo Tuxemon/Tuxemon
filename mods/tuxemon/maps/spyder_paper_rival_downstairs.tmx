@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="11" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="67">
+ <properties>
+  <property name="edges" value="clamped"/>
+  <property name="inside" type="bool" value="true"/>
+  <property name="map_type" value="notype"/>
+  <property name="scenario" value="spyder"/>
+  <property name="slug" value="rival_downstairs"/>
+ </properties>
+ <tileset firstgid="1" source="../gfx/tilesets/core_indoor_stairs.tsx"/>
+ <tileset firstgid="2971" source="../gfx/tilesets/core_indoor_floors.tsx"/>
+ <tileset firstgid="6835" source="../gfx/tilesets/core_indoor_walls.tsx"/>
+ <tileset firstgid="10699" source="../gfx/tilesets/core_set pieces.tsx"/>
+ <layer id="1" name="Tile Layer 1" width="11" height="12">
+  <data encoding="base64" compression="zlib">
+   eAF7JMPAEAnFT4A0PtAGlG+H4g4CarcA5bdC8TYCajN4GRiQMT43/JdmYOBjY2DgB+I/QDbM7dhoXaC91kB1NkAMYsPcjo0GyWcA1WVC1cLcjo2OBqmFuhmZDRNDpjuR1CKzkdXA2NuR1CKzYfL0oAG0TzcN
+  </data>
+ </layer>
+ <layer id="2" name="Tile Layer 2" width="11" height="12">
+  <data encoding="base64" compression="zlib">
+   eAFjYBh40KXNwPCQlYHhERCvBLIHA7iuycBwA4hhoBborjogrsfivm9Add+R1M4BqpkLxPOwqIWZB6NdgGpAGBu4qcXAcAuIQQCkpgrIrgZiXOohKiHyM4HqZkHVRgkzMEQDcQwQYwPIbgAAKrYVgw==
+  </data>
+ </layer>
+ <layer id="3" name="Tile Layer 3" width="11" height="12">
+  <data encoding="base64" compression="zlib">
+   eAFjYBgFQyUEQrVo71IAM4IAgA==
+  </data>
+ </layer>
+ <layer id="4" name="Above player" width="11" height="12">
+  <data encoding="base64" compression="zlib">
+   eAFjYBgFoyGACAEAAhAAAQ==
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" id="5" name="Collision">
+  <object id="1" type="collision" x="128" y="144" width="32" height="32"/>
+  <object id="2" type="collision" x="48" y="64" width="128" height="48"/>
+  <object id="4" type="collision" x="0" y="64" width="16" height="96"/>
+  <object id="5" type="collision" x="48" y="112" width="16" height="48"/>
+  <object id="59" type="collision" x="0" y="0" width="176" height="48"/>
+  <object id="62" type="collision" x="64" y="144" width="32" height="16"/>
+  <object id="63" type="collision" x="64" y="112" width="32" height="16"/>
+  <object id="66" type="collision" x="64" y="48" width="16" height="16"/>
+ </objectgroup>
+</map>

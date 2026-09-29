@@ -1,0 +1,63 @@
+slug: ziggurat
+species: mazerunner
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: ice_claw
+- level_learned: 1
+  technique: ants
+- level_learned: 4
+  technique: muck
+- level_learned: 7
+  technique: hammerhead
+- level_learned: 13
+  technique: infectious_bite
+- level_learned: 16
+  technique: breath
+- level_learned: 19
+  technique: grinding
+- level_learned: 25
+  technique: gourmet
+- level_learned: 28
+  technique: strangulation
+- level_learned: 31
+  technique: cat_calling
+- level_learned: 37
+  technique: burrow_blast
+- level_learned: 40
+  technique: evasion
+evolutions: []
+history:
+- slug: ziggurat
+  stage: standalone
+  evolves_from: []
+  evolves_into: []
+terrains: []
+tags:
+- ground
+- toxic
+- food
+- claws
+shape: varmint
+stage: standalone
+types:
+- earth
+- normal
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 242
+height: 30
+weight: 1
+sounds:
+  combat_call:
+    sfx: sound_spit_01
+    volume: 1.5
+  faint_call:
+    sfx: sound_spit_01_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.9
+upper_catch_resistance: 1.15

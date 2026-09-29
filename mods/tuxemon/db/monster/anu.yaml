@@ -1,0 +1,65 @@
+slug: anu
+species: dream_fox
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: tail_lash
+- level_learned: 1
+  technique: slice
+- level_learned: 4
+  technique: wall_of_steel
+- level_learned: 7
+  technique: shuriken
+- level_learned: 13
+  technique: muddle
+- level_learned: 16
+  technique: lineage
+- level_learned: 19
+  technique: bubble_trap
+- level_learned: 25
+  technique: shrapnel
+- level_learned: 28
+  technique: meltdown
+- level_learned: 31
+  technique: breath
+- level_learned: 37
+  technique: dreamwalk
+- level_learned: 40
+  technique: undertaker
+- level_learned: 55
+  technique: shadow_blast
+evolutions: []
+history:
+- slug: anu
+  stage: standalone
+  evolves_from: []
+  evolves_into: []
+terrains:
+- desert
+- extraplanar
+tags:
+- mental
+- summoner
+- tail
+shape: varmint
+stage: standalone
+types:
+- cosmic
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 61
+height: 100
+weight: 10
+sounds:
+  combat_call:
+    sfx: sound_bark
+    volume: 1.5
+  faint_call:
+    sfx: sound_bark_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.05

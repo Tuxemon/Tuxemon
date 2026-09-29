@@ -1,0 +1,116 @@
+- slug: spyder_tunnelb_beryll
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_tunnelb_beryll1
+        post_battle_win: null
+        post_battle_lose: spyder_tunnelb_beryll2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: scientist
+    combat_sheet: scientist
+    slug: scientist
+- slug: spyder_tunnelb_greta
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_tunnelb_greta1
+        post_battle_win: null
+        post_battle_lose: spyder_tunnelb_greta2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: picnicker
+    combat_sheet: picnicker
+    slug: picnicker
+- slug: spyder_tunnelb_iris
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_tunnelb_iris1
+        post_battle_win: null
+        post_battle_lose: spyder_tunnelb_iris2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: florist_brown
+    combat_sheet: florist
+    slug: florist
+- slug: spyder_tunnelb_meitner
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_tunnelb_meitner1
+        post_battle_win: null
+        post_battle_lose: spyder_tunnelb_meitner2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: scientist_fiery
+    combat_sheet: scientist
+    slug: scientist
+- slug: spyder_tunnelb_lute
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_tunnelb_lute1
+        post_battle_win: null
+        post_battle_lose: spyder_tunnelb_lute2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: scientist_black
+    combat_sheet: scientist
+    slug: scientist
+- slug: spyder_tunnelb_tommy
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_tunnelb_tommy1
+        post_battle_win: null
+        post_battle_lose: spyder_tunnelb_tommy2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: beachcomber_gray
+    combat_sheet: yellowbelt
+    slug: yellowbelt
+- slug: spyder_tunnelb_rhincus
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: box
+    combat_sheet: noclass
+    slug: noclass
+    is_static_prop: true
+- slug: spyder_tunnelb_shammer
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: box
+    combat_sheet: noclass
+    slug: noclass
+    is_static_prop: true
+- slug: spyder_tunnelb_nurse
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: nurse_red
+    combat_sheet: nurse
+    slug: nurse

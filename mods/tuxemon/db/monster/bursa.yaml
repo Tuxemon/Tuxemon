@@ -1,0 +1,66 @@
+slug: bursa
+species: too_hot
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: fire_ball
+- level_learned: 1
+  technique: muddle
+- level_learned: 4
+  technique: amnesia
+- level_learned: 7
+  technique: berserk
+- level_learned: 13
+  technique: one_two
+- level_learned: 16
+  technique: bubble_trap
+- level_learned: 31
+  technique: all_in
+- level_learned: 37
+  technique: give_all
+- level_learned: 40
+  technique: breathe_fire
+evolutions:
+- at_level: 32
+  monster_slug: flambear
+history:
+- slug: bursa
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - flambear
+- slug: flambear
+  stage: stage1
+  evolves_from:
+  - bursa
+  evolves_into: []
+terrains:
+- mountains
+- woodland
+tags:
+- mental
+- flame
+- food
+shape: humanoid
+stage: basic
+types:
+- fire
+- cosmic
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 83
+height: 180
+weight: 110
+sounds:
+  combat_call:
+    sfx: sound_terminal_03
+    volume: 1.5
+  faint_call:
+    sfx: sound_terminal_03_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.25

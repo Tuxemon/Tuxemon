@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.8" tiledversion="1.8.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="70">
+ <properties>
+  <property name="east" value="lion_mountain"/>
+  <property name="edges" value="clamped"/>
+  <property name="map_type" value="town"/>
+  <property name="scenario" value="eclipse"/>
+  <property name="slug" value="obsidian_town"/>
+  <property name="east" value="lion_mountain"/>
+ </properties>
+ <tileset firstgid="1" source="../gfx/tilesets/core_outdoor.tsx"/>
+ <tileset firstgid="2776" source="../gfx/tilesets/core_set pieces.tsx"/>
+ <tileset firstgid="4326" source="../gfx/tilesets/core_buildings.tsx"/>
+ <tileset firstgid="6676" source="../gfx/tilesets/core_outdoor_nature.tsx"/>
+ <layer id="1" name="Tile Layer 1" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eAHt0jERAAAMhDDkv+y66JQBA1xWTR4wwAADDDDAAAMMMMDAg4EDOlypEA==
+  </data>
+ </layer>
+ <layer id="2" name="Tile Layer 2" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eAG1lEdSAzEQRUWxZEcOhRcU6RSuxiYcxKQ16RLAGbgIYUe6D6mK9L89v2imZmzJHnfVG2nULfUfqTX1EELdgW6SGaLJIMb8NHPwnea1KW4R47uR7CHOQMocv3YNc5WX6wh021akz+BJySeNnRXTnsrPWebgO01+tRyzjFSNnBtj1/Mh3ABaUV5rezoP+dVy1Bx8r9o+oe2rIn0pe8i6Ohj5w9eZ+rXcx/baF/nVcro5DpHvfjyEB/AInsAzmARTYBrMgFkQY/tYz1tZXsXIr5bj5qC+F+R+BW/gHXyAJtgEW2Ab7IAYG4a+5YkQVsAqWAPr4Ah6jsEJOAVnIG+3qLG7rM7kG0RfC4uwTvS/MPS5f/3aN7T9VKRP2lTH0jiIvqLv6mf/8tq8xmHpm4N4bm0TsPZp5uA77Rznd9GFS/iuxjqxvZ7+v1sWq/2TJsZpf3RmVjY5cTxf//6/W7aU9EmTzmpp9H/tl81PGS+qfz8/r58+6fNx+b65gQ2cX6MLTfj6tSL9qfp65a76fuTPVefrW9ZhrDUQ2G1/Y328qwtZ0rJ7VFQPsTqriLNskbJ7VFQPVeSNXUP6YuMZ9wsfNoco
+  </data>
+ </layer>
+ <layer id="3" name="Tile Layer 3" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eAHt0LsNwCAAA1H3qWBituCT+RJgC7wDDUJn6XrrSQwBBHYEcpSKq665131B+l13w03HEEDgPIH0nPeJRwgggMDtAgv5+Qi7
+  </data>
+ </layer>
+ <layer id="4" name="Above Player" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eAHt0DEBAAAAwqD1T20LL4hAYcCAAQMGDBgwYMCAgc/AAAyAAAE=
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" id="5" name="Collisions">
+  <object id="57" type="collision" x="144" y="192" width="16" height="16"/>
+  <object id="65" type="collision" x="0" y="240" width="16" height="64"/>
+  <object id="66" type="collision" x="144" y="80" width="160" height="48"/>
+  <object id="67" type="collision" x="144" y="128" width="48" height="16"/>
+  <object id="68" type="collision" x="208" y="128" width="48" height="16"/>
+  <object id="69" type="collision" x="272" y="128" width="32" height="16"/>
+ </objectgroup>
+</map>

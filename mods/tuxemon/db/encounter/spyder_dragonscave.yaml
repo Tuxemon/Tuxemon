@@ -1,0 +1,82 @@
+monsters:
+- encounter_rate: 3
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 25
+  - 28
+  monster: agnite
+  variables:
+    - key: daytime
+      value: "true"
+- encounter_rate: 1
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 20
+  - 25
+  monster: agnidon
+  variables:
+    - key: daytime
+      value: "true"
+- encounter_rate: 3
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 25
+  - 28
+  monster: embra
+  variables:
+    - key: daytime
+      value: "true"
+- encounter_rate: 1
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 20
+  - 25
+  monster: ruption
+  variables:
+    - key: daytime
+      value: "true"
+- encounter_rate: 3
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 28
+  - 30
+  monster: agnite
+  variables:
+    - key: daytime
+      value: "false"
+- encounter_rate: 1
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 25
+  - 28
+  monster: agnidon
+  variables:
+    - key: daytime
+      value: "false"
+- encounter_rate: 3
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 28
+  - 30
+  monster: embra
+  variables:
+    - key: daytime
+      value: "false"
+- encounter_rate: 1
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 25
+  - 28
+  monster: ruption
+  variables:
+    - key: daytime
+      value: "false"
+slug: spyder_dragonscave

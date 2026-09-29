@@ -1,0 +1,26 @@
+effects: []
+slug: app_map
+sort: utility
+sprite: gfx/items/app_map.png
+category: phone
+usable_in:
+- WorldState
+modifiers: []
+behaviors:
+  consumable: false
+  visible: false
+dynamic_menu:
+  position: 2
+  label_key: app_map
+  menu_type: phone
+  state: NuPhoneMap
+use_failure: generic_failure
+use_item: combat_used_x
+use_success: generic_success
+visuals:
+  animation: null
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: null
+  volume: 0.0

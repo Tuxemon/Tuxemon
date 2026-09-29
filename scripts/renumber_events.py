@@ -13,6 +13,7 @@ python renumber_events.py [--ascii/--natural] FILE0 FILE1 FILE2 ...
 Natural sort ordering is default.  Use ASCII for fixing old maps.
 
 """
+
 import logging
 import os
 import xml.etree.ElementTree as ET
@@ -44,12 +45,14 @@ def renumber_event(event_node, sorting_method):
     for tag, items in groups:
         items = sorting_method(items)
         num_digits = len(str(len(items) * 10))
-        name_template = tag + "{:0%d}" % num_digits
+        name_template = f"{tag}{{:0{num_digits}}}"
 
         for i, action in zip(count(10, 10), items):
             name, value = action
             name = name_template.format(i)
-            child = ET.SubElement(event_node, "property", attrib={"name": name, "value": value})
+            child = ET.SubElement(
+                event_node, "property", attrib={"name": name, "value": value}
+            )
             children.append(child)
 
     return children
@@ -74,7 +77,7 @@ def process_tmxmap(filename, sort_method):
     # python's xml export changes formatting, so use tiled
     # to export the map again and fix formatting
     tiled_exe = "/home/ltheden/Downloads/Tiled-1.3.2-x86_64.AppImage"
-    cmd = "{} --export-map {} {}".format(tiled_exe, filename, filename)
+    cmd = f"{tiled_exe} --export-map {filename} {filename}"
     os.system(cmd)
 
 

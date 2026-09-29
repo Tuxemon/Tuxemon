@@ -1,0 +1,10 @@
+slug: xerogrund2
+speech:
+  profile:
+    default: {}
+combat: {}
+audio: {}
+template:
+  sprite_name: xerogrunt
+  combat_sheet: adventurer
+  slug: xerogrunt

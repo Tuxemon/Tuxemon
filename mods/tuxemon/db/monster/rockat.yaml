@@ -1,0 +1,76 @@
+slug: rockat
+species: sleek_boulder
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: ram
+- level_learned: 1
+  technique: boulder
+- level_learned: 4
+  technique: mudslide
+- level_learned: 7
+  technique: assault
+- level_learned: 13
+  technique: thunderball
+- level_learned: 28
+  technique: glower
+- level_learned: 31
+  technique: ice_claw
+- level_learned: 34
+  technique: surge
+- level_learned: 43
+  technique: stampede
+- level_learned: 46
+  technique: earthquake
+- level_learned: 52
+  technique: biting_winds
+evolutions:
+- at_level: 36
+  monster_slug: jemuar
+history:
+- slug: rockat
+  stage: stage1
+  evolves_from:
+  - rockitten
+  evolves_into:
+  - jemuar
+- slug: rockitten
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - rockat
+- slug: jemuar
+  stage: stage2
+  evolves_from:
+  - rockat
+  evolves_into: []
+terrains:
+- mountains
+- urban
+tags:
+- rock
+- love
+- claws
+- bite
+shape: hunter
+stage: stage1
+types:
+- earth
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 2
+height: 120
+weight: 60
+sounds:
+  combat_call:
+    sfx: sound_growl1
+    volume: 1.5
+  faint_call:
+    sfx: sound_growl1_faint
+    volume: 1.5
+catch_rate: 70.0
+lower_catch_resistance: 0.9
+upper_catch_resistance: 1.15

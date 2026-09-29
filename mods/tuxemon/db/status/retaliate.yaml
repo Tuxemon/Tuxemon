@@ -1,0 +1,21 @@
+modifiers: []
+behaviors: {}
+category: positive
+effects:
+- type: retaliate
+icon: gfx/ui/icons/status/icon_retaliate.png
+on_positive_status: replaced
+on_negative_status: replaced
+slug: retaliate
+sort: meta
+cond_id: 31
+use_failure: null
+use_success: combat_state_retaliate_get
+gain_cond: null
+visuals:
+  animation: null
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_pulse
+  volume: 1.5

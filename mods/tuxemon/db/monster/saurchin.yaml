@@ -1,0 +1,67 @@
+slug: saurchin
+species: spiny
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: flood
+- level_learned: 1
+  technique: flow
+- level_learned: 4
+  technique: goad
+- level_learned: 7
+  technique: muck
+- level_learned: 13
+  technique: font
+- level_learned: 22
+  technique: midnight_mantle
+- level_learned: 25
+  technique: needle
+- level_learned: 28
+  technique: chill_mist
+- level_learned: 40
+  technique: viper
+- level_learned: 46
+  technique: thorn_burst
+- level_learned: 55
+  technique: energy_beam
+evolutions: []
+history:
+- slug: saurchin
+  stage: stage1
+  evolves_from:
+  - poinchin
+  evolves_into: []
+- slug: poinchin
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - saurchin
+terrains:
+- coastal
+tags:
+- sharp
+- toxic
+- bite
+- megafauna
+shape: dragon
+stage: stage1
+types:
+- venom
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 349
+height: 800
+weight: 3000
+sounds:
+  combat_call:
+    sfx: sound_roar_03
+    volume: 1.5
+  faint_call:
+    sfx: sound_roar_03_faint
+    volume: 1.5
+catch_rate: 70.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.05

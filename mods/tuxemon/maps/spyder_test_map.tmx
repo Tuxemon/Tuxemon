@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="625">
+ <properties>
+  <property name="east" value="route2"/>
+  <property name="edges" value="clamped"/>
+  <property name="map_type" value="town"/>
+  <property name="scenario" value="spyder"/>
+  <property name="slug" value="cotton_town"/>
+  <property name="south" value="route1"/>
+  <property name="west" value="dryadsgrove"/>
+ </properties>
+ <tileset firstgid="1" source="../gfx/tilesets/core_city_and_country.tsx"/>
+ <tileset firstgid="1441" source="../gfx/tilesets/core_buildings.tsx"/>
+ <tileset firstgid="3791" source="../gfx/tilesets/core_outdoor.tsx"/>
+ <tileset firstgid="6566" source="../gfx/tilesets/core_set pieces.tsx"/>
+ <tileset firstgid="8116" source="../gfx/tilesets/core_outdoor_nature.tsx"/>
+ <layer id="1" name="Tile Layer 1" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eJztmMENwjAMRbsBG/UC7ALdBRiGDtNuQ5BA+or60yR1sENzeLdGebUdu2l/6Lq+sQuOjhNwNuCEbrPjCkyGHC+emxXHby792CGDoh9zsuJ3/zAa9Vurv6fjQdb4510CVuvMLxQ7tmYLbL8b5Bphsfu1Xw7snVLB2rdQ66E8NL/9+ZXoYyngbF3yK9EnJPtLTX7veSbR03JZmge1nx9tml/zq9Gv5NzB7+hcv5J9fSD7WPebEnKAc53NnTHimbU5IhEHFneJs2fdT+Kew+55/9q7NPzY2dP8PxZT25pxjant0D+KxjZe2R5F+Q==
+  </data>
+ </layer>
+ <layer id="2" name="Tile Layer 2" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eJztmEEKgzAQRXMH3dTWS/QSbttDdNnWE3mDdlvPVFwWu+1AI8hAqmaq+ZF58BkIGD4vQcE2MeZNaUHnNjVml+LOrica3B/nlPnv3X/Wd5/Y/YVG/clQfzLW6O+1mbdTn6n+um5LdeT+Crt+F3w3/onLH0o/1/1D6cf9HWwvlH7c35N6lZQGpN8a339L4vL3oPOt7RlXNPf58F635Hd8GOvvGKify985/+ZCuVLKEf3mINb7h4L6k6H+ZKg/GepPhvqTof5kxOYPdYb+Pz80PySr1rI=
+  </data>
+ </layer>
+ <layer id="3" name="Tile Layer 3" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eJztzkERACAIADB+lqURZWngF/S2BIt4X57pwV0t/wEAAAAAwG8a7hUBFg==
+  </data>
+ </layer>
+ <layer id="6" name="Above Player" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20PBxQAAAAAAMCXARkAAAE=
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" id="4" name="Collisions">
+  <object id="492" type="collision" x="0" y="0" width="640" height="32"/>
+  <object id="600" type="collision" x="96" y="48" width="16" height="16"/>
+  <object id="607" type="collision" x="336" y="48" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup color="#ffff00" id="5" name="Events">
+  <object id="538" name="Teleport to Cotton Town" type="event" x="144" y="32" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport player,spyder_cotton_town.tmx,38,20,0.3"/>
+    <property name="act2" value="char_face player,up"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
+   </properties>
+  </object>
+  <object id="540" name="Sign: Get Rockitten" type="event" x="96" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog aardornforyou"/>
+    <property name="act2" value="add_monster aardorn,4"/>
+    <property name="cond1" value="is char_facing_tile player"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
+   </properties>
+  </object>
+  <object id="562" name="Play Music" type="event" x="112" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="play_music music_town_theme"/>
+    <property name="cond1" value="not music_playing music_town_theme"/>
+   </properties>
+  </object>
+  <object id="580" name="Environment Day" type="event" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_environment grass"/>
+    <property name="cond1" value="not time_is stage_of_day,equals,night"/>
+    <property name="cond2" value="not environment_is grass"/>
+   </properties>
+  </object>
+  <object id="582" name="Environment Night" type="event" x="64" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_environment night_grass"/>
+    <property name="cond1" value="is time_is stage_of_day,equals,night"/>
+    <property name="cond2" value="not environment_is night_grass"/>
+   </properties>
+  </object>
+  <object id="583" name="Create Statue Blue" type="event" x="144" y="144" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_statue_blue,4,9"/>
+    <property name="cond1" value="not char_exists spyder_statue_blue"/>
+    <property name="cond2" value="not battle_outcome player,won,spyder_dragonscave_benden"/>
+   </properties>
+  </object>
+  <object id="601" name="Create Cleo" type="event" x="272" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_route5_cleo,17,3"/>
+    <property name="cond1" value="not char_exists spyder_route5_cleo"/>
+   </properties>
+  </object>
+  <object id="602" name="Talk Cleo" type="event" x="304" y="48" width="16" height="16">
+   <properties>
+    <property name="act09" value="set_bubble spyder_route5_cleo,exclamation"/>
+    <property name="act10" value="char_talk spyder_route5_cleo,pre_battle"/>
+    <property name="act20" value="add_monster memnomnom,5,spyder_route5_cleo,99,99"/>
+    <property name="act30" value="add_monster memnomnom,5,spyder_route5_cleo,99,99"/>
+    <property name="act40" value="start_battle player,spyder_route5_cleo"/>
+    <property name="act41" value="set_bubble spyder_route5_cleo"/>
+    <property name="act50" value="char_talk spyder_route5_cleo,post_battle_lose"/>
+    <property name="act60" value="set_variable testcleo:yes"/>
+    <property name="behav1" value="talk spyder_route5_cleo"/>
+    <property name="cond1" value="not variable_set testcleo:yes"/>
+   </properties>
+  </object>
+  <object id="603" name="Ambush Cleo" type="event" x="272" y="64" width="16" height="64">
+   <properties>
+    <property name="act10" value="lock_controls"/>
+    <property name="act11" value="set_bubble spyder_route5_cleo,exclamation"/>
+    <property name="act20" value="pathfind_to_char player,spyder_route5_cleo"/>
+    <property name="act22" value="char_face player,spyder_route5_cleo"/>
+    <property name="act30" value="char_talk spyder_route5_cleo,pre_battle"/>
+    <property name="act40" value="unlock_controls"/>
+    <property name="act50" value="add_monster memnomnom,5,spyder_route5_cleo,99,99"/>
+    <property name="act60" value="add_monster memnomnom,5,spyder_route5_cleo,99,99"/>
+    <property name="act70" value="start_battle player,spyder_route5_cleo"/>
+    <property name="act71" value="set_bubble spyder_route5_cleo"/>
+    <property name="act80" value="char_talk spyder_route5_cleo,post_battle_lose"/>
+    <property name="act90" value="set_variable testcleo:yes"/>
+    <property name="cond1" value="not variable_set testcleo:yes"/>
+    <property name="cond2" value="is char_at player"/>
+   </properties>
+  </object>
+  <object id="604" name="Post Talk Cleo" type="event" x="240" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="char_talk spyder_route5_cleo,post_battle_lose"/>
+    <property name="behav1" value="talk spyder_route5_cleo"/>
+    <property name="cond1" value="is variable_set testcleo:yes"/>
+   </properties>
+  </object>
+  <object id="606" name="Sign: Reset Cleo" type="event" x="336" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog resetcleo"/>
+    <property name="act2" value="set_variable testcleo:no"/>
+    <property name="cond1" value="is char_facing_tile player"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
+   </properties>
+  </object>
+  <object id="609" name="Create Shopkeeper" type="event" x="48" y="256" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_shopassistant,3,16"/>
+    <property name="act2" value="char_face spyder_shopassistant,right"/>
+    <property name="act3" value="set_economy spyder_shopassistant,spyder_candy_scoop"/>
+    <property name="cond1" value="not char_exists spyder_shopassistant"/>
+   </properties>
+  </object>
+  <object id="610" name="Open Shop" type="event" x="64" y="256" width="16" height="16">
+   <properties>
+    <property name="act1" value="char_face spyder_shopassistant,right"/>
+    <property name="act2" value="translated_dialog spyder_scoop_welcome"/>
+    <property name="act3" value="open_shop spyder_shopassistant,both_item"/>
+    <property name="cond1" value="is char_facing_tile player"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
+   </properties>
+  </object>
+  <object id="611" name="Open Shop" type="event" x="48" y="272" width="16" height="16">
+   <properties>
+    <property name="act1" value="char_face spyder_shopassistant,down"/>
+    <property name="act2" value="translated_dialog spyder_scoop_welcome"/>
+    <property name="act3" value="open_shop spyder_shopassistant,both_item"/>
+    <property name="cond1" value="is char_facing_tile player"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
+   </properties>
+  </object>
+  <object id="612" name="Create Tech Shop" type="event" x="48" y="224" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_wayfarer1_norm,3,14"/>
+    <property name="act2" value="char_face spyder_wayfarer1_norm,right"/>
+    <property name="act3" value="set_economy spyder_wayfarer1_norm,spyder_candy_tech"/>
+    <property name="cond1" value="not char_exists spyder_wayfarer1_norm"/>
+   </properties>
+  </object>
+  <object id="613" name="Open Tech" type="event" x="64" y="224" width="16" height="16">
+   <properties>
+    <property name="act1" value="char_face spyder_wayfarer1_norm,right"/>
+    <property name="act2" value="translated_dialog spyder_scoop_welcome"/>
+    <property name="act3" value="open_shop spyder_wayfarer1_norm,both_item"/>
+    <property name="cond1" value="is char_facing_tile player"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
+   </properties>
+  </object>
+  <object id="614" name="Create Barmaid - hidden away" type="event" x="64" y="336" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_cottontown_barmaid,4,21"/>
+    <property name="cond1" value="not char_exists spyder_cottontown_barmaid"/>
+    <property name="cond2" value="not variable_set visitedcottoncafe:yes"/>
+   </properties>
+  </object>
+  <object id="615" name="Talk Barmaid" type="event" x="64" y="352" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_cottoncafe_barmaid"/>
+    <property name="act2" value="translated_dialog_choice yes:no,chooses"/>
+    <property name="cond1" value="is variable_set visitedcottoncafe:yes"/>
+    <property name="cond2" value="not variable_set chooses:yes"/>
+    <property name="cond3" value="is variable_set introdcottoncafe2:yes"/>
+    <property name="cond4" value="is char_facing_tile player"/>
+    <property name="cond5" value="is button_pressed INTERACT"/>
+   </properties>
+  </object>
+  <object id="616" name="Talk Barmaid (1st)" type="event" x="64" y="368" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_cottoncafe_barmaidintro"/>
+    <property name="act2" value="translated_dialog_choice yes:no,chooses"/>
+    <property name="act3" value="set_variable introdcottoncafe2:yes"/>
+    <property name="cond1" value="is variable_set visitedcottoncafe:yes"/>
+    <property name="cond2" value="not variable_set chooses:yes"/>
+    <property name="cond3" value="not variable_set introdcottoncafe2:yes"/>
+    <property name="cond4" value="is char_at player"/>
+    <property name="cond5" value="is char_facing player,up"/>
+    <property name="cond6" value="is button_pressed INTERACT"/>
+   </properties>
+  </object>
+  <object id="617" name="Create Barmaid - accessible" type="event" x="80" y="336" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_cottontown_barmaid,4,21"/>
+    <property name="cond1" value="not char_exists spyder_cottontown_barmaid"/>
+    <property name="cond2" value="is variable_set visitedcottoncafe:yes"/>
+   </properties>
+  </object>
+  <object id="618" name="Teleport to Cotton Cathedral" type="event" x="176" y="192" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport player,spyder_healing_center.tmx,6,10,0.3"/>
+    <property name="act2" value="char_face player,up"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
+   </properties>
+  </object>
+  <object id="619" name="Sign: Add Level" type="event" x="384" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog addlevel"/>
+    <property name="act2" value="set_monster_level"/>
+    <property name="cond1" value="is char_facing_tile player"/>
+    <property name="cond2" value="is button_pressed INTERACT"/>
+   </properties>
+  </object>
+  <object id="620" name="Create Box1" type="event" x="320" y="224" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_citypark_potion1,20,14"/>
+    <property name="cond1" value="not char_exists spyder_citypark_potion1"/>
+    <property name="cond2" value="not variable_set testmap_potion1:yes"/>
+   </properties>
+  </object>
+  <object id="621" name="Box1" type="event" x="304" y="224" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog tuxeball_ancient,,center,center,center"/>
+    <property name="act2" value="add_item tuxeball_ancient,10"/>
+    <property name="act3" value="remove_npc spyder_citypark_potion1"/>
+    <property name="act4" value="set_variable testmap_potion1:yes"/>
+    <property name="behav1" value="talk spyder_citypark_potion1"/>
+   </properties>
+  </object>
+  <object id="622" name="random encounter 1" type="event" x="272" y="320" width="128" height="32">
+   <properties>
+    <property name="act1" value="random_encounter spyder_citypark,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_moved player"/>
+   </properties>
+  </object>
+  <object id="624" name="Box2" type="event" x="304" y="256" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog friendship_scroll,,center,center,center"/>
+    <property name="act2" value="add_item friendship_scroll,1"/>
+    <property name="act3" value="remove_npc spyder_citypark_potion2"/>
+    <property name="act4" value="set_variable testmap_potion2:yes"/>
+    <property name="behav1" value="talk spyder_citypark_potion2"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

@@ -1,0 +1,92 @@
+slug: chromeye
+species: mixed_emotion
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: buzz
+- level_learned: 1
+  technique: bullet
+- level_learned: 4
+  technique: blade
+- level_learned: 7
+  technique: strike
+- level_learned: 13
+  technique: wall_of_steel
+evolutions:
+- at_level: 18
+  monster_slug: angrito
+  variables:
+  - key: season
+    value: winter
+- at_level: 18
+  monster_slug: happito
+  variables:
+  - key: season
+    value: summer
+- at_level: 18
+  monster_slug: neutrito
+  variables:
+  - key: season
+    value: spring
+- at_level: 18
+  monster_slug: sadito
+  variables:
+  - key: season
+    value: autumn
+history:
+- slug: chromeye
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - angrito
+  - happito
+  - neutrito
+  - sadito
+- slug: sadito
+  stage: stage1
+  evolves_from:
+  - chromeye
+  evolves_into: []
+- slug: neutrito
+  stage: stage1
+  evolves_from:
+  - chromeye
+  evolves_into: []
+- slug: happito
+  stage: stage1
+  evolves_from:
+  - chromeye
+  evolves_into: []
+- slug: angrito
+  stage: stage1
+  evolves_from:
+  - chromeye
+  evolves_into: []
+terrains:
+- extraplanar
+- urban
+tags:
+- mental
+- machine
+shape: blob
+stage: basic
+types:
+- metal
+- cosmic
+gender_weights:
+  neuter: 1.0
+txmn_id: 174
+height: 38
+weight: 3.5
+sounds:
+  combat_call:
+    sfx: sound_retro_beep_05
+    volume: 1.5
+  faint_call:
+    sfx: sound_retro_beep_05_faint
+    volume: 1.5
+catch_rate: 100
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.05

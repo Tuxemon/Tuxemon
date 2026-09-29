@@ -1,0 +1,57 @@
+slug: rocktot
+species: threat
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: stampede
+- level_learned: 1
+  technique: ram
+- level_learned: 4
+  technique: hammerhead
+- level_learned: 7
+  technique: ants
+- level_learned: 13
+  technique: sand_spray
+- level_learned: 16
+  technique: fester
+- level_learned: 19
+  technique: stonehenge
+- level_learned: 25
+  technique: meltdown
+- level_learned: 28
+  technique: evasion
+- level_learned: 31
+  technique: greenstone
+- level_learned: 37
+  technique: strangulation
+- level_learned: 40
+  technique: lust
+evolutions: []
+history:
+- slug: rocktot
+  stage: standalone
+  evolves_from: []
+  evolves_into: []
+terrains: []
+tags: []
+shape: brute
+stage: standalone
+types:
+- earth
+gender_weights:
+  neuter: 1.0
+txmn_id: 0
+height: 62
+weight: 58
+sounds:
+  combat_call:
+    sfx: sound_stones_04
+    volume: 1.5
+  faint_call:
+    sfx: sound_stones_04_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.05

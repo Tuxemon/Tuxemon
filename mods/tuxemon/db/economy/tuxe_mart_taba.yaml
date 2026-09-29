@@ -1,0 +1,33 @@
+# slug: Unique identifier for the economy configuration (example: "cotton_scoop")
+#        Must have a translation entry in base.po with msgid = slug.
+# background: Path to the background sprite (example: "gfx/ui/item/item_menu_bg.png")
+#        File MUST exist in the filesystem and match NATIVE_RESOLUTION dimensions.
+# resale_multiplier: Float multiplier applied when reselling items (example: 0.5)
+# items: List of items available in this economy
+#   slug: Slug of the item (must exist in the item database)
+#   price: Purchase price of the item (integer, example: 20)
+#   cost: Internal cost value for the item (integer, example: 5)
+#   inventory: Quantity available (default -1 = unlimited)
+# variables: Optional list of GameCondition entries affecting the item (must be non-empty if provided)
+# monsters: List of monsters available in this economy
+#   slug: Slug of the monster (must exist in the monster database)
+#   price: Purchase price of the monster (integer)
+#   cost: Internal cost value for the monster (integer)
+#   inventory: Quantity available (must be > 0, default = 1)
+#   level: Minimum level of the monster (must be > 0)
+# variables: Optional list of GameCondition entries affecting the monster (must be non-empty if provided)
+
+background: gfx/ui/item/item_menu_bg.png
+items:
+- cost: 5
+  slug: potion
+  price: 20
+- cost: 20
+  slug: revive
+  price: 100
+- cost: 10
+  slug: tuxeball
+  price: 50
+monsters: []
+resale_multiplier: 0.5
+slug: tuxe_mart_taba

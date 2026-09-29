@@ -1,0 +1,26 @@
+monsters:
+- encounter_rate: 3
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 4
+  - 6
+  monster: mystikapi
+  variables: []
+- encounter_rate: 3
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 4
+  - 6
+  monster: aardorn
+  variables: []
+- encounter_rate: 1.6
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 5
+  - 8
+  monster: nut
+  variables: []
+slug: taba_ba_passageway_2

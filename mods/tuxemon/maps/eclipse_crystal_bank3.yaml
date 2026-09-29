@@ -1,0 +1,194 @@
+events:
+  Environment:
+    actions:
+    - set_environment interior
+    conditions:
+    - not environment_is interior
+    type: event
+  Play Music:
+    actions:
+    - play_music music_omnichannel
+    conditions:
+    - not music_playing music_omnichannel
+    type: event
+  Teleport to Bank 2:
+    actions:
+    - transition_teleport player,eclipse_crystal_bank2.tmx,2,10,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,down
+    x: 2
+    y: 13
+    type: event
+  Create Ethan:
+    actions:
+    - create_npc eclipse_bank_ethan,4,18
+    - char_face eclipse_bank_ethan,up
+    conditions:
+    - not char_exists eclipse_bank_ethan
+    type: event
+  Create Lucas:
+    actions:
+    - create_npc eclipse_bank_lucas,7,13,wander
+    conditions:
+    - not char_exists eclipse_bank_lucas
+    type: event
+  Create Ava:
+    actions:
+    - create_npc eclipse_bank_ava,10,17
+    - char_face eclipse_bank_ava,up
+    conditions:
+    - not char_exists eclipse_bank_ava
+    type: event
+  Battle Ethan:
+    actions:
+    - char_talk eclipse_bank_ethan,pre_battle
+    - random_monster 40,eclipse_bank_ethan,5,10
+    - start_battle player,eclipse_bank_ethan
+    - char_talk eclipse_bank_ethan,post_battle_lose
+    behav:
+    - talk eclipse_bank_ethan
+    conditions:
+    - not battle_outcome player,won,eclipse_bank_ethan
+    type: event
+  Battle Lucas:
+    actions:
+    - char_talk eclipse_bank_lucas,pre_battle
+    - random_monster 40,eclipse_bank_lucas,5,10
+    - start_battle player,eclipse_bank_lucas
+    - char_talk eclipse_bank_lucas,post_battle_lose
+    behav:
+    - talk eclipse_bank_lucas
+    conditions:
+    - not battle_outcome player,won,eclipse_bank_lucas
+    type: event
+  Battle Ava:
+    actions:
+    - char_talk eclipse_bank_ava,pre_battle
+    - random_monster 40,eclipse_bank_ava,5,10
+    - start_battle player,eclipse_bank_ava
+    - char_talk eclipse_bank_ava,post_battle_lose
+    behav:
+    - talk eclipse_bank_ava
+    conditions:
+    - not battle_outcome player,won,eclipse_bank_ava
+    type: event
+  Post Talk Ava:
+    actions:
+    - char_talk eclipse_bank_ava,post_battle_lose
+    behav:
+    - talk eclipse_bank_ava
+    conditions:
+    - is battle_outcome player,won,eclipse_bank_ava
+    type: event
+  Post Talk Lucas:
+    actions:
+    - char_talk eclipse_bank_lucas,post_battle_lose
+    behav:
+    - talk eclipse_bank_lucas
+    conditions:
+    - is battle_outcome player,won,eclipse_bank_lucas
+    type: event
+  Post Talk Ethan:
+    actions:
+    - char_talk eclipse_bank_ethan,post_battle_lose
+    behav:
+    - talk eclipse_bank_ethan
+    conditions:
+    - is battle_outcome player,won,eclipse_bank_ethan
+    type: event
+  Event Zircon:
+    actions:
+    - char_stop player
+    - lock_controls
+    - wait 1
+    - set_bubble player,exclamation
+    - wait 1
+    - set_bubble player
+    - pathfind player,2,2
+    - char_face player,up
+    - wait 1
+    - pathfind player,6,2
+    - char_face player,up
+    - wait 1
+    - create_npc eclipse_zircon,10,11
+    - pathfind eclipse_zircon,10,8
+    - set_bubble eclipse_zircon,exclamation
+    - wait 1
+    - set_bubble eclipse_zircon
+    - wait 1
+    - pathfind eclipse_zircon,7,2
+    - wait 1
+    - char_face player,right
+    - wait 1
+    - translated_dialog eclipse_zircon1
+    - add_monster dark_robo,5,eclipse_zircon,5,10
+    - unlock_controls
+    - start_battle player,eclipse_zircon
+    conditions:
+    - not battle_outcome player,won,eclipse_zircon
+    - not battle_outcome player,lost,eclipse_zircon
+    - not battle_outcome player,draw,eclipse_zircon
+    - is char_at player
+    x: 10
+    y: 8
+    type: event
+  Event Zircon Lose:
+    actions:
+    - lock_controls
+    - translated_dialog eclipse_zircon2_lose
+    - pathfind eclipse_zircon,10,11
+    - wait 1
+    - remove_npc eclipse_zircon
+    - set_layer 0:0:0:255
+    - play_sound japanese_temple_bell_small
+    - translated_dialog eclipse_zircon_voice_lose,,top
+    - play_sound japanese_temple_bell_small
+    - set_layer
+    - unlock_controls
+    - set_variable eclipse_bank_zircon:yes
+    conditions:
+    - is battle_outcome player,lost,eclipse_zircon
+    - is current_state WorldState
+    - not variable_set eclipse_bank_zircon:yes
+    type: event
+  Event Zircon Draw:
+    actions:
+    - lock_controls
+    - translated_dialog eclipse_zircon2_lose
+    - wait 1
+    - set_layer 0:0:0:255
+    - remove_npc eclipse_zircon
+    - play_sound japanese_temple_bell_small
+    - translated_dialog eclipse_zircon_voice_lose,,top
+    - play_sound japanese_temple_bell_small
+    - unlock_controls
+    - set_variable eclipse_bank_zircon:yes
+    - char_face player,down
+    - transition_teleport player,eclipse_crystal_center.tmx,6,7,0.3
+    conditions:
+    - is battle_outcome player,draw,eclipse_zircon
+    - is current_state WorldState
+    - not variable_set eclipse_bank_zircon:yes
+    type: event
+  Event Zircon Win:
+    actions:
+    - lock_controls
+    - translated_dialog eclipse_zircon2_win
+    - translated_dialog eclipse_zircon3_win
+    - wait 1
+    - set_layer 0:0:0:255
+    - remove_npc eclipse_zircon
+    - play_sound japanese_temple_bell_small
+    - translated_dialog eclipse_zircon_voice_win,,top
+    - play_sound japanese_temple_bell_small
+    - unlock_controls
+    - set_variable eclipse_bank_zircon:yes
+    - char_face player,down
+    - transition_teleport player,eclipse_crystal_center.tmx,6,7,0.3
+    conditions:
+    - is battle_outcome player,won,eclipse_zircon
+    - is current_state WorldState
+    - not variable_set eclipse_bank_zircon:yes
+    type: event

@@ -1,0 +1,25 @@
+modifiers: []
+behaviors: {}
+category: negative
+effects:
+- type: wild
+  parameters:
+  - '0.25'
+  - '8'
+icon: gfx/ui/icons/status/icon_wild.png
+on_positive_status: replaced
+on_negative_status: replaced
+on_tech_use: empty
+slug: wild
+sort: meta
+cond_id: 26
+use_failure: null
+use_success: combat_state_wild_end
+gain_cond: combat_state_wild_get
+visuals:
+  animation: null
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_pulse
+  volume: 1.5

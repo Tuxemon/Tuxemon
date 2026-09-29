@@ -1,0 +1,270 @@
+- slug: spyder_leathergym_chadine
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: barmaid_blonde
+    combat_sheet: barmaid
+    slug: barmaid
+- slug: spyder_leathergym_chadfort
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: soldier
+    combat_sheet: soldier
+    slug: soldier
+- slug: spyder_leathergym_chad
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: magician_grey
+    combat_sheet: magician
+    slug: magician
+- slug: spyder_leathergym_bradfort
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: postboy_green
+    combat_sheet: adventurer
+    slug: postboy
+- slug: spyder_leathergym_brad
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: magician_fiery
+    combat_sheet: magician
+    slug: magician
+- slug: spyder_leathergym_gigachad
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: magician_brown
+    combat_sheet: magician
+    slug: magician
+- slug: spyder_leathergym_virgin
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: goth
+    combat_sheet: adventurer
+    slug: goth
+- slug: spyder_leather_eula
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: barmaid
+    combat_sheet: barmaid
+    slug: barmaid
+- slug: spyder_leatherhouse2_memphis
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: miner_blue
+    combat_sheet: miner
+    slug: miner
+- slug: spyder_leathermuseum_davie
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: miner_green
+    combat_sheet: miner
+    slug: miner
+- slug: spyder_leathershaft1_cole
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: miner_red
+    combat_sheet: miner
+    slug: miner
+- slug: spyder_leathershaft1_rutherford
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: scientist_fiery
+    combat_sheet: scientist
+    slug: scientist
+- slug: spyder_leathershaft1_beryll
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: scientist_fiery
+    combat_sheet: scientist
+    slug: scientist
+- slug: spyder_leathershaft1_surat
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: miner_yellow
+    combat_sheet: miner
+    slug: miner
+- slug: spyder_leathershaft1_roxby
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: miner
+    combat_sheet: miner
+    slug: miner
+- slug: spyder_leathershaft2_colin
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: maniac
+    combat_sheet: adventurer
+    slug: maniac
+- slug: spyder_leatherhouse1_roger
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: tennisplayer
+    combat_sheet: adventurer
+    slug: tennisplayer
+- slug: spyder_leathermuseum_kasey
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: postboy_red
+    combat_sheet: adventurer
+    slug: postboy
+- slug: spyder_leathermuseum_historian
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor_brown
+    combat_sheet: professor
+    slug: professor
+- slug: spyder_leathermuseum_security
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: soldier
+    combat_sheet: soldier
+    slug: soldier
+- slug: spyder_leathermuseum_visitor
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: florist_blue
+    combat_sheet: florist
+    slug: florist
+- slug: spyder_leatherhouse1_gail
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: florist_fiery
+    combat_sheet: florist
+    slug: florist
+- slug: spyder_leatherhouse2_elias
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: snugglepot
+    combat_sheet: snugglepot
+    slug: snugglepot
+- slug: spyder_leatherhouse2_gabe
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: scientist_brown
+    combat_sheet: scientist
+    slug: scientist
+- slug: spyder_leather_filbur
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: maniac_violet
+    combat_sheet: adventurer
+    slug: maniac
+- slug: spyder_leathermuseum_giles
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: maniac_rose
+    combat_sheet: adventurer
+    slug: maniac
+- slug: spyder_shopassistant
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: shopkeeper
+    combat_sheet: adventurer
+    slug: shopkeeper

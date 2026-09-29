@@ -1,0 +1,89 @@
+# This section maps internal model names (keys) to their corresponding Python class
+# paths (values). These models define the structure and validation rules for
+# different types of game data (e.g., how a 'monster' entry should be structured).
+model_map:
+  economy: tuxemon.db.EconomyModel
+  element: tuxemon.db.ElementModel
+  taste: tuxemon.db.TasteModel
+  shape: tuxemon.db.ShapeModel
+  template: tuxemon.db.TemplateModel
+  mission: tuxemon.db.MissionModel
+  faction: tuxemon.db.FactionModel
+  encounter: tuxemon.db.EncounterModel
+  dialogue: tuxemon.db.DialogueModel
+  environment: tuxemon.db.EnvironmentModel
+  item: tuxemon.db.ItemModel
+  monster: tuxemon.db.MonsterModel
+  flair: tuxemon.db.FlairModel
+  music: tuxemon.db.MusicModel
+  animation: tuxemon.db.AnimationModel
+  npc: tuxemon.db.NpcModel
+  sounds: tuxemon.db.SoundModel
+  status: tuxemon.db.StatusModel
+  technique: tuxemon.db.TechniqueModel
+  terrain: tuxemon.db.TerrainModel
+  weather: tuxemon.db.WeatherModel
+
+# The base directory where all game mods are located.
+mod_base_path: mods
+
+# The subfolder within each mod directory where its database files are stored.
+# For example, if mod_base_path is 'mods' and mod_db_subfolder is 'db',
+# a mod named 'mymod' would have its data in 'mods/mymod/db/'.
+mod_db_subfolder: db
+
+# A list of file extensions that the system will recognize and load as data files.
+# This allows flexibility for using both JSON and YAML for data entries.
+file_extensions:
+  - .json
+  - .yaml
+
+# The default database table to search when a lookup request doesn't specify a table.
+# For instance, if you just ask to look up 'rockitten' without a table, it will check
+# the 'monster' table by default.
+default_lookup_table: monster
+
+# A list of mod directories that are currently enabled and should be loaded.
+active_mods:
+  - tuxemon
+
+# A dictionary indicating whether specific mods are activated. This offers a more
+# granular control over mod loading beyond just being in 'active_mods'.
+mod_activation:
+  tuxemon: true
+
+# This section defines which data tables each mod contributes.
+# The keys are mod names, and the values are lists of table names that the
+# corresponding mod provides data for.
+mod_tables:
+  tuxemon:
+    - item
+    - monster
+    - npc
+    - status
+    - technique
+    - encounter
+    - dialogue
+    - environment
+    - sounds
+    - music
+    - animation
+    - economy
+    - element
+    - taste
+    - shape
+    - template
+    - mission
+    - faction
+    - terrain
+    - weather
+    - flair
+
+# A dictionary to specify tables that should be excluded for certain mods.
+# For example, a mod might explicitly opt out of providing 'item' data.
+# Currently, it's empty, meaning no exclusions are defined.
+mod_table_exclusions: {}
+
+# A dictionary defining dependencies between mods. If mod A depends on mod B,
+# mod B will be loaded before mod A. Currently, no dependencies are specified.
+mod_dependencies: {}

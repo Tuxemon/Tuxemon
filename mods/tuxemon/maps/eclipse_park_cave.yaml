@@ -1,0 +1,81 @@
+events:
+  Alert 100:
+    actions:
+    - translated_dialog eclipse_park_steps100,,center,center
+    - set_step_tracker_milestone_shown player,steps_park,100
+    conditions:
+    - is step_tracker player,steps_park,100
+    type: event
+  Create Scientist:
+    actions:
+    - create_npc eclipse_park_scientist,13,8
+    - char_face eclipse_park_scientist,left
+    conditions:
+    - not char_exists eclipse_park_scientist
+    type: event
+  Environment:
+    actions:
+    - set_environment cave
+    conditions:
+    - not environment_is cave
+    type: event
+  Route:
+    actions:
+    - play_music music_chibi_ninja
+    conditions:
+    - not music_playing music_chibi_ninja
+    type: event
+  Steps:
+    actions:
+    - transition_teleport player,eclipse_park_entrance.tmx,5,4,0.3
+    - char_face player,up
+    - add_item tuxeball_park,-25
+    - park_experience stop
+    - remove_step_tracker player,steps_park
+    conditions:
+    - is step_tracker player,steps_park,0
+    type: event
+  Talk Scientist:
+    actions:
+    - translated_dialog eclipse_park_scientist1
+    behav:
+    - talk eclipse_park_scientist
+    type: event
+  Teleport 1:
+    actions:
+    - transition_teleport player,eclipse_park.tmx,38,13,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,down
+    type: event
+    x: 32
+    y: 12
+  Teleport 2:
+    actions:
+    - transition_teleport player,eclipse_park.tmx,18,13,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,down
+    type: event
+    x: 9
+    y: 12
+  Teleport 3:
+    actions:
+    - transition_teleport player,eclipse_park.tmx,11,9,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,down
+    type: event
+    x: 2
+    y: 8
+  Tuxeball:
+    actions:
+    - transition_teleport player,eclipse_park_entrance.tmx,5,4,0.3
+    - char_face player,up
+    - park_experience stop
+    conditions:
+    - not has_item player,tuxeball_park
+    type: event

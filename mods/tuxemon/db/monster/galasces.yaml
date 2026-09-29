@@ -1,0 +1,63 @@
+slug: galasces
+species: sea_angel
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: flood
+- level_learned: 1
+  technique: rot
+- level_learned: 4
+  technique: crystal
+- level_learned: 10
+  technique: venomous_tentacle
+- level_learned: 19
+  technique: spit_poison
+evolutions:
+- at_level: 32
+  monster_slug: novaquarius
+history:
+- slug: galasces
+  stage: stage1
+  evolves_from:
+  - nebufin
+  evolves_into:
+  - novaquarius
+- slug: nebufin
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - galasces
+- slug: novaquarius
+  stage: stage2
+  evolves_from:
+  - galasces
+  evolves_into: []
+terrains:
+- sea
+tags:
+- celestial
+- water
+- toxic
+- gemstone
+shape: polliwog
+stage: stage1
+types:
+- water
+- venom
+gender_weights:
+  neuter: 1.0
+txmn_id: 320
+height: 60
+weight: 30
+sounds:
+  combat_call:
+    sfx: sound_robot2
+    volume: 1.5
+  faint_call:
+    sfx: sound_robot2_faint
+    volume: 1.5
+catch_rate: 70.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.05

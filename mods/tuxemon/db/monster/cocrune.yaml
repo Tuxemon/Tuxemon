@@ -1,0 +1,72 @@
+slug: cocrune
+species: diptera
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: boulder
+- level_learned: 1
+  technique: buzz
+- level_learned: 4
+  technique: petrify
+- level_learned: 7
+  technique: rock
+- level_learned: 10
+  technique: stonehenge
+- level_learned: 13
+  technique: take_cover
+- level_learned: 19
+  technique: electroplate
+- level_learned: 40
+  technique: shadow_blast
+evolutions:
+- at_level: 16
+  monster_slug: runesquito
+history:
+- slug: cocrune
+  stage: stage1
+  evolves_from:
+  - stonifly
+  evolves_into:
+  - runesquito
+- slug: stonifly
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - cocrune
+- slug: runesquito
+  stage: stage2
+  evolves_from:
+  - cocrune
+  evolves_into: []
+terrains:
+- freshwater
+- ruins
+- swamp
+tags:
+- rock
+- shielded
+- bug
+- summoner
+- mental
+shape: blob
+stage: stage1
+types:
+- earth
+- shadow
+gender_weights:
+  neuter: 1.0
+txmn_id: 333
+height: 33
+weight: 20
+sounds:
+  combat_call:
+    sfx: sound_robot2
+    volume: 1.5
+  faint_call:
+    sfx: sound_robot2_faint
+    volume: 1.5
+catch_rate: 70.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.05

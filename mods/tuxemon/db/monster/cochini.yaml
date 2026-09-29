@@ -1,0 +1,60 @@
+slug: cochini
+species: tasty
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: stampede
+- level_learned: 1
+  technique: ice_claw
+- level_learned: 4
+  technique: hammerhead
+- level_learned: 7
+  technique: thunderball
+- level_learned: 13
+  technique: quicksand
+- level_learned: 16
+  technique: changeling
+- level_learned: 19
+  technique: lust
+- level_learned: 25
+  technique: canine
+- level_learned: 28
+  technique: mudslide
+- level_learned: 31
+  technique: electrical_storm
+- level_learned: 37
+  technique: sand_spray
+- level_learned: 40
+  technique: revenge_stance
+evolutions: []
+history:
+- slug: cochini
+  stage: standalone
+  evolves_from: []
+  evolves_into: []
+terrains: []
+tags:
+- food
+- love
+shape: varmint
+stage: standalone
+types:
+- normal
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 104
+height: 80
+weight: 15
+sounds:
+  combat_call:
+    sfx: sound_cat_purr_twit5
+    volume: 1.5
+  faint_call:
+    sfx: sound_cat_purr_twit5_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.05

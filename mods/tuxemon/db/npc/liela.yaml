@@ -1,0 +1,10 @@
+slug: liela
+speech:
+  profile:
+    default: {}
+combat: {}
+audio: {}
+template:
+  sprite_name: heroine
+  combat_sheet: heroine
+  slug: heroine

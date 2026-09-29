@@ -1,0 +1,142 @@
+monsters:
+- encounter_rate: 3.5
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 22
+  - 26
+  monster: nudiflot_male
+  variables:
+    - key: daytime
+      value: "true"
+- encounter_rate: 3.5
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 22
+  - 26
+  monster: nudiflot_female
+  variables:
+    - key: daytime
+      value: "true"
+- encounter_rate: 3.5
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 22
+  - 26
+  monster: nudimind
+  variables:
+    - key: daytime
+      value: "true"
+- encounter_rate: 3.5
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 22
+  - 26
+  monster: nudikill
+  variables:
+    - key: daytime
+      value: "true"
+- encounter_rate: 3.5
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 22
+  - 26
+  monster: manosting
+  variables:
+    - key: daytime
+      value: "true"
+- encounter_rate: 3.5
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 22
+  - 26
+  monster: tweesher
+  variables:
+    - key: daytime
+      value: "true"
+- encounter_rate: 3.5
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 22
+  - 26
+  monster: nostray
+  variables:
+    - key: daytime
+      value: "true"
+- encounter_rate: 3.5
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 25
+  - 29
+  monster: nudiflot_male
+  variables:
+    - key: daytime
+      value: "false"
+- encounter_rate: 3.5
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 25
+  - 29
+  monster: nudiflot_female
+  variables:
+    - key: daytime
+      value: "false"
+- encounter_rate: 3.5
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 25
+  - 29
+  monster: nudimind
+  variables:
+    - key: daytime
+      value: "false"
+- encounter_rate: 3.5
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 25
+  - 29
+  monster: nudikill
+  variables:
+    - key: daytime
+      value: "false"
+- encounter_rate: 3.5
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 25
+  - 29
+  monster: manosting
+  variables:
+    - key: daytime
+      value: "false"
+- encounter_rate: 3.5
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 25
+  - 29
+  monster: tweesher
+  variables:
+    - key: daytime
+      value: "false"
+- encounter_rate: 3.5
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 25
+  - 29
+  monster: nostray
+  variables:
+    - key: daytime
+      value: "false"
+slug: spyder_routec

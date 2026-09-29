@@ -1,0 +1,74 @@
+slug: seraphice
+species: carol
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: ice_claw
+- level_learned: 1
+  technique: goad
+- level_learned: 4
+  technique: beam
+- level_learned: 7
+  technique: orbs
+- level_learned: 13
+  technique: neutralize
+- level_learned: 28
+  technique: fiery
+- level_learned: 34
+  technique: sudden_glow
+- level_learned: 43
+  technique: icicle_spear
+- level_learned: 46
+  technique: snowstorm
+- level_learned: 52
+  technique: divinity_beam
+evolutions: []
+history:
+- slug: seraphice
+  stage: stage2
+  evolves_from:
+  - angesnow
+  evolves_into: []
+- slug: waysprite
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - angesnow
+  - demosnow
+- slug: angesnow
+  stage: stage1
+  evolves_from:
+  - waysprite
+  evolves_into:
+  - seraphice
+terrains:
+- extraplanar
+tags:
+- ice
+- leadership
+- weather
+- light
+- healing
+- calamity
+shape: humanoid
+stage: stage2
+types:
+- frost
+- cosmic
+gender_weights:
+  neuter: 1.0
+txmn_id: 266
+height: 180
+weight: 85
+sounds:
+  combat_call:
+    sfx: sound_ice
+    volume: 1.5
+  faint_call:
+    sfx: sound_ice_faint
+    volume: 1.5
+catch_rate: 35.0
+lower_catch_resistance: 0.85
+upper_catch_resistance: 1.1

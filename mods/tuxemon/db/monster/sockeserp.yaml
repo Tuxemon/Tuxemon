@@ -1,0 +1,59 @@
+slug: sockeserp
+species: power_socket_snake
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: strike
+- level_learned: 1
+  technique: surge
+- level_learned: 4
+  technique: viper
+- level_learned: 7
+  technique: radiance
+- level_learned: 13
+  technique: constrict
+- level_learned: 19
+  technique: perfect_cut
+- level_learned: 25
+  technique: rust_bomb
+- level_learned: 28
+  technique: blade
+evolutions: []
+history:
+- slug: sockeserp
+  stage: stage1
+  evolves_from:
+  - pythwire
+  evolves_into: []
+- slug: pythwire
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - ouroboutlet
+  - sockeserp
+terrains:
+- urban
+tags:
+- electricity
+shape: serpent
+stage: stage1
+types:
+- lightning
+- metal
+gender_weights:
+  neuter: 1.0
+txmn_id: 91
+height: 100
+weight: 1
+sounds:
+  combat_call:
+    sfx: sound_misc_07
+    volume: 1.5
+  faint_call:
+    sfx: sound_misc_07_faint
+    volume: 1.5
+catch_rate: 70.0
+lower_catch_resistance: 0.85
+upper_catch_resistance: 1.1

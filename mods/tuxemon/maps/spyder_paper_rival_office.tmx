@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="7" height="7" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="38">
+ <properties>
+  <property name="edges" value="clamped"/>
+  <property name="inside" type="bool" value="true"/>
+  <property name="scenario" value="spyder"/>
+  <property name="slug" value="rival_office"/>
+  <property name="map_type" value="notype"/>
+ </properties>
+ <tileset firstgid="1" source="../gfx/tilesets/core_indoor_walls.tsx"/>
+ <tileset firstgid="3865" source="../gfx/tilesets/core_indoor_floors.tsx"/>
+ <tileset firstgid="7729" source="../gfx/tilesets/core_set pieces.tsx"/>
+ <tileset firstgid="9279" name="Office_interiors_shadowless_16x16" tilewidth="16" tileheight="16" tilecount="528" columns="22">
+  <image source="../gfx/tilesets/Office_interiors_shadowless_16x16.png" width="352" height="384"/>
+ </tileset>
+ <layer id="1" name="Tile Layer 1" width="7" height="7">
+  <data encoding="base64" compression="zlib">
+   eAEzYGJgWM6IiY2A4leA4lex4GtAMSagPDMWzAIUeyZAXwwAX0oklA==
+  </data>
+ </layer>
+ <layer id="2" name="Tile Layer 2" width="7" height="7">
+  <data encoding="base64" compression="zlib">
+   eAFjYCAMdqpA1GxURah1hrLPQ+WOI8lFIrFBOu5C+fwKEP3PgfxnUPwCTe1fIP8PFP8D0spqDAwqQIwNWALFrYAYAPWbD7I=
+  </data>
+ </layer>
+ <layer id="3" name="Tile Layer 3" width="7" height="7">
+  <data encoding="base64" compression="zlib">
+   eAFjYKA/qFdlYHAF4qsqEJpSFwAAtRkCcg==
+  </data>
+ </layer>
+ <layer id="4" name="Above player" width="7" height="7">
+  <data encoding="base64" compression="zlib">
+   eAFjYKANyFRlYMgC4v0q2M1vAMpRCwAA/9kCpg==
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" id="5" name="Collision">
+  <object id="1" type="collision" x="0" y="0" width="112" height="48"/>
+  <object id="5" type="collision" x="80" y="80" width="32" height="32"/>
+  <object id="6" type="collision" x="16" y="64" width="64" height="16"/>
+ </objectgroup>
+</map>

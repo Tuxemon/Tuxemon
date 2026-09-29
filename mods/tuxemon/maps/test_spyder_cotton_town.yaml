@@ -1,0 +1,475 @@
+events:
+  test_npc001:
+    actions:
+    - create_npc test_npc001,7,21,wander
+    conditions:
+    - not char_exists test_npc001
+    type: event
+  test_npc002:
+    actions:
+    - create_npc test_npc002,8,21,wander
+    conditions:
+    - not char_exists test_npc002
+    type: event
+  test_npc003:
+    actions:
+    - create_npc test_npc003,9,21,wander
+    conditions:
+    - not char_exists test_npc003
+    type: event
+  test_npc004:
+    actions:
+    - create_npc test_npc004,10,21,wander
+    conditions:
+    - not char_exists test_npc004
+    type: event
+  test_npc005:
+    actions:
+    - create_npc test_npc005,11,21,wander
+    conditions:
+    - not char_exists test_npc005
+    type: event
+  test_npc006:
+    actions:
+    - create_npc test_npc006,5,23,wander
+    conditions:
+    - not char_exists test_npc006
+    type: event
+  test_npc007:
+    actions:
+    - create_npc test_npc007,5,24,wander
+    conditions:
+    - not char_exists test_npc007
+    type: event
+  test_npc008:
+    actions:
+    - create_npc test_npc008,5,25,wander
+    conditions:
+    - not char_exists test_npc008
+    type: event
+  test_npc009:
+    actions:
+    - create_npc test_npc009,5,26,wander
+    conditions:
+    - not char_exists test_npc009
+    type: event
+  test_npc010:
+    actions:
+    - create_npc test_npc010,5,27,wander
+    conditions:
+    - not char_exists test_npc010
+    type: event
+  test_npc011:
+    actions:
+    - create_npc test_npc011,5,28,wander
+    conditions:
+    - not char_exists test_npc011
+    type: event
+  test_npc012:
+    actions:
+    - create_npc test_npc012,13,23,wander
+    conditions:
+    - not char_exists test_npc012
+    type: event
+  test_npc013:
+    actions:
+    - create_npc test_npc013,13,24,wander
+    conditions:
+    - not char_exists test_npc013
+    type: event
+  test_npc014:
+    actions:
+    - create_npc test_npc014,13,25,wander
+    conditions:
+    - not char_exists test_npc014
+    type: event
+  test_npc015:
+    actions:
+    - create_npc test_npc015,13,26,wander
+    conditions:
+    - not char_exists test_npc015
+    type: event
+  test_npc016:
+    actions:
+    - create_npc test_npc016,13,27,wander
+    conditions:
+    - not char_exists test_npc016
+    type: event
+  test_npc017:
+    actions:
+    - create_npc test_npc017,13,28,wander
+    conditions:
+    - not char_exists test_npc017
+    type: event
+  test_npc018:
+    actions:
+    - create_npc test_npc018,4,36,wander
+    conditions:
+    - not char_exists test_npc018
+    type: event
+  test_npc019:
+    actions:
+    - create_npc test_npc019,5,36,wander
+    conditions:
+    - not char_exists test_npc019
+    type: event
+  test_npc020:
+    actions:
+    - create_npc test_npc020,6,36,wander
+    conditions:
+    - not char_exists test_npc020
+    type: event
+  test_npc021:
+    actions:
+    - create_npc test_npc021,7,36,wander
+    conditions:
+    - not char_exists test_npc021
+    type: event
+  test_npc022:
+    actions:
+    - create_npc test_npc022,8,36,wander
+    conditions:
+    - not char_exists test_npc022
+    type: event
+  test_npc023:
+    actions:
+    - create_npc test_npc023,9,36,wander
+    conditions:
+    - not char_exists test_npc023
+    type: event
+  test_npc024:
+    actions:
+    - create_npc test_npc024,10,36,wander
+    conditions:
+    - not char_exists test_npc024
+    type: event
+  test_npc025:
+    actions:
+    - create_npc test_npc025,11,36,wander
+    conditions:
+    - not char_exists test_npc025
+    type: event
+  test_npc026:
+    actions:
+    - create_npc test_npc026,12,36,wander
+    conditions:
+    - not char_exists test_npc026
+    type: event
+  test_npc027:
+    actions:
+    - create_npc test_npc027,13,36,wander
+    conditions:
+    - not char_exists test_npc027
+    type: event
+  test_npc028:
+    actions:
+    - create_npc test_npc028,14,36,wander
+    conditions:
+    - not char_exists test_npc028
+    type: event
+  test_npc029:
+    actions:
+    - create_npc test_npc029,15,36,wander
+    conditions:
+    - not char_exists test_npc029
+    type: event
+  test_npc030:
+    actions:
+    - create_npc test_npc030,16,36,wander
+    conditions:
+    - not char_exists test_npc030
+    type: event
+  test_npc031:
+    actions:
+    - create_npc test_npc031,17,36,wander
+    conditions:
+    - not char_exists test_npc031
+    type: event
+  test_npc032:
+    actions:
+    - create_npc test_npc032,18,36,wander
+    conditions:
+    - not char_exists test_npc032
+    type: event
+  test_npc033:
+    actions:
+    - create_npc test_npc033,19,36,wander
+    conditions:
+    - not char_exists test_npc033
+    type: event
+  test_npc034:
+    actions:
+    - create_npc test_npc034,20,36,wander
+    conditions:
+    - not char_exists test_npc034
+    type: event
+  test_npc035:
+    actions:
+    - create_npc test_npc035,21,36,wander
+    conditions:
+    - not char_exists test_npc035
+    type: event
+  test_npc036:
+    actions:
+    - create_npc test_npc036,22,36,wander
+    conditions:
+    - not char_exists test_npc036
+    type: event
+  test_npc037:
+    actions:
+    - create_npc test_npc037,23,36,wander
+    conditions:
+    - not char_exists test_npc037
+    type: event
+  test_npc038:
+    actions:
+    - create_npc test_npc038,2,17,wander
+    - create_npc test_npc039,3,17,wander
+    - create_npc test_npc040,4,17,wander
+    - create_npc test_npc041,5,17,wander
+    - create_npc test_npc042,6,17,wander
+    - create_npc test_npc043,7,17,wander
+    - create_npc test_npc044,8,17,wander
+    - create_npc test_npc045,9,17,wander
+    - create_npc test_npc046,10,17,wander
+    - create_npc test_npc047,11,17,wander
+    - create_npc test_npc048,12,17,wander
+    - create_npc test_npc049,13,17,wander
+    - create_npc test_npc050,14,17,wander
+    - create_npc test_npc051,15,17,wander
+    - create_npc test_npc052,16,17,wander
+    - create_npc test_npc053,17,17,wander
+    - create_npc test_npc054,18,17,wander
+    - create_npc test_npc055,19,17,wander
+    - create_npc test_npc056,20,17,wander
+    - create_npc test_npc057,21,17,wander
+    - create_npc test_npc058,22,17,wander
+    - create_npc test_npc059,23,17,wander
+    - create_npc test_npc060,24,17,wander
+    - create_npc test_npc061,25,17,wander
+    - create_npc test_npc062,26,17,wander
+    - create_npc test_npc063,27,17,wander
+    - create_npc test_npc064,28,17,wander
+    - create_npc test_npc065,29,17,wander
+    - create_npc test_npc066,30,17,wander
+    - create_npc test_npc067,31,17,wander
+    - create_npc test_npc068,32,17,wander
+    - create_npc test_npc069,28,38,wander
+    - create_npc test_npc070,29,38,wander
+    - create_npc test_npc071,30,38,wander
+    - create_npc test_npc072,31,38,wander
+    - create_npc test_npc073,32,38,wander
+    - create_npc test_npc074,33,38,wander
+    - create_npc test_npc075,34,38,wander
+    - create_npc test_npc076,35,38,wander
+    - create_npc test_npc077,36,38,wander
+    - create_npc test_npc078,37,38,wander
+    - create_npc test_npc079,38,38,wander
+    - create_npc test_npc080,10,10,wander
+    - create_npc test_npc081,11,10,wander
+    - create_npc test_npc082,12,10,wander
+    - create_npc test_npc083,13,10,wander
+    - create_npc test_npc084,14,10,wander
+    - create_npc test_npc085,15,10,wander
+    - create_npc test_npc086,16,10,wander
+    - create_npc test_npc087,17,10,wander
+    - create_npc test_npc088,18,10,wander
+    - create_npc test_npc089,19,10,wander
+    - create_npc test_npc090,20,10,wander
+    - create_npc test_npc091,21,10,wander
+    - create_npc test_npc092,22,10,wander
+    - create_npc test_npc093,23,10,wander
+    - create_npc test_npc094,24,10,wander
+    - create_npc test_npc095,25,10,wander
+    - create_npc test_npc096,26,10,wander
+    - create_npc test_npc097,27,10,wander
+    - create_npc test_npc098,28,10,wander
+    - create_npc test_npc099,29,10,wander
+    - create_npc test_npc100,30,10,wander
+    - create_npc test_npc101,31,10,wander
+    - create_npc test_npc102,32,10,wander
+    - create_npc test_npc103,33,10,wander
+    - create_npc test_npc104,34,10,wander
+    - create_npc test_npc105,35,10,wander
+    - create_npc test_npc119,2,18,wander
+    - create_npc test_npc106,2,19,wander
+    - create_npc test_npc107,2,20,wander
+    - create_npc test_npc108,2,21,wander
+    - create_npc test_npc109,2,22,wander
+    - create_npc test_npc110,2,23,wander
+    - create_npc test_npc111,2,24,wander
+    - create_npc test_npc112,2,25,wander
+    - create_npc test_npc113,2,26,wander
+    - create_npc test_npc114,2,27,wander
+    - create_npc test_npc115,2,28,wander
+    - create_npc test_npc116,2,29,wander
+    - create_npc test_npc117,2,30,wander
+    - create_npc test_npc118,2,31,wander
+    - create_npc test_npc119,10,3,wander
+    - create_npc test_npc120,10,4,wander
+    - create_npc test_npc121,10,5,wander
+    - create_npc test_npc122,10,6,wander
+    - create_npc test_npc123,10,7,wander
+    - create_npc test_npc124,10,8,wander
+    - create_npc test_npc125,10,9,wander
+    - create_npc test_npc126,3,12,wander
+    - create_npc test_npc127,4,12,wander
+    - create_npc test_npc128,5,12,wander
+    - create_npc test_npc129,6,12,wander
+    - create_npc test_npc130,7,12,wander
+    - create_npc test_npc131,8,12,wander
+    - create_npc test_npc132,9,12,wander
+    - create_npc test_npc133,10,12,wander
+    - create_npc test_npc134,13,12,wander
+    - create_npc test_npc135,14,12,wander
+    - create_npc test_npc136,15,12,wander
+    - create_npc test_npc137,16,12,wander
+    - create_npc test_npc138,17,12,wander
+    - create_npc test_npc139,18,12,wander
+    - create_npc test_npc140,19,12,wander
+    - create_npc test_npc141,20,12,wander
+    - create_npc test_npc142,21,12,wander
+    - create_npc test_npc143,22,12,wander
+    - create_npc test_npc144,23,12,wander
+    - create_npc test_npc145,24,12,wander
+    - create_npc test_npc146,25,12,wander
+    - create_npc test_npc147,26,12,wander
+    - create_npc test_npc148,27,12,wander
+    - create_npc test_npc149,28,12,wander
+    - create_npc test_npc150,29,12,wander
+    - create_npc test_npc151,30,12,wander
+    - create_npc test_npc152,31,12,wander
+    - create_npc test_npc153,15,24,wander
+    - create_npc test_npc154,15,25,wander
+    - create_npc test_npc155,15,26,wander
+    - create_npc test_npc156,15,27,wander
+    - create_npc test_npc157,15,28,wander
+    - create_npc test_npc158,15,29,wander
+    - create_npc test_npc159,31,26,wander
+    - create_npc test_npc160,33,26,wander
+    conditions:
+    - not char_exists test_npc038
+    - not char_exists test_npc039
+    - not char_exists test_npc040
+    - not char_exists test_npc041
+    - not char_exists test_npc042
+    - not char_exists test_npc043
+    - not char_exists test_npc044
+    - not char_exists test_npc045
+    - not char_exists test_npc046
+    - not char_exists test_npc047
+    - not char_exists test_npc048
+    - not char_exists test_npc049
+    - not char_exists test_npc050
+    - not char_exists test_npc051
+    - not char_exists test_npc052
+    - not char_exists test_npc053
+    - not char_exists test_npc054
+    - not char_exists test_npc055
+    - not char_exists test_npc056
+    - not char_exists test_npc057
+    - not char_exists test_npc058
+    - not char_exists test_npc059
+    - not char_exists test_npc060
+    - not char_exists test_npc061
+    - not char_exists test_npc062
+    - not char_exists test_npc063
+    - not char_exists test_npc064
+    - not char_exists test_npc065
+    - not char_exists test_npc066
+    - not char_exists test_npc067
+    - not char_exists test_npc068
+    - not char_exists test_npc069
+    - not char_exists test_npc070
+    - not char_exists test_npc071
+    - not char_exists test_npc072
+    - not char_exists test_npc073
+    - not char_exists test_npc074
+    - not char_exists test_npc075
+    - not char_exists test_npc076
+    - not char_exists test_npc077
+    - not char_exists test_npc078
+    - not char_exists test_npc079
+    - not char_exists test_npc080
+    - not char_exists test_npc081
+    - not char_exists test_npc082
+    - not char_exists test_npc083
+    - not char_exists test_npc084
+    - not char_exists test_npc085
+    - not char_exists test_npc086
+    - not char_exists test_npc087
+    - not char_exists test_npc088
+    - not char_exists test_npc089
+    - not char_exists test_npc090
+    - not char_exists test_npc091
+    - not char_exists test_npc092
+    - not char_exists test_npc093
+    - not char_exists test_npc094
+    - not char_exists test_npc095
+    - not char_exists test_npc096
+    - not char_exists test_npc097
+    - not char_exists test_npc098
+    - not char_exists test_npc099
+    - not char_exists test_npc100
+    - not char_exists test_npc101
+    - not char_exists test_npc102
+    - not char_exists test_npc103
+    - not char_exists test_npc104
+    - not char_exists test_npc105
+    - not char_exists test_npc106
+    - not char_exists test_npc107
+    - not char_exists test_npc108
+    - not char_exists test_npc109
+    - not char_exists test_npc110
+    - not char_exists test_npc111
+    - not char_exists test_npc112
+    - not char_exists test_npc113
+    - not char_exists test_npc114
+    - not char_exists test_npc115
+    - not char_exists test_npc116
+    - not char_exists test_npc117
+    - not char_exists test_npc118
+    - not char_exists test_npc119
+    - not char_exists test_npc120
+    - not char_exists test_npc121
+    - not char_exists test_npc122
+    - not char_exists test_npc123
+    - not char_exists test_npc124
+    - not char_exists test_npc125
+    - not char_exists test_npc126
+    - not char_exists test_npc127
+    - not char_exists test_npc128
+    - not char_exists test_npc129
+    - not char_exists test_npc130
+    - not char_exists test_npc131
+    - not char_exists test_npc132
+    - not char_exists test_npc133
+    - not char_exists test_npc134
+    - not char_exists test_npc135
+    - not char_exists test_npc136
+    - not char_exists test_npc137
+    - not char_exists test_npc138
+    - not char_exists test_npc139
+    - not char_exists test_npc140
+    - not char_exists test_npc140
+    - not char_exists test_npc141
+    - not char_exists test_npc142
+    - not char_exists test_npc143
+    - not char_exists test_npc144
+    - not char_exists test_npc145
+    - not char_exists test_npc146
+    - not char_exists test_npc147
+    - not char_exists test_npc148
+    - not char_exists test_npc149
+    - not char_exists test_npc150
+    - not char_exists test_npc151
+    - not char_exists test_npc152
+    - not char_exists test_npc153
+    - not char_exists test_npc154
+    - not char_exists test_npc155
+    - not char_exists test_npc156
+    - not char_exists test_npc157
+    - not char_exists test_npc158
+    - not char_exists test_npc159
+    - not char_exists test_npc160
+    type: event

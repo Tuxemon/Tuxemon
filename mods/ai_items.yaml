@@ -1,0 +1,29 @@
+# General Rules for Item Evaluation
+items:
+  item_slug:
+    # The upper threshold for the item's use.
+    # The item will not be used if the current health is ABOVE this percentage of max HP.
+    # Optional: Can be omitted if no upper limit is needed.
+    hp_below: 0.3
+    
+    # The lower threshold for the item's use.
+    # The item will not be used if the current health is BELOW this percentage of max HP.
+    # Optional: Can be omitted if no lower limit is needed.
+    hp_above: 0.8
+
+    # A specific health range (inclusive of the lower bound and exclusive of the upper bound).
+    # The item will only be used if the current health is WITHIN this range.
+    # Optional: Can be omitted if no range restriction is needed.
+    hp_range: [0.3, 0.8]
+
+    # A list of status effects required for the item to be used (e.g., "poisoned", "stunned").
+    # If omitted, status effects will not be a consideration for item usage.
+    # Optional: Can be left out entirely.
+    status_effects: ["poisoned"]
+
+    # A list of specific monster slugs for which the item is applicable.
+    # If omitted, the item will not be restricted to any particular monsters.
+    # Optional: Can be left out entirely.
+    monster_slugs: ["monster_slug"]
+  potion:
+    hp_range: [0.3, 0.8]

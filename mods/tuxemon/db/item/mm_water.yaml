@@ -1,0 +1,30 @@
+conditions:
+- type: base
+  parameters:
+  - types
+  - water
+  operator: is
+effects:
+- type: learn_mm
+  parameters:
+  - water
+slug: mm_water
+sort: utility
+sprite: gfx/items/mm_water.png
+category: technique
+cost: 1000
+usable_in:
+- WorldState
+modifiers: []
+behaviors:
+  resellable: true
+use_failure: generic_failure
+use_item: combat_used_x
+use_success: generic_success
+visuals:
+  animation: null
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: null
+  volume: 0.0

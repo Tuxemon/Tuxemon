@@ -1,0 +1,10 @@
+slug: 37707_female
+speech:
+  profile:
+    default: {}
+combat: {}
+audio: {}
+template:
+  sprite_name: 37707_female
+  combat_sheet: heroine
+  slug: heroine

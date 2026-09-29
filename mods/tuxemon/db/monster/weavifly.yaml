@@ -1,0 +1,72 @@
+slug: weavifly
+species: brood
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: bullet
+- level_learned: 1
+  technique: frighten
+- level_learned: 4
+  technique: buzz
+- level_learned: 7
+  technique: hibernate
+- level_learned: 10
+  technique: perfect_cut
+- level_learned: 13
+  technique: blade
+- level_learned: 16
+  technique: lineage
+- level_learned: 19
+  technique: viper
+- level_learned: 22
+  technique: shuriken
+- level_learned: 25
+  technique: eyebite
+- level_learned: 34
+  technique: tornado
+evolutions: []
+history:
+- slug: weavifly
+  stage: stage2
+  evolves_from:
+  - puparmor
+  evolves_into: []
+- slug: cataspike
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - puparmor
+- slug: puparmor
+  stage: stage1
+  evolves_from:
+  - cataspike
+  evolves_into:
+  - weavifly
+terrains: []
+tags:
+- sharp
+- bug
+- bomber
+shape: grub
+stage: stage2
+types:
+- metal
+- sky
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 35
+height: 52
+weight: 17
+sounds:
+  combat_call:
+    sfx: sound_insekt001
+    volume: 1.5
+  faint_call:
+    sfx: sound_insekt001_faint
+    volume: 1.5
+catch_rate: 35.0
+lower_catch_resistance: 0.9
+upper_catch_resistance: 1.15

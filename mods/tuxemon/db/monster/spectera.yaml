@@ -1,0 +1,76 @@
+slug: spectera
+species: flying_fox_bat
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: fluff_up
+- level_learned: 1
+  technique: leaf_stab
+- level_learned: 4
+  technique: splinter
+- level_learned: 7
+  technique: spit_poison
+- level_learned: 13
+  technique: invictus
+- level_learned: 16
+  technique: solar_synthesis
+- level_learned: 19
+  technique: fester
+- level_learned: 25
+  technique: blossom
+- level_learned: 28
+  technique: leaf_barrage
+- level_learned: 31
+  technique: chameleon
+- level_learned: 37
+  technique: whirlwind
+- level_learned: 40
+  technique: clairaudience
+- level_learned: 55
+  technique: tornado
+evolutions: []
+history:
+- slug: spectera
+  stage: stage2
+  evolves_from:
+  - megafruitera
+  evolves_into: []
+- slug: fruitera
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - megafruitera
+- slug: megafruitera
+  stage: stage1
+  evolves_from:
+  - fruitera
+  evolves_into:
+  - spectera
+terrains:
+- jungle
+tags:
+- plant
+- food
+shape: flier
+stage: stage2
+types:
+- wood
+- sky
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 171
+height: 140
+weight: 20
+sounds:
+  combat_call:
+    sfx: sound_weird_09
+    volume: 1.5
+  faint_call:
+    sfx: sound_weird_09_faint
+    volume: 1.5
+catch_rate: 35.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.25

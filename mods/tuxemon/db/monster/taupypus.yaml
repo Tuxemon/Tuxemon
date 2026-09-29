@@ -1,0 +1,60 @@
+slug: taupypus
+species: flatfoot
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: biting_winds
+- level_learned: 1
+  technique: water_bullet
+- level_learned: 4
+  technique: flood
+- level_learned: 7
+  technique: goad
+- level_learned: 13
+  technique: midnight_mantle
+- level_learned: 16
+  technique: ice_shield
+- level_learned: 19
+  technique: pouch
+- level_learned: 25
+  technique: mobbing
+- level_learned: 28
+  technique: poison_courtship
+- level_learned: 31
+  technique: ice_storm
+- level_learned: 37
+  technique: venomous_tentacle
+- level_learned: 40
+  technique: kraken
+evolutions: []
+history:
+- slug: taupypus
+  stage: standalone
+  evolves_from: []
+  evolves_into: []
+terrains: []
+tags:
+- water
+shape: varmint
+stage: standalone
+types:
+- water
+- normal
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 219
+height: 60
+weight: 3
+sounds:
+  combat_call:
+    sfx: sound_echo_gurgle_whoosh_1
+    volume: 1.5
+  faint_call:
+    sfx: sound_echo_gurgle_whoosh_1_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.9
+upper_catch_resistance: 1.15

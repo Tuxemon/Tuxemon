@@ -1,0 +1,68 @@
+slug: tumbledillo
+species: ermine
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: shadow_boxing
+- level_learned: 1
+  technique: ice_claw
+- level_learned: 4
+  technique: icicle_spear
+- level_learned: 7
+  technique: roll
+- level_learned: 13
+  technique: shrapnel
+- level_learned: 16
+  technique: surge
+- level_learned: 19
+  technique: fester
+- level_learned: 25
+  technique: needle
+- level_learned: 28
+  technique: mending
+- level_learned: 31
+  technique: quicksand
+- level_learned: 37
+  technique: electroplate
+- level_learned: 40
+  technique: thorn_burst
+evolutions: []
+history:
+- slug: tumbledillo
+  stage: stage1
+  evolves_from:
+  - tumblequill
+  evolves_into: []
+- slug: tumblequill
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - tumbledillo
+terrains: []
+tags:
+- ground
+- sharp
+- bite
+shape: varmint
+stage: stage1
+types:
+- earth
+- normal
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 221
+height: 64
+weight: 14
+sounds:
+  combat_call:
+    sfx: sound_stones_04
+    volume: 1.5
+  faint_call:
+    sfx: sound_stones_04_faint
+    volume: 1.5
+catch_rate: 70.0
+lower_catch_resistance: 0.9
+upper_catch_resistance: 1.15

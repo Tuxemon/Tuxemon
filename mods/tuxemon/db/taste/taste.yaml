@@ -1,0 +1,125 @@
+# slug: Unique identifier for the taste (example: "mild", "spicy", "sweet")
+# name: Human-readable name of the taste (example: "taste_mild")
+#       A translation entry with this msgid MUST exist in base.po, otherwise validation fails.
+# taste_type: Type of taste, either "warm" or "cold" (example: "cold")
+# rarity_score: Float between 0.0 and 1.0 indicating how common the taste is
+#               (example: 1.0 = very common, 0.0 = extremely rare)
+# modifiers: List of modifiers that affect attributes
+#   attribute: Attribute being modified (example: "stat")
+#   values: List of values associated with the modification (example: ["speed"])
+#   multiplier: Float multiplier applied to the attribute (range 0.0–2.0, example: 0.9)
+#   priority: Integer priority; higher values take precedence (example: 0)
+#   stacking: How this modifier stacks with others (example: "multiplicative")
+#   max_stacks: Maximum number of times this modifier can stack (example: None = unlimited)
+#   condition_name: Optional condition function name to determine applicability (example: None)
+#   source: Optional origin of the modifier (example: "item", "ability")
+#   turns_remaining: Optional number of turns before modifier expires (example: None)
+
+- modifiers:
+  - attribute: stat
+    multiplier: 0.9
+    values:
+    - speed
+  name: taste_mild
+  rarity_score: 1.0
+  slug: mild
+  taste_type: cold
+- modifiers:
+  - attribute: stat
+    multiplier: 0.9
+    values:
+    - melee
+  name: taste_sweet
+  rarity_score: 1.0
+  slug: sweet
+  taste_type: cold
+- modifiers:
+  - attribute: stat
+    multiplier: 0.9
+    values:
+    - armour
+  name: taste_soft
+  rarity_score: 1.0
+  slug: soft
+  taste_type: cold
+- modifiers:
+  - attribute: stat
+    multiplier: 0.9
+    values:
+    - ranged
+  name: taste_flakey
+  rarity_score: 1.0
+  slug: flakey
+  taste_type: cold
+- modifiers:
+  - attribute: stat
+    multiplier: 0.9
+    values:
+    - dodge
+  name: taste_dry
+  rarity_score: 1.0
+  slug: dry
+  taste_type: cold
+- modifiers:
+  - attribute: stat
+    multiplier: 1.1
+    values:
+    - speed
+  name: taste_peppy
+  rarity_score: 1.0
+  slug: peppy
+  taste_type: warm
+- modifiers:
+  - attribute: stat
+    multiplier: 1.1
+    values:
+    - melee
+  name: taste_salty
+  rarity_score: 1.0
+  slug: salty
+  taste_type: warm
+- modifiers:
+  - attribute: stat
+    multiplier: 1.1
+    values:
+    - armour
+  name: taste_hearty
+  rarity_score: 1.0
+  slug: hearty
+  taste_type: warm
+- modifiers:
+  - attribute: stat
+    multiplier: 1.1
+    values:
+    - ranged
+  name: taste_zesty
+  rarity_score: 1.0
+  slug: zesty
+  taste_type: warm
+- modifiers:
+  - attribute: stat
+    multiplier: 1.1
+    values:
+    - dodge
+  name: taste_refined
+  rarity_score: 1.0
+  slug: refined
+  taste_type: warm
+- modifiers:
+  - attribute: stat
+    multiplier: 1.05
+    values:
+    - hp
+  name: taste_savory
+  rarity_score: 0.4
+  slug: savory
+  taste_type: warm
+- modifiers:
+  - attribute: stat
+    multiplier: 0.95
+    values:
+    - hp
+  name: taste_bland
+  rarity_score: 0.4
+  slug: bland
+  taste_type: cold

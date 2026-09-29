@@ -1,0 +1,71 @@
+slug: cataspike
+species: pointy
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: bullet
+- level_learned: 1
+  technique: frighten
+- level_learned: 4
+  technique: buzz
+- level_learned: 7
+  technique: hibernate
+- level_learned: 10
+  technique: perfect_cut
+- level_learned: 13
+  technique: blade
+- level_learned: 16
+  technique: lineage
+- level_learned: 19
+  technique: viper
+- level_learned: 22
+  technique: shuriken
+- level_learned: 25
+  technique: eyebite
+evolutions:
+- at_level: 9
+  monster_slug: puparmor
+history:
+- slug: cataspike
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - puparmor
+- slug: puparmor
+  stage: stage1
+  evolves_from:
+  - cataspike
+  evolves_into:
+  - weavifly
+- slug: weavifly
+  stage: stage2
+  evolves_from:
+  - puparmor
+  evolves_into: []
+terrains: []
+tags:
+- sharp
+- bug
+shape: grub
+stage: basic
+types:
+- metal
+- venom
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 33
+height: 12
+weight: 1
+sounds:
+  combat_call:
+    sfx: sound_insekt001
+    volume: 1.5
+  faint_call:
+    sfx: sound_insekt001_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.25

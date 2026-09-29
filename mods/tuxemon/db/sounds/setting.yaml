@@ -1,0 +1,8 @@
+- file: setting/japanese_temple_bell_small.mp3
+  slug: japanese_temple_bell_small
+- file: setting/ship_bell.mp3
+  slug: ship_bell
+- file: setting/temple_bell.mp3
+  slug: temple_bell
+- file: setting/coinecho.wav
+  slug: coinecho

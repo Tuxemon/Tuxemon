@@ -1,0 +1,36 @@
+tech_id: 132
+accuracy: 0.8
+effects:
+- type: damage
+speed: extremely_slow
+potency: 0.0
+power: 2.5
+range: melee
+recharge: 2
+slug: kraken
+sort: damage
+modifiers: []
+behaviors: {}
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: simple
+tags:
+- pseudopod
+- summoner
+types:
+- water
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: icetacle
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_squeak
+  volume: 1.5

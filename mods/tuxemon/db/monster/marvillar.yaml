@@ -1,0 +1,63 @@
+slug: marvillar
+species: ant_mimic
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: fire_claw
+- level_learned: 1
+  technique: changeling
+- level_learned: 4
+  technique: ants
+- level_learned: 7
+  technique: blood_nets
+- level_learned: 13
+  technique: energy_claws
+- level_learned: 16
+  technique: clamp_on
+- level_learned: 25
+  technique: perfect_cut
+- level_learned: 31
+  technique: blossom
+- level_learned: 40
+  technique: tornado
+evolutions:
+- at_level: 15
+  monster_slug: marvantis
+history:
+- slug: marvillar
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - marvantis
+- slug: marvantis
+  stage: stage1
+  evolves_from:
+  - marvillar
+  evolves_into: []
+terrains: []
+tags:
+- bug
+- shapeshifter
+- bite
+shape: grub
+stage: basic
+types:
+- normal
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 287
+height: 30
+weight: 2
+sounds:
+  combat_call:
+    sfx: sound_bug_05
+    volume: 1.5
+  faint_call:
+    sfx: sound_bug_05_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.05

@@ -1,0 +1,30 @@
+# Unique identifier for this encounter
+slug: "example-encounter"
+
+# Encounter type is SINGLE (only one monster at a time)
+encounter_type: single
+
+# List of monsters that can appear in this encounter
+monsters:
+  - monster: "pairagrin"          # Slug of the monster
+    encounter_rate: 0.6             # 60% chance to encounter this monster
+    held_items:                     # Items the monster may hold
+      - item_slug: "potion"      # Slug of the item
+        probability: 0.25           # 25% chance the Pairagrin holds this item
+    level_range: [3, 5]             # Pairagrin appears between level 3 and 5
+    variables:                      # Variables affecting encounter
+      - key: stage_of_day
+        value: "night"              # Example: only appears at night
+    exp_req_mod: 1.2                # 20% more XP required to defeat
+    level_offset: 1                 # Pairagrin level is shifted +1
+    min_player_level: 2             # Player must be at least level 2
+    max_player_level: 10            # Player must be at most level 10
+    scaling_enabled: true           # Enable scaling with party average
+    override_level_range: false     # Do not override declared level range
+    scaling_offset_range: [-1, 2]   # Random offset applied when scaling
+
+# Zone-level scaling options
+scaling_zone: true                  # Zone applies scaling to all monsters
+scale_offset_range: [-2, 3]         # Zone-wide scaling offset
+scale_multiplier: 1.0               # No multiplier applied
+override_level_range: false         # Do not override monster level ranges

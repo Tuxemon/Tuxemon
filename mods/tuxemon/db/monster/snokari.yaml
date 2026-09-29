@@ -1,0 +1,60 @@
+slug: snokari
+species: hydra
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: water_bullet
+- level_learned: 1
+  technique: gnaw
+- level_learned: 4
+  technique: goad
+- level_learned: 7
+  technique: flood
+- level_learned: 13
+  technique: midnight_mantle
+- level_learned: 25
+  technique: water_blast
+- level_learned: 28
+  technique: viper
+- level_learned: 31
+  technique: electric_multibite
+- level_learned: 40
+  technique: tsunami
+evolutions: []
+history:
+- slug: snokari
+  stage: stage1
+  evolves_from:
+  - snaki
+  evolves_into: []
+- slug: snaki
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - snokari
+terrains: []
+tags:
+- toxic
+- bite
+shape: serpent
+stage: stage1
+types:
+- normal
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 228
+height: 145
+weight: 45
+sounds:
+  combat_call:
+    sfx: sound_spit_01
+    volume: 1.5
+  faint_call:
+    sfx: sound_spit_01_faint
+    volume: 1.5
+catch_rate: 70.0
+lower_catch_resistance: 0.9
+upper_catch_resistance: 1.15

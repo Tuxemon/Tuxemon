@@ -1,0 +1,121 @@
+events:
+  Enforcers Rapid Response:
+    actions:
+    - lock_controls
+    - set_template player,invisible
+    - set_layer 102:51:0:128
+    - create_npc spyder_nimrod_thatcher,2,2
+    - char_face spyder_nimrod_thatcher,up
+    - create_npc spyder_nimrod_mace,3,5
+    - char_face spyder_nimrod_mace,up
+    - create_npc spyder_nimrod_honour,1,3
+    - char_face spyder_nimrod_honour,right
+    - create_npc spyder_nimrod_bowie,1,4
+    - char_face spyder_nimrod_bowie,right
+    - translated_dialog spyder_enforcershq_flashback1,,top
+    - char_face spyder_nimrod_bowie,up
+    - char_face spyder_nimrod_honour,up
+    - translated_dialog spyder_enforcershq_flashback2,,topleft
+    - char_face spyder_nimrod_thatcher,down
+    - char_face spyder_nimrod_bowie,right
+    - char_face spyder_nimrod_honour,right
+    - translated_dialog spyder_enforcershq_flashback3,,top
+    - translated_dialog spyder_enforcershq_flashback4
+    - translated_dialog spyder_enforcershq_flashback5,,top
+    - translated_dialog spyder_enforcershq_flashback6,,bottomleft
+    - translated_dialog spyder_enforcershq_flashback7,,top
+    - pathfind spyder_nimrod_bowie,8,3
+    - remove_npc spyder_nimrod_bowie
+    - pathfind spyder_nimrod_honour,8,3
+    - remove_npc spyder_nimrod_honour
+    - pathfind spyder_nimrod_mace,8,3
+    - remove_npc spyder_nimrod_mace
+    - pathfind spyder_nimrod_thatcher,8,3
+    - remove_npc spyder_nimrod_thatcher
+    - set_variable enforcers_response:done
+    - set_variable flashback:off
+    - set_layer 0:0:0:255
+    - unlock_controls
+    - char_face player,right
+    - transition_teleport player,spyder_wayfarer_inn1.tmx,9,6
+    conditions:
+    - is variable_set enforcers_response:yes
+    type: event
+  Environment:
+    actions:
+    - set_environment interior
+    conditions:
+    - not environment_is interior
+    type: event
+  FlashBack Zircon and Argon:
+    actions:
+    - lock_controls
+    - set_template player,invisible
+    - set_layer 102:51:0:128
+    - create_npc spyder_nimrod_argon,2,5
+    - char_face spyder_nimrod_argon,up
+    - create_npc spyder_nimrod_zircon,2,2
+    - char_face spyder_nimrod_zircon,down
+    - pathfind spyder_nimrod_zircon,6,2
+    - translated_dialog spyder_nimrod_flashback1
+    - pathfind spyder_nimrod_zircon,2,2
+    - char_face spyder_nimrod_zircon,down
+    - translated_dialog spyder_nimrod_flashback2,,top
+    - translated_dialog spyder_nimrod_flashback3
+    - translated_dialog spyder_nimrod_flashback4,,top
+    - translated_dialog spyder_nimrod_flashback5
+    - translated_dialog spyder_nimrod_flashback6,,top
+    - translated_dialog spyder_nimrod_flashback7
+    - translated_dialog spyder_nimrod_flashback8,,top
+    - translated_dialog spyder_nimrod_flashback9
+    - translated_dialog spyder_nimrod_flashback10,,top
+    - translated_dialog spyder_nimrod_flashback11
+    - translated_dialog spyder_nimrod_flashback12,,top
+    - translated_dialog spyder_nimrod_flashback13
+    - translated_dialog spyder_nimrod_flashback14,,top
+    - pathfind spyder_nimrod_argon,8,3
+    - remove_npc spyder_nimrod_argon
+    - pathfind spyder_nimrod_zircon,8,3
+    - remove_npc spyder_nimrod_zircon
+    - set_variable zircon_argon:done
+    - set_variable flashback:off
+    - set_layer 0:0:0:255
+    - unlock_controls
+    - transition_teleport player,spyder_nimrod_middle.tmx,14,10
+    conditions:
+    - is variable_set zircon_argon:yes
+    type: event
+  Go Outside:
+    actions:
+    - transition_teleport player,spyder_nimrod_bottom.tmx,0,3,0.3
+    - char_face player,right
+    conditions:
+    - is char_at player
+    - is char_facing player,right
+    type: event
+    x: 8
+    y: 3
+  Music:
+    actions:
+    - play_music music_10_empire
+    conditions:
+    - not music_playing music_10_empire
+    type: event
+  Papers 1:
+    actions:
+    - translated_dialog spyder_nimrod_papers1
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed INTERACT
+    type: event
+    x: 6
+    y: 3
+  Papers 2:
+    actions:
+    - translated_dialog spyder_nimrod_papers2
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed INTERACT
+    type: event
+    x: 3
+    y: 3

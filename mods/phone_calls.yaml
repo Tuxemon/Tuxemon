@@ -1,0 +1,60 @@
+# PHONE_CALLS_DATA structure for NPC interactions via NuPhone.
+# Each NPC (e.g., npc_example) defines how phone calls behave based on game state.
+# The system checks each entry in 'conditional_calls' in order. The first matching
+# condition is used.
+# If no conditions match, the 'default' dialogue is used.
+
+npc_example:
+  conditional_calls:
+    # --- CONDITION 1 ---
+    # This call will trigger if:
+    # - The player is currently on the map "spyder_candy_town"
+    # - AND the game variable 'quest_maple_start' is set to the string "yes"
+    # Notes:
+    # - Both 'map_slug' and 'variables' are optional, but at least one must be present.
+    # - 'variables' is a dictionary of key-value pairs that must match exactly.
+    # - Dialogue is a list of message IDs that will be shown in order.
+    - conditions:
+        map_slug: "spyder_candy_town"
+        variables: 
+          quest_maple_start: "yes"
+      dialogue: 
+        - "maple_dialogue_quest_update_1"
+        - "maple_dialogue_quest_update_2"
+
+    # --- CONDITION 2 ---
+    # This call will trigger if:
+    # - The player is on the map "spyder_cotton_town"
+    # Notes:
+    # - Only 'map_slug' is used here; 'variables' is omitted.
+    # - If this condition matches, the specified dialogue will be used.
+    - conditions:
+        map_slug: "spyder_cotton_town"
+      dialogue:
+        - "maple_dialogue_local_greeting"
+
+    # --- CONDITION 3 ---
+    # This call will trigger if:
+    # - The game variable 'flag_maple_met' is set to True
+    # Notes:
+    # - Only 'variables' is used here; 'map_slug' is omitted.
+    # - Useful for general conditions not tied to location.
+    - conditions:
+        variables: 
+          flag_maple_met: True
+      dialogue:
+        - "maple_dialogue_general_greeting"
+
+  # --- DEFAULT ---
+  # This dialogue is used if none of the above conditions match.
+  # Notes:
+  # - 'default' must always be present to ensure fallback behavior.
+  # - Dialogue should be a list, even if it contains only one message ID.
+  default:
+    dialogue: ["phone_no_answer"]
+
+# --- CALLS ---
+
+spyder_papertown_mom:
+  default:
+    dialogue: ["phone_no_answer"]

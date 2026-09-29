@@ -1,0 +1,44 @@
+tech_id: 172
+accuracy: 1
+effects:
+- type: give
+  parameters:
+  - elementalshield
+  - own_monster
+- type: give
+  parameters:
+  - slow
+  - enemy_monster
+speed: normal
+potency: 1
+power: 0
+range: special
+recharge: 2
+slug: ice_shield
+sort: damage
+modifiers: []
+behaviors: {}
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: exotic
+tags:
+- soldier
+- ice
+- shielded
+types:
+- frost
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: wall_ice
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_freeze
+  volume: 1.5

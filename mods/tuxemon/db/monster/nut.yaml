@@ -1,0 +1,69 @@
+slug: nut
+species: hardware
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: bullet
+- level_learned: 1
+  technique: static_field
+- level_learned: 4
+  technique: shuriken
+- level_learned: 7
+  technique: clamp_on
+- level_learned: 10
+  technique: muddle
+- level_learned: 13
+  technique: bubble_trap
+- level_learned: 16
+  technique: beam
+- level_learned: 19
+  technique: surge
+- level_learned: 25
+  technique: thunderclap
+evolutions:
+- at_level: 9
+  monster_slug: bolt
+history:
+- slug: nut
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - bolt
+- slug: bolt
+  stage: stage1
+  evolves_from:
+  - nut
+  evolves_into:
+  - arthrobolt
+- slug: arthrobolt
+  stage: stage2
+  evolves_from:
+  - bolt
+  evolves_into: []
+terrains: []
+tags:
+- machine
+- bomber
+- gadgets
+- light
+shape: blob
+stage: basic
+types:
+- metal
+gender_weights:
+  neuter: 1.0
+txmn_id: 4
+height: 45
+weight: 4
+sounds:
+  combat_call:
+    sfx: sound_steel_clang
+    volume: 1.5
+  faint_call:
+    sfx: sound_steel_clang_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.25

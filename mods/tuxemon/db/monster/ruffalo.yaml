@@ -1,0 +1,48 @@
+slug: ruffalo
+species: buffalo
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: stampede
+- level_learned: 1
+  technique: wallow
+- level_learned: 4
+  technique: hibernate
+- level_learned: 10
+  technique: mudslide
+- level_learned: 19
+  technique: earthquake
+evolutions: []
+history:
+- slug: ruffalo
+  stage: standalone
+  evolves_from: []
+  evolves_into: []
+terrains:
+- grassland
+- woodland
+tags:
+- megafauna
+- sharp
+shape: landrace
+stage: standalone
+types:
+- normal
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 283
+height: 180
+weight: 350
+sounds:
+  combat_call:
+    sfx: sound_bark
+    volume: 1.5
+  faint_call:
+    sfx: sound_bark_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.05

@@ -1,0 +1,47 @@
+slug: boxorox
+species: pugilist
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: punch
+- level_learned: 1
+  technique: evasion
+- level_learned: 4
+  technique: shadow_boxing
+- level_learned: 10
+  technique: hammerhead
+- level_learned: 19
+  technique: one_two
+- level_learned: 25
+  technique: rocky_barrage
+evolutions: []
+history:
+- slug: boxorox
+  stage: standalone
+  evolves_from: []
+  evolves_into: []
+terrains: []
+tags:
+- rock
+- fists
+shape: humanoid
+stage: standalone
+types:
+- earth
+gender_weights:
+  neuter: 1.0
+txmn_id: 316
+height: 187
+weight: 154
+sounds:
+  combat_call:
+    sfx: sound_bugthing
+    volume: 1.5
+  faint_call:
+    sfx: sound_bugthing_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.05

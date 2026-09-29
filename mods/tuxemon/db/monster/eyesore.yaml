@@ -1,0 +1,60 @@
+slug: eyesore
+species: overseer
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: bullet
+- level_learned: 1
+  technique: spit_poison
+- level_learned: 4
+  technique: amnesia
+- level_learned: 7
+  technique: sleep_bomb
+- level_learned: 13
+  technique: glower
+- level_learned: 25
+  technique: eyebite
+- level_learned: 28
+  technique: breath
+- level_learned: 31
+  technique: dreamwalk
+- level_learned: 55
+  technique: energy_beam
+evolutions: []
+history:
+- slug: eyesore
+  stage: stage1
+  evolves_from:
+  - eyenemy
+  evolves_into: []
+- slug: eyenemy
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - eyesore
+terrains: []
+tags:
+- gaze
+- mental
+shape: serpent
+stage: stage1
+types:
+- cosmic
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 47
+height: 135
+weight: 4
+sounds:
+  combat_call:
+    sfx: sound_retro_beep_05
+    volume: 1.5
+  faint_call:
+    sfx: sound_retro_beep_05_faint
+    volume: 1.5
+catch_rate: 70.0
+lower_catch_resistance: 0.9
+upper_catch_resistance: 1.15

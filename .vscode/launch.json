@@ -8,7 +8,7 @@
             "name": "Python: Tuxemon",
             "type": "python",
             "request": "launch",
-            "program": "tuxemon.py",
+            "program": "run_tuxemon.py",
             "console": "integratedTerminal"
         }
     ]

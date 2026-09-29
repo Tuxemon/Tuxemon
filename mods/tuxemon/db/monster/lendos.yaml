@@ -1,0 +1,67 @@
+slug: lendos
+species: vision
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: muddle
+- level_learned: 1
+  technique: mind_vise
+- level_learned: 4
+  technique: rust_bomb
+- level_learned: 7
+  technique: radiance
+- level_learned: 13
+  technique: meltdown
+- level_learned: 16
+  technique: amnesia
+- level_learned: 19
+  technique: lineage
+- level_learned: 25
+  technique: whirlwind
+- level_learned: 28
+  technique: acid
+- level_learned: 31
+  technique: lightning_spheres
+- level_learned: 37
+  technique: sleep_bomb
+- level_learned: 40
+  technique: shadow_blast
+evolutions: []
+history:
+- slug: lendos
+  stage: stage1
+  evolves_from:
+  - uneye
+  evolves_into: []
+- slug: uneye
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - lendos
+terrains: []
+tags:
+- gaze
+- darkness
+- mental
+shape: blob
+stage: stage1
+types:
+- shadow
+- cosmic
+gender_weights:
+  neuter: 1.0
+txmn_id: 241
+height: 97
+weight: 7
+sounds:
+  combat_call:
+    sfx: sound_robot2
+    volume: 1.5
+  faint_call:
+    sfx: sound_robot2_faint
+    volume: 1.5
+catch_rate: 70.0
+lower_catch_resistance: 0.9
+upper_catch_resistance: 1.15

@@ -1,0 +1,156 @@
+- slug: eclipse_bank_ethan
+  speech:
+    profile:
+      default:
+        pre_battle: eclipse_bank_ethan1
+        post_battle_win: null
+        post_battle_lose: eclipse_bank_ethan2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: scientist
+    combat_sheet: scientist
+    slug: scientist
+- slug: eclipse_bank_lucas
+  speech:
+    profile:
+      default:
+        pre_battle: eclipse_bank_lucas1
+        post_battle_win: null
+        post_battle_lose: eclipse_bank_lucas2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: beachcomber_copper
+    combat_sheet: beachgoer
+    slug: beachgoer
+- slug: eclipse_bank_ava
+  speech:
+    profile:
+      default:
+        pre_battle: eclipse_bank_ava1
+        post_battle_win: null
+        post_battle_lose: eclipse_bank_ava2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: maniac_violet
+    combat_sheet: adventurer
+    slug: maniac
+- slug: eclipse_bank_kai
+  speech:
+    profile:
+      default:
+        pre_battle: eclipse_bank_kai1
+        post_battle_win: null
+        post_battle_lose: eclipse_bank_kai2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: monk_black
+    combat_sheet: monk
+    slug: monk
+- slug: eclipse_bank_lile
+  speech:
+    profile:
+      default:
+        pre_battle: eclipse_bank_lile1
+        post_battle_win: null
+        post_battle_lose: eclipse_bank_lile2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: magician_blonde
+    combat_sheet: magician
+    slug: magician
+- slug: eclipse_bank_raj
+  speech:
+    profile:
+      default:
+        pre_battle: eclipse_bank_raj1
+        post_battle_win: null
+        post_battle_lose: eclipse_bank_raj2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: florist_fiery
+    combat_sheet: florist
+    slug: florist
+- slug: eclipse_bank_brock
+  speech:
+    profile:
+      default:
+        pre_battle: eclipse_bank_brock1
+        post_battle_win: null
+        post_battle_lose: eclipse_bank_brock2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor_lapi
+    combat_sheet: professor
+    slug: professor
+- slug: eclipse_bank_daisy
+  speech:
+    profile:
+      default:
+        pre_battle: eclipse_bank_daisy1
+        post_battle_win: null
+        post_battle_lose: eclipse_bank_daisy2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: cooldude_black
+    combat_sheet: rocker
+    slug: rocker
+- slug: eclipse_bank_may
+  speech:
+    profile:
+      default:
+        pre_battle: eclipse_bank_may1
+        post_battle_win: null
+        post_battle_lose: eclipse_bank_may2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: rogue_copper
+    combat_sheet: winger
+    slug: winger
+- slug: eclipse_bank_bob
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: picnicker
+    combat_sheet: picnicker
+    slug: picnicker
+- slug: eclipse_bank_jeff
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: boss_orange
+    combat_sheet: baller
+    slug: baller
+- slug: eclipse_zircon
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: scientist
+    combat_sheet: scientist
+    slug: scientist

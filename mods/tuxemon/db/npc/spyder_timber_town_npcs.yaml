@@ -48,3 +48,13 @@
     sprite_name: picnicker
     combat_sheet: picnicker
     slug: picnicker
+- slug: spyder_timberscoop_bram
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: shopassistant_black
+    combat_sheet: shopassistant
+    slug: shopassistant

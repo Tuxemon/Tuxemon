@@ -64,6 +64,67 @@ def simple_damage_multiplier(
     return multiplier
 
 
+def held_item_resistance_multiplier(
+    technique: Technique,
+    target: Monster,
+) -> float:
+    """
+    Calculates the resistance granted by the target's held item.
+    The item is keyed by element slug and is matched against the elements of
+    the incoming technique, the same axis the type chart uses, so the
+    attacker's own typing never enters the calculation. A technique with
+    several elements is resisted once per matching element and those
+    resistances compound, mirroring how the type chart already stacks
+    multipliers; the caller clamps the result.
+    Parameters:
+        technique: The incoming technique.
+        target: The one the technique is being used on.
+    Returns:
+        The resistance multiplier (1.0 when nothing resists).
+    """
+    held_item = target.held_item
+    if held_item is None:
+        return 1.0
+
+    resistances = held_item.element_resistances
+    if not resistances:
+        return 1.0
+
+    return math.prod(
+        (
+            resistances[element.slug]
+            for element in technique.types.current
+            if element.slug in resistances
+        ),
+        start=1.0,
+    )
+
+
+def held_item_element_modifier(
+    technique: Technique,
+    user: Monster,
+) -> float:
+    """
+    Returns the power multiplier the user's held item grants to a technique.
+
+    Items such as the elemental pellets carry ``element_modifiers``, which
+    boost the holder's techniques of the listed elements. The match is on the
+    technique's own elements, not the holder's: a Fire Pellet on an earth
+    monster boosts that monster's fire techniques and nothing else.
+
+    Parameters:
+        technique: The technique being used.
+        user: The monster using the technique.
+
+    Returns:
+        The multiplier, 1.0 when no held item applies.
+    """
+    held_item = user.held_item
+    if held_item is None:
+        return 1.0
+    return held_item.get_element_modifier(technique.types.current)
+
+
 def simple_damage_calculate(
     technique: Technique,
     user: Monster,
@@ -138,9 +199,24 @@ def simple_damage_calculate(
         f"{[t.slug for t in target.types.current]} | multiplier={mult}"
     )
 
-    move_strength = technique.power * mult
+    resistance = held_item_resistance_multiplier(technique, target)
+    if resistance != 1.0:
+        min_range, max_range = config_combat.multiplier_range
+        resisted = min(max_range, max(min_range, mult * resistance))
+        logger.debug(
+            f"  Held item resistance: {resistance} "
+            f"| multiplier {mult} -> {resisted}"
+        )
+        mult = resisted
+
+    # Held items such as the elemental pellets add raw power. They are
+    # deliberately kept out of `mult`, which is returned to the caller and
+    # drives the element effectiveness message in the combat state.
+    held_item_factor = held_item_element_modifier(technique, user)
+    move_strength = technique.power * mult * held_item_factor
     logger.debug(
-        f"  move_strength = power({technique.power}) * mult({mult}) = {move_strength}"
+        f"  move_strength = power({technique.power}) * mult({mult}) "
+        f"* held_item({held_item_factor}) = {move_strength}"
     )
 
     damage = int(user_strength * move_strength / target_resist)

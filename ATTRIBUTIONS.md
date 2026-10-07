@@ -947,6 +947,8 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 
 * ["Spyder Pass"](https://wiki.tuxemon.org/File:Item5.png) adapted by Sanglorian from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
+* ["Element Mantle"](https://wiki.tuxemon.org/index.php?title=File:Element-mantles.png) adapted by Sanglorian from a sprite by Archeia, licensed under [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+
 * ["Bivouac"](https://wiki.tuxemon.org/File:Pixel_icons_by_oceansdream4.png) [http://opengameart.org/content/various-inventory-24-pixel-icon-set CC BY 3.0 on OGA, from OceansDream]
 
 * ["Tuxepedia App"](https://wiki.tuxemon.org/File:Tuxepedia.png) [https://github.com/Tuxemon/Tuxemon/issues/452 Original source]
@@ -1056,6 +1058,8 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 * ["Elixir of Life"](https://wiki.tuxemon.org/File:P_Blue02_-_24x24.png) Adapted by Sanglorian from Henrique Lazarini. 
 
 * ["Horseshoe"](https://wiki.tuxemon.org/File:Horseshoe.png) Adapted by Sanglorian from the Superpowers Asset Packs.
+
+* ["Element Pellet"](https://wiki.tuxemon.org/File:Horseshoe.png) Adapted by Sanglorian from OceansDream. [http://opengameart.org/content/various-inventory-24-pixel-icon-set CC BY 3.0 on OGA]
 
 * ["Marble"](https://wiki.tuxemon.org/File:Pixel_icons_by_oceansdream23.png) [http://opengameart.org/content/various-inventory-24-pixel-icon-set CC BY 3.0 on OGA, from OceansDream]
 

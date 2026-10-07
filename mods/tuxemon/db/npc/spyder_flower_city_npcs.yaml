@@ -168,3 +168,13 @@
     sprite_name: fisher_fiery
     combat_sheet: fisher_red
     slug: fisher
+- slug: spyder_flowerscoop_orla
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: shopassistant_red
+    combat_sheet: shopassistant
+    slug: shopassistant

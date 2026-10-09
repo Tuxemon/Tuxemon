@@ -197,10 +197,6 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
         active = self.combat_session.active_monsters
         tracker = self.combat_session.swap_tracker
 
-        # If all monsters are active, no swap is possible
-        if len(character.monsters) <= len(active):
-            return False
-
         for mon in character.monsters:
             if mon.is_fainted:
                 continue

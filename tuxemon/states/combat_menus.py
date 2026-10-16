@@ -94,25 +94,23 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
 
     def _clear_tech_overlay(self) -> None:
         """Remove technique icons/text from the overlay."""
-        if self.range_icon_sprite:
-            if self.range_icon_sprite in self.sprites:
-                self.sprites.remove(self.range_icon_sprite)
-            self.range_icon_sprite = None
+        if self.range_icon_sprite and self.range_icon_sprite in self.sprites:
+            self.sprites.remove(self.range_icon_sprite)
+        self.range_icon_sprite = None
 
-        if self.speed_icon_sprite:
-            if self.speed_icon_sprite in self.sprites:
-                self.sprites.remove(self.speed_icon_sprite)
-            self.speed_icon_sprite = None
+        if self.speed_icon_sprite and self.speed_icon_sprite in self.sprites:
+            self.sprites.remove(self.speed_icon_sprite)
+        self.speed_icon_sprite = None
 
-        if self.type_icon_sprites:
-            for spr in self.type_icon_sprites:
-                if spr in self.sprites:
-                    self.sprites.remove(spr)
+        for spr in self.type_icon_sprites:
+            if spr in self.sprites:
+                self.sprites.remove(spr)
+        self.type_icon_sprites.clear()
 
-        if self.text_sprites:
-            for spr in self.text_sprites.values():
-                if spr in self.sprites:
-                    self.sprites.remove(spr)
+        for spr in self.text_sprites.values():
+            if spr in self.sprites:
+                self.sprites.remove(spr)
+        self.text_sprites.clear()
 
     def calculate_menu_rectangle(self) -> Rect:
         rect_screen = self.client.context.rect.copy()
@@ -413,27 +411,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                 screen_w, screen_h = self.client.context.resolution
 
                 # --- Clear old sprites if they exist ---
-                if self.range_icon_sprite:
-                    if self.range_icon_sprite in self.sprites:
-                        self.sprites.remove(self.range_icon_sprite)
-                    self.range_icon_sprite = None
-
-                if self.speed_icon_sprite:
-                    if self.speed_icon_sprite in self.sprites:
-                        self.sprites.remove(self.speed_icon_sprite)
-                    self.speed_icon_sprite = None
-
-                if self.type_icon_sprites:
-                    for spr in self.type_icon_sprites:
-                        if spr in self.sprites:
-                            self.sprites.remove(spr)
-                self.type_icon_sprites = []
-
-                if self.text_sprites:
-                    for spr in self.text_sprites.values():
-                        if spr in self.sprites:
-                            self.sprites.remove(spr)
-                self.text_sprites = {}
+                self._clear_tech_overlay()
 
                 # --- Technique reference ---
                 tech = menu.get_selected_item()

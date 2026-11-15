@@ -1,0 +1,133 @@
+# Weather Transition Configuration
+# Each top-level key represents a current weather state (e.g., sunny, cloudy).
+# Under each key is a list of possible transitions to other weather states.
+#
+# Attributes:
+# - next_slug: The target weather state to transition into.
+# - trigger_chance: Probability (0.0–1.0) that this transition will occur during a turn.
+# - min_duration_seconds: (Optional) Minimum time in seconds before this transition becomes eligible (If None, transition is instantly eligible).
+# - max_duration_seconds: (Optional) Maximum time in seconds after which this transition is no longer allowed.
+#
+# - required_temperature: (Optional) The *current* temperature must match this for the rule to be eligible.
+# Options: freezing, cold, mild, warm, hot, scorching
+# - required_wind: (Optional) The *current* wind must match this for the rule to be eligible.
+# Options: calm, breezy, windy, gusty, stormy
+#
+# - temperature: (Optional) General temperature category for the *next* weather.
+# Options: freezing, cold, mild, warm, hot, scorching
+# - wind: (Optional) Wind intensity level for the *next* weather.
+# Options: calm, breezy, windy, gusty, stormy
+#
+# Example (Transition to rain only possible if currently warm, within 5-10 minutes):
+# - next_slug: rain
+# trigger_chance: 0.1
+# min_duration_seconds: 300 # 5 minutes
+# max_duration_seconds: 600 # 10 minutes
+# required_temperature: warm
+# temperature: mild
+# wind: breezy
+
+sunny:
+  - next_slug: cloudy
+    trigger_chance: 0.2
+    max_duration_seconds: 3600
+  - next_slug: hot
+    trigger_chance: 0.1
+    min_duration_seconds: 1800 
+    temperature: scorching
+  - next_slug: windy
+    trigger_chance: 0.1
+    wind: breezy
+  - next_slug: rain
+    trigger_chance: 0.05
+    required_temperature: warm
+  - next_slug: misty
+    trigger_chance: 0.05
+
+cloudy:
+  - next_slug: sunny
+    trigger_chance: 0.4
+  - next_slug: rain
+    trigger_chance: 0.3
+    required_wind: calm
+  - next_slug: foggy
+    trigger_chance: 0.1
+    min_duration_seconds: 600
+  - next_slug: windy
+    trigger_chance: 0.1
+
+rain:
+  - next_slug: thunderstorm
+    trigger_chance: 0.05
+    min_duration_seconds: 120
+    wind: stormy
+  - next_slug: misty
+    trigger_chance: 0.1
+  - next_slug: cloudy
+    trigger_chance: 0.3
+  - next_slug: snow
+    trigger_chance: 0.05
+    required_temperature: cold
+    temperature: freezing
+
+thunderstorm:
+  - next_slug: rain
+    trigger_chance: 0.3
+    max_duration_seconds: 1800
+  - next_slug: cloudy
+    trigger_chance: 0.2
+  - next_slug: foggy
+    trigger_chance: 0.1
+
+foggy:
+  - next_slug: misty
+    trigger_chance: 0.2
+  - next_slug: cloudy
+    trigger_chance: 0.3
+  - next_slug: sunny
+    trigger_chance: 0.1
+    max_duration_seconds: 7200
+
+misty:
+  - next_slug: foggy
+    trigger_chance: 0.2
+  - next_slug: rain
+    trigger_chance: 0.2
+  - next_slug: cloudy
+    trigger_chance: 0.2
+
+windy:
+  - next_slug: cloudy
+    trigger_chance: 0.3
+  - next_slug: sunny
+    trigger_chance: 0.2
+  - next_slug: freezing
+    trigger_chance: 0.05
+    temperature: cold
+
+hot:
+  - next_slug: sunny
+    trigger_chance: 0.3
+    temperature: warm
+  - next_slug: cloudy
+    trigger_chance: 0.2
+  - next_slug: rain
+    trigger_chance: 0.05
+    required_wind: calm
+
+freezing:
+  - next_slug: snow
+    trigger_chance: 0.2
+  - next_slug: cloudy
+    trigger_chance: 0.2
+  - next_slug: sunny
+    trigger_chance: 0.1
+
+snow:
+  - next_slug: freezing
+    trigger_chance: 0.2
+    required_wind: stormy
+  - next_slug: cloudy
+    trigger_chance: 0.2
+  - next_slug: sunny
+    trigger_chance: 0.1

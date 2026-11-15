@@ -1,0 +1,10 @@
+slug: 37707_male_missing
+speech:
+  profile:
+    default: {}
+combat: {}
+audio: {}
+template:
+  sprite_name: 37707_male_missing
+  combat_sheet: adventurer
+  slug: noclass

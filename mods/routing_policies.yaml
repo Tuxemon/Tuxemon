@@ -1,0 +1,66 @@
+# Routing policies control how monsters and items are handled when added to a trainer's
+# party or storage.
+# Each policy is identified by a unique name (e.g., "default", "example_policy").
+# You can define multiple policies and assign them to NPCs or players via scripts or
+# savegame data.
+#
+# ─── Field Reference ─────────────────────────────────────────────────────────────
+# max_box_capacity: Optional override for the default box capacity (MAX_KENNEL or MAX_LOCKER).
+#                  Example: 20 → box is full at 20 monsters/items.
+# force_to_box: If true, all monsters go directly to the box instead of the party.
+# kennel_override: Optional override for the default monster box name (KENNEL). Use null to disable.
+# locker_override: Optional override for the default item box name (LOCKER). Use null to disable.
+# overflow_kennel: Optional secondary monster box used if the primary kennel is full.
+#                  If also full, kennel_name_rules may be used to create overflow boxes.
+# overflow_locker: Optional secondary item box used if the primary locker is full.
+#                  If also full, locker_name_rules may be used to create overflow boxes.
+# max_party_size: Maximum number of monsters allowed in the party. -1 means unlimited party size.
+# allow_party_addition: If false, monsters are never allowed in the party.
+# auto_release_if_box_full: If true, monsters are released when the box is full and no overflow strategy applies.
+# auto_discard_if_box_full: If true, items are discarded when the box is full and no overflow strategy applies.
+# nickname_rules:
+#   prefix: Prefix added to nicknames. Example: "Elite-" → "Elite-Rockitten"
+#   suffix: Suffix added to nicknames. Example: "-X" → "Rockitten-X"
+# kennel_name_rules:
+#   prefix: Prefix added to monster box name suffix. Example: "_" → "KENNEL_1"
+#   suffix: Suffix added to monster box name suffix. Example: "-X" → "KENNEL_1-X"
+# locker_name_rules:
+#   prefix: Prefix added to item box name suffix. Example: "_" → "LOCKER_1"
+#   suffix: Suffix added to item box name suffix. Example: "-X" → "LOCKER_1-X"
+# ────────────────────────────────────────────────────────────────────────────────
+
+default:
+  force_to_box: false     # If true, all monsters go directly to the box instead of the party.
+  kennel_override: null   # Optional: override the default box name (KENNEL). Use null to disable.
+  locker_override: null
+  max_party_size: null
+  allow_party_addition: true
+  auto_release_if_box_full: false
+  auto_discard_if_box_full: false
+  overflow_kennel: null
+  overflow_locker: null
+  max_box_capacity: null
+  nickname_rules: {}
+  kennel_name_rules:
+    prefix: "_"
+    suffix: ""
+  locker_name_rules: {}
+
+example_policy:
+  # ── Routing Behavior ───────────────────────
+  force_to_box: true                 # Monsters will always be routed to the box.
+  kennel_override: "example_kennel"  # Monsters will be placed in this specific box instead of the default.
+
+  # ── Party Constraints ──────────────────────
+  allow_party_addition: false        # Prevents monsters from ever joining the party.
+  auto_release_if_box_full: false    # If true, monsters are released when the box is full.
+
+  # ── Nickname Customization ────────────────
+  nickname_rules:                    # Rules for formatting monster nicknames.
+    prefix: "Elite-"
+    suffix: "-X"
+
+unlimited_party:
+  force_to_box: false
+  allow_party_addition: true
+  max_party_size: -1                 # -1 means unlimited party size

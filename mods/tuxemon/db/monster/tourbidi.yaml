@@ -1,0 +1,61 @@
+slug: tourbidi
+species: elf_ring
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: solar_synthesis
+- level_learned: 1
+  technique: pollen_blast
+- level_learned: 4
+  technique: sleeping_powder
+- level_learned: 7
+  technique: walls
+- level_learned: 13
+  technique: midnight_mantle
+- level_learned: 16
+  technique: web
+- level_learned: 19
+  technique: phantasmal_force
+- level_learned: 25
+  technique: ring
+- level_learned: 28
+  technique: ants
+- level_learned: 31
+  technique: stabilo
+- level_learned: 37
+  technique: one_two
+- level_learned: 40
+  technique: all_in
+evolutions: []
+history:
+- slug: tourbidi
+  stage: standalone
+  evolves_from: []
+  evolves_into: []
+terrains: []
+tags:
+- light
+- plant
+- healing
+shape: humanoid
+stage: standalone
+types:
+- wood
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 123
+height: 42
+weight: 14
+sounds:
+  combat_call:
+    sfx: sound_weird_09
+    volume: 1.5
+  faint_call:
+    sfx: sound_weird_09_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.9
+upper_catch_resistance: 1.15

@@ -1,0 +1,182 @@
+- slug: spyder_walled_crassus
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_walled_crassus1
+        post_battle_win: null
+        post_battle_lose: spyder_walled_crassus2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: ceo
+    combat_sheet: ceo
+    slug: ceo
+- slug: spyder_walled_alexander
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_walled_alexander1
+        post_battle_win: null
+        post_battle_lose: spyder_walled_alexander2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: ceo
+    combat_sheet: ceo
+    slug: ceo
+- slug: spyder_walled_rufus
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_walled_rufus1
+        post_battle_win: null
+        post_battle_lose: spyder_walled_rufus2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: cooldude
+    combat_sheet: cooldude
+    slug: cooldude
+- slug: spyder_walled_vanderbilt
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_walled_vanderbilt1
+        post_battle_win: null
+        post_battle_lose: spyder_walled_vanderbilt2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: ceo
+    combat_sheet: ceo
+    slug: ceo
+- slug: spyder_walled_astor
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_walled_astor1
+        post_battle_win: null
+        post_battle_lose: spyder_walled_astor2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: cooldude
+    combat_sheet: cooldude
+    slug: cooldude
+- slug: spyder_walled_ford
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_walled_ford1
+        post_battle_win: null
+        post_battle_lose: spyder_walled_ford2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: picnicker
+    combat_sheet: picnicker
+    slug: picnicker
+- slug: spyder_walled_girard
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_walled_girard1
+        post_battle_win: null
+        post_battle_lose: spyder_walled_girard2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: ceo
+    combat_sheet: ceo
+    slug: ceo
+- slug: spyder_walled_augustus
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_walled_augustus1
+        post_battle_win: null
+        post_battle_lose: spyder_walled_augustus2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: ceo
+    combat_sheet: ceo
+    slug: ceo
+- slug: spyder_walled_fugger
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_walled_fugger1
+        post_battle_win: null
+        post_battle_lose: spyder_walled_fugger2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: ceo
+    combat_sheet: ceo
+    slug: ceo
+- slug: spyder_walled_carnegie
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_walled_carnegie1
+        post_battle_win: null
+        post_battle_lose: spyder_walled_carnegie2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: ceo
+    combat_sheet: ceo
+    slug: ceo
+- slug: spyder_walled_osman
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_walled_osman1
+        post_battle_win: null
+        post_battle_lose: spyder_walled_osman2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: cooldude
+    combat_sheet: cooldude
+    slug: cooldude
+- slug: spyder_walled_musa
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_walled_musa1
+        post_battle_win: null
+        post_battle_lose: spyder_walled_musa2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: ceo
+    combat_sheet: ceo
+    slug: ceo
+- slug: spyder_walled_midas
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_walled_midas1
+        post_battle_win: null
+        post_battle_lose: spyder_walled_midas2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: picnicker
+    combat_sheet: picnicker
+    slug: picnicker

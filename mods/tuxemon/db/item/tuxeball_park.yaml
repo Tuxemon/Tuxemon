@@ -1,0 +1,26 @@
+conditions:
+- type: wild_monster
+  operator: is
+effects:
+- type: park
+  parameters:
+  - capture
+slug: tuxeball_park
+sort: utility
+sprite: gfx/items/tuxeball_park.png
+category: capture
+usable_in:
+- MainParkMenuState
+modifiers: []
+behaviors:
+  throwable: true
+use_failure: generic_failure
+use_item: combat_used_x
+use_success: generic_success
+visuals:
+  animation: capture_1
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: null
+  volume: 0.0

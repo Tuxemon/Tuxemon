@@ -1,0 +1,27 @@
+effects:
+- type: teleport_item
+  parameters:
+  - center
+slug: escape_key
+sort: utility
+sprite: gfx/items/escape_key.png
+category: none
+cost: 600
+usable_in:
+- WorldState
+modifiers: []
+behaviors:
+  consumable: true
+  resellable: true
+  requires_monster_menu: false
+  show_dialog_on_success: false
+use_failure: generic_failure
+use_item: combat_used_x
+use_success: generic_success
+visuals:
+  animation: null
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: null
+  volume: 0.0

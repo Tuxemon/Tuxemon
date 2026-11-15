@@ -1,0 +1,110 @@
+- slug: eclipse_crystal_magician_fiery
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: magician_fiery
+    combat_sheet: magician
+    slug: magician
+- slug: eclipse_crystal_homemaker
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: homemaker_fiery
+    combat_sheet: heroine
+    slug: homemaker
+- slug: eclipse_crystal_barmaid
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: barmaid_red
+    combat_sheet: barmaid
+    slug: barmaid
+- slug: eclipse_crystal_granny
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: granny
+    combat_sheet: adventurer
+    slug: granny
+- slug: eclipse_crystal_maniac_green
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: maniac_green
+    combat_sheet: adventurer
+    slug: maniac
+- slug: eclipse_crystal_monk_orange
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: monk_orange
+    combat_sheet: monk
+    slug: monk
+- slug: eclipse_crystal_tennisplayer
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: tennisplayer
+    combat_sheet: tennisplayer
+    slug: tennisplayer
+- slug: eclipse_crystal_shopkeeper
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: shopassistant_black
+    combat_sheet: shopassistant
+    slug: shopassistant
+- slug: eclipse_cathedral_jada
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: nurse
+    combat_sheet: nurse
+    slug: nurse
+- slug: eclipse_cathedral_nurse
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: nurse
+    combat_sheet: nurse
+    slug: nurse
+- slug: eclipse_cathedral_enforcer
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: knight
+    combat_sheet: enforcer_rookie
+    slug: enforcer_rookie

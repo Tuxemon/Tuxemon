@@ -1,0 +1,27 @@
+conditions:
+- type: facing_sprite
+  parameters:
+  - boulder
+  operator: is
+effects:
+- type: remove_entity
+slug: sledgehammer
+sort: utility
+sprite: gfx/items/sledgehammer.png
+category: destroy
+usable_in:
+- WorldState
+modifiers: []
+behaviors:
+  consumable: false
+  requires_monster_menu: false
+use_failure: generic_failure
+use_item: combat_used_x
+use_success: spyder_successful_boulder
+visuals:
+  animation: null
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: null
+  volume: 0.0

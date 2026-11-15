@@ -1,0 +1,37 @@
+tech_id: 52
+accuracy: 0.8
+effects:
+- type: multiattack
+  parameters:
+  - '2'
+speed: normal
+potency: 0.0
+power: 2
+range: touch
+recharge: 2
+slug: one_two
+sort: damage
+modifiers: []
+behaviors: {}
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: simple
+tags:
+- fists
+types:
+- heroic
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: triple_whammy_80
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_kick
+  volume: 1.5

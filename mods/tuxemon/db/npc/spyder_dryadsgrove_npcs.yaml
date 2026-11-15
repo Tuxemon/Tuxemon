@@ -1,0 +1,101 @@
+- slug: spyder_dryadsgrove_aquemini
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_dryadsgrove_aquemini1
+        post_battle_win: null
+        post_battle_lose: spyder_dryadsgrove_aquemini2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: woodnymph
+    combat_sheet: waternymph
+    slug: waternymph
+- slug: spyder_dryadsgrove_ferris
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_dryadsgrove_ferris1
+        post_battle_win: null
+        post_battle_lose: spyder_dryadsgrove_ferris2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: woodnymph
+    combat_sheet: metalnymph
+    slug: metalnymph
+- slug: spyder_dryadsgrove_ignatia
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_dryadsgrove_ignatia1
+        post_battle_win: null
+        post_battle_lose: spyder_dryadsgrove_ignatia2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: firenymph
+    combat_sheet: firenymph
+    slug: firenymph
+- slug: spyder_dryadsgrove_petra
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_dryadsgrove_petra1
+        post_battle_win: null
+        post_battle_lose: spyder_dryadsgrove_petra2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: woodnymph
+    combat_sheet: earthnymph
+    slug: earthnymph
+- slug: spyder_dryadsgrove_sylvia
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_dryadsgrove_sylvia1
+        post_battle_win: null
+        post_battle_lose: spyder_dryadsgrove_sylvia2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: woodnymph
+    combat_sheet: woodnymph
+    slug: woodnymph
+- slug: spyder_volcoli
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: volcoli
+    combat_sheet: noclass
+    slug: noclass
+    is_static_prop: true
+- slug: spyder_dryadsgrove_boy
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: childactor_black
+    combat_sheet: yellowbelt
+    slug: childactor
+- slug: spyder_dryadsgrove_dad
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: beachcomber_gray
+    combat_sheet: yellowbelt
+    slug: beachcomber

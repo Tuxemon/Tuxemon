@@ -1,0 +1,62 @@
+slug: tikorch
+species: taboo
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: fire_ball
+- level_learned: 1
+  technique: blossom
+- level_learned: 4
+  technique: saber
+- level_learned: 7
+  technique: gust
+- level_learned: 13
+  technique: petrify
+- level_learned: 31
+  technique: rock
+- level_learned: 37
+  technique: berserk
+- level_learned: 40
+  technique: flamethrower
+- level_learned: 55
+  technique: energy_beam
+evolutions: []
+history:
+- slug: tikorch
+  stage: stage1
+  evolves_from:
+  - tikoal
+  evolves_into: []
+- slug: tikoal
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - tikorch
+terrains: []
+tags:
+- plant
+- flame
+- summoner
+shape: blob
+stage: stage1
+types:
+- wood
+- fire
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 80
+height: 136
+weight: 44
+sounds:
+  combat_call:
+    sfx: sound_spell_fire_06
+    volume: 1.5
+  faint_call:
+    sfx: sound_spell_fire_06_faint
+    volume: 1.5
+catch_rate: 70.0
+lower_catch_resistance: 0.9
+upper_catch_resistance: 1.15

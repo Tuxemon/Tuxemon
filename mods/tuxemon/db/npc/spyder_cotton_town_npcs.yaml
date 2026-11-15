@@ -1,0 +1,308 @@
+- slug: spyder_cottontown_barmaid
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: barmaid
+    combat_sheet: barmaid
+    slug: barmaid
+- slug: spyder_cottontown_monk
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: monk
+    combat_sheet: monk
+    slug: monk
+- slug: spyder_cottontown_hacker
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: magician
+    combat_sheet: magician
+    slug: magician
+- slug: spyder_cottonhouse1_rodger
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: firefighter
+    combat_sheet: firefighter
+    slug: firefighter
+- slug: spyder_cottonhouse1_lila
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: homemaker_blonde
+    combat_sheet: adventurer
+    slug: homemaker
+- slug: spyder_cottoncafe_juliana
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: homemaker_black
+    combat_sheet: adventurer
+    slug: homemaker
+- slug: spyder_cottoncafe_cayden
+  speech:
+    profile:
+      default:
+        pre_battle: null
+        post_battle_win: null
+        post_battle_lose: spyder_lostfight
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: goth
+    combat_sheet: goth
+    slug: goth
+- slug: spyder_cottoncafe_wilford
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: shopassistant
+    combat_sheet: shopassistant
+    slug: shopassistant
+- slug: spyder_cottoncafe_hillary
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: florist_blue
+    combat_sheet: florist
+    slug: florist
+- slug: spyder_cottoncafe_lotus
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: granny_lapi
+    combat_sheet: adventurer
+    slug: granny
+- slug: spyder_cottonartshop_phoenix
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: goth
+    combat_sheet: adventurer
+    slug: goth
+- slug: spyder_cottonartshop_philis
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: granny_green
+    combat_sheet: adventurer
+    slug: granny
+- slug: spyder_cottonhouse2_sidney
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: catgirl_fiery
+    combat_sheet: catgirl
+    slug: catgirl
+- slug: spyder_cottonartshop_luvinia
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: florist
+    combat_sheet: florist
+    slug: florist
+- slug: spyder_cottonhouse2_neva
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: picnicker
+    combat_sheet: picnicker
+    slug: picnicker
+- slug: spyder_cottonhouse2_davis
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: shopkeeper_blonde
+    combat_sheet: adventurer
+    slug: shopkeeper
+- slug: spyder_cottonartshop_carter
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: shopkeeper_brown
+    combat_sheet: adventurer
+    slug: shopkeeper
+- slug: spyder_cottoncenter_ada
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: nurse_green
+    combat_sheet: nurse
+    slug: nurse
+- slug: spyder_shopkeeper
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: shopkeeper
+    combat_sheet: adventurer
+    slug: shopkeeper
+- slug: spyder_cottontunnel_box1
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: box
+    combat_sheet: noclass
+    slug: noclass
+    is_static_prop: true
+- slug: spyder_cottontunnel_box2
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: box
+    combat_sheet: noclass
+    slug: noclass
+    is_static_prop: true
+- slug: spyder_cottontunnel_box3
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: box
+    combat_sheet: noclass
+    slug: noclass
+    is_static_prop: true
+- slug: spyder_cottontunnel_box4
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: box
+    combat_sheet: noclass
+    slug: noclass
+    is_static_prop: true
+- slug: spyder_cottontunnel_box5
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: box
+    combat_sheet: noclass
+    slug: noclass
+    is_static_prop: true
+- slug: spyder_cottontunnel_box6
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: box
+    combat_sheet: noclass
+    slug: noclass
+    is_static_prop: true
+- slug: spyder_cottontunnel_professor
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor_fiery
+    combat_sheet: professor
+    slug: professor
+- slug: spyder_cottontunnel_shopassistant
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: shopassistant_black
+    combat_sheet: shopassistant
+    slug: shopassistant
+- slug: spyder_cottontunnel_carlos
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_cottontunnel_carlos1
+        post_battle_win: null
+        post_battle_lose: spyder_cottontunnel_carlos2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: dragonrider_black
+    combat_sheet: dragonrider
+    slug: dragonrider
+- slug: spyder_confusedperson
+  speech:
+    profile:
+      default:
+        pre_battle: null
+        post_battle_win: null
+        post_battle_lose: spyder_confused2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: childactor_fiery
+    combat_sheet: tennisplayer_fiery
+    slug: childactor

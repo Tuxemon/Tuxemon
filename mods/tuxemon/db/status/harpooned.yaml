@@ -1,0 +1,23 @@
+modifiers: []
+behaviors: {}
+category: negative
+effects:
+- type: harpooned
+  parameters:
+  - '8'
+icon: gfx/ui/icons/status/icon_harpooned.png
+on_positive_status: replaced
+on_negative_status: replaced
+slug: harpooned
+sort: meta
+cond_id: 27
+use_failure: null
+use_success: combat_state_harpooned_get
+gain_cond: null
+visuals:
+  animation: null
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_pulse
+  volume: 1.5

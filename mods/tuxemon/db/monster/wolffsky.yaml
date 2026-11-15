@@ -1,0 +1,64 @@
+slug: wolffsky
+species: lupine
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: fluff_up
+- level_learned: 1
+  technique: ice_claw
+- level_learned: 4
+  technique: stonehenge
+- level_learned: 7
+  technique: barking
+- level_learned: 13
+  technique: canine
+- level_learned: 16
+  technique: frostbite
+- level_learned: 19
+  technique: icicle_spear
+- level_learned: 25
+  technique: fume
+- level_learned: 28
+  technique: greenstone
+- level_learned: 31
+  technique: invictus
+- level_learned: 37
+  technique: ice_storm
+- level_learned: 40
+  technique: overgrowth
+evolutions: []
+history:
+- slug: wolffsky
+  stage: standalone
+  evolves_from: []
+  evolves_into: []
+terrains:
+- boreal_snow
+- woodland
+tags:
+- bite
+- ice
+- darkness
+shape: hunter
+stage: standalone
+types:
+- wood
+- frost
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 231
+height: 130
+weight: 50
+sounds:
+  combat_call:
+    sfx: sound_bark
+    volume: 1.5
+  faint_call:
+    sfx: sound_bark_faint
+    volume: 1.5
+catch_rate: 70.0
+lower_catch_resistance: 0.9
+upper_catch_resistance: 1.15

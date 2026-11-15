@@ -1,0 +1,16 @@
+example_trap:
+  expire_time: 30.0        # Maximum time (in seconds) the trap/fishing rod remains active before expiring
+  max_distance: 8          # Maximum distance (in tiles) the player can move away before the trap expires
+  trigger_chance: 0.6      # Probability (0–1) that the trap/fishing rod will successfully trigger an encounter
+  failure_dialog: "trap_failed"     # Dialog key shown if the trap is sprung but no monster is caught
+  success_dialog: "trap_triggered"  # Dialog key shown when the trap successfully catches a monster
+  level_bounds: [2, 5]     # Minimum and maximum monster level range for encounters (randomly chosen between 2–5)
+  weight_bounds: [10.0, 200.0]      # Optional minimum and maximum monster body weight in kilograms allowed for encounters
+  stages: ["basic", "stage1"]       # Allowed monster evolutionary stages that can be selected
+  stage_weights:            # Weight modifiers for stage selection (higher = more likely)
+    basic: 1.0
+    advanced: 0.5
+  shapes: ["hunter", "varmint"]     # Allowed monster shapes/types (taxonomy categories)
+  shape_weights:            # Weight modifiers for shape selection
+    hunter: 1.0
+    varmint: 0.8

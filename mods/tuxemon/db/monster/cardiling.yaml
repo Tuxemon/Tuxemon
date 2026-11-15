@@ -1,0 +1,78 @@
+slug: cardiling
+species: firebird
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: wing_tip
+- level_learned: 1
+  technique: arcane_eye
+- level_learned: 7
+  technique: tinder
+- level_learned: 10
+  technique: breathe_fire
+- level_learned: 13
+  technique: fire_claw
+- level_learned: 19
+  technique: saber
+- level_learned: 25
+  technique: kindling_flame
+- level_learned: 28
+  technique: peregrine
+- level_learned: 31
+  technique: ten_thousand_feathers
+- level_learned: 40
+  technique: berserk
+- level_learned: 43
+  technique: all_in
+- level_learned: 46
+  technique: flamethrower
+evolutions:
+- at_level: 18
+  monster_slug: cardiwing
+history:
+- slug: cardiling
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - cardiwing
+- slug: cardiwing
+  stage: stage1
+  evolves_from:
+  - cardiling
+  evolves_into:
+  - cardinale
+- slug: cardinale
+  stage: stage2
+  evolves_from:
+  - cardiwing
+  evolves_into: []
+terrains:
+- grassland
+- jungle
+- woodland
+tags:
+- flame
+- bird
+shape: flier
+stage: basic
+types:
+- fire
+- sky
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 62
+height: 30
+weight: 2
+sounds:
+  combat_call:
+    sfx: sound_woosh_1
+    volume: 1.5
+  faint_call:
+    sfx: sound_woosh_1_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.25

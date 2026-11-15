@@ -1,0 +1,39 @@
+tech_id: 231
+accuracy: 1.0
+effects:
+- type: give
+  parameters:
+  - diehard
+  - own_monster
+speed: normal
+potency: 1.0
+power: 0.0
+range: special
+recharge: 3
+slug: diet
+sort: damage
+modifiers: []
+behaviors: {}
+target:
+  enemy_monster: false
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: true
+  own_team: false
+  own_trainer: false
+category: condition_imposer
+tags:
+- food
+- soldier
+types:
+- normal
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: egg_crack
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_bounce
+  volume: 1.5

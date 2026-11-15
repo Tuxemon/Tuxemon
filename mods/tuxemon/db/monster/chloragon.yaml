@@ -1,0 +1,77 @@
+slug: chloragon
+species: dragon
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: ram
+- level_learned: 1
+  technique: flower_armor
+- level_learned: 4
+  technique: greenstone
+- level_learned: 7
+  technique: negation
+- level_learned: 13
+  technique: overfeed
+- level_learned: 16
+  technique: hibernate
+- level_learned: 31
+  technique: leaf_barrage
+- level_learned: 37
+  technique: one_two
+- level_learned: 40
+  technique: fluff_up
+- level_learned: 55
+  technique: whirlwind
+- level_learned: 61
+  technique: flower_bloom
+- level_learned: 64
+  technique: shadow_boxing
+- level_learned: 70
+  technique: energy_beam
+evolutions:
+- at_level: 32
+  monster_slug: sapragon
+history:
+- slug: chloragon
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - sapragon
+- slug: sapragon
+  stage: stage1
+  evolves_from:
+  - chloragon
+  evolves_into:
+  - dragarbor
+- slug: dragarbor
+  stage: stage2
+  evolves_from:
+  - sapragon
+  evolves_into: []
+terrains:
+- jungle
+tags:
+- plant
+- bite
+shape: dragon
+stage: basic
+types:
+- wood
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 140
+height: 102
+weight: 85
+sounds:
+  combat_call:
+    sfx: sound_bite_cartoon_style
+    volume: 1.5
+  faint_call:
+    sfx: sound_bite_cartoon_style_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.25

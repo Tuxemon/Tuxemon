@@ -1,0 +1,7 @@
+map_types:
+  - name: notype
+  - name: town
+  - name: route
+  - name: clinic
+  - name: shop
+  - name: dungeon

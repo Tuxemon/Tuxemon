@@ -1,0 +1,27 @@
+# ------------------------------------------------------------------------------------
+# RADIO_MAP_LISTS
+# ------------------------------------------------------------------------------------
+# This section defines which radio stations are available in each map region.
+# 
+# Keys:
+#   - Each key represents a map slug (e.g., "map_spyder_cotton_town").
+#   - The special key "all_maps" lists stations available globally across all maps.
+#
+# Values:
+#   - Each value is a list of station slugs (e.g., "station_news_88_3").
+#   - These slugs must correspond to entries in the RADIO_DATA section.
+#
+# Notes:
+#   - Map-specific stations override or extend the global list.
+#   - If a map does not have a specific entry, the system falls back to "all_maps".
+#   - This structure allows dynamic station availability based on player location.
+# ------------------------------------------------------------------------------------
+
+all_maps:
+  - station_scrambled_frequency # Always available (static noise fallback)
+
+spyder_paper_rival_bedroom:
+  - station_route_rhythms
+
+spyder_leather_house1:
+  - station_route_rhythms

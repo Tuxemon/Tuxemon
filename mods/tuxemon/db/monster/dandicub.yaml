@@ -1,0 +1,60 @@
+slug: dandicub
+species: floret
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: pollen_blast
+- level_learned: 1
+  technique: solar_synthesis
+- level_learned: 4
+  technique: sylvan
+- level_learned: 7
+  technique: fester
+- level_learned: 13
+  technique: sleeping_powder
+- level_learned: 25
+  technique: energy_claws
+- level_learned: 28
+  technique: one_two
+- level_learned: 31
+  technique: all_in
+evolutions:
+- at_level: 18
+  monster_slug: dandylion
+history:
+- slug: dandicub
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - dandylion
+- slug: dandylion
+  stage: stage1
+  evolves_from:
+  - dandicub
+  evolves_into: []
+terrains: []
+tags:
+- plant
+- bite
+shape: blob
+stage: basic
+types:
+- wood
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 73
+height: 46
+weight: 2
+sounds:
+  combat_call:
+    sfx: sound_cat_meow3
+    volume: 1.5
+  faint_call:
+    sfx: sound_cat_meow3_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.05

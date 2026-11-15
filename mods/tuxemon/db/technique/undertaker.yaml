@@ -1,0 +1,42 @@
+tech_id: 152
+accuracy: 1
+effects:
+- type: give
+  parameters:
+  - prickly
+  - enemy_monster
+- type: sacrifice
+  parameters:
+  - '1'
+speed: extremely_slow
+potency: 1
+power: 1
+range: melee
+recharge: 1
+slug: undertaker
+sort: damage
+modifiers: []
+behaviors: {}
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: exotic
+tags:
+- ghost
+- ground
+types:
+- shadow
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: x_attack
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_pulse
+  volume: 1.5

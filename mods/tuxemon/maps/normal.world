@@ -1,0 +1,125 @@
+{
+    "maps": [
+        {
+            "fileName": "route1.tmx",
+            "height": 672,
+            "width": 944,
+            "x": -16,
+            "y": 0
+        },
+        {
+            "fileName": "taba_town.tmx",
+            "height": 960,
+            "width": 1024,
+            "x": 928,
+            "y": 0
+        },
+        {
+            "fileName": "route1_sanglorian.tmx",
+            "height": 320,
+            "width": 640,
+            "x": 112,
+            "y": -320
+        },
+        {
+            "fileName": "cotton_town.tmx",
+            "height": 640,
+            "width": 640,
+            "x": 112,
+            "y": -960
+        },
+        {
+            "fileName": "dryadsgrove.tmx",
+            "height": 320,
+            "width": 640,
+            "x": 752,
+            "y": -960
+        },
+        {
+            "fileName": "route2.tmx",
+            "height": 320,
+            "width": 640,
+            "x": -528,
+            "y": -640
+        },
+        {
+            "fileName": "citypark.tmx",
+            "height": 640,
+            "width": 640,
+            "x": -528,
+            "y": -1280
+        },
+        {
+            "fileName": "leather_town.tmx",
+            "height": 640,
+            "width": 640,
+            "x": 112,
+            "y": -1600
+        },
+        {
+            "fileName": "route3.tmx",
+            "height": 640,
+            "width": 640,
+            "x": 112,
+            "y": -2240
+        },
+        {
+            "fileName": "route4.tmx",
+            "height": 640,
+            "width": 320,
+            "x": 432,
+            "y": -2880
+        },
+        {
+            "fileName": "flower_city.tmx",
+            "height": 640,
+            "width": 640,
+            "x": 752,
+            "y": -2896
+        },
+        {
+            "fileName": "route5.tmx",
+            "height": 320,
+            "width": 640,
+            "x": 1392,
+            "y": -2896
+        },
+        {
+            "fileName": "routea.tmx",
+            "height": 640,
+            "width": 320,
+            "x": 752,
+            "y": -3536
+        },
+        {
+            "fileName": "timber_town.tmx",
+            "height": 640,
+            "width": 640,
+            "x": 2032,
+            "y": -3216
+        },
+        {
+            "fileName": "tunnel.tmx",
+            "height": 640,
+            "width": 320,
+            "x": 2352,
+            "y": -3856
+        },
+        {
+            "fileName": "route6.tmx",
+            "height": 320,
+            "width": 640,
+            "x": 1712,
+            "y": -3856
+        },
+        {
+            "fileName": "candy_town.tmx",
+            "height": 640,
+            "width": 640,
+            "x": 1712,
+            "y": -4496
+        }
+    ],
+    "onlyShowAdjacentMaps": false,
+    "type": "world"
+}

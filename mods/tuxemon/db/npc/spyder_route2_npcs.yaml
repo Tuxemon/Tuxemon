@@ -1,0 +1,42 @@
+- slug: spyder_route2_marion
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_route2_marion1
+        post_battle_win: null
+        post_battle_lose: spyder_route2_marion2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: picnicker
+    combat_sheet: picnicker
+    slug: picnicker
+- slug: spyder_route2_graf
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_route2_graf1
+        post_battle_win: null
+        post_battle_lose: spyder_route2_graf2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: tennisplayer_green
+    combat_sheet: tennisplayer
+    slug: tennisplayer
+- slug: spyder_route2_roddick
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_route2_roddick1
+        post_battle_win: null
+        post_battle_lose: spyder_route2_roddick2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: tennisplayer_fiery
+    combat_sheet: tennisplayer
+    slug: tennisplayer

@@ -1,0 +1,76 @@
+slug: weedsea
+species: seaweed
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: water_bullet
+- level_learned: 1
+  technique: solar_synthesis
+- level_learned: 4
+  technique: overgrowth
+- level_learned: 10
+  technique: flood
+- level_learned: 13
+  technique: stabilo
+- level_learned: 19
+  technique: nest
+- level_learned: 25
+  technique: water_blast
+- level_learned: 31
+  technique: blossom
+- level_learned: 37
+  technique: energy_field
+- level_learned: 40
+  technique: woodsmash
+- level_learned: 55
+  technique: energy_beam
+evolutions:
+- monster_slug: weedlantis
+  party_conditions:
+    monster_slugs:
+      shrab: 1
+- monster_slug: weedlantis
+  party_conditions:
+    monster_slugs:
+      lesmagu: 1
+history:
+- slug: weedsea
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - weedlantis
+  - weedlantis
+- slug: weedlantis
+  stage: stage1
+  evolves_from:
+  - weedsea
+  - weedsea
+  evolves_into: []
+terrains:
+- coastal
+- sea
+tags:
+- plant
+- water
+shape: blob
+stage: basic
+types:
+- water
+- wood
+gender_weights:
+  neuter: 1.0
+txmn_id: 352
+height: 100
+weight: 10
+sounds:
+  combat_call:
+    sfx: sound_splash_1
+    volume: 1.5
+  faint_call:
+    sfx: sound_splash_1_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.05

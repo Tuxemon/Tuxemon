@@ -1,8 +1,0 @@
-{
-  "slug": "water",
-  "battle_graphics": {
-    "island_back":"water_back_island.png",
-    "island_front":"water_front_island.png"
-  },
-  "battle_music":"music_battle_loop"
-}

@@ -1,0 +1,42 @@
+monsters:
+- encounter_rate: 0.5
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 2
+  - 4
+  monster: chloragon
+  variables: []
+- encounter_rate: 0.5
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 2
+  - 4
+  monster: chillimp
+  variables: []
+- encounter_rate: 0.5
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 3
+  - 6
+  monster: coproblight
+  variables: []
+- encounter_rate: 0.5
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 3
+  - 6
+  monster: pilthropus
+  variables: []
+- encounter_rate: 0.5
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 3
+  - 6
+  monster: teddisun
+  variables: []
+slug: new_txmn

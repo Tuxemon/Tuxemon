@@ -1,0 +1,64 @@
+slug: merlicun
+species: dragon_worm
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: fire_ball
+- level_learned: 1
+  technique: fire_claw
+- level_learned: 4
+  technique: muddle
+- level_learned: 7
+  technique: breathe_fire
+- level_learned: 13
+  technique: chameleon
+- level_learned: 16
+  technique: kindling_flame
+- level_learned: 28
+  technique: sunburst
+- level_learned: 31
+  technique: magma
+- level_learned: 37
+  technique: arcane_eye
+- level_learned: 40
+  technique: battery_acid
+evolutions:
+- at_level: 20
+  monster_slug: firomenis
+history:
+- slug: merlicun
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - firomenis
+- slug: firomenis
+  stage: stage1
+  evolves_from:
+  - merlicun
+  evolves_into: []
+terrains: []
+tags:
+- bug
+shape: varmint
+stage: basic
+types:
+- cosmic
+- normal
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 209
+height: 28
+weight: 3
+sounds:
+  combat_call:
+    sfx: sound_spell_fire_06
+    volume: 1.5
+  faint_call:
+    sfx: sound_spell_fire_06_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.9
+upper_catch_resistance: 1.15

@@ -1,0 +1,65 @@
+slug: tux
+species: penguin
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: peck
+- level_learned: 1
+  technique: flow
+- level_learned: 4
+  technique: mobbing
+- level_learned: 7
+  technique: flood
+- level_learned: 13
+  technique: font
+- level_learned: 16
+  technique: starfall
+- level_learned: 19
+  technique: grinding
+- level_learned: 25
+  technique: blood_bond
+- level_learned: 28
+  technique: tux_attack
+- level_learned: 31
+  technique: frostbite
+- level_learned: 37
+  technique: tsunami
+- level_learned: 40
+  technique: shapechange
+evolutions: []
+history:
+- slug: tux
+  stage: standalone
+  evolves_from: []
+  evolves_into: []
+terrains:
+- boreal_snow
+- coastal
+tags:
+- water
+- ice
+- leadership
+- rock
+shape: flier
+stage: standalone
+types:
+- frost
+- heroic
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 254
+height: 115
+weight: 55
+sounds:
+  combat_call:
+    sfx: sound_tux
+    volume: 1.5
+  faint_call:
+    sfx: sound_tux_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.05

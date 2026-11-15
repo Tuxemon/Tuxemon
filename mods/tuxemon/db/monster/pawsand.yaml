@@ -1,0 +1,85 @@
+slug: pawsand
+species: sand_pawn
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: boulder
+- level_learned: 1
+  technique: sand_spray
+- level_learned: 4
+  technique: mudslide
+- level_learned: 7
+  technique: stonehenge
+- level_learned: 13
+  technique: avalanche
+- level_learned: 19
+  technique: muck
+- level_learned: 22
+  technique: slice
+- level_learned: 25
+  technique: lineage
+- level_learned: 31
+  technique: all_in
+- level_learned: 55
+  technique: earthquake
+evolutions:
+- monster_slug: knightsand
+  item:
+    sweet_sand: 1.0
+- monster_slug: bishosand
+  item:
+    earth_booster: 1.0
+- monster_slug: rooksand
+  item:
+    pyramidion: 1.0
+history:
+- slug: pawsand
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - knightsand
+  - bishosand
+  - rooksand
+- slug: knightsand
+  stage: stage1
+  evolves_from:
+  - pawsand
+  evolves_into: []
+- slug: bishosand
+  stage: stage1
+  evolves_from:
+  - pawsand
+  evolves_into: []
+- slug: rooksand
+  stage: stage1
+  evolves_from:
+  - pawsand
+  evolves_into: []
+terrains:
+- coastal
+- desert
+tags:
+- fists
+- ground
+- water
+shape: blob
+stage: basic
+types:
+- earth
+gender_weights:
+  neuter: 1.0
+txmn_id: 372
+height: 90
+weight: 20
+sounds:
+  combat_call:
+    sfx: sound_stones_04
+    volume: 1.5
+  faint_call:
+    sfx: sound_stones_04_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.9
+upper_catch_resistance: 1.15

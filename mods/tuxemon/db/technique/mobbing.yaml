@@ -1,0 +1,35 @@
+tech_id: 115
+accuracy: 1
+effects:
+- type: damage
+speed: slow
+potency: 0.1
+power: 1.8
+range: melee
+recharge: 2
+slug: mobbing
+sort: damage
+modifiers: []
+behaviors: {}
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: simple
+tags:
+- leadership
+types:
+- shadow
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: pound
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_shine
+  volume: 1.5

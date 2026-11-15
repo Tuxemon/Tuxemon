@@ -1,0 +1,78 @@
+slug: rosarin
+species: every_thorn
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: solar_synthesis
+- level_learned: 1
+  technique: sting
+- level_learned: 4
+  technique: splinter
+- level_learned: 7
+  technique: assault
+- level_learned: 13
+  technique: blossom
+- level_learned: 16
+  technique: stabilo
+- level_learned: 19
+  technique: clairaudience
+- level_learned: 25
+  technique: fester
+- level_learned: 28
+  technique: radiance
+- level_learned: 31
+  technique: poison_courtship
+- level_learned: 37
+  technique: one_two
+- level_learned: 40
+  technique: flower_bloom
+evolutions:
+- at_level: 32
+  monster_slug: toxiris
+history:
+- slug: rosarin
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - toxiris
+- slug: toxiris
+  stage: stage1
+  evolves_from:
+  - rosarin
+  evolves_into:
+  - ninjasmine
+- slug: ninjasmine
+  stage: stage2
+  evolves_from:
+  - toxiris
+  evolves_into: []
+terrains:
+- grassland
+- jungle
+- woodland
+tags:
+- love
+- plant
+- toxic
+shape: humanoid
+stage: basic
+types:
+- wood
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 204
+height: 48
+weight: 14
+sounds:
+  combat_call:
+    sfx: sound_cute_03
+    volume: 1.5
+  faint_call:
+    sfx: sound_cute_03_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.9
+upper_catch_resistance: 1.15

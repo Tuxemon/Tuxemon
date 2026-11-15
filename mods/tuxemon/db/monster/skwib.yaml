@@ -1,0 +1,61 @@
+slug: skwib
+species: naive
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: flood
+- level_learned: 1
+  technique: flow
+- level_learned: 4
+  technique: mobbing
+- level_learned: 7
+  technique: orbs
+- level_learned: 13
+  technique: spit_poison
+- level_learned: 16
+  technique: font
+- level_learned: 19
+  technique: goad
+- level_learned: 25
+  technique: feint
+- level_learned: 28
+  technique: venomous_tentacle
+evolutions:
+- at_level: 18
+  monster_slug: octabode
+history:
+- slug: skwib
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - octabode
+- slug: octabode
+  stage: stage1
+  evolves_from:
+  - skwib
+  evolves_into: []
+terrains: []
+tags:
+- pseudopod
+shape: polliwog
+stage: basic
+types:
+- normal
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 183
+height: 30
+weight: 9
+sounds:
+  combat_call:
+    sfx: sound_cute_01
+    volume: 1.5
+  faint_call:
+    sfx: sound_cute_01_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.05

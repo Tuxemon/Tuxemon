@@ -1,0 +1,25 @@
+events:
+  Create Nurse:
+    actions:
+    - create_npc eclipse_cathedral_nurse,5,4
+    - set_teleport_faint player,eclipse_obsidian_center.tmx,6,7
+    - load_yaml spyder_cathedral
+    conditions:
+    - not char_exists eclipse_cathedral_nurse
+    type: event
+  Go Outside:
+    actions:
+    - transition_teleport player,eclipse_obsidian_town.tmx,16,9,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,down
+    type: event
+    x: 6
+    y: 10
+  Route Music:
+    actions:
+    - play_music music_cathedral_theme
+    conditions:
+    - not music_playing music_cathedral_theme
+    type: event

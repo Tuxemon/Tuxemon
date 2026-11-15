@@ -1,0 +1,17 @@
+modifiers: []
+behaviors: {}
+effects: []
+icon: gfx/ui/icons/status/icon_eliminated.png
+slug: eliminated
+sort: meta
+cond_id: 0
+use_failure: null
+use_success: null
+gain_cond: null
+visuals:
+  animation: null
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_pulse
+  volume: 1.5

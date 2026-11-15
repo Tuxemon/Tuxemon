@@ -1,0 +1,13 @@
+default:
+  background: "gfx/ui/item/item_menu_bg.png"
+
+  # Configuration for the training shop service.
+  base_cost_per_level: 100
+    
+  # Defines the cost scaling type.
+  # Options: "linear", "polynomial", "exponential"
+  cost_scaling_type: "linear"
+      
+  # Parameters for the polynomial cost function:
+  # Cost = (level ^ exponent) * base_cost_per_level
+  polynomial_exponent: null

@@ -1,0 +1,64 @@
+slug: graffiki
+species: gamut
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: tail_lash
+- level_learned: 1
+  technique: goad
+- level_learned: 4
+  technique: changeling
+- level_learned: 7
+  technique: muddle
+- level_learned: 13
+  technique: shuriken
+- level_learned: 16
+  technique: arcane_eye
+- level_learned: 19
+  technique: ruby
+- level_learned: 25
+  technique: crystal
+- level_learned: 28
+  technique: beam
+- level_learned: 31
+  technique: lightning_spheres
+- level_learned: 37
+  technique: sunburst
+- level_learned: 40
+  technique: meltdown
+evolutions: []
+history:
+- slug: graffiki
+  stage: standalone
+  evolves_from: []
+  evolves_into: []
+terrains: []
+tags:
+- soldier
+- bomber
+- gadgets
+- summoner
+- shapeshifter
+- tail
+shape: humanoid
+stage: standalone
+types:
+- normal
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 302
+height: 65
+weight: 13
+sounds:
+  combat_call:
+    sfx: sound_spell_fire_07
+    volume: 1.5
+  faint_call:
+    sfx: sound_spell_fire_07_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.9
+upper_catch_resistance: 1.15

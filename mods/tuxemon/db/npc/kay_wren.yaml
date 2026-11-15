@@ -1,0 +1,10 @@
+slug: kay_wren
+speech:
+  profile:
+    default: {}
+combat: {}
+audio: {}
+template:
+  sprite_name: professor
+  combat_sheet: professor
+  slug: professor

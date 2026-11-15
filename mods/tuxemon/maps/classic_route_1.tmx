@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.12.1-8-g449813058" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="295">
+ <properties>
+  <property name="edges" value="clamped"/>
+  <property name="map_type" value="route"/>
+  <property name="slug" value="classic_route_1"/>
+ </properties>
+ <tileset firstgid="1" source="../gfx/tilesets/core_city_and_country.tsx"/>
+ <tileset firstgid="1441" source="../gfx/tilesets/core_outdoor.tsx"/>
+ <tileset firstgid="4216" source="../gfx/tilesets/core_set pieces.tsx"/>
+ <tileset firstgid="5766" source="../gfx/tilesets/core_buildings.tsx"/>
+ <tileset firstgid="8116" source="../gfx/tilesets/core_outdoor_water.tsx"/>
+ <tileset firstgid="16308" source="../gfx/tilesets/core_outdoor_nature.tsx"/>
+ <layer id="1" name="Tile Layer 1" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eAHt0iERAAAMA7Gi4fpXWxdDAW/gL72k8oABBhhggAEGGGCAAQYeDAxMckTB
+  </data>
+ </layer>
+ <layer id="2" name="Tile Layer 2" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eAHNl0FOAzEMRb1iAWyBbbkGIBGWnIKwbLkDXAGJU7Rdc59yEvBXee1gJZl22pGIZP3G/3/HdVRmWN2bfXlozZLZi8fNidmtx50HOfGrXy1YysEdiqqtNUlm1x5ai2S29HjyvrLHswc58WjBUg7uUFRtrZy8D4+5R2uJRwtOCzm4QzHOv9Ub3L6ej3OcdaxpJml9r2C9wpZBC26Z43/KaX2v4NupWV+gBWv611Arzl2+qIm1Sp6oifshHtWY+Cz0GwRj3dIeLVjSxBxaUHzfHKTJI95Vt4ch58jfN/fSd6x5Slqdscs56CIybzDypT1asKSJObRg5GcP/vzxiPk88v1yXt85C+9tWeivdlfU7SL3t48H/xCPvMwbpF4L0YItLRxakHwJmYO4/E/ut9SnckPmHj1WWY87PEMr1k2aeYMbovEBLSjp51nD0KC+Kz7q5fT3WUqpmk98zYP3mLjrXb13vice9TH1vwkKZjk28k4+T2YX/g586XHloT0cPag/VpzpWPvuO3n3fwn1AcfZP9yafwI=
+  </data>
+ </layer>
+ <layer id="3" name="Tile Layer 3" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eAHt0DEBAAAAwqD1T20LL4hAYcCAAQMGDBgwYMCAgc/AAAyAAAE=
+  </data>
+ </layer>
+ <layer id="4" name="Tile Layer 4" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eAHt0DEBAAAAwqD1T20LL4hAYcCAAQMGDBgwYMCAgc/AAAyAAAE=
+  </data>
+ </layer>
+ <layer id="5" name="Above Player" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eAFjYBgFoyEwGgKjITAaAqMhMBoCoyEwGgKjITA4Q+CBPQPDQyCmNj04fTsyXAUAJpkYtg==
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" id="6" name="Collisions">
+  <properties>
+   <property name="Collision" value=""/>
+  </properties>
+  <object id="179" type="collision" x="240" y="32" width="368" height="16"/>
+  <object id="285" type="collision" x="400" y="80" width="64" height="208"/>
+  <object id="286" type="collision" x="176" y="48" width="64" height="192"/>
+  <object id="287" type="collision" x="16" y="32" width="16" height="256"/>
+  <object id="288" type="collision" x="608" y="48" width="32" height="240"/>
+  <object id="289" type="collision" x="48" y="288" width="352" height="16"/>
+ </objectgroup>
+ <objectgroup color="#ffff00" id="7" name="Events">
+  <object id="228" name="Play Music" type="event" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="play_music music_town_theme"/>
+    <property name="cond1" value="not music_playing music_town_theme"/>
+   </properties>
+  </object>
+  <object id="210" name="Environment Day" type="event" x="16" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_environment grass"/>
+    <property name="cond1" value="not time_is stage_of_day,equals,night"/>
+    <property name="cond3" value="not environment_is grass"/>
+   </properties>
+  </object>
+  <object id="211" name="Environment Night" type="event" x="32" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_environment night_grass"/>
+    <property name="cond1" value="is time_is stage_of_day,equals,night"/>
+    <property name="cond3" value="not environment_is night_grass"/>
+   </properties>
+  </object>
+  <object id="290" name="Random Encounters 1" type="event" x="32" y="80" width="144" height="160">
+   <properties>
+    <property name="act1" value="random_encounter spyder_citypark,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_moved player"/>
+   </properties>
+  </object>
+  <object id="291" name="Random Encounters 2" type="event" x="240" y="80" width="160" height="160">
+   <properties>
+    <property name="act1" value="random_encounter spyder_citypark,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_moved player"/>
+   </properties>
+  </object>
+  <object id="292" name="Random Encounters 3" type="event" x="464" y="80" width="144" height="160">
+   <properties>
+    <property name="act1" value="random_encounter spyder_citypark,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_moved player"/>
+   </properties>
+  </object>
+  <object id="293" name="Teleport to Hearthrock" type="event" x="512" y="304" width="48" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport player,classic_hearthrock_city.tmx,33,0,0.3"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
+   </properties>
+  </object>
+  <object id="294" name="Teleport to Steamshore" type="event" x="80" y="0" width="48" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport player,classic_steamshore_city.tmx,6,19,0.3"/>
+    <property name="act2" value="char_face player,up"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

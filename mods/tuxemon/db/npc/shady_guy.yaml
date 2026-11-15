@@ -1,0 +1,10 @@
+slug: shady_guy
+speech:
+  profile:
+    default: {}
+combat: {}
+audio: {}
+template:
+  sprite_name: ninja
+  combat_sheet: ninja
+  slug: ninja

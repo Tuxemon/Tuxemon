@@ -1,0 +1,28 @@
+modifiers: []
+behaviors: {}
+category: negative
+effects:
+- type: statchange
+- type: exhausted
+icon: gfx/ui/icons/status/icon_exhausted.png
+on_negative_status: replaced
+slug: exhausted
+sort: meta
+stat_modifiers:
+  melee:
+    value: 0.5
+    operation: '*'
+  ranged:
+    value: 0.5
+    operation: '*'
+cond_id: 11
+use_failure: null
+use_success: combat_state_exhausted_get
+gain_cond: null
+visuals:
+  animation: null
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_pulse
+  volume: 1.5

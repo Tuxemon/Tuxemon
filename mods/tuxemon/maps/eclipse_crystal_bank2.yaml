@@ -1,0 +1,136 @@
+events:
+  Environment:
+    actions:
+    - set_environment interior
+    conditions:
+    - not environment_is interior
+    type: event
+  Play Music:
+    actions:
+    - play_music music_omnichannel
+    conditions:
+    - not music_playing music_omnichannel
+    type: event
+  Teleport to Bank 1:
+    actions:
+    - transition_teleport player,eclipse_crystal_bank1.tmx,1,10,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,up
+    x: 1
+    y: 14
+    type: event
+  Teleport to Bank 3:
+    actions:
+    - transition_teleport player,eclipse_crystal_bank3.tmx,2,12,0.3
+    - char_face player,up
+    conditions:
+    - is char_at player
+    - is char_facing player,up
+    x: 2
+    y: 9
+    type: event
+  Create Jeff:
+    actions:
+    - create_npc eclipse_bank_jeff,4,15
+    - char_face eclipse_bank_jeff,up
+    conditions:
+    - not char_exists eclipse_bank_jeff
+    type: event
+  Create Raj:
+    actions:
+    - create_npc eclipse_bank_raj,3,2
+    conditions:
+    - not char_exists eclipse_bank_raj
+    type: event
+  Create Lile:
+    actions:
+    - create_npc eclipse_bank_lile,10,18,wander
+    conditions:
+    - not char_exists eclipse_bank_lile
+    type: event
+  Create Kai:
+    actions:
+    - create_npc eclipse_bank_kai,11,3
+    - char_face eclipse_bank_kai,up
+    conditions:
+    - not char_exists eclipse_bank_kai
+    type: event
+  Rubbish Bin:
+    actions:
+    - translated_dialog eclipse_bank_bin1
+    - translated_dialog eclipse_bank_bin2
+    - translated_dialog eclipse_bank_bin3
+    - set_variable eclipse_rubbish:yes
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed INTERACT
+    height: 1
+    width: 2
+    x: 1
+    y: 18
+    type: event
+  Battle Lile:
+    actions:
+    - char_talk eclipse_bank_lile,pre_battle
+    - random_monster 40,eclipse_bank_lile,5,10
+    - start_battle player,eclipse_bank_lile
+    - char_talk eclipse_bank_lile,post_battle_lose
+    behav:
+    - talk eclipse_bank_lile
+    conditions:
+    - not battle_outcome player,won,eclipse_bank_lile
+    type: event
+  Battle Raj:
+    actions:
+    - char_talk eclipse_bank_raj,pre_battle
+    - random_monster 40,eclipse_bank_raj,5,10
+    - start_battle player,eclipse_bank_raj
+    - char_talk eclipse_bank_raj,post_battle_lose
+    behav:
+    - talk eclipse_bank_raj
+    conditions:
+    - not battle_outcome player,won,eclipse_bank_raj
+    type: event
+  Battle Kai:
+    actions:
+    - char_talk eclipse_bank_kai,pre_battle
+    - random_monster 40,eclipse_bank_kai,5,10
+    - start_battle player,eclipse_bank_kai
+    - char_talk eclipse_bank_kai,post_battle_lose
+    behav:
+    - talk eclipse_bank_kai
+    conditions:
+    - not battle_outcome player,won,eclipse_bank_kai
+    type: event
+  Post Talk Kai:
+    actions:
+    - char_talk eclipse_bank_kai,post_battle_lose
+    behav:
+    - talk eclipse_bank_kai
+    conditions:
+    - is battle_outcome player,won,eclipse_bank_kai
+    type: event
+  Post Talk Raj:
+    actions:
+    - char_talk eclipse_bank_raj,post_battle_lose
+    behav:
+    - talk eclipse_bank_raj
+    conditions:
+    - is battle_outcome player,won,eclipse_bank_raj
+    type: event
+  Post Talk Lile:
+    actions:
+    - char_talk eclipse_bank_lile,post_battle_lose
+    behav:
+    - talk eclipse_bank_lile
+    conditions:
+    - is battle_outcome player,won,eclipse_bank_lile
+    type: event
+  Talk Jeff:
+    actions:
+    - translated_dialog eclipse_bank_jeff1
+    behav:
+    - talk eclipse_bank_jeff
+    type: event

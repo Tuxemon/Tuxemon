@@ -1,0 +1,82 @@
+monsters:
+- encounter_rate: 3
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 5
+  - 8
+  monster: cardiling
+  variables:
+    - key: daytime
+      value: "true"
+- encounter_rate: 1
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 8
+  - 11
+  monster: cardiwing
+  variables:
+    - key: daytime
+      value: "true"
+- encounter_rate: 3
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 6
+  - 9
+  monster: cataspike
+  variables:
+    - key: daytime
+      value: "true"
+- encounter_rate: 3
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 5
+  - 8
+  monster: eyenemy
+  variables:
+    - key: daytime
+      value: "true"
+- encounter_rate: 3
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 8
+  - 12
+  monster: axolightl
+  variables:
+    - key: daytime
+      value: "false"
+- encounter_rate: 1
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 8
+  - 12
+  monster: tourbidi
+  variables:
+    - key: daytime
+      value: "false"
+- encounter_rate: 3
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 8
+  - 12
+  monster: squabbit
+  variables:
+    - key: daytime
+      value: "false"
+- encounter_rate: 1
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 9
+  - 14
+  monster: puparmor
+  variables:
+    - key: daytime
+      value: "false"
+slug: spyder_citypark

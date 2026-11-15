@@ -1,0 +1,28 @@
+# Configuration for creature capture mechanics.
+
+total_shakes: 4
+# Number of times the capture device shakes.
+
+shake_constant: 524325
+# Constant used in the shake check calculation.
+# This constant is a scaling factor that affects the overall
+# probability of a successful capture.
+
+shake_denominator: 8
+# Denominator in the shake check calculation.
+# This value scales the result of the shake check,
+# affecting the sensitivity of the capture rate.
+
+shake_divisor: 65536
+# Divisor used to calculate the final capture probability.
+# Represents the total possible outcomes,
+# allowing for fine-grained probability calculations.
+
+shake_hp_multiplier: 3
+# Multiplier applied to the target monster's maximum HP in the catch_check calculation.
+
+shake_current_hp_multiplier: 2
+# Multiplier applied to the target monster's current HP in the catch_check calculation.
+
+shake_hp_divisor: 3
+# Divisor applied to the HP-related component of the catch_check calculation.

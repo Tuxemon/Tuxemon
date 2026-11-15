@@ -1,0 +1,11 @@
+slug: spyder_screen
+speech:
+  profile:
+    default: {}
+combat: {}
+audio: {}
+template:
+  sprite_name: screen
+  combat_sheet: noclass
+  slug: noclass
+  is_static_prop: true

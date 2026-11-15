@@ -1,0 +1,65 @@
+# Appearance options shown at character creation.
+# The slugs match the `race_choice` values used by start_tuxemon.yaml and
+# tuxemon/entity/appearance.py (DEFAULT_RACE_MAPPING), so picking one stores
+# the correct race directly. These are only used as sprite previews in the
+# ChoiceNpc menu; they are never placed on a map.
+- slug: white_male
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: adventurer
+    combat_sheet: adventurer
+    slug: adventurer
+- slug: black_male
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: adventurerblack
+    combat_sheet: adventurerblack
+    slug: adventurer
+- slug: white_female
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: heroine
+    combat_sheet: heroine
+    slug: heroine
+- slug: black_female
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: brownheroine_brown
+    combat_sheet: heroineblack
+    slug: heroine
+- slug: gender_enby
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: enbyasian
+    combat_sheet: enbyasian
+    slug: noclass
+- slug: gender_whatever
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: penguin
+    combat_sheet: penguin
+    slug: noclass

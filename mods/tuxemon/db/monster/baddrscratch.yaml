@@ -1,0 +1,63 @@
+slug: baddrscratch
+species: fuminous
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: assault
+- level_learned: 1
+  technique: invictus
+- level_learned: 4
+  technique: canine
+- level_learned: 7
+  technique: rock
+- level_learned: 10
+  technique: energy_claws
+- level_learned: 19
+  technique: berserk
+- level_learned: 40
+  technique: earthquake
+evolutions: []
+history:
+- slug: baddrscratch
+  stage: stage1
+  evolves_from:
+  - babysnitch
+  evolves_into: []
+- slug: babysnitch
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - baddrscratch
+terrains:
+- boreal_snow
+- mountains
+- underground
+tags:
+- bite
+- claws
+- fury
+- ground
+- darkness
+shape: hunter
+stage: stage1
+types:
+- earth
+- shadow
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 351
+height: 140
+weight: 65
+sounds:
+  combat_call:
+    sfx: sound_weird_09
+    volume: 1.5
+  faint_call:
+    sfx: sound_weird_09_faint
+    volume: 1.5
+catch_rate: 70.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.05

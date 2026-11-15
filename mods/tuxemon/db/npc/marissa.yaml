@@ -1,0 +1,10 @@
+slug: marissa
+speech:
+  profile:
+    default: {}
+combat: {}
+audio: {}
+template:
+  sprite_name: girl1
+  combat_sheet: heroine
+  slug: heroine

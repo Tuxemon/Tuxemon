@@ -1,0 +1,75 @@
+slug: sharpfin
+species: rip
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: goad
+- level_learned: 1
+  technique: flood
+- level_learned: 4
+  technique: geyser
+- level_learned: 7
+  technique: grinding
+- level_learned: 13
+  technique: flow
+- level_learned: 16
+  technique: splinter
+- level_learned: 19
+  technique: web
+- level_learned: 25
+  technique: water_blast
+- level_learned: 31
+  technique: chill_mist
+- level_learned: 40
+  technique: all_in
+- level_learned: 55
+  technique: frostbite
+evolutions: []
+history:
+- slug: sharpfin
+  stage: stage1
+  evolves_from:
+  - dollfin
+  - dollfin
+  evolves_into: []
+- slug: dollfin
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - bigfin
+  - bigfin
+  - sharpfin
+  - sharpfin
+  - delfeco
+terrains:
+- coastal
+- freshwater
+- sea
+tags:
+- water
+- bite
+- sharp
+- plant
+shape: piscine
+stage: stage1
+types:
+- water
+- heroic
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 26
+height: 300
+weight: 200
+sounds:
+  combat_call:
+    sfx: sound_bite_cartoon_style
+    volume: 1.5
+  faint_call:
+    sfx: sound_bite_cartoon_style_faint
+    volume: 1.5
+catch_rate: 70.0
+lower_catch_resistance: 0.85
+upper_catch_resistance: 1.1

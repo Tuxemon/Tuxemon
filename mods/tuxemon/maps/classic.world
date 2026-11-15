@@ -1,0 +1,111 @@
+{
+    "maps": [
+        {
+            "fileName": "classic_hearthrock_city.tmx",
+            "height": 320,
+            "width": 640,
+            "x": 1104,
+            "y": 1344
+        },
+        {
+            "fileName": "classic_route_1.tmx",
+            "height": 320,
+            "width": 640,
+            "x": 1104,
+            "y": 1024
+        },
+        {
+            "fileName": "classic_steamshore_city.tmx",
+            "height": 320,
+            "width": 640,
+            "x": 1104,
+            "y": 704
+        },
+        {
+            "fileName": "classic_route_2.tmx",
+            "height": 320,
+            "width": 640,
+            "x": 1744,
+            "y": 704
+        },
+        {
+            "fileName": "classic_thornwood_city.tmx",
+            "height": 320,
+            "width": 640,
+            "x": 2384,
+            "y": 704
+        },
+        {
+            "fileName": "classic_route_7.tmx",
+            "height": 320,
+            "width": 640,
+            "x": 2384,
+            "y": 1024
+        },
+        {
+            "fileName": "classic_stormpeak_city.tmx",
+            "height": 320,
+            "width": 640,
+            "x": 2384,
+            "y": -256
+        },
+        {
+            "fileName": "classic_route_8.tmx",
+            "height": 320,
+            "width": 640,
+            "x": 1744,
+            "y": 1344
+        },
+        {
+            "fileName": "classic_umbrastar_city.tmx",
+            "height": 320,
+            "width": 640,
+            "x": 4944,
+            "y": 704
+        },
+        {
+            "fileName": "classic_route_6.tmx",
+            "height": 320,
+            "width": 640,
+            "x": 4304,
+            "y": 704
+        },
+        {
+            "fileName": "classic_valorhold_city.tmx",
+            "height": 320,
+            "width": 640,
+            "x": 2384,
+            "y": 1344
+        },
+        {
+            "fileName": "classic_route_5.tmx",
+            "height": 320,
+            "width": 640,
+            "x": 3024,
+            "y": 704
+        },
+        {
+            "fileName": "classic_aerolume_city.tmx",
+            "height": 320,
+            "width": 640,
+            "x": 3664,
+            "y": 704
+        },
+        {
+            "fileName": "classic_route_4.tmx",
+            "height": 320,
+            "width": 640,
+            "x": 2384,
+            "y": 64
+        },
+        {
+            "fileName": "classic_route_3.tmx",
+            "height": 320,
+            "width": 640,
+            "x": 2384,
+            "y": 384
+        }
+    ],
+    "onlyShowAdjacentMaps": false,
+    "type": "world"
+}

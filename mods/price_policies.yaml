@@ -1,0 +1,17 @@
+black_market:
+  discount:
+    default: 0.05          # Applies a 5% discount to all item types unless specifically overridden
+    cureall: 0.9            # Applies a special 10% discount for potion items
+  tax: 0.0                 # No additional tax is added to base item prices in this policy
+  fee: 50                  # A fixed transaction fee of 50 units is charged per purchase
+  resell_bonus: 0.2        # When reselling, the item's base value is increased by 20%
+  resell_tax: 0.1          # A 10% tax is applied to the resell value (after the bonus)
+  seller_fee: 25           # A fixed 25-unit fee is deducted when the player sells the item
+
+faction_member:
+  discount: 0.15           # A flat 15% discount on all items for faction members
+  tax: 0.02                # A small 2% tax is added to item prices
+  fee: 10                  # Low transaction fee of 10 units per purchase
+  resell_bonus: 0.1        # Resell value boosted by 10% for faction members
+  resell_tax: 0.03         # Only 3% of resell value is taxed—more favorable than black market
+  seller_fee: 0            # No seller fee charged when selling items

@@ -1,0 +1,82 @@
+monsters:
+- encounter_rate: 3
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 13
+  - 16
+  monster: cairfrey
+  variables:
+    - key: daytime
+      value: "true"
+- encounter_rate: 3
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 13
+  - 16
+  monster: polyrock
+  variables:
+    - key: daytime
+      value: "true"
+- encounter_rate: 1
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 14
+  - 17
+  monster: djinnbo
+  variables:
+    - key: daytime
+      value: "true"
+- encounter_rate: 3
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 13
+  - 16
+  monster: pigabyte
+  variables:
+    - key: daytime
+      value: "true"
+- encounter_rate: 3
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 14
+  - 18
+  monster: cairfrey
+  variables:
+    - key: daytime
+      value: "false"
+- encounter_rate: 3
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 14
+  - 18
+  monster: polyrock
+  variables:
+    - key: daytime
+      value: "false"
+- encounter_rate: 1
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 14
+  - 18
+  monster: djinnbo
+  variables:
+    - key: daytime
+      value: "false"
+- encounter_rate: 3
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 14
+  - 18
+  monster: pigabyte
+  variables:
+    - key: daytime
+      value: "false"
+slug: spyder_mansion

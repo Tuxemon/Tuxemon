@@ -1,0 +1,72 @@
+slug: capinyah
+species: woodwose
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: punch
+- level_learned: 1
+  technique: fluff_up
+- level_learned: 4
+  technique: sting
+- level_learned: 7
+  technique: overgrowth
+- level_learned: 13
+  technique: walls
+- level_learned: 16
+  technique: orbs
+- level_learned: 19
+  technique: changeling
+- level_learned: 25
+  technique: phantasmal_force
+- level_learned: 28
+  technique: clairaudience
+- level_learned: 31
+  technique: splinter
+- level_learned: 37
+  technique: one_two
+- level_learned: 40
+  technique: blossom
+- level_learned: 43
+  technique: pseudopod
+- level_learned: 49
+  technique: sylvan
+- level_learned: 52
+  technique: shadow_boxing
+evolutions: []
+history:
+- slug: capinyah
+  stage: stage1
+  evolves_from:
+  - capiti
+  evolves_into: []
+- slug: capiti
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - capinyah
+terrains: []
+tags:
+- fists
+- rock
+shape: humanoid
+stage: stage1
+types:
+- heroic
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 103
+height: 160
+weight: 55
+sounds:
+  combat_call:
+    sfx: sound_cat_purr_twit5
+    volume: 1.5
+  faint_call:
+    sfx: sound_cat_purr_twit5_faint
+    volume: 1.5
+catch_rate: 70.0
+lower_catch_resistance: 0.9
+upper_catch_resistance: 1.15

@@ -1,0 +1,53 @@
+---
+id: org.tuxemon.Tuxemon
+runtime: org.freedesktop.Platform
+runtime-version: "24.08"
+sdk: org.freedesktop.Sdk
+command: org.tuxemon.Tuxemon
+rename-icon: icon
+
+finish-args:
+  - --socket=wayland
+  - --socket=fallback-x11
+  - --share=ipc
+  - --persist=.tuxemon/saves  # Everything is stored in the .tuxemon folder, including save files
+  - --share=network
+  - --socket=pulseaudio
+  - --device=all  # To be able to access gamepads device=all is required
+
+modules:
+  # Needed by pygame; otherwise, an error message occurs which complains about setuptools
+  - portmidi.json
+  # Needed by the rumble manager
+  - libshake.json
+  - python3-requirements.json
+
+  - name: tuxemon
+    buildsystem: simple
+    build-commands:
+      # Create the necessary directories and copy files
+      - install -d /app/share/Tuxemon
+      - cp -r tuxemon /app/share/Tuxemon
+      - install -d /app/share/Tuxemon/mods
+      - cp -r mods /app/share/Tuxemon/
+      - install -Dm755 run_tuxemon.py /app/share/Tuxemon/org.tuxemon.Tuxemon.py
+      - install -Dm755 org.tuxemon.Tuxemon /app/bin/org.tuxemon.Tuxemon
+
+    post-install:
+      - desktop-file-install --dir=/app/share/applications buildconfig/flatpak/org.tuxemon.Tuxemon.desktop
+      - install -Dm644 buildconfig/flatpak/org.tuxemon.Tuxemon.metainfo.xml /app/share/metainfo/org.tuxemon.Tuxemon.metainfo.xml
+      - install -Dm644 docs/screenshots/*.png /app/share/metainfo/
+      - install -Dm644 mods/tuxemon/gfx/icon.png /app/share/icons/hicolor/64x64/apps/icon.png
+      - install -Dm644 mods/tuxemon/gfx/icon_128.png /app/share/icons/hicolor/128x128/apps/icon.png
+      - install -Dm644 mods/tuxemon/gfx/icon_32.png /app/share/icons/hicolor/32x32/apps/icon.png
+
+    sources:
+      - type: git
+        url: https://github.com/Tuxemon/Tuxemon.git
+        commit: 4395a19ef951607da363298ff3ce92f5880289dc
+
+      - type: script
+        dest-filename: org.tuxemon.Tuxemon
+        commands:
+          - export TUXEMON_MOD_PATH=/app/share/Tuxemon/mods
+          - exec python3 /app/share/Tuxemon/org.tuxemon.Tuxemon.py "$@"

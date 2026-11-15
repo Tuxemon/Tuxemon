@@ -1,0 +1,78 @@
+slug: allagon
+species: dragon
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: tail_lash
+- level_learned: 1
+  technique: bullet
+- level_learned: 4
+  technique: viper
+- level_learned: 7
+  technique: insanity
+- level_learned: 13
+  technique: muddle
+- level_learned: 16
+  technique: strike
+- level_learned: 40
+  technique: rust_bomb
+- level_learned: 43
+  technique: shuriken
+- level_learned: 46
+  technique: wall_of_steel
+- level_learned: 61
+  technique: amnesia
+- level_learned: 64
+  technique: undertaker
+- level_learned: 70
+  technique: shadow_blast
+evolutions:
+- at_level: 54
+  monster_slug: ferricran
+history:
+- slug: allagon
+  stage: stage1
+  evolves_from:
+  - wrougon
+  evolves_into:
+  - ferricran
+- slug: wrougon
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - allagon
+- slug: ferricran
+  stage: stage2
+  evolves_from:
+  - allagon
+  evolves_into: []
+terrains:
+- ruins
+- underground
+tags:
+- steel
+- soldier
+- sharp
+- tail
+shape: dragon
+stage: stage1
+types:
+- metal
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 160
+height: 162
+weight: 145
+sounds:
+  combat_call:
+    sfx: sound_creature_roar
+    volume: 1.5
+  faint_call:
+    sfx: sound_creature_roar_faint
+    volume: 1.5
+catch_rate: 70.0
+lower_catch_resistance: 0.8
+upper_catch_resistance: 1.05

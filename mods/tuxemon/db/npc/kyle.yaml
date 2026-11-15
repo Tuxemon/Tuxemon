@@ -1,0 +1,10 @@
+slug: kyle
+speech:
+  profile:
+    default: {}
+combat: {}
+audio: {}
+template:
+  sprite_name: cooldude
+  combat_sheet: cooldude
+  slug: cooldude

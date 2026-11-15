@@ -1,0 +1,9 @@
+- file: item
+  slug: tuxeball
+  frame_x: 64
+  frame_y: 64
+
+- file: item
+  slug: capture_1
+  frame_x: 64
+  frame_y: 64

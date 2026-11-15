@@ -1,0 +1,26 @@
+conditions:
+- type: can_evolve
+  operator: is
+- type: has_path
+  parameters:
+  - scoop_badge
+  operator: is
+effects: []
+slug: scoop_badge
+sort: utility
+sprite: gfx/items/scoop_badge.png
+category: badge
+usable_in:
+- WorldState
+modifiers: []
+behaviors: {}
+use_failure: generic_failure
+use_item: combat_used_x
+use_success: generic_success
+visuals:
+  animation: null
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: null
+  volume: 0.0

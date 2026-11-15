@@ -1,0 +1,51 @@
+# Plague configuration file
+# Each plague is defined by a unique slug and its properties.
+# Example:
+#   spyderbite:                          # Unique identifier for the plague
+#     spreadness: 0.125                  # Base chance (0.0–1.0) that the plague spreads when applied
+#     carrier_spreadness: 0.05           # Optional: chance that a carrier spreads the plague (if different from infected)
+#     natural_recovery_chance: 0.1       # Optional: chance (0.0–1.0) that an infected monster recovers naturally over time
+#     symptom_onset_chance: 0.2          # Optional: chance (0.0–1.0) that symptoms visibly manifest in a carrier
+#     weight_range: [10.0, 200.0]        # Optional: (min_weight, max_weight) in kg
+#     height_range: [0.5, 2.0]           # Optional: (min_height, max_height) in meters
+#     type_weights:                      # Optional: weighted targeting by monster type
+#       serpent: 0.6                     # Serpent-type monsters are more likely to be infected
+#       poison: 0.4                      # Poison-type monsters are less likely
+#     shape_weights:                     # Optional: weighted targeting by monster shape
+#       brute: 0.7                       # Brute-shaped monsters are highly susceptible
+#       humanoid: 0.3                    # Humanoid-shaped monsters are less susceptible
+#     status_weights:                    # Optional: weighted targeting by monster status
+#       stuck: 0.8                       # Monsters that are stuck are more vulnerable
+#       poisoned: 0.2                    # Monsters already poisoned are less affected
+#     resistance_modifiers:              # Optional: resistance multipliers based on traits
+#       types:                           # Resistance by type
+#         fire: 0.5                      # Fire-type monsters resist this plague by 50%
+#       shapes:                          # Resistance by shape
+#         flier: 0.6                     # Winged monsters resist this plague by 40%
+#       statuses:                        # Resistance by status
+#         poisoned: 0.3                  # Monsters currently poisoned resist this plague by 70%
+#     inoculation:                       # Optional: inoculation-specific rules and requirements
+#       required_held_item: antidote     # Optional: monster must hold this item to be eligible
+#       eligible_types:                  # Optional: only these types can be inoculated
+#         - serpent
+#         - poison
+#       eligible_shapes:                 # Optional: only these shapes can be inoculated
+#         - humanoid
+#     cure:                              # Optional: cure configuration
+#       chance: 0.25                     # Chance (0.0–1.0) that the plague is cured when evaluated
+#       message_cured: msgid5            # "{target} looks healthier." — message shown when cured
+#       message_carrier_cured: msgid6    # "{target} was unknowingly cured." — shown when a carrier recovers silently
+#     message_spread_success: msgid1     # "{user} sneezed on {target}." — transmission attempt
+#     message_target_resists: msgid2     # "{target} wiped it off." — resisted infection
+#     message_minor_effect: msgid3       # "Ah ... Ah. {target} held in a sneeze." — minor symptom, no infection
+#     message_target_infected: msgid4    # "{target} begins to sniffle." — early symptom of successful infection
+#     message_user_suppressed: msgid7    # "{user} stifled a sneeze." — user suppressed symptoms, no spread
+#     message_symptom_onset: msgid8      # "{target} suddenly sneezes!" — symptom onset in a carrier
+
+plagues:
+  spyderbite:
+    spreadness: 0.125
+    message_spread_success: combat_state_plague2
+    message_target_resists: combat_state_plague3
+    message_minor_effect: combat_state_plague1
+    message_target_infected: combat_state_plague4

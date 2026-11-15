@@ -1,0 +1,60 @@
+slug: sapsnap
+species: barbed
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: solar_synthesis
+- level_learned: 1
+  technique: hammerhead
+- level_learned: 4
+  technique: greenstone
+- level_learned: 7
+  technique: assault
+- level_learned: 13
+  technique: fluff_up
+- level_learned: 31
+  technique: one_two
+- level_learned: 37
+  technique: all_in
+- level_learned: 40
+  technique: cutting_leaves
+evolutions: []
+history:
+- slug: sapsnap
+  stage: stage1
+  evolves_from:
+  - trapsnap
+  evolves_into: []
+- slug: trapsnap
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - sapsnap
+terrains: []
+tags:
+- plant
+- sharp
+- fury
+shape: brute
+stage: stage1
+types:
+- wood
+- shadow
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 86
+height: 210
+weight: 125
+sounds:
+  combat_call:
+    sfx: sound_growl1
+    volume: 1.5
+  faint_call:
+    sfx: sound_growl1_faint
+    volume: 1.5
+catch_rate: 70.0
+lower_catch_resistance: 0.9
+upper_catch_resistance: 1.15

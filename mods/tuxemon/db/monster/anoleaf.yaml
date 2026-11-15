@@ -1,0 +1,74 @@
+slug: anoleaf
+species: sprout
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: leaf_stab
+- level_learned: 1
+  technique: feint
+- level_learned: 4
+  technique: assault
+- level_learned: 7
+  technique: chameleon
+- level_learned: 13
+  technique: whirlwind
+- level_learned: 25
+  technique: splinter
+- level_learned: 28
+  technique: revenge_stance
+- level_learned: 31
+  technique: leaf_barrage
+- level_learned: 40
+  technique: needle
+- level_learned: 43
+  technique: all_in
+- level_learned: 46
+  technique: thorn_burst
+evolutions:
+- at_level: 18
+  monster_slug: gectile
+history:
+- slug: anoleaf
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - gectile
+- slug: gectile
+  stage: stage1
+  evolves_from:
+  - anoleaf
+  evolves_into:
+  - velocitile
+- slug: velocitile
+  stage: stage2
+  evolves_from:
+  - gectile
+  evolves_into: []
+terrains:
+- grassland
+- jungle
+- woodland
+tags:
+- plant
+shape: varmint
+stage: basic
+types:
+- wood
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 65
+height: 33
+weight: 2
+sounds:
+  combat_call:
+    sfx: sound_misc_06
+    volume: 1.5
+  faint_call:
+    sfx: sound_misc_06_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.25

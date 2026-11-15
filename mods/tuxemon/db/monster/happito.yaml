@@ -1,0 +1,65 @@
+slug: happito
+species: ecstatic_emotion
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: buzz
+- level_learned: 1
+  technique: bullet
+- level_learned: 4
+  technique: blade
+- level_learned: 7
+  technique: strike
+- level_learned: 13
+  technique: wall_of_steel
+- level_learned: 25
+  technique: mudslide
+- level_learned: 28
+  technique: ram
+- level_learned: 31
+  technique: rock
+evolutions: []
+history:
+- slug: happito
+  stage: stage1
+  evolves_from:
+  - chromeye
+  evolves_into: []
+- slug: chromeye
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - angrito
+  - happito
+  - neutrito
+  - sadito
+terrains:
+- extraplanar
+- urban
+tags:
+- mental
+- machine
+- healing
+- light
+shape: blob
+stage: stage1
+types:
+- metal
+- cosmic
+gender_weights:
+  neuter: 1.0
+txmn_id: 176
+height: 90
+weight: 55
+sounds:
+  combat_call:
+    sfx: sound_misc_07_metal
+    volume: 1.5
+  faint_call:
+    sfx: sound_misc_07_metal_faint
+    volume: 1.5
+catch_rate: 70.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.05

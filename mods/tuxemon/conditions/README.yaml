@@ -1,0 +1,14 @@
+description: >
+  Place custom condition plugins in this folder.
+  Any condition defined here will override the core condition with the same name.
+
+how_to_use:
+  - Create a .py file defining a class that inherits from CoreCondition.
+  - Set the class attribute "name" to the condition's identifier.
+  - Implement the appropriate test_* method (e.g., test_with_monster).
+  - The engine will automatically load and override matching core conditions.
+
+example:
+  file: debug_condition.py
+  class_name: DebugCondition
+  condition_name: debug_condition

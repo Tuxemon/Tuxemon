@@ -1,0 +1,66 @@
+slug: forturtle
+species: oracle_bone
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: rock
+- level_learned: 1
+  technique: energy_field
+- level_learned: 4
+  technique: tinder
+- level_learned: 7
+  technique: muck
+- level_learned: 13
+  technique: sleep_bomb
+- level_learned: 19
+  technique: staff_smash
+- level_learned: 25
+  technique: shadow_boxing
+- level_learned: 28
+  technique: flamethrower
+- level_learned: 55
+  technique: divinity_beam
+evolutions:
+- at_level: 18
+  monster_slug: prophetoise
+history:
+- slug: forturtle
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - prophetoise
+- slug: prophetoise
+  stage: stage1
+  evolves_from:
+  - forturtle
+  evolves_into: []
+terrains:
+- desert
+- jungle
+- ruins
+tags:
+- flame
+- mental
+- staff
+shape: humanoid
+stage: basic
+types:
+- cosmic
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 87
+height: 85
+weight: 55
+sounds:
+  combat_call:
+    sfx: sound_troll_01
+    volume: 1.5
+  faint_call:
+    sfx: sound_troll_01_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.25

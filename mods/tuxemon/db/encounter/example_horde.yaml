@@ -1,0 +1,50 @@
+# Unique identifier for this encounter
+slug: "example-horde-encounter"
+
+# Encounter type is HORDE (multiple monsters together)
+encounter_type: horde
+
+# Horde definition
+horde:
+  monsters:
+    - monster: "pairagrin"       # First monster in the horde
+      encounter_rate: 0.5           # 50% chance within the horde composition
+      held_items:
+        - item_slug: "potion"
+          probability: 0.4
+      level_range: [2, 4]
+      variables:
+        - key: stage_of_day
+          value: "night"
+      exp_req_mod: 1.0
+
+    - monster: "nut"      # Second monster in the horde
+      encounter_rate: 0.3
+      held_items:
+        - item_slug: "potion"
+          probability: 0.2
+      level_range: [3, 5]
+      variables:
+        - key: stage_of_day
+          value: "night"
+      exp_req_mod: 1.5
+
+    - monster: "rockitten"       # Third monster in the horde
+      encounter_rate: 0.2
+      held_items:
+        - item_slug: "potion"
+          probability: 0.1
+      level_range: [5, 7]
+      variables:
+        - key: stage_of_day
+          value: "night"
+      exp_req_mod: 2.0
+
+  horde_level_range: [3, 6]         # Base level range for the entire horde
+  horde_exp_mod: 1.3                # Horde XP modifier (30% more XP)
+
+# Zone-level scaling options
+scaling_zone: false                 # Scaling disabled for this zone
+scale_offset_range: null            # No scaling offset
+scale_multiplier: 1.0               # Default multiplier
+override_level_range: false         # Do not override monster level ranges

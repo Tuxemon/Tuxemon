@@ -1,0 +1,65 @@
+slug: furnursus
+species: fireplace
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: rock
+- level_learned: 1
+  technique: fire_ball
+- level_learned: 4
+  technique: fire_claw
+- level_learned: 7
+  technique: one_two
+- level_learned: 13
+  technique: flamethrower
+- level_learned: 25
+  technique: give_all
+- level_learned: 28
+  technique: supernova
+- level_learned: 31
+  technique: tinder
+evolutions:
+- at_level: 18
+  monster_slug: statursus
+history:
+- slug: furnursus
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - statursus
+- slug: statursus
+  stage: stage1
+  evolves_from:
+  - furnursus
+  evolves_into:
+  - coaldiak
+- slug: coaldiak
+  stage: stage2
+  evolves_from:
+  - statursus
+  evolves_into: []
+terrains: []
+tags:
+- flame
+shape: humanoid
+stage: basic
+types:
+- fire
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 190
+height: 110
+weight: 47
+sounds:
+  combat_call:
+    sfx: sound_growl1
+    volume: 1.5
+  faint_call:
+    sfx: sound_growl1_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.9
+upper_catch_resistance: 1.15

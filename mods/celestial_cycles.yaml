@@ -1,0 +1,11 @@
+# each name/phase_name needs to correspond to a msgid
+- name: "spring_solis"  # Visible in April
+  length: 365
+  phase_data:
+    - [80, "morning_glow"]        # Gradual emergence leading into visibility
+    - [60, "solar_arc"]           # Peak brightness in early April
+    - [60, "golden_crest"]        # Sustained brilliance
+    - [10, "daylight_orb"]        # Brief intense visibility
+    - [5, "waxing_flame"]         # Fading glow mid-April
+    - [5, "bright_zenith"]        # Brief flicker before disappearing
+    - [145, "twilight_fade"]      # Invisible for the rest of the year

@@ -1,0 +1,23 @@
+modifiers: []
+behaviors: {}
+category: negative
+effects:
+- type: wasting
+  parameters:
+  - '16'
+icon: gfx/ui/icons/status/icon_wasting.png
+on_positive_status: replaced
+on_negative_status: replaced
+slug: wasting
+sort: meta
+cond_id: 24
+use_failure: null
+use_success: combat_state_wasting_end
+gain_cond: combat_state_wasting_get
+visuals:
+  animation: null
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_pulse
+  volume: 1.5

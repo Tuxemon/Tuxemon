@@ -1,0 +1,61 @@
+slug: snowrilla
+species: yeti
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: ice_claw
+- level_learned: 1
+  technique: punch
+- level_learned: 4
+  technique: chill_mist
+- level_learned: 7
+  technique: flow
+- level_learned: 13
+  technique: snowstorm
+- level_learned: 25
+  technique: flood
+- level_learned: 28
+  technique: icicle_spear
+- level_learned: 40
+  technique: frostbite
+evolutions: []
+history:
+- slug: snowrilla
+  stage: stage1
+  evolves_from:
+  - chillimp
+  evolves_into: []
+- slug: chillimp
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - snowrilla
+terrains:
+- boreal_snow
+- mountains
+tags:
+- ice
+- fists
+shape: brute
+stage: stage1
+types:
+- frost
+- heroic
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 155
+height: 192
+weight: 112
+sounds:
+  combat_call:
+    sfx: sound_woosh_2
+    volume: 1.5
+  faint_call:
+    sfx: sound_woosh_2_faint
+    volume: 1.5
+catch_rate: 70.0
+lower_catch_resistance: 0.9
+upper_catch_resistance: 1.15

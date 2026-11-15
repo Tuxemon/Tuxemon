@@ -1,0 +1,17 @@
+events:
+  Go Outside:
+    actions:
+    - transition_teleport player,eclipse_obsidian_town.tmx,12,9,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,down
+    type: event
+    x: 4
+    y: 7
+  Play Music:
+    actions:
+    - play_music music_home
+    conditions:
+    - not music_playing music_home
+    type: event

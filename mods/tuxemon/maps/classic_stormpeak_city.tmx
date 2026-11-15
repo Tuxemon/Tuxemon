@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.12.1-8-g449813058" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="295">
+ <properties>
+  <property name="edges" value="clamped"/>
+  <property name="map_type" value="town"/>
+  <property name="slug" value="stormpeak_city"/>
+ </properties>
+ <tileset firstgid="1" source="../gfx/tilesets/core_city_and_country.tsx"/>
+ <tileset firstgid="1441" source="../gfx/tilesets/core_outdoor.tsx"/>
+ <tileset firstgid="4216" source="../gfx/tilesets/core_set pieces.tsx"/>
+ <tileset firstgid="5766" source="../gfx/tilesets/core_buildings.tsx"/>
+ <tileset firstgid="8116" source="../gfx/tilesets/core_outdoor_water.tsx"/>
+ <tileset firstgid="16308" source="../gfx/tilesets/core_outdoor_nature.tsx"/>
+ <layer id="1" name="Tile Layer 1" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eAHtlMkNQjEMRH3gI6CSDxJQCNAeBUEhUApjiRFRDslEQYGDD6NsjufJWeal2SzqOZlR6p6RcWTzdqSv6hV8fefyi/ot8DZqeuC+ecwEkVG9E71xNTZfJ1/K2Our7m/lI6OaP+L63lTUL+pXugMH/B+uI1SKG7W2f/OQ67wyu0C3bJ7r32bP/VMf79+hE3icy3XdmG3XnzHn2dbY8/y1ce5Pn7Tdgce5FJXY05wt/RZ/hTFitLP8xzq9ADl34do=
+  </data>
+ </layer>
+ <layer id="2" name="Tile Layer 2" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eAHF1DdSw0AUxvGtwAYqcmEbw0mgcYArEE5BThWpIrWEhpwqUkUqYKjJYKAgVaQb8F/DGzQ7suwRI/xmfqBV2PdJu6DUbw2XKTWCUYxhHKmqvkapBjSiCW7Hev5M++6QZxd72McBUtUEmSYxhWm4Hev5M+37Sp43vOMDn/C6QrybXV9ZD91fjgPlSgURQgXC+I+y6yvroftbjzPN08e37ccABjGETnShGz3ohduSfe32+XV6b2ATW9jGEpaxglWswW3Jvnb7/AO9H/GEZ7zgCte4QQK3cFuy59w+X8jeLEIxSlAKH/zIQz4K4FS31UrdQ/+NBCDHd5yTPffXnE79011LkCPCO0QRQxy1qIPsP8mZbi4vrgf5Zs1kaUEr2tCODsj+k5xe9E83p17PGbLMYg7zWMAiZF0lZ7q5vLiu99kJWU5xhnNc4BLmukpeL3KkmlPvP73GOqf+lgGOdenz5rqaeZM3ZvGHdV3NrFmMlWytv6e1rFmt57NxbGbLCSuVi2xXThU5YFYkzP9H+ODHUaX61zqm3yEiZIva5JMwMbLFoUuyyjv5eM4Pc/x9t/1P815zLHPaP+18VrJGft4pxu84zLHTLOa95ljmdJpDX/sCSNSiFg==
+  </data>
+ </layer>
+ <layer id="3" name="Tile Layer 3" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eAHt0DEBAAAAwqD1T20LL4hAYcCAAQMGDBgwYMCAgc/AAAyAAAE=
+  </data>
+ </layer>
+ <layer id="4" name="Tile Layer 4" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eAHt0DEBAAAAwqD1T20LL4hAYcCAAQMGDBgwYMCAgc/AAAyAAAE=
+  </data>
+ </layer>
+ <layer id="5" name="Above Player" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eAHt0DEBAAAAwqD1T20LL4hAYcCAAQMGDBgwYMCAgc/AAAyAAAE=
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" id="6" name="Collisions">
+  <properties>
+   <property name="Collision" value=""/>
+  </properties>
+  <object id="179" type="collision" x="48" y="48" width="32" height="16"/>
+  <object id="286" type="collision" x="96" y="0" width="32" height="64"/>
+  <object id="288" type="collision" x="576" y="48" width="32" height="16"/>
+  <object id="289" type="collision" x="528" y="48" width="32" height="16"/>
+  <object id="291" type="collision" x="224" y="64" width="160" height="48"/>
+  <object id="292" type="collision" x="272" y="112" width="64" height="16"/>
+  <object id="293" type="collision" x="352" y="112" width="32" height="16"/>
+  <object id="294" type="collision" x="224" y="112" width="32" height="16"/>
+ </objectgroup>
+ <objectgroup color="#ffff00" id="7" name="Events">
+  <object id="228" name="Play Music" type="event" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="play_music music_town_theme"/>
+    <property name="cond1" value="not music_playing music_town_theme"/>
+   </properties>
+  </object>
+  <object id="210" name="Environment Day" type="event" x="16" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_environment grass"/>
+    <property name="cond1" value="not time_is stage_of_day,equals,night"/>
+    <property name="cond2" value="not char_sprite player,swimmer"/>
+    <property name="cond3" value="not environment_is grass"/>
+   </properties>
+  </object>
+  <object id="211" name="Environment Night" type="event" x="32" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_environment night_grass"/>
+    <property name="cond1" value="is time_is stage_of_day,equals,night"/>
+    <property name="cond2" value="not char_sprite player,swimmer"/>
+    <property name="cond3" value="not environment_is night_grass"/>
+   </properties>
+  </object>
+  <object id="285" name="Teleport to Gym 8" type="event" x="80" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport player,classic_gym_voltessa.tmx,10,19,0.3"/>
+    <property name="act2" value="char_face player,up"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
+   </properties>
+  </object>
+  <object id="287" name="Teleport to Gym 7" type="event" x="560" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport player,classic_gym_astra.tmx,10,19,0.3"/>
+    <property name="act2" value="char_face player,up"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
+   </properties>
+  </object>
+  <object id="290" name="Teleport to Route4" type="event" x="240" y="304" width="112" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport player,classic_route_4.tmx,18,0,0.3"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

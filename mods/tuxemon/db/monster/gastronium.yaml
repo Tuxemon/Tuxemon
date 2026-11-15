@@ -1,0 +1,63 @@
+slug: gastronium
+species: plutonium
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: acid
+- level_learned: 1
+  technique: wall_of_steel
+- level_learned: 4
+  technique: viper
+- level_learned: 7
+  technique: shrapnel
+- level_learned: 13
+  technique: slime
+- level_learned: 16
+  technique: radiance
+- level_learned: 19
+  technique: rust_bomb
+- level_learned: 25
+  technique: meltdown
+- level_learned: 31
+  technique: magnetic_body
+- level_learned: 37
+  technique: gourmet
+evolutions: []
+history:
+- slug: gastronium
+  stage: stage1
+  evolves_from:
+  - stomic
+  evolves_into: []
+- slug: stomic
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - gastronium
+terrains: []
+tags:
+- steel
+- toxic
+- bomber
+shape: blob
+stage: stage1
+types:
+- metal
+- venom
+gender_weights:
+  neuter: 1.0
+txmn_id: 339
+height: 100
+weight: 40
+sounds:
+  combat_call:
+    sfx: sound_misc_07_metal
+    volume: 1.5
+  faint_call:
+    sfx: sound_misc_07_metal_faint
+    volume: 1.5
+catch_rate: 70.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.05

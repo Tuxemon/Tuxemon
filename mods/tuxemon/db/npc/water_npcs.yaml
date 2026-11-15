@@ -1,0 +1,232 @@
+- slug: water_disciple
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: disciple
+    combat_sheet: disciple
+    slug: disciple
+- slug: water_nice_mayor
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: florist
+    combat_sheet: florist
+    slug: florist
+- slug: water_niceguy1
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: knightlord
+    combat_sheet: knightlord
+    slug: knightlord
+- slug: water_niceguy2
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: knightlord
+    combat_sheet: knightlord
+    slug: knightlord
+- slug: water_outskirts_dude
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: tennisplayer
+    combat_sheet: tennisplayer
+    slug: tennisplayer
+- slug: water_rock
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: boulder
+    combat_sheet: noclass
+    slug: noclass
+    is_static_prop: true
+- slug: water_rude_dude
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: tennisplayer
+    combat_sheet: tennisplayer
+    slug: tennisplayer
+- slug: water_snow_mayor
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: knightlord
+    combat_sheet: knightlord
+    slug: knightlord
+- slug: water_maniac
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: maniac
+    combat_sheet: maniac
+    slug: maniac
+- slug: water_scientist
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: scientist
+    combat_sheet: scientist
+    slug: scientist
+- slug: water_picnicker
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: picnicker
+    combat_sheet: picnicker
+    slug: picnicker
+- slug: water_goth
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: goth
+    combat_sheet: goth
+    slug: goth
+- slug: water_nurse
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: nurse
+    combat_sheet: nurse
+    slug: nurse
+- slug: water_ray
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: spyderrookie
+    combat_sheet: spyder_rookie
+    slug: spyder_rookie
+- slug: water_jack
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: spyderrookie
+    combat_sheet: spyder_rookie
+    slug: spyder_rookie
+- slug: water_orba
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: spyderrookie
+    combat_sheet: spyder_rookie
+    slug: spyder_rookie
+- slug: water_baro
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: spyderrookie
+    combat_sheet: spyder_rookie
+    slug: spyder_rookie
+- slug: water_cooldude
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: cooldude_fiery
+    combat_sheet: cooldude
+    slug: cooldude
+- slug: water_swimmer
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: swimmer_red
+    combat_sheet: swimmer
+    slug: swimmer
+- slug: water_weaver
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: spyderrookie
+    combat_sheet: spyder_rookie
+    slug: spyder_rookie
+- slug: water_catgirl
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: catgirl
+    combat_sheet: catgirl
+    slug: catgirl
+- slug: water_fisher
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: fisher
+    combat_sheet: fisher
+    slug: fisher
+- slug: water_jemuar
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: water_jemuar
+    combat_sheet: noclass
+    slug: noclass
+    is_static_prop: true

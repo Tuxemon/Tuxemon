@@ -1,0 +1,68 @@
+slug: aardorn
+species: snout
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: gnaw
+- level_learned: 1
+  technique: evasion
+- level_learned: 7
+  technique: lick_lash
+- level_learned: 10
+  technique: assault
+- level_learned: 13
+  technique: sand_spray
+- level_learned: 16
+  technique: hibernate
+- level_learned: 19
+  technique: feint
+- level_learned: 25
+  technique: stampede
+- level_learned: 28
+  technique: tonguespear
+- level_learned: 31
+  technique: mudslide
+evolutions:
+- at_level: 18
+  monster_slug: aardart
+history:
+- slug: aardorn
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - aardart
+- slug: aardart
+  stage: stage1
+  evolves_from:
+  - aardorn
+  evolves_into: []
+terrains:
+- grassland
+- jungle
+- woodland
+tags:
+- ground
+- food
+- tongue
+shape: varmint
+stage: basic
+types:
+- normal
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 42
+height: 40
+weight: 18
+sounds:
+  combat_call:
+    sfx: sound_cat_purr_twit5
+    volume: 1.5
+  faint_call:
+    sfx: sound_cat_purr_twit5_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.25

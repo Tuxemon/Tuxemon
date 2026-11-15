@@ -1,0 +1,55 @@
+- slug: p_one
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: p_one
+    combat_sheet: noclass
+    slug: noclass
+    is_static_prop: true
+- slug: p_two
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: p_two
+    combat_sheet: noclass
+    slug: noclass
+    is_static_prop: true
+- slug: p_three
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: p_three
+    combat_sheet: noclass
+    slug: noclass
+    is_static_prop: true
+- slug: p_four
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: p_four
+    combat_sheet: noclass
+    slug: noclass
+    is_static_prop: true
+- slug: p_five
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: p_five
+    combat_sheet: noclass
+    slug: noclass
+    is_static_prop: true

@@ -1,0 +1,5000 @@
+- slug: test_npc001
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc002
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc003
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc004
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc005
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc006
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc007
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc008
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc009
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc010
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc011
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc012
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc013
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc014
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc015
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc016
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc017
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc018
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc019
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc020
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc021
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc022
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc023
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc024
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc025
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc026
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc027
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc028
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc029
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc030
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc031
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc032
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc033
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc034
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc035
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc036
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc037
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc038
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc039
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc040
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc041
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc042
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc043
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc044
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc045
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc046
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc047
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc048
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc049
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc050
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc051
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc052
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc053
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc054
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc055
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc056
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc057
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc058
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc059
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc060
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc061
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc062
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc063
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc064
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc065
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc066
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc067
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc068
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc069
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc070
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc071
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc072
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc073
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc074
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc075
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc076
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc077
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc078
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc079
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc080
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc081
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc082
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc083
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc084
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc085
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc086
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc087
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc088
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc089
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc090
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc091
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc092
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc093
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc094
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc095
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc096
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc097
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc098
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc099
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc100
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc101
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc102
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc103
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc104
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc105
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc106
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc107
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc108
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc109
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc110
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc111
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc112
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc113
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc114
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc115
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc116
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc117
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc118
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc119
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc120
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc121
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc122
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc123
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc124
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc125
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc126
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc127
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc128
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc129
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc130
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc131
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc132
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc133
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc134
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc135
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc136
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc137
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc138
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc139
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc140
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc141
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc142
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc143
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc144
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc145
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc146
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc147
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc148
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc149
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc150
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc151
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc152
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc153
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc154
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc155
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc156
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc157
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc158
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc159
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc160
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc161
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc162
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc163
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc164
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc165
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc166
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc167
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc168
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc169
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc170
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc171
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc172
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc173
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc174
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc175
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc176
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc177
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc178
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc179
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc180
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc181
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc182
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc183
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc184
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc185
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc186
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc187
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc188
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc189
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc190
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc191
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc192
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc193
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc194
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc195
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc196
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc197
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc198
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc199
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc200
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc201
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc202
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc203
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc204
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc205
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc206
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc207
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc208
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc209
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc210
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc211
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc212
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc213
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc214
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc215
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc216
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc217
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc218
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc219
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc220
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc221
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc222
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc223
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc224
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc225
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc226
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc227
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc228
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc229
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc230
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc231
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc232
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc233
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc234
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc235
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc236
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc237
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc238
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc239
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc240
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc241
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc242
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc243
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc244
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc245
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc246
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc247
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc248
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc249
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc250
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc251
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc252
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc253
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc254
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc255
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc256
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc257
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc258
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc259
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc260
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc261
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc262
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc263
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc264
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc265
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc266
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc267
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc268
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc269
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc270
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc271
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc272
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc273
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc274
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc275
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc276
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc277
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc278
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc279
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc280
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc281
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc282
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc283
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc284
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc285
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc286
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc287
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc288
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc289
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc290
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc291
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc292
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc293
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc294
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc295
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc296
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc297
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc298
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc299
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc300
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc301
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc302
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc303
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc304
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc305
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc306
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc307
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc308
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc309
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc310
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc311
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc312
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc313
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc314
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc315
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc316
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc317
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc318
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc319
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc320
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc321
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc322
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc323
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc324
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc325
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc326
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc327
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc328
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc329
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc330
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc331
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc332
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc333
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc334
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc335
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc336
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc337
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc338
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc339
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc340
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc341
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc342
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc343
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc344
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc345
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc346
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc347
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc348
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc349
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc350
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc351
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc352
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc353
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc354
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc355
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc356
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc357
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc358
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc359
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc360
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc361
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc362
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc363
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc364
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc365
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc366
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc367
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc368
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc369
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc370
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc371
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc372
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc373
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc374
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc375
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc376
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc377
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc378
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc379
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc380
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc381
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc382
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc383
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc384
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc385
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc386
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc387
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc388
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc389
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc390
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc391
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc392
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc393
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc394
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc395
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc396
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc397
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc398
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc399
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc400
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc401
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc402
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc403
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc404
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc405
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc406
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc407
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc408
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc409
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc410
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc411
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc412
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc413
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc414
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc415
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc416
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc417
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc418
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc419
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc420
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc421
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc422
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc423
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc424
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc425
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc426
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc427
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc428
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc429
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc430
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc431
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc432
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc433
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc434
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc435
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc436
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc437
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc438
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc439
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc440
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc441
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc442
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc443
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc444
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc445
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc446
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc447
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc448
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc449
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc450
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc451
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc452
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc453
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc454
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc455
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc456
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc457
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc458
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc459
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc460
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc461
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc462
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc463
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc464
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc465
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc466
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc467
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc468
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc469
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc470
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc471
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc472
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc473
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc474
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc475
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc476
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc477
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc478
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc479
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc480
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc481
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc482
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc483
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc484
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc485
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc486
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc487
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc488
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc489
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc490
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc491
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc492
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc493
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc494
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc495
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc496
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc497
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc498
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc499
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor
+- slug: test_npc500
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor
+    combat_sheet: professor
+    slug: professor

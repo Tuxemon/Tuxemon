@@ -1,0 +1,24 @@
+modifiers: []
+behaviors: {}
+category: positive
+effects:
+- type: prickly
+  parameters:
+  - '8'
+  - touch:melee
+icon: gfx/ui/icons/status/icon_prickly.png
+on_positive_status: replaced
+on_negative_status: replaced
+slug: prickly
+sort: meta
+cond_id: 29
+use_failure: null
+use_success: combat_state_prickly_get
+gain_cond: null
+visuals:
+  animation: null
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_pulse
+  volume: 1.5

@@ -1,0 +1,72 @@
+slug: spirain
+species: water_sprite
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: fire_ball
+- level_learned: 1
+  technique: chill_mist
+- level_learned: 4
+  technique: muddle
+- level_learned: 7
+  technique: invictus
+- level_learned: 13
+  technique: midnight_mantle
+- level_learned: 25
+  technique: flamethrower
+- level_learned: 28
+  technique: water_blast
+- level_learned: 31
+  technique: breathe_fire
+- level_learned: 40
+  technique: shadow_blast
+evolutions:
+- at_level: 36
+  monster_slug: tornicane
+history:
+- slug: spirain
+  stage: stage1
+  evolves_from:
+  - seirein
+  evolves_into:
+  - tornicane
+- slug: seirein
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - loliferno
+  - spirain
+- slug: tornicane
+  stage: stage2
+  evolves_from:
+  - spirain
+  evolves_into: []
+terrains:
+- freshwater
+- swamp
+tags:
+- water
+- darkness
+- ghost
+shape: sprite
+stage: stage1
+types:
+- water
+- sky
+gender_weights:
+  neuter: 1.0
+txmn_id: 164
+height: 100
+weight: 0.1
+sounds:
+  combat_call:
+    sfx: sound_weird_09
+    volume: 1.5
+  faint_call:
+    sfx: sound_weird_09_faint
+    volume: 1.5
+catch_rate: 70.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.05

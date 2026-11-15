@@ -1,0 +1,51 @@
+# Unique identifier for the mod, used internally and in file paths
+slug: tuxemon
+
+# Short human-readable explanation of what the mod does
+description: A brief summary of the mod's purpose.
+
+# The human-readable name of your mod. This is often displayed to users in a mod list.
+name: Tuxemon
+
+# The version of your mod, used for compatibility checks and display purposes.
+version: 1.0.0
+
+# A list of authors or contributors to this mod.
+authors:
+  - alpha
+  - beta
+  - gamma
+
+startup_rules:
+  - mods.tuxemon.rules.MyStartupRule
+
+# The player's initial slugs
+starting_players: ["npc_red"]
+
+# The map file (.tmx) where the player begins when starting this mod
+starting_map: "start_tuxemon.tmx"
+
+# The player's initial position on the starting map (x, y coordinates)
+starting_position: [0, 0]
+
+# The starting amount of money the player begins with.
+# Must be a list: [min, max]. If both values are the same, it behaves like a fixed value.
+starting_money: [500, 500]
+
+# A list of possible player names to choose from.
+# If only one name is listed, it will be used directly.
+# If multiple names are provided, one will be randomly selected at game start.
+# All names will be passed through the translation system, but if a name is not found
+# in the PO translation files, it will be used as-is without modification.
+starting_names:
+  - npc_red
+
+# The filename of the player's overworld sprite.
+# This must reference a file inside mods/<modname>/sprites.
+# Example: "adventurer_brown_back.png" will use the base name "adventurer_brown".
+sprite: adventurer
+
+# The filename of the player's front-facing combat sprite.
+# This must reference a file inside mods/<modname>/gfx/sprites/player.
+# Example: "adventurer.png" will use the base name "adventurer".
+combat_sheet: adventurer

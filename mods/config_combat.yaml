@@ -1,0 +1,33 @@
+# The duration, in seconds, taken to display each letter in the text sequentially.
+# Lower values result in faster text rendering.
+letter_time: 0.02
+
+# The total duration, in seconds, required for the animation to fully complete.
+# This defines how long the animation sequence lasts.
+action_time: 2.0
+
+# Range of multipliers used to calculate combat effectiveness
+multiplier_range: [0.25, 4.0]  # 0.25 min, 4.0 max
+
+# Mapping of multipliers to their corresponding descriptive msgids
+multiplier_map:
+  4: attack_very_effective     # msgid: Maximum effectiveness multiplier
+  2: attack_effective          # msgid: Standard effective attack multiplier
+  0.5: attack_resisted         # msgid: Reduced effectiveness due to resistance
+  0.25: attack_weak            # msgid: Minimum effectiveness due to weakness
+
+# Speed_settings: def speed_monster()
+speed_factor: 0.25           # Multiplier applied to technique speed; keeps even very slow techniques above zero.
+speed_offset: 50.0           # Random variation range for speed calculations; adds unpredictability.
+dodge_modifier: 0.01         # Dodge impact as a percentage of total speed.
+base_speed_bonus: 1.0        # Default speed bonus for techniques not classified as "fast."
+min_speed_modifier: 1.0      # Ensures speed modifier does not drop below this value; prevents negative speed.
+
+# Order of priorities for items/techniques during a battle:
+# what comes first, second, etc. during a battle
+sort_order: ["potion", "utility", "quest", "meta", "damage"]
+# potion: Priority for healing or restoring during combat
+# utility: Items providing utility or special effects
+# quest: Items related to quests or objectives
+# meta: Techniques or items affecting overall gameplay or mechanics
+# damage: Techniques used primarily for dealing damage

@@ -1,0 +1,23 @@
+effects:
+- type: bivouac
+slug: bivouac
+sort: utility
+sprite: gfx/items/bivouac.png
+category: none
+cost: 1800
+usable_in:
+- WorldState
+modifiers: []
+behaviors:
+  resellable: true
+  requires_monster_menu: false
+use_failure: generic_failure
+use_item: combat_used_x
+use_success: bivouac_success
+visuals:
+  animation: null
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: null
+  volume: 0.0

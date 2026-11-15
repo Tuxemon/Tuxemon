@@ -1,0 +1,62 @@
+slug: birdling
+species: bird_brain
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: roll
+- level_learned: 1
+  technique: peck
+- level_learned: 4
+  technique: whirlwind
+- level_learned: 7
+  technique: egg_smash
+- level_learned: 13
+  technique: fluff_up
+- level_learned: 25
+  technique: altitude
+- level_learned: 28
+  technique: peregrine
+- level_learned: 31
+  technique: air_chain
+- level_learned: 34
+  technique: one_two
+evolutions: []
+history:
+- slug: birdling
+  stage: stage1
+  evolves_from:
+  - hatchling
+  evolves_into: []
+- slug: hatchling
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - birdling
+terrains:
+- grassland
+- jungle
+- woodland
+tags:
+- bird
+shape: flier
+stage: stage1
+types:
+- sky
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 82
+height: 40
+weight: 8
+sounds:
+  combat_call:
+    sfx: sound_cute_01
+    volume: 1.5
+  faint_call:
+    sfx: sound_cute_01_faint
+    volume: 1.5
+catch_rate: 70.0
+lower_catch_resistance: 0.9
+upper_catch_resistance: 1.15

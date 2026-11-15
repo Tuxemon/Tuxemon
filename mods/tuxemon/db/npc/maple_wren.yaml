@@ -1,0 +1,10 @@
+slug: maple_wren
+speech:
+  profile:
+    default: {}
+combat: {}
+audio: {}
+template:
+  sprite_name: fashionista_fiery
+  combat_sheet: fashionista
+  slug: fashionista

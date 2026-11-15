@@ -1,0 +1,75 @@
+slug: angesnow
+species: driven_snow
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: ice_claw
+- level_learned: 1
+  technique: goad
+- level_learned: 4
+  technique: beam
+- level_learned: 7
+  technique: orbs
+- level_learned: 13
+  technique: neutralize
+- level_learned: 28
+  technique: fiery
+- level_learned: 34
+  technique: sudden_glow
+- level_learned: 43
+  technique: icicle_spear
+- level_learned: 46
+  technique: snowstorm
+- level_learned: 52
+  technique: divinity_beam
+evolutions:
+- at_level: 32
+  monster_slug: seraphice
+history:
+- slug: angesnow
+  stage: stage1
+  evolves_from:
+  - waysprite
+  evolves_into:
+  - seraphice
+- slug: waysprite
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - angesnow
+  - demosnow
+- slug: seraphice
+  stage: stage2
+  evolves_from:
+  - angesnow
+  evolves_into: []
+terrains:
+- extraplanar
+tags:
+- ice
+- leadership
+- weather
+- light
+- healing
+shape: humanoid
+stage: stage1
+types:
+- frost
+- cosmic
+gender_weights:
+  neuter: 1.0
+txmn_id: 263
+height: 120
+weight: 30
+sounds:
+  combat_call:
+    sfx: sound_glitch_call
+    volume: 1.5
+  faint_call:
+    sfx: sound_glitch_faint
+    volume: 1.5
+catch_rate: 70.0
+lower_catch_resistance: 0.9
+upper_catch_resistance: 1.15

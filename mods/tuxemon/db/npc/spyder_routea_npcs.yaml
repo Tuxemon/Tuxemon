@@ -1,0 +1,189 @@
+- slug: spyder_routea_connie
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_routea_connie1
+        post_battle_win: null
+        post_battle_lose: spyder_routea_connie2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: homemaker_blonde
+    combat_sheet: beachgoer
+    slug: beachgoer
+- slug: spyder_routea_dagger
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_routea_dagger1
+        post_battle_win: null
+        post_battle_lose: spyder_routea_dagger2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: boss_orange
+    combat_sheet: rocker
+    slug: rocker
+- slug: spyder_routea_doris
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_routea_doris1
+        post_battle_win: null
+        post_battle_lose: spyder_routea_doris2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: florist_blue
+    combat_sheet: florist
+    slug: florist
+- slug: spyder_routea_joe
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_routea_joe1
+        post_battle_win: null
+        post_battle_lose: spyder_routea_joe2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: beachcomber_fiery
+    combat_sheet: yellowbelt
+    slug: yellowbelt
+- slug: spyder_routea_koan
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_routea_koan1
+        post_battle_win: null
+        post_battle_lose: spyder_routea_koan2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: boss_red
+    combat_sheet: rocker
+    slug: rocker
+- slug: spyder_routea_lexi
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_routea_lexi1
+        post_battle_win: null
+        post_battle_lose: spyder_routea_lexi2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: catgirl_violet
+    combat_sheet: catgirl
+    slug: catgirl
+- slug: spyder_routea_lotu
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_routea_lotu1
+        post_battle_win: null
+        post_battle_lose: spyder_routea_lotu2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: monk_red
+    combat_sheet: monk
+    slug: monk
+- slug: spyder_routea_rosy
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_routea_rosy1
+        post_battle_win: null
+        post_battle_lose: spyder_routea_rosy2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: picnicker
+    combat_sheet: picnicker
+    slug: picnicker
+- slug: spyder_routea_vince
+  speech:
+    profile:
+      default:
+        pre_battle: spyder_routea_vince1
+        post_battle_win: null
+        post_battle_lose: spyder_routea_vince2
+        post_battle_draw: null
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: goth
+    combat_sheet: goth
+    slug: goth
+- slug: spyder_routea_jarod
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: firefighter
+    combat_sheet: firefighter
+    slug: firefighter
+- slug: spyder_routea_john
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: maniac_green
+    combat_sheet: adventurer
+    slug: maniac
+- slug: spyder_routea_super
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: box
+    combat_sheet: noclass
+    slug: noclass
+    is_static_prop: true
+- slug: spyder_routea_cureall
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: box
+    combat_sheet: noclass
+    slug: noclass
+    is_static_prop: true
+- slug: spyder_routea_tea
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: box
+    combat_sheet: noclass
+    slug: noclass
+    is_static_prop: true
+- slug: spyder_routea_nurse
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: nurse_blonde
+    combat_sheet: nurse
+    slug: nurse

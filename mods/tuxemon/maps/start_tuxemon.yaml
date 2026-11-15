@@ -1,0 +1,130 @@
+events:
+
+  Scenario:
+    actions:
+    - change_bg gradient_blue
+    - translated_dialog_choice spyder_campaign:xero_campaign:water_campaign,scenario_choice
+    conditions:
+    - not variable_set scenario_choice
+    - not variable_set gender_choice
+    - not variable_set race_choice
+    type: event
+
+  Appearance:
+    actions:
+    - change_bg gradient_blue
+    - choice_npc white_male:black_male:white_female:black_female:gender_enby:gender_whatever,race_choice,menu_select
+    conditions:
+    - is variable_set scenario_choice
+    - not variable_set race_choice
+    type: event
+
+
+
+  # Visual appearance only — applies the chosen sprite.
+  Black Female:
+    actions:
+    - set_template player,brownheroine_brown,heroineblack
+    conditions:
+    - is variable_set race_choice:black_female
+    type: event
+  Black Male:
+    actions:
+    - set_template player,adventurerblack,adventurerblack
+    conditions:
+    - is variable_set race_choice:black_male
+    type: event
+  Gender Enby:
+    actions:
+    - set_template player,enbyasian,enbyasian
+    conditions:
+    - is variable_set race_choice:gender_enby
+    type: event
+  Whatever Penguin:
+    actions:
+    - set_template player,penguin,penguin
+    conditions:
+    - is variable_set race_choice:gender_whatever
+    type: event
+  White Female:
+    actions:
+    - set_template player,heroine,heroine
+    conditions:
+    - is variable_set race_choice:white_female
+    type: event
+  White Male:
+    actions:
+    - set_template player,adventurer,adventurer
+    conditions:
+    - is variable_set race_choice:white_male
+    type: event
+
+
+
+  # Pronouns / gender — separate screen, shown after the appearance pick.
+  Pronouns:
+    actions:
+    - change_bg gradient_blue
+    - translated_dialog_choice pronoun_he:pronoun_she:pronoun_they,pronoun_choice
+    conditions:
+    - is variable_set race_choice
+    - not variable_set gender_choice
+    type: event
+
+  Pronoun He:
+    actions:
+    - set_char_attribute player,gender,male
+    - set_variable gender_choice:gender_male
+    conditions:
+    - is variable_set pronoun_choice:pronoun_he
+    - not variable_set gender_choice
+    type: event
+  Pronoun She:
+    actions:
+    - set_char_attribute player,gender,female
+    - set_variable gender_choice:gender_female
+    conditions:
+    - is variable_set pronoun_choice:pronoun_she
+    - not variable_set gender_choice
+    type: event
+  Pronoun They:
+    actions:
+    - set_char_attribute player,gender,nonbinary
+    - set_variable gender_choice:gender_nonbinary
+    conditions:
+    - is variable_set pronoun_choice:pronoun_they
+    - not variable_set gender_choice
+    type: event
+
+
+
+  Spyder:
+    actions:
+    - change_bg gradient_blue
+    # A defeated monster's bounty is paid once, however many monsters
+    # joined the fight and whether or not they survived it.
+    - set_variable method_money:conserved
+    - transition_teleport player,spyder_bedroom.tmx,4,4,0.3
+    conditions:
+    - is variable_set scenario_choice:spyder_campaign
+    - is variable_set gender_choice
+    - is variable_set race_choice
+    type: event
+  Xero:
+    actions:
+    - change_bg gradient_blue
+    - transition_teleport player,player_house_bedroom.tmx,4,4,0.3
+    conditions:
+    - is variable_set scenario_choice:xero_campaign
+    - is variable_set gender_choice
+    - is variable_set race_choice
+    type: event
+  Water:
+    actions:
+    - change_bg gradient_blue
+    - transition_teleport player,water_end_of_desert.tmx,11,32,0.5
+    conditions:
+    - is variable_set scenario_choice:water_campaign
+    - is variable_set gender_choice
+    - is variable_set race_choice
+    type: event

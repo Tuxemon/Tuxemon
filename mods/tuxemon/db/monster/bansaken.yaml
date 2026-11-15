@@ -1,0 +1,79 @@
+slug: bansaken
+species: sepulchre
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: walls
+- level_learned: 1
+  technique: splinter
+- level_learned: 4
+  technique: shadow_boxing
+- level_learned: 7
+  technique: leaf_stab
+- level_learned: 13
+  technique: sylvan
+- level_learned: 16
+  technique: pseudopod
+- level_learned: 19
+  technique: solar_synthesis
+- level_learned: 25
+  technique: blossom
+- level_learned: 28
+  technique: cutting_leaves
+- level_learned: 31
+  technique: overgrowth
+- level_learned: 37
+  technique: fester
+- level_learned: 40
+  technique: one_two
+- level_learned: 55
+  technique: shadow_blast
+evolutions:
+- at_level: 36
+  monster_slug: banvengeance
+history:
+- slug: bansaken
+  stage: stage1
+  evolves_from:
+  - banling
+  evolves_into:
+  - banvengeance
+- slug: banling
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - bansaken
+- slug: banvengeance
+  stage: stage2
+  evolves_from:
+  - bansaken
+  evolves_into: []
+terrains:
+- jungle
+- woodland
+tags:
+- plant
+- ghost
+- darkness
+shape: brute
+stage: stage1
+types:
+- wood
+- shadow
+gender_weights:
+  neuter: 1.0
+txmn_id: 356
+height: 430
+weight: 267
+sounds:
+  combat_call:
+    sfx: sound_weird_09
+    volume: 1.5
+  faint_call:
+    sfx: sound_weird_09_faint
+    volume: 1.5
+catch_rate: 70.0
+lower_catch_resistance: 0.9
+upper_catch_resistance: 1.15

@@ -1,0 +1,83 @@
+# Fishing Config Format
+# Each key is the slug of a fishing item (e.g., "fishing_rod", "neptune", "poseidon")
+# Fields:
+#   trigger: float                   # Probability of triggering a fishing encounter (0.0–1.0)
+#   level_bounds: tuple[int, int]    # Minimum level, Maximum level of the fished monster
+#   exp_req_mod: float               # Experience modifier for the encounter
+#   failure_dialog: str              # Mandatory dialog key when no monster is caught
+#   cast_time: float                 # Duration of CAST stage
+#   wait_time: float                 # Duration of WAIT stage
+#   bite_time: float                 # Duration of BITE stage
+#   encounter_time: float            # Duration of ENCOUNTER stage
+#   stages: list[str]                # Allowed monster stages (e.g., basic, stage1, stage2, standalone)
+#   stage_weights: dict[str, float]  # Optional: weight per stage
+#   shapes: list[str]                # Allowed monster shapes (e.g., piscine, polliwog)
+#   shape_weights: dict[str, float]  # Weight per shape
+#   types: list[str]                 # Allowed monster types (e.g., water, electric)
+#   type_weights: dict[str, float]   # Weight per type
+#   tags: list[str]                  # Required monster tags (e.g., aquatic, rare)
+#   tag_shape: dict[str, float]      # Weight per tag
+#   animation_color: list[int]       # RGB color for animation (e.g., [0, 105, 148])
+#   environment: dict[str, str]      # Battle background by time of day (default/night)
+#   held_items: dict[str, float]     # Weighted held items (e.g., lure: 0.5, pearl: 0.5)
+
+fishing_rod:
+  trigger: 0.6
+  level_bounds: [5, 15]
+  exp_req_mod: 2.0
+  failure_dialog: fishing_rod_failure
+  stages:
+    - basic
+  shapes:
+    - polliwog
+    - piscine
+  shape_weights:
+    polliwog: 0.7
+    piscine: 0.3
+  animation_color: [0, 105, 148]
+  environment:
+    default: ocean
+    night: night_ocean
+  held_items: {}
+
+neptune:
+  trigger: 0.8
+  level_bounds: [10, 25]
+  exp_req_mod: 2.0
+  failure_dialog: fishing_rod_failure
+  stages:
+    - basic
+    - stage1
+  shapes:
+    - polliwog
+    - piscine
+  shape_weights:
+    polliwog: 0.3
+    piscine: 0.7
+  animation_color: [0, 105, 148]
+  environment:
+    default: ocean
+    night: night_ocean
+  held_items: {}
+
+poseidon:
+  trigger: 0.95
+  level_bounds: [15, 40]
+  exp_req_mod: 2.0
+  failure_dialog: fishing_rod_failure
+  stages:
+    - stage2
+    - stage1
+  shapes:
+    - polliwog
+    - piscine
+    - leviathan
+  shape_weights:
+    polliwog: 0.3
+    piscine: 0.4
+    leviathan: 0.3
+  animation_color: [0, 105, 148]
+  environment:
+    default: ocean
+    night: night_ocean
+  held_items: {}

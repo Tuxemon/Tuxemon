@@ -1,0 +1,23 @@
+modifiers: []
+behaviors: {}
+category: negative
+effects:
+- type: spiky
+  parameters:
+  - '8'
+icon: gfx/ui/icons/status/icon_harpooned.png
+on_positive_status: replaced
+on_negative_status: replaced
+slug: spiky
+sort: meta
+cond_id: 34
+use_failure: null
+use_success: combat_state_spiky_get
+gain_cond: null
+visuals:
+  animation: null
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_pulse
+  volume: 1.5

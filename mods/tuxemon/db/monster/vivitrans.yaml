@@ -1,0 +1,73 @@
+slug: vivitrans
+species: sublimated
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: stone_rot
+- level_learned: 1
+  technique: hammerhead
+- level_learned: 4
+  technique: quicksand
+- level_learned: 7
+  technique: spit_poison
+- level_learned: 13
+  technique: wallow
+- level_learned: 16
+  technique: chill_mist
+- level_learned: 19
+  technique: bubble_trap
+- level_learned: 25
+  technique: frostbite
+evolutions: []
+history:
+- slug: vivitrans
+  stage: stage1
+  evolves_from:
+  - vivipere
+  evolves_into: []
+- slug: vivipere
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - vivicinder
+  - viviphyta
+  - viviteel
+  - vivitrans
+  - vivitron
+  - vividactil
+  - vividactil
+  - vividactil
+  - vivisource
+terrains:
+- grassland
+- jungle
+- mountains
+- ruins
+- underground
+tags:
+- shapeshifter
+- bite
+- mental
+- ice
+shape: serpent
+stage: stage1
+types:
+- frost
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 136
+height: 98
+weight: 11
+sounds:
+  combat_call:
+    sfx: sound_ice
+    volume: 1.5
+  faint_call:
+    sfx: sound_ice_faint
+    volume: 1.5
+catch_rate: 70.0
+lower_catch_resistance: 0.9
+upper_catch_resistance: 1.15

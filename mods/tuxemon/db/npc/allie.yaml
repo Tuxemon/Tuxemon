@@ -1,0 +1,10 @@
+slug: allie
+speech:
+  profile:
+    default: {}
+combat: {}
+audio: {}
+template:
+  sprite_name: omnichannelallie
+  combat_sheet: goth_rose
+  slug: heroine

@@ -1,0 +1,26 @@
+parties:
+  test_set:
+    # Each monster entry must include:
+    #   - slug: the monster identifier (string)
+    #   - level: the monster's level (integer)
+    #   - weight: used for random selection if more than PARTY_LIMIT (integer or float)
+    #
+    # Optional attributes:
+    #   - experience_modifier: multiplier for experience gain (float)
+    #   - money_modifier: multiplier for money reward (float)
+    #
+    # These optional modifiers are applied directly to the monster instance if present.
+    # If there are 4 or fewer monsters, you can simply assign weight: 1 to each
+    # unless you want to bias selection. Equal weights give uniform probability.
+    - slug: rockitten
+      level: 5
+      weight: 1
+    - slug: pairagrin
+      level: 6
+      weight: 1
+    - slug: agnite
+      level: 7
+      weight: 1
+    - slug: rockitten
+      level: 8
+      weight: 1

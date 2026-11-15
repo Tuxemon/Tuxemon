@@ -1,0 +1,76 @@
+slug: deviraptor
+species: dog_toothed
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: invictus
+- level_learned: 1
+  technique: mind_vise
+- level_learned: 4
+  technique: stonehenge
+- level_learned: 10
+  technique: breathe_fire
+- level_learned: 13
+  technique: phantasmal_force
+- level_learned: 19
+  technique: terror
+- level_learned: 25
+  technique: earthquake
+- level_learned: 31
+  technique: flamethrower
+- level_learned: 40
+  technique: energy_beam
+- level_learned: 55
+  technique: supernova
+evolutions: []
+history:
+- slug: deviraptor
+  stage: stage2
+  evolves_from:
+  - devidra
+  evolves_into: []
+- slug: devidin
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - devidra
+- slug: devidra
+  stage: stage1
+  evolves_from:
+  - devidin
+  evolves_into:
+  - deviraptor
+terrains:
+- grassland
+- jungle
+- underground
+tags:
+- ghost
+- rock
+- bite
+- shapeshifter
+- darkness
+- claws
+shape: dragon
+stage: stage2
+types:
+- earth
+- fire
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 294
+height: 183
+weight: 295
+sounds:
+  combat_call:
+    sfx: sound_weird_09
+    volume: 1.5
+  faint_call:
+    sfx: sound_weird_09_faint
+    volume: 1.5
+catch_rate: 35.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.05

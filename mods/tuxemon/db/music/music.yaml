@@ -1,0 +1,56 @@
+- file: 8bit airship.ogg
+  slug: music_airship
+- file: All of Us.ogg
+  slug: music_home
+- file: A Night Of Dizzy Spells.ogg
+  slug: music_night_dizzy_spells
+- file: back34.mp3
+  slug: music_city_park
+- file: boss  introduction.mp3
+  slug: music_boss_introduction
+- file: Chibi Ninja.ogg
+  slug: music_chibi_ninja
+- file: Come and Find Me.ogg
+  slug: music_come_and_find_me
+- file: Digital Native.ogg
+  slug: music_sphalian_theme
+- file: Enter_the_Emperor.ogg
+  slug: music_the_emperor
+- file: HHavok-intro.ogg
+  slug: music_hhavok_intro
+- file: HHavok-main.ogg
+  slug: music_hhavok_main
+- file: JRPG_docks_loop.ogg
+  slug: music_omnichannel
+- file: JRPG_goodMorning.ogg
+  slug: music_goodmorning
+- file: JRPG_mysticIsle.ogg
+  slug: music_mystic_island
+- file: JRPG_mysticIsle_reverse.ogg
+  slug: music_mystic_island_reverse
+- file: JRPG_princess.ogg
+  slug: music_the_princess
+- file: JRPG_royalCourt_loop.ogg
+  slug: music_cathedral_theme
+- file: JRPG_town_loop.ogg
+  slug: music_town_theme
+- file: JRPG_winBattle.ogg
+  slug: music_winbattle
+- file: JRPG_winBattleBig.ogg
+  slug: music_winbattle_big
+- file: JRPG_winBattleFinal.ogg
+  slug: music_winbattle_final
+- file: Jumpshot.ogg
+  slug: music_jumpshot
+- file: lunar_joyride.mp3
+  slug: music_lunar_joyride
+- file: peasant_kingdom.ogg
+  slug: music_the_wild_places
+- file: stand_with_us.ogg
+  slug: music_dragons_cave
+- file: taking_poison.ogg
+  slug: music_dojo_theme
+- file: TheAdventureBegins8bitRemix.ogg
+  slug: music_adventure_begins
+- file: Jester Theme.mp3
+  slug: music_jester_theme

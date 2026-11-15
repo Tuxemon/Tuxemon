@@ -1,0 +1,85 @@
+# slug: Unique identifier for the mission (example: "spyder_maniac_achievement1")
+#        Must have a translation entry in base.po with msgid = slug.
+# description: Detailed description of the mission objectives (example: "spyder_maniac_achievement2")
+#        Must have a translation entry in base.po with msgid = description.
+# prerequisites: List of game variables required to unlock the mission
+#        Example: [{ maniac_achievements: "yes" }]
+# failure_conditions: List of game variables that, if met, cause the mission to fail
+# connected_missions: List of missions that this one unlocks (example: [])
+# required_items: Dictionary of items required to begin the mission
+#        Keys: item slugs (must exist in item database)
+#        Values: optional quantity (None means at least one)
+# required_monsters: Dictionary of monsters required to begin the mission
+#        Keys: monster slugs (must exist in monster database)
+#        Values: optional minimum level (None means any level)
+# required_missions: List of mission slugs that must be completed before this one
+# steps: Dictionary of mission steps defining structure and branching logic
+#   slug: Unique identifier for the step (example: "start_validation")
+#   order: Integer progression order index (example: 0, 1, 2…)
+#   description: Text describing what the step requires (must have translation in base.po)
+#   conditions: Dictionary of game variables that must all be true
+#   any_of: Alternative condition sets; step completes if any are satisfied
+#   all_of: Additional condition sets; all must be satisfied
+#   next_steps: List of slugs of next steps unlocked when this one is completed
+#   step_items_needed: Items required to complete this step (same rules as required_items)
+#   step_monsters_needed: Monsters required to complete this step (same rules as required_monsters)
+#   optional: Boolean flag indicating whether the step is optional
+# repeatable: Boolean flag indicating whether the mission can be repeated (default: false)
+
+- slug: spyder_maniac_achievement1
+  description: spyder_maniac_achievement2
+  prerequisites:
+    - key: maniac_achievements
+      value: "yes"
+  failure_conditions: []
+  connected_missions: []
+  required_items: {}
+  required_monsters: {}
+  required_missions: []
+  repeatable: false
+  steps:
+    start_validation:
+      slug: start_validation
+      order: 0
+      description: Verify maniac achievements unlocked.
+      conditions:
+        key: maniac_achievements
+        value: "yes"
+      next_steps:
+        - fossil_check
+        - shammer_check
+      optional: false
+    fossil_check:
+      slug: fossil_check
+      order: 1
+      description: Confirm player has both fossils.
+      conditions:
+        key: got_both_fossils
+        value: "yes"
+      next_steps:
+        - candy_trade
+      optional: false
+    shammer_check:
+      slug: shammer_check
+      order: 1
+      description: Verify possession of Shammer monster.
+      conditions:
+        key: got_shammer
+        value: "yes"
+      next_steps:
+        - candy_trade
+      optional: false
+    candy_trade:
+      slug: candy_trade
+      order: 2
+      description: Confirm candy trade with catgirl was completed.
+      conditions:
+        key: catgirl_candy_hastraded
+        value: "yes"
+      any_of:
+        - key: got_both_fossils
+          value: "yes"
+        - key: got_shammer
+          value: "yes"
+      next_steps: []
+      optional: false

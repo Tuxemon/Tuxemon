@@ -1,0 +1,39 @@
+tech_id: 160
+accuracy: 0.7
+effects:
+- type: damage
+- type: switch
+  parameters:
+  - own_monster
+  - random
+speed: normal
+potency: 0.7
+power: 2.2
+range: melee
+recharge: 3
+slug: shapechange
+sort: damage
+modifiers: []
+behaviors: {}
+target:
+  enemy_monster: true
+  enemy_team: false
+  enemy_trainer: false
+  own_monster: false
+  own_team: false
+  own_trainer: false
+category: simple
+tags:
+- shapeshifter
+types:
+- cosmic
+use_failure: combat_miss
+use_success: null
+use_tech: combat_used_x
+visuals:
+  animation: x_attack
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_pulse
+  volume: 1.5

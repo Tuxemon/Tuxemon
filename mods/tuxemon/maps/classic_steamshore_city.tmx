@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.12.1-8-g449813058" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="302">
+ <properties>
+  <property name="edges" value="clamped"/>
+  <property name="map_type" value="town"/>
+  <property name="slug" value="steamshore_city"/>
+ </properties>
+ <tileset firstgid="1" source="../gfx/tilesets/core_city_and_country.tsx"/>
+ <tileset firstgid="1441" source="../gfx/tilesets/core_outdoor.tsx"/>
+ <tileset firstgid="4216" source="../gfx/tilesets/core_set pieces.tsx"/>
+ <tileset firstgid="5766" source="../gfx/tilesets/core_buildings.tsx"/>
+ <tileset firstgid="8116" source="../gfx/tilesets/core_outdoor_water.tsx"/>
+ <tileset firstgid="16308" source="../gfx/tilesets/core_outdoor_nature.tsx"/>
+ <layer id="1" name="Tile Layer 1" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eAHt1k0KgCAQBWAhiGjVKaoTe5i6XM3iwQiOP4zlLFyIIaWfzxHyq3PeSJsW57Y5bFZs12s7jfokG2XZMz9yHUJuOOe/fTDlXF/7uIMsaLEagyXWa/Pjjvt1YL7YXYytnxvDfLU9XDyPXZGT5CxxwYIzKq0dac2a8ZyPbDyjmrlbvJvy9bbR/iSfBVvK1+r+ac+Y1zx/7llz2j2N78N/rJHHyKNXDTz78deO
+  </data>
+ </layer>
+ <layer id="2" name="Tile Layer 2" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eAHN1kdOHEEUxvG3ghlgZZIXgEmnwEjMCmbMIYAlsDY5rDCwIl3BBJNWpBVpwQUwGSQQaUW6gf8t80mjUs+IRmqYJ/1UU9VT1JtXRXeb/Y+sarNsRBBFWP3X5QI39eTUgDgSCKvvJTZWbDaOCUxiCp1Rs25HB33VK/APeseESCV7g03y2cI2drALNwqzzIqgernXw+jHyS2BB/J5xBOe8QI3asjtO3TO3Oth9ku+mpWiDN9QDjeayK0ZOmfu9c/uX9aZXeEjz1+Q31weM6vAR56/IPk1k1sLFHtVn3MWtb7ban+Tx3UWM2HPtb/J+enzW/fc757q3mOD9L37sUL7qzrW8z/egDgS+IFGpItUc/yeD73c4/rQjwEMYgi/MIwRjEKhvFTHn+TSgU50oRs9SBep5vg9H+ZZewGLWMIyVrCKNaxjAwrlpTr+JpdpzGAWc/iDdJFqjt/z4YS1T3GGc1zgGje4xR3uoVBequM+ufzFAQ5xhGOki1Rz/J4PEf5WFDnIRR6+IB8FKEQRFMpLddR4prTKS3XMlLyUh/JSHTWeCW1bzKwdXqiOrTEzjevdq5j3B4151/XdsNt51lqAF6qj91njeveqJT+NJX9Xc8JqvbUU/wDTpb3b
+  </data>
+ </layer>
+ <layer id="3" name="Tile Layer 3" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eAHt0DEBAAAAwqD1T20LL4hAYcCAAQMGDBgwYMCAgc/AAAyAAAE=
+  </data>
+ </layer>
+ <layer id="4" name="Tile Layer 4" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eAHt0DEBAAAAwqD1T20LL4hAYcCAAQMGDBgwYMCAgc/AAAyAAAE=
+  </data>
+ </layer>
+ <layer id="5" name="Above Player" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eAFjYBgFoyEwGgKjITAaAqMhMBoCoyEwGgKjITA0Q+CBPQPDQyCmNT00Q2dwuhoAD3odNA==
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" id="6" name="Collisions">
+  <properties>
+   <property name="Collision" value=""/>
+  </properties>
+  <object id="179" type="collision" x="528" y="32" width="16" height="32"/>
+  <object id="285" type="collision" x="0" y="192" width="32" height="128"/>
+  <object id="288" type="collision" x="464" y="64" width="32" height="16"/>
+  <object id="289" type="collision" x="512" y="64" width="32" height="16"/>
+  <object id="290" type="collision" x="608" y="80" width="32" height="192"/>
+  <object id="291" type="collision" x="176" y="288" width="416" height="16"/>
+  <object id="292" type="collision" x="240" y="176" width="64" height="64"/>
+  <object id="293" type="collision" x="544" y="176" width="32" height="64"/>
+  <object id="294" type="collision" x="384" y="224" width="64" height="16"/>
+  <object id="295" type="collision" x="320" y="224" width="48" height="16"/>
+  <object id="296" type="collision" x="464" y="224" width="64" height="16"/>
+  <object id="297" type="collision" x="32" y="224" width="64" height="16"/>
+  <object id="298" type="collision" x="112" y="176" width="16" height="64"/>
+ </objectgroup>
+ <objectgroup color="#ffff00" id="7" name="Events">
+  <object id="228" name="Play Music" type="event" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="play_music music_town_theme"/>
+    <property name="cond1" value="not music_playing music_town_theme"/>
+   </properties>
+  </object>
+  <object id="210" name="Environment Day" type="event" x="16" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_environment grass"/>
+    <property name="cond1" value="not time_is stage_of_day,equals,night"/>
+    <property name="cond2" value="not char_sprite player,swimmer"/>
+    <property name="cond3" value="not environment_is grass"/>
+   </properties>
+  </object>
+  <object id="211" name="Environment Night" type="event" x="32" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_environment night_grass"/>
+    <property name="cond1" value="is time_is stage_of_day,equals,night"/>
+    <property name="cond2" value="not char_sprite player,swimmer"/>
+    <property name="cond3" value="not environment_is night_grass"/>
+   </properties>
+  </object>
+  <object id="286" name="Teleport to Route1" type="event" x="80" y="304" width="48" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport player,classic_route_1.tmx,6,0,0.3"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
+   </properties>
+  </object>
+  <object id="287" name="Teleport to Route2" type="event" x="624" y="32" width="16" height="48">
+   <properties>
+    <property name="act1" value="transition_teleport player,classic_route_2.tmx,0,3,0.3"/>
+    <property name="act2" value="char_face player,right"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,right"/>
+   </properties>
+  </object>
+  <object id="300" name="Teleport to Gym 4" type="event" x="368" y="224" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport player,classic_gym_pyra.tmx,10,19,0.3"/>
+    <property name="act2" value="char_face player,up"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
+   </properties>
+  </object>
+  <object id="301" name="Teleport to Gym 3" type="event" x="496" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport player,classic_gym_marin.tmx,10,19,0.3"/>
+    <property name="act2" value="char_face player,up"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

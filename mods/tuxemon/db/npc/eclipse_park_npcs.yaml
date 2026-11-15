@@ -1,0 +1,70 @@
+- slug: eclipse_park_reception
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: magician_grey
+    combat_sheet: magician
+    slug: magician
+- slug: eclipse_park_florist
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: florist_fiery
+    combat_sheet: florist
+    slug: florist
+- slug: eclipse_park_guardian
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: magician_fiery
+    combat_sheet: magician
+    slug: magician
+- slug: eclipse_park_soldier
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: soldier
+    combat_sheet: soldier
+    slug: soldier
+- slug: eclipse_park_scientist
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: scientist
+    combat_sheet: scientist
+    slug: scientist
+- slug: eclipse_park_professor
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: professor_brown
+    combat_sheet: professor
+    slug: professor
+- slug: eclipse_park_tennisplayer
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: tennisplayer
+    combat_sheet: tennisplayer
+    slug: tennisplayer

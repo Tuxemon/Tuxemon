@@ -1,0 +1,70 @@
+slug: metesaur
+species: meteor
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: peck
+- level_learned: 1
+  technique: fire_ball
+- level_learned: 4
+  technique: sand_spray
+- level_learned: 7
+  technique: stampede
+- level_learned: 13
+  technique: fire_shield
+- level_learned: 16
+  technique: arcane_eye
+- level_learned: 19
+  technique: breathe_fire
+- level_learned: 43
+  technique: peregrine
+- level_learned: 46
+  technique: all_in
+- level_learned: 52
+  technique: flamethrower
+- level_learned: 55
+  technique: tornado
+evolutions:
+- at_level: 40
+  monster_slug: qetzlrokilus
+history:
+- slug: metesaur
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - qetzlrokilus
+- slug: qetzlrokilus
+  stage: stage1
+  evolves_from:
+  - metesaur
+  evolves_into: []
+terrains:
+- jungle
+- mountains
+tags:
+- rock
+- flame
+- bird
+shape: flier
+stage: basic
+types:
+- earth
+- fire
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 202
+height: 95
+weight: 10
+sounds:
+  combat_call:
+    sfx: sound_roar_05
+    volume: 1.5
+  faint_call:
+    sfx: sound_roar_05_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.9
+upper_catch_resistance: 1.15

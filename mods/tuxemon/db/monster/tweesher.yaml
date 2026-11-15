@@ -1,0 +1,76 @@
+slug: tweesher
+species: halcyon
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: ice_claw
+- level_learned: 1
+  technique: peck
+- level_learned: 4
+  technique: orbs
+- level_learned: 7
+  technique: flow
+- level_learned: 13
+  technique: energy_field
+- level_learned: 28
+  technique: icicle_spear
+- level_learned: 31
+  technique: biting_winds
+- level_learned: 34
+  technique: flood
+- level_learned: 43
+  technique: font
+- level_learned: 46
+  technique: chill_mist
+- level_learned: 52
+  technique: snowstorm
+evolutions:
+- at_level: 24
+  monster_slug: heronquak
+history:
+- slug: tweesher
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - heronquak
+- slug: heronquak
+  stage: stage1
+  evolves_from:
+  - tweesher
+  evolves_into:
+  - eaglace
+- slug: eaglace
+  stage: stage2
+  evolves_from:
+  - heronquak
+  evolves_into: []
+terrains:
+- boreal_snow
+- grassland
+- mountains
+tags:
+- gemstone
+- ice
+- bird
+shape: flier
+stage: basic
+types:
+- frost
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 7
+height: 45
+weight: 1
+sounds:
+  combat_call:
+    sfx: sound_woosh_1
+    volume: 1.5
+  faint_call:
+    sfx: sound_woosh_1_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.25

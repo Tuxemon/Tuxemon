@@ -1,0 +1,60 @@
+slug: selmatek
+species: sand_steed
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: clamp_on
+- level_learned: 1
+  technique: rock
+- level_learned: 4
+  technique: crystal
+- level_learned: 7
+  technique: petrify
+- level_learned: 13
+  technique: take_cover
+- level_learned: 25
+  technique: quicksand
+- level_learned: 28
+  technique: fester
+- level_learned: 31
+  technique: avalanche
+evolutions: []
+history:
+- slug: selmatek
+  stage: stage1
+  evolves_from:
+  - selket
+  evolves_into: []
+- slug: selket
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - selmatek
+terrains: []
+tags:
+- ground
+- toxic
+- rock
+shape: grub
+stage: stage1
+types:
+- earth
+- venom
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 189
+height: 155
+weight: 80
+sounds:
+  combat_call:
+    sfx: sound_spit_02
+    volume: 1.5
+  faint_call:
+    sfx: sound_spit_02_faint
+    volume: 1.5
+catch_rate: 70.0
+lower_catch_resistance: 0.9
+upper_catch_resistance: 1.15

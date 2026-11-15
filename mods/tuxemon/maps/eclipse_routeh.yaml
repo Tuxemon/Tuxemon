@@ -1,0 +1,21 @@
+events:
+  Teleport to Park South:
+    actions:
+    - transition_teleport player,eclipse_park_south.tmx,59,11,0.3
+    - char_face player,left
+    conditions:
+    - is char_at player
+    - is char_facing player,left
+    x: 0
+    y: 11
+    type: event
+  Teleport to Route:
+    actions:
+    - transition_teleport player,eclipse_routei.tmx,37,39,0.3
+    - char_face player,up
+    conditions:
+    - is char_at player
+    - is char_facing player,up
+    x: 37
+    y: 0
+    type: event

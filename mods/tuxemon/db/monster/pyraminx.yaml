@@ -1,0 +1,70 @@
+slug: pyraminx
+species: noble
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: eyebite
+- level_learned: 1
+  technique: feint
+- level_learned: 4
+  technique: shuriken
+- level_learned: 7
+  technique: slice
+- level_learned: 13
+  technique: sand_spray
+- level_learned: 19
+  technique: rot
+- level_learned: 25
+  technique: blade
+- level_learned: 28
+  technique: bullet
+- level_learned: 40
+  technique: shadow_blast
+evolutions: []
+history:
+- slug: pyraminx
+  stage: stage1
+  evolves_from:
+  - memnomnom
+  - memnomnom
+  evolves_into: []
+- slug: memnomnom
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - miaownolith
+  - miaownolith
+  - pyraminx
+  - pyraminx
+  - mauai
+  - mauai
+terrains: []
+tags:
+- ground
+- claws
+- summoner
+- ghost
+- water
+shape: hunter
+stage: stage1
+types:
+- cosmic
+- normal
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 21
+height: 210
+weight: 190
+sounds:
+  combat_call:
+    sfx: sound_growl1
+    volume: 1.5
+  faint_call:
+    sfx: sound_growl1_faint
+    volume: 1.5
+catch_rate: 70.0
+lower_catch_resistance: 0.85
+upper_catch_resistance: 1.1

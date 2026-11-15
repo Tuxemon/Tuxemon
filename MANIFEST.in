@@ -1,5 +1,7 @@
+prune .vscode
+prune .github
+exclude .travis.yml .gitignore 
 include README.md
-include CREDITS.md
 include LICENSE
 include requirements.txt
 recursive-include mods/tuxemon *

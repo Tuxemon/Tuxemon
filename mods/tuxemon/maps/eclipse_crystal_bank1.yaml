@@ -1,0 +1,148 @@
+events:
+  Event 9:
+    actions:
+    - char_stop player
+    - lock_controls
+    - set_layer 0:0:0:255
+    - play_sound japanese_temple_bell_small
+    - translated_dialog eclipse_event9_1,,top
+    - translated_dialog eclipse_event9_2
+    - translated_dialog eclipse_event9_3,,top
+    - translated_dialog eclipse_event9_4,,top
+    - translated_dialog eclipse_event9_5,,top
+    - translated_dialog eclipse_event9_6,,top
+    - translated_dialog eclipse_event9_7
+    - play_sound japanese_temple_bell_small
+    - set_layer
+    - set_variable eclipse_event9:yes
+    - unlock_controls
+    conditions:
+    - not variable_set eclipse_event9:yes
+    type: event
+  Environment:
+    actions:
+    - set_environment interior
+    conditions:
+    - not environment_is interior
+    type: event
+  Play Music:
+    actions:
+    - play_music music_omnichannel
+    conditions:
+    - not music_playing music_omnichannel
+    type: event
+  Teleport to Bank 2:
+    actions:
+    - transition_teleport player,eclipse_crystal_bank2.tmx,2,15,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,up
+    x: 2
+    y: 9
+    type: event
+  Teleport to Crystal Town:
+    actions:
+    - transition_teleport player,eclipse_crystal_town.tmx,6,8,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,up
+    height: 1
+    width: 2
+    x: 1
+    y: 14
+    type: event
+  Create Bob:
+    actions:
+    - create_npc eclipse_bank_bob,8,15
+    - char_face eclipse_bank_bob,up
+    conditions:
+    - not char_exists eclipse_bank_bob
+    type: event
+  Create May:
+    actions:
+    - create_npc eclipse_bank_may,5,6
+    - char_face eclipse_bank_may,up
+    conditions:
+    - not char_exists eclipse_bank_may
+    type: event
+  Create Brock:
+    actions:
+    - create_npc eclipse_bank_brock,10,3
+    - char_face eclipse_bank_brock,up
+    conditions:
+    - not char_exists eclipse_bank_brock
+    type: event
+  Create Daisy:
+    actions:
+    - create_npc eclipse_bank_daisy,5,10
+    - char_face eclipse_bank_daisy,up
+    conditions:
+    - not char_exists eclipse_bank_daisy
+    type: event
+  Battle May:
+    actions:
+    - char_talk eclipse_bank_may,pre_battle
+    - random_monster 40,eclipse_bank_may,5,10
+    - start_battle player,eclipse_bank_may
+    - char_talk eclipse_bank_may,post_battle_lose
+    behav:
+    - talk eclipse_bank_may
+    conditions:
+    - not battle_outcome player,won,eclipse_bank_may
+    type: event
+  Battle Brock:
+    actions:
+    - char_talk eclipse_bank_brock,pre_battle
+    - random_monster 40,eclipse_bank_brock,5,10
+    - start_battle player,eclipse_bank_brock
+    - char_talk eclipse_bank_brock,post_battle_lose
+    behav:
+    - talk eclipse_bank_brock
+    conditions:
+    - not battle_outcome player,won,eclipse_bank_brock
+    type: event
+  Battle Daisy:
+    actions:
+    - char_talk eclipse_bank_daisy,pre_battle
+    - random_monster 40,eclipse_bank_daisy,5,10
+    - start_battle player,eclipse_bank_daisy
+    - char_talk eclipse_bank_daisy,post_battle_lose
+    behav:
+    - talk eclipse_bank_daisy
+    conditions:
+    - not battle_outcome player,won,eclipse_bank_daisy
+    type: event
+  Post Talk Daisy:
+    actions:
+    - char_talk eclipse_bank_daisy,post_battle_lose
+    behav:
+    - talk eclipse_bank_daisy
+    conditions:
+    - is battle_outcome player,won,eclipse_bank_daisy
+    type: event
+  Post Talk Brock:
+    actions:
+    - char_talk eclipse_bank_brock,post_battle_lose
+    behav:
+    - talk eclipse_bank_brock
+    conditions:
+    - is battle_outcome player,won,eclipse_bank_brock
+    type: event
+  Post Talk May:
+    actions:
+    - char_talk eclipse_bank_may,post_battle_lose
+    behav:
+    - talk eclipse_bank_may
+    conditions:
+    - is battle_outcome player,won,eclipse_bank_may
+    type: event
+  Talk Bob:
+    actions:
+    - translated_dialog eclipse_bank_bob1
+    - translated_dialog eclipse_bank_bob2
+    - translated_dialog eclipse_bank_bob3
+    behav:
+    - talk eclipse_bank_bob
+    type: event

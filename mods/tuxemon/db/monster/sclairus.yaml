@@ -1,0 +1,61 @@
+slug: sclairus
+species: fallow
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: solar_synthesis
+- level_learned: 1
+  technique: pollen_blast
+- level_learned: 4
+  technique: blossom
+- level_learned: 7
+  technique: spit_poison
+- level_learned: 13
+  technique: sylvan
+- level_learned: 16
+  technique: assault
+- level_learned: 19
+  technique: overgrowth
+- level_learned: 25
+  technique: orbs
+- level_learned: 28
+  technique: caustic_spray
+- level_learned: 31
+  technique: chameleon
+- level_learned: 37
+  technique: clairaudience
+- level_learned: 40
+  technique: shadow_blast
+evolutions: []
+history:
+- slug: sclairus
+  stage: standalone
+  evolves_from: []
+  evolves_into: []
+terrains: []
+tags:
+- plant
+- darkness
+- summoner
+shape: blob
+stage: standalone
+types:
+- wood
+gender_weights:
+  male: 0.5
+  female: 0.5
+txmn_id: 119
+height: 85
+weight: 3
+sounds:
+  combat_call:
+    sfx: sound_bug_03
+    volume: 1.5
+  faint_call:
+    sfx: sound_bug_03_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.05

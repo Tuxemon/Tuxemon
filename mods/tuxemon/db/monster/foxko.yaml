@@ -1,0 +1,58 @@
+slug: foxko
+species: threat
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: gust
+- level_learned: 1
+  technique: chameleon
+- level_learned: 4
+  technique: all_in
+- level_learned: 7
+  technique: pseudopod
+- level_learned: 13
+  technique: sunburst
+- level_learned: 16
+  technique: negation
+- level_learned: 19
+  technique: salamander
+- level_learned: 25
+  technique: berserk
+- level_learned: 28
+  technique: shadow_boxing
+- level_learned: 31
+  technique: conjurer
+- level_learned: 37
+  technique: torch
+- level_learned: 40
+  technique: supernova
+evolutions: []
+history:
+- slug: foxko
+  stage: standalone
+  evolves_from: []
+  evolves_into: []
+terrains: []
+tags: []
+shape: serpent
+stage: standalone
+types:
+- fire
+- wood
+gender_weights:
+  neuter: 1.0
+txmn_id: 0
+height: 71
+weight: 10
+sounds:
+  combat_call:
+    sfx: sound_creature_roar
+    volume: 1.5
+  faint_call:
+    sfx: sound_creature_roar_faint
+    volume: 1.5
+catch_rate: 100.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.05

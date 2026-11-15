@@ -1,0 +1,36 @@
+name: Tuxemon
+version: 0.4.35
+description: Open source RPG
+
+# The entry point for cx_Freeze — produces run_tuxemon.exe
+executable: run_tuxemon.py
+
+# Icon used by cx_Freeze and NSIS
+icon: mods/tuxemon/gfx/icon.ico
+
+# Packages that must be bundled into the frozen build
+packages:
+  - pytmx
+  - pyscroll
+  - pygame
+  - websockets
+  - natsort
+  - tuxemon
+
+# Packages that should NOT be included
+excludes:
+  - tkinter
+  - pyglet
+
+# Modules that cx_Freeze sometimes fails to detect automatically
+includes:
+  - importlib.resources
+
+# Files and folders to copy into the build directory
+# These paths are relative to the project root
+include_files:
+  - mods
+  - LICENSE
+
+# cx_Freeze base for GUI apps on Windows
+base: Win32GUI

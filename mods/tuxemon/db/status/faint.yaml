@@ -1,0 +1,18 @@
+modifiers: []
+behaviors: {}
+category: neutral
+effects: []
+icon: gfx/ui/icons/status/icon_faint.png
+slug: faint
+sort: meta
+cond_id: 0
+use_failure: null
+use_success: null
+gain_cond: null
+visuals:
+  animation: null
+  flip_axes: ''
+  loop: 0
+sound:
+  sfx: sfx_faint
+  volume: 1.5

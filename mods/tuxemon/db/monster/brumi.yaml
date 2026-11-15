@@ -1,0 +1,77 @@
+slug: brumi
+species: hexer
+moveset:
+- level_learned: 1
+  technique: struggle
+  learning_method: fallback
+- level_learned: 1
+  technique: muddle
+- level_learned: 1
+  technique: mind_vise
+- level_learned: 4
+  technique: terror
+- level_learned: 10
+  technique: time_crisis
+- level_learned: 13
+  technique: phantasmal_force
+- level_learned: 19
+  technique: changeling
+- level_learned: 22
+  technique: taunt
+- level_learned: 25
+  technique: magic_spell
+- level_learned: 28
+  technique: entomb
+- level_learned: 40
+  technique: shadow_blast
+evolutions:
+- at_level: 30
+  monster_slug: bewhich
+  variables:
+  - key: daytime
+    value: 'false'
+history:
+- slug: brumi
+  stage: stage1
+  evolves_from:
+  - cackleen
+  evolves_into:
+  - bewhich
+- slug: cackleen
+  stage: basic
+  evolves_from: []
+  evolves_into:
+  - brumi
+- slug: bewhich
+  stage: stage2
+  evolves_from:
+  - brumi
+  evolves_into: []
+terrains:
+- any
+tags:
+- ghost
+- shapeshifter
+- darkness
+- mental
+- gemstone
+shape: sprite
+stage: stage1
+types:
+- shadow
+- cosmic
+gender_weights:
+  neuter: 1.0
+txmn_id: 341
+height: 123
+weight: 0.1
+sounds:
+  combat_call:
+    sfx: sound_weird_09
+    volume: 1.5
+  faint_call:
+    sfx: sound_weird_09_faint
+    volume: 1.5
+catch_rate: 70.0
+lower_catch_resistance: 0.95
+upper_catch_resistance: 1.05

@@ -665,7 +665,10 @@ class CombatTargetMenuState(Menu[Monster]):
 
         if self.technique.behaviors.bypasses_selection:
             if self.technique.target.get("enemy_monster"):
-                for player, monsters in self.combat_session.field_monsters.get_all_monsters().items():
+                for (
+                    player,
+                    monsters,
+                ) in self.combat_session.field_monsters.get_all_monsters().items():
                     if player != self.character and monsters:
                         yield self._create_menu_item(monsters[0])
                         break
@@ -780,7 +783,6 @@ class CombatTargetMenuState(Menu[Monster]):
         items = [i for i in self.menu_items if i.enabled]
         if len(items) == 1:
             self.on_menu_selection(items[0])
-
 
     def on_menu_selection_change(self) -> None:
         """Handles border updates when selection changes."""

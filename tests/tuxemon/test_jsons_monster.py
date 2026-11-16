@@ -134,4 +134,3 @@ def test_moveset_level_learned_evolution_at_level(data_list):
     assert not errors, "Moveset/evolution level conflicts:\n" + "\n".join(
         errors
     )
-

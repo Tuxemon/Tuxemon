@@ -1,7 +1,7 @@
 name: tuxemon
 buildsystem: simple
 build-commands:
-  - pip3 install -r requirements.txt
+  - python3 -m pip install . --prefix=/app
 sources:
   - type: archive
     url: # fill in

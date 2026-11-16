@@ -75,8 +75,12 @@ class JournalState(PygameMenuState):
                         button_id=mon.slug,
                         underline=True,
                         underline_color=SEA_BLUE_COLOR,
-                        underline_offset=self.client.context.scaling.scale_int(1),
-                        underline_width=self.client.context.scaling.scale_int(1),
+                        underline_offset=self.client.context.scaling.scale_int(
+                            1
+                        ),
+                        underline_width=self.client.context.scaling.scale_int(
+                            1
+                        ),
                     ).translate(btn_x_offset, btn_y_offset)
             else:
                 label = f"{mon.txmn_id}. -----"

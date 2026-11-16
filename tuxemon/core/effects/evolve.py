@@ -6,6 +6,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 from tuxemon.core.core_effect import CoreEffect, ItemEffectResult
+from tuxemon.monster.evolution import EvolutionContext
 from tuxemon.monster.monster import Monster
 
 if TYPE_CHECKING:
@@ -36,7 +37,7 @@ class EvolveEffect(CoreEffect):
     def apply_item_target(
         self, session: Session, item: Item, target: Monster
     ) -> ItemEffectResult:
-        context = {"use_item": True}
+        context = EvolutionContext(use_item=True)
         possible = target.evolution_handler.get_possible_item_evolutions(
             item, context
         )

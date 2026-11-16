@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import logging
 import random
+from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 from tuxemon.db import (
@@ -29,23 +30,31 @@ if TYPE_CHECKING:
 logger = logging.getLogger(__name__)
 
 
+@dataclass(frozen=True)
+class EvolutionContext:
+    """Runtime information used when evaluating evolution paths."""
+
+    use_item: bool = False
+    map_inside: bool = False
+
+
 class Evolution:
     def __init__(self, monster: Monster):
         self.monster = monster
 
     def get_eligible_evolution_slug(
-        self, context: dict[str, bool] | None = None
+        self, context: EvolutionContext | None = None
     ) -> str | None:
         """Checks all paths. Returns target slug or None."""
         if not self.is_eligible_for_evolution():
             return None
 
-        ctx = context or {"use_item": False}
+        ctx = context or EvolutionContext()
         owner = self.monster.get_owner()
         registry = owner.evolution_registry
         monster_id = self.monster.instance_id
 
-        if not ctx.get("use_item"):
+        if not ctx.use_item:
             held = self.monster.held_item
             if held and held.behaviors.block_evolution:
                 return None
@@ -162,7 +171,7 @@ class Evolution:
     def can_evolve(
         self,
         evolution_item: MonsterEvolutionItemModel,
-        context: dict[str, bool],
+        context: EvolutionContext,
         owner: NPC | None = None,
     ) -> bool:
         """Checks if a monster can evolve based on conditions."""
@@ -191,9 +200,7 @@ class Evolution:
                 )
             )
 
-        if evolution_item.item is not None and not context.get(
-            "use_item", False
-        ):
+        if evolution_item.item is not None and not context.use_item:
             return False
 
         if not conditions and evolution_item.probability is not None:
@@ -207,7 +214,7 @@ class Evolution:
         return False
 
     def get_possible_item_evolutions(
-        self, item: Item, context: dict[str, bool]
+        self, item: Item, context: EvolutionContext
     ) -> list[tuple[MonsterEvolutionItemModel, float]]:
         """
         Filters and returns evolution models possible with the given item,

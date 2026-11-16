@@ -350,3 +350,27 @@ def test_reverse_cycle_multiple_times(sprite):
     ani._reverse_cycle()
     assert prop.initial == initial
     assert prop.final == final
+
+
+def test_seek_sets_elapsed():
+    ani = Animation(x=100, duration=100)
+
+    ani.seek(50)
+
+    assert ani._elapsed == 50
+
+
+def test_seek_clamps_to_duration():
+    ani = Animation(x=100, duration=100)
+
+    ani.seek(500)
+
+    assert ani._elapsed == 100
+
+
+def test_seek_clamps_to_zero():
+    ani = Animation(x=100, duration=100)
+
+    ani.seek(-50)
+
+    assert ani._elapsed == 0

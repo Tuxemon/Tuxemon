@@ -732,6 +732,12 @@ class Animation(TaskBase):
         if self.delay == 0:
             self._gather_initial_values()
 
+    def seek(self, elapsed: float) -> None:
+        """
+        Move the animation playhead to a specific elapsed time.
+        """
+        self._elapsed = max(0.0, min(elapsed, self._duration))
+
     def _gather_initial_values(self) -> None:
         """
         Gathers the initial and final values for all animated properties

@@ -20,7 +20,7 @@ from tuxemon.db import (
 )
 from tuxemon.entity.npc import NPC, PartyHandler
 from tuxemon.game_variables import GameVariablesManager
-from tuxemon.monster.evolution import Evolution
+from tuxemon.monster.evolution import Evolution, EvolutionContext
 from tuxemon.monster.monster import Monster
 from tuxemon.session import local_session
 from tuxemon.technique.technique import Technique
@@ -140,7 +140,7 @@ def test_no_owner(evolution_context):
     mon, _, _ = evolution_context
     mon.set_owner(None)
     evo = MonsterEvolutionItemModel(monster_slug="rockat")
-    context = {"map_inside": True}
+    context = EvolutionContext(map_inside=True)
     assert not mon.evolution_handler.can_evolve(evo, context)
 
 
@@ -156,7 +156,7 @@ def test_level_requirement(evolution_context, level, at_level, expected):
     mon, _, _ = evolution_context
     mon.set_level(level, level)
     evo = MonsterEvolutionItemModel(monster_slug="rockat", at_level=at_level)
-    context = {"map_inside": True}
+    context = EvolutionContext(map_inside=True)
     assert mon.evolution_handler.can_evolve(evo, context) == expected
 
 
@@ -173,7 +173,7 @@ def test_gender_conditions(
     mon, _, _ = evolution_context
     mon.gender = monster_gender
     evo = MonsterEvolutionItemModel(monster_slug="rockat", gender=evo_gender)
-    context = {"map_inside": True}
+    context = EvolutionContext(map_inside=True)
     assert mon.evolution_handler.can_evolve(evo, context) == expected
 
 
@@ -187,7 +187,7 @@ def test_gender_conditions(
 def test_inside_conditions(evolution_context, map_inside, expected):
     mon, _, _ = evolution_context
     evo = MonsterEvolutionItemModel(monster_slug="rockat", inside=True)
-    context = {"map_inside": map_inside}
+    context = EvolutionContext(map_inside=map_inside)
     assert mon.evolution_handler.can_evolve(evo, context) == expected
 
 
@@ -195,14 +195,14 @@ def test_same_monster_slug(evolution_context):
     mon, _, _ = evolution_context
     mon.slug = "rockat"
     evo = MonsterEvolutionItemModel(monster_slug="rockat")
-    context = {"map_inside": True}
+    context = EvolutionContext(map_inside=True)
     assert not mon.evolution_handler.can_evolve(evo, context)
 
 
 def test_tech_match(evolution_context):
     mon, _, _ = evolution_context
     evo = MonsterEvolutionItemModel(monster_slug="rockat", tech="ram")
-    context = {"map_inside": True}
+    context = EvolutionContext(map_inside=True)
     assert mon.evolution_handler.can_evolve(evo, context)
 
 
@@ -227,7 +227,7 @@ def test_acquisition_conditions(
     mon.set_acquisition(monster_acquisition)
     evo = MonsterEvolutionItemModel(monster_slug="rockat")
     evo.acquisition = evo_acquisition
-    context = {"map_inside": True}
+    context = EvolutionContext(map_inside=True)
     assert mon.evolution_handler.can_evolve(evo, context) == expected
 
 
@@ -270,7 +270,7 @@ def test_taste_conditions(
     mon, _, _ = evolution_context
     setattr(mon, taste_attr, taste_value)
     evo = MonsterEvolutionItemModel(monster_slug="rockat", tastes=evo_taste)
-    context = {"map_inside": True}
+    context = EvolutionContext(map_inside=True)
     assert mon.evolution_handler.can_evolve(evo, context) == expected
 
 
@@ -307,7 +307,7 @@ def test_stats_conditions(
             target_stat=target_stat,
         ),
     )
-    context = {"map_inside": True}
+    context = EvolutionContext(map_inside=True)
     assert mon.evolution_handler.can_evolve(evo, context) == expected
 
 
@@ -354,7 +354,7 @@ def test_variables_conditions(
         monster_slug="rockat",
         variables=game_conditions,
     )
-    context = {"map_inside": True}
+    context = EvolutionContext(map_inside=True)
     assert mon.evolution_handler.can_evolve(evo, context) == expected
 
 
@@ -374,7 +374,7 @@ def test_bond_conditions(evolution_context, bond_value, evo_value, expected):
             comparison=Comparison.GREATER_OR_EQUAL, value=evo_value
         ),
     )
-    context = {"map_inside": True}
+    context = EvolutionContext(map_inside=True)
     assert mon.evolution_handler.can_evolve(evo, context) == expected
 
 
@@ -390,7 +390,7 @@ def test_item_conditions(evolution_context, use_item, expected):
     evo = MonsterEvolutionItemModel(
         monster_slug="botbot", item={"booster_tech": 1.0}
     )
-    context = {"map_inside": True, "use_item": use_item}
+    context = EvolutionContext(map_inside=True, use_item=use_item)
     assert mon.evolution_handler.can_evolve(evo, context) == expected
 
 
@@ -407,7 +407,7 @@ def test_element_conditions(
     mon, _, _ = evolution_context
     mon.types.set_types([monster_type])
     evo = MonsterEvolutionItemModel(monster_slug="botbot", element=evo_type)
-    context = {"map_inside": True}
+    context = EvolutionContext(map_inside=True)
     assert mon.evolution_handler.can_evolve(evo, context) == expected
 
 
@@ -426,7 +426,7 @@ def test_moves_conditions(
         MagicMock(spec=Technique, slug=slug) for slug in monster_moves
     ]
     evo = MonsterEvolutionItemModel(monster_slug="rockat", moves=evo_moves)
-    context = {"map_inside": True}
+    context = EvolutionContext(map_inside=True)
     assert mon.evolution_handler.can_evolve(evo, context) == expected
 
 
@@ -458,7 +458,7 @@ def test_probability_conditions(
     evo_kwargs["probability"] = probability
 
     evo = MonsterEvolutionItemModel(**evo_kwargs)
-    context = {"map_inside": True}
+    context = EvolutionContext(map_inside=True)
 
     monkeypatch.setattr("random.random", lambda: random_value)
     assert mon.evolution_handler.can_evolve(evo, context) == expected
@@ -486,7 +486,7 @@ def test_held_item_conditions(
         held_item=evo_item_slug,
     )
 
-    context = {"map_inside": True}
+    context = EvolutionContext(map_inside=True)
     assert mon.evolution_handler.can_evolve(evo, context) == expected
 
 
@@ -506,7 +506,7 @@ def test_party_conditions(evolution_context, party_slugs, expected):
         monster_slug="rockat",
         party_conditions=PartyConditionsModel(monster_slugs=party_slugs),
     )
-    context = {"map_inside": True}
+    context = EvolutionContext(map_inside=True)
     assert mon.evolution_handler.can_evolve(evo, context) == expected
 
 
@@ -529,7 +529,7 @@ def test_party_alignment_conditions(
             monster_slug="nut",
             party_conditions=PartyConditionsModel(alignment=evo_alignment),
         )
-        context = {"map_inside": True}
+        context = EvolutionContext(map_inside=True)
         assert mon.evolution_handler.can_evolve(evo, context) == expected
 
 
@@ -560,7 +560,7 @@ def test_party_gender_conditions(
         monster_slug="rockat",
         party_conditions=PartyConditionsModel(genders=evo_genders),
     )
-    context = {"map_inside": True}
+    context = EvolutionContext(map_inside=True)
     assert mon.evolution_handler.can_evolve(evo, context) == expected
 
 
@@ -581,7 +581,7 @@ def test_party_type_conditions(
         monster_slug="rockat",
         party_conditions=PartyConditionsModel(monster_types=evo_types),
     )
-    context = {"map_inside": True}
+    context = EvolutionContext(map_inside=True)
     assert mon.evolution_handler.can_evolve(evo, context) == expected
 
 
@@ -601,7 +601,7 @@ def test_party_size_conditions(
         monster_slug="rockat",
         party_conditions=PartyConditionsModel(party_size=evo_size),
     )
-    context = {"map_inside": True}
+    context = EvolutionContext(map_inside=True)
     assert mon.evolution_handler.can_evolve(evo, context) == expected
 
 
@@ -622,7 +622,7 @@ def test_party_level_conditions(
         monster_slug="rockat",
         party_conditions=PartyConditionsModel(party_level=evo_level),
     )
-    context = {"map_inside": True}
+    context = EvolutionContext(map_inside=True)
     assert mon.evolution_handler.can_evolve(evo, context) == expected
 
 
@@ -650,7 +650,7 @@ def test_party_stages_conditions(
         monster_slug="rockat",
         party_conditions=PartyConditionsModel(party_stages=evo_stages),
     )
-    context = {"map_inside": True}
+    context = EvolutionContext(map_inside=True)
     assert mon.evolution_handler.can_evolve(evo, context) == expected
 
 
@@ -666,7 +666,7 @@ def test_returns_valid_evolutions(evolution_context):
     evo_model_invalid.monster_slug = "nut"
     mon.evolutions = [evo_model_valid, evo_model_invalid]
     evo.can_evolve = MagicMock(return_value=True)
-    context = {"use_item": True}
+    context = EvolutionContext(use_item=True)
     result = evo.get_possible_item_evolutions(item, context)
     assert len(result) == 1
     assert result[0][0].monster_slug == "rockat"
@@ -682,7 +682,7 @@ def test_filters_out_weight_zero(evolution_context):
     evo_model.monster_slug = "rockat"
     mon.evolutions = [evo_model]
     evo.can_evolve = MagicMock(return_value=True)
-    context = {"use_item": True}
+    context = EvolutionContext(use_item=True)
     result = evo.get_possible_item_evolutions(item, context)
     assert result == []
 
@@ -696,7 +696,7 @@ def test_filters_out_ineligible(evolution_context):
     evo_model.monster_slug = "rockat"
     mon.evolutions = [evo_model]
     evo.can_evolve = MagicMock(return_value=False)
-    context = {"use_item": True}
+    context = EvolutionContext(use_item=True)
     result = evo.get_possible_item_evolutions(item, context)
     assert result == []
 
@@ -802,7 +802,7 @@ def test_get_eligible_evolution_slug_requires_item_but_not_used(
     player.evolution_registry = registry
 
     type(mon).held_item = PropertyMock(return_value=None)
-    slug = evo.get_eligible_evolution_slug(context={"use_item": False})
+    slug = evo.get_eligible_evolution_slug(EvolutionContext(use_item=False))
     assert slug is None
 
 

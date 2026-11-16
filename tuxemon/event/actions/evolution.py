@@ -8,6 +8,7 @@ from typing import TYPE_CHECKING, final
 from uuid import UUID
 
 from tuxemon.event.eventaction import EventAction
+from tuxemon.monster.evolution import EvolutionContext
 from tuxemon.monster.monster import Monster
 from tuxemon.tools import get_valid_uuid
 
@@ -104,7 +105,7 @@ class EvolutionAction(EventAction):
             return
 
         monster = candidates[0]
-        context = {"use_item": monster.waiting_to_evolve}
+        context = EvolutionContext(use_item=monster.waiting_to_evolve)
         slug = monster.evolution_handler.get_eligible_evolution_slug(context)
 
         if not slug:

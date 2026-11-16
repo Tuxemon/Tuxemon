@@ -6,6 +6,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 from tuxemon.core.core_condition import CoreCondition
+from tuxemon.monster.evolution import EvolutionContext
 
 if TYPE_CHECKING:
     from tuxemon.monster.monster import Monster
@@ -33,10 +34,10 @@ class CanEvolveCondition(CoreCondition):
     name = "can_evolve"
 
     def test_with_monster(self, session: Session, target: Monster) -> bool:
-        context = {
-            "map_inside": session.client.map_manager.map_inside,
-            "use_item": True,
-        }
+        context = EvolutionContext(
+            use_item=True,
+            map_inside=session.client.map_manager.map_inside,
+        )
         return bool(
             target.evolution_handler.get_eligible_evolution_slug(context)
         )

@@ -14,6 +14,7 @@ from tuxemon.tools import compare
 
 if TYPE_CHECKING:
     from tuxemon.entity.party import PartyHandler
+    from tuxemon.monster.evolution import EvolutionContext
     from tuxemon.monster.monster import Monster
 
 logger = logging.getLogger(__name__)
@@ -111,7 +112,7 @@ def check_simple_conditions(
 def check_location_items_moves(
     monster: Monster,
     evolution_item: MonsterEvolutionItemModel,
-    context: dict[str, bool],
+    context: EvolutionContext,
     conditions: list[bool],
 ) -> None:
     """Checks environment, inventory, and moveset."""
@@ -119,9 +120,7 @@ def check_location_items_moves(
 
     # Location check
     if evolution_item.inside is not None:
-        conditions.append(
-            evolution_item.inside == context.get("map_inside", False)
-        )
+        conditions.append(evolution_item.inside == context.map_inside)
 
     # Tech/HM check
     if evolution_item.tech is not None:

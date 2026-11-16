@@ -44,7 +44,6 @@ from typing import TYPE_CHECKING, Any, ClassVar
 from pygame.rect import Rect
 
 from tuxemon.ai.manager import AIManager
-from tuxemon.animation import Task, TaskBase
 from tuxemon.animation_entity import AnimationManager
 from tuxemon.combat.combat_context import CombatContext
 from tuxemon.combat.machine import CombatMachine, CombatPhase
@@ -196,23 +195,6 @@ class CombatState(CombatAnimations):
         self.env = env
         self.transition_none_normal()
 
-    @staticmethod
-    def is_task_finished(task: TaskBase) -> bool:
-        """
-        Check if the task is finished or not.
-        In case the task is in fact an animation, it's considered as finished
-        by default since it should not be blocking.
-
-        Parameters:
-            task: the task (or animation) to be checked
-
-        Returns:
-            False if the task is a task and not finished
-        """
-        if isinstance(task, Task):
-            return task.is_finish()
-        return True
-
     def update_combat_phase(self) -> None:
         """
         Update the combat phase.
@@ -221,7 +203,8 @@ class CombatState(CombatAnimations):
             return
 
         if not self.text_anim.is_animating() and all(
-            map(self.is_task_finished, self.animations)
+            not task.is_blocking() or task.is_finished()
+            for task in self.animations
         ):
             new_phase = self.machine.determine_next_phase(self.phase)
             if new_phase:

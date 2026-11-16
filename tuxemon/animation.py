@@ -1319,7 +1319,11 @@ class RetryTask(TaskBase):
         self._active_task: TaskBase | None = None
 
     def clone_task(self) -> TaskBase:
-        return self._original_task
+        """
+        Create a fresh task instance for each retry attempt.
+        Retries do not reuse task state from previous attempts.
+        """
+        return deepcopy(self._original_task)
 
     def start(self) -> None:
         super().start()

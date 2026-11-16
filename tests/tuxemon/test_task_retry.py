@@ -77,13 +77,12 @@ def test_retry_finishes_if_any_attempt_succeeds():
             ScheduleType.ON_ABORT,
         )
 
-        def __init__(self):
-            super().__init__()
-            self.calls = 0
+        attempts = 0
 
         def update(self, dt):
-            self.calls += 1
-            if self.calls == 1:
+            type(self).attempts += 1
+
+            if type(self).attempts == 1:
                 self.abort()
             else:
                 self.finish()
@@ -173,3 +172,53 @@ def test_retry_parametrized_attempt_counts(attempts):
 
     assert retry._current_attempt == attempts
     assert retry._state == AnimationState.ABORTED
+
+
+def test_retry_creates_new_task_instance():
+    task = AlwaysAbortTask()
+
+    retry = RetryTask(task, max_attempts=2)
+
+    retry.start()
+
+    first_task = retry._active_task
+
+    retry.update(1)
+
+    second_task = retry._active_task
+
+    assert first_task is not second_task
+
+
+def test_retry_deepcopies_tasks():
+    class CounterTask(TaskBase):
+        _valid_schedules = (
+            ScheduleType.ON_UPDATE,
+            ScheduleType.ON_FINISH,
+            ScheduleType.ON_ABORT,
+        )
+
+        def __init__(self):
+            super().__init__()
+            self.counter = 0
+
+        def update(self, dt):
+            self.counter += 1
+            self.abort()
+
+        def finish(self):
+            self._state = AnimationState.FINISHED
+
+        def abort(self):
+            self._state = AnimationState.ABORTED
+
+    retry = RetryTask(CounterTask(), max_attempts=2)
+
+    retry.start()
+    first = retry._active_task
+
+    retry.update(1)
+    second = retry._active_task
+
+    assert first is not second
+    assert second.counter == 0

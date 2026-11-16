@@ -187,6 +187,15 @@ class TaskBase(Sprite, ABC):
         """Ensure we clear callbacks when the sprite is removed."""
         super().kill()
 
+    def is_finished(self) -> bool:
+        return self._state in (
+            AnimationState.FINISHED,
+            AnimationState.ABORTED,
+        )
+
+    def is_blocking(self) -> bool:
+        return True
+
 
 class Task(TaskBase):
     """
@@ -371,13 +380,6 @@ class Task(TaskBase):
         self._execute_callbacks(ScheduleType.ON_FINISH)
         self._execute_chain()
         self._cleanup()
-
-    def is_finish(self) -> bool:
-        """
-        Returns:
-            Whether the task is finished or not.
-        """
-        return self._state is AnimationState.FINISHED
 
     def reset_delay(self, new_delay: float) -> None:
         """
@@ -796,6 +798,9 @@ class Animation(TaskBase):
         self._targets = []
         self.props.clear()
         super().kill()
+
+    def is_blocking(self) -> bool:
+        return False
 
 
 class TaskSequence(TaskBase):

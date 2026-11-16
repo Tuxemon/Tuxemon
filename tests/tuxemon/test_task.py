@@ -101,16 +101,16 @@ def test_chained_task_added_to_group(cb, cb2):
     cb2.assert_called_once()
 
 
-def test_is_finish_true(cb):
+def test_is_finished_true(cb):
     task = Task(cb, DEFAULT_INTERVAL)
     task.update(DEFAULT_INTERVAL)
-    assert task.is_finish()
+    assert task.is_finished()
 
 
-def test_is_finish_false(cb):
+def test_is_finished_false(cb):
     task = Task(cb, DEFAULT_INTERVAL)
     task.update(0.5)
-    assert not task.is_finish()
+    assert not task.is_finished()
 
 
 @pytest.mark.parametrize(
@@ -249,7 +249,7 @@ def test_large_dt_single_loop_finishes(cb):
     task = Task(cb, DEFAULT_INTERVAL, times=1)
     task.update(5.0)
     assert cb.call_count == 1
-    assert task.is_finish()
+    assert task.is_finished()
 
 
 def test_large_dt_infinite_loop_triggers_once(cb):

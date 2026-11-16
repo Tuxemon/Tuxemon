@@ -52,13 +52,17 @@ class BivouacEffect(CoreEffect):
     def apply_item(self, session: Session, item: Item) -> ItemEffectResult:
         self.session = session
         self.item = item
+        session.client.push_state("SinkState")
         self.stage = BivouacStage.SETUP
         self._elapsed = 0.0
         self._duration = 1.5
+        self._finished = False
         return ItemEffectResult(name=item.name, success=True)
 
     def update(self, session: Session, dt: float) -> None:
-        session.client.push_state("SinkState")
+        if self.stage == BivouacStage.DONE:
+            return
+
         self._elapsed += dt
 
         if (
@@ -76,9 +80,12 @@ class BivouacEffect(CoreEffect):
             self._elapsed = 0.0
             session.client.event_engine.execute_action("set_monster_health")
             session.client.event_engine.execute_action("set_monster_status")
-            session.client.remove_state_by_name("SinkState")
-            self.stage = BivouacStage.DONE
-            self._finished = True
+            self._finish(session)
 
     def is_finished(self) -> bool:
         return self._finished
+
+    def _finish(self, session: Session) -> None:
+        session.client.remove_state_by_name("SinkState")
+        self.stage = BivouacStage.DONE
+        self._finished = True

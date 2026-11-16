@@ -13,6 +13,7 @@ from tuxemon.core.core_effect import CoreEffect, ItemEffectResult
 from tuxemon.database.runtime import db
 from tuxemon.database.yaml_utils import load_yaml
 from tuxemon.db import MonsterModel
+from tuxemon.monster.monster import Monster
 
 if TYPE_CHECKING:
     from tuxemon.item.item import Item
@@ -40,11 +41,13 @@ class TrapConfig:
     tag_weights: dict[str, float] = field(default_factory=dict)
 
     def validate_parameters(self) -> None:
-        if self.expire_time and self.expire_time < 0:
+        if self.expire_time is not None and self.expire_time < 0:
             raise ValueError("Expire time must be non-negative.")
-        if self.max_distance and self.max_distance < 0:
+        if self.max_distance is not None and self.max_distance < 0:
             raise ValueError("Max distance must be non-negative.")
-        if self.trigger_chance and not (0 <= self.trigger_chance <= 1):
+        if self.trigger_chance is not None and not (
+            0 <= self.trigger_chance <= 1
+        ):
             raise ValueError("Trigger chance must be between 0 and 1.")
         if self.level_bounds[0] < 0 or self.level_bounds[1] < 0:
             raise ValueError("Bounds must be non-negative.")
@@ -139,6 +142,8 @@ class TrapEffect(CoreEffect):
         self.stage = TrapStage.SETUP
         self._elapsed = 0.0
         self._duration = 1.0
+        self._finished = False
+        self._pending_encounter = None
         self._origin_map = session.player.current_map
         self._origin_pos = session.player.tile_pos
         return ItemEffectResult(name=item.name, success=True)
@@ -164,7 +169,7 @@ class TrapEffect(CoreEffect):
             ):
                 self._expire(session)
             else:
-                self.trigger()
+                self.trigger(dt)
 
         elif self.stage == TrapStage.TRIGGERED:
             self.stage = TrapStage.RESOLVE
@@ -176,11 +181,8 @@ class TrapEffect(CoreEffect):
         ):
             if self._pending_encounter:
                 mon_slug, level = self._pending_encounter
-                session.client.event_engine.execute_action(
-                    "wild_encounter",
-                    [mon_slug, level, None, None, None, None],
-                    True,
-                )
+                trap_monster = Monster.spawn_base(mon_slug, level)
+                session.player.party.send_monster_to_box(trap_monster)
                 session.client.event_engine.execute_action(
                     "translated_dialog", [self._trap.success_dialog], True
                 )
@@ -191,12 +193,21 @@ class TrapEffect(CoreEffect):
             self.stage = TrapStage.DONE
             self._finished = True
 
-    def trigger(self) -> None:
-        if (
-            self._trap.trigger_chance
-            and random.random() <= self._trap.trigger_chance
-        ):
-            mon_slug = self._get_trap_monsters()[0]
+    def trigger(self, dt: float) -> None:
+        if self._trap.trigger_chance is None:
+            self._pending_encounter = None
+            return
+
+        chance = self._trap.trigger_chance * dt
+
+        if random.random() <= chance:
+            monsters = self._get_trap_monsters()
+
+            if not monsters:
+                self._pending_encounter = None
+                return
+
+            mon_slug = monsters[0]
             low, high = self._trap.level_bounds
             level = random.randint(low, high)
             self._pending_encounter = (mon_slug, level)

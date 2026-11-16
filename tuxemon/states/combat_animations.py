@@ -297,10 +297,10 @@ class CombatAnimations(Menu[None], ABC):
         )
         ani = animate(x=original_x, initial=original_x + self.scale_int(400))
         # just want the end of the animation, not the entire thing
-        ani._elapsed = 0.735
+        ani.seek(0.735)
         ani = animate(y=original_y, initial=original_y - self.scale_int(400))
         # just want the end of the animation, not the entire thing
-        ani._elapsed = 0.735
+        ani.seek(0.735)
 
     def animate_hp(self, monster: Monster) -> None:
         hp_bar = self.bars.get_hp_bar(monster)

@@ -112,7 +112,8 @@ class FishingEffect(CoreEffect):
 
         self._fish: ActionConfig = fishing_configs[item.slug]
         self._fish.validate_parameters()
-
+        self._pending_encounter = None
+        self._trigger_next_frame = False
         monster_slugs = self._get_fishing_monsters()
 
         if monster_slugs and random.random() <= self._fish.trigger:
@@ -121,6 +122,7 @@ class FishingEffect(CoreEffect):
             level = random.randint(low, high)
             self._pending_encounter = (mon_slug, level)
 
+        session.client.push_state("SinkState")
         self.stage = FishingStage.CAST
         self._elapsed = 0.0
         self._duration = self._fish.cast_time
@@ -151,7 +153,6 @@ class FishingEffect(CoreEffect):
         map_animations.show(SPLASH_SLUG)
 
     def update(self, session: Session, dt: float) -> None:
-        session.client.push_state("SinkState")
         if self.stage == FishingStage.DONE:
             return
 
@@ -223,8 +224,7 @@ class FishingEffect(CoreEffect):
                     "translated_dialog", [dialog_key], True
                 )
                 logger.info("Fishing attempt ended with no catch.")
-            session.client.remove_state_by_name("SinkState")
-            self.stage = FishingStage.DONE
+            self._finish(session)
 
     def is_finished(self) -> bool:
         return self.stage == FishingStage.DONE
@@ -278,3 +278,7 @@ class FishingEffect(CoreEffect):
         """Prepare a fishing encounter (store slug + level only)."""
         self._pending_encounter = (mon_slug, level)
         self._trigger_next_frame = True
+
+    def _finish(self, session: Session) -> None:
+        session.client.remove_state_by_name("SinkState")
+        self.stage = FishingStage.DONE

@@ -1,7 +1,7 @@
 example_trap:
   expire_time: 30.0        # Maximum time (in seconds) the trap/fishing rod remains active before expiring
   max_distance: 8          # Maximum distance (in tiles) the player can move away before the trap expires
-  trigger_chance: 0.6      # Probability (0–1) that the trap/fishing rod will successfully trigger an encounter
+  trigger_chance: 0.6      # Chance rate evaluated continuously while armed (scaled by dt)
   failure_dialog: "trap_failed"     # Dialog key shown if the trap is sprung but no monster is caught
   success_dialog: "trap_triggered"  # Dialog key shown when the trap successfully catches a monster
   level_bounds: [2, 5]     # Minimum and maximum monster level range for encounters (randomly chosen between 2–5)

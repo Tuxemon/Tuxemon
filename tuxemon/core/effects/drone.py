@@ -60,13 +60,14 @@ class DroneEffect(CoreEffect):
     def apply_item(self, session: Session, item: Item) -> ItemEffectResult:
         self.session = session
         self.item = item
+        session.client.push_state("SinkState")
         self.stage = DroneStage.LAUNCH
         self._elapsed = 0.0
         self._duration = 1.0
+        self._finished = False
         return ItemEffectResult(name=item.name, success=True)
 
     def update(self, session: Session, dt: float) -> None:
-        session.client.push_state("SinkState")
         if self.stage == DroneStage.DONE:
             return
 
@@ -90,8 +91,7 @@ class DroneEffect(CoreEffect):
         ):
             size = session.player.monster_boxes.get_box_size(KENNEL, "monster")
             if size == 0:
-                self._finished = True
-                self.stage = DroneStage.DONE
+                self._finish(session)
                 return
 
             def on_party_monster_selected(monster: Monster) -> None:
@@ -118,9 +118,12 @@ class DroneEffect(CoreEffect):
         elif (
             self.stage == DroneStage.RETURN and self._elapsed >= self._duration
         ):
-            session.client.remove_state_by_name("SinkState")
-            self.stage = DroneStage.DONE
-            self._finished = True
+            self._finish(session)
 
     def is_finished(self) -> bool:
         return self._finished
+
+    def _finish(self, session: Session) -> None:
+        session.client.remove_state_by_name("SinkState")
+        self.stage = DroneStage.DONE
+        self._finished = True

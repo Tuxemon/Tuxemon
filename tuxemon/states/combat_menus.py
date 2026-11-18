@@ -3,31 +3,27 @@
 from __future__ import annotations
 
 import logging
-from collections import defaultdict
 from collections.abc import Callable, Generator
 from functools import partial
 from typing import TYPE_CHECKING, Any, ClassVar
 
-from pygame import SRCALPHA
 from pygame.rect import Rect
 from pygame.surface import Surface
-from pygame.transform import scale as pg_scale
 
 from tuxemon.combat.menu_visibility import MenuProfiles
 from tuxemon.db import EffectPhase, SpeedLabel, State
-from tuxemon.graphics import load_and_scale, load_image
+from tuxemon.graphics import load_and_scale
 from tuxemon.item.filter import ItemFilter
 from tuxemon.locale.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import Menu, PopUpMenu
 from tuxemon.monster.monster import Monster
 from tuxemon.sprite import Sprite
+from tuxemon.states.combat_target import CombatTargetMenuState
 from tuxemon.states.item_menu import ItemMenuState
 from tuxemon.states.monster_menu import MonsterMenuState
 from tuxemon.technique.technique import Technique
 from tuxemon.tools import fix_measure, open_dialog
-from tuxemon.ui.graphic_box import GraphicBox
-from tuxemon.ui.text import TextArea
 
 if TYPE_CHECKING:
     from tuxemon.base_client import BaseClient
@@ -600,174 +596,3 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             self.client.pop_state(self)
 
         choose_technique()
-
-
-class CombatTargetMenuState(Menu[Monster]):
-    """Menu for selecting targets of techniques and items."""
-
-    name: ClassVar[str] = "CombatTargetMenuState"
-    transparent = True
-
-    def __init__(
-        self,
-        client: BaseClient,
-        combat: CombatState,
-        character: NPC,
-        monster: Monster,
-        technique: Technique,
-        *,
-        on_selection: Callable[[MenuItem[Monster]], None] | None = None,
-        is_valid_entry: Callable[[Monster | None], bool] | None = None,
-        **kwargs: Any,
-    ) -> None:
-        super().__init__(client=client, **kwargs)
-        self.character = character
-        self.monster = monster
-        self.combat = combat
-        self.combat_session = self.client.combat_session
-        self.technique = technique
-        self._external_on_selection = on_selection
-        self._external_is_valid_entry = is_valid_entry
-        self.targeting_map: defaultdict[str, list[Monster]] = defaultdict(list)
-        self._crosshairs_sprite: Sprite | None = None
-
-        self._create_menu()
-
-    def initialize_items(self) -> Generator[MenuItem[Monster], None, None]:
-        """Generates menu items based on targeting rules for 2vs2 or 1vs2 combat."""
-        self.targeting_map.clear()
-
-        if self.technique.behaviors.bypasses_selection:
-            if self.technique.target.get("enemy_monster"):
-                for (
-                    player,
-                    monsters,
-                ) in self.combat_session.field_monsters.get_all_monsters().items():
-                    if player != self.character and monsters:
-                        yield self._create_menu_item(monsters[0])
-                        break
-            else:
-                yield self._create_menu_item(self.monster)
-            return
-
-        for (
-            player,
-            monsters,
-        ) in self.combat_session.field_monsters.get_all_monsters().items():
-            targeting_class = (
-                "own_monster" if player == self.character else "enemy_monster"
-            )
-            self.targeting_map[targeting_class].extend(monsters)
-
-            show = self.technique.target.get(targeting_class)
-            if not show and targeting_class == "enemy_monster":
-                show = self.technique.targets_enemy()
-            if not show:
-                continue
-
-            for monster in monsters:
-                yield self._create_menu_item(monster)
-
-    def _create_menu_item(self, monster: Monster) -> MenuItem[Monster]:
-        """Creates a menu item for a given monster."""
-        sprite = self.combat.sprite_map.get_sprite(monster)
-        if sprite is None:
-            raise KeyError(f"Sprite not found for entity: {monster.name}")
-        item = MenuItem(self.surface, None, monster.name, monster)
-        item.rect = sprite.rect.copy()
-        item.rect.inflate_ip(self.factor, self.factor)
-        return item
-
-    def _create_menu(self) -> None:
-        """Sets up the menu UI."""
-        rect_screen = self.client.context.rect.copy()
-        rect = Rect(0, 0, rect_screen.w // 2, rect_screen.h // 4)
-        rect.bottomright = rect_screen.w, rect_screen.h
-
-        self.window = GraphicBox(
-            rect,
-            load_and_scale(self.borders_filename),
-            color=self.background_color,
-        )
-        self.sprites.add(self.window, layer=100)
-
-        self.text_area = TextArea(
-            font=self.font,
-            font_color=self.font_color,
-            rect=self.window.inner_rect,
-            scaling=self.client.context.scaling,
-        )
-        self.sprites.add(self.text_area, layer=100)
-
-        self.surface = Surface(self.window.rect.size, SRCALPHA)
-        self.border = GraphicBox(
-            Rect(0, 0, 1, 1),
-            load_and_scale(self.borders_filename),
-        )
-
-    def determine_target(self) -> None:
-        """Finds the best target based on technique settings."""
-        for target_tag, target_value in self.technique.target.items():
-            if target_value:
-                for target in self.targeting_map.get(target_tag, []):
-                    menu_item = self.search_items(target)
-                    if menu_item and menu_item.enabled:
-                        self.selected_index = self.menu_items.sprites().index(
-                            menu_item
-                        )
-                        return
-
-    def refresh_layout(self, *, mutate: bool = True) -> Rect:
-        """Updates layout after determining the target."""
-        self.determine_target()
-        return super().refresh_layout(mutate=mutate)
-
-    def _update_borders(self) -> None:
-        """Shows crosshairs over the currently selected monster in 2vs2/1vs2 combat."""
-        for sprite in self.menu_items:
-            sprite.image.fill((0, 0, 0, 0))
-
-        if self._crosshairs_sprite is not None:
-            self._crosshairs_sprite.kill()
-            self._crosshairs_sprite = None
-
-        if selected := self.get_selected_item():
-            monster = selected.game_object
-            pos = self.combat.sprite_map.get_sprite(monster)
-            if pos is None:
-                return
-
-            s = self.client.context.scaling.scale_int(64)
-            crosshairs_image = pg_scale(
-                load_image("gfx/ui/combat/crosshairs.png"), (s, s)
-            )
-            spr = Sprite()
-            spr.image = crosshairs_image
-            spr.rect = crosshairs_image.get_rect(center=pos.rect.center)
-            self.sprites.add(spr, layer=101)
-            self._crosshairs_sprite = spr
-
-            if selected.description:
-                self.dialog.alert(selected.description, self.text_area)
-
-    def update_cursor_visibility(self) -> None:
-        self.hide_cursor()
-
-    def on_open(self) -> None:
-        items = [i for i in self.menu_items if i.enabled]
-        if len(items) == 1:
-            self.on_menu_selection(items[0])
-
-    def on_menu_selection_change(self) -> None:
-        """Handles border updates when selection changes."""
-        self.hide_cursor()
-        self._update_borders()
-
-    def on_menu_selection(self, item: MenuItem[Monster]) -> None:
-        if self._external_on_selection:
-            return self._external_on_selection(item)
-
-    def is_valid_entry(self, monster: Monster | None) -> bool:
-        if self._external_is_valid_entry:
-            return self._external_is_valid_entry(monster)
-        return monster is not None

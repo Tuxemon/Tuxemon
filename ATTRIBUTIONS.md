@@ -662,7 +662,7 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 [Sanglorian](https://wiki.tuxemon.org/index.php?title=Sanglorian)
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
-* ["Arrdart"](https://wiki.tuxemon.org/index.php?title=Aardart) by
+* ["Aardart"](https://wiki.tuxemon.org/index.php?title=Aardart) by
 [Magic-Purple-Hermit](https://wiki.tuxemon.org/index.php?title=Magic-Purple-Hermit)
 is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
 

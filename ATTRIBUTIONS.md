@@ -662,7 +662,7 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 [Sanglorian](https://wiki.tuxemon.org/index.php?title=Sanglorian)
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
-* ["Arrdart"](https://wiki.tuxemon.org/index.php?title=Aardart) by
+* ["Aardart"](https://wiki.tuxemon.org/index.php?title=Aardart) by
 [Magic-Purple-Hermit](https://wiki.tuxemon.org/index.php?title=Magic-Purple-Hermit)
 is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
 
@@ -790,6 +790,660 @@ back and menu sprites by ultidonki based on the design by Tricoelacanth, all rel
 
 * ["Teddisun"](https://www.github.com/Tuxemon/Tuxemon/tree/development/mods/tuxemon/gfx/sprites/battle/teddisun-sheet.png)
 Character created by Leo (from Discord) and released under the CC-BY-SA 4.0+ license. Front, back, and menu sprites drawn by ultidonki, also released under the CC-BY-SA 4.0+ license based on the design by Leo (from Discord).
+
+Monsters, all released under CC BY-SA 4.0 unless otherwise mentioned: 
+
+* ["Abesnaki"](https://wiki.tuxemon.org/Abesnaki). Original design and sprites by mysterynoodler. Face sprites by tamashihoshi. (Sources: Tamashihoshi, mysterynoodler)
+
+* ["Agnsher"](https://wiki.tuxemon.org/Agnsher). Manual fusion of Agnite and Tweesher, by Sanglorian from sprites by aviculor and Levaine. Adapted by HippasusTwo. (Sources: Aviculor, HippasusTwo, Levaine, Sanglorian)
+
+* ["Altie"](https://wiki.tuxemon.org/Altie). Original design and front sprite by Hugop. Back and face sprites by tamashihoshi, Sanglorian and HippasusTwo. (Sources: HippasusTwo, Sanglorian, Tamashihoshi, Hugop)
+
+* ["Ambuwl"](https://wiki.tuxemon.org/Ambuwl). Design, original sprite and blurb by Piacarrot. Recolour by Sanglorian. Sprites adapted by HippasusTwo. Face sprites by Jaskrendix. Attribution must include full credit as always, and a link to Piacarrot's DeviantArt page: https://www.deviantart.com/piacarrot (Sources: HippasusTwo, Jaskrendix, Piacarrot, Sanglorian)
+
+* ["Ampystoma"](https://wiki.tuxemon.org/Ampystoma). Design and art by DevilDman. Named by Tricoelacanth. Sprites by JaskRendix and HippasusTwo. (Sources: DevilDman, HippasusTwo, Jaskrendix)
+
+* ["Angesnow"](https://wiki.tuxemon.org/Angesnow). Design and front sprite by Serpexnessie. Back and face sprites by Jaskrendix, based on the front sprite. Art by giovani_rubio. (Sources: Giovani rubio, Jaskrendix, Serpexnessie)
+
+* ["Angrito"](https://wiki.tuxemon.org/Angrito). Design and sprites by Serpexnessie. Face sprites tweaked by Sanglorian. (Sources: Sanglorian, Serpexnessie)
+
+* ["Anu"](https://wiki.tuxemon.org/Anu). princess-phoenix has released Project Freemon under a Creative Commons Attribution-ShareAlike 3.0 Unported licence for us. Design and sprites by princess-phoenix. Face sprites tweaked by Sanglorian. Back sprite by Sanglorian. (Sources: Sanglorian, princess-phoenix)
+
+* ["Apeoro"](https://wiki.tuxemon.org/Apeoro). Original art by CrisFarias. Front, back and face sprites by Involuntary Twitch. (Sources: CrisFarias, Involuntary Twitch)
+
+* ["Araignee"](https://wiki.tuxemon.org/Araignee). Original design by Cavalcadeur. Front sprite by Cavalcadeur. Other sprites by Chickenshowman. (Sources: Cavalcadeur, Chickenshowman)
+
+* ["Askylpaws"](https://wiki.tuxemon.org/Askylpaws). (Sources: HippasusTwo)
+
+* ["Asudopt"](https://wiki.tuxemon.org/Asudopt). Design and art by tamashihoshi. Sprites by HippasusTwo. (Sources: HippasusTwo, tamashihoshi)
+
+* ["AV8R"](https://wiki.tuxemon.org/AV8R). Design by Leo. Sprites by josepharaoh99 and Sanglorian. (Sources: Leo, Sanglorian, josepharaoh99)
+
+* ["Babysnitch"](https://wiki.tuxemon.org/Babysnitch). Art by DarkMilkyWay1701. Coloured by Sanglorian. (Sources: DarkMilkyWay1701, HippasusTwo, Sanglorian)
+
+* ["Baddrscratch"](https://wiki.tuxemon.org/Baddrscratch). Art by DarkMilkyWay1701. Coloured by Sanglorian. (Sources: DarkMilkyWay1701, HippasusTwo, Sanglorian)
+
+* ["Banling"](https://wiki.tuxemon.org/Banling). Design and front and back sprites by WDFA-Final. Face sprites adapted from the front sprite by Sanglorian. (Sources: Sanglorian, WDFA-Final)
+
+* ["Bansaken"](https://wiki.tuxemon.org/Bansaken). (Sources: Jaskrendix, WDFA-Final)
+
+* ["Banvengeance"](https://wiki.tuxemon.org/Banvengeance). (Sources: HippasusTwo, Jaskrendix, WDFA-Final)
+
+* ["Baobaraffe"](https://wiki.tuxemon.org/Baobaraffe). Name, art, sprites and blurb by princess-phoenix. (Sources: Princess-phoenix)
+
+* ["Baoby"](https://wiki.tuxemon.org/Baoby). Name, art, sprites and blurb by princess-phoenix. (Sources: Princess-phoenix)
+
+* ["Bedoo"](https://wiki.tuxemon.org/Bedoo). (Sources: TheBritanniaRegion)
+
+* ["Beenstalker"](https://wiki.tuxemon.org/Beenstalker). Original art by DarkySG. Front sprite by Levaine. Back and face sprites tweaked by Sanglorian. (Sources: DarkySG, Levaine, Sanglorian)
+
+* ["Bewhich"](https://wiki.tuxemon.org/Bewhich). Design and original sprite by Piacarrot. Attribution must include full credit as always, and a link to Piacarrot's DeviantArt page: https://www.deviantart.com/piacarrot (Sources: HippasusTwo, Piacarrot)
+
+* ["Birdee"](https://wiki.tuxemon.org/Birdee). Front sprite by Isaiah658. Face sprites by Jaskrendix. Alternative sprites by Isaiah658. (Sources: Isaiah658, Jaskrendix)
+
+* ["Birdling"](https://wiki.tuxemon.org/Birdling). Design and front sprite by tamashihoshi. Back and face sprites by Chickenshowman. Face sprites tweaked by Sanglorian. (Sources: Chickenshowman, Sanglorian, tamashihoshi)
+
+* ["Bishosand"](https://wiki.tuxemon.org/Bishosand). Design and front sprites by mjco. Back and face sprites adapted by Jaskrendix. (Sources: HippasusTwo, Jaskrendix, mjco)
+
+* ["Blasdoor"](https://wiki.tuxemon.org/Blasdoor). Design and front sprite by Serpexnessie. Back and face sprites by Jaskrendix, adapted from the front sprite. (Sources: Jaskrendix, Serpexnessie)
+
+* ["Boltnu"](https://wiki.tuxemon.org/Boltnu). Design and art by TheBritanniaRegion. Sprites by Involuntary Twitch. (Sources: Involuntary Twitch, TheBritanniaRegion)
+
+* ["Botbot"](https://wiki.tuxemon.org/Botbot). Original design by Leo. Sprites by Sanglorian. (Sources: Leo, Sanglorian)
+
+* ["Boxali"](https://wiki.tuxemon.org/Boxali). Design and front, back and face sprites from the open source game OPMon. Some sprites cropped by Sanglorian to fit within 64x64 pixels. (Sources: OPMon, Sanglorian)
+
+* ["Boxorox"](https://wiki.tuxemon.org/Boxorox). Spalding004 has released his Sitran Fakedex under a Creative Commons Attribution 4.0 International licence for us. (Sources: Jaskrendix, Spalding004)
+
+* ["Brachifor"](https://wiki.tuxemon.org/Brachifor). Designed and sprited by Georg Eckert. Resized by Sanglorian. Face sprites by Jaskrendix. (Sources: Georg Eckert, HippasusTwo, Jaskrendix, Sanglorian)
+
+* ["Breem"](https://wiki.tuxemon.org/Breem). Designed and sprited by Georg Eckert. (Sources: Georg Eckert, HippasusTwo)
+
+* ["Brewdin"](https://wiki.tuxemon.org/Brewdin). Designed by Kyu. Name by Sanglorian. Sprites by Lejun (Sources: Kyu, Lejun)
+
+* ["Bricgard"](https://wiki.tuxemon.org/Bricgard). Design and front sprite by Serpexnessie. Back and face sprites by Jaskrendix, based on the front sprite. (Sources: Jaskrendix, Serpexnessie)
+
+* ["Brickhemoth"](https://wiki.tuxemon.org/Brickhemoth). Design and front sprite by Serpexnessie. Back and face sprites by Jaskrendix, based on the front sprite. (Sources: Jaskrendix, Serpexnessie)
+
+* ["Brumi"](https://wiki.tuxemon.org/Brumi). Design and original sprite by Piacarrot. Attribution must include full credit as always, and a link to Piacarrot's DeviantArt page: https://www.deviantart.com/piacarrot (Sources: HippasusTwo, Jaskrendix, Piacarrot)
+
+* ["Budaye"](https://wiki.tuxemon.org/Budaye). Original design by Leo. Other art by ReallyDarkandWindy and Bonny John. Sprited by Levaine and Sanglorian. Sprite by Levaine. Back sprite by Sanglorian. (Sources: Bonny John, Leo, Levaine, ReallyDarkandWindie, Sanglorian)
+
+* ["Bugnin"](https://wiki.tuxemon.org/Bugnin). Original design by Leo. Front sprite by Leo and Cavalcadeur. Back sprite by tamashihoshi and josepharaoh99. Face sprites by josepharaoh99. Main art by Adam Fegarido. Other art by tamashihoshi. (Sources: Adam Fegarido, Cavalcadeur, Josepharaoh99, Leo, tamashihoshi)
+
+* ["Bumbulus"](https://wiki.tuxemon.org/Bumbulus). Spalding004 has released his Sitran Fakedex under a Creative Commons Attribution 4.0 International licence for us. Blurb by Spalding004. Back sprite by Sanglorian. Face sprites tweaked from the front sprite. (Sources: Sanglorian, Spalding004)
+
+* ["Burrlock"](https://wiki.tuxemon.org/Burrlock). Front sprite by Isaiah658. Back and face sprites by Jaskrendix. Alternative sprites by Isaiah658. (Sources: Isaiah658, Jaskrendix)
+
+* ["Bursa"](https://wiki.tuxemon.org/Bursa). Spalding004 has released his Sitran Fakedex under a Creative Commons Attribution 4.0 International licence for us. Original design and sprites by Spalding004. Face sprites by josepharaoh99. (Sources: Josepharaoh99, Spalding004)
+
+* ["Cacaburr"](https://wiki.tuxemon.org/Cacaburr). Front sprite by Isaiah658. Back and face sprites by Jaskrendix. Alternative sprites by Isaiah658. (Sources: Isaiah658, Jaskrendix)
+
+* ["Cackleen"](https://wiki.tuxemon.org/Cackleen). Design and original sprite by Piacarrot. Attribution must include full credit as always, and a link to Piacarrot's DeviantArt page: https://www.deviantart.com/piacarrot (Sources: HippasusTwo, Jaskrendix, Piacarrot)
+
+* ["Caper"](https://wiki.tuxemon.org/Caper). Front and back sprites by WaterTrainer. Name by freshreplicant. Face sprites by Jaskrendix. (Sources: Jaskrendix, WaterTrainer, freshreplicant)
+
+* ["Capinyah"](https://wiki.tuxemon.org/Capinyah). Catch Challenger is an open source project, with assets under Creative Commons Attribution. Original design and sprites by Catch Challenger. Back and face sprites by Jaskrendix. (Sources: Catch Challenger, Jaskrendix)
+
+* ["Carcharock"](https://wiki.tuxemon.org/Carcharock). Design and original sprite by JustinNuggets and Piacarrot. Face sprites by Jaskrendix. Backsprite by HippasusTwo. Attribution must include full credit as always, and a link to Piacarrot's DeviantArt page: https://www.deviantart.com/piacarrot (Sources: Jaskrendix, JustinNuggets, Piacarrot)
+
+* ["Cataspike"](https://wiki.tuxemon.org/Cataspike). Spalding004 has released his Sitran Fakedex under a Creative Commons Attribution 4.0 International licence for us. Original design and sprites by Spalding004. Face sprites tweaked by Sanglorian. (Sources: Sanglorian, Spalding004)
+
+* ["Chenipode"](https://wiki.tuxemon.org/Chenipode). Catch Challenger is an open source project, with assets under Creative Commons Attribution. Original design and sprites by Catch Challenger. Face sprites tweaked by Sanglorian. (Sources: Catch Challenger, Sanglorian)
+
+* ["Cherubat"](https://wiki.tuxemon.org/Cherubat). Design and front sprite by Serpexnessie. Face sprites tweaked by Sanglorian, based on the front sprite. Back sprite by Jaskrendix, based on the front sprite. (Sources: Jaskrendix, Sanglorian, Serpexnessie)
+
+* ["Chibiro"](https://wiki.tuxemon.org/Chibiro). From the open source game OPMon. Face sprite resized by Sanglorian. (Sources: OPMon, Sanglorian)
+
+* ["Chickadee"](https://wiki.tuxemon.org/Chickadee). Front sprite by Isaiah658. Back and face sprites by Jaskrendix. Alternative sprites by Isaiah658. (Sources: Isaiah658, Jaskrendix)
+
+* ["Chromeye"](https://wiki.tuxemon.org/Chromeye). Design and sprites by Serpexnessie. Face sprites tweaked by Sanglorian. (Sources: Sanglorian, Serpexnessie)
+
+* ["Claymorior"](https://wiki.tuxemon.org/Claymorior). Design and original sprite by JustinNuggets and Piacarrot. Attribution must include full credit as always, and a link to Piacarrot's DeviantArt page: https://www.deviantart.com/piacarrot (Sources: HippasusTwo, Jaskrendix, JustinNuggets, Piacarrot)
+
+* ["Coaldiak"](https://wiki.tuxemon.org/Coaldiak). From the open source game OPMon. Name by Sanglorian. (Sources: Jaskrendix, OPMon, Sanglorian)
+
+* ["Cobarett"](https://wiki.tuxemon.org/Cobarett). Art and sprites by princess-phoenix. (Sources: Princess-phoenix)
+
+* ["Cochini"](https://wiki.tuxemon.org/Cochini). Catch Challenger is an open source project, with assets under Creative Commons Attribution. Original design and sprites by Catch Challenger. Original design and sprites by Catch Challenger. Face sprites tweaked by Sanglorian. (Sources: Catch Challenger, Sanglorian)
+
+* ["Cocrune"](https://wiki.tuxemon.org/Cocrune). Design and front sprite by Serpexnessie. Back and face sprites adapted by Sanglorian. (Sources: Sanglorian, Serpexnessie)
+
+* ["Cohldrabi"](https://wiki.tuxemon.org/Cohldrabi). Design and front sprite by Serpexnessie. Face sprites adapted by Sanglorian. Back sprite adapted by Jaskrendix. (Sources: Jaskrendix, Sanglorian, Serpexnessie)
+
+* ["Coleorus"](https://wiki.tuxemon.org/Coleorus). Catch Challenger is an open source project, with assets under Creative Commons Attribution. Original design and sprites by Catch Challenger. Face sprites tweaked by Sanglorian. (Sources: Catch Challenger, Sanglorian)
+
+* ["Conglolem"](https://wiki.tuxemon.org/Conglolem). Spalding004 has released his Sitran Fakedex under a Creative Commons Attribution 4.0 International licence for us. Front sprite by Spalding004. Back and face sprites by Jaskrendix. (Sources: Jaskrendix, Spalding004)
+
+* ["Coppi"](https://wiki.tuxemon.org/Coppi). Design and original sprite by FrozenFeathers and Piacarrot. Attribution must include full credit as always, and a link to Piacarrot's DeviantArt page: https://www.deviantart.com/piacarrot (Sources: FrozenFeather, Jaskrendix, Piacarrot)
+
+* ["Cowpignon"](https://wiki.tuxemon.org/Cowpignon). Catch Challenger is an open source project, with assets under Creative Commons Attribution. Original design and sprites by Catch Challenger. Sprites tweaked by Sanglorian. (Sources: Catch Challenger, Sanglorian)
+
+* ["Crankus"](https://wiki.tuxemon.org/Crankus). Front and back sprites by WaterTrainer. Name by freshreplicant. Face sprites by Jaskrendix. (Sources: Jaskrendix, WaterTrainer, freshreplicant)
+
+* ["Criniotherme"](https://wiki.tuxemon.org/Criniotherme). Catch Challenger is an open source project, with assets under Creative Commons Attribution. Original design and sprites by Catch Challenger. Sprites tweaked by Sanglorian. (Sources: Catch Challenger, Sanglorian)
+
+* ["Crustagu"](https://wiki.tuxemon.org/Crustagu). Design and art by BrasioPkmn. Front and back sprites by Jaskrendix and HippasusTwo. Face sprites by JaskRendix. (Sources: BrasioPkmn, HippasusTwo, Jaskrendix)
+
+* ["Dandicub"](https://wiki.tuxemon.org/Dandicub). Original design and sprites by Sanglorian. Art by slickedbackArtisan. (Sources: Sanglorian, SlickedbackArtisan)
+
+* ["Dankush"](https://wiki.tuxemon.org/Dankush). Front sprite by Serpexnessie. Back and face sprites by Jaskrendix. (Sources: Jaskrendix, Serpexnessie)
+
+* ["Delfeco"](https://wiki.tuxemon.org/Delfeco). Design and front sprites by Chairry-Art. Face sprites by HippasusTwo. (Sources: Chairry-Art, HippasusTwo)
+
+* ["Demosnow"](https://wiki.tuxemon.org/Demosnow). Design and front sprite by Serpexnessie. Back and face sprites by Jaskrendix, based on the front sprite. (Sources: Jaskrendix, Serpexnessie)
+
+* ["Devidin"](https://wiki.tuxemon.org/Devidin). Designed and sprited by Georg Eckert. Front and back by HippasusTwo, face sprites by Jaskrendix. (Sources: Georg Eckert, HippasusTwo, Jaskrendix)
+
+* ["Devidra"](https://wiki.tuxemon.org/Devidra). Designed and sprited by Georg Eckert. Front and back by HippasusTwo, face sprites by Jaskrendix. (Sources: Georg Eckert, HippasusTwo, Jaskrendix)
+
+* ["Deviraptor"](https://wiki.tuxemon.org/Deviraptor). Designed and sprited by Georg Eckert. Front and back by HippasusTwo, face sprites by Jaskrendix. (Sources: Georg Eckert, HippasusTwo, Jaskrendix)
+
+* ["Dinoflop"](https://wiki.tuxemon.org/Dinoflop). Catch Challenger is an open source project, with assets under Creative Commons Attribution. Original design and sprites by Catch Challenger. Back and face sprites tweaked by Sanglorian. (Sources: Catch Challenger, Sanglorian)
+
+* ["Doctsky"](https://wiki.tuxemon.org/Doctsky). Design and front sprite by Serpexnessie. Back and face sprites adapted by Jaskrendix. (Sources: Jaskrendix, Serpexnessie)
+
+* ["Drashimi"](https://wiki.tuxemon.org/Drashimi). Art and front and back sprites by princess-phoenix. Face sprites by Master Of Chaos and Sanglorian. Other sprites by princess-phoenix. (Sources: Princess-phoenix, Sanglorian, Master Of Chaos)
+
+* ["Drokoro"](https://wiki.tuxemon.org/Drokoro). Original design and sprites by moritz_gunz. Face sprites tweaked by Sanglorian. Overland sprite adapted by Sanglorian from a sprite by CharlesGabriel. Other art by moritz_gunz. (Sources: CharlesGabriel, Sanglorian, moritz_gunz)
+
+* ["Duggot"](https://wiki.tuxemon.org/Duggot). Designed and sprited by Georg Eckert. (Sources: Georg Eckert, HippasusTwo)
+
+* ["Dynastor"](https://wiki.tuxemon.org/Dynastor). (Sources: HippasusTwo, Jaskrendix, Leo)
+
+* ["Elofly"](https://wiki.tuxemon.org/Elofly). Catch Challenger is an open source project, with assets under Creative Commons Attribution. Original design and sprites by Catch Challenger. Sprites tweaked by Sanglorian. Alternative sprite adapted by HippasusTwo. (Sources: Catch Challenger, HippasusTwo, Sanglorian)
+
+* ["Elostorm"](https://wiki.tuxemon.org/Elostorm). Catch Challenger is an open source project, with assets under Creative Commons Attribution. Original design and sprites by Catch Challenger. Sprites tweaked by Sanglorian. Alternative sprites by HippasusTwo. (Sources: Catch Challenger, HippasusTwo, Sanglorian)
+
+* ["Elowind"](https://wiki.tuxemon.org/Elowind). Catch Challenger is an open source project, with assets under Creative Commons Attribution. Original design and sprites by Catch Challenger. Face sprites tweaked by Sanglorian. Alternative sprites adapted by HippasusTwo. (Sources: Catch Challenger, HippasusTwo, Sanglorian)
+
+* ["Embazook"](https://wiki.tuxemon.org/Embazook). Original design by Leo. Front sprite by josepharaoh99. Other sprites by Sanglorian. Name by josepharaoh99. (Sources: Josepharaoh99, Leo, Sanglorian)
+
+* ["Embra"](https://wiki.tuxemon.org/Embra). Spalding004 has released his Sitran Fakedex under a Creative Commons Attribution 4.0 International licence for us. Original design and sprites by Spalding004. Back sprite by Sanglorian. (Sources: Sanglorian, Spalding004)
+
+* ["Enduros"](https://wiki.tuxemon.org/Enduros). Catch Challenger is an open source project, with assets under Creative Commons Attribution. Original design and sprites by Catch Challenger. Face sprites tweaked by Sanglorian. (Sources: Catch Challenger, Sanglorian)
+
+* ["Equill"](https://wiki.tuxemon.org/Equill). Designed and sprited by Rsg167. Front and back sprites by HippasusTwo. (Sources: HippasusTwo, Rsg167)
+
+* ["Eruptibus"](https://wiki.tuxemon.org/Eruptibus). Original design by Leo. Sprites by josepharaoh99 and Leo. (Sources: Leo, josepharaoh99)
+
+* ["Erythroskyte"](https://wiki.tuxemon.org/Erythroskyte). (Sources: HippasusTwo)
+
+* ["Eskipup"](https://wiki.tuxemon.org/Eskipup). Spalding004 has released his Sitran Fakedex under a Creative Commons Attribution 4.0 International licence for us. Back sprite by HappisusTwo. Face sprites by Jaskrendix. (Sources: HippasusTwo, Jaskrendix, Spalding004)
+
+* ["Exapode"](https://wiki.tuxemon.org/Exapode). Catch Challenger is an open source project, with assets under Creative Commons Attribution. Original design and sprites by Catch Challenger. Face sprites by Sanglorian. (Sources: Catch Challenger, Sanglorian)
+
+* ["Exclawvate"](https://wiki.tuxemon.org/Exclawvate). Design and art by TheBritanniaRegion. Sprites by Involuntary Twitch. (Sources: Involuntary Twitch, TheBritanniaRegion)
+
+* ["Fancair"](https://wiki.tuxemon.org/Fancair). Original design by Sanglorian's former coworkers and donated to the project. Art and redesign by DevilDman. Front sprite by Levaine. Back sprite by Sanglorian. (Sources: DevilDman, Levaine, Sanglorian)
+
+* ["Flacono"](https://wiki.tuxemon.org/Flacono). Catch Challenger is an open source project, with assets under Creative Commons Attribution. Original design and sprites by Catch Challenger. Face sprites tweaked by Sanglorian. (Sources: Catch Challenger, Sanglorian)
+
+* ["Flambear"](https://wiki.tuxemon.org/Flambear). Spalding004 has released his Sitran Fakedex under a Creative Commons Attribution 4.0 International licence for us. Original design and sprites by Spalding004. Face sprites by tamashihoshi. (Sources: Spalding004, Tamashihoshi)
+
+* ["Flisces"](https://wiki.tuxemon.org/Flisces). Spalding004 has released his free use fakemon under a Creative Commons Attribution 4.0 International licence for us. Front sprite by Spalding004. Back and face sprites by Jaskrendix. (Sources: Jaskrendix, Spalding004)
+
+* ["Flounce"](https://wiki.tuxemon.org/Flounce). Spalding004 has released his Sitran Fakedex under a Creative Commons Attribution 4.0 International licence for us. Back sprite by HippasusTwo. Face sprites by Jaskrendix. (Sources: HippasusTwo, Jaskrendix, Spalding004)
+
+* ["Flummack"](https://wiki.tuxemon.org/Flummack). Designed and sprited by Georg Eckert. Front sprite by Jaskrendix. (Sources: Georg Eckert, Jaskrendix)
+
+* ["Flummby"](https://wiki.tuxemon.org/Flummby). Designed and sprited by Georg Eckert. Front sprite by Jaskrendix. (Sources: Georg Eckert, Jaskrendix)
+
+* ["Fluoresfin"](https://wiki.tuxemon.org/Fluoresfin). Original design and sprites by Serpexnessie. (Sources: Serpexnessie)
+
+* ["Foofle"](https://wiki.tuxemon.org/Foofle). Original design and sprites by josepharaoh99. Other art by Leo, josepharaoh99 and Nikai Region. Face sprites by tamashihoshi. (Sources: Josepharaoh99, Leo, Nikai Region, Tamashihoshi)
+
+* ["Fordin"](https://wiki.tuxemon.org/Fordin). Designed and sprited by Georg Eckert. Back and face sprites resized by Sanglorian. (Sources: Georg Eckert, Sanglorian)
+
+* ["Forturtle"](https://wiki.tuxemon.org/Forturtle). Original design and sprites by Chickenshowman. (Sources: Chickenshowman)
+
+* ["Fribbit"](https://wiki.tuxemon.org/Fribbit). Spalding004 has released his Sitran Fakedex under a Creative Commons Attribution 4.0 International licence for us. Front sprite by Spalding004. Back and face sprites by Jaskrendix. (Sources: Jaskrendix, Spalding004)
+
+* ["Frondly"](https://wiki.tuxemon.org/Frondly). Original design by Leo. Other art by ReallyDarkandWindie. Sprites by Levaine. Back sprite by Sanglorian. (Sources: Leo, Levaine, ReallyDarkandWindie, Sanglorian)
+
+* ["Frostuce"](https://wiki.tuxemon.org/Frostuce). Design and front sprite by Serpexnessie. Face sprites adapted by Jaskrendix. (Sources: HippasusTwo, Jaskrendix, Serpexnessie)
+
+* ["Furnursus"](https://wiki.tuxemon.org/Furnursus). Design and front and back sprites from the open source game OPMon. Face sprites adapted from the front sprite by Sanglorian. English name by Sanglorian. (Sources: OPMon, Sanglorian)
+
+* ["Fuzzina"](https://wiki.tuxemon.org/Fuzzina). Spalding004 has released his Sitran Fakedex under a Creative Commons Attribution 4.0 International licence for us. Front sprite by Spalding004. Back and face sprites by Jaskrendix. (Sources: Jaskrendix, Spalding004)
+
+* ["Fuzzlet"](https://wiki.tuxemon.org/Fuzzlet). Spalding004 has released his Sitran Fakedex under a Creative Commons Attribution 4.0 International licence for us. Front sprite by Spalding004. Back and face sprites by Jaskrendix. (Sources: Jaskrendix, Spalding004)
+
+* ["Galasces"](https://wiki.tuxemon.org/Galasces). Design and front sprite by Serpexnessie. Back and face sprites adapted by Jaskrendix. (Sources: Jaskrendix, Serpexnessie)
+
+* ["Galnec"](https://wiki.tuxemon.org/Galnec). Catch Challenger is an open source project, with assets under Creative Commons Attribution. Original design and sprites by Catch Challenger. Sprites tweaked by Sanglorian. (Sources: Catch Challenger, Sanglorian)
+
+* ["Gastronium"](https://wiki.tuxemon.org/Gastronium). Illustration by WDFA-Final. Sprites by JaskRendix. (Sources: Jaskrendix, WDFA-Final)
+
+* ["Ghosteeth"](https://wiki.tuxemon.org/Ghosteeth). Original design and sprites by tamashihoshi. (Sources: tamashihoshi)
+
+* ["Gliffary"](https://wiki.tuxemon.org/Gliffary). Design and original sprite by FrozenFeather and Piacarrot. Back and face sprites by Jaskrendix. Attribution must include full credit as always, and a link to Piacarrot's DeviantArt page: https://www.deviantart.com/piacarrot (Sources: FrozenFeather, Jaskrendix, Piacarrot)
+
+* ["Glombroc"](https://wiki.tuxemon.org/Glombroc). Spalding004 has released his Sitran Fakedex under a Creative Commons Attribution 4.0 International licence for us. Design and front sprite by Spalding004. Back and face sprites by Jaskrendix, based on the front sprite by Spalding004. (Sources: Jaskrendix, Spalding004)
+
+* ["Glomon"](https://wiki.tuxemon.org/Glomon). Designed and sprited by Georg Eckert. Front, back and face sprites by HippasusTwo. (Sources: Georg Eckert, HippasusTwo)
+
+* ["Golnagi"](https://wiki.tuxemon.org/Golnagi). Design and original sprite by JustinNuggets and Piacarrot. Recolour by Sanglorian. Face sprites by Jaskrendix. Attribution must include full credit as always, and a link to Piacarrot's DeviantArt page: https://www.deviantart.com/piacarrot (Sources: Jaskrendix, JustinNuggets, Piacarrot, Sanglorian)
+
+* ["Gourda"](https://wiki.tuxemon.org/Gourda). Design and original sprite by Piacarrot. Front and back sprites by HippasusTwo. Back sprite tweaked by ultidonki. Face sprites by Jaskrendix.Attribution must include full credit as always, and a link to Piacarrot's DeviantArt page: https://www.deviantart.com/piacarrot (Sources: HippasusTwo, Jaskrendix, Piacarrot, Ultidonki)
+
+* ["Graffiki"](https://wiki.tuxemon.org/Graffiki). From the open source game OPMon. Name by Sanglorian. (Sources: OPMon, Sanglorian)
+
+* ["Grimachin"](https://wiki.tuxemon.org/Grimachin). Design and artwork by Leo. Name by Sanglorian. Sprites by Sanglorian. (Sources: Leo, Sanglorian)
+
+* ["Grinflare"](https://wiki.tuxemon.org/Grinflare). Spalding004 has released his Sitran Fakedex under a Creative Commons Attribution 4.0 International licence for us. Original design by Royaba and Spalding004. Back sprite by Sanglorian. (Sources: Royaba, Sanglorian, Spalding004)
+
+* ["Grintot"](https://wiki.tuxemon.org/Grintot). Spalding004 has released his Sitran Fakedex under a Creative Commons Attribution 4.0 International licence for us. Original design and sprites by Spalding004. Back sprite by Sanglorian. Face sprites tweaked by Sanglorian. (Sources: Sanglorian, Spalding004)
+
+* ["Grintrock"](https://wiki.tuxemon.org/Grintrock). Spalding004 has released his Sitran Fakedex under a Creative Commons Attribution 4.0 International licence for us. Original design by Spalding004 and Royaba. Back sprite by Sanglorian. Face sprites tweaked by Sanglorian. (Sources: Royaba, Sanglorian, Spalding004)
+
+* ["Grumpi"](https://wiki.tuxemon.org/Grumpi). Design and front and back sprites by Cavalcadeur. Face sprites adapted by Sanglorian from the front sprite. (Sources: Cavalcadeur, Sanglorian)
+
+* ["Gryfix"](https://wiki.tuxemon.org/Gryfix). Front sprite by Catch Challenger. Back and face sprites by Lejun. (Sources: Catch Challenger, Lejun)
+
+* ["Gupphire"](https://wiki.tuxemon.org/Gupphire). Design and original sprite by JustinNuggets and Piacarrot. Recolour by Sanglorian. Face sprites by Jaskrendix. Attribution must include full credit as always, and a link to Piacarrot's DeviantArt page: https://www.deviantart.com/piacarrot (Sources: Jaskrendix, JustinNuggets, Piacarrot, Sanglorian)
+
+* ["Gupphish"](https://wiki.tuxemon.org/Gupphish). Design and original sprite by JustinNuggets and Piacarrot. Recolour by Sanglorian. Face sprites by Jaskrendix. Attribution must include full credit as always, and a link to Piacarrot's DeviantArt page: https://www.deviantart.com/piacarrot. (Sources: HippasusTwo, Jaskrendix, JustinNuggets, Piacarrot)
+
+* ["Hampotamos"](https://wiki.tuxemon.org/Hampotamos). Catch Challenger is an open source project, with assets under Creative Commons Attribution. Original design and sprites by Catch Challenger. Face sprites tweaked by Sanglorian. (Sources: Catch Challenger, Sanglorian)
+
+* ["Happito"](https://wiki.tuxemon.org/Happito). Design and sprites by Serpexnessie. Face sprites tweaked by Sanglorian. (Sources: Sanglorian, Serpexnessie)
+
+* ["Hatchling"](https://wiki.tuxemon.org/Hatchling). Original design and sprites by tamashihoshi. (Sources: tamashihoshi)
+
+* ["Hectapod"](https://wiki.tuxemon.org/Hectapod). Spalding004 has released his Sitran Fakedex under a Creative Commons Attribution 4.0 International licence for us. Front sprite by Spalding004. Back and face sprites by Jaskrendix. (Sources: Jaskrendix, Spalding004)
+
+* ["Helipi"](https://wiki.tuxemon.org/Helipi). Design and original sprite by FrozenFeather and Piacarrot. Attribution must include full credit as always, and a link to Piacarrot's DeviantArt page: https://www.deviantart.com/piacarrot (Sources: FrozenFeather, HippasusTwo, Jaskrendix, Piacarrot)
+
+* ["Hissiorite"](https://wiki.tuxemon.org/Hissiorite). Art and sprites by princess-phoenix. (Sources: Princess-phoenix)
+
+* ["Hoarse"](https://wiki.tuxemon.org/Hoarse). Designed and sprited by Rsg167. Front and back sprites by HippasusTwo. (Sources: HippasusTwo, Rsg167)
+
+* ["Hoarseshoo"](https://wiki.tuxemon.org/Hoarseshoo). Designed and sprited by Rsg167. Front and back sprites by HippasusTwo. (Sources: HippasusTwo, Rsg167)
+
+* ["Hoodoll"](https://wiki.tuxemon.org/Hoodoll). Design and front sprite by Serpexnessie. Back and face sprites adapted by Jaskrendix. (Sources: Jaskrendix, Serpexnessie)
+
+* ["Hotline"](https://wiki.tuxemon.org/Hotline). Design and front sprite by Serpexnessie. Back and face sprites by Jaskrendix, based on the front sprite. (Sources: Jaskrendix, Serpexnessie)
+
+* ["Houndice"](https://wiki.tuxemon.org/Houndice). Spalding004 has released his Sitran Fakedex under a Creative Commons Attribution 4.0 International licence for us. Back sprite by HappisusTwo. Face sprites by Jaskrendix. (Sources: HippasusTwo, Jaskrendix, Spalding004)
+
+* ["Howl"](https://wiki.tuxemon.org/Howl). Front sprite by Isaiah658. Back and face sprites by Jaskrendix. Alternative sprites by Isaiah658. (Sources: Isaiah658, Jaskrendix)
+
+* ["Ignibus"](https://wiki.tuxemon.org/Ignibus). Originally design by Cavalcadeur. Other art by Leo. Front sprite by Leo. Back and face sprites by Sanglorian. Other sprites by Cavalcadeur, HippasusTwo and Sanglorian. Name by josepharaoh99. (Sources: Cavalcadeur, HippasusTwo, Leo, Sanglorian)
+
+* ["Imbrickcile"](https://wiki.tuxemon.org/Imbrickcile). Design and front sprite by Serpexnessie. Back and face sprites by Jaskrendix, based on the front sprite. (Sources: Jaskrendix, Serpexnessie)
+
+* ["Incandesfin"](https://wiki.tuxemon.org/Incandesfin). Original design and sprites by Serpexnessie. (Sources: Serpexnessie)
+
+* ["Jelillow"](https://wiki.tuxemon.org/Jelillow). Art and design by TheBritanniaRegion. Sprites by Lejun. (Sources: Lejun, TheBritanniaRegion)
+
+* ["Jeluna"](https://wiki.tuxemon.org/Jeluna). Design and original sprite by FrozenFeather and Piacarrot. Attribution must include full credit as always, and a link to Piacarrot's DeviantArt page: https://www.deviantart.com/piacarrot ; Back and face sprites by JaskRendix (Sources: FrozenFeather, Jaskrendix, Piacarrot)
+
+* ["Jemuar"](https://wiki.tuxemon.org/Jemuar). Original design by Leo. Sprites by tamashihoshi. Back sprite by Sanglorian. Other art by extyrannomon. Name by Sanglorian. (Sources: Extyrannomon, Leo, Sanglorian, Tamashihoshi)
+
+* ["Joulraton"](https://wiki.tuxemon.org/Joulraton). Spalding004 has released his Sitran Fakedex under a Creative Commons Attribution 4.0 International licence for us. Front sprite by Spalding004. Back and face sprites by Jaskrendix. (Sources: Jaskrendix, Spalding004)
+
+* ["K9"](https://wiki.tuxemon.org/K9). Original design by Leo. Sprites by Sanglorian. (Sources: Leo, Sanglorian)
+
+* ["Katacoon"](https://wiki.tuxemon.org/Katacoon). Original design by Leo. Sprites by tamashihoshi. Main art by Adam Fegarido. (Sources: Adam Fegarido, Leo, Tamashihoshi)
+
+* ["Katapill"](https://wiki.tuxemon.org/Katapill). Original design by Leo. Art by Adam Fegarido. Sprites by tamashihoshi. Sprites tweaked by Sanglorian. (Sources: Adam Fegarido, Leo, Sanglorian, tamashihoshi)
+
+* ["Kernel"](https://wiki.tuxemon.org/Kernel). Design and sprites by Jaskrendix. (Sources: Jaskrendix)
+
+* ["Knightsand"](https://wiki.tuxemon.org/Knightsand). Design and front sprites by mjco. Back and face sprites adapted by Jaskrendix. (Sources: HippasusTwo, Jaskrendix, mjco)
+
+* ["Knindling"](https://wiki.tuxemon.org/Knindling). Spalding004 has released his Sitran Fakedex under a Creative Commons Attribution 4.0 International licence for us. Back sprite by HappisusTwo. Face sprites by Jaskrendix. (Sources: HippasusTwo, Jaskrendix, Spalding004)
+
+* ["Komodraw"](https://wiki.tuxemon.org/Komodraw). Original design and sprites by Serpexnessie. (Sources: Serpexnessie)
+
+* ["Komoduel"](https://wiki.tuxemon.org/Komoduel). Design and front sprite by Serpexnessie. Back and face sprites adapted by Jaskrendix. (Sources: Jaskrendix, Serpexnessie)
+
+* ["Konuit"](https://wiki.tuxemon.org/Konuit). Catch Challenger is an open source project, with assets under Creative Commons Attribution. Original design and sprites by Catch Challenger. Back and face sprites by Jaskrendix. (Sources: Catch Challenger, Jaskrendix)
+
+* ["Kroki"](https://wiki.tuxemon.org/Kroki). Designed and sprited by Georg Eckert. Resized by Sanglorian. Face sprites by Jaskrendix. Backsprite by HippasusTwo. (Sources: Georg Eckert, HippasusTwo, Jaskrendix, Sanglorian)
+
+* ["Krokivip"](https://wiki.tuxemon.org/Krokivip). Designed and sprited by Georg Eckert. Resized by Sanglorian. Face sprites by Jaskrendix. (Sources: Georg Eckert, Jaskrendix, Sanglorian)
+
+* ["Lapinou"](https://wiki.tuxemon.org/Lapinou). Original design and front sprite by Cavalcadeur. Back and face sprites by Chickenshowman. (Sources: Cavalcadeur, Chickenshowman)
+
+* ["Legoplaste"](https://wiki.tuxemon.org/Legoplaste). Catch Challenger is an open source project, with assets under Creative Commons Attribution. Original design and sprites by Catch Challenger. Back and face sprites by Jaskrendix. (Sources: Catch Challenger, HippasusTwo, Jaskrendix)
+
+* ["Lendos"](https://wiki.tuxemon.org/Lendos). Spalding004 has released his Sitran Fakedex under a Creative Commons Attribution 4.0 International licence for us. Front sprite by Spalding004. Back and face sprites by Jaskrendix. (Sources: Jaskrendix, Spalding004)
+
+* ["Lesmagu"](https://wiki.tuxemon.org/Lesmagu). Art by BrasioPkmn. Sprites by Jaskrendix. (Sources: BrasioPkmn, Jaskrendix)
+
+* ["Lettice"](https://wiki.tuxemon.org/Lettice). Design and front sprite by Serpexnessie. Back and face sprites adapted by Jaskrendix. (Sources: Jaskrendix, Serpexnessie)
+
+* ["Leviadile"](https://wiki.tuxemon.org/Leviadile). Designed and sprited by Georg Eckert. (Sources: Georg Eckert, HippasusTwo)
+
+* ["Lightmare"](https://wiki.tuxemon.org/Lightmare). Original design and sprites by Serpexnessie. Back sprite tweaked by Sanglorian. (Sources: Sanglorian, Serpexnessie)
+
+* ["Loliferno"](https://wiki.tuxemon.org/Loliferno). Front sprite by Serpexnessie. Back and face sprites by Lejun. Blurb by Jaskrendix. (Sources: Jaskrendix, Lejun, Serpexnessie)
+
+* ["Lucifice"](https://wiki.tuxemon.org/Lucifice). Design and front sprite by Serpexnessie. Back and face sprites by Jaskrendix, based on the front sprite. (Sources: Jaskrendix, Serpexnessie)
+
+* ["Lunight"](https://wiki.tuxemon.org/Lunight). Design and original sprite by FrozenFeather and Piacarrot. 64px and face sprites by Lejun. Blurb by Jaskrendix. Attribution must include full credit as always, and a link to Piacarrot's DeviantArt page: https://www.deviantart.com/piacarrot (Sources: FrozenFeather, Jaskrendix, Lejun, Piacarrot)
+
+* ["Manosting"](https://wiki.tuxemon.org/Manosting). Spalding004 has released his Sitran Fakedex under a Creative Commons Attribution 4.0 International licence for us. Original design and sprites by Spalding004. Face sprites by Sanglorian. (Sources: Sanglorian, Spalding004)
+
+* ["Marvantis"](https://wiki.tuxemon.org/Marvantis). Designed and sprited by Georg Eckert. Front and back sprites by HippasusTwo. Face sprites by Jaskrendix. (Sources: Georg Eckert, HippasusTwo, Jaskrendix)
+
+* ["Marvillar"](https://wiki.tuxemon.org/Marvillar). Original design and sprite by Georg Eckert. Front, back and face sprites by HippasusTwo, based on art by WDFA-Final. (Sources: Georg Eckert, HippasusTwo, WDFA-Final)
+
+* ["Masknake"](https://wiki.tuxemon.org/Masknake). Original design and sprites by tamashihoshi. (Sources: tamashihoshi)
+
+* ["Mauai"](https://wiki.tuxemon.org/Mauai). Design and front sprite by Chairry-Art. Back and face sprites by Jaskrendix. (Sources: Chairry-Art, Jaskrendix)
+
+* ["Medipup"](https://wiki.tuxemon.org/Medipup). Design and front sprite by Serpexnessie. Back and face sprites adapted by Jaskrendix. (Sources: Jaskrendix, Serpexnessie)
+
+* ["Medushock"](https://wiki.tuxemon.org/Medushock). Design by Kyu. Named by Sanglorian. Sprites by Lejun. (Sources: Kyu, Lejun)
+
+* ["Megafruitera"](https://wiki.tuxemon.org/Megafruitera). Sprited by HippasusTwo from art by Leo. (Sources: HippasusTwo, Leo)
+
+* ["Memnomnom"](https://wiki.tuxemon.org/Memnomnom). Original design and sprites by Sanglorian. Other art by Leo, MTC-Studio and Bonny John. Other sprites by Chairry-Art. (Sources: Bonny John, Chairry-Art, Leo, MTC-Studio, Sanglorian)
+
+* ["Metesaur"](https://wiki.tuxemon.org/Metesaur). Sprites by Involuntary Twitch from art and design by TheBritanniaRegion. (Sources: Involuntary Twitch, TheBritanniaRegion)
+
+* ["Metoxic"](https://wiki.tuxemon.org/Metoxic). Catch Challenger is an open source project, with assets under Creative Commons Attribution. Original design and sprites by Catch Challenger. Back and face sprites by Jaskrendix. (Sources: Catch Challenger, HippasusTwo, Jaskrendix)
+
+* ["Miaownolith"](https://wiki.tuxemon.org/Miaownolith). Original design by Sanglorian. Other art by MTC-Studio and Bonny John. Sprites by Levaine. Back sprite by Sanglorian. Face sprites tweaked by Sanglorian. (Sources: Bonny John, Levaine, MTC-Studio, Sanglorian)
+
+* ["Mingdyn"](https://wiki.tuxemon.org/Mingdyn). Spalding004 has released his Sitran Fakedex under a Creative Commons Attribution 4.0 International licence for us. Front sprite by Spalding004. Back and face sprites by Jaskrendix. (Sources: Jaskrendix, Spalding004)
+
+* ["Mk01 Delta"](https://wiki.tuxemon.org/Mk01_Delta). (Sources: Serpexnessie)
+
+* ["Mk01 Gamma"](https://wiki.tuxemon.org/Mk01_Gamma). (Sources: Serpexnessie)
+
+* ["Mk01 Omega"](https://wiki.tuxemon.org/Mk01_Omega). (Sources: Serpexnessie)
+
+* ["Mk01 Proto"](https://wiki.tuxemon.org/Mk01_Proto). (Sources: Serpexnessie)
+
+* ["MRmOswitch"](https://wiki.tuxemon.org/MRmOswitch). Original design by Leo. Sprites by Cavalcadeur and Sanglorian. (Sources: Cavalcadeur, Leo, Sanglorian)
+
+* ["Myrmison"](https://wiki.tuxemon.org/Myrmison). Design and front and back sprites by WDFA-Final. Front, back and face sprites by HippasusTwo. (Sources: HippasusTwo, WDFA-Final)
+
+* ["Mystikapi"](https://wiki.tuxemon.org/Mystikapi). Designed and illustrated by fauxlens. Sprites by Sanglorian. (Sources: Sanglorian, fauxlens)
+
+* ["Narcileaf"](https://wiki.tuxemon.org/Narcileaf). Spalding004 has released his Sitran Fakedex under a Creative Commons Attribution 4.0 International licence for us. Original design and sprites by Spalding004. Face sprites tweaked by Sanglorian. (Sources: Sanglorian, Spalding004)
+
+* ["Nebufin"](https://wiki.tuxemon.org/Nebufin). Design and front sprite by Serpexnessie. Back and face sprites adapted by Jaskrendix. (Sources: HippasusTwo, Jaskrendix, Serpexnessie)
+
+* ["Ned"](https://wiki.tuxemon.org/Ned). (Sources: Jaskrendix, Néd Julien Édoire, Cécile Caplier)
+
+* ["Neutrito"](https://wiki.tuxemon.org/Neutrito). Design and sprites by Serpexnessie. Face sprites tweaked by Sanglorian. (Sources: Sanglorian, Serpexnessie)
+
+* ["Nimbulex"](https://wiki.tuxemon.org/Nimbulex). Spalding004 has released his Sitran Fakedex under a Creative Commons Attribution 4.0 International licence for us. Front sprite by Spalding004. Back and face sprites by Jaskrendix. (Sources: Jaskrendix, Spalding004)
+
+* ["Ninjasmine"](https://wiki.tuxemon.org/Ninjasmine). From the open source game OPMon. (Sources: Jaskrendix, OPMon)
+
+* ["Novaquarius"](https://wiki.tuxemon.org/Novaquarius). Design and front sprite by Serpexnessie. Back and face sprites adapted by Jaskrendix. (Sources: Jaskrendix, Serpexnessie)
+
+* ["Nudikill"](https://wiki.tuxemon.org/Nudikill). Original design by Sanglorian and DevilDman. Sprites by Levaine. Back sprite by Sanglorian. Face sprites tweaked by Sanglorian. (Sources: DevilDman, Levaine, Sanglorian)
+
+* ["Nudimind"](https://wiki.tuxemon.org/Nudimind). Original design by DevilDman. Sprites by Levaine. Back sprite by Sanglorian. Face sprites tweaked by Sanglorian. (Sources: DevilDman, Levaine, Sanglorian)
+
+* ["Nuenflu"](https://wiki.tuxemon.org/Nuenflu). princess-phoenix has released Project Freemon under a Creative Commons Attribution-ShareAlike 3.0 Unported licence for us. Front sprite by princess-phoenix. Back sprite by Sanglorian. Face sprites tweaked by Sanglorian from the front sprite. (Sources: Sanglorian, princess-phoenix)
+
+* ["Octabode"](https://wiki.tuxemon.org/Octabode). Designed and illustrated by fauxlens. Sprites by Sanglorian. (Sources: Sanglorian, fauxlens)
+
+* ["Ouroboutlet"](https://wiki.tuxemon.org/Ouroboutlet). Original design and sprites by Serpexnessie. (Sources: Serpexnessie)
+
+* ["Pairagrim"](https://wiki.tuxemon.org/Pairagrim). Designed by xirsoi. Art by thadeusart. (Sources: Adam Chevalier, Thadeusart)
+
+* ["Pairagrin"](https://wiki.tuxemon.org/Pairagrin). Concept by xirsoi. Art by tamashihoshi. (Sources: Adam Chevalier, Tamashihoshi)
+
+* ["Pantherafira"](https://wiki.tuxemon.org/Pantherafira). Catch Challenger is an open source project, with assets under Creative Commons Attribution. Original design and sprites by Catch Challenger. Face sprites tweaked by Sanglorian. Alternative sprites by HippasusTwo. (Sources: Catch Challenger, HippasusTwo, Sanglorian)
+
+* ["Parappi"](https://wiki.tuxemon.org/Parappi). Design and original sprite by FrozenFeather and Piacarrot. Attribution must include full credit as always, and a link to Piacarrot's DeviantArt page: https://www.deviantart.com/piacarrot (Sources: FrozenFeather, HippasusTwo, Jaskrendix, Piacarrot)
+
+* ["Pawsand"](https://wiki.tuxemon.org/Pawsand). Design and front sprites by mjco. Back and face sprites adapted by Jaskrendix. (Sources: Jaskrendix, mjco)
+
+* ["Pearamanca"](https://wiki.tuxemon.org/Pearamanca). Design and front sprite by Serpexnessie. Back and face sprites adapted by Jaskrendix. (Sources: Jaskrendix, Serpexnessie)
+
+* ["Pharavion"](https://wiki.tuxemon.org/Pharavion). (Sources: HippasusTwo, Jaskrendix)
+
+* ["Pharfan"](https://wiki.tuxemon.org/Pharfan). Catch Challenger is an open source project, with assets under Creative Commons Attribution. Original design and sprites by Catch Challenger. Face sprites tweaked by Sanglorian. (Sources: Catch Challenger, Sanglorian)
+
+* ["PiCC"](https://wiki.tuxemon.org/PiCC). Original design by Leo. Front sprite by josepharaoh99. Other sprites by Sanglorian. Sprite colours tweaked by HippasusTwo. (Sources: HippasusTwo, Leo, Sanglorian, josepharaoh99)
+
+* ["Pickoon"](https://wiki.tuxemon.org/Pickoon). Design and front sprite by Serpexnessie. Face sprites adapted by Jaskrendix. Back sprite by HippasusTwo. (Sources: Jaskrendix, Serpexnessie)
+
+* ["Pipis"](https://wiki.tuxemon.org/Pipis). Spalding004 has released his Sitran Fakedex under a Creative Commons Attribution 4.0 International licence for us. Original design and front sprite by Spalding004. Back and face sprites by Sanglorian. Overland sprite by Lanea Zimmerman. (Sources: Lanea Zimmerman, Sanglorian, Spalding004)
+
+* ["Poinchin"](https://wiki.tuxemon.org/Poinchin). Design and front sprite by Serpexnessie. Back sprite and face sprites by Sanglorian. Art by PandiRocks-17. (Sources: PandiRocks-17, Sanglorian, Serpexnessie)
+
+* ["Polyrock"](https://wiki.tuxemon.org/Polyrock). Catch Challenger is an open source project, with assets under Creative Commons Attribution. Original design and sprites by Catch Challenger. Face sprites tweaked by Sanglorian. (Sources: Catch Challenger, Sanglorian)
+
+* ["Potturmeist"](https://wiki.tuxemon.org/Potturmeist). Designed and illustrated by fauxlens. Face sprites by Jaskrendix, based on front sprite. (Sources: Jaskrendix, fauxlens)
+
+* ["Potturney"](https://wiki.tuxemon.org/Potturney). Designed and illustrated by fauxlens. Front and back sprites by Kohari nk. Face sprites by Jaskrendix, based on front sprite. (Sources: Jaskrendix, Kohari nk, fauxlens)
+
+* ["Primordia"](https://wiki.tuxemon.org/Primordia). (Sources: HippasusTwo, Jaskrendix)
+
+* ["Prophetoise"](https://wiki.tuxemon.org/Prophetoise). Original design and sprites by Chickenshowman. (Sources: Chickenshowman)
+
+* ["Puparmor"](https://wiki.tuxemon.org/Puparmor). Spalding004 has released his Sitran Fakedex under a Creative Commons Attribution 4.0 International licence for us. Original design and sprites by Spalding004. Face sprites by Sanglorian. (Sources: Sanglorian, Spalding004)
+
+* ["Pyraminx"](https://wiki.tuxemon.org/Pyraminx). Original design and sprites by Leo. Sprites tweaked by josepharaoh99. (Sources: Josepharaoh99, Leo)
+
+* ["Pythock"](https://wiki.tuxemon.org/Pythock). Design and art by TheBritanniaRegion. Sprites by Involuntary Twitch. (Sources: Involuntary Twitch, TheBritanniaRegion)
+
+* ["Pythonova"](https://wiki.tuxemon.org/Pythonova). Art and sprites by princess-phoenix. (Sources: Princess-phoenix)
+
+* ["Pythwire"](https://wiki.tuxemon.org/Pythwire). Original design and sprites by Serpexnessie. (Sources: Serpexnessie)
+
+* ["Qetzlrokilus"](https://wiki.tuxemon.org/Qetzlrokilus). Sprites by Involuntary Twitch from art and design by TheBritanniaRegion. (Sources: Involuntary Twitch, TheBritanniaRegion)
+
+* ["Rabbitosaur"](https://wiki.tuxemon.org/Rabbitosaur). Original design and sprites by NikitaKurylev. (Sources: NikitaKurylev)
+
+* ["Raccscal"](https://wiki.tuxemon.org/Raccscal). Design and front sprite by Serpexnessie. Face sprites adapted by Jaskrendix. Back by HippasusTwo. (Sources: Jaskrendix, Serpexnessie)
+
+* ["Raptoucan"](https://wiki.tuxemon.org/Raptoucan). Spalding004 has released his Sitran Fakedex under a Creative Commons Attribution 4.0 International licence for us. (Sources: Jaskrendix, Spalding004)
+
+* ["Regalance"](https://wiki.tuxemon.org/Regalance). Design and original sprite by JustinNuggets and Piacarrot. Back sprite and face sprites by Jaskrendix. Attribution must include full credit as always, and a link to Piacarrot's DeviantArt page: https://www.deviantart.com/piacarrot (Sources: Jaskrendix, JustinNuggets, Piacarrot)
+
+* ["Rhincus"](https://wiki.tuxemon.org/Rhincus). Design and front sprite by josepharaoh99. Back sprite by Sanglorian. Face sprites by Redshrike. Face sprites tweaked by Sanglorian. (Sources: Josepharaoh99, Redshrike, Sanglorian)
+
+* ["Rhinocarpe"](https://wiki.tuxemon.org/Rhinocarpe). Design, front and back sprites by Catch Challenger. Face sprites by Jaskrendix. (Sources: Catch Challenger, Jaskrendix)
+
+* ["Rinocereed"](https://wiki.tuxemon.org/Rinocereed). Spalding004 has released his free use fakemon under a Creative Commons Attribution 4.0 International licence for us. Design and front sprite by Spalding004. Back and face sprites by Jaskrendix. (Sources: Jaskrendix, Spalding004)
+
+* ["Rockat"](https://wiki.tuxemon.org/Rockat). Original design and sprites by Leo. (Sources: Leo)
+
+* ["Rooksand"](https://wiki.tuxemon.org/Rooksand). Design and front sprites by mjco. 64px front sprite resized by Sanglorian. Back and face sprites adapted by Jaskrendix. (Sources: Jaskrendix, Sanglorian, mjco)
+
+* ["Rosarin"](https://wiki.tuxemon.org/Rosarin). From the open source game OPMon. Face sprites resized by Sanglorian from the front sprite. (Sources: OPMon, Sanglorian)
+
+* ["Ruffalo"](https://wiki.tuxemon.org/Ruffalo). Front sprite by Isaiah658. Face sprites by Jaskrendix. Alternative sprites by Isaiah658. (Sources: Isaiah658, Jaskrendix)
+
+* ["Runesquito"](https://wiki.tuxemon.org/Runesquito). (Sources: Serpexnessie)
+
+* ["Ruption"](https://wiki.tuxemon.org/Ruption). Spalding004 has released his Sitran Fakedex under a Creative Commons Attribution 4.0 International licence for us. Original design and sprites by Spalding004. Back sprite by Sanglorian. Face sprites tweaked by Sanglorian. (Sources: Spalding004)
+
+* ["Sadito"](https://wiki.tuxemon.org/Sadito). Design and sprites by Serpexnessie. Face sprites tweaked by Sanglorian. (Sources: Sanglorian, Serpexnessie)
+
+* ["Sampsack"](https://wiki.tuxemon.org/Sampsack). Spalding004 has released his Sitran Fakedex under a Creative Commons Attribution 4.0 International licence for us. Original design and sprites by Spalding004. Back sprite by josepharaoh99. Face sprites tweaked by Sanglorian. (Sources: Josepharaoh99, Sanglorian, Spalding004)
+
+* ["Sampsage"](https://wiki.tuxemon.org/Sampsage). Spalding004 has released his Sitran Fakedex under a Creative Commons Attribution 4.0 International licence for us. Original design and sprites by Spalding004. Back sprite by Sanglorian. Face sprites tweaked by Sanglorian. (Sources: Sanglorian, Spalding004)
+
+* ["Sapsnap"](https://wiki.tuxemon.org/Sapsnap). Spalding004 has released his Sitran Fakedex under a Creative Commons Attribution 4.0 International licence for us. Original design and sprites by Spalding004. Face sprites tweaked by Sanglorian. (Sources: Sanglorian, Spalding004)
+
+* ["Saurchin"](https://wiki.tuxemon.org/Saurchin). Design and front sprite by Serpexnessie. Back sprite by Sanglorian. Face sprites tweaked by Sanglorian from the front sprite by Serpexnessie. Art by PandiRocks-17. (Sources: PandiRocks-17, Sanglorian, Serpexnessie)
+
+* ["Scarlant"](https://wiki.tuxemon.org/Scarlant). Design and front and back sprites by WDFA-Final. Front, back and face sprites by HippasusTwo. (Sources: HippasusTwo, WDFA-Final)
+
+* ["Sclairus"](https://wiki.tuxemon.org/Sclairus). Catch Challenger is an open source project, with assets under Creative Commons Attribution. Original design and sprites by Catch Challenger. Face sprites by Sanglorian. (Sources: Catch Challenger, Sanglorian)
+
+* ["Seirein"](https://wiki.tuxemon.org/Seirein). Original design and sprites by Serpexnessie. Face sprites tweaked by Sanglorian. (Sources: Sanglorian, Serpexnessie)
+
+* ["Seraphice"](https://wiki.tuxemon.org/Seraphice). Design and front sprite by Serpexnessie. Back and face sprites by Jaskrendix, based on the front sprite by Serpexnessie. (Sources: Jaskrendix, Serpexnessie)
+
+* ["Shammer"](https://wiki.tuxemon.org/Shammer). Original design and sprites by josepharaoh99, revamp by HippasusTwo. Face sprites by Sanglorian and Redshrike. (Sources: Josepharaoh99, Redshrike, Sanglorian)
+
+* ["Shelagu"](https://wiki.tuxemon.org/Shelagu). Design and art by BrasioPkmn. Sprites by Lejun. (Sources: BrasioPkmn, Lejun)
+
+* ["Sheye"](https://wiki.tuxemon.org/Sheye). Designed and sprited by Georg Eckert. Front and back sprites by HippasusTwo. Face sprites by Jaskrendix. (Sources: Georg Eckert, HippasusTwo, Jaskrendix)
+
+* ["Shimmerain"](https://wiki.tuxemon.org/Shimmerain). Spalding004 has released his Sitran Fakedex under a Creative Commons Attribution 4.0 International licence for us. (Sources: HippasusTwo, Jaskrendix, Spalding004)
+
+* ["Shnark"](https://wiki.tuxemon.org/Shnark). Design and front and face sprites by Sanglorian. Back sprite by Impossible Realms. (Sources: Impossible Realms, Sanglorian)
+
+* ["Shrab"](https://wiki.tuxemon.org/Shrab). Designed and sprited by Georg Eckert. Resized by Sanglorian. Front and back sprites by HippasusTwo. Face sprites by Jaskrendix. (Sources: Georg Eckert, HippasusTwo, Jaskrendix, Sanglorian)
+
+* ["Shull"](https://wiki.tuxemon.org/Shull). Design and front and back sprites by WDFA-Final. Front, back and face sprites by HippasusTwo. (Sources: HippasusTwo, WDFA-Final)
+
+* ["Shybulb"](https://wiki.tuxemon.org/Shybulb). Spalding004 has released his Sitran Fakedex under a Creative Commons Attribution 4.0 International licence for us. Original design and sprites by Spalding004. Back sprites by Sanglorian. Face sprites tweaked by Sanglorian. (Sources: Sanglorian, Spalding004)
+
+* ["Skwib"](https://wiki.tuxemon.org/Skwib). Designed and illustrated by fauxlens. Sprites by Sanglorian. (Sources: Sanglorian, fauxlens)
+
+* ["Slichen"](https://wiki.tuxemon.org/Slichen). Spalding004 has released his Sitran Fakedex under a Creative Commons Attribution 4.0 International licence for us. Front sprite by Spalding004. Back and face sprites by Jaskrendix. (Sources: Jaskrendix, Spalding004)
+
+* ["Snaki"](https://wiki.tuxemon.org/Snaki). Catch Challenger is an open source project, with assets under Creative Commons Attribution. Original design and front and back sprites by Catch Challenger. Face sprites tweaked from back sprite by Sanglorian. (Sources: Catch Challenger, Sanglorian)
+
+* ["Snarlon"](https://wiki.tuxemon.org/Snarlon). Original design and sprites by Sanglorian. Main art by slickedbackArtisan. (Sources: Sanglorian, SlickedbackArtisan)
+
+* ["Snock"](https://wiki.tuxemon.org/Snock). Design and art by TheBritanniaRegion. Sprites by Involuntary Twitch. (Sources: Involuntary Twitch, TheBritanniaRegion)
+
+* ["Snokari"](https://wiki.tuxemon.org/Snokari). Catch Challenger is an open source project, with assets under Creative Commons Attribution. Original design and front and back sprites by Catch Challenger. Face sprites tweaked from back sprite by Sanglorian. (Sources: Catch Challenger, Sanglorian)
+
+* ["Sockeserp"](https://wiki.tuxemon.org/Sockeserp). Original design and sprites by Serpexnessie. (Sources: Serpexnessie)
+
+* ["Solight"](https://wiki.tuxemon.org/Solight). Design and original sprite by FrozenFeather and Piacarrot. 64px and face sprites by Lejun. Attribution must include full credit as always, and a link to Piacarrot's DeviantArt page: https://www.deviantart.com/piacarrot (Sources: FrozenFeather, Lejun, Piacarrot)
+
+* ["Spectera"](https://wiki.tuxemon.org/Spectera). Sprited by HippasusTwo from art by Leo. (Sources: HippasusTwo, Leo)
+
+* ["Sphake"](https://wiki.tuxemon.org/Sphake). Designed and sprited by Georg Eckert. Back and face sprites by Jaskrendix. (Sources: Georg Eckert, Jaskrendix)
+
+* ["Spighter"](https://wiki.tuxemon.org/Spighter). Spalding004 has released his Sitran Fakedex under a Creative Commons Attribution 4.0 International licence for us. Original design and sprites by Spalding004. Face sprites by tamashihoshi. Overland sprites by Lanea Zimmerman. (Sources: Lanea Zimmerman, Spalding004, tamashihoshi)
+
+* ["Spirain"](https://wiki.tuxemon.org/Spirain). (Sources: HippasusTwo, Rubberduck)
+
+* ["Spoilurm"](https://wiki.tuxemon.org/Spoilurm). Design and front and back sprites from the open source game OPMon. Face sprites tweaked by Sanglorian from front sprite. Name by Sanglorian. (Sources: OPMon, Sanglorian)
+
+* ["Sprightly"](https://wiki.tuxemon.org/Sprightly). Spalding004 has released his Sitran Fakedex under a Creative Commons Attribution 4.0 International licence for us. (Sources: HippasusTwo, Jaskrendix, Spalding004)
+
+* ["Sprorm"](https://wiki.tuxemon.org/Sprorm). Designed and sprited by Georg Eckert. Back and face sprites by Jaskrendix. (Sources: Georg Eckert, Jaskrendix)
+
+* ["Squabbit"](https://wiki.tuxemon.org/Squabbit). Original design and sprites by NikitaKurylev. (Sources: NikitaKurylev)
+
+* ["Squink"](https://wiki.tuxemon.org/Squink). Spalding004 has released his Sitran Fakedex under a Creative Commons Attribution 4.0 International licence for us. Design and front sprite by Spalding004. Back and face spries by Jaskrendix, based on the front sprite. (Sources: Jaskrendix, Spalding004)
+
+* ["Statursus"](https://wiki.tuxemon.org/Statursus). Design and front and back sprite from the open source game OPMon. Face sprites adapted from the front sprites by Sanglorian. (Sources: OPMon, Sanglorian)
+
+* ["Stegofor"](https://wiki.tuxemon.org/Stegofor). Designed and sprited by Georg Eckert. Resized by Sanglorian. Face sprites by Jaskrendix. (Sources: Georg Eckert, HippasusTwo, Jaskrendix, Sanglorian)
+
+* ["Stomic"](https://wiki.tuxemon.org/Stomic). Art and design by WDFA-Final. Sprites by JaskRendix. (Sources: HippasusTwo, Jaskrendix, WDFA-Final)
+
+* ["Stonifly"](https://wiki.tuxemon.org/Stonifly). Design and front sprite by Serpexnessie. Face sprites adapted by Jaskrendix. (Sources: Jaskrendix, Serpexnessie)
+
+* ["Strella"](https://wiki.tuxemon.org/Strella). Spalding004 has released his Sitran Fakedex under a Creative Commons Attribution 4.0 International licence for us. Original design and sprites by Spalding004. Face sprites tweaked by Sanglorian. Overland sprites by Lanea Zimmerman. (Sources: Lanea Zimmerman, Spalding004)
+
+* ["Sumchon"](https://wiki.tuxemon.org/Sumchon). Original design by tamashihoshi. Redesign and art by Leo. Sprites by tamashihoshi. Main art by Adam Fegarido. (Sources: Adam Fegarido, Leo, tamashihoshi)
+
+* ["Tadcool"](https://wiki.tuxemon.org/Tadcool). Spalding004 has released his Sitran Fakedex under a Creative Commons Attribution 4.0 International licence for us. Front sprite by Spalding004. Back and face sprites by Jaskrendix. (Sources: Jaskrendix, Spalding004)
+
+* ["Tarpeur"](https://wiki.tuxemon.org/Tarpeur). Front and back sprites by Catch Challenger. Face sprites adapted by Sanglorian from the face sprites by Catch Challenger. (Sources: Catch Challenger, Sanglorian)
+
+* ["Taupypus"](https://wiki.tuxemon.org/Taupypus). Design and front and back sprites from the open source game OPMon. Face sprites adapted by Sanglorian from the front sprite. Name by Sanglorian. (Sources: OPMon, Sanglorian)
+
+* ["Tetrchimp"](https://wiki.tuxemon.org/Tetrchimp). Original art by CrisFarias. Front and back sprites by Involuntary Twitch. (Sources: CrisFarias, Involuntary Twitch)
+
+* ["Thumpurn"](https://wiki.tuxemon.org/Thumpurn). Spalding004 has released his Sitran Fakedex under a Creative Commons Attribution 4.0 International licence for us. (Sources: Jaskrendix, Spalding004)
+
+* ["Tigrock"](https://wiki.tuxemon.org/Tigrock). Original design and sprites by Leo. (Sources: Leo)
+
+* ["Tikoal"](https://wiki.tuxemon.org/Tikoal). Spalding004 has released his Sitran Fakedex under a Creative Commons Attribution 4.0 International licence for us. Original design and sprites by Spalding004. Face sprites by Sanglorian. (Sources: Sanglorian, Spalding004)
+
+* ["Tikorch"](https://wiki.tuxemon.org/Tikorch). Spalding004 has released his Sitran Fakedex under a Creative Commons Attribution 4.0 International licence for us. Original design and sprites by Spalding004. Face sprites by Sanglorian. (Sources: Sanglorian, Spalding004)
+
+* ["Tobishimi"](https://wiki.tuxemon.org/Tobishimi). Art and 80px sprites by princess-phoenix. 64px and face sprites by Lejun. (Sources: Lejun, Princess-phoenix)
+
+* ["Tornicane"](https://wiki.tuxemon.org/Tornicane). (Sources: Rubberduck)
+
+* ["Toucanary"](https://wiki.tuxemon.org/Toucanary). Spalding004 has released his Sitran Fakedex under a Creative Commons Attribution 4.0 International licence for us. (Sources: Jaskrendix, Spalding004)
+
+* ["Toufigel"](https://wiki.tuxemon.org/Toufigel). Catch Challenger is an open source project, with assets under Creative Commons Attribution. Original design and sprites by Catch Challenger. Face sprites tweaked by Sanglorian. (Sources: Catch Challenger, Sanglorian)
+
+* ["Tourbidi"](https://wiki.tuxemon.org/Tourbidi). Catch Challenger is an open source project, with assets under Creative Commons Attribution. Original design and sprites by Catch Challenger. Face sprites tweaked by Sanglorian. (Sources: Catch Challenger, Sanglorian)
+
+* ["Toxiris"](https://wiki.tuxemon.org/Toxiris). From the open source game OPMon. (Sources: Jaskrendix, OPMon)
+
+* ["Trapsnap"](https://wiki.tuxemon.org/Trapsnap). Spalding004 has released his Sitran Fakedex under a Creative Commons Attribution 4.0 International licence for us. Original design and sprites by Spalding004. Face sprites tweaked by Sanglorian. (Sources: Sanglorian, Spalding004)
+
+* ["Trojerror"](https://wiki.tuxemon.org/Trojerror). Design and front sprite by Serpexnessie. Face sprites adapted by Jaskrendix. (Sources: Jaskrendix, Serpexnessie)
+
+* ["Tsushimi"](https://wiki.tuxemon.org/Tsushimi). Art and 80px sprites by princess-phoenix. 64px and face sprites by Lejun. (Sources: Lejun, Princess-phoenix)
+
+* ["Tumblebee"](https://wiki.tuxemon.org/Tumblebee). Design by josepharaoh99. Sprites by Cavalcadeur. Back sprite by Sanglorian. (Sources: Cavalcadeur, Sanglorian, josepharaoh99)
+
+* ["Tumbledillo"](https://wiki.tuxemon.org/Tumbledillo). Front sprite by Serpexnessie. Face sprites and back sprite by Andre Doruk. (Sources: Andre Doruk, Serpexnessie)
+
+* ["Tumblequill"](https://wiki.tuxemon.org/Tumblequill). Design and front sprite by Serpexnessie. Other sprites by Andre Duruk. Art by giovani_rubio. (Sources: Andre Doruk, Giovani rubio, Serpexnessie)
+
+* ["Turnipper"](https://wiki.tuxemon.org/Turnipper). Original art by DarkySG. Front sprite by Levaine. Back and face sprites tweaked by Sanglorian. (Sources: DarkySG, Levaine, Sanglorian)
+
+* ["UF0"](https://wiki.tuxemon.org/UF0). Design and original sprite by JustinNuggets and Piacarrot. Back sprite and face sprites by Jaskrendix. Attribution must include full credit as always, and a link to Piacarrot's DeviantArt page: https://www.deviantart.com/piacarrot (Sources: Jaskrendix, JustinNuggets, Piacarrot)
+
+* ["Uglip"](https://wiki.tuxemon.org/Uglip). Front sprite by Serpexnessie. Back and face sprites by Jaskrendix. (Sources: Jaskrendix, Serpexnessie)
+
+* ["Uneye"](https://wiki.tuxemon.org/Uneye). Spalding004 has released his Sitran Fakedex under a Creative Commons Attribution 4.0 International licence for us. Front sprite by Spalding004. Back and face sprites by Jaskrendix. (Sources: Jaskrendix, Spalding004)
+
+* ["Uprout"](https://wiki.tuxemon.org/Uprout). Spalding004 has released his Sitran Fakedex under a Creative Commons Attribution 4.0 International licence for us. (Sources: Jaskrendix, Spalding004)
+
+* ["Urcheedle"](https://wiki.tuxemon.org/Urcheedle). Front sprite by Serpexnessie. Back and face sprites by Jaskrendix. (Sources: Jaskrendix, Serpexnessie)
+
+* ["Urcine"](https://wiki.tuxemon.org/Urcine). Catch Challenger is an open source project, with assets under Creative Commons Attribution. Original design and front and back sprites by Catch Challenger. Face sprites tweaked from front sprite by Sanglorian. (Sources: Catch Challenger, Sanglorian)
+
+* ["Vigueur"](https://wiki.tuxemon.org/Vigueur). Catch Challenger is an open source project, with assets under Creative Commons Attribution. Original design and front and back sprites by Catch Challenger. Face sprites by Sanglorian from the front sprites. (Sources: Catch Challenger, Sanglorian)
+
+* ["Virware"](https://wiki.tuxemon.org/Virware). Design and front sprite by Serpexnessie. Back and face sprites adapted by Jaskrendix. (Sources: Jaskrendix, Serpexnessie)
+
+* ["Vivicinder"](https://wiki.tuxemon.org/Vivicinder). Catch Challenger is an open source project, with assets under Creative Commons Attribution. Original design and sprites by Catch Challenger. Face sprites tweaked by Sanglorian. (Sources: Catch Challenger, Sanglorian)
+
+* ["Vividactil"](https://wiki.tuxemon.org/Vividactil). Catch Challenger is an open source project, with assets under Creative Commons Attribution. Original design and front and back sprites by Catch Challenger. Face sprites by Sanglorian from the front sprites. (Sources: Catch Challenger, Sanglorian)
+
+* ["Vivipere"](https://wiki.tuxemon.org/Vivipere). Catch Challenger is an open source project, with assets under Creative Commons Attribution. Original design and sprites by Catch Challenger. Face sprites by Sanglorian. Other sprites by Catch Challenger. (Sources: Catch Challenger, Sanglorian)
+
+* ["Viviphyta"](https://wiki.tuxemon.org/Viviphyta). Catch Challenger is an open source project, with assets under Creative Commons Attribution. Original design and sprites by Catch Challenger. Face sprites tweaked by Sanglorian. (Sources: Catch Challenger)
+
+* ["Vivisource"](https://wiki.tuxemon.org/Vivisource). Catch Challenger is an open source project, with assets under Creative Commons Attribution. Original design and front and back sprites by Catch Challenger. Face sprites tweaked from front sprite by Sanglorian. (Sources: Catch Challenger, Sanglorian)
+
+* ["Viviteel"](https://wiki.tuxemon.org/Viviteel). Catch Challenger is an open source project, with assets under Creative Commons Attribution. Original design and sprites by Catch Challenger. Face sprites tweaked by Sanglorian. (Sources: Catch Challenger, Sanglorian)
+
+* ["Vivitrans"](https://wiki.tuxemon.org/Vivitrans). Catch Challenger is an open source project, with assets under Creative Commons Attribution. Original design and sprites by Catch Challenger. Face sprites tweaked by Sanglorian. (Sources: Catch Challenger, Sanglorian)
+
+* ["Vivitron"](https://wiki.tuxemon.org/Vivitron). Catch Challenger is an open source project, with assets under Creative Commons Attribution. Original design and sprites by Catch Challenger. Face sprites tweaked by Sanglorian. (Sources: Catch Challenger, Sanglorian)
+
+* ["Volcoli"](https://wiki.tuxemon.org/Volcoli). Catch Challenger is an open source project, with assets under Creative Commons Attribution. Original design and sprites by Catch Challenger. Face sprites tweaked by Sanglorian. (Sources: Catch Challenger, Sanglorian)
+
+* ["Volconey"](https://wiki.tuxemon.org/Volconey). Spalding004 has released his Sitran Fakedex under a Creative Commons Attribution 4.0 International licence for us. Front sprite by Spalding004. Back and face sprites by Jaskrendix. (Sources: Jaskrendix, Spalding004)
+
+* ["Vulpyre"](https://wiki.tuxemon.org/Vulpyre). Design by Leo. Sprites by HippasusTwo. (Sources: HippasusTwo, Leo)
+
+* ["Waysprite"](https://wiki.tuxemon.org/Waysprite). Design and front sprite by Serpexnessie. Back and face sprites by Jaskrendix. (Sources: Jaskrendix, Serpexnessie)
+
+* ["Weavifly"](https://wiki.tuxemon.org/Weavifly). Spalding004 has released his Sitran Fakedex under a Creative Commons Attribution 4.0 International licence for us. Original design and sprites by Spalding004. Face sprites tweaked by Sanglorian. Alternative sprites tweaked by HippasusTwo. (Sources: HippasusTwo, Sanglorian, Spalding004)
+
+* ["Weedlantis"](https://wiki.tuxemon.org/Weedlantis). Design and front sprites by mjco. Front and back sprites by HippasusTwo. Face sprites adapted by Jaskrendix. (Sources: HippasusTwo, Jaskrendix, Sanglorian, mjco)
+
+* ["Weedsea"](https://wiki.tuxemon.org/Weedsea). Design and front sprites by mjco. 64px front sprite resized by Sanglorian. Front and back sprites by HippasusTwo. Face sprites adapted by Jaskrendix. (Sources: HippasusTwo, Jaskrendix, Sanglorian, mjco)
+
+* ["Wendigger"](https://wiki.tuxemon.org/Wendigger). Original art by DarkySG. Sprite by Levaine. Backsprite HippasusTwo. (Sources: DarkySG, HippasusTwo, Jaskrendix, Levaine)
+
+* ["Windeye"](https://wiki.tuxemon.org/Windeye). Original design by Sanglorian's former coworkers and donated to the project. Art and redesign by DevilDman. Front sprite by Levaine. Back sprite by Sanglorian. (Sources: DevilDman, Levaine, Sanglorian)
+
+* ["Wolffsky"](https://wiki.tuxemon.org/Wolffsky). Designed and sprited by moritz_gunz. Back sprite and face sprites by Jaskrendix. (Sources: Jaskrendix, moritz_gunz)
+
+* ["Wolololl"](https://wiki.tuxemon.org/Wolololl). Design and front sprite by Serpexnessie. Face sprites adapted by Jaskrendix. Back by HippasusTwo. (Sources: Jaskrendix, Serpexnessie)
+
+* ["Woodoor"](https://wiki.tuxemon.org/Woodoor). Design and front sprite by Serpexnessie. Back and face sprites by Jaskrendix, adapted from the front sprite. (Sources: Jaskrendix, Serpexnessie)
+
+* ["Yamada"](https://wiki.tuxemon.org/Yamada). Design and original sprite by Piacarrot. Attribution must include full credit as always, and a link to Piacarrot's DeviantArt page: https://www.deviantart.com/piacarrot Backsprite by HippasusTwo. (Sources: Piacarrot)
+
+* ["Yiinaang"](https://wiki.tuxemon.org/Yiinaang). Spalding004 has released his Sitran Fakedex under a Creative Commons Attribution 4.0 International licence for us. Original design and sprites by Spalding004. Back sprite by tamashihoshi. Face sprites tweaked by Sanglorian. (Sources: Sanglorian, Spalding004, tamashihoshi)
+
+* ["Ziggurat"](https://wiki.tuxemon.org/Ziggurat). Spalding004 has released his Sitran Fakedex under a Creative Commons Attribution 4.0 International licence for us. Front sprite by Spalding004. Back and face sprites by Jaskrendix. (Sources: Jaskrendix, Spalding004)
 
 ### Bubbles
 

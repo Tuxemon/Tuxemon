@@ -87,6 +87,7 @@ def monster_mock(
 
     return m
 
+
 def learns_on_level_up(monster, slugs):
     """Make give_experience add these techniques, the way a level up does."""
     known: list[MagicMock] = []

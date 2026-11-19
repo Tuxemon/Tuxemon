@@ -15,8 +15,11 @@ from tuxemon.technique.technique import Technique
 def make_monster():
     def _make(speed, dodge):
         from tuxemon.monster.stats import BasicStats
+
         m = MagicMock(spec=Monster)
-        m.get_combat_stats.return_value = BasicStats(speed=int(speed), dodge=int(dodge))
+        m.get_combat_stats.return_value = BasicStats(
+            speed=int(speed), dodge=int(dodge)
+        )
         return m
 
     return _make

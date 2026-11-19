@@ -250,7 +250,7 @@ msgid "item_failure"
 msgstr "Es hat nicht funktioniert!"
 
 msgid "attempting_capture"
-msgstr "Versuche zu fangen..."
+msgstr "Versuche zu fangen…"
 
 msgid "gotcha"
 msgstr "Geschnappt!"

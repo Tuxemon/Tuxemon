@@ -48,7 +48,9 @@ class Battle:
                     try:
                         setattr(battle, key, OutputBattle(save_data[key]))
                     except ValueError:
-                        logger.error(f"Invalid outcome value: {save_data[key]!r}")
+                        logger.error(
+                            f"Invalid outcome value: {save_data[key]!r}"
+                        )
                 else:
                     setattr(battle, key, save_data[key])
 

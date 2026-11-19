@@ -720,7 +720,6 @@ class CombatState(CombatAnimations):
                 if m:
                     message += "\n" + m
 
-
         self.text_anim.add_text_animation(
             partial(self.dialog.alert, message, self.text_area), action_time
         )

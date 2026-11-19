@@ -223,7 +223,11 @@ class NPC(Entity):
             return 0.0
         traveled = tile_distance(self.body.position, arc_origin)
         progress = min(1.0, traveled / expected)
-        return math.sin(math.pi * progress) * HOP_HEIGHT_PIXELS / NATIVE_TILE_SIZE[1]
+        return (
+            math.sin(math.pi * progress)
+            * HOP_HEIGHT_PIXELS
+            / NATIVE_TILE_SIZE[1]
+        )
 
     @property
     def path(self) -> list[tuple[int, int]]:

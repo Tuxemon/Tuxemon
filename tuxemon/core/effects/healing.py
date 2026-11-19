@@ -18,6 +18,7 @@ if TYPE_CHECKING:
 
 logger = logging.getLogger(__name__)
 
+
 @dataclass
 class HealingEffect(CoreEffect):
     """
@@ -90,7 +91,6 @@ class HealingEffect(CoreEffect):
                 elif monster.hp_ratio == 1.0:
                     extra.append(T.format("combat_full_health", params))
         return TechEffectResult(name=tech.name, success=done, extras=extra)
-
 
     def _resolve_targets(
         self, session: Session, tech: Technique, user: Monster, target: Monster

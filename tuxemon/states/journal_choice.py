@@ -63,8 +63,6 @@ class JournalChoice(PygameMenuState):
         menu._auto_centering = False
         scale_int = self.client.context.scaling.scale_int
 
-
-
         featured_text = T.format("journal_badge_featured", {"n": ""}).rstrip()
         stubs_text = T.format("journal_badge_stubs", {"n": ""}).rstrip()
         missing_text = T.format("journal_badge_missing", {"n": ""}).rstrip()
@@ -143,7 +141,7 @@ class JournalChoice(PygameMenuState):
                 and self.char.tuxepedia.is_registered(mon.slug)
             ]
             label = T.format(
-                "page_tuxepedia", {"a": str(start+1), "b": str(end)}
+                "page_tuxepedia", {"a": str(start + 1), "b": str(end)}
             ).upper()
 
             if tuxepedia:

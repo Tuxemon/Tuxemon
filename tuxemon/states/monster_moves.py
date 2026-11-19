@@ -33,6 +33,7 @@ if TYPE_CHECKING:
 
 logger = logging.getLogger(__name__)
 
+
 class MonsterMovesState(PygameMenuState):
     """
     Shows details of the single monster with the journal background graphic.
@@ -281,7 +282,9 @@ class MonsterMovesState(PygameMenuState):
                     continue
                 img.scale(self.factor, self.factor)
                 if existing is None:
-                    icon = menu.add.image(img.copy(), image_id=slot_id, float=True)
+                    icon = menu.add.image(
+                        img.copy(), image_id=slot_id, float=True
+                    )
                     icon.translate(fxw(x_positions[i]), fxh(y_position))
                 else:
                     existing.set_image(img)
@@ -297,7 +300,9 @@ class MonsterMovesState(PygameMenuState):
             rimg = self._create_image(path)
             rimg.scale(self.factor, self.factor)
             if existing_range is None:
-                w = menu.add.image(rimg.copy(), image_id="range_icon", float=True)
+                w = menu.add.image(
+                    rimg.copy(), image_id="range_icon", float=True
+                )
                 w.translate(fxw(4 / 256), fxh(86.8 / 144))
             else:
                 existing_range.set_image(rimg)
@@ -415,9 +420,10 @@ class MonsterMovesState(PygameMenuState):
             result = super().process_event(event)
             self.update_selected_widget()
             if self.selected_widget:
-                self.add_menu_technique(self.menu, self.selected_widget.get_id())
+                self.add_menu_technique(
+                    self.menu, self.selected_widget.get_id()
+                )
             return result
-
 
         if self._source in [
             "WorldMenuState",

@@ -179,6 +179,7 @@ def test_battle_outcome_summary_with_turns(handler):
     assert summary["draw"] == 0
     assert summary["average_turns"] == 3
 
+
 def test_get_state_serializes_enum():
     battle = Battle()
     battle.outcome = OutputBattle.WON

@@ -162,7 +162,6 @@ class Daycare:
             self._pending_exp -= gained_exp
             gained_cost = int(gained_exp * self.training_cost_rate)
 
-
             # Check funds BEFORE applying EXP
             money = self.owner.money_controller.money_manager.get_money()
             if gained_cost > money:

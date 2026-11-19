@@ -103,6 +103,7 @@ def test_category_transitions(
     assert result.reason == expected_reason
     assert result.replaced_status == current
 
+
 def test_current_status_response_is_used_not_the_new_one(engine):
     """A monster with 'focused' loses it when a negative status lands."""
     current = MagicMock()
@@ -167,6 +168,7 @@ def test_uncategorised_status_always_lands(engine):
     assert result.outcome == ResponseStatus.REPLACED
     assert result.reason == BlockedReason.REPLACED
     assert result.replaced_status == current
+
 
 def test_neutral_category_defaults_to_replaced(engine):
     current = MagicMock()

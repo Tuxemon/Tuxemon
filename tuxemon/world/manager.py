@@ -243,14 +243,18 @@ class WorldMenuManager:
             slot = local_session.current_slot
             idx = save_index_to_ui(slot) if slot else 0
             current_menu.append(
-                self._menu_item("menu_save", "SaveMenuState", selected_index=idx)
+                self._menu_item(
+                    "menu_save", "SaveMenuState", selected_index=idx
+                )
             )
 
         if self.menu_flags.is_enabled("menu_load"):
             slot = local_session.current_slot
             idx = save_index_to_ui(slot) if slot else 0
             current_menu.append(
-                self._menu_item("menu_load", "LoadMenuState", selected_index=idx)
+                self._menu_item(
+                    "menu_load", "LoadMenuState", selected_index=idx
+                )
             )
 
         current_menu.append(self._menu_item("menu_options", "ControlState"))

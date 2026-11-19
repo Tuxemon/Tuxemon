@@ -460,9 +460,15 @@ class CombatAnimations(Menu[None], ABC):
 
         hud_model = self.env.get_battle_graphics().hud
         if self.combat_session.is_double:
-            hud_graphics = hud_model.double_player if is_player else hud_model.double_opponent
+            hud_graphics = (
+                hud_model.double_player
+                if is_player
+                else hud_model.double_opponent
+            )
         else:
-            hud_graphics = hud_model.hud_player if is_player else hud_model.hud_opponent
+            hud_graphics = (
+                hud_model.hud_player if is_player else hud_model.hud_opponent
+            )
 
         layer = self.hud_manager.get_hud_layer(monster, HUD_LAYER)
         hud = self.check_hud(monster, hud_graphics, layer)

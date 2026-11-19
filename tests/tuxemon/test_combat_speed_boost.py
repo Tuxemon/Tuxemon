@@ -6,6 +6,7 @@ Integration tests: temporary speed boosts affect turn order and damage.
 Covers the fix for get_combat_stats() return value being used in both
 simple_damage_calculate() and speed_monster() instead of raw base stats.
 """
+
 from unittest.mock import MagicMock
 
 import pytest
@@ -51,6 +52,7 @@ def _mock_technique(sort: str = "damage", speed: int = 0) -> MagicMock:
 # speed_monster() uses boosted stats
 # ---------------------------------------------------------------------------
 
+
 def test_speed_monster_uses_combat_stats_not_base():
     """speed_monster() must reflect a temporary speed boost."""
     monster = _mock_monster(speed=10, dodge=0)
@@ -78,13 +80,18 @@ def test_speed_monster_boost_proportional():
 # Mid-turn re-sort: boost to the slowest monster can leapfrog a middle one
 # ---------------------------------------------------------------------------
 
-def _make_sorted_queue(monsters_techs: list[tuple[MagicMock, MagicMock]]) -> ActionQueue:
+
+def _make_sorted_queue(
+    monsters_techs: list[tuple[MagicMock, MagicMock]],
+) -> ActionQueue:
     """Build and sort an ActionQueue from (monster, technique) pairs."""
     q = ActionQueue()
     target = MagicMock(spec=Monster)
     target.is_fainted = False
     for monster, tech in monsters_techs:
-        action = EnqueuedAction(user=monster, method=tech, target=target, sub_priority=0.5)
+        action = EnqueuedAction(
+            user=monster, method=tech, target=target, sub_priority=0.5
+        )
         q.enqueue(action, turn=1)
     q.sort()
     return q
@@ -97,8 +104,8 @@ def test_mid_turn_speed_boost_reorders_remaining():
     Remaining: m90 and m80. Boost m90 to 200; after re-sort m90 should go first.
     """
     m100 = _mock_monster(speed=100)
-    m90  = _mock_monster(speed=90)
-    m80  = _mock_monster(speed=80)
+    m90 = _mock_monster(speed=90)
+    m80 = _mock_monster(speed=80)
     tech = _mock_technique(sort="damage")
 
     q = _make_sorted_queue([(m100, tech), (m90, tech), (m80, tech)])
@@ -111,16 +118,16 @@ def test_mid_turn_speed_boost_reorders_remaining():
     q.sort()
 
     second = q.pop()
-    third  = q.pop()
+    third = q.pop()
 
-    assert second.user is m90   # boosted to fastest among remaining
+    assert second.user is m90  # boosted to fastest among remaining
     assert third.user is m80
 
 
 def test_no_boost_order_is_stable():
     """Without any boosts, re-sorting an already-sorted queue preserves order."""
     m100 = _mock_monster(speed=100)
-    m80  = _mock_monster(speed=80)
+    m80 = _mock_monster(speed=80)
     tech = _mock_technique(sort="damage")
 
     q = _make_sorted_queue([(m100, tech), (m80, tech)])
@@ -133,6 +140,7 @@ def test_no_boost_order_is_stable():
 # ---------------------------------------------------------------------------
 # simple_damage_calculate() uses boosted stats
 # ---------------------------------------------------------------------------
+
 
 def test_damage_uses_boosted_melee():
     """A melee boost must increase the damage dealt by a melee technique."""

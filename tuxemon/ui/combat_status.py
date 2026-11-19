@@ -128,7 +128,11 @@ class StatusIconManager:
         layout_data = self._layouts.get(owner, {})
         ui = self._tracker.get_ui(monster)
         is_double = ui.is_double if ui else False
-        key = f"monster_status_icon_slot_{index}" if is_double else "monster_status_icon"
+        key = (
+            f"monster_status_icon_slot_{index}"
+            if is_double
+            else "monster_status_icon"
+        )
         rects = layout_data.get(key, [])
 
         if not rects:

@@ -42,9 +42,10 @@ modules:
       - install -Dm644 mods/tuxemon/gfx/icon_32.png /app/share/icons/hicolor/32x32/apps/icon.png
 
     sources:
+      # Track the tip of development so bundles ship current code. 
       - type: git
         url: https://github.com/Tuxemon/Tuxemon.git
-        commit: 4395a19ef951607da363298ff3ce92f5880289dc
+        branch: development
 
       - type: script
         dest-filename: org.tuxemon.Tuxemon

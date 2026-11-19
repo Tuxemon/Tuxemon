@@ -1590,6 +1590,7 @@ class ResponseStatus(str, Enum):
     REPLACED = "replaced"
     REMOVED = "removed"
     STACKED = "stacked"
+    BLOCKED = "blocked"
 
 
 class BlockedReason(str, Enum):
@@ -1858,11 +1859,13 @@ class StatusModel(DataModel, BaseLookupModel):
     )
     on_positive_status: ResponseStatus | None = Field(
         None,
-        description="Determines the response when a positive status is applied",
+        description="How this status reacts when a positive status is applied "
+        "on top of it. Unset means it remains and blocks the incoming status.",
     )
     on_negative_status: ResponseStatus | None = Field(
         None,
-        description="Determines the response when a negative status is applied",
+        description="How this status reacts when a negative status is applied "
+        "on top of it. Unset means it remains and blocks the incoming status.",
     )
     on_tech_use: str | None = Field(
         None,

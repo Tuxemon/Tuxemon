@@ -18,7 +18,6 @@ from tuxemon.database.runtime import db
 from tuxemon.db import EffectPhase, StatusModel
 from tuxemon.locale.locale import T
 from tuxemon.modifiers import ModifiersHandler
-from tuxemon.monster.stats import BasicStats
 from tuxemon.status.lifecycle import Lifecycle
 from tuxemon.status.step_effect_engine import StepEffectEngine
 
@@ -74,7 +73,6 @@ class Status:
         self.stat_modifiers = db_data.stat_modifiers
 
         self.modifiers = ModifiersHandler(db_data.modifiers)
-        self.temporary_stat_boosts = BasicStats()
         self._effect_applied: set[str] = set()
         self._linked_monster: Monster | None = None
         self.phase: EffectPhase = EffectPhase.DEFAULT

@@ -498,3 +498,22 @@
       weight: 0.2
       type: item
   crafting_method: cooking  
+
+- recipe_slug: heart_biscuit
+  recipe_text: heart_biscuit_description
+  required_ingredients:
+    meal_dust: 2
+    crackle_salt: 1
+    spice_dust: 1
+    starpepper: 1
+    sweetroot: 1
+  possible_outputs:
+    - slug: heart_biscuit
+      quantity: 2
+      weight: 0.9
+      type: item
+    - slug: bite_of_despair
+      quantity: 1
+      weight: 0.1
+      type: item
+  crafting_method: cooking

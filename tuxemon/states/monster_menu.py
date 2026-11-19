@@ -22,6 +22,7 @@ from tuxemon.monster.monster import Monster
 from tuxemon.monster.renderer import MonsterRenderer
 from tuxemon.platform.const.graphics import BG_MONSTERS, TRANSPARENT_COLOR
 from tuxemon.platform.const.sizes import PARTY_LIMIT
+from tuxemon.session import local_session
 from tuxemon.sprite import Sprite
 from tuxemon.tools import open_choice_dialog, open_dialog
 from tuxemon.ui.graphic_box import GraphicBox
@@ -253,6 +254,11 @@ class MonsterMenuHandler:
         self.client.remove_state_by_name("ChoiceState")
         items_filtered = ItemFilter(self.party.owner.bag.items)
         items_filtered.add_filter(lambda item: item.behaviors.holdable)
+        # the picker skips the validation the item menu does for a used item,
+        # so an item this monster fails the conditions for is left out here
+        items_filtered.add_filter(
+            lambda item: item.validate_monster(local_session, monster)
+        )
 
         self.client.push_state(
             ItemMenuState(

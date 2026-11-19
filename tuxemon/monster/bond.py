@@ -61,8 +61,17 @@ class BondHandler:
 
     def decrease_bond(self, amount: int, floor: int | None = None) -> None:
         """Decreases bond by a given amount, respecting an optional floor."""
+        self.bond = self._floored_decrease(amount, floor)
+
+    def _floored_decrease(self, amount: int, floor: int | None) -> int:
+        """
+        Returns the bond left after subtracting ``amount``, clamped to a floor.
+
+        A floor above the current bond only stops the drop, it never raises
+        bond, so a penalty can't reward a monster sitting under its floor.
+        """
         effective_floor = floor if floor is not None else self.MIN_BOND
-        self.bond = max(effective_floor, self.bond - amount)
+        return min(self.bond, max(effective_floor, self.bond - amount))
 
     def reset_bond(self) -> None:
         """Resets bond to default value."""
@@ -76,7 +85,7 @@ class BondHandler:
         if self.bond <= effective_floor:
             return
         decay_amount = max(1, int(self.bond * decay_rate))
-        self.bond = max(effective_floor, self.bond - decay_amount)
+        self.bond = self._floored_decrease(decay_amount, floor)
 
     def change_bond(
         self, value: int | float, floor: int | None = None
@@ -88,8 +97,7 @@ class BondHandler:
         if bond_change > 0:
             return self.increase_bond(bond_change)
         elif bond_change < 0:
-            effective_floor = floor if floor is not None else self.MIN_BOND
-            self.bond = max(effective_floor, self.bond - abs(bond_change))
+            self.decrease_bond(abs(bond_change), floor)
         return set()
 
     def is_max_bond(self) -> bool:

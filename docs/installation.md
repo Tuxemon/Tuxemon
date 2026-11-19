@@ -8,7 +8,7 @@ This document contains only the installation instructions.
 
 This guide describes how to install and run Tuxemon on various platforms, including Windows, Linux distributions, macOS, and experimental Android builds.
 
-Tuxemon is developed in Python and can be run directly from source or through platform‑specific packaging systems.
+Tuxemon is developed in Python and can be run directly from source or through platform-specific packaging systems.
 
 ---
 
@@ -21,13 +21,14 @@ Requires **Python 3.10+** and **Git**.
 ```shell
 git clone https://github.com/Tuxemon/Tuxemon.git
 cd Tuxemon
-py -3 -m pip install -U -r requirements.txt
+py -3 -m pip install -U .
 py -3 run_tuxemon.py
 ```
 
 ### Windows Binary
 
-Windows binaries are currently **non‑functional**.  
+Windows binaries are currently **non-functional**.
+
 Use the source installation instead.
 
 ---
@@ -60,17 +61,17 @@ git clone https://github.com/Tuxemon/Tuxemon.git
 python3 -m venv venv
 source venv/bin/activate
 cd Tuxemon
-python3 -m pip install -U -r requirements.txt
+python3 -m pip install -U .
 python3 run_tuxemon.py
 ```
 
-### System‑Wide Install (Not Recommended)
+### System-Wide Install (Not Recommended)
 
 ```shell
-sudo apt install python3 python3-pygame python3-pip python3-imaging git
+sudo apt install python3 python3-pip git
 git clone https://github.com/Tuxemon/Tuxemon.git
 cd Tuxemon
-sudo pip3 install -U -r requirements.txt
+sudo pip3 install -U .
 python3 run_tuxemon.py
 ```
 
@@ -80,7 +81,8 @@ python3 run_tuxemon.py
 sudo apt install build-essential
 git clone https://github.com/zear/libShake.git
 cd libShake/
-make BACKEND=LINUX; sudo make install BACKEND=LINUX
+make BACKEND=LINUX
+sudo make install BACKEND=LINUX
 ```
 
 ---
@@ -93,7 +95,7 @@ git clone https://github.com/Tuxemon/Tuxemon.git
 python3 -m venv venv
 source venv/bin/activate
 cd Tuxemon
-python3 -m pip install -U -r requirements.txt
+python3 -m pip install -U .
 python3 run_tuxemon.py
 ```
 
@@ -104,12 +106,12 @@ python3 run_tuxemon.py
 Manual installation is recommended.
 
 ```shell
-sudo pacman -S python python-pip python-pillow python-pygame python-pydantic git
+sudo pacman -S python python-pip git
 git clone https://github.com/Tuxemon/Tuxemon.git
 cd Tuxemon
 python -m venv venv
 source venv/bin/activate
-python -m pip install -U -r requirements.txt
+python -m pip install -U .
 python run_tuxemon.py
 ```
 
@@ -117,9 +119,9 @@ python run_tuxemon.py
 
 ## Android (Experimental)
 
-- Build using scripts in the `buildconfig/` directory.  
-- Copy the `mods` folder to `Internal Storage/Tuxemon`.  
-- Grant the app filesystem permissions.
+* Build using scripts in the `buildconfig/` directory.
+* Copy the `mods` folder to `Internal Storage/Tuxemon`.
+* Grant the app filesystem permissions.
 
 Android support is experimental and may require manual setup.
 
@@ -137,7 +139,7 @@ brew install python
 brew install sdl sdl_image sdl_ttf portmidi git
 brew install sdl_mixer --with-libvorbis
 sudo pip install git+https://github.com/pygame/pygame.git
-sudo pip install -U -r requirements.txt
+sudo pip install -U .
 git clone https://github.com/Tuxemon/Tuxemon.git
 ulimit -n 10000; python run_tuxemon.py
 ```
@@ -156,16 +158,39 @@ uv run python run_tuxemon.py
 
 ---
 
+## Developer Setup
+
+If you are contributing code, running tests, or performing style checks, install the optional development or test dependencies:
+
+```shell
+# Install test dependencies
+pip install -e .[test]
+
+# Install full development environment (tests, linters, type checkers)
+pip install -e .[dev]
+```
+
+Alternatively, use the Makefile targets:
+
+* `make test-setup`: Installs test dependencies.
+* `make dev-setup`: Installs development dependencies.
+* `make test`: Runs tests via tox.
+* `make format`: Automatically formats and fixes code.
+* `make lint`: Runs linters.
+* `make type`: Runs static type checking.
+
+---
+
 ## Notes
 
-- Running from source is the most reliable method across all platforms.  
-- Build scripts in `buildconfig/` are intended for use inside a VM or container.  
-- For scripting, debugging, and developer tools, refer to the **CLI Interface** document.
+* Running from source is the most reliable method across all platforms.
+* Build scripts in `buildconfig/` are intended for use inside a VM or container.
+* For scripting, debugging, and developer tools, refer to the **CLI Interface** document.
 
 ---
 
 ## External Resources
 
-- Official Website: [https://www.tuxemon.org](https://www.tuxemon.org)  
-- Documentation: [https://tuxemon.readthedocs.io/en/latest/](https://tuxemon.readthedocs.io/en/latest/)  
-- Source Code: [https://github.com/Tuxemon/Tuxemon](https://github.com/Tuxemon/Tuxemon)  
+* Official Website: [https://www.tuxemon.org](https://www.tuxemon.org)
+* Documentation: [https://tuxemon.readthedocs.io/en/latest/](https://tuxemon.readthedocs.io/en/latest/)
+* Source Code: [https://github.com/Tuxemon/Tuxemon](https://github.com/Tuxemon/Tuxemon)

@@ -1,5 +1,5 @@
 tech_id: 223
-accuracy: 0.95
+accuracy: 0.9
 effects:
 - type: multiattack
   parameters:

@@ -10,7 +10,7 @@
 
 ## Update Flatpak Manifest
 
-**The manifest points to the development branch, so the source is always up to date. In case of any build problems, because of changes in the requirements.txt, the manifest and its dependencies must be updated as described below.**
+**The manifest points to the development branch, so the source is always up to date. In case of any build problems, because of changes in the pyproject.toml, the manifest and its dependencies must be updated as described below.**
 
 1. **Update Flatpak Manifest**:
    - Open `org.tuxemon.Tuxemon.yaml`.

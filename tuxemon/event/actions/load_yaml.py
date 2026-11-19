@@ -42,7 +42,6 @@ class LoadYamlAction(EventAction):
         _events = list(client.map_manager.events)
         _inits = list(client.map_manager.inits)
         if yaml_path.exists():
-
             yaml_events = YAMLEventLoader().load_events(yaml_path, "event")
             existing_names = {e.name for e in _events}
             for event in yaml_events["event"]:

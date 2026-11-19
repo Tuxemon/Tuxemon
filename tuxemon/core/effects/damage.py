@@ -18,6 +18,7 @@ if TYPE_CHECKING:
 # damage each enemy takes when more than one of them is hit at once
 MULTI_TARGET_MODIFIER = 0.75
 
+
 @dataclass
 class DamageEffect(CoreEffect):
     """

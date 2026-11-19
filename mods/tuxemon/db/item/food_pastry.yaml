@@ -1,8 +1,8 @@
 effects:
 - type: food_preference
   parameters:
-  - taste_peppy
-  - taste_flakey
+  - peppy
+  - flakey
 slug: pastry
 sort: utility
 sprite: gfx/items/box.png

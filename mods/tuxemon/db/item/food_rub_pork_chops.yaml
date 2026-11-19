@@ -1,8 +1,8 @@
 effects:
 - type: food_preference
   parameters:
-  - taste_refined
-  - taste_dry
+  - refined
+  - dry
 slug: rub_pork_chops
 sort: utility
 sprite: gfx/items/box.png

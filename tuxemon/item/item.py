@@ -23,7 +23,6 @@ from tuxemon.item.durability import Durability
 from tuxemon.item.stock import Stock
 from tuxemon.locale.locale import T
 from tuxemon.modifiers import ModifiersHandler
-from tuxemon.monster.stats import BasicStats
 from tuxemon.user_config import CONFIG
 
 if TYPE_CHECKING:
@@ -73,7 +72,6 @@ class Item:
         self.durability = Durability(
             max_wear=db_data.max_wear, break_chance=db_data.break_chance
         )
-        self.temporary_stat_boosts = BasicStats()
 
         self.use_item = T.translate(db_data.use_item)
         self.use_success = T.translate(db_data.use_success)

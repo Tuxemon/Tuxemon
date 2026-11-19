@@ -61,6 +61,27 @@ class Evolution:
 
         return None
 
+    def has_pending_evolution(self) -> bool:
+        """Whether any evolution is still ahead of this monster.
+        Unlike get_eligible_evolution_slug, this does not ask whether the
+        criteria are met yet: a monster which only evolves ten levels from
+        now still has an evolution ahead of it. Evolutions blocked for this
+        monster are not counted, since it will never take them.
+        Returns:
+            Whether an evolution remains open to the monster.
+        """
+        blocked: set[str] = set()
+        owner = self.monster.owner
+        if owner is not None:
+            blocked = owner.evolution_registry.get_blocked(
+                self.monster.instance_id
+            )
+
+        return any(
+            evolution.monster_slug not in blocked
+            for evolution in self.monster.evolutions
+        )
+
     def has_evolution_to(self, slug: str) -> bool:
         return any(
             evolution.monster_slug == slug

@@ -40,10 +40,33 @@ class MonsterMovesHandler:
         """Sets the raw moveset data from the database."""
         self.moveset = list(moveset)
 
+    def transfer_learned_moves_from(self, other: MonsterMovesHandler) -> None:
+        """
+        Adopts the techniques already learned by another handler, keeping
+        this handler's own moveset.
+        Used when a monster evolves or devolves: the new form remembers the
+        moves it knew, but every later lookup (level up, eligibility, forget)
+        must go against the new form's database rows, not the old form's.
+        Parameters:
+            other: The handler of the monster being replaced.
+        """
+        self.moves = list(other.moves)
+        self.pending_moves = {
+            iid: list(slugs) for iid, slugs in other.pending_moves.items()
+        }
+
     def add_move(self, technique: Technique) -> None:
         """
         Adds a technique to this tuxemon's moveset.
+
+        Techniques the monster already knows are skipped, as duplicates
+        would show up twice in the moves menus.
         """
+        if self.has_move(technique.slug):
+            logger.debug(
+                f"Technique '{technique.slug}' already known — not added again."
+            )
+            return
         self.moves.append(technique)
 
     def apply_item_techniques(self, monster: Monster, item: Item) -> None:
@@ -85,6 +108,12 @@ class MonsterMovesHandler:
         if max_moves is None:
             max_moves = monster.max_moves
 
+        if self.has_move(technique.slug):
+            logger.debug(
+                f"Monster '{monster.slug}' already knows '{technique.slug}' — skipping."
+            )
+            return False
+
         if not ignore_eligibility and not self.can_learn(
             monster, technique, max_moves, method
         ):
@@ -108,6 +137,11 @@ class MonsterMovesHandler:
     ) -> bool:
         if max_moves is None:
             max_moves = monster.max_moves
+        if self.has_move(technique.slug):
+            logger.debug(
+                f"Move '{technique.slug}' not learnable: already known."
+            )
+            return False
         if not self.is_technique_eligible(monster, technique, method):
             return False
         return True
@@ -282,7 +316,10 @@ class MonsterMovesHandler:
         for tech in techniques:
             technique = Technique.create(tech)
 
-            if self.can_learn(monster, technique, method=method):
+            # deliberately not can_learn(): this is a forward-looking preview
+            # of what the moveset schedules, so the already-known guard that
+            # can_learn() applies would make it empty after the level-up
+            if self.is_technique_eligible(monster, technique, method):
                 learnable.append(tech)
 
         return learnable

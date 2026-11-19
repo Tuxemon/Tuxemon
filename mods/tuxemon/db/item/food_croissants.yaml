@@ -1,8 +1,8 @@
 effects:
 - type: food_preference
   parameters:
-  - taste_salty
-  - taste_flakey
+  - salty
+  - flakey
 slug: croissants
 sort: utility
 sprite: gfx/items/box.png

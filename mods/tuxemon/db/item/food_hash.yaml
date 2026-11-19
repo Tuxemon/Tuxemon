@@ -1,8 +1,8 @@
 effects:
 - type: food_preference
   parameters:
-  - taste_hearty
-  - taste_mild
+  - hearty
+  - mild
 slug: hash
 sort: utility
 sprite: gfx/items/box.png

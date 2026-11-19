@@ -7,6 +7,7 @@ from typing import TYPE_CHECKING
 
 from tuxemon.core.core_effect import CoreEffect, ItemEffectResult
 from tuxemon.db import StatType
+from tuxemon.monster.stat_utils import get_source_key
 
 if TYPE_CHECKING:
     from tuxemon.item.item import Item
@@ -48,5 +49,7 @@ class BuffEffect(CoreEffect):
         current_value = target.return_stat(self.statistic)
         boost_value = int(current_value * self.percentage)
         stat_name = self.statistic.value  # e.g. "speed", "armour", etc.
-        setattr(item.temporary_stat_boosts, stat_name, boost_value)
+        target.temporary_stat_boosts.add_flat(
+            get_source_key(item), stat_name, boost_value
+        )
         return ItemEffectResult(name=item.name, success=True)

@@ -274,3 +274,32 @@ def test_get_effective_min_bond(handler, stage_value, stage_floors, expected):
     config_monster.bond_stage_floors = stage_floors
     stage = EvolutionStage(stage_value)
     assert handler.get_effective_min_bond(stage) == expected
+
+
+@pytest.mark.parametrize(
+    "starting,amount,floor,expected_bond",
+    [
+        pytest.param(30, 5, 40, 30, id="decrease_below_floor_holds_bond"),
+        pytest.param(30, 0, 40, 30, id="zero_decrease_below_floor_holds_bond"),
+        pytest.param(45, 20, 40, 40, id="decrease_stops_at_floor"),
+    ],
+)
+def test_decrease_bond_never_raises_bond(
+    handler, starting, amount, floor, expected_bond
+):
+    handler.bond = starting
+    handler.decrease_bond(amount, floor=floor)
+    assert handler.bond == expected_bond
+
+
+def test_change_bond_below_floor_never_raises_bond(handler):
+    handler.bond = 30
+    config_monster.bond_milestones = []
+    handler.change_bond(-5, floor=40)
+    assert handler.bond == 30
+
+
+def test_bond_decay_below_floor_never_raises_bond(handler):
+    handler.bond = 30
+    handler.bond_decay(0.5, floor=40)
+    assert handler.bond == 30

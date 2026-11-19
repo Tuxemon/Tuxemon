@@ -2,5 +2,4 @@ include README.md
 include CONTRIBUTORS.md
 include ATTRIBUTIONS.md
 include LICENSE
-include requirements.txt
 recursive-include mods/tuxemon *

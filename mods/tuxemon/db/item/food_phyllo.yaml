@@ -1,8 +1,8 @@
 effects:
 - type: food_preference
   parameters:
-  - taste_zesty
-  - taste_flakey
+  - zesty
+  - flakey
 slug: phyllo
 sort: utility
 sprite: gfx/items/box.png

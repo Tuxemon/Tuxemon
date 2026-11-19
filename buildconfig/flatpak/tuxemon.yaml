@@ -1,0 +1,8 @@
+name: tuxemon
+buildsystem: simple
+build-commands:
+  - python3 -m pip install . --prefix=/app
+sources:
+  - type: archive
+    url: # fill in
+    sha256: # fill in

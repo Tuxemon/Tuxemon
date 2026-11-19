@@ -5,7 +5,7 @@ from __future__ import annotations
 import logging
 import random
 from collections.abc import Mapping
-from dataclasses import astuple, dataclass, fields, replace
+from dataclasses import astuple, dataclass, field, fields, replace
 from typing import TYPE_CHECKING, Any
 
 from tuxemon.database.rules import config_monster
@@ -63,6 +63,219 @@ class BasicStats:
                 self, f.name, getattr(self, f.name) + getattr(other, f.name)
             )
         return self
+
+
+NONLINEAR_TABLE = {
+    -6: 2 / 8,
+    -5: 2 / 7,
+    -4: 2 / 6,
+    -3: 2 / 5,
+    -2: 2 / 4,
+    -1: 2 / 3,
+    0: 1.0,
+    1: 3 / 2,
+    2: 4 / 2,
+    3: 5 / 2,
+    4: 6 / 2,
+    5: 7 / 2,
+    6: 8 / 2,
+}
+
+MIN_STAGE = min(NONLINEAR_TABLE)
+MAX_STAGE = max(NONLINEAR_TABLE)
+
+DEFAULT_SCALING_MODE = "nonlinear"
+DEFAULT_STEP_LIMIT = MAX_STAGE
+
+
+def stage_multiplier(
+    stage: int, scaling_mode: str, max_step_limit: int
+) -> float:
+    """The multiplier a cumulative step stage applies to a base stat."""
+    if scaling_mode == "linear":
+        if max_step_limit <= 0:
+            return 1.0
+        return 1 + (stage / max_step_limit)
+    return NONLINEAR_TABLE[max(MIN_STAGE, min(MAX_STAGE, int(stage)))]
+
+
+@dataclass
+class StatStage:
+    """
+    The cumulative step stage on a single stat.
+
+    One stage per stat, shared by every source that raises or lowers it,
+    so +2 steps from an item on top of +2 from a status is one +4 stage
+    rather than two multipliers stacked on each other.
+    """
+
+    stage: int = 0
+    scaling_mode: str = DEFAULT_SCALING_MODE
+    max_step_limit: int = DEFAULT_STEP_LIMIT
+
+    def multiplier(self) -> float:
+        return stage_multiplier(
+            self.stage, self.scaling_mode, self.max_step_limit
+        )
+
+    def clamp(self, stage: int) -> int:
+        limit = max(0, self.max_step_limit)
+        return max(-limit, min(limit, stage))
+
+
+@dataclass
+class StatContribution:
+    """What one source contributed, so it can be taken back when it ends."""
+
+    stages: dict[str, int] = field(default_factory=dict)
+    flat: BasicStats = field(default_factory=BasicStats)
+
+    def is_empty(self) -> bool:
+        return not any(self.stages.values()) and not any(astuple(self.flat))
+
+
+class TemporaryStatBoosts:
+    """
+    Combat-only stat modifications recorded against a monster.
+
+    The boosts are owned by the monster they affect, not by whatever
+    applied them, so an item used from the bag counts exactly like a
+    status or a technique.
+
+    Two kinds of modification are tracked. Step-based ones move the
+    monster's stage for that stat, which every source shares. Value-based
+    ones are flat additions, summed as they come.
+
+    Each source's contribution is remembered as well, so that a source
+    ending (a status expiring, say) takes back exactly what it granted
+    and leaves everything else standing.
+
+    Boosts are derived from the monster's base stats on read rather than
+    frozen when applied, so they follow the monster if its base stats
+    change mid-battle.
+
+    Nothing here is persisted: boosts last for a battle only and are
+    dropped by ``Monster.clear_all_temporary_boosts``.
+    """
+
+    def __init__(self) -> None:
+        self._stages: dict[str, StatStage] = {}
+        self._flat = BasicStats()
+        self._contributions: dict[str, StatContribution] = {}
+
+    @staticmethod
+    def _validate_stat(stat: str) -> None:
+        if stat not in BasicStats.names():
+            raise ValueError(f"Invalid stat name: {stat}")
+
+    def _contribution(self, source_key: str) -> StatContribution:
+        return self._contributions.setdefault(source_key, StatContribution())
+
+    def get_stage(self, stat: str) -> int:
+        """Returns the monster's cumulative step stage for a stat."""
+        self._validate_stat(stat)
+        state = self._stages.get(stat)
+        return state.stage if state else 0
+
+    def add_stage(
+        self,
+        source_key: str,
+        stat: str,
+        delta: int,
+        scaling_mode: str = DEFAULT_SCALING_MODE,
+        max_step_limit: int = DEFAULT_STEP_LIMIT,
+    ) -> int:
+        """
+        Moves the monster's stage for a stat, clamped to the step limit.
+
+        Returns the new stage. What the step limit actually allowed is
+        credited to the source, so a stage granted at the cap gives back
+        only as much as it took.
+        """
+        self._validate_stat(stat)
+        state = self._stages.setdefault(stat, StatStage())
+        state.scaling_mode = scaling_mode
+        state.max_step_limit = max(0, int(max_step_limit))
+
+        previous = state.stage
+        state.stage = state.clamp(previous + int(delta))
+        applied = state.stage - previous
+
+        contribution = self._contribution(source_key)
+        contribution.stages[stat] = contribution.stages.get(stat, 0) + applied
+        return state.stage
+
+    def get_flat(self, stat: str) -> int:
+        """Returns the flat, value-based addition to a stat."""
+        self._validate_stat(stat)
+        return int(getattr(self._flat, stat))
+
+    def add_flat(self, source_key: str, stat: str, value: int) -> None:
+        """Adds a flat, value-based boost to a stat."""
+        self._validate_stat(stat)
+        setattr(self._flat, stat, getattr(self._flat, stat) + int(value))
+        contribution = self._contribution(source_key)
+        setattr(
+            contribution.flat,
+            stat,
+            getattr(contribution.flat, stat) + int(value),
+        )
+
+    def total(self, base_stats: BasicStats) -> BasicStats:
+        """
+        The boost to add to each stat, given the monster's base stats.
+
+        A stat is never pushed below 1, matching what a single
+        modification is allowed to do on its own.
+        """
+        total = BasicStats()
+        for stat in BasicStats.names():
+            base = getattr(base_stats, stat)
+            state = self._stages.get(stat)
+
+            boost = int(base * state.multiplier()) - base if state else 0
+            boost += getattr(self._flat, stat)
+
+            if boost < 0:
+                boost = max(boost, 1 - base)
+
+            setattr(total, stat, boost)
+        return total
+
+    def withdraw(self, source_key: str) -> None:
+        """Takes back everything one source contributed."""
+        contribution = self._contributions.pop(source_key, None)
+        if contribution is None:
+            return
+
+        for stat, applied in contribution.stages.items():
+            state = self._stages.get(stat)
+            if state:
+                state.stage = state.clamp(state.stage - applied)
+
+        for stat in BasicStats.names():
+            value = getattr(contribution.flat, stat)
+            if value:
+                setattr(self._flat, stat, getattr(self._flat, stat) - value)
+
+    def clear(self) -> None:
+        """Drops every temporary boost."""
+        self._stages.clear()
+        self._flat = BasicStats()
+        self._contributions.clear()
+
+    def is_empty(self) -> bool:
+        return not any(
+            state.stage for state in self._stages.values()
+        ) and not any(astuple(self._flat))
+
+    def __repr__(self) -> str:
+        stages = {
+            stat: state.stage
+            for stat, state in self._stages.items()
+            if state.stage
+        }
+        return f"<TemporaryStatBoosts stages={stages} flat={self._flat}>"
 
 
 @dataclass

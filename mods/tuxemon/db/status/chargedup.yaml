@@ -5,7 +5,6 @@ effects:
 - type: statchange
 - type: chargedup
 icon: gfx/ui/icons/status/icon_chargedup.png
-on_positive_status: replaced
 on_tech_use: exhausted
 slug: chargedup
 sort: meta

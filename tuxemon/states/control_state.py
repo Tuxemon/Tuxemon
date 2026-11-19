@@ -134,7 +134,6 @@ class ControlState(PygameMenuState):
             font_size=self.font_type.small,
         )
 
-
         if not self.main_menu:
 
             def toggle_mute() -> None:

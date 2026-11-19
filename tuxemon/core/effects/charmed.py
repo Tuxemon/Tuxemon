@@ -62,7 +62,6 @@ class CharmedEffect(CoreEffect):
             ):
                 session.client.combat_session.set_tech_hit(user, 1.1)
 
-
         if status.has_phase(EffectPhase.PERFORM_TECH):
             user = status.host
             hit = session.client.combat_session.get_tech_hit(user)

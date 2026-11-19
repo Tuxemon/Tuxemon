@@ -12,7 +12,7 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
-$WINE_PYTHON -m pip install -U -r requirements.txt
+$WINE_PYTHON -m pip install -U .
 if [ $? -ne 0 ]; then
   echo "Error: Failed to install project dependencies."
   exit 1

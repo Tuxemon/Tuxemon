@@ -60,5 +60,7 @@ class IntroState(PopUpMenu[Callable[[], None]]):
             self.sprites.draw(surface)
             label = self.shadow_text(T.translate("menu_intro"))
             rect = surface.get_rect()
-            label_rect = label.get_rect(center=(rect.centerx, rect.height // 4))
+            label_rect = label.get_rect(
+                center=(rect.centerx, rect.height // 4)
+            )
             surface.blit(label, label_rect)

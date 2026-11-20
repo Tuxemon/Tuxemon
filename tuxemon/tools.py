@@ -278,10 +278,7 @@ def show_nickname_prompt(
     Push a "Give {name} a nickname?" Y/N dialog on top of the current state.
     YES → opens InputMenu; confirmed name is stored on monster.name.
     NO  → dismisses immediately.
-    In both cases ``on_done`` is called once the player has finished. Callers
-    that need to block (event actions) can omit ``on_done`` and instead poll
-    for the absence of "ChoiceState", "DialogState", and "InputMenu" in
-    ``client.active_state_names``.
+    In both cases ``on_done`` is called once the player has finished.
     """
     from tuxemon.ui.menu_options import MenuOptions, create_yes_no_options
 

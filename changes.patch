@@ -1,0 +1,84 @@
+diff --git a/mods/tuxemon/l18n/en_US/LC_MESSAGES/base.po b/mods/tuxemon/l18n/en_US/LC_MESSAGES/base.po
+index 38b9ea9d..2594886f 100644
+--- a/mods/tuxemon/l18n/en_US/LC_MESSAGES/base.po
++++ b/mods/tuxemon/l18n/en_US/LC_MESSAGES/base.po
+@@ -11580,7 +11580,7 @@ msgid "input_name"
+ msgstr "Name?"
+ 
+ msgid "input_monster_name"
+-msgstr "Name Tuxemon"
++msgstr "Name your Tuxemon?"
+ 
+ msgid "give_nickname"
+ msgstr "Give {name} a nickname?"
+diff --git a/tuxemon/event/actions/add_monster.py b/tuxemon/event/actions/add_monster.py
+index 07ac1b42..d35bf2e2 100644
+--- a/tuxemon/event/actions/add_monster.py
++++ b/tuxemon/event/actions/add_monster.py
+@@ -2,14 +2,13 @@
+ # Copyright (c) 2014-2026 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+ from __future__ import annotations
+ 
+-from dataclasses import dataclass, field
++from dataclasses import dataclass
+ from typing import final
+ 
+ from tuxemon.database.runtime import db
+ from tuxemon.event.eventaction import EventAction
+ from tuxemon.monster.monster import Monster
+ from tuxemon.session import Session
+-from tuxemon.tools import show_nickname_prompt
+ 
+ 
+ @final
+@@ -39,9 +38,6 @@ class AddMonsterAction(EventAction):
+     npc_slug: str | None = None
+     exp: float | None = None
+     money: float | None = None
+-    _monster: Monster | None = field(default=None, init=False, repr=False)
+-    _nickname_done: bool = field(default=False, init=False, repr=False)
+-    _prompt_shown: bool = field(default=False, init=False, repr=False)
+ 
+     def start(self, session: Session) -> None:
+         player = session.player
+@@ -70,24 +66,3 @@ class AddMonsterAction(EventAction):
+         trainer.party.add_monster(monster, len(trainer.monsters))
+         trainer.tuxepedia.register_caught(monster.slug)
+         player.game_variables.set(self.name, monster.instance_id.hex)
+-
+-        if self.npc_slug == "player":
+-            self._monster = monster
+-
+-    def update(self, session: Session, dt: float) -> None:
+-        if self._monster is None:
+-            self.stop()
+-            return
+-        if not self._prompt_shown:
+-            self._prompt_shown = True
+-            show_nickname_prompt(
+-                session.client,
+-                self._monster,
+-                on_done=self._mark_done,
+-            )
+-            return
+-        if self._nickname_done:
+-            self.stop()
+-
+-    def _mark_done(self) -> None:
+-        self._nickname_done = True
+diff --git a/tuxemon/tools.py b/tuxemon/tools.py
+index c9fbf306..ebc1dc6a 100644
+--- a/tuxemon/tools.py
++++ b/tuxemon/tools.py
+@@ -278,10 +278,7 @@ def show_nickname_prompt(
+     Push a "Give {name} a nickname?" Y/N dialog on top of the current state.
+     YES → opens InputMenu; confirmed name is stored on monster.name.
+     NO  → dismisses immediately.
+-    In both cases ``on_done`` is called once the player has finished. Callers
+-    that need to block (event actions) can omit ``on_done`` and instead poll
+-    for the absence of "ChoiceState", "DialogState", and "InputMenu" in
+-    ``client.active_state_names``.
++    In both cases ``on_done`` is called once the player has finished.
+     """
+     from tuxemon.ui.menu_options import MenuOptions, create_yes_no_options
+ 

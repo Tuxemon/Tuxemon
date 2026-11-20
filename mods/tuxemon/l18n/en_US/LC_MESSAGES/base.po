@@ -11580,7 +11580,7 @@ msgid "input_name"
 msgstr "Name?"
 
 msgid "input_monster_name"
-msgstr "Name Tuxemon"
+msgstr "Name your Tuxemon?"
 
 msgid "give_nickname"
 msgstr "Give {name} a nickname?"

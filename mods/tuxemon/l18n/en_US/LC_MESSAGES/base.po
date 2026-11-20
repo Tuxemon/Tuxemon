@@ -11582,6 +11582,9 @@ msgstr "Name?"
 msgid "input_monster_name"
 msgstr "Name your Tuxemon?"
 
+msgid "give_nickname"
+msgstr "Give {name} a nickname?"
+
 msgid "happy_guy_dialog"
 msgstr ""
 "Happy: Hi! I love giving Tuxemon nicknames, do you wanna give yours a "

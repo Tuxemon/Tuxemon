@@ -36,6 +36,7 @@ from tuxemon.compat.rect import ReadOnlyRect
 from tuxemon.constants.asset_loader import fetch_asset
 from tuxemon.db import Comparison
 from tuxemon.locale.locale import T
+from tuxemon.platform.const.sizes import PLAYER_NAME_LIMIT
 from tuxemon.scaling import ScalingStrategy
 from tuxemon.ui.dialogue import calc_dialog_rect
 from tuxemon.ui.text_alignment import DialogPosition
@@ -47,6 +48,7 @@ if TYPE_CHECKING:
     from tuxemon.base_client import BaseClient
     from tuxemon.game_variables import ScopeVariablesManager
     from tuxemon.item.item import Item
+    from tuxemon.monster.monster import Monster
     from tuxemon.session import Session
     from tuxemon.sprite import Sprite
     from tuxemon.state.state import State
@@ -264,6 +266,58 @@ def open_choice_dialog(
         menu=menu,
         escape_key_exits=escape_key_exits,
         config=config,
+    )
+
+
+def show_nickname_prompt(
+    client: BaseClient,
+    monster: Monster,
+    on_done: Callable[[], None] | None = None,
+) -> None:
+    """
+    Push a "Give {name} a nickname?" Y/N dialog on top of the current state.
+    YES → opens InputMenu; confirmed name is stored on monster.name.
+    NO  → dismisses immediately.
+    In both cases ``on_done`` is called once the player has finished.
+    """
+    from tuxemon.ui.menu_options import MenuOptions, create_yes_no_options
+
+    species_name = T.translate(monster.slug)
+    prompt = T.format("give_nickname", {"name": species_name})
+
+    def _finish() -> None:
+        if on_done is not None:
+            on_done()
+
+    def on_yes() -> None:
+        client.remove_state_by_name("ChoiceState")
+        client.remove_state_by_name("DialogState")
+
+        def _apply(name: str) -> None:
+            if name:
+                monster.name = name
+            _finish()
+
+        client.push_state(
+            "InputMenu",
+            prompt=T.translate("input_monster_name"),
+            callback=_apply,
+            initial="",
+            char_limit=PLAYER_NAME_LIMIT,
+            escape_key_exits=False,
+        )
+
+    def on_no() -> None:
+        client.remove_state_by_name("ChoiceState")
+        client.remove_state_by_name("DialogState")
+        _finish()
+
+    open_dialog(client, [prompt], dialog_speed="max")
+    options = create_yes_no_options(
+        yes_action=on_yes, no_action=on_no, reverse_order=True
+    )
+    open_choice_dialog(
+        client, menu=MenuOptions(options), escape_key_exits=False
     )
 
 

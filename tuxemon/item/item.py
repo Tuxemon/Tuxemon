@@ -61,6 +61,13 @@ class Item:
         self.core_assets = get_assets()
         self.conditions = self.core_assets.parse_conditions(db_data.conditions)
         self.condition_handler = ConditionProcessor(self.conditions)
+        self.hold_use_conditions = self.core_assets.parse_conditions(
+            db_data.hold_use_conditions
+        )
+        self.hold_use_condition_handler = ConditionProcessor(
+            self.hold_use_conditions
+        )
+        self.hold_uses_per_battle = db_data.hold_uses_per_battle
         self.effect_defs = db_data.effects
 
         self.surface = graphics.load_and_scale(self.sprite)
@@ -99,6 +106,20 @@ class Item:
             item.instance_id = UUID(save_data["instance_id"])
 
         return item
+
+    def split_off(self) -> Item:
+        """
+        Returns a separate single copy of this item, with its own identity
+        and stock, and the same wear.
+
+        This item is left untouched: taking the copy out of wherever it
+        came from (e.g. ``bag.remove_item``) is up to the caller. Used when
+        a monster is given one item from a bag stack, so that the monster
+        and the bag never share an Item instance or its stock.
+        """
+        return Item.from_save(
+            {"slug": self.slug, "quantity": 1, "wear": self.wear}
+        )
 
     @property
     def name(self) -> str:
@@ -200,6 +221,43 @@ class Item:
             session=session, target=target
         )
 
+    def validate_held_use(self, session: Session, target: Monster) -> bool:
+        """
+        Use-time gate: check whether this held item should fire right now.
+
+        This answers a question about the monster's current state (hit
+        points, statuses, ...), so it is evaluated every turn, right before
+        the held item is used.
+        """
+        if self.durability.is_broken:
+            logger.debug(f"{self.name} is broken and cannot be used!")
+            return False
+
+        return self.hold_use_condition_handler.validate_monster(
+            session=session, target=target
+        ).passed
+
+    @property
+    def announces_hold_use(self) -> bool:
+        """
+        Whether a firing of this held item is worth telling the player about.
+
+        A firing is announced when it is something the player did not choose
+        and cannot otherwise see: an item that waits for a condition, or one
+        with a limited budget of uses in a battle. An item that is neither
+        is a permanent passive, firing every turn purely because it is
+        equipped, and saying so every turn is noise.
+        """
+        return bool(self.hold_use_conditions) or self.hold_uses_per_battle > 0
+
+    def debug_validate_held_use(
+        self, session: Session, target: Monster
+    ) -> ConditionValidationResult:
+        """Developer API: returns full structured validation result."""
+        return self.hold_use_condition_handler.validate_monster(
+            session=session, target=target
+        )
+
     def use(
         self, session: Session, user: NPC, target: Monster | None
     ) -> ItemEffectResult:
@@ -233,16 +291,23 @@ class Item:
         self.consume_if_needed(user, result)
         return result
 
+    def should_consume(self, result: ItemEffectResult) -> bool:
+        """
+        Whether a use with this outcome uses the item up.
+
+        Held items ask this too, so that an item consumed out of the bag and
+        one consumed off a monster answer to the same rule.
+        """
+        return (
+            CONFIG.items_consumed_on_failure or result.success
+        ) and self.behaviors.consumable
+
     def consume_if_needed(self, user: NPC, result: ItemEffectResult) -> None:
         """
         Removes this item from the user's inventory if it's marked consumable,
         and if it's supposed to be consumed based on the result.
         """
-        should_consume = (
-            CONFIG.items_consumed_on_failure or result.success
-        ) and self.behaviors.consumable
-
-        if should_consume:
+        if self.should_consume(result):
             self.stock.consume_one()
             if not self.stock.has_any:
                 user.bag.remove_item(self)

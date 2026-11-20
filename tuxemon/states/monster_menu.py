@@ -279,9 +279,13 @@ class MonsterMenuHandler:
         if not item:
             return
 
-        monster.equip_item(item)
-        self.party.owner.bag.remove_item(item)
+        # The monster gets its own single copy, not the bag's stack: sharing
+        # the stack would mean a held item that is used up takes another
+        # copy out of the bag with it.
+        equipped = monster.equip_item(item.split_off())
         self.client.remove_state_by_name("ItemMenuState")
+        if equipped:
+            self.party.owner.bag.remove_item(item)
         self.monster_menu.refresh_menu_items()
 
     def swap_items(self, mon_a: Monster, mon_b: Monster) -> None:

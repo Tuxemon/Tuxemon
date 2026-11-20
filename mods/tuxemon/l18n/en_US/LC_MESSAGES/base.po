@@ -4553,12 +4553,6 @@ msgid "sort_by_id"
 msgstr "Sort by ID"
 
 # Held item notifications
-msgid "held_item_not_holdable"
-msgstr "{item} can't be held."
-
-msgid "held_item_unsuitable"
-msgstr "{name} can't hold {item}."
-
 msgid "held_item_healed"
 msgstr "{target}'s health was restored."
 

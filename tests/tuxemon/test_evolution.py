@@ -479,7 +479,7 @@ def test_held_item_conditions(
 
     if held_item_slug is not None:
         item = MagicMock(slug=held_item_slug, granted_statuses=[])
-        mon.equip_item(local_session, item)
+        mon.equip_item(item)
 
     evo = MonsterEvolutionItemModel(
         monster_slug="rockat",

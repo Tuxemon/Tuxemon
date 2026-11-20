@@ -1,5 +1,4 @@
 conditions: []
-hold_conditions: []
 hold_use_conditions:
 - type: status
   parameters:

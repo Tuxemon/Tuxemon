@@ -736,15 +736,6 @@ class ItemModel(DataModel, BaseLookupModel):
     conditions: Sequence[LogicCondition] = Field(
         default_factory=list, description="Conditions that must be met"
     )
-    hold_conditions: Sequence[LogicCondition] = Field(
-        default_factory=list,
-        description=(
-            "Give-time conditions: what a monster must be in order to hold "
-            "this item at all (e.g. species, evolution stage). Checked when "
-            "the item is equipped, not when it fires, and never re-checked: "
-            "a monster that later stops matching keeps what it is holding."
-        ),
-    )
     hold_use_conditions: Sequence[LogicCondition] = Field(
         default_factory=list,
         description=(

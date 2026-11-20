@@ -23,7 +23,6 @@ from tuxemon.db import (
     VisualProperties,
 )
 from tuxemon.item.item import Item
-from tuxemon.monster.held_item import NOT_HOLDABLE, UNSUITABLE_HOLDER
 from tuxemon.monster.monster import Monster
 from tuxemon.monster.stats import IndividualValues
 from tuxemon.session import Session
@@ -65,7 +64,6 @@ def make_item(
     *,
     holdable: bool = True,
     consumable: bool = False,
-    hold_conditions=(),
     hold_use_conditions=(),
     max_wear: int = 0,
     hold_uses_per_battle: int = 0,
@@ -87,7 +85,6 @@ def make_item(
         modifiers=[],
         conditions=[],
         max_wear=max_wear,
-        hold_conditions=list(hold_conditions),
         hold_use_conditions=list(hold_use_conditions),
         hold_uses_per_battle=hold_uses_per_battle,
     )
@@ -153,70 +150,25 @@ def monster():
     return make_monster()
 
 
-# --- give-time gate -------------------------------------------------------
+# --- equipping -----------------------------------------------------------
 
 
-def test_equip_allowed_when_hold_conditions_pass(monster, session):
-    item = make_item(
-        hold_conditions=[make_condition("base", "species", "sleek_boulder")]
-    )
-
-    result = monster.equip_item(session, item)
-
-    assert result
-    assert result.reason is None
-    assert monster.held_item is item
-
-
-def test_equip_refused_when_hold_conditions_fail(monster, session):
-    item = make_item(
-        hold_conditions=[make_condition("base", "species", "blitzbug")]
-    )
-
-    result = monster.equip_item(session, item)
-
-    assert not result
-    assert monster.held_item is None
-
-
-def test_refusal_explains_itself_to_the_player(monster, session):
-    item = make_item(
-        hold_conditions=[make_condition("base", "species", "blitzbug")]
-    )
-
-    result = monster.equip_item(session, item)
-
-    assert result.msgid == UNSUITABLE_HOLDER
-    assert result.reason
-
-
-def test_equip_refused_when_not_holdable(monster, session):
+def test_equip_refused_when_not_holdable(monster):
     item = make_item(holdable=False)
 
-    result = monster.equip_item(session, item)
-
-    assert not result
-    assert result.msgid == NOT_HOLDABLE
-    assert result.reason
+    assert not monster.equip_item(item)
     assert monster.held_item is None
 
 
-def test_equip_ignores_use_time_conditions(monster, session):
+def test_equip_ignores_use_time_conditions(monster):
     """A use-time condition that is false right now still allows equipping."""
     item = make_item(
         hold_use_conditions=[make_condition("current_hp", "<", "0.5")]
     )
 
     assert monster.hp_ratio == 1.0
-    assert monster.equip_item(session, item)
+    assert monster.equip_item(item)
     assert monster.held_item is item
-
-
-def test_can_equip_does_not_equip(monster, session):
-    item = make_item()
-
-    assert monster.can_equip(session, item)
-    assert monster.held_item is None
 
 
 # --- use-time gate --------------------------------------------------------
@@ -245,19 +197,6 @@ def test_item_with_no_hold_use_conditions_always_fires(monster, session):
     assert item.validate_held_use(session, monster)
 
 
-def test_use_time_gate_ignores_give_time_conditions(monster, session):
-    """
-    A give-time condition that stopped holding does not revoke the item, and
-    it does not stop the item from firing either: the two gates are separate.
-    """
-    item = make_item(
-        hold_conditions=[make_condition("base", "species", "blitzbug")]
-    )
-
-    assert not item.validate_holder(session, monster)
-    assert item.validate_held_use(session, monster)
-
-
 def make_combat_session(player, monster) -> CombatSession:
     combat = CombatSession()
     combat._players = [player]
@@ -271,7 +210,7 @@ def test_check_decisions_skips_held_item_when_gated(monster, session):
     item = make_item(
         hold_use_conditions=[make_condition("current_hp", "<", "0.5")]
     )
-    monster.equip_item(session, item)
+    monster.equip_item(item)
     item.use = MagicMock()
 
     make_combat_session(player, monster).check_decisions(session)
@@ -285,7 +224,7 @@ def test_check_decisions_uses_held_item_when_allowed(monster, session):
     item = make_item(
         hold_use_conditions=[make_condition("current_hp", "<", "0.5")]
     )
-    monster.equip_item(session, item)
+    monster.equip_item(item)
     monster.current_hp = 25
     item.use = MagicMock()
 
@@ -305,7 +244,7 @@ def test_firing_announces_itself_and_refreshes_the_hp_bar(monster, session):
     player = MagicMock()
     player.party.is_fainted = False
     item = make_item(hold_uses_per_battle=1)
-    monster.equip_item(session, item)
+    monster.equip_item(item)
 
     combat = make_combat_session(player, monster)
     combat.event_bus = MagicMock()
@@ -322,7 +261,7 @@ def test_announcement_names_the_monster_and_the_item(monster, session):
     player = MagicMock()
     player.party.is_fainted = False
     item = make_item(hold_uses_per_battle=1)
-    monster.equip_item(session, item)
+    monster.equip_item(item)
 
     combat = make_combat_session(player, monster)
     combat.event_bus = MagicMock()
@@ -342,7 +281,7 @@ def test_hp_refresh_names_the_holder(monster, session):
     player = MagicMock()
     player.party.is_fainted = False
     item = make_item()
-    monster.equip_item(session, item)
+    monster.equip_item(item)
 
     combat = make_combat_session(player, monster)
     combat.event_bus = MagicMock()
@@ -362,7 +301,7 @@ def test_a_gated_item_announces_nothing(monster, session):
     item = make_item(
         hold_use_conditions=[make_condition("current_hp", "<", "0.5")]
     )
-    monster.equip_item(session, item)
+    monster.equip_item(item)
 
     combat = make_combat_session(player, monster)
     combat.event_bus = MagicMock()
@@ -381,7 +320,7 @@ def test_a_permanent_passive_fires_silently(monster, session):
     player = MagicMock()
     player.party.is_fainted = False
     item = make_item()
-    monster.equip_item(session, item)
+    monster.equip_item(item)
     item.use = MagicMock(return_value=ItemEffectResult(success=True))
 
     combat = make_combat_session(player, monster)
@@ -404,8 +343,8 @@ def test_two_items_firing_together_queue_both_messages(monster, session):
     player = MagicMock()
     player.party.is_fainted = False
     other = make_monster("Agnite")
-    monster.equip_item(session, make_item("potion", hold_uses_per_battle=1))
-    other.equip_item(session, make_item("tea", hold_uses_per_battle=1))
+    monster.equip_item(make_item("potion", hold_uses_per_battle=1))
+    other.equip_item(make_item("tea", hold_uses_per_battle=1))
 
     combat = CombatSession()
     combat._players = [player]
@@ -441,7 +380,7 @@ def test_unbudgeted_item_keeps_firing(monster, session):
     player = MagicMock()
     player.party.is_fainted = False
     item = make_item()
-    monster.equip_item(session, item)
+    monster.equip_item(item)
     item.use = MagicMock()
 
     combat = make_combat_session(player, monster)
@@ -456,7 +395,7 @@ def test_item_stops_firing_once_spent(monster, session):
     player = MagicMock()
     player.party.is_fainted = False
     item = make_item(hold_uses_per_battle=2)
-    monster.equip_item(session, item)
+    monster.equip_item(item)
     item.use = MagicMock()
 
     combat = make_combat_session(player, monster)
@@ -474,7 +413,7 @@ def test_spent_item_stays_equipped(monster, session):
     player = MagicMock()
     player.party.is_fainted = False
     item = make_item(hold_uses_per_battle=1)
-    monster.equip_item(session, item)
+    monster.equip_item(item)
 
     combat = make_combat_session(player, monster)
     combat.check_decisions(session)
@@ -492,7 +431,7 @@ def test_gated_turns_do_not_spend_the_budget(monster, session):
         hold_uses_per_battle=1,
         hold_use_conditions=[make_condition("current_hp", "<", "0.5")],
     )
-    monster.equip_item(session, item)
+    monster.equip_item(item)
     item.use = MagicMock()
 
     combat = make_combat_session(player, monster)
@@ -516,7 +455,7 @@ def test_budget_refills_for_the_next_battle(monster, session):
     player = MagicMock()
     player.party.is_fainted = False
     item = make_item(hold_uses_per_battle=1)
-    monster.equip_item(session, item)
+    monster.equip_item(item)
     item.use = MagicMock()
 
     combat = make_combat_session(player, monster)
@@ -538,8 +477,8 @@ def test_two_monsters_have_separate_budgets(monster, session):
     other = make_monster("Agnite")
     item_a = make_item("potion", hold_uses_per_battle=1)
     item_b = make_item("tea", hold_uses_per_battle=2)
-    monster.equip_item(session, item_a)
-    other.equip_item(session, item_b)
+    monster.equip_item(item_a)
+    other.equip_item(item_b)
     item_a.use = MagicMock()
     item_b.use = MagicMock()
 
@@ -555,81 +494,18 @@ def test_two_monsters_have_separate_budgets(monster, session):
     assert item_b.use.call_count == 2
 
 
-# --- restore path ---------------------------------------------------------
-
-
-def test_restore_keeps_item_whose_hold_conditions_no_longer_pass(monster):
-    """
-    A monster's state drifts after it was given an item (it evolves, levels,
-    is cured). Loading a save must not quietly confiscate what it holds.
-    """
-    item = make_item(
-        hold_conditions=[make_condition("base", "species", "blitzbug")]
-    )
-
-    assert monster.restore_item(item)
-    assert monster.held_item is item
-
-
-def test_restore_refuses_item_that_is_no_longer_holdable(monster, caplog):
-    item = make_item(holdable=False)
-
-    with caplog.at_level("WARNING"):
-        assert not monster.restore_item(item)
-
-    assert monster.held_item is None
-    assert any(item.name in message for message in caplog.messages)
-
-
-def test_from_save_restores_held_item(monkeypatch, monster, session):
-    item = make_item(
-        hold_conditions=[make_condition("base", "species", "blitzbug")]
-    )
-    monkeypatch.setattr(
-        "tuxemon.monster.held_item.Item.from_save", lambda data: item
-    )
-    monkeypatch.setattr(Monster, "set_stats", lambda self: None)
-    equip_item = MagicMock()
-    monkeypatch.setattr(Monster, "equip_item", equip_item)
-
-    restored = Monster.from_save(
-        {"slug": "rockat", "held_item": {"slug": "x"}}
-    )
-
-    assert restored.held_item is item
-    equip_item.assert_not_called()
-
-
 # --- swapping -------------------------------------------------------------
 
 
-def test_swap_items_refused_leaves_both_items_where_they_were(
-    monster, session
-):
-    other = make_monster("Agnite", species="blitzbug")
-    item_a = make_item("potion")
-    item_b = make_item(
-        "tea", hold_conditions=[make_condition("base", "species", "blitzbug")]
-    )
-    monster.equip_item(session, item_a)
-    other.equip_item(session, item_b)
-
-    result = monster.swap_items(session, other)
-
-    assert not result
-    assert result.reason
-    assert monster.held_item is item_a
-    assert other.held_item is item_b
-
-
-def test_swap_items_succeeds_when_both_halves_are_allowed(monster, session):
+def test_swap_items_exchanges_items(monster):
     other = make_monster("Agnite")
     item_a = make_item("potion")
     item_b = make_item("tea")
-    monster.equip_item(session, item_a)
-    other.equip_item(session, item_b)
+    monster.equip_item(item_a)
+    other.equip_item(item_b)
 
-    assert monster.swap_items(session, other)
+    monster.swap_items(other)
+
     assert monster.held_item is item_b
     assert other.held_item is item_a
 
@@ -645,34 +521,9 @@ def make_picker_handler() -> MonsterMenuHandler:
     return handler
 
 
-def test_picker_keeps_item_in_bag_when_equip_is_refused(
-    monkeypatch, monster, session
-):
-    item = make_item(
-        hold_conditions=[make_condition("base", "species", "blitzbug")]
-    )
-    handler = make_picker_handler()
-    dialog = MagicMock()
-    monkeypatch.setattr("tuxemon.states.monster_menu.open_dialog", dialog)
-    monkeypatch.setattr(
-        "tuxemon.states.monster_menu.local_session", session, raising=False
-    )
-
-    handler._equip_from_picker(monster, MagicMock(game_object=item))
-
-    handler.party.owner.bag.remove_item.assert_not_called()
-    assert monster.held_item is None
-    assert dialog.called
-
-
-def test_picker_removes_item_from_bag_when_equip_succeeds(
-    monkeypatch, monster, session
-):
+def test_picker_removes_item_from_bag_when_equip_succeeds(monster):
     item = make_item()
     handler = make_picker_handler()
-    monkeypatch.setattr(
-        "tuxemon.states.monster_menu.local_session", session, raising=False
-    )
 
     handler._equip_from_picker(monster, MagicMock(game_object=item))
 
@@ -699,7 +550,7 @@ def test_consumable_item_is_used_up_when_it_fires(monster, session):
     player = MagicMock()
     player.party.is_fainted = False
     item = make_heal_item()
-    monster.equip_item(session, item)
+    monster.equip_item(item)
     monster.current_hp = 10
 
     make_combat_session(player, monster).check_decisions(session)
@@ -712,7 +563,7 @@ def test_consumed_item_is_not_given_back_to_the_bag(monster, session):
     player = MagicMock()
     player.party.is_fainted = False
     item = make_heal_item()
-    monster.equip_item(session, item)
+    monster.equip_item(item)
     monster.current_hp = 10
 
     make_combat_session(player, monster).check_decisions(session)
@@ -725,7 +576,7 @@ def test_consumable_item_fires_only_once_without_a_budget(monster, session):
     player = MagicMock()
     player.party.is_fainted = False
     item = make_heal_item()
-    monster.equip_item(session, item)
+    monster.equip_item(item)
     monster.current_hp = 10
     item.use = MagicMock(return_value=ItemEffectResult(success=True))
 
@@ -743,7 +594,7 @@ def test_consumable_item_survives_a_turn_it_cannot_fire(monster, session):
     item = make_heal_item(
         hold_use_conditions=[make_condition("current_hp", "<", "0.5")]
     )
-    monster.equip_item(session, item)
+    monster.equip_item(item)
 
     combat = make_combat_session(player, monster)
     combat.check_decisions(session)
@@ -761,7 +612,7 @@ def test_a_failed_use_still_consumes_by_default(monster, session):
     player = MagicMock()
     player.party.is_fainted = False
     item = make_item(consumable=True)
-    monster.equip_item(session, item)
+    monster.equip_item(item)
     item.use = MagicMock(return_value=ItemEffectResult(success=False))
 
     make_combat_session(player, monster).check_decisions(session)
@@ -784,7 +635,7 @@ def test_consumed_item_keeps_the_boost_it_applied(monster, session):
         stat_modifiers={"melee": StatModel(step=1)},
     )
     monster.base_stats.melee = 20
-    monster.equip_item(session, item)
+    monster.equip_item(item)
     unboosted = monster.get_combat_stats().melee
 
     make_combat_session(player, monster).check_decisions(session)
@@ -804,7 +655,7 @@ def test_the_boost_of_a_consumed_item_ends_with_the_battle(monster, session):
         stat_modifiers={"melee": StatModel(step=1)},
     )
     monster.base_stats.melee = 20
-    monster.equip_item(session, item)
+    monster.equip_item(item)
 
     make_combat_session(player, monster).check_decisions(session)
     monster.clear_all_temporary_boosts()
@@ -819,7 +670,7 @@ def test_a_replacement_item_gets_its_own_budget(monster, session):
     player = MagicMock()
     player.party.is_fainted = False
     item = make_heal_item(hold_uses_per_battle=1)
-    monster.equip_item(session, item)
+    monster.equip_item(item)
     monster.current_hp = 10
 
     combat = make_combat_session(player, monster)
@@ -829,7 +680,7 @@ def test_a_replacement_item_gets_its_own_budget(monster, session):
     assert not combat._held_item_uses
 
     replacement = make_heal_item("mocochinchi", hold_uses_per_battle=1)
-    monster.equip_item(session, replacement)
+    monster.equip_item(replacement)
     combat.check_decisions(session)
 
     assert monster.held_item is None
@@ -839,7 +690,7 @@ def test_a_non_consumable_item_is_still_never_used_up(monster, session):
     player = MagicMock()
     player.party.is_fainted = False
     item = make_item(consumable=False)
-    monster.equip_item(session, item)
+    monster.equip_item(item)
 
     combat = make_combat_session(player, monster)
     combat.check_decisions(session)
@@ -868,7 +719,7 @@ def test_announcement_says_what_the_item_did(monster, session):
     player.party.is_fainted = False
     item = make_heal_item()
     item.use_success = "{target}'s health was restored."
-    monster.equip_item(session, item)
+    monster.equip_item(item)
     monster.current_hp = 10
 
     combat = make_combat_session(player, monster)
@@ -886,7 +737,7 @@ def test_announcement_prefers_what_the_effect_reported(monster, session):
     player.party.is_fainted = False
     item = make_item(consumable=True)
     item.use_success = "It worked!"
-    monster.equip_item(session, item)
+    monster.equip_item(item)
     item.use = MagicMock(
         return_value=ItemEffectResult(
             success=True, extras=["It was super effective!"]
@@ -907,7 +758,7 @@ def test_announcement_says_when_the_item_failed(monster, session):
     player.party.is_fainted = False
     item = make_item(hold_uses_per_battle=1)
     item.use_failure = "It failed!"
-    monster.equip_item(session, item)
+    monster.equip_item(item)
     item.use = MagicMock(return_value=ItemEffectResult(success=False))
 
     combat = make_combat_session(player, monster)

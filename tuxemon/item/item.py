@@ -61,10 +61,6 @@ class Item:
         self.core_assets = get_assets()
         self.conditions = self.core_assets.parse_conditions(db_data.conditions)
         self.condition_handler = ConditionProcessor(self.conditions)
-        self.hold_conditions = self.core_assets.parse_conditions(
-            db_data.hold_conditions
-        )
-        self.hold_condition_handler = ConditionProcessor(self.hold_conditions)
         self.hold_use_conditions = self.core_assets.parse_conditions(
             db_data.hold_use_conditions
         )
@@ -208,27 +204,6 @@ class Item:
     ) -> ConditionValidationResult:
         """Developer API: returns full structured validation result."""
         return self.condition_handler.validate_monster(
-            session=session, target=target
-        )
-
-    def validate_holder(self, session: Session, target: Monster) -> bool:
-        """
-        Give-time gate: check whether the target may hold this item at all.
-
-        This answers a question about what the monster *is* (species,
-        evolution stage, ...), so it is evaluated once, when the item is
-        equipped. It is deliberately not re-evaluated afterwards: a monster
-        that evolves out of a give-time condition keeps what it is holding.
-        """
-        return self.hold_condition_handler.validate_monster(
-            session=session, target=target
-        ).passed
-
-    def debug_validate_holder(
-        self, session: Session, target: Monster
-    ) -> ConditionValidationResult:
-        """Developer API: returns full structured validation result."""
-        return self.hold_condition_handler.validate_monster(
             session=session, target=target
         )
 

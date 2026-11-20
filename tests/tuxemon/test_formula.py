@@ -148,6 +148,8 @@ def test_set_height_randomness(height_env):
 # TestSimpleDamageMultiplier
 @pytest.fixture
 def elements():
+    # the multiplier cache is keyed by element slug pair, so a mocked
+    # lookup_multiplier leaks across modules unless it is cleared both ways
     ElementTypesHandler.clear_cache()
     fire = MagicMock(spec=Element)
     fire.slug = "fire"
@@ -157,7 +159,8 @@ def elements():
     grass.slug = "grass"
     normal = MagicMock(spec=Element)
     normal.slug = "normal"
-    return fire, water, grass, normal
+    yield fire, water, grass, normal
+    ElementTypesHandler.clear_cache()
 
 
 def test_basic_multiplier(elements):
@@ -226,6 +229,7 @@ def test_cache_reuse(elements):
 # TestSimpleDamageCalculate
 @pytest.fixture
 def dmg_env():
+    ElementTypesHandler.clear_cache()
     tech = MagicMock()
     user = MagicMock()
     target = MagicMock()
@@ -243,8 +247,12 @@ def dmg_env():
 
     target.types.current = [water]
     fire.lookup_multiplier = MagicMock(return_value=2.0)
+    # a bare MagicMock held_item is truthy and its element_resistances is
+    # another MagicMock, which is not a usable multiplier
+    target.held_item = None
 
-    return tech, user, target
+    yield tech, user, target
+    ElementTypesHandler.clear_cache()
 
 
 def test_valid_melee_damage(dmg_env):

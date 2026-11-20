@@ -783,6 +783,15 @@ class ItemModel(DataModel, BaseLookupModel):
         default_factory=list,
         description="Statuses this item grants immunity to",
     )
+    element_resistances: dict[str, float] = Field(
+        default_factory=dict,
+        description=(
+            "Multipliers keyed by element slug, folded into the damage "
+            "effectiveness multiplier of incoming techniques of that element "
+            "while this item is held. Use the type chart's own steps, e.g. "
+            "0.5 for a resistance."
+        ),
+    )
     granted_techniques: Sequence[str] = Field(
         default_factory=list,
         description="Technique slugs granted to the holder while this item is equipped.",
@@ -844,6 +853,20 @@ class ItemModel(DataModel, BaseLookupModel):
                     raise ValueError(
                         f"A status {status} doesn't exist in the db"
                     )
+        return v
+
+    @field_validator("element_resistances")
+    def elements_exist(cls, v: dict[str, float]) -> dict[str, float]:
+        for element, multiplier in v.items():
+            if not has.db_entry("element", element):
+                raise ValueError(
+                    f"An element {element} doesn't exist in the db"
+                )
+            if multiplier <= 0:
+                raise ValueError(
+                    f"The resistance against {element} must be positive, "
+                    f"got {multiplier}"
+                )
         return v
 
     @field_validator("granted_techniques")

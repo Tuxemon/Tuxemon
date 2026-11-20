@@ -35,9 +35,9 @@ _NOMINAL_H = 144
 _TITLE_OFFSET_Y = 10
 
 _DIR_BUTTON = {
-    buttons.UP:    "up",
-    buttons.DOWN:  "down",
-    buttons.LEFT:  "left",
+    buttons.UP: "up",
+    buttons.DOWN: "down",
+    buttons.LEFT: "left",
     buttons.RIGHT: "right",
 }
 
@@ -49,6 +49,7 @@ class NuPhoneMapConfig:
     map_groups: dict[str, list[str]] = field(default_factory=dict)
     core: frozenset[str] = field(default_factory=frozenset)
     nav: dict[str, dict[str, str | None]] = field(default_factory=dict)
+
 
 class Loader:
     _config_nuphone_map: NuPhoneMapConfig | None = None
@@ -66,7 +67,9 @@ class Loader:
             if not map_path or not map_data:
                 raise ValueError("Missing required keys in YAML data")
 
-            map_data = [(int(item[0]), int(item[1]), item[2]) for item in map_data]
+            map_data = [
+                (int(item[0]), int(item[1]), item[2]) for item in map_data
+            ]
             map_groups = raw_data.get("map_groups") or {}
             core = frozenset(raw_data.get("core") or [])
             nav = raw_data.get("nav") or {}
@@ -125,7 +128,9 @@ class NuPhoneMap(PygameMenuState):
     ) -> None:
         new_image = self._create_image(data.map_path)
         new_image.scale(self.factor, self.factor)
-        menu.add.image(image_path=new_image.copy(), float=True).translate(0, -2)
+        menu.add.image(image_path=new_image.copy(), float=True).translate(
+            0, -2
+        )
 
         current_location = _location_for_slug(self.client.map_manager.map_slug)
         known = set(self.char.tracker.locations.keys())
@@ -193,8 +198,11 @@ class NuPhoneMap(PygameMenuState):
         start = self._key_to_widget.get(current_location)
         if start is None or current_location not in self._selectable_keys:
             start = next(
-                (self._key_to_widget[k] for k in self._selectable_keys
-                 if k in self._key_to_widget),
+                (
+                    self._key_to_widget[k]
+                    for k in self._selectable_keys
+                    if k in self._key_to_widget
+                ),
                 None,
             )
         if start is not None:
@@ -246,7 +254,10 @@ class NuPhoneMap(PygameMenuState):
             ch = self._cursor_surface.get_height()
             surface.blit(
                 self._cursor_surface,
-                (rect.centerx - cw // 2 + self.factor, rect.centery - ch // 2 - 2 - 2 * self.factor),
+                (
+                    rect.centerx - cw // 2 + self.factor,
+                    rect.centery - ch // 2 - 2 - 2 * self.factor,
+                ),
             )
 
     def __init__(

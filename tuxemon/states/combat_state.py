@@ -72,7 +72,7 @@ from tuxemon.states.combat_animations import CombatAnimations
 from tuxemon.states.monster_menu import MonsterMenuState
 from tuxemon.status.status import Status
 from tuxemon.technique.technique import Technique
-from tuxemon.tools import assert_never
+from tuxemon.tools import assert_never, show_nickname_prompt
 from tuxemon.ui.combat_notifier import CombatNotifier, TextAnimationManager
 from tuxemon.ui.graphic_box import GraphicBox
 from tuxemon.ui.method_animation import MethodAnimationCache
@@ -1064,19 +1064,31 @@ class CombatState(CombatAnimations):
         self.clear_combat_states()
         self.phase = None
 
-        if self._captured_mon_is_new and self._captured_mon:
+        if self._captured_mon:
+            self._prompt_nickname(
+                self._captured_mon, self._captured_mon_is_new
+            )
+        else:
+            self.client.push_state("FadeOutTransition", caller=self)
+
+    def _prompt_nickname(self, monster: Monster, is_new: bool) -> None:
+        show_nickname_prompt(
+            self.client,
+            monster,
+            on_done=partial(self._finish_post_capture, monster, is_new),
+        )
+
+    def _finish_post_capture(self, monster: Monster, is_new: bool) -> None:
+        journal = MonsterModel.lookup(monster.slug, db) if is_new else None
+        if journal is not None:
             self.client.remove_state_by_name("CombatState")
-            journal = MonsterModel.lookup(self._captured_mon.slug, db)
-            if journal is not None:
-                self.client.push_state(
-                    "JournalInfoState",
-                    character=self.session.player,
-                    monster=journal,
-                    source=self.name,
-                    reveal=True,
-                )
-            else:
-                self.client.push_state("FadeOutTransition", caller=self)
+            self.client.push_state(
+                "JournalInfoState",
+                character=self.session.player,
+                monster=journal,
+                source=self.name,
+                reveal=True,
+            )
         else:
             self.client.push_state("FadeOutTransition", caller=self)
 

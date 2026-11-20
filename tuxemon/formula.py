@@ -100,6 +100,36 @@ def held_item_resistance_multiplier(
     )
 
 
+def apply_held_item_resistance(
+    multiplier: float,
+    technique: Technique,
+    target: Monster,
+) -> float:
+    """
+    Folds the target's held item resistance into a damage multiplier.
+    The result is clamped to the configured multiplier range, the same
+    bounds the type chart multiplier is held to. When nothing resists, the
+    multiplier is returned unchanged.
+    Parameters:
+        multiplier: The damage multiplier before the held item is considered.
+        technique: The incoming technique.
+        target: The one the technique is being used on.
+    Returns:
+        The damage multiplier after the held item resistance.
+    """
+    resistance = held_item_resistance_multiplier(technique, target)
+    if resistance == 1.0:
+        return multiplier
+
+    min_range, max_range = config_combat.multiplier_range
+    resisted = min(max_range, max(min_range, multiplier * resistance))
+    logger.debug(
+        f"  Held item resistance: {resistance} "
+        f"| multiplier {multiplier} -> {resisted}"
+    )
+    return resisted
+
+
 def simple_damage_calculate(
     technique: Technique,
     user: Monster,
@@ -174,15 +204,7 @@ def simple_damage_calculate(
         f"{[t.slug for t in target.types.current]} | multiplier={mult}"
     )
 
-    resistance = held_item_resistance_multiplier(technique, target)
-    if resistance != 1.0:
-        min_range, max_range = config_combat.multiplier_range
-        resisted = min(max_range, max(min_range, mult * resistance))
-        logger.debug(
-            f"  Held item resistance: {resistance} "
-            f"| multiplier {mult} -> {resisted}"
-        )
-        mult = resisted
+    mult = apply_held_item_resistance(mult, technique, target)
 
     move_strength = technique.power * mult
     logger.debug(

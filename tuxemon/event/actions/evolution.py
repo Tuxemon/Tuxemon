@@ -109,6 +109,7 @@ class EvolutionAction(EventAction):
 
         if not slug:
             monster.waiting_to_evolve = False
+            monster.evolution_level_start = None
             self.stop()
             return
 

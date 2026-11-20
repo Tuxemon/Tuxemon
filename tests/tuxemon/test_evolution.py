@@ -1,5 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0
 # Copyright (c) 2014-2026 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+from pathlib import Path
 from unittest.mock import MagicMock, PropertyMock, patch
 
 import pytest
@@ -14,6 +15,7 @@ from tuxemon.db import (
     LearningMethod,
     MonsterEvolutionItemModel,
     MonsterModel,
+    MonsterMovesetItemModel,
     PartyConditionsModel,
     StatsComparison,
     StatType,
@@ -862,3 +864,309 @@ def test_get_eligible_evolution_slug(evolution_context):
     type(mon).held_item = PropertyMock(return_value=None)
     slug = evo.get_eligible_evolution_slug()
     assert slug == "rockat"
+
+
+# --- moves learned on the levels gained on the way into an evolution ---
+
+
+def _entry(level, slug, method=LearningMethod.LEVEL_UP):
+    # model_construct skips the db lookup in the technique validator
+    return MonsterMovesetItemModel.model_construct(
+        level_learned=level,
+        technique=slug,
+        evolution_stage_learned=None,
+        can_be_forgotten=True,
+        learning_method=method,
+    )
+
+
+OLD_FORM_MOVESET = [
+    _entry(1, "struggle", LearningMethod.FALLBACK),
+    _entry(1, "ram"),
+    _entry(13, "old_13"),
+    _entry(14, "old_14"),
+]
+
+NEW_FORM_MOVESET = [
+    _entry(1, "struggle", LearningMethod.FALLBACK),
+    _entry(1, "ram"),
+    _entry(5, "new_5"),
+    _entry(12, "new_12"),
+    _entry(13, "new_13"),
+    _entry(14, "new_14"),
+    _entry(14, "evo_special", LearningMethod.EVOLUTION),
+    _entry(15, "new_15"),
+    _entry(20, "new_20"),
+]
+
+
+@pytest.fixture
+def evo_moves(evolution_context, monkeypatch):
+    """
+    Builds an old form and a new form with distinct movesets, using the
+    same fake species data as evolution_context.
+    """
+    _, player, _ = evolution_context
+
+    def fake_init_assets(self, db_data):
+        self.flair_slugs = set()
+        self.flairs = {}
+
+    monkeypatch.setattr(Monster, "_init_assets", fake_init_assets)
+    monkeypatch.setattr(
+        Technique,
+        "create",
+        lambda slug, *args, **kwargs: MagicMock(spec=Technique, slug=slug),
+    )
+
+    def make(slug, moveset, level, known=()):
+        mon = Monster()
+        mon.slug = slug
+        mon.stage = (
+            EvolutionStage.STAGE1
+            if slug == "newform"
+            else EvolutionStage.BASIC
+        )
+        mon.moves.set_moveset(moveset)
+        mon.experience_handler.set_level(level)
+        mon.moves.moves = [MagicMock(spec=Technique, slug=s) for s in known]
+        mon.set_owner(player)
+        return mon
+
+    def level_up(mon, new_level, evolves=True):
+        target = "newform" if evolves else None
+        mon.evolution_handler.get_eligible_evolution_slug = lambda *a, **k: (
+            target
+        )
+        mon.set_level(new_level, mon.level)
+
+    def evolve(old, moveset=NEW_FORM_MOVESET):
+        new = make("newform", moveset, old.level)
+        new.transfer_properties_from(old)
+        return new
+
+    return make, level_up, evolve
+
+
+def _slugs(mon):
+    return [m.slug for m in mon.moves.moves]
+
+
+def test_level_up_records_evolution_level_start(evo_moves):
+    make, level_up, _ = evo_moves
+    old = make("oldform", OLD_FORM_MOVESET, 13, known=["ram"])
+    assert old.evolution_level_start is None
+    level_up(old, 14)
+    assert old.waiting_to_evolve is True
+    assert old.evolution_level_start == 13
+
+
+def test_level_up_without_evolution_records_nothing(evo_moves):
+    make, level_up, _ = evo_moves
+    old = make("oldform", OLD_FORM_MOVESET, 13, known=["ram"])
+    level_up(old, 14, evolves=False)
+    assert old.evolution_level_start is None
+
+
+def test_delayed_evolution_keeps_first_start_level(evo_moves):
+    make, level_up, evolve = evo_moves
+    old = make("oldform", OLD_FORM_MOVESET, 13, known=["ram"])
+    level_up(old, 14)
+    level_up(old, 15)
+    assert old.evolution_level_start == 13
+    new = evolve(old)
+    assert {"new_14", "new_15"} <= set(_slugs(new))
+    assert "new_13" not in _slugs(new)
+
+
+def test_evolution_learns_moves_on_evolution_level(evo_moves):
+    make, level_up, evolve = evo_moves
+    old = make("oldform", OLD_FORM_MOVESET, 13, known=["ram", "old_13"])
+    level_up(old, 14)
+    # the old form's own level-up check still ran
+    assert "old_14" in _slugs(old)
+    new = evolve(old)
+    assert new.level == 14
+    assert "new_14" in _slugs(new)
+
+
+def test_evolution_does_not_backfill_or_learn_ahead(evo_moves):
+    make, level_up, evolve = evo_moves
+    old = make("oldform", OLD_FORM_MOVESET, 13, known=["ram"])
+    level_up(old, 14)
+    new = evolve(old)
+    for slug in ("new_5", "new_12", "new_13", "new_15", "new_20"):
+        assert slug not in _slugs(new)
+
+
+def test_multi_level_jump_learns_whole_range(evo_moves):
+    make, level_up, evolve = evo_moves
+    old = make("oldform", OLD_FORM_MOVESET, 12, known=["ram"])
+    level_up(old, 14)
+    assert old.evolution_level_start == 12
+    new = evolve(old)
+    assert {"new_13", "new_14"} <= set(_slugs(new))
+    assert "new_12" not in _slugs(new)
+    assert "new_15" not in _slugs(new)
+
+
+def test_evolution_without_level_up_learns_nothing(evo_moves):
+    make, _, evolve = evo_moves
+    # item / steps / script evolution: no level-up behind it
+    old = make("oldform", OLD_FORM_MOVESET, 14, known=["ram"])
+    old.waiting_to_evolve = True
+    new = evolve(old)
+    assert _slugs(new) == ["ram"]
+
+
+def test_evolution_special_and_fallback_moves_not_granted(evo_moves):
+    make, level_up, evolve = evo_moves
+    old = make("oldform", OLD_FORM_MOVESET, 13, known=["ram"])
+    level_up(old, 14)
+    new = evolve(old)
+    assert "evo_special" not in _slugs(new)
+    assert "struggle" not in _slugs(new)
+
+
+def test_fallback_move_in_range_not_granted(evo_moves):
+    make, level_up, evolve = evo_moves
+    moveset = [
+        _entry(1, "ram"),
+        _entry(14, "struggle", LearningMethod.FALLBACK),
+        _entry(14, "evo_special", LearningMethod.EVOLUTION),
+    ]
+    old = make("oldform", OLD_FORM_MOVESET, 13, known=["ram"])
+    level_up(old, 14)
+    new = evolve(old, moveset)
+    assert _slugs(new) == ["ram", "old_14"]
+
+
+def test_evolution_does_not_duplicate_known_moves(evo_moves):
+    make, level_up, evolve = evo_moves
+    moveset = [_entry(1, "ram"), _entry(14, "old_14"), _entry(14, "new_14")]
+    old = make("oldform", OLD_FORM_MOVESET, 13, known=["ram"])
+    level_up(old, 14)
+    assert "old_14" in _slugs(old)
+    new = evolve(old, moveset)
+    slugs = _slugs(new)
+    assert len(slugs) == len(set(slugs))
+    assert sorted(slugs) == ["new_14", "old_14", "ram"]
+
+
+def test_evolution_learns_when_moveset_full(evo_moves):
+    make, level_up, evolve = evo_moves
+    old = make("oldform", OLD_FORM_MOVESET, 13, known=["ram", "a", "b", "c"])
+    level_up(old, 14)
+    assert len(old.moves.moves) >= old.max_moves
+    new = evolve(old)
+    # learn() handles the full moveset the same way as an ordinary level-up
+    assert "new_14" in _slugs(new)
+
+
+def test_later_level_ups_learn_new_form_moves(evo_moves):
+    make, level_up, evolve = evo_moves
+    old = make("oldform", OLD_FORM_MOVESET, 13, known=["ram"])
+    level_up(old, 14)
+    new = evolve(old)
+    assert new.evolution_level_start is None
+    level_up(new, 15, evolves=False)
+    assert "new_15" in _slugs(new)
+    level_up(new, 20, evolves=False)
+    assert "new_20" in _slugs(new)
+    slugs = _slugs(new)
+    assert len(slugs) == len(set(slugs))
+
+
+def test_confirm_and_deny_clear_evolution_level_start(evo_moves):
+    from tuxemon.states.evolution import EvolutionState
+
+    make, level_up, evolve = evo_moves
+    for action in ("_confirm", "_deny"):
+        old = make("oldform", OLD_FORM_MOVESET, 13, known=["ram"])
+        level_up(old, 14)
+        target = evolve(old)
+        state = MagicMock()
+        state.monster = old
+        state.target = target
+        state.is_devolution = True  # skip the registry bookkeeping
+        state.char.tuxepedia.is_caught.return_value = True
+        old.evolution_handler.evolve_monster = MagicMock()
+        getattr(EvolutionState, action)(state)
+        assert old.waiting_to_evolve is False
+        assert old.evolution_level_start is None
+
+
+def test_abandoned_evolution_clears_evolution_level_start(evo_moves):
+    from tuxemon.event.actions.evolution import EvolutionAction
+
+    make, level_up, _ = evo_moves
+    old = make("oldform", OLD_FORM_MOVESET, 13, known=["ram"])
+    level_up(old, 14)
+    old.evolution_handler.get_eligible_evolution_slug = lambda *a, **k: None
+    action = MagicMock()
+    action.char.monsters = [old]
+    EvolutionAction.process_pending_evolutions(action)
+    assert old.waiting_to_evolve is False
+    assert old.evolution_level_start is None
+    action.stop.assert_called_once()
+
+
+def _real_monster_data(slug):
+    import yaml
+
+    path = (
+        Path(__file__).resolve().parents[2]
+        / "mods"
+        / "tuxemon"
+        / "db"
+        / "monster"
+        / f"{slug}.yaml"
+    )
+    with path.open(encoding="utf-8") as f:
+        return yaml.safe_load(f)
+
+
+def _real_moveset(data):
+    return [
+        _entry(
+            m["level_learned"],
+            m["technique"],
+            LearningMethod(m.get("learning_method", "level_up")),
+        )
+        for m in data["moveset"]
+    ]
+
+
+def test_waysprite_evolving_into_demosnow_learns_torch(evo_moves):
+    """
+    Real data: demosnow's level-14 torch is learned when waysprite evolves
+    into it at 14. The movesets are read straight from the yaml files so the
+    shared database isn't loaded (it would leak into other tests).
+    """
+    make, level_up, evolve = evo_moves
+    waysprite = _real_monster_data("waysprite")
+    demosnow = _real_monster_data("demosnow")
+    assert any(
+        e["monster_slug"] == "demosnow" and e["at_level"] == 14
+        for e in waysprite["evolutions"]
+    )
+    old_moveset = _real_moveset(waysprite)
+    known = [
+        m.technique
+        for m in old_moveset
+        if m.level_learned <= 13
+        and m.learning_method == LearningMethod.LEVEL_UP
+    ][-4:]
+    old = make("waysprite", old_moveset, 13, known=known)
+    # demosnow also has a daytime condition; the level-up is what matters
+    level_up(old, 14)
+    assert old.evolution_level_start == 13
+    assert "torch" not in _slugs(old)
+
+    new = evolve(old, _real_moveset(demosnow))
+    slugs = _slugs(new)
+    assert new.level == 14
+    assert "torch" in slugs
+    # demosnow's level-16 muck is still to come; struggle is a fallback
+    assert "muck" not in slugs
+    assert "struggle" not in slugs

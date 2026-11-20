@@ -57,6 +57,7 @@ events:
     actions:
     - translated_dialog spyder_barmaid_cafe3
     - add_monster nudiflot_male,25
+    - set_monster_attribute add_monster,acquisition,gifted
     - set_variable cafe_done:yes
     - unlock_controls
     - pathfind spyder_candycafe_nora,8,10

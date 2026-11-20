@@ -6,6 +6,7 @@ import logging
 from dataclasses import dataclass
 from typing import final
 
+from tuxemon.db import Acquisition
 from tuxemon.event.actions.common import CommonAction
 from tuxemon.event.eventaction import EventAction
 from tuxemon.session import Session
@@ -52,5 +53,16 @@ class SetMonsterAttributeAction(EventAction):
                 logger.error("Monster not found")
                 self.stop()
                 return
+
+        if self.attribute == "acquisition":
+            # Route through the setter so the bond is reseeded from the
+            # bond_acquisition table, matching the Python API.
+            try:
+                acquisition = Acquisition(self.value)
+            except ValueError:
+                logger.warning(f"Invalid acquisition value '{self.value}'")
+                return
+            monster.set_acquisition(acquisition)
+            return
 
         CommonAction.set_entity_attribute(monster, self.attribute, self.value)

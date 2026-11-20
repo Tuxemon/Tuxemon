@@ -833,7 +833,7 @@
     <property name="act4" value="translated_dialog wolffsky,,center,center,center"/>
     <property name="act5" value="set_monster_attribute add_monster,name,RUFF"/>
     <property name="act6" value="set_monster_attribute add_monster,gender,male"/>
-    <property name="act7" value="set_monster_attribute add_monster,acquisition,traded"/>
+    <property name="act7" value="set_monster_attribute add_monster,acquisition,gifted"/>
     <property name="cond1" value="is variable_set ruff:yes"/>
    </properties>
   </object>

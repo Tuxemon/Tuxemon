@@ -46,6 +46,7 @@ events:
     actions:
     - translated_dialog spyder_flower_petshopkeeper4
     - add_monster vivipere,5
+    - set_monster_attribute add_monster,acquisition,gifted
     - translated_dialog vivipere,,center,center,center
     - set_variable shows_vivicinder:yes
     - set_variable check_vivipere_morph:no
@@ -58,6 +59,7 @@ events:
     actions:
     - translated_dialog spyder_flower_petshopkeeper4
     - add_monster vivipere,5
+    - set_monster_attribute add_monster,acquisition,gifted
     - translated_dialog vivipere,,center,center,center
     - set_variable shows_vividactil:yes
     - set_variable check_vivipere_morph:no
@@ -70,6 +72,7 @@ events:
     actions:
     - translated_dialog spyder_flower_petshopkeeper4
     - add_monster vivipere,5
+    - set_monster_attribute add_monster,acquisition,gifted
     - translated_dialog vivipere,,center,center,center
     - set_variable shows_viviphyta:yes
     - set_variable check_vivipere_morph:no
@@ -82,6 +85,7 @@ events:
     actions:
     - translated_dialog spyder_flower_petshopkeeper4
     - add_monster vivipere,5
+    - set_monster_attribute add_monster,acquisition,gifted
     - translated_dialog vivipere,,center,center,center
     - set_variable shows_vivisource:yes
     conditions:
@@ -93,6 +97,7 @@ events:
     actions:
     - translated_dialog spyder_flower_petshopkeeper4
     - add_monster vivipere,5
+    - set_monster_attribute add_monster,acquisition,gifted
     - translated_dialog vivipere,,center,center,center
     - set_variable shows_viviteel:yes
     - set_variable check_vivipere_morph:no
@@ -105,6 +110,7 @@ events:
     actions:
     - translated_dialog spyder_flower_petshopkeeper4
     - add_monster vivipere,5
+    - set_monster_attribute add_monster,acquisition,gifted
     - translated_dialog vivipere,,center,center,center
     - set_variable shows_vivitrans:yes
     - set_variable check_vivipere_morph:no
@@ -117,6 +123,7 @@ events:
     actions:
     - translated_dialog spyder_flower_petshopkeeper4
     - add_monster vivipere,5
+    - set_monster_attribute add_monster,acquisition,gifted
     - translated_dialog vivipere,,center,center,center
     - set_variable shows_vivitron:yes
     - set_variable check_vivipere_morph:no
@@ -130,6 +137,7 @@ events:
     - translated_dialog spyder_flower_petshopkeeper1
     - translated_dialog spyder_flower_petshopkeeper2
     - add_monster vivipere,5
+    - set_monster_attribute add_monster,acquisition,gifted
     - translated_dialog vivipere,,center,center,center
     - set_variable flower_talkedpetshop:yes
     behav:

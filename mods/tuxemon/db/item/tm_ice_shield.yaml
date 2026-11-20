@@ -1,8 +1,8 @@
 conditions:
 - type: base
   parameters:
-  - types
-  - frost
+  - tags
+  - ice:soldier:shielded
   operator: is
 - type: has_tech
   parameters:

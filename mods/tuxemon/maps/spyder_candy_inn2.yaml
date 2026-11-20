@@ -45,6 +45,7 @@ events:
     actions:
     - translated_dialog tumbleworm
     - add_monster tumbleworm,15
+    - set_monster_attribute add_monster,acquisition,gifted
     - set_variable beeevent:end
     conditions:
     - is variable_set beeevent:done
@@ -55,6 +56,7 @@ events:
     actions:
     - translated_dialog tumblebee
     - add_monster tumblebee,20
+    - set_monster_attribute add_monster,acquisition,gifted
     - set_variable beeevent:end
     conditions:
     - is variable_set beeevent:done

@@ -292,6 +292,7 @@
     <property name="act3" value="translated_dialog coproblight,,center,center,center"/>
     <property name="act4" value="add_item petrified_dung,-1"/>
     <property name="act5" value="set_variable got_coproblight:yes"/>
+    <property name="act6" value="set_monster_attribute add_monster,acquisition,created"/>
     <property name="cond1" value="is variable_set coproblight_choice:yes"/>
     <property name="cond2" value="not variable_set got_coproblight:yes"/>
    </properties>
@@ -313,12 +314,14 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_greenwash_fossilisator13"/>
     <property name="act2" value="add_monster coproblight,35"/>
-    <property name="act3" value="translated_dialog coproblight,,center,center,center"/>
-    <property name="act4" value="add_monster rhincus,35"/>
-    <property name="act5" value="translated_dialog rhincus,,center,center,center"/>
-    <property name="act6" value="add_item petrified_dung,-1"/>
-    <property name="act7" value="add_item rhincus_fossil,-1"/>
-    <property name="act8" value="set_variable got_pd_rhincus:yes"/>
+    <property name="act3" value="set_monster_attribute add_monster,acquisition,created"/>
+    <property name="act4" value="translated_dialog coproblight,,center,center,center"/>
+    <property name="act5" value="add_monster rhincus,35"/>
+    <property name="act6" value="set_monster_attribute add_monster,acquisition,created"/>
+    <property name="act7" value="translated_dialog rhincus,,center,center,center"/>
+    <property name="act8" value="add_item petrified_dung,-1"/>
+    <property name="act9" value="add_item rhincus_fossil,-1"/>
+    <property name="act10" value="set_variable got_pd_rhincus:yes"/>
     <property name="cond1" value="is variable_set pd_rhincus_choice:yes"/>
     <property name="cond2" value="not variable_set got_pd_rhincus:yes"/>
    </properties>
@@ -340,13 +343,15 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_greenwash_fossilisator15"/>
     <property name="act2" value="add_monster coproblight,35"/>
-    <property name="act3" value="translated_dialog coproblight,,center,center,center"/>
-    <property name="act4" value="add_monster shammer,35"/>
-    <property name="act5" value="translated_dialog shammer,,center,center,center"/>
-    <property name="act6" value="add_item petrified_dung,-1"/>
-    <property name="act7" value="add_item shammer_fossil,-1"/>
-    <property name="act8" value="set_variable got_pd_shammer:yes"/>
-    <property name="act9" value="set_mission player"/>
+    <property name="act3" value="set_monster_attribute add_monster,acquisition,created"/>
+    <property name="act4" value="translated_dialog coproblight,,center,center,center"/>
+    <property name="act5" value="add_monster shammer,35"/>
+    <property name="act6" value="set_monster_attribute add_monster,acquisition,created"/>
+    <property name="act7" value="translated_dialog shammer,,center,center,center"/>
+    <property name="act8" value="add_item petrified_dung,-1"/>
+    <property name="act9" value="add_item shammer_fossil,-1"/>
+    <property name="act10" value="set_variable got_pd_shammer:yes"/>
+    <property name="act11" value="set_mission player"/>
     <property name="cond1" value="is variable_set pd_shammer_choice:yes"/>
     <property name="cond2" value="not variable_set got_pd_shammer:yes"/>
    </properties>
@@ -368,16 +373,19 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_greenwash_fossilisator17"/>
     <property name="act2" value="add_monster coproblight,35"/>
-    <property name="act3" value="translated_dialog coproblight,,center,center,center"/>
-    <property name="act4" value="add_monster rhincus,35"/>
-    <property name="act5" value="translated_dialog rhincus,,center,center,center"/>
-    <property name="act6" value="add_monster shammer,35"/>
-    <property name="act7" value="translated_dialog shammer,,center,center,center"/>
-    <property name="act8" value="add_item petrified_dung,-1"/>
-    <property name="act9" value="add_item rhincus_fossil,-1"/>
-    <property name="act10" value="add_item shammer_fossil,-1"/>
-    <property name="act11" value="set_variable got_all_three:yes"/>
-    <property name="act12" value="set_mission player"/>
+    <property name="act3" value="set_monster_attribute add_monster,acquisition,created"/>
+    <property name="act4" value="translated_dialog coproblight,,center,center,center"/>
+    <property name="act5" value="add_monster rhincus,35"/>
+    <property name="act6" value="set_monster_attribute add_monster,acquisition,created"/>
+    <property name="act7" value="translated_dialog rhincus,,center,center,center"/>
+    <property name="act8" value="add_monster shammer,35"/>
+    <property name="act9" value="set_monster_attribute add_monster,acquisition,created"/>
+    <property name="act10" value="translated_dialog shammer,,center,center,center"/>
+    <property name="act11" value="add_item petrified_dung,-1"/>
+    <property name="act12" value="add_item rhincus_fossil,-1"/>
+    <property name="act13" value="add_item shammer_fossil,-1"/>
+    <property name="act14" value="set_variable got_all_three:yes"/>
+    <property name="act15" value="set_mission player"/>
     <property name="cond1" value="is variable_set all_three_choice:yes"/>
     <property name="cond2" value="not variable_set got_all_three:yes"/>
    </properties>
@@ -389,6 +397,7 @@
     <property name="act3" value="translated_dialog rhincus,,center,center,center"/>
     <property name="act4" value="add_item rhincus_fossil,-1"/>
     <property name="act5" value="set_variable got_rhincus:yes"/>
+    <property name="act6" value="set_monster_attribute add_monster,acquisition,created"/>
     <property name="cond1" value="is variable_set rhincus_choice:yes"/>
     <property name="cond2" value="not variable_set got_rhincus:yes"/>
    </properties>
@@ -401,6 +410,7 @@
     <property name="act4" value="add_item shammer_fossil,-1"/>
     <property name="act5" value="set_variable got_shammer:yes"/>
     <property name="act6" value="set_mission player"/>
+    <property name="act7" value="set_monster_attribute add_monster,acquisition,created"/>
     <property name="cond1" value="is variable_set shammer_choice:yes"/>
     <property name="cond2" value="not variable_set got_shammer:yes"/>
    </properties>
@@ -422,13 +432,15 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_greenwash_fossilisator9"/>
     <property name="act2" value="add_monster shammer,35"/>
-    <property name="act3" value="translated_dialog shammer,,center,center,center"/>
-    <property name="act4" value="add_monster rhincus,35"/>
-    <property name="act5" value="translated_dialog rhincus,,center,center,center"/>
-    <property name="act6" value="add_item shammer_fossil,-1"/>
-    <property name="act7" value="add_item rhincus_fossil,-1"/>
-    <property name="act8" value="set_variable got_both_fossils:yes"/>
-    <property name="act9" value="set_mission player"/>
+    <property name="act3" value="set_monster_attribute add_monster,acquisition,created"/>
+    <property name="act4" value="translated_dialog shammer,,center,center,center"/>
+    <property name="act5" value="add_monster rhincus,35"/>
+    <property name="act6" value="set_monster_attribute add_monster,acquisition,created"/>
+    <property name="act7" value="translated_dialog rhincus,,center,center,center"/>
+    <property name="act8" value="add_item shammer_fossil,-1"/>
+    <property name="act9" value="add_item rhincus_fossil,-1"/>
+    <property name="act10" value="set_variable got_both_fossils:yes"/>
+    <property name="act11" value="set_mission player"/>
     <property name="cond1" value="is variable_set both_fossils:yes"/>
     <property name="cond2" value="not variable_set got_both_fossils:yes"/>
    </properties>

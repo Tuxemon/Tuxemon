@@ -117,6 +117,10 @@ class Monster:
         self.out_of_range: bool = False
         self.wild: bool = False
         self.waiting_to_evolve: bool = False
+        # level the monster was at before the level-up that flagged its
+        # pending evolution; the new form learns its level-up moves from
+        # above this level up to its current one when it evolves
+        self.evolution_level_start: int | None = None
 
         self.is_charging: bool = False
         self.charged_technique: str | None = None
@@ -615,6 +619,10 @@ class Monster:
 
             if slug:
                 self.waiting_to_evolve = True
+                # keep the first value: if the evolution is put off and the
+                # monster levels up again, the levels in between still count
+                if self.evolution_level_start is None:
+                    self.evolution_level_start = old_level
                 logger.debug(f"{self.name} is ready to evolve into {slug}!")
             else:
                 logger.debug("No evolution flagged at level-up")
@@ -693,6 +701,7 @@ class Monster:
         self.set_stats()
         self.current_hp = min(old_monster.current_hp, self.hp)
         self.moves.transfer_learned_moves_from(old_monster.moves)
+        self._learn_moves_from_evolution_level_up(old_monster)
         self.status = old_monster.status
         self.temporary_stat_boosts = old_monster.temporary_stat_boosts
         self.instance_id = old_monster.instance_id
@@ -727,6 +736,29 @@ class Monster:
                 self.flairs[flair_category] = old_monster.flairs[
                     flair_category
                 ]
+
+    def _learn_moves_from_evolution_level_up(
+        self, old_monster: Monster
+    ) -> None:
+        """
+        Learns the new form's level-up moves for the levels gained on the way
+        into an evolution brought on by a level-up.
+
+        The level-up that flagged the evolution checked the old form's
+        moveset, and later level-ups only look above the current level, so
+        without this the new form's moves for those levels would never be
+        offered. Same bounds as an ordinary level-up: above the starting
+        level, up to and including the current one. Evolutions not brought on
+        by a level-up have no starting level and learn nothing here.
+        """
+        start = old_monster.evolution_level_start
+        if start is None or start >= self.level:
+            return
+        learned = self.moves.update_moves(self, self.level - start)
+        for technique in learned:
+            logger.debug(
+                f"{self.name} learned {technique.slug} on evolving from {old_monster.name}."
+            )
 
     def get_state(self) -> Mapping[str, Any]:
         """Serializes the monster into a save-ready dictionary."""

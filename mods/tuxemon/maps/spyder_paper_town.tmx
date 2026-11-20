@@ -243,6 +243,7 @@
     <property name="act2" value="translated_dialog rockitten,,center,center,center"/>
     <property name="act3" value="set_variable firstfightdue:yes"/>
     <property name="act4" value="set_variable mymonchoice:rockitten"/>
+    <property name="act5" value="set_monster_attribute add_monster,acquisition,rescued"/>
     <property name="cond1" value="is variable_set rockittenchosen:yes"/>
     <property name="cond2" value="is party_size player,less_than,1"/>
    </properties>
@@ -253,6 +254,7 @@
     <property name="act2" value="translated_dialog lambert,,center,center,center"/>
     <property name="act3" value="set_variable firstfightdue:yes"/>
     <property name="act4" value="set_variable mymonchoice:lambert"/>
+    <property name="act5" value="set_monster_attribute add_monster,acquisition,rescued"/>
     <property name="cond1" value="is variable_set lambertchosen:yes"/>
     <property name="cond2" value="is party_size player,less_than,1"/>
    </properties>
@@ -263,6 +265,7 @@
     <property name="act2" value="translated_dialog nut,,center,center,center"/>
     <property name="act3" value="set_variable firstfightdue:yes"/>
     <property name="act4" value="set_variable mymonchoice:nut"/>
+    <property name="act5" value="set_monster_attribute add_monster,acquisition,rescued"/>
     <property name="cond1" value="is variable_set nutchosen:yes"/>
     <property name="cond2" value="is party_size player,less_than,1"/>
    </properties>
@@ -273,6 +276,7 @@
     <property name="act2" value="translated_dialog tweesher,,center,center,center"/>
     <property name="act3" value="set_variable firstfightdue:yes"/>
     <property name="act4" value="set_variable mymonchoice:tweesher"/>
+    <property name="act5" value="set_monster_attribute add_monster,acquisition,rescued"/>
     <property name="cond1" value="is variable_set tweesherchosen:yes"/>
     <property name="cond2" value="is party_size player,less_than,1"/>
    </properties>
@@ -283,6 +287,7 @@
     <property name="act2" value="translated_dialog agnite,,center,center,center"/>
     <property name="act3" value="set_variable firstfightdue:yes"/>
     <property name="act4" value="set_variable mymonchoice:agnite"/>
+    <property name="act5" value="set_monster_attribute add_monster,acquisition,rescued"/>
     <property name="cond1" value="is variable_set agnitechosen:yes"/>
     <property name="cond2" value="is party_size player,less_than,1"/>
    </properties>

@@ -1,39 +1,4 @@
 events:
-  Billie Budaye:
-    actions:
-    - set_variable billie_choice:budaye
-    conditions:
-    - is variable_set myintrochoice:budaye
-    - not variable_set billie_choice
-    type: event
-  Billie Dollfin:
-    actions:
-    - set_variable billie_choice:dollfin
-    conditions:
-    - is variable_set myintrochoice:dollfin
-    - not variable_set billie_choice
-    type: event
-  Billie Grintot:
-    actions:
-    - set_variable billie_choice:grintot
-    conditions:
-    - is variable_set myintrochoice:grintot
-    - not variable_set billie_choice
-    type: event
-  Billie Ignibus:
-    actions:
-    - set_variable billie_choice:ignibus
-    conditions:
-    - is variable_set myintrochoice:ignibus
-    - not variable_set billie_choice
-    type: event
-  Billie Memnomnom:
-    actions:
-    - set_variable billie_choice:memnomnom
-    conditions:
-    - is variable_set myintrochoice:memnomnom
-    - not variable_set billie_choice
-    type: event
   CapDev 1st:
     actions:
     - open_journal dollfin
@@ -101,9 +66,11 @@ events:
     type: event
   Confirm Monster Yes:
     actions:
+    - copy_variable billie_choice,myintrochoice
     - set_variable choice_phase:progress
     conditions:
     - is variable_set areyousure:yes
+    - not variable_set intro_scoop:done
     type: event
   Continue Storekeeper:
     actions:

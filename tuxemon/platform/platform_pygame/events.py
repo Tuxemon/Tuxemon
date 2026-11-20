@@ -405,6 +405,8 @@ A_BUTTON_IMAGE = "gfx/a-button.png"
 B_BUTTON_IMAGE = "gfx/b-button.png"
 A_BUTTON_SCALE = 1.0
 B_BUTTON_SCALE = 2.1
+START_BUTTON_W = 80
+START_BUTTON_H = 36
 DPAD_GAP_RATIO = 0.2
 
 
@@ -489,6 +491,7 @@ class TouchOverlayUI:
         self.b_button = self._load_button_instance(
             B_BUTTON_IMAGE, B_BUTTON_SCALE
         )
+        self.start_button = self._create_start_button()
 
     def _load_button_instance(
         self, image_path: str, scale: float
@@ -520,6 +523,31 @@ class TouchOverlayUI:
             rect=button_rect,
         )
 
+    def _create_start_button(self) -> DPadButtonInfo:
+        """Build the MENU/START button surface and rect programmatically."""
+        surf = pg.Surface((START_BUTTON_W, START_BUTTON_H), pg.SRCALPHA)
+        pg.draw.rect(
+            surf, (40, 40, 40, 200), (0, 0, START_BUTTON_W, START_BUTTON_H),
+            border_radius=6,
+        )
+        pg.draw.rect(
+            surf, (150, 150, 150, 220), (0, 0, START_BUTTON_W, START_BUTTON_H),
+            width=2, border_radius=6,
+        )
+        if not pg.font.get_init():
+            pg.font.init()
+        font = pg.font.Font(None, 22)
+        text = font.render("MENU", True, (230, 230, 230))
+        surf.blit(text, text.get_rect(center=(START_BUTTON_W // 2, START_BUTTON_H // 2)))
+
+        pos_x = self.resolution[0] // 2 - START_BUTTON_W // 2
+        pos_y = self.resolution[1] - START_BUTTON_H - 8
+        return DPadButtonInfo(
+            surface=surf,
+            position=(pos_x, pos_y),
+            rect=Rect(pos_x, pos_y, START_BUTTON_W, START_BUTTON_H),
+        )
+
     def draw(self, screen: Surface) -> None:
         """Draws the UI overlay."""
         blit_alpha(
@@ -535,6 +563,12 @@ class TouchOverlayUI:
             screen,
             self.b_button.surface,
             self.b_button.position,
+            self.transparency,
+        )
+        blit_alpha(
+            screen,
+            self.start_button.surface,
+            self.start_button.position,
             self.transparency,
         )
 
@@ -553,6 +587,7 @@ class PygameTouchOverlayInput(PygameEventHandler):
             buttons.RIGHT: PlayerInput(buttons.RIGHT),
             buttons.A: PlayerInput(buttons.A),
             buttons.B: PlayerInput(buttons.B),
+            buttons.START: PlayerInput(buttons.START),
         }
         self.load()
         self._active_touches: dict[int, int] = {}
@@ -564,12 +599,23 @@ class PygameTouchOverlayInput(PygameEventHandler):
     def process_event(self, input_event: Event) -> None:
         """Handles both mouse and finger touch events."""
 
+        # Release all held buttons if the app loses focus so nothing gets stuck.
+        if input_event.type == pg.WINDOWFOCUSLOST:
+            for fid in list(self._active_touches.keys()):
+                self._handle_finger_up(fid)
+            return
+
         if input_event.type in (pg.FINGERDOWN, pg.FINGERUP, pg.FINGERMOTION):
             touch_pos = (
                 int(input_event.x * self.resolution[0]),
                 int(input_event.y * self.resolution[1]),
             )
-            finger_id = input_event.fingerid
+            # pygame-ce 2.5.7+ renamed fingerid → finger_id; support both
+            finger_id = getattr(
+                input_event,
+                "finger_id",
+                getattr(input_event, "fingerid", 0),
+            )
 
             if input_event.type == pg.FINGERDOWN:
                 self._handle_finger_down(finger_id, touch_pos)
@@ -602,6 +648,10 @@ class PygameTouchOverlayInput(PygameEventHandler):
             new_button = self.get_touched_button(touch_pos)
 
             if new_button != current_button:
+                # Remove first so the "any other finger holding this?" check
+                # is accurate (was the jam bug: button stayed pressed forever
+                # when sliding off because the entry was removed after the check).
+                del self._active_touches[finger_id]
                 if current_button not in self._active_touches.values():
                     self.release(current_button)
 
@@ -609,8 +659,6 @@ class PygameTouchOverlayInput(PygameEventHandler):
                     if new_button not in self._active_touches.values():
                         self.press(new_button)
                     self._active_touches[finger_id] = new_button
-                else:
-                    del self._active_touches[finger_id]
 
     def get_touched_button(self, pos: tuple[int, int]) -> int | None:
         """Determine which button was pressed based on position."""
@@ -621,6 +669,7 @@ class PygameTouchOverlayInput(PygameEventHandler):
             (buttons.RIGHT, self.ui.dpad.rect.right),
             (buttons.A, self.ui.a_button.rect),
             (buttons.B, self.ui.b_button.rect),
+            (buttons.START, self.ui.start_button.rect),
         ]:
             if rect.collidepoint(pos):
                 logger.debug(f"Touch detected on: {name}")

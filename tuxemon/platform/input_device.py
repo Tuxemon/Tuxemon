@@ -113,7 +113,10 @@ class ControllerOverlaySetup:
         config: TuxemonConfig,
         resolution: tuple[int, int],
     ) -> PygameTouchOverlayInput | None:
-        if config.controller.overlay:
+        import os
+
+        android_active = bool(os.environ.get("ANDROID_PRIVATE"))
+        if config.controller.overlay or android_active:
             overlay = PygameTouchOverlayInput(
                 config.controller.transparency, resolution
             )

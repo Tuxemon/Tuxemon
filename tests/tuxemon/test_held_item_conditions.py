@@ -22,6 +22,7 @@ from tuxemon.db import (
     StatModel,
     VisualProperties,
 )
+from tuxemon.entity.bag import BagHandler
 from tuxemon.item.item import Item
 from tuxemon.monster.monster import Monster
 from tuxemon.monster.stats import IndividualValues
@@ -43,6 +44,19 @@ def no_sprites(monkeypatch):
     monkeypatch.setattr(
         "tuxemon.item.item.graphics.load_and_scale",
         lambda *args, **kwargs: pygame.Surface((1, 1)),
+    )
+
+
+_MODELS: dict[str, ItemModel] = {}
+
+
+@pytest.fixture(autouse=True)
+def item_models(monkeypatch):
+    """Lets Item.from_save look up the models the tests built."""
+    _MODELS.clear()
+    monkeypatch.setattr(
+        "tuxemon.item.item.ItemModel.lookup",
+        classmethod(lambda cls, slug, db: _MODELS[slug]),
     )
 
 
@@ -88,6 +102,7 @@ def make_item(
         hold_use_conditions=list(hold_use_conditions),
         hold_uses_per_battle=hold_uses_per_battle,
     )
+    _MODELS[slug] = model
     return Item(slug, model)
 
 
@@ -521,6 +536,10 @@ def make_picker_handler() -> MonsterMenuHandler:
     return handler
 
 
+def make_bag(*items: Item) -> BagHandler:
+    return BagHandler(MagicMock(), owner=MagicMock(), items=list(items))
+
+
 def test_picker_removes_item_from_bag_when_equip_succeeds(monster):
     item = make_item()
     handler = make_picker_handler()
@@ -528,7 +547,70 @@ def test_picker_removes_item_from_bag_when_equip_succeeds(monster):
     handler._equip_from_picker(monster, MagicMock(game_object=item))
 
     handler.party.owner.bag.remove_item.assert_called_once_with(item)
-    assert monster.held_item is item
+    assert monster.held_item is not None
+    assert monster.held_item.slug == item.slug
+
+
+def test_picker_equips_a_separate_copy_of_a_stack(monster):
+    stack = make_item(max_wear=5)
+    stack.set_quantity(3)
+    stack.durability.current = 2
+    handler = make_picker_handler()
+    handler.party.owner.bag = make_bag(stack)
+
+    handler._equip_from_picker(monster, MagicMock(game_object=stack))
+
+    held = monster.held_item
+    assert held is not stack
+    assert held.instance_id != stack.instance_id
+    assert held.quantity == 1
+    assert held.wear == 2
+    assert stack.quantity == 2
+    assert handler.party.owner.bag.items == [stack]
+
+
+def test_picker_takes_the_last_copy_out_of_the_bag(monster):
+    stack = make_item()
+    handler = make_picker_handler()
+    handler.party.owner.bag = make_bag(stack)
+
+    handler._equip_from_picker(monster, MagicMock(game_object=stack))
+
+    assert monster.held_item.quantity == 1
+    assert handler.party.owner.bag.items == []
+
+
+def test_picker_leaves_the_bag_alone_when_equip_fails(monster):
+    stack = make_item(holdable=False)
+    stack.set_quantity(3)
+    handler = make_picker_handler()
+    handler.party.owner.bag = make_bag(stack)
+
+    handler._equip_from_picker(monster, MagicMock(game_object=stack))
+
+    assert monster.held_item is None
+    assert stack.quantity == 3
+
+
+def test_a_held_item_used_up_does_not_take_another_from_the_bag(
+    monster, session
+):
+    stack = make_heal_item()
+    stack.set_quantity(3)
+    bag = make_bag(stack)
+    handler = make_picker_handler()
+    handler.party.owner.bag = bag
+    handler._equip_from_picker(monster, MagicMock(game_object=stack))
+    monster.current_hp = 10
+
+    player = MagicMock()
+    player.party.is_fainted = False
+    player.bag = bag
+    make_combat_session(player, monster).check_decisions(session)
+
+    assert monster.held_item is None
+    assert stack.quantity == 2
+    assert bag.items == [stack]
 
 
 # --- consumption ----------------------------------------------------------
@@ -665,7 +747,7 @@ def test_the_boost_of_a_consumed_item_ends_with_the_battle(monster, session):
 
 def test_a_replacement_item_gets_its_own_budget(monster, session):
     """
-    The use count is kept per monster, so it has to go when the item does.
+    A consumed item's uses don't carry over to what replaces it.
     """
     player = MagicMock()
     player.party.is_fainted = False
@@ -684,6 +766,56 @@ def test_a_replacement_item_gets_its_own_budget(monster, session):
     combat.check_decisions(session)
 
     assert monster.held_item is None
+
+
+def spend_budget(monster, session, item):
+    """Equips a non-consumable one-use item and lets it spend its use."""
+    player = MagicMock()
+    player.party.is_fainted = False
+    monster.equip_item(item)
+    item.use = MagicMock()
+    combat = make_combat_session(player, monster)
+    combat.check_decisions(session)
+    combat.check_decisions(session)
+    assert item.use.call_count == 1
+    return combat
+
+
+def test_an_item_replacing_a_spent_one_gets_its_own_budget(monster, session):
+    spent = make_item("potion", hold_uses_per_battle=1)
+    combat = spend_budget(monster, session, spent)
+
+    monster.unequip_item()
+    replacement = make_item("tea", hold_uses_per_battle=1)
+    monster.equip_item(replacement)
+    replacement.use = MagicMock()
+    combat.check_decisions(session)
+
+    assert replacement.use.call_count == 1
+
+
+def test_items_swapped_after_one_is_spent_get_their_own_budgets(
+    monster, session
+):
+    spent = make_item("potion", hold_uses_per_battle=1)
+    combat = spend_budget(monster, session, spent)
+
+    other = make_monster("Agnite")
+    fresh = make_item("tea", hold_uses_per_battle=1)
+    other.equip_item(fresh)
+    monster.swap_items(other)
+    fresh.use = MagicMock()
+    combat.check_decisions(session)
+
+    assert monster.held_item is fresh
+    assert fresh.use.call_count == 1
+
+
+def test_the_spent_item_stays_spent_while_still_held(monster, session):
+    spent = make_item("potion", hold_uses_per_battle=1)
+    combat = spend_budget(monster, session, spent)
+
+    assert combat.get_held_item_uses(monster) == 1
 
 
 def test_a_non_consumable_item_is_still_never_used_up(monster, session):

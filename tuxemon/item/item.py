@@ -107,6 +107,20 @@ class Item:
 
         return item
 
+    def split_off(self) -> Item:
+        """
+        Returns a separate single copy of this item, with its own identity
+        and stock, and the same wear.
+
+        This item is left untouched: taking the copy out of wherever it
+        came from (e.g. ``bag.remove_item``) is up to the caller. Used when
+        a monster is given one item from a bag stack, so that the monster
+        and the bag never share an Item instance or its stock.
+        """
+        return Item.from_save(
+            {"slug": self.slug, "quantity": 1, "wear": self.wear}
+        )
+
     @property
     def name(self) -> str:
         return T.translate(self.slug)

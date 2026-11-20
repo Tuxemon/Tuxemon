@@ -6,6 +6,7 @@ import logging
 import random
 from collections.abc import Iterable, Sequence
 from typing import TYPE_CHECKING, Any
+from uuid import UUID
 
 from tuxemon.combat.action_queue import ActionQueue, EnqueuedAction
 from tuxemon.combat.combat_context import CombatType
@@ -48,7 +49,8 @@ class CombatSession:
         self._players: list[NPC] = []
         self._combat_type: CombatType | None = None
         self._random_tech_hit: dict[Monster, float] = {}
-        self._held_item_uses: dict[Monster, int] = {}
+        # monster -> (instance id of the item that spent the uses, count)
+        self._held_item_uses: dict[Monster, tuple[UUID, int]] = {}
         self._combat_variables: dict[str, Any] = {}
         self.field_monsters = FieldMonsters()
         self.swap_tracker = SwapTracker()
@@ -598,23 +600,37 @@ class CombatSession:
         )
 
     def get_held_item_uses(self, monster: Monster) -> int:
-        """How many times this monster's held item has fired this battle."""
-        return self._held_item_uses.get(monster, 0)
+        """
+        How many times this monster's current held item has fired this
+        battle.
+
+        The count is recorded together with the item that spent it, so it
+        only counts while the monster still holds that same item. Whatever
+        it is given next, however it gets there (consumed, removed, swapped
+        or replaced from the party menu or by a map event), starts with its
+        full budget.
+        """
+        held_item = monster.held_item
+        entry = self._held_item_uses.get(monster)
+        if held_item is None or entry is None:
+            return 0
+        instance_id, used = entry
+        return used if instance_id == held_item.instance_id else 0
 
     def spend_held_item_use(self, monster: Monster) -> int:
-        """Records one held-item use this battle and returns the new total."""
+        """
+        Records one use of the monster's current held item this battle and
+        returns the new total.
+        """
+        held_item = monster.held_item
+        if held_item is None:
+            return 0
         used = self.get_held_item_uses(monster) + 1
-        self._held_item_uses[monster] = used
+        self._held_item_uses[monster] = (held_item.instance_id, used)
         return used
 
     def reset_held_item_uses(self, monster: Monster) -> None:
-        """
-        Forgets a monster's held-item uses.
-
-        The count is kept per monster rather than per item, so it has to go
-        when the item does: whatever the monster is given next starts the
-        battle with its own budget.
-        """
+        """Forgets a monster's held-item uses."""
         self._held_item_uses.pop(monster, None)
 
     def clear_held_item_uses(self) -> None:

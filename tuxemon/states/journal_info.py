@@ -94,7 +94,10 @@ class JournalInfoState(PygameMenuState):
             padding=0,
             underline=True,
             underline_color=SEA_BLUE_COLOR,
-            underline_offset=self.client.context.scaling.scale_int(1),
+            # pygame centres a thick line on its y, so shift by half its
+            # width to put the line's top edge on the pixel grid.
+            underline_offset=self.client.context.scaling.scale_int(1)
+            + (self.client.context.scaling.scale_int(1) - 1) // 2,
             underline_width=self.client.context.scaling.scale_int(1),
         )
         lab1.translate(fxw(119), fxh(8))
@@ -285,26 +288,42 @@ class JournalInfoState(PygameMenuState):
         # panel's right-hand border (which sits at x=253).
         desc_frame.pack(lab9, align=ALIGN_LEFT)
 
-        # evolution monsters
+        # evolution monsters (the line is left out when there are none)
         slugs = [ele.monster_slug for ele in monster.evolutions]
         elements = list(dict.fromkeys(slugs))
 
-        evolution_names = ", ".join(T.translate(ele) for ele in elements)
+        if elements:
+            evolution_names = ", ".join(T.translate(ele) for ele in elements)
+            evolution_text = f"{evo}: {evolution_names}"
 
-        evolution_text = f"{evo}: {evolution_names}"
-
-        lab10: Any = menu.add.label(
-            title=self._safe_display(evolution_text),
-            label_id="evolution",
-            font_size=self.font_type.biggest,
-            wordwrap=True,
-            align=ALIGN_LEFT,
-            float=True,
-            float_origin_position=True,
-            padding=0,
-        )
-
-        lab10.translate(fxw(22), fxh(128))
+            # Same width and left edge as the description, so a long list
+            # wraps inside the panel.
+            evo_frame = menu.add.frame_v(
+                fxw(243),
+                fxh(24),
+                float=True,
+                float_origin_position=True,
+                frame_id="evolution_frame",
+                padding=0,
+            )
+            evo_frame._relax = True
+            lab10: Any = menu.add.label(
+                # Trailing blank line: see the description label above.
+                title=self._safe_display(evolution_text) + "\n",
+                label_id="evolution",
+                font_size=self.font_type.arbata,
+                font_name=arbata_font,
+                font_color=SEA_BLUE_COLOR,
+                wordwrap=True,
+                leading=fxh(10),
+                align=ALIGN_LEFT,
+                padding=0,
+            )
+            evo_frame.pack(lab10, align=ALIGN_LEFT)
+            # Keep the last line at the bottom of the panel; a list that
+            # wraps grows upwards.
+            extra_lines = max(0, len(lab10.get_lines()) - 2)
+            evo_frame.translate(fxw(8), fxh(128 - 10 * extra_lines))
 
         # image
         loader = SpriteLoader()

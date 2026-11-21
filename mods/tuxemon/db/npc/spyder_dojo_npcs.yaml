@@ -42,6 +42,16 @@
     sprite_name: childactor_blonde
     combat_sheet: childactor
     slug: childactor
+- slug: spyder_dojo_fu_student3
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: childactor_brown
+    combat_sheet: childactor
+    slug: childactor
 - slug: spyder_dojo_kataro
   speech:
     profile:

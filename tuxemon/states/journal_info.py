@@ -296,10 +296,10 @@ class JournalInfoState(PygameMenuState):
             evolution_names = ", ".join(T.translate(ele) for ele in elements)
             evolution_text = f"{evo}: {evolution_names}"
 
-            # Same width and left edge as the description, so a long list
-            # wraps inside the panel.
+            # Indented under the description; the frame ends at the same
+            # right edge (x=251), so a long list wraps inside the panel.
             evo_frame = menu.add.frame_v(
-                fxw(243),
+                fxw(229),
                 fxh(24),
                 float=True,
                 float_origin_position=True,
@@ -323,7 +323,7 @@ class JournalInfoState(PygameMenuState):
             # Keep the last line at the bottom of the panel; a list that
             # wraps grows upwards.
             extra_lines = max(0, len(lab10.get_lines()) - 2)
-            evo_frame.translate(fxw(8), fxh(128 - 10 * extra_lines))
+            evo_frame.translate(fxw(22), fxh(128 - 10 * extra_lines))
 
         # image
         loader = SpriteLoader()

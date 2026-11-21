@@ -13,13 +13,14 @@ from tuxemon.database.runtime import db
 from tuxemon.db import MonsterModel
 from tuxemon.locale.locale import T
 from tuxemon.menu.menu import PygameMenuState
+from tuxemon.menu.theme import TuxemonArrowSelection
 from tuxemon.platform.const import buttons
 from tuxemon.platform.const.graphics import (
     BG_JOURNAL,
     DIMGRAY_COLOR,
     SEA_BLUE_COLOR,
 )
-from tuxemon.tools import fix_measure, transform_resource_filename
+from tuxemon.tools import transform_resource_filename
 
 if TYPE_CHECKING:
     from tuxemon.base_client import BaseClient
@@ -39,14 +40,19 @@ class JournalState(PygameMenuState):
     def add_menu_items(self, menu: Menu, monsters: list[MonsterModel]) -> None:
         scale_int = self.client.context.scaling.scale_int
         btn_x_offset = scale_int(4)
-        btn_y_offset = fix_measure(menu._height, 0.01)
+        # pygame_menu starts each column 1 screen px down; take it back off so
+        # the list sits on the nominal pixel grid.
+        btn_y_offset = scale_int(3) - 1
         menu._column_max_width = [None, None]
+        # Don't let pygame_menu centre the list vertically: that offset is
+        # rarely a whole number of nominal pixels.
+        menu._auto_centering = False
 
         arbata_font = transform_resource_filename(
             "font", self.client.config.locale.arbata_font_file
         )
-        # Pull entries 3 nominal px closer together than the theme spacing.
-        entry_margin = (0, -scale_int(3))
+        # Pull entries 5 nominal px closer together than the theme spacing.
+        entry_margin = (0, -scale_int(5))
 
         def change_state(state: str, **kwargs: Any) -> MenuGameObj:
             return partial(self.client.push_state, state, **kwargs)
@@ -85,11 +91,11 @@ class JournalState(PygameMenuState):
                         margin=entry_margin,
                         underline=True,
                         underline_color=SEA_BLUE_COLOR,
-                        # 1.5 nominal px above the default centre-line offset
-                        # sits the underline just under the Arbata text.
-                        underline_offset=round(
-                            self.client.context.scaling.scale_float(-1.5)
-                        ),
+                        # 1 nominal px below the capitals. pygame centres a
+                        # thick line on its y, so shift by half its width
+                        # to put the line's top edge on the pixel grid.
+                        underline_offset=scale_int(-2)
+                        + (scale_int(1) - 1) // 2,
                         underline_width=self.client.context.scaling.scale_int(
                             1
                         ),
@@ -163,6 +169,11 @@ class JournalState(PygameMenuState):
         theme.widget_font_shadow = False
         theme.scrollarea_position = POSITION_EAST
         theme.widget_alignment = ALIGN_LEFT
+        # Arbata capitals sit 6 nominal px into each entry (2 px padding plus
+        # 4 px above the capitals), so lower the 9 px cursor 5 px to centre it.
+        theme.widget_selection_effect = TuxemonArrowSelection(
+            client.context.scaling.scale_int(1), y_offset_nominal=5
+        )
         self._menu_config["theme"] = theme
 
         self.add_menu_items(self.menu, monster_list)

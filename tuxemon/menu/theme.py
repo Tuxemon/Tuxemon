@@ -29,7 +29,7 @@ _theme: Theme | None = None
 
 
 class TuxemonArrowSelection(Selection):
-    def __init__(self, scale_factor: int) -> None:
+    def __init__(self, scale_factor: int, y_offset_nominal: int = 0) -> None:
         # Call the constructor of the Selection providing the left, right,
         # top and bottom margins of your Selection effect box.
         #
@@ -52,6 +52,9 @@ class TuxemonArrowSelection(Selection):
             margin_bottom=0,
         )
         self.arrow = arrow
+        # Optional vertical nudge, in nominal pixels, for menus whose text
+        # doesn't start at the top of the widget (e.g. Arbata).
+        self._y_offset = y_offset_nominal * scale_factor
 
     def draw(self, surface: Surface, widget: Widget) -> Selection:
         """
@@ -62,7 +65,7 @@ class TuxemonArrowSelection(Selection):
         widget_rect = widget.get_rect()
         position = (
             widget_rect.topleft[0] - self.arrow.get_width(),
-            widget_rect.topleft[1],
+            widget_rect.topleft[1] + self._y_offset,
         )
 
         self.arrow.draw(

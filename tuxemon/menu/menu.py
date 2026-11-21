@@ -92,8 +92,7 @@ class FontSettings:
             big=s(FONT_SIZE_BIG),
             bigger=s(FONT_SIZE_BIGGER),
             biggest=s(FONT_SIZE_BIGGEST),
-            # Arbata's design size isn't a whole number, so round it.
-            arbata=round(context.scaling.scale_float(FONT_SIZE_ARBATA)),
+            arbata=s(FONT_SIZE_ARBATA),
         )
 
 

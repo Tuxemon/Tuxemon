@@ -19,7 +19,7 @@ from tuxemon.platform.const.graphics import (
     DIMGRAY_COLOR,
     SEA_BLUE_COLOR,
 )
-from tuxemon.tools import fix_measure
+from tuxemon.tools import fix_measure, transform_resource_filename
 
 if TYPE_CHECKING:
     from tuxemon.base_client import BaseClient
@@ -42,6 +42,10 @@ class JournalState(PygameMenuState):
         btn_y_offset = fix_measure(menu._height, 0.01)
         menu._column_max_width = [None, None]
 
+        arbata_font = transform_resource_filename(
+            "font", self.client.config.locale.arbata_font_file
+        )
+
         def change_state(state: str, **kwargs: Any) -> MenuGameObj:
             return partial(self.client.push_state, state, **kwargs)
 
@@ -59,7 +63,8 @@ class JournalState(PygameMenuState):
                             monster=mon,
                             source=self.name,
                         ),
-                        font_size=self.font_type.biggest,
+                        font_size=self.font_type.arbata,
+                        font_name=arbata_font,
                         button_id=mon.slug,
                     ).translate(btn_x_offset, btn_y_offset)
                 elif self.char.tuxepedia.is_caught(mon.slug):
@@ -71,7 +76,8 @@ class JournalState(PygameMenuState):
                             monster=mon,
                             source=self.name,
                         ),
-                        font_size=self.font_type.biggest,
+                        font_size=self.font_type.arbata,
+                        font_name=arbata_font,
                         button_id=mon.slug,
                         underline=True,
                         underline_color=SEA_BLUE_COLOR,
@@ -86,7 +92,8 @@ class JournalState(PygameMenuState):
                 label = f"{mon.txmn_id}. -----"
                 lab: Any = menu.add.label(
                     label,
-                    font_size=self.font_type.biggest,
+                    font_size=self.font_type.arbata,
+                    font_name=arbata_font,
                     font_color=DIMGRAY_COLOR,
                     label_id=mon.slug,
                 )

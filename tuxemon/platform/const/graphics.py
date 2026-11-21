@@ -79,3 +79,7 @@ FONT_SIZE = 5
 FONT_SIZE_BIG = 6
 FONT_SIZE_BIGGER = 7
 FONT_SIZE_BIGGEST = 8
+# Arbata is a pixel font and only renders crisply at its design size: an em of
+# 14pt at 96 DPI, i.e. 56/3 (~18.67) at display scale 1, where each font pixel
+# lands on one screen pixel and a capital is 7 pixels tall.
+FONT_SIZE_ARBATA = 56 / 3

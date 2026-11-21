@@ -39,6 +39,10 @@ class JournalInfoState(PygameMenuState):
             "font", self.client.config.locale.thin_font_file
         )
 
+        arbata_font = transform_resource_filename(
+            "font", self.client.config.locale.arbata_font_file
+        )
+
         orig_w = menu._width
         orig_h = menu._height
 
@@ -263,9 +267,10 @@ class JournalInfoState(PygameMenuState):
         lab9: Any = menu.add.label(
             title=desc,
             label_id="description",
-            font_size=self.font_type.biggest,
+            font_size=self.font_type.arbata,
+            font_name=arbata_font,
             wordwrap=True,
-            leading=fxh(10),
+            leading=fxh(14),
             align=ALIGN_LEFT,
             padding=0,
         )

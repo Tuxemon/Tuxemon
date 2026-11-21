@@ -263,14 +263,18 @@ class JournalInfoState(PygameMenuState):
             padding=0,
         )
         desc_frame._relax = True
-        desc_frame.translate(fxw(8), fxh(85))
+        desc_frame.translate(fxw(8), fxh(81))
         lab9: Any = menu.add.label(
-            title=desc,
+            # pygame_menu sizes a wrapped label as lines * leading, which is
+            # shorter than Arbata's 14 px line box at this leading, so the
+            # last line would lose its bottom rows. A trailing blank line
+            # gives it room.
+            title=desc + "\n",
             label_id="description",
             font_size=self.font_type.arbata,
             font_name=arbata_font,
             wordwrap=True,
-            leading=fxh(14),
+            leading=fxh(10),
             align=ALIGN_LEFT,
             padding=0,
         )

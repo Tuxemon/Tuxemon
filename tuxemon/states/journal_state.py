@@ -45,6 +45,8 @@ class JournalState(PygameMenuState):
         arbata_font = transform_resource_filename(
             "font", self.client.config.locale.arbata_font_file
         )
+        # Pull entries 3 nominal px closer together than the theme spacing.
+        entry_margin = (0, -scale_int(3))
 
         def change_state(state: str, **kwargs: Any) -> MenuGameObj:
             return partial(self.client.push_state, state, **kwargs)
@@ -66,6 +68,7 @@ class JournalState(PygameMenuState):
                         font_size=self.font_type.arbata,
                         font_name=arbata_font,
                         button_id=mon.slug,
+                        margin=entry_margin,
                     ).translate(btn_x_offset, btn_y_offset)
                 elif self.char.tuxepedia.is_caught(mon.slug):
                     menu.add.button(
@@ -79,10 +82,13 @@ class JournalState(PygameMenuState):
                         font_size=self.font_type.arbata,
                         font_name=arbata_font,
                         button_id=mon.slug,
+                        margin=entry_margin,
                         underline=True,
                         underline_color=SEA_BLUE_COLOR,
-                        underline_offset=self.client.context.scaling.scale_int(
-                            1
+                        # 1.5 nominal px above the default centre-line offset
+                        # sits the underline just under the Arbata text.
+                        underline_offset=round(
+                            self.client.context.scaling.scale_float(-1.5)
                         ),
                         underline_width=self.client.context.scaling.scale_int(
                             1
@@ -96,6 +102,7 @@ class JournalState(PygameMenuState):
                     font_name=arbata_font,
                     font_color=DIMGRAY_COLOR,
                     label_id=mon.slug,
+                    margin=entry_margin,
                 )
                 lab.translate(btn_x_offset, btn_y_offset)
 

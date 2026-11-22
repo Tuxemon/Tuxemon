@@ -19,14 +19,25 @@ class WastingEffect(CoreEffect):
     Applies the "wasting" status effect.
 
     This effect causes a monster to lose a fraction of its maximum HP each
-    turn, with the damage increasing over time. The amount of damage scales
-    based on the number of turns the status has been active.
+    turn, with the damage increasing over time. The damage scales with the
+    number of rounds the status has performed, counted by the effect itself
+    on the status's round counter (``advance_round`` / ``nr_round``).
+
+    The round is counted at the start of every ``PERFORM_STATUS`` phase,
+    before deciding whether to deal damage, so rounds in which no damage is
+    dealt still count toward the ramp. The turn counter (``nr_turn``) is
+    not used: it only runs for statuses with a duration, and it is already
+    on turn 2 by the first time the status performs, which would open the
+    ramp at a double dose.
 
     **Parameters**
 
       - ``divisor``: Integer divisor used to calculate base damage.
       - Example: With ``divisor = 16``, the monster takes
-        ``(max_hp / 16) * nr_turn`` damage each turn.
+        ``(max_hp / 16) * n`` damage in the n-th round: one dose in the
+        first, two in the second and so on, so a monster at full HP
+        faints in the sixth round. Re-applying the status (stacking)
+        restarts the ramp.
 
     **Example**
 
@@ -45,11 +56,12 @@ class WastingEffect(CoreEffect):
     ) -> StatusEffectResult:
         done: bool = False
         host = status.host
-        if (
-            status.has_phase(EffectPhase.PERFORM_STATUS)
-            and not host.is_fainted
-        ):
-            damage = (host.hp // self.divisor) * status.nr_turn
-            host.current_hp = max(0, host.current_hp - damage)
-            done = True
+        if status.has_phase(EffectPhase.PERFORM_STATUS):
+            # count the round before anything can skip the damage, so the
+            # ramp keeps climbing through rounds that deal none
+            status.advance_round()
+            if not host.is_fainted:
+                damage = (host.hp // self.divisor) * status.nr_round
+                host.current_hp = max(0, host.current_hp - damage)
+                done = True
         return StatusEffectResult(name=status.name, success=done)

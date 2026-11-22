@@ -847,11 +847,6 @@ class CombatState(CombatAnimations):
             if status.use_success:
                 template = status.use_success
                 message = T.format(template, context)
-            # first turn status
-            if status.nr_turn == 1 and status.gain_cond:
-                first_turn = status.gain_cond
-                first = T.format(first_turn, context)
-                message = first + "\n" + message
         # not successful statuses
         if not result.success:
             if status.use_failure:

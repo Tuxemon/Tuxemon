@@ -1030,6 +1030,22 @@ class CombatState(CombatAnimations):
                     action_time,
                 )
 
+    def _retarget_to_ally(self, fainted: Monster) -> None:
+        """In a double battle, redirect queued actions targeting a fainted monster to its surviving ally."""
+        try:
+            npc = self.combat_session.field_monsters.get_npc_for_monster(
+                fainted
+            )
+        except ValueError:
+            return
+        allies = [
+            m
+            for m in self.combat_session.field_monsters.get_monsters(npc)
+            if m is not fainted and not m.is_fainted
+        ]
+        if allies:
+            self.combat_session.action_queue.swap(fainted, allies[0])
+
     def handle_monster_defeat(self, monster: Monster) -> None:
         """
         Handles the defeat of a monster, removing it from the game and
@@ -1038,6 +1054,7 @@ class CombatState(CombatAnimations):
         Parameters:
             monster: Monster that was defeated.
         """
+        self._retarget_to_ally(monster)
         self.remove_monster_actions_from_queue(monster)
         self.award_experience_and_money(monster)
         # Remove monster from damage map

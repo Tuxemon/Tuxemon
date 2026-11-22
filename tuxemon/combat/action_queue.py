@@ -204,6 +204,9 @@ class ActionQueue:
         for action in self._action_queue:
             if action.target is old:
                 action.target = new
+        for _, action in self._pending_queue:
+            if action.target is old:
+                action.target = new
 
     def rewrite(
         self, monster: Monster, method: Technique | Item | Status

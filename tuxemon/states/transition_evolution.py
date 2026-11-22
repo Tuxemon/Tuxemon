@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+from collections.abc import Sequence
 from typing import TYPE_CHECKING, Any, ClassVar
 
 from pygame.surface import Surface
@@ -46,10 +47,12 @@ class EvolutionTransition(State):
         evolved: str,
         is_devolution: bool = False,
         character: NPC | None = None,
+        techniques: Sequence[str] | None = None,
         **kwargs: Any,
     ) -> None:
         self.is_devolution = is_devolution
         self.character = character
+        self.techniques = list(techniques or [])
         super().__init__(client=client, **kwargs)
         self.original_monster = self._get_monster(original)
         self.evolved_monster = self._get_monster(evolved)
@@ -201,8 +204,18 @@ class EvolutionTransition(State):
             "evolve": T.format(self.evolved),
         }
         msgid = "devolution_ended" if self.is_devolution else "evolution_ended"
-        msg = T.format(msgid, param)
-        open_dialog(self.client, [msg], dialog_speed="max")
+        messages = [T.format(msgid, param)]
+
+        if self.techniques:
+            techs = ", ".join(T.translate(tech) for tech in self.techniques)
+            messages.append(
+                T.format(
+                    "tuxemon_new_tech",
+                    {"name": T.format(self.evolved), "tech": techs},
+                )
+            )
+
+        open_dialog(self.client, messages, dialog_speed="max")
         self.dialog_opened = True
 
     def process_event(self, event: PlayerInput) -> PlayerInput | None:

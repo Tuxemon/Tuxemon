@@ -93,7 +93,10 @@ class EvolutionAction(EventAction):
         evolved.transfer_properties_from(monster)
         monster.evolution_handler.evolve_monster(evolved)
         self.client.push_state(
-            "EvolutionTransition", original=monster.slug, evolved=evolved.slug
+            "EvolutionTransition",
+            original=monster.slug,
+            evolved=evolved.slug,
+            techniques=evolved.moves.pop_unannounced(),
         )
 
     def process_pending_evolutions(self) -> None:
@@ -109,6 +112,7 @@ class EvolutionAction(EventAction):
 
         if not slug:
             monster.waiting_to_evolve = False
+            monster.evolution_level_start = None
             self.stop()
             return
 

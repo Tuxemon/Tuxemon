@@ -309,3 +309,119 @@ def test_remove_item_techniques_never_negative_capacity():
     item.granted_techniques = ["fireball"]
     handler.remove_item_techniques(monster, item)
     assert monster.max_moves == 0
+
+
+# --- telling the player about learned techniques ---
+
+
+@patch.object(MonsterMovesHandler, "is_eligible", return_value=True)
+def test_learn_queues_technique_for_announcement(_mock, handler, monster):
+    handler.learn(monster, MagicMock(slug="ram"))
+    handler.learn(monster, MagicMock(slug="ember"))
+    assert handler.pop_unannounced() == ["ram", "ember"]
+    assert handler.pop_unannounced() == []
+
+
+@patch.object(MonsterMovesHandler, "is_eligible", return_value=True)
+def test_learn_without_announce_queues_nothing(_mock, handler, monster):
+    handler.learn(monster, MagicMock(slug="ram"), announce=False)
+    assert [m.slug for m in handler.moves] == ["ram"]
+    assert handler.pop_unannounced() == []
+
+
+@patch.object(MonsterMovesHandler, "is_eligible", return_value=True)
+def test_failed_learn_queues_nothing(_mock, handler, monster):
+    handler.moves = [MagicMock(slug="ram")]
+    handler.learn(monster, MagicMock(slug="ram"))
+    assert handler.pop_unannounced() == []
+
+
+@patch.object(MonsterMovesHandler, "is_eligible", return_value=True)
+def test_forgotten_technique_not_announced(_mock, handler, monster):
+    ram = MagicMock(slug="ram")
+    handler.learn(monster, ram)
+    handler.learn(monster, MagicMock(slug="ember"))
+    handler.forget(ram)
+    assert handler.pop_unannounced() == ["ember"]
+
+
+@patch.object(MonsterMovesHandler, "is_eligible", return_value=True)
+def test_mark_announced(_mock, handler, monster):
+    handler.learn(monster, MagicMock(slug="ram"))
+    handler.learn(monster, MagicMock(slug="ember"))
+    handler.mark_announced(["ram"])
+    assert handler.pop_unannounced() == ["ember"]
+
+
+@patch.object(MonsterMovesHandler, "is_eligible", return_value=True)
+def test_transfer_carries_unannounced(_mock, handler, monster):
+    handler.learn(monster, MagicMock(slug="ram"))
+    other = MonsterMovesHandler()
+    other.transfer_learned_moves_from(handler)
+    assert other.pop_unannounced() == ["ram"]
+
+
+def test_set_moves_queues_nothing(handler, monster):
+    # the moves a monster is created with aren't news to the player
+    moveset = [
+        MagicMock(
+            level_learned=1,
+            technique="technique1",
+            evolution_stage_learned=None,
+            learning_method=LearningMethod.LEVEL_UP,
+        ),
+    ]
+    with (
+        patch("tuxemon.technique.technique.Technique.create") as mock_create,
+        patch.object(MonsterMovesHandler, "is_eligible", return_value=True),
+    ):
+        mock_create.side_effect = lambda slug: MagicMock(slug=slug)
+        handler.set_moveset(moveset)
+        handler.set_moves(monster)
+    assert [m.slug for m in handler.moves] == ["technique1"]
+    assert handler.pop_unannounced() == []
+
+
+@patch.object(MonsterMovesHandler, "is_eligible", return_value=True)
+def test_world_state_announces_party_techniques(_mock, monster):
+    from tuxemon.states.world_state import WorldState
+
+    learner = MagicMock()
+    learner.name = "Rockitten"
+    learner.moves = MonsterMovesHandler()
+    learner.moves.learn(monster, MagicMock(slug="ram"))
+    learner.moves.learn(monster, MagicMock(slug="ember"))
+    quiet = MagicMock()
+    quiet.moves = MonsterMovesHandler()
+
+    state = MagicMock()
+    state.client.current_state = state
+    state.player.monsters = [learner, quiet]
+
+    with patch("tuxemon.states.world_state.open_dialog") as dialog:
+        WorldState.announce_learned_techniques(state)
+        WorldState.announce_learned_techniques(state)
+
+    dialog.assert_called_once()
+    (message,) = dialog.call_args.args[1]
+    assert "Rockitten" in message
+    assert learner.moves.pop_unannounced() == []
+
+
+@patch.object(MonsterMovesHandler, "is_eligible", return_value=True)
+def test_world_state_waits_until_on_top(_mock, monster):
+    from tuxemon.states.world_state import WorldState
+
+    learner = MagicMock()
+    learner.moves = MonsterMovesHandler()
+    learner.moves.learn(monster, MagicMock(slug="ram"))
+
+    state = MagicMock()
+    state.client.current_state = MagicMock()  # e.g. a menu is open
+    state.player.monsters = [learner]
+
+    with patch("tuxemon.states.world_state.open_dialog") as dialog:
+        WorldState.announce_learned_techniques(state)
+
+    dialog.assert_not_called()
+    assert learner.moves.pop_unannounced() == ["ram"]

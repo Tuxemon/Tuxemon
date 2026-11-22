@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import logging
-from collections.abc import Mapping, Sequence
+from collections.abc import Iterable, Mapping, Sequence
 from typing import TYPE_CHECKING, Any
 from uuid import UUID
 
@@ -31,6 +31,8 @@ class MonsterMovesHandler:
         self.moves = moves if moves is not None else []
         self.moveset = list(moveset) if moveset is not None else []
         self.pending_moves: dict[UUID, list[str]] = {}
+        # techniques learned that the player hasn't been told about yet
+        self.unannounced: list[str] = []
 
     @property
     def current_moves(self) -> list[Technique]:
@@ -54,6 +56,26 @@ class MonsterMovesHandler:
         self.pending_moves = {
             iid: list(slugs) for iid, slugs in other.pending_moves.items()
         }
+        self.unannounced = list(other.unannounced)
+
+    def pop_unannounced(self) -> list[str]:
+        """
+        Returns the techniques learned since the player was last told, and
+        marks them as told.
+
+        Techniques forgotten again in the meantime are left out.
+        """
+        known = {move.slug for move in self.moves}
+        slugs = [slug for slug in self.unannounced if slug in known]
+        self.unannounced = []
+        return slugs
+
+    def mark_announced(self, slugs: Iterable[str]) -> None:
+        """Marks techniques the player has been told about by other means."""
+        announced = set(slugs)
+        self.unannounced = [
+            slug for slug in self.unannounced if slug not in announced
+        ]
 
     def add_move(self, technique: Technique) -> None:
         """
@@ -91,6 +113,7 @@ class MonsterMovesHandler:
         max_moves: int | None = None,
         method: LearningMethod | None = None,
         ignore_eligibility: bool = False,
+        announce: bool = True,
     ) -> bool:
         """
         Adds a technique to this tuxemon's moveset, after checking for eligibility.
@@ -101,6 +124,9 @@ class MonsterMovesHandler:
             max_moves: The maximum number of moves the monster can have.
             method: The method by which the monster learns the move.
             ignore_eligibility: If True, skips the eligibility check.
+            announce: If True, the technique is queued so the player gets
+                told about it (see pop_unannounced). False for the moves a
+                monster is created with.
 
         Returns:
             True if the technique was learned, False otherwise.
@@ -126,6 +152,8 @@ class MonsterMovesHandler:
             self.moves.append(technique)
         else:
             self.moves.append(technique)
+        if announce:
+            self.unannounced.append(technique.slug)
         return True
 
     def can_learn(
@@ -286,7 +314,11 @@ class MonsterMovesHandler:
         for move_name in moves_to_learn:
             technique = Technique.create(move_name)
             if self.learn(
-                monster, technique, max_moves=max_moves, method=method
+                monster,
+                technique,
+                max_moves=max_moves,
+                method=method,
+                announce=False,
             ):
                 logger.debug(
                     f"Monster '{monster.slug}' learned technique: {technique.slug} at level {monster.level} and stage {monster.stage}"

@@ -85,10 +85,8 @@ class MonsterExperience:
     @property
     def experience_current_level(self) -> int:
         """The total experience accumulated since reaching the current level."""
-        if self.level <= 1:
-            return self.total_experience
         exp_to_current = self.experience_required()
-        return self._total_experience - exp_to_current
+        return max(0, self._total_experience - exp_to_current)
 
     @property
     def experience_for_next_level(self) -> int:

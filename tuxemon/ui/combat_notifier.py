@@ -63,6 +63,11 @@ class TextAnimationManager:
     def is_animating(self) -> bool:
         return self._text_time_left > 0 or bool(self.text_queue)
 
+    @property
+    def has_pending_xp(self) -> bool:
+        """Whether experience messages are batched up but not yet queued."""
+        return bool(self._xp_messages)
+
     def add_xp_message(self, message: str) -> None:
         self._xp_messages.append(message)
         logger.debug(
@@ -70,15 +75,34 @@ class TextAnimationManager:
         )
 
     def trigger_xp_animation(
-        self, alert_func: Callable[..., None], text_area: TextArea
+        self,
+        alert_func: Callable[..., None],
+        text_area: TextArea,
+        on_shown: Callable[[], None] | None = None,
     ) -> float | None:
+        """
+        Queue the batched experience messages behind whatever is already
+        waiting to be said.
+
+        Parameters:
+            on_shown: Called when the message actually reaches the screen,
+                which is only once the queue ahead of it has drained. Use it
+                for anything that should accompany the message rather than
+                race it, such as the EXP bars.
+        """
         if not self._xp_messages:
             return None
 
         combined_message = "\n".join(self._xp_messages)
         duration = self.compute_text_anim_time(combined_message)
-        timed_text_animation = partial(alert_func, combined_message, text_area)
-        self.add_text_animation(timed_text_animation, duration)
+        alert = partial(alert_func, combined_message, text_area)
+
+        def show() -> None:
+            alert()
+            if on_shown is not None:
+                on_shown()
+
+        self.add_text_animation(show, duration)
         self._xp_messages.clear()
         return duration
 
@@ -133,16 +157,23 @@ class CombatNotifier:
             )
 
     def trigger_xp_and_wait_for_input(
-        self, text_area: TextArea, delay: float = 3.0
+        self,
+        text_area: TextArea,
+        delay: float = 3.0,
+        on_shown: Callable[[], None] | None = None,
     ) -> None:
         """
         Triggers XP animation and schedules input block based on actual animation duration.
+
+        Parameters:
+            on_shown: Called when the experience message reaches the screen.
         """
 
         def trigger_and_block() -> None:
             duration = self.text_anim.trigger_xp_animation(
                 self.alert_manager.alert,
                 text_area,
+                on_shown=on_shown,
             )
             if duration and self._lock_update:
                 self.state.task(

@@ -90,3 +90,26 @@ def test_trigger_xp_schedules_one_task(notifier, state, text_area):
     notifier.text_anim.add_xp_message("XP +10")
     notifier.trigger_xp_and_wait_for_input(text_area, delay=1.0)
     assert state.task.call_count == 1
+
+
+def test_trigger_xp_forwards_the_shown_callback(notifier, state, text_area):
+    """
+    The callback has to survive the notifier's own delay and land on the
+    queued message, not fire when the message is merely scheduled.
+    """
+    shown = []
+    notifier.text_anim.add_xp_message("XP +10")
+    notifier.trigger_xp_and_wait_for_input(
+        text_area, delay=1.0, on_shown=lambda: shown.append(True)
+    )
+
+    # the notifier only scheduled its own trigger; nothing has been said yet
+    trigger = state.task.call_args_list[0][0][0]
+    assert not shown
+    assert not notifier.text_anim.text_queue
+
+    trigger()  # the delay elapses and the message joins the queue
+    assert not shown
+
+    notifier.text_anim.update_text_animation(0.1)
+    assert shown == [True]

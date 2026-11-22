@@ -55,6 +55,7 @@ class Bar:
         """
         self.context = context
         self._value = max(0.0, min(1.0, value))
+        self._target_value = self._value
         self.border_filename = border_filename
         self.fg_color = fg_color
         self.bg_color = bg_color
@@ -75,6 +76,31 @@ class Bar:
     def value(self, new_value: float) -> None:
         """Sets the value of the bar with clamping between 0.0 and 1.0."""
         self._value = max(0.0, min(1.0, new_value))
+
+    @property
+    def target_value(self) -> float:
+        """
+        The value this bar is expected to settle on.
+
+        Animations move :attr:`value` towards this over time, so it is the
+        value the bar *means* right now, even mid-animation. Comparing it
+        against the model lets a passive redraw tell "an animation is on its
+        way to the right place" apart from "this bar is simply stale".
+        """
+        return self._target_value
+
+    @target_value.setter
+    def target_value(self, new_value: float) -> None:
+        self._target_value = max(0.0, min(1.0, new_value))
+
+    def sync(self, new_value: float) -> None:
+        """
+        Snap the bar to ``new_value``, discarding any pending target.
+
+        Use when no animation is going to deliver the bar to the right value.
+        """
+        self.value = new_value
+        self.target_value = new_value
 
     def load_graphics(self) -> None:
         """Loads the border image."""
@@ -164,7 +190,7 @@ class HpBar(Bar):
 class ExpBar(Bar):
     """EXP bar for UI elements."""
 
-    def __init__(self, context: DisplayContext, value: float = 1.0) -> None:
+    def __init__(self, context: DisplayContext, value: float = 0.0) -> None:
         """
         Initializes the EXP bar with a given value.
 

@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import logging
 from abc import ABC
+from collections.abc import Callable
 from functools import partial
 from typing import TYPE_CHECKING, Any, ClassVar
 
@@ -26,6 +27,7 @@ from tuxemon.menu.menu import Menu
 from tuxemon.monster.renderer import MonsterRenderer
 from tuxemon.platform.const.sizes import PARTY_LIMIT
 from tuxemon.sprite import CaptureDeviceSprite, HordeSprite, Sprite
+from tuxemon.state.animation_transition import AnimationTransition
 from tuxemon.ui.combat_bars import CombatBars
 from tuxemon.ui.combat_hud import CombatLayoutManager
 from tuxemon.ui.combat_layout import LayoutManager
@@ -53,6 +55,55 @@ HUD_LAYER = 100
 # finished travelling there.
 HUD_SLIDE_DELAY = 1.3
 HUD_SLIDE_DURATION = 2.0
+
+# EXP bar pacing.
+#
+# A cubic ease-out, rather than the quintic the rest of the game defaults to
+# (see config.py). Both open fast and decelerate to a stop, but a quintic
+# opens at five times its average speed against a cubic's three, and spends
+# its last 40% of runtime covering the final 1% of travel against a cubic's
+# 21%. That suits a sprite thrown across the screen; a gauge wants to arrive
+# rather than creep, and matching the two curves' opening speed makes the
+# cubic 40% shorter for the same visible fill.
+#
+# Sweep time is proportional to the distance travelled, which holds that
+# opening speed at a constant 3 / EXP_BAR_SWEEP_TIME bar-widths per second
+# however much experience was gained; raise the sweep time to lower it.
+EXP_BAR_TRANSITION = "out_cubic"
+EXP_BAR_SWEEP_TIME = 2.4  # seconds for a full empty -> full sweep
+EXP_BAR_MIN_SWEEP_TIME = 0.6  # floor, so a tiny gain is still readable
+# A gain worth more than a level or so would run for ten seconds at that pace,
+# which is a long time to hold up the battle, so the whole animation is capped
+# and its sweeps scaled down to fit. Only a big multi-level gain hits this.
+EXP_BAR_MAX_TOTAL_TIME = 4.0
+# The ease-out already coasts at the top for a while, so this is only a garnish
+# on top of it rather than the whole pause before the bar wraps round.
+EXP_BAR_FULL_HOLD = 0.2
+
+
+def _settle_fraction(transition: str, covered: float = 0.99) -> float:
+    """
+    How far into an eased animation the travel is, for practical purposes,
+    over.
+
+    An ease-out creeps towards its target long after it looks stopped -- a
+    quintic spends its last 40% moving the final 1%. Anything scheduled to
+    follow the animation should line up with this point, not its nominal end,
+    or it waits through motion nobody can see.
+    """
+    ease = getattr(AnimationTransition, transition)
+    steps = 1000
+    return next(
+        (
+            step / steps
+            for step in range(steps + 1)
+            if ease(step / steps) >= covered
+        ),
+        1.0,
+    )
+
+
+EXP_BAR_SETTLE = _settle_fraction(EXP_BAR_TRANSITION)
 
 
 def toggle_visible(sprite: Sprite) -> None:
@@ -95,8 +146,9 @@ class CombatAnimations(Menu[None], ABC):
             shadow_text_func=self.shadow_text,
         )
         self.background_sprite: Sprite | None = None
-        self.monsters_just_leveled_up: dict[str, bool] = {}
-        self.monsters_leftover_xp: dict[str, float] = {}
+        # Levels each monster has gained but not yet shown on its EXP bar.
+        # Keyed by the monster itself: two party members can share a slug.
+        self.pending_level_ups: dict[Monster, int] = {}
         env = self.client.environment_manager.get_active_environment()
         if env is None:
             raise RuntimeError(
@@ -273,6 +325,7 @@ class CombatAnimations(Menu[None], ABC):
             self.sprite_map.remove_sprite(monster)
             self.status_icons.remove_monster_icons(monster)
             self.hud_manager.delete_hud(monster)
+            self.bars.remove_monster(monster)
 
         self.animate_monster_leave(monster)
         self.task(kill_monster, interval=2)
@@ -316,62 +369,172 @@ class CombatAnimations(Menu[None], ABC):
         ani.schedule(self.refresh_ui, ScheduleType.ON_FINISH)
         self.animations.add(ani)
 
-    def animate_exp(self, monster: Monster) -> None:
+    def claim_exp_bar(self, monster: Monster) -> None:
+        """
+        Reserve a monster's EXP bar for an animation that has not started yet.
+
+        Experience is granted well before ``animate_exp`` runs; without this
+        the redraws in between would see the bar disagree with the model and
+        snap it straight to the new value, swallowing the animation.
+        """
         exp_bar = self.bars.get_exp_bar(monster)
-        value_for_new_level = monster.experience_progress_percent
+        self.bars.claim(exp_bar, monster.experience_progress_percent)
 
-        def register(ani: Animation) -> Animation:
-            ani.schedule(self.refresh_ui, ScheduleType.ON_UPDATE)
-            self.animations.add(ani)
-            return ani
+    @staticmethod
+    def exp_bar_sweeps(
+        start: float, target: float, levels_gained: int
+    ) -> list[tuple[float, float, bool, float]]:
+        """
+        Plan the sweeps that walk an EXP bar from ``start`` to ``target``.
 
-        # Level-up case
-        if self.monsters_just_leveled_up.get(monster.slug, False):
-            # leftover percent is already correct in the model
-            leftover = value_for_new_level
+        Each level gained gets a sweep of its own: the bar fills to the top,
+        pauses, wraps back to empty and carries on, so a multi-level gain
+        reads as several level-ups rather than one jump. A gain large enough
+        to outrun ``EXP_BAR_MAX_TOTAL_TIME`` keeps all its sweeps, scaled to
+        fit rather than dropped.
 
-            def animate_new_level_progress() -> Animation:
-                # do NOT reset exp_bar.value to 0
-                ani = register(
-                    self.animate(
-                        exp_bar,
-                        value=leftover,
-                        duration=0.7,
-                        transition="linear",
-                        delay=0.5,
-                    )
-                )
-                ani.schedule(self.refresh_ui, ScheduleType.ON_FINISH)
-                return ani
+        Returns:
+            One ``(value, duration, from_empty, delay)`` tuple per sweep.
+        """
 
-            # optional: keep the fill-to-max animation
-            def fill_to_max() -> Animation:
-                ani = register(
-                    self.animate(
-                        exp_bar,
-                        value=1.0,
-                        duration=0.3,
-                        transition="linear",
-                    )
-                )
-                ani.schedule(self.refresh_ui, ScheduleType.ON_FINISH)
-                return ani
+        def pace(distance: float) -> float:
+            """
+            Time to travel `distance`, in proportion to it and with a floor.
 
-            # chain both animations
-            self.chain_animations(fill_to_max, animate_new_level_progress)
-            self.monsters_just_leveled_up[monster.slug] = False
+            Scaling the time with the distance is what keeps the ease-out's
+            opening flick at one speed: a bigger gain takes longer rather
+            than moving faster.
+            """
+            return max(
+                EXP_BAR_MIN_SWEEP_TIME, abs(distance) * EXP_BAR_SWEEP_TIME
+            )
 
-        else:
-            # normal XP gain
-            ani = register(
-                self.animate(
-                    exp_bar,
-                    value=value_for_new_level,
-                    duration=0.7,
-                    transition="out_quint",
+        sweeps: list[tuple[float, float, bool, float]] = []
+        for wrap in range(levels_gained):
+            # top up the bar for the level that was just completed...
+            from_empty = wrap > 0
+            distance = 1.0 if from_empty else 1.0 - start
+            sweeps.append(
+                (
+                    1.0,
+                    pace(distance),
+                    from_empty,
+                    EXP_BAR_FULL_HOLD if from_empty else 0.0,
                 )
             )
-            ani.schedule(self.refresh_ui, ScheduleType.ON_FINISH)
+
+        # ...then fill in the progress made towards the level after it
+        wrapped = levels_gained > 0
+        distance = target if wrapped else target - start
+        sweeps.append(
+            (
+                target,
+                pace(distance),
+                wrapped,
+                EXP_BAR_FULL_HOLD if wrapped else 0.0,
+            )
+        )
+
+        total = sum(duration + delay for _, duration, _, delay in sweeps)
+        if total <= EXP_BAR_MAX_TOTAL_TIME:
+            return sweeps
+
+        # Too long to sit through: play the same sweeps, proportionally
+        # quicker, so the shape of the gain still reads.
+        scale = EXP_BAR_MAX_TOTAL_TIME / total
+        return [
+            (value, duration * scale, from_empty, delay * scale)
+            for value, duration, from_empty, delay in sweeps
+        ]
+
+    def _pending_exp_sweeps(
+        self, monster: Monster
+    ) -> list[tuple[float, float, bool, float]]:
+        """
+        The sweeps ``animate_exp`` will play for the gain awaiting a monster.
+
+        Only valid before ``animate_exp`` runs: it consumes the pending levels
+        and moves the bar. Callers use it to schedule around the animation.
+        """
+        exp_bar = self.bars.get_exp_bar(monster)
+        return self.exp_bar_sweeps(
+            exp_bar.value,
+            monster.experience_progress_percent,
+            self.pending_level_ups.get(monster, 0),
+        )
+
+    def exp_animation_time(self, monster: Monster) -> float:
+        """
+        When the EXP bar comes to rest, in seconds from the start of the
+        animation.
+
+        This is where the motion ends rather than where the animation does:
+        the final sweep's ease-out is still creeping imperceptibly after it,
+        and waiting that out would be dead time (see _settle_fraction).
+        """
+        *earlier, last = self._pending_exp_sweeps(monster)
+        _, last_duration, _, last_delay = last
+        return (
+            sum(duration + delay for _, duration, _, delay in earlier)
+            + last_delay
+            + last_duration * EXP_BAR_SETTLE
+        )
+
+    def exp_first_wrap_time(self, monster: Monster) -> float:
+        """
+        When the EXP bar will first reach the top, in seconds from the start
+        of the animation. That is the moment the new level should be shown.
+
+        Falls back to the end of the motion when no level was gained, since
+        then there is no wrap to line up with.
+        """
+        first_value, duration, _, delay = self._pending_exp_sweeps(monster)[0]
+        if first_value < 1.0:
+            return self.exp_animation_time(monster)
+        return delay + duration * EXP_BAR_SETTLE
+
+    def animate_exp(self, monster: Monster) -> None:
+        """Animate a monster's EXP bar up to its current progress."""
+        exp_bar = self.bars.get_exp_bar(monster)
+        target = monster.experience_progress_percent
+        levels_gained = self.pending_level_ups.pop(monster, 0)
+        self.bars.claim(exp_bar, target)
+
+        def make_step(
+            value: float,
+            duration: float,
+            from_empty: bool,
+            delay: float,
+        ) -> Callable[[], Animation]:
+            def step() -> Animation:
+                ani = self.animate(
+                    exp_bar,
+                    value=value,
+                    duration=duration,
+                    transition=EXP_BAR_TRANSITION,
+                    # restarting from 0 is what makes the bar wrap around;
+                    # the delay holds it at full first, so the wrap is seen
+                    initial=0.0 if from_empty else None,
+                    delay=delay,
+                )
+                ani.schedule(self.refresh_ui, ScheduleType.ON_UPDATE)
+                ani.schedule(self.refresh_ui, ScheduleType.ON_FINISH)
+                # if the chain is cut short, leave the bar telling the truth
+                ani.schedule(
+                    partial(exp_bar.sync, target), ScheduleType.ON_ABORT
+                )
+                return ani
+
+            return step
+
+        self.chain_animations(
+            *(
+                make_step(*sweep)
+                for sweep in self.exp_bar_sweeps(
+                    exp_bar.value, target, levels_gained
+                )
+            )
+        )
 
     def animate_monster_leave(self, monster: Monster) -> None:
         sprite = self.sprite_map.get_sprite(monster)
@@ -425,6 +588,10 @@ class CombatAnimations(Menu[None], ABC):
             owner=owner,
             label_data=label_data,
         )
+
+        # draw_text resets the HUD to its blank base image, wiping the bars
+        # that were composited onto it, so put them back.
+        self.refresh_ui()
 
     def check_hud(
         self, monster: Monster, filename: str, layer: int = HUD_LAYER

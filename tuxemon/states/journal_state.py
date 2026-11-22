@@ -44,6 +44,10 @@ class JournalState(PygameMenuState):
         # the list sits on the nominal pixel grid.
         btn_y_offset = scale_int(5) - 1
         menu._column_max_width = [None, None]
+        # Fixed half-screen columns. Sized from their contents, the columns can
+        # come out an odd number of pixels wide, putting the list half a pixel
+        # off the grid, and the right column moves with the longest name.
+        menu._column_min_width = [scale_int(128), scale_int(128)]
         # Don't let pygame_menu centre the list vertically: that offset is
         # rarely a whole number of nominal pixels.
         menu._auto_centering = False

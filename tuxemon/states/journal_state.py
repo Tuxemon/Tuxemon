@@ -39,10 +39,10 @@ class JournalState(PygameMenuState):
 
     def add_menu_items(self, menu: Menu, monsters: list[MonsterModel]) -> None:
         scale_int = self.client.context.scaling.scale_int
-        btn_x_offset = scale_int(4)
+        btn_x_offset = scale_int(9)
         # pygame_menu starts each column 1 screen px down; take it back off so
         # the list sits on the nominal pixel grid.
-        btn_y_offset = scale_int(3) - 1
+        btn_y_offset = scale_int(5) - 1
         menu._column_max_width = [None, None]
         # Don't let pygame_menu centre the list vertically: that offset is
         # rarely a whole number of nominal pixels.

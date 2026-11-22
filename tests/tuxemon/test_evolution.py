@@ -1063,6 +1063,24 @@ def test_evolution_learns_when_moveset_full(evo_moves):
     assert "new_14" in _slugs(new)
 
 
+def test_evolution_queues_learned_moves_for_announcement(evo_moves):
+    make, level_up, evolve = evo_moves
+    old = make("oldform", OLD_FORM_MOVESET, 13, known=["ram"])
+    level_up(old, 14)
+    # the old form's level-up move was already reported (e.g. in combat)
+    old.moves.mark_announced(["old_14"])
+    new = evolve(old)
+    assert new.moves.pop_unannounced() == ["new_14"]
+
+
+def test_evolution_carries_unreported_moves(evo_moves):
+    make, level_up, evolve = evo_moves
+    old = make("oldform", OLD_FORM_MOVESET, 13, known=["ram"])
+    level_up(old, 14)
+    new = evolve(old)
+    assert new.moves.pop_unannounced() == ["old_14", "new_14"]
+
+
 def test_later_level_ups_learn_new_form_moves(evo_moves):
     make, level_up, evolve = evo_moves
     old = make("oldform", OLD_FORM_MOVESET, 13, known=["ram"])

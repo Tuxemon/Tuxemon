@@ -904,7 +904,15 @@ class CombatState(CombatAnimations):
             for data in rewards.winners:
                 if data.moves:
                     self.announce_new_techniques(data.winner, data.moves)
+                    data.winner.moves.mark_announced(data.moves)
 
+        # The rest of the party may have levelled up on shared experience
+        for party_monster in self.session.player.monsters:
+            techniques = party_monster.moves.pop_unannounced()
+            if techniques:
+                self.announce_new_techniques(party_monster, techniques)
+
+        if rewards.update:
             # HUD + XP animation only for the active monsters
             for data in rewards.winners:
                 self.update_hud_and_level_up(data.winner)

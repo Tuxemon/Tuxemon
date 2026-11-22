@@ -23,11 +23,13 @@ from tuxemon.event.eventmiddleware import (
     WorldCommandMiddleware,
 )
 from tuxemon.faction.manager import FactionManager
+from tuxemon.locale.locale import T
 from tuxemon.platform.events import PlayerInput
 from tuxemon.prepare import DEV_TOOLS
 from tuxemon.save_system.save_state import WorldSave
 from tuxemon.session import Session
 from tuxemon.state.state import State
+from tuxemon.tools import open_dialog
 from tuxemon.world.manager import WorldMenuManager
 from tuxemon.world.transition import WorldTransition
 
@@ -150,6 +152,35 @@ class WorldState(State):
         self.client.npc_manager.update_npcs(dt, self.client)
         self.client.npc_manager.update_npcs_off_map(dt, self.client)
         self.client.map_renderer.update(dt)
+        self.announce_learned_techniques()
+
+    def announce_learned_techniques(self) -> None:
+        """
+        Tells the player about techniques their party learned while nothing
+        else said so, e.g. from experience given by a script, training or
+        an item.
+
+        Waits until the world is on top again, so it doesn't interrupt
+        whatever screen the techniques were learned in. Monsters away from
+        the party (boxes, daycare) are told about once they rejoin it.
+        """
+        if self.client.current_state is not self:
+            return
+
+        messages = []
+        for monster in self.player.monsters:
+            techniques = monster.moves.pop_unannounced()
+            if techniques:
+                techs = ", ".join(T.translate(tech) for tech in techniques)
+                messages.append(
+                    T.format(
+                        "tuxemon_new_tech",
+                        {"name": monster.name, "tech": techs},
+                    )
+                )
+
+        if messages:
+            open_dialog(self.client, messages)
 
     def draw(self, surface: Surface) -> None:
         """Draw the game world to the screen."""

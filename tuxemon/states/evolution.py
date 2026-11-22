@@ -116,6 +116,7 @@ class EvolutionState(PygameMenuState):
             evolved=self.target.slug,
             is_devolution=self.is_devolution,
             character=self.char if is_new_entry else None,
+            techniques=self.target.moves.pop_unannounced(),
         )
 
     def _deny(self) -> None:

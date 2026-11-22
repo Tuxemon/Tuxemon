@@ -134,6 +134,36 @@ class ControlState(PygameMenuState):
             font_size=self.font_type.small,
         )
 
+        upscaler_modes: list[tuple[Any, ...]] = [
+            (T.translate("menu_upscaler_cpu").upper(), "cpu", 0),
+            (T.translate("menu_upscaler_gpu_2x").upper(), "gpu", 2),
+            (T.translate("menu_upscaler_gpu_3x").upper(), "gpu", 3),
+            (T.translate("menu_upscaler_gpu_4x").upper(), "gpu", 4),
+        ]
+        _config = self.client.config
+        _upscaler_default = 0
+        if _config.upscaler == "gpu":
+            for index, mode in enumerate(upscaler_modes):
+                if mode[2] == _config.gpu_render_scale:
+                    _upscaler_default = index
+
+        def on_change_upscaler(value: Any, mode: str, scale: int) -> None:
+            if mode == "gpu":
+                _config.update_attribute(
+                    "display", "gpu_render_scale", scale, save=False
+                )
+            _config.update_attribute("display", "upscaler", mode)
+
+        menu.add.selector(
+            title=T.translate("menu_upscaler").upper(),
+            items=upscaler_modes,
+            selector_id="upscaler",
+            default=_upscaler_default,
+            style="fancy",
+            onchange=on_change_upscaler,
+            font_size=self.font_type.small,
+        )
+
         if not self.main_menu:
 
             def toggle_mute() -> None:

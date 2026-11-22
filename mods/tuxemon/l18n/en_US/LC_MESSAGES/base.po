@@ -4934,6 +4934,21 @@ msgstr "Southern"
 msgid "menu_screen_size"
 msgstr "Screen Size (EXPERIMENTAL)"
 
+msgid "menu_upscaler"
+msgstr "Rendering"
+
+msgid "menu_upscaler_cpu"
+msgstr "CPU"
+
+msgid "menu_upscaler_gpu_2x"
+msgstr "GPU 2x"
+
+msgid "menu_upscaler_gpu_3x"
+msgstr "GPU 3x"
+
+msgid "menu_upscaler_gpu_4x"
+msgstr "GPU 4x"
+
 msgid "options_new_input_key0"
 msgstr "Press a key to set your new input key"
 

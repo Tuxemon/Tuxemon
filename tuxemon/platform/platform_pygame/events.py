@@ -565,10 +565,19 @@ class PygameTouchOverlayInput(PygameEventHandler):
         """Handles both mouse and finger touch events."""
 
         if input_event.type in (pg.FINGERDOWN, pg.FINGERUP, pg.FINGERMOTION):
-            touch_pos = (
-                int(input_event.x * self.resolution[0]),
-                int(input_event.y * self.resolution[1]),
-            )
+            from tuxemon import prepare
+
+            context = prepare.DISPLAY_CONTEXT
+            if context.gpu_upscaling:
+                window_w, window_h = context.window_size
+                touch_pos = context.window_to_screen(
+                    (input_event.x * window_w, input_event.y * window_h)
+                )
+            else:
+                touch_pos = (
+                    int(input_event.x * self.resolution[0]),
+                    int(input_event.y * self.resolution[1]),
+                )
             finger_id = input_event.fingerid
 
             if input_event.type == pg.FINGERDOWN:
@@ -647,6 +656,9 @@ class PygameMouseInput(PygameEventHandler):
 
     def process_event(self, pg_event: Event) -> None:
         if pg_event.type == pg.MOUSEBUTTONDOWN:
-            self.press(buttons.MOUSELEFT, pg_event.pos)
+            from tuxemon import prepare
+
+            pos = prepare.DISPLAY_CONTEXT.window_to_screen(pg_event.pos)
+            self.press(buttons.MOUSELEFT, pos)
         elif pg_event.type == pg.MOUSEBUTTONUP:
             self.release(buttons.MOUSELEFT)

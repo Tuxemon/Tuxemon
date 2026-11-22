@@ -42,6 +42,9 @@ class DisplayConfig(BaseModel):
     collision_map: bool = False
     large_gui: bool = False
     window_caption: str = "Tuxemon"
+    upscaler: Literal["cpu", "gpu"] = "cpu"
+    gpu_render_scale: int = 3
+    gpu_smoothing: bool = False
 
 
 class GameConfig(BaseModel):
@@ -217,6 +220,18 @@ class TuxemonConfig:
     @property
     def window_caption(self) -> str:
         return self.config_model.display.window_caption
+
+    @property
+    def upscaler(self) -> str:
+        return self.config_model.display.upscaler
+
+    @property
+    def gpu_render_scale(self) -> int:
+        return self.config_model.display.gpu_render_scale
+
+    @property
+    def gpu_smoothing(self) -> bool:
+        return self.config_model.display.gpu_smoothing
 
     @property
     def data(self) -> str:

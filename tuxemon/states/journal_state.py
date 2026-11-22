@@ -174,6 +174,10 @@ class JournalState(PygameMenuState):
         theme.widget_selection_effect = TuxemonArrowSelection(
             client.context.scaling.scale_int(1), y_offset_nominal=5
         )
+        # Arbata is drawn at its pixel size, so it needs no anti-aliasing;
+        # with it, the overlapping rings of the caught symbol pick up a grey
+        # edge that looks like a drop shadow.
+        theme.widget_font_antialias = False
         self._menu_config["theme"] = theme
 
         self.add_menu_items(self.menu, monster_list)

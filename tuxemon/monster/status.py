@@ -134,13 +134,49 @@ class MonsterStatusHandler:
     def status_exists(self) -> bool:
         return bool(self.status)
 
-    def remove_bonded_statuses(self, session: Session) -> None:
-        to_remove = [sta for sta in self.status if sta.bond]
+    @staticmethod
+    def _is_bond_intact(
+        status: Status, monsters_in_play: Sequence[Monster]
+    ) -> bool:
+        """
+        Checks whether both participants of a bonded status are in play.
+        """
+        linked = status.linked_monster
+        if linked is None:
+            return False
+        return status.host in monsters_in_play and linked in monsters_in_play
 
-        for sta in to_remove:
+    def remove_broken_bonded_statuses(
+        self, session: Session, monsters_in_play: Sequence[Monster]
+    ) -> None:
+        """
+        Removes the bonded statuses whose link has been severed.
+
+        A bonded status (eg. lifeleech, lifegift or grabbed) links the
+        monster carrying it to the monster that applied it (see
+        Status.linked_monster). The link holds only while both of them are
+        on the battlefield, so the status is dropped as soon as either one
+        leaves it. A bonded status without a linked monster can never be
+        valid, so it's dropped as well.
+
+        Parameters:
+            session: Session.
+            monsters_in_play: Monsters currently on the battlefield.
+        """
+        broken = [
+            sta
+            for sta in self.status
+            if sta.bond and not self._is_bond_intact(sta, monsters_in_play)
+        ]
+        if not broken:
+            return
+
+        self.status = [sta for sta in self.status if sta not in broken]
+        for sta in broken:
+            logger.debug(
+                f"Bond broken: removing '{sta.slug}' from '{sta.host.name}'."
+            )
             sta.use(session, EffectPhase.ON_END)
-
-        self.status = [sta for sta in self.status if not sta.bond]
 
     def check_and_clear_use_expiry(
         self, session: Session, max_uses: int = 1

@@ -557,6 +557,39 @@ class CombatSession:
             for monster in on_the_field:
                 self.update_tuxepedia(player, monster)
 
+    def clear_broken_bonds(self, session: Session) -> None:
+        """
+        Breaks the bonded statuses whose participants aren't both in play.
+
+        Bonded statuses (eg. lifeleech, lifegift or grabbed) link the
+        monster carrying the status to the monster that applied it. Leaving
+        the battlefield, by being withdrawn or by fainting, severs that
+        link, while an unrelated monster entering play leaves it untouched.
+
+        Every monster taking part in the battle is swept, benched ones
+        included: a bond mustn't survive on a withdrawn monster, nor resume
+        when that monster comes back. The sweep is idempotent, so it can be
+        called from wherever the battlefield changes.
+
+        Parameters:
+            session: Session.
+        """
+        in_play = [
+            monster
+            for monster in self.active_monsters
+            if not monster.is_fainted
+        ]
+
+        swept: list[Monster] = []
+        for player in self.players:
+            swept.extend(player.monsters)
+        for monster in self.active_monsters:
+            if monster not in swept:
+                swept.append(monster)
+
+        for monster in swept:
+            monster.status.remove_broken_bonded_statuses(session, in_play)
+
     def add_monster_into_play(
         self,
         session: Session,
@@ -566,8 +599,7 @@ class CombatSession:
     ) -> None:
         self.field_monsters.add_monster(player, monster)
 
-        for mon in self.active_monsters:
-            mon.status.remove_bonded_statuses(session)
+        self.clear_broken_bonds(session)
 
         phase = EffectPhase.SWAP_MONSTER
 

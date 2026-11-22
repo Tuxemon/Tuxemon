@@ -1042,6 +1042,10 @@ class CombatState(CombatAnimations):
         self.award_experience_and_money(monster)
         # Remove monster from damage map
         self.combat_session.damage_tracker.remove_monster(monster)
+        # A defeat doesn't always bring a replacement in: when the losing side
+        # is down to its last monster the battlefield shrinks instead, and no
+        # switch-in follows to sweep the bonds the fallen monster was part of.
+        self.combat_session.clear_broken_bonds(self.session)
         if len(self.combat_session.remaining_players) <= 1:
             self.event_bus.publish("play_music_combat", monster=monster)
 

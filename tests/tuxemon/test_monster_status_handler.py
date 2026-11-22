@@ -77,12 +77,65 @@ def test_status_exists_not(basic_handler):
     assert not basic_handler.status_exists()
 
 
-def test_remove_bonded_statuses(session):
-    s1 = MagicMock(bond=True)
-    s2 = MagicMock(bond=False)
-    handler = MonsterStatusHandler([s1, s2])
-    handler.remove_bonded_statuses(session)
-    assert handler.status == [s2]
+def bonded_status(host, linked, slug="lifeleech"):
+    status = MagicMock(slug=slug, bond=True)
+    status.host = host
+    status.linked_monster = linked
+    return status
+
+
+def test_remove_broken_bonded_statuses_keeps_intact_bond(session, monster):
+    linked = MagicMock(spec=Monster)
+    linked.name = "Nut"
+    bonded = bonded_status(monster, linked)
+    handler = MonsterStatusHandler([bonded])
+    handler.remove_broken_bonded_statuses(session, [monster, linked])
+    assert handler.status == [bonded]
+    bonded.use.assert_not_called()
+
+
+def test_remove_broken_bonded_statuses_host_off_field(session, monster):
+    linked = MagicMock(spec=Monster)
+    linked.name = "Nut"
+    bonded = bonded_status(monster, linked)
+    handler = MonsterStatusHandler([bonded])
+    handler.remove_broken_bonded_statuses(session, [linked])
+    assert handler.status == []
+
+
+def test_remove_broken_bonded_statuses_linked_off_field(session, monster):
+    linked = MagicMock(spec=Monster)
+    linked.name = "Nut"
+    bonded = bonded_status(monster, linked)
+    handler = MonsterStatusHandler([bonded])
+    handler.remove_broken_bonded_statuses(session, [monster])
+    assert handler.status == []
+
+
+def test_remove_broken_bonded_statuses_without_link(session, monster):
+    bonded = bonded_status(monster, None)
+    handler = MonsterStatusHandler([bonded])
+    handler.remove_broken_bonded_statuses(session, [monster])
+    assert handler.status == []
+
+
+def test_remove_broken_bonded_statuses_keeps_unbonded(session, monster):
+    linked = MagicMock(spec=Monster)
+    linked.name = "Nut"
+    unbonded = MagicMock(slug="poison", bond=False)
+    unbonded.host = monster
+    unbonded.linked_monster = None
+    bonded = bonded_status(monster, linked)
+    handler = MonsterStatusHandler([bonded, unbonded])
+    handler.remove_broken_bonded_statuses(session, [monster])
+    assert handler.status == [unbonded]
+
+
+def test_remove_broken_bonded_statuses_calls_on_end(session, monster):
+    bonded = bonded_status(monster, None, slug="grabbed")
+    handler = MonsterStatusHandler([bonded])
+    handler.remove_broken_bonded_statuses(session, [monster])
+    bonded.use.assert_called_once_with(session, EffectPhase.ON_END)
 
 
 def test_immunity_blocks_status(session, monster, status):

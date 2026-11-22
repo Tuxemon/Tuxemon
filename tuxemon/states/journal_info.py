@@ -341,9 +341,10 @@ class JournalInfoState(PygameMenuState):
             return
         sprite = handler.get_sprite("front", scale=self.factor)
         new_image = self._create_image_from_surface(sprite.image)
-        image_widget = menu.add.image(image_path=new_image.copy())
+        # No padding, so the 64 px sprite sits exactly on its 64 px panel.
+        image_widget = menu.add.image(image_path=new_image.copy(), padding=0)
         image_widget.set_float(origin_position=True)
-        image_widget.translate(fxw(45), fxh(6))
+        image_widget.translate(fxw(48), fxh(8))
 
     def __init__(
         self,

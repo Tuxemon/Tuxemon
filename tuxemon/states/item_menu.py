@@ -83,10 +83,11 @@ class ItemMenuState(Menu[Item]):
 
         # this is the area where the item description is displayed
         rect = self.client.context.rect.copy()
-        rect.top = self.client.context.scaling.scale_int(106)
+        rect.top = self.client.context.scaling.scale_int(103)
         rect.left = self.client.context.scaling.scale_int(3)
         rect.width = self.client.context.scaling.scale_int(250)
-        rect.height = self.client.context.scaling.scale_int(32)
+        # Tall enough for three lines, descenders included.
+        rect.height = self.client.context.scaling.scale_int(34)
         self.text_area = TextArea(
             font=self.font,
             font_color=self.font_color,
@@ -104,8 +105,9 @@ class ItemMenuState(Menu[Item]):
             scaling=self.client.context.scaling,
         )
         self.sprites.add(self.page_number_display, layer=100)
-        # As many rows as fit above the page counter at this spacing.
-        self.page_size = 7
+        # As many rows as fit in the panel at this spacing (the last may sit
+        # beside the page counter).
+        self.page_size = 8
         # The page counter uses the minimal font, at a size where it's crisp.
         self.page_font = Font(
             fetch_asset("font", self.client.config.locale.minimal_font_file),
@@ -145,13 +147,18 @@ class ItemMenuState(Menu[Item]):
         return Rect(scale_int(96), scale_int(8), scale_int(147), scale_int(85))
 
     def calc_menu_items_rect(self) -> Rect:
-        # Rows start at the top of the panel, with the text 8 nominal px in so
-        # the cursor fits to its left. (The shared cursor margin scales with
-        # the display scale, so the list would move between scales.)
+        # Rows start 2 nominal px above the panel interior (Arbata's top rows
+        # are empty), with the text 8 px in so the cursor fits to its left.
+        # (The shared cursor margin scales with the display scale, so the
+        # list would move between scales.)
         rect = self.calc_internal_rect()
-        indent = self.client.context.scaling.scale_int(8)
+        scale_int = self.client.context.scaling.scale_int
+        indent = scale_int(8)
         return Rect(
-            rect.left + indent, rect.top, rect.width - indent, rect.height
+            rect.left + indent,
+            rect.top - scale_int(2),
+            rect.width - indent,
+            rect.height + scale_int(2),
         )
 
     def on_menu_selection(self, menu_item: MenuItem[Item]) -> None:

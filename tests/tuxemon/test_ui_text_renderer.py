@@ -190,3 +190,21 @@ def test_scaled_offset_applied(scaling, font):
     base_w, base_h = font.size("A")
     assert surf.get_width() >= base_w + 2
     assert surf.get_height() >= base_h + 2
+
+
+def test_shadow_text_without_shadow_is_plain_text(font):
+    plain = font.render("Ag", True, (0, 0, 0))
+    shadowed = TextRenderer(DefaultScaling(3), (0, 0, 0), font=font)
+    unshadowed = TextRenderer(
+        DefaultScaling(3), (0, 0, 0), font=font, shadow=False
+    )
+    assert unshadowed.shadow_text("Ag").get_size() == plain.get_size()
+    assert shadowed.shadow_text("Ag").get_width() > plain.get_width()
+
+
+def test_glyph_without_shadow_is_plain_glyph(font):
+    plain = font.render("A", True, (0, 0, 0))
+    unshadowed = TextRenderer(
+        DefaultScaling(3), (0, 0, 0), font=font, shadow=False
+    )
+    assert unshadowed.get_glyph("A").get_size() == plain.get_size()

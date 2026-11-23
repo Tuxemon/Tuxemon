@@ -37,6 +37,7 @@ history:
 terrains: []
 tags:
 - darkness
+- food
 shape: flier
 stage: basic
 types:

@@ -21,6 +21,7 @@ target:
 category: basic
 tags:
 - gemstone
+- sharp
 types:
 - cosmic
 use_failure: combat_miss

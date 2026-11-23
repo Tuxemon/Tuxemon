@@ -33,6 +33,7 @@ category: simple
 tags:
 - water
 - amphibian
+- bomber
 types:
 - water
 use_failure: depth_charge_fail

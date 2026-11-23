@@ -52,6 +52,7 @@ terrains:
 tags:
 - bite
 - water
+- toxic
 - amphibian
 - fury
 shape: leviathan

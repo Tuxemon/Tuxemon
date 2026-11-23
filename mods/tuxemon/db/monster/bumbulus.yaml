@@ -46,6 +46,7 @@ terrains: []
 tags:
 - water
 - weather
+- shapeshifter
 - light
 shape: blob
 stage: basic

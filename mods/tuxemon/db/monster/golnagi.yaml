@@ -52,6 +52,7 @@ terrains:
 - sea
 tags:
 - flame
+- light
 - water
 shape: piscine
 stage: stage2

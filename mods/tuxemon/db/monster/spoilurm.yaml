@@ -38,6 +38,7 @@ terrains: []
 tags:
 - bug
 - toxic
+- shapeshifter
 shape: serpent
 stage: standalone
 types:

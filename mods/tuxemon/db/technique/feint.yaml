@@ -31,6 +31,7 @@ target:
 category: condition_imposer
 tags:
 - sharp
+- speed
 types:
 - normal
 use_failure: combat_miss

@@ -109,7 +109,7 @@ class Monster:
         self.history = list(db_data.history or [])
         self.evolution_handler = Evolution(self)
         morphchance = [0,1]
-        self.shiny = random.choices(morphchance, weights=(3,1), k=1)[0]
+        self.shiny = random.choices(morphchance, weights=(5,1), k=1)[0]
         self._init_assets(db_data)
 
         self.current_hp: int = 0
@@ -190,7 +190,6 @@ class Monster:
         self.flairs: dict[str, Flair] = {}
 
         if self.shiny != 0:
-            print("whaaaat a shiny?")
             sprites = MonsterSpritesModel(
                 sheet=f"gfx/sprites/battle/morphs/{self.slug}-sheet",
             )
@@ -242,7 +241,6 @@ class Monster:
             else None
         )
         monster = cls(slug, db_data, iid)
-
         monster.moves.decode_moves(save_data)
         monster.status.decode_status(save_data, monster)
         monster.plague.decode_plagues(save_data)
@@ -252,7 +250,7 @@ class Monster:
         for key, value in save_data.items():
             if key == "body" and value:
                 monster.body.set_state(value)
-            elif key=="shiny" and value:
+            elif key=="shiny":
                 monster.shiny = value
             elif key == "gender" and value:
                 monster.gender = GenderType(value)
@@ -277,6 +275,7 @@ class Monster:
                 monster.individual_values = IndividualValues.from_dict(value)
 
         monster.flair_slugs = set(save_data.get("flair_slugs", []))
+        monster._init_assets(db_data) #redoing makes it work... since we over-wrote the random value with the save value. not really the proper way to do it I'm sure.
 
         if "flairs" in save_data:
             monster.flairs = {
@@ -750,6 +749,7 @@ class Monster:
         save_data["instance_id"] = self.instance_id.hex
         save_data["gender"] = self.gender
         save_data["shiny"] = self.shiny
+        
         save_data["acquisition"] = self.acquisition
         save_data["plague"] = self.plague.encode_plagues()
         save_data["mother_iid"] = (

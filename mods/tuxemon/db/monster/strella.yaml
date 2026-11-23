@@ -38,6 +38,7 @@ terrains: []
 tags:
 - darkness
 - tail
+- sound
 shape: flier
 stage: stage1
 types:

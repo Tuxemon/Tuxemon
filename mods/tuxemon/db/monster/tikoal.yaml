@@ -38,6 +38,7 @@ terrains: []
 tags:
 - plant
 - flame
+- sound
 - summoner
 shape: blob
 stage: basic

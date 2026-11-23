@@ -53,6 +53,7 @@ terrains:
 tags:
 - flame
 - bird
+- sound
 - bomber
 shape: flier
 stage: stage2

@@ -37,6 +37,7 @@ history:
 terrains: []
 tags:
 - bird
+- sound
 shape: flier
 stage: standalone
 types:

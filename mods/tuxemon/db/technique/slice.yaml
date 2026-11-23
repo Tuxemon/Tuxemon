@@ -21,6 +21,7 @@ target:
 category: basic
 tags:
 - sharp
+- steel
 types:
 - metal
 use_failure: combat_miss

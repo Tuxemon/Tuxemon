@@ -24,6 +24,7 @@ target:
 category: exotic
 tags:
 - gaze
+- darkness
 types:
 - shadow
 use_failure: combat_miss

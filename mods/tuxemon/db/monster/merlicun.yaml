@@ -46,6 +46,7 @@ stage: basic
 types:
 - cosmic
 - normal
+- flame
 gender_weights:
   male: 0.5
   female: 0.5

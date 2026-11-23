@@ -37,6 +37,7 @@ history:
 terrains: []
 tags:
 - sharp
+- rock
 - shielded
 shape: dragon
 stage: standalone

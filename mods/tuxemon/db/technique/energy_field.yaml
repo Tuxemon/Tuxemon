@@ -28,6 +28,7 @@ target:
 category: powerful
 tags:
 - machine
+- electricity
 types:
 - lightning
 use_failure: combat_miss

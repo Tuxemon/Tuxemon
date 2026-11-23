@@ -25,6 +25,7 @@ category: condition_imposer
 tags:
 - shapeshifter
 - fury
+- sound
 types:
 - normal
 use_failure: combat_miss

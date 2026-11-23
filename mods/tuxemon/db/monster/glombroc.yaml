@@ -54,6 +54,7 @@ terrains: []
 tags:
 - plant
 - rock
+- shielded
 - ground
 - toxic
 - mental

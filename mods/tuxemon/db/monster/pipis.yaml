@@ -37,6 +37,7 @@ history:
 terrains: []
 tags:
 - darkness
+- sound
 shape: flier
 stage: basic
 types:

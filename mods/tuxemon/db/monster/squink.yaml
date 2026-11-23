@@ -39,6 +39,7 @@ history:
 terrains: []
 tags:
 - water
+- pseudopod
 shape: polliwog
 stage: basic
 types:

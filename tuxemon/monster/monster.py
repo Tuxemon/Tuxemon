@@ -85,6 +85,7 @@ class Monster:
         slug: str,
         db_data: MonsterModel,
         instance_id: UUID | None = None,
+        shiny: int | None = None,
     ) -> None:
         self.slug: str = slug
         self.instance_id: UUID = instance_id or uuid4()
@@ -108,8 +109,9 @@ class Monster:
         self.evolutions = list(db_data.evolutions or [])
         self.history = list(db_data.history or [])
         self.evolution_handler = Evolution(self)
-        morphchance = [0,1]
-        self.shiny = random.choices(morphchance, weights=(5,1), k=1)[0]
+        if shiny is None:
+            shiny = random.choices([0, 1], weights=(5, 1), k=1)[0]
+        self.shiny = shiny
         self._init_assets(db_data)
 
         self.current_hp: int = 0
@@ -240,7 +242,7 @@ class Monster:
             if "instance_id" in save_data
             else None
         )
-        monster = cls(slug, db_data, iid)
+        monster = cls(slug, db_data, iid, shiny=save_data.get("shiny",0))
         monster.moves.decode_moves(save_data)
         monster.status.decode_status(save_data, monster)
         monster.plague.decode_plagues(save_data)
@@ -250,10 +252,10 @@ class Monster:
         for key, value in save_data.items():
             if key == "body" and value:
                 monster.body.set_state(value)
-            elif key=="shiny":
-                monster.shiny = value
             elif key == "gender" and value:
                 monster.gender = GenderType(value)
+            #elif key=="shiny":
+            
             elif key == "acquisition" and value:
                 monster.acquisition = Acquisition(value)
             elif key == "mother_iid":
@@ -275,8 +277,7 @@ class Monster:
                 monster.individual_values = IndividualValues.from_dict(value)
 
         monster.flair_slugs = set(save_data.get("flair_slugs", []))
-        monster._init_assets(db_data) #redoing makes it work... since we over-wrote the random value with the save value. not really the proper way to do it I'm sure.
-
+        
         if "flairs" in save_data:
             monster.flairs = {
                 category: Flair.from_state(flair_data)

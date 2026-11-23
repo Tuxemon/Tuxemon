@@ -254,8 +254,6 @@ class Monster:
                 monster.body.set_state(value)
             elif key == "gender" and value:
                 monster.gender = GenderType(value)
-            #elif key=="shiny":
-            
             elif key == "acquisition" and value:
                 monster.acquisition = Acquisition(value)
             elif key == "mother_iid":

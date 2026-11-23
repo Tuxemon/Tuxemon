@@ -109,7 +109,12 @@ class Monster:
         self.evolutions = list(db_data.evolutions or [])
         self.history = list(db_data.history or [])
         self.evolution_handler = Evolution(self)
-        if shiny is None:
+        self.gender = self.assign_gender(self.gender_weights)
+        if self.slug == "pantherafira" and self.is_male:
+            shiny = random.choices([0, 1], weights=(8, 1), k=1)[0]
+        elif self.slug == "pantherafira" and self.is_female:
+            shiny = random.choices([1, 0], weights=(8, 1), k=1)[0]
+        elif shiny is None:
             shiny = random.choices([0, 1], weights=(5, 1), k=1)[0]
         self.shiny = shiny
         self._init_assets(db_data)
@@ -135,7 +140,6 @@ class Monster:
         self._levelup_end_level: int | None = None
 
         self.acquisition: Acquisition = Acquisition.UNKNOWN
-        self.gender = self.assign_gender(self.gender_weights)
         self.owner: NPC | None = None
 
         self.mother_iid: UUID | None = None

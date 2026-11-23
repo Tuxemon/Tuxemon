@@ -51,6 +51,7 @@ terrains:
 tags:
 - water
 - light
+- megafauna
 - bite
 shape: piscine
 stage: stage1

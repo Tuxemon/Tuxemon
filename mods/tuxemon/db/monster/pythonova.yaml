@@ -44,6 +44,8 @@ terrains:
 tags:
 - flame
 - toxic
+- tail
+- fury
 - calamity
 shape: serpent
 stage: stage2

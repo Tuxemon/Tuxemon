@@ -45,6 +45,7 @@ tags:
 - ground
 - water
 - sharp
+- soldier
 shape: humanoid
 stage: stage1
 types:

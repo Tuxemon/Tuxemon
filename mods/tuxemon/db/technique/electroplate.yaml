@@ -25,6 +25,7 @@ category: exotic
 tags:
 - machine
 - shielded
+- steel
 types:
 - metal
 use_failure: combat_miss

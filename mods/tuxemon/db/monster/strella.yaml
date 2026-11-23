@@ -37,6 +37,7 @@ history:
 terrains: []
 tags:
 - darkness
+- tail
 shape: flier
 stage: stage1
 types:

@@ -23,6 +23,7 @@ target:
 category: exotic
 tags:
 - gadgets
+- bomber
 types:
 - fire
 use_failure: combat_miss

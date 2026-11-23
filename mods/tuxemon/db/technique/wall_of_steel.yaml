@@ -25,6 +25,8 @@ target:
 category: simple
 tags:
 - summoner
+- shielded
+- steel
 types:
 - metal
 use_failure: combat_miss

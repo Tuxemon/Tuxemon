@@ -47,6 +47,7 @@ terrains:
 - swamp
 tags:
 - light
+- tail
 - amphibian
 shape: polliwog
 stage: basic

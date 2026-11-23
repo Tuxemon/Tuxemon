@@ -45,6 +45,7 @@ terrains:
 - desert
 tags:
 - flame
+- tail
 - toxic
 shape: serpent
 stage: stage1

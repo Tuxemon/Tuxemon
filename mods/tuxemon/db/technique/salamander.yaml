@@ -27,6 +27,7 @@ tags:
 - amphibian
 - flame
 - toxic
+- bite
 types:
 - fire
 use_failure: combat_miss

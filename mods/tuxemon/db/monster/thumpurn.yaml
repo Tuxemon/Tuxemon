@@ -37,6 +37,7 @@ terrains:
 tags:
 - flame
 - ground
+- fists
 shape: brute
 stage: basic
 types:

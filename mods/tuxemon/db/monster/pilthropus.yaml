@@ -39,6 +39,7 @@ tags:
 - ground
 - soldier
 - staff
+- gadgets
 shape: humanoid
 stage: standalone
 types:

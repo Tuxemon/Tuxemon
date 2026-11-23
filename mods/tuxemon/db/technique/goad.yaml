@@ -26,6 +26,7 @@ category: simple
 tags:
 - speed
 - shielded
+- fury
 types:
 - normal
 use_failure: combat_miss

@@ -108,7 +108,8 @@ class Monster:
         self.evolutions = list(db_data.evolutions or [])
         self.history = list(db_data.history or [])
         self.evolution_handler = Evolution(self)
-
+        morphchance = [0,1]
+        self.shiny = random.choices(morphchance, weights=(3,1), k=1)[0]
         self._init_assets(db_data)
 
         self.current_hp: int = 0
@@ -188,10 +189,15 @@ class Monster:
         self.flair_slugs = set(db_data.flairs or [])
         self.flairs: dict[str, Flair] = {}
 
-        sprites = db_data.sprites or MonsterSpritesModel(
-            sheet=f"gfx/sprites/battle/{self.slug}-sheet",
-        )
-
+        if self.shiny != 0:
+            print("whaaaat a shiny?")
+            sprites = MonsterSpritesModel(
+                sheet=f"gfx/sprites/battle/morphs/{self.slug}-sheet",
+            )
+        else:
+            sprites = db_data.sprites or MonsterSpritesModel(
+                sheet=f"gfx/sprites/battle/{self.slug}-sheet",
+            )
         self.sprite_config = SpriteConfig(
             slug=self.slug,
             sheet_path=sprites.sheet,
@@ -246,6 +252,8 @@ class Monster:
         for key, value in save_data.items():
             if key == "body" and value:
                 monster.body.set_state(value)
+            elif key=="shiny" and value:
+                monster.shiny = value
             elif key == "gender" and value:
                 monster.gender = GenderType(value)
             elif key == "acquisition" and value:
@@ -713,6 +721,7 @@ class Monster:
         self.capture_device = old_monster.capture_device
         self.plague = old_monster.plague
         self.steps = old_monster.steps
+        self.shiny = old_monster.shiny
         self.bond_handler = old_monster.bond_handler
 
         min_bond = self.bond_handler.get_effective_min_bond(self.stage)
@@ -740,6 +749,7 @@ class Monster:
 
         save_data["instance_id"] = self.instance_id.hex
         save_data["gender"] = self.gender
+        save_data["shiny"] = self.shiny
         save_data["acquisition"] = self.acquisition
         save_data["plague"] = self.plague.encode_plagues()
         save_data["mother_iid"] = (

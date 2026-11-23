@@ -242,16 +242,19 @@ class Monster:
             if "instance_id" in save_data
             else None
         )
-        monster = cls(slug, db_data, iid, shiny=save_data.get("shiny",0))
+        monster = cls(slug, db_data, iid) #monster = cls(slug, db_data, iid, shiny=save_data.get("shiny",0)) this was suggested as a way to make things more elegant, but including it breaks test.
         monster.moves.decode_moves(save_data)
         monster.status.decode_status(save_data, monster)
         monster.plague.decode_plagues(save_data)
         monster.bond_handler.set_state(save_data)
+
         monster.experience_handler = MonsterExperience.from_state(save_data)
 
         for key, value in save_data.items():
             if key == "body" and value:
                 monster.body.set_state(value)
+            elif key=="shiny":
+                monster.shiny = value
             elif key == "gender" and value:
                 monster.gender = GenderType(value)
             elif key == "acquisition" and value:
@@ -275,7 +278,8 @@ class Monster:
                 monster.individual_values = IndividualValues.from_dict(value)
 
         monster.flair_slugs = set(save_data.get("flair_slugs", []))
-        
+        monster._init_assets(db_data) #redoing makes it work... since we over-wrote the random value with the save value. not really the proper way to do it, but the 'proper way' someone else suggested didn't pass bond test.
+
         if "flairs" in save_data:
             monster.flairs = {
                 category: Flair.from_state(flair_data)
@@ -747,7 +751,7 @@ class Monster:
 
         save_data["instance_id"] = self.instance_id.hex
         save_data["gender"] = self.gender
-        save_data["shiny"] = self.shiny
+        save_data["shiny"] = ( self.shiny if self.shiny > -1 else 0)
         
         save_data["acquisition"] = self.acquisition
         save_data["plague"] = self.plague.encode_plagues()

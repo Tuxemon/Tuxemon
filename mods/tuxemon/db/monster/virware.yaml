@@ -50,6 +50,7 @@ terrains:
 tags:
 - machine
 - steel
+- shapeshifter
 shape: sprite
 stage: basic
 types:

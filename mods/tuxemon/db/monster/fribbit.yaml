@@ -40,6 +40,7 @@ terrains: []
 tags:
 - ice
 - ghost
+- sound
 shape: polliwog
 stage: stage1
 types:

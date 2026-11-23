@@ -45,6 +45,7 @@ shape: polliwog
 stage: basic
 types:
 - water
+- sound
 - frost
 gender_weights:
   male: 0.5

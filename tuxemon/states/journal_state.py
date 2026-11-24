@@ -69,6 +69,7 @@ class JournalState(PygameMenuState):
                             "JournalInfoState",
                             character=self.char,
                             monster=mon,
+                            shiny=False,
                             source=self.name,
                         ),
                         font_size=self.font_type.biggest,

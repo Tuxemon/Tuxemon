@@ -162,6 +162,9 @@ class ElementTypesHandler:
 
     def set_types(self, new_types: Sequence[str]) -> None:
         self._current_types = [Element.get(slug) for slug in new_types]
+        
+    def set_default_types(self, new_types: Sequence[str]) -> None:
+        self._default_types = [Element.get(slug) for slug in new_types]
 
     def reset_to_default(self) -> None:
         self._current_types = list(self._default_types)

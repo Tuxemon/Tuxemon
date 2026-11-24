@@ -21,6 +21,7 @@ from tuxemon.db import (
     StatType,
 )
 from tuxemon.element import ElementTypesHandler
+from tuxemon.technique.technique import Technique, decode_moves, encode_moves
 from tuxemon.fusion import Body
 from tuxemon.locale.locale import T
 from tuxemon.monster.bond import BondHandler
@@ -106,6 +107,9 @@ class Monster:
         self.shape: ShapeHandler = ShapeHandler(db_data.shape)
         self.randomly = db_data.randomly
 
+        self.moves = MonsterMovesHandler()
+        self.moves.set_moveset(db_data.moveset or [])
+
         self.evolutions = list(db_data.evolutions or [])
         self.history = list(db_data.history or [])
         self.evolution_handler = Evolution(self)
@@ -115,7 +119,12 @@ class Monster:
         elif self.slug == "pantherafira" and self.is_female:
             shiny = random.choices([1, 0], weights=(8, 1), k=1)[0]
         elif shiny is None:
-            shiny = random.choices([0, 1], weights=(5, 1), k=1)[0]
+            shiny = random.choices([0, 1], weights=(6, 1), k=1)[0]
+            if self.slug == "ignibus" and shiny > 0:
+                self.moves.add_move(Technique.create("bubbles")) #Variant Ignibus will learn bubbles once.
+                self.types.set_types(["water","fire"]) #Your temporary type.
+                self.types.set_default_types(["water","fire"]) #Over-ride the dex data so this will be the type the shiny reverts to after a team wipe.
+ 
         self.shiny = shiny
         self._init_assets(db_data)
 
@@ -157,9 +166,6 @@ class Monster:
         self.weight: float = 0.0
         self.height = formula.set_height(self, db_data.height)
         self.weight = formula.set_weight(self, db_data.weight)
-
-        self.moves = MonsterMovesHandler()
-        self.moves.set_moveset(db_data.moveset or [])
 
         self.status = MonsterStatusHandler()
         self.plague = MonsterPlagueHandler()
@@ -251,7 +257,6 @@ class Monster:
         monster.status.decode_status(save_data, monster)
         monster.plague.decode_plagues(save_data)
         monster.bond_handler.set_state(save_data)
-
         monster.experience_handler = MonsterExperience.from_state(save_data)
 
         for key, value in save_data.items():
@@ -280,7 +285,9 @@ class Monster:
                 monster.custom_stats = CustomStatBoosts.from_dict(value)
             elif key == "individual_values" and value:
                 monster.individual_values = IndividualValues.from_dict(value)
-
+        if monster.slug == "ignibus" and monster.shiny > 0:
+            monster.types.set_types(["water","fire"]) #Your temporary type.
+            monster.types.set_default_types(["water","fire"]) #Over-ride the dex data so this will be the type the shiny reverts to after a team wipe.
         monster.flair_slugs = set(save_data.get("flair_slugs", []))
         monster._init_assets(db_data) #redoing makes it work... since we over-wrote the random value with the save value. not really the proper way to do it, but the 'proper way' someone else suggested didn't pass bond test.
 

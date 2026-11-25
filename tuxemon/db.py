@@ -207,6 +207,7 @@ class Acquisition(str, Enum):
     PURCHASED = "purchased"
     RESCUED = "rescued"
     CREATED = "created"
+    CLONED = "cloned"
 
 
 class ExperienceMethod(Enum):

@@ -121,9 +121,12 @@ class NumberPickerState(PygameMenuState):
             self._confirm()
             return None
 
-        # B cancel
-        if event.button == buttons.B and event.pressed:
+        # B or BACK cancel
+        if event.button in (buttons.B, buttons.BACK) and event.pressed:
             self.client.pop_state(self)
             return None
 
-        return event
+        # The picker is modal: nothing reaches the menu underneath. (BACK used
+        # to fall through, the menu below began closing and popped the picker
+        # instead of itself, and was left closed on top: the game froze.)
+        return None

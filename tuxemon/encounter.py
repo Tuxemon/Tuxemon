@@ -218,8 +218,8 @@ class Encounter:
         )[0]
         return chosen_item.item_slug
     
-    def get_shiny(self, encounter: EncounterItemModel) -> int | None:
-        if not encounter.shiny:
+    def get_shiny(self, encounter: EncounterItemModel) -> float | None:
+        if encounter.shiny == None:
             return None
         else:
             return encounter.shiny

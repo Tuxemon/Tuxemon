@@ -1,5 +1,5 @@
 monsters:
-- encounter_rate: 1.5
+- encounter_rate: 1
   exp_req_mod: 3
   held_items: []
   level_range:
@@ -7,8 +7,29 @@ monsters:
   - 4
   monster: pairagrin
   variables:
-    - key: daytime
-      value: "true"
+    - key: stage_of_day
+      value: morning
+- encounter_rate: 1
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 2
+  - 4
+  monster: pairagrin
+  shiny: 0.5
+  variables:
+    - key: stage_of_day
+      value: afternoon
+- encounter_rate: 1
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 2
+  - 4
+  monster: chickadee
+  variables:
+    - key: stage_of_day
+      value: dawn
 - encounter_rate: 1
   exp_req_mod: 3
   held_items: []
@@ -18,8 +39,20 @@ monsters:
   monster: scarlant
   gender: neuter
   variables:
-    - key: daytime
-      value: "true"
+    - key: stage_of_day
+      value: "dawn"
+- encounter_rate: 1
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 2
+  - 3
+  monster: scarlant
+  gender: neuter
+  shiny: 0
+  variables:
+    - key: stage_of_day
+      value: "morning"
 - encounter_rate: 1
   exp_req_mod: 3
   held_items: []
@@ -27,9 +60,21 @@ monsters:
   - 2
   - 3
   monster: aardorn
+  shiny: 0.5
   variables:
     - key: daytime
       value: "true"
+- encounter_rate: 1
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 2
+  - 4
+  monster: teddisun
+  shiny: 0
+  variables:
+    - key: stage_of_day
+      value: "dawn"
 - encounter_rate: .1
   exp_req_mod: 3
   held_items: []
@@ -37,16 +82,18 @@ monsters:
   - 2
   - 4
   monster: teddisun
+  shiny: 0
   variables:
-    - key: daytime
-      value: "true"
-- encounter_rate: 1.5
+    - key: stage_of_day
+      value: "morning"
+- encounter_rate: 1
   exp_req_mod: 3
   held_items: []
   level_range:
   - 2
   - 4
   monster: cataspike
+  shiny: 0.5
   variables:
     - key: daytime
       value: "true"
@@ -59,8 +106,8 @@ monsters:
   monster: scarlant
   shiny: 1
   variables:
-    - key: daytime
-      value: "false"
+    - key: stage_of_day
+      value: "afternoon"
 - encounter_rate: .5
   exp_req_mod: 3
   held_items: []
@@ -69,8 +116,8 @@ monsters:
   - 5
   monster: babysnitch
   variables:
-    - key: daytime
-      value: "false"
+    - key: stage_of_day
+      value: "dusk"
 - encounter_rate: 1
   exp_req_mod: 3
   held_items: []
@@ -100,8 +147,8 @@ monsters:
   monster: teddisun
   shiny: 1
   variables:
-    - key: daytime
-      value: "false"
+    - key: stage_of_day
+      value: "dusk"
 - encounter_rate: 1.5
   exp_req_mod: 3
   held_items: []
@@ -110,9 +157,9 @@ monsters:
   - 4
   monster: howl
   variables:
-    - key: daytime
-      value: "false"
-- encounter_rate: 0.5
+    - key: stage_of_day
+      value: "night"
+- encounter_rate: 1
   exp_req_mod: 3
   held_items: []
   level_range:
@@ -120,6 +167,16 @@ monsters:
   - 4
   monster: marvillar
   variables:
-    - key: daytime
-      value: "false"
+    - key: stage_of_day
+      value: "afternoon"
+- encounter_rate: 1
+  exp_req_mod: 3
+  held_items: []
+  level_range:
+  - 2
+  - 4
+  monster: babysnitch
+  variables:
+    - key: stage_of_day
+      value: "night"
 slug: spyder_route1

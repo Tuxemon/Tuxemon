@@ -20,7 +20,6 @@ from tuxemon.monster.monster import Monster
 from tuxemon.platform.const.graphics import WHITE_COLOR
 from tuxemon.session import Session
 
-
 logger = logging.getLogger(__name__)
 
 

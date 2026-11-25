@@ -280,9 +280,9 @@ class JournalInfoState(PygameMenuState):
         slugs = [ele.monster_slug for ele in monster.evolutions]
         elements = list(dict.fromkeys(slugs))
 
-        evolution_names = ", ".join(T.translate(ele) for ele in elements)
+        evolution_names = [T.translate(ele) for ele in elements]
 
-        evolution_text = f"{evo}: {evolution_names}"
+        evolution_text = format_evolution_line(evo, evolution_names)
 
         lab10: Any = menu.add.label(
             title=self._safe_display(evolution_text),
@@ -396,3 +396,14 @@ class JournalInfoState(PygameMenuState):
             return None
 
         return None
+
+
+def format_evolution_line(label: str, names: list[str]) -> str:
+    """Return the Tuxepedia evolution line.
+
+    ``label: name, name`` when there are evolutions; just ``label`` (no colon,
+    no names) when ``names`` is empty.
+    """
+    if not names:
+        return label
+    return f"{label}: {', '.join(names)}"

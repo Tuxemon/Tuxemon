@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+import random
 from dataclasses import dataclass
 from typing import final
 
@@ -18,7 +19,7 @@ from tuxemon.item.item import Item
 from tuxemon.monster.monster import Monster
 from tuxemon.platform.const.graphics import WHITE_COLOR
 from tuxemon.session import Session
-import random
+
 
 logger = logging.getLogger(__name__)
 

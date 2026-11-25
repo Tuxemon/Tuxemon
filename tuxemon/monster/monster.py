@@ -21,7 +21,6 @@ from tuxemon.db import (
     StatType,
 )
 from tuxemon.element import ElementTypesHandler
-from tuxemon.technique.technique import Technique
 from tuxemon.fusion import Body
 from tuxemon.locale.locale import T
 from tuxemon.monster.bond import BondHandler
@@ -46,6 +45,7 @@ from tuxemon.monster.status import MonsterStatusHandler
 from tuxemon.platform.const.sizes import MONTH_KEYS
 from tuxemon.shape import ShapeHandler
 from tuxemon.taste import Taste
+from tuxemon.technique.technique import Technique
 from tuxemon.time_handler import random_month_day, today_month_day
 
 if TYPE_CHECKING:

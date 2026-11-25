@@ -264,54 +264,56 @@ class JournalInfoState(PygameMenuState):
         lab8.translate(fxw(14), fxh(68))
 
         # description
-        desc = T.translate(f"{monster.slug}_description")
-        desc = self._safe_display(desc)
-        desc_frame = menu.add.frame_v(
-            fxw(243),
-            fxh(57),
-            float=True,
-            float_origin_position=True,
-            frame_id="description_frame",
-            padding=0,
-        )
-        desc_frame._relax = True
-        desc_frame.translate(fxw(8), fxh(82))
-        lab9: Any = menu.add.label(
-            title=desc,
-            label_id="description",
-            font_size=self.font_type.biggest,
-            wordwrap=True,
-            leading=fxh(10),
-            align=ALIGN_LEFT,
-            padding=0,
-        )
+        if self.shiny == False:
+            desc = T.translate(f"{monster.slug}_description")
+            desc = self._safe_display(desc)
+            desc_frame = menu.add.frame_v(
+                fxw(243),
+                fxh(57),
+                float=True,
+                float_origin_position=True,
+                frame_id="description_frame",
+                padding=0,
+            )
+            desc_frame._relax = True
+            desc_frame.translate(fxw(8), fxh(82))
+            lab9: Any = menu.add.label(
+                title=desc,
+                label_id="description",
+                font_size=self.font_type.biggest,
+                wordwrap=True,
+                leading=fxh(10),
+                align=ALIGN_LEFT,
+                padding=0,
+            )
 
         # Pack the label into the frame so its wordwrap width is bounded by the
         # frame instead of the full menu width. Starting at x=8 with a width of
         # 243 nominal px, the text ends at x=251 -- 2px inside the background
         # panel's right-hand border (which sits at x=253).
-        desc_frame.pack(lab9, align=ALIGN_LEFT)
+            desc_frame.pack(lab9, align=ALIGN_LEFT)
 
         # evolution monsters
-        slugs = [ele.monster_slug for ele in monster.evolutions]
-        elements = list(dict.fromkeys(slugs))
+        else:
+            slugs = [ele.monster_slug for ele in monster.evolutions]
+            elements = list(dict.fromkeys(slugs))
 
-        evolution_names = ", ".join(T.translate(ele) for ele in elements)
+            evolution_names = ", ".join(T.translate(ele) for ele in elements)
 
-        evolution_text = f"{evo}: {evolution_names}"
+            evolution_text = f"{evo}: {evolution_names}"
 
-        lab10: Any = menu.add.label(
-            title=self._safe_display(evolution_text),
-            label_id="evolution",
-            font_size=self.font_type.biggest,
-            wordwrap=True,
-            align=ALIGN_LEFT,
-            float=True,
-            float_origin_position=True,
-            padding=0,
-        )
+            lab10: Any = menu.add.label(
+                title=self._safe_display(evolution_text),
+                label_id="evolution",
+                font_size=self.font_type.biggest,
+                wordwrap=True,
+                align=ALIGN_LEFT,
+                float=True,
+                float_origin_position=True,
+                padding=0,
+            )
 
-        lab10.translate(fxw(12), fxh(128))
+            lab10.translate(fxw(5), fxh(80))
 
         # image
         loader = SpriteLoader()

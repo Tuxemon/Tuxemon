@@ -78,6 +78,7 @@ class GameplayConfig(BaseModel):
     sound_volume: float = 0.2
     music_volume: float = 0.5
     combat_click_to_continue: bool = False
+    autosave_on_map_change: bool = False
 
     @field_validator("sound_volume", "music_volume")
     def validate_volume(cls, v: float) -> float:
@@ -297,6 +298,10 @@ class TuxemonConfig:
     @property
     def combat_click_to_continue(self) -> bool:
         return self.config_model.gameplay.combat_click_to_continue
+
+    @property
+    def autosave_on_map_change(self) -> bool:
+        return self.config_model.gameplay.autosave_on_map_change
 
     @property
     def dialog_box_style(self) -> str:

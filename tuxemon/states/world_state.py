@@ -25,6 +25,9 @@ from tuxemon.event.eventmiddleware import (
 from tuxemon.faction.manager import FactionManager
 from tuxemon.platform.events import PlayerInput
 from tuxemon.prepare import DEV_TOOLS
+from tuxemon.save_system.map_autosave import MapAutosave
+from tuxemon.save_system.save_manager import SaveManager
+from tuxemon.save_system.save_slots import AUTOSAVE_SLOT
 from tuxemon.save_system.save_state import WorldSave
 from tuxemon.session import Session
 from tuxemon.state.state import State
@@ -64,6 +67,9 @@ class WorldState(State):
         self.session.set_world(self)
         self.tile_size = self.client.context.tile_size
         self.menu_manager = WorldMenuManager(self.client)
+        self.map_autosave = MapAutosave(
+            lambda: SaveManager.save(self.session, AUTOSAVE_SLOT), settle=0.5
+        )
         self.transition_manager = WorldTransition(
             self, self.client.movement_manager, self.client.context.resolution
         )
@@ -150,6 +156,20 @@ class WorldState(State):
         self.client.npc_manager.update_npcs(dt, self.client)
         self.client.npc_manager.update_npcs_off_map(dt, self.client)
         self.client.map_renderer.update(dt)
+        if self.client.config.autosave_on_map_change:
+            self.map_autosave.update(
+                self.client.get_map_name(), self._can_autosave(), dt
+            )
+
+    def _can_autosave(self) -> bool:
+        """Saving is safe: nothing is running and the player stands still."""
+        return (
+            self.client.current_state is self
+            and not self.client.event_engine.running_events
+            and not self.transition_manager.in_transition
+            and not self.player.mover.is_moving_state
+            and self.menu_manager.menu_flags.is_enabled("menu_save")
+        )
 
     def draw(self, surface: Surface) -> None:
         """Draw the game world to the screen."""

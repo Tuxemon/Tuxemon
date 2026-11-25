@@ -22,6 +22,8 @@ class DummyEncounterData:
         self.encounter_type = EncounterType.SINGLE
         self.encounters = []
         self.horde = None
+        self.shiny = None
+        self.gender = None
         self.scaling_zone = False
         self.override_level_range = None
         self.scale_offset_range = None
@@ -38,6 +40,8 @@ class DummyEncounterItem:
         rate=100,
         level_range=(1, 5),
         held_items=None,
+        shiny=None,
+        gender=None,
         scaling_enabled=False,
     ):
         self.monster = monster
@@ -45,6 +49,8 @@ class DummyEncounterItem:
         self.level_range = level_range
         self.level_offset_range = None
         self.level_offset = 0
+        self.shiny = shiny
+        self.gender = gender
         self.held_items = held_items or []
         self.scaling_enabled = scaling_enabled
         self.min_player_level = None

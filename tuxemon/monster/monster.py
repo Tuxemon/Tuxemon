@@ -21,7 +21,7 @@ from tuxemon.db import (
     StatType,
 )
 from tuxemon.element import ElementTypesHandler
-from tuxemon.technique.technique import Technique, decode_moves, encode_moves
+from tuxemon.technique.technique import Technique
 from tuxemon.fusion import Body
 from tuxemon.locale.locale import T
 from tuxemon.monster.bond import BondHandler
@@ -87,6 +87,7 @@ class Monster:
         db_data: MonsterModel,
         instance_id: UUID | None = None,
         shiny: int | None = None,
+        gender: str | None = None,
     ) -> None:
         self.slug: str = slug
         self.instance_id: UUID = instance_id or uuid4()
@@ -113,13 +114,19 @@ class Monster:
         self.evolutions = list(db_data.evolutions or [])
         self.history = list(db_data.history or [])
         self.evolution_handler = Evolution(self)
-        self.gender = self.assign_gender(self.gender_weights)
-        if self.slug == "pantherafira" and self.is_male:
-            shiny = random.choices([0, 1], weights=(8, 1), k=1)[0]
-        elif self.slug == "pantherafira" and self.is_female:
-            shiny = random.choices([1, 0], weights=(8, 1), k=1)[0]
-        elif shiny is None:
-            shiny = random.choices([0, 1], weights=(6, 1), k=1)[0]
+        
+        if gender is not None:
+            self.gender = GenderType(gender)
+        else:
+            self.gender = self.assign_gender(self.gender_weights)
+
+        if shiny is None:
+            if self.slug == "pantherafira" and self.is_male: #First monster to have gender ratio morphs. Ensures trainer mons will have the gender biased 'shininess' too.
+                shiny = random.choices([0, 1], weights=(8, 1), k=1)[0]
+            elif self.slug == "pantherafira" and self.is_female: #Should replace this with generalized code / database lookup if we get more gender morphs.
+                shiny = random.choices([1, 0], weights=(8, 1), k=1)[0]
+            else:
+                shiny = random.choices([0, 1], weights=(6, 1), k=1)[0]
             if self.slug == "ignibus" and shiny > 0:
                 self.moves.add_move(Technique.create("bubbles")) #Variant Ignibus will learn bubbles once.
                 self.types.set_types(["water","fire"]) #Your temporary type.
@@ -229,10 +236,10 @@ class Monster:
         )
 
     @classmethod
-    def spawn_base(cls, slug: str, level: int) -> Monster:
+    def spawn_base(cls, slug: str, level: int, shiny: int | None = None, gender: str | None = None) -> Monster:
         """Creates a fresh monster at a given level with initialized stats."""
         db_data = MonsterModel.lookup(slug, db)
-        monster = cls(slug, db_data)
+        monster = cls(slug, db_data, None, shiny, gender)
         monster.capture_date = today_month_day()
         monster.birthdate = random_month_day()
         monster.experience_handler.set_level(level)
@@ -252,7 +259,7 @@ class Monster:
             if "instance_id" in save_data
             else None
         )
-        monster = cls(slug, db_data, iid) #monster = cls(slug, db_data, iid, shiny=save_data.get("shiny",0)) this was suggested as a way to make things more elegant, but including it breaks test.
+        monster = cls(slug, db_data, iid, shiny=save_data.get("shiny",0))
         monster.moves.decode_moves(save_data)
         monster.status.decode_status(save_data, monster)
         monster.plague.decode_plagues(save_data)
@@ -262,8 +269,6 @@ class Monster:
         for key, value in save_data.items():
             if key == "body" and value:
                 monster.body.set_state(value)
-            elif key=="shiny":
-                monster.shiny = value
             elif key == "gender" and value:
                 monster.gender = GenderType(value)
             elif key == "acquisition" and value:
@@ -285,12 +290,12 @@ class Monster:
                 monster.custom_stats = CustomStatBoosts.from_dict(value)
             elif key == "individual_values" and value:
                 monster.individual_values = IndividualValues.from_dict(value)
+                
         if monster.slug == "ignibus" and monster.shiny > 0:
             monster.types.set_types(["water","fire"]) #Your temporary type.
-            monster.types.set_default_types(["water","fire"]) #Over-ride the dex data so this will be the type the shiny reverts to after a team wipe.
+            monster.types.set_default_types(["water","fire"]) #Over-ride the dex-given permanent type
         monster.flair_slugs = set(save_data.get("flair_slugs", []))
-        monster._init_assets(db_data) #redoing makes it work... since we over-wrote the random value with the save value. not really the proper way to do it, but the 'proper way' someone else suggested didn't pass bond test.
-
+        
         if "flairs" in save_data:
             monster.flairs = {
                 category: Flair.from_state(flair_data)

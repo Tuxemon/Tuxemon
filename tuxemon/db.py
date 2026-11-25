@@ -2436,6 +2436,14 @@ class EncounterItemModel(BaseModel):
         default_factory=list,
         description="A list of items that will be held with their probabilities.",
     )
+    shiny: int | None = Field(
+        None,
+        description="Make a monster a variant. 0 for non-shiny. 1 for guaranteed.",
+    )
+    gender: str | None = Field(
+        None,
+        description="Make a monster a certain gender. Accepts female, male or neuter.",
+    )
     level_range: tuple[int, int] = Field(
         ...,
         description="Minimum and maximum levels at which this encounter can occur.",

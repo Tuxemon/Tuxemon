@@ -80,8 +80,23 @@ class RandomEncounterAction(EventAction):
 
         logger.info("Starting random encounter!")
 
+        if results.shiny is not None:
+            if results.shiny > 0 and results.shiny < 1:
+                results.shiny = random.choices([0, 1], weights=(1 - results.shiny, results.shiny), k=1)[0]
+            results.shiny = results.shiny
+            """put shinies =1,
+            and mons you want to guarantee to be non-shiny =0.
+            Put in range between 0 and 1 to make it a ratio."""
+
+        """ if gender is set
+            You could use this, for example, to have neuter worker scarlant and then normal gendered drone/queen scarlant.
+            Could be combined with shiny/variant form for gender specific or biased forms, but keep in mind this is only
+            for random wild mons so trainer and baby mons would not also turn shiny from this, so it isn't a full solution.
+            As a string it expects female, male, or neuter."""
+
+
         current_monster = Monster.spawn_base(
-            results.monster.monster, results.level
+            results.monster.monster, results.level, results.shiny, results.gender
         )
         current_monster.set_experience_modifier(results.monster.exp_req_mod)
 

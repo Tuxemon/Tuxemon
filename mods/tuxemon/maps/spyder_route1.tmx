@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="214">
+<map version="1.10" tiledversion="1.12.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="214">
  <properties>
   <property name="east" value="brideswood"/>
   <property name="edges" value="clamped"/>
@@ -15,7 +15,7 @@
  <tileset firstgid="12518" source="../gfx/tilesets/core_outdoor_nature.tsx"/>
  <layer id="1" name="Tile Layer 1" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAGrY2NgqBvFZIeBDwfh8DtBxfA9RaJZhUS4byDj35eTgcEb6EYYJiY86eleFm4GBmQ82MIT2W0gNjb3DWT6I8Z99IxPdLtGovuomR6ICT9q2kdq+UeM+9DTBD35MPdpAMvBqcBycNogK69h7sNWrtAznHDZNeo+wu0PXGEHEh8NP8rCb7DmW1icD9Z8C3MfAH51ilk=
+   eAGrY2NgqBvFZIeBDwfh8DtBxfA9RaJZhUS4byDj35eTgcEb6EYYJiY86eleFm4GBmSMKzzrgfGCjunhTmS3gdjY3DeQ6Y8Y99EjnHDZMRLdR830QEz4UdM+Uss/YtyHK23QQxzmPg1gOTgVWA5OG2TlNcx92MoVeoQPITtG3Ue4/YEvDEfDj7LwG6z5FhbngzXfwtwHAKxlil4=
   </data>
  </layer>
  <layer id="2" name="Tile Layer 2" width="40" height="20">
@@ -25,7 +25,7 @@
  </layer>
  <layer id="3" name="Tile Layer 3" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHVlN0NwjAMhPPEA0KCXYBhYAeWYLrCDKzADsRqP8k61TgoVAhL6dV/50satZT/su26lF1dio/Nd/ahvJnfOvW2KmVu3WvcbJhwX/dmyxs5H+t9130968xs2cw5fV6L8vpcz3umzfJmmb6xqv+p+/yWPuXtVzoy2N3zNncXLfar8/Pa3p1lpq/1/Kjzc1vfe/S1zsjq0A9e3P+vRx98YKQjy2tfdN8szj9Qe5b00Q9GZ6Yaojri8EUIH3n8DOFX1D7Nq6/1rT564aNP4+RB6kDiEcIH0qcY5ZWXPo3jkweJR0gd2FqHXq0nDl8vwgfaPLOl545TPn+qLrQqE/vJUPsyf5AC5Vd9+NRJ+8/dQ/3ex+mbmxh0KkZCr643qumJnyr/2c14AWg9qV8=
+   eAHVlN0NwjAMhPPEA0KCXYBhYAeWYDpgBlZgB2LRT7JOdR0IqCJSevHf+dxULeW/1npZyqZuxfvqO3Mob2a3dr0uShnbt+q3dRlwW2ez7Rcx7+s961yP2jPb1nNMn9eivD7Wc860WdxWpu+V1f/8dM5M36e82UT27fk19i2aL9PnOXrOU3NO3XWmb4rX6yXP+1rPPfpae2R56AdPjf+/ud5f9L2Zn39gNvM347w3MLpT7Rnl4YcvQviIY2cIv6LWaVxtzW+10QsfdeonDpIH4o8QPpA6xSiuvNSpH5s4iD9C8sDWPPRqPn74ehE+0PrZ+nXfV5f3n6oLrcrEPBlqXWZfJEH5VR82eVI+u7mr970f7tzEoFMxEnp2tVFOj/9Q+Y+uxxMgoZnv
   </data>
  </layer>
  <layer id="4" name="Tile Layer 4" width="40" height="20">
@@ -104,7 +104,7 @@
     <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
-  <object id="153" name="Encounters" type="event" x="208" y="112" width="112" height="48">
+  <object id="153" name="Encounters" type="event" x="208" y="112" width="112" height="32">
    <properties>
     <property name="act1" value="random_encounter spyder_route1,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
@@ -112,7 +112,7 @@
     <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
-  <object id="154" name="Encounters" type="event" x="160" y="48" width="144" height="48">
+  <object id="154" name="Encounters" type="event" x="160" y="48" width="144" height="32">
    <properties>
     <property name="act1" value="random_encounter spyder_route1,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
@@ -250,7 +250,7 @@
     <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
-   <object id="12519" name="Track route1" type="event" x="0" y="0" width="640" height="320">
+  <object id="12519" name="Track route1" type="event" x="0" y="0" width="640" height="320">
    <properties>
     <property name="act1" value="add_tracker player,route1"/>
     <property name="cond1" value="is char_at player"/>

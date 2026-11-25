@@ -30,6 +30,8 @@ class EncounterResult:
     monster: EncounterItemModel
     level: int
     held_item: str | None = None
+    shiny: int | None = None
+    gender: str | None = None
 
 
 @dataclass
@@ -152,7 +154,10 @@ class Encounter:
         chosen = random.choices(valid, weights=weights, k=1)[0]
         level = self.determine_level(character, chosen)
         item = self.get_held_item(chosen)
-        return EncounterResult(monster=chosen, level=level, held_item=item)
+        shiny = self.get_shiny(chosen)
+        gender = self.get_gender(chosen)
+        
+        return EncounterResult(monster=chosen, level=level, held_item=item, shiny=shiny, gender=gender)
 
     def get_horde_encounter(
         self, character: NPC, total_prob: float | None = None
@@ -212,7 +217,17 @@ class Encounter:
             encounter.held_items, weights=weights, k=1
         )[0]
         return chosen_item.item_slug
-
+    
+    def get_shiny(self, encounter: EncounterItemModel) -> int | None:
+        if not encounter.shiny:
+            return None
+        else:
+            return encounter.shiny
+    def get_gender(self, encounter: EncounterItemModel) -> str | None:
+        if not encounter.gender:
+            return None
+        else:
+            return encounter.gender
 
 class LevelScaler:
     @staticmethod

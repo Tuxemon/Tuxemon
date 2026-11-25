@@ -32,7 +32,7 @@ class WildEncounterAction(EventAction):
         .. code-block::
 
             wild_encounter <monster_slug>,<monster_level>[,exp_mod]
-                            [,mon_mod][,rgb][,held_item]
+                            [,mon_mod][,rgb][,held_item][,shiny][,gender]
 
     Script parameters:
         monster_slug: Monster slug.
@@ -41,6 +41,7 @@ class WildEncounterAction(EventAction):
         mon_mod: Money modifier.
         rgb: color (eg red > 255,0,0 > 255:0:0) - default rgb(255,255,255)
         held_item: item held by the monster
+        shiny: 0 for normal, 1 for first variant
     """
 
     name = "wild_encounter"
@@ -51,6 +52,8 @@ class WildEncounterAction(EventAction):
     env: str | None = None
     rgb: str | None = None
     held_item: str | None = None
+    shiny: int | None = None
+    gender: str | None = None
 
     def start(self, session: Session) -> None:
         player = session.player
@@ -64,7 +67,7 @@ class WildEncounterAction(EventAction):
         logger.info("Starting wild encounter!")
 
         current_monster = Monster.spawn_base(
-            self.monster_slug, self.monster_level
+            self.monster_slug, self.monster_level, self.shiny, self.gender
         )
         if self.exp is not None:
             current_monster.set_experience_modifier(self.exp)

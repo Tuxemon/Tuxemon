@@ -1,11 +1,18 @@
 # SPDX-License-Identifier: GPL-3.0
 # Copyright (c) 2014-2026 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+import os
 import sys
 from pathlib import Path
 
-import pygame
-import pytest
-from _pytest.mark.structures import ParameterSet
+# Tests run headless unless a video driver is asked for. The fixture below
+# calls pygame.display.set_mode() for every test module; without this each
+# one opens a real window that takes keyboard focus on a desktop.
+os.environ.setdefault("SDL_VIDEODRIVER", "dummy")
+os.environ.setdefault("SDL_AUDIODRIVER", "dummy")
+
+import pygame  # noqa: E402
+import pytest  # noqa: E402
+from _pytest.mark.structures import ParameterSet  # noqa: E402
 
 
 @pytest.fixture(scope="module", autouse=True)

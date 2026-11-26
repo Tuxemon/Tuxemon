@@ -6,7 +6,10 @@ import logging
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from tuxemon.formula import simple_damage_multiplier
+from tuxemon.formula import (
+    apply_held_item_resistance,
+    simple_damage_multiplier,
+)
 from tuxemon.platform.const.sizes import POWER_RANGE
 from tuxemon.technique.technique import Technique
 
@@ -68,15 +71,18 @@ def technique_score(
 
     breakdown: dict[str, float] = {}
 
-    # Elemental effectiveness
+    # Elemental effectiveness, including the opponent's held item
+    # resistance (e.g. an element mantle), so the AI sees the same
+    # multiplier that simple_damage_calculate will apply
     effectiveness_score = 0.0
     if config.elemental_multiplier_weight:
-        effectiveness_score = (
-            simple_damage_multiplier(
-                technique.types.current, opponent.types.current
-            )
-            * config.elemental_multiplier_weight
+        multiplier = simple_damage_multiplier(
+            technique.types.current, opponent.types.current
         )
+        multiplier = apply_held_item_resistance(
+            multiplier, technique, opponent
+        )
+        effectiveness_score = multiplier * config.elemental_multiplier_weight
     elemental_health = config.elemental_health_threshold
     elemental_scaling = config.elemental_health_scaling
     if elemental_health and elemental_scaling:

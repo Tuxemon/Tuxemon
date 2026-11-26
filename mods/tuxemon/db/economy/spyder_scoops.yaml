@@ -208,6 +208,50 @@
   resale_multiplier: 0.5
   slug: spyder_flower_mantle
 - background: gfx/ui/item/item_menu_bg.png
+  items:
+  - cost: 1000
+    slug: cosmic_pellet
+    price: 2000
+  - cost: 1000
+    slug: earth_pellet
+    price: 2000
+  - cost: 1000
+    slug: fire_pellet
+    price: 2000
+  - cost: 1000
+    slug: frost_pellet
+    price: 2000
+  - cost: 1000
+    slug: heroic_pellet
+    price: 2000
+  - cost: 1000
+    slug: lightning_pellet
+    price: 2000
+  - cost: 1000
+    slug: metal_pellet
+    price: 2000
+  - cost: 1000
+    slug: normal_pellet
+    price: 2000
+  - cost: 1000
+    slug: shadow_pellet
+    price: 2000
+  - cost: 1000
+    slug: sky_pellet
+    price: 2000
+  - cost: 1000
+    slug: venom_pellet
+    price: 2000
+  - cost: 1000
+    slug: water_pellet
+    price: 2000
+  - cost: 1000
+    slug: wood_pellet
+    price: 2000
+  monsters: []
+  resale_multiplier: 0.5
+  slug: spyder_flower_pellet
+- background: gfx/ui/item/item_menu_bg.png
   items: []
   monsters:
   - cost: 50

@@ -178,3 +178,13 @@
     sprite_name: shopassistant_red
     combat_sheet: shopassistant
     slug: shopassistant
+- slug: spyder_flowerscoop_rhys
+  speech:
+    profile:
+      default: {}
+  combat: {}
+  audio: {}
+  template:
+    sprite_name: shopassistant_black
+    combat_sheet: shopassistant
+    slug: shopassistant

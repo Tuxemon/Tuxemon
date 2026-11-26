@@ -13693,6 +13693,10 @@ msgid "spyder_flower_mantleseller"
 msgstr "They're going to add a vending machine to this corner, but in the meantime you'll have to buy from me. \n"
 " We're selling element mantles. Wearing one gives resistance to that element."
 
+msgid "spyder_flower_pelletseller"
+msgstr "They're going to add a vending machine to this corner, but in the meantime you'll have to buy from me. \n"
+" We're selling element pellets. Hold one and your techniques of that element hit harder."
+
 msgid "spyder_route1_beachcomber"
 msgstr ""
 "To run, just hold down the SHIFT key. \n"
@@ -16524,6 +16528,9 @@ msgstr "Titus"
 
 msgid "spyder_flowerscoop_orla"
 msgstr "Orla"
+
+msgid "spyder_flowerscoop_rhys"
+msgstr "Rhys"
 
 msgid "spyder_cottonhouse2_davis"
 msgstr "Davis"

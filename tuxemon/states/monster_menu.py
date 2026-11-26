@@ -279,8 +279,34 @@ class MonsterMenuHandler:
         if not item:
             return
 
-        monster.equip_item(item)
-        self.party.owner.bag.remove_item(item)
+        from tuxemon.item.item import Item
+
+        bag = self.party.owner.bag
+        held = monster.held_item
+
+        # equipping the same kind of item it already holds changes nothing
+        if held is None or held.slug != item.slug:
+            # the bag entry is a stack; the monster gets its own single item
+            # rather than the stack object itself, so the two never share
+            # quantity or identity
+            if item.quantity > 1:
+                to_equip = Item.create(item.slug)
+                to_equip.durability.current = item.durability.current
+            else:
+                to_equip = item
+
+            if bag.remove_item(item):
+                to_equip.set_quantity(1)
+                previous = monster.unequip_item()
+                if monster.equip_item(to_equip):
+                    if previous:
+                        bag.add_item(previous)
+                else:
+                    # couldn't hold it: put everything back as it was
+                    bag.add_item(to_equip)
+                    if previous:
+                        monster.equip_item(previous)
+
         self.client.remove_state_by_name("ItemMenuState")
         self.monster_menu.refresh_menu_items()
 

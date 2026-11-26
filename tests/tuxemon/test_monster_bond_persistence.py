@@ -21,11 +21,11 @@ def monster_factory(monkeypatch):
     )
 
     def fake_monster_init(
-        self, slug="testmon", db_data=None, instance_id=None
+        self, slug="testmon", db_data=None, instance_id=None, shiny= None
     ):
         if db_data is None:
             db_data = MonsterModel.lookup(slug, None)
-        original_init(self, slug, db_data, instance_id)
+        original_init(self, slug, db_data, instance_id, shiny=shiny)
 
     monkeypatch.setattr(Monster, "__init__", fake_monster_init)
 

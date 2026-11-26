@@ -9,7 +9,7 @@ from pygame_menu.menu import Menu
 
 from tuxemon import formula
 from tuxemon.database.runtime import db
-from tuxemon.db import MonsterModel
+from tuxemon.db import MonsterModel, MonsterSpritesModel
 from tuxemon.locale.locale import T
 from tuxemon.menu.menu import PygameMenuState
 from tuxemon.monster.sprite import MonsterSpriteHandler, SpriteLoader
@@ -203,6 +203,22 @@ class JournalInfoState(PygameMenuState):
 
             lab5a.translate(fxw(132), fxh(51))
 
+            if monster.slug == "ignibus" and self.shiny == True: #The only monster in the game with a type changed morph.
+                type2_text = self._safe_display("water")
+
+                lab5b = menu.add.label(
+                    title=f"{type2_text}{menu_type_suffix}",
+                    label_id="type_loaded_2",
+                    font_size=self.font_type.biggest,
+                    font_name=minimal_font,
+                    align=ALIGN_LEFT,
+                    float=True,
+                    float_origin_position=True,
+                    padding=0,
+                )
+
+                lab5b.translate(fxw(164), fxh(57))
+
         # shape
         menu_shape = T.translate("monster_menu_shape_short")
         _shape = T.translate(monster.shape)
@@ -248,58 +264,67 @@ class JournalInfoState(PygameMenuState):
         lab8.translate(fxw(14), fxh(68))
 
         # description
-        desc = T.translate(f"{monster.slug}_description")
-        desc = self._safe_display(desc)
-        desc_frame = menu.add.frame_v(
-            fxw(243),
-            fxh(57),
-            float=True,
-            float_origin_position=True,
-            frame_id="description_frame",
-            padding=0,
-        )
-        desc_frame._relax = True
-        desc_frame.translate(fxw(8), fxh(85))
-        lab9: Any = menu.add.label(
-            title=desc,
-            label_id="description",
-            font_size=self.font_type.biggest,
-            wordwrap=True,
-            leading=fxh(10),
-            align=ALIGN_LEFT,
-            padding=0,
-        )
+        if self.shiny == False:
+            desc = T.translate(f"{monster.slug}_description")
+            desc = self._safe_display(desc)
+            desc_frame = menu.add.frame_v(
+                fxw(243),
+                fxh(57),
+                float=True,
+                float_origin_position=True,
+                frame_id="description_frame",
+                padding=0,
+            )
+            desc_frame._relax = True
+            desc_frame.translate(fxw(8), fxh(82))
+            lab9: Any = menu.add.label(
+                title=desc,
+                label_id="description",
+                font_size=self.font_type.biggest,
+                wordwrap=True,
+                leading=fxh(10),
+                align=ALIGN_LEFT,
+                padding=0,
+            )
 
         # Pack the label into the frame so its wordwrap width is bounded by the
         # frame instead of the full menu width. Starting at x=8 with a width of
         # 243 nominal px, the text ends at x=251 -- 2px inside the background
         # panel's right-hand border (which sits at x=253).
-        desc_frame.pack(lab9, align=ALIGN_LEFT)
+            desc_frame.pack(lab9, align=ALIGN_LEFT)
 
         # evolution monsters
-        slugs = [ele.monster_slug for ele in monster.evolutions]
-        elements = list(dict.fromkeys(slugs))
+        else:
+            slugs = [ele.monster_slug for ele in monster.evolutions]
+            elements = list(dict.fromkeys(slugs))
 
-        evolution_names = ", ".join(T.translate(ele) for ele in elements)
+            evolution_names = ", ".join(T.translate(ele) for ele in elements)
 
-        evolution_text = f"{evo}: {evolution_names}"
+            evolution_text = f"{evo}: {evolution_names}"
 
-        lab10: Any = menu.add.label(
-            title=self._safe_display(evolution_text),
-            label_id="evolution",
-            font_size=self.font_type.biggest,
-            wordwrap=True,
-            align=ALIGN_LEFT,
-            float=True,
-            float_origin_position=True,
-            padding=0,
-        )
+            lab10: Any = menu.add.label(
+                title=self._safe_display(evolution_text),
+                label_id="evolution",
+                font_size=self.font_type.biggest,
+                wordwrap=True,
+                align=ALIGN_LEFT,
+                float=True,
+                float_origin_position=True,
+                padding=0,
+            )
 
-        lab10.translate(fxw(22), fxh(128))
+            lab10.translate(fxw(5), fxh(80))
 
         # image
         loader = SpriteLoader()
-        sprites = monster.sprites
+        #sprites = monster.sprites
+        if self.shiny == False:
+            sprites = MonsterSpritesModel(
+                sheet=f"gfx/sprites/battle/{monster.slug}-sheet",)
+        else:
+             sprites = MonsterSpritesModel(
+                sheet=f"gfx/sprites/battle/morphs/{monster.slug}-sheet",)
+ 
         assert sprites
         handler = MonsterSpriteHandler(
             slug=monster.slug,
@@ -324,10 +349,15 @@ class JournalInfoState(PygameMenuState):
         monster: MonsterModel | None,
         source: str,
         reveal: bool = False,
+        shiny: bool | None = None,
         **kwargs: Any,
     ) -> None:
         MonsterModel.load_cache(db)
         self.cache = MonsterModel.get_cache()
+        if shiny:
+            self.shiny = shiny
+        else:
+            self.shiny = False
 
         if monster is None:
             raise ValueError("No monster")
@@ -382,14 +412,28 @@ class JournalInfoState(PygameMenuState):
             client.replace_state(
                 "JournalInfoState",
                 character=self.char,
+                shiny=self.shiny,
                 monster=monster_models[new_index],
                 source=self.name,
             )
             return None
+        elif ( # A to cycle info / morphs
+            event.button == buttons.A
+            and event.pressed
+        ):
+            self.shiny = not self.shiny # flip the binary value
 
-        # A / B / BACK → close (pressed only)
+            client.replace_state(
+                "JournalInfoState",
+                character=self.char,
+                shiny=self.shiny,
+                monster=self._monster,
+                source=self.name,
+            )
+             
+        #  B / BACK → close (pressed only)
         elif (
-            event.button in (buttons.BACK, buttons.B, buttons.A)
+            event.button in (buttons.BACK, buttons.B)
             and event.pressed
         ):
             client.remove_state_by_name("JournalInfoState")

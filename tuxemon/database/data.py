@@ -4,11 +4,11 @@ from __future__ import annotations
 
 import logging
 from collections.abc import Mapping
-from pathlib import Path
 from typing import TYPE_CHECKING, Any
 
 from pydantic import ValidationError
 
+from tuxemon.constants.paths import resolve_mod_base_path
 from tuxemon.database.config import DatabaseConfig
 from tuxemon.database.loader import ModelLoader, load_files
 from tuxemon.database.management import (
@@ -38,13 +38,12 @@ class ModData:
         self._config = config
         self._loader = loader
         self._resolver = DependencyResolver(config.mod_dependencies)
+        self._mod_base_path = resolve_mod_base_path(config.mod_base_path)
 
         self._preloaded: dict[str, dict[str, Any]] = {}
         self._database: dict[str, dict[str, DataModel]] = {}
 
-        mod_loader = ModMetadataLoader(
-            config.active_mods, config.mod_base_path
-        )
+        mod_loader = ModMetadataLoader(config.active_mods, self._mod_base_path)
         self._mod_manager = ModMetadataManager(mod_loader.load_metadata())
         self._query_manager = DatabaseQuery(self._database, self._config)
 
@@ -132,9 +131,7 @@ class ModData:
                 continue
 
             base_path = (
-                Path(self._config.mod_base_path)
-                / mod_dir
-                / self._config.mod_db_subfolder
+                self._mod_base_path / mod_dir / self._config.mod_db_subfolder
             )
             db_path = base_path / table
 

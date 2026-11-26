@@ -1,6 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0
 # Copyright (c) 2014-2026 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 import logging
+import os
 import sys
 from pathlib import Path
 
@@ -22,15 +23,33 @@ logger.debug(f"root package name: {ROOT_PACKAGE_NAME}")
 BASEDIR = Path(sys.path[0]).resolve()
 logger.debug(f"basedir: {BASEDIR}")
 
-# mods
+# GAME_ROOT is the folder which holds the game data (the mods folder)
 # For cx_freeze builds, LIBDIR is in lib/tuxemon, so we need to go up two levels
 # For normal installs, LIBDIR is in tuxemon, so we go up one level
 if hasattr(sys, "frozen") and sys.frozen:
     # cx_freeze build: exe.win-amd64-3.12\lib\tuxemon -> exe.win-amd64-3.12\mods
-    mods_folder = (LIBDIR.parent.parent / "mods").resolve()
+    GAME_ROOT = LIBDIR.parent.parent
 else:
     # normal install: tuxemon -> mods
-    mods_folder = (LIBDIR.parent / "mods").resolve()
+    GAME_ROOT = LIBDIR.parent
+logger.debug(f"game root: {GAME_ROOT}")
+
+# mods
+# Packaged builds (e.g. flatpak) may install the mods somewhere else, so allow
+# the location to be overridden with an environment variable.
+MOD_PATH_ENV_VAR = "TUXEMON_MOD_PATH"
+mods_folder_override: Path | None = None
+_env_mod_path = os.environ.get(MOD_PATH_ENV_VAR)
+if _env_mod_path:
+    _candidate = Path(_env_mod_path).resolve()
+    if _candidate.is_dir():
+        mods_folder_override = _candidate
+    else:
+        logger.error(
+            f"{MOD_PATH_ENV_VAR} points to '{_candidate}', which is not a "
+            "directory. Falling back to the bundled mods folder."
+        )
+mods_folder = mods_folder_override or (GAME_ROOT / "mods").resolve()
 logger.debug(f"mods: {mods_folder}")
 
 # mods subfolders
@@ -97,6 +116,24 @@ logger.debug(f"system folders: {system_installed_folders}")
 
 
 # --- Methods ---
+
+
+def resolve_mod_base_path(base_path: str | Path) -> Path:
+    """
+    Resolves a configured mod base path (e.g. `mod_base_path` in db_config.yaml)
+    into an absolute path.
+
+    Relative paths are resolved against the game root instead of the current
+    working directory, because the game is not always launched from the folder
+    which holds the mods (e.g. the flatpak build launches from the user's home
+    directory).
+    """
+    path = Path(base_path)
+    if path.is_absolute():
+        return path
+    if mods_folder_override is not None:
+        return mods_folder_override
+    return (GAME_ROOT / path).resolve()
 
 
 def get_active_mod_paths() -> list[Path]:

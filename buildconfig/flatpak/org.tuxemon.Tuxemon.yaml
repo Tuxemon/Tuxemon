@@ -50,4 +50,7 @@ modules:
         dest-filename: org.tuxemon.Tuxemon
         commands:
           - export TUXEMON_MOD_PATH=/app/share/Tuxemon/mods
+          # the game resolves some data paths relative to the working
+          # directory, which is the user's home when launched from the desktop
+          - cd /app/share/Tuxemon
           - exec python3 /app/share/Tuxemon/org.tuxemon.Tuxemon.py "$@"

@@ -245,6 +245,7 @@ def open_choice_dialog(
     menu: MenuOptions,
     escape_key_exits: bool = False,
     config: MenuStateConfig | None = None,
+    title: str | None = None,
 ) -> State:
     """
     Opens a dialog choice using the standard window size.
@@ -255,6 +256,7 @@ def open_choice_dialog(
         escape_key_exits: Whether pressing the escape key will close the
             dialog (default: False).
         config: Configuration for the menu.
+        title: Optional header shown above the options (not selectable).
 
     Returns:
         The newly pushed dialog choice state.
@@ -264,6 +266,7 @@ def open_choice_dialog(
         menu=menu,
         escape_key_exits=escape_key_exits,
         config=config,
+        title=title,
     )
 
 

@@ -39,10 +39,6 @@ class JournalInfoState(PygameMenuState):
             "font", self.client.config.locale.thin_font_file
         )
 
-        arbata_font = transform_resource_filename(
-            "font", self.client.config.locale.arbata_font_file
-        )
-
         orig_w = menu._width
         orig_h = menu._height
 
@@ -94,10 +90,7 @@ class JournalInfoState(PygameMenuState):
             padding=0,
             underline=True,
             underline_color=SEA_BLUE_COLOR,
-            # pygame centres a thick line on its y, so shift by half its
-            # width to put the line's top edge on the pixel grid.
-            underline_offset=self.client.context.scaling.scale_int(1)
-            + (self.client.context.scaling.scale_int(1) - 1) // 2,
+            underline_offset=self.client.context.scaling.scale_int(1),
             underline_width=self.client.context.scaling.scale_int(1),
         )
         lab1.translate(fxw(119), fxh(8))
@@ -271,85 +264,67 @@ class JournalInfoState(PygameMenuState):
         lab8.translate(fxw(14), fxh(68))
 
         # description
-        desc = T.translate(f"{monster.slug}_description")
-        desc = self._safe_display(desc)
-        desc_frame = menu.add.frame_v(
-            fxw(243),
-            fxh(57),
-            float=True,
-            float_origin_position=True,
-            frame_id="description_frame",
-            padding=0,
-        )
-        desc_frame._relax = True
-        desc_frame.translate(fxw(8), fxh(81))
-        lab9: Any = menu.add.label(
-            # pygame_menu makes a wrapped label exactly lines * leading tall,
-            # and Arbata's line box (14 px) is taller than this leading, so
-            # the last line would lose its bottom rows. A trailing blank line
-            # gives the last real line its full height.
-            title=desc + "\n",
-            label_id="description",
-            font_size=self.font_type.arbata,
-            font_name=arbata_font,
-            wordwrap=True,
-            leading=fxh(10),
-            align=ALIGN_LEFT,
-            padding=0,
-        )
-
-        # Pack the label into the frame so its wordwrap width is bounded by the
-        # frame instead of the full menu width. Starting at x=8 with a width of
-        # 243 nominal px, the text ends at x=251 -- 2px inside the background
-        # panel's right-hand border (which sits at x=253).
-        desc_frame.pack(lab9, align=ALIGN_LEFT)
-
-        # evolution monsters (the line is left out when there are none)
-        slugs = [ele.monster_slug for ele in monster.evolutions]
-        elements = list(dict.fromkeys(slugs))
-
-        if elements:
-            evolution_names = ", ".join(T.translate(ele) for ele in elements)
-            evolution_text = f"{evo}: {evolution_names}"
-
-            # Indented under the description; the frame ends at the same
-            # right edge (x=251), so a long list wraps inside the panel.
-            evo_frame = menu.add.frame_v(
-                fxw(229),
-                fxh(24),
+        if self.shiny == False:
+            desc = T.translate(f"{monster.slug}_description")
+            desc = self._safe_display(desc)
+            desc_frame = menu.add.frame_v(
+                fxw(243),
+                fxh(57),
                 float=True,
                 float_origin_position=True,
-                frame_id="evolution_frame",
+                frame_id="description_frame",
                 padding=0,
             )
-            evo_frame._relax = True
-            lab10: Any = menu.add.label(
-                # Trailing blank line: see the description label above.
-                title=self._safe_display(evolution_text) + "\n",
-                label_id="evolution",
-                font_size=self.font_type.arbata,
-                font_name=arbata_font,
-                font_color=SEA_BLUE_COLOR,
+            desc_frame._relax = True
+            desc_frame.translate(fxw(8), fxh(82))
+            lab9: Any = menu.add.label(
+                title=desc,
+                label_id="description",
+                font_size=self.font_type.biggest,
                 wordwrap=True,
                 leading=fxh(10),
                 align=ALIGN_LEFT,
                 padding=0,
             )
-            evo_frame.pack(lab10, align=ALIGN_LEFT)
-            # Keep the last line at the bottom of the panel; a list that
-            # wraps grows upwards.
-            extra_lines = max(0, len(lab10.get_lines()) - 2)
-            evo_frame.translate(fxw(22), fxh(128 - 10 * extra_lines))
+
+        # Pack the label into the frame so its wordwrap width is bounded by the
+        # frame instead of the full menu width. Starting at x=8 with a width of
+        # 243 nominal px, the text ends at x=251 -- 2px inside the background
+        # panel's right-hand border (which sits at x=253).
+            desc_frame.pack(lab9, align=ALIGN_LEFT)
+
+        # evolution monsters
+        else:
+            slugs = [ele.monster_slug for ele in monster.evolutions]
+            elements = list(dict.fromkeys(slugs))
+
+            evolution_names = ", ".join(T.translate(ele) for ele in elements)
+
+            evolution_text = f"{evo}: {evolution_names}"
+
+            lab10: Any = menu.add.label(
+                title=self._safe_display(evolution_text),
+                label_id="evolution",
+                font_size=self.font_type.biggest,
+                wordwrap=True,
+                align=ALIGN_LEFT,
+                float=True,
+                float_origin_position=True,
+                padding=0,
+            )
+
+            lab10.translate(fxw(5), fxh(80))
 
         # image
         loader = SpriteLoader()
-       #sprites = monster.sprites
+        #sprites = monster.sprites
         if self.shiny == False:
             sprites = MonsterSpritesModel(
                 sheet=f"gfx/sprites/battle/{monster.slug}-sheet",)
         else:
              sprites = MonsterSpritesModel(
                 sheet=f"gfx/sprites/battle/morphs/{monster.slug}-sheet",)
+ 
         assert sprites
         handler = MonsterSpriteHandler(
             slug=monster.slug,
@@ -363,10 +338,9 @@ class JournalInfoState(PygameMenuState):
             return
         sprite = handler.get_sprite("front", scale=self.factor)
         new_image = self._create_image_from_surface(sprite.image)
-        # No padding, so the 64 px sprite sits exactly on its 64 px panel.
-        image_widget = menu.add.image(image_path=new_image.copy(), padding=0)
+        image_widget = menu.add.image(image_path=new_image.copy())
         image_widget.set_float(origin_position=True)
-        image_widget.translate(fxw(48), fxh(8))
+        image_widget.translate(fxw(45), fxh(6))
 
     def __init__(
         self,
@@ -459,7 +433,7 @@ class JournalInfoState(PygameMenuState):
              
         #  B / BACK → close (pressed only)
         elif (
-            event.button in (buttons.BACK, buttons.B, buttons.A)
+            event.button in (buttons.BACK, buttons.B)
             and event.pressed
         ):
             client.remove_state_by_name("JournalInfoState")

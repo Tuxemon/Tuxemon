@@ -160,6 +160,9 @@ def _damage_env(resistances: dict[str, float] | None, type_mult: float):
     user.level = 10
     user.get_combat_stats.return_value = BasicStats(melee=30)
     user.status.get_statuses.return_value = []
+    # The attacker holds nothing: an auto-specced MagicMock here would make
+    # the element modifier a Mock and the damage value meaningless.
+    user.held_item = None
 
     target = _target(resistances)
     target.types.current = [water]

@@ -43,6 +43,7 @@ from tuxemon.platform.const.graphics import (
     FONT_COLOR,
     FONT_SHADOW_COLOR,
     FONT_SIZE,
+    FONT_SIZE_ARBATA,
     FONT_SIZE_BIG,
     FONT_SIZE_BIGGER,
     FONT_SIZE_BIGGEST,
@@ -79,6 +80,7 @@ class FontSettings:
     big: int
     bigger: int
     biggest: int
+    arbata: int
 
     @classmethod
     def from_context(cls, context: DisplayContext) -> FontSettings:
@@ -90,6 +92,7 @@ class FontSettings:
             big=s(FONT_SIZE_BIG),
             bigger=s(FONT_SIZE_BIGGER),
             biggest=s(FONT_SIZE_BIGGEST),
+            arbata=s(FONT_SIZE_ARBATA),
         )
 
 

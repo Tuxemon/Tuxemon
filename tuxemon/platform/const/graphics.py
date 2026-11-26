@@ -79,3 +79,6 @@ FONT_SIZE = 5
 FONT_SIZE_BIG = 6
 FONT_SIZE_BIGGER = 7
 FONT_SIZE_BIGGEST = 8
+# Arbata is a pixel font with an 18 px em (unitsPerEm 54, 3 units per font
+# pixel), so at this size each font pixel is one nominal pixel.
+FONT_SIZE_ARBATA = 18

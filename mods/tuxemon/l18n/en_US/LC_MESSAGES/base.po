@@ -19269,3 +19269,139 @@ msgstr "Town Hall"
 
 msgid "flower_lady"
 msgstr "Flower Lady"
+
+# Field Notes app
+msgid "app_field_notes"
+msgstr "Field Notes App"
+
+msgid "app_field_notes_description"
+msgstr "What you have learned about battles: type matchups, attack ranges and stats."
+
+msgid "field_notes_new_entry"
+msgstr "New entry in your field notes!"
+
+msgid "field_notes_chart"
+msgstr "Type chart"
+
+msgid "field_notes_types"
+msgstr "Type matchups"
+
+msgid "field_notes_ranges"
+msgstr "Attack ranges"
+
+msgid "field_notes_stats"
+msgstr "Stats"
+
+msgid "field_notes_unknown"
+msgstr "???"
+
+msgid "field_notes_type_button"
+msgstr "{type} attacks ({known}/{total})"
+
+msgid "field_notes_vs"
+msgstr "{attack} vs {defend}: {effect}"
+
+msgid "field_notes_effect_double"
+msgstr "double damage"
+
+msgid "field_notes_effect_half"
+msgstr "half damage"
+
+msgid "field_notes_effect_normal"
+msgstr "normal damage"
+
+msgid "field_notes_effect_none"
+msgstr "no damage"
+
+msgid "field_notes_effect_other"
+msgstr "damage x{mult}"
+
+msgid "field_notes_type_unmet"
+msgstr "A type you haven't met yet."
+
+msgid "field_notes_type_none"
+msgstr "You haven't seen a {type} attack hit anything yet."
+
+msgid "field_notes_not_seen"
+msgstr "{count} more to find: watch {type} attacks hit other types."
+
+msgid "field_notes_range_unseen"
+msgstr "You haven't seen this kind of attack yet."
+
+msgid "field_notes_range_melee_name"
+msgstr "Melee"
+
+msgid "field_notes_range_melee"
+msgstr "Melee: a blow. The attacker's Melee against the target's Armour."
+
+msgid "field_notes_range_touch_name"
+msgstr "Touch"
+
+msgid "field_notes_range_touch"
+msgstr "Touch: a light touch is enough. The attacker's Melee against the target's Dodge."
+
+msgid "field_notes_range_ranged_name"
+msgstr "Ranged"
+
+msgid "field_notes_range_ranged"
+msgstr "Ranged: shot from afar. The attacker's Ranged against the target's Dodge."
+
+msgid "field_notes_range_reach_name"
+msgstr "Reach"
+
+msgid "field_notes_range_reach"
+msgstr "Reach: hits from afar but must break through. The attacker's Ranged against the target's Armour."
+
+msgid "field_notes_range_reliable_name"
+msgstr "Reliable"
+
+msgid "field_notes_range_reliable"
+msgstr "Reliable: ignores stats. Damage depends only on the attacker's level."
+
+msgid "field_notes_stat_hp_name"
+msgstr "HP"
+
+msgid "field_notes_stat_hp"
+msgstr "HP: health. At 0 the monster faints."
+
+msgid "field_notes_stat_melee_name"
+msgstr "Melee"
+
+msgid "field_notes_stat_melee"
+msgstr "Melee: power of close attacks (melee and touch moves)."
+
+msgid "field_notes_stat_ranged_name"
+msgstr "Ranged"
+
+msgid "field_notes_stat_ranged"
+msgstr "Ranged: power of distant attacks (ranged and reach moves)."
+
+msgid "field_notes_stat_armour_name"
+msgstr "Armour"
+
+msgid "field_notes_stat_armour"
+msgstr "Armour: protects against melee and reach moves."
+
+msgid "field_notes_stat_dodge_name"
+msgstr "Dodge"
+
+msgid "field_notes_stat_dodge"
+msgstr "Dodge: protects against touch and ranged moves, and breaks ties in who moves first."
+
+msgid "field_notes_stat_speed_name"
+msgstr "Speed"
+
+msgid "field_notes_stat_speed"
+msgstr "Speed: the faster monster moves first. Some moves are quicker or slower than others."
+
+msgid "field_notes_stat_accuracy_name"
+msgstr "Move accuracy"
+
+msgid "field_notes_stat_accuracy"
+msgstr "Accuracy (of a move): the chance it hits at all."
+
+msgid "field_notes_stat_potency_name"
+msgstr "Move potency"
+
+msgid "field_notes_stat_potency"
+msgstr "Potency (of a move): once it hits, the chance its extra effect (a status or stat change) takes hold."

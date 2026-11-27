@@ -47,6 +47,7 @@ from tuxemon.ai.manager import AIManager
 from tuxemon.animation import Task, TaskBase
 from tuxemon.animation_entity import AnimationManager
 from tuxemon.combat.combat_context import CombatContext
+from tuxemon.combat.field_notes import learn_from_hit
 from tuxemon.combat.machine import CombatMachine, CombatPhase
 from tuxemon.combat.reward_system import RewardSystem
 from tuxemon.combat.utils import get_battle_outcome_music, track_battles
@@ -708,6 +709,19 @@ class CombatState(CombatAnimations):
                 if element_damage_key:
                     m = T.translate(element_damage_key)
                     message += "\n" + m
+                    action_time += self.text_anim.compute_text_anim_time(
+                        message
+                    )
+                learned = False
+                for player in self.combat_session.human_players:
+                    learned |= learn_from_hit(
+                        player,
+                        [t.slug for t in method.types.current],
+                        [t.slug for t in target.types.current],
+                        method.range,
+                    )
+                if learned:
+                    message += "\n" + T.translate("field_notes_new_entry")
                     action_time += self.text_anim.compute_text_anim_time(
                         message
                     )

@@ -13,13 +13,14 @@ from tuxemon.database.runtime import db
 from tuxemon.db import MonsterModel
 from tuxemon.locale.locale import T
 from tuxemon.menu.menu import PygameMenuState
+from tuxemon.menu.theme import TuxemonArrowSelection
 from tuxemon.platform.const import buttons
 from tuxemon.platform.const.graphics import (
     BG_JOURNAL,
     DIMGRAY_COLOR,
     SEA_BLUE_COLOR,
 )
-from tuxemon.tools import fix_measure
+from tuxemon.tools import transform_resource_filename
 
 if TYPE_CHECKING:
     from tuxemon.base_client import BaseClient
@@ -38,9 +39,24 @@ class JournalState(PygameMenuState):
 
     def add_menu_items(self, menu: Menu, monsters: list[MonsterModel]) -> None:
         scale_int = self.client.context.scaling.scale_int
-        btn_x_offset = scale_int(4)
-        btn_y_offset = fix_measure(menu._height, 0.01)
+        btn_x_offset = scale_int(9)
+        # pygame_menu starts each column 1 screen px down; take it back off so
+        # the list sits on the nominal pixel grid.
+        btn_y_offset = scale_int(5) - 1
         menu._column_max_width = [None, None]
+        # Fixed half-screen columns. Sized from their contents, the columns can
+        # come out an odd number of pixels wide, putting the list half a pixel
+        # off the grid, and the right column moves with the longest name.
+        menu._column_min_width = [scale_int(128), scale_int(128)]
+        # Don't let pygame_menu centre the list vertically: that offset is
+        # rarely a whole number of nominal pixels.
+        menu._auto_centering = False
+
+        arbata_font = transform_resource_filename(
+            "font", self.client.config.locale.arbata_font_file
+        )
+        # Pull entries 5 nominal px closer together than the theme spacing.
+        entry_margin = (0, -scale_int(5))
 
         def change_state(state: str, **kwargs: Any) -> MenuGameObj:
             return partial(self.client.push_state, state, **kwargs)
@@ -59,8 +75,10 @@ class JournalState(PygameMenuState):
                             monster=mon,
                             source=self.name,
                         ),
-                        font_size=self.font_type.biggest,
+                        font_size=self.font_type.arbata,
+                        font_name=arbata_font,
                         button_id=mon.slug,
+                        margin=entry_margin,
                     ).translate(btn_x_offset, btn_y_offset)
                 elif self.char.tuxepedia.is_caught(mon.slug):
                     menu.add.button(
@@ -71,13 +89,17 @@ class JournalState(PygameMenuState):
                             monster=mon,
                             source=self.name,
                         ),
-                        font_size=self.font_type.biggest,
+                        font_size=self.font_type.arbata,
+                        font_name=arbata_font,
                         button_id=mon.slug,
+                        margin=entry_margin,
                         underline=True,
                         underline_color=SEA_BLUE_COLOR,
-                        underline_offset=self.client.context.scaling.scale_int(
-                            1
-                        ),
+                        # 1 nominal px below the capitals. pygame centres a
+                        # thick line on its y, so shift by half its width
+                        # to put the line's top edge on the pixel grid.
+                        underline_offset=scale_int(-2)
+                        + (scale_int(1) - 1) // 2,
                         underline_width=self.client.context.scaling.scale_int(
                             1
                         ),
@@ -86,9 +108,11 @@ class JournalState(PygameMenuState):
                 label = f"{mon.txmn_id}. -----"
                 lab: Any = menu.add.label(
                     label,
-                    font_size=self.font_type.biggest,
+                    font_size=self.font_type.arbata,
+                    font_name=arbata_font,
                     font_color=DIMGRAY_COLOR,
                     label_id=mon.slug,
+                    margin=entry_margin,
                 )
                 lab.translate(btn_x_offset, btn_y_offset)
 
@@ -149,6 +173,15 @@ class JournalState(PygameMenuState):
         theme.widget_font_shadow = False
         theme.scrollarea_position = POSITION_EAST
         theme.widget_alignment = ALIGN_LEFT
+        # Arbata capitals sit 6 nominal px into each entry (2 px padding plus
+        # 4 px above the capitals), so lower the 9 px cursor 5 px to centre it.
+        theme.widget_selection_effect = TuxemonArrowSelection(
+            client.context.scaling.scale_int(1), y_offset_nominal=5
+        )
+        # Arbata is drawn at its pixel size, so it needs no anti-aliasing;
+        # with it, the overlapping rings of the caught symbol pick up a grey
+        # edge that looks like a drop shadow.
+        theme.widget_font_antialias = False
         self._menu_config["theme"] = theme
 
         self.add_menu_items(self.menu, monster_list)

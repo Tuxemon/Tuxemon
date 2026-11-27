@@ -25,15 +25,22 @@ class TextRenderer:
         font_shadow_color: ColorLike | None = None,
         font_filename: str | None = None,
         font: Font | None = None,
+        shadow: bool = True,
     ) -> None:
+        """
+        Parameters:
+            shadow: Whether text gets a drop shadow. Without one, glyphs are
+                exactly the font's size, so text stays on the pixel grid.
+        """
         self.scaling = scaling
+        self.shadow = shadow
         self.font_color = font_color
         self.font_shadow_color = font_shadow_color or FONT_SHADOW_COLOR
         self.font = font or Font(
             font_filename, self.scaling.scale_int(FONT_SIZE)
         )
 
-        ox, oy = self.scaling.scale_sequence((0.5, 0.5))
+        ox, oy = self.scaling.scale_sequence((0.5, 0.5)) if shadow else (0, 0)
         self._shadow_offset: tuple[float, ...] = (float(ox), float(oy))
 
     @lru_cache(maxsize=256)
@@ -44,6 +51,8 @@ class TextRenderer:
         bg: tuple[int, ...],
     ) -> Surface:
         fg_surf = self.font.render(char, True, fg)
+        if not self.shadow:
+            return fg_surf
         bg_surf = self.font.render(char, True, bg)
 
         ox, oy = self._shadow_offset
@@ -77,6 +86,9 @@ class TextRenderer:
     ) -> Surface:
         fg = fg or self.font_color
         bg = bg or self.font_shadow_color
+
+        if not self.shadow:
+            return self.font.render(text, True, fg)
 
         if offset is None:
             offset = self._shadow_offset

@@ -65,6 +65,7 @@ class GameConfig(BaseModel):
     language_font: str = "PressStart2P.ttf"
     thin_font_file: str = "Pizel.ttf"
     minimal_font_file: str = "Minimal3x5.ttf"
+    arbata_font_file: str = "Arbata.ttf"
 
 
 class GameplayConfig(BaseModel):
@@ -476,6 +477,10 @@ class LocaleConfig:
     @property
     def minimal_font_file(self) -> str:
         return self._model.minimal_font_file
+
+    @property
+    def arbata_font_file(self) -> str:
+        return self._model.arbata_font_file
 
 
 class InputConfig:

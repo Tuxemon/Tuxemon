@@ -6,8 +6,11 @@ import math
 from collections.abc import Callable, Generator
 from typing import TYPE_CHECKING, Any, ClassVar
 
+from pygame.font import Font
 from pygame.rect import Rect
 
+from tuxemon.config import LOCALE_FONT_MAP
+from tuxemon.constants.asset_loader import fetch_asset
 from tuxemon.graphics import load_and_scale
 from tuxemon.item.controller import ItemController
 from tuxemon.item.filter import ItemFilter
@@ -20,10 +23,12 @@ from tuxemon.platform.const import buttons
 from tuxemon.platform.const.graphics import (
     BG_ITEMS,
     BG_ITEMS_BACKPACK,
-    DIMGRAY_COLOR,
+    FONT_SIZE_ARBATA,
+    FONT_SIZE_ARBATA_HAN,
+    FONT_SIZE_BIGGEST,
     MISSING_IMAGE,
 )
-from tuxemon.platform.const.sizes import MAX_MENU_ITEMS
+from tuxemon.platform.const.sizes import MAX_BAG_MENU_ITEMS
 from tuxemon.platform.events import PlayerInput
 from tuxemon.session import local_session
 from tuxemon.sprite import Sprite
@@ -33,6 +38,9 @@ from tuxemon.ui.text import TextArea
 if TYPE_CHECKING:
     from tuxemon.base_client import BaseClient
     from tuxemon.entity.npc import NPC
+
+
+PAGE_SEPARATOR = "/"
 
 
 class ItemMenuState(Menu[Item]):
@@ -55,6 +63,16 @@ class ItemMenuState(Menu[Item]):
     ) -> None:
         self.char = character
         self.source = source
+        # Item names, quantities and descriptions are set in Arbata. Arbata
+        # only covers Latin scripts, so locales with their own font (see
+        # LOCALE_FONT_MAP) keep it, at the size matching Arbata's height.
+        locale = client.config.locale
+        if locale.slug in LOCALE_FONT_MAP:
+            self.font_filename = locale.font_file
+            self.base_font_size = FONT_SIZE_ARBATA_HAN
+        else:
+            self.font_filename = locale.arbata_font_file
+            self.base_font_size = FONT_SIZE_ARBATA
         super().__init__(client=client, **kwargs)
 
         self.filter_controller = item_filter or ItemFilter(self.char.items)
@@ -67,7 +85,11 @@ class ItemMenuState(Menu[Item]):
         self.item_sprite = Sprite()
         self.sprites.add(self.item_sprite)
 
-        self.menu_items.line_spacing = self.client.context.scaling.scale_int(7)
+        scale_int = self.client.context.scaling.scale_int
+        # Rows 10 nominal px apart: enough for Arbata's capitals and tails.
+        line_pitch = scale_int(10)
+        self.menu_items.line_spacing = line_pitch
+        self.page_size = MAX_BAG_MENU_ITEMS
         self.current_page = 0
         self.total_pages = 0
         self.inventory = self.filter_controller.get_filtered_inventory()
@@ -75,16 +97,19 @@ class ItemMenuState(Menu[Item]):
 
         # this is the area where the item description is displayed
         rect = self.client.context.rect.copy()
-        rect.top = self.client.context.scaling.scale_int(106)
-        rect.left = self.client.context.scaling.scale_int(3)
-        rect.width = self.client.context.scaling.scale_int(250)
-        rect.height = self.client.context.scaling.scale_int(32)
+        rect.top = scale_int(103)
+        rect.left = scale_int(3)
+        rect.width = scale_int(250)
+        # Tall enough for three lines, descenders included.
+        rect.height = scale_int(34)
         self.text_area = TextArea(
             font=self.font,
             font_color=self.font_color,
             rect=rect,
             scaling=self.client.context.scaling,
-            font_shadow=(96, 96, 128),
+            shadow=False,
+            # Lines 10 nominal px apart too, as in the journal description.
+            line_spacing=line_pitch - self.font.get_height(),
         )
         self.sprites.add(self.text_area, layer=100)
         self.page_number_display = TextArea(
@@ -94,7 +119,11 @@ class ItemMenuState(Menu[Item]):
             scaling=self.client.context.scaling,
         )
         self.sprites.add(self.page_number_display, layer=100)
-        self.page_size = MAX_MENU_ITEMS
+        # The page counter uses the minimal font, at a size where it's crisp.
+        self.page_font = Font(
+            fetch_asset("font", self.client.config.locale.minimal_font_file),
+            scale_int(FONT_SIZE_BIGGEST),
+        )
 
         # load the backpack icon
         self.backpack_center = self.rect.width * 0.16, self.rect.height * 0.45
@@ -104,14 +133,35 @@ class ItemMenuState(Menu[Item]):
             layer=100,
         )
 
+        # The cursor is centred on each row; offset it so its middle lines up
+        # with the Arbata capitals (1 nominal px above them, 2 below).
+        arrow = self.cursor_controller.arrow
+        row = self.font.render("H", True, self.font_color)
+        caps = row.get_bounding_rect()
+        row_height = row.get_height()
+        arrow.y_offset = (
+            caps.top - scale_int(1) + arrow.rect.height // 2 - row_height // 2
+        )
+
     def calc_internal_rect(self) -> Rect:
-        # area in the screen where the item list is
-        rect = self.rect.copy()
-        rect.width = int(rect.width * 0.58)
-        rect.left = int(self.rect.width * 0.365)
-        rect.top = int(rect.height * 0.05)
-        rect.height = int(self.rect.height * 0.60)
-        return rect
+        # The item list panel's interior, in nominal pixels.
+        scale_int = self.client.context.scaling.scale_int
+        return Rect(scale_int(96), scale_int(8), scale_int(147), scale_int(85))
+
+    def calc_menu_items_rect(self) -> Rect:
+        # Rows start 2 nominal px above the panel interior (Arbata's top rows
+        # are empty), with the text 8 px in so the cursor fits to its left.
+        # (The shared cursor margin scales with the display scale, so the
+        # list would move between scales.)
+        rect = self.calc_internal_rect()
+        scale_int = self.client.context.scaling.scale_int
+        indent = scale_int(8)
+        return Rect(
+            rect.left + indent,
+            rect.top - scale_int(2),
+            rect.width - indent,
+            rect.height + scale_int(2),
+        )
 
     def on_menu_selection(self, menu_item: MenuItem[Item]) -> None:
         """
@@ -353,10 +403,19 @@ class ItemMenuState(Menu[Item]):
 
     def update_page_number_display(self, total_items: int) -> None:
         internal_rect = self.calc_internal_rect()
-        page_text = f"{self.current_page + 1}/{self.total_pages}"
-        image = self.shadow_text(page_text)
+        page_text = (
+            f"{self.current_page + 1}{PAGE_SEPARATOR}{self.total_pages}"
+        )
+        image = self.page_font.render(page_text, True, self.font_color)
         self.page_number_display.image = image
-        self.page_number_display.rect.bottomright = internal_rect.bottomright
+        # Put the glyphs themselves (not the font's empty rows) 2 nominal px
+        # inside the panel's bottom right corner.
+        ink = image.get_bounding_rect()
+        inset = self.client.context.scaling.scale_int(2)
+        self.page_number_display.rect.topleft = (
+            internal_rect.right - inset - ink.right,
+            internal_rect.bottom - inset - ink.bottom,
+        )
 
     def create_menu_item(
         self,
@@ -366,8 +425,12 @@ class ItemMenuState(Menu[Item]):
         prefix: str = "",
     ) -> MenuItem[Item]:
         name = f"{prefix}{item.name}"
-        label = f"{name} x {item.quantity}" if show_quantity else name
-        image = self.shadow_text(label, bg=DIMGRAY_COLOR)
+        # A quantity of one goes without saying.
+        if show_quantity and item.quantity > 1:
+            label = f"{name} x {item.quantity}"
+        else:
+            label = name
+        image = self.font.render(label, True, self.font_color)
         return MenuItem(
             image=image,
             label=name,

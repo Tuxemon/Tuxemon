@@ -43,6 +43,7 @@ from tuxemon.platform.const.graphics import (
     FONT_COLOR,
     FONT_SHADOW_COLOR,
     FONT_SIZE,
+    FONT_SIZE_ARBATA,
     FONT_SIZE_BIG,
     FONT_SIZE_BIGGER,
     FONT_SIZE_BIGGEST,
@@ -79,6 +80,7 @@ class FontSettings:
     big: int
     bigger: int
     biggest: int
+    arbata: int
 
     @classmethod
     def from_context(cls, context: DisplayContext) -> FontSettings:
@@ -90,6 +92,7 @@ class FontSettings:
             big=s(FONT_SIZE_BIG),
             bigger=s(FONT_SIZE_BIGGER),
             biggest=s(FONT_SIZE_BIGGEST),
+            arbata=s(FONT_SIZE_ARBATA),
         )
 
 
@@ -403,6 +406,8 @@ class Menu(Generic[T], State):
     # defaults for the menu
     columns = 1
     min_font_size = 4
+    # Unscaled size of the font loaded by setup_resources
+    base_font_size = FONT_SIZE
     draw_borders = True
     background = None  # Image used to draw the background
     # The window's background color
@@ -486,7 +491,7 @@ class Menu(Generic[T], State):
     def setup_resources(self) -> None:
         """Centralized asset loading."""
         self.font_filename = fetch_asset("font", self.font_filename)
-        self.set_font()
+        self.set_font(size=self.base_font_size)
         self.load_graphics()
         self.reload_sounds()
 

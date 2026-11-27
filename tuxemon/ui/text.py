@@ -73,6 +73,7 @@ class TextArea(Sprite):
         overflow_behavior: TextOverflow = TextOverflow.CLIP,
         debug_rendering: bool = False,
         line_spacing: int = 0,
+        shadow: bool = True,
     ) -> None:
         super().__init__()
         self.rect = rect.copy()
@@ -89,6 +90,7 @@ class TextArea(Sprite):
             font=self.font,
             font_color=self.font_color,
             font_shadow_color=self.font_shadow,
+            shadow=shadow,
         )
 
         self.background_color = background_color

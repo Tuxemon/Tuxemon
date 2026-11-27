@@ -8,11 +8,12 @@ Code here might be shared by states, actions, conditions, etc.
 from __future__ import annotations
 
 import logging
-from collections.abc import Sequence
+from collections.abc import Iterable, Sequence
 from typing import TYPE_CHECKING
 
 from tuxemon.combat.combat_context import CombatType
 from tuxemon.db import BattleMusicModel, OutputBattle
+from tuxemon.formula import set_health
 from tuxemon.locale.locale import T
 from tuxemon.menu.formatter import CurrencyFormatter
 
@@ -98,6 +99,27 @@ def blackout_if_unfit(session: Session, *characters: NPC) -> bool:
     event_engine.suspend()
     event_engine.cancel_all_events()
     return True
+
+
+# Game variable a campaign sets to "true" to heal the player's whole team
+# (health and status) after every battle, won, lost, fled or caught.
+HEAL_AFTER_BATTLE = "rule_heal_after_battle"
+
+
+def heal_after_battle(session: Session, players: Iterable[NPC]) -> None:
+    """
+    Fully heal each human player's team if the campaign asks for it.
+
+    Parameters:
+        session: Session.
+        players: The human players of the battle that just ended.
+    """
+    for player in players:
+        if player.game_variables.get(HEAL_AFTER_BATTLE) != "true":
+            continue
+        for mon in player.monsters:
+            mon.status.clear_status(session)
+            set_health(mon, 1.0)
 
 
 def check_repellent(character: NPC) -> bool:

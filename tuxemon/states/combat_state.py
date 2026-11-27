@@ -50,7 +50,11 @@ from tuxemon.combat.combat_context import CombatContext
 from tuxemon.combat.field_notes import learn_from_hit
 from tuxemon.combat.machine import CombatMachine, CombatPhase
 from tuxemon.combat.reward_system import RewardSystem
-from tuxemon.combat.utils import get_battle_outcome_music, track_battles
+from tuxemon.combat.utils import (
+    get_battle_outcome_music,
+    heal_after_battle,
+    track_battles,
+)
 from tuxemon.database.rules import config_combat
 from tuxemon.database.runtime import db
 from tuxemon.db import (
@@ -176,6 +180,9 @@ class CombatState(CombatAnimations):
         self.combat_session.set_combat_type(context.combat_type)
         self.combat_session.set_battle_format(context.is_double_battle)
         self.combat_session.set_players(context.teams)
+        # Kept for heal_after_battle: a capture empties the session's player
+        # list (combat_session.reset) before end_combat runs.
+        self._human_players = list(self.combat_session.human_players)
         self._lock_update = self.client.config.combat_click_to_continue
         self.create_combat_dialog()
         self.transition_phase(CombatPhase.BEGIN)
@@ -1069,6 +1076,7 @@ class CombatState(CombatAnimations):
     def end_combat(self) -> None:
         """End the combat."""
         self.event_bus.publish("clean_combat")
+        heal_after_battle(self.session, self._human_players)
         for player in self.combat_session.players:
             player.battle_last_used_item_slug = None
         self.combat_session.reset()

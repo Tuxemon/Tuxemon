@@ -18,6 +18,11 @@ if TYPE_CHECKING:
 logger = logging.getLogger(__name__)
 
 
+# Game variable a campaign sets to "true" to make every capture succeed,
+# e.g. while its difficulty is not tuned yet.
+SURE_CAPTURE = "rule_sure_capture"
+
+
 @dataclass
 class CaptureEffect(CoreEffect):
     """
@@ -58,6 +63,9 @@ class CaptureEffect(CoreEffect):
             target, status_modifier, tuxeball_modifier
         )
         capture, shakes = formula.capture(shake_check)
+
+        if not capture and player.game_variables.get(SURE_CAPTURE) == "true":
+            capture, shakes = True, formula.config_capture.total_shakes
 
         if not capture:
             self._handle_capture_failure(item, target)

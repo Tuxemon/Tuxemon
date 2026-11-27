@@ -16,7 +16,8 @@ It is the single source of truth for all save/load behavior.
 - Hidden in SaveMenuState
 - Visible in LoadMenuState
 - Never overwritten by user actions
-- Written only by AutosaveAction
+- Written only by AutosaveAction, and by the map autosave when the player
+  enables `gameplay.autosave_on_map_change` (off by default)
 
 ---
 

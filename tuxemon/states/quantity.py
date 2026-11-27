@@ -178,9 +178,10 @@ class QuantityPickerState(PygameMenuState):
             self._confirm()
             return None
 
-        # B = cancel
-        if event.button == buttons.B and event.pressed:
+        # B or BACK = cancel
+        if event.button in (buttons.B, buttons.BACK) and event.pressed:
             self.client.pop_state()
             return None
 
-        return event
+        # Modal: nothing reaches the shop menu underneath (see NumberPickerState).
+        return None

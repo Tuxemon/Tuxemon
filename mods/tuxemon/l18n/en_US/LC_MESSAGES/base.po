@@ -148,172 +148,172 @@ msgid "revive_description"
 msgstr "Revives knocked out Tuxemon and restores half HP."
 
 msgid "tuxeball"
-msgstr "Tuxeball"
+msgstr "Sampling Kit"
 
 msgid "tuxeball_description"
-msgstr "Captures a monster."
+msgstr "A net, a vial and a field cloner in one pack. Clones a monster."
 
 msgid "tuxeball_earth"
-msgstr "Earth Tuxeball"
+msgstr "Earth Kit"
 
 msgid "tuxeball_earth_description"
-msgstr "Captures more easily an Earth Tuxemon."
+msgstr "Clones more easily an Earth Tuxemon."
 
 msgid "tuxeball_fire"
-msgstr "Fire Tuxeball"
+msgstr "Fire Kit"
 
 msgid "tuxeball_fire_description"
-msgstr "Captures more easily a Fire Tuxemon."
+msgstr "Clones more easily a Fire Tuxemon."
 
 msgid "tuxeball_metal"
-msgstr "Metal Tuxeball"
+msgstr "Metal Kit"
 
 msgid "tuxeball_metal_description"
-msgstr "Captures more easily a Metal Tuxemon."
+msgstr "Clones more easily a Metal Tuxemon."
 
 msgid "tuxeball_water"
-msgstr "Water Tuxeball"
+msgstr "Water Kit"
 
 msgid "tuxeball_water_description"
-msgstr "Captures more easily a Water Tuxemon."
+msgstr "Clones more easily a Water Tuxemon."
 
 msgid "tuxeball_wood"
-msgstr "Wood Tuxeball"
+msgstr "Wood Kit"
 
 msgid "tuxeball_wood_description"
-msgstr "Captures more easily a Wood Tuxemon."
+msgstr "Clones more easily a Wood Tuxemon."
 
 msgid "tuxeball_male"
-msgstr "Male Tuxeball"
+msgstr "Male Kit"
 
 msgid "tuxeball_male_description"
-msgstr "Captures more easily a Male Tuxemon."
+msgstr "Clones more easily a Male Tuxemon."
 
 msgid "tuxeball_female"
-msgstr "Female Tuxeball"
+msgstr "Female Kit"
 
 msgid "tuxeball_female_description"
-msgstr "Captures more easily a Female Tuxemon."
+msgstr "Clones more easily a Female Tuxemon."
 
 msgid "tuxeball_park"
-msgstr "Park Tuxeball"
+msgstr "Park Kit"
 
 msgid "tuxeball_park_description"
-msgstr "The official Park capture device. It only works inside the Park."
+msgstr "The official Park sampling kit. It only works inside the Park."
 
 msgid "tuxeball_neuter"
-msgstr "Neuter Tuxeball"
+msgstr "Neuter Kit"
 
 msgid "tuxeball_neuter_description"
-msgstr "Captures more easily a Neuter Tuxemon."
+msgstr "Clones more easily a Neuter Tuxemon."
 
 msgid "tuxeball_candy"
-msgstr "Candy Tuxeball"
+msgstr "Candy Kit"
 
 msgid "tuxeball_candy_description"
 msgstr "Captures Tuxemon and increases its level by one upon capture."
 
 msgid "tuxeball_lavish"
-msgstr "Lavish Tuxeball"
+msgstr "Lavish Kit"
 
 msgid "tuxeball_lavish_description"
 msgstr ""
-"Boasts a significantly higher capture rate than the Noble Tuxeball."
+"Boasts a significantly higher capture rate than the Noble Kit."
 
 msgid "tuxeball_ancient"
-msgstr "Ancient Tuxeball"
+msgstr "Ancient Kit"
 
 msgid "tuxeball_ancient_description"
 msgstr ""
-"This Tuxeball was made a long time ago and is capable of catching any "
+"This Sampling Kit was made a long time ago and is capable of catching any "
 "Tuxemon without fail."
 
 msgid "tuxeball_crusher"
-msgstr "Crusher Tuxeball"
+msgstr "Crusher Kit"
 
 msgid "tuxeball_crusher_description"
 msgstr ""
-"This Tuxeball breaks through defenses and increases the catch rate the "
+"This Sampling Kit breaks through defenses and increases the catch rate the "
 "higher the opposing Tuxemon's defense is. It will fail to catch if a "
 "protective condition is in place."
 
 msgid "tuxeball_xero"
-msgstr "Xero Tuxeball"
+msgstr "Xero Kit"
 
 msgid "tuxeball_xero_description"
 msgstr ""
-"This odd Tuxeball increases the chance of succeeding if the opposing Tuxemon"
+"This odd kit increases the chance of succeeding if the opposing Tuxemon"
 " is a different type than yours, but has a decreased chance if they are the "
 "same type."
 
 msgid "tuxeball_omni"
-msgstr "Omni Tuxeball"
+msgstr "Omni Kit"
 
 msgid "tuxeball_omni_description"
 msgstr ""
-"This odd Tuxeball increases the chance of succeeding if the opposing Tuxemon"
+"This odd kit increases the chance of succeeding if the opposing Tuxemon"
 " is the same type as yours, but has a decreased chance if they are different"
 " types."
 
 msgid "tuxeball_hardened"
-msgstr "Hardened Tuxeball"
+msgstr "Hardened Kit"
 
 msgid "tuxeball_hardened_description"
 msgstr "Captures Tuxemon and it doesn't break when it fails."
 
 msgid "tuxeball_hearty"
-msgstr "Hearty Tuxeball"
+msgstr "Hearty Kit"
 
 msgid "tuxeball_hearty_description"
 msgstr "Upon capture, the tuxemon's positive taste changes to hearty."
 
 msgid "tuxeball_peppy"
-msgstr "Peppy Tuxeball"
+msgstr "Peppy Kit"
 
 msgid "tuxeball_peppy_description"
 msgstr "Upon capture, the tuxemon's positive taste changes to peppy."
 
 msgid "tuxeball_refined"
-msgstr "Refined Tuxeball"
+msgstr "Refined Kit"
 
 msgid "tuxeball_refined_description"
 msgstr "Upon capture, the tuxemon's positive taste changes to refined."
 
 msgid "tuxeball_salty"
-msgstr "Salty Tuxeball"
+msgstr "Salty Kit"
 
 msgid "tuxeball_salty_description"
 msgstr "Upon capture, the tuxemon's positive taste changes to salty."
 
 msgid "tuxeball_zesty"
-msgstr "Zesty Tuxeball"
+msgstr "Zesty Kit"
 
 msgid "tuxeball_zesty_description"
 msgstr "Upon capture, the tuxemon's positive taste changes to zesty."
 
 msgid "tuxeball_grand"
-msgstr "Grand Tuxeball"
+msgstr "Grand Kit"
 
 msgid "tuxeball_grand_description"
 msgstr ""
-"Offers an even higher capture rate than the Lavish Tuxeball."
+"Offers an even higher capture rate than the Lavish Kit."
 
 msgid "tuxeball_majestic"
-msgstr "Majestic Tuxeball"
+msgstr "Majestic Kit"
 
 msgid "tuxeball_majestic_description"
 msgstr ""
 "The ultimate choice for catching even the most elusive tuxemon."
 
 msgid "tuxeball_noble"
-msgstr "Noble Tuxeball"
+msgstr "Noble Kit"
 
 msgid "tuxeball_noble_description"
 msgstr ""
-"A moderate upgrade to the standard Tuxeball."
+"A moderate upgrade to the standard Sampling Kit."
 
 msgid "tuxeball_diurnal"
-msgstr "Diurnal Tuxeball"
+msgstr "Diurnal Kit"
 
 msgid "tuxeball_diurnal_description"
 msgstr ""
@@ -321,7 +321,7 @@ msgstr ""
 "reduced during the night."
 
 msgid "tuxeball_nocturnal"
-msgstr "Nocturnal Tuxeball"
+msgstr "Nocturnal Kit"
 
 msgid "tuxeball_nocturnal_description"
 msgstr ""
@@ -329,11 +329,11 @@ msgstr ""
 "significantly reduced during the day."
 
 msgid "tuxeball_gambler"
-msgstr "Gambler Tuxeball"
+msgstr "Gambler Kit"
 
 msgid "tuxeball_gambler_description"
 msgstr ""
-"This tuxeball is known for its unpredictable nature. Its catch rate "
+"This sampling kit is known for its unpredictable nature. Its catch rate "
 "fluctuates wildly, with the chance of capturing a tuxemon ranging from "
 "extremely low to exceptionally high."
 
@@ -2153,28 +2153,28 @@ msgid "generic_wrong"
 msgstr "Wrong!"
 
 msgid "attempting_capture"
-msgstr "Attempting capture..."
+msgstr "Throwing the net..."
 
 msgid "captured_failed_1"
-msgstr "Capture failed immediately."
+msgstr "It slipped the net at once."
 
 msgid "captured_failed_2"
-msgstr "The capture failed."
+msgstr "It wriggled out of the net."
 
 msgid "captured_failed_3"
-msgstr "Not this time! The capture failed."
+msgstr "Not this time! It broke free of the net."
 
 msgid "captured_failed_4"
-msgstr "So close! But the capture failed."
+msgstr "So close! It slipped out of the net."
 
 msgid "gotcha"
 msgstr "Gotcha!"
 
 msgid "gotcha_kennel"
-msgstr "{name} has been put in the kennel!"
+msgstr "A clone of {name} has been put in the kennel! The original goes free."
 
 msgid "gotcha_team"
-msgstr "{name} has joined the team!"
+msgstr "A clone of {name} has joined the team! The original goes free."
 
 msgid "not_implemented"
 msgstr "This feature is not yet implemented."
@@ -2183,7 +2183,7 @@ msgid "alert_text"
 msgstr "Text too long!"
 
 msgid "receive_happiness"
-msgstr "Received 5 Tuxeballs!"
+msgstr "Received 5 Sampling Kits!"
 
 msgid "received_x"
 msgstr "Received {name}!"
@@ -9718,7 +9718,7 @@ msgstr ""
 "around here."
 
 msgid "capture_devices_in_shop"
-msgstr "Tuxeballs. How do they make these?"
+msgstr "Sampling Kits. How do they make these?"
 
 # NPC dialogs
 msgid "xero_intro_1"
@@ -11818,7 +11818,7 @@ msgstr ""
 msgid "taba_greeting1"
 msgstr ""
 "Greeter Jaime: Hey there ${{name}}! Heard you got a Tuxemon, congrats! If "
-"you wanna grow your party, you'll need Tuxeballs."
+"you wanna grow your party, you'll need Sampling Kits."
 
 msgid "taba_greeting2a"
 msgstr ""
@@ -11837,7 +11837,7 @@ msgstr ""
 "Sorry about the sales pitch, it's my job."
 
 msgid "gotfivetuxeballs"
-msgstr "You got 5 Tuxeballs!"
+msgstr "You got 5 Sampling Kits!"
 
 msgid "got_new_tuxemon"
 msgstr "A new Tuxemon is born! Welcome {monster_name}!"
@@ -12103,12 +12103,12 @@ msgstr ""
 
 msgid "spyder_papertown_momquest"
 msgstr ""
-"Sweetie, if you're going into the big wide world, would you bring me back some tuxeballs from the Cotton Mart? \n"
+"Sweetie, if you're going into the big wide world, would you bring me back some sampling kits from the Cotton Mart? \n"
 " There's Ziggurats loose in my workshop and they're chewing through the cables."
 
 msgid "spyder_papertown_momthanks"
 msgstr ""
-"Thanks dearie. But I invented a zapper that works just as well. You can keep the tuxeballs!"
+"Thanks dearie. But I invented a zapper that works just as well. You can keep the sampling kits!"
 
 msgid "spyder_papertown_grannypiper1"
 msgstr ""
@@ -12405,28 +12405,28 @@ msgstr ""
 
 msgid "spyder_cottonscoop_shopassistant"
 msgstr ""
-"Tuxeballs allow you to capture tuxemon and keep them as servants. \n"
+"A sampling kit nets a tuxemon, takes a sample and grows a clone on the spot. The original goes free. \n"
 " They're most effective when used on injured and low-level tuxemon. \n"
 " Select them during battle from your Item menu."
 
 msgid "spyder_cottonscoop_deviceoffer"
 msgstr ""
-"Welcome customer. Today, we're promoting Tuxeballs. Do you know what those "
+"Welcome customer. Today, we're promoting Sampling Kits. Do you know what those "
 "are?"
 
 msgid "spyder_cottonscoop_devicenoexplan"
 msgstr ""
 "     Okay, well here's five as a free sample. \n"
-" If you have any questions about how Tuxeballs work, just ask my assistant!"
+" If you have any questions about how Sampling Kits work, just ask my assistant!"
 
 msgid "spyder_cottonscoop_deviceexplan"
 msgstr "Let my assistant introduce you."
 
 msgid "spyder_cottonscoop_deviceexplan2"
 msgstr ""
-"Tuxeballs allow you to capture tuxemon and keep them as servants. \n"
+"A sampling kit nets a tuxemon, takes a sample and grows a clone on the spot. The original goes free. \n"
 " They're most effective when used on injured and low-level tuxemon. Select them during battle from your Item menu. \n"
-" Thank you for listening. Here's five Tuxeballs as a free sample. "
+" Thank you for listening. Here's five Sampling Kits as a free sample. "
 
 msgid "spyder_cotton_tuxepediawelcome"
 msgstr "Good to see you. You're just in time."
@@ -14455,7 +14455,7 @@ msgstr ""
 msgid "spyder_searoutec_river1"
 msgstr ""
 "Manosting was wrapped around me ... I couldn't swim ... My last hope ... The"
-" Tuxeball I stashed in my swimming costume!"
+" Sampling Kit I stashed in my swimming costume!"
 
 msgid "spyder_searoutec_river2"
 msgstr "Suffice to say, it worked!"
@@ -15189,7 +15189,7 @@ msgstr ""
 " Can you imagine owning so many homes you forget about one?"
 
 msgid "spyder_mansion_pirate1"
-msgstr "Arrr, hand over ye money and ye tuxeballs."
+msgstr "Arrr, hand over ye money and ye sampling kits."
 
 msgid "spyder_mansion_pirate2"
 msgstr "Don't be alarmed! I'm not a real pirate, just a fan of piracy."
@@ -18461,7 +18461,7 @@ msgstr "Unknown Voice: The mine is deep, but the purpose is deeper. They're not 
 msgid "eclipse_park_welcome"
 msgstr ""
 "Welcome to Pepper Park. Entry is ${{currency}}500. You'll get 25 Park "
-"Tuxeball. Are you ready?"
+"Sampling Kit. Are you ready?"
 
 msgid "eclipse_park_assistant"
 msgstr "Welcome!"
@@ -19269,3 +19269,6 @@ msgstr "Town Hall"
 
 msgid "flower_lady"
 msgstr "Flower Lady"
+
+msgid "tuxepedia_acquisition_cloned"
+msgstr "Cloned {doc}"

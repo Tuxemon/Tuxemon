@@ -7,8 +7,8 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 from tuxemon import formula
+from tuxemon.cloning import make_clone
 from tuxemon.core.core_effect import CoreEffect, ItemEffectResult
-from tuxemon.db import Acquisition
 
 if TYPE_CHECKING:
     from tuxemon.item.item import Item
@@ -79,14 +79,8 @@ class CaptureEffect(CoreEffect):
             self.client.combat_session.set_variable("new_tuxepedia", True)
         self.session.player.tuxepedia.register_caught(target.slug)
         target.capture_device = item.slug
-        target.wild = False
-        current_status = target.status.current_status
-        if (
-            current_status
-            and not current_status.behaviors.persists_after_combat
-        ):
-            target.status.clear_status(self.session)
-        target.set_acquisition(Acquisition.CAPTURED)
+        # The kit clones the wild monster; the copy joins the player and
+        # the wild one goes free when the battle ends.
         self.session.player.party.add_monster(
-            target, len(self.session.player.monsters)
+            make_clone(target), len(self.session.player.monsters)
         )

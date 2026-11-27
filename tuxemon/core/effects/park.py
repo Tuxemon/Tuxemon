@@ -7,6 +7,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 from tuxemon import formula
+from tuxemon.cloning import make_clone
 from tuxemon.core.core_effect import CoreEffect, ItemEffectResult
 from tuxemon.technique.technique import Technique
 
@@ -126,8 +127,7 @@ class ParkEffect(CoreEffect):
             self.client.combat_session.set_variable("new_tuxepedia", True)
         self.session.player.tuxepedia.register_caught(target.slug)
         target.capture_device = item.slug
-        target.wild = False
         self.session.player.party.add_monster(
-            target, len(self.session.player.monsters)
+            make_clone(target), len(self.session.player.monsters)
         )
         self.session.client.park_session.record_capture()

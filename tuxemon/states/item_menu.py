@@ -37,8 +37,7 @@ if TYPE_CHECKING:
     from tuxemon.entity.npc import NPC
 
 
-# Minimal3x5 has no "/" glyph.
-PAGE_SEPARATOR = "|"
+PAGE_SEPARATOR = "/"
 
 
 class ItemMenuState(Menu[Item]):
@@ -423,7 +422,11 @@ class ItemMenuState(Menu[Item]):
         prefix: str = "",
     ) -> MenuItem[Item]:
         name = f"{prefix}{item.name}"
-        label = f"{name} x {item.quantity}" if show_quantity else name
+        # A quantity of one goes without saying.
+        if show_quantity and item.quantity > 1:
+            label = f"{name} x {item.quantity}"
+        else:
+            label = name
         image = self.font.render(label, True, self.font_color)
         return MenuItem(
             image=image,

@@ -9,6 +9,7 @@ from typing import TYPE_CHECKING, Any, ClassVar
 from pygame.font import Font
 from pygame.rect import Rect
 
+from tuxemon.config import LOCALE_FONT_MAP
 from tuxemon.constants.asset_loader import fetch_asset
 from tuxemon.graphics import load_and_scale
 from tuxemon.item.controller import ItemController
@@ -23,9 +24,11 @@ from tuxemon.platform.const.graphics import (
     BG_ITEMS,
     BG_ITEMS_BACKPACK,
     FONT_SIZE_ARBATA,
+    FONT_SIZE_ARBATA_HAN,
     FONT_SIZE_BIGGEST,
     MISSING_IMAGE,
 )
+from tuxemon.platform.const.sizes import MAX_BAG_MENU_ITEMS
 from tuxemon.platform.events import PlayerInput
 from tuxemon.session import local_session
 from tuxemon.sprite import Sprite
@@ -60,6 +63,16 @@ class ItemMenuState(Menu[Item]):
     ) -> None:
         self.char = character
         self.source = source
+        # Item names, quantities and descriptions are set in Arbata. Arbata
+        # only covers Latin scripts, so locales with their own font (see
+        # LOCALE_FONT_MAP) keep it, at the size matching Arbata's height.
+        locale = client.config.locale
+        if locale.slug in LOCALE_FONT_MAP:
+            self.font_filename = locale.font_file
+            self.base_font_size = FONT_SIZE_ARBATA_HAN
+        else:
+            self.font_filename = locale.arbata_font_file
+            self.base_font_size = FONT_SIZE_ARBATA
         super().__init__(client=client, **kwargs)
 
         self.filter_controller = item_filter or ItemFilter(self.char.items)
@@ -74,7 +87,9 @@ class ItemMenuState(Menu[Item]):
 
         scale_int = self.client.context.scaling.scale_int
         # Rows 10 nominal px apart: enough for Arbata's capitals and tails.
-        self.menu_items.line_spacing = scale_int(10)
+        line_pitch = scale_int(10)
+        self.menu_items.line_spacing = line_pitch
+        self.page_size = MAX_BAG_MENU_ITEMS
         self.current_page = 0
         self.total_pages = 0
         self.inventory = self.filter_controller.get_filtered_inventory()
@@ -82,19 +97,19 @@ class ItemMenuState(Menu[Item]):
 
         # this is the area where the item description is displayed
         rect = self.client.context.rect.copy()
-        rect.top = self.client.context.scaling.scale_int(103)
-        rect.left = self.client.context.scaling.scale_int(3)
-        rect.width = self.client.context.scaling.scale_int(250)
+        rect.top = scale_int(103)
+        rect.left = scale_int(3)
+        rect.width = scale_int(250)
         # Tall enough for three lines, descenders included.
-        rect.height = self.client.context.scaling.scale_int(34)
+        rect.height = scale_int(34)
         self.text_area = TextArea(
             font=self.font,
             font_color=self.font_color,
             rect=rect,
             scaling=self.client.context.scaling,
             shadow=False,
-            # 10 nominal px between lines, as in the journal description.
-            line_spacing=-scale_int(4),
+            # Lines 10 nominal px apart too, as in the journal description.
+            line_spacing=line_pitch - self.font.get_height(),
         )
         self.sprites.add(self.text_area, layer=100)
         self.page_number_display = TextArea(
@@ -104,9 +119,6 @@ class ItemMenuState(Menu[Item]):
             scaling=self.client.context.scaling,
         )
         self.sprites.add(self.page_number_display, layer=100)
-        # As many rows as fit in the panel at this spacing (the last may sit
-        # beside the page counter).
-        self.page_size = 8
         # The page counter uses the minimal font, at a size where it's crisp.
         self.page_font = Font(
             fetch_asset("font", self.client.config.locale.minimal_font_file),
@@ -128,17 +140,8 @@ class ItemMenuState(Menu[Item]):
         caps = row.get_bounding_rect()
         row_height = row.get_height()
         arrow.y_offset = (
-            caps.top
-            - self.client.context.scaling.scale_int(1)
-            + arrow.rect.height // 2
-            - row_height // 2
+            caps.top - scale_int(1) + arrow.rect.height // 2 - row_height // 2
         )
-
-    def setup_resources(self) -> None:
-        # Item names, quantities and descriptions are set in Arbata.
-        self.font_filename = self.client.config.locale.arbata_font_file
-        super().setup_resources()
-        self.set_font(size=FONT_SIZE_ARBATA)
 
     def calc_internal_rect(self) -> Rect:
         # The item list panel's interior, in nominal pixels.

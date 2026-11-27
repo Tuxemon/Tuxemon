@@ -82,3 +82,7 @@ FONT_SIZE_BIGGEST = 8
 # Arbata is a pixel font with an 18 px em (unitsPerEm 54, 3 units per font
 # pixel), so at this size each font pixel is one nominal pixel.
 FONT_SIZE_ARBATA = 18
+# Source Han (the Chinese and Japanese font) at this size matches Arbata at
+# FONT_SIZE_ARBATA in height, so it can stand in for Arbata in the same
+# layout.
+FONT_SIZE_ARBATA_HAN = 8

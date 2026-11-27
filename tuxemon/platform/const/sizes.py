@@ -88,6 +88,9 @@ U_FT: str = "ft"
 # Item Limits
 MAX_TYPES_BAG: int = 99
 MAX_MENU_ITEMS: int = 11
+# Rows per bag page. Bag rows are taller than other menus', so fewer fit in
+# the panel; the last may sit beside the page counter.
+MAX_BAG_MENU_ITEMS: int = 8
 
 # Camera
 CAMERA_SHAKE_RANGE: tuple[float, float] = (0.0, 3.0)

@@ -27,22 +27,35 @@ class TranslatedDialogChoiceAction(EventAction):
     Script usage:
         .. code-block::
 
-            translated_dialog_choice <choices>,<variable>
+            translated_dialog_choice <choices>,<variable>[,<title>][,must]
 
     Script parameters:
         choices: List of possible choices, separated by a colon ":".
         variable: Variable to store the result of the choice.
+        title: Optional translation key, shown translated as a header on
+            the list (not a row: it cannot be selected or answered). Leave
+            it out for no header.
+        must: Write "must" to make the player pick (Back does nothing).
+            Without it, Back closes the list and leaves the variable unset.
+            When there is no title, "must" may stand in the title's place:
+            ``a:b,var,must`` and ``a:b,var,Title,must`` both work.
     """
 
     name = "translated_dialog_choice"
 
     choices: str
     variable: str
+    title: str | None = None
+    must: str | None = None
 
     def start(self, session: Session) -> None:
         def _set_variable(var_value: str, player: NPC) -> None:
             player.game_variables.set(self.variable, var_value)
             session.client.pop_state()
+
+        title, must = self.title, self.must
+        if title == "must" and must is None:
+            title, must = None, "must"
 
         # perform text substitutions
         choices = TextFormatter.replace_text(session, self.choices, T)
@@ -60,7 +73,8 @@ class TranslatedDialogChoiceAction(EventAction):
         open_choice_dialog(
             client=session.client,
             menu=MenuOptions(options),
-            escape_key_exits=True,
+            escape_key_exits=must != "must",
+            title=T.translate(title) if title else None,
         )
 
     def update(self, session: Session, dt: float) -> None:

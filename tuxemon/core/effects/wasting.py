@@ -19,7 +19,7 @@ class WastingEffect(CoreEffect):
     Applies the "wasting" status effect.
 
     This effect causes a monster to lose a fraction of its maximum HP each
-    turn, with the damage increasing over time. The damage scales with the
+    round, with the damage increasing over time. The damage scales with the
     number of rounds the status has performed, counted by the effect itself
     on the status's round counter (``advance_round`` / ``nr_round``).
 

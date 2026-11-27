@@ -1,11 +1,21 @@
 # SPDX-License-Identifier: GPL-3.0
 # Copyright (c) 2014-2026 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+import os
 import sys
 from pathlib import Path
 
 import pygame
 import pytest
 from _pytest.mark.structures import ParameterSet
+
+# Tests run headless by default: the fixture below calls
+# pygame.display.set_mode() for every test module, and on a desktop
+# each call opens a real window that takes keyboard focus.
+# To get the windows back, run with TUXEMON_TEST_WINDOWS=1, or set
+# SDL_VIDEODRIVER yourself.
+if os.environ.get("TUXEMON_TEST_WINDOWS", "") in ("", "0"):
+    os.environ.setdefault("SDL_VIDEODRIVER", "dummy")
+    os.environ.setdefault("SDL_AUDIODRIVER", "dummy")
 
 
 @pytest.fixture(scope="module", autouse=True)

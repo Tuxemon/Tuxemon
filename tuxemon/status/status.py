@@ -132,6 +132,16 @@ class Status:
     def nr_turn(self) -> int:
         return self.lifecycle.turn
 
+    @property
+    def nr_round(self) -> int:
+        """
+        Number of times an effect has advanced this status with
+        ``advance_round``. Unlike ``nr_turn`` it counts regardless of
+        duration and is not ticked on acquisition: it starts at 0 and is
+        reset by stacking.
+        """
+        return self.lifecycle.use_counter
+
     def has_phase(self, phase: EffectPhase) -> bool:
         """Returns True if the current phase is equal to the provided phase, False otherwise."""
         return self.phase == phase

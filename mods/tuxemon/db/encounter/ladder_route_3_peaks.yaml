@@ -1,0 +1,74 @@
+slug: ladder_route_3_peaks
+monsters:
+- encounter_rate: 4
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 1
+  - 2
+  monster: mingdyn
+  variables: []
+- encounter_rate: 4
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 1
+  - 2
+  monster: uneye
+  variables: []
+- encounter_rate: 4
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 1
+  - 2
+  monster: tadcool
+  variables: []
+- encounter_rate: 4
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 1
+  - 2
+  monster: caper
+  variables: []
+- encounter_rate: 3
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 1
+  - 2
+  monster: rockat
+  variables: []
+- encounter_rate: 3
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 1
+  - 2
+  monster: heronquak
+  variables: []
+- encounter_rate: 3
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 1
+  - 2
+  monster: embazook
+  variables: []
+- encounter_rate: 3
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 1
+  - 2
+  monster: eruptibus
+  variables: []
+- encounter_rate: 1
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 1
+  - 2
+  monster: dracune
+  variables: []

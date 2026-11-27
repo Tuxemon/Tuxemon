@@ -1,0 +1,82 @@
+slug: ladder_route_2_canyon
+monsters:
+- encounter_rate: 4
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 1
+  - 2
+  monster: stonifly
+  variables: []
+- encounter_rate: 3
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 1
+  - 2
+  monster: pawsand
+  variables: []
+- encounter_rate: 2
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 1
+  - 2
+  monster: grintot
+  variables: []
+- encounter_rate: 2
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 1
+  - 2
+  monster: rhincus
+  variables: []
+- encounter_rate: 2
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 1
+  - 2
+  monster: shammer
+  variables: []
+- encounter_rate: 2
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 1
+  - 2
+  monster: chillimp
+  variables: []
+- encounter_rate: 2
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 1
+  - 2
+  monster: dinoflop
+  variables: []
+- encounter_rate: 2
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 1
+  - 2
+  monster: pilthropus
+  variables: []
+- encounter_rate: 2
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 1
+  - 2
+  monster: coproblight
+  variables: []
+- encounter_rate: 1
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 1
+  - 2
+  monster: galnec
+  variables: []

@@ -3,7 +3,7 @@ events:
   Scenario:
     actions:
     - change_bg gradient_blue
-    - translated_dialog_choice spyder_campaign:xero_campaign:water_campaign,scenario_choice
+    - translated_dialog_choice spyder_campaign:xero_campaign:water_campaign:ladder_campaign,scenario_choice
     conditions:
     - not variable_set scenario_choice
     - not variable_set gender_choice
@@ -125,6 +125,19 @@ events:
     - transition_teleport player,water_end_of_desert.tmx,11,32,0.5
     conditions:
     - is variable_set scenario_choice:water_campaign
+    - is variable_set gender_choice
+    - is variable_set race_choice
+    type: event
+  Ladder:
+    actions:
+    - change_bg gradient_blue
+    # Menu-driven routes and gyms (scripts/ladder/gen.py).
+    - set_variable rule_heal_after_battle:true
+    - set_variable ladder_stage:1
+    - set_variable ladder_at:hub
+    - transition_teleport player,ladder_hub.tmx,4,4,0.3
+    conditions:
+    - is variable_set scenario_choice:ladder_campaign
     - is variable_set gender_choice
     - is variable_set race_choice
     type: event

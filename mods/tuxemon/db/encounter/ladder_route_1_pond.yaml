@@ -1,0 +1,74 @@
+slug: ladder_route_1_pond
+monsters:
+- encounter_rate: 4
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 1
+  - 2
+  monster: axolightl
+  variables: []
+- encounter_rate: 3
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 1
+  - 2
+  monster: sheye
+  variables: []
+- encounter_rate: 2
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 1
+  - 2
+  monster: dollfin
+  variables: []
+- encounter_rate: 2
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 1
+  - 2
+  monster: nudiflot_male
+  variables: []
+- encounter_rate: 2
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 1
+  - 2
+  monster: nudiflot_female
+  variables: []
+- encounter_rate: 2
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 1
+  - 2
+  monster: dune_pincher
+  variables: []
+- encounter_rate: 2
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 1
+  - 2
+  monster: manosting
+  variables: []
+- encounter_rate: 2
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 1
+  - 2
+  monster: masknake
+  variables: []
+- encounter_rate: 1
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 1
+  - 2
+  monster: uglip
+  variables: []

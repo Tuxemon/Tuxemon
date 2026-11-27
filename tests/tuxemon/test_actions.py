@@ -60,6 +60,13 @@ def test_set_variable(engine, player):
     assert player.game_variables.get("name") == "jimmy"
 
 
+def test_default_variable_sets_only_when_unset(engine, player):
+    engine.execute_action("default_variable", ["pick:leave"])
+    assert player.game_variables.get("pick") == "leave"
+    engine.execute_action("default_variable", ["pick:other"])
+    assert player.game_variables.get("pick") == "leave"
+
+
 def test_set_variables_same_key(engine, player):
     engine.execute_action("set_variable", ["name:jimmy", "name:saul"])
     assert player.game_variables.get("name") == "saul"

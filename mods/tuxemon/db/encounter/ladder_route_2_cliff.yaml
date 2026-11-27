@@ -1,0 +1,74 @@
+slug: ladder_route_2_cliff
+monsters:
+- encounter_rate: 4
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 1
+  - 2
+  monster: pairagrin
+  variables: []
+- encounter_rate: 3
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 1
+  - 2
+  monster: bumbulus
+  variables: []
+- encounter_rate: 2
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 1
+  - 2
+  monster: toucanary
+  variables: []
+- encounter_rate: 2
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 1
+  - 2
+  monster: chloragon
+  variables: []
+- encounter_rate: 2
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 1
+  - 2
+  monster: selket
+  variables: []
+- encounter_rate: 2
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 1
+  - 2
+  monster: metesaur
+  variables: []
+- encounter_rate: 2
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 1
+  - 2
+  monster: spoilurm
+  variables: []
+- encounter_rate: 2
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 1
+  - 2
+  monster: mystikapi
+  variables: []
+- encounter_rate: 1
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 1
+  - 2
+  monster: fancair
+  variables: []

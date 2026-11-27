@@ -1,0 +1,74 @@
+slug: ladder_route_5_rift
+monsters:
+- encounter_rate: 4
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 1
+  - 2
+  monster: vividactil
+  variables: []
+- encounter_rate: 4
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 1
+  - 2
+  monster: happito
+  variables: []
+- encounter_rate: 4
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 1
+  - 2
+  monster: neutrito
+  variables: []
+- encounter_rate: 4
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 1
+  - 2
+  monster: sadito
+  variables: []
+- encounter_rate: 3
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 1
+  - 2
+  monster: apeoro
+  variables: []
+- encounter_rate: 3
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 1
+  - 2
+  monster: fuzzina
+  variables: []
+- encounter_rate: 3
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 1
+  - 2
+  monster: potturney
+  variables: []
+- encounter_rate: 3
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 1
+  - 2
+  monster: angesnow
+  variables: []
+- encounter_rate: 1
+  exp_req_mod: 1
+  held_items: []
+  level_range:
+  - 1
+  - 2
+  monster: demosnow
+  variables: []

@@ -4,15 +4,18 @@ import os
 import sys
 from pathlib import Path
 
-# Tests run headless unless a video driver is asked for. The fixture below
-# calls pygame.display.set_mode() for every test module; without this each
-# one opens a real window that takes keyboard focus on a desktop.
-os.environ.setdefault("SDL_VIDEODRIVER", "dummy")
-os.environ.setdefault("SDL_AUDIODRIVER", "dummy")
+import pygame
+import pytest
+from _pytest.mark.structures import ParameterSet
 
-import pygame  # noqa: E402
-import pytest  # noqa: E402
-from _pytest.mark.structures import ParameterSet  # noqa: E402
+# Tests run headless by default: the fixture below calls
+# pygame.display.set_mode() for every test module, and on a desktop
+# each call opens a real window that takes keyboard focus.
+# To get the windows back, run with TUXEMON_TEST_WINDOWS=1, or set
+# SDL_VIDEODRIVER yourself.
+if os.environ.get("TUXEMON_TEST_WINDOWS", "") in ("", "0"):
+    os.environ.setdefault("SDL_VIDEODRIVER", "dummy")
+    os.environ.setdefault("SDL_AUDIODRIVER", "dummy")
 
 
 @pytest.fixture(scope="module", autouse=True)

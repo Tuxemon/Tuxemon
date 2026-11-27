@@ -87,3 +87,39 @@ def test_stack_resets_turn_and_use_counter():
 
     assert lc.turn == 0
     assert lc.use_counter == 0
+
+
+@pytest.mark.parametrize(
+    "duration, expected_turn",
+    [
+        pytest.param(3, 1, id="durationed_restarts_on_turn_one"),
+        pytest.param(0, 0, id="endless_stays_on_zero"),
+    ],
+)
+def test_stack_restarts_turn_counter(duration, expected_turn):
+    lc = Lifecycle(duration=duration)
+    lc.turn = 3
+
+    lc.stack()
+
+    assert lc.turn == expected_turn
+
+
+@pytest.mark.parametrize(
+    "duration",
+    [
+        pytest.param(3, id="durationed"),
+        pytest.param(0, id="endless"),
+    ],
+)
+def test_stack_matches_fresh_acquisition(duration):
+    # A fresh status is ticked once on acquisition.
+    fresh = Lifecycle(duration=duration)
+    fresh.tick_turn()
+
+    restacked = Lifecycle(duration=duration)
+    restacked.tick_turn()
+    restacked.tick_turn()
+    restacked.stack()
+
+    assert restacked.turn == fresh.turn

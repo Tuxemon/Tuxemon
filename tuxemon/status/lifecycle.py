@@ -23,8 +23,7 @@ class Lifecycle:
 
     Turns are only counted for statuses with a finite duration. When
     ``duration`` is 0 (endless), ``turn`` stays at 0 throughout: neither
-    ticking nor stacking moves it. Effects that need to count rounds on an
-    endless status should use ``use_counter`` instead.
+    ticking nor stacking moves it.
     """
 
     def __init__(self, duration: int = 0, max_stacks: int = 5) -> None:

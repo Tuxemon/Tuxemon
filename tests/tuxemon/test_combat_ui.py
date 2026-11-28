@@ -364,3 +364,67 @@ def test_combat_ending_early_leaves_the_bar_telling_the_truth(combat_ui):
     assert bar.value == 0.75
     assert harness._pending_exp_display == []
     assert harness.pending_level_ups == {}
+
+
+class _AwardHarness:
+    """Just enough CombatState to exercise awarding experience."""
+
+    from tuxemon.states.combat_state import CombatState
+
+    award_experience_and_money = CombatState.award_experience_and_money
+    update_hud_and_level_up = CombatState.update_hud_and_level_up
+    _shows_exp_bar = CombatState._shows_exp_bar
+    claim_exp_bar = CombatState.claim_exp_bar
+
+    def __init__(self, bars, in_play):
+        self.bars = bars
+        self.session = MagicMock()
+        self.combat_session = MagicMock()
+        self.combat_session.monsters_in_play_right = in_play
+        self.text_anim = MagicMock()
+        self._pending_exp_display = []
+        self._pending_levelup_summaries = []
+        self.pending_level_ups = {}
+
+
+def _player_monster(progress):
+    monster = MagicMock()
+    monster.experience_progress_percent = progress
+    monster.get_owner.return_value.is_player = True
+    monster.consume_levelup_summary.return_value = None
+    return monster
+
+
+def test_a_swapped_out_winner_does_not_bank_a_phantom_level_up(
+    combat_ui, monkeypatch
+):
+    """
+    A monster that dealt damage and was then swapped out still wins
+    experience, but its bar is never animated. Banking its level-up would
+    replay it as a fake wrap the next time it gains experience on the field.
+    """
+    from tuxemon.states import combat_state
+
+    on_field = _player_monster(0.2)
+    benched = _player_monster(0.2)
+    benched_bar = combat_ui.get_exp_bar(benched)
+
+    on_field.experience_progress_percent = 0.4
+    benched.experience_progress_percent = 0.1  # levelled up off the field
+
+    rewards = MagicMock(update=True, messages=[])
+    rewards.winners = [
+        MagicMock(winner=on_field, levels_gained=0, moves=[]),
+        MagicMock(winner=benched, levels_gained=1, moves=[]),
+    ]
+    reward_system = MagicMock()
+    reward_system.return_value.award_rewards.return_value = rewards
+    monkeypatch.setattr(combat_state, "RewardSystem", reward_system)
+
+    harness = _AwardHarness(combat_ui, in_play=[on_field])
+    harness.award_experience_and_money(MagicMock())
+
+    assert benched not in harness.pending_level_ups
+    assert harness._pending_exp_display == [on_field]
+    # left unclaimed, so a redraw will snap it rather than wait forever
+    assert benched_bar.target_value == 0.2

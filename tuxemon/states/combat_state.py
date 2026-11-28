@@ -903,6 +903,11 @@ class CombatState(CombatAnimations):
         rewards = reward_system.award_rewards(monster)
 
         for data in rewards.winners:
+            # A winner can be off the field (it dealt damage, then was
+            # swapped out). Its bar is never animated, so recording levels
+            # for it would replay them as a phantom wrap when it returns.
+            if not self._shows_exp_bar(data.winner):
+                continue
             if data.levels_gained > 0:
                 self.pending_level_ups[data.winner] = (
                     self.pending_level_ups.get(data.winner, 0)
@@ -955,10 +960,18 @@ class CombatState(CombatAnimations):
         Note the visual cues a winner has earned, to play once the experience
         message appears.
         """
-        if winner in self.combat_session.monsters_in_play_right:
-            owner = winner.get_owner()
-            if owner.is_player and winner not in self._pending_exp_display:
-                self._pending_exp_display.append(winner)
+        if (
+            self._shows_exp_bar(winner)
+            and winner not in self._pending_exp_display
+        ):
+            self._pending_exp_display.append(winner)
+
+    def _shows_exp_bar(self, monster: Monster) -> bool:
+        """Whether a monster's EXP bar is on screen to be animated."""
+        return (
+            monster in self.combat_session.monsters_in_play_right
+            and monster.get_owner().is_player
+        )
 
     def show_experience_gained(self) -> None:
         """
@@ -980,8 +993,12 @@ class CombatState(CombatAnimations):
         wrap_at = {
             winner: self.exp_first_wrap_time(winner) for winner in winners
         }
+        # Summaries can belong to off-field winners too; with no bar to wait
+        # for, theirs open straight away.
         rest_at = {
-            winner: self.exp_animation_time(winner) for winner, _ in summaries
+            winner: self.exp_animation_time(winner)
+            for winner, _ in summaries
+            if winner in winners
         }
 
         for winner in winners:
@@ -1008,7 +1025,7 @@ class CombatState(CombatAnimations):
                     use_relative_position=True,
                 ),
                 # the summary covers the HUD, so let the bar finish first
-                interval=rest_at[winner] + SUMMARY_AFTER_BAR,
+                interval=rest_at.get(winner, 0.0) + SUMMARY_AFTER_BAR,
             )
 
     def _flush_pending_experience_display(self) -> None:

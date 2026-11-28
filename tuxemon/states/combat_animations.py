@@ -56,29 +56,15 @@ HUD_LAYER = 100
 HUD_SLIDE_DELAY = 1.3
 HUD_SLIDE_DURATION = 2.0
 
-# EXP bar pacing.
-#
-# A cubic ease-out, rather than the quintic the rest of the game defaults to
-# (see config.py). Both open fast and decelerate to a stop, but a quintic
-# opens at five times its average speed against a cubic's three, and spends
-# its last 40% of runtime covering the final 1% of travel against a cubic's
-# 21%. That suits a sprite thrown across the screen; a gauge wants to arrive
-# rather than creep, and matching the two curves' opening speed makes the
-# cubic 40% shorter for the same visible fill.
-#
-# Sweep time is proportional to the distance travelled, which holds that
-# opening speed at a constant 3 / EXP_BAR_SWEEP_TIME bar-widths per second
-# however much experience was gained; raise the sweep time to lower it.
+# EXP bar pacing. Cubic rather than the default quintic ease-out: the quintic
+# creeps for a long time at the end, which suits sprites but not a gauge.
+# Sweep time scales with distance, so the bar moves at the same speed
+# however much experience was gained.
 EXP_BAR_TRANSITION = "out_cubic"
 EXP_BAR_SWEEP_TIME = 2.4  # seconds for a full empty -> full sweep
 EXP_BAR_MIN_SWEEP_TIME = 0.6  # floor, so a tiny gain is still readable
-# A gain worth more than a level or so would run for ten seconds at that pace,
-# which is a long time to hold up the battle, so the whole animation is capped
-# and its sweeps scaled down to fit. Only a big multi-level gain hits this.
-EXP_BAR_MAX_TOTAL_TIME = 4.0
-# The ease-out already coasts at the top for a while, so this is only a garnish
-# on top of it rather than the whole pause before the bar wraps round.
-EXP_BAR_FULL_HOLD = 0.2
+EXP_BAR_MAX_TOTAL_TIME = 4.0  # cap; longer gains are sped up to fit
+EXP_BAR_FULL_HOLD = 0.2  # pause at full before wrapping round
 
 
 def _settle_fraction(transition: str, covered: float = 0.99) -> float:

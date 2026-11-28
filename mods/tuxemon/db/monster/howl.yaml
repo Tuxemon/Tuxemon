@@ -38,6 +38,8 @@ terrains: []
 tags:
 - bird
 - sound
+- mental
+- celestial
 shape: flier
 stage: standalone
 types:

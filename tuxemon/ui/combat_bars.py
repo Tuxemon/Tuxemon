@@ -3,12 +3,13 @@
 from __future__ import annotations
 
 import logging
+import math
 from collections.abc import MutableMapping
 from typing import TYPE_CHECKING
 
 from pygame.rect import Rect
 
-from tuxemon.menu.interface import ExpBar, HpBar
+from tuxemon.menu.interface import Bar, ExpBar, HpBar
 from tuxemon.sprite import Sprite
 
 logger = logging.getLogger(__name__)
@@ -51,6 +52,9 @@ class CombatBars:
                     top_offset,
                     gh.bar_right_padding,
                 )
+                # HP is not resynced here: damage lands well before
+                # check_party_hp animates it, and that pass covers every
+                # monster each round, so the bar corrects itself anyway.
                 self.get_hp_bar(monster).draw(_sprite.image, rect)
 
             # Always draw EXP bar for player if graphics available
@@ -62,7 +66,9 @@ class CombatBars:
                     gh.exp_bar_top,
                     gh.bar_right_padding,
                 )
-                self.get_exp_bar(monster).draw(_sprite.image, rect)
+                exp_bar = self.get_exp_bar(monster)
+                self.resync(exp_bar, monster.experience_progress_percent)
+                exp_bar.draw(_sprite.image, rect)
 
     def create_rect_for_bar(
         self,
@@ -84,6 +90,21 @@ class CombatBars:
         rect.right = hud.image.get_width() - right_padding
         return rect
 
+    @staticmethod
+    def resync(bar: Bar, expected: float) -> None:
+        """
+        Snap a bar back onto the model unless an animation is heading there.
+
+        A bar is only ever moved by animations, so experience granted without
+        one being scheduled (a party member levelling up off the field, say),
+        or a chain that was aborted part-way, would otherwise leave the bar
+        showing a stale value indefinitely. Comparing against the bar's target
+        rather than its current value keeps in-flight animations intact, which
+        is what :meth:`claim` is for.
+        """
+        if not math.isclose(bar.target_value, expected, abs_tol=1e-6):
+            bar.sync(expected)
+
     def get_hp_bar(self, monster: Monster) -> HpBar:
         return self._hp_bars.setdefault(
             monster, HpBar(self.context, monster.hp_ratio)
@@ -93,6 +114,16 @@ class CombatBars:
         return self._exp_bars.setdefault(
             monster, ExpBar(self.context, monster.experience_progress_percent)
         )
+
+    def claim(self, bar: Bar, expected: float) -> None:
+        """
+        Announce that an animation will bring ``bar`` to ``expected``.
+
+        Call this as soon as the model changes, even when the animation itself
+        only starts seconds later, so redraws in the meantime leave the bar
+        alone instead of snapping it to the new value.
+        """
+        bar.target_value = expected
 
     def remove_monster(self, monster: Monster) -> None:
         if monster in self._hp_bars:

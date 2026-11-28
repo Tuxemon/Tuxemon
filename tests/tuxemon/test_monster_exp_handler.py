@@ -196,3 +196,42 @@ def test_excess_experience_not_maxed_out():
 
     if m.level < config_monster.level_range[1]:
         assert m.excess_experience() == 0
+
+
+@pytest.mark.parametrize(
+    "level",
+    [
+        pytest.param(1, id="level_1"),
+        pytest.param(2, id="level_2"),
+        pytest.param(30, id="level_30"),
+    ],
+)
+def test_progress_is_empty_right_after_levelling(level):
+    """A monster sitting exactly on a level floor has made no progress yet."""
+    m = MonsterExperience()
+    m.set_level(level)
+    assert m.experience_current_level == 0
+    assert m.experience_progress_percent == 0.0
+
+
+def test_progress_is_measured_from_the_current_level_floor():
+    m = MonsterExperience()
+    m.set_level(10)
+    span = m.experience_for_next_level
+    m.give_experience(span // 2)
+    assert m.level == 10
+    assert m.experience_progress_percent == pytest.approx(0.5, abs=0.01)
+
+
+def test_progress_wraps_round_on_a_level_up():
+    m = MonsterExperience()
+    m.set_level(10)
+    span = m.experience_for_next_level
+    m.give_experience(span - 1)
+    nearly_full = m.experience_progress_percent
+    assert nearly_full > 0.9
+
+    m.give_experience(1)
+    assert m.level == 11
+    assert m.experience_progress_percent < nearly_full
+    assert m.experience_progress_percent == pytest.approx(0.0, abs=0.01)

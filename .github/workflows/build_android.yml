@@ -1,0 +1,21 @@
+name: Android APK
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - 2026-06-android-build
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build APK
+        run: bash buildconfig/build_android.sh
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: tuxemon-apk
+          path: dist/android/tuxemon-development.apk

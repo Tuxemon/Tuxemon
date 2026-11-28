@@ -243,6 +243,12 @@ class UserStorage:
         self.android = android
 
     def user_dir(self) -> Path:
+        # ANDROID_PRIVATE is set by p4a's bootstrap before Python starts,
+        # so it's available even when platform.init() hasn't run yet.
+        android_private = os.environ.get("ANDROID_PRIVATE")
+        if android_private:
+            return Path(android_private) / "tuxemon"
+
         fallback = Path.home() / ".tuxemon"
 
         if self.android is None:

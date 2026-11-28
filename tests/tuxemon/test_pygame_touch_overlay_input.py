@@ -93,7 +93,7 @@ def test_touch_dpad(
     x, y = normalized_pos(
         mapping.rect_accessor(touch_input), touch_input.resolution
     )
-    event = Event(pg.FINGERDOWN, fingerid=1, x=x, y=y)
+    event = Event(pg.FINGERDOWN, finger_id=1, x=x, y=y)
     touch_input.process_event(event)
     assert touch_input.buttons[mapping.button].pressed
 
@@ -124,20 +124,20 @@ def test_touch_buttons(
     x, y = normalized_pos(
         mapping.rect_accessor(touch_input), touch_input.resolution
     )
-    event = Event(pg.FINGERDOWN, fingerid=1, x=x, y=y)
+    event = Event(pg.FINGERDOWN, finger_id=1, x=x, y=y)
     touch_input.process_event(event)
     assert touch_input.buttons[mapping.button].pressed
 
 
 def test_touch_release(touch_input: PygameTouchOverlayInput):
     x, y = normalized_pos(touch_input.ui.dpad.rect.up, touch_input.resolution)
-    touch_input.process_event(Event(pg.FINGERDOWN, fingerid=1, x=x, y=y))
-    touch_input.process_event(Event(pg.FINGERUP, fingerid=1, x=x, y=y))
+    touch_input.process_event(Event(pg.FINGERDOWN, finger_id=1, x=x, y=y))
+    touch_input.process_event(Event(pg.FINGERUP, finger_id=1, x=x, y=y))
     assert not touch_input.buttons[buttons.UP].pressed
 
 
 def test_touch_outside_buttons(touch_input: PygameTouchOverlayInput):
-    event = Event(pg.FINGERDOWN, fingerid=1, x=10 / 800, y=10 / 600)
+    event = Event(pg.FINGERDOWN, finger_id=1, x=10 / 800, y=10 / 600)
     touch_input.process_event(event)
     assert not any(btn.pressed for btn in touch_input.buttons.values())
 
@@ -150,8 +150,8 @@ def test_simultaneous_presses(touch_input: PygameTouchOverlayInput):
         touch_input.ui.a_button.rect, touch_input.resolution
     )
     events = [
-        Event(pg.FINGERDOWN, fingerid=1, x=up_x, y=up_y),
-        Event(pg.FINGERDOWN, fingerid=2, x=a_x, y=a_y),
+        Event(pg.FINGERDOWN, finger_id=1, x=up_x, y=up_y),
+        Event(pg.FINGERDOWN, finger_id=2, x=a_x, y=a_y),
     ]
     for e in events:
         touch_input.process_event(e)
@@ -180,7 +180,7 @@ def test_touch_dead_zone(touch_input: PygameTouchOverlayInput):
         (dead_zone_rect.right - 1, dead_zone_rect.bottom - 1),
     ]:
         x, y = point[0] / 800, point[1] / 600
-        touch_input.process_event(Event(pg.FINGERDOWN, fingerid=1, x=x, y=y))
+        touch_input.process_event(Event(pg.FINGERDOWN, finger_id=1, x=x, y=y))
         assert not any(btn.pressed for btn in touch_input.buttons.values())
 
 
@@ -190,7 +190,7 @@ def test_touch_on_border(touch_input: PygameTouchOverlayInput):
         touch_input.ui.dpad.rect.down.top,
     )
     x, y = border_pos[0] / 800, border_pos[1] / 600
-    event = Event(pg.FINGERDOWN, fingerid=1, x=x, y=y)
+    event = Event(pg.FINGERDOWN, finger_id=1, x=x, y=y)
     touch_input.process_event(event)
     assert not touch_input.buttons[buttons.UP].pressed
     assert not touch_input.buttons[buttons.DOWN].pressed
@@ -198,14 +198,14 @@ def test_touch_on_border(touch_input: PygameTouchOverlayInput):
 
 def test_touch_outside_screen(touch_input: PygameTouchOverlayInput):
     x, y = 900 / 800, 700 / 600
-    event = Event(pg.FINGERDOWN, fingerid=1, x=x, y=y)
+    event = Event(pg.FINGERDOWN, finger_id=1, x=x, y=y)
     touch_input.process_event(event)
     assert not any(btn.pressed for btn in touch_input.buttons.values())
 
 
 def test_persistent_press(touch_input: PygameTouchOverlayInput):
     x, y = normalized_pos(touch_input.ui.dpad.rect.up, touch_input.resolution)
-    touch_input.process_event(Event(pg.FINGERDOWN, fingerid=1, x=x, y=y))
+    touch_input.process_event(Event(pg.FINGERDOWN, finger_id=1, x=x, y=y))
     assert touch_input.buttons[buttons.UP].pressed
 
 
@@ -233,6 +233,6 @@ def test_touch_dead_zone_border(touch_input: PygameTouchOverlayInput):
 
     for x, y, expected in border_points:
         nx, ny = x / 800, y / 600
-        event = Event(pg.FINGERDOWN, fingerid=1, x=nx, y=ny)
+        event = Event(pg.FINGERDOWN, finger_id=1, x=nx, y=ny)
         touch_input.process_event(event)
         assert touch_input.buttons[expected].pressed

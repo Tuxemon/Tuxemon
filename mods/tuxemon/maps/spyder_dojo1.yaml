@@ -67,6 +67,13 @@ events:
     conditions:
     - not char_exists spyder_dojo_fu_student2
     type: event
+  Create Fu Student3:
+    actions:
+    - create_npc spyder_dojo_fu_student3,19,9
+    - char_face spyder_dojo_fu_student3,down
+    conditions:
+    - not char_exists spyder_dojo_fu_student3
+    type: event
   Create Xiang:
     actions:
     - create_npc spyder_dojo_xiang,21,2
@@ -257,6 +264,61 @@ events:
     conditions:
     - is variable_set student2_yn:yes
     - not variable_set potion_xiang:no_choice
+    type: event
+  Talk Student3 Offer:
+    actions:
+    - translated_dialog spyder_dojo_fu_student3_intro
+    - translated_dialog_choice yes:no,tp_student_yn
+    behav:
+    - talk spyder_dojo_fu_student3
+    conditions:
+    - is money_is player,greater_or_equal,50
+    - not variable_set tp_student_yn
+    type: event
+  Talk Student3 No Money:
+    actions:
+    - translated_dialog spyder_dojo_fu_student3_nomoney
+    behav:
+    - talk spyder_dojo_fu_student3
+    conditions:
+    - not money_is player,greater_or_equal,50
+    type: event
+  Talk Student3 No:
+    actions:
+    - clear_variable tp_student_yn
+    conditions:
+    - is variable_set tp_student_yn:no
+    type: event
+  Talk Student3 Pick:
+    actions:
+    - get_player_monster tp_student_mon
+    conditions:
+    - is variable_set tp_student_yn:yes
+    - not variable_set tp_student_mon
+    type: event
+  Talk Student3 Cancel:
+    actions:
+    - clear_variable tp_student_yn,tp_student_mon
+    conditions:
+    - is variable_set tp_student_mon:no_choice
+    type: event
+  Talk Student3 No Mons:
+    actions:
+    - translated_dialog spyder_dojo_fu_student3_nomons
+    - clear_variable tp_student_yn,tp_student_mon
+    conditions:
+    - is variable_set tp_student_mon:no_options
+    type: event
+  Talk Student3 Reset:
+    actions:
+    - dojo_method tp_student_mon,tp
+    - modify_money player,-50
+    - clear_variable tp_student_yn,tp_student_mon
+    conditions:
+    - is variable_set tp_student_yn:yes
+    - is variable_set tp_student_mon
+    - not variable_set tp_student_mon:no_choice
+    - not variable_set tp_student_mon:no_options
     type: event
   Talk Xiang No Money:
     actions:

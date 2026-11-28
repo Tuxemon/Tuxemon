@@ -16947,6 +16947,28 @@ msgid "spyder_dojo_fu_student2_stage"
 msgstr "Do you have a tuxemon that has evolved once? \n"
 "Come back when it has, and I can restore it to its original form."
 
+msgid "spyder_dojo_fu_student3_intro"
+msgstr ""
+"My master taught me to unburden a tuxemon of its training. \n"
+"For ${{currency}}50 I can reset one tuxemon's training points. Shall I?"
+
+msgid "spyder_dojo_fu_student3_nomoney"
+msgstr ""
+"Resetting a tuxemon's training points costs ${{currency}}50. \n"
+"Come back when you can spare the coin."
+
+msgid "spyder_dojo_fu_student3_nomons"
+msgstr "You'll need a tuxemon with you before I can do anything."
+
+msgid "dojo_tp_all"
+msgstr "All Stats"
+
+msgid "dojo_tp_all_stats"
+msgstr "all stats"
+
+msgid "dojo_tp_reset_done"
+msgstr "Training in {stat} set back to zero."
+
 msgid "spyder_dojo_fu_nochoice"
 msgstr ""
 "I'm ready to assist you, but please, choose the tuxemon that will undergo the reversal process."

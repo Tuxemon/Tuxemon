@@ -7,6 +7,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 from tuxemon.core.core_effect import CoreEffect, ItemEffectResult
+from tuxemon.locale.locale import T
 from tuxemon.monster.monster import Monster
 from tuxemon.status.status import Status
 
@@ -50,6 +51,10 @@ class DieEffect(CoreEffect):
             status = Status.create(status_slug, target, target.steps)
             result = target.status.apply_status(session, status)
             if result.applied:
+                # name the item first, so the player knows where the
+                # status came from (e.g. "Rockitten used Die!")
+                params = {"user": target.name, "name": item.name}
+                extras.append(T.format(item.use_item, params))
                 extras.extend(result.extras)
                 event_bus = session.client.event_bus
                 event_bus.publish("status_applied")

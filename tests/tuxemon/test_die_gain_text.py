@@ -56,15 +56,18 @@ def use_die(session, target, gain_cond, turn=1):
     session.client.combat_session.turn = turn
     status = make_status("enraged", target, gain_cond=gain_cond)
     effect = DieEffect("enraged")
+    item = MagicMock()
+    item.name = "Die"
+    item.use_item = "{user} used {name}!"
     with patch("tuxemon.core.effects.die.Status.create", return_value=status):
-        return effect.apply_item_target(session, MagicMock(), target)
+        return effect.apply_item_target(session, item, target)
 
 
-def test_die_puts_gain_text_on_item_result(session, host):
+def test_die_names_itself_then_gain_text(session, host):
     result = use_die(session, host, ENRAGED_GAIN)
 
     assert host.status.has_status("enraged")
-    assert result.extras == ["Rockitten is enraged."]
+    assert result.extras == ["Rockitten used Die!", "Rockitten is enraged."]
 
 
 def test_die_no_gain_text_after_first_turn(session, host):

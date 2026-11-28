@@ -17,12 +17,12 @@ stat_modifiers:
     operation: '*'
 cond_id: 17
 use_failure: null
-use_success: combat_state_blinded_get
-gain_cond: null
+use_success: null
+gain_cond: combat_state_blinded_get
 visuals:
   animation: null
   flip_axes: ''
   loop: 0
 sound:
-  sfx: sfx_pulse
+  sfx: null
   volume: 1.5

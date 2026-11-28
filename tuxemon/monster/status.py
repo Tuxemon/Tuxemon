@@ -5,7 +5,7 @@ from __future__ import annotations
 import logging
 import random
 from collections.abc import Mapping, Sequence
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, Any
 
 from tuxemon.db import BlockedReason, EffectPhase, ResponseStatus
@@ -28,6 +28,7 @@ class StatusApplyResult:
     applied: bool
     blocked_by: str | None = None
     blocked_reason: BlockedReason | None = None
+    extras: list[str] = field(default_factory=list)
 
 
 class MonsterStatusHandler:
@@ -88,7 +89,12 @@ class MonsterStatusHandler:
             new_status.tick_turn()
             new_status.use(session, EffectPhase.ON_START)
 
-            return StatusApplyResult(applied=True)
+            extras = []
+            gain_text = new_status.gain_text()
+            if gain_text:
+                extras.append(gain_text)
+
+            return StatusApplyResult(applied=True, extras=extras)
 
         if result.outcome == ResponseStatus.REMOVED:
             self.clear_status(session)

@@ -110,6 +110,18 @@ class Status:
     def description(self) -> str:
         return T.translate(f"{self.slug}_description")
 
+    def gain_text(self) -> str:
+        """
+        Returns the line announcing that the host has gained this status,
+        formatted with the status and host names, or an empty string when
+        the status defines no ``gain_cond``.
+        """
+        if not self.gain_cond:
+            return ""
+        return T.format(
+            self.gain_cond, {"name": self.name, "target": self.host.name}
+        )
+
     @property
     def host(self) -> Monster:
         """Returns the monster associated with this status."""

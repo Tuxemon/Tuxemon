@@ -55,6 +55,7 @@ class TransferEffect(CoreEffect):
         hit = session.client.combat_session.get_tech_hit(user)
         tech.hit = tech.accuracy >= hit
         done = False
+        extras: list[str] = []
         if tech.hit:
             source, dest = (
                 (user, target)
@@ -66,4 +67,10 @@ class TransferEffect(CoreEffect):
                 new_status = Status.create(self.condition, dest, dest.steps)
                 dest.status.add_status(new_status)
                 done = True
-        return TechEffectResult(name=tech.name, success=done)
+                # add_status leaves an identical existing status in place,
+                # so only announce the gain if the new status really landed
+                if dest.status.current_status is new_status:
+                    gain_text = new_status.gain_text()
+                    if gain_text:
+                        extras.append(gain_text)
+        return TechEffectResult(name=tech.name, success=done, extras=extras)

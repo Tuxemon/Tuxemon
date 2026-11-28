@@ -10,8 +10,8 @@ slug: lockdown
 sort: meta
 cond_id: 23
 use_failure: null
-use_success: combat_state_lockdown_get
-gain_cond: null
+use_success: null
+gain_cond: combat_state_lockdown_get
 visuals:
   animation: null
   flip_axes: ''

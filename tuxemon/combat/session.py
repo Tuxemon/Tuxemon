@@ -489,16 +489,24 @@ class CombatSession:
                 monster.locked_turns_left = 0
                 monster.locked_move = None
 
-    def check_decisions(self, session: Session) -> None:
+    def check_decisions(self, session: Session) -> list[str]:
+        """
+        Runs held items and the decision phase of statuses for every
+        monster on the field, returning any messages the held items
+        produced (e.g. a status gained from a ``Die``).
+        """
+        messages: list[str] = []
         for player in list(self.active_players):
             monsters = self.field_monsters.get_monsters(player)
             for monster in monsters:
                 held_item = monster.held_item
                 if held_item:
-                    held_item.use(session, player, monster)
+                    result = held_item.use(session, player, monster)
+                    messages.extend(result.extras)
                 status = monster.status.current_status
                 if status:
                     status.use(session, EffectPhase.ON_DECISION)
+        return messages
 
     def apply_statuses(self, session: Session) -> None:
         """

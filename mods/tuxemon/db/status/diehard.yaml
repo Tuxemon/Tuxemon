@@ -12,8 +12,8 @@ slug: diehard
 sort: meta
 cond_id: 4
 use_failure: null
-use_success: combat_state_diehard_get
-gain_cond: null
+use_success: null
+gain_cond: combat_state_diehard_get
 visuals:
   animation: null
   flip_axes: ''

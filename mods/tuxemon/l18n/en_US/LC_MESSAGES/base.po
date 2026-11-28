@@ -1987,7 +1987,7 @@ msgid "combat_state_retaliate_get"
 msgstr "{target} will retaliate on its next attack."
 
 msgid "combat_state_revenge_get"
-msgstr "When attacked,{target} will take revenge."
+msgstr "When attacked, {target} will take revenge."
 
 msgid "combat_state_sniping_get"
 msgstr "{target} backs away."

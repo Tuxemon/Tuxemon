@@ -77,6 +77,7 @@ class GiveEffect(CoreEffect):
             result = monster.status.apply_status(session, status)
             if result.applied:
                 successful_targets.append(monster)
+                extras.extend(result.extras)
                 logger.info(
                     f"[COMBAT] give {self.condition} -> {monster.name} (via {tech.name})"
                 )

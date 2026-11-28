@@ -10,8 +10,8 @@ slug: revenge
 sort: meta
 cond_id: 32
 use_failure: null
-use_success: combat_state_revenge_get
-gain_cond: null
+use_success: null
+gain_cond: combat_state_revenge_get
 visuals:
   animation: null
   flip_axes: ''

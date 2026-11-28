@@ -12,8 +12,8 @@ slug: spiky
 sort: meta
 cond_id: 34
 use_failure: null
-use_success: combat_state_spiky_get
-gain_cond: null
+use_success: null
+gain_cond: combat_state_spiky_get
 visuals:
   animation: null
   flip_axes: ''

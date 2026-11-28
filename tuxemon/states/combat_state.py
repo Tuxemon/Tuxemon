@@ -286,7 +286,13 @@ class CombatState(CombatAnimations):
         elif phase == CombatPhase.DECISION:
             self.event_bus.publish("status_applied")
             self.event_bus.publish("update_party_hud")
-            c_session.check_decisions(self.session)
+            messages = c_session.check_decisions(self.session)
+            if messages:
+                message = "\n".join(T.translate(m) for m in messages)
+                self.text_anim.add_text_animation(
+                    partial(self.dialog.alert, message, self.text_area),
+                    self.text_anim.compute_text_anim_time(message),
+                )
             if not self._decision_queue:
                 c_session.initialize_hit_chances()
                 self.process_player_decisions()
@@ -345,8 +351,9 @@ class CombatState(CombatAnimations):
         * Do not test conditions to change phase
         """
         if self.phase == CombatPhase.DECISION:
-            # show monster action menu for human players
-            if self._decision_queue:
+            # show monster action menu for human players, once any
+            # messages from the start of the phase have been read
+            if self._decision_queue and not self.text_anim.is_animating():
                 active_names = {s.name for s in self.client.active_states}
                 if "MainCombatMenuState" not in active_names:
                     self.handle_pending_actions(self._decision_queue, 1)
@@ -847,11 +854,6 @@ class CombatState(CombatAnimations):
             if status.use_success:
                 template = status.use_success
                 message = T.format(template, context)
-            # first turn status
-            if status.nr_turn == 1 and status.gain_cond:
-                first_turn = status.gain_cond
-                first = T.format(first_turn, context)
-                message = first + "\n" + message
         # not successful statuses
         if not result.success:
             if status.use_failure:

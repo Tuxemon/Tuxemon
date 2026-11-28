@@ -1269,7 +1269,13 @@ class CombatState(CombatAnimations):
         owner = monster.get_owner()
         track = get_battle_outcome_music(self.session, env, owner)
         if track:
-            self.client.current_music.play(track)
+            # Playing the outcome track would overwrite previous_song with
+            # the battle track, so FadeOutTransition would resume the
+            # battle music after combat. Keep the pre-battle song instead.
+            music = self.client.current_music
+            pre_battle_song = music.previous_song
+            music.play(track)
+            music.previous_song = pre_battle_song
 
     def _on_play_animation_combat(
         self,

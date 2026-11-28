@@ -10,8 +10,8 @@ slug: festering
 sort: meta
 cond_id: 20
 use_failure: null
-use_success: combat_state_festering_get
-gain_cond: null
+use_success: null
+gain_cond: combat_state_festering_get
 visuals:
   animation: null
   flip_axes: ''

@@ -14,8 +14,8 @@ stat_modifiers:
     operation: '*'
 cond_id: 14
 use_failure: null
-use_success: combat_state_focused_get
-gain_cond: null
+use_success: null
+gain_cond: combat_state_focused_get
 visuals:
   animation: null
   flip_axes: ''

@@ -6,6 +6,8 @@ import pytest
 
 from tuxemon.core.asset import init_assets
 from tuxemon.core.effects.give import GiveEffect
+from tuxemon.core.effects.locked import LockedMoveEffect
+from tuxemon.core.effects.transfer import TransferEffect
 from tuxemon.db import BlockedReason, EffectPhase
 from tuxemon.monster.status import MonsterStatusHandler
 from tuxemon.status.status import Status
@@ -147,3 +149,79 @@ def test_give_no_gain_text_when_immune(session, host, tech):
     result = use_give(session, tech, host, POISON_GAIN)
 
     assert "Rockitten is poisoned." not in result.extras
+
+
+def use_transfer(session, tech, user, target, gain_cond):
+    session.client.combat_session.get_tech_hit.return_value = 0.0
+    user.status.status = [make_status("poison", user, gain_cond=gain_cond)]
+    moved = make_status("poison", target, gain_cond=gain_cond)
+    effect = TransferEffect("poison", "user_to_target")
+    with patch(
+        "tuxemon.core.effects.transfer.Status.create", return_value=moved
+    ):
+        return effect.apply_tech_target(session, tech, user, target)
+
+
+@pytest.fixture
+def other():
+    monster = MagicMock()
+    monster.name = "Bigfin"
+    monster.steps = 0.0
+    monster.held_item = None
+    monster.status = MonsterStatusHandler()
+    return monster
+
+
+def test_transfer_puts_gain_text_on_tech_message(session, host, other, tech):
+    result = use_transfer(session, tech, other, host, POISON_GAIN)
+
+    assert result.success
+    assert host.status.has_status("poison")
+    assert result.extras == ["Rockitten is poisoned."]
+
+
+def test_transfer_no_gain_text_without_gain_cond(session, host, other, tech):
+    result = use_transfer(session, tech, other, host, None)
+
+    assert result.success
+    assert result.extras == []
+
+
+def test_transfer_no_gain_text_when_already_present(
+    session, host, other, tech
+):
+    host.status.status = [make_status("poison", host, gain_cond=POISON_GAIN)]
+
+    result = use_transfer(session, tech, other, host, POISON_GAIN)
+
+    assert result.extras == []
+
+
+CONFUSED_GAIN = "{target} is confused."
+
+
+def use_locked_final_turn(session, tech, user, gain_cond, roll):
+    tech.slug = "thrash"
+    status = make_status("confused", user, gain_cond=gain_cond)
+    effect = LockedMoveEffect(turns=1, confuse_chance=0.5)
+    with (
+        patch(
+            "tuxemon.core.effects.locked.Status.create", return_value=status
+        ),
+        patch("tuxemon.core.effects.locked.random.random", return_value=roll),
+    ):
+        return effect.apply_tech_target(session, tech, user, MagicMock())
+
+
+def test_locked_puts_confusion_gain_text_on_tech_message(session, host, tech):
+    result = use_locked_final_turn(session, tech, host, CONFUSED_GAIN, 0.0)
+
+    assert host.status.has_status("confused")
+    assert result.extras == ["Rockitten is confused."]
+
+
+def test_locked_no_gain_text_when_not_confused(session, host, tech):
+    result = use_locked_final_turn(session, tech, host, CONFUSED_GAIN, 0.99)
+
+    assert not host.status.has_status("confused")
+    assert result.extras == []

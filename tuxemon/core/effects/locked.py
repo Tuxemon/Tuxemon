@@ -54,6 +54,7 @@ class LockedMoveEffect(CoreEffect):
         user.locked_turns_left = self.turns
         user.locked_move = tech.slug
         user.locked_turns_left -= 1
+        extras: list[str] = []
 
         # Schedule next forced use
         if user.locked_turns_left > 0:
@@ -70,8 +71,9 @@ class LockedMoveEffect(CoreEffect):
                 status = Status.create("confused", user, user.steps)
                 result = user.status.apply_status(session, status)
                 if result.applied:
+                    extras.extend(result.extras)
                     event_bus = session.client.event_bus
                     event_bus.publish("status_applied")
                     event_bus.publish("update_party_hud")
 
-        return TechEffectResult(name=tech.name, success=True)
+        return TechEffectResult(name=tech.name, success=True, extras=extras)

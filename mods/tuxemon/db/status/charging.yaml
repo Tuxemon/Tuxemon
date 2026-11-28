@@ -10,8 +10,8 @@ slug: charging
 sort: meta
 cond_id: 8
 use_failure: null
-use_success: combat_state_charging_get
-gain_cond: null
+use_success: null
+gain_cond: combat_state_charging_get
 visuals:
   animation: null
   flip_axes: ''

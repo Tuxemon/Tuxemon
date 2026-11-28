@@ -19,8 +19,8 @@ slug: stuck
 sort: meta
 cond_id: 18
 use_failure: null
-use_success: combat_state_stuck_get
-gain_cond: null
+use_success: null
+gain_cond: combat_state_stuck_get
 visuals:
   animation: null
   flip_axes: ''

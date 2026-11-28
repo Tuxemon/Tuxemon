@@ -14,7 +14,14 @@ jobs:
       # Must match the runtime/runtime-version in buildconfig/flatpak/org.tuxemon.Tuxemon.yaml.
       # The old bilelmoussaoui/* images are no longer maintained.
       image: ghcr.io/flathub-infra/flatpak-github-actions:freedesktop-24.08
-      options: --privileged
+      # The image ships its runtimes preinstalled in a read-only image layer.
+      # When Flathub publishes an update, flatpak-builder cannot update them in
+      # place there ("Invalid cross-device link") and then crashes. Putting the
+      # Flatpak installations on volumes gives Docker a writable copy of them.
+      options: >-
+        --privileged
+        --volume /var/lib/flatpak
+        --volume /root/.local/share/flatpak
     steps:
     - name: Show environment variables
       run: >

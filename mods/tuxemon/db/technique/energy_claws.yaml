@@ -25,6 +25,7 @@ target:
 category: exotic
 tags:
 - claws
+- electricity
 types:
 - lightning
 use_failure: combat_miss

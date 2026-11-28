@@ -41,6 +41,7 @@ history:
 terrains: []
 tags:
 - bug
+- flame
 shape: varmint
 stage: basic
 types:

@@ -38,6 +38,7 @@ terrains: []
 tags:
 - light
 - mental
+- tail
 shape: serpent
 stage: standalone
 types:

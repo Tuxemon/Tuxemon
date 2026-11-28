@@ -23,6 +23,7 @@ target:
 category: basic
 tags:
 - weather
+- ice
 types:
 - frost
 use_failure: combat_miss

@@ -39,6 +39,7 @@ history:
 terrains: []
 tags:
 - bird
+- speed
 shape: flier
 stage: stage1
 types:

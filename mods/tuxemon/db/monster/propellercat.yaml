@@ -37,6 +37,7 @@ history:
 terrains: []
 tags:
 - bird
+- machine
 - sharp
 shape: flier
 stage: standalone

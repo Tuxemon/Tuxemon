@@ -37,6 +37,7 @@ terrains:
 - urban
 tags:
 - electricity
+- machine
 shape: serpent
 stage: stage1
 types:

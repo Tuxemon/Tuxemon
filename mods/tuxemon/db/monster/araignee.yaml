@@ -42,6 +42,7 @@ terrains:
 - woodland
 tags:
 - toxic
+- bug
 shape: grub
 stage: standalone
 types:

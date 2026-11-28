@@ -51,6 +51,8 @@ terrains:
 - sea
 tags:
 - pseudopod
+- claws
+- toxic
 - water
 - shielded
 - sharp

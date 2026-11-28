@@ -25,6 +25,7 @@ target:
 category: simple
 tags:
 - electricity
+- sound
 types:
 - lightning
 use_failure: combat_miss

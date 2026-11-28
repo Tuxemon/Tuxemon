@@ -46,6 +46,7 @@ terrains:
 - extraplanar
 tags:
 - machine
+- shapeshifter
 - steel
 shape: sprite
 stage: stage1

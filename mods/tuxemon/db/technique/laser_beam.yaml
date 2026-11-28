@@ -26,6 +26,7 @@ category: powerful
 tags:
 - machine
 - electricity
+- light
 types:
 - lightning
 use_failure: combat_miss

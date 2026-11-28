@@ -26,6 +26,7 @@ category: simple
 tags:
 - flame
 - celestial
+- light
 types:
 - fire
 use_failure: combat_miss

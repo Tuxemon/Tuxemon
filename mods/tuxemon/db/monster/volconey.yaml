@@ -34,6 +34,7 @@ terrains:
 - woodland
 tags:
 - flame
+- sound
 - ground
 - calamity
 shape: varmint

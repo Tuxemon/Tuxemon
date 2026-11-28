@@ -23,6 +23,7 @@ target:
 category: basic
 tags:
 - water
+- summoner
 types:
 - water
 use_failure: combat_miss

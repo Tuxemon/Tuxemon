@@ -37,6 +37,7 @@ history:
 terrains: []
 tags:
 - plant
+- ghost
 - shapeshifter
 shape: humanoid
 stage: standalone

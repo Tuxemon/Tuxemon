@@ -41,6 +41,7 @@ terrains:
 tags:
 - mental
 - gadgets
+- machine
 - tail
 shape: humanoid
 stage: stage1

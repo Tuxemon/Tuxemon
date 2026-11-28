@@ -38,6 +38,7 @@ terrains: []
 tags:
 - toxic
 - bite
+- mental
 shape: serpent
 stage: stage1
 types:

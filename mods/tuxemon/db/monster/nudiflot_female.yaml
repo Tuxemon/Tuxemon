@@ -38,6 +38,7 @@ terrains: []
 tags:
 - freshwater
 - mental
+- toxic
 shape: polliwog
 stage: basic
 types:

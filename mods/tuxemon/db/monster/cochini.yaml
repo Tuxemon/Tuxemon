@@ -38,6 +38,7 @@ terrains: []
 tags:
 - food
 - love
+- mental
 shape: varmint
 stage: standalone
 types:

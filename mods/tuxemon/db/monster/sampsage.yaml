@@ -38,6 +38,7 @@ terrains:
 - urban
 tags:
 - mental
+- shapeshifter
 shape: humanoid
 stage: standalone
 types:

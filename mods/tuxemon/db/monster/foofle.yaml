@@ -37,6 +37,7 @@ history:
 terrains: []
 tags:
 - love
+- sound
 shape: varmint
 stage: standalone
 types:

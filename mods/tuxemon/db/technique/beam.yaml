@@ -25,6 +25,7 @@ target:
 category: simple
 tags:
 - light
+- gaze
 types:
 - heroic
 use_failure: combat_miss

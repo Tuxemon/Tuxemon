@@ -24,6 +24,7 @@ target:
 category: condition_imposer
 tags:
 - bug
+- love
 types:
 - venom
 use_failure: combat_miss

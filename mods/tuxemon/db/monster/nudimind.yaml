@@ -38,6 +38,7 @@ terrains:
 - sea
 tags:
 - mental
+- toxic
 shape: polliwog
 stage: stage1
 types:

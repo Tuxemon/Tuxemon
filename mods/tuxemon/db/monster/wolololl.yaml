@@ -43,6 +43,7 @@ terrains:
 tags:
 - sharp
 - plant
+- toxic
 - staff
 shape: humanoid
 stage: stage1

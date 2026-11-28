@@ -24,5 +24,5 @@ visuals:
   flip_axes: ''
   loop: 0
 sound:
-  sfx: sfx_pulse
+  sfx: null
   volume: 1.5

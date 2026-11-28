@@ -43,13 +43,15 @@ class DieEffect(CoreEffect):
     def apply_item_target(
         self, session: Session, item: Item, target: Monster
     ) -> ItemEffectResult:
+        extras: list[str] = []
         if session.client.combat_session.turn == 1:
             statuses = self.statuses.split(":")
             status_slug = random.choice(statuses)
             status = Status.create(status_slug, target, target.steps)
             result = target.status.apply_status(session, status)
             if result.applied:
+                extras.extend(result.extras)
                 event_bus = session.client.event_bus
                 event_bus.publish("status_applied")
                 event_bus.publish("update_party_hud")
-        return ItemEffectResult(name=item.name, success=True)
+        return ItemEffectResult(name=item.name, success=True, extras=extras)

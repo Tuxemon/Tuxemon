@@ -11,7 +11,9 @@ jobs:
   flatpak:
     runs-on: ubuntu-latest
     container:
-      image: bilelmoussaoui/flatpak-github-actions:kde-6.3
+      # Must match the runtime/runtime-version in buildconfig/flatpak/org.tuxemon.Tuxemon.yaml.
+      # The old bilelmoussaoui/* images are no longer maintained.
+      image: ghcr.io/flathub-infra/flatpak-github-actions:freedesktop-24.08
       options: --privileged
     steps:
     - name: Show environment variables

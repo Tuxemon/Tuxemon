@@ -47,6 +47,11 @@ DISPLAY_CONTEXT: DisplayContext = DisplayContext(
 
 DEV_TOOLS = CONFIG.dev_tools
 
+# Multiple of NATIVE_RESOLUTION (256x144) the game draws at on Android.
+# 3 -> 768x432 (about 2.8x fewer pixels than 1280x720); 2 -> 512x288 is
+# faster still but text looks chunkier.
+ANDROID_RENDER_SCALE = 3
+
 
 def pygame_init() -> DisplayContext:
     """Initializes Pygame, display, translations, and databases."""
@@ -54,11 +59,28 @@ def pygame_init() -> DisplayContext:
 
     core_init()
 
+    is_android = bool(os.environ.get("ANDROID_PRIVATE"))
+    if is_android:
+        # Keep pixel art crisp when SDL stretches the window to the screen.
+        os.environ.setdefault("SDL_RENDER_SCALE_QUALITY", "0")
+
     logger.debug("pygame init")
     pg.init()
     pg.display.set_caption(CONFIG.window_caption)
 
-    scaling = make_default_scaling(CONFIG, NATIVE_RESOLUTION)
+    if is_android:
+        # All drawing is done in software on the CPU, so cost grows with the
+        # number of pixels. Render at a small multiple of the native
+        # resolution and let SDL stretch it to the phone's screen instead of
+        # drawing at the desktop default (1280x720, 5x native).
+        resolution = (
+            NATIVE_RESOLUTION[0] * ANDROID_RENDER_SCALE,
+            NATIVE_RESOLUTION[1] * ANDROID_RENDER_SCALE,
+        )
+        scaling = DefaultScaling(ANDROID_RENDER_SCALE)
+    else:
+        resolution = CONFIG.resolution
+        scaling = make_default_scaling(CONFIG, NATIVE_RESOLUTION)
 
     fullscreen = pg.FULLSCREEN if CONFIG.fullscreen else 0
     flags = pg.HWSURFACE | pg.DOUBLEBUF | fullscreen
@@ -66,7 +88,7 @@ def pygame_init() -> DisplayContext:
     if CONFIG.vsync:
         pg.display.set_allow_screensaver()
 
-    screen = pg.display.set_mode(CONFIG.resolution, flags, vsync=CONFIG.vsync)
+    screen = pg.display.set_mode(resolution, flags, vsync=CONFIG.vsync)
     rect = screen.get_rect()
 
     pg.mouse.set_visible(not CONFIG.controller.hide_mouse)
@@ -74,7 +96,7 @@ def pygame_init() -> DisplayContext:
     DISPLAY_CONTEXT = DisplayContext(
         screen=screen,
         rect=rect,
-        resolution=CONFIG.resolution,
+        resolution=resolution,
         tile_size=scaling.scale_point(NATIVE_TILE_SIZE),
         scale=scaling._scale,
         scaling=scaling,

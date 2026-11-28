@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+import os
 import time
 from collections.abc import Callable
 from typing import TYPE_CHECKING
@@ -14,6 +15,10 @@ from tuxemon.config import TuxemonConfig
 from tuxemon.map.tuxemon import NullMap
 from tuxemon.map.view import DebugRenderer, MapRenderer, NullRenderer
 from tuxemon.state.draw import EventDebugDrawer, Renderer, StateDrawer
+
+# Maximum screen redraws per second on Android. 30 divides evenly into a
+# 60 Hz display, so motion stays smooth; game logic still runs at full speed.
+ANDROID_DRAW_FPS = 30
 
 if TYPE_CHECKING:
     from tuxemon.prepare import DisplayContext
@@ -110,10 +115,22 @@ class LocalPygameClient(BaseClient):
         flip = pygame.display.update
         clock = time.time
 
+        sleep = time.sleep
+
         target_fps = self.config.fps
         frame_length = 1.0 / target_fps
 
+        # Game logic always runs at target_fps so game speed is unchanged.
+        # Drawing is capped separately: previously it ran flat out, redrawing
+        # identical frames and keeping the CPU at 100%. On Android it is
+        # capped lower still to save CPU and avoid thermal throttling.
+        draw_fps = target_fps
+        if os.environ.get("ANDROID_PRIVATE"):
+            draw_fps = min(target_fps, ANDROID_DRAW_FPS)
+        draw_length = 1.0 / draw_fps
+
         last_time = clock()
+        next_draw = last_time
         accumulator = 0.0
 
         while self.state != ClientState.DONE:
@@ -132,12 +149,26 @@ class LocalPygameClient(BaseClient):
                     update(frame_length)
                     accumulator -= frame_length
 
-                draw()
-                self.input_manager.draw_inputs(screen)
-                flip()
+                if now >= next_draw:
+                    draw()
+                    self.input_manager.draw_inputs(screen)
+                    flip()
 
-                if self.config.show_fps:
-                    self.renderer.update(frame_length)
+                    if self.config.show_fps:
+                        self.renderer.update(draw_length)
+
+                    next_draw += draw_length
+                    # If we fell behind, don't try to catch up with a burst
+                    # of draws; just schedule the next one normally.
+                    if next_draw < now:
+                        next_draw = now + draw_length
+
+                # Sleep until the next logic tick or draw is due.
+                wait = min(
+                    frame_length - accumulator, next_draw - clock()
+                )
+                if wait > 0:
+                    sleep(wait)
 
             elif self.state == ClientState.EXITING:
                 self.perform_cleanup()

@@ -22,11 +22,10 @@ def make_action(option="tp"):
 def test_reset_tps_single_stat():
     action = make_action()
 
-    with patch(
-        "tuxemon.event.actions.dojo_method.open_dialog"
-    ) as open_dialog, patch(
-        "tuxemon.event.actions.dojo_method.T"
-    ) as mock_t:
+    with (
+        patch("tuxemon.event.actions.dojo_method.open_dialog") as open_dialog,
+        patch("tuxemon.event.actions.dojo_method.T") as mock_t,
+    ):
         mock_t.translate.side_effect = lambda key: key
         mock_t.format.side_effect = lambda key, params: f"{key}:{params}"
         action.reset_tps("armour")
@@ -49,11 +48,10 @@ def test_reset_tps_single_stat():
 def test_reset_tps_all_stats():
     action = make_action()
 
-    with patch(
-        "tuxemon.event.actions.dojo_method.open_dialog"
-    ) as open_dialog, patch(
-        "tuxemon.event.actions.dojo_method.T"
-    ) as mock_t:
+    with (
+        patch("tuxemon.event.actions.dojo_method.open_dialog") as open_dialog,
+        patch("tuxemon.event.actions.dojo_method.T") as mock_t,
+    ):
         mock_t.translate.side_effect = lambda key: key
         mock_t.format.side_effect = lambda key, params: f"{key}:{params}"
         action.reset_tps(None)
@@ -86,12 +84,15 @@ def test_tp_option_builds_menu_with_all_stats():
         captured["keys"] = list(actions.keys())
         return []
 
-    with patch(
-        "tuxemon.event.actions.dojo_method.create_choice_options",
-        side_effect=fake_create,
-    ), patch(
-        "tuxemon.event.actions.dojo_method.open_choice_dialog"
-    ) as open_dialog:
+    with (
+        patch(
+            "tuxemon.event.actions.dojo_method.create_choice_options",
+            side_effect=fake_create,
+        ),
+        patch(
+            "tuxemon.event.actions.dojo_method.open_choice_dialog"
+        ) as open_dialog,
+    ):
         action.start(session)
 
     assert captured["keys"] == BasicStats.names() + ["dojo_tp_all"]
@@ -138,11 +139,22 @@ def test_tp_update_stops_when_menu_and_dialog_closed():
     assert action._done is True
 
 
-def test_monster_update_still_stops_without_dialog():
-    # Existing behaviour for the other options is unchanged.
+def test_monster_update_waits_for_choice_menu():
+    # The devolution menu is a ChoiceState; the action must not finish (and
+    # let the event charge money) until the player has picked an option.
     action = make_action(option="monster")
     session = MagicMock()
     session.client.active_state_names = ["WorldState", "ChoiceState"]
+
+    action.update(session, 0.0)
+
+    assert action._done is False
+
+
+def test_monster_update_stops_when_menu_closed():
+    action = make_action(option="monster")
+    session = MagicMock()
+    session.client.active_state_names = ["WorldState"]
 
     action.update(session, 0.0)
 

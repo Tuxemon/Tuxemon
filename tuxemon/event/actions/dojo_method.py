@@ -46,7 +46,8 @@ class DojoMethodAction(EventAction):
 
             - "technique": Learn any move the monster hasn't acquired from its base
               moveset, without restrictions based on level or evolution stage.
-            - "monster": Devolve the monster.
+            - "monster": Devolve the monster. The action finishes once the
+              devolution menu has closed.
             - "tp": Reset the monster's training points, either for a single
               stat or for all stats at once. The action finishes once the
               stat menu and the confirmation dialog have both closed.
@@ -144,10 +145,11 @@ class DojoMethodAction(EventAction):
 
     def update(self, session: Session, dt: float) -> None:
         active = session.client.active_state_names
-        if self.option == "tp":
-            # The stat menu is a ChoiceState, not a DialogState. Wait until
-            # both it and the confirmation dialog have closed, so that later
-            # actions in the event (e.g. charging money) run after the reset.
+        if self.option in ("monster", "tp"):
+            # These menus are a ChoiceState, not a DialogState. Wait until
+            # the menu (and the "tp" confirmation dialog) have closed, so
+            # that later actions in the event (e.g. charging money) run
+            # after the player has made their choice.
             if "ChoiceState" not in active and "DialogState" not in active:
                 self.stop()
         elif "DialogState" not in active:

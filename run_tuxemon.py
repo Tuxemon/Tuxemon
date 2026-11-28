@@ -104,7 +104,13 @@ def handle_fatal_error(e: Exception) -> None:
     logger.error(full_error)
 
     try:
-        error_log = Path.cwd() / "tuxemon_error.log"
+        from tuxemon.constants.paths import USER_STORAGE_DIR
+
+        # not the working directory: it may be read-only or unrelated to the
+        # game (packaged builds are launched from wherever the user happens
+        # to be), which would lose the report
+        USER_STORAGE_DIR.mkdir(parents=True, exist_ok=True)
+        error_log = USER_STORAGE_DIR / "tuxemon_error.log"
         error_log.write_text(full_error, encoding="utf-8")
         print(f"Error details saved to: {error_log}", file=sys.stderr)
     except Exception:

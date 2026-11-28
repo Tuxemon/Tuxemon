@@ -8,6 +8,7 @@ from typing import Any
 
 from pydantic import ValidationError
 
+from tuxemon.constants.paths import resolve_mod_base_path
 from tuxemon.database.config import ModMetadata
 from tuxemon.database.yaml_utils import load_yaml
 
@@ -42,10 +43,10 @@ class ModMetadataLoader:
     """Loads and validates mod.yaml metadata files."""
 
     def __init__(
-        self, active_mods: list[str], base_path: str = "mods"
+        self, active_mods: list[str], base_path: str | Path = "mods"
     ) -> None:
         self.active_mods = active_mods
-        self.base_path = Path(base_path)
+        self.base_path = resolve_mod_base_path(base_path)
 
     def load_metadata(self) -> dict[str, ModMetadata]:
         """Loads and returns metadata for all active mods."""

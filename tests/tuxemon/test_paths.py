@@ -21,6 +21,7 @@ from tuxemon.constants.paths import (
     get_mod_name_from_path,
     get_plugin_paths,
     mods_folder,
+    resolve_mod_base_path,
 )
 
 
@@ -54,6 +55,22 @@ def test_mods_folder():
 
 def test_user_config_path():
     assert USER_CONFIG_PATH.parent.exists()
+
+
+def test_resolve_mod_base_path_is_independent_of_cwd(tmp_path, monkeypatch):
+    monkeypatch.chdir(tmp_path)
+    assert resolve_mod_base_path("mods") == mods_folder
+
+
+def test_resolve_mod_base_path_keeps_absolute_paths(tmp_path):
+    assert resolve_mod_base_path(tmp_path) == tmp_path
+
+
+def test_resolve_mod_base_path_honours_override(tmp_path, monkeypatch):
+    monkeypatch.setattr(
+        "tuxemon.constants.paths.mods_folder_override", tmp_path
+    )
+    assert resolve_mod_base_path("mods") == tmp_path
 
 
 def test_get_active_mod_paths(tmp_path, monkeypatch):

@@ -25,6 +25,9 @@ model_map:
   weather: tuxemon.db.WeatherModel
 
 # The base directory where all game mods are located.
+# Relative paths are resolved against the game's install folder, not the
+# current working directory, and can be overridden by setting the
+# TUXEMON_MOD_PATH environment variable to an absolute path.
 mod_base_path: mods
 
 # The subfolder within each mod directory where its database files are stored.

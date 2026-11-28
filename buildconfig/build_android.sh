@@ -213,7 +213,12 @@ else:
 PATCHPY
 
 echo "=== Phase 3: full APK build ==="
-p4a apk "${P4A_FLAGS[@]}" --requirements="$P4A_REQS"
+# --ignore-setup-py: don't pip-install Tuxemon's own pyproject.toml
+# dependencies. They are pinned for desktop (pygame-ce, pygame-menu-ce==4.5.2,
+# cbor, prompt_toolkit) and conflict with the Android recipes above. Every
+# package the app needs on Android is already listed in P4A_REQS, and the
+# game code itself is bundled via --private.
+p4a apk "${P4A_FLAGS[@]}" --requirements="$P4A_REQS" --ignore-setup-py
 
 mkdir -p dist/android
 # Use the most recently modified .apk (guards against leftover files from phase 1)
